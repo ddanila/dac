@@ -98,6 +98,7 @@ test("keyboard buttons send documented bytes, latch modifiers and reset safely",
     keys.getByRole("button", { name: "Caps Lock", exact: true }),
   ).toHaveAttribute("aria-pressed", "false");
   await page.locator("#power").click();
+  await expect(page.locator("#status")).toHaveText("Powered off");
   await press("A");
   await expect(page.locator("#key-feedback")).toContainText("Power on");
   expect(await page.evaluate(() => window.sentKeys.length)).toBe(14);
@@ -157,4 +158,31 @@ test("a key on the 3D model types, while dragging and cancelled gestures do not"
     "intentionally absent",
   );
   await expect(page.locator("#reference-photo")).toBeHidden();
+});
+
+test("a static exhibit stops submitting GPU draws", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.gpuDraws = 0;
+    for (const name of ["drawArrays", "drawElements"]) {
+      const original = WebGL2RenderingContext.prototype[name];
+      WebGL2RenderingContext.prototype[name] = function (...args) {
+        window.gpuDraws++;
+        return original.apply(this, args);
+      };
+    }
+  });
+  await page.goto("/");
+  await expect(page.locator("#viewport")).toHaveAttribute(
+    "data-model",
+    "robotron-photo",
+  );
+  await page.locator("#viewport").screenshot();
+  const before = await page.evaluate(() => window.gpuDraws);
+  expect(before).toBeGreaterThan(0);
+  await page.waitForTimeout(250);
+  expect(await page.evaluate(() => window.gpuDraws)).toBe(before);
+  await page.getByRole("button", { name: "Keyboard", exact: true }).click();
+  await expect
+    .poll(() => page.evaluate(() => window.gpuDraws))
+    .toBeGreaterThan(before);
 });

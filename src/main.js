@@ -10,11 +10,13 @@ const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
 const screen = $("screen"),
   ctx = screen.getContext("2d");
 let on = false,
+  powerPending = false,
   ready = false,
   activity = 0,
   disk = false,
   scene,
-  configuration = 0;
+  configuration = 0,
+  previousPixels;
 const held = new Map(),
   base = new URL(import.meta.env.BASE_URL + "emulator/", location.origin);
 function fail(message) {
@@ -29,12 +31,15 @@ function release() {
 function power() {
   if (!ready || $("power").disabled) return;
   release();
+  powerPending = true;
+  $("power").disabled = true;
+  $("reset").disabled = true;
   send({ type: "power", on: !on });
 }
 let modelKeys = [];
 const keyboard = createRobotronKeyboard({
   send,
-  isPowered: () => on && Number($("machine").value) === 2,
+  isPowered: () => on && !powerPending && Number($("machine").value) === 2,
   onState: (state) => {
     scene?.modifiers(state);
     for (const button of $("key-list").querySelectorAll("[data-modifier]"))
@@ -48,7 +53,7 @@ const keyboard = createRobotronKeyboard({
   },
 });
 function resetMachine() {
-  if (on) {
+  if (on && !powerPending) {
     release();
     send({ type: "reset" });
   }
@@ -202,6 +207,8 @@ worker.onmessage = ({ data: d }) => {
   }
   if (d.type === "power") {
     on = d.on;
+    powerPending = false;
+    $("power").disabled = false;
     if (on) $("media-controls").open = false;
     if (!on) {
       keyboard.reset();
@@ -227,13 +234,27 @@ worker.onmessage = ({ data: d }) => {
     if (screen.width !== d.width || screen.height !== d.height) {
       screen.width = d.width;
       screen.height = d.height;
+      previousPixels = undefined;
     }
-    ctx.putImageData(
-      new ImageData(new Uint8ClampedArray(d.pixels), d.width, d.height),
-      0,
-      0,
-    );
-    scene?.update();
+    // Firmware often leaves the framebuffer unchanged for many frames. Avoid
+    // uploading the same image and redrawing the entire 3D exhibit each time.
+    const pixels = new Uint32Array(d.pixels);
+    let changed = !previousPixels || previousPixels.length !== pixels.length;
+    if (!changed)
+      for (let i = 0; i < pixels.length; i++)
+        if (pixels[i] !== previousPixels[i]) {
+          changed = true;
+          break;
+        }
+    if (changed) {
+      ctx.putImageData(
+        new ImageData(new Uint8ClampedArray(d.pixels), d.width, d.height),
+        0,
+        0,
+      );
+      scene?.update();
+    }
+    previousPixels = pixels;
     const active = d.activity > activity;
     activity = d.activity;
     scene?.activity(active);
@@ -246,6 +267,7 @@ worker.onmessage = ({ data: d }) => {
   if (d.type === "error") {
     fail(d.message);
     on = false;
+    powerPending = false;
     release();
     scene?.power(false);
     $("status").textContent = "Stopped";
@@ -354,7 +376,13 @@ function keyDown(e) {
     return;
   }
   const key = keyCode(e);
-  if (!on || key === undefined || Number($("machine").value) === 1) return;
+  if (
+    !on ||
+    powerPending ||
+    key === undefined ||
+    Number($("machine").value) === 1
+  )
+    return;
   e.preventDefault();
   if (e.repeat && Number($("machine").value) !== 2) return;
   if (Number($("machine").value) === 2) {
