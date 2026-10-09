@@ -21,13 +21,13 @@ Interactive exhibit with a photo-based OpenSCAD exterior of Danila’s machine a
 - Inspect the rear and underside of the keyboard and case.
 - Activate the physical power control to start a cold boot.
 - Display live emulator output on the modeled monitor.
-- Type using the visitor’s keyboard; clicking modeled keys remains future work.
+- Type using the visitor’s keyboard, click the modeled keys, or use accessible keyboard buttons. 89 positions are wired; eight unverified mappings are explicitly unavailable.
 - Power off and restart predictably.
 - Provide a focused screen view and accessible controls alongside the 3D interaction.
 
 ## Later detail
 
-Removable covers, internal boards and cabling, annotated component views, drive interactions, and carefully sourced historical context.
+Exterior parts can already be separated and inspected with evidence annotations and close-up views. Internal boards/cabling, exact rear connector placement, physical keyboard-controller feedback and drive media interactions remain future work requiring more references.
 
 ## Unresolved
 

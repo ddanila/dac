@@ -1,5 +1,7 @@
 import "./style.css";
 import { createScene } from "./scene.js";
+import { createRobotronKeyboard } from "./robotron-keyboard.js";
+import { showInspection } from "./inspection.js";
 const $ = (id) => document.getElementById(id),
   send = (d) => worker.postMessage(d);
 const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
@@ -20,6 +22,8 @@ function fail(message) {
 }
 function release() {
   held.clear();
+  keyboard.reset();
+  scene?.releaseKeys();
   if (on) send({ type: "key", key: 0, down: false });
 }
 function power() {
@@ -27,9 +31,63 @@ function power() {
   release();
   send({ type: "power", on: !on });
 }
+let modelKeys = [];
+const keyboard = createRobotronKeyboard({
+  send,
+  isPowered: () => on && Number($("machine").value) === 2,
+  onState: (state) => {
+    scene?.modifiers(state);
+    for (const button of $("key-list").querySelectorAll("[data-modifier]"))
+      button.setAttribute(
+        "aria-pressed",
+        String(state[button.dataset.modifier]),
+      );
+  },
+  onFeedback: (message) => {
+    $("key-feedback").textContent = message;
+  },
+});
+function resetMachine() {
+  if (on) {
+    release();
+    send({ type: "reset" });
+  }
+}
+function modelKey(key) {
+  return keyboard.activate(key);
+}
+function keyButtons(keys) {
+  $("separate-parts").disabled = false;
+  $("key-list-toggle").disabled = false;
+  modelKeys = keys;
+  $("key-list").replaceChildren();
+  for (const key of keys) {
+    const button = document.createElement("button");
+    button.textContent = key.label;
+    button.dataset.key = key.id;
+    button.setAttribute(
+      "aria-label",
+      key.label + (key.u >= 18 ? " · numeric or function keypad" : ""),
+    );
+    if (key.input.modifier) {
+      button.dataset.modifier = key.input.modifier;
+      button.setAttribute("aria-pressed", "false");
+    }
+    if (key.input.unsupported) button.title = key.input.unsupported;
+    button.onclick = () => {
+      if (modelKey(key)) scene?.pulse(key.id);
+    };
+    $("key-list").append(button);
+  }
+}
+showInspection("overview");
 try {
-  scene = createScene($("viewport"), screen, power, () => {
-    if (on) send({ type: "reset" });
+  scene = createScene($("viewport"), screen, power, resetMachine, {
+    onKey: modelKey,
+    onKeysReady: keyButtons,
+    onHover: (message) => {
+      $("hover-key").textContent = message;
+    },
   });
 } catch (e) {
   fail("3D is unavailable on this device. The enlarged screen still works.");
@@ -63,7 +121,19 @@ async function configure(demo) {
   $("reset").disabled = true;
   const kind = Number($("machine").value),
     d = descriptions[kind];
+  keyboard.reset();
   scene?.setMachine(kind);
+  $("separate-parts").checked = false;
+  $("key-list").hidden = true;
+  $("key-list-toggle").textContent = "Show keyboard buttons";
+  $("key-list-toggle").setAttribute("aria-expanded", "false");
+  for (const element of document.querySelectorAll("[data-robotron]"))
+    element.hidden = kind !== 2;
+  $("key-feedback").textContent = "";
+  showInspection("overview");
+  scene?.view("overview");
+  for (const b of document.querySelectorAll("[data-view]"))
+    b.setAttribute("aria-pressed", String(b.dataset.view === "overview"));
   $("cpu").textContent = d[0];
   $("profile").textContent = d[1];
   $("description").textContent = d[2];
@@ -132,7 +202,11 @@ worker.onmessage = ({ data: d }) => {
   }
   if (d.type === "power") {
     on = d.on;
-    if (on) document.querySelector("details").open = false;
+    if (on) $("media-controls").open = false;
+    if (!on) {
+      keyboard.reset();
+      scene?.releaseKeys();
+    }
     scene?.power(on);
     $("power-label").textContent = on ? "Power off" : "Power on";
     $("status").textContent = on ? "Running" : "Powered off";
@@ -160,8 +234,9 @@ worker.onmessage = ({ data: d }) => {
       0,
     );
     scene?.update();
-    const active = d.activity !== activity;
+    const active = d.activity > activity;
     activity = d.activity;
+    scene?.activity(active);
     $("disk-led").classList.toggle("active", active);
     $("disk-led").setAttribute(
       "aria-label",
@@ -171,6 +246,7 @@ worker.onmessage = ({ data: d }) => {
   if (d.type === "error") {
     fail(d.message);
     on = false;
+    release();
     scene?.power(false);
     $("status").textContent = "Stopped";
     $("power-label").textContent = "Power on";
@@ -199,10 +275,7 @@ worker.onmessage = ({ data: d }) => {
 };
 worker.onerror = (e) => fail(e.message || "Emulator worker failed");
 $("power").onclick = power;
-$("reset").onclick = () => {
-  release();
-  send({ type: "reset" });
-};
+$("reset").onclick = resetMachine;
 $("turbo").onchange = () =>
   send({ type: "speed", value: $("turbo").checked ? 4 : 1 });
 $("load").onclick = () =>
@@ -227,11 +300,34 @@ for (const b of document.querySelectorAll("[data-view]"))
     release();
     $("screen-panel").hidden = true;
     scene?.view(b.dataset.view);
+    showInspection(b.dataset.view);
+    for (const button of document.querySelectorAll("[data-view]"))
+      button.setAttribute("aria-pressed", String(button === b));
   };
+$("separate-parts").onchange = () => {
+  release();
+  const split = $("separate-parts").checked;
+  scene?.separate(split);
+  scene?.view(split ? "assembly" : "overview");
+  showInspection(split ? "assembly" : "overview");
+  for (const b of document.querySelectorAll("[data-view]"))
+    b.setAttribute(
+      "aria-pressed",
+      String(!split && b.dataset.view === "overview"),
+    );
+};
+$("key-list-toggle").onclick = () => {
+  const hidden = !$("key-list").hidden;
+  $("key-list").hidden = hidden;
+  $("key-list-toggle").setAttribute("aria-expanded", String(!hidden));
+  $("key-list-toggle").textContent = hidden
+    ? "Show keyboard buttons"
+    : "Hide keyboard buttons";
+};
 function keyCode(e) {
   if (e.key === "Enter") return 13;
   if (e.key === "Backspace") return 8;
-  if (e.key === "Tab") return 9;
+  if (e.key === "Tab") return Number($("machine").value) === 2 ? 0x80 : 9;
   if (e.key.length === 1 && e.key.charCodeAt(0) < 128)
     return e.ctrlKey
       ? e.key.toUpperCase().charCodeAt(0) & 31
@@ -242,10 +338,10 @@ function keyCode(e) {
       : { ArrowUp: 0x8b, ArrowDown: 0x80, ArrowLeft: 0x8d, ArrowRight: 0x8c };
   return keys[e.key];
 }
-screen.onkeydown = (e) => {
+function keyDown(e) {
   if (e.key === "Escape") {
     release();
-    screen.blur();
+    e.currentTarget.blur();
     e.preventDefault();
     return;
   }
@@ -253,16 +349,35 @@ screen.onkeydown = (e) => {
   if (!on || key === undefined || Number($("machine").value) === 1) return;
   e.preventDefault();
   if (e.repeat) return;
+  if (Number($("machine").value) === 2) {
+    const value = e.key.length === 1 ? e.key.toLowerCase().charCodeAt(0) : key;
+    const modeled = modelKeys.find(
+      (k) => k.input.code === value || k.input.shiftCode === value,
+    );
+    if (modeled) {
+      keyboard.activate(modeled, { shift: e.shiftKey, ctrl: e.ctrlKey });
+      scene?.pulse(modeled.id);
+      return;
+    }
+  }
   held.set(e.code, key);
+  const modeled = modelKeys.find(
+    (k) => k.input.code === key || k.input.shiftCode === key,
+  );
+  if (modeled && Number($("machine").value) === 2) scene?.pulse(modeled.id);
   send({ type: "key", key, down: true });
-};
-screen.onkeyup = (e) => {
+}
+function keyUp(e) {
   const key = held.get(e.code);
   if (key === undefined) return;
   e.preventDefault();
   held.delete(e.code);
   if (on) send({ type: "key", key, down: false });
-};
+}
+screen.onkeydown = keyDown;
+screen.onkeyup = keyUp;
+$("viewport").onkeydown = keyDown;
+$("viewport").onkeyup = keyUp;
 screen.onblur = release;
 window.addEventListener("blur", release);
 document.addEventListener("visibilitychange", () => {

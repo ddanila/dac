@@ -25,36 +25,64 @@
         </p>
       </section>
       <section class="exhibit" aria-label="Interactive computer exhibit">
-        <div class="stage">
-          <div
-            id="viewport"
-            tabindex="0"
-            aria-label="3D computer. Drag to rotate, scroll to zoom. Use the view buttons for keyboard-accessible views."
-          ></div>
-          <div class="stage-top">
-            <span class="specimen">EXHIBIT <b id="number">001</b></span
-            ><span id="model-note"
-              >PHOTO-BASED RECONSTRUCTION · DANILA’S MACHINE</span
-            >
-          </div>
-          <div class="stage-bottom">
-            <span>DRAG TO ROTATE · SCROLL TO ZOOM</span>
-            <div class="views">
-              <button data-view="front">Front</button
-              ><button data-view="back">Rear</button
-              ><button data-view="under">Underneath</button
-              ><button id="screen-view">Screen</button>
+        <div class="artifact-column">
+          <div class="stage">
+            <div
+              id="viewport"
+              tabindex="0"
+              aria-label="3D computer. Drag to rotate, scroll to zoom. Use the view buttons for keyboard-accessible views."
+            ></div>
+            <div class="stage-top">
+              <span class="specimen">EXHIBIT <b id="number">001</b></span
+              ><span id="model-note"
+                >PHOTO-BASED RECONSTRUCTION · DANILA’S MACHINE</span
+              >
+            </div>
+            <div class="stage-bottom">
+              <span>DRAG TO ROTATE · SCROLL TO ZOOM</span>
+              <div class="views">
+                <button data-view="overview">Overview</button
+                ><button data-view="front">Front</button
+                ><button data-view="keyboard" data-robotron>Keyboard</button
+                ><button data-view="drives" data-robotron>Drives</button
+                ><button data-view="monitor" data-robotron>Monitor</button
+                ><button data-view="back">Rear</button
+                ><button data-view="under">Underneath</button
+                ><button id="screen-view">Screen</button>
+              </div>
+            </div>
+            <div id="screen-panel" hidden>
+              <canvas
+                id="screen"
+                width="640"
+                height="384"
+                tabindex="0"
+                aria-label="Emulated computer display; focus here to type"
+              ></canvas>
+              <p>Click the display to type. Escape releases keyboard focus.</p>
             </div>
           </div>
-          <div id="screen-panel" hidden>
-            <canvas
-              id="screen"
-              width="640"
-              height="384"
-              tabindex="0"
-              aria-label="Emulated computer display; focus here to type"
-            ></canvas>
-            <p>Click the display to type. Escape releases keyboard focus.</p>
+          <div id="inspection-notes" data-robotron>
+            <h2 id="inspection-title">Danila’s Robotron</h2>
+            <p id="inspection-text"></p>
+            <a id="reference-photo" target="_blank" rel="noreferrer"
+              >View reference photo ↗</a
+            >
+            <label class="assembly-control"
+              ><input id="separate-parts" type="checkbox" disabled /> Separate
+              exterior parts</label
+            >
+            <button
+              id="key-list-toggle"
+              disabled
+              aria-expanded="false"
+              aria-controls="key-list"
+            >
+              Show keyboard buttons
+            </button>
+            <div id="key-list" hidden></div>
+            <p id="key-feedback" aria-live="polite"></p>
+            <p id="hover-key" aria-hidden="true"></p>
           </div>
         </div>
         <aside>
@@ -105,7 +133,7 @@
             enlarged screen. Explore the exterior reconstructed from Danila’s
             photographs.
           </p>
-          <details>
+          <details id="media-controls">
             <summary>Load your machine’s media <span>+</span></summary>
             <p>
               Files stay in your browser. Power off before loading. Robotron
