@@ -25,7 +25,7 @@ Concept and research stage. This repository currently contains the project brief
 - Keep original modeling assets separate from optimized browser exports.
 - Record the source, version, and usage permissions of imported assets and emulator components.
 
-Hosting, large-asset storage, emulator packaging, and project licensing remain open decisions. No third-party firmware or disk images are included.
+Portable emulator cores and shared verification utilities will live in [dac-emulation](https://github.com/ddanila/dac-emulation). Hosting, large-asset storage, and emulator packaging remain open decisions. No third-party firmware or disk images are included.
 
 ## Next steps
 
@@ -36,3 +36,7 @@ Hosting, large-asset storage, emulator packaging, and project licensing remain o
 5. Add interior views as the physical hardware is documented.
 
 See [technical direction](docs/technical-direction.md) and the [Robotron exhibit brief](exhibits/robotron-1715m/README.md).
+
+## License
+
+Original project content is licensed under the [MIT License](LICENSE). Imported components and historical media retain their own licenses and notices.

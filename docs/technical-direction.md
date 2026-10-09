@@ -47,7 +47,7 @@ No alternative has yet been validated as more accurate for the original 1715M. C
 - Model tooling, detail budgets, and browser/device support targets.
 - Emulator binary and large-asset storage and delivery.
 - Firmware/media sources and distribution permissions.
-- Separate licensing choices for DAC code, original models, photographs, and exhibit text; preserve upstream component licenses.
+- Original DAC content is MIT-licensed; preserve upstream licenses and notices for imported components and media.
 - Visitor disk persistence, reset behavior, and export of modified media.
 
 The first acceptance test is a repeatable cold boot into an interactive system from the 3D power control, with readable live video and reliable input while the model remains inspectable. Start with a simple model and improve its physical fidelity after that path works.
