@@ -32,6 +32,16 @@ First prove boot and keyboard behavior with a pinned native emulator build. Then
 
 ## Decisions to make after the spike
 
+### Alternative implementations investigated
+
+- [robotron-1715m-fpga](https://github.com/usovmv/robotron-1715m-fpga): MIT-licensed project with separately licensed dependencies, an FPGA implementation, and Python development simulators. The author explicitly models their modified FPGA design and uses MAME as a reference. Useful for research and comparison, but not evidence of greater original-hardware accuracy or a ready browser engine.
+- [EMU / Bashkiria-2M](https://bashkiria-2m.narod.ru/index/fajly/0-11): the author's downloads list Robotron 1715 support and disk images for 1715/1715W. Public source and an open-source license were not verified, nor was accuracy relative to MAME.
+- [JKCEMU](https://github.com/lipro-cpm4l/jkcemu) and [Emu80](https://emu80.org/): their published supported-system lists do not establish 1715M support. Treat them as possible component references, not ready replacements.
+
+No alternative has yet been validated as more accurate for the original 1715M. Compare boot, memory banking, keyboard, display attributes, and disk behavior against the physical exhibit before claiming fidelity.
+
+### Open choices
+
 - Emulator choice and whether DAC needs maintained upstream patches.
 - Adapter API and how to expose live video without excessive copying.
 - Model tooling, detail budgets, and browser/device support targets.
