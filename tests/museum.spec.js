@@ -140,6 +140,10 @@ test("a missing model preserves the accessible emulator and honest labels", asyn
     "unavailable",
   );
   await expect(page.locator("#model-note")).toContainText("MODEL UNAVAILABLE");
+  await expect(page.locator("#status")).toHaveText("Powered off");
+  await page.locator("#viewport canvas").click({ position: { x: 5, y: 100 } });
+  await page.waitForTimeout(100); // Allow a mistakenly queued power request to return.
+  await expect(page.locator("#status")).toHaveText("Powered off");
   await expect(page.locator("#power")).toBeEnabled();
   await page.locator("#power").click();
   await expect(page.getByRole("status")).toHaveText("Running");
