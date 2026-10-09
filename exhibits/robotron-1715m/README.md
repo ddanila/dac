@@ -4,7 +4,7 @@ First planned exhibit in Danila’s Archive of Computing.
 
 ## Status
 
-Interactive prototype implemented with provisional geometry and the DAC Robotron functional core. The supplied diagnostic ROM runs without external files; original S550/287/TOS-M media has been booted locally with keyboard and disk access. Exact physical-variant identification, measured exterior modeling and hardware-fidelity validation remain pending. See the root README for loading media and known compatibility limits.
+Interactive exhibit with a photo-based OpenSCAD exterior of Danila’s machine and the DAC Robotron functional core. The supplied diagnostic ROM runs without external files; original S550/287/TOS-M media has been booted locally with keyboard and disk access. The exterior uses the original manual’s nominal dimensions and twelve owner photographs. Small features and unseen surfaces remain estimates; exact physical-variant identification and hardware-fidelity validation remain pending. See the root README for loading media and known compatibility limits.
 
 ## Reference capture
 
@@ -21,7 +21,7 @@ Interactive prototype implemented with provisional geometry and the DAC Robotron
 - Inspect the rear and underside of the keyboard and case.
 - Activate the physical power control to start a cold boot.
 - Display live emulator output on the modeled monitor.
-- Type using the visitor’s keyboard and click modeled keys.
+- Type using the visitor’s keyboard; clicking modeled keys remains future work.
 - Power off and restart predictably.
 - Provide a focused screen view and accessible controls alongside the 3D interaction.
 
@@ -31,4 +31,4 @@ Removable covers, internal boards and cabling, annotated component views, drive 
 
 ## Unresolved
 
-Exact hardware revision, emulator configuration, boot media, firmware provenance, and visual references. Investigate MAME’s `rt1715w` as a candidate; do not substitute the base PC-1715 configuration without verifying the match. See the [technical direction](../../docs/technical-direction.md).
+Exact hardware revision, rear/inside visual references and more precise local dimensions. The functional core targets the M/W architecture; historical firmware is supplied locally by the visitor. See the [technical direction](../../docs/technical-direction.md).

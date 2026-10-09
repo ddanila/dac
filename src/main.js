@@ -28,7 +28,9 @@ function power() {
   send({ type: "power", on: !on });
 }
 try {
-  scene = createScene($("viewport"), screen, power);
+  scene = createScene($("viewport"), screen, power, () => {
+    if (on) send({ type: "reset" });
+  });
 } catch (e) {
   fail("3D is unavailable on this device. The enlarged screen still works.");
   $("screen-panel").hidden = false;
@@ -61,6 +63,7 @@ async function configure(demo) {
   $("reset").disabled = true;
   const kind = Number($("machine").value),
     d = descriptions[kind];
+  scene?.setMachine(kind);
   $("cpu").textContent = d[0];
   $("profile").textContent = d[1];
   $("description").textContent = d[2];
@@ -88,7 +91,7 @@ async function configure(demo) {
     $("media-label").textContent = "DAC diagnostic ROM";
     $("fidelity").textContent =
       kind === 2
-        ? "Original DAC diagnostic — not historical firmware. Try typing on the enlarged screen. The emulator is real; the case is a placeholder."
+        ? "Original DAC diagnostic — not historical firmware. Try typing on the enlarged screen. The exterior is reconstructed from Danila’s photographs and documented dimensions; unseen details remain approximate."
         : "Original DAC pixel diagnostic. Load your firmware to see the historical boot. The shared display case is provisional geometry.";
   } else {
     const rom = $("rom").files[0];

@@ -1,10 +1,11 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
-export function createScene(container, screen, onPower) {
+import { loadRobotron } from "./robotron-model.js";
+export function createScene(container, screen, onPower, onReset) {
   const scene = new THREE.Scene(),
     camera = new THREE.PerspectiveCamera(36, 1, 0.01, 40);
-  camera.position.set(2.3, 1.8, 2.8);
+  camera.position.set(2.3, 2.2, 3.3);
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.shadowMap.enabled = true;
@@ -23,6 +24,9 @@ export function createScene(container, screen, onPower) {
   light.castShadow = true;
   light.shadow.mapSize.set(1024, 1024);
   scene.add(light);
+  const inspectionLight = new THREE.DirectionalLight(0xe4eeeb, 1.5);
+  inspectionLight.position.set(1, -2, 2);
+  scene.add(inspectionLight);
   const machine = new THREE.Group();
   scene.add(machine);
   const beige = new THREE.MeshStandardMaterial({
@@ -111,6 +115,43 @@ export function createScene(container, screen, onPower) {
     undefined,
     () => {},
   );
+  let kind = 2,
+    robotron,
+    powered = false,
+    modelError = false;
+  function visibility() {
+    machine.visible = kind !== 2 || !robotron;
+    if (robotron) robotron.group.visible = kind === 2;
+    container.dataset.model =
+      kind === 2
+        ? robotron
+          ? "robotron-photo"
+          : modelError
+            ? "unavailable"
+            : "loading"
+        : "provisional";
+    document.getElementById("model-note").textContent =
+      kind !== 2
+        ? "PROVISIONAL GEOMETRY · NOT A SCAN"
+        : robotron
+          ? "PHOTO-BASED RECONSTRUCTION · DANILA’S MACHINE"
+          : modelError
+            ? "MODEL UNAVAILABLE · PROVISIONAL GEOMETRY"
+            : "LOADING DANILA’S MACHINE…";
+  }
+  visibility();
+  loadRobotron(texture)
+    .then((model) => {
+      robotron = model;
+      scene.add(model.group);
+      model.objects.get("power").material.emissive.set(powered ? 0x28402a : 0);
+      visibility();
+    })
+    .catch((error) => {
+      console.error("Robotron model failed to load", error);
+      modelError = true;
+      visibility();
+    });
   const ray = new THREE.Raycaster(),
     point = new THREE.Vector2();
   let down;
@@ -126,7 +167,12 @@ export function createScene(container, screen, onPower) {
       (-(e.clientY - r.top) / r.height) * 2 + 1,
     );
     ray.setFromCamera(point, camera);
-    if (ray.intersectObject(power).length) onPower();
+    if (kind === 2 && robotron) {
+      // Raycast the entire assembly so switches cannot be clicked through a case.
+      const hit = ray.intersectObject(robotron.group, true)[0];
+      if (hit?.object === robotron.objects.get("power")) onPower();
+      if (hit?.object === robotron.objects.get("reset")) onReset?.();
+    } else if (ray.intersectObject(power).length) onPower();
   });
   const observer = new ResizeObserver(() => {
     const { width, height } = container.getBoundingClientRect();
@@ -144,12 +190,18 @@ export function createScene(container, screen, onPower) {
     update: () => {
       texture.needsUpdate = true;
     },
+    setMachine: (value) => {
+      kind = value;
+      visibility();
+    },
     power: (on) => {
+      powered = on;
+      robotron?.objects.get("power").material.emissive.set(on ? 0x28402a : 0);
       powerMat.emissive.set(on ? 0x724023 : 0);
     },
     view: (name) => {
       const positions = {
-        front: [0, 1, 3],
+        front: [0, 1.9, 3.8],
         back: [0, 1, -3],
         under: [1, -1.6, 2],
       };

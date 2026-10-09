@@ -1,0 +1,115 @@
+{
+  "repository": "https://github.com/ddanila/3d-models",
+  "revision": "8aa2491e71255aa1e73d8848bf407b30ca75888a",
+  "dirty": false,
+  "files": [
+    {
+      "file": "model.json",
+      "sha256": "8e946e790e912fee86d459b1efc9ae00ae636aeadcbeeec400696d5f41facadb"
+    },
+    {
+      "file": "LICENSE",
+      "sha256": "5f37b6aa73439398b45f8b972c02bfbd07418c4e00d374adb68695a6edb38e5f"
+    },
+    {
+      "file": "meshes/case-base.stl",
+      "sha256": "dd2f1012a627d17eeb26e810edc152788414ddd9d28564ba445bbd9d4fa8555a"
+    },
+    {
+      "file": "meshes/case-lid.stl",
+      "sha256": "ba9fc4f0ad9da207f650b14b9b461491b5cf4818b2e44fae3eb97ad77ce7b9ff"
+    },
+    {
+      "file": "meshes/fascia.stl",
+      "sha256": "0d13029017d36f4fb567beee8a014f656ae670c965dc2d9d0cbbca73a466314f"
+    },
+    {
+      "file": "meshes/drives.stl",
+      "sha256": "4c228f5e6742ed02de6e23332f396edfb0bde1856498b53c649784af20dc7f6d"
+    },
+    {
+      "file": "meshes/power.stl",
+      "sha256": "9faa9a4d80b3676d4b1c386c1bdedf5e30e68293c12d405289ab8c7fcb1f0357"
+    },
+    {
+      "file": "meshes/reset.stl",
+      "sha256": "51d21b1d8ce978bc5ed2047d6b148db3cd2cd50b703c6b461bd1d8603c17739c"
+    },
+    {
+      "file": "meshes/pedestal.stl",
+      "sha256": "64329b43a4fa6bd5ccc47ad347b75774770d6e7afbcd75f6ad547577e63c195a"
+    },
+    {
+      "file": "meshes/ring.stl",
+      "sha256": "3c0884ba9be9e6dbb89423acfc6ea0fbcc1b756b012f423c2a2b4fef6ea884e0"
+    },
+    {
+      "file": "meshes/monitor-shell.stl",
+      "sha256": "3c663a3ba9167ea9d9bfea9bb66ce6d5ad51a4195ed7b6948d578ccd556f9fae"
+    },
+    {
+      "file": "meshes/bezel.stl",
+      "sha256": "2774330eee1224a7d2115f1f8e0800eff9c79d987a68a1a8b6e398f208336b39"
+    },
+    {
+      "file": "meshes/crt-rim.stl",
+      "sha256": "2d9670aa368e78aa4129bd073a67452e5e0df9a622f7915193aef553a37e5813"
+    },
+    {
+      "file": "meshes/crt-glass.stl",
+      "sha256": "96f78d6847eac5740e71eaad42f9c21c18e933b868964749768c24616a6399b0"
+    },
+    {
+      "file": "meshes/keyboard-shell.stl",
+      "sha256": "17565515d0511b8a6855d5af55645170c1097ad3987ccb7f305764f365b7da20"
+    },
+    {
+      "file": "meshes/keyboard-deck.stl",
+      "sha256": "59c55749b2c4a8bc842e560c9ea3d288d39eec3c8d7a4d8b070b6a898a5fec13"
+    },
+    {
+      "file": "meshes/keys-black.stl",
+      "sha256": "32ea499518b25ec84fa02ad627f53c655c024656f6fadbeea0d851208c156b41"
+    },
+    {
+      "file": "meshes/keys-light.stl",
+      "sha256": "845bc129561f9c07f12e250cddb83a270aaa3ed706ead87a0f6329ddebb77e73"
+    },
+    {
+      "file": "meshes/keys-red.stl",
+      "sha256": "397b5dc65af8c9148783f3bdc4ee5348a0650e813d353330cb7a46c577fcf7c9"
+    },
+    {
+      "file": "meshes/hardware.stl",
+      "sha256": "39ddf78f9b02d7904463f1fc4a0a28e58f2f3cfb25a2afaacd461b531c435b19"
+    },
+    {
+      "file": "photos/PXL_20261009_132916421.MP.jpg",
+      "sha256": "bd9b79b4841620ddc6b90262aa93f8536ba947547b556dc24311e7439e2b4733"
+    },
+    {
+      "file": "photos/PXL_20261009_132919894.jpg",
+      "sha256": "d594f0e43928ee959f37fc250a395395f8c507057347c7ffc972c4be97078be6"
+    },
+    {
+      "file": "photos/PXL_20261009_133001660.jpg",
+      "sha256": "6b8a48f0c48f597b83bab2a47f78a3603b2a106dede385a244334257f0b91f47"
+    },
+    {
+      "file": "photos/PXL_20261009_133005363.jpg",
+      "sha256": "6598199f3b074e9b774a5ab993a1711075e066c7793de879446082c2603b41f8"
+    },
+    {
+      "file": "photos/PXL_20261009_133017092.jpg",
+      "sha256": "726a736c3b4bc631ae2af332b5b1a63d6d6bde87092674e8f281bd8120e905fb"
+    },
+    {
+      "file": "photos/PXL_20261009_133019620.jpg",
+      "sha256": "3426c6718eaef3f779b0c0f8669a615eeaaea69e92f6b2ec23aee9405de3610c"
+    },
+    {
+      "file": "photos/PXL_20261009_133022597.jpg",
+      "sha256": "945e541217e3f81415876063566eb44959a7fcab7dd7ba38316a45a204c7da9b"
+    }
+  ]
+}
