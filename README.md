@@ -4,7 +4,7 @@
 
 A working browser prototype: rotate a computer, inspect its underside, click its case power button, and type on its live emulated screen. The museum uses pinned [DAC Emulation](https://github.com/ddanila/dac-emulation) WebAssembly cores in a worker.
 
-[Open the public prototype](https://ddanila.github.io/dac/) · [Emulator release 0.1.0](https://github.com/ddanila/dac-emulation/releases/tag/v0.1.0)
+[Open the public prototype](https://ddanila.github.io/dac/) · [Emulator release 0.1.1](https://github.com/ddanila/dac-emulation/releases/tag/v0.1.1)
 
 ## Try locally
 
@@ -25,13 +25,15 @@ Power off and expand **Load your machine’s media**. Files stay in the browser:
 - **Juku:** 16 KB ROM; optional 409,600/819,200-byte raw Juku disk.
 - **VJUGA:** 16 KB adapted ROM, Rev-A Mode B bounded-boot profile; keyboard/disk are not implemented in that profile.
 
+The reference archive’s supplied raw TOS/M image contains a damaged `PIP.COM`. Use a fresh decode of its original TeleDisk image for file operations; see [media conversion instructions](https://github.com/ddanila/dac-emulation/tree/main/machines/robotron1715m#tosm-media-recovery-and-the-pip-failure).
+
 Disk writes are off by default. Enabling them changes only a session copy; **Export session disk** downloads it. Reset and power cycling preserve the copy, switching machines/media or closing the tab discards it. There is no upload or automatic persistence. Firmware and historical software are not bundled or covered by the project license.
 
 ## What is qualified
 
-Robotron cold boot, keyboard, `DIR`, `TYPE`, and a tested file deletion work natively and in the portable core. Native and WASM boot pixels match exactly. VJUGA matches a bounded Juku boot framebuffer in both native decode modes. The viewer has automated power/reset/input/media recovery tests and inspected desktop/mobile layouts.
+Robotron cold boot, keyboard, file creation, reading, text/binary copying, export/reboot and deletion pass bounded native checks. Native and WASM boot pixels and complete session disks after create/read/copy match exactly. VJUGA matches a bounded Juku boot framebuffer in both native decode modes. The viewer has automated power/reset/input/media recovery tests and inspected desktop/mobile layouts.
 
-The cores are experimental. Robotron still has a known `PIP` file-copy failure, simplified FDC/DMA/SIO/CTC timing and an incomplete 8275 display model. Juku accepts one key contact at a time; long-session WASM32 clock wrap is unqualified. No full hardware-fidelity or cross-browser claim is made. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
+The cores are experimental. Robotron has simplified FDC/DMA/SIO/CTC timing and an incomplete 8275 display model, with tested completion/interrupt behavior, programmed row height, field attributes and cursor. Juku accepts one key contact at a time; long-session WASM32 clock wrap is unqualified. No full hardware-fidelity or cross-browser claim is made. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
 
 ## Models and provenance
 
