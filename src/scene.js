@@ -206,9 +206,10 @@ export function createScene(
     const hit = hitAt(e),
       key = hit?.userData.key;
     renderer.domElement.style.cursor =
-      key ||
-      hit === robotron?.objects.get("power") ||
-      hit === robotron?.objects.get("reset")
+      hit &&
+      (key ||
+        hit === robotron?.objects.get("power") ||
+        hit === robotron?.objects.get("reset"))
         ? "pointer"
         : "grab";
     interaction.onHover?.(
@@ -228,6 +229,7 @@ export function createScene(
     )
       return;
     container.focus({ preventScroll: true });
+    if (!hit) return;
     if (gesture.key && hit?.userData.key?.id === gesture.key.id) {
       if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
     } else if (hit === robotron?.objects.get("power") || hit === power)
