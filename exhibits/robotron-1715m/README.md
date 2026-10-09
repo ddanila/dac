@@ -4,7 +4,7 @@ First planned exhibit in Danila’s Archive of Computing.
 
 ## Status
 
-Planned. Physical reference capture, variant identification, modeling, and emulator validation are pending.
+Interactive prototype implemented with provisional geometry and the DAC Robotron functional core. The supplied diagnostic ROM runs without external files; original S550/287/TOS-M media has been booted locally with keyboard and disk access. Exact physical-variant identification, measured exterior modeling and hardware-fidelity validation remain pending. See the root README for loading media and known compatibility limits.
 
 ## Reference capture
 

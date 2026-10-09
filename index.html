@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#151b1b" />
+    <title>DAC — Danila’s Archive of Computing</title>
+  </head>
+  <body>
+    <header>
+      <a class="wordmark" href="./" aria-label="DAC home"
+        >DAC<span>Danila’s Archive<br />of Computing</span></a
+      ><span class="edition">THE WORKING COLLECTION <i>01 / 03</i></span
+      ><a href="https://github.com/ddanila/dac" target="_blank" rel="noreferrer"
+        >Open archive ↗</a
+      >
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">AN ARCHIVE YOU CAN SWITCH ON</p>
+        <h1>Objects with<br /><em>something to say.</em></h1>
+        <p>
+          Turn them over. Look closer. Press the power button.<br />Explore the
+          machines — and the worlds inside them.
+        </p>
+      </section>
+      <section class="exhibit" aria-label="Interactive computer exhibit">
+        <div class="stage">
+          <div
+            id="viewport"
+            tabindex="0"
+            aria-label="3D computer. Drag to rotate, scroll to zoom. Use the view buttons for keyboard-accessible views."
+          ></div>
+          <div class="stage-top">
+            <span class="specimen">EXHIBIT <b id="number">001</b></span
+            ><span id="model-note">PROVISIONAL GEOMETRY · NOT A SCAN</span>
+          </div>
+          <div class="stage-bottom">
+            <span>DRAG TO ROTATE · SCROLL TO ZOOM</span>
+            <div class="views">
+              <button data-view="front">Front</button
+              ><button data-view="back">Rear</button
+              ><button data-view="under">Underneath</button
+              ><button id="screen-view">Screen</button>
+            </div>
+          </div>
+          <div id="screen-panel" hidden>
+            <canvas
+              id="screen"
+              width="640"
+              height="384"
+              tabindex="0"
+              aria-label="Emulated computer display; focus here to type"
+            ></canvas>
+            <p>Click the display to type. Escape releases keyboard focus.</p>
+          </div>
+        </div>
+        <aside>
+          <p class="eyebrow">FROM DANILA’S COLLECTION</p>
+          <label class="sr-only" for="machine">Choose a machine</label
+          ><select id="machine">
+            <option value="2">Robotron 1715M</option>
+            <option value="0">Juku E5104</option>
+            <option value="1">VJUGA</option>
+          </select>
+          <p id="description">
+            A Z80-powered workspace, brought back to life. Explore an early
+            functional reconstruction of its banked memory, keyboard and disk
+            system.
+          </p>
+          <dl>
+            <div>
+              <dt>PROCESSOR</dt>
+              <dd id="cpu">U880 / Z80</dd>
+            </div>
+            <div>
+              <dt>PROFILE</dt>
+              <dd id="profile">1715W / 1715M · experimental</dd>
+            </div>
+            <div>
+              <dt>RUNNING</dt>
+              <dd id="media-label">DAC diagnostic ROM</dd>
+            </div>
+          </dl>
+          <div class="power-row">
+            <button id="power" class="power" disabled>
+              <span class="power-icon">⏻</span
+              ><span id="power-label">Power on</span></button
+            ><span id="status" role="status" aria-live="polite"
+              >Loading emulator…</span
+            ><span
+              id="disk-led"
+              title="Disk transfers"
+              aria-label="No disk activity"
+            ></span>
+          </div>
+          <div class="secondary-controls">
+            <button id="reset" disabled>Reset</button
+            ><label><input id="turbo" type="checkbox" /> 4× speed</label>
+          </div>
+          <p id="fidelity">
+            Original DAC diagnostic — not historical firmware. Try typing on the
+            enlarged screen. The emulator is real; the case is a placeholder.
+          </p>
+          <details>
+            <summary>Load your machine’s media <span>+</span></summary>
+            <p>
+              Files stay in your browser. Power off before loading. Robotron
+              needs a 2 KB boot ROM and 256-byte CAS PROM; character data is
+              optional. Juku and VJUGA use 16 KB ROMs.
+            </p>
+            <label
+              >Boot ROM<input type="file" id="rom" accept=".bin,.rom" /></label
+            ><label id="prom-label"
+              >CAS PROM<input type="file" id="prom" accept=".bin,.rom" /></label
+            ><label id="glyph-label"
+              >Character data<input
+                type="file"
+                id="glyph"
+                accept=".bin,.rom" /></label
+            ><label id="disk-label"
+              >Disk image<input
+                type="file"
+                id="disk"
+                accept=".img,.cpm,.raw,.dsk" /></label
+            ><label class="check"
+              ><input type="checkbox" id="writable" /> Allow writes to a session
+              copy</label
+            ><button id="load">Use selected files</button
+            ><button id="export" disabled>Export session disk</button
+            ><button id="demo">Restore DAC diagnostic</button>
+          </details>
+          <p id="error" role="alert"></p>
+        </aside>
+      </section>
+      <section class="collection">
+        <div>
+          <p class="eyebrow">BUILT TO BE KEPT</p>
+          <h2>The object. The software.<br />The whole story.</h2>
+        </div>
+        <p>
+          This is a working prototype of a long-lived collection. Historical
+          boot media can run on the same portable cores used by our native
+          tools. Measured cases, detailed textures and documented interiors will
+          follow the physical collection.
+        </p>
+        <a
+          href="https://github.com/ddanila/dac-emulation"
+          target="_blank"
+          rel="noreferrer"
+          >Explore the emulator sources ↗</a
+        >
+      </section>
+    </main>
+    <footer>
+      <span>DAC / DANILA’S ARCHIVE OF COMPUTING</span
+      ><span>STARTED IN TALLINN · BUILT TO TRAVEL</span
+      ><a href="./emulator/NOTICE">Credits &amp; notices</a>
+    </footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
