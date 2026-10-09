@@ -4,6 +4,9 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
 }) => {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
+  page.on("console", (e) => {
+    if (e.type() === "error") errors.push(e.text());
+  });
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
@@ -83,7 +86,7 @@ test("physical Robotron switches power and reset the live core", async ({
     "robotron-photo",
   );
   await expect(page.locator("#power")).toBeEnabled();
-  const viewport = await page.locator("#viewport").boundingBox();
+  let viewport = await page.locator("#viewport").boundingBox();
   const camera = new PerspectiveCamera(
     36,
     viewport.width / viewport.height,
@@ -95,6 +98,7 @@ test("physical Robotron switches power and reset the live core", async ({
   camera.updateMatrixWorld();
   async function switchAt(x) {
     await page.getByRole("button", { name: "Front", exact: true }).click();
+    viewport = await page.locator("#viewport").boundingBox();
     const p = new Vector3(x * 0.0025, 17 * 0.0025, 211 * 0.0025).project(
       camera,
     );

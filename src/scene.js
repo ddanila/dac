@@ -2,7 +2,13 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 import { loadRobotron } from "./robotron-model.js";
-export function createScene(container, screen, onPower, onReset) {
+export function createScene(
+  container,
+  screen,
+  onPower,
+  onReset,
+  interaction = {},
+) {
   const scene = new THREE.Scene(),
     camera = new THREE.PerspectiveCamera(36, 1, 0.01, 40);
   camera.position.set(2.3, 2.2, 3.3);
@@ -14,7 +20,7 @@ export function createScene(container, screen, onPower, onReset) {
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 0.55, 0);
   controls.enableDamping = true;
-  controls.minDistance = 1.2;
+  controls.minDistance = 0.35;
   controls.maxDistance = 5;
   controls.maxPolarAngle = Math.PI;
   controls.update();
@@ -22,6 +28,8 @@ export function createScene(container, screen, onPower, onReset) {
   const light = new THREE.DirectionalLight(0xffefd3, 4);
   light.position.set(-2, 4, 3);
   light.castShadow = true;
+  light.shadow.bias = -0.0001;
+  light.shadow.normalBias = 0.001;
   light.shadow.mapSize.set(1024, 1024);
   scene.add(light);
   const inspectionLight = new THREE.DirectionalLight(0xe4eeeb, 1.5);
@@ -119,6 +127,7 @@ export function createScene(container, screen, onPower, onReset) {
     robotron,
     powered = false,
     modelError = false;
+  let modifiers = {};
   function visibility() {
     machine.visible = kind !== 2 || !robotron;
     if (robotron) robotron.group.visible = kind === 2;
@@ -144,7 +153,8 @@ export function createScene(container, screen, onPower, onReset) {
     .then((model) => {
       robotron = model;
       scene.add(model.group);
-      model.objects.get("power").material.emissive.set(powered ? 0x28402a : 0);
+      model.power(powered);
+      interaction.onKeysReady?.(model.keys);
       visibility();
     })
     .catch((error) => {
@@ -155,25 +165,81 @@ export function createScene(container, screen, onPower, onReset) {
   const ray = new THREE.Raycaster(),
     point = new THREE.Vector2();
   let down;
-  renderer.domElement.addEventListener("pointerdown", (e) => {
-    down = [e.clientX, e.clientY];
-  });
-  renderer.domElement.addEventListener("pointerup", (e) => {
-    if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5)
-      return;
+  function hitAt(e) {
     const r = renderer.domElement.getBoundingClientRect();
     point.set(
       ((e.clientX - r.left) / r.width) * 2 - 1,
-      (-(e.clientY - r.top) / r.height) * 2 + 1,
+      -((e.clientY - r.top) / r.height) * 2 + 1,
     );
     ray.setFromCamera(point, camera);
-    if (kind === 2 && robotron) {
-      // Raycast the entire assembly so switches cannot be clicked through a case.
-      const hit = ray.intersectObject(robotron.group, true)[0];
-      if (hit?.object === robotron.objects.get("power")) onPower();
-      if (hit?.object === robotron.objects.get("reset")) onReset?.();
-    } else if (ray.intersectObject(power).length) onPower();
+    return kind === 2 && robotron
+      ? ray.intersectObject(robotron.group, true)[0]?.object
+      : ray.intersectObject(power)[0]?.object;
+  }
+  function cancelGesture() {
+    if (down?.key)
+      robotron?.keyState(down.key.id, !!modifiers[down.key.input.modifier]);
+    down = undefined;
+  }
+  renderer.domElement.addEventListener("pointerdown", (e) => {
+    if (!e.isPrimary || e.button !== 0) {
+      cancelGesture();
+      return;
+    }
+    const hit = hitAt(e);
+    down = {
+      x: e.clientX,
+      y: e.clientY,
+      id: e.pointerId,
+      key: hit?.userData.key,
+      object: hit,
+      dragged: false,
+    };
+    if (down.key && powered) robotron.keyState(down.key.id, true);
   });
+  renderer.domElement.addEventListener("pointermove", (e) => {
+    if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 5) {
+      down.dragged = true;
+      if (down.key) robotron?.keyState(down.key.id, false);
+    }
+    if (down) return;
+    const hit = hitAt(e),
+      key = hit?.userData.key;
+    renderer.domElement.style.cursor =
+      key ||
+      hit === robotron?.objects.get("power") ||
+      hit === robotron?.objects.get("reset")
+        ? "pointer"
+        : "grab";
+    interaction.onHover?.(
+      key
+        ? `${key.label}${key.input.unsupported ? " · mapping unverified" : ""}`
+        : "",
+    );
+  });
+  renderer.domElement.addEventListener("pointerup", (e) => {
+    if (!down || down.id !== e.pointerId) return;
+    const gesture = down,
+      hit = hitAt(e);
+    cancelGesture();
+    if (
+      gesture.dragged ||
+      Math.hypot(e.clientX - gesture.x, e.clientY - gesture.y) > 5
+    )
+      return;
+    container.focus({ preventScroll: true });
+    if (gesture.key && hit?.userData.key?.id === gesture.key.id) {
+      if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
+    } else if (hit === robotron?.objects.get("power") || hit === power)
+      onPower();
+    else if (hit === robotron?.objects.get("reset")) onReset?.();
+  });
+  renderer.domElement.addEventListener("pointercancel", cancelGesture);
+  renderer.domElement.addEventListener("lostpointercapture", cancelGesture);
+  renderer.domElement.addEventListener("pointerleave", () =>
+    interaction.onHover?.(""),
+  );
+  window.addEventListener("blur", cancelGesture);
   const observer = new ResizeObserver(() => {
     const { width, height } = container.getBoundingClientRect();
     camera.aspect = width / height;
@@ -184,29 +250,78 @@ export function createScene(container, screen, onPower, onReset) {
   observer.observe(container);
   renderer.setAnimationLoop(() => {
     controls.update();
+    robotron?.tick();
     renderer.render(scene, camera);
   });
   return {
+    activity: (active) => robotron?.activity(active),
+    modifiers: (state) => {
+      modifiers = state;
+      robotron?.modifiers(state);
+      for (const key of robotron?.keys || [])
+        if (key.input.modifier)
+          robotron.keyState(key.id, state[key.input.modifier]);
+    },
+    releaseKeys: () => robotron?.releaseKeys(),
+    pulse: (id) => robotron?.pulse(id),
+    separate: (on) => {
+      cancelGesture();
+      robotron?.separate(on);
+    },
     update: () => {
       texture.needsUpdate = true;
     },
     setMachine: (value) => {
+      cancelGesture();
+      robotron?.releaseKeys();
+      robotron?.separate(false);
       kind = value;
       visibility();
     },
     power: (on) => {
       powered = on;
-      robotron?.objects.get("power").material.emissive.set(on ? 0x28402a : 0);
+      robotron?.power(on);
       powerMat.emissive.set(on ? 0x724023 : 0);
     },
     view: (name) => {
-      const positions = {
-        front: [0, 1.9, 3.8],
-        back: [0, 1, -3],
-        under: [1, -1.6, 2],
+      cancelGesture();
+      const views = {
+        overview: [
+          [2.3, 2.2, 3.3],
+          [0, 0.55, 0],
+        ],
+        front: [
+          [0, 1.9, 3.8],
+          [0, 0.5, 0],
+        ],
+        back: [
+          [-1.1, 0.9, -1.7],
+          [0, 0.32, -0.2],
+        ],
+        under: [
+          [0.5, -1.1, 1.5],
+          [0, 0.03, 0.65],
+        ],
+        keyboard: [
+          [0, 1.55, 1.45],
+          [0, 0.07, 0.88],
+        ],
+        drives: [
+          [-0.25, 0.6, 1.9],
+          [-0.2, 0.18, 0.48],
+        ],
+        monitor: [
+          [0.9, 1.4, 1.7],
+          [0, 0.85, 0],
+        ],
+        assembly: [
+          [2.3, 2.5, 3.3],
+          [0, 0.65, 0],
+        ],
       };
-      camera.position.set(...positions[name]);
-      controls.target.set(0, 0.5, 0);
+      const view = views[name] || views.overview;
+      camera.position.set(...view[0]);
+      controls.target.set(...view[1]);
       controls.update();
     },
   };

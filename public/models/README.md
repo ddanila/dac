@@ -2,7 +2,7 @@
 
 `robotron-1715m/` is imported from the canonical [OpenSCAD model in 3d-models](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m). Its `source.json` pins the source commit and SHA-256 of every imported file. `model.json` carries separate mesh names, materials, photo UVs and a live-screen anchor. The model, code and Danila’s photographs are MIT licensed; the linked historical documents retain their original rights.
 
-The original Robotron manual supplies nominal dimensions; Danila’s ruler photograph supplies approximately 20 mm key pitch. The assembly is a photo-based reconstruction, not a scan or a manufacturing model. Individual features, wall thickness and unseen surfaces remain estimates. The second drive reuses the first drive’s photo crop. Underside photos retain their original lighting and photographed cable. See the source model README for evidence and limits.
+The original Robotron manual supplies nominal dimensions; Danila’s ruler photograph supplies approximately 20 mm key pitch. The assembly is a photo-based reconstruction, not a scan or a manufacturing model. Version 2 uses reusable keycap profiles with individually animated instances, projective photo patches, feathered edges, label masks and approximately normalized right-panel paint. Individual features, wall thickness and unseen surfaces remain estimates. The second drive reuses the first drive’s photo crop. Underside photos retain their original lighting and photographed cable. See the source model README for evidence and limits.
 
 To update after exporting/committing the canonical model:
 
