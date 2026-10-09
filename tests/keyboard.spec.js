@@ -68,9 +68,25 @@ test("keyboard buttons send documented bytes, latch modifiers and reset safely",
   expect(await page.evaluate(() => window.sentKeys)).toEqual([
     97, 65, 3, 65, 0xd1, 0xb1, 0x80,
   ]);
+  await page.locator("#viewport").focus();
+  await page.keyboard.type("Ab");
+  await page.keyboard.press("F1");
+  await page.keyboard.press("Delete");
+  await press("Caps Lock");
+  await page.locator("#viewport").focus();
+  await page.keyboard.type("c");
+  await press("Caps Lock");
+  expect(await page.evaluate(() => window.sentKeys.slice(7))).toEqual([
+    65, 98, 0xd1, 0x7f, 67,
+  ]);
+  await press("CTRL");
+  await press("{");
+  await press("CTRL");
+  await press("@");
+  expect(await page.evaluate(() => window.sentKeys.slice(-2))).toEqual([27, 0]);
   await press("ALT");
   await expect(page.locator("#key-feedback")).toContainText("not verified");
-  expect(await page.evaluate(() => window.sentKeys.length)).toBe(7);
+  expect(await page.evaluate(() => window.sentKeys.length)).toBe(14);
   await press("CTRL");
   await page.locator("#reset").click();
   await expect(
@@ -84,7 +100,7 @@ test("keyboard buttons send documented bytes, latch modifiers and reset safely",
   await page.locator("#power").click();
   await press("A");
   await expect(page.locator("#key-feedback")).toContainText("Power on");
-  expect(await page.evaluate(() => window.sentKeys.length)).toBe(7);
+  expect(await page.evaluate(() => window.sentKeys.length)).toBe(14);
 });
 
 test("a key on the 3D model types, while dragging and cancelled gestures do not", async ({

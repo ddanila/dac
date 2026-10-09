@@ -325,6 +325,14 @@ $("key-list-toggle").onclick = () => {
     : "Hide keyboard buttons";
 };
 function keyCode(e) {
+  if (Number($("machine").value) === 2) {
+    if (e.key === "Delete") return 0x7f;
+    if (e.key === "Insert") return 0x82;
+    if (/^F([1-9]|1[0-5])$/.test(e.key))
+      return modelKeys.find(
+        (k) => k.label === (e.key === "F15" ? "F15" : "P" + e.key),
+      )?.input.code;
+  }
   if (e.key === "Enter") return 13;
   if (e.key === "Backspace") return 8;
   if (e.key === "Tab") return Number($("machine").value) === 2 ? 0x80 : 9;
@@ -348,14 +356,18 @@ function keyDown(e) {
   const key = keyCode(e);
   if (!on || key === undefined || Number($("machine").value) === 1) return;
   e.preventDefault();
-  if (e.repeat) return;
+  if (e.repeat && Number($("machine").value) !== 2) return;
   if (Number($("machine").value) === 2) {
     const value = e.key.length === 1 ? e.key.toLowerCase().charCodeAt(0) : key;
     const modeled = modelKeys.find(
       (k) => k.input.code === value || k.input.shiftCode === value,
     );
     if (modeled) {
-      keyboard.activate(modeled, { shift: e.shiftKey, ctrl: e.ctrlKey });
+      keyboard.activate(modeled, {
+        shift: e.shiftKey,
+        ctrl: e.ctrlKey,
+        upper: e.key.length === 1 ? e.key === e.key.toUpperCase() : undefined,
+      });
       scene?.pulse(modeled.id);
       return;
     }
