@@ -1,0 +1,11 @@
+{
+  "license": "MIT",
+  "description": "Original DAC diagnostics; not historical firmware",
+  "sha256": {
+    "juku.bin": "54a89a9bd6a47bd44994e5c4abd4c34490ad2b64ca0c4ad01102cbf0c9ea7b0e",
+    "robotron.bin": "000a3c32a5a90ddcc3e6f891498fc37a08012de00ac8706bce57f256880aca5c",
+    "glyphs.bin": "0dbe552cbdb211727f0b91b655f8b3571f9a06f224bd6c2d837b0b6a4b567da0",
+    "vjuga.bin": "54a89a9bd6a47bd44994e5c4abd4c34490ad2b64ca0c4ad01102cbf0c9ea7b0e",
+    "cas.bin": "605d3ca65a8561d008d6e45cf0b66cbbc1cd19c9587cb3a5e0409012687cf2ea"
+  }
+}

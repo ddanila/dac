@@ -7,3 +7,6 @@ dist/
 build/
 *.blend1
 *.blend2
+
+/test-results/
+/playwright-report/

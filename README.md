@@ -2,41 +2,47 @@
 
 *A museum of computers and the worlds they opened.*
 
-DAC is a virtual museum of computers from Danila’s collection: detailed 3D objects you can inspect, turn over, and switch on in your browser.
+A working browser prototype: rotate a computer, inspect its underside, click its case power button, and type on its live emulated screen. The museum uses pinned [DAC Emulation](https://github.com/ddanila/dac-emulation) WebAssembly cores in a worker.
 
-The ambition is to preserve both the physical machine and the experience of using it. Press the power button on the case, watch the emulated computer boot on its own screen, and use its keyboard. Rotate the computer and its peripherals to explore labels, connectors, textures, and undersides. Eventually, open the case and explore the hardware inside.
+[Open the public prototype](https://ddanila.github.io/dac/) · [Emulator release 0.1.0](https://github.com/ddanila/dac-emulation/releases/tag/v0.1.0)
 
-## First exhibit: Robotron 1715M
+## Try locally
 
-The Robotron 1715M will be the first showcase, based on Danila’s physical machine. Its exact configuration, keyboard, monitor, firmware, and boot media still need to be documented.
+```sh
+npm ci
+npm run dev
+```
 
-The first complete interaction should be simple: open the exhibit, rotate it, press its power control, watch a real emulated boot, and type a command.
+Open the URL printed by Vite. The default Robotron exhibit runs an **original DAC diagnostic ROM**, not historical firmware. Press **Power on**, then **Screen** to type. Juku and VJUGA have original pixel diagnostics. The small warm-colored switch on the 3D case also controls power. Front/rear/underside buttons provide alternatives to dragging.
 
-## Project status
+`npm run build` produces a static `dist/` site. `DAC_BASE=/dac/ npm run build` builds for a GitHub project-site path. `npm test` runs the focused Chromium checks (install the browser once with `npx playwright install chromium`).
 
-Concept and research stage. This repository currently contains the project brief and initial technical direction. There is no working viewer, emulator integration, or 3D model yet.
+## Historical media
 
-## Approach
+Power off and expand **Load your machine’s media**. Files stay in the browser:
 
-- Build exhibits from photographs, measurements, and observations of the actual objects.
-- Keep cases, keyboards, monitors, controls, and future removable panels as separate model components.
-- Connect interactive controls and the monitor surface to an emulator through a small adapter.
-- Reuse established emulators where practical; choose the engine per machine.
-- Keep original modeling assets separate from optimized browser exports.
-- Record the source, version, and usage permissions of imported assets and emulator components.
+- **Robotron:** 2 KB boot ROM + 256-byte CAS PROM; optional 2/4 KB character data; optional 819,200-byte raw disk (80 tracks × 2 heads × 5 sectors × 1,024 bytes). Tested with S550/287 and TOS/M 1.0.
+- **Juku:** 16 KB ROM; optional 409,600/819,200-byte raw Juku disk.
+- **VJUGA:** 16 KB adapted ROM, Rev-A Mode B bounded-boot profile; keyboard/disk are not implemented in that profile.
 
-Portable emulator cores and shared verification utilities will live in [dac-emulation](https://github.com/ddanila/dac-emulation). Hosting, large-asset storage, and emulator packaging remain open decisions. No third-party firmware or disk images are included.
+Disk writes are off by default. Enabling them changes only a session copy; **Export session disk** downloads it. Reset and power cycling preserve the copy, switching machines/media or closing the tab discards it. There is no upload or automatic persistence. Firmware and historical software are not bundled or covered by the project license.
 
-## Next steps
+## What is qualified
 
-1. Document the Robotron and identify its exact hardware and software configuration.
-2. Prove a repeatable emulated boot, then reproduce it in the browser.
-3. Connect a simple 3D case, power control, keyboard input, and live screen.
-4. Produce the detailed exterior model and inspectable peripherals.
-5. Add interior views as the physical hardware is documented.
+Robotron cold boot, keyboard, `DIR`, `TYPE`, and a tested file deletion work natively and in the portable core. Native and WASM boot pixels match exactly. VJUGA matches a bounded Juku boot framebuffer in both native decode modes. The viewer has automated power/reset/input/media recovery tests and inspected desktop/mobile layouts.
 
-See [technical direction](docs/technical-direction.md) and the [Robotron exhibit brief](exhibits/robotron-1715m/README.md).
+The cores are experimental. Robotron still has a known `PIP` file-copy failure, simplified FDC/DMA/SIO/CTC timing and an incomplete 8275 display model. Juku accepts one key contact at a time; long-session WASM32 clock wrap is unqualified. No full hardware-fidelity or cross-browser claim is made. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
 
-## License
+## Models and provenance
 
-Original project content is licensed under the [MIT License](LICENSE). Imported components and historical media retain their own licenses and notices.
+The case, monitor and keyboard are **provisional geometry**, shared across profiles. Only the monitor-base ring comes from an existing measured part; even its fit is untested. Detailed exterior models and interiors need photographs, measurements and physical documentation. See [asset notes](public/models/README.md) and [the exhibit brief](exhibits/robotron-1715m/README.md).
+
+The museum commits a small versioned WASM distribution in `public/emulator/` rather than depending on a moving download. `manifest.json` records its source commit, ABI/toolchain version and hashes. To intentionally update it, build/package a release in `dac-emulation`, then run:
+
+```sh
+node scripts/sync-emulator.mjs ../dac-emulation/dist
+npm test
+npm run build
+```
+
+Large scanned assets and their hosting remain a future decision; the current generated geometry and small measured STL fit comfortably in Git. Original content is [MIT](LICENSE). Imported code retains the notices in `public/emulator`; Three.js retains its MIT license in the bundle. See [technical direction](docs/technical-direction.md).

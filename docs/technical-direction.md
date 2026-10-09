@@ -1,6 +1,6 @@
 # Technical direction
 
-These are initial proposals, not committed implementation choices.
+The initial direction below is retained as research history. Implemented decisions: native C cores in dac-emulation, a shared pinned Z80, Emscripten/WASM worker execution, Three.js viewing, and checked-in versioned runtime artifacts. The root README and emulator validation report describe current behavior; physical fidelity and detailed assets remain unfinished.
 
 ## A reusable exhibit
 
@@ -22,7 +22,7 @@ Use optimized browser models and textures for the default view, loading finer de
 
 ## Robotron emulation research
 
-Initial source inspection: 2026-10-09. No emulator build or boot has been tested for DAC yet.
+Initial source inspection: 2026-10-09. This section predates the working native/browser prototype; current boot evidence is in dac-emulation/docs/z80-browser-validation.md.
 
 [MAME’s Robotron driver](https://github.com/mamedev/mame/blob/master/src/mame/robotron/rt1715.cpp) includes separate PC-1715 and PC-1715W configurations. At inspection, `rt1715w` is flagged with imperfect graphics; the base `rt1715` and Latin/Cyrillic `rt1715lc` configurations are marked not working. Driver availability is a starting point, not validation of Danila’s machine. Confirm which configuration matches the 1715M exhibit before selecting it.
 
