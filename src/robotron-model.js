@@ -285,14 +285,23 @@ export async function loadRobotron(displayTexture) {
     else pressed.delete(id);
   }
   function tick() {
-    for (const [id, key] of keyObjects)
-      key.position.z =
+    let dirty = false;
+    const beforeSplit = split;
+    for (const [id, key] of keyObjects) {
+      const z =
         pressed.has(id) || performance.now() < (key.userData.pulseUntil || 0)
           ? -2.2
           : 0;
+      if (key.position.z !== z) {
+        key.position.z = z;
+        dirty = true;
+      }
+    }
+    const beforeLamp = lampMaterial.emissive.getHex();
     lampMaterial.emissive.set(
       power && performance.now() < activityUntil ? 0xff2404 : 0,
     );
+    dirty ||= beforeLamp !== lampMaterial.emissive.getHex();
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     split = reduced
       ? splitTarget
@@ -319,6 +328,10 @@ export async function loadRobotron(displayTexture) {
       if (mesh.name === "brand") mesh.position.y -= split * 40;
       if (mesh.name === "case-right-paint") mesh.position.z += split * 75;
     }
+    return {
+      dirty: dirty || beforeSplit !== split,
+      shadows: beforeSplit !== split,
+    };
   }
   return {
     group,

@@ -15,11 +15,17 @@ export function createScene(
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.shadowMap.enabled = true;
+  renderer.shadowMap.autoUpdate = false;
+  renderer.shadowMap.needsUpdate = true;
+  let renderRequested = true;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   container.append(renderer.domElement);
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 0.55, 0);
   controls.enableDamping = true;
+  controls.addEventListener("change", () => {
+    renderRequested = true;
+  });
   controls.minDistance = 0.35;
   controls.maxDistance = 5;
   controls.maxPolarAngle = Math.PI;
@@ -119,6 +125,8 @@ export function createScene(
       ring.rotation.x = -Math.PI / 2;
       ring.position.set(0, 0.367, -0.08);
       machine.add(ring);
+      renderRequested = true;
+      renderer.shadowMap.needsUpdate = true;
     },
     undefined,
     () => {},
@@ -129,6 +137,8 @@ export function createScene(
     modelError = false;
   let modifiers = {};
   function visibility() {
+    renderRequested = true;
+    renderer.shadowMap.needsUpdate = true;
     machine.visible = kind !== 2 || !robotron;
     if (robotron) robotron.group.visible = kind === 2;
     container.dataset.model =
@@ -171,6 +181,10 @@ export function createScene(
       ((e.clientX - r.left) / r.width) * 2 - 1,
       -((e.clientY - r.top) / r.height) * 2 + 1,
     );
+    // Picking must not depend on whether an on-demand render has happened yet.
+    camera.updateMatrixWorld();
+    machine.updateWorldMatrix(true, true);
+    robotron?.group.updateWorldMatrix(true, true);
     ray.setFromCamera(point, camera);
     return kind === 2 && robotron
       ? ray.intersectObject(robotron.group, true)[0]?.object
@@ -248,17 +262,23 @@ export function createScene(
     camera.zoom = width < 500 ? 0.72 : 1;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
+    renderRequested = true;
   });
   observer.observe(container);
   renderer.setAnimationLoop(() => {
     controls.update();
-    robotron?.tick();
-    renderer.render(scene, camera);
+    const changed = robotron?.tick();
+    if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
+    if (renderRequested || changed?.dirty) {
+      renderer.render(scene, camera);
+      renderRequested = false;
+    }
   });
   return {
     activity: (active) => robotron?.activity(active),
     modifiers: (state) => {
       modifiers = state;
+      renderRequested = true;
       robotron?.modifiers(state);
       for (const key of robotron?.keys || [])
         if (key.input.modifier)
@@ -272,6 +292,7 @@ export function createScene(
     },
     update: () => {
       texture.needsUpdate = true;
+      renderRequested = true;
     },
     setMachine: (value) => {
       cancelGesture();
@@ -282,6 +303,7 @@ export function createScene(
     },
     power: (on) => {
       powered = on;
+      renderRequested = true;
       robotron?.power(on);
       powerMat.emissive.set(on ? 0x724023 : 0);
     },
