@@ -1,8 +1,15 @@
-# Prototype assets
+# Museum models
 
-`monitor-ring.stl` comes from Danila's measured replacement insert in
-[ddanila/3d-models](https://github.com/ddanila/3d-models/tree/91fee04af5042fc01c49ecc6ba33edec52d20594/models/robotron-1715m-display-base-ring): outer diameter 175 mm, radial wall 3 mm, height 5 mm. Its physical fit is untested. It is original project content under the user's MIT licensing instruction.
+`robotron-1715m/` is imported from the canonical [OpenSCAD model in 3d-models](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m). Its `source.json` pins the source commit and SHA-256 of every imported file. `model.json` carries separate mesh names, materials, photo UVs and a live-screen anchor. The model, code and Danila’s photographs are MIT licensed; the linked historical documents retain their original rights.
 
-The surrounding case, monitor and keyboard are provisional code-generated geometry in `src/scene.js`, shared across the prototype profiles. Their dimensions, key legends, connectors and placement are not historical measurements. They are not a digital scan and must not be used for reconstruction or fit checks.
+The original Robotron manual supplies nominal dimensions; Danila’s ruler photograph supplies approximately 20 mm key pitch. The assembly is a photo-based reconstruction, not a scan or a manufacturing model. Individual features, wall thickness and unseen surfaces remain estimates. The second drive reuses the first drive’s photo crop. Underside photos retain their original lighting and photographed cable. See the source model README for evidence and limits.
 
-Replace these components with documented glTF/GLB assets once photographs and measurements are available. Keep power controls and the display surface separately addressable. Original modeling assets and detailed interiors have not yet been supplied.
+To update after exporting/committing the canonical model:
+
+```sh
+python3 scripts/sync-robotron-model.py ../3d-models
+npm run build
+npm test
+```
+
+Juku and VJUGA still use the provisional geometry in `src/scene.js`. Their `monitor-ring.stl` comes from Danila’s [measured ring](https://github.com/ddanila/3d-models/tree/91fee04af5042fc01c49ecc6ba33edec52d20594/models/robotron-1715m-display-base-ring): 175 mm OD, 3 mm radial wall, 5 mm high. Physical fit is unverified.

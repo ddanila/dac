@@ -37,7 +37,7 @@ The cores are experimental. Robotron has simplified FDC/DMA/SIO/CTC timing and a
 
 ## Models and provenance
 
-The case, monitor and keyboard are **provisional geometry**, shared across profiles. Only the monitor-base ring comes from an existing measured part; even its fit is untested. Detailed exterior models and interiors need photographs, measurements and physical documentation. See [asset notes](public/models/README.md) and [the exhibit brief](exhibits/robotron-1715m/README.md).
+Robotron uses a photo-based OpenSCAD reconstruction of Danila’s actual machine, maintained in [3d-models](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m). It combines documented overall dimensions, ruler-scaled key spacing, photographed key legends/drive faces/keyboard underside, and separate physical power/reset switches. Small features and unseen surfaces remain estimates; interiors are not modeled. Juku and VJUGA still use provisional geometry. See [asset notes](public/models/README.md) and [the exhibit brief](exhibits/robotron-1715m/README.md).
 
 The museum commits a small versioned WASM distribution in `public/emulator/` rather than depending on a moving download. `manifest.json` records its source commit, ABI/toolchain version and hashes. To intentionally update it, build/package a release in `dac-emulation`, then run:
 
