@@ -3,6 +3,18 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
   page,
 }) => {
   const errors = [];
+  const enclosurePhotos = [];
+  page.on("request", (request) => {
+    const url = request.url();
+    // These reference photos contain complete panels, physical feet or cables.
+    // Loading them as skins would reintroduce the duplicated-feature regression.
+    if (
+      /photos\/PXL_20261009_(133001660|133005363|133028313|132916421|132919894)/.test(
+        url,
+      )
+    )
+      enclosurePhotos.push(url);
+  });
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("console", (e) => {
     if (e.type() === "error") errors.push(e.text());
@@ -35,6 +47,7 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
   await expect.poll(hash).toBe(before);
   await page.getByRole("button", { name: "Underneath" }).click();
   await expect(canvas).toBeHidden();
+  expect(enclosurePhotos).toEqual([]);
   await page.getByRole("button", { name: "Power off", exact: false }).click();
   await expect(page.getByRole("status")).toHaveText("Powered off");
   for (const value of ["0", "1"]) {
