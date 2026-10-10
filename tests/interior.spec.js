@@ -105,7 +105,7 @@ test("Inside stays open across camera changes and closes only with its control",
   await expect(page.locator("#interior-credit")).toContainText(
     "Old Crap Vintage Computing",
   );
-  await expect(page.locator("#inspection-text")).toContainText("TEAC FD-55FV");
+  await expect(page.locator("#inspection-text")).toContainText("owner photographs");
   await page.getByRole("button", { name: "Overview", exact: true }).click();
   await expect(page.locator("#open-case")).toBeChecked();
   await expect(page.locator("#viewport")).toHaveAttribute(
@@ -118,6 +118,12 @@ test("Inside stays open across camera changes and closes only with its control",
     "false",
   );
   await expect(page.locator("#interior-credit")).toBeHidden();
+  await page.getByRole("button", { name: "Drive labels", exact: true }).click();
+  await expect(page.locator("#open-case")).toBeChecked();
+  await expect(page.locator("#separate-parts")).toBeChecked();
+  await expect(page.locator("#inspection-text")).toContainText("044713");
+  await expect(page.locator("#inspection-text")).toContainText("Ratan");
+  await expect(page.locator("#reference-photo")).toHaveAttribute("href", /20250212_094038758/);
   expect(errors).toEqual([]);
 });
 

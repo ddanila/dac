@@ -69,3 +69,5 @@ The application embeds a SHA-256-derived model revision at build time and reques
 
 
 The monitor shell exports as separate lower and upper meshes. Its opening control is independent of the system-unit lid and assembly lift. The upper shell rises while the CRT, frame and board remain installed; opening the system unit translates the complete monitor together with its cover. Robotrontechnik’s K7222.25 interior and board photos supply provisional evidence and visible attribution, with a separate photographic notice. This addresses the previously empty monitor and does not claim the specimen’s exact unseen board revision.
+
+Owner drive photos now identify the K5601 plate (044713), Ratan assembly sticker and two different TEAC sensor boards. The model uses distinct PCB outlines and small photo labels with source quadrilaterals in canonical `drive-labels.json`; it does not project whole mechanisms as textures. Drive labels move with the lifted drive assembly and remain hidden inside the closed case. The Drive labels view opens the case and lifts the drives for rear inspection. The cable-obscured country line is typeset; all other label print is photographic.

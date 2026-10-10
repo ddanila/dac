@@ -164,7 +164,7 @@ test("inspection separates the exterior and identifies missing rear references",
   );
   await page.locator("#separate-parts").check();
   await expect(page.locator("#inspection-text")).toContainText(
-    "modeled from references",
+    "owner photographs",
   );
   await page.locator("#open-case").uncheck();
   await page.getByRole("button", { name: "Rear", exact: true }).click();

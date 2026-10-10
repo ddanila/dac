@@ -21,8 +21,13 @@ export const inspections = {
   },
   drives: {
     title: "Two drives, one mounted disk",
-    text: "The recessed faces, insertion slots, latches and red lenses are modeled from the photographs. The first red lamp follows actual emulator transfers, not motor or drive-select timing.",
-    photo: "133022597",
+    text: "The two mechanisms now follow Danila’s own photos, including their different sensor-board shapes, clamp bridges, head carriages and rear plates. Choose Drive labels to inspect the manufacturer markings. The first red lamp follows actual emulator transfers, not motor or drive-select timing.",
+    photo: "20250212_094033966",
+  },
+  "drive-labels": {
+    title: "Two drives with their own histories",
+    text: "Danila’s rear plates identify a Robotron K 5601, serial 044713, from VEB Robotron Buchungsmaschinenwerk Karl-Marx-Stadt, and an assembly by Ratan Exports & Industries Ltd. in India. The TEAC board labels read 15532064-00A and 15532092-00A. These small photo labels retain the original print and wear. The cable-obscured country line is typeset. Drive sizes and hidden details remain estimates.",
+    photo: "20250212_094038758",
   },
   monitor: {
     title: "The monitor",
@@ -40,7 +45,7 @@ export const inspections = {
   },
   inside: {
     title: "Inside the system unit",
-    text: "The cover and monitor move up and back together. Choose Drives for a close view of the mechanisms, or lift the drives to see below them. Two TEAC FD-55FV reference drives include frames, spindle clamps, head carriages, motors and boards. The mounting bracket, power supply shield, fan, photographic logic boards and cable runs follow another PC 1715. Exact drive suffix, board version and wiring remain unverified for this 1715M/W.",
+    text: "The cover and monitor move up and back together. Choose Drives for a close view of the mechanisms, or lift the drives to see below them. The two drives follow owner photographs and include their distinct boards and manufacturer plates, frames, spindle clamps, head carriages and motors. The mounting bracket, power supply shield, fan, photographic logic boards and cable runs follow another PC 1715. Exact drive suffix, board version and wiring remain unverified for this 1715M/W.",
   },
   "monitor-inside": {
     title: "Inside the monitor",
@@ -48,7 +53,7 @@ export const inspections = {
   },
   assembly: {
     title: "Open the case and keyboard",
-    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms, logic boards, the power supply shield, fan and wiring are modeled from references. Keyboard switches and its board are approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
+    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; logic boards, the power supply shield, fan and wiring still use comparative references. Keyboard switches and its board are approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
   },
 };
 export function showInspection(name) {

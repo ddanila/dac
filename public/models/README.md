@@ -12,4 +12,4 @@ npm run build
 npm test
 ```
 
-Juku and VJUGA still use the provisional geometry in `src/scene.js`. Their `monitor-ring.stl` comes from Danila’s [measured ring](https://github.com/ddanila/3d-models/tree/91fee04af5042fc01c49ecc6ba33edec52d20594/models/robotron-1715m-display-base-ring): 175 mm OD, 3 mm radial wall, 5 mm high. Physical fit is unverified.
+Juku and VJUGA still use the provisional geometry in `src/scene.js`. Their `monitor-ring.stl` comes from Danila’s [measured ring](https://github.com/ddanila/3d-models/tree/91fee04af5042fc01c49ecc6ba33edec52d20594/models/robotron-1715m-display-base-ring): 175 mm OD, 3 mm radial wall, 5 mm high. The editable ring now lives [inside the Robotron folder](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m/display-base-ring). Physical fit is unverified.

@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "units": "mm",
   "scale": 0.0025,
   "materials": {
@@ -263,7 +263,7 @@
       "name": "drive-frames",
       "file": "meshes/drive-frames.stl",
       "color": "#a2a4a0",
-      "sha256": "6f72899c2d9cc56ed69a9d1ea5ff4a466f2afc4712c84aa5ab8fc8e7326ab958",
+      "sha256": "54963ad5e4ebe085dc6f8900ed18ed2050afe302642e3d3d7f85b8861dd41b74",
       "section": "interior",
       "material": "metal"
     },
@@ -271,7 +271,7 @@
       "name": "drive-mechanisms",
       "file": "meshes/drive-mechanisms.stl",
       "color": "#bec2bd",
-      "sha256": "d12d21701784f8b68307cef13d917f0d21a13f6d0ad232fe08b009e907e52b1b",
+      "sha256": "9f18543bf4b112a6abaec53546d3a9ae4037d7d0d28e6b41a571e10df192d8f3",
       "section": "interior",
       "material": "metal"
     },
@@ -279,7 +279,7 @@
       "name": "drive-motors",
       "file": "meshes/drive-motors.stl",
       "color": "#282c2b",
-      "sha256": "0030677c43b0329ac1d4d5d0b1c26048e1ee12d91012687b32dfa73d43f8c1cb",
+      "sha256": "f6908c7cb5985b6db1c4b28d0493a888ccc575e4ac96d5c11192ebb72fb299a7",
       "section": "interior",
       "material": "plastic"
     },
@@ -287,7 +287,7 @@
       "name": "drive-boards",
       "file": "meshes/drive-boards.stl",
       "color": "#28675a",
-      "sha256": "307bc1aee925671a6d9e35bcfe26d8e4a90e9ac2fe3bb633e6e8a749fb810867",
+      "sha256": "f8b929566e7b8832d3a501d26f65ef93d6bef9c0feb0f0b81f510f13acb7934d",
       "section": "interior",
       "material": "pcb"
     },
@@ -295,7 +295,7 @@
       "name": "drive-contacts",
       "file": "meshes/drive-contacts.stl",
       "color": "#b3a775",
-      "sha256": "258bdc66198fbed7032e40ee60c6fb40061f757a330bd3f8f1902b78f9c73f0a",
+      "sha256": "9e2908589697a2a9c679dfe63fc866169cae0dd9e9b7c4ff550bfc077d1f4279",
       "section": "interior",
       "material": "metal"
     },
@@ -303,7 +303,7 @@
       "name": "drive-coils",
       "file": "meshes/drive-coils.stl",
       "color": "#9e793b",
-      "sha256": "81af2b9ca2c5286d06ec456a5afbc0699f8647693fa5a04ed42d6e42f99307b1",
+      "sha256": "af155ab96cb3bc09a5e70c9d80ee0dba7776962daea044d9d68957ff077037da",
       "section": "interior",
       "material": "metal"
     },
@@ -536,6 +536,30 @@
       "color": "#969782",
       "sha256": "5d652ab5e4f90a49d48359284d58754b6ab4ed734b5010e03988a366d9ba99fd",
       "material": "plastic"
+    },
+    {
+      "name": "drive-power-sockets",
+      "file": "meshes/drive-power-sockets.stl",
+      "color": "#d0c6a4",
+      "sha256": "c704e982497c7227eaea1fe38720b9ed6ae8daca5358ed9158111ecf343a29a0",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "drive-traces",
+      "file": "meshes/drive-traces.stl",
+      "color": "#78a58d",
+      "sha256": "ad2e3d9d235f0ce63d4241d07f11815931022e0024d1e3554ef76a0cf38ef1e2",
+      "section": "interior",
+      "material": "pcb"
+    },
+    {
+      "name": "drive-label-plates",
+      "file": "meshes/drive-label-plates.stl",
+      "color": "#c2bba4",
+      "sha256": "296a3e279c9d7d93edacab2dd32d6c02c51d925298dc40f6184f8fd596e91b5f",
+      "section": "interior",
+      "material": "metal"
     }
   ],
   "keys": [
@@ -4337,8 +4361,430 @@
         ]
       ],
       "ink": true
+    },
+    {
+      "name": "drive-label-ratan",
+      "photo": "PXL_20250212_094043026.jpg",
+      "uv": [
+        [
+          0.020833333333333332,
+          0.36125273124544793
+        ],
+        [
+          0.7883771929824561,
+          0.3605243991260015
+        ],
+        [
+          0.774671052631579,
+          0.6591405680990532
+        ],
+        [
+          0.023574561403508772,
+          0.6817188638018936
+        ]
+      ],
+      "position": [
+        12,
+        0.23,
+        84
+      ],
+      "size": [
+        92,
+        28
+      ],
+      "rotation": [
+        -90,
+        0,
+        180
+      ],
+      "section": "interior",
+      "assembly": "drives"
+    },
+    {
+      "name": "drive-label-robotron-id",
+      "photo": "PXL_20250212_094057627.jpg",
+      "uv": [
+        [
+          0.17653508771929824,
+          0.39475600873998545
+        ],
+        [
+          0.46655701754385964,
+          0.4107793153678077
+        ],
+        [
+          0.46655701754385964,
+          0.5098324836125273
+        ],
+        [
+          0.17653508771929824,
+          0.49308084486525855
+        ]
+      ],
+      "position": [
+        -140.75,
+        0.23,
+        91.4
+      ],
+      "size": [
+        47.5,
+        14.4
+      ],
+      "rotation": [
+        -90,
+        0,
+        180
+      ],
+      "section": "interior",
+      "assembly": "drives"
+    },
+    {
+      "name": "drive-label-robotron-maker",
+      "photo": "PXL_20250212_094057627.jpg",
+      "uv": [
+        [
+          0.4682017543859649,
+          0.41005098324836126
+        ],
+        [
+          0.8640350877192983,
+          0.4362709395484341
+        ],
+        [
+          0.8574561403508771,
+          0.6001456664238893
+        ],
+        [
+          0.4682017543859649,
+          0.5673707210487983
+        ]
+      ],
+      "position": [
+        -194.75,
+        0.23,
+        87.8
+      ],
+      "size": [
+        60.5,
+        21.6
+      ],
+      "rotation": [
+        -90,
+        0,
+        180
+      ],
+      "section": "interior",
+      "assembly": "drives"
+    },
+    {
+      "name": "drive-label-teac-2064",
+      "photo": "PXL_20250212_094109733.jpg",
+      "uv": [
+        [
+          0.2889254385964912,
+          0.46394756008739985
+        ],
+        [
+          0.537828947368421,
+          0.4406409322651129
+        ],
+        [
+          0.5427631578947368,
+          0.5061908230152949
+        ],
+        [
+          0.2878289473684211,
+          0.5287691187181355
+        ]
+      ],
+      "position": [
+        -197.5,
+        -144,
+        92.78
+      ],
+      "size": [
+        36,
+        7
+      ],
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "section": "interior",
+      "assembly": "drives"
+    },
+    {
+      "name": "drive-label-teac-2092",
+      "photo": "PXL_20250212_094103763.jpg",
+      "uv": [
+        [
+          0.2680921052631579,
+          0.4879825200291333
+        ],
+        [
+          0.5910087719298246,
+          0.45302257829570286
+        ],
+        [
+          0.5981359649122807,
+          0.5214857975236707
+        ],
+        [
+          0.26206140350877194,
+          0.5615440640932265
+        ]
+      ],
+      "position": [
+        -43.5,
+        -144,
+        92.78
+      ],
+      "size": [
+        36,
+        7
+      ],
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "section": "interior",
+      "assembly": "drives"
     }
   ],
+  "driveLabels": {
+    "patches": [
+      {
+        "name": "drive-label-ratan",
+        "photo": "PXL_20250212_094043026.jpg",
+        "uv": [
+          [
+            0.020833333333333332,
+            0.36125273124544793
+          ],
+          [
+            0.7883771929824561,
+            0.3605243991260015
+          ],
+          [
+            0.774671052631579,
+            0.6591405680990532
+          ],
+          [
+            0.023574561403508772,
+            0.6817188638018936
+          ]
+        ],
+        "position": [
+          12,
+          0.23,
+          84
+        ],
+        "size": [
+          92,
+          28
+        ],
+        "rotation": [
+          -90,
+          0,
+          180
+        ],
+        "section": "interior",
+        "assembly": "drives"
+      },
+      {
+        "name": "drive-label-robotron-id",
+        "photo": "PXL_20250212_094057627.jpg",
+        "uv": [
+          [
+            0.17653508771929824,
+            0.39475600873998545
+          ],
+          [
+            0.46655701754385964,
+            0.4107793153678077
+          ],
+          [
+            0.46655701754385964,
+            0.5098324836125273
+          ],
+          [
+            0.17653508771929824,
+            0.49308084486525855
+          ]
+        ],
+        "position": [
+          -140.75,
+          0.23,
+          91.4
+        ],
+        "size": [
+          47.5,
+          14.4
+        ],
+        "rotation": [
+          -90,
+          0,
+          180
+        ],
+        "section": "interior",
+        "assembly": "drives"
+      },
+      {
+        "name": "drive-label-robotron-maker",
+        "photo": "PXL_20250212_094057627.jpg",
+        "uv": [
+          [
+            0.4682017543859649,
+            0.41005098324836126
+          ],
+          [
+            0.8640350877192983,
+            0.4362709395484341
+          ],
+          [
+            0.8574561403508771,
+            0.6001456664238893
+          ],
+          [
+            0.4682017543859649,
+            0.5673707210487983
+          ]
+        ],
+        "position": [
+          -194.75,
+          0.23,
+          87.8
+        ],
+        "size": [
+          60.5,
+          21.6
+        ],
+        "rotation": [
+          -90,
+          0,
+          180
+        ],
+        "section": "interior",
+        "assembly": "drives"
+      },
+      {
+        "name": "drive-label-teac-2064",
+        "photo": "PXL_20250212_094109733.jpg",
+        "uv": [
+          [
+            0.2889254385964912,
+            0.46394756008739985
+          ],
+          [
+            0.537828947368421,
+            0.4406409322651129
+          ],
+          [
+            0.5427631578947368,
+            0.5061908230152949
+          ],
+          [
+            0.2878289473684211,
+            0.5287691187181355
+          ]
+        ],
+        "position": [
+          -197.5,
+          -144,
+          92.78
+        ],
+        "size": [
+          36,
+          7
+        ],
+        "rotation": [
+          0,
+          0,
+          180
+        ],
+        "section": "interior",
+        "assembly": "drives"
+      },
+      {
+        "name": "drive-label-teac-2092",
+        "photo": "PXL_20250212_094103763.jpg",
+        "uv": [
+          [
+            0.2680921052631579,
+            0.4879825200291333
+          ],
+          [
+            0.5910087719298246,
+            0.45302257829570286
+          ],
+          [
+            0.5981359649122807,
+            0.5214857975236707
+          ],
+          [
+            0.26206140350877194,
+            0.5615440640932265
+          ]
+        ],
+        "position": [
+          -43.5,
+          -144,
+          92.78
+        ],
+        "size": [
+          36,
+          7
+        ],
+        "rotation": [
+          0,
+          0,
+          180
+        ],
+        "section": "interior",
+        "assembly": "drives"
+      }
+    ],
+    "reconstructedText": {
+      "name": "drive-label-country",
+      "text": "HERGESTELLT IN DER DDR",
+      "position": [
+        -140.75,
+        0.24,
+        80.6
+      ],
+      "size": [
+        47.5,
+        7.2
+      ],
+      "rotation": [
+        -90,
+        0,
+        180
+      ],
+      "section": "interior",
+      "assembly": "drives",
+      "note": "Typeset from visible text because the owner photograph has a cable crossing the left end; no photographed cable is applied to the model."
+    },
+    "drives": [
+      {
+        "x": -158,
+        "plate": "K 5601",
+        "serial": "044713",
+        "manufacturer": "VEB ROBOTRON \u2013 BUCHUNGSMASCHINENWERK KARL-MARX-STADT",
+        "board": "TEAC 15532064-00A"
+      },
+      {
+        "x": -4,
+        "plate": "Assembled in India by RATAN EXPORTS & INDUSTRIES LTD.",
+        "board": "TEAC 15532092-00A",
+        "model": "Unfilled or illegible on photographed sticker"
+      }
+    ],
+    "orientation": "Positions inferred from rear overview 094038758 and top view 094033966; left in these rear-facing photographs is right when facing the computer.",
+    "scale": "Plate sizes and small mechanism dimensions estimated from nominal drive envelope."
+  },
   "references": [
     "PXL_20261009_133017092.jpg",
     "PXL_20261009_133019620.jpg",
@@ -4358,7 +4804,13 @@
     "PXL_20261010_090416759.jpg",
     "PXL_20261010_090421901.jpg",
     "PXL_20261010_090425989.jpg",
-    "PXL_20261010_090431122.jpg"
+    "PXL_20261010_090431122.jpg",
+    "PXL_20250212_094057627.jpg",
+    "PXL_20250212_094043026.jpg",
+    "PXL_20250212_094033966.jpg",
+    "PXL_20250212_094109733.jpg",
+    "PXL_20250212_094038758.jpg",
+    "PXL_20250212_094103763.jpg"
   ],
   "pcbReferences": [
     {
@@ -5124,7 +5576,7 @@
   ],
   "interior": {
     "status": "provisional",
-    "drive": "TEAC FD-55FV-13 reference; exact suffix unverified",
+    "drive": "Owner specimens: Robotron K5601 / TEAC 15532064-00A and Ratan assembly / TEAC 15532092-00A; FD-55 suffix unverified",
     "driveEnvelope": [
       146,
       203,
@@ -5132,7 +5584,7 @@
     ],
     "source": "https://oldcrap.org/2017/12/26/robotron-1715/",
     "specification": "https://retrocmp.de/fdd/teac/TEAC_FD55-FV.pdf",
-    "note": "Drive envelopes are documented. Mechanisms and layout follow another PC 1715; board population, mounting and wiring are estimates, not verified M/W internals."
+    "note": "Drive envelopes are documented. Drive mechanisms and rear plates now follow owner photos; the nominal envelope remains a reference. Logic-board population, mounting and wiring still use comparative evidence."
   },
   "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m"
 }
