@@ -24,6 +24,13 @@
       "size": 819200,
       "role": "TOS/M 1.0 boot disk",
       "conversion": "tools/robotron_td0_to_raw.c with libdsk; 80 cylinders, 2 heads, sectors 1..5, 1024 bytes; all 800 reads succeeded"
+    },
+    {
+      "file": "s600.bin",
+      "size": 2048,
+      "sha256": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
+      "source": "https://www.sax.de/~zander/pc1715/eprom/s600.bin",
+      "role": "K7658 reference keyboard firmware; specimen revision unverified"
     }
   ],
   "rights": "Historical third-party media; redistribution licence not established. Excluded from DAC MIT licence.",
