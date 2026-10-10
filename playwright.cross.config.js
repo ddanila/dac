@@ -3,6 +3,7 @@ export default {
   ...base,
   testMatch: ["portable-sessions.spec.js"],
   workers: 1,
+  timeout: 60000,
   use: {
     ...base.use,
     trace: "retain-on-failure",

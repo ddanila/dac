@@ -71,6 +71,6 @@ Head travel is estimated, rotation assumes 300 RPM, and optional drive sounds
 are synthesized. Reduced motion pauses spindle rotation.
 
 Additional validation: `npm run test:cross` runs the focused Firefox/WebKit suite
-(after `npx playwright install firefox webkit`). The core's optional application
+(after `npx playwright install firefox webkit`). CI runs Firefox on Linux and WebKit on macOS; both also passed locally on macOS. The core's optional application
 regression covers WordStar editing, Turbo Pascal compilation/execution, drive-to-
 drive PIP copying and printer output using the bundled reference disk.
