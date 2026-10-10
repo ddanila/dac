@@ -22,7 +22,7 @@ export const inspections = {
   monitor: {
     title: "The monitor",
     text: "The rounded bezel, shell joint and blue tape follow the photo. The curved glass is an estimate; the picture on it is live emulator output.",
-    photo: "133017092",
+    photo: "20250516_141624490",
   },
   back: {
     title: "Rear details are still unknown",
@@ -33,20 +33,28 @@ export const inspections = {
     text: "The separate bottom plate, four rubber feet with metal inserts, fasteners and cable grommet are modeled from the photos. A single lead connects the keyboard to the case; its resting route and small dimensions are estimated. The system-unit underside is still unverified.",
     photo: "133005363",
   },
+  inside: {
+    title: "Inside the system unit",
+    text: "Two TEAC FD-55FV reference drives include frames, spindle clamps, head carriages, motors and boards. The mounting bracket, power supply shield, fan, photographic logic boards and cable runs follow another PC 1715. Exact drive suffix, board version and wiring remain unverified for this 1715M/W.",
+  },
   assembly: {
-    title: "Separate the exterior parts",
-    text: "The lid, fascia, monitor and keyboard deck can be inspected separately. Empty areas mean the electronics have not been modeled; this is not a reconstruction of the interior.",
+    title: "Open the case and keyboard",
+    text: "The lid and monitor are removed for visibility; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms, logic boards, the power supply shield, fan and wiring are modeled from references. Keyboard switches and its board are approximate; monitor electronics and the contents of the PSU shield remain unmodeled.",
   },
 };
 export function showInspection(name) {
   const entry = inspections[name] || inspections.overview;
   document.getElementById("inspection-title").textContent = entry.title;
   document.getElementById("inspection-text").textContent = entry.text;
+  document.getElementById("interior-credit").hidden = ![
+    "inside",
+    "assembly",
+  ].includes(name);
   const reference = document.getElementById("reference-photo");
   reference.hidden = !entry.photo;
   if (entry.photo)
     reference.href = new URL(
-      `models/robotron-1715m/photos/PXL_20261009_${entry.photo}.jpg`,
+      `models/robotron-1715m/photos/PXL_${entry.photo.includes("_") ? entry.photo : "20261009_" + entry.photo}.jpg`,
       new URL(import.meta.env.BASE_URL, location.origin),
     ).href;
 }

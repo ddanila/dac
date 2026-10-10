@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "units": "mm",
   "scale": 0.0025,
   "materials": {
@@ -50,6 +50,10 @@
       "roughness": 0.16,
       "metalness": 0.05,
       "clearcoat": 1
+    },
+    "pcb": {
+      "roughness": 0.61,
+      "metalness": 0.05
     },
     "tape": {
       "roughness": 0.93,
@@ -161,7 +165,7 @@
       "name": "hardware",
       "file": "meshes/hardware.stl",
       "color": "#242725",
-      "sha256": "34ec6eec5981caf2efe6c3729858d7a7a59afbc465cf78993f03247ab2596671",
+      "sha256": "d434cbe00fa6e155628af7b5bc6a480165de828eddd75124f3f05cb04a6077a7",
       "material": "rubber"
     },
     {
@@ -254,6 +258,190 @@
       "color": "#487eac",
       "sha256": "32f90afe73ed0040ad99977666b26b2185f050cb9f32134f88ae703b73534eca",
       "material": "tape"
+    },
+    {
+      "name": "drive-frames",
+      "file": "meshes/drive-frames.stl",
+      "color": "#a2a4a0",
+      "sha256": "6f72899c2d9cc56ed69a9d1ea5ff4a466f2afc4712c84aa5ab8fc8e7326ab958",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "drive-mechanisms",
+      "file": "meshes/drive-mechanisms.stl",
+      "color": "#bec2bd",
+      "sha256": "d12d21701784f8b68307cef13d917f0d21a13f6d0ad232fe08b009e907e52b1b",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "drive-motors",
+      "file": "meshes/drive-motors.stl",
+      "color": "#282c2b",
+      "sha256": "0030677c43b0329ac1d4d5d0b1c26048e1ee12d91012687b32dfa73d43f8c1cb",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "drive-boards",
+      "file": "meshes/drive-boards.stl",
+      "color": "#28675a",
+      "sha256": "307bc1aee925671a6d9e35bcfe26d8e4a90e9ac2fe3bb633e6e8a749fb810867",
+      "section": "interior",
+      "material": "pcb"
+    },
+    {
+      "name": "drive-contacts",
+      "file": "meshes/drive-contacts.stl",
+      "color": "#b3a775",
+      "sha256": "258bdc66198fbed7032e40ee60c6fb40061f757a330bd3f8f1902b78f9c73f0a",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "drive-coils",
+      "file": "meshes/drive-coils.stl",
+      "color": "#9e793b",
+      "sha256": "81af2b9ca2c5286d06ec456a5afbc0699f8647693fa5a04ed42d6e42f99307b1",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "drive-bracket",
+      "file": "meshes/drive-bracket.stl",
+      "color": "#afb4ae",
+      "sha256": "bb985a420293e7b4b2b69ec99b661534a462e3f8db0c51ec05b0e17df58b7ac7",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "logic-boards",
+      "file": "meshes/logic-boards.stl",
+      "color": "#386349",
+      "sha256": "1f6a38521aa8efdd9d16d58d08fa9e054e4a52c96188a771a7954e939a6533dc",
+      "section": "interior",
+      "material": "pcb"
+    },
+    {
+      "name": "logic-chips",
+      "file": "meshes/logic-chips.stl",
+      "color": "#25292b",
+      "sha256": "e1a9958e12e8d184b709746203fce60c63d69cd5dfed5b7e8eef697c1aae91de",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "logic-pins",
+      "file": "meshes/logic-pins.stl",
+      "color": "#b3b8b4",
+      "sha256": "fbe8f6adef09a9aaf12b295e3684f8cae1885af37f08efa8b8b531ed8a3b8092",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "logic-connectors",
+      "file": "meshes/logic-connectors.stl",
+      "color": "#b1b5a1",
+      "sha256": "295bfda782de03969a47c3d8cbe6ce0b840e3bfd54989217ecfa4c88c87c5253",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "logic-capacitors",
+      "file": "meshes/logic-capacitors.stl",
+      "color": "#b2a15c",
+      "sha256": "847989696590f75ba124de211dd0fe80d95ffa6a5eecdf6a99b379a0bd2201ec",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "psu-chassis",
+      "file": "meshes/psu-chassis.stl",
+      "color": "#a2a6a3",
+      "sha256": "8f73227f65fa6730540e1f3fa5e46126a44452a8841aaddd048b294b6f52dff1",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "psu-cover",
+      "file": "meshes/psu-cover.stl",
+      "color": "#b5b9b2",
+      "sha256": "b3b029b15585e056fa5a26c02fe4438214f01dc76d7f916224f0b98438ac3d98",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "fan-frame",
+      "file": "meshes/fan-frame.stl",
+      "color": "#818984",
+      "sha256": "6a259a1c0ee07f61370ceeb3f8f8efd3395b0a371ff5cf02c2e567310c098e5e",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "fan-rotor",
+      "file": "meshes/fan-rotor.stl",
+      "color": "#282d2a",
+      "sha256": "187691e2151d092d72224242d3bbe2d74a0770dceec73b248f7fe13818addc39",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "ribbon-cables",
+      "file": "meshes/ribbon-cables.stl",
+      "color": "#a0a59b",
+      "sha256": "5cb2071fcf4d9e113b6f423a107de78d5235389f8f45c3a88ae041b7925f7f95",
+      "section": "interior",
+      "material": "rubber"
+    },
+    {
+      "name": "ribbon-stripes",
+      "file": "meshes/ribbon-stripes.stl",
+      "color": "#975b50",
+      "sha256": "b015d3070ac11cd28a0a5620877917d5c977737b2c76a141dd6982f77b1259d9",
+      "section": "interior",
+      "material": "rubber"
+    },
+    {
+      "name": "power-wires-red",
+      "file": "meshes/power-wires-red.stl",
+      "color": "#9e3930",
+      "sha256": "9df4b9d4ee265c2dc58729e50f31b87f693c6e67978496df6a169163a5a300e8",
+      "section": "interior",
+      "material": "rubber"
+    },
+    {
+      "name": "power-wires-black",
+      "file": "meshes/power-wires-black.stl",
+      "color": "#252a28",
+      "sha256": "a75c6c272c8fc64b407205ca4b66577e57d18648997ff1adb24ee6e24efa355c",
+      "section": "interior",
+      "material": "rubber"
+    },
+    {
+      "name": "power-wires-yellow",
+      "file": "meshes/power-wires-yellow.stl",
+      "color": "#b6a05b",
+      "sha256": "a190389df73a0fac06911179dbf188edb9c7466974e510760ac42ecaf4964adf",
+      "section": "interior",
+      "material": "rubber"
+    },
+    {
+      "name": "keyboard-pcb",
+      "file": "meshes/keyboard-pcb.stl",
+      "color": "#346750",
+      "sha256": "f7cb248e42f776c178c7fdfc8a276b872ae96274099afe754a81aa91ff83a70a",
+      "section": "interior",
+      "material": "pcb"
+    },
+    {
+      "name": "keyboard-switches",
+      "file": "meshes/keyboard-switches.stl",
+      "color": "#30352f",
+      "sha256": "7a90341fc85f5d4e481f0edb262aa53b66875a0e878e4d08c1b794f8999da658",
+      "section": "interior",
+      "material": "plastic"
     }
   ],
   "keys": [
@@ -4066,7 +4254,727 @@
     "PXL_20261009_133001660.jpg",
     "PXL_20261009_133028313.jpg",
     "PXL_20261009_133032874.jpg",
-    "PXL_20261009_132916421.MP.jpg"
+    "PXL_20261009_132916421.MP.jpg",
+    "PXL_20250430_135132170.jpg",
+    "PXL_20251008_143433778.jpg",
+    "PXL_20250516_133813650.jpg",
+    "PXL_20250516_141624490.jpg",
+    "PXL_20250516_133810520.jpg"
   ],
+  "pcbReferences": [
+    {
+      "name": "motherboard",
+      "file": "reference/oldcrap/motherboard.jpeg",
+      "sha256": "6e3810bd1c8d84bca3318933d596f37812b5f0e8ac8cb83e8fb24547e9a04eb5",
+      "imageSize": [
+        1024,
+        662
+      ],
+      "crop": [
+        110,
+        38,
+        970,
+        608
+      ],
+      "size": [
+        250,
+        355
+      ],
+      "origin": [
+        -231,
+        -178,
+        13.6
+      ],
+      "rotated": true,
+      "packages": [
+        [
+          650,
+          269,
+          20,
+          78
+        ],
+        [
+          650,
+          389,
+          20,
+          90
+        ],
+        [
+          650,
+          500,
+          20,
+          88
+        ],
+        [
+          696,
+          269,
+          20,
+          78
+        ],
+        [
+          696,
+          389,
+          20,
+          90
+        ],
+        [
+          696,
+          500,
+          20,
+          88
+        ],
+        [
+          740,
+          269,
+          20,
+          78
+        ],
+        [
+          740,
+          389,
+          20,
+          90
+        ],
+        [
+          740,
+          500,
+          20,
+          88
+        ],
+        [
+          784,
+          269,
+          20,
+          78
+        ],
+        [
+          784,
+          389,
+          20,
+          90
+        ],
+        [
+          784,
+          500,
+          20,
+          88
+        ],
+        [
+          830,
+          269,
+          20,
+          78
+        ],
+        [
+          830,
+          389,
+          20,
+          90
+        ],
+        [
+          830,
+          500,
+          20,
+          88
+        ],
+        [
+          874,
+          269,
+          20,
+          78
+        ],
+        [
+          874,
+          389,
+          20,
+          90
+        ],
+        [
+          874,
+          500,
+          20,
+          88
+        ],
+        [
+          916,
+          269,
+          20,
+          78
+        ],
+        [
+          916,
+          389,
+          20,
+          90
+        ],
+        [
+          916,
+          500,
+          20,
+          88
+        ],
+        [
+          650,
+          81,
+          44,
+          15
+        ],
+        [
+          650,
+          127,
+          44,
+          15
+        ],
+        [
+          650,
+          172,
+          44,
+          15
+        ],
+        [
+          721,
+          81,
+          44,
+          15
+        ],
+        [
+          721,
+          127,
+          44,
+          15
+        ],
+        [
+          721,
+          172,
+          44,
+          15
+        ],
+        [
+          797,
+          81,
+          44,
+          15
+        ],
+        [
+          797,
+          127,
+          44,
+          15
+        ],
+        [
+          797,
+          172,
+          44,
+          15
+        ],
+        [
+          480,
+          127,
+          52,
+          16
+        ],
+        [
+          480,
+          171,
+          52,
+          16
+        ],
+        [
+          480,
+          213,
+          52,
+          16
+        ],
+        [
+          480,
+          251,
+          52,
+          16
+        ],
+        [
+          480,
+          292,
+          52,
+          16
+        ],
+        [
+          480,
+          326,
+          52,
+          16
+        ],
+        [
+          480,
+          471,
+          52,
+          16
+        ],
+        [
+          480,
+          507,
+          52,
+          16
+        ],
+        [
+          480,
+          550,
+          52,
+          16
+        ],
+        [
+          550,
+          127,
+          52,
+          16
+        ],
+        [
+          550,
+          171,
+          52,
+          16
+        ],
+        [
+          550,
+          213,
+          52,
+          16
+        ],
+        [
+          550,
+          251,
+          52,
+          16
+        ],
+        [
+          550,
+          292,
+          52,
+          16
+        ],
+        [
+          550,
+          326,
+          52,
+          16
+        ],
+        [
+          550,
+          471,
+          52,
+          16
+        ],
+        [
+          550,
+          507,
+          52,
+          16
+        ],
+        [
+          550,
+          550,
+          52,
+          16
+        ],
+        [
+          245,
+          302,
+          46,
+          36
+        ],
+        [
+          289,
+          302,
+          37,
+          36
+        ],
+        [
+          329,
+          301,
+          37,
+          36
+        ],
+        [
+          242,
+          485,
+          154,
+          38
+        ],
+        [
+          309,
+          548,
+          89,
+          36
+        ],
+        [
+          246,
+          365,
+          91,
+          53
+        ],
+        [
+          481,
+          365,
+          54,
+          51
+        ],
+        [
+          547,
+          349,
+          59,
+          54
+        ],
+        [
+          177,
+          146,
+          38,
+          18
+        ],
+        [
+          177,
+          177,
+          38,
+          18
+        ],
+        [
+          177,
+          198,
+          38,
+          18
+        ],
+        [
+          177,
+          228,
+          38,
+          18
+        ],
+        [
+          177,
+          263,
+          38,
+          18
+        ],
+        [
+          177,
+          289,
+          38,
+          18
+        ],
+        [
+          177,
+          329,
+          38,
+          18
+        ],
+        [
+          177,
+          356,
+          38,
+          18
+        ],
+        [
+          177,
+          386,
+          38,
+          18
+        ]
+      ],
+      "packageHeight": 3.8,
+      "source": "https://oldcrap.org/wp-content/uploads/2017/12/fullsizeoutput_141c-1024x662.jpeg",
+      "credit": "Old Crap Vintage Computing \u2014 another PC 1715, not Danila\u2019s 1715M",
+      "page": "https://oldcrap.org/2017/12/26/robotron-1715/",
+      "exclude": []
+    },
+    {
+      "name": "floppy-controller",
+      "file": "reference/oldcrap/floppy-controller.jpeg",
+      "sha256": "8e8c0f41c9ffa76a551f3fb1d6cc4ae436ef4e7d948cb7550be817fcd1a4d875",
+      "imageSize": [
+        1024,
+        811
+      ],
+      "crop": [
+        10,
+        10,
+        1010,
+        800
+      ],
+      "size": [
+        220,
+        165
+      ],
+      "origin": [
+        -222,
+        10,
+        42.6
+      ],
+      "rotated": false,
+      "packages": [
+        [
+          36,
+          137,
+          90,
+          25
+        ],
+        [
+          145,
+          137,
+          90,
+          25
+        ],
+        [
+          255,
+          137,
+          90,
+          25
+        ],
+        [
+          365,
+          137,
+          90,
+          25
+        ],
+        [
+          36,
+          220,
+          90,
+          25
+        ],
+        [
+          145,
+          220,
+          90,
+          25
+        ],
+        [
+          255,
+          220,
+          90,
+          25
+        ],
+        [
+          365,
+          220,
+          90,
+          25
+        ],
+        [
+          36,
+          305,
+          90,
+          25
+        ],
+        [
+          145,
+          305,
+          90,
+          25
+        ],
+        [
+          255,
+          305,
+          90,
+          25
+        ],
+        [
+          365,
+          305,
+          90,
+          25
+        ],
+        [
+          36,
+          386,
+          90,
+          25
+        ],
+        [
+          145,
+          386,
+          90,
+          25
+        ],
+        [
+          255,
+          386,
+          90,
+          25
+        ],
+        [
+          365,
+          386,
+          90,
+          25
+        ],
+        [
+          36,
+          469,
+          90,
+          25
+        ],
+        [
+          145,
+          469,
+          90,
+          25
+        ],
+        [
+          255,
+          469,
+          90,
+          25
+        ],
+        [
+          365,
+          469,
+          90,
+          25
+        ],
+        [
+          468,
+          305,
+          92,
+          25
+        ],
+        [
+          566,
+          305,
+          92,
+          25
+        ],
+        [
+          468,
+          386,
+          92,
+          25
+        ],
+        [
+          566,
+          386,
+          92,
+          25
+        ],
+        [
+          468,
+          469,
+          92,
+          25
+        ],
+        [
+          566,
+          469,
+          92,
+          25
+        ],
+        [
+          516,
+          187,
+          145,
+          60
+        ],
+        [
+          700,
+          166,
+          230,
+          58
+        ],
+        [
+          700,
+          288,
+          139,
+          54
+        ],
+        [
+          699,
+          387,
+          232,
+          62
+        ],
+        [
+          246,
+          57,
+          88,
+          28
+        ],
+        [
+          357,
+          57,
+          91,
+          28
+        ],
+        [
+          473,
+          57,
+          86,
+          28
+        ],
+        [
+          661,
+          58,
+          89,
+          27
+        ],
+        [
+          155,
+          548,
+          82,
+          34
+        ],
+        [
+          257,
+          548,
+          91,
+          34
+        ],
+        [
+          365,
+          548,
+          88,
+          34
+        ],
+        [
+          470,
+          548,
+          87,
+          34
+        ],
+        [
+          354,
+          635,
+          94,
+          32
+        ],
+        [
+          470,
+          635,
+          85,
+          32
+        ]
+      ],
+      "packageHeight": 3.8,
+      "source": "https://oldcrap.org/wp-content/uploads/2017/12/fullsizeoutput_141a-1024x811.jpeg",
+      "credit": "Old Crap Vintage Computing \u2014 another PC 1715, not Danila\u2019s 1715M",
+      "page": "https://oldcrap.org/2017/12/26/robotron-1715/",
+      "exclude": [
+        [
+          715,
+          530,
+          910,
+          800
+        ]
+      ]
+    }
+  ],
+  "interior": {
+    "status": "provisional",
+    "drive": "TEAC FD-55FV-13 reference; exact suffix unverified",
+    "driveEnvelope": [
+      146,
+      203,
+      41.3
+    ],
+    "source": "https://oldcrap.org/2017/12/26/robotron-1715/",
+    "specification": "https://retrocmp.de/fdd/teac/TEAC_FD55-FV.pdf",
+    "note": "Drive envelopes are documented. Mechanisms and layout follow another PC 1715; board population, mounting and wiring are estimates, not verified M/W internals."
+  },
   "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m"
 }

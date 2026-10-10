@@ -312,6 +312,11 @@ export function createScene(
     },
     releaseKeys: () => robotron?.releaseKeys(),
     pulse: (id) => robotron?.pulse(id),
+    interior: (on) => {
+      cancelGesture();
+      robotron?.interior(on);
+      renderRequested = true;
+    },
     separate: (on) => {
       cancelGesture();
       robotron?.separate(on);
@@ -324,6 +329,7 @@ export function createScene(
       cancelGesture();
       robotron?.releaseKeys();
       robotron?.separate(false);
+      robotron?.interior(false);
       kind = value;
       visibility();
     },
@@ -364,9 +370,13 @@ export function createScene(
           [0.9, 1.4, 1.7],
           [0, 0.85, 0],
         ],
+        inside: [
+          [1.2, 1.7, 1.5],
+          [0, 0.12, 0],
+        ],
         assembly: [
-          [2.3, 2.5, 3.3],
-          [0, 0.65, 0],
+          [1.5, 1.8, 2.2],
+          [0, 0.15, 0.3],
         ],
       };
       const view = views[name] || views.overview;

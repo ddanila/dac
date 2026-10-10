@@ -1,0 +1,6 @@
+Third-party photographic references
+
+Photographs by Old Crap Vintage Computing, Robotron 1715 restoration (2017-12-26):
+https://oldcrap.org/2017/12/26/robotron-1715/
+
+Copyright remains with the original photographer. These two unmodified photographs are NOT covered by this repository’s MIT licence. No broader redistribution licence has been verified. They are credited comparative museum references, depicting another PC 1715, not Danila’s 1715M. Their source URLs and SHA-256 hashes are recorded in pcb-references.json. Replace with owner photographs when available.

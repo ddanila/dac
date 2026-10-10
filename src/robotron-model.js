@@ -1,3 +1,4 @@
+import { loadPcbPhotos } from "./robotron-interior.js";
 import { crtGeometry, crtMaterial } from "./robotron-crt.js";
 import * as THREE from "three";
 import {
@@ -120,6 +121,8 @@ export async function loadRobotron(displayTexture) {
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       mesh.name = part.name;
+      mesh.userData.interior = part.section === "interior";
+      if (mesh.userData.interior) mesh.visible = false;
       group.add(mesh);
       objects.set(part.name, mesh);
     }),
@@ -176,6 +179,11 @@ export async function loadRobotron(displayTexture) {
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = name;
     return mesh;
+  }
+  const pcbPhotos = await loadPcbPhotos(data, base);
+  for (const mesh of pcbPhotos) {
+    mesh.visible = false;
+    group.add(mesh);
   }
   const keyboard = new THREE.Group();
   keyboard.position.set(0, data.keyboard.y, data.keyboard.z);
@@ -283,7 +291,7 @@ export async function loadRobotron(displayTexture) {
     marking("drive-direction", [21, 16], [x + 43, -208.6, 72], arrow);
   for (const [name, x, text] of [
     ["reset-label", -208, "RESET"],
-    ["power-label", 207, "NETZ"],
+    ["power-label", 207, "POWER"],
   ]) {
     marking(
       name,
@@ -314,7 +322,9 @@ export async function loadRobotron(displayTexture) {
   let power = false,
     activityUntil = 0,
     split = 0,
-    splitTarget = 0;
+    splitTarget = 0,
+    inside = false,
+    wasInside = false;
   const pressed = new Set();
   function releaseKeys() {
     pressed.clear();
@@ -325,7 +335,13 @@ export async function loadRobotron(displayTexture) {
     else pressed.delete(id);
   }
   function tick() {
-    let dirty = false;
+    let dirty = inside !== wasInside;
+    const changedInside = dirty;
+    wasInside = inside;
+    for (const mesh of objects.values())
+      if (mesh.userData.interior)
+        mesh.visible = inside || split > 0.01 || mesh.name === "psu-chassis";
+    for (const mesh of pcbPhotos) mesh.visible = inside || split > 0.01;
     const beforeSplit = split;
     for (const [id, key] of keyObjects) {
       const z =
@@ -356,8 +372,27 @@ export async function loadRobotron(displayTexture) {
       "ring",
       "monitor-tape",
     ];
-    for (const name of monitor) objects.get(name).position.z = split * 150;
+    for (const name of monitor) {
+      objects.get(name).position.z = split * 150;
+      objects.get(name).visible = !inside;
+    }
+    objects.get("case-lid").visible = !inside;
     objects.get("case-lid").position.z = split * 75;
+    for (const [name, mesh] of objects) {
+      if (name === "drives" || name.startsWith("drive-")) {
+        mesh.position.z = split * 115;
+        mesh.position.y = -split * 145;
+      }
+      if (name.startsWith("ribbon-") || name.startsWith("power-wires"))
+        mesh.visible = inside && split < 0.01;
+    }
+    for (const mesh of group.children)
+      if (mesh.name === "drive-direction") {
+        if (!mesh.userData.rest) mesh.userData.rest = mesh.position.clone();
+        mesh.position.copy(mesh.userData.rest);
+        mesh.position.y -= split * 145;
+        mesh.position.z += split * 115;
+      }
     objects.get("fascia").position.y = -split * 40;
     objects.get("keyboard-deck").position.z = split * 55;
     objects.get("keyboard-fillers").position.z = split * 55;
@@ -369,7 +404,7 @@ export async function loadRobotron(displayTexture) {
     }
     return {
       dirty: dirty || beforeSplit !== split,
-      shadows: beforeSplit !== split,
+      shadows: changedInside || beforeSplit !== split,
     };
   }
   return {
@@ -398,6 +433,10 @@ export async function loadRobotron(displayTexture) {
     },
     modifiers(state) {
       capsMaterial.emissive.set(power && state.caps ? 0xba7618 : 0);
+    },
+    interior(value) {
+      inside = value;
+      releaseKeys();
     },
     separate(value) {
       splitTarget = value ? 1 : 0;

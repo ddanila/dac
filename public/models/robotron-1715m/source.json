@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "9bd4805f5e6b8693912393ee236ec93a24d70420",
+  "revision": "2771a463b3f0c74156b96ddbc420c9e7537ccdb9",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "f3b6e7bc9779b671a504acbfcce2713f7c7a0b23ace63806819754d1c2e8f128"
+      "sha256": "d8f4c78fa35a314b7fb67f536ee53dd638cf5d8351455846302449ca9e5f4375"
     },
     {
       "file": "LICENSE",
@@ -69,7 +69,7 @@
     },
     {
       "file": "meshes/hardware.stl",
-      "sha256": "34ec6eec5981caf2efe6c3729858d7a7a59afbc465cf78993f03247ab2596671"
+      "sha256": "d434cbe00fa6e155628af7b5bc6a480165de828eddd75124f3f05cb04a6077a7"
     },
     {
       "file": "meshes/cable.stl",
@@ -124,6 +124,98 @@
       "sha256": "32f90afe73ed0040ad99977666b26b2185f050cb9f32134f88ae703b73534eca"
     },
     {
+      "file": "meshes/drive-frames.stl",
+      "sha256": "6f72899c2d9cc56ed69a9d1ea5ff4a466f2afc4712c84aa5ab8fc8e7326ab958"
+    },
+    {
+      "file": "meshes/drive-mechanisms.stl",
+      "sha256": "d12d21701784f8b68307cef13d917f0d21a13f6d0ad232fe08b009e907e52b1b"
+    },
+    {
+      "file": "meshes/drive-motors.stl",
+      "sha256": "0030677c43b0329ac1d4d5d0b1c26048e1ee12d91012687b32dfa73d43f8c1cb"
+    },
+    {
+      "file": "meshes/drive-boards.stl",
+      "sha256": "307bc1aee925671a6d9e35bcfe26d8e4a90e9ac2fe3bb633e6e8a749fb810867"
+    },
+    {
+      "file": "meshes/drive-contacts.stl",
+      "sha256": "258bdc66198fbed7032e40ee60c6fb40061f757a330bd3f8f1902b78f9c73f0a"
+    },
+    {
+      "file": "meshes/drive-coils.stl",
+      "sha256": "81af2b9ca2c5286d06ec456a5afbc0699f8647693fa5a04ed42d6e42f99307b1"
+    },
+    {
+      "file": "meshes/drive-bracket.stl",
+      "sha256": "bb985a420293e7b4b2b69ec99b661534a462e3f8db0c51ec05b0e17df58b7ac7"
+    },
+    {
+      "file": "meshes/logic-boards.stl",
+      "sha256": "1f6a38521aa8efdd9d16d58d08fa9e054e4a52c96188a771a7954e939a6533dc"
+    },
+    {
+      "file": "meshes/logic-chips.stl",
+      "sha256": "e1a9958e12e8d184b709746203fce60c63d69cd5dfed5b7e8eef697c1aae91de"
+    },
+    {
+      "file": "meshes/logic-pins.stl",
+      "sha256": "fbe8f6adef09a9aaf12b295e3684f8cae1885af37f08efa8b8b531ed8a3b8092"
+    },
+    {
+      "file": "meshes/logic-connectors.stl",
+      "sha256": "295bfda782de03969a47c3d8cbe6ce0b840e3bfd54989217ecfa4c88c87c5253"
+    },
+    {
+      "file": "meshes/logic-capacitors.stl",
+      "sha256": "847989696590f75ba124de211dd0fe80d95ffa6a5eecdf6a99b379a0bd2201ec"
+    },
+    {
+      "file": "meshes/psu-chassis.stl",
+      "sha256": "8f73227f65fa6730540e1f3fa5e46126a44452a8841aaddd048b294b6f52dff1"
+    },
+    {
+      "file": "meshes/psu-cover.stl",
+      "sha256": "b3b029b15585e056fa5a26c02fe4438214f01dc76d7f916224f0b98438ac3d98"
+    },
+    {
+      "file": "meshes/fan-frame.stl",
+      "sha256": "6a259a1c0ee07f61370ceeb3f8f8efd3395b0a371ff5cf02c2e567310c098e5e"
+    },
+    {
+      "file": "meshes/fan-rotor.stl",
+      "sha256": "187691e2151d092d72224242d3bbe2d74a0770dceec73b248f7fe13818addc39"
+    },
+    {
+      "file": "meshes/ribbon-cables.stl",
+      "sha256": "5cb2071fcf4d9e113b6f423a107de78d5235389f8f45c3a88ae041b7925f7f95"
+    },
+    {
+      "file": "meshes/ribbon-stripes.stl",
+      "sha256": "b015d3070ac11cd28a0a5620877917d5c977737b2c76a141dd6982f77b1259d9"
+    },
+    {
+      "file": "meshes/power-wires-red.stl",
+      "sha256": "9df4b9d4ee265c2dc58729e50f31b87f693c6e67978496df6a169163a5a300e8"
+    },
+    {
+      "file": "meshes/power-wires-black.stl",
+      "sha256": "a75c6c272c8fc64b407205ca4b66577e57d18648997ff1adb24ee6e24efa355c"
+    },
+    {
+      "file": "meshes/power-wires-yellow.stl",
+      "sha256": "a190389df73a0fac06911179dbf188edb9c7466974e510760ac42ecaf4964adf"
+    },
+    {
+      "file": "meshes/keyboard-pcb.stl",
+      "sha256": "f7cb248e42f776c178c7fdfc8a276b872ae96274099afe754a81aa91ff83a70a"
+    },
+    {
+      "file": "meshes/keyboard-switches.stl",
+      "sha256": "7a90341fc85f5d4e481f0edb262aa53b66875a0e878e4d08c1b794f8999da658"
+    },
+    {
       "file": "meshes/keycap-0.stl",
       "sha256": "a8d94931e3329b88d4e013694a15ede3717b77d54ceb417e70a8bab28a2e5ad3"
     },
@@ -150,6 +242,26 @@
     {
       "file": "meshes/keycap-6.stl",
       "sha256": "252e7d16c2b064b6793b9fb9307a531eeb6fd8ed201a3ee4ff90f89ea73331f8"
+    },
+    {
+      "file": "photos/PXL_20250430_135132170.jpg",
+      "sha256": "b0a2766de724aceb0d0adbcf55e2590bedabecc7391e397abb91af4e24d82bf5"
+    },
+    {
+      "file": "photos/PXL_20250516_133810520.jpg",
+      "sha256": "211d87964a1594d4cedeb7894e2eb5a5af58686508863e526439dd4205f3fb49"
+    },
+    {
+      "file": "photos/PXL_20250516_133813650.jpg",
+      "sha256": "0d735e0c75988042f628a087db19a13716a63833c812a3ca29a9b1398e88e8f8"
+    },
+    {
+      "file": "photos/PXL_20250516_141624490.jpg",
+      "sha256": "820dbf85979d4f70c929c6b1549f7dfd6c42bee288401a9cf3335e4ed274e72c"
+    },
+    {
+      "file": "photos/PXL_20251008_143433778.jpg",
+      "sha256": "3ea3fabd81afd988fdd9e12cd67b33aa81a39413de4a0eeb25be6d9b63328c27"
     },
     {
       "file": "photos/PXL_20261009_132916421.MP.jpg",
@@ -186,6 +298,18 @@
     {
       "file": "photos/PXL_20261009_133032874.jpg",
       "sha256": "10240ba828f6931ad616a2e9d7d0d955c81b2a2fba5a0ca9dd8e59d85aa5e026"
+    },
+    {
+      "file": "reference/oldcrap/motherboard.jpeg",
+      "sha256": "6e3810bd1c8d84bca3318933d596f37812b5f0e8ac8cb83e8fb24547e9a04eb5"
+    },
+    {
+      "file": "reference/oldcrap/floppy-controller.jpeg",
+      "sha256": "8e8c0f41c9ffa76a551f3fb1d6cc4ae436ef4e7d948cb7550be817fcd1a4d875"
+    },
+    {
+      "file": "reference/oldcrap/NOTICE.txt",
+      "sha256": "f4272b8b0cb2add80db3cbb363efe8ec3607e992ad67654f50fe511abd4b2561"
     }
   ]
 }
