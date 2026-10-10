@@ -104,51 +104,54 @@ test("keyboard buttons send documented bytes, latch modifiers and reset safely",
   expect(await page.evaluate(() => window.sentKeys.length)).toBe(14);
 });
 
-test("a key on the 3D model types, while dragging and cancelled gestures do not", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 1280, height: 900 });
-  await observeKeys(page);
-  await page.getByRole("button", { name: "Keyboard", exact: true }).click();
-  const manifest = await (
-    await page.request.get("/models/robotron-1715m/model.json")
-  ).json();
-  const key = manifest.keys.find((k) => k.label === "A");
-  const box = await page.locator("#viewport").boundingBox();
-  const camera = new PerspectiveCamera(36, box.width / box.height, 0.01, 40);
-  camera.position.set(0, 1.55, 1.45);
-  camera.lookAt(0, 0.07, 0.88);
-  camera.updateMatrixWorld();
-  const vector = new Vector3(key.x, key.y, 8.1).applyEuler(
-    new Euler((manifest.keyboard.slope * Math.PI) / 180, 0, 0),
-  );
-  vector
-    .add(new Vector3(0, manifest.keyboard.y, manifest.keyboard.z))
-    .applyEuler(new Euler(-Math.PI / 2, 0, 0))
-    .multiplyScalar(manifest.scale)
-    .project(camera);
-  const x = box.x + ((vector.x + 1) * box.width) / 2,
-    y = box.y + ((1 - vector.y) * box.height) / 2;
-  await page.mouse.click(x, y);
-  await expect(page.locator("#key-feedback")).toHaveText("Sent A");
-  expect(await page.evaluate(() => window.sentKeys)).toEqual([97]);
-  await page.locator("#viewport").focus();
-  await page.keyboard.press("Escape");
-  await expect(page.locator("#viewport")).not.toBeFocused();
-  await page.mouse.move(x, y);
-  await page.mouse.down();
-  await page.mouse.move(x + 60, y + 30, { steps: 5 });
-  await page.mouse.up();
-  expect(await page.evaluate(() => window.sentKeys)).toEqual([97]);
-  await page.getByRole("button", { name: "Keyboard", exact: true }).click();
-  await page.mouse.move(x, y);
-  await page.mouse.down();
-  await page
-    .locator("#viewport canvas")
-    .dispatchEvent("pointercancel", { pointerId: 1 });
-  await page.mouse.up();
-  expect(await page.evaluate(() => window.sentKeys)).toEqual([97]);
-});
+for (const gesture of ["click", "drag", "cancel"]) {
+  test(`3D key ${gesture} sends input only for a completed click`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await observeKeys(page);
+    await page.getByRole("button", { name: "Keyboard", exact: true }).click();
+    const manifest = await (
+      await page.request.get("/models/robotron-1715m/model.json")
+    ).json();
+    const key = manifest.keys.find((k) => k.label === "A");
+    const box = await page.locator("#viewport").boundingBox();
+    const camera = new PerspectiveCamera(36, box.width / box.height, 0.01, 40);
+    camera.position.set(0, 1.55, 1.45);
+    camera.lookAt(0, 0.07, 0.88);
+    camera.updateMatrixWorld();
+    const vector = new Vector3(key.x, key.y, 8.1).applyEuler(
+      new Euler((manifest.keyboard.slope * Math.PI) / 180, 0, 0),
+    );
+    vector
+      .add(new Vector3(0, manifest.keyboard.y, manifest.keyboard.z))
+      .applyEuler(new Euler(-Math.PI / 2, 0, 0))
+      .multiplyScalar(manifest.scale)
+      .project(camera);
+    const x = box.x + ((vector.x + 1) * box.width) / 2,
+      y = box.y + ((1 - vector.y) * box.height) / 2;
+    if (gesture === "click") {
+      await page.mouse.click(x, y);
+      await expect(page.locator("#key-feedback")).toHaveText("Sent A");
+      await page.locator("#viewport").focus();
+      await page.keyboard.press("Escape");
+      await expect(page.locator("#viewport")).not.toBeFocused();
+    } else {
+      await page.mouse.move(x, y);
+      await page.mouse.down();
+      if (gesture === "drag")
+        await page.mouse.move(x + 60, y + 30, { steps: 5 });
+      else
+        await page
+          .locator("#viewport canvas")
+          .dispatchEvent("pointercancel", { pointerId: 1 });
+      await page.mouse.up();
+    }
+    expect(await page.evaluate(() => window.sentKeys)).toEqual(
+      gesture === "click" ? [97] : [],
+    );
+  });
+}
 
 test("inspection separates the exterior and identifies missing rear references", async ({
   page,
