@@ -241,7 +241,7 @@ export function createScene(
       object: hit,
       dragged: false,
     };
-    if (down.key && powered) robotron.keyState(down.key.id, true);
+    if (down.key) robotron.keyState(down.key.id, true);
   });
   renderer.domElement.addEventListener("pointermove", (e) => {
     if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 5) {
@@ -318,6 +318,7 @@ export function createScene(
     },
     releaseKeys: () => robotron?.releaseKeys(),
     pulse: (id) => robotron?.pulse(id),
+    keyState: (id, pressed) => robotron?.keyState(id, pressed),
     openMonitor: (on) => {
       cancelGesture();
       robotron?.openMonitor(on);

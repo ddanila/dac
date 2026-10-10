@@ -1,3 +1,4 @@
+import { keyPoint } from "./robotron-picking.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -11,7 +12,9 @@ test("bundled historical media retains its documented identities", async () => {
   }
 });
 
-test("historical default boots, reads DIR and exports an unchanged read-only disk", async ({ page }) => {
+test("3D keyboard enters DIR in historical TOS/M and exports an unchanged read-only disk", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => {
     const Base = window.Worker;
     window.diskActivity = 0;
@@ -34,9 +37,14 @@ test("historical default boots, reads DIR and exports an unchanged read-only dis
   // Allow the final boot command to finish before typing a new command.
   await page.waitForTimeout(1000);
   const reads = await page.evaluate(() => window.diskActivity);
-  await page.locator("#screen").focus();
-  await page.keyboard.type("DIR", { delay: 100 });
-  await page.keyboard.press("Enter");
+  await page.locator('[data-view="keyboard"]').click();
+  const model = await (await page.request.get('/models/robotron-1715m/model.json')).json();
+  for (const code of [100, 105, 114, 13]) {
+    const key = model.keys.find(k => k.input.code === code);
+    const point = await keyPoint(page, key, model);
+    await page.mouse.click(point.x, point.y);
+    await expect(page.locator('#key-feedback')).toHaveText(`Sent ${key.label}`);
+  }
   await expect.poll(() => page.evaluate(() => window.diskActivity)).toBeGreaterThan(reads);
   await page.locator("#power").click();
   await page.locator("#media-controls summary").click();

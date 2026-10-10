@@ -11,7 +11,7 @@ export const inspections = {
   },
   keyboard: {
     title: "A keyboard you can use",
-    text: "Click the modeled keys, or focus the exhibit and type. Shift and Ctrl latch for one character; Caps Lock stays on. Its lamp shows the on-screen Caps Lock state. Some specimen-specific keys remain unmapped.",
+    text: "Press the modeled keys, or focus the exhibit and type. Physical keys stay visibly depressed until released; completed 3D clicks send input to the running OS. Shift and Ctrl latch for one character; Caps Lock stays on. Its lamp shows the on-screen Caps Lock state. Some specimen-specific keys remain unmapped.",
     photo: "132919894",
   },
   connector: {
@@ -45,7 +45,7 @@ export const inspections = {
   },
   inside: {
     title: "Inside the system unit",
-    text: "The cover and monitor move up and back together. Choose Drives for a close view of the mechanisms, or lift the drives to see below them. The two drives follow owner photographs and include their distinct boards and manufacturer plates, frames, spindle clamps, head carriages and motors. The mounting bracket, power supply shield, fan, photographic logic boards and cable runs follow another PC 1715. Exact drive suffix, board version and wiring remain unverified for this 1715M/W.",
+    text: "The cover and monitor move up and back together. The fan spins while powered on (illustrative speed; reduced-motion settings pause it). Choose Drives for a close view of the mechanisms, or lift the drives to see below them. The two drives follow owner photographs and include their distinct boards and manufacturer plates, frames, spindle clamps, head carriages and motors. The mounting bracket, power supply shield, fan, photographic logic boards and cable runs follow another PC 1715. Exact drive suffix, board version and wiring remain unverified for this 1715M/W.",
   },
   "monitor-inside": {
     title: "Inside the monitor",
