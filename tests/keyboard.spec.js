@@ -3,6 +3,7 @@ import { PerspectiveCamera, Vector3, Euler } from "three";
 import { photoProjection } from "../src/robotron-model.js";
 
 async function observeKeys(page) {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => {
     const WorkerBase = window.Worker;
     window.sentKeys = [];
@@ -19,6 +20,12 @@ async function observeKeys(page) {
     "data-model",
     "robotron-photo",
   );
+  await expect(page.locator("#power")).toBeEnabled();
+  // Input routing and modifier semantics need a stable diagnostic; the
+  // historical-media suite separately exercises the original OS and disk.
+  await page.locator("#media-controls summary").click();
+  await page.locator("#demo").click();
+  await expect(page.locator("#media-label")).toHaveText("DAC diagnostic ROM");
   await expect(page.locator("#power")).toBeEnabled();
   await page.locator("#power").click();
   await expect(page.locator("#status")).toHaveText("Running");
