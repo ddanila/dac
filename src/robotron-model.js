@@ -1,4 +1,10 @@
 import * as THREE from "three";
+import {
+  specimenMaterial,
+  legendAtlas,
+  markingTexture,
+} from "./robotron-materials.js";
+import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 
 // Project a unit square into the photographed quadrilateral. Subdivision keeps
@@ -78,9 +84,7 @@ export async function loadRobotron(displayTexture) {
     objects = new Map(),
     keyObjects = new Map(),
     keyGeometry = new Map();
-  const filenames = new Set(
-    [...data.keys, ...data.patches].map((k) => k.photo),
-  );
+  const filenames = new Set(data.patches.map((k) => k.photo));
   await Promise.all(
     [...filenames].map(async (name) => {
       const texture = await loader.loadAsync(
@@ -103,10 +107,13 @@ export async function loadRobotron(displayTexture) {
   );
   await Promise.all(
     data.parts.map(async (part) => {
-      const geometry = await stl.loadAsync(new URL(part.file, base).href);
+      const geometry = toCreasedNormals(
+        await stl.loadAsync(new URL(part.file, base).href),
+        Math.PI / 4,
+      );
       const mesh = new THREE.Mesh(
         geometry,
-        new THREE.MeshStandardMaterial({ color: part.color, roughness: 0.78 }),
+        specimenMaterial(part.color, data.materials[part.material]),
       );
       mesh.castShadow = true;
       mesh.receiveShadow = true;
@@ -119,7 +126,10 @@ export async function loadRobotron(displayTexture) {
     data.keyMeshes.map(async (part) =>
       keyGeometry.set(
         part.name,
-        await stl.loadAsync(new URL(part.file, base).href),
+        toCreasedNormals(
+          await stl.loadAsync(new URL(part.file, base).href),
+          Math.PI / 2.1,
+        ),
       ),
     ),
   );
@@ -152,47 +162,14 @@ export async function loadRobotron(displayTexture) {
       polygonOffset: true,
       polygonOffsetFactor: -1,
     });
-    if (options.ink || options.feather) {
+    if (options.ink) {
       material.onBeforeCompile = (shader) => {
-        shader.vertexShader =
-          "attribute vec2 surfaceUv; varying vec2 patchUv;\n" +
-          shader.vertexShader;
-        shader.vertexShader = shader.vertexShader.replace(
-          "#include <uv_vertex>",
-          "#include <uv_vertex>\npatchUv=surfaceUv;",
-        );
-        shader.fragmentShader =
-          "varying vec2 patchUv;\n" + shader.fragmentShader;
-        if (options.paint) {
-          const names = ["paintTL", "paintTR", "paintBR", "paintBL"];
-          options.paint.forEach(
-            (rgb, i) =>
-              (shader.uniforms[names[i]] = {
-                value: new THREE.Color().setRGB(...rgb, THREE.SRGBColorSpace),
-              }),
-          );
-          shader.uniforms.paintTarget = { value: new THREE.Color("#b6ae93") };
-          shader.fragmentShader =
-            "uniform vec3 paintTL,paintTR,paintBR,paintBL,paintTarget;\n" +
-            shader.fragmentShader;
-        }
         shader.fragmentShader = shader.fragmentShader.replace(
           "#include <map_fragment>",
-          "#include <map_fragment>\n" +
-            (options.paint
-              ? "vec3 illumination=mix(mix(paintBL,paintBR,patchUv.x),mix(paintTL,paintTR,patchUv.x),patchUv.y); diffuseColor.rgb*=min(vec3(2.5),paintTarget/max(illumination,vec3(0.03)));"
-              : "") +
-            (options.ink
-              ? "float ink=smoothstep(0.32,0.58,max(max(diffuseColor.r,diffuseColor.g),diffuseColor.b)); diffuseColor=vec4(vec3(0.75),diffuseColor.a*ink);"
-              : "float edge=min(min(patchUv.x,1.0-patchUv.x),min(patchUv.y,1.0-patchUv.y)); diffuseColor.a*=smoothstep(0.0,0.06,edge);"),
+          "#include <map_fragment>\nfloat ink=smoothstep(0.32,0.58,max(max(diffuseColor.r,diffuseColor.g),diffuseColor.b)); diffuseColor=vec4(vec3(0.75),diffuseColor.a*ink);",
         );
       };
-      material.customProgramCacheKey = () =>
-        options.ink
-          ? "photo-ink"
-          : options.paint
-            ? "photo-paint"
-            : "photo-feather";
+      material.customProgramCacheKey = () => "photo-wordmark";
     }
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = name;
@@ -202,10 +179,19 @@ export async function loadRobotron(displayTexture) {
   keyboard.position.set(0, data.keyboard.y, data.keyboard.z);
   keyboard.rotation.x = THREE.MathUtils.degToRad(data.keyboard.slope);
   group.add(keyboard);
-  const keyMaterials = [0x202526, 0xbac1b8, 0xc6343b].map(
-    (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.72 }),
+  const keyMaterials = [0x252a29, 0xaeb9ad, 0xb82e35].map((color, i) =>
+    specimenMaterial(color, data.materials[i === 1 ? "clear-key" : "key"]),
   );
-  for (const key of data.keys) {
+  const atlas = legendAtlas(data.keys);
+  const legendMaterial = new THREE.MeshStandardMaterial({
+    map: atlas.texture,
+    transparent: true,
+    depthWrite: false,
+    roughness: 0.65,
+    polygonOffset: true,
+    polygonOffsetFactor: -1,
+  });
+  for (const [index, key] of data.keys.entries()) {
     const cap = new THREE.Group();
     cap.position.set(key.x, key.y, 0);
     cap.userData.key = key;
@@ -214,21 +200,34 @@ export async function loadRobotron(displayTexture) {
       keyMaterials[key.style],
     );
     body.userData.key = key;
+    body.receiveShadow = true;
     cap.add(body);
-    const face = photoPlane(
-      key.id,
-      key.width * data.keyboard.pitch - 3.5,
-      key.height * data.keyboard.pitch - 4.5,
-      key.uv,
-      key.photo,
-      key.style === 1
-        ? 2.6
-        : Math.min(
-            key.width * data.keyboard.pitch - 3.5,
-            key.height * data.keyboard.pitch - 4.5,
-          ) * 0.45,
+    // A small transparent legend follows the actual OpenSCAD dish surface:
+    // sphere radius 29, centre z=36, clipped by the cap top at z=8.
+    const w = Math.min(
+      key.width * data.keyboard.pitch - 7,
+      key.label.length > 2 ? 23 : 14,
     );
-    face.position.z = 8.1;
+    const h = Math.min(key.height * data.keyboard.pitch - 7, 17);
+    const faceGeometry = surface(w, h);
+    const p = faceGeometry.attributes.position,
+      uv = faceGeometry.attributes.uv;
+    for (let i = 0; i < p.count; i++) {
+      const x =
+          p.getX(i) / Math.max(1, (key.width * data.keyboard.pitch - 5.2) / 16),
+        y =
+          p.getY(i) /
+          Math.max(1, (key.height * data.keyboard.pitch - 5.2) / 16);
+      p.setZ(i, Math.min(8, 36 - Math.sqrt(29 * 29 - x * x - y * y)) + 0.09);
+      uv.setXY(
+        i,
+        ((index % atlas.columns) + uv.getX(i)) / atlas.columns,
+        1 - (Math.floor(index / atlas.columns) + 1 - uv.getY(i)) / atlas.rows,
+      );
+    }
+    faceGeometry.computeVertexNormals();
+    const face = new THREE.Mesh(faceGeometry, legendMaterial);
+    face.name = key.id;
     face.userData.key = key;
     cap.add(face);
     keyboard.add(cap);
@@ -245,22 +244,75 @@ export async function loadRobotron(displayTexture) {
   }
   const display = new THREE.Mesh(
     surface(...data.screen.size, data.screen.radius, data.screen.bulge),
-    new THREE.MeshBasicMaterial({ map: displayTexture }),
+    new THREE.MeshPhysicalMaterial({
+      color: 0x14221d,
+      emissive: 0xffffff,
+      emissiveMap: displayTexture,
+      emissiveIntensity: 0.85,
+      roughness: 0.22,
+      metalness: 0,
+      clearcoat: 1,
+      clearcoatRoughness: 0.13,
+      envMapIntensity: 0.55,
+    }),
   );
   display.rotation.x = Math.PI / 2;
   display.position.set(...data.screen.position);
   group.add(display);
-  const lampMaterial = new THREE.MeshStandardMaterial({
-    color: 0x420a06,
-    emissive: 0x000000,
-    roughness: 0.4,
+  const lampMaterial = objects.get("drive-led-0").material;
+  function marking(name, size, position, texture) {
+    const mesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(...size),
+      new THREE.MeshStandardMaterial({
+        map: texture,
+        transparent: true,
+        depthWrite: false,
+        roughness: 0.85,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+      }),
+    );
+    mesh.name = name;
+    mesh.rotation.x = Math.PI / 2;
+    mesh.position.set(...position);
+    group.add(mesh);
+    return mesh;
+  }
+  const arrow = markingTexture((c) => {
+    c.lineWidth = 9;
+    c.lineCap = "round";
+    c.beginPath();
+    c.arc(98, 25, 66, 0.1, Math.PI / 2);
+    c.stroke();
+    c.beginPath();
+    c.moveTo(165, 14);
+    c.lineTo(145, 36);
+    c.lineTo(177, 37);
+    c.closePath();
+    c.fill();
   });
-  const diskLamp = new THREE.Mesh(
-    new THREE.SphereGeometry(1.8, 12, 8),
-    lampMaterial,
-  );
-  diskLamp.position.set(-221, -208, 96);
-  group.add(diskLamp);
+  for (const x of [-158, -4])
+    marking("drive-direction", [21, 16], [x + 43, -208.6, 72], arrow);
+  for (const [name, x, text] of [
+    ["reset-label", -208, "RESET"],
+    ["power-label", 207, "NETZ"],
+  ]) {
+    marking(
+      name,
+      [name === "reset-label" ? 21 : 22, 4.3],
+      [x, -204.2, 4.8],
+      markingTexture(
+        (c, w, h) => {
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.font = "500 74px Arial";
+          c.fillText(text, w / 2, h / 2, w - 4);
+        },
+        512,
+        128,
+      ),
+    );
+  }
   const capsMaterial = new THREE.MeshStandardMaterial({
     color: 0x5a4215,
     emissive: 0x000000,
@@ -269,7 +321,7 @@ export async function loadRobotron(displayTexture) {
     new THREE.SphereGeometry(2, 12, 8),
     capsMaterial,
   );
-  capsLamp.position.set(-242, -5, 8);
+  capsLamp.position.set(-242, -5, 4.5);
   keyboard.add(capsLamp);
   let power = false,
     activityUntil = 0,
@@ -314,19 +366,19 @@ export async function loadRobotron(displayTexture) {
       "crt-glass",
       "pedestal",
       "ring",
+      "monitor-tape",
     ];
     for (const name of monitor) objects.get(name).position.z = split * 150;
     objects.get("case-lid").position.z = split * 75;
     objects.get("fascia").position.y = -split * 40;
     objects.get("keyboard-deck").position.z = split * 55;
+    objects.get("keyboard-fillers").position.z = split * 55;
     objects.get("cable").visible = split < 0.05;
     keyboard.position.z = data.keyboard.z + split * 55;
     display.position.z = data.screen.position[2] + split * 150;
     for (const mesh of patches) {
       mesh.position.copy(mesh.userData.rest);
-      if (mesh.name === "monitor-tape") mesh.position.z += split * 150;
       if (mesh.name === "brand") mesh.position.y -= split * 40;
-      if (mesh.name === "case-right-paint") mesh.position.z += split * 75;
     }
     return {
       dirty: dirty || beforeSplit !== split,

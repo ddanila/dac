@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "b44f76df82752e2f0dd2f0d9ea83480253b862ed",
+  "revision": "19f304d1d7d432405327de4091671cb511435f17",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "d456c31c6722902bfb22a7926f74c34a509de882bf6d10ad7d6e86e576d08332"
+      "sha256": "6a146a36113d1d6680c2b2d6940a12da45d4fbc020ac49d7b10b8bcc249c6fd5"
     },
     {
       "file": "LICENSE",
@@ -25,7 +25,7 @@
     },
     {
       "file": "meshes/drives.stl",
-      "sha256": "4c228f5e6742ed02de6e23332f396edfb0bde1856498b53c649784af20dc7f6d"
+      "sha256": "40a52de13bd5b51b38ed82279fb1f1b489576e18e4bf50da01ac0e0f08351319"
     },
     {
       "file": "meshes/power.stl",
@@ -61,47 +61,95 @@
     },
     {
       "file": "meshes/keyboard-shell.stl",
-      "sha256": "3ed5c8ba878f8919b8617ab279256a71167e972c6b939eab804265a65ef32d94"
+      "sha256": "0c1758a08a0c18cb33609e801a0bc9c57c4305d2625f1c34d00bdb03c56be936"
     },
     {
       "file": "meshes/keyboard-deck.stl",
-      "sha256": "3038c6cf524a0e7141d60599fcf0c7174c874ee696c0cae8a8a642e7975935dc"
+      "sha256": "607f4eb779dedbc378400a5399d4ef331abcd8ad3b67308ef8d8da5b914e4829"
     },
     {
       "file": "meshes/hardware.stl",
-      "sha256": "a61f35f182881f9bf6039806e07c73aed383401db44984a62a37e9a7d36b3792"
+      "sha256": "34ec6eec5981caf2efe6c3729858d7a7a59afbc465cf78993f03247ab2596671"
     },
     {
       "file": "meshes/cable.stl",
-      "sha256": "d1a6c44d433913dcff2b94c04db3aac8f72d7ce14afc6aef662bd5392da134d7"
+      "sha256": "121eb2e453825cdbf189a032ce0575e888f17693c7b55c824a04d947a40bad4f"
+    },
+    {
+      "file": "meshes/drive-insets.stl",
+      "sha256": "d11bb35147a9ed71fc2d0accdb39258008441c1056348d5f286cc344a04f20e0"
+    },
+    {
+      "file": "meshes/drive-latches.stl",
+      "sha256": "11bedb771cf299bf7b75a16aa7437ebc2b3a91c1db403b0baa2fd718c019db8b"
+    },
+    {
+      "file": "meshes/drive-led-0.stl",
+      "sha256": "2e1b0614e5996b46203c1b6021728a8aa4b779d7a85f0b279dfa9726f532dba9"
+    },
+    {
+      "file": "meshes/drive-led-1.stl",
+      "sha256": "3dc06b40a5136bdc617a0844e082e78bdc2045fe8ab3aa8d4313304069aff54a"
+    },
+    {
+      "file": "meshes/keyboard-bottom.stl",
+      "sha256": "b04493ea87da2be974e8784c2a90eefcecc7d41d8de5503b449bd55b9231b1c6"
+    },
+    {
+      "file": "meshes/keyboard-feet.stl",
+      "sha256": "da07e7ce981932e1d940adf9fc01a429a103bab3e010ed59ee9617bf471b03e1"
+    },
+    {
+      "file": "meshes/keyboard-metal.stl",
+      "sha256": "3ce524872cdbf8cee7541cdaeeddb02947a616d645350fa8df5096a27746970c"
+    },
+    {
+      "file": "meshes/keyboard-grommet.stl",
+      "sha256": "4cd8bc02585354dfe2dbf4cf71b94dae85a1b7049fac0f1e117ca4fc5523cf91"
+    },
+    {
+      "file": "meshes/keyboard-fillers.stl",
+      "sha256": "61b7b0f253f1caa8bd0cfdec8baf360c4cb64409611da7f7792469b1643dc4f4"
+    },
+    {
+      "file": "meshes/cable-plug.stl",
+      "sha256": "cc2717775d706c50e8ae2d41098fd10dfff2eadda21c43b746e7aa9ab5b7de36"
+    },
+    {
+      "file": "meshes/plug-screws.stl",
+      "sha256": "6f01bea6479f1b40003b222f8ea4eb727edc714333e13c06c1e0eab3e18afcf8"
+    },
+    {
+      "file": "meshes/monitor-tape.stl",
+      "sha256": "32f90afe73ed0040ad99977666b26b2185f050cb9f32134f88ae703b73534eca"
     },
     {
       "file": "meshes/keycap-0.stl",
-      "sha256": "db7bcf7c7d57870981034f617a6cf225a141f3d482989cdb7f195dd5400e03ec"
+      "sha256": "a8d94931e3329b88d4e013694a15ede3717b77d54ceb417e70a8bab28a2e5ad3"
     },
     {
       "file": "meshes/keycap-1.stl",
-      "sha256": "89a52fc495d9a603e2440aa42c0f0e0c2475341d4444724fbb8e6d3641efd977"
+      "sha256": "40c681939d0be5970528e1c413f9006773c3cdb2db1b2dc4094c260d3cc3da8a"
     },
     {
       "file": "meshes/keycap-2.stl",
-      "sha256": "c4dd061aa1037b9882f0dd9c7ddca9cc6a14117b8df234de115a7e6b2a209f14"
+      "sha256": "9945641fdbf82da2a68e1c5e710b90e2cee0d80bb0fe7f314da94b3d0d69467d"
     },
     {
       "file": "meshes/keycap-3.stl",
-      "sha256": "34dba8d0ed4e8c91bf0a402ce99a912c0ccd59aba71f93139a9893210606c232"
+      "sha256": "ea1e20e1e1bebf4eacbb95c59e8ad50131d7b74ce44723b91d42a05fd56b9606"
     },
     {
       "file": "meshes/keycap-4.stl",
-      "sha256": "7d3eb1de4366ea91816356f97c9d3f3de52fe3403f3288aece2cbcdbb0054328"
+      "sha256": "97e59faef0d8ec532c04a1c91555c815e0918d6e88ec315b8c95522d86e7c7e2"
     },
     {
       "file": "meshes/keycap-5.stl",
-      "sha256": "89a52fc495d9a603e2440aa42c0f0e0c2475341d4444724fbb8e6d3641efd977"
+      "sha256": "40c681939d0be5970528e1c413f9006773c3cdb2db1b2dc4094c260d3cc3da8a"
     },
     {
       "file": "meshes/keycap-6.stl",
-      "sha256": "f01b0dc1d3c461ddfd01997faca5c1ebd1f3f90b40255cbac6164f8e834dbe3a"
+      "sha256": "252e7d16c2b064b6793b9fb9307a531eeb6fd8ed201a3ee4ff90f89ea73331f8"
     },
     {
       "file": "photos/PXL_20261009_132916421.MP.jpg",
@@ -134,6 +182,10 @@
     {
       "file": "photos/PXL_20261009_133028313.jpg",
       "sha256": "88cafd0cd7de853410c89f9777ef7df229be90ebdbd7df52a5685fc5dadafb3a"
+    },
+    {
+      "file": "photos/PXL_20261009_133032874.jpg",
+      "sha256": "10240ba828f6931ad616a2e9d7d0d955c81b2a2fba5a0ca9dd8e59d85aa5e026"
     }
   ]
 }

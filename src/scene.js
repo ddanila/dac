@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 import { loadRobotron } from "./robotron-model.js";
@@ -19,7 +20,15 @@ export function createScene(
   renderer.shadowMap.needsUpdate = true;
   let renderRequested = true;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
   container.append(renderer.domElement);
+  const studio = new RoomEnvironment();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(studio, 0.04).texture;
+  scene.environmentIntensity = 0.35;
+  studio.dispose();
+  pmrem.dispose();
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, 0.55, 0);
   controls.enableDamping = true;
@@ -30,15 +39,20 @@ export function createScene(
   controls.maxDistance = 5;
   controls.maxPolarAngle = Math.PI;
   controls.update();
-  scene.add(new THREE.HemisphereLight(0xe9f2df, 0x27382e, 2));
-  const light = new THREE.DirectionalLight(0xffefd3, 4);
+  scene.add(new THREE.HemisphereLight(0xe9eef5, 0x68716d, 1.2));
+  const light = new THREE.DirectionalLight(0xfff4e8, 3);
   light.position.set(-2, 4, 3);
   light.castShadow = true;
   light.shadow.bias = -0.0001;
   light.shadow.normalBias = 0.001;
   light.shadow.mapSize.set(1024, 1024);
+  light.shadow.camera.left = light.shadow.camera.bottom = -1.8;
+  light.shadow.camera.right = light.shadow.camera.top = 1.8;
+  light.shadow.camera.near = 0.5;
+  light.shadow.camera.far = 10;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
   scene.add(light);
-  const inspectionLight = new THREE.DirectionalLight(0xe4eeeb, 1.5);
+  const inspectionLight = new THREE.DirectionalLight(0xe4eeff, 1.4);
   inspectionLight.position.set(1, -2, 2);
   scene.add(inspectionLight);
   const machine = new THREE.Group();
@@ -70,7 +84,7 @@ export function createScene(
   box(0.77, 0.6, 0.022, dark, 0, 0.76, 0.247);
   box(0.19, 0.09, 0.21, dark, 0, 0.39, -0.08);
   const texture = new THREE.CanvasTexture(screen);
-  texture.minFilter = THREE.NearestFilter;
+  texture.minFilter = THREE.LinearFilter;
   texture.magFilter = THREE.NearestFilter;
   texture.colorSpace = THREE.SRGBColorSpace;
   const display = new THREE.Mesh(
@@ -153,7 +167,7 @@ export function createScene(
       kind !== 2
         ? "PROVISIONAL GEOMETRY · NOT A SCAN"
         : robotron
-          ? "PHOTO-BASED RECONSTRUCTION · DANILA’S MACHINE"
+          ? "PHOTO-REFERENCED MODEL · DANILA’S MACHINE"
           : modelError
             ? "MODEL UNAVAILABLE · PROVISIONAL GEOMETRY"
             : "LOADING DANILA’S MACHINE…";
@@ -259,7 +273,7 @@ export function createScene(
   const observer = new ResizeObserver(() => {
     const { width, height } = container.getBoundingClientRect();
     camera.aspect = width / height;
-    camera.zoom = width < 500 ? 0.72 : 1;
+    camera.zoom = width < 500 ? 0.56 : 1;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
     renderRequested = true;
@@ -323,7 +337,7 @@ export function createScene(
           [0, 0.32, -0.2],
         ],
         under: [
-          [0.5, -1.1, 1.5],
+          [0.45, -1.35, 1.8],
           [0, 0.03, 0.65],
         ],
         keyboard: [

@@ -4,7 +4,7 @@ First planned exhibit in Danila’s Archive of Computing.
 
 ## Status
 
-Interactive exhibit with a photo-based OpenSCAD exterior of Danila’s machine and the DAC Robotron functional core. The supplied diagnostic ROM runs without external files; original S550/287/TOS-M media has been booted locally with keyboard and disk access. The exterior uses the original manual’s nominal dimensions and twelve owner photographs. Small features and unseen surfaces remain estimates; exact physical-variant identification and hardware-fidelity validation remain pending. See the root README for loading media and known compatibility limits.
+Interactive exhibit with a photo-referenced OpenSCAD exterior of Danila’s machine and the DAC Robotron functional core. The supplied diagnostic ROM runs without external files; original S550/287/TOS-M media has been booted locally with keyboard and disk access. The exterior uses the original manual’s nominal dimensions and twelve owner photographs as references. Full-surface photo skins have been replaced by modeled details, consistent materials and transcribed key legends. Small features and unseen surfaces remain estimates; exact physical-variant identification and hardware-fidelity validation remain pending. See the root README for loading media and known compatibility limits.
 
 ## Reference capture
 

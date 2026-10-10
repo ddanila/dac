@@ -1,7 +1,7 @@
 export const inspections = {
   overview: {
     title: "Danila’s Robotron",
-    text: "The overall dimensions come from the original manual. Photographs supply the visible details; small dimensions and curves are estimated.",
+    text: "The overall dimensions come from the original manual. Shapes and colors follow the owner’s photographs. Painted metal, plastic and rubber use consistent materials; small dimensions and curves are estimated.",
     photo: "133017092",
   },
   front: {
@@ -16,7 +16,7 @@ export const inspections = {
   },
   drives: {
     title: "Two drives, one mounted disk",
-    text: "The front faces are photographed; the second reuses the first drive’s crop. The first red lamp follows actual emulator transfers, not motor or drive-select timing.",
+    text: "The recessed faces, insertion slots, latches and red lenses are modeled from the photographs. The first red lamp follows actual emulator transfers, not motor or drive-select timing.",
     photo: "133022597",
   },
   monitor: {
@@ -30,7 +30,7 @@ export const inspections = {
   },
   under: {
     title: "Under the keyboard",
-    text: "The bottom plate, wear and cable come from the owner’s photos. Feet and screw positions are approximate. The system-unit underside is still unverified.",
+    text: "The separate bottom plate, four rubber feet with metal inserts, fasteners and cable grommet are modeled from the photos. A single lead connects the keyboard to the case; its resting route and small dimensions are estimated. The system-unit underside is still unverified.",
     photo: "133005363",
   },
   assembly: {
