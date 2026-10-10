@@ -532,6 +532,10 @@ function keyDown(e) {
       modeled = (
         e.code === "ShiftRight" ? [...modelKeys].reverse() : modelKeys
       ).find((k) => k.input.modifier === mods[e.key]);
+    else if (e.key === "Alt")
+      modeled = modelKeys.find(
+        (k) => k.id === (e.code === "AltRight" ? "key-014" : "key-013"),
+      );
     else if (e.key === "Tab")
       modeled = modelKeys.find((k) => k.label === "Tab");
     else if (e.key === "Backspace")
@@ -539,9 +543,10 @@ function keyDown(e) {
     else {
       const value =
         e.key.length === 1 ? e.key.toLowerCase().charCodeAt(0) : keyCode(e);
-      modeled = modelKeys.find(
-        (k) => k.input.code === value || k.input.shiftCode === value,
-      );
+      if (value !== undefined)
+        modeled = modelKeys.find(
+          (k) => k.input.code === value || k.input.shiftCode === value,
+        );
     }
     const n = matrixKey(modeled);
     if (n !== undefined) {

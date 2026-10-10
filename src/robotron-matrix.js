@@ -15,7 +15,7 @@ const coordinates = [
   [4, 2],
   [3, 2],
   [5, 2],
-  [8, 3],
+  [8, 6], // E15 / REP (the adjacent bit 3 is unwired)
   [8, 7],
   [8, 0],
   [7, 0],

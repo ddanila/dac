@@ -8,9 +8,11 @@ test("typing view keeps screen and working modeled keys visible, including on mo
   await page.addInitScript(() => {
     const Base = window.Worker;
     window.sentKeys = [];
+    window.contacts = [];
     window.Worker = class extends Base {
       postMessage(m, ...args) {
         if (m.type === "tap") window.sentKeys.push(m.key);
+        if (m.type === "matrix") window.contacts.push([m.key, m.down]);
         return super.postMessage(m, ...args);
       }
     };
@@ -33,6 +35,17 @@ test("typing view keeps screen and working modeled keys visible, including on mo
   const point = await keyPoint(page, key, manifest);
   await page.mouse.click(point.x, point.y);
   await expect.poll(() => page.evaluate(() => window.sentKeys)).toContain(61);
+  await page.locator("#viewport").focus();
+  await page
+    .locator("#viewport")
+    .dispatchEvent("keydown", { key: "Unidentified", code: "Unidentified" });
+  expect(await page.evaluate(() => window.contacts)).toEqual([]);
+  await page.keyboard.down("AltLeft");
+  await page.keyboard.up("AltLeft");
+  expect(await page.evaluate(() => window.contacts)).toEqual([
+    [70, true],
+    [70, false],
+  ]);
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator("#screen-panel")).toBeVisible();
   await expect
