@@ -1,3 +1,4 @@
+import { modelAsset } from "./model-assets.js";
 import { loadPcbPhotos } from "./robotron-interior.js";
 import { crtGeometry, crtMaterial } from "./robotron-crt.js";
 import * as THREE from "three";
@@ -75,7 +76,9 @@ export async function loadRobotron(displayTexture) {
     "models/robotron-1715m/",
     new URL(import.meta.env.BASE_URL, location.origin),
   );
-  const response = await fetch(new URL("model.json", base));
+  const response = await fetch(modelAsset("model.json", base), {
+    cache: "no-cache",
+  });
   if (!response.ok) throw Error(`Model manifest: ${response.status}`);
   const data = await response.json();
   const group = new THREE.Group();
@@ -91,7 +94,7 @@ export async function loadRobotron(displayTexture) {
   await Promise.all(
     [...filenames].map(async (name) => {
       const texture = await loader.loadAsync(
-        new URL(`photos/${name}`, base).href,
+        modelAsset(`photos/${name}`, base).href,
       );
       const source = texture.image,
         ratio = Math.min(1, 2048 / Math.max(source.width, source.height));
@@ -111,7 +114,7 @@ export async function loadRobotron(displayTexture) {
   await Promise.all(
     data.parts.map(async (part) => {
       const geometry = toCreasedNormals(
-        await stl.loadAsync(new URL(part.file, base).href),
+        await stl.loadAsync(modelAsset(part.file, base, part.sha256).href),
         Math.PI / 4,
       );
       const mesh = new THREE.Mesh(
@@ -122,7 +125,9 @@ export async function loadRobotron(displayTexture) {
       mesh.receiveShadow = true;
       mesh.name = part.name;
       mesh.userData.interior = part.section === "interior";
-      if (mesh.userData.interior) mesh.visible = false;
+      mesh.userData.monitorInterior = part.section === "monitor-interior";
+      if (mesh.userData.interior || mesh.userData.monitorInterior)
+        mesh.visible = false;
       group.add(mesh);
       objects.set(part.name, mesh);
     }),
@@ -132,7 +137,7 @@ export async function loadRobotron(displayTexture) {
       keyGeometry.set(
         part.name,
         toCreasedNormals(
-          await stl.loadAsync(new URL(part.file, base).href),
+          await stl.loadAsync(modelAsset(part.file, base, part.sha256).href),
           Math.PI / 2.1,
         ),
       ),
@@ -324,7 +329,9 @@ export async function loadRobotron(displayTexture) {
     split = 0,
     splitTarget = 0,
     inside = false,
-    wasInside = false;
+    wasInside = false,
+    monitorOpen = false,
+    wasMonitorOpen = false;
   const pressed = new Set();
   function releaseKeys() {
     pressed.clear();
@@ -335,13 +342,23 @@ export async function loadRobotron(displayTexture) {
     else pressed.delete(id);
   }
   function tick() {
-    let dirty = inside !== wasInside;
+    let dirty = inside !== wasInside || monitorOpen !== wasMonitorOpen;
     const changedInside = dirty;
     wasInside = inside;
+    wasMonitorOpen = monitorOpen;
     for (const mesh of objects.values())
       if (mesh.userData.interior)
         mesh.visible = inside || split > 0.01 || mesh.name === "psu-chassis";
-    for (const mesh of pcbPhotos) mesh.visible = inside || split > 0.01;
+    for (const mesh of objects.values())
+      if (mesh.userData.monitorInterior) {
+        mesh.visible = monitorOpen;
+        mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
+      }
+    for (const mesh of pcbPhotos) {
+      const monitor = mesh.userData.section === "monitor-interior";
+      mesh.visible = monitor ? monitorOpen : inside || split > 0.01;
+      if (monitor) mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
+    }
     const beforeSplit = split;
     for (const [id, key] of keyObjects) {
       const z =
@@ -364,7 +381,8 @@ export async function loadRobotron(displayTexture) {
       : THREE.MathUtils.lerp(split, splitTarget, 0.15);
     if (Math.abs(split - splitTarget) < 0.001) split = splitTarget;
     const monitor = [
-      "monitor-shell",
+      "monitor-shell-lower",
+      "monitor-shell-upper",
       "bezel",
       "crt-rim",
       "crt-glass",
@@ -373,11 +391,17 @@ export async function loadRobotron(displayTexture) {
       "monitor-tape",
     ];
     for (const name of monitor) {
-      objects.get(name).position.z = split * 150;
-      objects.get(name).visible = !inside;
+      objects.get(name).position.set(0, inside ? 400 : 0, inside ? 180 : 0);
+      objects.get(name).visible = true;
     }
-    objects.get("case-lid").visible = !inside;
-    objects.get("case-lid").position.z = split * 75;
+    if (monitorOpen) {
+      objects.get("monitor-shell-upper").position.z += 155;
+      objects.get("monitor-shell-upper").position.y -= 210;
+      objects.get("monitor-tape").position.z += 155;
+      objects.get("monitor-tape").position.y -= 210;
+    }
+    objects.get("case-lid").visible = true;
+    objects.get("case-lid").position.set(0, inside ? 400 : 0, inside ? 180 : 0);
     for (const [name, mesh] of objects) {
       if (name === "drives" || name.startsWith("drive-")) {
         mesh.position.z = split * 115;
@@ -433,6 +457,10 @@ export async function loadRobotron(displayTexture) {
     },
     modifiers(state) {
       capsMaterial.emissive.set(power && state.caps ? 0xba7618 : 0);
+    },
+    openMonitor(value) {
+      monitorOpen = value;
+      releaseKeys();
     },
     interior(value) {
       inside = value;

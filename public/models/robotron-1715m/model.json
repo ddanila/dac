@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "units": "mm",
   "scale": 0.0025,
   "materials": {
@@ -67,7 +67,7 @@
       "name": "case-base",
       "file": "meshes/case-base.stl",
       "color": "#b6ae93",
-      "sha256": "84fdcf2550421aa29807a92d89f2edd0ba510a518d5cdf88182a3bb95ea70547",
+      "sha256": "9566a0024586b6ebad902c48c1e128e0dc9194a7685ae191e4118fe895cb11ac",
       "material": "paint"
     },
     {
@@ -120,10 +120,10 @@
       "material": "rubber"
     },
     {
-      "name": "monitor-shell",
-      "file": "meshes/monitor-shell.stl",
+      "name": "monitor-shell-lower",
+      "file": "meshes/monitor-shell-lower.stl",
       "color": "#b6ae93",
-      "sha256": "58f234287c1c81996695012a3a91f1a321a8534f86af28eb19d0390af48964d9",
+      "sha256": "d41240e3ef12a8f90fd2a1c171df7be97172abb3a6471071d20fbeb3022f0d52",
       "material": "paint"
     },
     {
@@ -241,15 +241,15 @@
     {
       "name": "cable-plug",
       "file": "meshes/cable-plug.stl",
-      "color": "#909583",
-      "sha256": "cc2717775d706c50e8ae2d41098fd10dfff2eadda21c43b746e7aa9ab5b7de36",
+      "color": "#c3b995",
+      "sha256": "17cfd5377b1d65c8015d558712f2c1be487d391aa0beefa98f4b07f0eb764121",
       "material": "plastic"
     },
     {
       "name": "plug-screws",
       "file": "meshes/plug-screws.stl",
       "color": "#96988f",
-      "sha256": "6f01bea6479f1b40003b222f8ea4eb727edc714333e13c06c1e0eab3e18afcf8",
+      "sha256": "efa32ad7bfde400e8e95c4c0b27c2cd9c1949367390563941818b69f0ac1f3f8",
       "material": "metal"
     },
     {
@@ -441,6 +441,100 @@
       "color": "#30352f",
       "sha256": "7a90341fc85f5d4e481f0edb262aa53b66875a0e878e4d08c1b794f8999da658",
       "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "monitor-shell-upper",
+      "file": "meshes/monitor-shell-upper.stl",
+      "color": "#b6ae93",
+      "sha256": "f51e34f264f7e4d02b34d9794eada9f7f899dde9c133c1a23407cec02bca1219",
+      "material": "paint"
+    },
+    {
+      "name": "tube-funnel",
+      "file": "meshes/tube-funnel.stl",
+      "color": "#363d3a",
+      "sha256": "258726710ab6d238d6ae2038f5049d9ee245eaccd57521b3b615b91e99e04614",
+      "section": "monitor-interior",
+      "material": "plastic"
+    },
+    {
+      "name": "tube-neck",
+      "file": "meshes/tube-neck.stl",
+      "color": "#78765f",
+      "sha256": "c8324c54abfcd833e486e38ab16995dce3492f91a748b9e1985fb7d63fbcd77e",
+      "section": "monitor-interior",
+      "material": "glass"
+    },
+    {
+      "name": "monitor-yoke",
+      "file": "meshes/monitor-yoke.stl",
+      "color": "#38372e",
+      "sha256": "65086406d85dec138655fab9d07d1de6af87bc09b45df1ccbc2ab6fadc44e45a",
+      "section": "monitor-interior",
+      "material": "plastic"
+    },
+    {
+      "name": "monitor-coils",
+      "file": "meshes/monitor-coils.stl",
+      "color": "#ae7545",
+      "sha256": "1041bf8e9b72911978f825bd1fc6c658aa5624ee9b79059a2ea009c93b1a333d",
+      "section": "monitor-interior",
+      "material": "metal"
+    },
+    {
+      "name": "monitor-chassis",
+      "file": "meshes/monitor-chassis.stl",
+      "color": "#a3a79c",
+      "sha256": "bdbac41df54830a9f261efee42d34080a813ca546594e54434d255e7e5c9803d",
+      "section": "monitor-interior",
+      "material": "metal"
+    },
+    {
+      "name": "monitor-boards",
+      "file": "meshes/monitor-boards.stl",
+      "color": "#486551",
+      "sha256": "e32e90951475576e2808f7a015be844bb560e3a0d775ad63403a6f3566b958e8",
+      "section": "monitor-interior",
+      "material": "pcb"
+    },
+    {
+      "name": "monitor-components",
+      "file": "meshes/monitor-components.stl",
+      "color": "#343835",
+      "sha256": "730adae11b32003acc690e403e930d9cfe0e03c9e8d5b844e457dfd9f4907f70",
+      "section": "monitor-interior",
+      "material": "plastic"
+    },
+    {
+      "name": "monitor-capacitors",
+      "file": "meshes/monitor-capacitors.stl",
+      "color": "#438c9b",
+      "sha256": "81235c3857bb2ad0257523ed552bbb88fa5d06a82fae6e1c85f3b8bb4813de96",
+      "section": "monitor-interior",
+      "material": "paint"
+    },
+    {
+      "name": "monitor-shield",
+      "file": "meshes/monitor-shield.stl",
+      "color": "#979e92",
+      "sha256": "972e4105e15bd2aa7fd363dbb84d7d196927df7594b71dae6481bcfb444eee11",
+      "section": "monitor-interior",
+      "material": "metal"
+    },
+    {
+      "name": "monitor-wires",
+      "file": "meshes/monitor-wires.stl",
+      "color": "#b2a374",
+      "sha256": "a1e27bac5bcc9c51778844f0499b9911763da058cd36fdd33f194b563aa3a87d",
+      "section": "monitor-interior",
+      "material": "rubber"
+    },
+    {
+      "name": "plug-insert",
+      "file": "meshes/plug-insert.stl",
+      "color": "#969782",
+      "sha256": "5d652ab5e4f90a49d48359284d58754b6ab4ed734b5010e03988a366d9ba99fd",
       "material": "plastic"
     }
   ],
@@ -4259,7 +4353,12 @@
     "PXL_20251008_143433778.jpg",
     "PXL_20250516_133813650.jpg",
     "PXL_20250516_141624490.jpg",
-    "PXL_20250516_133810520.jpg"
+    "PXL_20250516_133810520.jpg",
+    "PXL_20261010_090413483.jpg",
+    "PXL_20261010_090416759.jpg",
+    "PXL_20261010_090421901.jpg",
+    "PXL_20261010_090425989.jpg",
+    "PXL_20261010_090431122.jpg"
   ],
   "pcbReferences": [
     {
@@ -4962,6 +5061,65 @@
           800
         ]
       ]
+    },
+    {
+      "name": "monitor-reference-board",
+      "file": "reference/robotrontechnik/monitor-board.jpeg",
+      "sha256": "cdd00f4f69605d2511a00fa0bdc02ed954b42f8150712ac796c183ff2d01732a",
+      "imageSize": [
+        360,
+        271
+      ],
+      "crop": [
+        12,
+        29,
+        212,
+        261
+      ],
+      "size": [
+        215,
+        195
+      ],
+      "origin": [
+        -125.3,
+        -65,
+        220
+      ],
+      "rotated": false,
+      "packages": [],
+      "packageHeight": 0,
+      "worldCorners": [
+        [
+          -125.3,
+          -65,
+          415
+        ],
+        [
+          -125.3,
+          150,
+          415
+        ],
+        [
+          -125.3,
+          150,
+          220
+        ],
+        [
+          -125.3,
+          -65,
+          220
+        ]
+      ],
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "section": "monitor-interior",
+      "source": "https://www.robotrontechnik.de/bilder/Zubehoer/Bildschirme/K7222/012-6920_k.jpg",
+      "credit": "Robotrontechnik \u2014 reference K7222 board 012-6920, not verified in Danila\u2019s monitor",
+      "page": "https://www.robotrontechnik.de/html/zubehoer/bildschirme.htm#k7222-25",
+      "exclude": []
     }
   ],
   "interior": {

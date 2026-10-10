@@ -144,7 +144,7 @@ test("physical Robotron switches power and reset the live core", async ({
 test("a missing model preserves the accessible emulator and honest labels", async ({
   page,
 }) => {
-  await page.route("**/models/robotron-1715m/model.json", (route) =>
+  await page.route("**/models/robotron-1715m/model.json*", (route) =>
     route.fulfill({ status: 404, body: "missing" }),
   );
   await page.goto("/");
