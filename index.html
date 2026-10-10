@@ -43,6 +43,7 @@
               <div class="views">
                 <button data-view="overview">Overview</button
                 ><button data-view="front">Front</button
+                ><button data-view="typing" data-robotron>Type</button
                 ><button data-view="keyboard" data-robotron>Keyboard</button
                 ><button data-view="connector" data-robotron>Connector</button
                 ><button data-view="drives" data-robotron>Drives</button
@@ -73,6 +74,7 @@
             <a id="reference-photo" target="_blank" rel="noreferrer"
               >View reference photo ↗</a
             >
+            <button id="reference-details" type="button">Inspect photo and details</button>
             <p id="interior-credit" hidden>
               <strong>Reference boards · other specimens.</strong> PCB
               photographs:
@@ -275,6 +277,14 @@
         >
       </section>
     </main>
+    <dialog id="specimen-detail" aria-labelledby="detail-title">
+      <button id="detail-close" type="button" autofocus>Close</button>
+      <h2 id="detail-title"></h2>
+      <p id="detail-description"></p>
+      <img id="detail-photo" alt="" />
+      <p>Owner photograph · Danila’s machine. Small modeled dimensions remain estimates.</p>
+      <a id="detail-original" target="_blank" rel="noreferrer">Open original photo ↗</a>
+    </dialog>
     <footer>
       <span>DAC / DANILA’S ARCHIVE OF COMPUTING</span
       ><span>STARTED IN TALLINN · BUILT TO TRAVEL</span

@@ -2,7 +2,7 @@ import "./style.css";
 import { loadHistoricalRobotron } from "./historical-media.js";
 import { createScene } from "./scene.js";
 import { createRobotronKeyboard } from "./robotron-keyboard.js";
-import { showInspection } from "./inspection.js";
+import { showInspection, showSpecimenDetail } from "./inspection.js";
 const $ = (id) => document.getElementById(id),
   send = (d) => worker.postMessage(d);
 const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
@@ -94,6 +94,7 @@ showInspection("overview");
 try {
   scene = createScene($("viewport"), screen, power, resetMachine, {
     onKey: modelKey,
+    onInspect: showSpecimenDetail,
     onKeysReady: keyButtons,
     onHover: (message) => {
       $("hover-key").textContent = message;
@@ -132,6 +133,8 @@ async function configure(demo, historical = false) {
   const kind = Number($("machine").value),
     d = descriptions[kind];
   keyboard.reset();
+  document.querySelector(".stage").classList.remove("typing");
+  $("screen-panel").hidden = true;
   scene?.setMachine(kind);
   $("separate-parts").checked = false;
   $("open-case").checked = false;
@@ -328,6 +331,11 @@ $("machine").onchange = () => {
 };
 $("export").onclick = () => send({ type: "export" });
 $("screen-view").onclick = () => {
+  if (document.querySelector(".stage").classList.contains("typing")) {
+    selectView("keyboard");
+    release();
+    return;
+  }
   $("screen-panel").hidden = !$("screen-panel").hidden;
   if (!$("screen-panel").hidden) screen.focus();
   else release();
@@ -341,7 +349,9 @@ function updateCase() {
   $("viewport").dataset.interior = String(open);
 }
 function selectView(name) {
-  scene?.view(name);
+  document.querySelector(".stage").classList.toggle("typing", name === "typing");
+  $("screen-panel").hidden = name !== "typing";
+  scene?.view(name === "typing" ? "keyboard" : name);
   showInspection(name);
   for (const button of document.querySelectorAll("[data-view]"))
     button.setAttribute("aria-pressed", String(button.dataset.view === name));
@@ -350,6 +360,7 @@ for (const b of document.querySelectorAll("[data-view]"))
   b.onclick = () => {
     release();
     $("screen-panel").hidden = true;
+    if (b.dataset.view === "typing") $("separate-parts").checked = false;
     if (b.dataset.view === "drive-labels") {
       $("open-case").checked = true;
       $("separate-parts").checked = true;

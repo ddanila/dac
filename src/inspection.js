@@ -14,6 +14,31 @@ export const inspections = {
     text: "Press the modeled keys, or focus the exhibit and type. Physical keys stay visibly depressed until released; completed 3D clicks send input to the running OS. Shift and Ctrl latch for one character; Caps Lock stays on. Its lamp shows the on-screen Caps Lock state. Some specimen-specific keys remain unmapped.",
     photo: "132919894",
   },
+  typing: {
+    title: "Type on the Robotron",
+    text: "Power on and wait for A>. Click the 3D keys below the live display, or focus either view and use your keyboard. Try DIR followed by ET. Shift and Ctrl latch for one character; Caps Lock stays on. Escape releases keyboard focus.",
+    photo: "132919894",
+  },
+  "plate-robotron": {
+    title: "Robotron K 5601 · serial 044713",
+    text: "The owner’s plate reads K 5601, FABR.-NR. 044713, HERGESTELLT IN DER DDR, and VEB ROBOTRON – BUCHUNGSMASCHINENWERK KARL-MARX-STADT. The model preserves the photographed serial and maker text; the cable-obscured country line is typeset. This plate identifies this drive, not both drives.",
+    photo: "20250212_094057627",
+  },
+  "plate-ratan": {
+    title: "Ratan assembly label",
+    text: "Assembled in India by RATAN EXPORTS & INDUSTRIES LTD. The model field is not legibly filled in. The photographed paper, print and wear are retained; no model number has been invented.",
+    photo: "20250212_094043026",
+  },
+  "board-2064": {
+    title: "TEAC 15532064-00A",
+    text: "This is the shorter sensor board in the drive bearing the Robotron K 5601 plate. The marking is a board part number; it does not establish an FD-55 drive suffix.",
+    photo: "20250212_094109733",
+  },
+  "board-2092": {
+    title: "TEAC 15532092-00A",
+    text: "This is the longer sensor board in the drive bearing the Ratan assembly sticker. Its outline differs from the other drive. The board number is visible in Danila’s photograph.",
+    photo: "20250212_094103763",
+  },
   connector: {
     title: "The keyboard connector",
     text: "The tapered housing, paired release levers, three slotted screws and separate contact insert follow Danila’s new close-ups. The opposite side has hexagonal nuts. Its size and resting cable route are estimated; the contact face is hidden while plugged in.",
@@ -56,7 +81,25 @@ export const inspections = {
     text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; logic boards, the power supply shield, fan and wiring still use comparative references. Keyboard switches and its board are approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
   },
 };
+let currentInspection = "overview";
+function photoUrl(photo) {
+  return new URL(`models/robotron-1715m/photos/PXL_${photo.includes("_") ? photo : "20261009_" + photo}.jpg`, new URL(import.meta.env.BASE_URL, location.origin)).href;
+}
+export function showSpecimenDetail(name = currentInspection) {
+  const entry = inspections[name];
+  if (!entry?.photo) return;
+  document.getElementById("detail-title").textContent = entry.title;
+  document.getElementById("detail-description").textContent = entry.text;
+  const photo = document.getElementById("detail-photo");
+  photo.src = photoUrl(entry.photo);
+  photo.alt = `Danila’s photograph: ${entry.title}`;
+  document.getElementById("detail-original").href = photo.src;
+  document.getElementById("specimen-detail").showModal();
+}
+document.getElementById("reference-details").onclick = () => showSpecimenDetail();
+document.getElementById("detail-close").onclick = () => document.getElementById("specimen-detail").close();
 export function showInspection(name) {
+  currentInspection = name;
   const entry = inspections[name] || inspections.overview;
   document.getElementById("inspection-title").textContent = entry.title;
   document.getElementById("inspection-text").textContent = entry.text;
@@ -66,11 +109,8 @@ export function showInspection(name) {
   );
   const reference = document.getElementById("reference-photo");
   reference.hidden = !entry.photo;
-  if (entry.photo)
-    reference.href = new URL(
-      `models/robotron-1715m/photos/PXL_${entry.photo.includes("_") ? entry.photo : "20261009_" + entry.photo}.jpg`,
-      new URL(import.meta.env.BASE_URL, location.origin),
-    ).href;
+  document.getElementById("reference-details").hidden = !entry.photo;
+  if (entry.photo) reference.href = photoUrl(entry.photo);
 }
 
 const interiorReferences = document.getElementById("interior-references");

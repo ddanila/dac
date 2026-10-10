@@ -253,7 +253,7 @@ export function createScene(
       key = hit?.userData.key;
     renderer.domElement.style.cursor =
       hit &&
-      (key ||
+      (key || hit.userData.detail ||
         hit === robotron?.objects.get("power") ||
         hit === robotron?.objects.get("reset"))
         ? "pointer"
@@ -261,7 +261,7 @@ export function createScene(
     interaction.onHover?.(
       key
         ? `${key.label}${key.input.unsupported ? " · mapping unverified" : ""}`
-        : "",
+        : hit?.userData.detail ? "Click to inspect the original marking" : "",
     );
   });
   renderer.domElement.addEventListener("pointerup", (e) => {
@@ -278,7 +278,8 @@ export function createScene(
     if (!hit) return;
     if (gesture.key && hit?.userData.key?.id === gesture.key.id) {
       if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
-    } else if (hit === robotron?.objects.get("power") || hit === power)
+    } else if (hit.userData.detail && gesture.object === hit) interaction.onInspect?.(hit.userData.detail);
+    else if (hit === robotron?.objects.get("power") || hit === power)
       onPower();
     else if (hit === robotron?.objects.get("reset")) onReset?.();
   });
@@ -291,7 +292,7 @@ export function createScene(
   const observer = new ResizeObserver(() => {
     const { width, height } = container.getBoundingClientRect();
     camera.aspect = width / height;
-    camera.zoom = width < 500 ? 0.56 : 1;
+    camera.zoom = width < 500 && !container.closest(".typing") ? 0.56 : 1;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
     renderRequested = true;
