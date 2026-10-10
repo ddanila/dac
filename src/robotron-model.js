@@ -1,7 +1,9 @@
+import { crtGeometry, crtMaterial } from "./robotron-crt.js";
 import * as THREE from "three";
 import {
   specimenMaterial,
   legendAtlas,
+  legendLayout,
   markingTexture,
 } from "./robotron-materials.js";
 import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
@@ -204,11 +206,7 @@ export async function loadRobotron(displayTexture) {
     cap.add(body);
     // A small transparent legend follows the actual OpenSCAD dish surface:
     // sphere radius 29, centre z=36, clipped by the cap top at z=8.
-    const w = Math.min(
-      key.width * data.keyboard.pitch - 7,
-      key.label.length > 2 ? 23 : 14,
-    );
-    const h = Math.min(key.height * data.keyboard.pitch - 7, 17);
+    const { width: w, height: h } = legendLayout(key, data.keyboard.pitch);
     const faceGeometry = surface(w, h);
     const p = faceGeometry.attributes.position,
       uv = faceGeometry.attributes.uv;
@@ -242,23 +240,13 @@ export async function loadRobotron(displayTexture) {
     group.add(mesh);
     patches.push(mesh);
   }
-  const display = new THREE.Mesh(
-    surface(...data.screen.size, data.screen.radius, data.screen.bulge),
-    new THREE.MeshPhysicalMaterial({
-      color: 0x14221d,
-      emissive: 0xffffff,
-      emissiveMap: displayTexture,
-      emissiveIntensity: 0.85,
-      roughness: 0.22,
-      metalness: 0,
-      clearcoat: 1,
-      clearcoatRoughness: 0.13,
-      envMapIntensity: 0.55,
-    }),
-  );
-  display.rotation.x = Math.PI / 2;
-  display.position.set(...data.screen.position);
-  group.add(display);
+  const display = objects.get("crt-glass");
+  display.geometry.dispose();
+  display.material.dispose();
+  display.geometry = crtGeometry(data.screen);
+  display.geometry.rotateX(Math.PI / 2);
+  display.geometry.translate(...data.screen.position);
+  display.material = crtMaterial(displayTexture);
   const lampMaterial = objects.get("drive-led-0").material;
   function marking(name, size, position, texture) {
     const mesh = new THREE.Mesh(
@@ -375,7 +363,6 @@ export async function loadRobotron(displayTexture) {
     objects.get("keyboard-fillers").position.z = split * 55;
     objects.get("cable").visible = split < 0.05;
     keyboard.position.z = data.keyboard.z + split * 55;
-    display.position.z = data.screen.position[2] + split * 150;
     for (const mesh of patches) {
       mesh.position.copy(mesh.userData.rest);
       if (mesh.name === "brand") mesh.position.y -= split * 40;

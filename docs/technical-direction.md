@@ -51,3 +51,10 @@ No alternative has yet been validated as more accurate for the original 1715M. C
 - Visitor disk persistence, reset behavior, and export of modified media.
 
 The first acceptance test is a repeatable cold boot into an interactive system from the 3D power control, with readable live video and reliable input while the model remains inspectable. Start with a simple model and improve its physical fidelity after that path works.
+
+
+### Robotron reference and firmware provenance
+
+The model’s shared CRT profile now supplies convex glass and an inset live raster; keyboard legends use physical dimensions rather than stretching with wide caps. The canonical model documents the estimated dimensions and external evidence. The museum’s optional interior gallery shows [Oldcrap’s PC 1715](https://oldcrap.org/2017/12/26/robotron-1715/), explicitly another specimen with unverified M/W applicability. It loads images from the original host, attributes them and does not bundle them under MIT. Danila’s future interior photographs should replace these references.
+
+As of 2026-10-10, the [Zander archive](https://www.sax.de/~zander/pc1715/pc_bin.html) and [xepb documentation/ROM index](https://xepb.org/robotron/docs.html) provide historical firmware downloads, but we have not established permission to redistribute the stock ROM. Public availability is not itself a redistribution licence; the [EU software directive](https://eur-lex.europa.eu/eli/dir/2009/24/oj/eng), Article 4, reserves reproduction and public distribution subject to its exceptions. Our MIT licence does not cover that firmware. Keep the original DAC diagnostic as the bundled default and retain visitor-side local firmware loading unless a suitable grant or other applicable legal basis is established. This is a provenance decision, not a determination of ownership or legal advice about every possible use.

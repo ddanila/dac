@@ -50,3 +50,12 @@ export function showInspection(name) {
       new URL(import.meta.env.BASE_URL, location.origin),
     ).href;
 }
+
+const interiorReferences = document.getElementById("interior-references");
+interiorReferences.addEventListener("toggle", () => {
+  if (!interiorReferences.open) return;
+  for (const image of interiorReferences.querySelectorAll("img[data-src]")) {
+    image.src = image.dataset.src;
+    delete image.dataset.src;
+  }
+});

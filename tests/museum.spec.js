@@ -69,7 +69,7 @@ test("bad media is rejected clearly and diagnostic can recover", async ({
 }) => {
   await page.goto("/");
   await expect(page.locator("#power")).toBeEnabled();
-  await page.locator("summary").click();
+  await page.locator("#media-controls summary").click();
   await page.locator("#rom").setInputFiles({
     name: "wrong.bin",
     mimeType: "application/octet-stream",

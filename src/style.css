@@ -561,3 +561,31 @@ footer {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
+
+#interior-references {
+  margin: 1rem 0;
+  max-width: 58rem;
+}
+#interior-references summary {
+  cursor: pointer;
+  line-height: 1.5;
+}
+.interior-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
+}
+.interior-gallery figure {
+  margin: 0;
+}
+.interior-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.35rem;
+}
+.interior-gallery figcaption {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-top: 0.4rem;
+}

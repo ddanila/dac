@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "units": "mm",
   "scale": 0.0025,
   "materials": {
@@ -119,28 +119,28 @@
       "name": "monitor-shell",
       "file": "meshes/monitor-shell.stl",
       "color": "#b6ae93",
-      "sha256": "1b2b1314f7f365026f797153a6224cdccd205ee9a641ea20fdc7e89818e5e8c6",
+      "sha256": "58f234287c1c81996695012a3a91f1a321a8534f86af28eb19d0390af48964d9",
       "material": "paint"
     },
     {
       "name": "bezel",
       "file": "meshes/bezel.stl",
       "color": "#8c857a",
-      "sha256": "efe6987c715957c353bd27f4cf0dd905725a9854884a834d016d55b54e57c9c6",
+      "sha256": "4e42560d25d85607212332418d1650ad54aa63af7537ad28b8956b5397a1e453",
       "material": "paint"
     },
     {
       "name": "crt-rim",
       "file": "meshes/crt-rim.stl",
       "color": "#141919",
-      "sha256": "2d9670aa368e78aa4129bd073a67452e5e0df9a622f7915193aef553a37e5813",
+      "sha256": "a8affc4b42cbe12cfbcd48befbcc66863bc4e159d478a4db919f39953554f582",
       "material": "glass"
     },
     {
       "name": "crt-glass",
       "file": "meshes/crt-glass.stl",
       "color": "#0b1712",
-      "sha256": "96f78d6847eac5740e71eaad42f9c21c18e933b868964749768c24616a6399b0",
+      "sha256": "e3351ca10591624a1964cb5ccc18583f76067ef0fee742b1522d36ec06fc1820",
       "material": "glass"
     },
     {
@@ -3996,17 +3996,27 @@
     "pitch": 20.0
   },
   "screen": {
+    "size": [
+      258,
+      211
+    ],
     "position": [
       0,
-      -158.2,
+      -140,
       324
     ],
-    "size": [
-      248,
-      201
+    "outlinePower": 4.5,
+    "depth": 18,
+    "radii": [
+      700,
+      650,
+      600
     ],
-    "radius": 20,
-    "bulge": 3.5
+    "rasterSize": [
+      222,
+      166
+    ],
+    "backThickness": 2
   },
   "patches": [
     {
