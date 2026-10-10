@@ -95,7 +95,8 @@ export function createScene(
   box(0.77, 0.6, 0.022, dark, 0, 0.76, 0.247);
   box(0.19, 0.09, 0.21, dark, 0, 0.39, -0.08);
   const texture = new THREE.CanvasTexture(screen);
-  texture.minFilter = THREE.LinearFilter;
+  texture.minFilter = THREE.LinearMipmapLinearFilter;
+  texture.anisotropy = 4;
   texture.magFilter = THREE.NearestFilter;
   texture.colorSpace = THREE.SRGBColorSpace;
   const display = new THREE.Mesh(

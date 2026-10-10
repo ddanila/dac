@@ -64,6 +64,12 @@ export function specimenMaterial(color, profile = {}) {
 
 // One transparent atlas for the transcribed legends. The geometry supplies the
 // key's shape and sheen, including the clear-cap border, rather than a photo.
+export function legendLayout(key, pitch = 20) {
+  return {
+    width: Math.min(key.width * pitch - 8, 26),
+    height: Math.min(key.height * pitch - 8, 18),
+  };
+}
 export function legendAtlas(keys) {
   const cell = 128,
     columns = 10;
@@ -72,23 +78,40 @@ export function legendAtlas(keys) {
   canvas.height = Math.ceil(keys.length / columns) * cell;
   const ctx = canvas.getContext("2d");
   keys.forEach((key, i) => {
-    const cx = ((i % columns) + 0.5) * cell;
-    const cy = (Math.floor(i / columns) + 0.5) * cell;
+    const { width, height } = legendLayout(key);
+    ctx.save();
+    ctx.translate((i % columns) * cell, Math.floor(i / columns) * cell);
+    // Draw in physical millimetres; long caps must not stretch their letters.
+    ctx.scale(cell / width, cell / height);
     ctx.fillStyle = key.style === 1 ? "#404541" : "#e7e6cd";
     ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    ctx.textBaseline = "alphabetic";
     const lines = key.legend || [key.label];
     const longest = Math.max(1, ...lines.map((s) => s.length));
-    const fontSize = lines.length > 1 ? 31 : longest > 2 ? 31 : 54;
-    ctx.font = `${key.style === 1 ? 500 : 400} ${fontSize}px Arial, sans-serif`;
-    lines.forEach((line, j) =>
+    let size = lines.length > 1 || longest > 2 ? 4 : 6;
+    const font = () =>
+      (ctx.font = `${key.style === 1 ? 500 : 400} ${size}px Arial, sans-serif`);
+    font();
+    const measured = Math.max(
+      1,
+      ...lines.map((line) => ctx.measureText(line).width),
+    );
+    size *= Math.min(
+      1,
+      (width - 2) / measured,
+      (height - 2) / (size * lines.length * 1.15),
+    );
+    font();
+    lines.forEach((line, j) => {
+      const m = ctx.measureText(line);
+      const y = height / 2 + (j - (lines.length - 1) / 2) * size * 1.15;
       ctx.fillText(
         line,
-        cx,
-        cy + (j - (lines.length - 1) / 2) * 34,
-        cell * 0.82,
-      ),
-    );
+        width / 2,
+        y + (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2,
+      );
+    });
+    ctx.restore();
   });
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
