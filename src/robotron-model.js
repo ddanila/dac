@@ -96,18 +96,6 @@ export async function loadRobotron(displayTexture) {
       const texture = await loader.loadAsync(
         modelAsset(`photos/${name}`, base).href,
       );
-      const source = texture.image,
-        ratio = Math.min(1, 2048 / Math.max(source.width, source.height));
-      if (ratio < 1) {
-        const c = document.createElement("canvas");
-        c.width = Math.round(source.width * ratio);
-        c.height = Math.round(source.height * ratio);
-        c.getContext("2d").drawImage(source, 0, 0, c.width, c.height);
-        texture.image = c;
-        texture.needsUpdate = true;
-      }
-      texture.colorSpace = THREE.SRGBColorSpace;
-      texture.anisotropy = 4;
       textures.set(name, texture);
     }),
   );
@@ -152,6 +140,22 @@ export async function loadRobotron(displayTexture) {
     radius = 0,
     options = {},
   ) {
+    // Extract only the small marking into its own texture. Full owner photos
+    // remain reference files, never whole-panel GPU skins.
+    const source = textures.get(photo).image;
+    const x = Math.max(0, Math.floor(Math.min(...uv.map(p => p[0])) * source.width) - 2);
+    const y = Math.max(0, Math.floor(Math.min(...uv.map(p => p[1])) * source.height) - 2);
+    const right = Math.min(source.width, Math.ceil(Math.max(...uv.map(p => p[0])) * source.width) + 2);
+    const bottom = Math.min(source.height, Math.ceil(Math.max(...uv.map(p => p[1])) * source.height) + 2);
+    const cropWidth = right - x, cropHeight = bottom - y;
+    const ratio = Math.min(1, 1024 / Math.max(cropWidth, cropHeight));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(cropWidth * ratio));
+    canvas.height = Math.max(1, Math.round(cropHeight * ratio));
+    canvas.getContext("2d").drawImage(source, x, y, cropWidth, cropHeight, 0, 0, canvas.width, canvas.height);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.anisotropy = 4;
     const geometry = surface(width, height, radius);
     geometry.setAttribute("surfaceUv", geometry.attributes.uv.clone());
     const coords = geometry.attributes.uv,
@@ -162,10 +166,10 @@ export async function loadRobotron(displayTexture) {
         positions.getX(i) / width + 0.5,
         0.5 - positions.getY(i) / height,
       );
-      coords.setXY(i, u, 1 - v);
+      coords.setXY(i, (u * source.width - x) / cropWidth, 1 - (v * source.height - y) / cropHeight);
     }
     const material = new THREE.MeshStandardMaterial({
-      map: textures.get(photo),
+      map: texture,
       roughness: 0.9,
       transparent: !!(options.ink || options.feather),
       depthWrite: !(options.ink || options.feather),
@@ -255,6 +259,8 @@ export async function loadRobotron(displayTexture) {
     group.add(mesh);
     patches.push(mesh);
   }
+  for (const texture of textures.values()) texture.dispose();
+  textures.clear();
   const display = objects.get("crt-glass");
   display.geometry.dispose();
   display.material.dispose();
