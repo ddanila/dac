@@ -256,6 +256,10 @@ export async function loadRobotron(displayTexture) {
     mesh.rotation.set(...p.rotation.map(THREE.MathUtils.degToRad));
     mesh.userData.rest = mesh.position.clone();
     mesh.userData.assembly = p.assembly;
+    mesh.userData.detail = p.name.includes("robotron") || p.name === "drive-label-country" ? "plate-robotron"
+      : p.name.includes("ratan") ? "plate-ratan"
+      : p.name.includes("2064") ? "board-2064"
+      : p.name.includes("2092") ? "board-2092" : undefined;
     mesh.visible = p.section !== "interior";
     group.add(mesh);
     patches.push(mesh);
@@ -300,6 +304,10 @@ export async function loadRobotron(displayTexture) {
     mesh.rotation.set(...p.rotation.map(THREE.MathUtils.degToRad));
     mesh.userData.rest = mesh.position.clone();
     mesh.userData.assembly = p.assembly;
+    mesh.userData.detail = p.name.includes("robotron") || p.name === "drive-label-country" ? "plate-robotron"
+      : p.name.includes("ratan") ? "plate-ratan"
+      : p.name.includes("2064") ? "board-2064"
+      : p.name.includes("2092") ? "board-2092" : undefined;
     mesh.visible = false;
     patches.push(mesh);
   }
