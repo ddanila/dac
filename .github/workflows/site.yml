@@ -26,9 +26,21 @@ jobs:
       - uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: dist
+  cross-browser:
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install firefox webkit
+      - run: npm run test:cross
   deploy:
     if: github.event_name != 'pull_request'
-    needs: build
+    needs: [build, cross-browser]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:

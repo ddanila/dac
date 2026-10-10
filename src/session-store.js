@@ -59,3 +59,49 @@ export async function checkedRecord(key) {
 export async function saveRecord(key, bytes) {
   await stored(key, { bytes, sha256: await digest(bytes), date: Date.now() });
 }
+
+export async function storedKeys() {
+  const db = await database();
+  try {
+    return await new Promise((resolve, reject) => {
+      const req = db.transaction("copies").objectStore("copies").getAllKeys();
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  } finally {
+    db.close();
+  }
+}
+// Length-prefixed JSON identity and SHA-256 followed by the same-build core state.
+export async function encodeSnapshot(key, bytes) {
+  const header = new TextEncoder().encode(
+    JSON.stringify({ format: "DAC-state-1", key, sha256: await digest(bytes) }),
+  );
+  const out = new Uint8Array(4 + header.length + bytes.byteLength);
+  new DataView(out.buffer).setUint32(0, header.length, true);
+  out.set(header, 4);
+  out.set(new Uint8Array(bytes), 4 + header.length);
+  return out.buffer;
+}
+export async function decodeSnapshot(file, key) {
+  if (
+    !(file instanceof ArrayBuffer) ||
+    file.byteLength < 8 ||
+    file.byteLength > 4 * 1024 * 1024
+  )
+    throw Error("Invalid snapshot size.");
+  const n = new DataView(file).getUint32(0, true);
+  if (n > 8192 || n > file.byteLength - 4)
+    throw Error("Invalid snapshot header.");
+  const header = JSON.parse(
+    new TextDecoder().decode(new Uint8Array(file, 4, n)),
+  );
+  if (header.format !== "DAC-state-1" || header.key !== key)
+    throw Error(
+      "Snapshot needs the same machine, original media, write settings and emulator version.",
+    );
+  const bytes = file.slice(4 + n);
+  if (header.sha256 !== (await digest(bytes)))
+    throw Error("Snapshot failed its integrity check.");
+  return bytes;
+}

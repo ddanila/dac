@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "63af95b14ddb3bb78d02f5fca816a9d4f3844d14",
+  "revision": "4c03a259c9638c264513db67e3895544a9cd90a2",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "d0ff80ed82b2daf809d95bdcac73450f3fd818024c8c98863646403b5259f269"
+      "sha256": "89f5fa94ed8867f8fab95e7433400413212a4fd43cdc11d45094b784f112db30"
     },
     {
       "file": "LICENSE",
@@ -129,11 +129,11 @@
     },
     {
       "file": "meshes/drive-mechanisms.stl",
-      "sha256": "9f18543bf4b112a6abaec53546d3a9ae4037d7d0d28e6b41a571e10df192d8f3"
+      "sha256": "3f6ed8e584fca81b0943514b4646d07b15adac0a78deee53607fe79cce42bee3"
     },
     {
       "file": "meshes/drive-motors.stl",
-      "sha256": "f6908c7cb5985b6db1c4b28d0493a888ccc575e4ac96d5c11192ebb72fb299a7"
+      "sha256": "1cebd59bd9da1e874e15e7bb8b61f2c7858c53f6aa9f7006fca9d62e12f8e20b"
     },
     {
       "file": "meshes/drive-boards.stl",
@@ -274,6 +274,22 @@
     {
       "file": "meshes/drive-label-plates.stl",
       "sha256": "296a3e279c9d7d93edacab2dd32d6c02c51d925298dc40f6184f8fd596e91b5f"
+    },
+    {
+      "file": "meshes/drive-spindle-0.stl",
+      "sha256": "80c04898f2f7e5fde69aaf5123c6b328d8d7b87b61b40798add7289cabc4fea8"
+    },
+    {
+      "file": "meshes/drive-spindle-1.stl",
+      "sha256": "626d5a68860640effacf0b053971786b5c7cdd9dbaebabbaf3a959a3cc477bae"
+    },
+    {
+      "file": "meshes/drive-head-0.stl",
+      "sha256": "f50d77eeeb99922efc5afa48c082eb6c8b247afd32b5e5b7203a34af7fd9abb3"
+    },
+    {
+      "file": "meshes/drive-head-1.stl",
+      "sha256": "925b9e3032638bca7eab72b27924c8bd65fcbe03b3b8a1b9eb67bd01191f1ac8"
     },
     {
       "file": "meshes/keycap-0.stl",

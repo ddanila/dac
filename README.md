@@ -33,7 +33,7 @@ Disk writes are off by default. Enabling them changes only a session copy; **Exp
 
 Robotron cold boot, keyboard, file creation, reading, text/binary copying, export/reboot and deletion pass bounded native checks. Native and WASM boot pixels and complete session disks after create/read/copy match exactly. VJUGA matches a bounded Juku boot framebuffer in both native decode modes. The viewer has automated power/reset/input/media recovery tests and inspected desktop/mobile layouts.
 
-The cores are experimental. Robotron has simplified FDC/DMA/SIO/CTC timing and an incomplete 8275 display model, with tested completion/interrupt behavior, programmed row height, field attributes and cursor. Juku accepts one key contact at a time; long-session WASM32 clock wrap is unqualified. No full hardware-fidelity or cross-browser claim is made. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
+The cores are experimental. Robotron has simplified FDC/DMA/SIO/CTC timing and an incomplete 8275 display model, with tested completion/interrupt behavior, programmed row height, field attributes and cursor. Juku accepts one key contact at a time; long-session WASM32 clock wrap is unqualified. No full hardware-fidelity claim is made. Focused session/media tests cover Chromium, Firefox and Playwright WebKit; this is not qualification of every retail Safari version. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
 
 ## Models and provenance
 
@@ -53,4 +53,24 @@ Choose **Type** to keep the live display above the clickable 3D keyboard. **Insp
 
 The historical Robotron preset now runs the **S600 keyboard firmware** on a second Z80. Host key press/release and modeled clicks operate a reference switch matrix; serial clocking, firmware modifiers and Caps/SI-SO state feed the running OS. Some printed shifted legends differ from S600. Custom media may supply a 2 KB keyboard ROM; omitting it retains the character adapter.
 
-**Keep this session** provides automatic local disk copies and Robotron **Save state / Restore state**. Disk copies survive reloads and are separated by media identity; whole-machine states require the same emulator build and write mode. Browser storage is not a portable backup—use disk export. **Discard saved disk** removes the local copy; reload original media to start fresh. Writes remain opt-in. Floppy seek, rotation and byte pacing now make boot slower; 4× speed is useful while waiting for `A>`.
+**Keep this session** provides automatic local disk copies and **Save state / Restore state** for all three machines. Disk copies survive reloads and are separated by media identity; whole-machine states require the same emulator build and write mode. Disk export is a portable backup; **Export state / Import state** moves a complete session between browsers running the same emulator build, original media and write settings. **Discard saved disk** removes the local copy; reload original media to start fresh. Writes remain opt-in. Floppy seek, rotation and byte pacing now make boot slower; 4× speed is useful while waiting for `A>`.
+
+
+**Drive B** accepts a second 800 KB raw image or an empty data disk. Power off to
+insert/eject or change protection; copies persist independently. After a reload,
+insert the same original B image (or choose blank again) to recover its saved copy.
+Use `DIR B:` and `PIP B:=A:PIP.COM`. Original files are untouched. Reset or warm-boot
+the guest after a disk change, as its OS may cache directory data.
+
+**Printer output** captures completed serial bytes, including control codes, and
+exports a `.prn` file. The 64 KB capture limit is visible; export and clear when
+full. Try `PIP LST:=AUTOEXC.SUB`. The virtual printer is always ready.
+
+With the case open, each spindle and head follows its drive's motor/track state.
+Head travel is estimated, rotation assumes 300 RPM, and optional drive sounds
+are synthesized. Reduced motion pauses spindle rotation.
+
+Additional validation: `npm run test:cross` runs the focused Firefox/WebKit suite
+(after `npx playwright install firefox webkit`). The core's optional application
+regression covers WordStar editing, Turbo Pascal compilation/execution, drive-to-
+drive PIP copying and printer output using the bundled reference disk.

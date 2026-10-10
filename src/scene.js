@@ -253,7 +253,8 @@ export function createScene(
       key = hit?.userData.key;
     renderer.domElement.style.cursor =
       hit &&
-      (key || hit.userData.detail ||
+      (key ||
+        hit.userData.detail ||
         hit === robotron?.objects.get("power") ||
         hit === robotron?.objects.get("reset"))
         ? "pointer"
@@ -261,7 +262,9 @@ export function createScene(
     interaction.onHover?.(
       key
         ? `${key.label}${key.input.unsupported ? " · mapping unverified" : ""}`
-        : hit?.userData.detail ? "Click to inspect the original marking" : "",
+        : hit?.userData.detail
+          ? "Click to inspect the original marking"
+          : "",
     );
   });
   renderer.domElement.addEventListener("pointerup", (e) => {
@@ -278,9 +281,9 @@ export function createScene(
     if (!hit) return;
     if (gesture.key && hit?.userData.key?.id === gesture.key.id) {
       if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
-    } else if (hit.userData.detail && gesture.object === hit) interaction.onInspect?.(hit.userData.detail);
-    else if (hit === robotron?.objects.get("power") || hit === power)
-      onPower();
+    } else if (hit.userData.detail && gesture.object === hit)
+      interaction.onInspect?.(hit.userData.detail);
+    else if (hit === robotron?.objects.get("power") || hit === power) onPower();
     else if (hit === robotron?.objects.get("reset")) onReset?.();
   });
   renderer.domElement.addEventListener("pointercancel", cancelGesture);
@@ -309,6 +312,7 @@ export function createScene(
   });
   return {
     activity: (active) => robotron?.activity(active),
+    drives: (states) => robotron?.drives(states),
     modifiers: (state) => {
       modifiers = state;
       renderRequested = true;

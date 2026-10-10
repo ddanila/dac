@@ -1,5 +1,37 @@
 {
-  "version": 7,
+  "version": 8,
+  "driveMotion": [
+    {
+      "unit": 0,
+      "spindle": "drive-spindle-0",
+      "head": "drive-head-0",
+      "pivot": [
+        -161,
+        -144,
+        88
+      ],
+      "travel": [
+        0,
+        -35,
+        0
+      ]
+    },
+    {
+      "unit": 1,
+      "spindle": "drive-spindle-1",
+      "head": "drive-head-1",
+      "pivot": [
+        -7,
+        -144,
+        88
+      ],
+      "travel": [
+        0,
+        -35,
+        0
+      ]
+    }
+  ],
   "units": "mm",
   "scale": 0.0025,
   "materials": {
@@ -271,7 +303,7 @@
       "name": "drive-mechanisms",
       "file": "meshes/drive-mechanisms.stl",
       "color": "#bec2bd",
-      "sha256": "9f18543bf4b112a6abaec53546d3a9ae4037d7d0d28e6b41a571e10df192d8f3",
+      "sha256": "3f6ed8e584fca81b0943514b4646d07b15adac0a78deee53607fe79cce42bee3",
       "section": "interior",
       "material": "metal"
     },
@@ -279,7 +311,7 @@
       "name": "drive-motors",
       "file": "meshes/drive-motors.stl",
       "color": "#282c2b",
-      "sha256": "f6908c7cb5985b6db1c4b28d0493a888ccc575e4ac96d5c11192ebb72fb299a7",
+      "sha256": "1cebd59bd9da1e874e15e7bb8b61f2c7858c53f6aa9f7006fca9d62e12f8e20b",
       "section": "interior",
       "material": "plastic"
     },
@@ -560,6 +592,38 @@
       "sha256": "296a3e279c9d7d93edacab2dd32d6c02c51d925298dc40f6184f8fd596e91b5f",
       "section": "interior",
       "material": "metal"
+    },
+    {
+      "name": "drive-spindle-0",
+      "file": "meshes/drive-spindle-0.stl",
+      "color": "#a8aaa4",
+      "sha256": "80c04898f2f7e5fde69aaf5123c6b328d8d7b87b61b40798add7289cabc4fea8",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "drive-spindle-1",
+      "file": "meshes/drive-spindle-1.stl",
+      "color": "#a8aaa4",
+      "sha256": "626d5a68860640effacf0b053971786b5c7cdd9dbaebabbaf3a959a3cc477bae",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "drive-head-0",
+      "file": "meshes/drive-head-0.stl",
+      "color": "#30322f",
+      "sha256": "f50d77eeeb99922efc5afa48c082eb6c8b247afd32b5e5b7203a34af7fd9abb3",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "drive-head-1",
+      "file": "meshes/drive-head-1.stl",
+      "color": "#30322f",
+      "sha256": "925b9e3032638bca7eab72b27924c8bd65fcbe03b3b8a1b9eb67bd01191f1ac8",
+      "section": "interior",
+      "material": "plastic"
     }
   ],
   "keys": [

@@ -3,6 +3,10 @@ import {
   stored,
   checkedRecord,
   saveRecord,
+  digest,
+  storedKeys,
+  encodeSnapshot,
+  decodeSnapshot,
 } from "./session-store.js";
 let module,
   handle = 0,
@@ -13,7 +17,11 @@ let module,
   last = 0,
   owed = 0,
   lastFrame = 0;
-let identity,
+let build,
+  firmware,
+  identities = [],
+  writableUnits = [],
+  identity,
   stateKey,
   remember = false,
   writable = false,
@@ -21,9 +29,9 @@ let identity,
   lastSave = 0,
   saving = Promise.resolve(),
   persistenceFailed = false;
-function diskBytes() {
-  const p = module._dac_disk_data(handle),
-    n = module._dac_disk_size(handle);
+function diskBytes(unit = 0) {
+  const p = module._dac_disk_data_unit(handle, unit),
+    n = module._dac_disk_size_unit(handle, unit);
   return module.HEAPU8.slice(p, p + n).buffer;
 }
 function storageStatus(message, extra = {}) {
@@ -33,8 +41,7 @@ function persistDisk(force = false) {
   if (
     !identity ||
     !remember ||
-    !writable ||
-    !module._dac_disk_size(handle) ||
+    !writableUnits.some(Boolean) ||
     persistenceFailed
   )
     return saving;
@@ -45,22 +52,69 @@ function persistDisk(force = false) {
       (kind === 2 && activity === lastSavedActivity))
   )
     return saving;
-  const key = "disk:" + identity,
-    bytes = diskBytes();
+  const copies = [0, 1]
+    .filter(
+      (u) =>
+        identities[u] &&
+        writableUnits[u] &&
+        module._dac_disk_size_unit(handle, u),
+    )
+    .map((u) => [diskKey(u), diskBytes(u)]);
+  if (!copies.length) return saving;
   lastSave = performance.now();
   lastSavedActivity = activity;
   saving = saving
-    .then(() => saveRecord(key, bytes))
-    .then(() => storageStatus("Disk saved in this browser."))
+    .then(async () => {
+      for (const [key, bytes] of copies) await saveRecord(key, bytes);
+      storageStatus("Disk saved in this browser.");
+    })
     .catch((e) => {
       persistenceFailed = true;
       storageStatus(
         "Could not save locally: " +
           e.message +
-          ". Export the disk to keep changes.",
+          ". Export the disks to keep changes.",
       );
     });
   return saving;
+}
+function diskKey(u) {
+  return (u ? "disk-b:" : "disk:") + identities[u];
+}
+function refreshStateKey() {
+  stateKey =
+    "state:" +
+    build +
+    ":" +
+    identities[0] +
+    ":" +
+    Number(writableUnits[0]) +
+    (identities[1]
+      ? ":B:" + identities[1] + ":" + Number(writableUnits[1])
+      : "");
+}
+function snapshotBytes() {
+  const n = module._dac_state_size(handle);
+  if (!n) throw Error("Power on before saving a state.");
+  const p = module._malloc(n);
+  if (!p) throw Error("Not enough memory for a state");
+  try {
+    if (module._dac_state_save(handle, p, n) < 0)
+      throw Error("State save failed");
+    return module.HEAPU8.slice(p, p + n).buffer;
+  } finally {
+    module._free(p);
+  }
+}
+function restore(bytes) {
+  copy(bytes, (p, n) => module._dac_state_load(handle, p, n));
+  running = true;
+  clearTimeout(timer);
+  owed = 0;
+  last = performance.now();
+  postMessage({ type: "power", on: true });
+  frame();
+  tick();
 }
 function error(e) {
   if (module && handle) module._dac_power(handle, 0);
@@ -99,6 +153,9 @@ function frame() {
       activity: module._dac_disk_activity(handle),
       keyboardLeds: module._dac_keyboard_leds(handle),
       drive: module._dac_drive_status(handle),
+      drives: [0, 1].map((u) => module._dac_drive_status_unit(handle, u)),
+      printerSize: module._dac_printer_size(handle),
+      printerOverflow: module._dac_printer_overflow(handle),
     },
     [pixels.buffer],
   );
@@ -143,13 +200,21 @@ async function receive(d) {
       clearTimeout(timer);
       await persistDisk(true);
       if (handle) module._dac_destroy(handle);
+      build = d.build;
+      firmware = d.firmware;
       identity = await sessionIdentity(d.kind, d.firmware, d.disk);
-      stateKey = "state:" + d.build + ":" + identity + ":" + Number(d.writable);
+      identities = [
+        identity,
+        d.diskB ? await sessionIdentity(d.kind, firmware, d.diskB) : null,
+      ];
+      writableUnits = [!!d.writable, !!d.writableB];
+      refreshStateKey();
       remember = !!d.remember;
       writable = !!d.writable;
       persistenceFailed = false;
       lastSavedActivity = -1;
       let image = d.disk,
+        imageB = d.diskB,
         resumedDisk = false,
         hasState = false;
       try {
@@ -162,11 +227,26 @@ async function receive(d) {
             resumedDisk = true;
           }
         }
+        if (remember && imageB) {
+          const saved = await checkedRecord(diskKey(1));
+          if (saved) {
+            if (saved.bytes.byteLength !== imageB.byteLength)
+              throw Error("Saved drive B disk size differs");
+            imageB = saved.bytes;
+            resumedDisk = true;
+          }
+        }
         hasState = !!(await stored(stateKey));
         storageStatus(
           resumedDisk
             ? "Using the disk saved in this browser."
-            : "No saved disk loaded.",
+            : !hasState &&
+                (await storedKeys()).some(
+                  (k) =>
+                    k.startsWith("state:") && k.includes(":" + identity + ":"),
+                )
+              ? "An older state exists for different media settings or an emulator build. Saved disks remain available."
+              : "No saved disk loaded.",
           { hasState },
         );
       } catch (e) {
@@ -183,8 +263,13 @@ async function receive(d) {
         copy(image, (p, n) =>
           module._dac_mount(handle, p, n, Number(d.writable)),
         );
+      if (imageB)
+        copy(imageB, (p, n) =>
+          module._dac_mount_unit(handle, 1, p, n, Number(d.writableB)),
+        );
       postMessage({
         type: "configured",
+        diskB: !!imageB,
         disk: !!image,
         firmwareKeyboard: d.firmware.some(([slot]) => slot === 3),
         hasState,
@@ -232,30 +317,14 @@ async function receive(d) {
       if (remember) await persistDisk(true);
     } else if (d.type === "forget-disk") {
       await saving;
-      await stored("disk:" + identity, null);
+      for (const u of [0, 1]) if (identities[u]) await stored(diskKey(u), null);
       remember = false;
       storageStatus(
         "Saved disk discarded. Reload original media to start fresh.",
       );
     } else if (d.type === "save-state") {
-      const n = module._dac_state_size(handle);
-      if (!n) {
-        storageStatus("Power on the Robotron before saving a state.");
-        return;
-      }
-      const p = module._malloc(n);
-      if (!p) throw Error("Not enough memory for a state");
-      try {
-        if (module._dac_state_save(handle, p, n) < 0)
-          throw Error("State save failed");
-        const bytes = module.HEAPU8.slice(p, p + n).buffer;
-        await saveRecord(stateKey, bytes);
-        storageStatus("Machine state saved in this browser.", {
-          hasState: true,
-        });
-      } finally {
-        module._free(p);
-      }
+      await saveRecord(stateKey, snapshotBytes());
+      storageStatus("Machine state saved in this browser.", { hasState: true });
     } else if (d.type === "restore-state") {
       const record = await checkedRecord(stateKey);
       if (!record) {
@@ -264,29 +333,97 @@ async function receive(d) {
         );
         return;
       }
-      copy(record.bytes, (p, n) => module._dac_state_load(handle, p, n));
-      running = true;
-      clearTimeout(timer);
-      owed = 0;
-      last = performance.now();
-      postMessage({ type: "power", on: true });
-      frame();
-      tick();
+      restore(record.bytes);
       await persistDisk(true);
       storageStatus("Saved machine state restored.", { hasState: true });
+    } else if (d.type === "export-state") {
+      const bytes = await encodeSnapshot(stateKey, snapshotBytes());
+      postMessage({ type: "download", name: "dac-machine.dacstate", bytes }, [
+        bytes,
+      ]);
+    } else if (d.type === "import-state") {
+      const bytes = await decodeSnapshot(d.bytes, stateKey);
+      restore(bytes);
+      await persistDisk(true);
+      storageStatus("Imported machine state restored.");
+    } else if (d.type === "mount-b") {
+      if (kind !== 2 || running)
+        throw Error("Power off before changing drive B media.");
+      await persistDisk(true);
+      const bytes = d.bytes;
+      if (bytes)
+        copy(bytes, (p, n) =>
+          module._dac_mount_unit(handle, 1, p, n, Number(d.writable)),
+        );
+      else if (module._dac_mount_unit(handle, 1, 0, 0, 0) < 0)
+        throw Error("Eject failed");
+      identities[1] = bytes
+        ? await sessionIdentity(kind, firmware, bytes)
+        : null;
+      writableUnits[1] = !!d.writable;
+      refreshStateKey();
+      if (remember && bytes) {
+        const saved = await checkedRecord(diskKey(1));
+        if (saved && saved.bytes.byteLength === bytes.byteLength)
+          copy(saved.bytes, (p, n) =>
+            module._dac_mount_unit(handle, 1, p, n, Number(d.writable)),
+          );
+      }
+      postMessage({ type: "mounted-b", present: !!bytes });
+      storageStatus(
+        bytes ? "Drive B disk inserted." : "Drive B disk ejected.",
+        { hasState: !!(await stored(stateKey)) },
+      );
+      frame();
+    } else if (d.type === "protect-b") {
+      if (running || kind !== 2)
+        throw Error("Power off before changing write protection.");
+      await persistDisk(true);
+      const bytes = diskBytes(1);
+      if (!bytes.byteLength) return;
+      copy(bytes, (p, n) =>
+        module._dac_mount_unit(handle, 1, p, n, Number(d.writable)),
+      );
+      writableUnits[1] = !!d.writable;
+      refreshStateKey();
+      storageStatus(
+        d.writable ? "Drive B is writable." : "Drive B is write protected.",
+        { hasState: !!(await stored(stateKey)) },
+      );
+    } else if (d.type === "printer") {
+      const p = module._dac_printer_data(handle),
+        n = module._dac_printer_size(handle);
+      const bytes = module.HEAPU8.slice(p, p + n).buffer;
+      postMessage({ type: "download", name: "dac-printer.prn", bytes }, [
+        bytes,
+      ]);
+    } else if (d.type === "clear-printer") {
+      module._dac_printer_clear(handle);
+      frame();
     } else if (d.type === "speed") speed = d.value === 4 ? 4 : 1;
     else if (d.type === "export") {
-      const p = module._dac_disk_data(handle),
-        n = module._dac_disk_size(handle);
+      const u = d.unit || 0;
+      const p = module._dac_disk_data_unit(handle, u),
+        n = module._dac_disk_size_unit(handle, u);
       if (!n) throw Error("No disk mounted");
       const bytes = module.HEAPU8.slice(p, p + n);
-      postMessage({ type: "disk", bytes: bytes.buffer }, [bytes.buffer]);
+      postMessage({ type: "disk", unit: u, bytes: bytes.buffer }, [
+        bytes.buffer,
+      ]);
     }
   } catch (e) {
     if (
-      ["save-state", "restore-state", "forget-disk", "remember"].includes(
-        d.type,
-      )
+      [
+        "save-state",
+        "restore-state",
+        "forget-disk",
+        "remember",
+        "import-state",
+        "export-state",
+        "mount-b",
+        "protect-b",
+        "printer",
+      ].includes(d.type)
     )
       storageStatus(e.message);
     else error(e);

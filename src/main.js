@@ -1,4 +1,6 @@
 import "./style.css";
+import { createDriveSound } from "./robotron-drives.js";
+const driveSound = createDriveSound();
 import { createFirmwareKeyboard, matrixKey } from "./robotron-matrix.js";
 import { loadHistoricalRobotron } from "./historical-media.js";
 import { createScene } from "./scene.js";
@@ -16,6 +18,8 @@ let on = false,
   ready = false,
   activity = 0,
   disk = false,
+  diskB = false,
+  diskBImage,
   scene,
   configuration = 0,
   previousPixels,
@@ -232,6 +236,8 @@ async function configure(demo, historical = false) {
     kind,
     firmware,
     disk: image,
+    diskB: kind === 2 ? diskBImage : undefined,
+    writableB: $("writable-b").checked,
     writable: $("writable").checked,
     remember: $("remember-disk").checked,
     build: import.meta.env.VITE_EMULATOR_REVISION,
@@ -244,10 +250,11 @@ worker.onmessage = ({ data: d }) => {
   }
   if (d.type === "configured") {
     disk = d.disk;
+    updateDriveB(d.diskB);
     firmwareKeyboard = !!d.firmwareKeyboard;
     hasState = !!d.hasState;
     $("restore-state").disabled = !hasState;
-    $("save-state").disabled = true;
+    $("save-state").disabled = $("export-state").disabled = true;
     $("forget-disk").disabled = !disk;
     for (const button of $("key-list").querySelectorAll("[data-key]")) {
       const key = modelKeys.find((k) => k.id === button.dataset.key);
@@ -275,7 +282,10 @@ worker.onmessage = ({ data: d }) => {
     $("power-label").textContent = on ? "Power off" : "Power on";
     $("status").textContent = on ? "Running" : "Powered off";
     $("reset").disabled = !on;
-    $("save-state").disabled = !on || Number($("machine").value) !== 2;
+    $("save-state").disabled = $("export-state").disabled = !on;
+    for (const id of ["disk-b", "writable-b", "insert-b", "blank-b"])
+      $(id).disabled = on;
+    $("eject-b").disabled = on || !diskB;
     $("forget-disk").disabled = on || !disk;
     for (const id of [
       "load",
@@ -322,10 +332,22 @@ worker.onmessage = ({ data: d }) => {
         `Keyboard firmware · Caps ${d.keyboardLeds & 2 ? "on" : "off"} · SI/SO ${d.keyboardLeds & 1 ? "on" : "off"}`;
     }
     if (Number($("machine").value) === 2) {
-      const drive = d.drive || 0;
+      const drives = d.drives || [0, 0];
+      scene?.drives(drives);
+      driveSound.update(drives, on);
       $("drive-state").textContent = on
-        ? `Drive A: ${drive & 1 ? "motor on" : "motor off"} · track ${(drive >> 8) & 255}${drive & 16 ? " · transferring" : ""} · ${drive & 32 ? "writable" : "write protected"}`
+        ? drives
+            .map(
+              (v, u) =>
+                `${u ? "B" : "A"}: ${v & 8 ? (v & 1 ? "motor on" : "motor off") + " · track " + ((v >> 8) & 255) + (v & 2 ? " · transferring" : "") + (v & 4 ? " · writable" : " · protected") : "empty"}`,
+            )
+            .join(" / ")
         : "";
+      $("printer-status").textContent = d.printerOverflow
+        ? "Capture full (64 KB). Export and clear to continue."
+        : `${d.printerSize || 0} bytes captured.`;
+      $("printer-export").disabled = $("printer-clear").disabled =
+        !d.printerSize;
     }
     const active = d.activity > activity;
     activity = d.activity;
@@ -368,11 +390,13 @@ worker.onmessage = ({ data: d }) => {
       $(id).disabled = false;
     $("reset").disabled = true;
   }
-  if (d.type === "disk") {
+  if (d.type === "mounted-b") updateDriveB(d.present);
+  if (d.type === "disk" || d.type === "download") {
     const url = URL.createObjectURL(new Blob([d.bytes]));
     const a = document.createElement("a");
     a.href = url;
-    a.download = "dac-session-disk.img";
+    a.download =
+      d.name || (d.unit ? "dac-drive-b.img" : "dac-session-disk.img");
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
@@ -380,6 +404,11 @@ worker.onmessage = ({ data: d }) => {
 worker.onerror = (e) => fail(e.message || "Emulator worker failed");
 $("power").onclick = power;
 $("reset").onclick = resetMachine;
+$("drive-sound").onchange = () =>
+  driveSound.enable($("drive-sound").checked).catch((e) => fail(e.message));
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) driveSound.update([], false);
+});
 $("turbo").onchange = () =>
   send({ type: "speed", value: $("turbo").checked ? 4 : 1 });
 $("load").onclick = () =>
@@ -392,6 +421,7 @@ $("historical").onclick = () =>
 $("demo").onclick = () => configure(true).catch((e) => fail(e.message));
 $("machine").onchange = () => {
   release();
+  diskBImage = undefined;
   for (const id of ["rom", "prom", "glyph", "keyboard-rom", "disk"])
     $(id).value = "";
   configure(true, true).catch((e) => fail(e.message));
@@ -418,6 +448,59 @@ $("forget-disk").onclick = () => {
   send({ type: "forget-disk" });
 };
 $("export").onclick = () => send({ type: "export" });
+function updateDriveB(present) {
+  diskB = !!present;
+  $("export-b").disabled = !diskB;
+  $("eject-b").disabled = on || !diskB;
+  $("disk-b-status").textContent = diskB
+    ? "Drive B disk inserted."
+    : "Drive B is empty.";
+}
+async function insertB(blank = false) {
+  if (on) return;
+  try {
+    const file = $("disk-b").files[0];
+    if (!blank && !file) throw Error("Choose a drive B disk first.");
+    const bytes = blank
+      ? new Uint8Array(819200).fill(0xe5).buffer
+      : await file.arrayBuffer();
+    if (bytes.byteLength !== 819200)
+      throw Error("Drive B needs an 800 KB raw image (819200 bytes).");
+    diskBImage = bytes;
+    send({ type: "mount-b", bytes, writable: $("writable-b").checked });
+  } catch (e) {
+    $("storage-status").textContent = e.message;
+  }
+}
+$("insert-b").onclick = () => insertB();
+$("blank-b").onclick = () => insertB(true);
+$("eject-b").onclick = () => {
+  diskBImage = undefined;
+  send({ type: "mount-b" });
+};
+$("export-b").onclick = () => send({ type: "export", unit: 1 });
+$("writable-b").onchange = () => {
+  if (diskBImage)
+    send({ type: "protect-b", writable: $("writable-b").checked });
+};
+$("printer-export").onclick = () => send({ type: "printer" });
+$("printer-clear").onclick = () => send({ type: "clear-printer" });
+$("export-state").onclick = () => {
+  release();
+  send({ type: "export-state" });
+};
+$("import-state").onchange = async () => {
+  const file = $("import-state").files[0];
+  if (!file) return;
+  try {
+    if (file.size > 4 * 1024 * 1024) throw Error("Snapshot exceeds 4 MB.");
+    release();
+    send({ type: "import-state", bytes: await file.arrayBuffer() });
+  } catch (e) {
+    $("storage-status").textContent = e.message;
+  }
+  $("import-state").value = "";
+};
 $("screen-view").onclick = () => {
   if (document.querySelector(".stage").classList.contains("typing")) {
     selectView("keyboard");
@@ -445,6 +528,11 @@ function selectView(name) {
   showInspection(name);
   for (const button of document.querySelectorAll("[data-view]"))
     button.setAttribute("aria-pressed", String(button.dataset.view === name));
+  // Media controls can leave the exhibit above the viewport. A selected camera
+  // view should bring its subject back into view before pointer interaction.
+  document
+    .querySelector(".stage")
+    .scrollIntoView({ block: "nearest", behavior: "instant" });
 }
 for (const b of document.querySelectorAll("[data-view]"))
   b.onclick = () => {

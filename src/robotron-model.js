@@ -1,3 +1,4 @@
+import { createDriveMotion } from "./robotron-drives.js";
 import { createFanMotion } from "./robotron-fan.js";
 import { modelAsset } from "./model-assets.js";
 import { loadPcbPhotos } from "./robotron-interior.js";
@@ -144,16 +145,41 @@ export async function loadRobotron(displayTexture) {
     // Extract only the small marking into its own texture. Full owner photos
     // remain reference files, never whole-panel GPU skins.
     const source = textures.get(photo).image;
-    const x = Math.max(0, Math.floor(Math.min(...uv.map(p => p[0])) * source.width) - 2);
-    const y = Math.max(0, Math.floor(Math.min(...uv.map(p => p[1])) * source.height) - 2);
-    const right = Math.min(source.width, Math.ceil(Math.max(...uv.map(p => p[0])) * source.width) + 2);
-    const bottom = Math.min(source.height, Math.ceil(Math.max(...uv.map(p => p[1])) * source.height) + 2);
-    const cropWidth = right - x, cropHeight = bottom - y;
+    const x = Math.max(
+      0,
+      Math.floor(Math.min(...uv.map((p) => p[0])) * source.width) - 2,
+    );
+    const y = Math.max(
+      0,
+      Math.floor(Math.min(...uv.map((p) => p[1])) * source.height) - 2,
+    );
+    const right = Math.min(
+      source.width,
+      Math.ceil(Math.max(...uv.map((p) => p[0])) * source.width) + 2,
+    );
+    const bottom = Math.min(
+      source.height,
+      Math.ceil(Math.max(...uv.map((p) => p[1])) * source.height) + 2,
+    );
+    const cropWidth = right - x,
+      cropHeight = bottom - y;
     const ratio = Math.min(1, 1024 / Math.max(cropWidth, cropHeight));
     const canvas = document.createElement("canvas");
     canvas.width = Math.max(1, Math.round(cropWidth * ratio));
     canvas.height = Math.max(1, Math.round(cropHeight * ratio));
-    canvas.getContext("2d").drawImage(source, x, y, cropWidth, cropHeight, 0, 0, canvas.width, canvas.height);
+    canvas
+      .getContext("2d")
+      .drawImage(
+        source,
+        x,
+        y,
+        cropWidth,
+        cropHeight,
+        0,
+        0,
+        canvas.width,
+        canvas.height,
+      );
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 4;
@@ -167,7 +193,11 @@ export async function loadRobotron(displayTexture) {
         positions.getX(i) / width + 0.5,
         0.5 - positions.getY(i) / height,
       );
-      coords.setXY(i, (u * source.width - x) / cropWidth, 1 - (v * source.height - y) / cropHeight);
+      coords.setXY(
+        i,
+        (u * source.width - x) / cropWidth,
+        1 - (v * source.height - y) / cropHeight,
+      );
     }
     const material = new THREE.MeshStandardMaterial({
       map: texture,
@@ -256,10 +286,16 @@ export async function loadRobotron(displayTexture) {
     mesh.rotation.set(...p.rotation.map(THREE.MathUtils.degToRad));
     mesh.userData.rest = mesh.position.clone();
     mesh.userData.assembly = p.assembly;
-    mesh.userData.detail = p.name.includes("robotron") || p.name === "drive-label-country" ? "plate-robotron"
-      : p.name.includes("ratan") ? "plate-ratan"
-      : p.name.includes("2064") ? "board-2064"
-      : p.name.includes("2092") ? "board-2092" : undefined;
+    mesh.userData.detail =
+      p.name.includes("robotron") || p.name === "drive-label-country"
+        ? "plate-robotron"
+        : p.name.includes("ratan")
+          ? "plate-ratan"
+          : p.name.includes("2064")
+            ? "board-2064"
+            : p.name.includes("2092")
+              ? "board-2092"
+              : undefined;
     mesh.visible = p.section !== "interior";
     group.add(mesh);
     patches.push(mesh);
@@ -273,7 +309,9 @@ export async function loadRobotron(displayTexture) {
   display.geometry.rotateX(Math.PI / 2);
   display.geometry.translate(...data.screen.position);
   display.material = crtMaterial(displayTexture);
-  const lampMaterial = objects.get("drive-led-0").material;
+  const lampMaterials = [0, 1].map(
+    (u) => objects.get(`drive-led-${u}`).material,
+  );
   function marking(name, size, position, texture) {
     const mesh = new THREE.Mesh(
       new THREE.PlaneGeometry(...size),
@@ -294,20 +332,35 @@ export async function loadRobotron(displayTexture) {
   }
   if (data.driveLabels?.reconstructedText) {
     const p = data.driveLabels.reconstructedText;
-    const mesh = marking(p.name, p.size, p.position, markingTexture((c, w, h) => {
-      c.fillStyle = "#24251f";
-      c.textAlign = "center";
-      c.textBaseline = "middle";
-      c.font = "bold 74px Arial";
-      c.fillText(p.text, w / 2, h / 2, w - 12);
-    }, 1024, 144));
+    const mesh = marking(
+      p.name,
+      p.size,
+      p.position,
+      markingTexture(
+        (c, w, h) => {
+          c.fillStyle = "#24251f";
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.font = "bold 74px Arial";
+          c.fillText(p.text, w / 2, h / 2, w - 12);
+        },
+        1024,
+        144,
+      ),
+    );
     mesh.rotation.set(...p.rotation.map(THREE.MathUtils.degToRad));
     mesh.userData.rest = mesh.position.clone();
     mesh.userData.assembly = p.assembly;
-    mesh.userData.detail = p.name.includes("robotron") || p.name === "drive-label-country" ? "plate-robotron"
-      : p.name.includes("ratan") ? "plate-ratan"
-      : p.name.includes("2064") ? "board-2064"
-      : p.name.includes("2092") ? "board-2092" : undefined;
+    mesh.userData.detail =
+      p.name.includes("robotron") || p.name === "drive-label-country"
+        ? "plate-robotron"
+        : p.name.includes("ratan")
+          ? "plate-ratan"
+          : p.name.includes("2064")
+            ? "board-2064"
+            : p.name.includes("2092")
+              ? "board-2092"
+              : undefined;
     mesh.visible = false;
     patches.push(mesh);
   }
@@ -364,6 +417,9 @@ export async function loadRobotron(displayTexture) {
     wasInside = false,
     monitorOpen = false,
     wasMonitorOpen = false;
+  let driveStates = [0, 0],
+    drivesDirty = false;
+  const moveDrives = createDriveMotion(objects, data.driveMotion);
   const moveFan = createFanMotion(objects.get("fan-rotor"));
   const pressed = new Set();
   function releaseKeys() {
@@ -375,7 +431,9 @@ export async function loadRobotron(displayTexture) {
     else pressed.delete(id);
   }
   function tick() {
-    let dirty = inside !== wasInside || monitorOpen !== wasMonitorOpen;
+    let dirty =
+      inside !== wasInside || monitorOpen !== wasMonitorOpen || drivesDirty;
+    drivesDirty = false;
     const changedInside = dirty;
     wasInside = inside;
     wasMonitorOpen = monitorOpen;
@@ -403,13 +461,26 @@ export async function loadRobotron(displayTexture) {
         dirty = true;
       }
     }
-    const beforeLamp = lampMaterial.emissive.getHex();
-    lampMaterial.emissive.set(
-      power && performance.now() < activityUntil ? 0xff2404 : 0,
-    );
-    dirty ||= beforeLamp !== lampMaterial.emissive.getHex();
+    for (const [u, material] of lampMaterials.entries()) {
+      const before = material.emissive.getHex();
+      material.emissive.set(
+        power &&
+          (driveStates[u] & 2 ||
+            (u === 0 &&
+              !(driveStates[1] & 2) &&
+              performance.now() < activityUntil))
+          ? 0xff2404
+          : 0,
+      );
+      dirty ||= before !== material.emissive.getHex();
+    }
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const fanMoved = moveFan(performance.now(), power, objects.get("fan-rotor").visible, reduced);
+    const fanMoved = moveFan(
+      performance.now(),
+      power,
+      objects.get("fan-rotor").visible,
+      reduced,
+    );
     dirty = fanMoved || dirty;
     split = reduced
       ? splitTarget
@@ -466,9 +537,17 @@ export async function loadRobotron(displayTexture) {
         mesh.position.z += split * 115;
       }
     }
+    const drivesMoved = moveDrives(
+      performance.now(),
+      driveStates,
+      power,
+      split,
+      reduced,
+    );
     return {
-      dirty: dirty || beforeSplit !== split,
-      shadows: changedInside || beforeSplit !== split || fanMoved,
+      dirty: dirty || beforeSplit !== split || drivesMoved,
+      shadows:
+        changedInside || beforeSplit !== split || fanMoved || drivesMoved,
     };
   }
   return {
@@ -491,6 +570,10 @@ export async function loadRobotron(displayTexture) {
         capsMaterial.emissive.set(0);
       }
       objects.get("power").material.emissive.set(on ? 0x152417 : 0);
+    },
+    drives(states) {
+      drivesDirty ||= states.some((s, u) => s !== driveStates[u]);
+      driveStates = states;
     },
     activity(active) {
       if (active && power) activityUntil = performance.now() + 140;
