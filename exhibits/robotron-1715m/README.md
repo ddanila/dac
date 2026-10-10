@@ -27,7 +27,7 @@ Interactive exhibit with a photo-referenced OpenSCAD exterior of Danila’s mach
 
 ## Later detail
 
-Exterior parts can already be separated and inspected with evidence annotations and close-up views. Internal boards/cabling, exact rear connector placement, physical keyboard-controller feedback and drive media interactions remain future work requiring more references.
+Exterior parts can already be separated and inspected with evidence annotations and close-up views. Internal boards/cabling, exact rear connector placement, exact specimen keyboard-controller identity remains future work requiring more references. Reference firmware feedback and two-drive media interactions are now implemented.
 
 ## Unresolved
 

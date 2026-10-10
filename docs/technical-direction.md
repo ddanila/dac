@@ -80,4 +80,31 @@ Floppy seek completion, rotational waits and 250 kbit/s transfer pacing now incr
 
 Writable disk copies can persist in IndexedDB, keyed by machine, firmware and original disk SHA-256 identities. They save periodically during activity and before power-off/media replacement. The preference is explicit and can be disabled; storage errors are shown without stopping emulation. Export remains the portable backup. Discard deletes the saved copy; reloading original media then starts fresh. Browser storage can be evicted and closing a tab during a write can lose the latest unsaved changes.
 
-Robotron Save state captures the whole core and disk. Restore replaces the running session only after format, integrity, firmware and bounds checks. States are local to this browser, media/write-mode identity and exact emulator WASM build. An update may make an older state unavailable, while saved disks remain reusable. There is no cross-version state conversion or arbitrary snapshot import. Juku disks may also be retained, but whole-machine snapshots are Robotron-only.
+Robotron Save state captures the whole core and disk. Restore replaces the running session only after format, integrity, firmware and bounds checks. States are local to this browser, media/write-mode identity and exact emulator WASM build. An update may make an older state unavailable, while saved disks remain reusable. There is no cross-version state conversion; the 0.3.0 wrapper below adds validated same-build file import. Juku disks may also be retained; the 0.3.0 extension below adds snapshots for all three cores.
+
+
+### 0.3.0 session and peripheral extension
+
+Both Robotron units now have media/protection and per-drive status. The museum
+requires power-off for insertion/ejection. B persistence is keyed independently
+by its original image; reinserting the same original after reload recovers it.
+Changing B write protection preserves its current bytes. Whole-machine state
+includes both media identities and write modes. Snapshot files carry a bounded
+length-prefixed identity/SHA-256 header around the core CRC-protected payload.
+Mismatches and corruption report an error without stopping the current session.
+Juku and VJUGA now participate in the same save/restore controls. Older saved states
+are retained and identified as incompatible where detected; disk copies remain
+reusable across builds. Snapshots are not a stable cross-version archive format.
+
+The core implements fixed-geometry format, reset response queues, multi-track
+head switching, 8275 character-attribute decoding and a CTC-clocked SIO-A printer
+capture. TX interrupts, full serial handshakes, raster/display DMA scheduling,
+spin-up/head-load timing and richer disk formats remain incomplete. This release
+does not turn these approximations into claims of specimen accuracy.
+
+OpenSCAD exports separate clamp/head meshes. Model motion follows motor/cylinder
+state, with approximate 35 mm travel and 300 RPM presentation. Optional audio is
+synthesized, never represented as an owner recording. Native application checks
+exercise WordStar save, Turbo Pascal compile/run, two-drive PIP and printing.
+Focused browser checks cover snapshot export/import, corruption rejection and
+B media controls in Chromium, Firefox and Playwright WebKit on macOS.

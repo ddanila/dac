@@ -8,7 +8,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:cross": "playwright test -c playwright.cross.config.js"
   },
   "dependencies": {
     "three": "0.186.1"

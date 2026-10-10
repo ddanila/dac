@@ -228,6 +228,10 @@
             Historical S550 ROM and TOS/M 1.0 disk. Power on, open Screen, and
             wait for A&gt;. Try DIR.
           </p>
+          <label data-robotron
+            ><input type="checkbox" id="drive-sound" /> Drive sounds
+            (synthesized)</label
+          >
           <p id="drive-state" data-robotron aria-live="off"></p>
           <p id="keyboard-mode" data-robotron></p>
           <details id="session-controls">
@@ -238,17 +242,58 @@
             >
             <p>
               Writable disk copies save automatically. Export a disk for a
-              portable backup. Machine states resume this Robotron with the same
-              media and emulator version.
+              portable backup. Machine states resume the selected machine with
+              the same media and emulator version.
             </p>
             <div class="secondary-controls">
-              <button id="save-state" data-robotron disabled>Save state</button
-              ><button id="restore-state" data-robotron disabled>
-                Restore state
-              </button>
+              <button id="save-state" disabled>Save state</button
+              ><button id="restore-state" disabled>Restore state</button>
+            </div>
+            <div class="secondary-controls">
+              <button id="export-state" disabled>Export state</button>
+              <label
+                >Import state<input
+                  type="file"
+                  id="import-state"
+                  accept=".dacstate"
+              /></label>
             </div>
             <button id="forget-disk" disabled>Discard saved disk</button>
             <p id="storage-status" role="status"></p>
+          </details>
+          <details data-robotron id="drive-b-controls">
+            <summary>Drive B</summary>
+            <p>
+              Insert an 800 KB raw disk, or start with a blank data disk. Power
+              off to change disks; in TOS/M use DIR B: or PIP B:=A:FILENAME.
+            </p>
+            <input
+              type="file"
+              id="disk-b"
+              aria-label="Drive B disk image"
+              accept=".img,.raw,.dsk"
+            />
+            <label
+              ><input type="checkbox" id="writable-b" checked /> Allow writes to
+              drive B copy</label
+            >
+            <div class="secondary-controls">
+              <button id="insert-b">Insert selected disk</button
+              ><button id="blank-b">Insert blank disk</button>
+              <button id="eject-b" disabled>Eject B</button
+              ><button id="export-b" disabled>Export B disk</button>
+            </div>
+            <p id="disk-b-status">Drive B is empty.</p>
+          </details>
+          <details data-robotron>
+            <summary>Printer output</summary>
+            <p>
+              Virtual serial printer · raw bytes, including control codes.
+              Capture is limited to 64 KB per session; export before clearing.
+            </p>
+            <p id="printer-status">No output yet.</p>
+            <button id="printer-export" disabled>Export printer output</button>
+            <button id="printer-clear" disabled>Clear output</button>
           </details>
           <details id="media-controls">
             <summary>Boot media and session disk <span>+</span></summary>
