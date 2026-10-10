@@ -129,6 +129,7 @@ async function configure(demo) {
   keyboard.reset();
   scene?.setMachine(kind);
   $("separate-parts").checked = false;
+  $("viewport").dataset.interior = "false";
   $("key-list").hidden = true;
   $("key-list-toggle").textContent = "Show keyboard buttons";
   $("key-list-toggle").setAttribute("aria-expanded", "false");
@@ -321,6 +322,11 @@ for (const b of document.querySelectorAll("[data-view]"))
   b.onclick = () => {
     release();
     $("screen-panel").hidden = true;
+    const inside = b.dataset.view === "inside";
+    $("separate-parts").checked = false;
+    scene?.separate(false);
+    scene?.interior(inside);
+    $("viewport").dataset.interior = String(inside);
     scene?.view(b.dataset.view);
     showInspection(b.dataset.view);
     for (const button of document.querySelectorAll("[data-view]"))
@@ -330,6 +336,8 @@ $("separate-parts").onchange = () => {
   release();
   const split = $("separate-parts").checked;
   scene?.separate(split);
+  scene?.interior(split);
+  $("viewport").dataset.interior = String(split);
   scene?.view(split ? "assembly" : "overview");
   showInspection(split ? "assembly" : "overview");
   for (const b of document.querySelectorAll("[data-view]"))

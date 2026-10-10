@@ -156,6 +156,7 @@ for (const gesture of ["click", "drag", "cancel"]) {
 test("inspection separates the exterior and identifies missing rear references", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
@@ -163,7 +164,7 @@ test("inspection separates the exterior and identifies missing rear references",
   );
   await page.locator("#separate-parts").check();
   await expect(page.locator("#inspection-text")).toContainText(
-    "not been modeled",
+    "modeled from references",
   );
   await page.locator("#separate-parts").uncheck();
   await page.getByRole("button", { name: "Rear", exact: true }).click();
