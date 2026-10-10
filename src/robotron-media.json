@@ -1,0 +1,31 @@
+{
+  "name": "Robotron S550 / TOS/M 1.0",
+  "source": "https://github.com/usovmv/robotron-1715m-fpga/releases/download/v0.1/Release-v0.1.zip",
+  "archive_sha256": "d3b072a98a90fe80e3d12acab61221ec6a02a31cfbd8ca620096165bb243cb49",
+  "original_td0_sha256": "26b6342ce9e05cb3c94bba28287cb6c7f030a6c3b17ae1db2d9ecec661e0ad9e",
+  "files": [
+    {
+      "file": "s550.bin",
+      "sha256": "37e58472a049e1785c3521ec6b23c2d269d93fa5fede696dc7bd72eabb4af031",
+      "size": 2048,
+      "role": "boot ROM",
+      "conversion": "Unmodified rom/s550.bin"
+    },
+    {
+      "file": "cas.bin",
+      "sha256": "8a085e4b8988c47de9ca05bdd65cfa7657d45b87efb72e3ee6a0bbcbf6bab23b",
+      "size": 256,
+      "role": "CAS PROM",
+      "conversion": "fpga/rtl/287.hex converted to 256 raw bytes using dac-emulation/tools/prepare_robotron_media.py"
+    },
+    {
+      "file": "tosm10.img",
+      "sha256": "f724763d5e48c0f15341e95d7b85f645533dd7dfa270cbce4e44d3025e62b23b",
+      "size": 819200,
+      "role": "TOS/M 1.0 boot disk",
+      "conversion": "tools/robotron_td0_to_raw.c with libdsk; 80 cylinders, 2 heads, sectors 1..5, 1024 bytes; all 800 reads succeeded"
+    }
+  ],
+  "rights": "Historical third-party media; redistribution licence not established. Excluded from DAC MIT licence.",
+  "specimen": "Reference configuration, not a dump of Danila\u2019s machine."
+}

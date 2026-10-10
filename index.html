@@ -199,7 +199,7 @@
             </div>
             <div>
               <dt>RUNNING</dt>
-              <dd id="media-label">DAC diagnostic ROM</dd>
+              <dd id="media-label">S550 · TOS/M 1.0</dd>
             </div>
           </dl>
           <div class="power-row">
@@ -219,12 +219,11 @@
             ><label><input id="turbo" type="checkbox" /> 4× speed</label>
           </div>
           <p id="fidelity">
-            Original DAC diagnostic — not historical firmware. Try typing on the
-            enlarged screen. Explore the exterior reconstructed from Danila’s
-            photographs.
+            Historical S550 ROM and TOS/M 1.0 disk. Power on, open Screen,
+            and wait for A&gt;. Try DIR.
           </p>
           <details id="media-controls">
-            <summary>Load your machine’s media <span>+</span></summary>
+            <summary>Boot media and session disk <span>+</span></summary>
             <p>
               Files stay in your browser. Power off before loading. Robotron
               needs a 2 KB boot ROM and 256-byte CAS PROM; character data is
@@ -249,7 +248,9 @@
               copy</label
             ><button id="load">Use selected files</button
             ><button id="export" disabled>Export session disk</button
+            ><button id="historical" data-robotron>Restore historical TOS/M</button
             ><button id="demo">Restore DAC diagnostic</button>
+            <p data-robotron>Historical media: <a href="media/robotron/NOTICE.txt" target="_blank" rel="noreferrer">sources and rights</a>. Not covered by the museum’s MIT licence.</p>
           </details>
           <p id="error" role="alert"></p>
         </aside>
