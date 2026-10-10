@@ -107,7 +107,7 @@ test("keyboard buttons send documented bytes, latch modifiers and reset safely",
 test("a key on the 3D model types, while dragging and cancelled gestures do not", async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 1440, height: 1100 });
+  await page.setViewportSize({ width: 1280, height: 900 });
   await observeKeys(page);
   await page.getByRole("button", { name: "Keyboard", exact: true }).click();
   const manifest = await (
@@ -148,6 +148,16 @@ test("a key on the 3D model types, while dragging and cancelled gestures do not"
     .dispatchEvent("pointercancel", { pointerId: 1 });
   await page.mouse.up();
   expect(await page.evaluate(() => window.sentKeys)).toEqual([97]);
+});
+
+test("inspection separates the exterior and identifies missing rear references", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator("#viewport")).toHaveAttribute(
+    "data-model",
+    "robotron-photo",
+  );
   await page.locator("#separate-parts").check();
   await expect(page.locator("#inspection-text")).toContainText(
     "not been modeled",
