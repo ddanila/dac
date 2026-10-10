@@ -20,6 +20,11 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
     if (e.type() === "error") errors.push(e.text());
   });
   await page.goto("/");
+  await expect(page.locator("#power")).toBeEnabled();
+  await page.locator("#media-controls summary").click();
+  await page.locator("#demo").click();
+  await expect(page.locator("#media-label")).toHaveText("DAC diagnostic ROM");
+
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
     "robotron-photo",
@@ -94,6 +99,11 @@ test("physical Robotron switches power and reset the live core", async ({
   const { PerspectiveCamera, Vector3 } = await import("three");
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
+  await expect(page.locator("#power")).toBeEnabled();
+  await page.locator("#media-controls summary").click();
+  await page.locator("#demo").click();
+  await expect(page.locator("#media-label")).toHaveText("DAC diagnostic ROM");
+
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
     "robotron-photo",

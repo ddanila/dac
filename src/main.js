@@ -1,4 +1,5 @@
 import "./style.css";
+import { loadHistoricalRobotron } from "./historical-media.js";
 import { createScene } from "./scene.js";
 import { createRobotronKeyboard } from "./robotron-keyboard.js";
 import { showInspection } from "./inspection.js";
@@ -117,7 +118,7 @@ const descriptions = {
     "Juku’s Z80 relative, with adapted firmware. This first portable profile reproduces its bounded boot; keyboard and disks are not yet modeled.",
   ],
 };
-async function configure(demo) {
+async function configure(demo, historical = false) {
   if (!ready) return;
   const ticket = ++configuration;
   $("power").disabled = true;
@@ -152,7 +153,11 @@ async function configure(demo) {
   $("disk-label").hidden = kind === 1;
   let firmware = [],
     image;
-  if (demo) {
+  if (historical && kind === 2) {
+    ({ firmware, disk: image } = await loadHistoricalRobotron(new URL(import.meta.env.BASE_URL, location.origin)));
+    $("media-label").textContent = "S550 · TOS/M 1.0";
+    $("fidelity").textContent = "Historical S550 ROM and TOS/M 1.0 disk. Power on, open Screen, and wait for A>. Try DIR. This reference setup is not yet matched to Danila’s own ROMs or disks. Writes affect only a session copy when enabled.";
+  } else if (demo) {
     const names =
       kind === 2
         ? [
@@ -202,7 +207,7 @@ async function configure(demo) {
 worker.onmessage = ({ data: d }) => {
   if (d.type === "ready") {
     ready = true;
-    configure(true).catch((e) => fail(e.message));
+    configure(true, true).catch((e) => fail(e.message));
   }
   if (d.type === "configured") {
     disk = d.disk;
@@ -226,6 +231,7 @@ worker.onmessage = ({ data: d }) => {
     for (const id of [
       "load",
       "demo",
+      "historical",
       "machine",
       "rom",
       "prom",
@@ -281,6 +287,7 @@ worker.onmessage = ({ data: d }) => {
     for (const id of [
       "load",
       "demo",
+      "historical",
       "machine",
       "rom",
       "prom",
@@ -310,11 +317,12 @@ $("load").onclick = () =>
     $("power").disabled = false;
     fail(e.message);
   });
+$("historical").onclick = () => configure(true, true).catch((e) => fail(e.message));
 $("demo").onclick = () => configure(true).catch((e) => fail(e.message));
 $("machine").onchange = () => {
   release();
   for (const id of ["rom", "prom", "glyph", "disk"]) $(id).value = "";
-  configure(true).catch((e) => fail(e.message));
+  configure(true, true).catch((e) => fail(e.message));
 };
 $("export").onclick = () => send({ type: "export" });
 $("screen-view").onclick = () => {

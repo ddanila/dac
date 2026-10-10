@@ -1,0 +1,21 @@
+Historical Robotron media — separate from DAC's MIT-licensed work
+
+S550 boot ROM, 287 CAS decoder PROM and TOS/M 1.0 disk image.
+Original third-party rights remain with their respective holders. We have
+not established a redistribution licence or public-domain status for these
+historical binaries. Their availability in an archive is not a licence.
+DAC's MIT licence does not apply to these files.
+
+Preservation source: usovmv/robotron-1715m-fpga, Release v0.1:
+https://github.com/usovmv/robotron-1715m-fpga/releases/tag/v0.1
+Firmware archive and contributor credits (including Johann Spannenkrebs):
+https://www.sax.de/~zander/pc1715/pc_bin.html
+
+The manifest records exact source identities, conversions and SHA-256 hashes:
+https://github.com/ddanila/dac/blob/main/src/robotron-media.json
+The boot disk is decoded from sw/images/tosm10_orig/A92V010A.TD0.
+Do not substitute sw/images/tosm10_x/robotron.img: its PIP.COM is damaged.
+No guest patches have been applied. No character ROM is supplied here; the
+core's existing fallback glyphs and OS-loaded character data remain in use.
+This is a tested historical reference setup, not media dumped from Danila's
+physical machine and not proof of its factory-installed OS or ROM revision.
