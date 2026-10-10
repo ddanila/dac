@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "fcf1283b5675f577e643deb6830cff4d1e97584b",
+  "revision": "63af95b14ddb3bb78d02f5fca816a9d4f3844d14",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "e28b33ae0a11b9a670b877648e256bc0dd1c07120c2482474a9df8225ab5d892"
+      "sha256": "d0ff80ed82b2daf809d95bdcac73450f3fd818024c8c98863646403b5259f269"
     },
     {
       "file": "LICENSE",
@@ -125,27 +125,27 @@
     },
     {
       "file": "meshes/drive-frames.stl",
-      "sha256": "6f72899c2d9cc56ed69a9d1ea5ff4a466f2afc4712c84aa5ab8fc8e7326ab958"
+      "sha256": "54963ad5e4ebe085dc6f8900ed18ed2050afe302642e3d3d7f85b8861dd41b74"
     },
     {
       "file": "meshes/drive-mechanisms.stl",
-      "sha256": "d12d21701784f8b68307cef13d917f0d21a13f6d0ad232fe08b009e907e52b1b"
+      "sha256": "9f18543bf4b112a6abaec53546d3a9ae4037d7d0d28e6b41a571e10df192d8f3"
     },
     {
       "file": "meshes/drive-motors.stl",
-      "sha256": "0030677c43b0329ac1d4d5d0b1c26048e1ee12d91012687b32dfa73d43f8c1cb"
+      "sha256": "f6908c7cb5985b6db1c4b28d0493a888ccc575e4ac96d5c11192ebb72fb299a7"
     },
     {
       "file": "meshes/drive-boards.stl",
-      "sha256": "307bc1aee925671a6d9e35bcfe26d8e4a90e9ac2fe3bb633e6e8a749fb810867"
+      "sha256": "f8b929566e7b8832d3a501d26f65ef93d6bef9c0feb0f0b81f510f13acb7934d"
     },
     {
       "file": "meshes/drive-contacts.stl",
-      "sha256": "258bdc66198fbed7032e40ee60c6fb40061f757a330bd3f8f1902b78f9c73f0a"
+      "sha256": "9e2908589697a2a9c679dfe63fc866169cae0dd9e9b7c4ff550bfc077d1f4279"
     },
     {
       "file": "meshes/drive-coils.stl",
-      "sha256": "81af2b9ca2c5286d06ec456a5afbc0699f8647693fa5a04ed42d6e42f99307b1"
+      "sha256": "af155ab96cb3bc09a5e70c9d80ee0dba7776962daea044d9d68957ff077037da"
     },
     {
       "file": "meshes/drive-bracket.stl",
@@ -264,6 +264,18 @@
       "sha256": "5d652ab5e4f90a49d48359284d58754b6ab4ed734b5010e03988a366d9ba99fd"
     },
     {
+      "file": "meshes/drive-power-sockets.stl",
+      "sha256": "c704e982497c7227eaea1fe38720b9ed6ae8daca5358ed9158111ecf343a29a0"
+    },
+    {
+      "file": "meshes/drive-traces.stl",
+      "sha256": "ad2e3d9d235f0ce63d4241d07f11815931022e0024d1e3554ef76a0cf38ef1e2"
+    },
+    {
+      "file": "meshes/drive-label-plates.stl",
+      "sha256": "296a3e279c9d7d93edacab2dd32d6c02c51d925298dc40f6184f8fd596e91b5f"
+    },
+    {
       "file": "meshes/keycap-0.stl",
       "sha256": "a8d94931e3329b88d4e013694a15ede3717b77d54ceb417e70a8bab28a2e5ad3"
     },
@@ -290,6 +302,30 @@
     {
       "file": "meshes/keycap-6.stl",
       "sha256": "252e7d16c2b064b6793b9fb9307a531eeb6fd8ed201a3ee4ff90f89ea73331f8"
+    },
+    {
+      "file": "photos/PXL_20250212_094033966.jpg",
+      "sha256": "769b32ca02a1abc93f7feff4930c7f01716b715d5846a1b48bf63781e16c82ce"
+    },
+    {
+      "file": "photos/PXL_20250212_094038758.jpg",
+      "sha256": "195c9c92f32fa5eb8bbc86b05dbc046d1c9286ef592d075e0725283fa48d88b2"
+    },
+    {
+      "file": "photos/PXL_20250212_094043026.jpg",
+      "sha256": "bd4865d83d11a86bc7510b3f77ef1efd9edc8cf5cee19dc42446a40f00dc702a"
+    },
+    {
+      "file": "photos/PXL_20250212_094057627.jpg",
+      "sha256": "dcdaa0e26262d4c25d679291e3b07a9c869adfbf592d41284fc9ef8f6266222c"
+    },
+    {
+      "file": "photos/PXL_20250212_094103763.jpg",
+      "sha256": "e6dc92b88e83478ed6bcd12c124b36beb0dba4874a18529ada6a40d25f38eca1"
+    },
+    {
+      "file": "photos/PXL_20250212_094109733.jpg",
+      "sha256": "0444dfb6950320351f08ac3298b5d1d6dcaa440119a201416134576b178761f0"
     },
     {
       "file": "photos/PXL_20250430_135132170.jpg",

@@ -250,6 +250,8 @@ export async function loadRobotron(displayTexture) {
     mesh.position.set(...p.position);
     mesh.rotation.set(...p.rotation.map(THREE.MathUtils.degToRad));
     mesh.userData.rest = mesh.position.clone();
+    mesh.userData.assembly = p.assembly;
+    mesh.visible = p.section !== "interior";
     group.add(mesh);
     patches.push(mesh);
   }
@@ -278,6 +280,21 @@ export async function loadRobotron(displayTexture) {
     mesh.position.set(...position);
     group.add(mesh);
     return mesh;
+  }
+  if (data.driveLabels?.reconstructedText) {
+    const p = data.driveLabels.reconstructedText;
+    const mesh = marking(p.name, p.size, p.position, markingTexture((c, w, h) => {
+      c.fillStyle = "#24251f";
+      c.textAlign = "center";
+      c.textBaseline = "middle";
+      c.font = "bold 74px Arial";
+      c.fillText(p.text, w / 2, h / 2, w - 12);
+    }, 1024, 144));
+    mesh.rotation.set(...p.rotation.map(THREE.MathUtils.degToRad));
+    mesh.userData.rest = mesh.position.clone();
+    mesh.userData.assembly = p.assembly;
+    mesh.visible = false;
+    patches.push(mesh);
   }
   const arrow = markingTexture((c) => {
     c.lineWidth = 9;
@@ -425,6 +442,11 @@ export async function loadRobotron(displayTexture) {
     for (const mesh of patches) {
       mesh.position.copy(mesh.userData.rest);
       if (mesh.name === "brand") mesh.position.y -= split * 40;
+      if (mesh.userData.assembly === "drives") {
+        mesh.visible = inside || split > 0.01;
+        mesh.position.y -= split * 145;
+        mesh.position.z += split * 115;
+      }
     }
     return {
       dirty: dirty || beforeSplit !== split,

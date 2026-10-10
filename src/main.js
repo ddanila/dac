@@ -348,6 +348,10 @@ for (const b of document.querySelectorAll("[data-view]"))
   b.onclick = () => {
     release();
     $("screen-panel").hidden = true;
+    if (b.dataset.view === "drive-labels") {
+      $("open-case").checked = true;
+      $("separate-parts").checked = true;
+    }
     if (b.dataset.view === "inside") $("open-case").checked = true;
     if (b.dataset.view === "monitor-inside") $("open-monitor").checked = true;
     updateCase();
