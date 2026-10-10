@@ -1,3 +1,4 @@
+import { keyPoint } from "./robotron-picking.js";
 import { test, expect } from "@playwright/test";
 import { PerspectiveCamera, Vector3, Euler } from "three";
 import { photoProjection } from "../src/robotron-model.js";
@@ -206,4 +207,28 @@ test("a static exhibit stops submitting GPU draws", async ({ page }) => {
   await expect
     .poll(() => page.evaluate(() => window.gpuDraws))
     .toBeGreaterThan(before);
+});
+
+
+test("physical keyboard holds the modeled key down until release and blur clears it", async ({ page }) => {
+  await page.setViewportSize({width:1280,height:900});
+  await observeKeys(page);
+  await page.locator('[data-view="keyboard"]').click();
+  const model = await (await page.request.get('/models/robotron-1715m/model.json')).json();
+  const key = model.keys.find(k => k.input.code === 97);
+  await page.locator('#viewport').focus();
+  const point = await keyPoint(page, key, model);
+  const clip = {x:Math.round(point.x)-16,y:Math.round(point.y)-12,width:32,height:24};
+  const picture = () => page.screenshot({clip});
+  const resting = await picture();
+  await page.keyboard.down('a');
+  await page.waitForTimeout(250); // longer than the former 140 ms pulse
+  const held = await picture();
+  expect(held.equals(resting)).toBe(false);
+  await page.keyboard.up('a');
+  await expect.poll(async () => (await picture()).equals(resting)).toBe(true);
+  await page.keyboard.down('a');
+  await page.locator('#viewport').evaluate(el => el.blur());
+  await expect.poll(async () => (await picture()).equals(resting)).toBe(true);
+  await page.keyboard.up('a');
 });

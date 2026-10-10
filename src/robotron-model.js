@@ -1,3 +1,4 @@
+import { createFanMotion } from "./robotron-fan.js";
 import { modelAsset } from "./model-assets.js";
 import { loadPcbPhotos } from "./robotron-interior.js";
 import { crtGeometry, crtMaterial } from "./robotron-crt.js";
@@ -355,6 +356,7 @@ export async function loadRobotron(displayTexture) {
     wasInside = false,
     monitorOpen = false,
     wasMonitorOpen = false;
+  const moveFan = createFanMotion(objects.get("fan-rotor"));
   const pressed = new Set();
   function releaseKeys() {
     pressed.clear();
@@ -399,6 +401,8 @@ export async function loadRobotron(displayTexture) {
     );
     dirty ||= beforeLamp !== lampMaterial.emissive.getHex();
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const fanMoved = moveFan(performance.now(), power, objects.get("fan-rotor").visible, reduced);
+    dirty = fanMoved || dirty;
     split = reduced
       ? splitTarget
       : THREE.MathUtils.lerp(split, splitTarget, 0.15);
@@ -456,7 +460,7 @@ export async function loadRobotron(displayTexture) {
     }
     return {
       dirty: dirty || beforeSplit !== split,
-      shadows: changedInside || beforeSplit !== split,
+      shadows: changedInside || beforeSplit !== split || fanMoved,
     };
   }
   return {

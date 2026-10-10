@@ -1,0 +1,25 @@
+import { test, expect } from '@playwright/test';
+import { Mesh, BoxGeometry, Vector3 } from 'three';
+import { createFanMotion } from '../src/robotron-fan.js';
+test('fan rotates about its spindle only when powered and redraws only when visible', () => {
+  const geometry = new BoxGeometry(10, 50, 50).translate(80, 109, 67);
+  const rotor = new Mesh(geometry);
+  const update = createFanMotion(rotor);
+  update(0, false, true, false);
+  expect(update(20, false, true, false)).toBe(false);
+  expect(rotor.rotation.x).toBe(0);
+  expect(update(40, true, true, false)).toBe(true);
+  expect(rotor.rotation.x).toBeGreaterThan(0);
+  rotor.updateMatrixWorld();
+  expect(new Vector3().applyMatrix4(rotor.matrixWorld).toArray()).toEqual([80, 109, 67]);
+  const angle = rotor.rotation.x;
+  expect(update(60, false, true, false)).toBe(false);
+  expect(rotor.rotation.x).toBe(angle);
+  expect(update(80, true, true, true)).toBe(false);
+  expect(rotor.rotation.x).toBe(angle);
+  expect(update(100, true, false, false)).toBe(false);
+  expect(rotor.rotation.x).toBeGreaterThan(angle);
+  const beforeResume = rotor.rotation.x;
+  update(100000, true, true, false);
+  expect(rotor.rotation.x - beforeResume).toBeCloseTo(.4);
+});

@@ -23,8 +23,10 @@ const held = new Map(),
 function fail(message) {
   $("error").textContent = message;
 }
+const heldModelKeys = new Map();
 function release() {
   held.clear();
+  heldModelKeys.clear();
   keyboard.reset();
   scene?.releaseKeys();
   if (on) send({ type: "key", key: 0, down: false });
@@ -417,6 +419,16 @@ function keyDown(e) {
     e.preventDefault();
     return;
   }
+  if (Number($("machine").value) === 2 && ["Shift", "Control", "CapsLock"].includes(e.key)) {
+    const modifier = { Shift: "shift", Control: "ctrl", CapsLock: "caps" }[e.key];
+    const modeled = modelKeys.find(k => k.input.modifier === modifier);
+    if (modeled) {
+      e.preventDefault();
+      heldModelKeys.set(e.code, modeled.id);
+      scene?.keyState(modeled.id, true);
+    }
+    return;
+  }
   const key = keyCode(e);
   if (
     !on ||
@@ -438,7 +450,8 @@ function keyDown(e) {
         ctrl: e.ctrlKey,
         upper: e.key.length === 1 ? e.key === e.key.toUpperCase() : undefined,
       });
-      scene?.pulse(modeled.id);
+      heldModelKeys.set(e.code, modeled.id);
+      for (const id of heldModelKeys.values()) scene?.keyState(id, true);
       return;
     }
   }
@@ -450,6 +463,13 @@ function keyDown(e) {
   send({ type: "key", key, down: true });
 }
 function keyUp(e) {
+  const id = heldModelKeys.get(e.code);
+  if (id) {
+    e.preventDefault();
+    heldModelKeys.delete(e.code);
+    const key = modelKeys.find(k => k.id === id);
+    scene?.keyState(id, [...heldModelKeys.values()].includes(id) || !!keyboard.state[key?.input.modifier]);
+  }
   const key = held.get(e.code);
   if (key === undefined) return;
   e.preventDefault();
@@ -461,6 +481,7 @@ screen.onkeyup = keyUp;
 $("viewport").onkeydown = keyDown;
 $("viewport").onkeyup = keyUp;
 screen.onblur = release;
+$("viewport").onblur = release;
 window.addEventListener("blur", release);
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) release();
