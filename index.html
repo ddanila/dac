@@ -44,9 +44,12 @@
                 <button data-view="overview">Overview</button
                 ><button data-view="front">Front</button
                 ><button data-view="keyboard" data-robotron>Keyboard</button
+                ><button data-view="connector" data-robotron>Connector</button
                 ><button data-view="drives" data-robotron>Drives</button
                 ><button data-view="monitor" data-robotron>Monitor</button
                 ><button data-view="inside" data-robotron>Inside</button
+                ><button data-view="monitor-inside" data-robotron>
+                  Inside monitor</button
                 ><button data-view="back">Rear</button
                 ><button data-view="under">Underneath</button
                 ><button id="screen-view">Screen</button>
@@ -77,6 +80,12 @@
                 target="_blank"
                 rel="noreferrer"
                 >Old Crap Vintage Computing</a
+              >. Monitor reference:
+              <a
+                href="https://www.robotrontechnik.de/html/zubehoer/bildschirme.htm#k7222-25"
+                target="_blank"
+                rel="noreferrer"
+                >Robotrontechnik K7222.25</a
               >. Original photo rights apply; these are not photos of Danila’s
               1715M. We will replace them with the owner’s photos.
             </p>
@@ -142,8 +151,16 @@
               </p>
             </details>
             <label class="assembly-control"
-              ><input id="separate-parts" type="checkbox" disabled /> Open case
-              and separate parts</label
+              ><input id="open-case" type="checkbox" disabled /> Open system
+              unit</label
+            >
+            <label class="assembly-control"
+              ><input id="open-monitor" type="checkbox" disabled /> Open monitor
+              shell</label
+            >
+            <label class="assembly-control"
+              ><input id="separate-parts" type="checkbox" disabled /> Lift
+              drives and keyboard</label
             >
             <button
               id="key-list-toggle"

@@ -62,6 +62,8 @@ function modelKey(key) {
   return keyboard.activate(key);
 }
 function keyButtons(keys) {
+  $("open-case").disabled = false;
+  $("open-monitor").disabled = false;
   $("separate-parts").disabled = false;
   $("key-list-toggle").disabled = false;
   modelKeys = keys;
@@ -129,6 +131,8 @@ async function configure(demo) {
   keyboard.reset();
   scene?.setMachine(kind);
   $("separate-parts").checked = false;
+  $("open-case").checked = false;
+  $("open-monitor").checked = false;
   $("viewport").dataset.interior = "false";
   $("key-list").hidden = true;
   $("key-list-toggle").textContent = "Show keyboard buttons";
@@ -318,33 +322,51 @@ $("screen-view").onclick = () => {
   if (!$("screen-panel").hidden) screen.focus();
   else release();
 };
+function updateCase() {
+  const open = $("open-case").checked;
+  scene?.interior(open);
+  scene?.openMonitor($("open-monitor").checked);
+  $("viewport").dataset.monitorInterior = String($("open-monitor").checked);
+  scene?.separate($("separate-parts").checked);
+  $("viewport").dataset.interior = String(open);
+}
+function selectView(name) {
+  scene?.view(name);
+  showInspection(name);
+  for (const button of document.querySelectorAll("[data-view]"))
+    button.setAttribute("aria-pressed", String(button.dataset.view === name));
+}
 for (const b of document.querySelectorAll("[data-view]"))
   b.onclick = () => {
     release();
     $("screen-panel").hidden = true;
-    const inside = b.dataset.view === "inside";
-    $("separate-parts").checked = false;
-    scene?.separate(false);
-    scene?.interior(inside);
-    $("viewport").dataset.interior = String(inside);
-    scene?.view(b.dataset.view);
-    showInspection(b.dataset.view);
-    for (const button of document.querySelectorAll("[data-view]"))
-      button.setAttribute("aria-pressed", String(button === b));
+    if (b.dataset.view === "inside") $("open-case").checked = true;
+    if (b.dataset.view === "monitor-inside") $("open-monitor").checked = true;
+    updateCase();
+    selectView(b.dataset.view);
   };
+$("open-case").onchange = () => {
+  release();
+  if (!$("open-case").checked) $("separate-parts").checked = false;
+  updateCase();
+  selectView($("open-case").checked ? "inside" : "overview");
+};
+$("open-monitor").onchange = () => {
+  release();
+  updateCase();
+  selectView($("open-monitor").checked ? "monitor-inside" : "monitor");
+};
 $("separate-parts").onchange = () => {
   release();
-  const split = $("separate-parts").checked;
-  scene?.separate(split);
-  scene?.interior(split);
-  $("viewport").dataset.interior = String(split);
-  scene?.view(split ? "assembly" : "overview");
-  showInspection(split ? "assembly" : "overview");
-  for (const b of document.querySelectorAll("[data-view]"))
-    b.setAttribute(
-      "aria-pressed",
-      String(!split && b.dataset.view === "overview"),
-    );
+  if ($("separate-parts").checked) $("open-case").checked = true;
+  updateCase();
+  selectView(
+    $("separate-parts").checked
+      ? "assembly"
+      : $("open-case").checked
+        ? "inside"
+        : "overview",
+  );
 };
 $("key-list-toggle").onclick = () => {
   const hidden = !$("key-list").hidden;

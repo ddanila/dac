@@ -1,0 +1,5 @@
+Reference photograph supplied by Robotrontechnik:
+https://www.robotrontechnik.de/html/zubehoer/bildschirme.htm#k7222-25
+https://www.robotrontechnik.de/bilder/Zubehoer/Bildschirme/K7222/012-6920_k.jpg
+
+Original photographic rights remain with their owner. Not covered by this repository’s MIT licence. No broader redistribution licence has been verified. Depicts a reference K7222 circuit board, not verified in Danila’s monitor; its exact board revision and internal dimensions remain provisional. Replace with owner photos when available.

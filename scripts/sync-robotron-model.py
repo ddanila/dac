@@ -14,7 +14,7 @@ files=[('browser/model.json','model.json',None),('LICENSE','LICENSE',None)]
 for part in data['parts']+data.get('keyMeshes',[]):files.append(('browser/'+part['file'],part['file'],part['sha256']))
 for name in sorted({p['photo'] for p in data['patches']} | set(data.get('references', []))):files.append(('reference/photos/'+name,'photos/'+name,photos[name]['sha256']))
 for board in data.get('pcbReferences',[]):files.append((board['file'],board['file'],board['sha256']))
-if data.get('pcbReferences'):files.append(('reference/oldcrap/NOTICE.txt','reference/oldcrap/NOTICE.txt',None))
+for directory in sorted({str(Path(b['file']).parent) for b in data.get('pcbReferences',[])}):files.append((directory+'/NOTICE.txt',directory+'/NOTICE.txt',None))
 previous=json.loads((target/'source.json').read_text()).get('files',[]) if (target/'source.json').exists() else []
 records=[]
 for src,dest,expected in files:

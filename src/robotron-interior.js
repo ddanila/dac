@@ -1,3 +1,4 @@
+import { modelAsset } from "./model-assets.js";
 import * as THREE from "three";
 
 // Image landmarks also generate the OpenSCAD package bodies. No generic chip grid.
@@ -5,6 +6,16 @@ export function pcbPoint(board, x, y, height = 0) {
   const [x0, y0, x1, y1] = board.crop;
   const u = (x - x0) / (x1 - x0),
     v = (y - y0) / (y1 - y0);
+  if (board.worldCorners) {
+    const [tl, tr, , bl] = board.worldCorners;
+    return tl.map(
+      (value, i) =>
+        value +
+        u * (tr[i] - value) +
+        v * (bl[i] - value) +
+        height * board.normal[i],
+    );
+  }
   const [ox, oy, oz] = board.origin,
     [w, h] = board.size;
   return board.rotated
@@ -60,7 +71,9 @@ export async function loadPcbPhotos(data, base) {
   const loader = new THREE.TextureLoader();
   return Promise.all(
     (data.pcbReferences || []).map(async (board) => {
-      const texture = await loader.loadAsync(new URL(board.file, base).href);
+      const texture = await loader.loadAsync(
+        modelAsset(board.file, base, board.sha256).href,
+      );
       texture.colorSpace = THREE.SRGBColorSpace;
       texture.anisotropy = 4;
       const mesh = new THREE.Mesh(
@@ -74,6 +87,7 @@ export async function loadPcbPhotos(data, base) {
       );
       mesh.name = `reference-${board.name}`;
       mesh.userData.credit = board.credit;
+      mesh.userData.section = board.section || "interior";
       return mesh;
     }),
   );

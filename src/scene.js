@@ -30,6 +30,8 @@ export function createScene(
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
   let renderRequested = true;
+  let caseOpen = false;
+  let assembliesLifted = false;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -213,7 +215,11 @@ export function createScene(
     robotron?.group.updateWorldMatrix(true, true);
     ray.setFromCamera(point, camera);
     return kind === 2 && robotron
-      ? ray.intersectObject(robotron.group, true)[0]?.object
+      ? ray.intersectObject(robotron.group, true).find((hit) => {
+          for (let node = hit.object; node; node = node.parent)
+            if (!node.visible) return false;
+          return true;
+        })?.object
       : ray.intersectObject(power)[0]?.object;
   }
   function cancelGesture() {
@@ -312,12 +318,19 @@ export function createScene(
     },
     releaseKeys: () => robotron?.releaseKeys(),
     pulse: (id) => robotron?.pulse(id),
+    openMonitor: (on) => {
+      cancelGesture();
+      robotron?.openMonitor(on);
+      renderRequested = true;
+    },
     interior: (on) => {
+      caseOpen = on;
       cancelGesture();
       robotron?.interior(on);
       renderRequested = true;
     },
     separate: (on) => {
+      assembliesLifted = on;
       cancelGesture();
       robotron?.separate(on);
     },
@@ -330,6 +343,9 @@ export function createScene(
       robotron?.releaseKeys();
       robotron?.separate(false);
       robotron?.interior(false);
+      robotron?.openMonitor(false);
+      caseOpen = false;
+      assembliesLifted = false;
       kind = value;
       visibility();
     },
@@ -362,6 +378,10 @@ export function createScene(
           [0, 1.55, 1.45],
           [0, 0.07, 0.88],
         ],
+        connector: [
+          [-1.08, 0.38, 0.72],
+          [-0.66, 0.055, 0.36],
+        ],
         drives: [
           [-0.25, 0.6, 1.9],
           [-0.2, 0.18, 0.48],
@@ -370,15 +390,39 @@ export function createScene(
           [0.9, 1.4, 1.7],
           [0, 0.85, 0],
         ],
+        "monitor-inside": [
+          [1.05, 1.65, -1.95],
+          [0, 1, 0.05],
+        ],
         inside: [
-          [1.2, 1.7, 1.5],
-          [0, 0.12, 0],
+          [1.5, 2.0, 2.8],
+          [0, 0.6, -0.2],
         ],
         assembly: [
-          [1.5, 1.8, 2.2],
-          [0, 0.15, 0.3],
+          [2.1, 2.3, 3.1],
+          [0, 0.6, -0.1],
         ],
       };
+      if (caseOpen) {
+        views.drives = assembliesLifted
+          ? [
+              [0.65, 1.45, 1.7],
+              [-0.2, 0.5, 0.6],
+            ]
+          : [
+              [0.65, 1.1, 1.25],
+              [-0.2, 0.18, 0.25],
+            ];
+        views.monitor = [
+          [0.9, 1.85, 0.7],
+          [0, 1.3, -1],
+        ];
+        views["monitor-inside"] = [
+          [1.05, 2.1, -2.95],
+          [0, 1.45, -0.95],
+        ];
+        views.overview = views.assembly;
+      }
       const view = views[name] || views.overview;
       camera.position.set(...view[0]);
       controls.target.set(...view[1]);

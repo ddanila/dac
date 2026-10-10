@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "2771a463b3f0c74156b96ddbc420c9e7537ccdb9",
+  "revision": "fcf1283b5675f577e643deb6830cff4d1e97584b",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "d8f4c78fa35a314b7fb67f536ee53dd638cf5d8351455846302449ca9e5f4375"
+      "sha256": "e28b33ae0a11b9a670b877648e256bc0dd1c07120c2482474a9df8225ab5d892"
     },
     {
       "file": "LICENSE",
@@ -13,7 +13,7 @@
     },
     {
       "file": "meshes/case-base.stl",
-      "sha256": "84fdcf2550421aa29807a92d89f2edd0ba510a518d5cdf88182a3bb95ea70547"
+      "sha256": "9566a0024586b6ebad902c48c1e128e0dc9194a7685ae191e4118fe895cb11ac"
     },
     {
       "file": "meshes/case-lid.stl",
@@ -44,8 +44,8 @@
       "sha256": "3c0884ba9be9e6dbb89423acfc6ea0fbcc1b756b012f423c2a2b4fef6ea884e0"
     },
     {
-      "file": "meshes/monitor-shell.stl",
-      "sha256": "58f234287c1c81996695012a3a91f1a321a8534f86af28eb19d0390af48964d9"
+      "file": "meshes/monitor-shell-lower.stl",
+      "sha256": "d41240e3ef12a8f90fd2a1c171df7be97172abb3a6471071d20fbeb3022f0d52"
     },
     {
       "file": "meshes/bezel.stl",
@@ -113,11 +113,11 @@
     },
     {
       "file": "meshes/cable-plug.stl",
-      "sha256": "cc2717775d706c50e8ae2d41098fd10dfff2eadda21c43b746e7aa9ab5b7de36"
+      "sha256": "17cfd5377b1d65c8015d558712f2c1be487d391aa0beefa98f4b07f0eb764121"
     },
     {
       "file": "meshes/plug-screws.stl",
-      "sha256": "6f01bea6479f1b40003b222f8ea4eb727edc714333e13c06c1e0eab3e18afcf8"
+      "sha256": "efa32ad7bfde400e8e95c4c0b27c2cd9c1949367390563941818b69f0ac1f3f8"
     },
     {
       "file": "meshes/monitor-tape.stl",
@@ -216,6 +216,54 @@
       "sha256": "7a90341fc85f5d4e481f0edb262aa53b66875a0e878e4d08c1b794f8999da658"
     },
     {
+      "file": "meshes/monitor-shell-upper.stl",
+      "sha256": "f51e34f264f7e4d02b34d9794eada9f7f899dde9c133c1a23407cec02bca1219"
+    },
+    {
+      "file": "meshes/tube-funnel.stl",
+      "sha256": "258726710ab6d238d6ae2038f5049d9ee245eaccd57521b3b615b91e99e04614"
+    },
+    {
+      "file": "meshes/tube-neck.stl",
+      "sha256": "c8324c54abfcd833e486e38ab16995dce3492f91a748b9e1985fb7d63fbcd77e"
+    },
+    {
+      "file": "meshes/monitor-yoke.stl",
+      "sha256": "65086406d85dec138655fab9d07d1de6af87bc09b45df1ccbc2ab6fadc44e45a"
+    },
+    {
+      "file": "meshes/monitor-coils.stl",
+      "sha256": "1041bf8e9b72911978f825bd1fc6c658aa5624ee9b79059a2ea009c93b1a333d"
+    },
+    {
+      "file": "meshes/monitor-chassis.stl",
+      "sha256": "bdbac41df54830a9f261efee42d34080a813ca546594e54434d255e7e5c9803d"
+    },
+    {
+      "file": "meshes/monitor-boards.stl",
+      "sha256": "e32e90951475576e2808f7a015be844bb560e3a0d775ad63403a6f3566b958e8"
+    },
+    {
+      "file": "meshes/monitor-components.stl",
+      "sha256": "730adae11b32003acc690e403e930d9cfe0e03c9e8d5b844e457dfd9f4907f70"
+    },
+    {
+      "file": "meshes/monitor-capacitors.stl",
+      "sha256": "81235c3857bb2ad0257523ed552bbb88fa5d06a82fae6e1c85f3b8bb4813de96"
+    },
+    {
+      "file": "meshes/monitor-shield.stl",
+      "sha256": "972e4105e15bd2aa7fd363dbb84d7d196927df7594b71dae6481bcfb444eee11"
+    },
+    {
+      "file": "meshes/monitor-wires.stl",
+      "sha256": "a1e27bac5bcc9c51778844f0499b9911763da058cd36fdd33f194b563aa3a87d"
+    },
+    {
+      "file": "meshes/plug-insert.stl",
+      "sha256": "5d652ab5e4f90a49d48359284d58754b6ab4ed734b5010e03988a366d9ba99fd"
+    },
+    {
       "file": "meshes/keycap-0.stl",
       "sha256": "a8d94931e3329b88d4e013694a15ede3717b77d54ceb417e70a8bab28a2e5ad3"
     },
@@ -300,6 +348,26 @@
       "sha256": "10240ba828f6931ad616a2e9d7d0d955c81b2a2fba5a0ca9dd8e59d85aa5e026"
     },
     {
+      "file": "photos/PXL_20261010_090413483.jpg",
+      "sha256": "0d659e5209d80d6ffe8a78eb1c337eb1a9ea7aa6bb74de47bfeb31d054aa8018"
+    },
+    {
+      "file": "photos/PXL_20261010_090416759.jpg",
+      "sha256": "edfe69c9066a48a1a7099a53c11b9b31eb2fd6b76e095b7a33f25cdd22a51128"
+    },
+    {
+      "file": "photos/PXL_20261010_090421901.jpg",
+      "sha256": "3a5d2f9a887e9fb63872889f4a227dcdbf4459613d04793cab81d2c9b3f66fa4"
+    },
+    {
+      "file": "photos/PXL_20261010_090425989.jpg",
+      "sha256": "bccaf6b6a95e53651fe57cc21f66ae8389af7bdcbcd7a19e0bfce37221033273"
+    },
+    {
+      "file": "photos/PXL_20261010_090431122.jpg",
+      "sha256": "0b17c5cb6f62454d03552631574d9fd2403e56d4452b6f72d554694b6947adff"
+    },
+    {
       "file": "reference/oldcrap/motherboard.jpeg",
       "sha256": "6e3810bd1c8d84bca3318933d596f37812b5f0e8ac8cb83e8fb24547e9a04eb5"
     },
@@ -308,8 +376,16 @@
       "sha256": "8e8c0f41c9ffa76a551f3fb1d6cc4ae436ef4e7d948cb7550be817fcd1a4d875"
     },
     {
+      "file": "reference/robotrontechnik/monitor-board.jpeg",
+      "sha256": "cdd00f4f69605d2511a00fa0bdc02ed954b42f8150712ac796c183ff2d01732a"
+    },
+    {
       "file": "reference/oldcrap/NOTICE.txt",
       "sha256": "f4272b8b0cb2add80db3cbb363efe8ec3607e992ad67654f50fe511abd4b2561"
+    },
+    {
+      "file": "reference/robotrontechnik/NOTICE.txt",
+      "sha256": "557d3ccca22270e2ac574e17d5646b75da393209083dfaf46fb0cdb5a6add9b3"
     }
   ]
 }
