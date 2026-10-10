@@ -252,11 +252,11 @@ worker.onmessage = ({ data: d }) => {
     for (const button of $("key-list").querySelectorAll("[data-key]")) {
       const key = modelKeys.find((k) => k.id === button.dataset.key);
       button.title = firmwareKeyboard
-        ? "S600 reference matrix; specimen legends may differ"
+        ? "Reference matrix wiring; specimen legends may differ"
         : key?.input.unsupported || "";
     }
     $("keyboard-mode").textContent = firmwareKeyboard
-      ? "S600 keyboard firmware · reference layout"
+      ? "Keyboard firmware · reference wiring"
       : "Character adapter · no keyboard ROM loaded";
     $("power").disabled = false;
     $("status").textContent = "Powered off";
@@ -319,7 +319,7 @@ worker.onmessage = ({ data: d }) => {
     if (firmwareKeyboard) {
       firmwareKeys.leds(d.keyboardLeds);
       $("keyboard-mode").textContent =
-        `S600 reference keyboard · Caps ${d.keyboardLeds & 2 ? "on" : "off"} · SI/SO ${d.keyboardLeds & 1 ? "on" : "off"}`;
+        `Keyboard firmware · Caps ${d.keyboardLeds & 2 ? "on" : "off"} · SI/SO ${d.keyboardLeds & 1 ? "on" : "off"}`;
     }
     if (Number($("machine").value) === 2) {
       const drive = d.drive || 0;

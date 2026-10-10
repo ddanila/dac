@@ -113,7 +113,7 @@ test("firmware keyboard edits TOS/M disk, browser reload preserves it, discard r
   }
   await expect
     .poll(() => page.evaluate(() => window.activity), { timeout: 15000 })
-    .toBeGreaterThan(79);
+    .toBeGreaterThan(80);
   await page.locator("#power").click();
   await expect(page.locator("#storage-status")).toHaveText(
     "Disk saved in this browser.",
