@@ -1,4 +1,5 @@
 import "./style.css";
+import { createFirmwareKeyboard, matrixKey } from "./robotron-matrix.js";
 import { loadHistoricalRobotron } from "./historical-media.js";
 import { createScene } from "./scene.js";
 import { createRobotronKeyboard } from "./robotron-keyboard.js";
@@ -17,17 +18,24 @@ let on = false,
   disk = false,
   scene,
   configuration = 0,
-  previousPixels;
+  previousPixels,
+  firmwareKeyboard = false,
+  hasState = false;
 const held = new Map(),
   base = new URL(import.meta.env.BASE_URL + "emulator/", location.origin);
 function fail(message) {
   $("error").textContent = message;
 }
+try {
+  $("remember-disk").checked =
+    localStorage.getItem("dac-remember-disk") !== "false";
+} catch {}
 const heldModelKeys = new Map();
 function release() {
   held.clear();
   heldModelKeys.clear();
   keyboard.reset();
+  firmwareKeys.reset();
   scene?.releaseKeys();
   if (on) send({ type: "key", key: 0, down: false });
 }
@@ -61,8 +69,21 @@ function resetMachine() {
     send({ type: "reset" });
   }
 }
+const firmwareKeys = createFirmwareKeyboard({
+  send,
+  isPowered: () => on && !powerPending,
+  onFeedback: (message) => {
+    $("key-feedback").textContent = message;
+  },
+  onState: (state) => {
+    if (firmwareKeyboard) {
+      scene?.modifiers(state);
+      for (const id of heldModelKeys.values()) scene?.keyState(id, true);
+    }
+  },
+});
 function modelKey(key) {
-  return keyboard.activate(key);
+  return (firmwareKeyboard ? firmwareKeys : keyboard).activate(key);
 }
 function keyButtons(keys) {
   $("open-case").disabled = false;
@@ -159,9 +180,12 @@ async function configure(demo, historical = false) {
   let firmware = [],
     image;
   if (historical && kind === 2) {
-    ({ firmware, disk: image } = await loadHistoricalRobotron(new URL(import.meta.env.BASE_URL, location.origin)));
+    ({ firmware, disk: image } = await loadHistoricalRobotron(
+      new URL(import.meta.env.BASE_URL, location.origin),
+    ));
     $("media-label").textContent = "S550 · TOS/M 1.0";
-    $("fidelity").textContent = "Historical S550 ROM and TOS/M 1.0 disk. Power on, open Screen, and wait for A>. Try DIR. This reference setup is not yet matched to Danila’s own ROMs or disks. Writes affect only a session copy when enabled.";
+    $("fidelity").textContent =
+      "Historical S550 ROM and TOS/M 1.0 disk. Power on, open Screen, and wait for A>. Try DIR. This reference setup is not yet matched to Danila’s own ROMs or disks. Writes affect only a browser copy when enabled. S600 runs the reference keyboard; some shifted legends may differ from this specimen.";
   } else if (demo) {
     const names =
       kind === 2
@@ -191,6 +215,8 @@ async function configure(demo, historical = false) {
       const p = $("prom").files[0];
       if (!p) throw Error("Robotron also needs its 256-byte CAS PROM.");
       firmware.push([1, await p.arrayBuffer()]);
+      const k = $("keyboard-rom").files[0];
+      if (k) firmware.push([3, await k.arrayBuffer()]);
       const g = $("glyph").files[0];
       if (g) firmware.push([2, await g.arrayBuffer()]);
     }
@@ -207,6 +233,8 @@ async function configure(demo, historical = false) {
     firmware,
     disk: image,
     writable: $("writable").checked,
+    remember: $("remember-disk").checked,
+    build: import.meta.env.VITE_EMULATOR_REVISION,
   });
 }
 worker.onmessage = ({ data: d }) => {
@@ -216,6 +244,20 @@ worker.onmessage = ({ data: d }) => {
   }
   if (d.type === "configured") {
     disk = d.disk;
+    firmwareKeyboard = !!d.firmwareKeyboard;
+    hasState = !!d.hasState;
+    $("restore-state").disabled = !hasState;
+    $("save-state").disabled = true;
+    $("forget-disk").disabled = !disk;
+    for (const button of $("key-list").querySelectorAll("[data-key]")) {
+      const key = modelKeys.find((k) => k.id === button.dataset.key);
+      button.title = firmwareKeyboard
+        ? "S600 reference matrix; specimen legends may differ"
+        : key?.input.unsupported || "";
+    }
+    $("keyboard-mode").textContent = firmwareKeyboard
+      ? "S600 keyboard firmware · reference layout"
+      : "Character adapter · no keyboard ROM loaded";
     $("power").disabled = false;
     $("status").textContent = "Powered off";
     $("export").disabled = !disk;
@@ -233,6 +275,8 @@ worker.onmessage = ({ data: d }) => {
     $("power-label").textContent = on ? "Power off" : "Power on";
     $("status").textContent = on ? "Running" : "Powered off";
     $("reset").disabled = !on;
+    $("save-state").disabled = !on || Number($("machine").value) !== 2;
+    $("forget-disk").disabled = on || !disk;
     for (const id of [
       "load",
       "demo",
@@ -241,6 +285,7 @@ worker.onmessage = ({ data: d }) => {
       "rom",
       "prom",
       "glyph",
+      "keyboard-rom",
       "disk",
       "writable",
     ])
@@ -271,6 +316,17 @@ worker.onmessage = ({ data: d }) => {
       scene?.update();
     }
     previousPixels = pixels;
+    if (firmwareKeyboard) {
+      firmwareKeys.leds(d.keyboardLeds);
+      $("keyboard-mode").textContent =
+        `S600 reference keyboard · Caps ${d.keyboardLeds & 2 ? "on" : "off"} · SI/SO ${d.keyboardLeds & 1 ? "on" : "off"}`;
+    }
+    if (Number($("machine").value) === 2) {
+      const drive = d.drive || 0;
+      $("drive-state").textContent = on
+        ? `Drive A: ${drive & 1 ? "motor on" : "motor off"} · track ${(drive >> 8) & 255}${drive & 16 ? " · transferring" : ""} · ${drive & 32 ? "writable" : "write protected"}`
+        : "";
+    }
     const active = d.activity > activity;
     activity = d.activity;
     scene?.activity(active);
@@ -280,6 +336,14 @@ worker.onmessage = ({ data: d }) => {
       active ? "Disk transfer" : "No disk activity",
     );
   }
+  if (d.type === "storage") {
+    $("storage-status").textContent = d.message;
+    if (d.hasState !== undefined) {
+      hasState = d.hasState;
+      $("restore-state").disabled = !hasState;
+    }
+  }
+  if (d.type === "input-error") $("key-feedback").textContent = d.message;
   if (d.type === "error") {
     fail(d.message);
     on = false;
@@ -297,6 +361,7 @@ worker.onmessage = ({ data: d }) => {
       "rom",
       "prom",
       "glyph",
+      "keyboard-rom",
       "disk",
       "writable",
     ])
@@ -322,12 +387,35 @@ $("load").onclick = () =>
     $("power").disabled = false;
     fail(e.message);
   });
-$("historical").onclick = () => configure(true, true).catch((e) => fail(e.message));
+$("historical").onclick = () =>
+  configure(true, true).catch((e) => fail(e.message));
 $("demo").onclick = () => configure(true).catch((e) => fail(e.message));
 $("machine").onchange = () => {
   release();
-  for (const id of ["rom", "prom", "glyph", "disk"]) $(id).value = "";
+  for (const id of ["rom", "prom", "glyph", "keyboard-rom", "disk"])
+    $(id).value = "";
   configure(true, true).catch((e) => fail(e.message));
+};
+$("save-state").onclick = () => {
+  release();
+  send({ type: "save-state" });
+};
+$("restore-state").onclick = () => {
+  release();
+  send({ type: "restore-state" });
+};
+$("remember-disk").onchange = () => {
+  try {
+    localStorage.setItem(
+      "dac-remember-disk",
+      String($("remember-disk").checked),
+    );
+  } catch {}
+  send({ type: "remember", value: $("remember-disk").checked });
+};
+$("forget-disk").onclick = () => {
+  $("remember-disk").checked = false;
+  send({ type: "forget-disk" });
 };
 $("export").onclick = () => send({ type: "export" });
 $("screen-view").onclick = () => {
@@ -349,7 +437,9 @@ function updateCase() {
   $("viewport").dataset.interior = String(open);
 }
 function selectView(name) {
-  document.querySelector(".stage").classList.toggle("typing", name === "typing");
+  document
+    .querySelector(".stage")
+    .classList.toggle("typing", name === "typing");
   $("screen-panel").hidden = name !== "typing";
   scene?.view(name === "typing" ? "keyboard" : name);
   showInspection(name);
@@ -430,9 +520,50 @@ function keyDown(e) {
     e.preventDefault();
     return;
   }
-  if (Number($("machine").value) === 2 && ["Shift", "Control", "CapsLock"].includes(e.key)) {
-    const modifier = { Shift: "shift", Control: "ctrl", CapsLock: "caps" }[e.key];
-    const modeled = modelKeys.find(k => k.input.modifier === modifier);
+  if (
+    firmwareKeyboard &&
+    Number($("machine").value) === 2 &&
+    on &&
+    !powerPending
+  ) {
+    let modeled;
+    const mods = { Shift: "shift", Control: "ctrl", CapsLock: "caps" };
+    if (mods[e.key])
+      modeled = (
+        e.code === "ShiftRight" ? [...modelKeys].reverse() : modelKeys
+      ).find((k) => k.input.modifier === mods[e.key]);
+    else if (e.key === "Tab")
+      modeled = modelKeys.find((k) => k.label === "Tab");
+    else if (e.key === "Backspace")
+      modeled = modelKeys.find((k) => k.label === "DEL");
+    else {
+      const value =
+        e.key.length === 1 ? e.key.toLowerCase().charCodeAt(0) : keyCode(e);
+      modeled = modelKeys.find(
+        (k) => k.input.code === value || k.input.shiftCode === value,
+      );
+    }
+    const n = matrixKey(modeled);
+    if (n !== undefined) {
+      e.preventDefault();
+      if (e.repeat || held.has(e.code)) return;
+      held.set(e.code, n);
+      heldModelKeys.set(e.code, modeled.id);
+      // Printable case is determined by actual modifier switches in the ROM.
+      send({ type: "matrix", key: n, down: true });
+      scene?.keyState(modeled.id, true);
+      $("key-feedback").textContent = `Sent ${modeled.label}`;
+    }
+    return;
+  }
+  if (
+    Number($("machine").value) === 2 &&
+    ["Shift", "Control", "CapsLock"].includes(e.key)
+  ) {
+    const modifier = { Shift: "shift", Control: "ctrl", CapsLock: "caps" }[
+      e.key
+    ];
+    const modeled = modelKeys.find((k) => k.input.modifier === modifier);
     if (modeled) {
       e.preventDefault();
       heldModelKeys.set(e.code, modeled.id);
@@ -478,14 +609,19 @@ function keyUp(e) {
   if (id) {
     e.preventDefault();
     heldModelKeys.delete(e.code);
-    const key = modelKeys.find(k => k.id === id);
-    scene?.keyState(id, [...heldModelKeys.values()].includes(id) || !!keyboard.state[key?.input.modifier]);
+    const key = modelKeys.find((k) => k.id === id);
+    scene?.keyState(
+      id,
+      [...heldModelKeys.values()].includes(id) ||
+        !!keyboard.state[key?.input.modifier],
+    );
   }
   const key = held.get(e.code);
   if (key === undefined) return;
   e.preventDefault();
   held.delete(e.code);
-  if (on) send({ type: "key", key, down: false });
+  if (on && (!firmwareKeyboard || ![...held.values()].includes(key)))
+    send({ type: firmwareKeyboard ? "matrix" : "key", key, down: false });
 }
 screen.onkeydown = keyDown;
 screen.onkeyup = keyUp;
@@ -497,4 +633,8 @@ window.addEventListener("blur", release);
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) release();
 });
-send({ type: "init", base: base.href });
+send({
+  type: "init",
+  base: base.href,
+  build: import.meta.env.VITE_EMULATOR_REVISION,
+});

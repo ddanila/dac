@@ -608,3 +608,6 @@ footer {
   .stage.typing #screen-panel { margin-inline: 8px; padding: 8px; }
   .stage.typing #screen-panel p { text-align: center; }
 }
+#drive-state, #keyboard-mode, #storage-status, #session-controls p { font-size: 11px; line-height: 1.6; color: var(--muted); }
+#session-controls { margin: 16px 0; }
+#session-controls summary { cursor: pointer; }

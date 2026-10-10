@@ -4,6 +4,13 @@ import { defineConfig } from "vite";
 export default defineConfig({
   base: process.env.DAC_BASE || "/",
   define: {
+    "import.meta.env.VITE_EMULATOR_REVISION": JSON.stringify(
+      createHash("sha256")
+        .update(
+          readFileSync(new URL("./public/emulator/dac.wasm", import.meta.url)),
+        )
+        .digest("hex"),
+    ),
     "import.meta.env.VITE_ROBOTRON_MODEL_REVISION": JSON.stringify(
       createHash("sha256")
         .update(

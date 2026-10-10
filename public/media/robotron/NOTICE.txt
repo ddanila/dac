@@ -19,3 +19,7 @@ No guest patches have been applied. No character ROM is supplied here; the
 core's existing fallback glyphs and OS-loaded character data remain in use.
 This is a tested historical reference setup, not media dumped from Danila's
 physical machine and not proof of its factory-installed OS or ROM revision.
+
+S600 keyboard EPROM: https://www.sax.de/~zander/pc1715/eprom/s600.bin
+2048 bytes; SHA-256 4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273
+Historical reference firmware, exact specimen revision unverified. Same separate, unestablished redistribution rights as the other historical binaries; not MIT.

@@ -11,7 +11,7 @@ export const inspections = {
   },
   keyboard: {
     title: "A keyboard you can use",
-    text: "Press the modeled keys, or focus the exhibit and type. Physical keys stay visibly depressed until released; completed 3D clicks send input to the running OS. Shift and Ctrl latch for one character; Caps Lock stays on. Its lamp shows the on-screen Caps Lock state. Some specimen-specific keys remain unmapped.",
+    text: "Press the modeled keys, or focus the exhibit and type. With S600 loaded, the keyboard’s own Z80 scans switches and sends serial input to the OS; its firmware drives Caps and SI/SO state. Clicked Shift/Ctrl latch for one character. Physical keys remain held until release. S600 is a reference layout: some printed legends differ. Without a keyboard ROM, the character adapter retains unverified mappings.",
     photo: "132919894",
   },
   typing: {
@@ -83,7 +83,10 @@ export const inspections = {
 };
 let currentInspection = "overview";
 function photoUrl(photo) {
-  return new URL(`models/robotron-1715m/photos/PXL_${photo.includes("_") ? photo : "20261009_" + photo}.jpg`, new URL(import.meta.env.BASE_URL, location.origin)).href;
+  return new URL(
+    `models/robotron-1715m/photos/PXL_${photo.includes("_") ? photo : "20261009_" + photo}.jpg`,
+    new URL(import.meta.env.BASE_URL, location.origin),
+  ).href;
 }
 export function showSpecimenDetail(name = currentInspection) {
   const entry = inspections[name];
@@ -96,8 +99,10 @@ export function showSpecimenDetail(name = currentInspection) {
   document.getElementById("detail-original").href = photo.src;
   document.getElementById("specimen-detail").showModal();
 }
-document.getElementById("reference-details").onclick = () => showSpecimenDetail();
-document.getElementById("detail-close").onclick = () => document.getElementById("specimen-detail").close();
+document.getElementById("reference-details").onclick = () =>
+  showSpecimenDetail();
+document.getElementById("detail-close").onclick = () =>
+  document.getElementById("specimen-detail").close();
 export function showInspection(name) {
   currentInspection = name;
   const entry = inspections[name] || inspections.overview;

@@ -32,3 +32,15 @@ Exterior parts can already be separated and inspected with evidence annotations 
 ## Unresolved
 
 Exact hardware revision, rear/inside visual references and more precise local dimensions. The functional core targets the M/W architecture; historical firmware is supplied locally by the visitor. See the [technical direction](../../docs/technical-direction.md).
+
+### Reference configuration versus the physical specimen
+
+| Item | Emulated reference | Physical specimen evidence still needed |
+| --- | --- | --- |
+| Main board | 1715W/1715M profile, 256 KB, 3.9936 MHz, supplied CAS decoding | Board revision, switches and ROM dump |
+| Boot ROM | S550, hash pinned in `src/robotron-media.json` | Owner ROM label and dump |
+| Keyboard | S600/U880 K7658 reference, nominal 683 kHz, 13×8 matrix | Controller PCB photo, chip marking and ROM dump |
+| Disk | TOS/M 1.0, 80×2×5×1024 raw geometry | Owner disk image and OS revision |
+| Drives | One emulated mounted disk; timed functional controller | Drive suffix/jumpers and measured behavior; photographed K5601/Ratan labels establish appearance only |
+
+Stock firmware is a usable reference configuration, not a confirmed dump of this entity. The existing local ROM/PROM/disk upload controls now also accept an optional keyboard ROM. Owner models/photos and comparative reference credits remain separate from emulation qualification.

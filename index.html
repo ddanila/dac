@@ -47,7 +47,8 @@
                 ><button data-view="keyboard" data-robotron>Keyboard</button
                 ><button data-view="connector" data-robotron>Connector</button
                 ><button data-view="drives" data-robotron>Drives</button
-                ><button data-view="drive-labels" data-robotron>Drive labels</button
+                ><button data-view="drive-labels" data-robotron>
+                  Drive labels</button
                 ><button data-view="monitor" data-robotron>Monitor</button
                 ><button data-view="inside" data-robotron>Inside</button
                 ><button data-view="monitor-inside" data-robotron>
@@ -74,7 +75,9 @@
             <a id="reference-photo" target="_blank" rel="noreferrer"
               >View reference photo ↗</a
             >
-            <button id="reference-details" type="button">Inspect photo and details</button>
+            <button id="reference-details" type="button">
+              Inspect photo and details
+            </button>
             <p id="interior-credit" hidden>
               <strong>Reference boards · other specimens.</strong> PCB
               photographs:
@@ -222,9 +225,31 @@
             ><label><input id="turbo" type="checkbox" /> 4× speed</label>
           </div>
           <p id="fidelity">
-            Historical S550 ROM and TOS/M 1.0 disk. Power on, open Screen,
-            and wait for A&gt;. Try DIR.
+            Historical S550 ROM and TOS/M 1.0 disk. Power on, open Screen, and
+            wait for A&gt;. Try DIR.
           </p>
+          <p id="drive-state" data-robotron aria-live="off"></p>
+          <p id="keyboard-mode" data-robotron></p>
+          <details id="session-controls">
+            <summary>Keep this session</summary>
+            <label class="check"
+              ><input type="checkbox" id="remember-disk" checked /> Keep disk
+              changes in this browser</label
+            >
+            <p>
+              Writable disk copies save automatically. Export a disk for a
+              portable backup. Machine states resume this Robotron with the same
+              media and emulator version.
+            </p>
+            <div class="secondary-controls">
+              <button id="save-state" data-robotron disabled>Save state</button
+              ><button id="restore-state" data-robotron disabled>
+                Restore state
+              </button>
+            </div>
+            <button id="forget-disk" disabled>Discard saved disk</button>
+            <p id="storage-status" role="status"></p>
+          </details>
           <details id="media-controls">
             <summary>Boot media and session disk <span>+</span></summary>
             <p>
@@ -241,6 +266,11 @@
                 type="file"
                 id="glyph"
                 accept=".bin,.rom" /></label
+            ><label id="keyboard-rom-label" data-robotron
+              >Keyboard ROM (optional, 2 KB S600)<input
+                type="file"
+                id="keyboard-rom"
+                accept=".bin,.rom" /></label
             ><label id="disk-label"
               >Disk image<input
                 type="file"
@@ -251,9 +281,18 @@
               copy</label
             ><button id="load">Use selected files</button
             ><button id="export" disabled>Export session disk</button
-            ><button id="historical" data-robotron>Restore historical TOS/M</button
+            ><button id="historical" data-robotron>
+              Restore historical TOS/M</button
             ><button id="demo">Restore DAC diagnostic</button>
-            <p data-robotron>Historical media: <a href="media/robotron/NOTICE.txt" target="_blank" rel="noreferrer">sources and rights</a>. Not covered by the museum’s MIT licence.</p>
+            <p data-robotron>
+              Historical media:
+              <a
+                href="media/robotron/NOTICE.txt"
+                target="_blank"
+                rel="noreferrer"
+                >sources and rights</a
+              >. Not covered by the museum’s MIT licence.
+            </p>
           </details>
           <p id="error" role="alert"></p>
         </aside>
@@ -282,8 +321,13 @@
       <h2 id="detail-title"></h2>
       <p id="detail-description"></p>
       <img id="detail-photo" alt="" />
-      <p>Owner photograph · Danila’s machine. Small modeled dimensions remain estimates.</p>
-      <a id="detail-original" target="_blank" rel="noreferrer">Open original photo ↗</a>
+      <p>
+        Owner photograph · Danila’s machine. Small modeled dimensions remain
+        estimates.
+      </p>
+      <a id="detail-original" target="_blank" rel="noreferrer"
+        >Open original photo ↗</a
+      >
     </dialog>
     <footer>
       <span>DAC / DANILA’S ARCHIVE OF COMPUTING</span
