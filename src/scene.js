@@ -14,7 +14,18 @@ export function createScene(
     camera = new THREE.PerspectiveCamera(36, 1, 0.01, 40);
   camera.position.set(2.3, 2.2, 3.3);
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const gl = renderer.getContext();
+  const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+  const rendererName = debugInfo
+    ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
+    : "";
+  const softwareRendering =
+    /swiftshader|llvmpipe|softpipe|software rasterizer/i.test(rendererName);
+  // Keep all geometry/materials on software WebGL, but avoid forcing a CPU to
+  // shade a high-DPI framebuffer. This also serves remote desktops and VMs.
+  renderer.setPixelRatio(
+    softwareRendering ? 0.75 : Math.min(devicePixelRatio, 2),
+  );
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
