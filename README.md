@@ -146,3 +146,12 @@ are placed at photo landmarks, and original flat chip silhouettes are removed fr
 the PCB photo surface. Choose **Inspect assembly → Logic boards** for the close view.
 Upstream STEP sources, file-specific licences, credits, conversion metadata and
 mesh hashes ship alongside the exhibit in `public/models/robotron-1715m/components/kicad`.
+
+**Inspect assembly → Motherboard / Floppy controller** now isolates each board,
+including its chips, passive components, connectors and reference artwork.
+Real holes, metal pads and underside solder fillets share lead positions; pads
+and solder use reusable instances. The controller includes yellow film
+capacitors and photo-estimated electrolytic sizes. Traces and markings are
+extracted from the credited comparative photographs onto a consistently lit
+substrate; hidden routing and electrical connectivity are not reconstructed.
+The exact board revision, sockets and connector details remain provisional.

@@ -1,7 +1,15 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { Box3, Matrix4, Vector3 } from "three";
+import {
+  Box3,
+  Matrix4,
+  Vector3,
+  Mesh,
+  MeshBasicMaterial,
+  DoubleSide,
+  Raycaster,
+} from "three";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 import {
   pcbPhotoGeometry,
@@ -77,7 +85,7 @@ test("photographic board surfaces omit raised chips and markings follow package 
       expect(p.getZ(i)).toBeCloseTo(board.origin[2] + 0.045, 3);
     const markings = pcbMarkingGeometry(board, manifest.pcbComponents);
     const placements = manifest.pcbComponents.instances.filter(
-      (p) => p.board === board.name,
+      (p) => p.board === board.name && p.markings !== false,
     );
     expect(markings.attributes.position.count).toBe(placements.length * 6);
     placements.forEach((p, i) => {
@@ -114,4 +122,106 @@ test("logic-board close-up loads reusable geometry and preserves source credits"
     .then((href) => expect(href).toContain("components/kicad/NOTICE.txt"));
   await page.locator("#isolate-assembly").selectOption("all");
   expect(errors).toEqual([]);
+});
+
+test("board holes are open at component leads and solid between holes", () => {
+  const loader = new STLLoader();
+  for (const board of ["motherboard", "floppy-controller"]) {
+    const part = manifest.parts.find((p) => p.name === `logic-boards-${board}`);
+    const bytes = readFileSync(new URL(part.file, root));
+    const geometry = loader.parse(
+      bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
+    );
+    const mesh = new Mesh(
+      geometry,
+      new MeshBasicMaterial({ side: DoubleSide }),
+    );
+    mesh.updateMatrixWorld();
+    const points = manifest.pcbComponents.footprints.filter(
+      (p) => p[3] === board,
+    );
+    // Sample across the board, including the final connector aperture.
+    for (const i of [
+      0,
+      1,
+      Math.floor(points.length / 3),
+      Math.floor(points.length / 2),
+      points.length - 1,
+    ]) {
+      const [x, y, z] = points[i];
+      const ray = new Raycaster(
+        new Vector3(x, y, z + 1),
+        new Vector3(0, 0, -1),
+        0,
+        3,
+      );
+      expect(ray.intersectObject(mesh)).toHaveLength(0);
+      ray.ray.origin.x += 0.65;
+      expect(ray.intersectObject(mesh).length).toBeGreaterThan(0);
+    }
+    geometry.dispose();
+    mesh.material.dispose();
+  }
+});
+
+test("individual boards hide other assemblies and restore their geometry", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  for (const [value, title] of [
+    ["motherboard", "Motherboard"],
+    ["floppy-controller", "Floppy controller"],
+  ]) {
+    await page.locator("#isolate-assembly").selectOption(value);
+    await expect(page.locator("#inspection-title")).toHaveText(title);
+  }
+  const results = await page.evaluate(async () => {
+    const { loadRobotron } = await import("/src/robotron-model.js");
+    const { Texture } = await import(
+      "/node_modules/three/build/three.module.js"
+    );
+    const model = await loadRobotron(new Texture());
+    const records = [];
+    for (const board of ["motherboard", "floppy-controller"]) {
+      model.inspect({ isolated: board });
+      model.tick();
+      const visible = model.group.children.filter((o) => o.visible && o.isMesh);
+      const pads = model.objects.get(`logic-pad-${board}`);
+      const chips = visible.filter(
+        (o) => o.name.startsWith("logic-package-") && o.name.includes("-body-"),
+      );
+      records.push({
+        board,
+        foreign: visible
+          .filter((o) => o.userData.board !== board)
+          .map((o) => o.name),
+        pads: pads.count,
+        chips: chips.reduce((n, o) => n + o.count, 0),
+        photo: visible.some((o) => o.name === `reference-${board}`),
+      });
+    }
+    model.inspect({ isolated: "all" });
+    model.interior(true);
+    model.tick();
+    return {
+      records,
+      restored: ["motherboard", "floppy-controller"].every(
+        (b) => model.objects.get(`logic-boards-${b}`).visible,
+      ),
+      prototypes: [...model.objects.values()].filter(
+        (o) => o.userData.prototype && o.visible,
+      ).length,
+    };
+  });
+  for (const r of results.records) {
+    expect(r.foreign).toEqual([]);
+    expect(r.photo).toBe(true);
+    expect(r.chips).toBe(r.board === "motherboard" ? 92 : 40);
+    expect(r.pads).toBe(
+      manifest.pcbComponents.footprints.filter((p) => p[3] === r.board).length,
+    );
+  }
+  expect(results.restored).toBe(true);
+  expect(results.prototypes).toBe(0);
 });

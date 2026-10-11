@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "6ab83e127b25b8e54dab172509b881c7cf9b43da",
+  "revision": "0bcaecd2d43a4655de4a1e9fe05f8ebefe9dc64e",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "1b910ce7b6c6e74609e4390cac5aeae2bf6209386df1bcc6e7a29643f02e633d"
+      "sha256": "f0fe5ce1ad54ddb26164ca21c328e18c79a44eabb801899a9f6cefcd597fa817"
     },
     {
       "file": "LICENSE",
@@ -152,12 +152,20 @@
       "sha256": "bb985a420293e7b4b2b69ec99b661534a462e3f8db0c51ec05b0e17df58b7ac7"
     },
     {
-      "file": "meshes/logic-boards.stl",
-      "sha256": "1f6a38521aa8efdd9d16d58d08fa9e054e4a52c96188a771a7954e939a6533dc"
+      "file": "meshes/logic-boards-motherboard.stl",
+      "sha256": "21cbbf32677f683501295a4636717c86db9644b8ff8087b9e4fab67ecb30a60d"
     },
     {
-      "file": "meshes/logic-connectors.stl",
-      "sha256": "1a05837cd77ba88a31546ab94124afb4cad0fc7763008b101b56d9927a00c1ed"
+      "file": "meshes/logic-boards-floppy-controller.stl",
+      "sha256": "eac864318abfa370ace2387e0861a95019087e9d3b9e25d26390f5929827a1ad"
+    },
+    {
+      "file": "meshes/logic-connectors-motherboard.stl",
+      "sha256": "3c19b09915da00bb2be91afb7ff69db463f0237bb237b78b42828a27b6efa7e5"
+    },
+    {
+      "file": "meshes/logic-connectors-floppy-controller.stl",
+      "sha256": "3c72cf0e3a36319d106d562b181e78332a3a19e2530164e9ae28707944602bf2"
     },
     {
       "file": "meshes/psu-chassis.stl",
@@ -336,24 +344,64 @@
       "sha256": "2d4db67dba3ef3dcf85d861e3f90390cd6c268cd2de47be0dead030f0de9add1"
     },
     {
-      "file": "meshes/logic-resistors.stl",
-      "sha256": "46c1985e03d098d7e9cdd29b6e1ebaa8736030f055a59b701774e3eda1c25432"
+      "file": "meshes/logic-resistors-motherboard.stl",
+      "sha256": "5c1d0dc7952a4b9ffd7f8356d6cd6c1e0c29119eca2085684add0ffbf5bbe724"
     },
     {
-      "file": "meshes/logic-ceramics.stl",
-      "sha256": "1524a83c26791ca68465b7dc87a0b5941c0bd31240e0f5b4c060a705737e608a"
+      "file": "meshes/logic-resistors-floppy-controller.stl",
+      "sha256": "6e35a97a6febd0a49f5e1eab1427efb263fbf5368e6bfbb01e851bc4c12282d0"
     },
     {
-      "file": "meshes/logic-electrolytics.stl",
-      "sha256": "300f318da8302ef807952ce6a4c657d6630e7fe4ceb6fe77103cb3d73e9a2b42"
+      "file": "meshes/logic-ceramics-motherboard.stl",
+      "sha256": "343b9d3336698cb3ad6a2d3a1defc601fedc9648392c962a9100f9d34d08a62f"
     },
     {
-      "file": "meshes/logic-crystals.stl",
-      "sha256": "a45c20397c68ba75b37eb10a3d33f57187d1a4a9818d31f82bd98aac5ff60516"
+      "file": "meshes/logic-ceramics-floppy-controller.stl",
+      "sha256": "aee2a7c2ebb7f83f5b7f7cc71d815443789fbe3c1a56c949375e623f526b929b"
     },
     {
-      "file": "meshes/logic-passive-leads.stl",
-      "sha256": "30876f448fd6b0239eebd82c79f35b68c7ecacc7e4889b76423e79115fcb7539"
+      "file": "meshes/logic-electrolytics-motherboard.stl",
+      "sha256": "0139903c0e75dd67848601b74bf99229f92d7846a400631cfaf1d838fb0d7ae0"
+    },
+    {
+      "file": "meshes/logic-electrolytics-floppy-controller.stl",
+      "sha256": "aa8fcb7918e0ed182364017f945ce06887e9bdd1d4ad633b03cc0c4e5aaa2181"
+    },
+    {
+      "file": "meshes/logic-crystals-motherboard.stl",
+      "sha256": "604463d8331188cf89b71932d0a567aa9436ca2ed660586877953cada498e1f4"
+    },
+    {
+      "file": "meshes/logic-crystals-floppy-controller.stl",
+      "sha256": "370edbfffd7a1ef6f3658f2dd1f6191b5295e5fd44128e7604a8d3374a0a4113"
+    },
+    {
+      "file": "meshes/logic-passive-leads-motherboard.stl",
+      "sha256": "5d242bad7f85aefb11460d73b3f02fdbd0703d1b04e7df45eca970219d824c1d"
+    },
+    {
+      "file": "meshes/logic-passive-leads-floppy-controller.stl",
+      "sha256": "1dabb89a7345097552d47432ad6112c78f5b01ddab058ad5ec97511ac850b4d8"
+    },
+    {
+      "file": "meshes/logic-film-floppy-controller.stl",
+      "sha256": "b5c36827128dfbffe5e509e7ed2ce313b67627162df9c166f99db0fe13f4d4e6"
+    },
+    {
+      "file": "meshes/logic-connector-contacts-motherboard.stl",
+      "sha256": "66d6d5ee8042c292b90baa0ddec192f06a3f2f78df98e23a33f5ebe5173ee452"
+    },
+    {
+      "file": "meshes/logic-connector-contacts-floppy-controller.stl",
+      "sha256": "e9eea56954a2aae09321e61c6062c7fc8ad5bb412dfbda67a697ba6e0075ef6d"
+    },
+    {
+      "file": "meshes/prototype-pcb-pad.stl",
+      "sha256": "e24bc2eb507b46d0bf00806f65c10d24808885cd56e9fdb991cbf309355cb11a"
+    },
+    {
+      "file": "meshes/prototype-pcb-solder.stl",
+      "sha256": "f5b7b32d41f591adda578f094c16ee1ab97be4b6d951c98bfde580575822824b"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -605,7 +653,7 @@
     },
     {
       "file": "components/kicad/NOTICE.txt",
-      "sha256": "4f1a38c86c2a3d326b6dc44190e8e42e2c7a1f6e5bdd6931ee04321b84baf6dc"
+      "sha256": "ca7969baee63cc0471a2f0ac809ea080192d3edff59b37a1349783326f883785"
     },
     {
       "file": "components/kicad/sources.json",
@@ -613,7 +661,7 @@
     },
     {
       "file": "components/kicad/models.json",
-      "sha256": "3a04d18fb3935bba00b19c6aea63a7f03c8a992159496e0e00eca40da92a4f45"
+      "sha256": "9fc3b57fbf43071703129824663ff111a1f473479e9cb3944bf60cce242551ae"
     },
     {
       "file": "reference/oldcrap/NOTICE.txt",

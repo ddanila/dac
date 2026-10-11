@@ -119,6 +119,16 @@ Object.assign(inspections, {
   },
 });
 inspections.logic = inspections["component-logic"];
+inspections.motherboard = {
+  ...inspections["component-logic"],
+  title: "Motherboard",
+  text: "The controller and chassis are hidden so the lower board can be inspected from either side. KiCad packages, drilled holes, metal pads and solder fillets share the same lead positions. Pale traces and markings are extracted from the comparative photograph; hidden routing and electrical connectivity are not reconstructed. Connector dimensions, passive sizes and package assignments remain estimates until Danila’s board is photographed.",
+};
+inspections["floppy-controller"] = {
+  ...inspections["component-logic"],
+  title: "Floppy controller",
+  text: "The floppy controller is shown independently, including photo-estimated yellow film capacitors, different electrolytic sizes, a divided two-row connector and individual contacts. Orbit below it to see lead-aligned solder fillets. The board artwork comes from another PC 1715; pin count, connector keying, component values and the underside routing remain unverified for this specimen.",
+};
 let currentInspection = "overview";
 function photoUrl(photo) {
   return new URL(
