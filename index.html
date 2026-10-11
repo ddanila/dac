@@ -185,6 +185,34 @@
               ><input id="separate-parts" type="checkbox" disabled /> Lift
               drives and keyboard</label
             >
+            <label class="assembly-control"
+              ><input id="open-keyboard" type="checkbox" disabled /> Lift
+              keyboard deck and keycaps</label
+            >
+            <label class="assembly-control"
+              ><input id="transparent-covers" type="checkbox" disabled />
+              Transparent covers</label
+            >
+            <label class="assembly-control"
+              ><input id="release-clamps" type="checkbox" disabled /> Show
+              released drive clamps</label
+            >
+            <label class="assembly-control" for="isolate-assembly"
+              >Inspect assembly</label
+            >
+            <select id="isolate-assembly" disabled>
+              <option value="all">Complete machine</option>
+              <option value="keyboard">Keyboard</option>
+              <option value="drives">Drives</option>
+              <option value="logic">Logic boards</option>
+              <option value="monitor">Monitor</option>
+              <option value="psu">Power supply and fan</option>
+            </select>
+            <p class="hint">
+              Disassembly is illustrative. Releasing the clamps here does not
+              eject an emulated disk. Separated cables stretch to show their
+              connections.
+            </p>
             <button
               id="key-list-toggle"
               disabled

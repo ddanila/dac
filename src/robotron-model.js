@@ -120,6 +120,8 @@ export async function loadRobotron(displayTexture) {
       mesh.userData.monitorInterior = part.section === "monitor-interior";
       if (mesh.userData.interior || mesh.userData.monitorInterior)
         mesh.visible = false;
+      mesh.userData.prototype = part.section === "prototype";
+      if (mesh.userData.prototype) mesh.visible = false;
       group.add(mesh);
       objects.set(part.name, mesh);
     }),
@@ -209,6 +211,15 @@ export async function loadRobotron(displayTexture) {
       polygonOffset: true,
       polygonOffsetFactor: -1,
     });
+    if (options.feather) {
+      material.onBeforeCompile = (shader) => {
+        shader.fragmentShader = shader.fragmentShader.replace(
+          "#include <map_fragment>",
+          "#include <map_fragment>\nvec2 edge=min(vMapUv,1.0-vMapUv); diffuseColor.a*=smoothstep(0.0,0.2,min(edge.x,edge.y));",
+        );
+      };
+      material.customProgramCacheKey = () => "photo-wear-feather";
+    }
     if (options.ink) {
       material.onBeforeCompile = (shader) => {
         shader.fragmentShader = shader.fragmentShader.replace(
@@ -281,6 +292,60 @@ export async function loadRobotron(displayTexture) {
     keyboard.add(cap);
     keyObjects.set(key.id, cap);
   }
+  const mechanism = new THREE.Group();
+  mechanism.position.set(0, data.keyboard.y, data.keyboard.z);
+  mechanism.rotation.x = keyboard.rotation.x;
+  group.add(mechanism);
+  const mechanisms = ["spring", "stem"].map((name) => {
+    const source = objects.get(data.keyboardMechanism[name]);
+    const mesh = new THREE.InstancedMesh(
+      source.geometry,
+      source.material,
+      data.keys.length,
+    );
+    mesh.name = `keyboard-${name}s`;
+    mesh.userData.detail = "component-keyboard";
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    // Matrices change on keypress and separation; avoid a stale bounding sphere.
+    mesh.frustumCulled = false;
+    mechanism.add(mesh);
+    return mesh;
+  });
+  const instance = new THREE.Object3D();
+  const cableRest = new Map();
+  for (const [name, mesh] of objects) {
+    if (name.startsWith("ribbon-") || name.startsWith("power-wires"))
+      cableRest.set(name, mesh.geometry.attributes.position.array.slice());
+  }
+  let inspection = {
+    isolated: "all",
+    transparent: false,
+    keyboardOpen: false,
+    clamps: false,
+  };
+  let inspectionDirty = true;
+  function belongs(name, wanted) {
+    if (wanted === "keyboard") return /^(keyboard|keys-|prototype-)/.test(name);
+    if (wanted === "drives")
+      return name === "drives" || name.startsWith("drive-");
+    if (wanted === "logic")
+      return /^(logic-|reference-(motherboard|floppy))/.test(name);
+    if (wanted === "monitor")
+      return /^(monitor-|tube-|crt-|bezel|pedestal|ring|reference-monitor)/.test(
+        name,
+      );
+    return /^(psu-|fan-)/.test(name);
+  }
+  const covers = new Set([
+    "case-lid",
+    "fascia",
+    "monitor-shell-upper",
+    "monitor-shell-lower",
+    "keyboard-shell",
+    "keyboard-deck",
+  ]);
   const patches = [];
   for (const p of data.patches) {
     const mesh = photoPlane(p.name, ...p.size, p.uv, p.photo, 0, p);
@@ -434,22 +499,49 @@ export async function loadRobotron(displayTexture) {
   }
   function tick() {
     let dirty =
-      inside !== wasInside || monitorOpen !== wasMonitorOpen || drivesDirty;
+      inside !== wasInside ||
+      monitorOpen !== wasMonitorOpen ||
+      drivesDirty ||
+      inspectionDirty;
+    inspectionDirty = false;
     drivesDirty = false;
     const changedInside = dirty;
     wasInside = inside;
     wasMonitorOpen = monitorOpen;
     for (const mesh of objects.values())
+      if (
+        !mesh.userData.interior &&
+        !mesh.userData.monitorInterior &&
+        !mesh.userData.prototype
+      )
+        mesh.visible = true;
+    for (const mesh of objects.values())
       if (mesh.userData.interior)
-        mesh.visible = inside || split > 0.01 || mesh.name === "psu-chassis";
+        mesh.visible =
+          inside ||
+          split > 0.01 ||
+          inspection.transparent ||
+          inspection.isolated !== "all" ||
+          (inspection.keyboardOpen && mesh.name.startsWith("keyboard-")) ||
+          mesh.name === "psu-chassis";
     for (const mesh of objects.values())
       if (mesh.userData.monitorInterior) {
-        mesh.visible = monitorOpen;
+        mesh.visible =
+          monitorOpen ||
+          inspection.transparent ||
+          inspection.isolated === "monitor";
         mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
       }
     for (const mesh of pcbPhotos) {
       const monitor = mesh.userData.section === "monitor-interior";
-      mesh.visible = monitor ? monitorOpen : inside || split > 0.01;
+      mesh.visible = monitor
+        ? monitorOpen ||
+          inspection.transparent ||
+          inspection.isolated === "monitor"
+        : inside ||
+          split > 0.01 ||
+          inspection.transparent ||
+          inspection.isolated === "logic";
       if (monitor) mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
     }
     const beforeSplit = split;
@@ -480,7 +572,8 @@ export async function loadRobotron(displayTexture) {
     const fanMoved = moveFan(
       performance.now(),
       power,
-      objects.get("fan-rotor").visible,
+      objects.get("fan-rotor").visible &&
+        ["all", "psu"].includes(inspection.isolated),
       reduced,
     );
     dirty = fanMoved || dirty;
@@ -515,8 +608,30 @@ export async function loadRobotron(displayTexture) {
         mesh.position.z = split * 115;
         mesh.position.y = -split * 145;
       }
-      if (name.startsWith("ribbon-") || name.startsWith("power-wires"))
-        mesh.visible = inside && split < 0.01;
+      if (cableRest.has(name)) {
+        mesh.visible = inside || inspection.transparent;
+        // Inspection deformation: retain fixed board/PSU ends while moving drive ends.
+        // This is an explanatory extension, not a claim about available cable slack.
+        const rest = cableRest.get(name),
+          pos = mesh.geometry.attributes.position;
+        if (beforeSplit !== split || changedInside) {
+          for (let i = 0; i < pos.count; i++) {
+            const weight = name.startsWith("ribbon-")
+              ? THREE.MathUtils.clamp((40 - rest[i * 3 + 1]) / 20, 0, 1) *
+                THREE.MathUtils.clamp((rest[i * 3 + 2] - 53) / 13, 0, 1)
+              : THREE.MathUtils.clamp((-30 - rest[i * 3]) / 23, 0, 1);
+            pos.setXYZ(
+              i,
+              rest[i * 3],
+              rest[i * 3 + 1] - split * 145 * weight,
+              rest[i * 3 + 2] + split * 115 * weight,
+            );
+          }
+          pos.needsUpdate = true;
+          mesh.geometry.computeVertexNormals();
+          mesh.geometry.computeBoundingSphere();
+        }
+      }
     }
     for (const mesh of group.children)
       if (mesh.name === "drive-direction") {
@@ -526,26 +641,79 @@ export async function loadRobotron(displayTexture) {
         mesh.position.z += split * 115;
       }
     objects.get("fascia").position.y = -split * 40;
-    objects.get("keyboard-deck").position.z = split * 55;
-    objects.get("keyboard-fillers").position.z = split * 55;
-    objects.get("cable").visible = split < 0.05;
-    keyboard.position.z = data.keyboard.z + split * 55;
+    const keyboardLift = Math.max(split, inspection.keyboardOpen ? 1 : 0);
+    objects
+      .get("keyboard-deck")
+      .position.set(0, keyboardLift * 90, keyboardLift * 55);
+    objects
+      .get("keyboard-fillers")
+      .position.set(0, keyboardLift * 90, keyboardLift * 55);
+    objects.get("cable").visible = true;
+    keyboard.position.z = data.keyboard.z + keyboardLift * 110;
+    mechanism.visible =
+      inside ||
+      keyboardLift > 0 ||
+      inspection.transparent ||
+      inspection.isolated === "keyboard";
+    for (const [i, key] of data.keys.entries()) {
+      const down = keyObjects.get(key.id).position.z;
+      instance.rotation.set(0, 0, 0);
+      instance.position.set(key.x, key.y, -12);
+      instance.scale.set(1, 1, (12 + down + keyboardLift * 11) / 12);
+      instance.updateMatrix();
+      mechanisms[0].setMatrixAt(i, instance.matrix);
+      instance.position.set(key.x, key.y, down + keyboardLift * 110);
+      instance.scale.set(1, 1, 1);
+      instance.updateMatrix();
+      mechanisms[1].setMatrixAt(i, instance.matrix);
+    }
+    for (const mesh of mechanisms) mesh.instanceMatrix.needsUpdate = true;
     for (const mesh of patches) {
       mesh.position.copy(mesh.userData.rest);
+      mesh.visible = true;
       if (mesh.name === "brand") mesh.position.y -= split * 40;
       if (mesh.userData.assembly === "drives") {
-        mesh.visible = inside || split > 0.01;
+        mesh.visible =
+          inside ||
+          split > 0.01 ||
+          inspection.transparent ||
+          inspection.isolated === "drives";
         mesh.position.y -= split * 145;
         mesh.position.z += split * 115;
       }
     }
+    for (const d of data.driveMotion)
+      objects.get(d.spindle).visible &&= ["all", "drives"].includes(
+        inspection.isolated,
+      );
     const drivesMoved = moveDrives(
       performance.now(),
       driveStates,
       power,
       split,
       reduced,
+      inspection.clamps,
     );
+    for (const mesh of [...objects.values(), ...pcbPhotos, ...patches]) {
+      if (inspection.isolated !== "all")
+        mesh.visible &&= belongs(mesh.name, inspection.isolated);
+      if (covers.has(mesh.name)) {
+        mesh.material.transparent = inspection.transparent;
+        mesh.material.opacity = inspection.transparent ? 0.16 : 1;
+        mesh.material.depthWrite = !inspection.transparent;
+        mesh.castShadow = !inspection.transparent;
+      }
+    }
+    keyboard.visible =
+      inspection.isolated === "all" || inspection.isolated === "keyboard";
+    mechanism.visible &&= keyboard.visible;
+    for (const mesh of group.children) {
+      if (mesh.name === "drive-direction")
+        mesh.visible =
+          inspection.isolated === "all" || inspection.isolated === "drives";
+      if (["reset-label", "power-label"].includes(mesh.name))
+        mesh.visible = inspection.isolated === "all";
+    }
     return {
       dirty: dirty || beforeSplit !== split || drivesMoved,
       shadows:
@@ -554,6 +722,11 @@ export async function loadRobotron(displayTexture) {
   }
   return {
     group,
+    inspect(value) {
+      inspection = { ...inspection, ...value };
+      inspectionDirty = true;
+      releaseKeys();
+    },
     objects,
     keys: data.keys,
     keyObjects,

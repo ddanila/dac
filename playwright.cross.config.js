@@ -1,7 +1,11 @@
 import base from "./playwright.config.js";
 export default {
   ...base,
-  testMatch: ["portable-sessions.spec.js", "workbench.spec.js"],
+  testMatch: [
+    "portable-sessions.spec.js",
+    "workbench.spec.js",
+    "assembly.spec.js",
+  ],
   workers: 1,
   timeout: 60000,
   use: {

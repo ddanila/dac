@@ -217,7 +217,11 @@ export function createScene(
     return kind === 2 && robotron
       ? ray.intersectObject(robotron.group, true).find((hit) => {
           for (let node = hit.object; node; node = node.parent)
-            if (!node.visible) return false;
+            if (
+              !node.visible ||
+              (node.material?.transparent && node.material.opacity < 0.2)
+            )
+              return false;
           return true;
         })?.object
       : ray.intersectObject(power)[0]?.object;
@@ -324,6 +328,11 @@ export function createScene(
     releaseKeys: () => robotron?.releaseKeys(),
     pulse: (id) => robotron?.pulse(id),
     keyState: (id, pressed) => robotron?.keyState(id, pressed),
+    inspect: (value) => {
+      cancelGesture();
+      robotron?.inspect(value);
+      renderRequested = true;
+    },
     openMonitor: (on) => {
       cancelGesture();
       robotron?.openMonitor(on);
@@ -349,6 +358,12 @@ export function createScene(
       robotron?.releaseKeys();
       robotron?.separate(false);
       robotron?.interior(false);
+      robotron?.inspect({
+        isolated: "all",
+        transparent: false,
+        keyboardOpen: false,
+        clamps: false,
+      });
       robotron?.openMonitor(false);
       caseOpen = false;
       assembliesLifted = false;
@@ -383,6 +398,10 @@ export function createScene(
         keyboard: [
           [0, 1.55, 1.45],
           [0, 0.07, 0.88],
+        ],
+        "keyboard-inside": [
+          [-1.55, 0.83, 2.0],
+          [0, 0.16, 0.88],
         ],
         "drive-labels": [
           [-0.22, 0.75, -0.42],
