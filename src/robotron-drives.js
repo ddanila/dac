@@ -5,10 +5,14 @@ export function createDriveMotion(objects, descriptions = []) {
     const spindle = objects.get(d.spindle),
       head = objects.get(d.head);
     spindle.geometry.translate(...d.pivot.map((v) => -v));
-    return { ...d, spindle, head, angle: 0 };
+    const latch = objects.get(d.latch),
+      clamp = objects.get(d.clamp),
+      headMetal = objects.get(d.headMetal);
+    if (latch) latch.geometry.translate(...d.latchPivot.map((v) => -v));
+    return { ...d, spindle, head, latch, clamp, headMetal, angle: 0 };
   });
   let last;
-  return (now, states, power, split, reduced) => {
+  return (now, states, power, split, reduced, clampsOpen = false) => {
     const dt = last === undefined ? 0 : Math.min(0.05, (now - last) / 1000);
     last = now;
     let moving = false;
@@ -30,6 +34,21 @@ export function createDriveMotion(objects, descriptions = []) {
         (d.travel[1] * track) / 79 - split * 145,
         (d.travel[2] * track) / 79 + split * 115,
       );
+      d.headMetal?.position.copy(d.head.position);
+      if (d.latch) {
+        d.latch.position.set(
+          d.latchPivot[0],
+          d.latchPivot[1] - split * 145,
+          d.latchPivot[2] + split * 115,
+        );
+        d.latch.rotation.y = clampsOpen ? Math.PI / 2 : 0;
+      }
+      if (d.clamp)
+        d.clamp.position.set(
+          0,
+          -split * 145,
+          split * 115 + (clampsOpen ? 5 : 0),
+        );
     }
     return moving;
   };

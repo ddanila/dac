@@ -98,6 +98,13 @@ function keyButtons(keys) {
   $("open-monitor").disabled = false;
   $("separate-parts").disabled = false;
   $("key-list-toggle").disabled = false;
+  for (const id of [
+    "open-keyboard",
+    "transparent-covers",
+    "release-clamps",
+    "isolate-assembly",
+  ])
+    $(id).disabled = false;
   modelKeys = keys;
   $("key-list").replaceChildren();
   for (const key of keys) {
@@ -167,6 +174,9 @@ async function configure(demo, historical = false) {
   scene?.setMachine(kind);
   $("separate-parts").checked = false;
   $("open-case").checked = false;
+  for (const id of ["open-keyboard", "transparent-covers", "release-clamps"])
+    $(id).checked = false;
+  $("isolate-assembly").value = "all";
   $("open-monitor").checked = false;
   $("viewport").dataset.interior = "false";
   $("key-list").hidden = true;
@@ -556,7 +566,36 @@ $("screen-view").onclick = () => {
   if (!$("screen-panel").hidden) screen.focus();
   else release();
 };
+for (const id of [
+  "open-keyboard",
+  "transparent-covers",
+  "release-clamps",
+  "isolate-assembly",
+])
+  $(id).onchange = () => {
+    release();
+    updateCase();
+    if (id === "open-keyboard" && $(id).checked) selectView("keyboard-inside");
+    if (id === "isolate-assembly") {
+      const assembly = $(id).value;
+      selectView(
+        {
+          all: "overview",
+          keyboard: $("open-keyboard").checked ? "keyboard-inside" : "keyboard",
+          logic: "inside",
+          psu: "inside",
+          monitor: "monitor-inside",
+        }[assembly] || assembly,
+      );
+    }
+  };
 function updateCase() {
+  scene?.inspect({
+    isolated: $("isolate-assembly").value,
+    transparent: $("transparent-covers").checked,
+    keyboardOpen: $("open-keyboard").checked,
+    clamps: $("release-clamps").checked,
+  });
   const open = $("open-case").checked;
   scene?.interior(open);
   scene?.openMonitor($("open-monitor").checked);

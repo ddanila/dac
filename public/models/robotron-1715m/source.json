@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "4c03a259c9638c264513db67e3895544a9cd90a2",
+  "revision": "b185689dc6bc1eef33e210d4070074e605c6aff2",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "89f5fa94ed8867f8fab95e7433400413212a4fd43cdc11d45094b784f112db30"
+      "sha256": "ec76b0af00e52264f791b8d30b727294d3dbdc2f0556a01ae03e234a8a57f2ca"
     },
     {
       "file": "LICENSE",
@@ -13,11 +13,11 @@
     },
     {
       "file": "meshes/case-base.stl",
-      "sha256": "9566a0024586b6ebad902c48c1e128e0dc9194a7685ae191e4118fe895cb11ac"
+      "sha256": "bfcaf20cf365a7fbfc1f887caa2b89b5e7f4d97b64fd649f4562432030be1140"
     },
     {
       "file": "meshes/case-lid.stl",
-      "sha256": "972db614a65a8ef304972a691d3fe8920ec4021ac7c732c862ae54a49715e0f9"
+      "sha256": "8e9563b7b4c63aaa9dbbca16679232560f28ef1838e28a44fc6f352d25692ce2"
     },
     {
       "file": "meshes/fascia.stl",
@@ -45,7 +45,7 @@
     },
     {
       "file": "meshes/monitor-shell-lower.stl",
-      "sha256": "d41240e3ef12a8f90fd2a1c171df7be97172abb3a6471071d20fbeb3022f0d52"
+      "sha256": "5f798b0a7de3a60e1570fabbeb118817336ed7984246bd7e30129a2abf7937e7"
     },
     {
       "file": "meshes/bezel.stl",
@@ -80,8 +80,8 @@
       "sha256": "d11bb35147a9ed71fc2d0accdb39258008441c1056348d5f286cc344a04f20e0"
     },
     {
-      "file": "meshes/drive-latches.stl",
-      "sha256": "11bedb771cf299bf7b75a16aa7437ebc2b3a91c1db403b0baa2fd718c019db8b"
+      "file": "meshes/drive-latch-0.stl",
+      "sha256": "f25de7dabda21e66418e084365ea20cc8ba549d618a0c51952f0f75df9fafead"
     },
     {
       "file": "meshes/drive-led-0.stl",
@@ -129,7 +129,7 @@
     },
     {
       "file": "meshes/drive-mechanisms.stl",
-      "sha256": "3f6ed8e584fca81b0943514b4646d07b15adac0a78deee53607fe79cce42bee3"
+      "sha256": "74262abc2e1ca8e59d00630071872f40c84c6bb1aa5821bab456a1e1f9223935"
     },
     {
       "file": "meshes/drive-motors.stl",
@@ -189,11 +189,11 @@
     },
     {
       "file": "meshes/ribbon-cables.stl",
-      "sha256": "5cb2071fcf4d9e113b6f423a107de78d5235389f8f45c3a88ae041b7925f7f95"
+      "sha256": "8e2d72d6869f78e5a21feaacf153aae82b2461d0f666421b533829ef442892e2"
     },
     {
       "file": "meshes/ribbon-stripes.stl",
-      "sha256": "b015d3070ac11cd28a0a5620877917d5c977737b2c76a141dd6982f77b1259d9"
+      "sha256": "d31f493e40274325928f8486860107f91a3d28955568abf3647d47521e1e6c70"
     },
     {
       "file": "meshes/power-wires-red.stl",
@@ -213,7 +213,7 @@
     },
     {
       "file": "meshes/keyboard-switches.stl",
-      "sha256": "7a90341fc85f5d4e481f0edb262aa53b66875a0e878e4d08c1b794f8999da658"
+      "sha256": "f1ef7a859baa805c9917635cf4644ea1b4c5f13f9b9c3af6af2e1ce190be2ad2"
     },
     {
       "file": "meshes/monitor-shell-upper.stl",
@@ -221,7 +221,7 @@
     },
     {
       "file": "meshes/tube-funnel.stl",
-      "sha256": "258726710ab6d238d6ae2038f5049d9ee245eaccd57521b3b615b91e99e04614"
+      "sha256": "2c01f95f6aefaa706f9d555f19a35b64b342847859fa5e38f9afbe38bcd01937"
     },
     {
       "file": "meshes/tube-neck.stl",
@@ -233,7 +233,7 @@
     },
     {
       "file": "meshes/monitor-coils.stl",
-      "sha256": "1041bf8e9b72911978f825bd1fc6c658aa5624ee9b79059a2ea009c93b1a333d"
+      "sha256": "f83ae2c54979b338bd02eee28929959266c735cdcbce02510718f6c5cd0a5bb8"
     },
     {
       "file": "meshes/monitor-chassis.stl",
@@ -245,7 +245,7 @@
     },
     {
       "file": "meshes/monitor-components.stl",
-      "sha256": "730adae11b32003acc690e403e930d9cfe0e03c9e8d5b844e457dfd9f4907f70"
+      "sha256": "e162d78449975391797a5255113853ac7a0aa6591642622fcf3952fd726978cc"
     },
     {
       "file": "meshes/monitor-capacitors.stl",
@@ -285,39 +285,95 @@
     },
     {
       "file": "meshes/drive-head-0.stl",
-      "sha256": "f50d77eeeb99922efc5afa48c082eb6c8b247afd32b5e5b7203a34af7fd9abb3"
+      "sha256": "f4161f412b8494b059f3574b2ef372679495122c604a2c6101e14d4194dae975"
     },
     {
       "file": "meshes/drive-head-1.stl",
-      "sha256": "925b9e3032638bca7eab72b27924c8bd65fcbe03b3b8a1b9eb67bd01191f1ac8"
+      "sha256": "0e1029dfbc4d2499230858ccd02be878040d41c4977fbd396af6ffce53ee9eaf"
+    },
+    {
+      "file": "meshes/drive-latch-1.stl",
+      "sha256": "ea3f3f8d5118231ac752a2d24ab7a069cd7dcdc8f4ab4fb66209d4cb31aea38f"
+    },
+    {
+      "file": "meshes/drive-clamp-0.stl",
+      "sha256": "cd6f68b674d68333619b130505878b8ec069145ea48139a1ec5c1bc7676672b5"
+    },
+    {
+      "file": "meshes/drive-clamp-1.stl",
+      "sha256": "5cca7a40ce9455b028c9c1c55d46fb5cff62fcf2e0b561488222854e32d801f5"
+    },
+    {
+      "file": "meshes/drive-head-metal-0.stl",
+      "sha256": "2bf415f62e228776c9eba5805ac025ba454d0e6eb93b17c6e92ab444b6789557"
+    },
+    {
+      "file": "meshes/drive-head-metal-1.stl",
+      "sha256": "4956f56d6518f0f34ccff94d986f7d99095784a9592e188a2eb77b7d062ddfa1"
+    },
+    {
+      "file": "meshes/drive-board-components.stl",
+      "sha256": "95972cec2e3ea2836d70ee37b31bd8084c6994bfcea8978ecd1f7449ffce75ea"
+    },
+    {
+      "file": "meshes/logic-mounts.stl",
+      "sha256": "ecd4f10895109c1e60bb371ee4380ceb369abcf09248002d467efb426146dc65"
+    },
+    {
+      "file": "meshes/chassis-fasteners.stl",
+      "sha256": "ccdb97d8879384b90cb95d68821836afe676f8c402783b5d1a37caa34d893850"
+    },
+    {
+      "file": "meshes/keyboard-plate.stl",
+      "sha256": "e71c7f5e041a50a53ab802a1ac059d7f74021ce8ea563fcc557d2f4dafc30c59"
+    },
+    {
+      "file": "meshes/monitor-fasteners.stl",
+      "sha256": "1bb22bd28d91e4106caebdcaae610a9700b159a24a08a6227db2995ac4522c28"
+    },
+    {
+      "file": "meshes/monitor-passives.stl",
+      "sha256": "11ea23805a755af81674f0003f2bb02ead71106a059e7592d134f73119ef0442"
+    },
+    {
+      "file": "meshes/monitor-socket.stl",
+      "sha256": "ddb997b0fb9e13e37c2473e46f6702f47b5f3a17126cc38bf92d6e8144a613ed"
+    },
+    {
+      "file": "meshes/prototype-spring.stl",
+      "sha256": "05c948beec78a1a092cd2f85c12666a1786676a08938b8c517cae2b4aa6cd858"
+    },
+    {
+      "file": "meshes/prototype-stem.stl",
+      "sha256": "2d4db67dba3ef3dcf85d861e3f90390cd6c268cd2de47be0dead030f0de9add1"
     },
     {
       "file": "meshes/keycap-0.stl",
-      "sha256": "a8d94931e3329b88d4e013694a15ede3717b77d54ceb417e70a8bab28a2e5ad3"
+      "sha256": "d918a4b5f617508ee584e629cd5fb8edf8612f256af85f09a17173c8dd5486bb"
     },
     {
       "file": "meshes/keycap-1.stl",
-      "sha256": "40c681939d0be5970528e1c413f9006773c3cdb2db1b2dc4094c260d3cc3da8a"
+      "sha256": "ad3a269be4aa1c4145d0dff2040ad3ffc87f8d204e0942f26496a5ed782142d1"
     },
     {
       "file": "meshes/keycap-2.stl",
-      "sha256": "9945641fdbf82da2a68e1c5e710b90e2cee0d80bb0fe7f314da94b3d0d69467d"
+      "sha256": "486ab5eb9b044aadbfef4f7d34aaecdb69c7ce219f39671a86e9fa82d096438d"
     },
     {
       "file": "meshes/keycap-3.stl",
-      "sha256": "ea1e20e1e1bebf4eacbb95c59e8ad50131d7b74ce44723b91d42a05fd56b9606"
+      "sha256": "7c5bb46ebb1405be54bb0051239de12684bd87a96d1ea996e5ab8384a7b4ad78"
     },
     {
       "file": "meshes/keycap-4.stl",
-      "sha256": "97e59faef0d8ec532c04a1c91555c815e0918d6e88ec315b8c95522d86e7c7e2"
+      "sha256": "9410853d6fb5441d7f7828b6195695e37aa77ffdef352dc33ee5cb24ad13036f"
     },
     {
       "file": "meshes/keycap-5.stl",
-      "sha256": "40c681939d0be5970528e1c413f9006773c3cdb2db1b2dc4094c260d3cc3da8a"
+      "sha256": "ad3a269be4aa1c4145d0dff2040ad3ffc87f8d204e0942f26496a5ed782142d1"
     },
     {
       "file": "meshes/keycap-6.stl",
-      "sha256": "252e7d16c2b064b6793b9fb9307a531eeb6fd8ed201a3ee4ff90f89ea73331f8"
+      "sha256": "4c782a1f7e566ac19de2b24235fa474dd67eae8925f5c1917efe9d88c5a4bf74"
     },
     {
       "file": "photos/PXL_20250212_094033966.jpg",
@@ -418,6 +474,14 @@
     {
       "file": "photos/PXL_20261010_090431122.jpg",
       "sha256": "0b17c5cb6f62454d03552631574d9fd2403e56d4452b6f72d554694b6947adff"
+    },
+    {
+      "file": "photos/PXL_20261010_131354451.jpg",
+      "sha256": "b1489f088a454bbe4b42ffdc050bff9da3d2608952482c110431a397f967f4e7"
+    },
+    {
+      "file": "photos/PXL_20261010_131835506.jpg",
+      "sha256": "78ea5acbf5cb35d1b59ca31bb25bdbe8b5505167d20920b9f3dea778e5d40e61"
     },
     {
       "file": "reference/oldcrap/motherboard.jpeg",

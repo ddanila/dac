@@ -82,6 +82,12 @@ export const inspections = {
   },
 };
 Object.assign(inspections, {
+  "keyboard-inside": {
+    title: "Inside the keyboard",
+    evidence: "Owner spring measurements · switch construction estimated",
+    text: "The keycaps lift above the springs and stems; the deck moves back to reveal the switch housings and mounting plate. The spring dimensions come from another owner-photographed keyboard variant. Travel, installed height and unseen switch construction remain estimates.",
+    photo: "132919894",
+  },
   "component-logic": {
     title: "System logic boards",
     evidence: "Comparative reference · another PC 1715",
@@ -96,14 +102,14 @@ Object.assign(inspections, {
   },
   "component-keyboard": {
     title: "Keyboard electronics",
-    evidence: "Estimated geometry · reference firmware",
-    text: "The switches and board are approximate. The emulator runs the S600 ROM on a separate Z80 with the K7658 reference matrix. This does not establish the exact ROM or board revision inside Danila’s keyboard.",
+    evidence: "Owner spring measurements · hidden construction estimated",
+    text: "The spring dimensions come from Danila’s photographed keyboard variant (13 mm diameter, about 23 mm free length and 0.35 mm wire). Springs, stems, hollow keycaps and a mounting plate are modeled; installed height, travel, hidden switch construction and board revision remain approximate. Lift the keyboard deck to inspect them. The emulator runs the S600 ROM on a separate Z80 with the K7658 reference matrix. This does not establish the exact ROM or board revision inside Danila’s keyboard.",
     photo: "132919894",
   },
   "component-crt": {
     title: "CRT, yoke and monitor electronics",
     evidence: "Comparative K7222.25 reference · dimensions estimated",
-    text: "The tube funnel and neck, deflection yoke, circuit boards and metal chassis follow K7222.25 reference photographs. Their exact dimensions and part numbers remain unverified for this monitor. The curved screen displays live emulator output.",
+    text: "The shaped tube funnel and neck, deflection yoke windings, neck socket, board components and mounting hardware follow K7222.25 reference photographs. Their exact dimensions and part numbers remain unverified for this monitor. The curved screen displays live emulator output.",
     reference:
       "https://www.robotrontechnik.de/html/zubehoer/bildschirme.htm#k7222-25",
   },

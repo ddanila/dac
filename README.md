@@ -126,3 +126,14 @@ pinned JS hash to `src/archived-cores.json`, and run the preserved-state test.
 and run it with `public/media/robotron/s600.bin`. It boots a fresh reference
 keyboard for each matrix contact with and without Shift and observes serial output;
 it does not infer characters from the specimen’s printed legends.
+
+
+Assembly inspection now supports keyboard-only disassembly, assembly isolation,
+transparent covers and a visual drive-clamp release. Springs and stems share
+instanced geometry and follow key presses. The spring measurements belong to an
+owner-photographed keyboard variant; hidden switch construction remains estimated.
+Drive heads and shields move together, and separated cables retain their endpoints
+using explanatory stretching. Releasing clamps in the viewer does not eject media.
+Monitor geometry and PCB credits remain explicitly comparative until specimen
+interior photographs are available. Focused `assembly.spec.js` checks these motions,
+visibility restoration, cable endpoints and mobile controls without hardware simulation.
