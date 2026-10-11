@@ -45,8 +45,8 @@ export const inspections = {
     photo: "20261010_090425989",
   },
   drives: {
-    title: "Two drives, one mounted disk",
-    text: "The two mechanisms now follow Danila’s own photos, including their different sensor-board shapes, clamp bridges, head carriages and rear plates. Choose Drive labels to inspect the manufacturer markings. The first red lamp follows actual emulator transfers, not motor or drive-select timing.",
+    title: "Two independently usable drives",
+    text: "The two mechanisms now follow Danila’s own photos, including their different sensor-board shapes, clamp bridges, head carriages and rear plates. Choose Drive labels to inspect the manufacturer markings. Each drive has independent media and write protection. Lamps, spindle rotation and head travel follow emulator activity; travel distance is estimated.",
     photo: "20250212_094033966",
   },
   "drive-labels": {
@@ -81,6 +81,37 @@ export const inspections = {
     text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; logic boards, the power supply shield, fan and wiring still use comparative references. Keyboard switches and its board are approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
   },
 };
+Object.assign(inspections, {
+  "component-logic": {
+    title: "System logic boards",
+    evidence: "Comparative reference · another PC 1715",
+    text: "These photographic boards come from Old Crap Vintage Computing’s PC 1715. They show the arrangement of logic, memory and connectors; the PCB revision and component identities in Danila’s 1715M have not been verified. Chip geometry is illustrative, not an electrical reconstruction.",
+    reference: "https://oldcrap.org/2017/12/26/robotron-1715/",
+  },
+  "component-psu": {
+    title: "Power supply and fan",
+    evidence: "Comparative reference · dimensions estimated",
+    text: "The shield and fan placement follow another PC 1715. The inside of the shield is not modeled. Fan motion indicates museum power state; its speed is illustrative.",
+    reference: "https://oldcrap.org/2017/12/26/robotron-1715/",
+  },
+  "component-keyboard": {
+    title: "Keyboard electronics",
+    evidence: "Estimated geometry · reference firmware",
+    text: "The switches and board are approximate. The emulator runs the S600 ROM on a separate Z80 with the K7658 reference matrix. This does not establish the exact ROM or board revision inside Danila’s keyboard.",
+    photo: "132919894",
+  },
+  "component-crt": {
+    title: "CRT, yoke and monitor electronics",
+    evidence: "Comparative K7222.25 reference · dimensions estimated",
+    text: "The tube funnel and neck, deflection yoke, circuit boards and metal chassis follow K7222.25 reference photographs. Their exact dimensions and part numbers remain unverified for this monitor. The curved screen displays live emulator output.",
+    reference:
+      "https://www.robotrontechnik.de/html/zubehoer/bildschirme.htm#k7222-25",
+  },
+  "component-drives": {
+    ...inspections["drive-labels"],
+    evidence: "Owner photographs · hidden dimensions estimated",
+  },
+});
 let currentInspection = "overview";
 function photoUrl(photo) {
   return new URL(
@@ -90,13 +121,20 @@ function photoUrl(photo) {
 }
 export function showSpecimenDetail(name = currentInspection) {
   const entry = inspections[name];
-  if (!entry?.photo) return;
+  if (!entry) return;
   document.getElementById("detail-title").textContent = entry.title;
-  document.getElementById("detail-description").textContent = entry.text;
+  document.getElementById("detail-description").textContent =
+    (entry.evidence ? entry.evidence + ". " : "") + entry.text;
   const photo = document.getElementById("detail-photo");
-  photo.src = photoUrl(entry.photo);
+  photo.hidden = !entry.photo;
+  if (entry.photo) photo.src = photoUrl(entry.photo);
   photo.alt = `Danila’s photograph: ${entry.title}`;
-  document.getElementById("detail-original").href = photo.src;
+  const link = document.getElementById("detail-original");
+  link.hidden = !(entry.photo || entry.reference);
+  link.href = entry.photo ? photo.src : entry.reference || "#";
+  link.textContent = entry.photo
+    ? "View owner’s original photograph ↗"
+    : "View credited reference ↗";
   document.getElementById("specimen-detail").showModal();
 }
 document.getElementById("reference-details").onclick = () =>
@@ -126,3 +164,6 @@ interiorReferences.addEventListener("toggle", () => {
     delete image.dataset.src;
   }
 });
+
+for (const button of document.querySelectorAll("[data-component]"))
+  button.onclick = () => showSpecimenDetail(button.dataset.component);

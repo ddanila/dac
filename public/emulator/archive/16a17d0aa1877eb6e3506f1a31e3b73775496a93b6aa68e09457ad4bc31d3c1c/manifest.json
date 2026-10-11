@@ -1,0 +1,22 @@
+{
+  "version": "0.3.0",
+  "repository": "https://github.com/ddanila/dac-emulation",
+  "commit": "a6167dec42b6695e2b5ac579642d68b95bd235ae",
+  "abi": 1,
+  "emscripten": "6.0.12",
+  "sha256": {
+    "LICENSE": "5f37b6aa73439398b45f8b972c02bfbd07418c4e00d374adb68695a6edb38e5f",
+    "NOTICE": "6254d78393a11a6317ea65bf2108f4e2b147bb09bebf4770ce82b114dc7c5034",
+    "chips-LICENSE": "0c692ece632a8ec6d2a566c9234fdabda655644e6abc70027da9ff7c35e48634",
+    "dac.js": "e6d350b331f79c3b02fe37f789a8a397a4ef2dee662abddb405dd78fc2c4f5f4",
+    "dac.wasm": "16a17d0aa1877eb6e3506f1a31e3b73775496a93b6aa68e09457ad4bc31d3c1c",
+    "demo/cas.bin": "605d3ca65a8561d008d6e45cf0b66cbbc1cd19c9587cb3a5e0409012687cf2ea",
+    "demo/glyphs.bin": "0dbe552cbdb211727f0b91b655f8b3571f9a06f224bd6c2d837b0b6a4b567da0",
+    "demo/juku.bin": "54a89a9bd6a47bd44994e5c4abd4c34490ad2b64ca0c4ad01102cbf0c9ea7b0e",
+    "demo/robotron.bin": "000a3c32a5a90ddcc3e6f891498fc37a08012de00ac8706bce57f256880aca5c",
+    "demo/vjuga.bin": "54a89a9bd6a47bd44994e5c4abd4c34490ad2b64ca0c4ad01102cbf0c9ea7b0e",
+    "i8080-LICENSE": "c924d3588bdec43adb9be0732e37d393f1c054cdebea3e0496c7d237e307680a",
+    "robotron-reference-LICENSE": "7a198aa8879f6c87b7c018f36ffdf428ec30cacd0f81dc001131920aa59a532c",
+    "demo/manifest.json": "fd014596ae2772498aefd52dd34b57b4fb2e961ff2c43b99a6444de543995892"
+  }
+}

@@ -75,7 +75,12 @@ export async function storedKeys() {
 // Length-prefixed JSON identity and SHA-256 followed by the same-build core state.
 export async function encodeSnapshot(key, bytes) {
   const header = new TextEncoder().encode(
-    JSON.stringify({ format: "DAC-state-1", key, sha256: await digest(bytes) }),
+    JSON.stringify({
+      format: "DAC-state-2",
+      key,
+      compatibility: "pinned-runtime",
+      sha256: await digest(bytes),
+    }),
   );
   const out = new Uint8Array(4 + header.length + bytes.byteLength);
   new DataView(out.buffer).setUint32(0, header.length, true);
@@ -83,7 +88,7 @@ export async function encodeSnapshot(key, bytes) {
   out.set(new Uint8Array(bytes), 4 + header.length);
   return out.buffer;
 }
-export async function decodeSnapshot(file, key) {
+export function snapshotHeader(file) {
   if (
     !(file instanceof ArrayBuffer) ||
     file.byteLength < 8 ||
@@ -96,11 +101,23 @@ export async function decodeSnapshot(file, key) {
   const header = JSON.parse(
     new TextDecoder().decode(new Uint8Array(file, 4, n)),
   );
-  if (header.format !== "DAC-state-1" || header.key !== key)
+  if (
+    !["DAC-state-1", "DAC-state-2"].includes(header.format) ||
+    typeof header.key !== "string" ||
+    !/^state:[a-f0-9]{64}:/.test(header.key)
+  )
+    throw Error("Unsupported snapshot format.");
+  return { header, offset: 4 + n };
+}
+export async function decodeSnapshot(file, key) {
+  const { header, offset } = snapshotHeader(file);
+  // Library UUIDs isolate browser-local saves, not portable media compatibility.
+  const portableKey = (value) => value.replace(/:library:[a-f0-9-]{36}/g, "");
+  if (portableKey(header.key) !== portableKey(key))
     throw Error(
-      "Snapshot needs the same machine, original media, write settings and emulator version.",
+      "Snapshot needs the same machine, original media and write settings.",
     );
-  const bytes = file.slice(4 + n);
+  const bytes = file.slice(offset);
   if (header.sha256 !== (await digest(bytes)))
     throw Error("Snapshot failed its integrity check.");
   return bytes;

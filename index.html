@@ -78,6 +78,23 @@
             <button id="reference-details" type="button">
               Inspect photo and details
             </button>
+            <details id="component-guide">
+              <summary>Explore the components</summary>
+              <p>
+                Open the case or monitor and click a component, or choose one
+                below. Each description identifies the evidence behind it.
+              </p>
+              <div class="secondary-controls">
+                <button data-component="component-drives">
+                  Drives and labels</button
+                ><button data-component="component-logic">Logic boards</button
+                ><button data-component="component-psu">
+                  Power supply and fan</button
+                ><button data-component="component-keyboard">
+                  Keyboard electronics</button
+                ><button data-component="component-crt">CRT and monitor</button>
+              </div>
+            </details>
             <p id="interior-credit" hidden>
               <strong>Reference boards · other specimens.</strong> PCB
               photographs:
@@ -234,6 +251,72 @@
           >
           <p id="drive-state" data-robotron aria-live="off"></p>
           <p id="keyboard-mode" data-robotron></p>
+          <details id="paste-controls">
+            <summary>Paste through the keyboard</summary>
+            <p>
+              Wait for the program’s prompt. Text is typed at a controlled pace;
+              newlines press Enter. Printable ASCII, up to 4096 characters.
+              Reference S600 layout only when keyboard firmware is loaded.
+            </p>
+            <label
+              >Text<textarea
+                id="paste-text"
+                maxlength="4096"
+                rows="4"
+              ></textarea>
+            </label>
+            <button id="paste-send">Type text</button
+            ><button id="paste-cancel">Cancel typing</button>
+            <p id="paste-status" role="status"></p>
+          </details>
+          <details id="record-controls">
+            <summary>Record and replay a session</summary>
+            <p>
+              Restart and record captures the current disks, ROMs and subsequent
+              keyboard, disk changes, reset and power events. Export contains
+              that media; keep its original credits. Replay checks the display,
+              disks and printer in a separate machine. Maximum 100,000 events
+              and eight disk changes.
+            </p>
+            <button id="record-start">Restart and record</button
+            ><button id="record-stop">Stop and export recording</button>
+            <label
+              >Verify recording<input
+                id="record-file"
+                type="file"
+                accept=".dacrecord"
+            /></label>
+            <button id="record-cancel">Cancel replay</button>
+            <p id="record-status" role="status"></p>
+          </details>
+          <details id="library-controls">
+            <summary>Disk library</summary>
+            <p>
+              Named copies stay in this browser. Power off to insert or reset
+              one. Duplicate makes an independent copy; reset restores that
+              copy’s original contents.
+            </p>
+            <label
+              >Drive<select id="library-unit">
+                <option value="0">A</option>
+                <option value="1">B (Robotron)</option>
+              </select></label
+            >
+            <label
+              >Disk name<input
+                id="disk-name"
+                maxlength="80"
+                placeholder="My work disk"
+            /></label>
+            <button id="library-save">Save drive to library</button>
+            <label>Saved disks<select id="library-disks"></select></label>
+            <div class="secondary-controls">
+              <button id="library-mount">Insert in drive</button
+              ><button id="library-duplicate">Duplicate with name</button
+              ><button id="library-reset">Reset to original</button
+              ><button id="library-export">Export library disk</button>
+            </div>
+          </details>
           <details id="session-controls">
             <summary>Keep this session</summary>
             <label class="check"
@@ -243,7 +326,8 @@
             <p>
               Writable disk copies save automatically. Export a disk for a
               portable backup. Machine states resume the selected machine with
-              the same media and emulator version.
+              the same media. Older exported states can use a preserved emulator
+              version when available.
             </p>
             <div class="secondary-controls">
               <button id="save-state" disabled>Save state</button
@@ -258,8 +342,13 @@
                   accept=".dacstate"
               /></label>
             </div>
+            <button id="storage-persist">
+              Keep browser storage persistently
+            </button>
+            <p id="storage-durability" role="status"></p>
             <button id="forget-disk" disabled>Discard saved disk</button>
             <p id="storage-status" role="status"></p>
+            <p id="runtime-status" role="status"></p>
           </details>
           <details data-robotron id="drive-b-controls">
             <summary>Drive B</summary>
