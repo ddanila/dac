@@ -52,6 +52,7 @@ test("drive B reload, named independent copies and reset", async ({ page }) => {
     "reset to its original",
   );
   await page.locator("#eject-b").click();
+  await expect(page.locator("#disk-b-status")).toContainText("empty");
   await page.reload();
   await expect(page.locator("#power")).toBeEnabled({ timeout: 15000 });
   await open(page, "#drive-b-controls");
