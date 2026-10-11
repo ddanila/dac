@@ -61,8 +61,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # Linux headless Firefox rejects WebGL2 on this runner. The assembly
+          # suite needs an actual renderer, as well as the emulator controls.
           - browser: firefox
-            os: ubuntu-latest
+            os: macos-latest
           - browser: webkit
             os: macos-latest
     runs-on: ${{ matrix.os }}
