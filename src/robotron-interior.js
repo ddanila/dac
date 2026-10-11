@@ -1,5 +1,7 @@
 import { modelAsset } from "./model-assets.js";
 import * as THREE from "three";
+import { STLLoader } from "three/addons/loaders/STLLoader.js";
+import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
 
 // Image landmarks also generate the OpenSCAD package bodies. No generic chip grid.
 export function pcbPoint(board, x, y, height = 0) {
@@ -39,7 +41,15 @@ function subtract(rect, hole) {
 }
 export function pcbPhotoGeometry(board) {
   let rectangles = [board.crop];
-  for (const hole of board.exclude || [])
+  const components = [...(board.components || []), ...(board.passives || [])];
+  const holes = [
+    ...(board.exclude || []),
+    ...components.map((c) => {
+      const [x, y, w, h] = c.rect;
+      return [x - 2, y - 2, x + w + 2, y + h + 2];
+    }),
+  ];
+  for (const hole of holes)
     rectangles = rectangles.flatMap((r) => subtract(r, hole));
   const faces = rectangles.map((r) => [r, 0.045]);
   for (const [x, y, w, h] of board.packages)
@@ -85,10 +95,131 @@ export async function loadPcbPhotos(data, base) {
           polygonOffsetFactor: -1,
         }),
       );
+      if (board.components?.length && data.pcbComponents) {
+        const markings = new THREE.Mesh(
+          pcbMarkingGeometry(board, data.pcbComponents),
+          new THREE.MeshStandardMaterial({
+            map: texture,
+            transparent: true,
+            depthWrite: false,
+            roughness: 0.85,
+            polygonOffset: true,
+            polygonOffsetFactor: -1,
+          }),
+        );
+        markings.material.onBeforeCompile = (shader) => {
+          shader.fragmentShader = shader.fragmentShader.replace(
+            "#include <map_fragment>",
+            "#include <map_fragment>\nfloat ink=smoothstep(0.035,0.22,max(max(diffuseColor.r,diffuseColor.g),diffuseColor.b)); diffuseColor=vec4(vec3(0.55),diffuseColor.a*ink);",
+          );
+        };
+        markings.material.customProgramCacheKey = () => "pcb-photo-ink";
+        markings.name = `logic-markings-${board.name}`;
+        markings.userData.detail = "component-logic";
+        mesh.add(markings);
+      }
       mesh.name = `reference-${board.name}`;
       mesh.userData.credit = board.credit;
       mesh.userData.section = board.section || "interior";
       return mesh;
     }),
   );
+}
+
+// Mesh instances preserve nominal package dimensions and share geometry/GPU draws.
+export async function loadPcbComponents(data, base) {
+  const loader = new STLLoader(),
+    result = [];
+  const descriptions = data.pcbComponents;
+  if (!descriptions) return result;
+  const matrix = new THREE.Object3D();
+  await Promise.all(
+    descriptions.models.map(async (model) => {
+      const placements = descriptions.instances.filter(
+        (p) => p.model === model.id,
+      );
+      if (!placements.length) return;
+      for (const kind of ["body", "leads"]) {
+        const record = model.meshes[kind];
+        const geometry = toCreasedNormals(
+          await loader.loadAsync(
+            modelAsset(record.file, base, record.sha256).href,
+          ),
+          Math.PI / 4,
+        );
+        const material = new THREE.MeshStandardMaterial({
+          color: kind === "body" ? 0x29282a : 0xb9b7ac,
+          roughness: kind === "body" ? 0.7 : 0.32,
+          metalness: kind === "body" ? 0 : 0.78,
+        });
+        const mesh = new THREE.InstancedMesh(
+          geometry,
+          material,
+          placements.length,
+        );
+        placements.forEach((p, i) => {
+          matrix.position.set(...p.position);
+          matrix.rotation.set(0, 0, (p.rotation * Math.PI) / 180);
+          matrix.updateMatrix();
+          mesh.setMatrixAt(i, matrix.matrix);
+        });
+        mesh.instanceMatrix.needsUpdate = true;
+        mesh.computeBoundingBox();
+        mesh.computeBoundingSphere();
+        mesh.name = `logic-package-${model.id}-${kind}`;
+        mesh.userData.interior = true;
+        mesh.userData.detail = "component-logic";
+        mesh.userData.credit = descriptions.credit;
+        mesh.castShadow = mesh.receiveShadow = true;
+        mesh.visible = false;
+        result.push(mesh);
+      }
+    }),
+  );
+  return result;
+}
+
+// Only photographed lettering is raised onto nominal package tops. The board
+// plane excludes the original chip silhouettes, so there are no flat duplicates.
+export function pcbMarkingGeometry(board, descriptions) {
+  const positions = [],
+    uvs = [];
+  const models = new Map(descriptions.models.map((m) => [m.id, m]));
+  for (const p of descriptions.instances.filter(
+    (p) => p.board === board.name,
+  )) {
+    const model = models.get(p.model),
+      [x, y, w, h] = p.rect;
+    const horizontal = w > h;
+    const width = model.bodySize[horizontal ? 1 : 0] * 0.76;
+    const height = model.bodySize[horizontal ? 0 : 1] * 0.76;
+    const q = [
+      [0, 0],
+      [1, 0],
+      [1, 1],
+      [0, 1],
+    ];
+    for (const i of [0, 2, 1, 0, 3, 2]) {
+      const [u, v] = q[i],
+        a = (u - 0.5) * width,
+        b = (v - 0.5) * height;
+      positions.push(
+        p.position[0] + (board.rotated ? -b : a),
+        p.position[1] + (board.rotated ? -a : -b),
+        p.position[2] + p.top + 0.035,
+      );
+      uvs.push(
+        (x + w * (0.1 + 0.8 * u)) / board.imageSize[0],
+        1 - (y + h * (0.15 + 0.7 * v)) / board.imageSize[1],
+      );
+    }
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute(
+    "position",
+    new THREE.Float32BufferAttribute(positions, 3),
+  );
+  geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+  geometry.computeVertexNormals();
+  return geometry;
 }

@@ -2,7 +2,7 @@ import { componentDetail } from "./component-detail.js";
 import { createDriveMotion } from "./robotron-drives.js";
 import { createFanMotion } from "./robotron-fan.js";
 import { modelAsset } from "./model-assets.js";
-import { loadPcbPhotos } from "./robotron-interior.js";
+import { loadPcbPhotos, loadPcbComponents } from "./robotron-interior.js";
 import { crtGeometry, crtMaterial } from "./robotron-crt.js";
 import * as THREE from "three";
 import {
@@ -232,6 +232,11 @@ export async function loadRobotron(displayTexture) {
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = name;
     return mesh;
+  }
+  const packageMeshes = await loadPcbComponents(data, base);
+  for (const mesh of packageMeshes) {
+    group.add(mesh);
+    objects.set(mesh.name, mesh);
   }
   const pcbPhotos = await loadPcbPhotos(data, base);
   for (const mesh of pcbPhotos) {

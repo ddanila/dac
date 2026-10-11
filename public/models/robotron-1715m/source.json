@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "b185689dc6bc1eef33e210d4070074e605c6aff2",
+  "revision": "6ab83e127b25b8e54dab172509b881c7cf9b43da",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "ec76b0af00e52264f791b8d30b727294d3dbdc2f0556a01ae03e234a8a57f2ca"
+      "sha256": "1b910ce7b6c6e74609e4390cac5aeae2bf6209386df1bcc6e7a29643f02e633d"
     },
     {
       "file": "LICENSE",
@@ -156,20 +156,8 @@
       "sha256": "1f6a38521aa8efdd9d16d58d08fa9e054e4a52c96188a771a7954e939a6533dc"
     },
     {
-      "file": "meshes/logic-chips.stl",
-      "sha256": "e1a9958e12e8d184b709746203fce60c63d69cd5dfed5b7e8eef697c1aae91de"
-    },
-    {
-      "file": "meshes/logic-pins.stl",
-      "sha256": "fbe8f6adef09a9aaf12b295e3684f8cae1885af37f08efa8b8b531ed8a3b8092"
-    },
-    {
       "file": "meshes/logic-connectors.stl",
-      "sha256": "295bfda782de03969a47c3d8cbe6ce0b840e3bfd54989217ecfa4c88c87c5253"
-    },
-    {
-      "file": "meshes/logic-capacitors.stl",
-      "sha256": "847989696590f75ba124de211dd0fe80d95ffa6a5eecdf6a99b379a0bd2201ec"
+      "sha256": "1a05837cd77ba88a31546ab94124afb4cad0fc7763008b101b56d9927a00c1ed"
     },
     {
       "file": "meshes/psu-chassis.stl",
@@ -348,6 +336,26 @@
       "sha256": "2d4db67dba3ef3dcf85d861e3f90390cd6c268cd2de47be0dead030f0de9add1"
     },
     {
+      "file": "meshes/logic-resistors.stl",
+      "sha256": "46c1985e03d098d7e9cdd29b6e1ebaa8736030f055a59b701774e3eda1c25432"
+    },
+    {
+      "file": "meshes/logic-ceramics.stl",
+      "sha256": "1524a83c26791ca68465b7dc87a0b5941c0bd31240e0f5b4c060a705737e608a"
+    },
+    {
+      "file": "meshes/logic-electrolytics.stl",
+      "sha256": "300f318da8302ef807952ce6a4c657d6630e7fe4ceb6fe77103cb3d73e9a2b42"
+    },
+    {
+      "file": "meshes/logic-crystals.stl",
+      "sha256": "a45c20397c68ba75b37eb10a3d33f57187d1a4a9818d31f82bd98aac5ff60516"
+    },
+    {
+      "file": "meshes/logic-passive-leads.stl",
+      "sha256": "30876f448fd6b0239eebd82c79f35b68c7ecacc7e4889b76423e79115fcb7539"
+    },
+    {
       "file": "meshes/keycap-0.stl",
       "sha256": "d918a4b5f617508ee584e629cd5fb8edf8612f256af85f09a17173c8dd5486bb"
     },
@@ -494,6 +502,118 @@
     {
       "file": "reference/robotrontechnik/monitor-board.jpeg",
       "sha256": "cdd00f4f69605d2511a00fa0bdc02ed954b42f8150712ac796c183ff2d01732a"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-14_W7.62mm-body.stl",
+      "sha256": "d8b37907d924f3dee08dca7663807440e9ee90113b52ee9b128ccf9cb242e246"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-14_W7.62mm-leads.stl",
+      "sha256": "e6114ec7a39057a7dca5b8821213226b98e6f9be84e755fe0a349c06d5c5376b"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-16_W7.62mm-body.stl",
+      "sha256": "9c8b5ca1dd1461030cfb24e7260d946dbff43517cca2beb190b7a5a5e31019df"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-16_W7.62mm-leads.stl",
+      "sha256": "2775225f14435ed7b6f9c05ecee87712893c6e65718944ba43656ca2a46edca7"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-18_W7.62mm-body.stl",
+      "sha256": "a9a264a13d2d88a97f790f2014a93d6416a5e9cddb175f132149546273291950"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-18_W7.62mm-leads.stl",
+      "sha256": "d49901302aae2e9d9d74f6974e1ed849523eb693ee2befb9c21b7faab39525cb"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-20_W7.62mm-body.stl",
+      "sha256": "c71eb298a5948d48e8c2cd27929d85714d557be6a1e853f8c1c712a0319d345a"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-20_W7.62mm-leads.stl",
+      "sha256": "8f62ce8c5aa28581f95b4847a969d946abc04b5a9f2b1f3afd0202864696a166"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-24_W15.24mm-body.stl",
+      "sha256": "bc9672c67fb650b842d0caf7f115fbc1dd72d0566dff156f336f96a3aa006f2b"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-24_W15.24mm-leads.stl",
+      "sha256": "3b3c3e34a66a7bbe1093cf4bbdd7af3ac39b8442126cca681ca7bcbfc9f8184b"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-28_W15.24mm-body.stl",
+      "sha256": "1603f998846e9911c09c94e84a07f3a192a383d9f6cc5873ba33180562712ded"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-28_W15.24mm-leads.stl",
+      "sha256": "136786ad9198a7bb7ddc8d75d64f002de76bab45a82ba2cb7a5129c4bf685f75"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-40_W15.24mm-body.stl",
+      "sha256": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3"
+    },
+    {
+      "file": "components/kicad/meshes/DIP-40_W15.24mm-leads.stl",
+      "sha256": "3141da58f6a089f6baf4dd49afdac7f3c05589fac3333d4079c90f158dbfc815"
+    },
+    {
+      "file": "components/kicad/source/CC-BY-SA-4.0.txt",
+      "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
+    },
+    {
+      "file": "components/kicad/source/CREDITS.md",
+      "sha256": "2f62db980e28049ff415f011da4aee8e0e2d0d9eb8f6489d6b2acdf49a1c82ba"
+    },
+    {
+      "file": "components/kicad/source/DIP-14_W7.62mm.step",
+      "sha256": "3dae072a95c64bee0d1e58be8e75383639f5017ab982de1749d05808a4eed058"
+    },
+    {
+      "file": "components/kicad/source/DIP-16_W7.62mm.step",
+      "sha256": "17a30b1f0ab3fd5384a1231e3c63c394888d5b952c542a8c189e023ed3467464"
+    },
+    {
+      "file": "components/kicad/source/DIP-18_W7.62mm.step",
+      "sha256": "c9e1ad672f0603e5818e9d0329669eb09ec9fa91bae3fdad8cdfa245e05c3b5f"
+    },
+    {
+      "file": "components/kicad/source/DIP-20_W7.62mm.step",
+      "sha256": "ca359c9b9e0ce94efcb6c96866513f659eef6517d629ace3c4a0a779f6fd57bb"
+    },
+    {
+      "file": "components/kicad/source/DIP-24_W15.24mm.step",
+      "sha256": "235c13c98a0fd4a3b54a9135990ab210d1cf276aec115eeb917616fb4bb41d54"
+    },
+    {
+      "file": "components/kicad/source/DIP-28_W15.24mm.step",
+      "sha256": "fe57368cd24dc3b7388d2e9f116f8cb9af7a6876fe2a481c308e0a39cbd35d78"
+    },
+    {
+      "file": "components/kicad/source/DIP-40_W15.24mm.step",
+      "sha256": "56fb239cc3f47dd58a0eac0bd4aeae847d6aac80463bd6713647a9e06bc34a04"
+    },
+    {
+      "file": "components/kicad/source/GPL-3.0.txt",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "file": "components/kicad/source/LICENSE.md",
+      "sha256": "45d2bce75e5a4208f5afb01b8fb2c406e700371c4fe2b5f5cd5c443d46db4d8f"
+    },
+    {
+      "file": "components/kicad/NOTICE.txt",
+      "sha256": "4f1a38c86c2a3d326b6dc44190e8e42e2c7a1f6e5bdd6931ee04321b84baf6dc"
+    },
+    {
+      "file": "components/kicad/sources.json",
+      "sha256": "111ea4db4584f68d601acbf087f5d3f9506fdeab721afd4cdc9e628c42ef4005"
+    },
+    {
+      "file": "components/kicad/models.json",
+      "sha256": "3a04d18fb3935bba00b19c6aea63a7f03c8a992159496e0e00eca40da92a4f45"
     },
     {
       "file": "reference/oldcrap/NOTICE.txt",

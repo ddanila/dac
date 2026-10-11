@@ -1,5 +1,2845 @@
 {
-  "version": 9,
+  "version": 10,
+  "pcbComponents": {
+    "version": 1,
+    "models": [
+      {
+        "id": "DIP-14_W7.62mm",
+        "pins": 14,
+        "rowSpacing": 7.62,
+        "pitch": 2.54,
+        "licence": "GPL-3.0-or-later with design exception",
+        "bodyHeight": 3.680000066757202,
+        "bodySize": [
+          6.349999904632568,
+          19.049999237060547
+        ],
+        "meshes": {
+          "body": {
+            "file": "components/kicad/meshes/DIP-14_W7.62mm-body.stl",
+            "sha256": "d8b37907d924f3dee08dca7663807440e9ee90113b52ee9b128ccf9cb242e246",
+            "bounds": [
+              [
+                -3.174999952316284,
+                -9.524999618530273,
+                0.3799999952316284
+              ],
+              [
+                3.174999952316284,
+                9.524999618530273,
+                3.680000066757202
+              ]
+            ]
+          },
+          "leads": {
+            "file": "components/kicad/meshes/DIP-14_W7.62mm-leads.stl",
+            "sha256": "e6114ec7a39057a7dca5b8821213226b98e6f9be84e755fe0a349c06d5c5376b",
+            "bounds": [
+              [
+                -3.937000036239624,
+                -7.848499774932861,
+                -3.299999952316284
+              ],
+              [
+                3.937000036239624,
+                7.848499774932861,
+                2.1570000648498535
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "id": "DIP-16_W7.62mm",
+        "pins": 16,
+        "rowSpacing": 7.62,
+        "pitch": 2.54,
+        "licence": "GPL-3.0-or-later with design exception",
+        "bodyHeight": 3.680000066757202,
+        "bodySize": [
+          6.349999904632568,
+          19.177000045776367
+        ],
+        "meshes": {
+          "body": {
+            "file": "components/kicad/meshes/DIP-16_W7.62mm-body.stl",
+            "sha256": "9c8b5ca1dd1461030cfb24e7260d946dbff43517cca2beb190b7a5a5e31019df",
+            "bounds": [
+              [
+                -3.174999952316284,
+                -9.588500022888184,
+                0.3799999952316284
+              ],
+              [
+                3.174999952316284,
+                9.588500022888184,
+                3.680000066757202
+              ]
+            ]
+          },
+          "leads": {
+            "file": "components/kicad/meshes/DIP-16_W7.62mm-leads.stl",
+            "sha256": "2775225f14435ed7b6f9c05ecee87712893c6e65718944ba43656ca2a46edca7",
+            "bounds": [
+              [
+                -3.937000036239624,
+                -9.118499755859375,
+                -3.299999952316284
+              ],
+              [
+                3.937000036239624,
+                9.118499755859375,
+                2.1570000648498535
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "id": "DIP-18_W7.62mm",
+        "pins": 18,
+        "rowSpacing": 7.62,
+        "pitch": 2.54,
+        "licence": "GPL-3.0-or-later with design exception",
+        "bodyHeight": 3.680000066757202,
+        "bodySize": [
+          6.349999904632568,
+          22.860000610351562
+        ],
+        "meshes": {
+          "body": {
+            "file": "components/kicad/meshes/DIP-18_W7.62mm-body.stl",
+            "sha256": "a9a264a13d2d88a97f790f2014a93d6416a5e9cddb175f132149546273291950",
+            "bounds": [
+              [
+                -3.174999952316284,
+                -11.430000305175781,
+                0.3799999952316284
+              ],
+              [
+                3.174999952316284,
+                11.430000305175781,
+                3.680000066757202
+              ]
+            ]
+          },
+          "leads": {
+            "file": "components/kicad/meshes/DIP-18_W7.62mm-leads.stl",
+            "sha256": "d49901302aae2e9d9d74f6974e1ed849523eb693ee2befb9c21b7faab39525cb",
+            "bounds": [
+              [
+                -3.937000036239624,
+                -10.388500213623047,
+                -3.299999952316284
+              ],
+              [
+                3.937000036239624,
+                10.388500213623047,
+                2.1570000648498535
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "id": "DIP-20_W7.62mm",
+        "pins": 20,
+        "rowSpacing": 7.62,
+        "pitch": 2.54,
+        "licence": "GPL-3.0-or-later with design exception",
+        "bodyHeight": 3.680000066757202,
+        "bodySize": [
+          6.349999904632568,
+          26.16200065612793
+        ],
+        "meshes": {
+          "body": {
+            "file": "components/kicad/meshes/DIP-20_W7.62mm-body.stl",
+            "sha256": "c71eb298a5948d48e8c2cd27929d85714d557be6a1e853f8c1c712a0319d345a",
+            "bounds": [
+              [
+                -3.174999952316284,
+                -13.081000328063965,
+                0.3799999952316284
+              ],
+              [
+                3.174999952316284,
+                13.081000328063965,
+                3.680000066757202
+              ]
+            ]
+          },
+          "leads": {
+            "file": "components/kicad/meshes/DIP-20_W7.62mm-leads.stl",
+            "sha256": "8f62ce8c5aa28581f95b4847a969d946abc04b5a9f2b1f3afd0202864696a166",
+            "bounds": [
+              [
+                -3.937000036239624,
+                -11.658499717712402,
+                -3.299999952316284
+              ],
+              [
+                3.937000036239624,
+                11.658499717712402,
+                2.1570000648498535
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "id": "DIP-24_W15.24mm",
+        "pins": 24,
+        "rowSpacing": 15.24,
+        "pitch": 2.54,
+        "licence": "CC-BY-SA-4.0 with KiCad libraries exception",
+        "bodyHeight": 3.680000066757202,
+        "bodySize": [
+          13.739999771118164,
+          30.479999542236328
+        ],
+        "meshes": {
+          "body": {
+            "file": "components/kicad/meshes/DIP-24_W15.24mm-body.stl",
+            "sha256": "bc9672c67fb650b842d0caf7f115fbc1dd72d0566dff156f336f96a3aa006f2b",
+            "bounds": [
+              [
+                -6.869999885559082,
+                -15.239999771118164,
+                0.3799999952316284
+              ],
+              [
+                6.869999885559082,
+                15.239999771118164,
+                3.680000066757202
+              ]
+            ]
+          },
+          "leads": {
+            "file": "components/kicad/meshes/DIP-24_W15.24mm-leads.stl",
+            "sha256": "3b3c3e34a66a7bbe1093cf4bbdd7af3ac39b8442126cca681ca7bcbfc9f8184b",
+            "bounds": [
+              [
+                -7.619999885559082,
+                -14.199999809265137,
+                -3.299999952316284
+              ],
+              [
+                7.619999885559082,
+                14.199999809265137,
+                2.1570000648498535
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "id": "DIP-28_W15.24mm",
+        "pins": 28,
+        "rowSpacing": 15.24,
+        "pitch": 2.54,
+        "licence": "GPL-3.0-or-later with design exception",
+        "bodyHeight": 3.680000066757202,
+        "bodySize": [
+          13.461999893188477,
+          35.560001373291016
+        ],
+        "meshes": {
+          "body": {
+            "file": "components/kicad/meshes/DIP-28_W15.24mm-body.stl",
+            "sha256": "1603f998846e9911c09c94e84a07f3a192a383d9f6cc5873ba33180562712ded",
+            "bounds": [
+              [
+                -6.730999946594238,
+                -17.780000686645508,
+                0.3799999952316284
+              ],
+              [
+                6.730999946594238,
+                17.780000686645508,
+                3.680000066757202
+              ]
+            ]
+          },
+          "leads": {
+            "file": "components/kicad/meshes/DIP-28_W15.24mm-leads.stl",
+            "sha256": "136786ad9198a7bb7ddc8d75d64f002de76bab45a82ba2cb7a5129c4bf685f75",
+            "bounds": [
+              [
+                -7.747000217437744,
+                -16.738500595092773,
+                -3.299999952316284
+              ],
+              [
+                7.747000217437744,
+                16.738500595092773,
+                2.1570000648498535
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "id": "DIP-40_W15.24mm",
+        "pins": 40,
+        "rowSpacing": 15.24,
+        "pitch": 2.54,
+        "licence": "GPL-3.0-or-later with design exception",
+        "bodyHeight": 3.680000066757202,
+        "bodySize": [
+          13.461999893188477,
+          50.79999923706055
+        ],
+        "meshes": {
+          "body": {
+            "file": "components/kicad/meshes/DIP-40_W15.24mm-body.stl",
+            "sha256": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
+            "bounds": [
+              [
+                -6.730999946594238,
+                -25.399999618530273,
+                0.3799999952316284
+              ],
+              [
+                6.730999946594238,
+                25.399999618530273,
+                3.680000066757202
+              ]
+            ]
+          },
+          "leads": {
+            "file": "components/kicad/meshes/DIP-40_W15.24mm-leads.stl",
+            "sha256": "3141da58f6a089f6baf4dd49afdac7f3c05589fac3333d4079c90f158dbfc815",
+            "bounds": [
+              [
+                -7.747000217437744,
+                -24.35849952697754,
+                -3.299999952316284
+              ],
+              [
+                7.747000217437744,
+                24.35849952697754,
+                2.1570000648498535
+              ]
+            ]
+          }
+        }
+      }
+    ],
+    "instances": [
+      {
+        "id": "motherboard-package-000",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -92.84210526315792,
+          -68.19767441860465,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          694,
+          269,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-001",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -92.84210526315792,
+          -80.58139534883722,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          724,
+          269,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-002",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -92.84210526315792,
+          -92.96511627906976,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          754,
+          269,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-003",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -92.84210526315792,
+          -105.3488372093023,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          784,
+          269,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-004",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -92.84210526315792,
+          -117.73255813953489,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          814,
+          269,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-005",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -92.84210526315792,
+          -130.11627906976742,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          844,
+          269,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-006",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -92.84210526315792,
+          -142.5,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          874,
+          269,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-007",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -92.84210526315792,
+          -154.88372093023256,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          904,
+          269,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-008",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -120.91228070175438,
+          -68.19767441860465,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          694,
+          333,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-009",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -120.91228070175438,
+          -80.58139534883722,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          724,
+          333,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-010",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -120.91228070175438,
+          -92.96511627906976,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          754,
+          333,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-011",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -120.91228070175438,
+          -105.3488372093023,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          784,
+          333,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-012",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -120.91228070175438,
+          -117.73255813953489,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          814,
+          333,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-013",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -120.91228070175438,
+          -130.11627906976742,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          844,
+          333,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-014",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -120.91228070175438,
+          -142.5,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          874,
+          333,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-015",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -120.91228070175438,
+          -154.88372093023256,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          904,
+          333,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-016",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.42105263157896,
+          -68.19767441860465,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          694,
+          398,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-017",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.42105263157896,
+          -80.58139534883722,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          724,
+          398,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-018",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.42105263157896,
+          -92.96511627906976,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          754,
+          398,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-019",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.42105263157896,
+          -105.3488372093023,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          784,
+          398,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-020",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.42105263157896,
+          -117.73255813953489,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          814,
+          398,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-021",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.42105263157896,
+          -130.11627906976742,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          844,
+          398,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-022",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.42105263157896,
+          -142.5,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          874,
+          398,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-023",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.42105263157896,
+          -154.88372093023256,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          904,
+          398,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-024",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -177.9298245614035,
+          -68.19767441860465,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          694,
+          463,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-025",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -177.9298245614035,
+          -80.58139534883722,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          724,
+          463,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-026",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -177.9298245614035,
+          -92.96511627906976,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          754,
+          463,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-027",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -177.9298245614035,
+          -105.3488372093023,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          784,
+          463,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-028",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -177.9298245614035,
+          -117.73255813953489,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          814,
+          463,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-029",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -177.9298245614035,
+          -130.11627906976742,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          844,
+          463,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-030",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -177.9298245614035,
+          -142.5,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          874,
+          463,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-031",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -177.9298245614035,
+          -154.88372093023256,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          904,
+          463,
+          20,
+          48
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-032",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -214.99122807017545,
+          -77.07267441860465,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          716,
+          549,
+          19,
+          45
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-033",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -214.99122807017545,
+          -89.45639534883719,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          746,
+          549,
+          19,
+          45
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-034",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -214.99122807017545,
+          -101.84011627906978,
+          13.6
+        ],
+        "rotation": -90,
+        "rect": [
+          776,
+          549,
+          19,
+          45
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-035",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -33.850877192982466,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          151,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-036",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -44.81578947368422,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          176,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-037",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -56.21929824561403,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          202,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-038",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -77.71052631578948,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          251,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-039",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -87.7982456140351,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          274,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-040",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -98.76315789473685,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          299,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-041",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -110.16666666666669,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          325,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-042",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -150.51754385964912,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          417,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-043",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -163.67543859649123,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          447,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-044",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -176.39473684210526,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          476,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-045",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -193.93859649122805,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          516,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-046",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -206.6578947368421,
+          141.7063953488372,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          172,
+          545,
+          47,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-047",
+        "board": "motherboard",
+        "model": "DIP-20_W7.62mm",
+        "position": [
+          -38.675438596491205,
+          109.09593023255815,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          245,
+          161,
+          59,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-048",
+        "board": "motherboard",
+        "model": "DIP-20_W7.62mm",
+        "position": [
+          -38.675438596491205,
+          81.64534883720933,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          311,
+          161,
+          60,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-049",
+        "board": "motherboard",
+        "model": "DIP-20_W7.62mm",
+        "position": [
+          -57.53508771929825,
+          109.30232558139534,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          245,
+          204,
+          58,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-050",
+        "board": "motherboard",
+        "model": "DIP-20_W7.62mm",
+        "position": [
+          -57.53508771929825,
+          82.47093023255815,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          310,
+          204,
+          58,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-051",
+        "board": "motherboard",
+        "model": "DIP-20_W7.62mm",
+        "position": [
+          -75.07894736842104,
+          109.30232558139534,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          245,
+          244,
+          58,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-052",
+        "board": "motherboard",
+        "model": "DIP-20_W7.62mm",
+        "position": [
+          -75.07894736842104,
+          82.47093023255815,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          310,
+          244,
+          58,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-053",
+        "board": "motherboard",
+        "model": "DIP-40_W15.24mm",
+        "position": [
+          -105.78070175438596,
+          94.85465116279067,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          246,
+          307,
+          126,
+          31
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-054",
+        "board": "motherboard",
+        "model": "DIP-24_W15.24mm",
+        "position": [
+          -134.94736842105266,
+          99.18895348837208,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          264,
+          376,
+          69,
+          26
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-055",
+        "board": "motherboard",
+        "model": "DIP-40_W15.24mm",
+        "position": [
+          -184.72807017543857,
+          90.31395348837208,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          246,
+          486,
+          148,
+          33
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-056",
+        "board": "motherboard",
+        "model": "DIP-28_W15.24mm",
+        "position": [
+          -212.359649122807,
+          79.16860465116281,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          303,
+          550,
+          88,
+          31
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-057",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -212.57894736842104,
+          110.95348837209303,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          245,
+          558,
+          50,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-058",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -23.10526315789474,
+          11.677325581395337,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          487,
+          126,
+          47,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-059",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -43.28070175438597,
+          11.470930232558118,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          484,
+          172,
+          54,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-060",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -63.456140350877206,
+          11.883720930232585,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          482,
+          218,
+          56,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-061",
+        "board": "motherboard",
+        "model": "DIP-18_W7.62mm",
+        "position": [
+          -78.36842105263159,
+          11.677325581395337,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          480,
+          252,
+          61,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-062",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -95.4736842105263,
+          12.296511627906966,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          482,
+          291,
+          54,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-063",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -111.7017543859649,
+          12.502906976744157,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          483,
+          328,
+          51,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-064",
+        "board": "motherboard",
+        "model": "DIP-24_W15.24mm",
+        "position": [
+          -131.43859649122805,
+          10.23255813953486,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          483,
+          365,
+          62,
+          32
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-065",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -149.2017543859649,
+          12.296511627906966,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          483,
+          414,
+          52,
+          15
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-066",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -164.33333333333331,
+          12.709302325581405,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          482,
+          448,
+          52,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-067",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -178.3684210526316,
+          11.883720930232585,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          482,
+          480,
+          56,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-068",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -191.52631578947367,
+          12.090116279069775,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          481,
+          510,
+          57,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-069",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -205.12280701754386,
+          13.741279069767444,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          479,
+          541,
+          53,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-070",
+        "board": "motherboard",
+        "model": "DIP-18_W7.62mm",
+        "position": [
+          -3.149122807017534,
+          -14.328488372093005,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          544,
+          80,
+          59,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-071",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -22.666666666666657,
+          -21.345930232558118,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          567,
+          125,
+          47,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-072",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -43.71929824561403,
+          -20.72674418604649,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          565,
+          173,
+          48,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-073",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -78.80701754385964,
+          -15.773255813953483,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          552,
+          253,
+          50,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-074",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -93.71929824561406,
+          -15.773255813953483,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          552,
+          287,
+          50,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-075",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -110.38596491228071,
+          -15.773255813953483,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          552,
+          325,
+          50,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-076",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -128.14912280701756,
+          -15.154069767441882,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          552,
+          365,
+          47,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-077",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -144.81578947368422,
+          -15.154069767441882,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          552,
+          403,
+          47,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-078",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -161.92105263157896,
+          -15.566860465116292,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          552,
+          442,
+          49,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-079",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -176.83333333333331,
+          -15.566860465116292,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          552,
+          476,
+          49,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-080",
+        "board": "motherboard",
+        "model": "DIP-20_W7.62mm",
+        "position": [
+          -191.52631578947367,
+          -20.520348837209298,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          554,
+          510,
+          69,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-081",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -3.587719298245588,
+          -51.47965116279072,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          636,
+          81,
+          55,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-082",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -23.10526315789474,
+          -52.51162790697673,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          641,
+          126,
+          50,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-083",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -43.28070175438597,
+          -53.337209302325576,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          642,
+          172,
+          52,
+          16
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-084",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -3.587719298245588,
+          -83.88372093023257,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          716,
+          81,
+          52,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-085",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -22.885964912280684,
+          -83.88372093023257,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          716,
+          125,
+          52,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-086",
+        "board": "motherboard",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -43.5,
+          -83.47093023255813,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          716,
+          172,
+          50,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-087",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -3.587719298245588,
+          -114.22383720930232,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          791,
+          81,
+          49,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-088",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -22.885964912280684,
+          -114.22383720930232,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          791,
+          125,
+          49,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-089",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -43.5,
+          -114.22383720930232,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          791,
+          172,
+          49,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-090",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -22.885964912280684,
+          -141.88081395348837,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          858,
+          125,
+          49,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "motherboard-package-091",
+        "board": "motherboard",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -43.5,
+          -141.88081395348837,
+          13.6
+        ],
+        "rotation": 180,
+        "rect": [
+          858,
+          172,
+          49,
+          17
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-000",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -206.38,
+          145.8639240506329,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          36,
+          137,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-001",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -182.4,
+          145.8639240506329,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          145,
+          137,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-002",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -158.2,
+          145.8639240506329,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          255,
+          137,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-003",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -134.0,
+          145.8639240506329,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          365,
+          137,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-004",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -206.38,
+          128.52848101265823,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          36,
+          220,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-005",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -182.4,
+          128.52848101265823,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          145,
+          220,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-006",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -158.2,
+          128.52848101265823,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          255,
+          220,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-007",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -134.0,
+          128.52848101265823,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          365,
+          220,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-008",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -206.38,
+          110.77531645569618,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          36,
+          305,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-009",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -182.4,
+          110.77531645569618,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          145,
+          305,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-010",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -158.2,
+          110.77531645569618,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          255,
+          305,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-011",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -134.0,
+          110.77531645569618,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          365,
+          305,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-012",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -206.38,
+          93.85759493670886,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          36,
+          386,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-013",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -182.4,
+          93.85759493670886,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          145,
+          386,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-014",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -158.2,
+          93.85759493670886,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          255,
+          386,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-015",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -134.0,
+          93.85759493670886,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          365,
+          386,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-016",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -206.38,
+          76.52215189873418,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          36,
+          469,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-017",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -182.4,
+          76.52215189873418,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          145,
+          469,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-018",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -158.2,
+          76.52215189873418,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          255,
+          469,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-019",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -134.0,
+          76.52215189873418,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          365,
+          469,
+          90,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-020",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -111.12,
+          110.77531645569618,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          468,
+          305,
+          92,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-021",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -89.56,
+          110.77531645569618,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          566,
+          305,
+          92,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-022",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -111.12,
+          93.85759493670886,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          468,
+          386,
+          92,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-023",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -89.56,
+          93.85759493670886,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          566,
+          386,
+          92,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-024",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -111.12,
+          76.52215189873418,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          468,
+          469,
+          92,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-025",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -89.56,
+          76.52215189873418,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          566,
+          469,
+          92,
+          25
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-026",
+        "board": "floppy-controller",
+        "model": "DIP-24_W15.24mm",
+        "position": [
+          -94.72999999999999,
+          131.7658227848101,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          516,
+          187,
+          145,
+          60
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-027",
+        "board": "floppy-controller",
+        "model": "DIP-40_W15.24mm",
+        "position": [
+          -44.89999999999998,
+          136.36075949367088,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          700,
+          166,
+          230,
+          58
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-028",
+        "board": "floppy-controller",
+        "model": "DIP-24_W15.24mm",
+        "position": [
+          -54.91,
+          111.29746835443036,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          700,
+          288,
+          139,
+          54
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-029",
+        "board": "floppy-controller",
+        "model": "DIP-40_W15.24mm",
+        "position": [
+          -44.89999999999998,
+          89.78481012658229,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          699,
+          387,
+          232,
+          62
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-030",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -160.39999999999998,
+          162.2594936708861,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          246,
+          57,
+          88,
+          28
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-031",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -135.64999999999998,
+          162.2594936708861,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          357,
+          57,
+          91,
+          28
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-032",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -110.67999999999999,
+          162.2594936708861,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          473,
+          57,
+          86,
+          28
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-033",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -68.99000000000001,
+          162.15506329113924,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          661,
+          58,
+          89,
+          27
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-034",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -181.07999999999998,
+          59.082278481012665,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          155,
+          548,
+          82,
+          34
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-035",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -157.65,
+          59.082278481012665,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          257,
+          548,
+          91,
+          34
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-036",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -134.22,
+          59.082278481012665,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          365,
+          548,
+          88,
+          34
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-037",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -111.23000000000002,
+          59.082278481012665,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          470,
+          548,
+          87,
+          34
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-038",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -135.98,
+          41.120253164556964,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          354,
+          635,
+          94,
+          32
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      },
+      {
+        "id": "floppy-controller-package-039",
+        "board": "floppy-controller",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -111.45000000000002,
+          41.120253164556964,
+          42.6
+        ],
+        "rotation": 90,
+        "rect": [
+          470,
+          635,
+          85,
+          32
+        ],
+        "status": "Photo-aligned; package and pin-one orientation provisional",
+        "top": 3.680000066757202
+      }
+    ],
+    "credit": "KiCad DIP models: Maurice (easyw), see components/kicad/NOTICE.txt. Board photographs: Old Crap Vintage Computing; not Danila\u2019s specimen.",
+    "licence": "See each model licence: GPL-3.0-or-later with design exception, or CC-BY-SA-4.0 with KiCad exception.",
+    "sourceRevision": "8975715167d1a76f9b44be155ac02326f704cdbb"
+  },
   "keyboardMechanism": {
     "spring": "prototype-spring",
     "stem": "prototype-stem",
@@ -382,34 +3222,10 @@
       "material": "pcb"
     },
     {
-      "name": "logic-chips",
-      "file": "meshes/logic-chips.stl",
-      "color": "#25292b",
-      "sha256": "e1a9958e12e8d184b709746203fce60c63d69cd5dfed5b7e8eef697c1aae91de",
-      "section": "interior",
-      "material": "plastic"
-    },
-    {
-      "name": "logic-pins",
-      "file": "meshes/logic-pins.stl",
-      "color": "#b3b8b4",
-      "sha256": "fbe8f6adef09a9aaf12b295e3684f8cae1885af37f08efa8b8b531ed8a3b8092",
-      "section": "interior",
-      "material": "metal"
-    },
-    {
       "name": "logic-connectors",
       "file": "meshes/logic-connectors.stl",
       "color": "#b1b5a1",
-      "sha256": "295bfda782de03969a47c3d8cbe6ce0b840e3bfd54989217ecfa4c88c87c5253",
-      "section": "interior",
-      "material": "plastic"
-    },
-    {
-      "name": "logic-capacitors",
-      "file": "meshes/logic-capacitors.stl",
-      "color": "#b2a15c",
-      "sha256": "847989696590f75ba124de211dd0fe80d95ffa6a5eecdf6a99b379a0bd2201ec",
+      "sha256": "1a05837cd77ba88a31546ab94124afb4cad0fc7763008b101b56d9927a00c1ed",
       "section": "interior",
       "material": "plastic"
     },
@@ -761,6 +3577,46 @@
       "sha256": "2d4db67dba3ef3dcf85d861e3f90390cd6c268cd2de47be0dead030f0de9add1",
       "section": "prototype",
       "material": "plastic"
+    },
+    {
+      "name": "logic-resistors",
+      "file": "meshes/logic-resistors.stl",
+      "color": "#71917c",
+      "sha256": "46c1985e03d098d7e9cdd29b6e1ebaa8736030f055a59b701774e3eda1c25432",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "logic-ceramics",
+      "file": "meshes/logic-ceramics.stl",
+      "color": "#aa622e",
+      "sha256": "1524a83c26791ca68465b7dc87a0b5941c0bd31240e0f5b4c060a705737e608a",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "logic-electrolytics",
+      "file": "meshes/logic-electrolytics.stl",
+      "color": "#282a28",
+      "sha256": "300f318da8302ef807952ce6a4c657d6630e7fe4ceb6fe77103cb3d73e9a2b42",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "logic-crystals",
+      "file": "meshes/logic-crystals.stl",
+      "color": "#9c9d91",
+      "sha256": "a45c20397c68ba75b37eb10a3d33f57187d1a4a9818d31f82bd98aac5ff60516",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "logic-passive-leads",
+      "file": "meshes/logic-passive-leads.stl",
+      "color": "#b8b7ac",
+      "sha256": "30876f448fd6b0239eebd82c79f35b68c7ecacc7e4889b76423e79115fcb7539",
+      "section": "interior",
+      "material": "metal"
     }
   ],
   "keys": [
@@ -5077,403 +7933,1450 @@
         13.6
       ],
       "rotated": true,
-      "packages": [
-        [
-          650,
-          269,
-          20,
-          78
-        ],
-        [
-          650,
-          389,
-          20,
-          90
-        ],
-        [
-          650,
-          500,
-          20,
-          88
-        ],
-        [
-          696,
-          269,
-          20,
-          78
-        ],
-        [
-          696,
-          389,
-          20,
-          90
-        ],
-        [
-          696,
-          500,
-          20,
-          88
-        ],
-        [
-          740,
-          269,
-          20,
-          78
-        ],
-        [
-          740,
-          389,
-          20,
-          90
-        ],
-        [
-          740,
-          500,
-          20,
-          88
-        ],
-        [
-          784,
-          269,
-          20,
-          78
-        ],
-        [
-          784,
-          389,
-          20,
-          90
-        ],
-        [
-          784,
-          500,
-          20,
-          88
-        ],
-        [
-          830,
-          269,
-          20,
-          78
-        ],
-        [
-          830,
-          389,
-          20,
-          90
-        ],
-        [
-          830,
-          500,
-          20,
-          88
-        ],
-        [
-          874,
-          269,
-          20,
-          78
-        ],
-        [
-          874,
-          389,
-          20,
-          90
-        ],
-        [
-          874,
-          500,
-          20,
-          88
-        ],
-        [
-          916,
-          269,
-          20,
-          78
-        ],
-        [
-          916,
-          389,
-          20,
-          90
-        ],
-        [
-          916,
-          500,
-          20,
-          88
-        ],
-        [
-          650,
-          81,
-          44,
-          15
-        ],
-        [
-          650,
-          127,
-          44,
-          15
-        ],
-        [
-          650,
-          172,
-          44,
-          15
-        ],
-        [
-          721,
-          81,
-          44,
-          15
-        ],
-        [
-          721,
-          127,
-          44,
-          15
-        ],
-        [
-          721,
-          172,
-          44,
-          15
-        ],
-        [
-          797,
-          81,
-          44,
-          15
-        ],
-        [
-          797,
-          127,
-          44,
-          15
-        ],
-        [
-          797,
-          172,
-          44,
-          15
-        ],
-        [
-          480,
-          127,
-          52,
-          16
-        ],
-        [
-          480,
-          171,
-          52,
-          16
-        ],
-        [
-          480,
-          213,
-          52,
-          16
-        ],
-        [
-          480,
-          251,
-          52,
-          16
-        ],
-        [
-          480,
-          292,
-          52,
-          16
-        ],
-        [
-          480,
-          326,
-          52,
-          16
-        ],
-        [
-          480,
-          471,
-          52,
-          16
-        ],
-        [
-          480,
-          507,
-          52,
-          16
-        ],
-        [
-          480,
-          550,
-          52,
-          16
-        ],
-        [
-          550,
-          127,
-          52,
-          16
-        ],
-        [
-          550,
-          171,
-          52,
-          16
-        ],
-        [
-          550,
-          213,
-          52,
-          16
-        ],
-        [
-          550,
-          251,
-          52,
-          16
-        ],
-        [
-          550,
-          292,
-          52,
-          16
-        ],
-        [
-          550,
-          326,
-          52,
-          16
-        ],
-        [
-          550,
-          471,
-          52,
-          16
-        ],
-        [
-          550,
-          507,
-          52,
-          16
-        ],
-        [
-          550,
-          550,
-          52,
-          16
-        ],
-        [
-          245,
-          302,
-          46,
-          36
-        ],
-        [
-          289,
-          302,
-          37,
-          36
-        ],
-        [
-          329,
-          301,
-          37,
-          36
-        ],
-        [
-          242,
-          485,
-          154,
-          38
-        ],
-        [
-          309,
-          548,
-          89,
-          36
-        ],
-        [
-          246,
-          365,
-          91,
-          53
-        ],
-        [
-          481,
-          365,
-          54,
-          51
-        ],
-        [
-          547,
-          349,
-          59,
-          54
-        ],
-        [
-          177,
-          146,
-          38,
-          18
-        ],
-        [
-          177,
-          177,
-          38,
-          18
-        ],
-        [
-          177,
-          198,
-          38,
-          18
-        ],
-        [
-          177,
-          228,
-          38,
-          18
-        ],
-        [
-          177,
-          263,
-          38,
-          18
-        ],
-        [
-          177,
-          289,
-          38,
-          18
-        ],
-        [
-          177,
-          329,
-          38,
-          18
-        ],
-        [
-          177,
-          356,
-          38,
-          18
-        ],
-        [
-          177,
-          386,
-          38,
-          18
-        ]
-      ],
+      "packages": [],
       "packageHeight": 3.8,
       "source": "https://oldcrap.org/wp-content/uploads/2017/12/fullsizeoutput_141c-1024x662.jpeg",
       "credit": "Old Crap Vintage Computing \u2014 another PC 1715, not Danila\u2019s 1715M",
       "page": "https://oldcrap.org/2017/12/26/robotron-1715/",
-      "exclude": []
+      "exclude": [],
+      "components": [
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            694,
+            269,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            724,
+            269,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            754,
+            269,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            784,
+            269,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            814,
+            269,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            844,
+            269,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            874,
+            269,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            904,
+            269,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            694,
+            333,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            724,
+            333,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            754,
+            333,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            784,
+            333,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            814,
+            333,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            844,
+            333,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            874,
+            333,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            904,
+            333,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            694,
+            398,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            724,
+            398,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            754,
+            398,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            784,
+            398,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            814,
+            398,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            844,
+            398,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            874,
+            398,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            904,
+            398,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            694,
+            463,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            724,
+            463,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            754,
+            463,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            784,
+            463,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            814,
+            463,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            844,
+            463,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            874,
+            463,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            904,
+            463,
+            20,
+            48
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            716,
+            549,
+            19,
+            45
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            746,
+            549,
+            19,
+            45
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            776,
+            549,
+            19,
+            45
+          ],
+          "axis": "vertical",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            151,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            176,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            202,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            251,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            274,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            299,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            325,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            417,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            447,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            476,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            516,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            172,
+            545,
+            47,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-20_W7.62mm",
+          "rect": [
+            245,
+            161,
+            59,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-20_W7.62mm",
+          "rect": [
+            311,
+            161,
+            60,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-20_W7.62mm",
+          "rect": [
+            245,
+            204,
+            58,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-20_W7.62mm",
+          "rect": [
+            310,
+            204,
+            58,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-20_W7.62mm",
+          "rect": [
+            245,
+            244,
+            58,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-20_W7.62mm",
+          "rect": [
+            310,
+            244,
+            58,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-40_W15.24mm",
+          "rect": [
+            246,
+            307,
+            126,
+            31
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-24_W15.24mm",
+          "rect": [
+            264,
+            376,
+            69,
+            26
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-40_W15.24mm",
+          "rect": [
+            246,
+            486,
+            148,
+            33
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-28_W15.24mm",
+          "rect": [
+            303,
+            550,
+            88,
+            31
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            245,
+            558,
+            50,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            487,
+            126,
+            47,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            484,
+            172,
+            54,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            482,
+            218,
+            56,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-18_W7.62mm",
+          "rect": [
+            480,
+            252,
+            61,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            482,
+            291,
+            54,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            483,
+            328,
+            51,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-24_W15.24mm",
+          "rect": [
+            483,
+            365,
+            62,
+            32
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            483,
+            414,
+            52,
+            15
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            482,
+            448,
+            52,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            482,
+            480,
+            56,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            481,
+            510,
+            57,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            479,
+            541,
+            53,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-18_W7.62mm",
+          "rect": [
+            544,
+            80,
+            59,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            567,
+            125,
+            47,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            565,
+            173,
+            48,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            552,
+            253,
+            50,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            552,
+            287,
+            50,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            552,
+            325,
+            50,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            552,
+            365,
+            47,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            552,
+            403,
+            47,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            552,
+            442,
+            49,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            552,
+            476,
+            49,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-20_W7.62mm",
+          "rect": [
+            554,
+            510,
+            69,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            636,
+            81,
+            55,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            641,
+            126,
+            50,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            642,
+            172,
+            52,
+            16
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            716,
+            81,
+            52,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            716,
+            125,
+            52,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-16_W7.62mm",
+          "rect": [
+            716,
+            172,
+            50,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            791,
+            81,
+            49,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            791,
+            125,
+            49,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            791,
+            172,
+            49,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            858,
+            125,
+            49,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            858,
+            172,
+            49,
+            17
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        }
+      ],
+      "passives": [
+        {
+          "kind": "resistor",
+          "rect": [
+            346,
+            358,
+            22,
+            5
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            346,
+            371,
+            22,
+            5
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            346,
+            385,
+            22,
+            5
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            346,
+            398,
+            22,
+            5
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            346,
+            410,
+            22,
+            5
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            505,
+            190,
+            5,
+            23
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            519,
+            190,
+            5,
+            23
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            533,
+            190,
+            5,
+            23
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            512,
+            66,
+            5,
+            30
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            534,
+            66,
+            5,
+            30
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            545,
+            66,
+            5,
+            30
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            795,
+            193,
+            26,
+            5
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            795,
+            202,
+            26,
+            5
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            795,
+            211,
+            26,
+            5
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            471,
+            97,
+            10,
+            10
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            458,
+            541,
+            10,
+            10
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            616,
+            326,
+            10,
+            10
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            690,
+            549,
+            10,
+            10
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            929,
+            197,
+            10,
+            10
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            933,
+            221,
+            10,
+            10
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            933,
+            245,
+            10,
+            10
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            228,
+            161,
+            6,
+            14
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            228,
+            246,
+            6,
+            14
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            382,
+            203,
+            6,
+            14
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            544,
+            223,
+            6,
+            14
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            625,
+            175,
+            6,
+            14
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            703,
+            125,
+            6,
+            14
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            776,
+            139,
+            6,
+            14
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            851,
+            196,
+            6,
+            14
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "crystal",
+          "rect": [
+            179,
+            368,
+            31,
+            28
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        }
+      ]
     },
     {
       "name": "floppy-controller",
@@ -5499,248 +9402,7 @@
         42.6
       ],
       "rotated": false,
-      "packages": [
-        [
-          36,
-          137,
-          90,
-          25
-        ],
-        [
-          145,
-          137,
-          90,
-          25
-        ],
-        [
-          255,
-          137,
-          90,
-          25
-        ],
-        [
-          365,
-          137,
-          90,
-          25
-        ],
-        [
-          36,
-          220,
-          90,
-          25
-        ],
-        [
-          145,
-          220,
-          90,
-          25
-        ],
-        [
-          255,
-          220,
-          90,
-          25
-        ],
-        [
-          365,
-          220,
-          90,
-          25
-        ],
-        [
-          36,
-          305,
-          90,
-          25
-        ],
-        [
-          145,
-          305,
-          90,
-          25
-        ],
-        [
-          255,
-          305,
-          90,
-          25
-        ],
-        [
-          365,
-          305,
-          90,
-          25
-        ],
-        [
-          36,
-          386,
-          90,
-          25
-        ],
-        [
-          145,
-          386,
-          90,
-          25
-        ],
-        [
-          255,
-          386,
-          90,
-          25
-        ],
-        [
-          365,
-          386,
-          90,
-          25
-        ],
-        [
-          36,
-          469,
-          90,
-          25
-        ],
-        [
-          145,
-          469,
-          90,
-          25
-        ],
-        [
-          255,
-          469,
-          90,
-          25
-        ],
-        [
-          365,
-          469,
-          90,
-          25
-        ],
-        [
-          468,
-          305,
-          92,
-          25
-        ],
-        [
-          566,
-          305,
-          92,
-          25
-        ],
-        [
-          468,
-          386,
-          92,
-          25
-        ],
-        [
-          566,
-          386,
-          92,
-          25
-        ],
-        [
-          468,
-          469,
-          92,
-          25
-        ],
-        [
-          566,
-          469,
-          92,
-          25
-        ],
-        [
-          516,
-          187,
-          145,
-          60
-        ],
-        [
-          700,
-          166,
-          230,
-          58
-        ],
-        [
-          700,
-          288,
-          139,
-          54
-        ],
-        [
-          699,
-          387,
-          232,
-          62
-        ],
-        [
-          246,
-          57,
-          88,
-          28
-        ],
-        [
-          357,
-          57,
-          91,
-          28
-        ],
-        [
-          473,
-          57,
-          86,
-          28
-        ],
-        [
-          661,
-          58,
-          89,
-          27
-        ],
-        [
-          155,
-          548,
-          82,
-          34
-        ],
-        [
-          257,
-          548,
-          91,
-          34
-        ],
-        [
-          365,
-          548,
-          88,
-          34
-        ],
-        [
-          470,
-          548,
-          87,
-          34
-        ],
-        [
-          354,
-          635,
-          94,
-          32
-        ],
-        [
-          470,
-          635,
-          85,
-          32
-        ]
-      ],
+      "packages": [],
       "packageHeight": 3.8,
       "source": "https://oldcrap.org/wp-content/uploads/2017/12/fullsizeoutput_141a-1024x811.jpeg",
       "credit": "Old Crap Vintage Computing \u2014 another PC 1715, not Danila\u2019s 1715M",
@@ -5752,6 +9414,1106 @@
           910,
           800
         ]
+      ],
+      "components": [
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            36,
+            137,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            145,
+            137,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            255,
+            137,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            365,
+            137,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            36,
+            220,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            145,
+            220,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            255,
+            220,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            365,
+            220,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            36,
+            305,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            145,
+            305,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            255,
+            305,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            365,
+            305,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            36,
+            386,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            145,
+            386,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            255,
+            386,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            365,
+            386,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            36,
+            469,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            145,
+            469,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            255,
+            469,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            365,
+            469,
+            90,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            468,
+            305,
+            92,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            566,
+            305,
+            92,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            468,
+            386,
+            92,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            566,
+            386,
+            92,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            468,
+            469,
+            92,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            566,
+            469,
+            92,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-24_W15.24mm",
+          "rect": [
+            516,
+            187,
+            145,
+            60
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-40_W15.24mm",
+          "rect": [
+            700,
+            166,
+            230,
+            58
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-24_W15.24mm",
+          "rect": [
+            700,
+            288,
+            139,
+            54
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-40_W15.24mm",
+          "rect": [
+            699,
+            387,
+            232,
+            62
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            246,
+            57,
+            88,
+            28
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            357,
+            57,
+            91,
+            28
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            473,
+            57,
+            86,
+            28
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            661,
+            58,
+            89,
+            27
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            155,
+            548,
+            82,
+            34
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            257,
+            548,
+            91,
+            34
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            365,
+            548,
+            88,
+            34
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            470,
+            548,
+            87,
+            34
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            354,
+            635,
+            94,
+            32
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        },
+        {
+          "kind": "dip",
+          "package": "DIP-14_W7.62mm",
+          "rect": [
+            470,
+            635,
+            85,
+            32
+          ],
+          "axis": "horizontal",
+          "status": "Photo-aligned; package and pin-one orientation provisional"
+        }
+      ],
+      "passives": [
+        {
+          "kind": "resistor",
+          "rect": [
+            780,
+            51,
+            5,
+            42
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            803,
+            51,
+            5,
+            42
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            825,
+            51,
+            5,
+            42
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            849,
+            51,
+            5,
+            42
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            873,
+            51,
+            5,
+            42
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            897,
+            51,
+            5,
+            42
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            919,
+            51,
+            5,
+            42
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            278,
+            113,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            376,
+            113,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            471,
+            113,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            55,
+            271,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            266,
+            271,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            374,
+            271,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            152,
+            354,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            266,
+            354,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            374,
+            354,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            488,
+            354,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            158,
+            437,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            268,
+            437,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            388,
+            437,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            490,
+            437,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            260,
+            529,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            365,
+            529,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            473,
+            529,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            472,
+            605,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            548,
+            605,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            374,
+            702,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "resistor",
+          "rect": [
+            478,
+            702,
+            37,
+            6
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            130,
+            138,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            242,
+            138,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            350,
+            138,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            132,
+            220,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            245,
+            220,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            350,
+            220,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            132,
+            303,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            244,
+            303,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            350,
+            303,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            132,
+            386,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            244,
+            386,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            350,
+            386,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            451,
+            386,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            553,
+            386,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            132,
+            468,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            242,
+            468,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            351,
+            468,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            451,
+            468,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            553,
+            468,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "ceramic",
+          "rect": [
+            800,
+            499,
+            10,
+            24
+          ],
+          "axis": "vertical",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            929.0,
+            56.0,
+            18,
+            18
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            944.5,
+            82.5,
+            25,
+            25
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            288.5,
+            382.5,
+            23,
+            23
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            602.0,
+            569.0,
+            32,
+            32
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            616.0,
+            615.0,
+            32,
+            32
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            603.0,
+            668.0,
+            30,
+            30
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "electrolytic",
+          "rect": [
+            625.0,
+            737.0,
+            30,
+            30
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        },
+        {
+          "kind": "crystal",
+          "rect": [
+            148,
+            48,
+            58,
+            41
+          ],
+          "axis": "horizontal",
+          "status": "Visible photo location; dimensions and electrical value unverified"
+        }
       ]
     },
     {

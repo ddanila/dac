@@ -1,0 +1,51 @@
+{
+  "repository": "https://gitlab.com/kicad/libraries/kicad-packages3D",
+  "revision": "8975715167d1a76f9b44be155ac02326f704cdbb",
+  "files": [
+    {
+      "file": "source/LICENSE.md",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/LICENSE.md",
+      "sha256": "45d2bce75e5a4208f5afb01b8fb2c406e700371c4fe2b5f5cd5c443d46db4d8f"
+    },
+    {
+      "file": "source/CREDITS.md",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/CREDITS.md",
+      "sha256": "2f62db980e28049ff415f011da4aee8e0e2d0d9eb8f6489d6b2acdf49a1c82ba"
+    },
+    {
+      "file": "source/DIP-14_W7.62mm.step",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/DIP-14_W7.62mm.step",
+      "sha256": "3dae072a95c64bee0d1e58be8e75383639f5017ab982de1749d05808a4eed058"
+    },
+    {
+      "file": "source/DIP-16_W7.62mm.step",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/DIP-16_W7.62mm.step",
+      "sha256": "17a30b1f0ab3fd5384a1231e3c63c394888d5b952c542a8c189e023ed3467464"
+    },
+    {
+      "file": "source/DIP-18_W7.62mm.step",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/DIP-18_W7.62mm.step",
+      "sha256": "c9e1ad672f0603e5818e9d0329669eb09ec9fa91bae3fdad8cdfa245e05c3b5f"
+    },
+    {
+      "file": "source/DIP-20_W7.62mm.step",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/DIP-20_W7.62mm.step",
+      "sha256": "ca359c9b9e0ce94efcb6c96866513f659eef6517d629ace3c4a0a779f6fd57bb"
+    },
+    {
+      "file": "source/DIP-24_W15.24mm.step",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/DIP-24_W15.24mm.step",
+      "sha256": "235c13c98a0fd4a3b54a9135990ab210d1cf276aec115eeb917616fb4bb41d54"
+    },
+    {
+      "file": "source/DIP-28_W15.24mm.step",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/DIP-28_W15.24mm.step",
+      "sha256": "fe57368cd24dc3b7388d2e9f116f8cb9af7a6876fe2a481c308e0a39cbd35d78"
+    },
+    {
+      "file": "source/DIP-40_W15.24mm.step",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/DIP-40_W15.24mm.step",
+      "sha256": "56fb239cc3f47dd58a0eac0bd4aeae847d6aac80463bd6713647a9e06bc34a04"
+    }
+  ]
+}
