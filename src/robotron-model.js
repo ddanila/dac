@@ -115,7 +115,8 @@ export async function loadRobotron(displayTexture) {
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       mesh.name = part.name;
-      mesh.userData.detail = componentDetail(part.name);
+      mesh.userData.board = part.board;
+      mesh.userData.detail = part.board || componentDetail(part.name);
       mesh.userData.interior = part.section === "interior";
       mesh.userData.monitorInterior = part.section === "monitor-interior";
       if (mesh.userData.interior || mesh.userData.monitorInterior)
@@ -233,6 +234,33 @@ export async function loadRobotron(displayTexture) {
     mesh.name = name;
     return mesh;
   }
+  for (const kind of ["pad", "solder"]) {
+    const prototype = objects.get(`prototype-pcb-${kind}`);
+    if (!prototype) continue;
+    for (const board of ["motherboard", "floppy-controller"]) {
+      const points = data.pcbComponents.footprints.filter(
+        (p) => p[3] === board,
+      );
+      const mesh = new THREE.InstancedMesh(
+        prototype.geometry,
+        prototype.material,
+        points.length,
+      );
+      const matrix = new THREE.Matrix4();
+      points.forEach((p, i) =>
+        mesh.setMatrixAt(i, matrix.makeTranslation(...p.slice(0, 3))),
+      );
+      mesh.instanceMatrix.needsUpdate = true;
+      mesh.computeBoundingBox();
+      mesh.computeBoundingSphere();
+      mesh.name = `logic-${kind}-${board}`;
+      mesh.userData = { interior: true, board, detail: board };
+      mesh.castShadow = mesh.receiveShadow = true;
+      mesh.visible = false;
+      group.add(mesh);
+      objects.set(mesh.name, mesh);
+    }
+  }
   const packageMeshes = await loadPcbComponents(data, base);
   for (const mesh of packageMeshes) {
     group.add(mesh);
@@ -335,6 +363,8 @@ export async function loadRobotron(displayTexture) {
     if (wanted === "keyboard") return /^(keyboard|keys-|prototype-)/.test(name);
     if (wanted === "drives")
       return name === "drives" || name.startsWith("drive-");
+    if (["motherboard", "floppy-controller"].includes(wanted))
+      return name.endsWith("-" + wanted);
     if (wanted === "logic")
       return /^(logic-|reference-(motherboard|floppy))/.test(name);
     if (wanted === "monitor")
@@ -546,7 +576,9 @@ export async function loadRobotron(displayTexture) {
         : inside ||
           split > 0.01 ||
           inspection.transparent ||
-          inspection.isolated === "logic";
+          ["logic", "motherboard", "floppy-controller"].includes(
+            inspection.isolated,
+          );
       if (monitor) mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
     }
     const beforeSplit = split;

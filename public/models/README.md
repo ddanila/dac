@@ -13,3 +13,13 @@ npm test
 ```
 
 Juku and VJUGA still use the provisional geometry in `src/scene.js`. Their `monitor-ring.stl` comes from Danila’s [measured ring](https://github.com/ddanila/3d-models/tree/91fee04af5042fc01c49ecc6ba33edec52d20594/models/robotron-1715m-display-base-ring): 175 mm OD, 3 mm radial wall, 5 mm high. The editable ring now lives [inside the Robotron folder](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m/display-base-ring). Physical fit is unverified.
+
+The Robotron version 11 export separates the two logic boards for independent
+inspection. Package seating-plane coordinates drive drilled apertures, pads and
+solder fillets; derived KiCad footprint metadata retains each model's licence.
+Runtime thresholding extracts light PCB artwork from the credited original
+photos and removes photographed board illumination. This derived display
+retains the photo attribution and rights exclusions. Three yellow film
+capacitors, varied electrolytic sizes and divided connector housings follow
+comparative photo evidence; exact values, sockets, keying and pin counts remain
+unverified. Underside routing is deliberately absent pending evidence.

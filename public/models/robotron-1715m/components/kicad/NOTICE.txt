@@ -29,3 +29,7 @@ matches, placement and orientation are provisional where the reference photo
 is ambiguous. No unverified electrical part numbers or resistor values are added.
 Board images remain separately credited to Old Crap Vintage Computing. They
 show another PC 1715, not Danila's exact 1715M/W motherboard.
+
+The derived models.json footprint coordinates are measured from STEP lead
+sections at the seating plane by tools/convert-kicad.py. They retain the
+corresponding source model licence, like the derived tessellated meshes.

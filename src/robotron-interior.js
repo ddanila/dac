@@ -77,6 +77,47 @@ export function pcbPhotoGeometry(board) {
   geometry.computeVertexNormals();
   return geometry;
 }
+// Extract only light artwork from the reference. Original pixels remain available
+// as evidence; the rendered substrate has no baked photographic illumination.
+export function pcbArtwork(board, image, descriptions) {
+  const canvas = document.createElement("canvas");
+  canvas.width = image.width;
+  canvas.height = image.height;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(image, 0, 0);
+  const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < pixels.data.length; i += 4) {
+    const [r, g, b] = pixels.data.slice(i, i + 3);
+    const light = Math.max(0, Math.min(1, (Math.min(r, b) + g - 290) / 130));
+    pixels.data[i] = 195;
+    pixels.data[i + 1] = 205;
+    pixels.data[i + 2] = 166;
+    pixels.data[i + 3] = Math.round(255 * light);
+  }
+  ctx.putImageData(pixels, 0, 0);
+  // Cut pad apertures out of the artwork as well as the solid substrate.
+  ctx.globalCompositeOperation = "destination-out";
+  const [x0, y0, x1, y1] = board.crop,
+    [w, h] = board.size,
+    [ox, oy] = board.origin;
+  for (const [x, y, , name] of descriptions?.footprints || []) {
+    if (name !== board.name) continue;
+    const u = board.rotated ? 1 - (y - oy) / h : (x - ox) / w;
+    const v = board.rotated ? 1 - (x - ox) / w : 1 - (y - oy) / h;
+    ctx.beginPath();
+    ctx.ellipse(
+      x0 + u * (x1 - x0),
+      y0 + v * (y1 - y0),
+      (0.52 * (x1 - x0)) / (board.rotated ? h : w),
+      (0.52 * (y1 - y0)) / (board.rotated ? w : h),
+      0,
+      0,
+      Math.PI * 2,
+    );
+    ctx.fill();
+  }
+  return canvas;
+}
 export async function loadPcbPhotos(data, base) {
   const loader = new THREE.TextureLoader();
   return Promise.all(
@@ -86,10 +127,20 @@ export async function loadPcbPhotos(data, base) {
       );
       texture.colorSpace = THREE.SRGBColorSpace;
       texture.anisotropy = 4;
+      let artwork = texture;
+      if (board.components?.length) {
+        artwork = new THREE.CanvasTexture(
+          pcbArtwork(board, texture.image, data.pcbComponents),
+        );
+        artwork.colorSpace = THREE.SRGBColorSpace;
+        artwork.anisotropy = 4;
+      }
       const mesh = new THREE.Mesh(
         pcbPhotoGeometry(board),
         new THREE.MeshStandardMaterial({
-          map: texture,
+          map: artwork,
+          transparent: artwork !== texture,
+          alphaTest: artwork !== texture ? 0.08 : 0,
           roughness: 0.68,
           polygonOffset: true,
           polygonOffsetFactor: -1,
@@ -115,10 +166,11 @@ export async function loadPcbPhotos(data, base) {
         };
         markings.material.customProgramCacheKey = () => "pcb-photo-ink";
         markings.name = `logic-markings-${board.name}`;
-        markings.userData.detail = "component-logic";
+        markings.userData.detail = board.name;
         mesh.add(markings);
       }
       mesh.name = `reference-${board.name}`;
+      mesh.userData.board = board.name;
       mesh.userData.credit = board.credit;
       mesh.userData.section = board.section || "interior";
       return mesh;
@@ -152,27 +204,31 @@ export async function loadPcbComponents(data, base) {
           roughness: kind === "body" ? 0.7 : 0.32,
           metalness: kind === "body" ? 0 : 0.78,
         });
-        const mesh = new THREE.InstancedMesh(
-          geometry,
-          material,
-          placements.length,
-        );
-        placements.forEach((p, i) => {
-          matrix.position.set(...p.position);
-          matrix.rotation.set(0, 0, (p.rotation * Math.PI) / 180);
-          matrix.updateMatrix();
-          mesh.setMatrixAt(i, matrix.matrix);
-        });
-        mesh.instanceMatrix.needsUpdate = true;
-        mesh.computeBoundingBox();
-        mesh.computeBoundingSphere();
-        mesh.name = `logic-package-${model.id}-${kind}`;
-        mesh.userData.interior = true;
-        mesh.userData.detail = "component-logic";
-        mesh.userData.credit = descriptions.credit;
-        mesh.castShadow = mesh.receiveShadow = true;
-        mesh.visible = false;
-        result.push(mesh);
+        for (const board of [...new Set(placements.map((p) => p.board))]) {
+          const boardPlacements = placements.filter((p) => p.board === board);
+          const mesh = new THREE.InstancedMesh(
+            geometry,
+            material,
+            boardPlacements.length,
+          );
+          boardPlacements.forEach((p, i) => {
+            matrix.position.set(...p.position);
+            matrix.rotation.set(0, 0, (p.rotation * Math.PI) / 180);
+            matrix.updateMatrix();
+            mesh.setMatrixAt(i, matrix.matrix);
+          });
+          mesh.instanceMatrix.needsUpdate = true;
+          mesh.computeBoundingBox();
+          mesh.computeBoundingSphere();
+          mesh.name = `logic-package-${model.id}-${kind}-${board}`;
+          mesh.userData.board = board;
+          mesh.userData.interior = true;
+          mesh.userData.detail = board;
+          mesh.userData.credit = descriptions.credit;
+          mesh.castShadow = mesh.receiveShadow = true;
+          mesh.visible = false;
+          result.push(mesh);
+        }
       }
     }),
   );
@@ -186,7 +242,7 @@ export function pcbMarkingGeometry(board, descriptions) {
     uvs = [];
   const models = new Map(descriptions.models.map((m) => [m.id, m]));
   for (const p of descriptions.instances.filter(
-    (p) => p.board === board.name,
+    (p) => p.board === board.name && p.markings !== false,
   )) {
     const model = models.get(p.model),
       [x, y, w, h] = p.rect;
