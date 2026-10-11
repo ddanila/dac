@@ -582,7 +582,7 @@ for (const id of [
         {
           all: "overview",
           keyboard: $("open-keyboard").checked ? "keyboard-inside" : "keyboard",
-          logic: "inside",
+          logic: "logic",
           psu: "inside",
           monitor: "monitor-inside",
         }[assembly] || assembly,

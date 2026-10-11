@@ -137,3 +137,12 @@ using explanatory stretching. Releasing clamps in the viewer does not eject medi
 Monitor geometry and PCB credits remain explicitly comparative until specimen
 interior photographs are available. Focused `assembly.spec.js` checks these motions,
 visibility restoration, cable endpoints and mobile controls without hardware simulation.
+
+
+The reference motherboard and controller now use pinned KiCad DIP package meshes,
+instanced by family without stretching their nominal dimensions. Their photographed
+placements and uncertain package matches remain provisional. Discrete components
+are placed at photo landmarks, and original flat chip silhouettes are removed from
+the PCB photo surface. Choose **Inspect assembly → Logic boards** for the close view.
+Upstream STEP sources, file-specific licences, credits, conversion metadata and
+mesh hashes ship alongside the exhibit in `public/models/robotron-1715m/components/kicad`.

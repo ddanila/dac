@@ -14,6 +14,14 @@ files=[('browser/model.json','model.json',None),('LICENSE','LICENSE',None)]
 for part in data['parts']+data.get('keyMeshes',[]):files.append(('browser/'+part['file'],part['file'],part['sha256']))
 for name in sorted({p['photo'] for p in data['patches']} | set(data.get('references', []))):files.append(('reference/photos/'+name,'photos/'+name,photos[name]['sha256']))
 for board in data.get('pcbReferences',[]):files.append((board['file'],board['file'],board['sha256']))
+for component in data.get('pcbComponents',{}).get('models',[]):
+    for mesh in component['meshes'].values():files.append((mesh['file'],mesh['file'],mesh['sha256']))
+# Ship upstream sources and licences with the reusable derived component library.
+for path in sorted((source/'components/kicad').glob('source/*')):
+    name=str(path.relative_to(source));files.append((name,name,None))
+for name in ['NOTICE.txt','sources.json','models.json']:
+    name='components/kicad/'+name;files.append((name,name,None))
+
 for directory in sorted({str(Path(b['file']).parent) for b in data.get('pcbReferences',[])}):files.append((directory+'/NOTICE.txt',directory+'/NOTICE.txt',None))
 previous=json.loads((target/'source.json').read_text()).get('files',[]) if (target/'source.json').exists() else []
 records=[]

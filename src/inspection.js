@@ -91,7 +91,7 @@ Object.assign(inspections, {
   "component-logic": {
     title: "System logic boards",
     evidence: "Comparative reference · another PC 1715",
-    text: "These photographic boards come from Old Crap Vintage Computing’s PC 1715. They show the arrangement of logic, memory and connectors; the PCB revision and component identities in Danila’s 1715M have not been verified. Chip geometry is illustrative, not an electrical reconstruction.",
+    text: "These photographic boards come from Old Crap Vintage Computing’s PC 1715. They show the arrangement of logic, memory and connectors; the PCB revision and component identities in Danila’s 1715M have not been verified. Reusable KiCad DIP packages now provide shaped bodies, pin-one notches and bent metal leads. Resistors, ceramic capacitors, electrolytics and metal-can components follow visible photo locations. Package matches, orientation and hidden details remain provisional; this is not an electrical reconstruction. KiCad model credits and file-specific licences are preserved with the exhibit.",
     reference: "https://oldcrap.org/2017/12/26/robotron-1715/",
   },
   "component-psu": {
@@ -118,6 +118,7 @@ Object.assign(inspections, {
     evidence: "Owner photographs · hidden dimensions estimated",
   },
 });
+inspections.logic = inspections["component-logic"];
 let currentInspection = "overview";
 function photoUrl(photo) {
   return new URL(
