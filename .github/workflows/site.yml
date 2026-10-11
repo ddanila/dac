@@ -20,6 +20,24 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
+      - run: DAC_BASE=/dac/ npm run build
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: dist
+  chromium:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
       - run: npx playwright install --with-deps chromium
       - id: core
         run: node -e "const fs=require('fs');fs.appendFileSync(process.env.GITHUB_OUTPUT,'ref='+require('./public/emulator/manifest.json').commit+'\n')"
@@ -29,13 +47,15 @@ jobs:
           ref: ${{ steps.core.outputs.ref }}
           path: emulation-reference
       - run: make -C emulation-reference build/dac-replay
-      - run: npm test
+      - run: npm test -- --shard=${{ matrix.shard }}/3
         env:
           DAC_NATIVE_REPLAY: emulation-reference/build/dac-replay
-      - run: DAC_BASE=/dac/ npm run build
-      - uses: actions/upload-pages-artifact@v5.0.0
+      - uses: actions/upload-artifact@v7
+        if: failure()
         with:
-          path: dist
+          name: chromium-${{ matrix.shard }}-failures
+          path: test-results/
+          retention-days: 3
   cross-browser:
     strategy:
       fail-fast: false
@@ -64,7 +84,7 @@ jobs:
           retention-days: 3
   deploy:
     if: github.event_name != 'pull_request'
-    needs: [build, cross-browser]
+    needs: [build, chromium, cross-browser]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
