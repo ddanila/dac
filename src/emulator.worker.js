@@ -37,7 +37,7 @@ function recordMedia(unit) {
 }
 async function finishRecording() {
   if (!recording) throw Error("No recording to export.");
-  const resume = running;
+  const resume = !!module._dac_state_size(handle);
   running = false;
   clearTimeout(timer);
   stopPaste();
@@ -50,7 +50,9 @@ async function finishRecording() {
   ]);
   postMessage({
     type: "record-status",
-    message: "Recording exported. Machine continues running.",
+    message: resume
+      ? "Recording exported. Machine continues running."
+      : "Recording exported. Machine remains powered off.",
   });
   running = resume;
   owed = 0;
@@ -894,6 +896,10 @@ let messages = Promise.resolve();
 self.onmessage = ({ data }) => {
   if (data.type === "record-cancel") {
     replayCancelled = true;
+    return;
+  }
+  if (replaying && data.type === "visibility") {
+    hidden = !!data.hidden;
     return;
   }
   if (replaying) {
