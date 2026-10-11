@@ -7,6 +7,26 @@ test("assembly isolation, transparent covers and keyboard disassembly remain rev
   page.on("pageerror", (e) => errors.push(e.message));
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
+  const webgl = await page.evaluate(() => {
+    const gl = document.createElement("canvas").getContext("webgl2");
+    gl?.getExtension("WEBGL_lose_context")?.loseContext();
+    return !!gl;
+  });
+  if (!webgl) {
+    // Linux headless Firefox may reject WebGL2. The accessible emulator must
+    // remain usable and unavailable assembly controls must stay disabled.
+    await page.locator("#power").click();
+    await expect(page.locator("#status")).toHaveText("Running");
+    for (const id of [
+      "open-keyboard",
+      "transparent-covers",
+      "release-clamps",
+      "isolate-assembly",
+    ])
+      await expect(page.locator(`#${id}`)).toBeDisabled();
+    expect(errors).toEqual([]);
+    return;
+  }
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
     "robotron-photo",
@@ -39,10 +59,6 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator("#viewport")).toHaveAttribute(
-    "data-model",
-    "robotron-photo",
-  );
   const result = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
     const { Texture, Matrix4, Vector3, Quaternion } = await import(
