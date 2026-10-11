@@ -54,6 +54,8 @@ test("photo projection preserves corners and perspective, not just a diagonal bl
 test("keyboard buttons send documented bytes, latch modifiers and reset safely", async ({
   page,
 }) => {
+  // This exercises a long sequence of real interactions under software WebGL in CI.
+  test.setTimeout(60000);
   await observeKeys(page);
   await page.locator("#key-list-toggle").click();
   const keys = page.locator("#key-list");
@@ -209,26 +211,34 @@ test("a static exhibit stops submitting GPU draws", async ({ page }) => {
     .toBeGreaterThan(before);
 });
 
-
-test("physical keyboard holds the modeled key down until release and blur clears it", async ({ page }) => {
-  await page.setViewportSize({width:1280,height:900});
+test("physical keyboard holds the modeled key down until release and blur clears it", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
   await observeKeys(page);
   await page.locator('[data-view="keyboard"]').click();
-  const model = await (await page.request.get('/models/robotron-1715m/model.json')).json();
-  const key = model.keys.find(k => k.input.code === 97);
-  await page.locator('#viewport').focus();
+  const model = await (
+    await page.request.get("/models/robotron-1715m/model.json")
+  ).json();
+  const key = model.keys.find((k) => k.input.code === 97);
+  await page.locator("#viewport").focus();
   const point = await keyPoint(page, key, model);
-  const clip = {x:Math.round(point.x)-16,y:Math.round(point.y)-12,width:32,height:24};
-  const picture = () => page.screenshot({clip});
+  const clip = {
+    x: Math.round(point.x) - 16,
+    y: Math.round(point.y) - 12,
+    width: 32,
+    height: 24,
+  };
+  const picture = () => page.screenshot({ clip });
   const resting = await picture();
-  await page.keyboard.down('a');
+  await page.keyboard.down("a");
   await page.waitForTimeout(250); // longer than the former 140 ms pulse
   const held = await picture();
   expect(held.equals(resting)).toBe(false);
-  await page.keyboard.up('a');
+  await page.keyboard.up("a");
   await expect.poll(async () => (await picture()).equals(resting)).toBe(true);
-  await page.keyboard.down('a');
-  await page.locator('#viewport').evaluate(el => el.blur());
+  await page.keyboard.down("a");
+  await page.locator("#viewport").evaluate((el) => el.blur());
   await expect.poll(async () => (await picture()).equals(resting)).toBe(true);
-  await page.keyboard.up('a');
+  await page.keyboard.up("a");
 });

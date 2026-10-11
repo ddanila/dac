@@ -655,19 +655,22 @@ export async function loadRobotron(displayTexture) {
       keyboardLift > 0 ||
       inspection.transparent ||
       inspection.isolated === "keyboard";
-    for (const [i, key] of data.keys.entries()) {
-      const down = keyObjects.get(key.id).position.z;
-      instance.rotation.set(0, 0, 0);
-      instance.position.set(key.x, key.y, -12);
-      instance.scale.set(1, 1, (12 + down + keyboardLift * 11) / 12);
-      instance.updateMatrix();
-      mechanisms[0].setMatrixAt(i, instance.matrix);
-      instance.position.set(key.x, key.y, down + keyboardLift * 110);
-      instance.scale.set(1, 1, 1);
-      instance.updateMatrix();
-      mechanisms[1].setMatrixAt(i, instance.matrix);
+    // Instance transforms only change on input or disassembly, not every idle frame.
+    if (dirty || beforeSplit !== split) {
+      for (const [i, key] of data.keys.entries()) {
+        const down = keyObjects.get(key.id).position.z;
+        instance.rotation.set(0, 0, 0);
+        instance.position.set(key.x, key.y, -12);
+        instance.scale.set(1, 1, (12 + down + keyboardLift * 11) / 12);
+        instance.updateMatrix();
+        mechanisms[0].setMatrixAt(i, instance.matrix);
+        instance.position.set(key.x, key.y, down + keyboardLift * 110);
+        instance.scale.set(1, 1, 1);
+        instance.updateMatrix();
+        mechanisms[1].setMatrixAt(i, instance.matrix);
+      }
+      for (const mesh of mechanisms) mesh.instanceMatrix.needsUpdate = true;
     }
-    for (const mesh of mechanisms) mesh.instanceMatrix.needsUpdate = true;
     for (const mesh of patches) {
       mesh.position.copy(mesh.userData.rest);
       mesh.visible = true;
