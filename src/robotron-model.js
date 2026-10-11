@@ -1,3 +1,4 @@
+import { componentDetail } from "./component-detail.js";
 import { createDriveMotion } from "./robotron-drives.js";
 import { createFanMotion } from "./robotron-fan.js";
 import { modelAsset } from "./model-assets.js";
@@ -114,6 +115,7 @@ export async function loadRobotron(displayTexture) {
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       mesh.name = part.name;
+      mesh.userData.detail = componentDetail(part.name);
       mesh.userData.interior = part.section === "interior";
       mesh.userData.monitorInterior = part.section === "monitor-interior";
       if (mesh.userData.interior || mesh.userData.monitorInterior)

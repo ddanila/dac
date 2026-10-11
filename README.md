@@ -33,7 +33,7 @@ Disk writes are off by default. Enabling them changes only a session copy; **Exp
 
 Robotron cold boot, keyboard, file creation, reading, text/binary copying, export/reboot and deletion pass bounded native checks. Native and WASM boot pixels and complete session disks after create/read/copy match exactly. VJUGA matches a bounded Juku boot framebuffer in both native decode modes. The viewer has automated power/reset/input/media recovery tests and inspected desktop/mobile layouts.
 
-The cores are experimental. Robotron has simplified FDC/DMA/SIO/CTC timing and an incomplete 8275 display model, with tested completion/interrupt behavior, programmed row height, field attributes and cursor. Juku accepts one key contact at a time; long-session WASM32 clock wrap is unqualified. No full hardware-fidelity claim is made. Focused session/media tests cover Chromium, Firefox and Playwright WebKit; this is not qualification of every retail Safari version. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
+The cores are experimental. Robotron has simplified FDC/DMA/SIO/CTC timing and an incomplete 8275 display model, with tested completion/interrupt behavior, programmed row height, field attributes and cursor. Juku accepts one key contact at a time; clock rollover is covered by focused native and WASM tests. No full hardware-fidelity claim is made. Focused session/media tests cover Chromium, Firefox and Playwright WebKit; this is not qualification of every retail Safari version. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
 
 ## Models and provenance
 
@@ -58,7 +58,7 @@ The historical Robotron preset now runs the **S600 keyboard firmware** on a seco
 
 **Drive B** accepts a second 800 KB raw image or an empty data disk. Power off to
 insert/eject or change protection; copies persist independently. After a reload,
-insert the same original B image (or choose blank again) to recover its saved copy.
+the inserted B disk and its protection are restored when persistence is enabled.
 Use `DIR B:` and `PIP B:=A:PIP.COM`. Original files are untouched. Reset or warm-boot
 the guest after a disk change, as its OS may cache directory data.
 
@@ -74,3 +74,55 @@ Additional validation: `npm run test:cross` runs the focused Firefox/WebKit suit
 (after `npx playwright install firefox webkit`). CI runs Firefox on Linux and WebKit on macOS; both also passed locally on macOS. The core's optional application
 regression covers WordStar editing, Turbo Pascal compilation/execution, drive-to-
 drive PIP copying and printer output using the bundled reference disk.
+
+### Workbench improvements (2026-10-11)
+
+- **Disk library:** name a copy of either mounted drive, duplicate it independently,
+  insert it while powered off, reset it to its captured original, or export it.
+  Drive B insertion/ejection and write protection survive reload when disk
+  persistence is enabled. Disks from each machine have separate library lists.
+  “Keep browser storage persistently” requests browser-managed persistence;
+  exporting files remains the way to keep an independent backup.
+- **Paste through the keyboard:** ASCII text/newlines (up to 4096 characters),
+  paced in emulated time with cancellation. Robotron with firmware uses an S600
+  mapping measured by running its ROM, including shifted punctuation; other
+  keyboard ROMs and SI/SO mode are rejected. Without firmware, Robotron/Juku use
+  their existing keyboard adapters. Wait for the guest program’s prompt.
+- **Record/replay:** restart with the currently mounted disk contents, then record
+  exact run budgets, key contacts/taps, resets, power changes, printer clears and
+  up to eight disk/protection changes. Stop and export a `.dacrecord` (maximum
+  100,000 events). It includes ROMs and disks; their original rights/credits apply.
+  Replay runs an isolated machine and verifies the display, both disks and printer
+  hashes, preserving the current session. Long replays can be cancelled.
+  Media changes happen with power off; changing machine/firmware or loading a
+  snapshot requires stopping the recording.
+- **Across upgrades:** state envelope v2 declares a pinned-runtime compatibility
+  policy and still accepts v1. DAC preserves the 0.3.0 runtime with checked
+  JavaScript/WASM hashes. Compatible old browser saves and exported `.dacstate`
+  files can run on that runtime; a notice identifies it. Reloading media selects
+  the current runtime. This is preservation, not conversion to a newer internal
+  layout. Unlisted versions are rejected without replacing the current machine.
+- **Inspection:** click interior components or use “Explore the components” to
+  read descriptions and the owner/reference/estimated evidence behind them.
+- Hidden tabs pause emulation, clear held input/cancel paste and flush disk copies.
+  Returning starts from the current emulated time without a wall-clock backlog.
+
+For a native replay check, build `../dac-emulation/build/dac-replay` with
+`make -C ../dac-emulation build/dac-replay`, then run:
+
+```sh
+node scripts/replay-native.mjs path/to/session.dacrecord
+```
+
+This compares native C output with browser-recorded output. `.dacrecord` is a
+versioned command/media format, not a C structure dump. Equal output hashes are a
+useful regression check, not proof of every internal state or hardware timing.
+Snapshot/runtime preservation should be extended before replacing another core:
+keep its JS/WASM and notices under `public/emulator/archive/<wasm-sha>/`, add the
+pinned JS hash to `src/archived-cores.json`, and run the preserved-state test.
+
+`src/s600-paste.json` is reproducible with `scripts/s600-keymap.c`: build it against
+`../dac-emulation/build/{machines/robotron1715m/{robotron,keyboard,sio},common/cpu/z80,common/media/media,common/trace/trace}.o`
+and run it with `public/media/robotron/s600.bin`. It boots a fresh reference
+keyboard for each matrix contact with and without Shift and observes serial output;
+it does not infer characters from the specimen’s printed legends.

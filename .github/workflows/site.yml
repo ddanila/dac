@@ -12,7 +12,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7.1.0
@@ -21,7 +21,17 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - id: core
+        run: node -e "const fs=require('fs');fs.appendFileSync(process.env.GITHUB_OUTPUT,'ref='+require('./public/emulator/manifest.json').commit+'\n')"
+      - uses: actions/checkout@v7
+        with:
+          repository: ddanila/dac-emulation
+          ref: ${{ steps.core.outputs.ref }}
+          path: emulation-reference
+      - run: make -C emulation-reference build/dac-replay
       - run: npm test
+        env:
+          DAC_NATIVE_REPLAY: emulation-reference/build/dac-replay
       - run: DAC_BASE=/dac/ npm run build
       - uses: actions/upload-pages-artifact@v5.0.0
         with:

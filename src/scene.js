@@ -263,7 +263,7 @@ export function createScene(
       key
         ? `${key.label}${key.input.unsupported ? " · mapping unverified" : ""}`
         : hit?.userData.detail
-          ? "Click to inspect the original marking"
+          ? "Click to inspect this component and its evidence"
           : "",
     );
   });

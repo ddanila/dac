@@ -13,6 +13,8 @@ const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
 });
 const screen = $("screen"),
   ctx = screen.getContext("2d");
+let replayBusy = false;
+const replayDisabled = new Map();
 let on = false,
   powerPending = false,
   ready = false,
@@ -36,6 +38,7 @@ try {
 } catch {}
 const heldModelKeys = new Map();
 function release() {
+  if (on) send({ type: "cancel-paste" });
   held.clear();
   heldModelKeys.clear();
   keyboard.reset();
@@ -44,7 +47,7 @@ function release() {
   if (on) send({ type: "key", key: 0, down: false });
 }
 function power() {
-  if (!ready || $("power").disabled) return;
+  if (replayBusy || !ready || $("power").disabled) return;
   release();
   powerPending = true;
   $("power").disabled = true;
@@ -87,6 +90,7 @@ const firmwareKeys = createFirmwareKeyboard({
   },
 });
 function modelKey(key) {
+  if (replayBusy) return false;
   return (firmwareKeyboard ? firmwareKeys : keyboard).activate(key);
 }
 function keyButtons(keys) {
@@ -147,7 +151,7 @@ const descriptions = {
   ],
 };
 async function configure(demo, historical = false) {
-  if (!ready) return;
+  if (!ready || replayBusy) return;
   const ticket = ++configuration;
   $("power").disabled = true;
   fail("");
@@ -236,7 +240,7 @@ async function configure(demo, historical = false) {
     kind,
     firmware,
     disk: image,
-    diskB: kind === 2 ? diskBImage : undefined,
+    diskB: undefined,
     writableB: $("writable-b").checked,
     writable: $("writable").checked,
     remember: $("remember-disk").checked,
@@ -244,11 +248,28 @@ async function configure(demo, historical = false) {
   });
 }
 worker.onmessage = ({ data: d }) => {
+  if (d.type === "replay") {
+    replayBusy = d.active;
+    if (d.active) {
+      for (const control of document.querySelectorAll(
+        "aside button, aside input, aside select, aside textarea",
+      )) {
+        if (control.id === "record-cancel") continue;
+        replayDisabled.set(control, control.disabled);
+        control.disabled = true;
+      }
+    } else {
+      for (const [control, disabled] of replayDisabled)
+        control.disabled = disabled;
+      replayDisabled.clear();
+    }
+  }
   if (d.type === "ready") {
     ready = true;
     configure(true, true).catch((e) => fail(e.message));
   }
   if (d.type === "configured") {
+    $("runtime-status").textContent = "";
     disk = d.disk;
     updateDriveB(d.diskB);
     firmwareKeyboard = !!d.firmwareKeyboard;
@@ -267,6 +288,8 @@ worker.onmessage = ({ data: d }) => {
       : "Character adapter · no keyboard ROM loaded";
     $("power").disabled = false;
     $("status").textContent = "Powered off";
+    if (d.writableA !== undefined) $("writable").checked = d.writableA;
+    if (d.writableB !== undefined) $("writable-b").checked = d.writableB;
     $("export").disabled = !disk;
   }
   if (d.type === "power") {
@@ -364,6 +387,29 @@ worker.onmessage = ({ data: d }) => {
       hasState = d.hasState;
       $("restore-state").disabled = !hasState;
     }
+  }
+  if (d.type === "runtime")
+    $("runtime-status").textContent = d.preserved
+      ? "Running the preserved emulator version for this snapshot. Reload media to return to the current version."
+      : "";
+  if (d.type === "record-status") $("record-status").textContent = d.message;
+  if (d.type === "mounted-a") {
+    disk = true;
+    $("export").disabled = false;
+  }
+  if (d.type === "paste-status") $("paste-status").textContent = d.message;
+  if (d.type === "library") {
+    const selected = $("library-disks").value;
+    $("library-disks").replaceChildren(
+      ...d.entries.map((entry) => {
+        const option = document.createElement("option");
+        option.value = entry.id;
+        option.textContent = `${entry.name} (${entry.size / 1024} KB)`;
+        return option;
+      }),
+    );
+    if ([...$("library-disks").options].some((o) => o.value === selected))
+      $("library-disks").value = selected;
   }
   if (d.type === "input-error") $("key-feedback").textContent = d.message;
   if (d.type === "error") {
@@ -480,8 +526,7 @@ $("eject-b").onclick = () => {
 };
 $("export-b").onclick = () => send({ type: "export", unit: 1 });
 $("writable-b").onchange = () => {
-  if (diskBImage)
-    send({ type: "protect-b", writable: $("writable-b").checked });
+  if (diskB) send({ type: "protect-b", writable: $("writable-b").checked });
 };
 $("printer-export").onclick = () => send({ type: "printer" });
 $("printer-clear").onclick = () => send({ type: "clear-printer" });
@@ -602,6 +647,7 @@ function keyCode(e) {
   return keys[e.key];
 }
 function keyDown(e) {
+  if (replayBusy) return;
   if (e.key === "Escape") {
     release();
     e.currentTarget.blur();
@@ -725,9 +771,59 @@ $("viewport").onblur = release;
 window.addEventListener("blur", release);
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) release();
+  send({ type: "visibility", hidden: document.hidden });
 });
 send({
   type: "init",
   base: base.href,
   build: import.meta.env.VITE_EMULATOR_REVISION,
 });
+
+$("paste-send").onclick = () => {
+  release();
+  send({ type: "paste", text: $("paste-text").value });
+};
+$("paste-cancel").onclick = () => send({ type: "cancel-paste" });
+$("library-save").onclick = () =>
+  send({
+    type: "library-save",
+    name: $("disk-name").value,
+    unit: Number($("library-unit").value),
+  });
+for (const action of ["mount", "duplicate", "reset", "export"])
+  $("library-" + action).onclick = () =>
+    send({
+      type: "library-" + action,
+      id: $("library-disks").value,
+      name: $("disk-name").value,
+      unit: Number($("library-unit").value),
+    });
+$("storage-persist").onclick = async () => {
+  try {
+    const ok = await navigator.storage?.persist?.();
+    $("storage-durability").textContent = ok
+      ? "Persistent storage granted. Keep exported backups too."
+      : "Browser did not grant persistent storage. Export backups to keep them.";
+  } catch (e) {
+    $("storage-durability").textContent = e.message;
+  }
+};
+
+$("record-start").onclick = () => {
+  release();
+  send({ type: "record-start" });
+};
+$("record-stop").onclick = () => send({ type: "record-stop" });
+$("record-cancel").onclick = () => send({ type: "record-cancel" });
+$("record-file").onchange = async () => {
+  const file = $("record-file").files[0];
+  if (!file) return;
+  try {
+    if (file.size > 16 * 1024 * 1024) throw Error("Recording exceeds 16 MB.");
+    release();
+    send({ type: "record-replay", bytes: await file.arrayBuffer() });
+  } catch (e) {
+    $("record-status").textContent = e.message;
+  }
+  $("record-file").value = "";
+};
