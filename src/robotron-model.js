@@ -691,6 +691,8 @@ export async function loadRobotron(displayTexture) {
       "pedestal",
       "ring",
       "monitor-tape",
+      "monitor-under-controls",
+      "monitor-stand-metal",
     ];
     for (const name of monitor) {
       objects.get(name).position.set(0, inside ? 400 : 0, inside ? 180 : 0);
@@ -751,6 +753,11 @@ export async function loadRobotron(displayTexture) {
       }
     objects.get("fascia").position.y = -split * 40;
     const keyboardLift = Math.max(split, inspection.keyboardOpen ? 1 : 0);
+    // Detach the narrow controller as a unit so both boards can be inspected.
+    for (const [name, mesh] of objects) {
+      if (name.startsWith("keyboard-controller-"))
+        mesh.position.set(0, keyboardLift * 160, keyboardLift * 70);
+    }
     objects
       .get("keyboard-deck")
       .position.set(0, keyboardLift * 90, keyboardLift * 55);

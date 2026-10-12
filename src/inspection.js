@@ -56,17 +56,18 @@ export const inspections = {
   },
   monitor: {
     title: "The monitor",
-    text: "The rounded bezel, shell joint and blue tape follow the photo. The curved glass is an estimate; the picture on it is live emulator output.",
-    photo: "20250516_141624490",
+    text: "The curved glass carries live emulator output. Owner underside photos now establish the hollow annular stand, folded metal brackets, two ribbed adjustment knobs, vent banks and cable outlet. Local dimensions and the screen curvature remain estimates.",
+    photo: "20261012_125132359.MP",
   },
   back: {
-    title: "Rear details are still unknown",
-    text: "No photograph of this specimen’s rear panel is available yet. Connector placement and labels are intentionally absent; this view shows only the approximate exterior envelope.",
+    title: "Rear connections",
+    photo: "20261012_125413618",
+    text: "Danila’s October 12 photos establish the DISPLAY, V24, PRINTER and FLOPPY-DISK sockets, blanking plates, monitor power outlet, mains inlet and two fuse holders. Their small dimensions remain estimates. The model shows the sockets unplugged for inspection.",
   },
   under: {
     title: "Under the keyboard",
-    text: "The separate bottom plate, four rubber feet with metal inserts, fasteners and cable grommet are modeled from the photos. A single lead connects the keyboard to the case; its resting route and small dimensions are estimated. The system-unit underside is still unverified.",
-    photo: "133005363",
+    text: "The separate bottom plate, four rubber feet with metal inserts, fasteners and cable grommet are modeled from the photos. A single lead connects the keyboard to the case; its resting route and small dimensions are estimated. The new system-unit underside photos also establish rectangular rubber frames with metal inserts.",
+    photo: "20261012_131106217",
   },
   inside: {
     title: "Inside the system unit",
@@ -78,15 +79,15 @@ export const inspections = {
   },
   assembly: {
     title: "Open the case and keyboard",
-    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; logic boards, the power supply shield, fan and wiring still use comparative references. Keyboard switches and its board are approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
+    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; logic boards, the power supply shield, fan and wiring still use comparative references. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
   },
 };
 Object.assign(inspections, {
   "keyboard-inside": {
     title: "Inside the keyboard",
-    evidence: "Owner spring measurements · switch construction estimated",
-    text: "The keycaps lift above the springs and stems; the deck moves back to reveal the switch housings and mounting plate. The spring dimensions come from another owner-photographed keyboard variant. Travel, installed height and unseen switch construction remain estimates.",
-    photo: "132919894",
+    evidence: "Owner board photographs · switch construction estimated",
+    text: "The keycaps lift above the springs and stems; the deck moves back and the separate controller lifts out to reveal both boards, its socketed processor and the replacement EPROM. The spring dimensions come from another owner-photographed keyboard variant. Travel, installed height and unseen switch construction remain estimates.",
+    photo: "20261012_123907435",
   },
   "component-logic": {
     title: "System logic boards",
@@ -102,9 +103,9 @@ Object.assign(inspections, {
   },
   "component-keyboard": {
     title: "Keyboard electronics",
-    evidence: "Owner spring measurements · hidden construction estimated",
-    text: "The spring dimensions come from Danila’s photographed keyboard variant (13 mm diameter, about 23 mm free length and 0.35 mm wire). Springs, stems, hollow keycaps and a mounting plate are modeled; installed height, travel, hidden switch construction and board revision remain approximate. Lift the keyboard deck to inspect them. The emulator runs the S600 ROM on a separate Z80 with the K7658 reference matrix. This does not establish the exact ROM or board revision inside Danila’s keyboard.",
-    photo: "132919894",
+    evidence: "Owner electronics photos · local dimensions estimated",
+    text: "Danila’s October 12 photos show the broad switch PCB and a separate narrow controller with a socketed UB880D, small DIP logic, discrete components, connector and shield clamp. The model reconstructs clean parts with nominal 2.54 mm IC lead pitch; board dimensions, placement and hidden routing remain estimates. Open the keyboard to separate the controller for inspection. Danila confirms that the installed EPROM came from another board. Its blue window cover is modeled, but the photos do not identify its binary contents. The emulator still uses the documented S600 reference ROM; it is not claimed to be a dump of this chip.",
+    photo: "20261012_123622947",
   },
   "component-crt": {
     title: "CRT, yoke and monitor electronics",

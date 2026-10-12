@@ -52,17 +52,12 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
   await expect.poll(hash).toBe(before);
   await page.getByRole("button", { name: "Underneath" }).click();
   await expect(canvas).toBeHidden();
-  // The only enclosure photograph loaded is a tiny corner-wear decal.
-  expect(enclosurePhotos).toHaveLength(1);
-  expect(enclosurePhotos[0]).toContain("PXL_20261009_132919894.jpg");
+  // Clean reconstruction: owner reference photos are not enclosure skins.
+  expect(enclosurePhotos).toHaveLength(0);
   const model = await (
     await page.request.get("/models/robotron-1715m/model.json")
   ).json();
-  const wear = model.patches.filter(
-    (p) => p.photo === "PXL_20261009_132919894.jpg",
-  );
-  expect(wear).toHaveLength(1);
-  expect(wear[0].size[0] * wear[0].size[1]).toBeLessThanOrEqual(30);
+  expect(model.patches.some((p) => p.name.includes("wear"))).toBe(false);
   await page.getByRole("button", { name: "Power off", exact: false }).click();
   await expect(page.getByRole("status")).toHaveText("Powered off");
   for (const value of ["0", "1"]) {
