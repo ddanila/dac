@@ -76,6 +76,8 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
     const springs = model.group.getObjectByName("keyboard-springs");
     const stems = model.group.getObjectByName("keyboard-stems");
     const rubbers = model.group.getObjectByName("keyboard-rubbers");
+    const core = model.group.getObjectByName("keycap-pale-core");
+    const closedCore = core.visible;
     // Compare in the inclined key frame, not global Z: otherwise pads can sit
     // beneath the PCB even when their absolute Z coordinates appear higher.
     springs.parent.updateMatrix();
@@ -102,6 +104,7 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
     model.inspect({ keyboardOpen: true });
     model.tick();
     const free = transform(springs);
+    const openCore = core.visible;
     model.inspect({ keyboardOpen: false });
     model.keyState(model.keys[0].id, true);
     model.tick();
@@ -144,6 +147,9 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
     model.tick();
     return {
       free,
+      closedCore,
+      openCore,
+      restoredCore: core.visible,
       pressed,
       stem,
       rubber,
@@ -162,6 +168,9 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
       opacity: model.objects.get("case-lid").material.opacity,
     };
   });
+  expect(result.closedCore).toBe(false);
+  expect(result.openCore).toBe(true);
+  expect(result.restoredCore).toBe(false);
   expect(result.free.scale).toBeCloseTo(23 / 19.6);
   expect(result.pressed.scale).toBeCloseTo(17.4 / 19.6);
   expect(result.stem.z).toBeCloseTo(-2.2);

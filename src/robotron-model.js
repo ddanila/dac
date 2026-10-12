@@ -314,6 +314,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       core.name = "keycap-pale-core";
       core.userData.key = key;
       core.receiveShadow = true;
+      core.visible = false;
       cap.add(core);
     }
     if (key.insertMesh) {
@@ -956,6 +957,12 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     keyboard.visible =
       inspection.isolated === "all" || inspection.isolated === "keyboard";
     mechanism.visible &&= keyboard.visible;
+    // Pale cores are enclosed by the opaque caps and keyboard shell at rest.
+    // Avoid an extra draw per key until disassembly exposes their undersides.
+    for (const key of keyObjects.values()) {
+      const core = key.getObjectByName("keycap-pale-core");
+      if (core) core.visible = keyboardLift > 0 || inspection.transparent;
+    }
     for (const mesh of group.children) {
       if (mesh.name === "drive-direction")
         mesh.visible =
