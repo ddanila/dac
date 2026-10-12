@@ -392,13 +392,35 @@ worker.onmessage = ({ data: d }) => {
     if (Number($("machine").value) === 2) {
       const drives = d.drives || [0, 0];
       scene?.drives(drives, d.driveMechanics);
-      driveSound.update(drives, on);
+      driveSound.update(drives, on, d.driveMechanics);
       $("drive-state").textContent = on
         ? drives
-            .map(
-              (v, u) =>
-                `${u ? "B" : "A"}: ${v & 8 ? (v & 1 ? "motor on" : "motor off") + " · track " + ((v >> 8) & 255) + (v & 16 ? " · seeking" : "") + (v & 2 ? " · transferring" + (d.driveMechanics ? " · side " + ((d.driveMechanics[u].detail >> 4) & 1) + " sector " + ((d.driveMechanics[u].detail >> 8) & 255) : "") : "") + (v & 4 ? " · writable" : " · protected") : "empty"}`,
-            )
+            .map((v, u) => {
+              const sample = d.driveMechanics?.[u],
+                label = u ? "B" : "A";
+              if (!(v & 8)) return `${label}: empty`;
+              const parts = [
+                `${label}: ${v & 1 ? "motor on" : "motor off"}`,
+                `track ${(v >> 8) & 255}`,
+              ];
+              if (sample?.mechanics !== undefined) {
+                const flags = sample.mechanics;
+                parts.push(
+                  flags & 1 ? "ready" : v & 1 ? "spinning up" : "not ready",
+                );
+                if (flags & 4) parts.push("settling");
+              }
+              if (v & 16) parts.push("seeking");
+              if (v & 2) {
+                parts.push(sample?.detail & 4 ? "writing" : "reading");
+                if (sample)
+                  parts.push(
+                    `side ${(sample.detail >> 4) & 1} sector ${(sample.detail >> 8) & 255}`,
+                  );
+              }
+              parts.push(v & 4 ? "writable" : "protected");
+              return parts.join(" · ");
+            })
             .join(" / ")
         : "";
       $("printer-status").textContent = d.printerOverflow
@@ -545,8 +567,10 @@ async function insertB(blank = false) {
     const bytes = blank
       ? new Uint8Array(819200).fill(0xe5).buffer
       : await file.arrayBuffer();
-    if (bytes.byteLength !== 819200)
-      throw Error("Drive B needs an 800 KB raw image (819200 bytes).");
+    if (bytes.byteLength < 256 || bytes.byteLength > 1048576)
+      throw Error(
+        "Choose an 800 KB raw image or a supported Robotron DSK image (up to 1 MB).",
+      );
     diskBImage = bytes;
     send({ type: "mount-b", bytes, writable: $("writable-b").checked });
   } catch (e) {

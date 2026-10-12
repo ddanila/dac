@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { Mesh, BoxGeometry, MeshBasicMaterial } from "three";
-import { createDriveMotion } from "../src/robotron-drives.js";
+import { createDriveMotion, driveStepOffsets } from "../src/robotron-drives.js";
 test("drive mechanisms stay independent, respect reduced motion and retain head position", () => {
   const objects = new Map(
     ["s0", "s1", "h0", "h1"].map((n) => [
@@ -70,4 +70,38 @@ test("authoritative drive phases ignore wall time, recover after hiding and rest
   expect(objects.get("s").rotation.z).toBeCloseTo(Math.PI * 0.2);
   move(100006, [1], true, 0, false, false, null, sample(0.25)); // restored state
   expect(objects.get("s").rotation.z).toBeCloseTo(Math.PI / 2);
+});
+
+test("seek audio uses every timestamped step, preserves spacing and drops stale/reset batches", () => {
+  const sample = { steps: 13, stepAges: [3994, 15975, 27956], speed: 1 };
+  const offsets = driveStepOffsets(10, sample);
+  expect(offsets).toHaveLength(3);
+  expect(offsets[1] - offsets[0]).toBeCloseTo(11981 / 3993600);
+  expect(driveStepOffsets(10, { ...sample, speed: 4 })[2]).toBeCloseTo(
+    offsets[2] / 4,
+  );
+  expect(driveStepOffsets(undefined, sample)).toEqual([]);
+  expect(driveStepOffsets(20, sample)).toEqual([]);
+  expect(driveStepOffsets(12, { ...sample, stepAges: [1000000] })).toEqual([]);
+  expect(driveStepOffsets(13, sample)).toEqual([]);
+});
+
+test("head geometry consumes the core's fractional physical position", () => {
+  const objects = new Map(
+    ["s", "h"].map((n) => [
+      n,
+      new Mesh(new BoxGeometry(), new MeshBasicMaterial()),
+    ]),
+  );
+  const move = createDriveMotion(objects, [
+    {
+      unit: 0,
+      spindle: "s",
+      head: "h",
+      pivot: [0, 0, 0],
+      travel: [0, (-79 * 25.4) / 96, 0],
+    },
+  ]);
+  move(0, [3 << 8], true, 0, false, false, null, [{ phase: 0, position: 2.5 }]);
+  expect(objects.get("h").position.y).toBeCloseTo((-2.5 * 25.4) / 96);
 });

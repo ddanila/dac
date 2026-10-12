@@ -21,7 +21,7 @@ Open the URL printed by Vite. The default Robotron exhibit boots the **historica
 
 Power off and expand **Load your machine’s media**. Files stay in the browser:
 
-- **Robotron:** 2 KB boot ROM + 256-byte CAS PROM; optional 2/4 KB character data; optional 819,200-byte raw disk (80 tracks × 2 heads × 5 sectors × 1,024 bytes). Tested with S550/287 and TOS/M 1.0.
+- **Robotron:** 2 KB boot ROM + 256-byte CAS PROM; optional 2/4 KB character data; optional 819,200-byte raw disk or supported standard/extended DSK (80 tracks × 2 heads, up to 5 sectors × 1,024 bytes per track). Tested with S550/287 and TOS/M 1.0.
 - **Juku:** 16 KB ROM; optional 409,600/819,200-byte raw Juku disk.
 - **VJUGA:** 16 KB adapted ROM, Rev-A Mode B bounded-boot profile; keyboard/disk are not implemented in that profile.
 
@@ -56,7 +56,7 @@ The historical Robotron preset now runs the **S600 keyboard firmware** on a seco
 **Keep this session** provides automatic local disk copies and **Save state / Restore state** for all three machines. Disk copies survive reloads and are separated by media identity; whole-machine states require the same emulator build and write mode. Disk export is a portable backup; **Export state / Import state** moves a complete session between browsers running the same emulator build, original media and write settings. **Discard saved disk** removes the local copy; reload original media to start fresh. Writes remain opt-in. Floppy seek, rotation and byte pacing now make boot slower; 4× speed is useful while waiting for `A>`.
 
 
-**Drive B** accepts a second 800 KB raw image or an empty data disk. Power off to
+**Drive B** accepts a second 800 KB raw image, a supported Robotron DSK, or an empty data disk. Power off to
 insert/eject or change protection; copies persist independently. After a reload,
 the inserted B disk and its protection are restored when persistence is enabled.
 Use `DIR B:` and `PIP B:=A:PIP.COM`. Original files are untouched. Reset or warm-boot
@@ -67,7 +67,7 @@ exports a `.prn` file. The 64 KB capture limit is visible; export and clear when
 full. Try `PIP LST:=AUTOEXC.SUB`. The virtual printer is always ready.
 
 With the case open, each spindle and head follows its drive's motor/track state.
-Head travel uses the nominal TEAC 96-tpi pitch (20.90 mm across 79 steps). Current-core spindle angles come from the same independent motor-gated 300 RPM phases used for sector latency. Heads follow timed cylinder steps; rendering samples these positions without wall-clock extrapolation. Pause, replay and state restore preserve the emulated phase. Archived cores retain illustrative rotation. Optional drive sounds remain synthesized; reduced motion freezes spindle display. See [timing scope and remaining approximations](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md).
+Head travel uses nominal TEAC 96-tpi pitch (20.90 mm across 79 steps). Current-core spindle and fractional head poses follow emulated startup/coast, STEP and settling timing. READY depends on index observations; Read-ID/sector search follows physical order, and missed byte deadlines report overruns. Optional synthesized seek sounds follow individual timestamped STEP events; motor tone follows modeled speed. Snapshot/replay restores all mechanics. Older preserved cores retain their earlier behavior, and reduced motion freezes the rotor display. DSK import/export preserves supported track order, IDs and GAP3; unsupported geometries are rejected. See [timing scope and remaining approximations](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md).
 
 Additional validation: `npm run test:cross` runs the focused Firefox/WebKit suite
 (after `npx playwright install firefox webkit`). CI runs Firefox on Linux and WebKit on macOS; both also passed locally on macOS. The core's optional application
@@ -96,7 +96,7 @@ drive PIP copying and printer output using the bundled reference disk.
   Media changes happen with power off; changing machine/firmware or loading a
   snapshot requires stopping the recording.
 - **Across upgrades:** state envelope v2 declares a pinned-runtime compatibility
-  policy and still accepts v1. DAC preserves the 0.3.0 and 0.4.0 runtimes with checked
+  policy and still accepts v1. DAC preserves the 0.3.0, 0.4.0 and 0.5.0 runtimes with checked
   JavaScript/WASM hashes. Compatible old browser saves and exported `.dacstate`
   files can run on that runtime; a notice identifies it. Reloading media selects
   the current runtime. This is preservation, not conversion to a newer internal

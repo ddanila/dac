@@ -31,7 +31,7 @@ export function createDriveMotion(objects, descriptions = []) {
         phase = demo ? ((demo.phase % 1) + 1) % 1 : 0,
         track = demo
           ? 79 * (0.5 - 0.5 * Math.cos(phase * Math.PI * 2))
-          : Math.min(79, (state >> 8) & 255),
+          : Math.min(79, mechanics?.[d.unit]?.position ?? (state >> 8) & 255),
         clampAmount = demo
           ? 0.5 - 0.5 * Math.cos(phase * Math.PI * 2)
           : Number(clampsOpen);
@@ -80,14 +80,30 @@ export function createDriveMotion(objects, descriptions = []) {
     return moving;
   };
 }
+// Return one onset per newly observed STEP, ordered oldest first. A reset,
+// initial sample or hidden-tab backlog establishes a baseline instead of bursting.
+export function driveStepOffsets(previous, sample) {
+  if (previous === undefined || !sample?.stepAges) return [];
+  const count = (sample.steps - previous) >>> 0;
+  if (count > 64) return [];
+  const ages = sample.stepAges
+    .slice(0, count)
+    .filter((a) => a < 998400)
+    .reverse();
+  if (!ages.length) return [];
+  const rate = 3993600 * (sample.speed || 1);
+  return ages.map((age) => (ages[0] - age) / rate);
+}
 export function createDriveSound() {
   let context,
     gain,
     enabled = false,
-    previous = [0, 0];
+    previous = [undefined, undefined];
+  const motors = [];
   return {
     async enable(value) {
       enabled = value;
+      previous = [undefined, undefined];
       if (value && !context) {
         context = new AudioContext();
         gain = context.createGain();
@@ -99,6 +115,7 @@ export function createDriveSound() {
           o.type = "sine";
           o.connect(gain);
           o.start();
+          motors.push(o);
         }
       }
       if (context) {
@@ -106,20 +123,44 @@ export function createDriveSound() {
         else gain.gain.setTargetAtTime(0, context.currentTime, 0.03);
       }
     },
-    update(states, power) {
+    update(states, power, mechanics = null) {
       if (!context) return;
       const audible = enabled && power && !document.hidden;
+      const speeds = [0, 1].map((u) =>
+        mechanics?.[u]?.mechanics === undefined
+          ? states[u] & 1
+            ? 1
+            : 0
+          : (mechanics[u].mechanics >>> 8) / 1000,
+      );
       gain.gain.setTargetAtTime(
-        audible && states.some((s) => s & 1) ? 0.012 : 0,
+        audible ? Math.max(...speeds) * 0.012 : 0,
         context.currentTime,
         0.03,
       );
+      motors.forEach((o, u) =>
+        o.frequency.setTargetAtTime(
+          (u ? 103 : 70) * Math.max(0.05, speeds[u]),
+          context.currentTime,
+          0.03,
+        ),
+      );
+      if (!audible) {
+        previous = [undefined, undefined];
+        return;
+      }
       states.forEach((s, u) => {
-        const track = (s >> 8) & 255;
-        if (audible && track !== previous[u]) {
+        const sample = mechanics?.[u],
+          track = (s >> 8) & 255;
+        const offsets = sample?.stepAges
+          ? driveStepOffsets(previous[u], sample)
+          : previous[u] !== undefined && track !== previous[u]
+            ? [0]
+            : [];
+        for (const offset of offsets) {
           const o = context.createOscillator(),
             g = context.createGain(),
-            t = context.currentTime;
+            t = context.currentTime + 0.01 + offset;
           o.type = "triangle";
           o.frequency.setValueAtTime(180, t);
           o.frequency.exponentialRampToValueAtTime(65, t + 0.025);
@@ -127,14 +168,14 @@ export function createDriveSound() {
           g.gain.exponentialRampToValueAtTime(0.0001, t + 0.035);
           o.connect(g);
           g.connect(context.destination);
-          o.start();
+          o.start(t);
           o.stop(t + 0.04);
           o.onended = () => {
             o.disconnect();
             g.disconnect();
           };
         }
-        previous[u] = track;
+        previous[u] = sample?.stepAges ? sample.steps : track;
       });
     },
   };
