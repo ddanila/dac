@@ -1,6 +1,7 @@
 import { keyPoint } from "./robotron-picking.js";
 import { test, expect } from "@playwright/test";
-import { PerspectiveCamera, Vector3, Euler } from "three";
+import { PerspectiveCamera, Vector3, Euler, Group, Mesh, MeshBasicMaterial, BoxGeometry, Raycaster } from "three";
+import { visiblePickTargets, inCameraView } from "../src/scene.js";
 import { photoProjection } from "../src/robotron-model.js";
 
 async function observeKeys(page) {
@@ -270,4 +271,38 @@ test("firmware LED bits independently light both model lamps and survive gesture
   expect(result.released).toEqual([true, true]);
   expect(result.off).toEqual([false, false]);
   expect(result.reset).toEqual([false, false]);
+});
+
+
+test("picking prunes hidden assemblies and transparent covers before raycasting", () => {
+  const root = new Group(), hidden = new Group(), transparent = new Mesh(
+    new BoxGeometry(1, 1, 1), new MeshBasicMaterial({transparent: true, opacity: 0.16}));
+  hidden.visible = false;
+  const blocked = new Mesh(new BoxGeometry(1, 1, 1), new MeshBasicMaterial());
+  const hiddenChild = blocked.clone();
+  hidden.add(hiddenChild);
+  transparent.add(blocked.clone());
+  const key = blocked.clone(); key.position.z = -2;
+  root.add(hidden, transparent, key); root.updateMatrixWorld(true);
+  const ray = new Raycaster(new Vector3(0, 0, 5), new Vector3(0, 0, -1));
+  const targets = visiblePickTargets(root);
+  expect(targets).toEqual([key]);
+  expect(ray.intersectObjects(targets, false)[0].object).toBe(key);
+  hidden.visible = true;
+  expect(ray.intersectObjects(visiblePickTargets(root), false)[0].object).toBe(hiddenChild);
+});
+
+test("CRT video invalidation respects the camera and ancestor visibility", () => {
+  const camera = new PerspectiveCamera(36, 1, 0.01, 40);
+  const root = new Group(), screen = new Mesh(new BoxGeometry(1, 1, 0.01));
+  root.add(screen); screen.position.z = -3;
+  expect(inCameraView(screen, camera)).toBe(true);
+  screen.position.x = 10;
+  expect(inCameraView(screen, camera)).toBe(false);
+  screen.position.x = 0; screen.position.z = 3;
+  expect(inCameraView(screen, camera)).toBe(false);
+  screen.position.z = -3; root.visible = false;
+  expect(inCameraView(screen, camera)).toBe(false);
+  root.visible = true;
+  expect(inCameraView(screen, camera)).toBe(true);
 });

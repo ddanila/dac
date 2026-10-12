@@ -3,6 +3,29 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 import { loadRobotron } from "./robotron-model.js";
+// Three.js raycasting does not skip invisible objects. Prune whole hidden
+// assemblies before testing triangles, while retaining transparent-cover rules.
+export function visiblePickTargets(root) {
+  const targets = [];
+  function visit(node) {
+    if (!node.visible || (node.material?.transparent && node.material.opacity < 0.2)) return;
+    if (node.geometry) targets.push(node);
+    for (const child of node.children) visit(child);
+  }
+  visit(root);
+  return targets;
+}
+
+const videoFrustum = new THREE.Frustum(), videoProjection = new THREE.Matrix4();
+export function inCameraView(object, camera) {
+  for (let node = object; node; node = node.parent) if (!node.visible) return false;
+  camera.updateMatrixWorld();
+  object.updateWorldMatrix(true, false);
+  videoFrustum.setFromProjectionMatrix(videoProjection.multiplyMatrices(
+    camera.projectionMatrix, camera.matrixWorldInverse));
+  return videoFrustum.intersectsObject(object);
+}
+
 export function createScene(
   container,
   screen,
@@ -252,15 +275,7 @@ export function createScene(
     robotron?.group.updateWorldMatrix(true, true);
     ray.setFromCamera(point, camera);
     return kind === 2 && robotron
-      ? ray.intersectObject(robotron.group, true).find((hit) => {
-          for (let node = hit.object; node; node = node.parent)
-            if (
-              !node.visible ||
-              (node.material?.transparent && node.material.opacity < 0.2)
-            )
-              return false;
-          return true;
-        })?.object
+      ? ray.intersectObjects(visiblePickTargets(robotron.group), false)[0]?.object
       : ray.intersectObject(power)[0]?.object;
   }
   function cancelGesture() {
@@ -426,8 +441,11 @@ export function createScene(
       robotron?.separate(on);
     },
     update: () => {
+      // Keep the latest raster for the next render, but do not redraw the whole
+      // machine for offscreen CRT updates (for example, while typing below it).
       texture.needsUpdate = true;
-      renderRequested = true;
+      renderRequested ||= kind !== 2 || !robotron ||
+        inCameraView(robotron.objects.get("crt-glass"), camera);
     },
     setMachine: (value) => {
       cancelGesture();
