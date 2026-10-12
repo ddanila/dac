@@ -270,3 +270,47 @@ test("opaque keycaps have continuous sidewalls around every exported shape", asy
   });
   expect(failures).toEqual([]);
 });
+
+test("monitor cabinet keeps its width at the back and captive leads follow inspection", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const result = await page.evaluate(async () => {
+    const { loadRobotron } = await import("/src/robotron-model.js");
+    const { Texture, Mesh, Raycaster, Vector3 } = await import("/node_modules/three/build/three.module.js");
+    const model = await loadRobotron(new Texture());
+    model.tick();
+    const shell = model.objects.get("monitor-shell-upper");
+    const mesh = new Mesh(shell.geometry, shell.material);
+    const widths = [-80, 140].map(y => {
+      const hit = new Raycaster(new Vector3(300,y,380), new Vector3(-1,0,0)).intersectObject(mesh)[0];
+      return hit?.point.x * 2;
+    });
+    const leads = ["monitor-power-lead", "monitor-signal-lead"].map(n => model.objects.get(n));
+    const originals = leads.map(m => m.geometry.attributes.position.array.slice());
+    const endIndices = originals.map(a => {
+      let top=0, bottom=0;
+      for(let i=1;i<a.length/3;i++) {
+        if(a[i*3+2]>a[top*3+2])top=i;
+        if(a[i*3+2]<a[bottom*3+2])bottom=i;
+      }
+      return {top,bottom};
+    });
+    model.interior(true);model.tick();
+    const shifted = leads.map((m,j) => {
+      const v=m.geometry.attributes.position, a=originals[j], {top,bottom}=endIndices[j];
+      return {topY:v.getY(top)-a[top*3+1], topZ:v.getZ(top)-a[top*3+2],
+        bottomY:v.getY(bottom)-a[bottom*3+1], bottomZ:v.getZ(bottom)-a[bottom*3+2]};
+    });
+    const parked = model.objects.get("monitor-plug-bodies").position.y;
+    model.interior(false);model.openMonitor(true);model.tick();
+    const restored = leads.every((m,j) => m.visible && m.geometry.attributes.position.array.every((v,i)=>v===originals[j][i]));
+    return {widths,shifted,parked,restored,plugRest:model.objects.get("monitor-plug-bodies").position.y};
+  });
+  expect(result.widths[0]).toBeCloseTo(320, 0); // Faceted rounded edges are within 0.1 mm.
+  expect(result.widths[1]).toBeCloseTo(result.widths[0], 5);
+  for(const end of result.shifted) {
+    expect(end.topY).toBeCloseTo(400);expect(end.topZ).toBeCloseTo(180);
+    expect(end.bottomY).toBeCloseTo(24);expect(end.bottomZ).toBeCloseTo(0);
+  }
+  expect(result.parked).toBe(24);expect(result.plugRest).toBe(0);expect(result.restored).toBe(true);
+});

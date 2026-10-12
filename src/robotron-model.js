@@ -370,6 +370,11 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     if (name.startsWith("ribbon-") || name.startsWith("power-wires"))
       cableRest.set(name, mesh.geometry.attributes.position.array.slice());
   }
+  const monitorCableRest = new Map(
+    ["monitor-power-lead", "monitor-signal-lead"].map(name =>
+      [name, objects.get(name).geometry.attributes.position.array.slice()]),
+  );
+  let monitorCablePose = "";
   let inspection = {
     focus: "none",
     demo: false,
@@ -759,6 +764,29 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       objects.get("monitor-shell-upper").position.y -= 210;
       objects.get("monitor-tape").position.z += 155;
       objects.get("monitor-tape").position.y -= 210;
+    }
+    // Captive ends follow the monitor; rear plugs stay with the system unit.
+    // Exploded-view extension is illustrative, not a cable-length measurement.
+    const monitorPlugPark = inspection.disconnectCables && (inside || split > 0.01) ? 24 : 0;
+    const cablePose = `${inside}:${monitorPlugPark}`;
+    if (cablePose !== monitorCablePose) {
+      monitorCablePose = cablePose;
+      for (const [name, rest] of monitorCableRest) {
+        const mesh = objects.get(name), vertices = mesh.geometry.attributes.position;
+        for (let i = 0; i < vertices.count; i++) {
+          const z = rest[i * 3 + 2];
+          const t = THREE.MathUtils.clamp((z - 100) / 60, 0, 1);
+          const w = t * t * (3 - 2 * t);
+          vertices.setXYZ(i, rest[i * 3], rest[i * 3 + 1] + (inside ? 400 * w : 0) + monitorPlugPark * (1 - w), z + (inside ? 180 * w : 0));
+        }
+        vertices.needsUpdate = true;
+        mesh.geometry.computeVertexNormals();
+        mesh.geometry.computeBoundingBox();
+        mesh.geometry.computeBoundingSphere();
+      }
+      for (const name of ["monitor-plug-bodies", "monitor-plug-metal", "monitor-plug-collars"])
+        objects.get(name).position.y = monitorPlugPark;
+      dirty = true;
     }
     objects.get("case-lid").visible = true;
     objects.get("case-lid").position.set(0, inside ? 400 : 0, inside ? 180 : 0);
