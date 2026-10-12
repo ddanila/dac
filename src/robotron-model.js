@@ -275,9 +275,12 @@ export async function loadRobotron(displayTexture) {
   keyboard.position.set(0, data.keyboard.y, data.keyboard.z);
   keyboard.rotation.x = THREE.MathUtils.degToRad(data.keyboard.slope);
   group.add(keyboard);
-  const keyMaterials = [0x252a29, 0xaeb9ad, 0xb82e35].map((color, i) =>
+  const keyMaterials = [0x252a29, 0xffffff, 0xb82e35].map((color, i) =>
     specimenMaterial(color, data.materials[i === 1 ? "clear-key" : "key"]),
   );
+  const insertMaterial = new THREE.MeshStandardMaterial({
+    color: 0xa3a7a8, metalness: 0.75, roughness: 0.32,
+  });
   const atlas = legendAtlas(data.keys);
   const legendMaterial = new THREE.MeshStandardMaterial({
     map: atlas.texture,
@@ -297,9 +300,17 @@ export async function loadRobotron(displayTexture) {
     );
     body.userData.key = key;
     body.receiveShadow = true;
+    body.name = key.style === 1 ? "clear-key-shell" : "opaque-key-cap";
     cap.add(body);
+    if (key.insertMesh) {
+      const insert = new THREE.Mesh(keyGeometry.get(key.insertMesh), insertMaterial);
+      insert.name = "silver-key-inlay";
+      insert.userData.key = key;
+      cap.add(insert);
+    }
     // A small transparent legend follows the actual OpenSCAD dish surface:
-    // sphere radius 29, centre z=36, clipped by the cap top at z=8.
+    // sphere radius 60, centre z=69, clipped at z=9.5. Clear-key ink
+    // sits on the silver liner, beneath the transparent shell.
     const { width: w, height: h } = legendLayout(key, data.keyboard.pitch);
     const faceGeometry = surface(w, h);
     const p = faceGeometry.attributes.position,
@@ -310,7 +321,8 @@ export async function loadRobotron(displayTexture) {
         y =
           p.getY(i) /
           Math.max(1, (key.height * data.keyboard.pitch - 5.2) / 16);
-      p.setZ(i, Math.min(8, 36 - Math.sqrt(29 * 29 - x * x - y * y)) + 0.09);
+      const sag = Math.sqrt(60 * 60 - x * x - y * y);
+      p.setZ(i, key.style === 1 ? Math.min(8.9, 68.2 - sag) + 0.04 : Math.min(9.5, 69 - sag) + 0.09);
       uv.setXY(
         i,
         ((index % atlas.columns) + uv.getX(i)) / atlas.columns,
@@ -764,6 +776,18 @@ export async function loadRobotron(displayTexture) {
     objects
       .get("keyboard-fillers")
       .position.set(0, keyboardLift * 90, keyboardLift * 55);
+    objects.get("keyboard-plate").position.set(0, -keyboardLift * 85, keyboardLift * 55);
+    objects.get("keyboard-switches").position.set(0, -keyboardLift * 85, keyboardLift * 55);
+    // Turn the switch PCB over around its own centre to expose the photographed
+    // solder face. Absolute mesh coordinates require compensating the pivot.
+    const boardAngle = keyboardLift * Math.PI;
+    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-insulators"]) {
+      const mesh = objects.get(name);
+      mesh.rotation.x = boardAngle;
+      mesh.position.set(0,
+        data.keyboard.y * (1 - Math.cos(boardAngle)) + 13 * Math.sin(boardAngle),
+        keyboardLift * 22 + 13 * (1 - Math.cos(boardAngle)) - data.keyboard.y * Math.sin(boardAngle));
+    }
     objects.get("cable").visible = true;
     keyboard.position.z = data.keyboard.z + keyboardLift * 110;
     mechanism.visible =

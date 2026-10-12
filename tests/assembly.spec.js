@@ -167,6 +167,15 @@ test("owner controller separates as one assembly and monitor underside follows i
     model.inspect({ keyboardOpen: true, isolated: "keyboard" });
     model.tick();
     const opened = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
+    const pcb = model.objects.get("keyboard-pcb");
+    const boardOpen = { visible: pcb.visible, angle: pcb.rotation.x };
+    const shell = model.group.getObjectByName("clear-key-shell");
+    const inlay = shell.parent.getObjectByName("silver-key-inlay");
+    shell.geometry.computeBoundingBox();
+    inlay.geometry.computeBoundingBox();
+    const clearKey = { transparent: shell.material.transparent, opacity: shell.material.opacity,
+      metalness: inlay.material.metalness, sharedKey: shell.parent === inlay.parent,
+      beneathShell: inlay.geometry.boundingBox.max.z < shell.geometry.boundingBox.max.z };
     model.inspect({ keyboardOpen: false, isolated: "all" });
     model.tick();
     const closed = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
@@ -176,8 +185,14 @@ test("owner controller separates as one assembly and monitor underside follows i
     model.interior(false);
     model.tick();
     const restored = ["monitor-under-controls", "monitor-stand-metal"].map(name => model.objects.get(name).position.toArray());
-    return { opened, closed, moved, restored };
+    return { opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
   });
+  expect(state.boardOpen.visible).toBe(true);
+  expect(state.boardOpen.angle).toBeCloseTo(Math.PI);
+  expect(state.boardClosed).toEqual({ angle: 0, position: [0, 0, 0] });
+  expect(state.clearKey).toMatchObject({transparent: true, sharedKey: true, beneathShell: true});
+  expect(state.clearKey.opacity).toBeLessThan(0.5);
+  expect(state.clearKey.metalness).toBeGreaterThan(0.5);
   expect(state.opened.length).toBeGreaterThan(1);
   expect(state.opened.every(p => p.visible && p.position[2] > 0)).toBe(true);
   expect(new Set(state.opened.map(p => JSON.stringify(p.position))).size).toBe(1);

@@ -11,7 +11,7 @@ export const inspections = {
   },
   keyboard: {
     title: "A keyboard you can use",
-    text: "Press the modeled keys, or focus the exhibit and type. With S600 loaded, the keyboard’s own Z80 scans switches and sends serial input to the OS; its firmware drives Caps and SI/SO state. Clicked Shift/Ctrl latch for one character. Physical keys remain held until release. S600 is a reference layout: some printed legends differ. Without a keyboard ROM, the character adapter retains unverified mappings.",
+    text: "Black keys have a square flange and rounded raised body; the clear function keys have silver inserts and black legends. Press the modeled keys, or focus the exhibit and type. With S600 loaded, the keyboard’s own Z80 scans switches and sends serial input to the OS; its firmware drives Caps and SI/SO state. Clicked Shift/Ctrl latch for one character. Physical keys remain held until release. S600 is a reference layout: some printed legends differ. Without a keyboard ROM, the character adapter retains unverified mappings.",
     photo: "132919894",
   },
   typing: {
@@ -86,7 +86,7 @@ Object.assign(inspections, {
   "keyboard-inside": {
     title: "Inside the keyboard",
     evidence: "Owner board photographs · switch construction estimated",
-    text: "The keycaps lift above the springs and stems; the deck moves back and the separate controller lifts out to reveal both boards, its socketed processor and the replacement EPROM. The spring dimensions come from another owner-photographed keyboard variant. Travel, installed height and unseen switch construction remain estimates.",
+    text: "The keycaps and deck lift away; the mounting plate and switches move forward so the broad switch PCB is visible, turned over to show its photographed solder face. The narrow controller lifts out separately, showing its socketed processor and replacement EPROM. The spring dimensions come from another owner-photographed keyboard variant. Travel, installed height and unseen switch construction remain estimates.",
     photo: "20261012_123907435",
   },
   "component-logic": {

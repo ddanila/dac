@@ -201,3 +201,7 @@ compares 8192 samples of controller/mechanical continuation at 64-clock interval
 and independently decodes the final CP/M directory to compare the copied file.
 The diagnostic panel has a narrow-screen check. The 0.6 runtime is archived for
 older saves alongside 0.3–0.5.
+
+### CI scope
+
+Model/viewer-only changes run one Chromium job covering model, keyboard, assembly, inspection and rendering interactions, plus small Firefox/WebKit assembly checks. They do not build the native emulator or run unrelated disk/session suites. Runtime, emulator, dependency or unrecognized changes run the complete suite and native replay checks; manual workflow dispatch also runs everything. `scripts/ci-scope.mjs` uses a conservative path allowlist and defaults to full coverage if the base revision cannot be read. Pages deployment still requires the build and browser checks. Linux browser dependencies use Ubuntu’s main mirror to avoid the slow Azure mirror seen in previous runs.
