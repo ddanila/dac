@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "52564a53a9ca98d6c4d51cb8527e08a4957fac7b",
+  "revision": "ffaaa1b416942b5b5137fbda496bb360162d3ad7",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "b66d8002b59ec6bde9a63e42ac0f3ca79e7e22c17bdfb10b6d4c05abce7bdc81"
+      "sha256": "a48e517d04efdba26f69ba8cb98d8db133831c5788df776f850a04f6c6b112e8"
     },
     {
       "file": "LICENSE",
@@ -61,7 +61,7 @@
     },
     {
       "file": "meshes/keyboard-shell.stl",
-      "sha256": "4784aaae4370b4bc5443fc854cb79560786f3b798d15588d45858144436d97fa"
+      "sha256": "007493b1cbf4ecf9a71ca0b009b61b1cbf9e2f479c4802e59550b5a6176419ea"
     },
     {
       "file": "meshes/keyboard-deck.stl",
@@ -825,23 +825,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "72c741ba9f9f214dc5c93f2f07670daa9be7227750a2a7d846549b5792725e98"
+      "sha256": "c3a355c51ec74c4f3f75bc6fa02fd7270eee8c8f74e8d450103582cbe4247b45"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "236588f2039f0673cb4073711c0069d6374854c9b2c1e14e6f1df753c193b16a"
+      "sha256": "ac2fd5039200e6883af79701e7fbb6a5f071e94e60a0bf5659d802174c0f9eeb"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "e214b226c578c9a56108bc37cd38109a5925a53f56d8ea8ea847d6b760773251"
+      "sha256": "c81822a3c0ff3bc36c0873035225da960b7c89161afa4548ac91e0db2c8d6ec7"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "f4f2f0ce3005c486476b5b53e7dc3ede09baa85d78391d173d69b4fac727f51f"
+      "sha256": "5b4d4abcf56b64cd278d42a6686e727e5214bf902df267d45d400a02c598625a"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "ed0adb9c0d0993de92108b55b80bddf3a31ef47655e15a4d539600651d1e3925"
+      "sha256": "e3e5677cf8418ff18815696dc09868cc9b5d880d31edd98b57615b8e82d919f6"
     }
   ]
 }
