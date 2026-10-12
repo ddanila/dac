@@ -2,25 +2,25 @@
   {
     "name": "motherboard",
     "file": "downloads/motherboard.zip",
-    "sha256": "813f4aa0777fb586396dfc3bd961de1336698bacebb96500a9b45e8c1cbe85c0",
-    "bytes": 9545959
+    "sha256": "40beaf5054eed8362b18bb05a29cf408ddd27c4243abe3d791ee8a4835a5a0cc",
+    "bytes": 9546582
   },
   {
     "name": "floppy-controller",
     "file": "downloads/floppy-controller.zip",
-    "sha256": "5c4d11b17ab692d5f1026ed4823d5bb11f3296f51b6d560433168b91ccd0a4b4",
-    "bytes": 5371478
+    "sha256": "91b002da091a7a43a6cf3b251808b610ccacc866eb5e3176a43556fe81ceda5d",
+    "bytes": 5372101
   },
   {
     "name": "drive-0",
     "file": "downloads/drive-0.zip",
-    "sha256": "3e356a11c9fedd1e14928d7bc0a94c02f0be47e7b7fde9c2338bb094d912fd45",
-    "bytes": 1463536
+    "sha256": "fa2b5398d01a9c9232eb1194127d4eeb7de3bb10afad07cdcc2e7e0851610455",
+    "bytes": 1471371
   },
   {
     "name": "drive-1",
     "file": "downloads/drive-1.zip",
-    "sha256": "4d1c4bd7d17aaaf1888f345ce0df21eee079f169058b12539f02c4c859d3b77b",
-    "bytes": 1464426
+    "sha256": "3b40aaabf202759aa932748c7c13f82e5482a5002b86572d9e46334633631ebb",
+    "bytes": 1472267
   }
 ]

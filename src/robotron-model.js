@@ -893,7 +893,9 @@ export async function loadRobotron(displayTexture) {
       drivesDirty ||=
         states.some((s, u) => s !== driveStates[u]) ||
         (mechanics || []).some(
-          (d, u) => d.position !== driveMechanics?.[u]?.position,
+          (d, u) =>
+            d.position !== driveMechanics?.[u]?.position ||
+            d.headLoad !== driveMechanics?.[u]?.headLoad,
         ) ||
         (!matchMedia("(prefers-reduced-motion: reduce)").matches &&
           (mechanics || []).some(

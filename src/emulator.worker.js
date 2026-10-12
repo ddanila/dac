@@ -326,6 +326,15 @@ function frame() {
             phase: module._dac_drive_phase_unit(handle, u) / 798720,
             steps: module._dac_drive_steps_unit(handle, u),
             detail: module._dac_drive_detail_unit(handle, u),
+            ...(module._dac_drive_diagnostic
+              ? {
+                  indexes: module._dac_drive_diagnostic(handle, u, 0),
+                  headLoad: module._dac_drive_diagnostic(handle, u, 1) / 65536,
+                  controller: module._dac_drive_diagnostic(handle, u, 2),
+                  transfer: module._dac_drive_diagnostic(handle, u, 3),
+                  result: module._dac_drive_diagnostic(handle, u, 4),
+                }
+              : {}),
             ...(module._dac_drive_position_unit
               ? {
                   position: module._dac_drive_position_unit(handle, u) / 65536,

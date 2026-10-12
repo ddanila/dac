@@ -1,6 +1,10 @@
 import { test, expect } from "@playwright/test";
 import { Mesh, BoxGeometry, MeshBasicMaterial } from "three";
-import { createDriveMotion, driveStepOffsets } from "../src/robotron-drives.js";
+import {
+  createDriveMotion,
+  driveStepOffsets,
+  describeDrive,
+} from "../src/robotron-drives.js";
 test("drive mechanisms stay independent, respect reduced motion and retain head position", () => {
   const objects = new Map(
     ["s0", "s1", "h0", "h1"].map((n) => [
@@ -104,4 +108,59 @@ test("head geometry consumes the core's fractional physical position", () => {
   ]);
   move(0, [3 << 8], true, 0, false, false, null, [{ phase: 0, position: 2.5 }]);
   expect(objects.get("h").position.y).toBeCloseTo((-2.5 * 25.4) / 96);
+});
+
+test("head loading pivots only the upper arm; inserted medium shares spindle phase", () => {
+  const objects = new Map(
+    ["s", "h", "arm", "medium"].map((n) => [
+      n,
+      new Mesh(new BoxGeometry(), new MeshBasicMaterial()),
+    ]),
+  );
+  const move = createDriveMotion(objects, [
+    {
+      unit: 0,
+      spindle: "s",
+      head: "h",
+      headArm: "arm",
+      medium: "medium",
+      armPivot: [1, 2, 3],
+      pivot: [0, 0, 0],
+      travel: [0, -20, 0],
+    },
+  ]);
+  const sample = [{ phase: 0.25, position: 39.5, headLoad: 0 }];
+  move(0, [8], true, 0, false, false, null, sample);
+  expect(objects.get("arm").rotation.x).toBeCloseTo(-0.08);
+  expect(objects.get("arm").position.y).toBe(-8);
+  expect(objects.get("medium").rotation.z).toBeCloseTo(Math.PI / 2);
+  expect(objects.get("medium").visible).toBe(true);
+  sample[0].headLoad = 1;
+  move(20, [8], true, 0, false, false, null, sample);
+  expect(objects.get("arm").rotation.x).toBeCloseTo(0);
+  expect(objects.get("h").rotation.x).toBe(0);
+  move(30, [0], true, 0, false, false, null, sample);
+  expect(objects.get("medium").visible).toBe(false);
+});
+test("diagnostics distinguish controller selection, index counts and unavailable older cores", () => {
+  expect(
+    describeDrive(
+      8,
+      {
+        phase: 0.5,
+        position: 12.25,
+        steps: 44,
+        detail: 1 | 2 | (3 << 8),
+        mechanics: (1000 << 8) | 3,
+        indexes: 8,
+        controller: (6 << 8) | 2,
+        transfer: (1024 << 16) | 123,
+      },
+      0,
+    ),
+  ).toContain("Read Data · transferring · bytes 123/1024");
+  expect(describeDrive(8, { phase: 0, steps: 2, detail: 0 }, 1)).toContain(
+    "not selected",
+  );
+  expect(describeDrive(0, null, 0)).toContain("unavailable");
 });
