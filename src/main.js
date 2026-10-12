@@ -103,6 +103,11 @@ function keyButtons(keys) {
     "transparent-covers",
     "release-clamps",
     "isolate-assembly",
+    "component-focus",
+    "disconnect-cables",
+    "drive-demo",
+    "drive-demo-play",
+    "drive-demo-phase",
     "board-underside",
     "reference-board-photo",
   ])
@@ -132,7 +137,18 @@ showInspection("overview");
 try {
   scene = createScene($("viewport"), screen, power, resetMachine, {
     onKey: modelKey,
-    onInspect: showSpecimenDetail,
+    onInspect: (name) => {
+      const focus = name.startsWith("focus-")
+        ? name.slice(6)
+        : ["motherboard", "floppy-controller"].includes(name)
+          ? name
+          : null;
+      if (focus) {
+        $("component-focus").value = focus;
+        updateCase();
+      }
+      showSpecimenDetail(name);
+    },
     onKeysReady: keyButtons,
     onHover: (message) => {
       $("hover-key").textContent = message;
@@ -179,6 +195,12 @@ async function configure(demo, historical = false) {
   for (const id of ["open-keyboard", "transparent-covers", "release-clamps"])
     $(id).checked = false;
   $("isolate-assembly").value = "all";
+  $("component-focus").value = "none";
+  $("disconnect-cables").checked = true;
+  $("drive-demo-status").hidden = true;
+  $("drive-demo").checked = false;
+  $("drive-demo-play").checked = false;
+  $("drive-demo-phase").value = "0";
   $("reference-board-photo").checked = false;
   $("open-monitor").checked = false;
   $("viewport").dataset.interior = "false";
@@ -581,6 +603,7 @@ for (const id of [
     updateCase();
     if (id === "open-keyboard" && $(id).checked) selectView("keyboard-inside");
     if (id === "reference-board-photo" && $(id).checked) {
+      $("component-focus").value = "none";
       const board =
         $("isolate-assembly").value === "floppy-controller"
           ? "floppy-controller"
@@ -612,8 +635,40 @@ $("board-underside").onclick = () => {
   updateCase();
   selectView(board + "-under");
 };
+$("component-focus").onchange = () => {
+  const focus = $("component-focus").value;
+  if (focus !== "none") {
+    $("reference-board-photo").checked = false;
+    const board = ["motherboard", "floppy-controller"].includes(focus);
+    if (!board) $("separate-parts").checked = false;
+    $("isolate-assembly").value = board ? focus : "drives";
+    updateCase();
+    selectView(board ? focus : "drive-top");
+    showInspection(board ? focus : "focus-" + focus);
+  } else updateCase();
+};
+$("disconnect-cables").onchange = updateCase;
+for (const id of ["drive-demo", "drive-demo-play", "drive-demo-phase"])
+  $(id).oninput = () => {
+    if ($("drive-demo").checked) {
+      $("separate-parts").checked = false;
+      $("isolate-assembly").value = "drives";
+      $("reference-board-photo").checked = false;
+      selectView("drive-top");
+      showInspection("drive-demo");
+    }
+    updateCase();
+  };
 function updateCase() {
+  $("drive-demo-status").hidden = !(
+    $("drive-demo").checked && $("isolate-assembly").value === "drives"
+  );
   scene?.inspect({
+    focus: $("component-focus").value,
+    demo: $("drive-demo").checked,
+    demoAnimate: $("drive-demo-play").checked,
+    demoPhase: Number($("drive-demo-phase").value) / 100,
+    disconnectCables: $("disconnect-cables").checked,
     referencePhoto: $("reference-board-photo").checked,
     isolated: $("isolate-assembly").value,
     transparent: $("transparent-covers").checked,
@@ -647,6 +702,10 @@ for (const b of document.querySelectorAll("[data-view]"))
     release();
     $("screen-panel").hidden = true;
     if (b.dataset.view === "typing") $("separate-parts").checked = false;
+    if (["drive-top", "drive-rear"].includes(b.dataset.view)) {
+      $("isolate-assembly").value = "drives";
+      $("separate-parts").checked = false;
+    }
     if (b.dataset.view === "drive-labels") {
       $("open-case").checked = true;
       $("separate-parts").checked = true;

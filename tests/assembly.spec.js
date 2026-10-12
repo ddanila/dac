@@ -22,6 +22,11 @@ test("assembly isolation, transparent covers and keyboard disassembly remain rev
       "transparent-covers",
       "release-clamps",
       "isolate-assembly",
+      "component-focus",
+      "disconnect-cables",
+      "drive-demo",
+      "drive-demo-play",
+      "drive-demo-phase",
       "board-underside",
       "reference-board-photo",
     ])
@@ -92,6 +97,7 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
     const released = transform(springs);
     const ribbon = model.objects.get("ribbon-cables");
     const original = ribbon.geometry.attributes.position.array.slice();
+    model.inspect({ disconnectCables: false });
     model.interior(true);
     model.separate(true);
     model.tick();

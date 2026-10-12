@@ -12,18 +12,33 @@ export function createDriveMotion(objects, descriptions = []) {
     return { ...d, spindle, head, latch, clamp, headMetal, angle: 0 };
   });
   let last;
-  return (now, states, power, split, reduced, clampsOpen = false) => {
+  return (
+    now,
+    states,
+    power,
+    split,
+    reduced,
+    clampsOpen = false,
+    demo = null,
+  ) => {
     const dt = last === undefined ? 0 : Math.min(0.05, (now - last) / 1000);
     last = now;
     let moving = false;
     for (const d of drives) {
       const state = states[d.unit] || 0,
-        track = Math.min(79, (state >> 8) & 255);
-      if (power && state & 1 && d.spindle.visible && !reduced && dt) {
+        phase = demo ? ((demo.phase % 1) + 1) % 1 : 0,
+        track = demo
+          ? 79 * (0.5 - 0.5 * Math.cos(phase * Math.PI * 2))
+          : Math.min(79, (state >> 8) & 255),
+        clampAmount = demo
+          ? 0.5 - 0.5 * Math.cos(phase * Math.PI * 2)
+          : Number(clampsOpen);
+      if (!demo && power && state & 1 && d.spindle.visible && !reduced && dt) {
         d.angle = (d.angle + dt * 2 * Math.PI * 5) % (2 * Math.PI);
         moving = true;
       }
-      d.spindle.rotation.z = d.angle;
+      if (demo?.animate && !reduced && d.spindle.visible) moving = true;
+      d.spindle.rotation.z = demo ? phase * Math.PI * 2 : d.angle;
       d.spindle.position.set(
         d.pivot[0],
         d.pivot[1] - split * 145,
@@ -41,14 +56,10 @@ export function createDriveMotion(objects, descriptions = []) {
           d.latchPivot[1] - split * 145,
           d.latchPivot[2] + split * 115,
         );
-        d.latch.rotation.y = clampsOpen ? Math.PI / 2 : 0;
+        d.latch.rotation.y = (clampAmount * Math.PI) / 2;
       }
       if (d.clamp)
-        d.clamp.position.set(
-          0,
-          -split * 145,
-          split * 115 + (clampsOpen ? 5 : 0),
-        );
+        d.clamp.position.set(0, -split * 145, split * 115 + clampAmount * 5);
     }
     return moving;
   };

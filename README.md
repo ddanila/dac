@@ -165,3 +165,19 @@ spindle retainers, carriage springs, rear cable plugs, power entries and ribbon
 ridges add photo-guided detail. Small pads, solder, contacts, IC leads and ribbon
 ridges are hidden at distant zoom levels and restored nearby with hysteresis;
 static inspection still stops rendering when nothing changes.
+
+Guided exploration now highlights carriages, spindles, clamps/latches and either
+logic board with evidence notes. **Drive top** and **Drive rear** provide close
+inspection views. The **Mechanical motion demo** offers a manual pose slider and
+optional slow cycling without sending commands to the emulator; switching it
+off restores live drive activity. Reduced motion keeps it manual.
+
+Exploded views disconnect drive cables by default: plugs stay with the parked
+cable ends while drives lift. The checkbox retains the earlier stretched-cable
+illustration as an option. Small finish differences distinguish cast-alloy-like,
+plated-steel-like, solder and aged-plastic surfaces, all visually estimated.
+**Download board and drive models** provides four STL/OpenSCAD source archives
+with evidence notes and licences; archives are downloaded only on request.
+The canonical source includes a bounded solid-intersection audit of all 80
+modeled head positions, which caught and corrected a rail/tab collision and an
+obsolete overlapping spring. It is not a complete mechanical certification.

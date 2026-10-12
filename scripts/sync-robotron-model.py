@@ -23,6 +23,8 @@ for name in ['NOTICE.txt','sources.json','models.json']:
     name='components/kicad/'+name;files.append((name,name,None))
 
 for directory in sorted({str(Path(b['file']).parent) for b in data.get('pcbReferences',[])}):files.append((directory+'/NOTICE.txt',directory+'/NOTICE.txt',None))
+files.append(('browser/downloads.json','downloads.json',None))
+for record in json.loads((source/'browser/downloads.json').read_text()):files.append(('browser/'+record['file'],record['file'],record['sha256']))
 previous=json.loads((target/'source.json').read_text()).get('files',[]) if (target/'source.json').exists() else []
 records=[]
 for src,dest,expected in files:

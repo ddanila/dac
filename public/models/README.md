@@ -31,3 +31,10 @@ guide the drive details. Clearances, spring winding, internal plug construction
 and mounting positions remain estimates. The original-photo comparison mode
 uses the unchanged credited comparative image; it hides modeled components to
 avoid duplicate silhouettes. It supplies no new evidence for underside routing.
+
+Version 13 includes visually estimated material profiles and cable-parking
+metadata. Download ZIPs carry full geometry, editable wrappers and required
+source files/licences; SHA-256 hashes and sizes are in `downloads.json`. Board
+archives include the KiCad originals and exceptions. Drive archives include
+front faces and latches but no photographic label print. The canonical
+`checks/mechanics.json` records the bounded 80-position carriage clearance audit.
