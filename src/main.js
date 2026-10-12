@@ -103,6 +103,8 @@ function keyButtons(keys) {
     "transparent-covers",
     "release-clamps",
     "isolate-assembly",
+    "board-underside",
+    "reference-board-photo",
   ])
     $(id).disabled = false;
   modelKeys = keys;
@@ -177,6 +179,7 @@ async function configure(demo, historical = false) {
   for (const id of ["open-keyboard", "transparent-covers", "release-clamps"])
     $(id).checked = false;
   $("isolate-assembly").value = "all";
+  $("reference-board-photo").checked = false;
   $("open-monitor").checked = false;
   $("viewport").dataset.interior = "false";
   $("key-list").hidden = true;
@@ -571,11 +574,21 @@ for (const id of [
   "transparent-covers",
   "release-clamps",
   "isolate-assembly",
+  "reference-board-photo",
 ])
   $(id).onchange = () => {
     release();
     updateCase();
     if (id === "open-keyboard" && $(id).checked) selectView("keyboard-inside");
+    if (id === "reference-board-photo" && $(id).checked) {
+      const board =
+        $("isolate-assembly").value === "floppy-controller"
+          ? "floppy-controller"
+          : "motherboard";
+      $("isolate-assembly").value = board;
+      updateCase();
+      selectView(board);
+    }
     if (id === "isolate-assembly") {
       const assembly = $(id).value;
       selectView(
@@ -589,8 +602,19 @@ for (const id of [
       );
     }
   };
+$("board-underside").onclick = () => {
+  const board =
+    $("isolate-assembly").value === "floppy-controller"
+      ? "floppy-controller"
+      : "motherboard";
+  $("isolate-assembly").value = board;
+  $("reference-board-photo").checked = false;
+  updateCase();
+  selectView(board + "-under");
+};
 function updateCase() {
   scene?.inspect({
+    referencePhoto: $("reference-board-photo").checked,
     isolated: $("isolate-assembly").value,
     transparent: $("transparent-covers").checked,
     keyboardOpen: $("open-keyboard").checked,

@@ -159,6 +159,18 @@ test("board holes are open at component leads and solid between holes", () => {
       ray.ray.origin.x += 0.65;
       expect(ray.intersectObject(mesh).length).toBeGreaterThan(0);
     }
+    for (const [x, y, , z, name] of manifest.pcbComponents.mounts) {
+      if (name !== board) continue;
+      const ray = new Raycaster(
+        new Vector3(x, y, z + 1),
+        new Vector3(0, 0, -1),
+        0,
+        3,
+      );
+      expect(ray.intersectObject(mesh)).toHaveLength(0);
+      ray.ray.origin.x += 2;
+      expect(ray.intersectObject(mesh).length).toBeGreaterThan(0);
+    }
     geometry.dispose();
     mesh.material.dispose();
   }
@@ -176,6 +188,12 @@ test("individual boards hide other assemblies and restore their geometry", async
     await page.locator("#isolate-assembly").selectOption(value);
     await expect(page.locator("#inspection-title")).toHaveText(title);
   }
+  await page.locator("#reference-board-photo").check();
+  await page.locator("#board-underside").click();
+  await expect(page.locator("#inspection-title")).toHaveText(
+    "Floppy controller underside",
+  );
+  await expect(page.locator("#reference-board-photo")).not.toBeChecked();
   const results = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
     const { Texture } = await import(
@@ -201,10 +219,43 @@ test("individual boards hide other assemblies and restore their geometry", async
         photo: visible.some((o) => o.name === `reference-${board}`),
       });
     }
+    model.inspect({ isolated: "motherboard", referencePhoto: true });
+    model.tick();
+    const photo = model.group.getObjectByName("reference-motherboard");
+    const original =
+      photo.geometry === photo.userData.original.geometry &&
+      photo.children.every((m) => !m.visible);
+    const noDuplicate =
+      [...model.objects.values()].filter(
+        (o) =>
+          o.visible &&
+          o.userData.board === "motherboard" &&
+          !o.name.startsWith("logic-boards-"),
+      ).length === 0;
+    model.inspect({ referencePhoto: false });
+    model.detailDistance(3);
+    model.tick();
+    const solder = model.objects.get("logic-solder-motherboard");
+    const farHidden = !solder.visible;
+    model.detailDistance(1.5);
+    model.tick();
+    const nearVisible = solder.visible;
+    model.detailDistance(1.85);
+    model.tick();
+    const stable = solder.visible;
+    const idle = !model.tick().dirty;
+    const artwork = photo.geometry === photo.userData.artwork.geometry;
     model.inspect({ isolated: "all" });
     model.interior(true);
     model.tick();
     return {
+      original,
+      noDuplicate,
+      farHidden,
+      nearVisible,
+      stable,
+      idle,
+      artwork,
       records,
       restored: ["motherboard", "floppy-controller"].every(
         (b) => model.objects.get(`logic-boards-${b}`).visible,
@@ -222,6 +273,16 @@ test("individual boards hide other assemblies and restore their geometry", async
       manifest.pcbComponents.footprints.filter((p) => p[3] === r.board).length,
     );
   }
+  for (const name of [
+    "original",
+    "noDuplicate",
+    "farHidden",
+    "nearVisible",
+    "stable",
+    "idle",
+    "artwork",
+  ])
+    expect(results[name], name).toBe(true);
   expect(results.restored).toBe(true);
   expect(results.prototypes).toBe(0);
 });

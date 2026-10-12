@@ -22,6 +22,8 @@ test("assembly isolation, transparent covers and keyboard disassembly remain rev
       "transparent-covers",
       "release-clamps",
       "isolate-assembly",
+      "board-underside",
+      "reference-board-photo",
     ])
       await expect(page.locator(`#${id}`)).toBeDisabled();
     expect(errors).toEqual([]);

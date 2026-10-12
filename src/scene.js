@@ -307,6 +307,7 @@ export function createScene(
   observer.observe(container);
   renderer.setAnimationLoop(() => {
     controls.update();
+    robotron?.detailDistance(camera.position.distanceTo(controls.target));
     const changed = robotron?.tick();
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     if (renderRequested || changed?.dirty) {
@@ -359,6 +360,7 @@ export function createScene(
       robotron?.separate(false);
       robotron?.interior(false);
       robotron?.inspect({
+        referencePhoto: false,
         isolated: "all",
         transparent: false,
         keyboardOpen: false,
@@ -411,6 +413,14 @@ export function createScene(
           [0.12, 0.94, 0.43],
           [-0.28, 0.107, -0.23],
         ],
+        "motherboard-under": [
+          [0.4, -1.25, 0.75],
+          [-0.27, 0.034, 0],
+        ],
+        "floppy-controller-under": [
+          [0.12, -0.84, 0.43],
+          [-0.28, 0.107, -0.23],
+        ],
         "keyboard-inside": [
           [-1.55, 0.83, 2.0],
           [0, 0.16, 0.88],
@@ -424,8 +434,8 @@ export function createScene(
           [-0.66, 0.055, 0.36],
         ],
         drives: [
-          [-0.25, 0.6, 1.9],
-          [-0.2, 0.18, 0.48],
+          [0.45, 1.15, 1.1],
+          [-0.2, 0.2, 0.25],
         ],
         monitor: [
           [0.9, 1.4, 1.7],

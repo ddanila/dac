@@ -23,3 +23,11 @@ retains the photo attribution and rights exclusions. Three yellow film
 capacitors, varied electrolytic sizes and divided connector housings follow
 comparative photo evidence; exact values, sockets, keying and pin counts remain
 unverified. Underside routing is deliberately absent pending evidence.
+
+Version 12 adds shared mounting metadata and per-board hardware, rear drive
+cable plugs, ribbon ridges, carriage bearings/spring detail and spindle retainers.
+Owner photos `PXL_20250212_094033966.jpg` and `PXL_20250212_094038758.jpg`
+guide the drive details. Clearances, spring winding, internal plug construction
+and mounting positions remain estimates. The original-photo comparison mode
+uses the unchanged credited comparative image; it hides modeled components to
+avoid duplicate silhouettes. It supplies no new evidence for underside routing.
