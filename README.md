@@ -67,8 +67,7 @@ exports a `.prn` file. The 64 KB capture limit is visible; export and clear when
 full. Try `PIP LST:=AUTOEXC.SUB`. The virtual printer is always ready.
 
 With the case open, each spindle and head follows its drive's motor/track state.
-Head travel is estimated, rotation assumes 300 RPM, and optional drive sounds
-are synthesized. Reduced motion pauses spindle rotation.
+Head travel uses the nominal TEAC 96-tpi pitch (20.90 mm across 79 steps). Current-core spindle angles come from the same independent motor-gated 300 RPM phases used for sector latency. Heads follow timed cylinder steps; rendering samples these positions without wall-clock extrapolation. Pause, replay and state restore preserve the emulated phase. Archived cores retain illustrative rotation. Optional drive sounds remain synthesized; reduced motion freezes spindle display. See [timing scope and remaining approximations](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md).
 
 Additional validation: `npm run test:cross` runs the focused Firefox/WebKit suite
 (after `npx playwright install firefox webkit`). CI runs Firefox on Linux and WebKit on macOS; both also passed locally on macOS. The core's optional application
@@ -97,7 +96,7 @@ drive PIP copying and printer output using the bundled reference disk.
   Media changes happen with power off; changing machine/firmware or loading a
   snapshot requires stopping the recording.
 - **Across upgrades:** state envelope v2 declares a pinned-runtime compatibility
-  policy and still accepts v1. DAC preserves the 0.3.0 runtime with checked
+  policy and still accepts v1. DAC preserves the 0.3.0 and 0.4.0 runtimes with checked
   JavaScript/WASM hashes. Compatible old browser saves and exported `.dacstate`
   files can run on that runtime; a notice identifies it. Reloading media selects
   the current runtime. This is preservation, not conversion to a newer internal

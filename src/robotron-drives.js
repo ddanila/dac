@@ -1,5 +1,6 @@
-// Geometry is in specimen millimetres. Track travel is estimated; motor/track
-// state comes from the controller. Hidden/reduced-motion rotors do not animate.
+// Geometry is in millimetres. Track pitch uses the TEAC reference; motor/track
+// state comes from the controller. New cores supply authoritative rotational phase.
+// Archived cores retain the old illustrative animation. Reduced motion freezes rotors.
 export function createDriveMotion(objects, descriptions = []) {
   const drives = descriptions.map((d) => {
     const spindle = objects.get(d.spindle),
@@ -20,6 +21,7 @@ export function createDriveMotion(objects, descriptions = []) {
     reduced,
     clampsOpen = false,
     demo = null,
+    mechanics = null,
   ) => {
     const dt = last === undefined ? 0 : Math.min(0.05, (now - last) / 1000);
     last = now;
@@ -33,7 +35,21 @@ export function createDriveMotion(objects, descriptions = []) {
         clampAmount = demo
           ? 0.5 - 0.5 * Math.cos(phase * Math.PI * 2)
           : Number(clampsOpen);
-      if (!demo && power && state & 1 && d.spindle.visible && !reduced && dt) {
+      const telemetry = mechanics?.[d.unit];
+      if (!demo && telemetry && !reduced) {
+        const angle = telemetry.phase * 2 * Math.PI;
+        moving ||= d.spindle.visible && angle !== d.angle;
+        d.angle = angle;
+      }
+      if (
+        !demo &&
+        !telemetry &&
+        power &&
+        state & 1 &&
+        d.spindle.visible &&
+        !reduced &&
+        dt
+      ) {
         d.angle = (d.angle + dt * 2 * Math.PI * 5) % (2 * Math.PI);
         moving = true;
       }

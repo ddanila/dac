@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "55f10e9822a0e1e708d2fc8f4ef7bff82514d2c5",
+  "revision": "128a36e90876af41d7249f78b29c8afaf33956cb",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "64d30ba29698c3179d931cefc009d55449bb894761426c10942795710ce5a702"
+      "sha256": "b12bc7075e222df152a06a24253553c402ed25a0aaacdced189ceaf2f3f9c155"
     },
     {
       "file": "LICENSE",
@@ -685,23 +685,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "4e5eac4905d80c02bcae61de17856a39e7a8fedd5b681d0f21a7db635e73d3be"
+      "sha256": "3637630f26019629cd7b81ccded8649b5b9f176f616cf501c7ffd2335b4a2e61"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "0e0f751b027d8dfba657f1bac7f4d651c3918e25cc6d721d9f6a42c511509b7f"
+      "sha256": "813f4aa0777fb586396dfc3bd961de1336698bacebb96500a9b45e8c1cbe85c0"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "123b28921eb4b219eb008d449f1f4c398c7dac5894583b16b4b1fffe511ab652"
+      "sha256": "5c4d11b17ab692d5f1026ed4823d5bb11f3296f51b6d560433168b91ccd0a4b4"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "9039eb62c472921be1b712bc5856dfa8a758028599a911022ce6d7b734de94a0"
+      "sha256": "3e356a11c9fedd1e14928d7bc0a94c02f0be47e7b7fde9c2338bb094d912fd45"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "57ea117040c29bf00d6eed00c8deffb978dd063f69cb4cef57f1523a2fef8bb3"
+      "sha256": "4d1c4bd7d17aaaf1888f345ce0df21eee079f169058b12539f02c4c859d3b77b"
     }
   ]
 }

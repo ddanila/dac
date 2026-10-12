@@ -104,9 +104,19 @@ test("paste, deterministic browser/native replay and damaged recording rejection
   // Optional local parity check; core CI builds/tests the native runner separately.
   if (process.env.DAC_NATIVE_REPLAY)
     expect(
-      execFileSync("node", ["scripts/replay-native.mjs", path, process.env.DAC_NATIVE_REPLAY === "1" ? "../dac-emulation/build/dac-replay" : process.env.DAC_NATIVE_REPLAY], {
-        encoding: "utf8",
-      }),
+      execFileSync(
+        "node",
+        [
+          "scripts/replay-native.mjs",
+          path,
+          process.env.DAC_NATIVE_REPLAY === "1"
+            ? "../dac-emulation/build/dac-replay"
+            : process.env.DAC_NATIVE_REPLAY,
+        ],
+        {
+          encoding: "utf8",
+        },
+      ),
     ).toContain("PASS native replay");
   const file = JSON.parse(bytes);
   file.sha256 = "0".repeat(64);
@@ -140,82 +150,84 @@ test("owner and comparative evidence is visible in component cards", async ({
   );
   await expect(page.locator("#detail-photo")).toBeVisible();
 });
-test("preserved 0.3.0 snapshot restores after emulator upgrade", async ({
-  page,
-}) => {
-  const { default: archives } = await import("../src/archived-cores.json", {
-    with: { type: "json" },
-  });
-  const build = Object.keys(archives)[0];
-  const { default: create } = await import(
-    `../public/emulator/archive/${build}/dac.js`
-  );
-  const m = await create(),
-    h = m._dac_create(2);
-  const rom = await readFile("public/emulator/demo/robotron.bin"),
-    prom = await readFile("public/emulator/demo/cas.bin"),
-    glyph = await readFile("public/emulator/demo/glyphs.bin");
-  const firmware = [
-    [0, rom],
-    [1, prom],
-    [2, glyph],
-  ];
-  for (const [slot, bytes] of firmware) {
-    const p = m._malloc(bytes.length);
-    m.HEAPU8.set(bytes, p);
-    expect(m._dac_load(h, slot, p, bytes.length)).toBe(0);
+for (const version of ["0.3.0", "0.4.0"])
+  test(`preserved ${version} snapshot restores after emulator upgrade`, async ({
+    page,
+  }) => {
+    const { default: archives } = await import("../src/archived-cores.json", {
+      with: { type: "json" },
+    });
+    const build = Object.keys(archives).find(
+      (key) => archives[key].version === version,
+    );
+    const { default: create } = await import(
+      `../public/emulator/archive/${build}/dac.js`
+    );
+    const m = await create(),
+      h = m._dac_create(2);
+    const rom = await readFile("public/emulator/demo/robotron.bin"),
+      prom = await readFile("public/emulator/demo/cas.bin"),
+      glyph = await readFile("public/emulator/demo/glyphs.bin");
+    const firmware = [
+      [0, rom],
+      [1, prom],
+      [2, glyph],
+    ];
+    for (const [slot, bytes] of firmware) {
+      const p = m._malloc(bytes.length);
+      m.HEAPU8.set(bytes, p);
+      expect(m._dac_load(h, slot, p, bytes.length)).toBe(0);
+      m._free(p);
+    }
+    m._dac_power(h, 1);
+    m._dac_run(h, 100000);
+    const n = m._dac_state_size(h),
+      p = m._malloc(n);
+    expect(m._dac_state_save(h, p, n)).toBe(0);
+    const state = m.HEAPU8.slice(p, p + n).buffer;
     m._free(p);
-  }
-  m._dac_power(h, 1);
-  m._dac_run(h, 100000);
-  const n = m._dac_state_size(h),
-    p = m._malloc(n);
-  expect(m._dac_state_save(h, p, n)).toBe(0);
-  const state = m.HEAPU8.slice(p, p + n).buffer;
-  m._free(p);
-  m._dac_destroy(h);
-  const { sessionIdentity, encodeSnapshot } = await import(
-    "../src/session-store.js"
-  );
-  const key = `state:${build}:${await sessionIdentity(2, firmware)}:0`;
-  const file = Buffer.from(await encodeSnapshot(key, state));
-  file[file.indexOf("DAC-state-2") + "DAC-state-".length] = 49; // Original version-1 envelope
-  await ready(page);
-  await open(page, "#media-controls");
-  await page.locator("#demo").click();
-  await expect(page.locator("#power")).toBeEnabled();
-  await open(page, "#session-controls");
-  await page.locator("#import-state").setInputFiles({
-    name: "old.dacstate",
-    mimeType: "application/octet-stream",
-    buffer: file,
-  });
-  await expect(page.locator("#storage-status")).toHaveText(
-    "Imported machine state restored.",
-    { timeout: 15000 },
-  );
-  await expect(page.locator("#status")).toHaveText("Running");
-  await expect(page.locator("#runtime-status")).toContainText(
-    "preserved emulator",
-  );
-  await page.locator("#save-state").click();
-  await expect(page.locator("#storage-status")).toContainText(
-    "Machine state saved",
-  );
-  await page.reload();
-  await expect(page.locator("#power")).toBeEnabled({ timeout: 15000 });
-  await open(page, "#media-controls");
-  await page.locator("#demo").click();
-  await open(page, "#session-controls");
-  await expect(page.locator("#restore-state")).toBeEnabled();
-  await page.locator("#restore-state").click();
-  await expect(page.locator("#runtime-status")).toContainText(
-    "preserved emulator",
-  );
-  await expect(page.locator("#status")).toHaveText("Running");
+    m._dac_destroy(h);
+    const { sessionIdentity, encodeSnapshot } =
+      await import("../src/session-store.js");
+    const key = `state:${build}:${await sessionIdentity(2, firmware)}:0`;
+    const file = Buffer.from(await encodeSnapshot(key, state));
+    file[file.indexOf("DAC-state-2") + "DAC-state-".length] = 49; // Original version-1 envelope
+    await ready(page);
+    await open(page, "#media-controls");
+    await page.locator("#demo").click();
+    await expect(page.locator("#power")).toBeEnabled();
+    await open(page, "#session-controls");
+    await page.locator("#import-state").setInputFiles({
+      name: "old.dacstate",
+      mimeType: "application/octet-stream",
+      buffer: file,
+    });
+    await expect(page.locator("#storage-status")).toHaveText(
+      "Imported machine state restored.",
+      { timeout: 15000 },
+    );
+    await expect(page.locator("#status")).toHaveText("Running");
+    await expect(page.locator("#runtime-status")).toContainText(
+      "preserved emulator",
+    );
+    await page.locator("#save-state").click();
+    await expect(page.locator("#storage-status")).toContainText(
+      "Machine state saved",
+    );
+    await page.reload();
+    await expect(page.locator("#power")).toBeEnabled({ timeout: 15000 });
+    await open(page, "#media-controls");
+    await page.locator("#demo").click();
+    await open(page, "#session-controls");
+    await expect(page.locator("#restore-state")).toBeEnabled();
+    await page.locator("#restore-state").click();
+    await expect(page.locator("#runtime-status")).toContainText(
+      "preserved emulator",
+    );
+    await expect(page.locator("#status")).toHaveText("Running");
 
-  await expect(page.locator("#error")).toBeEmpty();
-});
+    await expect(page.locator("#error")).toBeEmpty();
+  });
 test("S600 paste reaches TOS/M and writes only its session disk", async ({
   page,
 }) => {

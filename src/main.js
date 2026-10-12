@@ -391,13 +391,13 @@ worker.onmessage = ({ data: d }) => {
     }
     if (Number($("machine").value) === 2) {
       const drives = d.drives || [0, 0];
-      scene?.drives(drives);
+      scene?.drives(drives, d.driveMechanics);
       driveSound.update(drives, on);
       $("drive-state").textContent = on
         ? drives
             .map(
               (v, u) =>
-                `${u ? "B" : "A"}: ${v & 8 ? (v & 1 ? "motor on" : "motor off") + " · track " + ((v >> 8) & 255) + (v & 2 ? " · transferring" : "") + (v & 4 ? " · writable" : " · protected") : "empty"}`,
+                `${u ? "B" : "A"}: ${v & 8 ? (v & 1 ? "motor on" : "motor off") + " · track " + ((v >> 8) & 255) + (v & 16 ? " · seeking" : "") + (v & 2 ? " · transferring" + (d.driveMechanics ? " · side " + ((d.driveMechanics[u].detail >> 4) & 1) + " sector " + ((d.driveMechanics[u].detail >> 8) & 255) : "") : "") + (v & 4 ? " · writable" : " · protected") : "empty"}`,
             )
             .join(" / ")
         : "";

@@ -18,11 +18,15 @@ test("mechanical demonstration restores live head and latch state without changi
     states = [23 << 8, 51 << 8],
     before = states.slice();
   move(0, states, true, 0, false, false, { phase: 0.5, animate: false });
-  expect(objects.get("drive-head-0").position.y).toBeCloseTo(-35);
+  expect(objects.get("drive-head-0").position.y).toBeCloseTo((-79 * 25.4) / 96);
   expect(objects.get("drive-latch-0").rotation.y).toBeCloseTo(Math.PI / 2);
   move(16, states, true, 0, false, false);
-  expect(objects.get("drive-head-0").position.y).toBeCloseTo((-35 * 23) / 79);
-  expect(objects.get("drive-head-1").position.y).toBeCloseTo((-35 * 51) / 79);
+  expect(objects.get("drive-head-0").position.y).toBeCloseTo(
+    (((-79 * 25.4) / 96) * 23) / 79,
+  );
+  expect(objects.get("drive-head-1").position.y).toBeCloseTo(
+    (((-79 * 25.4) / 96) * 51) / 79,
+  );
   expect(objects.get("drive-latch-0").rotation.y).toBe(0);
   expect(states).toEqual(before);
   expect(
@@ -64,9 +68,8 @@ test("highlight, manual demonstration, parked plugs and live restoration", async
   await expect(page.locator("#drive-demo-status")).toBeHidden();
   const result = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
-    const { Texture } = await import(
-      "/node_modules/three/build/three.module.js"
-    );
+    const { Texture } =
+      await import("/node_modules/three/build/three.module.js");
     const model = await loadRobotron(new Texture());
     model.interior(true);
     model.inspect({ focus: "head", isolated: "drives" });

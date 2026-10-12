@@ -79,7 +79,7 @@ async function replayRecording(bytes) {
         );
     if (module._dac_power(next, 1) < 0)
       throw Error("Recording firmware rejected.");
-    for (let i = 0; i < record.events.length; ) {
+    for (let i = 0; i < record.events.length;) {
       if (replayCancelled)
         throw Error("Replay cancelled; current machine preserved.");
       const until = performance.now() + 7;
@@ -317,6 +317,13 @@ function frame() {
       keyboardLeds: module._dac_keyboard_leds(handle),
       drive: module._dac_drive_status(handle),
       drives: [0, 1].map((u) => module._dac_drive_status_unit(handle, u)),
+      driveMechanics: module._dac_drive_phase_unit
+        ? [0, 1].map((u) => ({
+            phase: module._dac_drive_phase_unit(handle, u) / 798720,
+            steps: module._dac_drive_steps_unit(handle, u),
+            detail: module._dac_drive_detail_unit(handle, u),
+          }))
+        : null,
       printerSize: module._dac_printer_size(handle),
       printerOverflow: module._dac_printer_overflow(handle),
     },
