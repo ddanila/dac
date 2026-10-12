@@ -287,6 +287,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
   const insertMaterial = new THREE.MeshStandardMaterial({
     color: 0xa3a7a8, metalness: 0.75, roughness: 0.32,
   });
+  const coreMaterial = new THREE.MeshStandardMaterial({ color: 0xdedecf, roughness: 0.48 });
   const atlas = legendAtlas(data.keys, data.keyboard.pitch);
   const legendMaterial = new THREE.MeshStandardMaterial({
     map: atlas.texture,
@@ -308,6 +309,13 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     body.receiveShadow = true;
     body.name = key.style === 1 ? "clear-key-shell" : "opaque-key-cap";
     cap.add(body);
+    if (key.coreMesh) {
+      const core = new THREE.Mesh(keyGeometry.get(key.coreMesh), coreMaterial);
+      core.name = "keycap-pale-core";
+      core.userData.key = key;
+      core.receiveShadow = true;
+      cap.add(core);
+    }
     if (key.insertMesh) {
       const insert = new THREE.Mesh(keyGeometry.get(key.insertMesh), insertMaterial);
       insert.name = "silver-key-inlay";
@@ -315,7 +323,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       cap.add(insert);
     }
     // A small transparent legend follows the actual OpenSCAD dish surface:
-    // sphere radius 60, centre z=69, clipped at z=9.5. Clear-key ink
+    // New opaque caps use the shallow R132 dish at 11.4 mm; legacy clear/red
+    // profiles retain R60. Clear-key ink
     // sits on the silver liner, beneath the transparent shell.
     const { width: w, height: h } = legendLayout(key, data.keyboard.pitch);
     const faceGeometry = surface(w, h);
@@ -328,7 +337,11 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
           p.getY(i) /
           Math.max(1, (key.height * data.keyboard.pitch - 5.2) / 16);
       const sag = Math.sqrt(60 * 60 - x * x - y * y);
-      p.setZ(i, key.style === 1 ? Math.min(8.9, 68.2 - sag) + 0.04 : Math.min(9.5, 69 - sag) + 0.09);
+      if (key.style === 0) {
+        const dx = p.getX(i) / ((key.topWidth || key.width * data.keyboard.pitch - 5.2) / 13.8);
+        const dy = p.getY(i) / ((key.height * data.keyboard.pitch - 5.2) / 13.8);
+        p.setZ(i, Math.min(11.4, 143.22 - Math.sqrt(132 * 132 - dx * dx - dy * dy)) + 0.04);
+      } else p.setZ(i, key.style === 1 ? Math.min(8.9, 68.2 - sag) + 0.04 : Math.min(9.5, 69 - sag) + 0.09);
       uv.setXY(
         i,
         ((index % atlas.columns) + uv.getX(i)) / atlas.columns,
@@ -347,7 +360,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
   mechanism.position.set(0, data.keyboard.y, data.keyboard.z);
   mechanism.rotation.x = keyboard.rotation.x;
   group.add(mechanism);
-  const mechanisms = ["spring", "stem"].map((name) => {
+  const mechanisms = ["spring", "stem", "rubber"].map((name) => {
     const source = objects.get(data.keyboardMechanism[name]);
     const mesh = new THREE.InstancedMesh(
       source.geometry,
@@ -850,10 +863,10 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       .position.set(0, keyboardLift * 110, keyboardLift * 55);
     objects.get("keyboard-plate").position.set(0, -keyboardLift * 155, keyboardLift * 55);
     objects.get("keyboard-switches").position.set(0, -keyboardLift * 155, keyboardLift * 55);
-    // Turn the switch PCB over around its own centre to expose the photographed
-    // solder face. Absolute mesh coordinates require compensating the pivot.
-    const boardAngle = keyboardLift * Math.PI;
-    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-pcb-metal", "keyboard-insulators"]) {
+    objects.get("keyboard-guides").position.set(0, -keyboardLift * 155, keyboardLift * 55);
+    // Keep the contact face up; orbit underneath to inspect the solder buses.
+    const boardAngle = 0;
+    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-pcb-metal", "keyboard-insulators", "keyboard-contact-pads"]) {
       const mesh = objects.get(name);
       mesh.rotation.x = boardAngle;
       mesh.position.set(0,
@@ -873,14 +886,16 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       for (const [i, key] of data.keys.entries()) {
         const down = keyObjects.get(key.id).position.z;
         instance.rotation.set(0, 0, 0);
-        instance.position.set(key.x, key.y, -12);
-        instance.scale.set(1, 1, (12 + down + keyboardLift * 11) / 12);
+        const { installedHeight, freeHeight, springBase } = data.keyboardMechanism;
+        instance.position.set(key.x, key.y, springBase);
+        instance.scale.set(1, 1, (installedHeight + down + keyboardLift * (freeHeight - installedHeight)) / installedHeight);
         instance.updateMatrix();
         mechanisms[0].setMatrixAt(i, instance.matrix);
-        instance.position.set(key.x, key.y, down + keyboardLift * 11);
+        instance.position.set(key.x, key.y, down + keyboardLift * 28);
         instance.scale.set(1, 1, 1);
         instance.updateMatrix();
         mechanisms[1].setMatrixAt(i, instance.matrix);
+        mechanisms[2].setMatrixAt(i, instance.matrix);
       }
       for (const mesh of mechanisms) mesh.instanceMatrix.needsUpdate = true;
     }

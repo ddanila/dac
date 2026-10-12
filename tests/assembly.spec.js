@@ -75,6 +75,7 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
     model.tick();
     const springs = model.group.getObjectByName("keyboard-springs");
     const stems = model.group.getObjectByName("keyboard-stems");
+    const rubbers = model.group.getObjectByName("keyboard-rubbers");
     const matrix = new Matrix4(),
       position = new Vector3(),
       scale = new Vector3(),
@@ -92,6 +93,7 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
     model.tick();
     const pressed = transform(springs),
       stem = transform(stems);
+    const rubber = transform(rubbers);
     model.releaseKeys();
     model.tick();
     const released = transform(springs);
@@ -130,6 +132,8 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
       free,
       pressed,
       stem,
+      rubber,
+      releasedRubber: transform(rubbers),
       released,
       fixed,
       moving,
@@ -142,9 +146,11 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
       opacity: model.objects.get("case-lid").material.opacity,
     };
   });
-  expect(result.free.scale).toBeCloseTo(23 / 12);
-  expect(result.pressed.scale).toBeCloseTo(9.8 / 12);
+  expect(result.free.scale).toBeCloseTo(23 / 19.6);
+  expect(result.pressed.scale).toBeCloseTo(17.4 / 19.6);
   expect(result.stem.z).toBeCloseTo(-2.2);
+  expect(result.rubber).toEqual(result.stem);
+  expect(result.releasedRubber.z).toBeCloseTo(0);
   expect(result.released.scale).toBeCloseTo(1);
   expect(result.fixed).toBeGreaterThan(0);
   expect(result.moving).toBeGreaterThan(0);
@@ -201,7 +207,7 @@ test("owner controller separates as one assembly and monitor underside follows i
   expect(state.boardOpen).toMatchObject({ artwork: true, pads: true, traces: true });
   expect(state.boardOpen.capsY).toBeGreaterThan(-300);
   expect(state.boardOpen.plateY).toBeLessThan(-100);
-  expect(state.boardOpen.angle).toBeCloseTo(Math.PI);
+  expect(state.boardOpen.angle).toBeCloseTo(0);
   expect(state.boardClosed).toEqual({ angle: 0, position: [0, 0, 0] });
   expect(state.clearKey).toMatchObject({transparent: true, sharedKey: true, beneathShell: true});
   expect(state.clearKey.opacity).toBeLessThan(0.5);
@@ -235,7 +241,7 @@ test("opaque keycaps have continuous sidewalls around every exported shape", asy
       if (key.topWidth) {
         const vertices = body.geometry.attributes.position;
         let lo = Infinity, hi = -Infinity;
-        for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= 9.39) {
+        for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= (key.style === 0 ? 11.39 : 9.39)) {
           lo = Math.min(lo, vertices.getX(i)); hi = Math.max(hi, vertices.getX(i));
         }
         if (Math.abs(hi - lo - key.topWidth) > 0.05)
@@ -245,7 +251,7 @@ test("opaque keycaps have continuous sidewalls around every exported shape", asy
       // spacing refinements do not assume the former 19.5 mm key pitch.
       const vertices = body.geometry.attributes.position;
       let topX = 0, topY = 0;
-      for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= 9.39) {
+      for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= (key.style === 0 ? 11.39 : 9.39)) {
         topX = Math.max(topX, Math.abs(vertices.getX(i)));
         topY = Math.max(topY, Math.abs(vertices.getY(i)));
       }

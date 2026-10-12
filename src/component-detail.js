@@ -18,6 +18,9 @@ export function componentDetail(name) {
     [
       "keyboard-pcb",
       "keyboard-switches",
+      "keyboard-guides",
+      "keyboard-contact-pads",
+      "keyboard-rubbers",
       "keyboard-plate",
       "keyboard-springs",
       "keyboard-stems",

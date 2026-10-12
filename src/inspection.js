@@ -85,8 +85,8 @@ export const inspections = {
 Object.assign(inspections, {
   "keyboard-inside": {
     title: "Inside the keyboard",
-    evidence: "Owner board photographs · switch construction estimated",
-    text: "The keycaps and deck move back and up; the mounting plate, switches and springs move forward so the broad switch PCB stays visible from above, turned over to show its photo-referenced solder face. Clean buses, pads and screws follow the owner’s underside photographs. The narrow controller lifts out separately, showing its socketed processor, replacement EPROM and metallic trace detail. Visible routing is approximate, not an electrical netlist. The spring dimensions come from another owner-photographed keyboard variant. Travel, installed height and unseen switch construction remain estimates.",
+    evidence: "Owner board and loose-key photographs · local dimensions estimated",
+    text: "The keycaps and deck move back and up; the mounting plate, switches and springs move forward so the broad switch PCB stays visible from above, with the paired contact pads facing upward. Orbit below the board to see the photo-referenced buses and solder details. The pale slotted guides, circular cap cups and dark rubber contact pads follow the loose-key photos and owner confirmation. The narrow controller lifts out separately, showing its socketed processor, replacement EPROM and metallic trace detail. Visible routing is approximate, not an electrical netlist. The springs use the owner’s 13 mm outer diameter, 23 mm free length and 0.4 mm wire. Turn count follows the spring photo; travel, installed compression and hidden contact details remain estimates.",
     photo: "20261012_123907435",
   },
   "component-logic": {
