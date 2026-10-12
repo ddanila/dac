@@ -20069,7 +20069,7 @@
       "name": "keyboard-contact-pads",
       "file": "meshes/keyboard-contact-pads.stl",
       "color": "#363833",
-      "sha256": "95e07d48024c39a7ad20ff3574a09c3adfd06375b7f8971815370fc0e8c9ad7b",
+      "sha256": "a8a14e799850e01a37bccce3464e0f072774d266b88e81cfbdb63e494724bc12",
       "section": "interior",
       "material": "plastic"
     },
@@ -20077,7 +20077,7 @@
       "name": "prototype-rubber",
       "file": "meshes/prototype-rubber.stl",
       "color": "#30322d",
-      "sha256": "50f90ef24789ce98492c715d928ec6f0e0ea911baf166fe44ec0534b772f37c5",
+      "sha256": "5b3f431104fd9a57a8703bdbfb35b76a238e02e712e27a5ab7096267760036d7",
       "section": "prototype",
       "material": "rubber"
     }
