@@ -110,3 +110,27 @@ test("modeled manufacturer plate opens its owner photo and Escape restores the v
   await page.locator("#detail-close").click();
   await expect(page.locator("#specimen-detail")).toBeHidden();
 });
+
+
+test("rear views keep their controls clear of the canvas on desktop and mobile", async ({ page }) => {
+  const errors = [];
+  page.on("pageerror", error => errors.push(error.message));
+  await page.goto("/");
+  await expect(page.locator("#viewport")).toHaveAttribute("data-model", "robotron-photo");
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const view of ["back", "rear-panel"]) {
+      await page.locator(`[data-view="${view}"]`).click();
+      const canvas = await page.locator("#viewport canvas").boundingBox();
+      const controls = await page.locator(".stage-bottom").boundingBox();
+      expect(canvas.y + canvas.height).toBeLessThanOrEqual(controls.y);
+      expect(canvas.width).toBeGreaterThan(250);
+      expect(canvas.height).toBeGreaterThan(200);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    }
+  }
+  await expect(page.locator("#inspection-title")).toHaveText("Rear sockets and markings");
+  await page.locator("#reference-details").click();
+  await expect(page.locator("#detail-photo")).toHaveAttribute("src", /20261012_125413618/);
+  expect(errors).toEqual([]);
+});

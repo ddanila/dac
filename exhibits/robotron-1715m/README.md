@@ -54,3 +54,41 @@ Danila confirms the keyboard EPROM came from another board and works; its blue w
 ### Keycap close-ups and exposed keyboard boards
 
 The next owner ZIP contains three side views. Black caps now have a square flange, taller rounded body and shallow dish. Clear function caps contain separate silver inlays and black legends; transparent plastic uses an inexpensive alpha approximation to keep software WebGL responsive. Case and keyboard feet now share identical geometry, per owner confirmation. Open keyboard separates the switch plate and turns the broad PCB over to reveal the photographed solder face; the narrow controller lifts out independently. Closing the view restores all positions.
+
+
+### October 12 rendering and keyboard review
+
+The monitor's mid-height joint uses an inset dark lip following the shell taper.
+Paint, plastic, rubber and plated metal have distinct finishes. Tighter cached
+shadow maps and a grazing rear light reveal socket lips and small recesses;
+software rendering retains smaller maps and its existing resolution cap.
+Rear outline lettering is mipmapped from the canonical CAD text/coordinates.
+The main Rear view fits the visible assembly, while Rear sockets fits the panel.
+View controls occupy their own row below the canvas, including on mobile.
+
+Compared against owner images 125021771 (monitor joint and paint), 125413618
+(rear engraving, nameplate and sockets), 125300878 (power panel), 133005363
+(painted keyboard underside), and 123006039 (keyboard margins). Photographic
+lighting and wear are not reproduced. Finish parameters and local dimensions
+are visually estimated, not calibrated.
+
+The keyboard pitch/offset now leave approximately 16 mm of black deck at the
+left key flange and 11 mm at the right, following the overhead photograph.
+The owner's measured 18 mm and 23 mm raised wide-key bodies are unchanged.
+Both amber lamps follow the S600 firmware LED bits; the inactive byte adapter
+cannot clear them during navigation. Without S600 only the adapter's Caps state
+is available; SI/SO is not invented.
+
+Inside keyboard opens and isolates the assembly. Caps/deck, switch plate and
+controller separate into rows so the broad switch PCB remains visible from
+above. The PCB underside buses, pads and screws and the narrow controller's
+metal traces follow owner photographs 123907435 and 123622947. Trace shapes and
+hidden details remain illustrative, not an electrical netlist; no whole-board
+photograph is used as a skin. Closing the keyboard restores every part.
+
+Emulator 0.7.1 corrects the S600 indicator latch from the [keyboard schematic](https://www.sax.de/~zander/pc1715/pc_tasts.pdf):
+A6's D flip-flops capture address bits 13/14 on low-A15 I/O cycles.
+Repeated reads set the same state rather than toggling it. Native tests run the
+stock S600 firmware through each lamp and both together, including stability
+between presses; browser checks cover both modeled lamps and navigation.
+The 0.7.0 runtime remains archived for existing snapshots.

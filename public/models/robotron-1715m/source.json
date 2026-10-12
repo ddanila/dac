@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "356e89db3b1f44e42c9b2a838535cb7ca297ff5f",
+  "revision": "610e6823dcdc55ccc189d79a5bd3505d24e55f05",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "caddc6fbee22a2b29373010b54d4d005c72ea5b29f794efa9e421bd91b8a3f10"
+      "sha256": "f36462deb57a9a08a1ee7c958082f6342748861f863879421a83471e7a591fa7"
     },
     {
       "file": "LICENSE",
@@ -45,7 +45,7 @@
     },
     {
       "file": "meshes/monitor-shell-lower.stl",
-      "sha256": "88264381118a9d2cb41524634637f267e649e94946c809d931284b3780e8d37e"
+      "sha256": "2c3dfaae852fcfa81778fbed0396df16e92685b12eb2fb243037201792ede0f6"
     },
     {
       "file": "meshes/bezel.stl",
@@ -65,7 +65,7 @@
     },
     {
       "file": "meshes/keyboard-deck.stl",
-      "sha256": "307b09e179ae2aef751e38e162960e2003fa80255ebb87db7c7569794324e9e4"
+      "sha256": "5a31b5cfbfa11e52f76f8bc5e6f324d5fb85656845eed1083708422ff4b40a7a"
     },
     {
       "file": "meshes/hardware.stl",
@@ -109,7 +109,7 @@
     },
     {
       "file": "meshes/keyboard-fillers.stl",
-      "sha256": "7474c3f5318d15e8f7b58db855e45d1decd46f7ade6f61275025317bcd0e88ae"
+      "sha256": "fa3f19977845a149a736e0cf6baee4665361be9b8fd313be962381ae01378904"
     },
     {
       "file": "meshes/cable-plug.stl",
@@ -209,11 +209,11 @@
     },
     {
       "file": "meshes/keyboard-switches.stl",
-      "sha256": "7b448de82b7e79c8766e94bcbff953104b0fed695188e0b090fbbb976de7b046"
+      "sha256": "9e5e7ce3b3305eb751cf0565ebcea8847b68d9983438e86bb25a8bc6f8e72d18"
     },
     {
       "file": "meshes/monitor-shell-upper.stl",
-      "sha256": "bf89c0d3e9ab01aa9e8735497eea7c7f1c996fd1b2da9507d5e1c7c2c6ec130d"
+      "sha256": "26839b5678f4023e580416256a3ec45963fe97cf51be5ee3610538dd42aa82d0"
     },
     {
       "file": "meshes/tube-funnel.stl",
@@ -325,7 +325,7 @@
     },
     {
       "file": "meshes/keyboard-plate.stl",
-      "sha256": "4a85b047dd280ba723a47e7a27b703596871f2c18efdd066d74f6ed97d793de0"
+      "sha256": "dc172ca8d9a8342dbf3f8131ff8096d572fc6b879712d2ce2be429d1c3fb612a"
     },
     {
       "file": "meshes/monitor-fasteners.stl",
@@ -469,7 +469,7 @@
     },
     {
       "file": "meshes/keyboard-matrix-artwork.stl",
-      "sha256": "db99e0e8cd834c6294b4b1a3a5e7fc0657a51191320aabf2bc9f34b4f0e8250f"
+      "sha256": "004ef00378741c3527c1f806856b42e57f7d0d9b423eb6bca183bc539bdc84a6"
     },
     {
       "file": "meshes/system-foot-metal.stl",
@@ -501,7 +501,7 @@
     },
     {
       "file": "meshes/rear-legends.stl",
-      "sha256": "b50dc0f029108221a69f9ecd09d13acf3e354179a5094093bc46495db375214a"
+      "sha256": "70f639460db3b883759fec8b276b6121f491bd11966990ddf35c80c1b99d1a15"
     },
     {
       "file": "meshes/rear-panel.stl",
@@ -525,43 +525,55 @@
     },
     {
       "file": "meshes/rear-nameplate-ink.stl",
-      "sha256": "7e0d3976d569c6b871b16ce61c6172fbbf667626f65bac99a2c9aae8c19520d8"
+      "sha256": "531811e2eb8d1a9db239cda720b00a7c2aa1f355a43ebfbb57725666f918b833"
+    },
+    {
+      "file": "meshes/monitor-joint-lip.stl",
+      "sha256": "801a401b4e058dcd32cbd8439b592f884ea981e39ef51e4a7f7c6ce62bd5964d"
+    },
+    {
+      "file": "meshes/keyboard-pcb-metal.stl",
+      "sha256": "e5afc6eed2b62035c107c365d8b228b8eac33ad1a35520dc5fc4379c51c3da82"
+    },
+    {
+      "file": "meshes/keyboard-controller-traces.stl",
+      "sha256": "7eb5b6a423159b373fd8730c4e712318d8bd0564ba01397d3dd6ab62d1480f17"
     },
     {
       "file": "meshes/keycap-0.stl",
-      "sha256": "4a50b0c37013ffd5a50dd7d032560eed8abf5fc357c0469983003822b4ca84aa"
+      "sha256": "739896adef17f9dc30b42e374c40c58a52892cdaaa955efb2a686f0f10faf2dd"
     },
     {
       "file": "meshes/keycap-0-insert.stl",
-      "sha256": "c698cf658f851953603b7fcfc7f04ecc171c9d9c41586bc54ee44ef3c9b906fe"
+      "sha256": "3c6ebee615115308cc33caa636f9ae24a367a7fbe4916a4de98cb7338afa99cd"
     },
     {
       "file": "meshes/keycap-1.stl",
-      "sha256": "a9cebefec4e104b615a2e191ca5e3d9e2b7efda211ef8ead0bb8bc1031f7a17b"
+      "sha256": "cb264ea20ca225d7faefb90989259e6059bbfb8f77570c2e44466c3907dc4282"
     },
     {
       "file": "meshes/keycap-2.stl",
-      "sha256": "75db3b2728d30d31457e5d1ff62f884f2445f18595b3230e1beff4cee12b8d80"
+      "sha256": "565ba77791655b8d562913ea6e3e51cdb6de24480515be5b1ca8b02f7e0c67cf"
     },
     {
       "file": "meshes/keycap-3.stl",
-      "sha256": "fd6743f287fba099022074f000dfac6b52087c3bdc72fbf8ea304bc908dc6bc9"
+      "sha256": "d9b5ccab0c51b73b17ffcbb0b6b5db68f13678b6ab6eb627fbd3b7652bf45cee"
     },
     {
       "file": "meshes/keycap-4.stl",
-      "sha256": "a63c62e6a0e990cd8f89ef14729c0dcb2c300ef0c9abf583af729d3a7e739a7c"
+      "sha256": "6fdddd260eba4d00430af5367e71b9c08906f2bc7fa9f2cdb3fbdf2b2c6a579f"
     },
     {
       "file": "meshes/keycap-5.stl",
-      "sha256": "9ad84b3b2ad232a0341f5f85f9f7895a929881d499b6c293fa6d9d8d3491462f"
+      "sha256": "f76a0c8a3f1359f58418b9ccaac5753cd64728f4a0938cfa480aec4f9e5957da"
     },
     {
       "file": "meshes/keycap-6.stl",
-      "sha256": "aabb1e34ad8fe565bca357c2b9a5f167f887ccc367bb474198b476639c90b580"
+      "sha256": "29eeec828488c9cfe9bc15a73cbdf38bb77968489e7e972ff7ffa5c0f0b95c10"
     },
     {
       "file": "meshes/keycap-7.stl",
-      "sha256": "d80980b8b71274b90ddfed72a684b0cc42441d8dfc9b795b6d15e4582389aa9f"
+      "sha256": "0a16aef23cbc8fea126eda4558261f1f9839f40ce2d51bd24ab95736858e3c16"
     },
     {
       "file": "photos/PXL_20250212_094033966.jpg",
@@ -865,23 +877,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "98c86e6a8334ed0f7165b53547bfb579b4fd73c2ba2f3beb0ddc1b1ee2b58501"
+      "sha256": "f67ed51cf86bd626805721fa71dacfdecae063eb2da38c8100d93cf33efd0787"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "67190f1aa9c3694901e1fe2dd61586cf0c31c2f9ac08fdd571fd879c94daaa36"
+      "sha256": "ff8db73f3c981719009c2f6ea812c0243239a752ed223f0d2b86e7a306fe45ed"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "c50770b730a1115e3c08bd70e8797c1d1711ac30aec7b3a7cbe24102a9ded428"
+      "sha256": "5b5b79783ec4b9a39f8bd07a6cce748474258f6adaf16c65686e6b687c986e47"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "e2e00758d76ad22be04c2c0955945d0d080cd6287e7749a993b6cead1baaab38"
+      "sha256": "18c5b612df98705ba3234aa3a035c392c70fbc39da20a99832168b8eef7a42a1"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "969be0f6f2fba2873b32fae947e398daf25a59d6c1b313615aa5ecc36a6b63ef"
+      "sha256": "0325ea42d42c2c5a4b0b942f5b3b9e7f932dcaefaeba5cbfad801597e7a3796b"
     }
   ]
 }

@@ -39,7 +39,7 @@ export function createScene(
   const studio = new RoomEnvironment();
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(studio, 0.04).texture;
-  scene.environmentIntensity = 0.35;
+  scene.environmentIntensity = 0.55;
   studio.dispose();
   pmrem.dispose();
   const controls = new OrbitControls(camera, renderer.domElement);
@@ -52,22 +52,37 @@ export function createScene(
   controls.maxDistance = 5;
   controls.maxPolarAngle = Math.PI;
   controls.update();
-  scene.add(new THREE.HemisphereLight(0xe9eef5, 0x68716d, 1.2));
-  const light = new THREE.DirectionalLight(0xfff4e8, 3);
+  scene.add(new THREE.HemisphereLight(0xe9eef5, 0x68716d, 0.8));
+  const light = new THREE.DirectionalLight(0xfff4e8, 2.6);
   light.position.set(-2, 4, 3);
   light.castShadow = true;
   light.shadow.bias = -0.0001;
-  light.shadow.normalBias = 0.001;
-  light.shadow.mapSize.set(1024, 1024);
-  light.shadow.camera.left = light.shadow.camera.bottom = -1.8;
-  light.shadow.camera.right = light.shadow.camera.top = 1.8;
+  light.shadow.normalBias = 0.0003;
+  const shadowSize = softwareRendering ? 1024 : 2048;
+  light.shadow.mapSize.set(shadowSize, shadowSize);
+  light.shadow.camera.left = light.shadow.camera.bottom = -1.35;
+  light.shadow.camera.right = light.shadow.camera.top = 1.35;
   light.shadow.camera.near = 0.5;
   light.shadow.camera.far = 10;
-  renderer.shadowMap.type = THREE.PCFShadowMap;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   scene.add(light);
-  const inspectionLight = new THREE.DirectionalLight(0xe4eeff, 1.4);
+  const inspectionLight = new THREE.DirectionalLight(0xe4eeff, 0.65);
   inspectionLight.position.set(1, -2, 2);
   scene.add(inspectionLight);
+  // A grazing rear light reveals connector lips, metal plates and the shell
+  // joint. Both shadow maps refresh only when geometry or visibility changes.
+  const rearLight = new THREE.DirectionalLight(0xf2f4ff, 1.5);
+  rearLight.position.set(-1.5, 2.2, -3);
+  rearLight.target.position.set(0, 0.3, -0.3);
+  rearLight.castShadow = true;
+  rearLight.shadow.mapSize.set(shadowSize / 2, shadowSize / 2);
+  rearLight.shadow.bias = -0.0001;
+  rearLight.shadow.normalBias = 0.0002;
+  rearLight.shadow.camera.left = rearLight.shadow.camera.bottom = -0.85;
+  rearLight.shadow.camera.right = rearLight.shadow.camera.top = 0.85;
+  rearLight.shadow.camera.near = 0.5;
+  rearLight.shadow.camera.far = 6;
+  scene.add(rearLight, rearLight.target);
   const machine = new THREE.Group();
   scene.add(machine);
   const beige = new THREE.MeshStandardMaterial({
@@ -211,13 +226,16 @@ export function createScene(
       robotron = model;
       scene.add(model.group);
       model.power(powered);
+      model.modifiers(modifiers);
       interaction.onKeysReady?.(model.keys);
       visibility();
+      fitRearView();
     })
     .catch((error) => {
       console.error("Robotron model failed to load", error);
       modelError = true;
       visibility();
+      fitRearView();
     });
   const ray = new THREE.Raycaster(),
     point = new THREE.Vector2();
@@ -315,12 +333,50 @@ export function createScene(
     interaction.onHover?.(""),
   );
   window.addEventListener("blur", cancelGesture);
+  let fittedView;
+  controls.addEventListener("start", () => { fittedView = undefined; });
+  function fitRearView() {
+    if (!robotron || !["back", "rear-panel"].includes(fittedView)) return;
+    robotron.group.updateWorldMatrix(true, true);
+    const bounds = new THREE.Box3(), corners = [];
+    robotron.group.traverseVisible((mesh) => {
+      if (!mesh.isMesh || (fittedView === "rear-panel" && !mesh.name.startsWith("rear-"))) return;
+      if (mesh.isInstancedMesh) mesh.computeBoundingBox();
+      else if (!mesh.geometry.boundingBox) mesh.geometry.computeBoundingBox();
+      const box = mesh.isInstancedMesh ? mesh.boundingBox : mesh.geometry.boundingBox;
+      for (const x of [box.min.x, box.max.x])
+        for (const y of [box.min.y, box.max.y])
+          for (const z of [box.min.z, box.max.z]) {
+            const p = new THREE.Vector3(x, y, z).applyMatrix4(mesh.matrixWorld);
+            corners.push(p);
+            bounds.expandByPoint(p);
+          }
+    });
+    if (bounds.isEmpty()) return;
+    const center = bounds.getCenter(new THREE.Vector3());
+    const direction = camera.position.clone().sub(controls.target).normalize();
+    controls.target.copy(center);
+    camera.position.copy(center).add(direction);
+    camera.lookAt(center);
+    camera.updateMatrixWorld();
+    const inverse = camera.quaternion.clone().invert();
+    const tanY = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / camera.zoom;
+    const tanX = tanY * camera.aspect;
+    let distance = 0;
+    for (const corner of corners) {
+      const p = corner.sub(center).applyQuaternion(inverse);
+      distance = Math.max(distance, p.z + Math.max(Math.abs(p.x) / tanX, Math.abs(p.y) / tanY) * 1.1);
+    }
+    camera.position.copy(center).addScaledVector(direction, distance);
+    controls.update();
+  }
   const observer = new ResizeObserver(() => {
     const { width, height } = container.getBoundingClientRect();
     camera.aspect = width / height;
     camera.zoom = width < 500 && !container.closest(".typing") ? 0.56 : 1;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
+    fitRearView();
     renderRequested = true;
   });
   observer.observe(container);
@@ -414,8 +470,12 @@ export function createScene(
           [0, 0.5, 0],
         ],
         back: [
-          [-1.1, 0.9, -1.7],
-          [0, 0.32, -0.2],
+          [-1.4, 1.3, -2.5],
+          [0, 0.55, 0.1],
+        ],
+        "rear-panel": [
+          [-0.15, 0.4, -2.1],
+          [0, 0.13, -0.5],
         ],
         under: [
           [0.45, -1.35, 1.8],
@@ -446,7 +506,7 @@ export function createScene(
           [-0.28, 0.107, -0.23],
         ],
         "keyboard-inside": [
-          [-1.55, 0.83, 2.0],
+          [0.2, 2.7, 1.28],
           [0, 0.16, 0.88],
         ],
         "drive-labels": [
@@ -509,6 +569,8 @@ export function createScene(
       const view = views[name] || views.overview;
       camera.position.set(...view[0]);
       controls.target.set(...view[1]);
+      fittedView = name;
+      fitRearView();
       controls.update();
     },
   };
