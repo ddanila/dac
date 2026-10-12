@@ -11,6 +11,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
+    outputs:
+      scope: ${{ steps.scope.outputs.scope }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -19,16 +21,17 @@ jobs:
         with:
           node-version: "24"
           cache: npm
+      - id: scope
+        run: node scripts/ci-scope.mjs
+        env:
+          CI_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
       - run: npm ci
       - run: DAC_BASE=/dac/ npm run build
       - uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: dist
   chromium:
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [1, 2, 3]
+    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -38,25 +41,35 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
+      - name: Use Ubuntu main mirror for browser dependencies
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
       - run: npx playwright install --with-deps chromium
       - id: core
+        if: needs.build.outputs.scope == 'full'
         run: node -e "const fs=require('fs');fs.appendFileSync(process.env.GITHUB_OUTPUT,'ref='+require('./public/emulator/manifest.json').commit+'\n')"
       - uses: actions/checkout@v7
+        if: needs.build.outputs.scope == 'full'
         with:
           repository: ddanila/dac-emulation
           ref: ${{ steps.core.outputs.ref }}
           path: emulation-reference
       - run: make -C emulation-reference build/dac-replay
-      - run: npm test -- --shard=${{ matrix.shard }}/3
+        if: needs.build.outputs.scope == 'full'
+      - name: Model and interaction checks
+        if: needs.build.outputs.scope == 'visual'
+        run: npx playwright test tests/assembly.spec.js tests/crt.spec.js tests/drive-motion.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard.spec.js tests/museum.spec.js tests/pcb-components.spec.js
+      - run: npm test
+        if: needs.build.outputs.scope == 'full'
         env:
           DAC_NATIVE_REPLAY: emulation-reference/build/dac-replay
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
-          name: chromium-${{ matrix.shard }}-failures
+          name: chromium-failures
           path: test-results/
           retention-days: 3
   cross-browser:
+    needs: build
     strategy:
       fail-fast: false
       matrix:
@@ -74,8 +87,15 @@ jobs:
           node-version: "24"
           cache: npm
       - run: npm ci
+      - name: Use Ubuntu main mirror for browser dependencies
+        if: runner.os == 'Linux'
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
       - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - name: Cross-browser model checks
+        if: needs.build.outputs.scope == 'visual'
+        run: npm run test:cross -- --project=${{ matrix.browser }} tests/assembly.spec.js
       - run: npm run test:cross -- --project=${{ matrix.browser }}
+        if: needs.build.outputs.scope == 'full'
       - uses: actions/upload-artifact@v7
         if: failure()
         with:

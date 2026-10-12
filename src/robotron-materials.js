@@ -83,7 +83,7 @@ export function legendAtlas(keys) {
     ctx.translate((i % columns) * cell, Math.floor(i / columns) * cell);
     // Draw in physical millimetres; long caps must not stretch their letters.
     ctx.scale(cell / width, cell / height);
-    ctx.fillStyle = key.style === 1 ? "#404541" : "#e7e6cd";
+    ctx.fillStyle = key.style === 1 ? "#111311" : "#e7e6cd";
     ctx.textAlign = "center";
     ctx.textBaseline = "alphabetic";
     const lines = key.legend || [key.label];

@@ -50,3 +50,7 @@ Stock firmware is a usable reference configuration, not a confirmed dump of this
 Both new ZIPs (175 photographs) were reviewed. The canonical [CAD model and evidence inventory](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m) retain 28 complementary MIT owner reference photos and hashes for every original. The browser adds clean controller components, rectangular feet, a hollow monitor stand with brackets and underside controls, and rear connectors. Opening the keyboard separates the controller as one assembly. The corner paint-loss decal was removed.
 
 Danila confirms the keyboard EPROM came from another board and works; its blue window cover is represented, but its firmware contents are unknown. The S600 emulated reference has not been relabeled as the specimen ROM. Existing comparative motherboard/CRT references retain their credits.
+
+### Keycap close-ups and exposed keyboard boards
+
+The next owner ZIP contains three side views. Black caps now have a square flange, taller rounded body and shallow dish. Clear function caps contain separate silver inlays and black legends; transparent plastic uses an inexpensive alpha approximation to keep software WebGL responsive. Case and keyboard feet now share identical geometry, per owner confirmation. Open keyboard separates the switch plate and turns the broad PCB over to reveal the photographed solder face; the narrow controller lifts out independently. Closing the view restores all positions.
