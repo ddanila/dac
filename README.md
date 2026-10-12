@@ -21,7 +21,7 @@ Open the URL printed by Vite. The default Robotron exhibit boots the **historica
 
 Power off and expand **Load your machine’s media**. Files stay in the browser:
 
-- **Robotron:** 2 KB boot ROM + 256-byte CAS PROM; optional 2/4 KB character data; optional 819,200-byte raw disk or supported standard/extended DSK (80 tracks × 2 heads, up to 5 sectors × 1,024 bytes per track). Tested with S550/287 and TOS/M 1.0.
+- **Robotron:** 2 KB boot ROM + 256-byte CAS PROM; optional 2/4 KB character data; optional 819,200-byte raw disk or supported standard/extended DSK (1–80 cylinders, 1–2 heads, up to 29 sectors of 128–4096 bytes within MFM track capacity). Tested with S550/287 and TOS/M 1.0.
 - **Juku:** 16 KB ROM; optional 409,600/819,200-byte raw Juku disk.
 - **VJUGA:** 16 KB adapted ROM, Rev-A Mode B bounded-boot profile; keyboard/disk are not implemented in that profile.
 
@@ -67,7 +67,7 @@ exports a `.prn` file. The 64 KB capture limit is visible; export and clear when
 full. Try `PIP LST:=AUTOEXC.SUB`. The virtual printer is always ready.
 
 With the case open, each spindle and head follows its drive's motor/track state.
-Head travel uses nominal TEAC 96-tpi pitch (20.90 mm across 79 steps). Current-core spindle and fractional head poses follow emulated startup/coast, STEP and settling timing. READY depends on index observations; Read-ID/sector search follows physical order, and missed byte deadlines report overruns. Optional synthesized seek sounds follow individual timestamped STEP events; motor tone follows modeled speed. Snapshot/replay restores all mechanics. Older preserved cores retain their earlier behavior, and reduced motion freezes the rotor display. DSK import/export preserves supported track order, IDs and GAP3; unsupported geometries are rejected. See [timing scope and remaining approximations](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md).
+Head travel uses nominal TEAC 96-tpi pitch (20.90 mm across 79 steps). Current-core spindle and fractional head poses follow emulated startup/coast, STEP and settling timing. READY depends on index observations; Read-ID/sector search follows physical order, and missed byte deadlines report overruns. Optional synthesized seek sounds follow individual timestamped STEP events; motor tone follows modeled speed. Snapshot/replay restores all mechanics. The movable upper head arm follows the core’s load progress; a translucent inserted disk exposes its shared spindle motion. Its jacket is omitted for inspection, and arm lift/pivot dimensions remain estimates. Older preserved cores retain their earlier behavior, and reduced motion freezes the rotor display. DSK import/export preserves supported track order, IDs and GAP3; unsupported geometries are rejected. See [timing scope and remaining approximations](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md).
 
 Additional validation: `npm run test:cross` runs the focused Firefox/WebKit suite
 (after `npx playwright install firefox webkit`). CI runs Firefox on Linux and WebKit on macOS; both also passed locally on macOS. The core's optional application
@@ -180,3 +180,24 @@ with evidence notes and licences; archives are downloaded only on request.
 The canonical source includes a bounded solid-intersection audit of all 80
 modeled head positions, which caught and corrected a rail/tab collision and an
 obsolete overlapping spring. It is not a complete mechanical certification.
+
+### Drive inspection and regression (emulator 0.7.0)
+
+Open **Drive diagnostics** to inspect fractional cylinder, physical head/sector,
+modeled RPM and angle, READY/head-load state, cumulative index/STEP counts,
+controller command/phase, byte progress and sampled result registers. Index counts
+retain pulses missed between browser frames; result registers are shown only
+while the controller is in its result phase. This panel does not change timing.
+
+The controller supports Read/Write Deleted Data on DSK and bounded Read Track in
+physical order. Writes that underrun clock zero padding and report OR; motor-off,
+reset and power-off preserve the written prefix. DSK can retain its bad-CRC mark.
+Formatting clocks sector payload intervals and preserves completed sectors after
+a later interruption. Raw images cannot preserve deleted/error marks, so Write
+Deleted requires DSK. See the core fidelity document for the exact supported subset.
+
+`tests/drive-regression.spec.js` runs a real TOS/M PIP copy, snapshots mid-write,
+compares 8192 samples of controller/mechanical continuation at 64-clock intervals,
+and independently decodes the final CP/M directory to compare the copied file.
+The diagnostic panel has a narrow-screen check. The 0.6 runtime is archived for
+older saves alongside 0.3–0.5.

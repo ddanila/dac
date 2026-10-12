@@ -10,7 +10,27 @@ export function createDriveMotion(objects, descriptions = []) {
       clamp = objects.get(d.clamp),
       headMetal = objects.get(d.headMetal);
     if (latch) latch.geometry.translate(...d.latchPivot.map((v) => -v));
-    return { ...d, spindle, head, latch, clamp, headMetal, angle: 0 };
+    const headArm = objects.get(d.headArm),
+      medium = objects.get(d.medium);
+    if (headArm) headArm.geometry.translate(...d.armPivot.map((v) => -v));
+    if (medium) {
+      medium.geometry.translate(...d.pivot.map((v) => -v));
+      medium.material = medium.material.clone();
+      medium.material.transparent = true;
+      medium.material.opacity = 0.35;
+      medium.material.depthWrite = false;
+    }
+    return {
+      ...d,
+      spindle,
+      head,
+      latch,
+      clamp,
+      headMetal,
+      headArm,
+      medium,
+      angle: 0,
+    };
   });
   let last;
   return (
@@ -66,6 +86,20 @@ export function createDriveMotion(objects, descriptions = []) {
         (d.travel[2] * track) / 79 + split * 115,
       );
       d.headMetal?.position.copy(d.head.position);
+      if (d.headArm) {
+        d.headArm.position.set(
+          ...d.armPivot.map((v, i) => v + d.head.position.getComponent(i)),
+        );
+        const load = demo
+          ? 1 - clampAmount
+          : (telemetry?.headLoad ?? (power && state & 2 ? 1 : 0));
+        d.headArm.rotation.x = -0.08 * (1 - load);
+      }
+      if (d.medium) {
+        d.medium.visible = d.spindle.visible && !!(state & 8) && !clampsOpen;
+        d.medium.position.copy(d.spindle.position);
+        d.medium.rotation.z = d.spindle.rotation.z;
+      }
       if (d.latch) {
         d.latch.position.set(
           d.latchPivot[0],
@@ -99,10 +133,21 @@ export function createDriveSound() {
     gain,
     enabled = false,
     previous = [undefined, undefined];
-  const motors = [];
+  const motors = [],
+    clicks = new Set();
+  function cancelClicks() {
+    for (const o of clicks) {
+      try {
+        o.stop();
+      } catch {}
+      o.disconnect();
+    }
+    clicks.clear();
+  }
   return {
     async enable(value) {
       enabled = value;
+      if (!value) cancelClicks();
       previous = [undefined, undefined];
       if (value && !context) {
         context = new AudioContext();
@@ -146,6 +191,7 @@ export function createDriveSound() {
         ),
       );
       if (!audible) {
+        cancelClicks();
         previous = [undefined, undefined];
         return;
       }
@@ -168,9 +214,11 @@ export function createDriveSound() {
           g.gain.exponentialRampToValueAtTime(0.0001, t + 0.035);
           o.connect(g);
           g.connect(context.destination);
+          clicks.add(o);
           o.start(t);
           o.stop(t + 0.04);
           o.onended = () => {
+            clicks.delete(o);
             o.disconnect();
             g.disconnect();
           };
@@ -179,4 +227,64 @@ export function createDriveSound() {
       });
     },
   };
+}
+
+// Pure formatting keeps the inspection UI and its tests on the same vocabulary.
+export function describeDrive(state, sample, unit) {
+  if (!sample)
+    return `${unit ? "B" : "A"}: diagnostics unavailable in this core`;
+  const flags = sample.mechanics,
+    detail = sample.detail || 0;
+  const hex = (n) => n.toString(16).padStart(2, "0").toUpperCase();
+  const names = {
+    2: "Read Track",
+    3: "Specify",
+    4: "Sense Drive",
+    5: "Write Data",
+    6: "Read Data",
+    7: "Recalibrate",
+    8: "Sense Interrupt",
+    9: "Write Deleted",
+    10: "Read ID",
+    12: "Read Deleted",
+    13: "Format",
+    15: "Seek",
+    17: "Scan Equal",
+    25: "Scan Low/Equal",
+    29: "Scan High/Equal",
+  };
+  const op = ((sample.controller || 0) >> 8) & 31;
+  const phase = (sample.controller || 0) & 3;
+  const searches = [
+    "transferring",
+    "searching",
+    "ID not found",
+    "ID error",
+    "waiting for index",
+    "padding write",
+    "formatting sector",
+  ];
+  const active =
+    phase === 2
+      ? searches[(sample.controller >> 4) & 7]
+      : phase === 1
+        ? "result"
+        : state & 16
+          ? "seeking"
+          : "idle";
+  return [
+    `Drive ${unit ? "B" : "A"} · ${state & 8 ? "media inserted" : "empty"}`,
+    `Cylinder ${(sample.position ?? (state >> 8) & 255).toFixed(2)} · head ${(detail >> 4) & 1} · sector ${(detail >> 8) & 255}${detail & 1 ? "" : " (controller not selected)"}`,
+    `RPM ${flags === undefined ? "unavailable" : ((flags >>> 8) * 0.3).toFixed(1)} · angle ${(sample.phase * 360).toFixed(1)}°`,
+    `READY ${flags & 1 ? "yes" : "no"} · head ${flags & 2 ? "loaded" : sample.headLoad > 0 ? "loading" : "unloaded"}${flags & 4 ? " · settling" : ""}`,
+    `Index ${flags & 8 ? "high" : "low"} · pulses ${sample.indexes ?? "unavailable"} · STEP count ${sample.steps}`,
+    sample.controller === undefined
+      ? "Controller details unavailable in this core"
+      : `${names[op] || "Controller"} · ${active}${phase === 2 ? ` · bytes ${(sample.transfer || 0) & 65535}/${(sample.transfer || 0) >>> 16}` : ""}`,
+    sample.result & 0x1000000
+      ? `Result ST0/ST1/ST2: ${[0, 8, 16].map((b) => hex((sample.result >> b) & 255)).join(" / ")}`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
 }

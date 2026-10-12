@@ -388,6 +388,16 @@
             ><input type="checkbox" id="drive-sound" /> Drive sounds
             (synthesized)</label
           >
+          <details id="drive-diagnostics" data-robotron>
+            <summary>Drive diagnostics</summary>
+            <p>
+              Live emulated state. Index counts include pulses between display
+              frames. Motion and RPM use the reference drive profile.
+            </p>
+            <div id="drive-diagnostic-values" aria-live="off">
+              Power on to inspect drives.
+            </div>
+          </details>
           <p id="drive-state" data-robotron aria-live="off"></p>
           <p id="keyboard-mode" data-robotron></p>
           <details id="paste-controls">
@@ -492,9 +502,9 @@
           <details data-robotron id="drive-b-controls">
             <summary>Drive B</summary>
             <p>
-              Insert an 800 KB raw disk or an 80-track Robotron DSK image, or
-              start with a blank data disk. Power off to change disks; in TOS/M
-              use DIR B: or PIP B:=A:FILENAME.
+              Insert an 800 KB raw disk or a supported MFM DSK image, or start
+              with a blank data disk. Power off to change disks; in TOS/M use
+              DIR B: or PIP B:=A:FILENAME.
             </p>
             <input
               type="file"

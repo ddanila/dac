@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "cableParking": [
     0,
     18,
@@ -18731,6 +18731,13 @@
       "spindle": "drive-spindle-0",
       "head": "drive-head-0",
       "headMetal": "drive-head-metal-0",
+      "headArm": "drive-head-arm-0",
+      "armPivot": [
+        -160,
+        -55,
+        90
+      ],
+      "medium": "drive-medium-0",
       "latch": "drive-latch-0",
       "clamp": "drive-clamp-0",
       "latchPivot": [
@@ -18756,6 +18763,13 @@
       "spindle": "drive-spindle-1",
       "head": "drive-head-1",
       "headMetal": "drive-head-metal-1",
+      "headArm": "drive-head-arm-1",
+      "armPivot": [
+        -6,
+        -55,
+        90
+      ],
+      "medium": "drive-medium-1",
       "latch": "drive-latch-1",
       "clamp": "drive-clamp-1",
       "latchPivot": [
@@ -19421,7 +19435,7 @@
       "name": "drive-head-metal-0",
       "file": "meshes/drive-head-metal-0.stl",
       "color": "#b5b9b2",
-      "sha256": "966089be22adf89d7a9c08697f82ad9c65a617c302afa1783ac0ed54f48f956a",
+      "sha256": "1cd9c90e6974f1275dfec2fb085a506a967fabcfd6bd00d80b247764cc5a318a",
       "section": "interior",
       "material": "plated-steel"
     },
@@ -19429,7 +19443,7 @@
       "name": "drive-head-metal-1",
       "file": "meshes/drive-head-metal-1.stl",
       "color": "#b5b9b2",
-      "sha256": "df1917a45942329f7253752ffd878567079fe3bd1934271feeee45e2a5fb1a5b",
+      "sha256": "50d32f20017b051de6c0ac19ea21679bf669401c63bee0ec2bdb23a618e3e79a",
       "section": "interior",
       "material": "plated-steel"
     },
@@ -19678,6 +19692,38 @@
       "sha256": "d321ad7d2279b2f7d1e84ca29b3eeec9a6b152ef749c68811086da4c76bff07c",
       "section": "interior",
       "material": "aged-plastic"
+    },
+    {
+      "name": "drive-head-arm-0",
+      "file": "meshes/drive-head-arm-0.stl",
+      "color": "#b5b9b2",
+      "sha256": "902a969a910fa37ba7548865a5759147d4185ee44fba7a54ae17b8a696e4456a",
+      "section": "interior",
+      "material": "plated-steel"
+    },
+    {
+      "name": "drive-head-arm-1",
+      "file": "meshes/drive-head-arm-1.stl",
+      "color": "#b5b9b2",
+      "sha256": "f7ddba6fc51c342854e3148ce3228b9f5abb169f3feea6b1916e9102c7eacfab",
+      "section": "interior",
+      "material": "plated-steel"
+    },
+    {
+      "name": "drive-medium-0",
+      "file": "meshes/drive-medium-0.stl",
+      "color": "#46322a",
+      "sha256": "071123bd27eb23e3b327b009ea2deb4eacf247fba20cc35374a06b166c378e31",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "drive-medium-1",
+      "file": "meshes/drive-medium-1.stl",
+      "color": "#46322a",
+      "sha256": "6c7dcd3e2f38cf66b05bdcaa02d7272d977c8bdb5e1e94b15672ed8f7f9aa828",
+      "section": "interior",
+      "material": "plastic"
     }
   ],
   "keys": [

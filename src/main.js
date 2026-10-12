@@ -1,5 +1,5 @@
 import "./style.css";
-import { createDriveSound } from "./robotron-drives.js";
+import { describeDrive, createDriveSound } from "./robotron-drives.js";
 const driveSound = createDriveSound();
 import { createFirmwareKeyboard, matrixKey } from "./robotron-matrix.js";
 import { loadHistoricalRobotron } from "./historical-media.js";
@@ -392,6 +392,13 @@ worker.onmessage = ({ data: d }) => {
     if (Number($("machine").value) === 2) {
       const drives = d.drives || [0, 0];
       scene?.drives(drives, d.driveMechanics);
+      if ($("drive-diagnostics").open) {
+        $("drive-diagnostic-values").textContent = on
+          ? drives
+              .map((v, u) => describeDrive(v, d.driveMechanics?.[u], u))
+              .join("\n\n")
+          : "Power on to inspect drives.";
+      }
       driveSound.update(drives, on, d.driveMechanics);
       $("drive-state").textContent = on
         ? drives

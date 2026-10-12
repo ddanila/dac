@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "128a36e90876af41d7249f78b29c8afaf33956cb",
+  "revision": "29e2e42d21063b3d3b7b348127030a3977e7ed1b",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "b12bc7075e222df152a06a24253553c402ed25a0aaacdced189ceaf2f3f9c155"
+      "sha256": "12988b91262ed140169d95ddd7a0954e918eb0c9c6a901cbd2d51be0797f20a5"
     },
     {
       "file": "LICENSE",
@@ -301,11 +301,11 @@
     },
     {
       "file": "meshes/drive-head-metal-0.stl",
-      "sha256": "966089be22adf89d7a9c08697f82ad9c65a617c302afa1783ac0ed54f48f956a"
+      "sha256": "1cd9c90e6974f1275dfec2fb085a506a967fabcfd6bd00d80b247764cc5a318a"
     },
     {
       "file": "meshes/drive-head-metal-1.stl",
-      "sha256": "df1917a45942329f7253752ffd878567079fe3bd1934271feeee45e2a5fb1a5b"
+      "sha256": "50d32f20017b051de6c0ac19ea21679bf669401c63bee0ec2bdb23a618e3e79a"
     },
     {
       "file": "meshes/drive-board-components.stl",
@@ -414,6 +414,22 @@
     {
       "file": "meshes/drive-cable-plugs.stl",
       "sha256": "d321ad7d2279b2f7d1e84ca29b3eeec9a6b152ef749c68811086da4c76bff07c"
+    },
+    {
+      "file": "meshes/drive-head-arm-0.stl",
+      "sha256": "902a969a910fa37ba7548865a5759147d4185ee44fba7a54ae17b8a696e4456a"
+    },
+    {
+      "file": "meshes/drive-head-arm-1.stl",
+      "sha256": "f7ddba6fc51c342854e3148ce3228b9f5abb169f3feea6b1916e9102c7eacfab"
+    },
+    {
+      "file": "meshes/drive-medium-0.stl",
+      "sha256": "071123bd27eb23e3b327b009ea2deb4eacf247fba20cc35374a06b166c378e31"
+    },
+    {
+      "file": "meshes/drive-medium-1.stl",
+      "sha256": "6c7dcd3e2f38cf66b05bdcaa02d7272d977c8bdb5e1e94b15672ed8f7f9aa828"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -685,23 +701,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "3637630f26019629cd7b81ccded8649b5b9f176f616cf501c7ffd2335b4a2e61"
+      "sha256": "de8242f82a3314d7adcface58a744ee58522d4eb2ad7f99a53380d2aa59fbd14"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "813f4aa0777fb586396dfc3bd961de1336698bacebb96500a9b45e8c1cbe85c0"
+      "sha256": "40beaf5054eed8362b18bb05a29cf408ddd27c4243abe3d791ee8a4835a5a0cc"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "5c4d11b17ab692d5f1026ed4823d5bb11f3296f51b6d560433168b91ccd0a4b4"
+      "sha256": "91b002da091a7a43a6cf3b251808b610ccacc866eb5e3176a43556fe81ceda5d"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "3e356a11c9fedd1e14928d7bc0a94c02f0be47e7b7fde9c2338bb094d912fd45"
+      "sha256": "fa2b5398d01a9c9232eb1194127d4eeb7de3bb10afad07cdcc2e7e0851610455"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "4d1c4bd7d17aaaf1888f345ce0df21eee079f169058b12539f02c4c859d3b77b"
+      "sha256": "3b40aaabf202759aa932748c7c13f82e5482a5002b86572d9e46334633631ebb"
     }
   ]
 }
