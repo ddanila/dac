@@ -129,8 +129,8 @@ it does not infer characters from the specimen’s printed legends.
 
 Assembly inspection now supports keyboard-only disassembly, assembly isolation,
 transparent covers and a visual drive-clamp release. Springs and stems share
-instanced geometry and follow key presses. The spring measurements belong to an
-owner-photographed keyboard variant; hidden switch construction remains estimated.
+instanced geometry and follow key presses. The spring uses the owner-confirmed
+13/23/0.4 mm dimensions; hidden switch construction remains estimated.
 Drive heads and shields move together, and separated cables retain their endpoints
 using explanatory stretching. Releasing clamps in the viewer does not eject media.
 Monitor geometry and PCB credits remain explicitly comparative until specimen
@@ -209,3 +209,15 @@ Model/viewer-only changes (including scene lighting and camera code) run one Chr
 The single Chromium job allows 10 minutes for model checks and 20 for the complete suite, and logs each test as it runs. The first full run after consolidating the former shards hit the old shared 10-minute cap without reporting a test failure; the higher cap applies only to full runs and does not add tests or workers.
 
 The model now loads behind a prominent, accessible percentage bar. Its fixed total includes all required meshes, textures and the final assembly step; it measures completed assets, not elapsed time or estimated bytes. It reaches 100% only when the detailed model is ready, hides for other machines, and explains a failed 3D load while keeping the emulator controls usable. Owner rear close-ups also guide the recessed connectors, vertical mains inlet, nameplate and nearly flush grey reset pad.
+
+The October 12 loose-key photographs now supply shared OpenSCAD geometry for the
+black keycaps: thick skirt, shallow dish, pale inner core, annular spring recess
+and round cup with the print-trial latch ring and orientation rib. [Standalone cap STL and source](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m/keycap)
+and [individual switch parts](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m/key-switch)
+are available in the canonical model repository. The spring uses the owner's
+13 mm outer diameter, 23 mm free length and 0.4 mm wire measurements. Slotted
+guides, moving rubber pads and paired PCB contacts appear in keyboard inspection;
+pressing a key compresses its spring and moves the rubber with its carrier. The
+PCB opens contact-face up. Hidden contact geometry, installed height, travel and
+small fit dimensions remain estimates; the keycap has not been fit-tested. The
+18/23 mm raised wide-key widths and existing firmware input are retained.

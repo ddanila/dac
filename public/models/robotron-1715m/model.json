@@ -1,5 +1,5 @@
 {
-  "version": 20,
+  "version": 21,
   "rearMarkings": [
     {
       "x": 10,
@@ -18798,12 +18798,16 @@
   "keyboardMechanism": {
     "spring": "prototype-spring",
     "stem": "prototype-stem",
-    "installedHeight": 12,
+    "rubber": "prototype-rubber",
+    "installedHeight": 19.6,
     "freeHeight": 23,
+    "springBase": -10.4,
     "travel": 2.2,
     "diameter": 13,
-    "wire": 0.35,
-    "status": "Owner spring dimensions; installed height, travel and hidden switch geometry estimated"
+    "wire": 0.4,
+    "activeTurns": 5,
+    "closedTurnsPerEnd": 3,
+    "status": "Owner-confirmed outer diameter, free length, wire and rubber/PCB contact principle. Turns photo-estimated; installed compression, travel and hidden geometry provisional"
   },
   "driveMotion": [
     {
@@ -19346,7 +19350,7 @@
       "name": "keyboard-switches",
       "file": "meshes/keyboard-switches.stl",
       "color": "#30352f",
-      "sha256": "9e5e7ce3b3305eb751cf0565ebcea8847b68d9983438e86bb25a8bc6f8e72d18",
+      "sha256": "330aba9db658a80ffa389dc83492a1871c7a8148a8545637d596ae208ea2034c",
       "section": "interior",
       "material": "plastic"
     },
@@ -19579,7 +19583,7 @@
       "name": "keyboard-plate",
       "file": "meshes/keyboard-plate.stl",
       "color": "#242929",
-      "sha256": "dc172ca8d9a8342dbf3f8131ff8096d572fc6b879712d2ce2be429d1c3fb612a",
+      "sha256": "567cb9b22927b2434c0666d0524312f0cac5f099ef2baded1a7280c0ccf33918",
       "section": "interior",
       "material": "metal"
     },
@@ -19611,7 +19615,7 @@
       "name": "prototype-spring",
       "file": "meshes/prototype-spring.stl",
       "color": "#8c8c81",
-      "sha256": "05c948beec78a1a092cd2f85c12666a1786676a08938b8c517cae2b4aa6cd858",
+      "sha256": "aa92f5cb4bda16cd482da27b70bd07559f6610500bc2244e573ddb824042560d",
       "section": "prototype",
       "material": "metal"
     },
@@ -19619,7 +19623,7 @@
       "name": "prototype-stem",
       "file": "meshes/prototype-stem.stl",
       "color": "#ded6be",
-      "sha256": "2d4db67dba3ef3dcf85d861e3f90390cd6c268cd2de47be0dead030f0de9add1",
+      "sha256": "c9575295382374d7e3575981ae48b432c459c1f7a2e88531505436ca8333d4da",
       "section": "prototype",
       "material": "plastic"
     },
@@ -20052,6 +20056,30 @@
       "color": "#80654e",
       "sha256": "06ac34b93c0f3018e946b3418a8447a66a6fdea400fe600cdedef01548fd3078",
       "material": "plastic"
+    },
+    {
+      "name": "keyboard-guides",
+      "file": "meshes/keyboard-guides.stl",
+      "color": "#d9d9c8",
+      "sha256": "c8fd6ba0031876c32722349b0e215d4cb8afe34bbc498ec55ab178ab0ab60893",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-contact-pads",
+      "file": "meshes/keyboard-contact-pads.stl",
+      "color": "#363833",
+      "sha256": "95e07d48024c39a7ad20ff3574a09c3adfd06375b7f8971815370fc0e8c9ad7b",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "prototype-rubber",
+      "file": "meshes/prototype-rubber.stl",
+      "color": "#30322d",
+      "sha256": "50f90ef24789ce98492c715d928ec6f0e0ea911baf166fe44ec0534b772f37c5",
+      "section": "prototype",
+      "material": "rubber"
     }
   ],
   "keys": [
@@ -20133,7 +20161,8 @@
         "!",
         "1"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-002",
@@ -20174,7 +20203,8 @@
         "\"",
         "2"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-003",
@@ -20215,7 +20245,8 @@
         "#",
         "3"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-004",
@@ -20256,7 +20287,8 @@
         "\u00a4",
         "4"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-005",
@@ -20297,7 +20329,8 @@
         "%",
         "5"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-006",
@@ -20338,7 +20371,8 @@
         "&",
         "6"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-007",
@@ -20379,7 +20413,8 @@
         "'",
         "7"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-008",
@@ -20420,7 +20455,8 @@
         "(",
         "8"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-009",
@@ -20461,7 +20497,8 @@
         ")",
         "9"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-010",
@@ -20502,7 +20539,8 @@
         "_",
         "0"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-011",
@@ -20541,7 +20579,8 @@
         "?",
         "\u00df"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-012",
@@ -20582,7 +20621,8 @@
         "_",
         "^"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-013",
@@ -20620,7 +20660,8 @@
       "legend": [
         "\u24c7"
       ],
-      "mesh": "keycap-2"
+      "mesh": "keycap-2",
+      "coreMesh": "keycap-2-core"
     },
     {
       "id": "key-014",
@@ -20698,7 +20739,8 @@
       "legend": [
         "CTRL"
       ],
-      "mesh": "keycap-2"
+      "mesh": "keycap-2",
+      "coreMesh": "keycap-2-core"
     },
     {
       "id": "key-016",
@@ -20738,7 +20780,8 @@
       "legend": [
         "Q"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-017",
@@ -20778,7 +20821,8 @@
       "legend": [
         "W"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-018",
@@ -20818,7 +20862,8 @@
       "legend": [
         "E"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-019",
@@ -20858,7 +20903,8 @@
       "legend": [
         "R"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-020",
@@ -20898,7 +20944,8 @@
       "legend": [
         "T"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-021",
@@ -20938,7 +20985,8 @@
       "legend": [
         "Y"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-022",
@@ -20978,7 +21026,8 @@
       "legend": [
         "U"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-023",
@@ -21018,7 +21067,8 @@
       "legend": [
         "I"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-024",
@@ -21058,7 +21108,8 @@
       "legend": [
         "O"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-025",
@@ -21098,7 +21149,8 @@
       "legend": [
         "P"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-026",
@@ -21138,7 +21190,8 @@
       "legend": [
         "@"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-027",
@@ -21179,7 +21232,8 @@
         "{",
         "["
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-028",
@@ -21217,7 +21271,8 @@
       "legend": [
         "\u2192"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-029",
@@ -21331,7 +21386,8 @@
       },
       "topWidth": 18,
       "legend": [],
-      "mesh": "keycap-3"
+      "mesh": "keycap-3",
+      "coreMesh": "keycap-3-core"
     },
     {
       "id": "key-032",
@@ -21371,7 +21427,8 @@
       "legend": [
         "A"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-033",
@@ -21411,7 +21468,8 @@
       "legend": [
         "S"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-034",
@@ -21451,7 +21509,8 @@
       "legend": [
         "D"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-035",
@@ -21491,7 +21550,8 @@
       "legend": [
         "F"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-036",
@@ -21531,7 +21591,8 @@
       "legend": [
         "G"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-037",
@@ -21571,7 +21632,8 @@
       "legend": [
         "H"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-038",
@@ -21611,7 +21673,8 @@
       "legend": [
         "J"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-039",
@@ -21651,7 +21714,8 @@
       "legend": [
         "K"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-040",
@@ -21691,7 +21755,8 @@
       "legend": [
         "L"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-041",
@@ -21732,7 +21797,8 @@
         "+",
         ";"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-042",
@@ -21773,7 +21839,8 @@
         "*",
         ":"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-043",
@@ -21814,7 +21881,8 @@
         "}",
         "]"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-044",
@@ -21850,7 +21918,8 @@
       },
       "topWidth": 18,
       "legend": [],
-      "mesh": "keycap-3"
+      "mesh": "keycap-3",
+      "coreMesh": "keycap-3-core"
     },
     {
       "id": "key-045",
@@ -21891,7 +21960,8 @@
         "|",
         "\\"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-046",
@@ -21931,7 +22001,8 @@
       "legend": [
         "Z"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-047",
@@ -21971,7 +22042,8 @@
       "legend": [
         "X"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-048",
@@ -22011,7 +22083,8 @@
       "legend": [
         "C"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-049",
@@ -22051,7 +22124,8 @@
       "legend": [
         "V"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-050",
@@ -22091,7 +22165,8 @@
       "legend": [
         "B"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-051",
@@ -22131,7 +22206,8 @@
       "legend": [
         "N"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-052",
@@ -22171,7 +22247,8 @@
       "legend": [
         "M"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-053",
@@ -22212,7 +22289,8 @@
         "<",
         ","
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-054",
@@ -22253,7 +22331,8 @@
         ">",
         "."
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-055",
@@ -22294,7 +22373,8 @@
         "?",
         "/"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-056",
@@ -22330,7 +22410,8 @@
       },
       "topWidth": 18,
       "legend": [],
-      "mesh": "keycap-4"
+      "mesh": "keycap-4",
+      "coreMesh": "keycap-4-core"
     },
     {
       "id": "key-057",
@@ -22366,7 +22447,8 @@
       },
       "topWidth": 0,
       "legend": [],
-      "mesh": "keycap-5"
+      "mesh": "keycap-5",
+      "coreMesh": "keycap-5-core"
     },
     {
       "id": "key-058",
@@ -22404,7 +22486,8 @@
       "legend": [
         "ET"
       ],
-      "mesh": "keycap-2"
+      "mesh": "keycap-2",
+      "coreMesh": "keycap-2-core"
     },
     {
       "id": "key-059",
@@ -22910,7 +22993,8 @@
       "legend": [
         "7"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-072",
@@ -22948,7 +23032,8 @@
       "legend": [
         "8"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-073",
@@ -22986,7 +23071,8 @@
       "legend": [
         "9"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-074",
@@ -23024,7 +23110,8 @@
       "legend": [
         "4"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-075",
@@ -23062,7 +23149,8 @@
       "legend": [
         "5"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-076",
@@ -23100,7 +23188,8 @@
       "legend": [
         "6"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-077",
@@ -23138,7 +23227,8 @@
       "legend": [
         "1"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-078",
@@ -23176,7 +23266,8 @@
       "legend": [
         "2"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-079",
@@ -23214,7 +23305,8 @@
       "legend": [
         "3"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-080",
@@ -23252,7 +23344,8 @@
       "legend": [
         "0"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-081",
@@ -23290,7 +23383,8 @@
       "legend": [
         "00"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-082",
@@ -23328,7 +23422,8 @@
       "legend": [
         ","
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-1",
+      "coreMesh": "keycap-1-core"
     },
     {
       "id": "key-083",
@@ -23443,7 +23538,8 @@
       "legend": [
         "-"
       ],
-      "mesh": "keycap-7"
+      "mesh": "keycap-7",
+      "coreMesh": "keycap-7-core"
     },
     {
       "id": "key-086",
@@ -23481,7 +23577,8 @@
       "legend": [
         "\u2194"
       ],
-      "mesh": "keycap-7"
+      "mesh": "keycap-7",
+      "coreMesh": "keycap-7-core"
     },
     {
       "id": "key-087",
@@ -23888,27 +23985,52 @@
     {
       "name": "keycap-1",
       "file": "meshes/keycap-1.stl",
-      "sha256": "cb264ea20ca225d7faefb90989259e6059bbfb8f77570c2e44466c3907dc4282"
+      "sha256": "f9fcd34b23f1770cae9188968fe3ebf6e1c320f6b5d31c124200a9a4b62d5b77"
+    },
+    {
+      "name": "keycap-1-core",
+      "file": "meshes/keycap-1-core.stl",
+      "sha256": "1c6214dc68afeb78184be43041f2f53bef91421dcebf12a2b2a6020ee796be7a"
     },
     {
       "name": "keycap-2",
       "file": "meshes/keycap-2.stl",
-      "sha256": "565ba77791655b8d562913ea6e3e51cdb6de24480515be5b1ca8b02f7e0c67cf"
+      "sha256": "f2c5beade7251432fdde3bdee36745c4d329764cbea770ac192abcf31f930ca7"
+    },
+    {
+      "name": "keycap-2-core",
+      "file": "meshes/keycap-2-core.stl",
+      "sha256": "5b1669f2cfb5b28f1c36063dd219e44c4c5afd7b29941e1adf969f41f8223460"
     },
     {
       "name": "keycap-3",
       "file": "meshes/keycap-3.stl",
-      "sha256": "d9b5ccab0c51b73b17ffcbb0b6b5db68f13678b6ab6eb627fbd3b7652bf45cee"
+      "sha256": "2493cae5786b2efe1e4f1cd26b769fa1f6fd3ec5bc64e45c96a22897bfcdb287"
+    },
+    {
+      "name": "keycap-3-core",
+      "file": "meshes/keycap-3-core.stl",
+      "sha256": "41925947ee7457742d65f1ba053c3b9b5ffcaf3f320495573832784c7f6eee01"
     },
     {
       "name": "keycap-4",
       "file": "meshes/keycap-4.stl",
-      "sha256": "6fdddd260eba4d00430af5367e71b9c08906f2bc7fa9f2cdb3fbdf2b2c6a579f"
+      "sha256": "65b767ef06dc8c5dff55b53a8cd10b8163cc075bcfab8d6828623dcf5dfbe7b2"
+    },
+    {
+      "name": "keycap-4-core",
+      "file": "meshes/keycap-4-core.stl",
+      "sha256": "5b1669f2cfb5b28f1c36063dd219e44c4c5afd7b29941e1adf969f41f8223460"
     },
     {
       "name": "keycap-5",
       "file": "meshes/keycap-5.stl",
-      "sha256": "f76a0c8a3f1359f58418b9ccaac5753cd64728f4a0938cfa480aec4f9e5957da"
+      "sha256": "77359b9cba176437c781a914c401ca505f9c47ef184377d113616f5d2185d3bf"
+    },
+    {
+      "name": "keycap-5-core",
+      "file": "meshes/keycap-5-core.stl",
+      "sha256": "f41607f7c1684ac32706b09ec4123023a913475b5e089ba4e66ed63f8c6d716f"
     },
     {
       "name": "keycap-6",
@@ -23918,7 +24040,12 @@
     {
       "name": "keycap-7",
       "file": "meshes/keycap-7.stl",
-      "sha256": "0a16aef23cbc8fea126eda4558261f1f9839f40ce2d51bd24ab95736858e3c16"
+      "sha256": "64f0ef53ffb9bc9752a1059e125ea3b8b4187b446088890f25b6c1ca5174d81b"
+    },
+    {
+      "name": "keycap-7-core",
+      "file": "meshes/keycap-7-core.stl",
+      "sha256": "38bbd54e449b9d0814d30de839342c9adca7389b534779a5f05429418c61249c"
     }
   ],
   "keyboard": {
@@ -24457,7 +24584,12 @@
     "PXL_20261012_125018215.jpg",
     "PXL_20261012_125123660.jpg",
     "PXL_20261012_125234638.jpg",
-    "PXL_20261012_125402713.MP.jpg"
+    "PXL_20261012_125402713.MP.jpg",
+    "PXL_20261012_185824256.jpg",
+    "PXL_20261012_185826600.jpg",
+    "PXL_20261012_185834871.jpg",
+    "PXL_20261012_185855185.jpg",
+    "PXL_20261012_190054608.jpg"
   ],
   "pcbReferences": [
     {
