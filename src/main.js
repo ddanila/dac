@@ -120,7 +120,7 @@ function keyButtons(keys) {
     button.dataset.key = key.id;
     button.setAttribute(
       "aria-label",
-      key.label + (key.u >= 18 ? " · numeric or function keypad" : ""),
+      key.label + (key.u >= 17.75 ? " · numeric or function keypad" : ""),
     );
     if (key.input.modifier) {
       button.dataset.modifier = key.input.modifier;

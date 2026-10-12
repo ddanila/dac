@@ -201,3 +201,46 @@ test("owner controller separates as one assembly and monitor underside follows i
   expect(state.moved[2]).toEqual(state.moved[0]);
   expect(state.restored.every(p => p.every(v => v === 0))).toBe(true);
 });
+
+// Owner side photos show uninterrupted walls, including the diagonal views
+// where an oversized rectangular underside cavity used to pierce the cylinder.
+test("opaque keycaps have continuous sidewalls around every exported shape", async ({ page }) => {
+  await page.goto("/");
+  const failures = await page.evaluate(async () => {
+    const { loadRobotron } = await import("/src/robotron-model.js");
+    const { Texture, Mesh, Raycaster, Vector3 } = await import("/node_modules/three/build/three.module.js");
+    const model = await loadRobotron(new Texture());
+    const checked = new Set(), failures = [];
+    model.group.traverse(body => {
+      if (body.name !== "opaque-key-cap" || checked.has(body.geometry)) return;
+      checked.add(body.geometry);
+      const key = body.userData.key;
+      if (key.topWidth) {
+        const vertices = body.geometry.attributes.position;
+        let lo = Infinity, hi = -Infinity;
+        for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= 9.39) {
+          lo = Math.min(lo, vertices.getX(i)); hi = Math.max(hi, vertices.getX(i));
+        }
+        if (Math.abs(hi - lo - key.topWidth) > 0.05)
+          failures.push({ key: key.id, measured: hi - lo, expected: key.topWidth });
+      }
+      const mesh = new Mesh(body.geometry, body.material);
+      for (const z of [2, 4, 5.8, 7]) {
+        for (let degrees = 0; degrees < 360; degrees += 5) {
+          const angle = degrees * Math.PI / 180;
+          const direction = new Vector3(Math.cos(angle), Math.sin(angle), 0);
+          const origin = direction.clone().multiplyScalar(200); origin.z = z;
+          const hits = new Raycaster(origin, direction.negate(), 0, 400).intersectObject(mesh);
+          // Every outer wall must be beyond the hollow cavity's short radius.
+          if (!hits.length || Math.hypot(hits[0].point.x, hits[0].point.y) < 7)
+            failures.push({ key: key.id, z, degrees });
+        }
+      }
+      if (body.material.transparent || body.material.opacity !== 1)
+        failures.push({ key: key.id, material: "not opaque" });
+    });
+    if (checked.size < 5) failures.push({ shapes: checked.size });
+    return failures;
+  });
+  expect(failures).toEqual([]);
+});

@@ -281,7 +281,7 @@ export async function loadRobotron(displayTexture) {
   const insertMaterial = new THREE.MeshStandardMaterial({
     color: 0xa3a7a8, metalness: 0.75, roughness: 0.32,
   });
-  const atlas = legendAtlas(data.keys);
+  const atlas = legendAtlas(data.keys, data.keyboard.pitch);
   const legendMaterial = new THREE.MeshStandardMaterial({
     map: atlas.texture,
     transparent: true,
@@ -317,7 +317,7 @@ export async function loadRobotron(displayTexture) {
       uv = faceGeometry.attributes.uv;
     for (let i = 0; i < p.count; i++) {
       const x =
-          p.getX(i) / Math.max(1, (key.width * data.keyboard.pitch - 5.2) / 16),
+          p.getX(i) / Math.max(1, (key.topWidth || key.width * data.keyboard.pitch - 5.2) / 16),
         y =
           p.getY(i) /
           Math.max(1, (key.height * data.keyboard.pitch - 5.2) / 16);
@@ -527,12 +527,17 @@ export async function loadRobotron(displayTexture) {
     color: 0x5a4215,
     emissive: 0x000000,
   });
-  const capsLamp = new THREE.Mesh(
-    new THREE.SphereGeometry(2, 12, 8),
-    capsMaterial,
-  );
-  capsLamp.position.set(-242, -5, 4.5);
-  keyboard.add(capsLamp);
+  // Fixed indicator carriers belong to the deck, not the moving keycaps.
+  for (const [x, y, material, name] of [
+    [-230.125, -17, capsMaterial, "keyboard-caps-lamp"],
+    [72.125, 22, new THREE.MeshStandardMaterial({ color: 0x89621d, roughness: 0.3 }), "keyboard-si-so-lamp"],
+  ]) {
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(2, 12, 8), material);
+    lamp.name = name;
+    lamp.position.set(x, y, 3.5).applyAxisAngle(new THREE.Vector3(1, 0, 0), keyboard.rotation.x);
+    lamp.position.add(new THREE.Vector3(0, data.keyboard.y, data.keyboard.z));
+    objects.get("keyboard-fillers").add(lamp);
+  }
   let power = false,
     activityUntil = 0,
     split = 0,
@@ -616,7 +621,7 @@ export async function loadRobotron(displayTexture) {
           inspection.transparent ||
           inspection.isolated !== "all" ||
           (inspection.keyboardOpen && mesh.name.startsWith("keyboard-")) ||
-          mesh.name === "psu-chassis";
+          ["psu-chassis", "keyboard-plate", "keyboard-switches"].includes(mesh.name);
     for (const mesh of objects.values())
       if (mesh.userData.monitorInterior) {
         mesh.visible =

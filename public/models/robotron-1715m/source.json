@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "d5fbbece7e8a1d07f0af418c6667f06c24ff97af",
+  "revision": "52564a53a9ca98d6c4d51cb8527e08a4957fac7b",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "f90413082abdbd7ad0c8035884fc67a9ed2a78c6ae8e35299d19c642e57042d4"
+      "sha256": "b66d8002b59ec6bde9a63e42ac0f3ca79e7e22c17bdfb10b6d4c05abce7bdc81"
     },
     {
       "file": "LICENSE",
@@ -61,11 +61,11 @@
     },
     {
       "file": "meshes/keyboard-shell.stl",
-      "sha256": "0c1758a08a0c18cb33609e801a0bc9c57c4305d2625f1c34d00bdb03c56be936"
+      "sha256": "4784aaae4370b4bc5443fc854cb79560786f3b798d15588d45858144436d97fa"
     },
     {
       "file": "meshes/keyboard-deck.stl",
-      "sha256": "607f4eb779dedbc378400a5399d4ef331abcd8ad3b67308ef8d8da5b914e4829"
+      "sha256": "307b09e179ae2aef751e38e162960e2003fa80255ebb87db7c7569794324e9e4"
     },
     {
       "file": "meshes/hardware.stl",
@@ -109,7 +109,7 @@
     },
     {
       "file": "meshes/keyboard-fillers.stl",
-      "sha256": "61b7b0f253f1caa8bd0cfdec8baf360c4cb64409611da7f7792469b1643dc4f4"
+      "sha256": "7474c3f5318d15e8f7b58db855e45d1decd46f7ade6f61275025317bcd0e88ae"
     },
     {
       "file": "meshes/cable-plug.stl",
@@ -205,11 +205,11 @@
     },
     {
       "file": "meshes/keyboard-pcb.stl",
-      "sha256": "2a31b2e2c59bc961d95b5d0c4d93abf109955b3cedb074ce4751bbf5175deb87"
+      "sha256": "c5aad912ad476d32484badb83f7a2c6ae35fb08a0e18002955ff3d5223db69a5"
     },
     {
       "file": "meshes/keyboard-switches.stl",
-      "sha256": "f1ef7a859baa805c9917635cf4644ea1b4c5f13f9b9c3af6af2e1ce190be2ad2"
+      "sha256": "7b448de82b7e79c8766e94bcbff953104b0fed695188e0b090fbbb976de7b046"
     },
     {
       "file": "meshes/monitor-shell-upper.stl",
@@ -325,7 +325,7 @@
     },
     {
       "file": "meshes/keyboard-plate.stl",
-      "sha256": "1b9b48801605b57ad3f8fc3d18438367fdff9ce070137d9b9f65d515f59797b5"
+      "sha256": "4a85b047dd280ba723a47e7a27b703596871f2c18efdd066d74f6ed97d793de0"
     },
     {
       "file": "meshes/monitor-fasteners.stl",
@@ -465,11 +465,11 @@
     },
     {
       "file": "meshes/keyboard-insulators.stl",
-      "sha256": "4a8dff43e39325fe3fc388edce9a7c4a67f2b04382c2051cd3f5c09113ccb22a"
+      "sha256": "372efe71dc6f7bfe77147c1f69c01c0fe1c735e5c1af47ffa4c9e32ff7230324"
     },
     {
       "file": "meshes/keyboard-matrix-artwork.stl",
-      "sha256": "0ee8344fdaa4e9be334bedfb431212dbacfbda10dfe956b1181c8fbf9a69ef14"
+      "sha256": "db99e0e8cd834c6294b4b1a3a5e7fc0657a51191320aabf2bc9f34b4f0e8250f"
     },
     {
       "file": "meshes/system-foot-metal.stl",
@@ -509,39 +509,39 @@
     },
     {
       "file": "meshes/keycap-0.stl",
-      "sha256": "3e378a808c7b84ed0a4611475018fb766011820113336c969b2721b1b15206aa"
+      "sha256": "4a50b0c37013ffd5a50dd7d032560eed8abf5fc357c0469983003822b4ca84aa"
     },
     {
       "file": "meshes/keycap-0-insert.stl",
-      "sha256": "b6d644a7080b4528c545b2cf8b6329e1a1e4232a9dd2003bdb2bfd9cacfeeb97"
+      "sha256": "c698cf658f851953603b7fcfc7f04ecc171c9d9c41586bc54ee44ef3c9b906fe"
     },
     {
       "file": "meshes/keycap-1.stl",
-      "sha256": "4e2015f4ed0cab194c00d5bc878ce4c2efe146fbae6d4595bb13ace05a92293f"
+      "sha256": "a9cebefec4e104b615a2e191ca5e3d9e2b7efda211ef8ead0bb8bc1031f7a17b"
     },
     {
       "file": "meshes/keycap-2.stl",
-      "sha256": "818351656f0bc763d5b73431b6af8abde5d1a5e1ca8a3df1b4af71442dcc3224"
-    },
-    {
-      "file": "meshes/keycap-2-insert.stl",
-      "sha256": "94cf8df8552e334b6fc319542fa9e86ba7c19bb230ce99e5bd824c4c94697d44"
+      "sha256": "75db3b2728d30d31457e5d1ff62f884f2445f18595b3230e1beff4cee12b8d80"
     },
     {
       "file": "meshes/keycap-3.stl",
-      "sha256": "da9d4d8d5e2b156f68de4473738479dc12fe3704f7aa9ac1860a97d55f00fb11"
+      "sha256": "fd6743f287fba099022074f000dfac6b52087c3bdc72fbf8ea304bc908dc6bc9"
     },
     {
       "file": "meshes/keycap-4.stl",
-      "sha256": "2e2b88e41cf528dbd20987b4a178420cea2ff991f157b665e61816fd1b6ad03c"
+      "sha256": "a63c62e6a0e990cd8f89ef14729c0dcb2c300ef0c9abf583af729d3a7e739a7c"
     },
     {
       "file": "meshes/keycap-5.stl",
-      "sha256": "4e2015f4ed0cab194c00d5bc878ce4c2efe146fbae6d4595bb13ace05a92293f"
+      "sha256": "9ad84b3b2ad232a0341f5f85f9f7895a929881d499b6c293fa6d9d8d3491462f"
     },
     {
       "file": "meshes/keycap-6.stl",
-      "sha256": "f0b78de60ccd4cdfa60baf68427dd901df1f56cad55202741fc2f2bb0cc187dc"
+      "sha256": "aabb1e34ad8fe565bca357c2b9a5f167f887ccc367bb474198b476639c90b580"
+    },
+    {
+      "file": "meshes/keycap-7.stl",
+      "sha256": "d80980b8b71274b90ddfed72a684b0cc42441d8dfc9b795b6d15e4582389aa9f"
     },
     {
       "file": "photos/PXL_20250212_094033966.jpg",
@@ -825,23 +825,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "7cd9d881beedb749ce3dd6a1c5c8e56c9cf409d4a36e735a3d3482b7e39888d2"
+      "sha256": "72c741ba9f9f214dc5c93f2f07670daa9be7227750a2a7d846549b5792725e98"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "5a79a5b07931d75914587e7f73e7bbf3a2e29089868329ebb8eec2af8fff60d5"
+      "sha256": "236588f2039f0673cb4073711c0069d6374854c9b2c1e14e6f1df753c193b16a"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "eebceb956cbaa2383ece53a65998257714173de1859884bce943a4e7f0fc8752"
+      "sha256": "e214b226c578c9a56108bc37cd38109a5925a53f56d8ea8ea847d6b760773251"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "3875998a55a8a3c2d1169ea124d37da528a450df2410a70fd81ccd4905d0819e"
+      "sha256": "f4f2f0ce3005c486476b5b53e7dc3ede09baa85d78391d173d69b4fac727f51f"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "c9509df24de560b67bb1ba9243e6ed888692eefb6457fb274ed51db8eec895ff"
+      "sha256": "ed0adb9c0d0993de92108b55b80bddf3a31ef47655e15a4d539600651d1e3925"
     }
   ]
 }
