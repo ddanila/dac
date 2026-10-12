@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "cableParking": [
     0,
     18,
@@ -18882,14 +18882,14 @@
       "name": "case-base",
       "file": "meshes/case-base.stl",
       "color": "#b6ae93",
-      "sha256": "bfcaf20cf365a7fbfc1f887caa2b89b5e7f4d97b64fd649f4562432030be1140",
+      "sha256": "b1914b97323f8ace41288323656a565ef1fb5528531eff5b18cc50d46c6d8614",
       "material": "paint"
     },
     {
       "name": "case-lid",
       "file": "meshes/case-lid.stl",
       "color": "#b6ae93",
-      "sha256": "8e9563b7b4c63aaa9dbbca16679232560f28ef1838e28a44fc6f352d25692ce2",
+      "sha256": "91e9ad5fd8e957397fc205c7605f8eae4669098efec6060103bb6ab735292e16",
       "material": "paint"
     },
     {
@@ -18924,7 +18924,7 @@
       "name": "pedestal",
       "file": "meshes/pedestal.stl",
       "color": "#b6ae93",
-      "sha256": "64329b43a4fa6bd5ccc47ad347b75774770d6e7afbcd75f6ad547577e63c195a",
+      "sha256": "a42a83e11f78dc34e8fe04fa38e2a4cf9cb0cb65929a19ed19f2bed15990ab3e",
       "material": "paint"
     },
     {
@@ -18938,7 +18938,7 @@
       "name": "monitor-shell-lower",
       "file": "meshes/monitor-shell-lower.stl",
       "color": "#b6ae93",
-      "sha256": "5f798b0a7de3a60e1570fabbeb118817336ed7984246bd7e30129a2abf7937e7",
+      "sha256": "88264381118a9d2cb41524634637f267e649e94946c809d931284b3780e8d37e",
       "material": "paint"
     },
     {
@@ -18980,7 +18980,7 @@
       "name": "hardware",
       "file": "meshes/hardware.stl",
       "color": "#242725",
-      "sha256": "d434cbe00fa6e155628af7b5bc6a480165de828eddd75124f3f05cb04a6077a7",
+      "sha256": "e9be0c904cec7d31a99969aeef0edbaab2d88039b46caa15c51846daa58025b2",
       "material": "rubber"
     },
     {
@@ -19022,29 +19022,29 @@
       "name": "keyboard-bottom",
       "file": "meshes/keyboard-bottom.stl",
       "color": "#9daeb1",
-      "sha256": "b04493ea87da2be974e8784c2a90eefcecc7d41d8de5503b449bd55b9231b1c6",
+      "sha256": "07eee108ed4fe6f286319175d71e72d106bd3c8f0bff2302829b4b14df3bf634",
       "material": "paint"
     },
     {
       "name": "keyboard-feet",
       "file": "meshes/keyboard-feet.stl",
       "color": "#252928",
-      "sha256": "da07e7ce981932e1d940adf9fc01a429a103bab3e010ed59ee9617bf471b03e1",
+      "sha256": "ea900fa5be4732997c5a372cbb23c65cbe19c18681889f9215cdd4ecbd564a5e",
       "material": "rubber"
     },
     {
       "name": "keyboard-metal",
       "file": "meshes/keyboard-metal.stl",
       "color": "#96988f",
-      "sha256": "3ce524872cdbf8cee7541cdaeeddb02947a616d645350fa8df5096a27746970c",
+      "sha256": "22dc9b24348989bb503446a207e3dd57e81c1b3d891f3af07b8022acf8e73c5b",
       "material": "metal"
     },
     {
       "name": "keyboard-grommet",
       "file": "meshes/keyboard-grommet.stl",
       "color": "#30312e",
-      "sha256": "4cd8bc02585354dfe2dbf4cf71b94dae85a1b7049fac0f1e117ca4fc5523cf91",
-      "material": "rubber"
+      "sha256": "5cc4da5727b7d922379b16cf2a5c202e261733c21a8e2d67730385472435e30f",
+      "material": "metal"
     },
     {
       "name": "keyboard-fillers",
@@ -19246,7 +19246,7 @@
       "name": "keyboard-pcb",
       "file": "meshes/keyboard-pcb.stl",
       "color": "#346750",
-      "sha256": "f7cb248e42f776c178c7fdfc8a276b872ae96274099afe754a81aa91ff83a70a",
+      "sha256": "2a31b2e2c59bc961d95b5d0c4d93abf109955b3cedb074ce4751bbf5175deb87",
       "section": "interior",
       "material": "pcb"
     },
@@ -19262,7 +19262,7 @@
       "name": "monitor-shell-upper",
       "file": "meshes/monitor-shell-upper.stl",
       "color": "#b6ae93",
-      "sha256": "f51e34f264f7e4d02b34d9794eada9f7f899dde9c133c1a23407cec02bca1219",
+      "sha256": "bf89c0d3e9ab01aa9e8735497eea7c7f1c996fd1b2da9507d5e1c7c2c6ec130d",
       "material": "paint"
     },
     {
@@ -19487,7 +19487,7 @@
       "name": "keyboard-plate",
       "file": "meshes/keyboard-plate.stl",
       "color": "#929b97",
-      "sha256": "e71c7f5e041a50a53ab802a1ac059d7f74021ce8ea563fcc557d2f4dafc30c59",
+      "sha256": "1b9b48801605b57ad3f8fc3d18438367fdff9ce070137d9b9f65d515f59797b5",
       "section": "interior",
       "material": "metal"
     },
@@ -19724,6 +19724,149 @@
       "sha256": "6c7dcd3e2f38cf66b05bdcaa02d7272d977c8bdb5e1e94b15672ed8f7f9aa828",
       "section": "interior",
       "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-board",
+      "file": "meshes/keyboard-controller-board.stl",
+      "color": "#aaa982",
+      "sha256": "df1fbd7c2d263593ae14d3b0ffde319449f70715802bc29327ae438efb93eccb",
+      "section": "interior",
+      "material": "pcb"
+    },
+    {
+      "name": "keyboard-controller-chips",
+      "file": "meshes/keyboard-controller-chips.stl",
+      "color": "#272a2b",
+      "sha256": "15506c2575ef1e53e2f2b1b47c838eb64fb7ec2cd149bf1a9a181083e96956aa",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-ceramic",
+      "file": "meshes/keyboard-controller-ceramic.stl",
+      "color": "#ad8875",
+      "sha256": "eed24bf08aa0f69d7300cdd6ef7dd5993ab5988995ddef7600bd236a4c9458d3",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-rom-cover",
+      "file": "meshes/keyboard-controller-rom-cover.stl",
+      "color": "#168dcc",
+      "sha256": "b42eeda96ff398fee7c636aa197afc0a04b0f05f8fc9b358b4ea010a5c2d4bd4",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-connectors",
+      "file": "meshes/keyboard-controller-connectors.stl",
+      "color": "#c4ceca",
+      "sha256": "2d256cd13a93b6de721a8abc85018e89b0118ee7de1eb6ac1dafa12f162189b8",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-caps",
+      "file": "meshes/keyboard-controller-caps.stl",
+      "color": "#23383b",
+      "sha256": "cbb2c56538f4407a22ce09eb438b91e4f70385e3074fba401ea704deb6b89313",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-metal",
+      "file": "meshes/keyboard-controller-metal.stl",
+      "color": "#b8bbb4",
+      "sha256": "c5d9d7b289ab7afc24c2d1542ac3a72bb124748f1821051b4d36572256c246fd",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "keyboard-controller-ink",
+      "file": "meshes/keyboard-controller-ink.stl",
+      "color": "#c8c8bd",
+      "sha256": "c485c958e894641a73f9cdcf5413178173aed828838f9cd013e906945138876a",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-insulators",
+      "file": "meshes/keyboard-insulators.stl",
+      "color": "#59424a",
+      "sha256": "4a8dff43e39325fe3fc388edce9a7c4a67f2b04382c2051cd3f5c09113ccb22a",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-matrix-artwork",
+      "file": "meshes/keyboard-matrix-artwork.stl",
+      "color": "#487856",
+      "sha256": "0ee8344fdaa4e9be334bedfb431212dbacfbda10dfe956b1181c8fbf9a69ef14",
+      "section": "interior",
+      "material": "pcb"
+    },
+    {
+      "name": "system-foot-metal",
+      "file": "meshes/system-foot-metal.stl",
+      "color": "#b5b9b2",
+      "sha256": "a61c6d2099a565d699083eb13d176e3bca54723c7cba7d4b9599ef3652f2c0d7",
+      "material": "plated-steel"
+    },
+    {
+      "name": "monitor-under-controls",
+      "file": "meshes/monitor-under-controls.stl",
+      "color": "#252928",
+      "sha256": "fb5287a203273ec6edf3c8a4276ecaf2e2d909904fe651d8a37a5400ed85213d",
+      "material": "plastic"
+    },
+    {
+      "name": "monitor-stand-metal",
+      "file": "meshes/monitor-stand-metal.stl",
+      "color": "#b5b9b2",
+      "sha256": "1de40b653faf242622fe9586057e3381f9529dcbd7a56b8c4ef5029993850189",
+      "material": "plated-steel"
+    },
+    {
+      "name": "rear-socket-bodies",
+      "file": "meshes/rear-socket-bodies.stl",
+      "color": "#c4ceca",
+      "sha256": "10ea31aaadd9a0101f8fe385cd3969d2f27b616b9ead9a40a0970732a028728e",
+      "material": "plastic"
+    },
+    {
+      "name": "rear-socket-contacts",
+      "file": "meshes/rear-socket-contacts.stl",
+      "color": "#b5ad7f",
+      "sha256": "730971d041df64d954279260471a796ab4d45e0cb62dadc6d1dde26abe2d7c61",
+      "material": "plated-steel"
+    },
+    {
+      "name": "rear-power-black",
+      "file": "meshes/rear-power-black.stl",
+      "color": "#252928",
+      "sha256": "4ae03e832865b7f475f3ecb3c635d2b2f6e250ad9f1467a462176c897c25af4e",
+      "material": "plastic"
+    },
+    {
+      "name": "rear-blanking-plates",
+      "file": "meshes/rear-blanking-plates.stl",
+      "color": "#babdb7",
+      "sha256": "f4063ec19b5bd5332a76abb91e0572039315fccfc2af957a706447ab046d8240",
+      "material": "plated-steel"
+    },
+    {
+      "name": "rear-legends",
+      "file": "meshes/rear-legends.stl",
+      "color": "#67685f",
+      "sha256": "2e113b1e3454c1766caa189b0130cb51ebd2bde14003c192c10a467ced8974bb",
+      "material": "paint"
+    },
+    {
+      "name": "rear-panel",
+      "file": "meshes/rear-panel.stl",
+      "color": "#a19e8b",
+      "sha256": "e74899dbd27dfa70e57e658d510bab69451ee55671204fb13c1678251d4cdca9",
+      "material": "paint"
     }
   ],
   "keys": [
@@ -23527,43 +23670,6 @@
       "ink": true
     },
     {
-      "name": "keyboard-corner-wear",
-      "photo": "PXL_20261009_132919894.jpg",
-      "position": [
-        242,
-        -263,
-        38.3
-      ],
-      "size": [
-        6,
-        5
-      ],
-      "rotation": [
-        6,
-        0,
-        0
-      ],
-      "feather": true,
-      "uv": [
-        [
-          0.9162418062636563,
-          0.9347587719298246
-        ],
-        [
-          0.9162418062636563,
-          0.9550438596491229
-        ],
-        [
-          0.8943918426802622,
-          0.9550438596491229
-        ],
-        [
-          0.8943918426802622,
-          0.9347587719298246
-        ]
-      ]
-    },
-    {
       "name": "drive-label-ratan",
       "photo": "PXL_20250212_094043026.jpg",
       "uv": [
@@ -24013,7 +24119,14 @@
     "PXL_20250212_094033966.jpg",
     "PXL_20250212_094109733.jpg",
     "PXL_20250212_094038758.jpg",
-    "PXL_20250212_094103763.jpg"
+    "PXL_20250212_094103763.jpg",
+    "PXL_20261012_123622947.jpg",
+    "PXL_20261012_123907435.jpg",
+    "PXL_20261012_125132359.MP.jpg",
+    "PXL_20261012_125413618.jpg",
+    "PXL_20261012_125417620.jpg",
+    "PXL_20261012_131106217.jpg",
+    "PXL_20261012_123729356.jpg"
   ],
   "pcbReferences": [
     {

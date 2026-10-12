@@ -1,4 +1,8 @@
 export function componentDetail(name) {
+  if (/^keyboard-(controller-|insulators|matrix-artwork)/.test(name)) return "component-keyboard";
+  if (name.startsWith("rear-")) return "back";
+  if (["monitor-under-controls", "monitor-stand-metal"].includes(name)) return "monitor";
+  if (name === "system-foot-metal") return "under";
   if (name.startsWith("drive-head-")) return "focus-head";
   if (name.startsWith("drive-spindle-")) return "focus-spindle";
   if (/^drive-(clamp|latch)-/.test(name)) return "focus-clamp";

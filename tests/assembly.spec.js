@@ -155,3 +155,34 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
   expect(result.prototype).toBe(false);
   expect(result.opacity).toBe(1);
 });
+
+test("owner controller separates as one assembly and monitor underside follows its shell", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const state = await page.evaluate(async () => {
+    const { loadRobotron } = await import("/src/robotron-model.js");
+    const { Texture } = await import("/node_modules/three/build/three.module.js");
+    const model = await loadRobotron(new Texture());
+    const parts = [...model.objects].filter(([name]) => name.startsWith("keyboard-controller-"));
+    model.inspect({ keyboardOpen: true, isolated: "keyboard" });
+    model.tick();
+    const opened = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
+    model.inspect({ keyboardOpen: false, isolated: "all" });
+    model.tick();
+    const closed = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
+    model.interior(true);
+    model.tick();
+    const moved = ["monitor-shell-lower", "monitor-under-controls", "monitor-stand-metal"].map(name => model.objects.get(name).position.toArray());
+    model.interior(false);
+    model.tick();
+    const restored = ["monitor-under-controls", "monitor-stand-metal"].map(name => model.objects.get(name).position.toArray());
+    return { opened, closed, moved, restored };
+  });
+  expect(state.opened.length).toBeGreaterThan(1);
+  expect(state.opened.every(p => p.visible && p.position[2] > 0)).toBe(true);
+  expect(new Set(state.opened.map(p => JSON.stringify(p.position))).size).toBe(1);
+  expect(state.closed.every(p => !p.visible && p.position.every(v => v === 0))).toBe(true);
+  expect(state.moved[1]).toEqual(state.moved[0]);
+  expect(state.moved[2]).toEqual(state.moved[0]);
+  expect(state.restored.every(p => p.every(v => v === 0))).toBe(true);
+});
