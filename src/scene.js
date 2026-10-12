@@ -64,17 +64,17 @@ export function createScene(
   light.shadow.camera.right = light.shadow.camera.top = 1.35;
   light.shadow.camera.near = 0.5;
   light.shadow.camera.far = 10;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = softwareRendering ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
   scene.add(light);
   const inspectionLight = new THREE.DirectionalLight(0xe4eeff, 0.65);
   inspectionLight.position.set(1, -2, 2);
   scene.add(inspectionLight);
   // A grazing rear light reveals connector lips, metal plates and the shell
-  // joint. Both shadow maps refresh only when geometry or visibility changes.
+  // joint. CPU renderers retain one cached shadow map; GPU renderers add the rear map.
   const rearLight = new THREE.DirectionalLight(0xf2f4ff, 1.5);
   rearLight.position.set(-1.5, 2.2, -3);
   rearLight.target.position.set(0, 0.3, -0.3);
-  rearLight.castShadow = true;
+  rearLight.castShadow = !softwareRendering;
   rearLight.shadow.mapSize.set(shadowSize / 2, shadowSize / 2);
   rearLight.shadow.bias = -0.0001;
   rearLight.shadow.normalBias = 0.0002;

@@ -6,7 +6,7 @@ export function scopeFor(files) {
   const visual = files.length && files.every(file =>
     file.startsWith('public/models/') || file.startsWith('exhibits/') ||
     file.endsWith('.md') || file === '.github/workflows/site.yml' || file === 'scripts/ci-scope.mjs' ||
-    /^src\/(robotron-(model|materials|interior)|component-detail|inspection)\.js$/.test(file) ||
+    /^src\/(robotron-(model|materials|interior)|component-detail|inspection|scene)\.js$/.test(file) ||
     (file.startsWith('tests/') && visualTests.test(file.slice(6))));
   return visual ? 'visual' : 'full';
 }
