@@ -61,7 +61,9 @@ The next owner ZIP contains three side views. Black caps now have a square flang
 The monitor's mid-height joint uses an inset dark lip following the shell taper.
 Paint, plastic, rubber and plated metal have distinct finishes. Tighter cached
 shadow maps and a grazing rear light reveal socket lips and small recesses;
-software rendering retains smaller maps and its existing resolution cap.
+software rendering retains one smaller PCF shadow map and its existing resolution cap.
+The second shadow map and softer filtering are reserved for hardware renderers;
+they made the hosted software renderer exceed interaction-test deadlines.
 Rear outline lettering is mipmapped from the canonical CAD text/coordinates.
 The main Rear view fits the visible assembly, while Rear sockets fits the panel.
 View controls occupy their own row below the canvas, including on mobile.
