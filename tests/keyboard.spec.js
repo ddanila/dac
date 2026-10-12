@@ -163,7 +163,7 @@ for (const gesture of ["click", "drag", "cancel"]) {
   });
 }
 
-test("inspection separates the exterior and identifies missing rear references", async ({
+test("inspection separates the exterior and links owner rear references", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -179,9 +179,10 @@ test("inspection separates the exterior and identifies missing rear references",
   await page.locator("#open-case").uncheck();
   await page.getByRole("button", { name: "Rear", exact: true }).click();
   await expect(page.locator("#inspection-text")).toContainText(
-    "intentionally absent",
+    "October 12 photos",
   );
-  await expect(page.locator("#reference-photo")).toBeHidden();
+  await expect(page.locator("#reference-photo")).toBeVisible();
+  await expect(page.locator("#reference-photo")).toHaveAttribute("href", /20261012_125413618/);
 });
 
 test("a static exhibit stops submitting GPU draws", async ({ page }) => {
