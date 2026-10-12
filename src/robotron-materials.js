@@ -70,7 +70,7 @@ export function legendLayout(key, pitch = 20) {
     height: Math.min(key.height * pitch - 8, 18),
   };
 }
-export function legendAtlas(keys) {
+export function legendAtlas(keys, pitch = 20) {
   const cell = 128,
     columns = 10;
   const canvas = document.createElement("canvas");
@@ -78,7 +78,7 @@ export function legendAtlas(keys) {
   canvas.height = Math.ceil(keys.length / columns) * cell;
   const ctx = canvas.getContext("2d");
   keys.forEach((key, i) => {
-    const { width, height } = legendLayout(key);
+    const { width, height } = legendLayout(key, pitch);
     ctx.save();
     ctx.translate((i % columns) * cell, Math.floor(i / columns) * cell);
     // Draw in physical millimetres; long caps must not stretch their letters.
@@ -88,7 +88,7 @@ export function legendAtlas(keys) {
     ctx.textBaseline = "alphabetic";
     const lines = key.legend || [key.label];
     const longest = Math.max(1, ...lines.map((s) => s.length));
-    let size = lines.length > 1 || longest > 2 ? 4 : 6;
+    let size = key.style === 1 ? 4 : lines.length > 1 ? 5 : longest > 2 ? 6 : 8;
     const font = () =>
       (ctx.font = `${key.style === 1 ? 500 : 400} ${size}px Arial, sans-serif`);
     font();

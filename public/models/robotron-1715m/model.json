@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 17,
   "cableParking": [
     0,
     18,
@@ -18969,14 +18969,14 @@
       "name": "keyboard-shell",
       "file": "meshes/keyboard-shell.stl",
       "color": "#9daeb1",
-      "sha256": "0c1758a08a0c18cb33609e801a0bc9c57c4305d2625f1c34d00bdb03c56be936",
+      "sha256": "4784aaae4370b4bc5443fc854cb79560786f3b798d15588d45858144436d97fa",
       "material": "paint"
     },
     {
       "name": "keyboard-deck",
       "file": "meshes/keyboard-deck.stl",
       "color": "#242929",
-      "sha256": "607f4eb779dedbc378400a5399d4ef331abcd8ad3b67308ef8d8da5b914e4829",
+      "sha256": "307b09e179ae2aef751e38e162960e2003fa80255ebb87db7c7569794324e9e4",
       "material": "aged-plastic"
     },
     {
@@ -19053,7 +19053,7 @@
       "name": "keyboard-fillers",
       "file": "meshes/keyboard-fillers.stl",
       "color": "#242929",
-      "sha256": "61b7b0f253f1caa8bd0cfdec8baf360c4cb64409611da7f7792469b1643dc4f4",
+      "sha256": "7474c3f5318d15e8f7b58db855e45d1decd46f7ade6f61275025317bcd0e88ae",
       "material": "plastic"
     },
     {
@@ -19249,7 +19249,7 @@
       "name": "keyboard-pcb",
       "file": "meshes/keyboard-pcb.stl",
       "color": "#91ae94",
-      "sha256": "2a31b2e2c59bc961d95b5d0c4d93abf109955b3cedb074ce4751bbf5175deb87",
+      "sha256": "c5aad912ad476d32484badb83f7a2c6ae35fb08a0e18002955ff3d5223db69a5",
       "section": "interior",
       "material": "pcb"
     },
@@ -19257,7 +19257,7 @@
       "name": "keyboard-switches",
       "file": "meshes/keyboard-switches.stl",
       "color": "#30352f",
-      "sha256": "f1ef7a859baa805c9917635cf4644ea1b4c5f13f9b9c3af6af2e1ce190be2ad2",
+      "sha256": "7b448de82b7e79c8766e94bcbff953104b0fed695188e0b090fbbb976de7b046",
       "section": "interior",
       "material": "plastic"
     },
@@ -19489,8 +19489,8 @@
     {
       "name": "keyboard-plate",
       "file": "meshes/keyboard-plate.stl",
-      "color": "#929b97",
-      "sha256": "1b9b48801605b57ad3f8fc3d18438367fdff9ce070137d9b9f65d515f59797b5",
+      "color": "#242929",
+      "sha256": "4a85b047dd280ba723a47e7a27b703596871f2c18efdd066d74f6ed97d793de0",
       "section": "interior",
       "material": "metal"
     },
@@ -19796,7 +19796,7 @@
       "name": "keyboard-insulators",
       "file": "meshes/keyboard-insulators.stl",
       "color": "#59424a",
-      "sha256": "4a8dff43e39325fe3fc388edce9a7c4a67f2b04382c2051cd3f5c09113ccb22a",
+      "sha256": "372efe71dc6f7bfe77147c1f69c01c0fe1c735e5c1af47ffa4c9e32ff7230324",
       "section": "interior",
       "material": "plastic"
     },
@@ -19804,7 +19804,7 @@
       "name": "keyboard-matrix-artwork",
       "file": "meshes/keyboard-matrix-artwork.stl",
       "color": "#487856",
-      "sha256": "0ee8344fdaa4e9be334bedfb431212dbacfbda10dfe956b1181c8fbf9a69ef14",
+      "sha256": "db99e0e8cd834c6294b4b1a3a5e7fc0657a51191320aabf2bc9f34b4f0e8250f",
       "section": "interior",
       "material": "pcb"
     },
@@ -19876,35 +19876,36 @@
     {
       "id": "key-000",
       "row": 0,
-      "u": 0.75,
+      "u": 0.5,
       "label": "ALT",
-      "x": -232.0,
-      "y": 35.0,
-      "width": 1.5,
+      "x": -225.25,
+      "y": 22.0,
+      "width": 1,
       "height": 1,
       "style": 1,
       "photo": "PXL_20261009_132916421.MP.jpg",
       "uv": [
         [
           0.6649672250546249,
-          0.10169956140350878
+          0.11348684210526316
         ],
         [
           0.6649672250546249,
-          0.17242324561403508
+          0.16063596491228072
         ],
         [
           0.6023306627822287,
-          0.17242324561403508
+          0.16063596491228072
         ],
         [
           0.6023306627822287,
-          0.10169956140350878
+          0.11348684210526316
         ]
       ],
       "input": {
         "unsupported": "This key\u2019s specimen-specific encoding is not verified yet."
       },
+      "topWidth": 0,
       "legend": [
         "ALT"
       ],
@@ -19914,10 +19915,10 @@
     {
       "id": "key-001",
       "row": 0,
-      "u": 2,
+      "u": 1.5,
       "label": "1",
-      "x": -207.0,
-      "y": 35.0,
+      "x": -205.75,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -19945,6 +19946,7 @@
         "shiftCode": 33,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "!",
         "1"
@@ -19954,10 +19956,10 @@
     {
       "id": "key-002",
       "row": 0,
-      "u": 3,
+      "u": 2.5,
       "label": "2",
-      "x": -187.0,
-      "y": 35.0,
+      "x": -186.25,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -19985,6 +19987,7 @@
         "shiftCode": 34,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "\"",
         "2"
@@ -19994,10 +19997,10 @@
     {
       "id": "key-003",
       "row": 0,
-      "u": 4,
+      "u": 3.5,
       "label": "3",
-      "x": -167.0,
-      "y": 35.0,
+      "x": -166.75,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20025,6 +20028,7 @@
         "shiftCode": 35,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "#",
         "3"
@@ -20034,10 +20038,10 @@
     {
       "id": "key-004",
       "row": 0,
-      "u": 5,
+      "u": 4.5,
       "label": "4",
-      "x": -147.0,
-      "y": 35.0,
+      "x": -147.25,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20065,6 +20069,7 @@
         "shiftUnsupported": true,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "\u00a4",
         "4"
@@ -20074,10 +20079,10 @@
     {
       "id": "key-005",
       "row": 0,
-      "u": 6,
+      "u": 5.5,
       "label": "5",
-      "x": -127.0,
-      "y": 35.0,
+      "x": -127.75,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20105,6 +20110,7 @@
         "shiftCode": 37,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "%",
         "5"
@@ -20114,10 +20120,10 @@
     {
       "id": "key-006",
       "row": 0,
-      "u": 7,
+      "u": 6.5,
       "label": "6",
-      "x": -107.0,
-      "y": 35.0,
+      "x": -108.25,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20145,6 +20151,7 @@
         "shiftCode": 38,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "&",
         "6"
@@ -20154,10 +20161,10 @@
     {
       "id": "key-007",
       "row": 0,
-      "u": 8,
+      "u": 7.5,
       "label": "7",
-      "x": -87.0,
-      "y": 35.0,
+      "x": -88.75,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20185,6 +20192,7 @@
         "shiftCode": 39,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "'",
         "7"
@@ -20194,10 +20202,10 @@
     {
       "id": "key-008",
       "row": 0,
-      "u": 9,
+      "u": 8.5,
       "label": "8",
-      "x": -67.0,
-      "y": 35.0,
+      "x": -69.25,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20225,6 +20233,7 @@
         "shiftCode": 40,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "(",
         "8"
@@ -20234,10 +20243,10 @@
     {
       "id": "key-009",
       "row": 0,
-      "u": 10,
+      "u": 9.5,
       "label": "9",
-      "x": -47.0,
-      "y": 35.0,
+      "x": -49.75,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20265,6 +20274,7 @@
         "shiftCode": 41,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         ")",
         "9"
@@ -20274,10 +20284,10 @@
     {
       "id": "key-010",
       "row": 0,
-      "u": 11,
+      "u": 10.5,
       "label": "0",
-      "x": -27.0,
-      "y": 35.0,
+      "x": -30.25,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20305,6 +20315,7 @@
         "shiftCode": 95,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "_",
         "0"
@@ -20314,10 +20325,10 @@
     {
       "id": "key-011",
       "row": 0,
-      "u": 12,
+      "u": 11.5,
       "label": "\u00df",
-      "x": -7.0,
-      "y": 35.0,
+      "x": -10.75,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20343,6 +20354,7 @@
       "input": {
         "unsupported": "This key\u2019s specimen-specific encoding is not verified yet."
       },
+      "topWidth": 0,
       "legend": [
         "?",
         "\u00df"
@@ -20352,10 +20364,10 @@
     {
       "id": "key-012",
       "row": 0,
-      "u": 13,
+      "u": 12.5,
       "label": "^",
-      "x": 13.0,
-      "y": 35.0,
+      "x": 8.75,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20383,6 +20395,7 @@
         "shiftUnsupported": true,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "_",
         "^"
@@ -20392,47 +20405,48 @@
     {
       "id": "key-013",
       "row": 0,
-      "u": 14,
+      "u": 13.75,
       "label": "R",
-      "x": 33.0,
-      "y": 35.0,
-      "width": 1,
+      "x": 33.125,
+      "y": 22.0,
+      "width": 1.5,
       "height": 1,
       "style": 0,
       "photo": "PXL_20261009_132919894.jpg",
       "uv": [
         [
           0.6504005826656956,
-          0.20668859649122806
+          0.19490131578947367
         ],
         [
           0.6504005826656956,
-          0.2538377192982456
+          0.265625
         ],
         [
           0.5877640203932993,
-          0.2538377192982456
+          0.265625
         ],
         [
           0.5877640203932993,
-          0.20668859649122806
+          0.19490131578947367
         ]
       ],
       "input": {
         "unsupported": "This key\u2019s specimen-specific encoding is not verified yet."
       },
+      "topWidth": 23,
       "legend": [
         "\u24c7"
       ],
-      "mesh": "keycap-1"
+      "mesh": "keycap-2"
     },
     {
       "id": "key-014",
       "row": 0,
-      "u": 15.5,
+      "u": 15,
       "label": "SI SO",
-      "x": 63.0,
-      "y": 35.0,
+      "x": 57.5,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -20458,20 +20472,21 @@
       "input": {
         "unsupported": "This key\u2019s specimen-specific encoding is not verified yet."
       },
+      "topWidth": 0,
       "legend": [
         "SI",
         "SO"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-015",
       "row": 1,
       "u": 0.75,
       "label": "CTRL",
-      "x": -232.0,
-      "y": 15.0,
+      "x": -220.375,
+      "y": 2.5,
       "width": 1.5,
       "height": 1,
       "style": 0,
@@ -20497,18 +20512,19 @@
       "input": {
         "modifier": "ctrl"
       },
+      "topWidth": 23,
       "legend": [
         "CTRL"
       ],
-      "mesh": "keycap-3"
+      "mesh": "keycap-2"
     },
     {
       "id": "key-016",
       "row": 1,
-      "u": 2.25,
+      "u": 2,
       "label": "Q",
-      "x": -202.0,
-      "y": 15.0,
+      "x": -196.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20536,6 +20552,7 @@
         "shiftCode": 81,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "Q"
       ],
@@ -20544,10 +20561,10 @@
     {
       "id": "key-017",
       "row": 1,
-      "u": 3.25,
+      "u": 3,
       "label": "W",
-      "x": -182.0,
-      "y": 15.0,
+      "x": -176.5,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20575,6 +20592,7 @@
         "shiftCode": 87,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "W"
       ],
@@ -20583,10 +20601,10 @@
     {
       "id": "key-018",
       "row": 1,
-      "u": 4.25,
+      "u": 4,
       "label": "E",
-      "x": -162.0,
-      "y": 15.0,
+      "x": -157.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20614,6 +20632,7 @@
         "shiftCode": 69,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "E"
       ],
@@ -20622,10 +20641,10 @@
     {
       "id": "key-019",
       "row": 1,
-      "u": 5.25,
+      "u": 5,
       "label": "R",
-      "x": -142.0,
-      "y": 15.0,
+      "x": -137.5,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20653,6 +20672,7 @@
         "shiftCode": 82,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "R"
       ],
@@ -20661,10 +20681,10 @@
     {
       "id": "key-020",
       "row": 1,
-      "u": 6.25,
+      "u": 6,
       "label": "T",
-      "x": -122.0,
-      "y": 15.0,
+      "x": -118.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20692,6 +20712,7 @@
         "shiftCode": 84,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "T"
       ],
@@ -20700,10 +20721,10 @@
     {
       "id": "key-021",
       "row": 1,
-      "u": 7.25,
+      "u": 7,
       "label": "Y",
-      "x": -102.0,
-      "y": 15.0,
+      "x": -98.5,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20731,6 +20752,7 @@
         "shiftCode": 89,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "Y"
       ],
@@ -20739,10 +20761,10 @@
     {
       "id": "key-022",
       "row": 1,
-      "u": 8.25,
+      "u": 8,
       "label": "U",
-      "x": -82.0,
-      "y": 15.0,
+      "x": -79.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20770,6 +20792,7 @@
         "shiftCode": 85,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "U"
       ],
@@ -20778,10 +20801,10 @@
     {
       "id": "key-023",
       "row": 1,
-      "u": 9.25,
+      "u": 9,
       "label": "I",
-      "x": -62.0,
-      "y": 15.0,
+      "x": -59.5,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20809,6 +20832,7 @@
         "shiftCode": 73,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "I"
       ],
@@ -20817,10 +20841,10 @@
     {
       "id": "key-024",
       "row": 1,
-      "u": 10.25,
+      "u": 10,
       "label": "O",
-      "x": -42.0,
-      "y": 15.0,
+      "x": -40.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20848,6 +20872,7 @@
         "shiftCode": 79,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "O"
       ],
@@ -20856,10 +20881,10 @@
     {
       "id": "key-025",
       "row": 1,
-      "u": 11.25,
+      "u": 11,
       "label": "P",
-      "x": -22.0,
-      "y": 15.0,
+      "x": -20.5,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20887,6 +20912,7 @@
         "shiftCode": 80,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "P"
       ],
@@ -20895,10 +20921,10 @@
     {
       "id": "key-026",
       "row": 1,
-      "u": 12.25,
+      "u": 12,
       "label": "@",
-      "x": -2.0,
-      "y": 15.0,
+      "x": -1.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20926,6 +20952,7 @@
         "shiftUnsupported": true,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "@"
       ],
@@ -20934,10 +20961,10 @@
     {
       "id": "key-027",
       "row": 1,
-      "u": 13.25,
+      "u": 13,
       "label": "{",
-      "x": 18.0,
-      "y": 15.0,
+      "x": 18.5,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -20965,6 +20992,7 @@
         "shiftCode": 123,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "{",
         "["
@@ -20974,10 +21002,10 @@
     {
       "id": "key-028",
       "row": 1,
-      "u": 14.25,
+      "u": 14,
       "label": "Tab",
       "x": 38.0,
-      "y": 15.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21003,6 +21031,7 @@
       "input": {
         "code": 128
       },
+      "topWidth": 0,
       "legend": [
         "\u2192"
       ],
@@ -21011,10 +21040,10 @@
     {
       "id": "key-029",
       "row": 1,
-      "u": 15.5,
+      "u": 15,
       "label": "INS",
-      "x": 63.0,
-      "y": 15.0,
+      "x": 57.5,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -21040,19 +21069,20 @@
       "input": {
         "code": 130
       },
+      "topWidth": 0,
       "legend": [
         "INS"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-030",
       "row": 1,
-      "u": 16.5,
+      "u": 16,
       "label": "DEL",
-      "x": 83.0,
-      "y": 15.0,
+      "x": 77.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -21078,54 +21108,56 @@
       "input": {
         "code": 127
       },
+      "topWidth": 0,
       "legend": [
         "DEL"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-031",
       "row": 2,
-      "u": 1,
+      "u": 1.125,
       "label": "Caps Lock",
-      "x": -227.0,
-      "y": -5.0,
-      "width": 1,
+      "x": -213.0625,
+      "y": -17.0,
+      "width": 1.25,
       "height": 1,
       "style": 0,
       "photo": "PXL_20261009_132916421.MP.jpg",
       "uv": [
         [
           0.4981791697013838,
-          0.15899122807017543
+          0.15309758771929824
         ],
         [
           0.4981791697013838,
-          0.20614035087719298
+          0.21203399122807018
         ],
         [
           0.4355426074289876,
-          0.20614035087719298
+          0.21203399122807018
         ],
         [
           0.4355426074289876,
-          0.15899122807017543
+          0.15309758771929824
         ]
       ],
       "input": {
         "modifier": "caps"
       },
+      "topWidth": 18,
       "legend": [],
-      "mesh": "keycap-1"
+      "mesh": "keycap-3"
     },
     {
       "id": "key-032",
       "row": 2,
       "u": 2.25,
       "label": "A",
-      "x": -202.0,
-      "y": -5.0,
+      "x": -191.125,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21153,6 +21185,7 @@
         "shiftCode": 65,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "A"
       ],
@@ -21163,8 +21196,8 @@
       "row": 2,
       "u": 3.25,
       "label": "S",
-      "x": -182.0,
-      "y": -5.0,
+      "x": -171.625,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21192,6 +21225,7 @@
         "shiftCode": 83,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "S"
       ],
@@ -21202,8 +21236,8 @@
       "row": 2,
       "u": 4.25,
       "label": "D",
-      "x": -162.0,
-      "y": -5.0,
+      "x": -152.125,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21231,6 +21265,7 @@
         "shiftCode": 68,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "D"
       ],
@@ -21241,8 +21276,8 @@
       "row": 2,
       "u": 5.25,
       "label": "F",
-      "x": -142.0,
-      "y": -5.0,
+      "x": -132.625,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21270,6 +21305,7 @@
         "shiftCode": 70,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "F"
       ],
@@ -21280,8 +21316,8 @@
       "row": 2,
       "u": 6.25,
       "label": "G",
-      "x": -122.0,
-      "y": -5.0,
+      "x": -113.125,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21309,6 +21345,7 @@
         "shiftCode": 71,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "G"
       ],
@@ -21319,8 +21356,8 @@
       "row": 2,
       "u": 7.25,
       "label": "H",
-      "x": -102.0,
-      "y": -5.0,
+      "x": -93.625,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21348,6 +21385,7 @@
         "shiftCode": 72,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "H"
       ],
@@ -21358,8 +21396,8 @@
       "row": 2,
       "u": 8.25,
       "label": "J",
-      "x": -82.0,
-      "y": -5.0,
+      "x": -74.125,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21387,6 +21425,7 @@
         "shiftCode": 74,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "J"
       ],
@@ -21397,8 +21436,8 @@
       "row": 2,
       "u": 9.25,
       "label": "K",
-      "x": -62.0,
-      "y": -5.0,
+      "x": -54.625,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21426,6 +21465,7 @@
         "shiftCode": 75,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "K"
       ],
@@ -21436,8 +21476,8 @@
       "row": 2,
       "u": 10.25,
       "label": "L",
-      "x": -42.0,
-      "y": -5.0,
+      "x": -35.125,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21465,6 +21505,7 @@
         "shiftCode": 76,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "L"
       ],
@@ -21475,8 +21516,8 @@
       "row": 2,
       "u": 11.25,
       "label": "+",
-      "x": -22.0,
-      "y": -5.0,
+      "x": -15.625,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21504,6 +21545,7 @@
         "shiftCode": 43,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "+",
         ";"
@@ -21515,8 +21557,8 @@
       "row": 2,
       "u": 12.25,
       "label": "*",
-      "x": -2.0,
-      "y": -5.0,
+      "x": 3.875,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21544,6 +21586,7 @@
         "shiftCode": 42,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "*",
         ":"
@@ -21555,8 +21598,8 @@
       "row": 2,
       "u": 13.25,
       "label": "}",
-      "x": 18.0,
-      "y": -5.0,
+      "x": 23.375,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21584,6 +21627,7 @@
         "shiftCode": 125,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "}",
         "]"
@@ -21593,45 +21637,46 @@
     {
       "id": "key-044",
       "row": 3,
-      "u": 0.75,
+      "u": 0.625,
       "label": "Shift",
-      "x": -232.0,
-      "y": -25.0,
-      "width": 1.5,
+      "x": -222.8125,
+      "y": -36.5,
+      "width": 1.25,
       "height": 1,
       "style": 0,
       "photo": "PXL_20261009_132916421.MP.jpg",
       "uv": [
         [
           0.4144209759650401,
-          0.10334429824561403
+          0.10923793859649122
         ],
         [
           0.4144209759650401,
-          0.17406798245614036
+          0.16817434210526316
         ],
         [
           0.35178441369264385,
-          0.17406798245614036
+          0.16817434210526316
         ],
         [
           0.35178441369264385,
-          0.10334429824561403
+          0.10923793859649122
         ]
       ],
       "input": {
         "modifier": "shift"
       },
+      "topWidth": 18,
       "legend": [],
       "mesh": "keycap-3"
     },
     {
       "id": "key-045",
       "row": 3,
-      "u": 2,
+      "u": 1.75,
       "label": "|",
-      "x": -207.0,
-      "y": -25.0,
+      "x": -200.875,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21659,6 +21704,7 @@
         "shiftCode": 124,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "|",
         "\\"
@@ -21668,10 +21714,10 @@
     {
       "id": "key-046",
       "row": 3,
-      "u": 3,
+      "u": 2.75,
       "label": "Z",
-      "x": -187.0,
-      "y": -25.0,
+      "x": -181.375,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21699,6 +21745,7 @@
         "shiftCode": 90,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "Z"
       ],
@@ -21707,10 +21754,10 @@
     {
       "id": "key-047",
       "row": 3,
-      "u": 4,
+      "u": 3.75,
       "label": "X",
-      "x": -167.0,
-      "y": -25.0,
+      "x": -161.875,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21738,6 +21785,7 @@
         "shiftCode": 88,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "X"
       ],
@@ -21746,10 +21794,10 @@
     {
       "id": "key-048",
       "row": 3,
-      "u": 5,
+      "u": 4.75,
       "label": "C",
-      "x": -147.0,
-      "y": -25.0,
+      "x": -142.375,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21777,6 +21825,7 @@
         "shiftCode": 67,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "C"
       ],
@@ -21785,10 +21834,10 @@
     {
       "id": "key-049",
       "row": 3,
-      "u": 6,
+      "u": 5.75,
       "label": "V",
-      "x": -127.0,
-      "y": -25.0,
+      "x": -122.875,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21816,6 +21865,7 @@
         "shiftCode": 86,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "V"
       ],
@@ -21824,10 +21874,10 @@
     {
       "id": "key-050",
       "row": 3,
-      "u": 7,
+      "u": 6.75,
       "label": "B",
-      "x": -107.0,
-      "y": -25.0,
+      "x": -103.375,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21855,6 +21905,7 @@
         "shiftCode": 66,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "B"
       ],
@@ -21863,10 +21914,10 @@
     {
       "id": "key-051",
       "row": 3,
-      "u": 8,
+      "u": 7.75,
       "label": "N",
-      "x": -87.0,
-      "y": -25.0,
+      "x": -83.875,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21894,6 +21945,7 @@
         "shiftCode": 78,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "N"
       ],
@@ -21902,10 +21954,10 @@
     {
       "id": "key-052",
       "row": 3,
-      "u": 9,
+      "u": 8.75,
       "label": "M",
-      "x": -67.0,
-      "y": -25.0,
+      "x": -64.375,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21933,6 +21985,7 @@
         "shiftCode": 77,
         "letter": true
       },
+      "topWidth": 0,
       "legend": [
         "M"
       ],
@@ -21941,10 +21994,10 @@
     {
       "id": "key-053",
       "row": 3,
-      "u": 10,
+      "u": 9.75,
       "label": ",",
-      "x": -47.0,
-      "y": -25.0,
+      "x": -44.875,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -21972,6 +22025,7 @@
         "shiftCode": 60,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "<",
         ","
@@ -21981,10 +22035,10 @@
     {
       "id": "key-054",
       "row": 3,
-      "u": 11,
+      "u": 10.75,
       "label": ".",
-      "x": -27.0,
-      "y": -25.0,
+      "x": -25.375,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22012,6 +22066,7 @@
         "shiftCode": 62,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         ">",
         "."
@@ -22021,10 +22076,10 @@
     {
       "id": "key-055",
       "row": 3,
-      "u": 12,
+      "u": 11.75,
       "label": "/",
-      "x": -7.0,
-      "y": -25.0,
+      "x": -5.875,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22052,6 +22107,7 @@
         "shiftCode": 63,
         "letter": false
       },
+      "topWidth": 0,
       "legend": [
         "?",
         "/"
@@ -22061,10 +22117,10 @@
     {
       "id": "key-056",
       "row": 3,
-      "u": 13.5,
+      "u": 13,
       "label": "Shift",
-      "x": 23.0,
-      "y": -25.0,
+      "x": 18.5,
+      "y": -36.5,
       "width": 1.5,
       "height": 1,
       "style": 0,
@@ -22090,16 +22146,17 @@
       "input": {
         "modifier": "shift"
       },
+      "topWidth": 18,
       "legend": [],
-      "mesh": "keycap-3"
+      "mesh": "keycap-4"
     },
     {
       "id": "key-057",
       "row": 4,
-      "u": 7.5,
+      "u": 7.25,
       "label": "Space",
-      "x": -97.0,
-      "y": -45.0,
+      "x": -93.625,
+      "y": -56.0,
       "width": 8,
       "height": 1,
       "style": 0,
@@ -22125,16 +22182,17 @@
       "input": {
         "code": 32
       },
+      "topWidth": 0,
       "legend": [],
-      "mesh": "keycap-4"
+      "mesh": "keycap-5"
     },
     {
       "id": "key-058",
       "row": 4,
-      "u": 12.8,
+      "u": 12,
       "label": "ET",
-      "x": 9.0,
-      "y": -45.0,
+      "x": -1.0,
+      "y": -56.0,
       "width": 1.5,
       "height": 1,
       "style": 0,
@@ -22160,18 +22218,19 @@
       "input": {
         "code": 13
       },
+      "topWidth": 23,
       "legend": [
         "ET"
       ],
-      "mesh": "keycap-3"
+      "mesh": "keycap-2"
     },
     {
       "id": "key-059",
       "row": 2,
-      "u": 14.5,
+      "u": 14.25,
       "label": "\u21e4",
-      "x": 43.0,
-      "y": -5.0,
+      "x": 42.875,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22197,19 +22256,20 @@
       "input": {
         "unsupported": "This key\u2019s specimen-specific encoding is not verified yet."
       },
+      "topWidth": 0,
       "legend": [
         "\u21e4"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-060",
       "row": 2,
-      "u": 15.5,
+      "u": 15.25,
       "label": "\u2191",
-      "x": 63.0,
-      "y": -5.0,
+      "x": 62.375,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22235,19 +22295,20 @@
       "input": {
         "code": 139
       },
+      "topWidth": 0,
       "legend": [
         "\u2191"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-061",
       "row": 2,
-      "u": 16.5,
+      "u": 16.25,
       "label": "\u21e5",
-      "x": 83.0,
-      "y": -5.0,
+      "x": 81.875,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22273,19 +22334,20 @@
       "input": {
         "unsupported": "This key\u2019s specimen-specific encoding is not verified yet."
       },
+      "topWidth": 0,
       "legend": [
         "\u21e5"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-062",
       "row": 3,
-      "u": 14.5,
+      "u": 14.25,
       "label": "\u2190",
-      "x": 43.0,
-      "y": -25.0,
+      "x": 42.875,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22311,19 +22373,20 @@
       "input": {
         "code": 136
       },
+      "topWidth": 0,
       "legend": [
         "\u2190"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-063",
       "row": 3,
-      "u": 15.5,
+      "u": 15.25,
       "label": "\u21b1",
-      "x": 63.0,
-      "y": -25.0,
+      "x": 62.375,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22349,19 +22412,20 @@
       "input": {
         "unsupported": "This key\u2019s specimen-specific encoding is not verified yet."
       },
+      "topWidth": 0,
       "legend": [
         "\u21b1"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-064",
       "row": 3,
-      "u": 16.5,
+      "u": 16.25,
       "label": "\u2192",
-      "x": 83.0,
-      "y": -25.0,
+      "x": 81.875,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22387,19 +22451,20 @@
       "input": {
         "code": 134
       },
+      "topWidth": 0,
       "legend": [
         "\u2192"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-065",
       "row": 4,
-      "u": 14.5,
+      "u": 14.25,
       "label": "\u21b5",
-      "x": 43.0,
-      "y": -45.0,
+      "x": 42.875,
+      "y": -56.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22425,19 +22490,20 @@
       "input": {
         "unsupported": "This key\u2019s specimen-specific encoding is not verified yet."
       },
+      "topWidth": 0,
       "legend": [
         "\u21b5"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-066",
       "row": 4,
-      "u": 15.5,
+      "u": 15.25,
       "label": "\u2193",
-      "x": 63.0,
-      "y": -45.0,
+      "x": 62.375,
+      "y": -56.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22463,19 +22529,20 @@
       "input": {
         "code": 138
       },
+      "topWidth": 0,
       "legend": [
         "\u2193"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-067",
       "row": 4,
-      "u": 16.5,
+      "u": 16.25,
       "label": "F15",
-      "x": 83.0,
-      "y": -45.0,
+      "x": 81.875,
+      "y": -56.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22501,19 +22568,20 @@
       "input": {
         "code": 142
       },
+      "topWidth": 0,
       "legend": [
         "F15"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-068",
       "row": 0,
-      "u": 18,
+      "u": 17.75,
       "label": "PF1",
-      "x": 113.0,
-      "y": 35.0,
+      "x": 111.125,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22539,19 +22607,20 @@
       "input": {
         "code": 209
       },
+      "topWidth": 0,
       "legend": [
         "PF1"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-069",
       "row": 0,
-      "u": 19,
+      "u": 18.75,
       "label": "PF2",
-      "x": 133.0,
-      "y": 35.0,
+      "x": 130.625,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22577,19 +22646,20 @@
       "input": {
         "code": 210
       },
+      "topWidth": 0,
       "legend": [
         "PF2"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-070",
       "row": 0,
-      "u": 20,
+      "u": 19.75,
       "label": "PF3",
-      "x": 153.0,
-      "y": 35.0,
+      "x": 150.125,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -22615,19 +22685,20 @@
       "input": {
         "code": 211
       },
+      "topWidth": 0,
       "legend": [
         "PF3"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-071",
       "row": 1,
-      "u": 18,
+      "u": 17.75,
       "label": "7",
-      "x": 113.0,
-      "y": 15.0,
+      "x": 111.125,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22653,6 +22724,7 @@
       "input": {
         "code": 183
       },
+      "topWidth": 0,
       "legend": [
         "7"
       ],
@@ -22661,10 +22733,10 @@
     {
       "id": "key-072",
       "row": 1,
-      "u": 19,
+      "u": 18.75,
       "label": "8",
-      "x": 133.0,
-      "y": 15.0,
+      "x": 130.625,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22690,6 +22762,7 @@
       "input": {
         "code": 184
       },
+      "topWidth": 0,
       "legend": [
         "8"
       ],
@@ -22698,10 +22771,10 @@
     {
       "id": "key-073",
       "row": 1,
-      "u": 20,
+      "u": 19.75,
       "label": "9",
-      "x": 153.0,
-      "y": 15.0,
+      "x": 150.125,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22727,6 +22800,7 @@
       "input": {
         "code": 185
       },
+      "topWidth": 0,
       "legend": [
         "9"
       ],
@@ -22735,10 +22809,10 @@
     {
       "id": "key-074",
       "row": 2,
-      "u": 18,
+      "u": 17.75,
       "label": "4",
-      "x": 113.0,
-      "y": -5.0,
+      "x": 111.125,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22764,6 +22838,7 @@
       "input": {
         "code": 180
       },
+      "topWidth": 0,
       "legend": [
         "4"
       ],
@@ -22772,10 +22847,10 @@
     {
       "id": "key-075",
       "row": 2,
-      "u": 19,
+      "u": 18.75,
       "label": "5",
-      "x": 133.0,
-      "y": -5.0,
+      "x": 130.625,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22801,6 +22876,7 @@
       "input": {
         "code": 181
       },
+      "topWidth": 0,
       "legend": [
         "5"
       ],
@@ -22809,10 +22885,10 @@
     {
       "id": "key-076",
       "row": 2,
-      "u": 20,
+      "u": 19.75,
       "label": "6",
-      "x": 153.0,
-      "y": -5.0,
+      "x": 150.125,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22838,6 +22914,7 @@
       "input": {
         "code": 182
       },
+      "topWidth": 0,
       "legend": [
         "6"
       ],
@@ -22846,10 +22923,10 @@
     {
       "id": "key-077",
       "row": 3,
-      "u": 18,
+      "u": 17.75,
       "label": "1",
-      "x": 113.0,
-      "y": -25.0,
+      "x": 111.125,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22875,6 +22952,7 @@
       "input": {
         "code": 177
       },
+      "topWidth": 0,
       "legend": [
         "1"
       ],
@@ -22883,10 +22961,10 @@
     {
       "id": "key-078",
       "row": 3,
-      "u": 19,
+      "u": 18.75,
       "label": "2",
-      "x": 133.0,
-      "y": -25.0,
+      "x": 130.625,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22912,6 +22990,7 @@
       "input": {
         "code": 178
       },
+      "topWidth": 0,
       "legend": [
         "2"
       ],
@@ -22920,10 +22999,10 @@
     {
       "id": "key-079",
       "row": 3,
-      "u": 20,
+      "u": 19.75,
       "label": "3",
-      "x": 153.0,
-      "y": -25.0,
+      "x": 150.125,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22949,6 +23028,7 @@
       "input": {
         "code": 179
       },
+      "topWidth": 0,
       "legend": [
         "3"
       ],
@@ -22957,10 +23037,10 @@
     {
       "id": "key-080",
       "row": 4,
-      "u": 18,
+      "u": 17.75,
       "label": "0",
-      "x": 113.0,
-      "y": -45.0,
+      "x": 111.125,
+      "y": -56.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -22986,6 +23066,7 @@
       "input": {
         "code": 176
       },
+      "topWidth": 0,
       "legend": [
         "0"
       ],
@@ -22994,10 +23075,10 @@
     {
       "id": "key-081",
       "row": 4,
-      "u": 19,
+      "u": 18.75,
       "label": "00",
-      "x": 133.0,
-      "y": -45.0,
+      "x": 130.625,
+      "y": -56.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -23023,6 +23104,7 @@
       "input": {
         "code": 187
       },
+      "topWidth": 0,
       "legend": [
         "00"
       ],
@@ -23031,10 +23113,10 @@
     {
       "id": "key-082",
       "row": 4,
-      "u": 20,
+      "u": 19.75,
       "label": ",",
-      "x": 153.0,
-      "y": -45.0,
+      "x": 150.125,
+      "y": -56.0,
       "width": 1,
       "height": 1,
       "style": 0,
@@ -23060,6 +23142,7 @@
       "input": {
         "code": 172
       },
+      "topWidth": 0,
       "legend": [
         ","
       ],
@@ -23068,10 +23151,10 @@
     {
       "id": "key-083",
       "row": 0,
-      "u": 21.5,
+      "u": 21.25,
       "label": "PF4",
-      "x": 183.0,
-      "y": 35.0,
+      "x": 179.375,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23097,19 +23180,20 @@
       "input": {
         "code": 212
       },
+      "topWidth": 0,
       "legend": [
         "PF4"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-084",
       "row": 1,
-      "u": 21.5,
+      "u": 21.25,
       "label": "CE",
-      "x": 183.0,
-      "y": 15.0,
+      "x": 179.375,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 2,
@@ -23135,18 +23219,19 @@
       "input": {
         "code": 206
       },
+      "topWidth": 0,
       "legend": [
         "CE"
       ],
-      "mesh": "keycap-5"
+      "mesh": "keycap-6"
     },
     {
       "id": "key-085",
       "row": 2.25,
-      "u": 21.5,
+      "u": 21.25,
       "label": "-",
-      "x": 183.0,
-      "y": -10.0,
+      "x": 179.375,
+      "y": -21.875,
       "width": 1,
       "height": 1.5,
       "style": 0,
@@ -23172,18 +23257,19 @@
       "input": {
         "code": 189
       },
+      "topWidth": 0,
       "legend": [
         "-"
       ],
-      "mesh": "keycap-6"
+      "mesh": "keycap-7"
     },
     {
       "id": "key-086",
       "row": 3.75,
-      "u": 21.5,
+      "u": 21.25,
       "label": "\u2194",
-      "x": 183.0,
-      "y": -40.0,
+      "x": 179.375,
+      "y": -51.125,
       "width": 1,
       "height": 1.5,
       "style": 0,
@@ -23209,18 +23295,19 @@
       "input": {
         "code": 208
       },
+      "topWidth": 0,
       "legend": [
         "\u2194"
       ],
-      "mesh": "keycap-6"
+      "mesh": "keycap-7"
     },
     {
       "id": "key-087",
       "row": 0,
       "u": 23,
       "label": "PF5",
-      "x": 213.0,
-      "y": 35.0,
+      "x": 213.5,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23246,11 +23333,12 @@
       "input": {
         "code": 207
       },
+      "topWidth": 0,
       "legend": [
         "PF5"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-088",
@@ -23258,7 +23346,7 @@
       "u": 24,
       "label": "PF10",
       "x": 233.0,
-      "y": 35.0,
+      "y": 22.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23284,19 +23372,20 @@
       "input": {
         "code": 131
       },
+      "topWidth": 0,
       "legend": [
         "PF10"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-089",
       "row": 1,
       "u": 23,
       "label": "PF6",
-      "x": 213.0,
-      "y": 15.0,
+      "x": 213.5,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23322,11 +23411,12 @@
       "input": {
         "code": 160
       },
+      "topWidth": 0,
       "legend": [
         "PF6"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-090",
@@ -23334,7 +23424,7 @@
       "u": 24,
       "label": "PF11",
       "x": 233.0,
-      "y": 15.0,
+      "y": 2.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23360,19 +23450,20 @@
       "input": {
         "code": 193
       },
+      "topWidth": 0,
       "legend": [
         "PF11"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-091",
       "row": 2,
       "u": 23,
       "label": "PF7",
-      "x": 213.0,
-      "y": -5.0,
+      "x": 213.5,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23398,11 +23489,12 @@
       "input": {
         "code": 161
       },
+      "topWidth": 0,
       "legend": [
         "PF7"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-092",
@@ -23410,7 +23502,7 @@
       "u": 24,
       "label": "PF12",
       "x": 233.0,
-      "y": -5.0,
+      "y": -17.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23436,19 +23528,20 @@
       "input": {
         "code": 192
       },
+      "topWidth": 0,
       "legend": [
         "PF12"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-093",
       "row": 3,
       "u": 23,
       "label": "PF8",
-      "x": 213.0,
-      "y": -25.0,
+      "x": 213.5,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23474,11 +23567,12 @@
       "input": {
         "code": 162
       },
+      "topWidth": 0,
       "legend": [
         "PF8"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-094",
@@ -23486,7 +23580,7 @@
       "u": 24,
       "label": "PF13",
       "x": 233.0,
-      "y": -25.0,
+      "y": -36.5,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23512,19 +23606,20 @@
       "input": {
         "code": 194
       },
+      "topWidth": 0,
       "legend": [
         "PF13"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-095",
       "row": 4,
       "u": 23,
       "label": "PF9",
-      "x": 213.0,
-      "y": -45.0,
+      "x": 213.5,
+      "y": -56.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23550,11 +23645,12 @@
       "input": {
         "code": 163
       },
+      "topWidth": 0,
       "legend": [
         "PF9"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     },
     {
       "id": "key-096",
@@ -23562,7 +23658,7 @@
       "u": 24,
       "label": "PF14",
       "x": 233.0,
-      "y": -45.0,
+      "y": -56.0,
       "width": 1,
       "height": 1,
       "style": 1,
@@ -23588,65 +23684,66 @@
       "input": {
         "code": 205
       },
+      "topWidth": 0,
       "legend": [
         "PF14"
       ],
-      "mesh": "keycap-2",
-      "insertMesh": "keycap-2-insert"
+      "mesh": "keycap-0",
+      "insertMesh": "keycap-0-insert"
     }
   ],
   "keyMeshes": [
     {
       "name": "keycap-0",
       "file": "meshes/keycap-0.stl",
-      "sha256": "3e378a808c7b84ed0a4611475018fb766011820113336c969b2721b1b15206aa"
+      "sha256": "4a50b0c37013ffd5a50dd7d032560eed8abf5fc357c0469983003822b4ca84aa"
     },
     {
       "name": "keycap-0-insert",
       "file": "meshes/keycap-0-insert.stl",
-      "sha256": "b6d644a7080b4528c545b2cf8b6329e1a1e4232a9dd2003bdb2bfd9cacfeeb97"
+      "sha256": "c698cf658f851953603b7fcfc7f04ecc171c9d9c41586bc54ee44ef3c9b906fe"
     },
     {
       "name": "keycap-1",
       "file": "meshes/keycap-1.stl",
-      "sha256": "4e2015f4ed0cab194c00d5bc878ce4c2efe146fbae6d4595bb13ace05a92293f"
+      "sha256": "a9cebefec4e104b615a2e191ca5e3d9e2b7efda211ef8ead0bb8bc1031f7a17b"
     },
     {
       "name": "keycap-2",
       "file": "meshes/keycap-2.stl",
-      "sha256": "818351656f0bc763d5b73431b6af8abde5d1a5e1ca8a3df1b4af71442dcc3224"
-    },
-    {
-      "name": "keycap-2-insert",
-      "file": "meshes/keycap-2-insert.stl",
-      "sha256": "94cf8df8552e334b6fc319542fa9e86ba7c19bb230ce99e5bd824c4c94697d44"
+      "sha256": "75db3b2728d30d31457e5d1ff62f884f2445f18595b3230e1beff4cee12b8d80"
     },
     {
       "name": "keycap-3",
       "file": "meshes/keycap-3.stl",
-      "sha256": "da9d4d8d5e2b156f68de4473738479dc12fe3704f7aa9ac1860a97d55f00fb11"
+      "sha256": "fd6743f287fba099022074f000dfac6b52087c3bdc72fbf8ea304bc908dc6bc9"
     },
     {
       "name": "keycap-4",
       "file": "meshes/keycap-4.stl",
-      "sha256": "2e2b88e41cf528dbd20987b4a178420cea2ff991f157b665e61816fd1b6ad03c"
+      "sha256": "a63c62e6a0e990cd8f89ef14729c0dcb2c300ef0c9abf583af729d3a7e739a7c"
     },
     {
       "name": "keycap-5",
       "file": "meshes/keycap-5.stl",
-      "sha256": "4e2015f4ed0cab194c00d5bc878ce4c2efe146fbae6d4595bb13ace05a92293f"
+      "sha256": "9ad84b3b2ad232a0341f5f85f9f7895a929881d499b6c293fa6d9d8d3491462f"
     },
     {
       "name": "keycap-6",
       "file": "meshes/keycap-6.stl",
-      "sha256": "f0b78de60ccd4cdfa60baf68427dd901df1f56cad55202741fc2f2bb0cc187dc"
+      "sha256": "aabb1e34ad8fe565bca357c2b9a5f167f887ccc367bb474198b476639c90b580"
+    },
+    {
+      "name": "keycap-7",
+      "file": "meshes/keycap-7.stl",
+      "sha256": "d80980b8b71274b90ddfed72a684b0cc42441d8dfc9b795b6d15e4582389aa9f"
     }
   ],
   "keyboard": {
     "y": -355,
     "z": 28,
     "slope": 6,
-    "pitch": 20.0
+    "pitch": 19.5
   },
   "screen": {
     "size": [
