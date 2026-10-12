@@ -4,7 +4,7 @@ import * as THREE from "three";
 // Grain is evaluated in model millimetres, so it wraps every face at the same
 // scale without UV seams, repeated cables, feet, shadows or reflections.
 export function specimenMaterial(color, profile = {}) {
-  const { grain = 0, grainScale = 3, ...physical } = profile;
+  const { grain = 0, grainScale = 3, grainRelief = grain * 0.4, ...physical } = profile;
   const Material = physical.clearcoat
     ? THREE.MeshPhysicalMaterial
     : THREE.MeshStandardMaterial;
@@ -13,6 +13,8 @@ export function specimenMaterial(color, profile = {}) {
   material.onBeforeCompile = (shader) => {
     shader.uniforms.grainAmount = { value: grain };
     shader.uniforms.grainScale = { value: grainScale };
+    // Relief is in model millimetres; the museum places the model at 0.0025.
+    shader.uniforms.grainRelief = { value: grainRelief * 0.0025 };
     shader.vertexShader =
       "varying vec3 specimenPosition;\n" + shader.vertexShader;
     shader.vertexShader = shader.vertexShader.replace(
@@ -22,7 +24,7 @@ export function specimenMaterial(color, profile = {}) {
     shader.fragmentShader =
       `
       varying vec3 specimenPosition;
-      uniform float grainAmount, grainScale;
+      uniform float grainAmount, grainScale, grainRelief;
       float grainHash(vec3 p) {
         p=fract(p*.1031); p+=dot(p,p.yzx+33.33);
         return fract((p.x+p.y)*p.z);
@@ -55,10 +57,10 @@ export function specimenMaterial(color, profile = {}) {
        vec3 grainR1=cross(grainDy,normal),grainR2=cross(normal,grainDx);
        float grainDet=dot(grainDx,grainR1);
        normal=normalize(abs(grainDet)*normal-sign(grainDet)*
-         (dFdx(specimenGrain)*grainR1+dFdy(specimenGrain)*grainR2)*grainAmount*.001);`,
+         (dFdx(specimenGrain)*grainR1+dFdy(specimenGrain)*grainR2)*grainRelief);`,
     );
   };
-  material.customProgramCacheKey = () => "specimen-grain-v1";
+  material.customProgramCacheKey = () => "specimen-grain-v2";
   return material;
 }
 
@@ -129,5 +131,6 @@ export function markingTexture(draw, width = 256, height = 128) {
   draw(ctx, width, height);
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
   return texture;
 }

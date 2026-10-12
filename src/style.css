@@ -666,3 +666,26 @@ textarea {
 #model-loading-bar span { display: block; height: 100%; width: 0; background: #c1d79c; }
 .model-loading p { color: #d0d9d2; font-size: 13px; line-height: 1.5; margin: 12px 0 0; }
 .model-loading[data-error="true"] { border-color: #d8b987; }
+
+/* Reserve space for view controls: they never cover the model or its sockets. */
+.stage:not(.typing) {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: 48px;
+}
+.stage:not(.typing) #viewport {
+  position: relative;
+  inset: auto;
+  min-height: 0;
+}
+.stage:not(.typing) .stage-bottom {
+  position: relative;
+  inset: auto;
+  margin: 12px 25px 20px;
+  gap: 12px;
+}
+@media (max-width: 650px) {
+  .stage:not(.typing) .stage-bottom { margin: 8px 12px 12px; gap: 6px; }
+  .stage:not(.typing) .stage-bottom > span { display: none; }
+}

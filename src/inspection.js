@@ -86,7 +86,7 @@ Object.assign(inspections, {
   "keyboard-inside": {
     title: "Inside the keyboard",
     evidence: "Owner board photographs · switch construction estimated",
-    text: "The keycaps and deck lift away; the mounting plate and switches move forward so the broad switch PCB is visible, turned over to show its photographed solder face. The narrow controller lifts out separately, showing its socketed processor and replacement EPROM. The spring dimensions come from another owner-photographed keyboard variant. Travel, installed height and unseen switch construction remain estimates.",
+    text: "The keycaps and deck move back and up; the mounting plate, switches and springs move forward so the broad switch PCB stays visible from above, turned over to show its photo-referenced solder face. Clean buses, pads and screws follow the owner’s underside photographs. The narrow controller lifts out separately, showing its socketed processor, replacement EPROM and metallic trace detail. Visible routing is approximate, not an electrical netlist. The spring dimensions come from another owner-photographed keyboard variant. Travel, installed height and unseen switch construction remain estimates.",
     photo: "20261012_123907435",
   },
   "component-logic": {
@@ -119,6 +119,7 @@ Object.assign(inspections, {
     evidence: "Owner photographs · hidden dimensions estimated",
   },
 });
+inspections["rear-panel"] = { ...inspections.back, title: "Rear sockets and markings" };
 inspections.logic = inspections["component-logic"];
 inspections.motherboard = {
   ...inspections["component-logic"],

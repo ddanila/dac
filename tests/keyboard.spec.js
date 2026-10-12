@@ -243,3 +243,31 @@ test("physical keyboard holds the modeled key down until release and blur clears
   await expect.poll(async () => (await picture()).equals(resting)).toBe(true);
   await page.keyboard.up("a");
 });
+
+
+test("firmware LED bits independently light both model lamps and survive gesture release", async ({ page }) => {
+  await page.goto("/");
+  const result = await page.evaluate(async () => {
+    const { Texture } = await import("/node_modules/three/build/three.module.js");
+    const { loadRobotron } = await import("/src/robotron-model.js");
+    const { createFirmwareKeyboard } = await import("/src/robotron-matrix.js");
+    const model = await loadRobotron(new Texture());
+    const firmware = createFirmwareKeyboard({ send() {}, onFeedback() {},
+      onState: state => model.modifiers(state), isPowered: () => true });
+    const read = () => ["caps", "si-so"].map(name =>
+      model.group.getObjectByName(`keyboard-${name}-lamp`).material.emissive.getHex() !== 0);
+    model.power(true);
+    const states = [0, 1, 2, 3].map(bits => { firmware.leds(bits); return read(); });
+    firmware.reset();
+    const released = read();
+    model.power(false);
+    const off = read();
+    model.power(true);
+    firmware.leds(0);
+    return { states, released, off, reset: read() };
+  });
+  expect(result.states).toEqual([[false, false], [false, true], [true, false], [true, true]]);
+  expect(result.released).toEqual([true, true]);
+  expect(result.off).toEqual([false, false]);
+  expect(result.reset).toEqual([false, false]);
+});

@@ -460,6 +460,34 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     group.add(mesh);
     return mesh;
   }
+  if (data.rearMarkings) {
+    // The CAD keeps editable outline geometry. The browser uses the very same
+    // text/coordinates in a mipmapped decal so subpixel strokes stay readable.
+    const mesh = objects.get("rear-legends");
+    const texture = markingTexture((c, w, h) => {
+      c.scale(w / 500, h / 130);
+      c.strokeStyle = "#57564c";
+      c.lineWidth = 0.16;
+      c.lineJoin = "round";
+      c.textAlign = "center";
+      c.textBaseline = "alphabetic";
+      for (const mark of data.rearMarkings) {
+        c.font = `${mark.size * 1.35}px Arial, sans-serif`;
+        c.strokeText(mark.text, 250 - mark.x, 130 - mark.z);
+      }
+    }, 4096, 1064);
+    texture.anisotropy = 8;
+    mesh.geometry.dispose();
+    mesh.material.dispose();
+    mesh.geometry = new THREE.PlaneGeometry(500, 130);
+    mesh.geometry.rotateY(Math.PI);
+    mesh.geometry.rotateX(Math.PI / 2);
+    mesh.geometry.translate(0, 198.27, 65);
+    mesh.material = new THREE.MeshStandardMaterial({ map: texture,
+      transparent: true, depthWrite: false, roughness: 0.86,
+      polygonOffset: true, polygonOffsetFactor: -1 });
+    mesh.castShadow = false;
+  }
   if (data.driveLabels?.reconstructedText) {
     const p = data.driveLabels.reconstructedText;
     const mesh = marking(
@@ -529,14 +557,18 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       ),
     );
   }
-  const capsMaterial = new THREE.MeshStandardMaterial({
-    color: 0x5a4215,
-    emissive: 0x000000,
-  });
+  const indicatorMaterials = [0, 1].map(() => new THREE.MeshStandardMaterial({
+    color: 0x89621d, roughness: 0.3, emissiveIntensity: 2.5,
+  }));
+  let keyboardIndicators = { caps: false, siso: false };
+  function updateIndicators() {
+    for (const [i, name] of ["caps", "siso"].entries())
+      indicatorMaterials[i].emissive.set(power && keyboardIndicators[name] ? 0xff9c16 : 0);
+  }
   // Fixed indicator carriers belong to the deck, not the moving keycaps.
   for (const [x, y, material, name] of [
-    [-230.125, -17, capsMaterial, "keyboard-caps-lamp"],
-    [72.125, 22, new THREE.MeshStandardMaterial({ color: 0x89621d, roughness: 0.3 }), "keyboard-si-so-lamp"],
+    [-225.25, -16, indicatorMaterials[0], "keyboard-caps-lamp"],
+    [69.25, 22, indicatorMaterials[1], "keyboard-si-so-lamp"],
   ]) {
     const lamp = new THREE.Mesh(new THREE.SphereGeometry(2, 12, 8), material);
     lamp.name = name;
@@ -707,6 +739,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     if (Math.abs(split - splitTarget) < 0.001) split = splitTarget;
     const monitor = [
       "monitor-shell-lower",
+      "monitor-joint-lip",
       "monitor-shell-upper",
       "bezel",
       "crt-rim",
@@ -783,16 +816,16 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     }
     objects
       .get("keyboard-deck")
-      .position.set(0, keyboardLift * 90, keyboardLift * 55);
+      .position.set(0, keyboardLift * 110, keyboardLift * 55);
     objects
       .get("keyboard-fillers")
-      .position.set(0, keyboardLift * 90, keyboardLift * 55);
-    objects.get("keyboard-plate").position.set(0, -keyboardLift * 85, keyboardLift * 55);
-    objects.get("keyboard-switches").position.set(0, -keyboardLift * 85, keyboardLift * 55);
+      .position.set(0, keyboardLift * 110, keyboardLift * 55);
+    objects.get("keyboard-plate").position.set(0, -keyboardLift * 155, keyboardLift * 55);
+    objects.get("keyboard-switches").position.set(0, -keyboardLift * 155, keyboardLift * 55);
     // Turn the switch PCB over around its own centre to expose the photographed
     // solder face. Absolute mesh coordinates require compensating the pivot.
     const boardAngle = keyboardLift * Math.PI;
-    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-insulators"]) {
+    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-pcb-metal", "keyboard-insulators"]) {
       const mesh = objects.get(name);
       mesh.rotation.x = boardAngle;
       mesh.position.set(0,
@@ -800,7 +833,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
         keyboardLift * 22 + 13 * (1 - Math.cos(boardAngle)) - data.keyboard.y * Math.sin(boardAngle));
     }
     objects.get("cable").visible = true;
-    keyboard.position.z = data.keyboard.z + keyboardLift * 110;
+    keyboard.position.set(0, data.keyboard.y + keyboardLift * 110, data.keyboard.z + keyboardLift * 110);
+    mechanism.position.set(0, data.keyboard.y - keyboardLift * 155, data.keyboard.z + keyboardLift * 55);
     mechanism.visible =
       inside ||
       keyboardLift > 0 ||
@@ -815,7 +849,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
         instance.scale.set(1, 1, (12 + down + keyboardLift * 11) / 12);
         instance.updateMatrix();
         mechanisms[0].setMatrixAt(i, instance.matrix);
-        instance.position.set(key.x, key.y, down + keyboardLift * 110);
+        instance.position.set(key.x, key.y, down + keyboardLift * 11);
         instance.scale.set(1, 1, 1);
         instance.updateMatrix();
         mechanisms[1].setMatrixAt(i, instance.matrix);
@@ -928,8 +962,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       if (!on) {
         activityUntil = 0;
         releaseKeys();
-        capsMaterial.emissive.set(0);
       }
+      updateIndicators();
       objects.get("power").material.emissive.set(on ? 0x152417 : 0);
     },
     drives(states, mechanics = null) {
@@ -953,7 +987,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       if (active && power) activityUntil = performance.now() + 140;
     },
     modifiers(state) {
-      capsMaterial.emissive.set(power && state.caps ? 0xba7618 : 0);
+      keyboardIndicators = { caps: !!state.caps, siso: !!state.siso };
+      updateIndicators();
     },
     openMonitor(value) {
       monitorOpen = value;

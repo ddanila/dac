@@ -168,7 +168,12 @@ test("owner controller separates as one assembly and monitor underside follows i
     model.tick();
     const opened = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
     const pcb = model.objects.get("keyboard-pcb");
-    const boardOpen = { visible: pcb.visible, angle: pcb.rotation.x };
+    const boardOpen = { visible: pcb.visible, angle: pcb.rotation.x,
+      artwork: model.objects.get("keyboard-matrix-artwork").visible,
+      pads: model.objects.get("keyboard-pcb-metal").visible,
+      traces: model.objects.get("keyboard-controller-traces").visible,
+      capsY: model.keyObjects.values().next().value.parent.position.y,
+      plateY: model.objects.get("keyboard-plate").position.y };
     const shell = model.group.getObjectByName("clear-key-shell");
     const inlay = shell.parent.getObjectByName("silver-key-inlay");
     shell.geometry.computeBoundingBox();
@@ -181,13 +186,21 @@ test("owner controller separates as one assembly and monitor underside follows i
     const closed = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
     model.interior(true);
     model.tick();
-    const moved = ["monitor-shell-lower", "monitor-under-controls", "monitor-stand-metal"].map(name => model.objects.get(name).position.toArray());
+    const moved = ["monitor-shell-lower", "monitor-under-controls", "monitor-stand-metal", "monitor-joint-lip"].map(name => model.objects.get(name).position.toArray());
     model.interior(false);
     model.tick();
-    const restored = ["monitor-under-controls", "monitor-stand-metal"].map(name => model.objects.get(name).position.toArray());
-    return { opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
+    const restored = ["monitor-under-controls", "monitor-stand-metal", "monitor-joint-lip"].map(name => model.objects.get(name).position.toArray());
+    const seam = ["monitor-shell-lower", "monitor-shell-upper", "monitor-joint-lip"].map(name => {
+      const mesh = model.objects.get(name);
+      mesh.geometry.computeBoundingBox();
+      return { min: mesh.geometry.boundingBox.min.z, max: mesh.geometry.boundingBox.max.z };
+    });
+    return { seam, opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
   });
   expect(state.boardOpen.visible).toBe(true);
+  expect(state.boardOpen).toMatchObject({ artwork: true, pads: true, traces: true });
+  expect(state.boardOpen.capsY).toBeGreaterThan(-300);
+  expect(state.boardOpen.plateY).toBeLessThan(-100);
   expect(state.boardOpen.angle).toBeCloseTo(Math.PI);
   expect(state.boardClosed).toEqual({ angle: 0, position: [0, 0, 0] });
   expect(state.clearKey).toMatchObject({transparent: true, sharedKey: true, beneathShell: true});
@@ -199,6 +212,10 @@ test("owner controller separates as one assembly and monitor underside follows i
   expect(state.closed.every(p => !p.visible && p.position.every(v => v === 0))).toBe(true);
   expect(state.moved[1]).toEqual(state.moved[0]);
   expect(state.moved[2]).toEqual(state.moved[0]);
+  expect(state.moved[3]).toEqual(state.moved[0]);
+  expect(state.seam[1].min - state.seam[0].max).toBeCloseTo(2);
+  expect(state.seam[2].min).toBeLessThan(state.seam[0].max);
+  expect(state.seam[2].max).toBeGreaterThan(state.seam[1].min);
   expect(state.restored.every(p => p.every(v => v === 0))).toBe(true);
 });
 
@@ -224,6 +241,15 @@ test("opaque keycaps have continuous sidewalls around every exported shape", asy
         if (Math.abs(hi - lo - key.topWidth) > 0.05)
           failures.push({ key: key.id, measured: hi - lo, expected: key.topWidth });
       }
+      // Derive the minimum solid outer radius from the raised profile, so
+      // spacing refinements do not assume the former 19.5 mm key pitch.
+      const vertices = body.geometry.attributes.position;
+      let topX = 0, topY = 0;
+      for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= 9.39) {
+        topX = Math.max(topX, Math.abs(vertices.getX(i)));
+        topY = Math.max(topY, Math.abs(vertices.getY(i)));
+      }
+      const topRadius = Math.min(topX, topY);
       const mesh = new Mesh(body.geometry, body.material);
       for (const z of [2, 4, 5.8, 7]) {
         for (let degrees = 0; degrees < 360; degrees += 5) {
@@ -232,7 +258,7 @@ test("opaque keycaps have continuous sidewalls around every exported shape", asy
           const origin = direction.clone().multiplyScalar(200); origin.z = z;
           const hits = new Raycaster(origin, direction.negate(), 0, 400).intersectObject(mesh);
           // Every outer wall must be beyond the hollow cavity's short radius.
-          if (!hits.length || Math.hypot(hits[0].point.x, hits[0].point.y) < 7)
+          if (!hits.length || Math.hypot(hits[0].point.x, hits[0].point.y) < topRadius - 0.05)
             failures.push({ key: key.id, z, degrees });
         }
       }

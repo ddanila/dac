@@ -111,7 +111,7 @@ export function createFirmwareKeyboard({
   onState,
   isPowered,
 }) {
-  const state = { shift: false, ctrl: false, caps: false };
+  const state = { shift: false, ctrl: false, caps: false, siso: false };
   const report = () => onState({ ...state });
   return {
     state,
@@ -121,8 +121,10 @@ export function createFirmwareKeyboard({
     },
     leds(bits) {
       const caps = !!(bits & 2);
-      if (state.caps !== caps) {
+      const siso = !!(bits & 1);
+      if (state.caps !== caps || state.siso !== siso) {
         state.caps = caps;
+        state.siso = siso;
         report();
       }
     },

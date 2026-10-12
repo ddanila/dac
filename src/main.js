@@ -59,6 +59,7 @@ const keyboard = createRobotronKeyboard({
   send,
   isPowered: () => on && !powerPending && Number($("machine").value) === 2,
   onState: (state) => {
+    if (firmwareKeyboard) return;
     scene?.modifiers(state);
     for (const button of $("key-list").querySelectorAll("[data-modifier]"))
       button.setAttribute(
@@ -733,6 +734,10 @@ for (const b of document.querySelectorAll("[data-view]"))
     release();
     $("screen-panel").hidden = true;
     if (b.dataset.view === "typing") $("separate-parts").checked = false;
+    if (b.dataset.view === "keyboard-inside") {
+      $("open-keyboard").checked = true;
+      $("isolate-assembly").value = "keyboard";
+    }
     if (["drive-top", "drive-rear"].includes(b.dataset.view)) {
       $("isolate-assembly").value = "drives";
       $("separate-parts").checked = false;
