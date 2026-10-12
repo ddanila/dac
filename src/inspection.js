@@ -46,7 +46,7 @@ export const inspections = {
   },
   drives: {
     title: "Two independently usable drives",
-    text: "The two mechanisms now follow Danila’s own photos, including their different sensor-board shapes, clamp bridges, head carriages and rear plates. Choose Drive labels to inspect the manufacturer markings. Each drive has independent media and write protection. Lamps, spindle rotation and head travel follow emulator activity; travel distance is estimated.",
+    text: "The two mechanisms now follow Danila’s own photos, including their different sensor-board shapes, clamp bridges, head carriages and rear plates. Choose Drive labels to inspect the manufacturer markings. Each drive has independent media and write protection. Lamps, spindle rotation and head travel follow emulator activity; head travel uses the nominal 96-tpi TEAC specification. Current emulation shares motor-gated rotation and timed seek steps with the model; archived cores use illustrative rotation.",
     photo: "20250212_094033966",
   },
   "drive-labels": {
@@ -138,7 +138,7 @@ for (const board of ["motherboard", "floppy-controller"])
 Object.assign(inspections, {
   "focus-head": {
     title: "Head carriage",
-    text: "The highlighted carriage and shield follow Danila’s drive photographs. Their rail bores now clear the fixed guide rods at all 80 modeled track positions. Travel is a 35 mm estimate; this is not a verified head-position calibration.",
+    text: "The highlighted carriage and shield follow Danila’s drive photographs. Their rail bores now clear the fixed guide rods at all 80 modeled track positions. Travel uses the TEAC reference specification: 96 tracks per inch, or 20.90 mm over 79 steps. The exact specimen suffix and carriage origin remain unverified.",
     photo: "20250212_094033966",
   },
   "focus-spindle": {

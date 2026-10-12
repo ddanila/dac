@@ -317,7 +317,7 @@ export function createScene(
   });
   return {
     activity: (active) => robotron?.activity(active),
-    drives: (states) => robotron?.drives(states),
+    drives: (states, mechanics) => robotron?.drives(states, mechanics),
     modifiers: (state) => {
       modifiers = state;
       renderRequested = true;

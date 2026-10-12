@@ -530,6 +530,7 @@ export async function loadRobotron(displayTexture) {
     monitorOpen = false,
     wasMonitorOpen = false;
   let driveStates = [0, 0],
+    driveMechanics = null,
     drivesDirty = false;
   const moveDrives = createDriveMotion(objects, data.driveMotion);
   const moveFan = createFanMotion(objects.get("fan-rotor"));
@@ -807,6 +808,7 @@ export async function loadRobotron(displayTexture) {
       demoActive
         ? { phase: inspection.demoPhase + demoClock, animate: demoAnimate }
         : null,
+      driveMechanics,
     );
     for (const mesh of [...objects.values(), ...pcbPhotos, ...patches]) {
       if (inspection.isolated !== "all")
@@ -887,9 +889,17 @@ export async function loadRobotron(displayTexture) {
       }
       objects.get("power").material.emissive.set(on ? 0x152417 : 0);
     },
-    drives(states) {
-      drivesDirty ||= states.some((s, u) => s !== driveStates[u]);
+    drives(states, mechanics = null) {
+      drivesDirty ||=
+        states.some((s, u) => s !== driveStates[u]) ||
+        (!matchMedia("(prefers-reduced-motion: reduce)").matches &&
+          (mechanics || []).some(
+            (d, u) =>
+              objects.get(data.driveMotion[u].spindle).visible &&
+              d.phase !== driveMechanics?.[u]?.phase,
+          ));
       driveStates = states;
+      driveMechanics = mechanics;
     },
     activity(active) {
       if (active && power) activityUntil = performance.now() + 140;

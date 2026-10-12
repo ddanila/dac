@@ -18745,9 +18745,11 @@
       ],
       "travel": [
         0,
-        -35,
+        -20.902083333333334,
         0
-      ]
+      ],
+      "trackPitch": 0.26458333333333334,
+      "travelSource": "TEAC FD-55FV-13 specification p.108: 96 tpi; specimen suffix unverified"
     },
     {
       "unit": 1,
@@ -18768,9 +18770,11 @@
       ],
       "travel": [
         0,
-        -35,
+        -20.902083333333334,
         0
-      ]
+      ],
+      "trackPitch": 0.26458333333333334,
+      "travelSource": "TEAC FD-55FV-13 specification p.108: 96 tpi; specimen suffix unverified"
     }
   ],
   "units": "mm",
