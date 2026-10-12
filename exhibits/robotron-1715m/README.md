@@ -58,7 +58,7 @@ The next owner ZIP contains three side views. Black caps now have a square flang
 
 ### October 12 rendering and keyboard review
 
-The monitor's mid-height joint uses an inset dark lip following the shell taper.
+The monitor's mid-height joint uses an inset dark lip following the shell outline.
 Paint, plastic, rubber and plated metal have distinct finishes. Tighter cached
 shadow maps and a grazing rear light reveal socket lips and small recesses;
 software rendering retains one smaller PCF shadow map and its existing resolution cap.
@@ -94,3 +94,15 @@ Repeated reads set the same state rather than toggling it. Native tests run the
 stock S600 firmware through each lamp and both together, including stability
 between presses; browser checks cover both modeled lamps and navigation.
 The 0.7.0 runtime remains archived for existing snapshots.
+
+### Monitor cabinet and captive leads
+
+Owner side and underside photos correct the earlier guessed rear taper: the
+cabinet now keeps parallel walls and its full width/height behind the front.
+Two modeled leads leave the underside boot beside the stand and connect to the
+rear DISPLAY power and signal sockets. Their different gray colors, diameters,
+RFT power shell and locking signal backshell follow owner close-ups. Dimensions
+and slack remain estimates; wear is omitted. Opening the case keeps the captive
+ends with the lifted monitor, parks the rear plugs when disconnection is enabled,
+and restores the original geometry when closed. Exploded cable extension is
+illustrative. Source photos and evidence are retained in the canonical CAD repo.

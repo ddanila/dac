@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "610e6823dcdc55ccc189d79a5bd3505d24e55f05",
+  "revision": "b63b78710d64dc1ce1f948b3697a22d249d39fc8",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "f36462deb57a9a08a1ee7c958082f6342748861f863879421a83471e7a591fa7"
+      "sha256": "472062503fccab476978a75c8623608c757c536dd001c31e0868821a003e023f"
     },
     {
       "file": "LICENSE",
@@ -45,7 +45,7 @@
     },
     {
       "file": "meshes/monitor-shell-lower.stl",
-      "sha256": "2c3dfaae852fcfa81778fbed0396df16e92685b12eb2fb243037201792ede0f6"
+      "sha256": "352c75f65a0aa41cfc55f67de801f4f083c17d484a94bfb02e7849c7cfc2a2ec"
     },
     {
       "file": "meshes/bezel.stl",
@@ -121,7 +121,7 @@
     },
     {
       "file": "meshes/monitor-tape.stl",
-      "sha256": "32f90afe73ed0040ad99977666b26b2185f050cb9f32134f88ae703b73534eca"
+      "sha256": "0295f23c704cac8ac5cf2993ea2a53ed90ae8f2bab3596f61c2e455ac19bf687"
     },
     {
       "file": "meshes/drive-frames.stl",
@@ -213,7 +213,7 @@
     },
     {
       "file": "meshes/monitor-shell-upper.stl",
-      "sha256": "26839b5678f4023e580416256a3ec45963fe97cf51be5ee3610538dd42aa82d0"
+      "sha256": "1a6b7d060143d636f6c6704bc6922eb586a0ef183ccfb524e58a3d93369d6289"
     },
     {
       "file": "meshes/tube-funnel.stl",
@@ -477,7 +477,7 @@
     },
     {
       "file": "meshes/monitor-under-controls.stl",
-      "sha256": "fb5287a203273ec6edf3c8a4276ecaf2e2d909904fe651d8a37a5400ed85213d"
+      "sha256": "3bf290cb9ccf451f88a5d6a3c9da10e2b71b4920dc696c9d7c43082fcd32e355"
     },
     {
       "file": "meshes/monitor-stand-metal.stl",
@@ -529,7 +529,7 @@
     },
     {
       "file": "meshes/monitor-joint-lip.stl",
-      "sha256": "801a401b4e058dcd32cbd8439b592f884ea981e39ef51e4a7f7c6ce62bd5964d"
+      "sha256": "321ef4e013c5118fb6e7886e23f775d31f598dd8d1f6d814c37f15c7c1c9bdc1"
     },
     {
       "file": "meshes/keyboard-pcb-metal.stl",
@@ -538,6 +538,26 @@
     {
       "file": "meshes/keyboard-controller-traces.stl",
       "sha256": "7eb5b6a423159b373fd8730c4e712318d8bd0564ba01397d3dd6ab62d1480f17"
+    },
+    {
+      "file": "meshes/monitor-power-lead.stl",
+      "sha256": "d11874ea92b0317e2810898d08e4c510683e2d44f6dbb6418d0ddbab41b467e2"
+    },
+    {
+      "file": "meshes/monitor-signal-lead.stl",
+      "sha256": "4f7800a0d2226ece2cb6030bd388936719c0fe20df8db8ad3b68654a8fff6b27"
+    },
+    {
+      "file": "meshes/monitor-plug-bodies.stl",
+      "sha256": "b7f8347ba7ee81c924df0bf4c752d79af66a31540175622da0fa5ebb137a41da"
+    },
+    {
+      "file": "meshes/monitor-plug-metal.stl",
+      "sha256": "935149a68c327d82a7c40efacddfa70a27cffa9f266a351314adb43c0257cd7c"
+    },
+    {
+      "file": "meshes/monitor-plug-collars.stl",
+      "sha256": "06ac34b93c0f3018e946b3418a8447a66a6fdea400fe600cdedef01548fd3078"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -700,12 +720,28 @@
       "sha256": "70b1fc5c2f49b02d3865b1ede83cf5e3d498c5f62c6a0a993d4b88c8678aaf9d"
     },
     {
+      "file": "photos/PXL_20261012_125018215.jpg",
+      "sha256": "6c7d028c30563c80cf9f712bb16eacb8b330b8e30cea4cde8da6f1df48682dcf"
+    },
+    {
+      "file": "photos/PXL_20261012_125123660.jpg",
+      "sha256": "de1396ff174224322f2b58495439a2246535c08a0de0129c7467c359de5e8cc3"
+    },
+    {
       "file": "photos/PXL_20261012_125132359.MP.jpg",
       "sha256": "99460552cdb8f6b50b3cb71fe4619718af4c7755c2a0e3e7967080747634eddc"
     },
     {
+      "file": "photos/PXL_20261012_125234638.jpg",
+      "sha256": "a59f30d2d4010edc35b6b80e7219c152bf86804cc07a45f1db60d3fb71981fab"
+    },
+    {
       "file": "photos/PXL_20261012_125300878.jpg",
       "sha256": "dbbe99659711d4b04a714a6f24ea7a766bede5a16fdb5572c2bdf7e029056421"
+    },
+    {
+      "file": "photos/PXL_20261012_125402713.MP.jpg",
+      "sha256": "b3bf79c1d85618b5c58447d04ac68e18533939221e8adf74eb9ef661203196b7"
     },
     {
       "file": "photos/PXL_20261012_125413618.jpg",
@@ -877,23 +913,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "f67ed51cf86bd626805721fa71dacfdecae063eb2da38c8100d93cf33efd0787"
+      "sha256": "4739abfc3f457fdc9ea8469a6557bb846926dd4288b02db3442c9724d9c7c309"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "ff8db73f3c981719009c2f6ea812c0243239a752ed223f0d2b86e7a306fe45ed"
+      "sha256": "7b9c8a61a5f91a83e7dcfb464af52bd640aa4dbcd403031763748e118889327c"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "5b5b79783ec4b9a39f8bd07a6cce748474258f6adaf16c65686e6b687c986e47"
+      "sha256": "159f156f1bc409223994b952e979113fc7d150e7edee7817eb465f0a89a0b356"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "18c5b612df98705ba3234aa3a035c392c70fbc39da20a99832168b8eef7a42a1"
+      "sha256": "2945902e116303886f7465b551f30a3ef1a1fca41c11742d199cbef6980df89e"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "0325ea42d42c2c5a4b0b942f5b3b9e7f932dcaefaeba5cbfad801597e7a3796b"
+      "sha256": "ce67e9870a13ed43b1dfe49d8602305c2b29cd18ca809726d1698072e371ce81"
     }
   ]
 }
