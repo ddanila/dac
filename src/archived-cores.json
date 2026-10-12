@@ -6,5 +6,9 @@
   "6f0feba359fdfd7922da84aab0bd9c463eef0532d7bd5bb09d6b9f24d8f41cd7": {
     "version": "0.4.0",
     "javascript": "e6d350b331f79c3b02fe37f789a8a397a4ef2dee662abddb405dd78fc2c4f5f4"
+  },
+  "b3a2dac77f6aad7c6e7141fc20fe98f3b578921f6adbcfedd6bc2f13d2c7a44a": {
+    "version": "0.5.0",
+    "javascript": "212a684730493ec3f1198981ffc80d5c63b8923502d1e63cea4487ca5aafd778"
   }
 }

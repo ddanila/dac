@@ -301,6 +301,10 @@ function copy(bytes, fn) {
     module._free(p);
   }
 }
+function diskExtension(bytes) {
+  const tag = new TextDecoder().decode(new Uint8Array(bytes).subarray(0, 8));
+  return tag === "EXTENDED" || tag.startsWith("MV - CPC") ? ".dsk" : ".img";
+}
 function frame() {
   const p = module._dac_video(handle);
   if (!p) throw Error("Invalid video output");
@@ -322,6 +326,16 @@ function frame() {
             phase: module._dac_drive_phase_unit(handle, u) / 798720,
             steps: module._dac_drive_steps_unit(handle, u),
             detail: module._dac_drive_detail_unit(handle, u),
+            ...(module._dac_drive_position_unit
+              ? {
+                  position: module._dac_drive_position_unit(handle, u) / 65536,
+                  mechanics: module._dac_drive_mechanics_unit(handle, u),
+                  stepAges: Array.from({ length: 64 }, (_, i) =>
+                    module._dac_drive_step_age(handle, u, i),
+                  ),
+                  speed,
+                }
+              : {}),
           }))
         : null,
       printerSize: module._dac_printer_size(handle),
@@ -783,7 +797,9 @@ async function receive(d) {
         postMessage(
           {
             type: "download",
-            name: record.name.replace(/[^a-z0-9_.-]/gi, "_") + ".img",
+            name:
+              record.name.replace(/[^a-z0-9_.-]/gi, "_") +
+              diskExtension(record.bytes),
             bytes,
           },
           [bytes],
@@ -866,9 +882,15 @@ async function receive(d) {
         n = module._dac_disk_size_unit(handle, u);
       if (!n) throw Error("No disk mounted");
       const bytes = module.HEAPU8.slice(p, p + n);
-      postMessage({ type: "disk", unit: u, bytes: bytes.buffer }, [
-        bytes.buffer,
-      ]);
+      postMessage(
+        {
+          type: "disk",
+          unit: u,
+          name: `dac-drive-${u ? "b" : "a"}${diskExtension(bytes)}`,
+          bytes: bytes.buffer,
+        },
+        [bytes.buffer],
+      );
     }
   } catch (e) {
     if (d.type.startsWith("record-") || recording) {
