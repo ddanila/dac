@@ -41,6 +41,10 @@ async function bootReady(page) {
 test("machine state survives reload and resumes the saved display", async ({
   page,
 }) => {
+  // Two complete page/model loads share this budget on CI's software renderer.
+  // Keep the exact restored-frame assertion; incidental 3D animation is irrelevant.
+  test.setTimeout(60000);
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await bootReady(page);
   await page.locator("#media-controls summary").click();
   await page.locator("#demo").click();
