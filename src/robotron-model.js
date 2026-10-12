@@ -74,7 +74,8 @@ function surface(width, height, radius = 0, bulge = 0) {
   geometry.computeVertexNormals();
   return geometry;
 }
-export async function loadRobotron(displayTexture) {
+export async function loadRobotron(displayTexture, onProgress = () => {}) {
+  onProgress(0);
   const base = new URL(
     "models/robotron-1715m/",
     new URL(import.meta.env.BASE_URL, location.origin),
@@ -94,12 +95,21 @@ export async function loadRobotron(displayTexture) {
     keyObjects = new Map(),
     keyGeometry = new Map();
   const filenames = new Set(data.patches.map((k) => k.photo));
+  // Fixed denominator across all load phases: no resets when a new batch starts.
+  const packages = (data.pcbComponents?.models || []).filter(model =>
+    data.pcbComponents.instances.some(instance => instance.model === model.id));
+  const total = 2 + filenames.size + data.parts.length + data.keyMeshes.length +
+    packages.length * 2 + (data.pcbReferences || []).length;
+  let completed = 1;
+  const advance = () => onProgress(Math.min(99, Math.floor(++completed * 100 / total)));
+  onProgress(Math.floor(completed * 100 / total));
   await Promise.all(
     [...filenames].map(async (name) => {
       const texture = await loader.loadAsync(
         modelAsset(`photos/${name}`, base).href,
       );
       textures.set(name, texture);
+      advance();
     }),
   );
   await Promise.all(
@@ -125,19 +135,15 @@ export async function loadRobotron(displayTexture) {
       if (mesh.userData.prototype) mesh.visible = false;
       group.add(mesh);
       objects.set(part.name, mesh);
+      advance();
     }),
   );
-  await Promise.all(
-    data.keyMeshes.map(async (part) =>
-      keyGeometry.set(
-        part.name,
-        toCreasedNormals(
-          await stl.loadAsync(modelAsset(part.file, base, part.sha256).href),
-          Math.PI / 2.1,
-        ),
-      ),
-    ),
-  );
+  await Promise.all(data.keyMeshes.map(async (part) => {
+    const geometry = toCreasedNormals(
+      await stl.loadAsync(modelAsset(part.file, base, part.sha256).href), Math.PI / 2.1);
+    keyGeometry.set(part.name, geometry);
+    advance();
+  }));
   function photoPlane(
     name,
     width,
@@ -261,12 +267,12 @@ export async function loadRobotron(displayTexture) {
       objects.set(mesh.name, mesh);
     }
   }
-  const packageMeshes = await loadPcbComponents(data, base);
+  const packageMeshes = await loadPcbComponents(data, base, advance);
   for (const mesh of packageMeshes) {
     group.add(mesh);
     objects.set(mesh.name, mesh);
   }
-  const pcbPhotos = await loadPcbPhotos(data, base);
+  const pcbPhotos = await loadPcbPhotos(data, base, advance);
   for (const mesh of pcbPhotos) {
     mesh.visible = false;
     group.add(mesh);
@@ -509,8 +515,8 @@ export async function loadRobotron(displayTexture) {
   ]) {
     marking(
       name,
-      [name === "reset-label" ? 21 : 22, 4.3],
-      [x, -204.2, 4.8],
+      [name === "reset-label" ? 14 : 22, name === "reset-label" ? 3.2 : 4.3],
+      [x, -200.05, 4.8],
       markingTexture(
         (c, w, h) => {
           c.textAlign = "center";
@@ -886,6 +892,7 @@ export async function loadRobotron(displayTexture) {
         changedInside || beforeSplit !== split || fanMoved || drivesMoved,
     };
   }
+  onProgress(100);
   return {
     group,
     detailDistance(distance) {

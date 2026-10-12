@@ -32,6 +32,15 @@
               tabindex="0"
               aria-label="3D computer. Drag to rotate, scroll to zoom. Use the view buttons for keyboard-accessible views."
             ></div>
+            <div id="model-loading" class="model-loading" hidden>
+              <div class="model-loading-heading">
+                <strong id="model-loading-title">Loading the Robotron</strong>
+                <span id="model-loading-percent" aria-hidden="true">0%</span>
+              </div>
+              <div id="model-loading-bar" role="progressbar" aria-label="3D model loading"
+                aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+              <p id="model-loading-detail" aria-live="polite">Preparing the exhibit…</p>
+            </div>
             <div class="stage-top">
               <span class="specimen">EXHIBIT <b id="number">001</b></span
               ><span id="model-note"

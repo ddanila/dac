@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "ffaaa1b416942b5b5137fbda496bb360162d3ad7",
+  "revision": "356e89db3b1f44e42c9b2a838535cb7ca297ff5f",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "a48e517d04efdba26f69ba8cb98d8db133831c5788df776f850a04f6c6b112e8"
+      "sha256": "caddc6fbee22a2b29373010b54d4d005c72ea5b29f794efa9e421bd91b8a3f10"
     },
     {
       "file": "LICENSE",
@@ -13,7 +13,7 @@
     },
     {
       "file": "meshes/case-base.stl",
-      "sha256": "b1914b97323f8ace41288323656a565ef1fb5528531eff5b18cc50d46c6d8614"
+      "sha256": "809d2b90fa86b702494bd36758ba3559608a12c8c6132ec31d1f3418ee0b09b4"
     },
     {
       "file": "meshes/case-lid.stl",
@@ -33,7 +33,7 @@
     },
     {
       "file": "meshes/reset.stl",
-      "sha256": "9ec66bf81d87c3411d05b63439c000bd72b893531ac10701adb6c4208b5b854a"
+      "sha256": "755765242fff31bd984ae6d3a699d8fedee2f16f4028ccffc0a164161da9a983"
     },
     {
       "file": "meshes/pedestal.stl",
@@ -485,27 +485,47 @@
     },
     {
       "file": "meshes/rear-socket-bodies.stl",
-      "sha256": "10ea31aaadd9a0101f8fe385cd3969d2f27b616b9ead9a40a0970732a028728e"
+      "sha256": "e3ad26ec35ec103a924e0877795109b545272f1ac4a9d34fcf72331ab222bda1"
     },
     {
       "file": "meshes/rear-socket-contacts.stl",
-      "sha256": "730971d041df64d954279260471a796ab4d45e0cb62dadc6d1dde26abe2d7c61"
+      "sha256": "5472ccbbf1e5501bf4ff0335ff2151d480c5ca1a9fdbd640ec3e354478e88ecd"
     },
     {
       "file": "meshes/rear-power-black.stl",
-      "sha256": "4ae03e832865b7f475f3ecb3c635d2b2f6e250ad9f1467a462176c897c25af4e"
+      "sha256": "36a73fb6933b4172071b62c5c6b30aebe78aaa4f8eb67ae652aaddde3cd19d22"
     },
     {
       "file": "meshes/rear-blanking-plates.stl",
-      "sha256": "f4063ec19b5bd5332a76abb91e0572039315fccfc2af957a706447ab046d8240"
+      "sha256": "6105ff9475458580533a1ef7dbee7a32d2f50f4e92422b862dfd0d1c951c8690"
     },
     {
       "file": "meshes/rear-legends.stl",
-      "sha256": "2e113b1e3454c1766caa189b0130cb51ebd2bde14003c192c10a467ced8974bb"
+      "sha256": "b50dc0f029108221a69f9ecd09d13acf3e354179a5094093bc46495db375214a"
     },
     {
       "file": "meshes/rear-panel.stl",
-      "sha256": "e74899dbd27dfa70e57e658d510bab69451ee55671204fb13c1678251d4cdca9"
+      "sha256": "ac61bfca0a51f4559978b7056e01e525d781d4cd5527b3ed2791deaf33115300"
+    },
+    {
+      "file": "meshes/rear-recesses.stl",
+      "sha256": "11315a564f449b8ecaad2cbc38e635b60e3407c8661c92f04f50a6b2a0088823"
+    },
+    {
+      "file": "meshes/rear-socket-inserts.stl",
+      "sha256": "c19c5d40b2ea2637671b24deb8d39c751b46a78a946e8b3c2bf992995dd003ba"
+    },
+    {
+      "file": "meshes/rear-fasteners.stl",
+      "sha256": "09f7de36dac53875b439e28f0ffc4f579d19346343315d8c3f98163a6943179a"
+    },
+    {
+      "file": "meshes/rear-nameplate.stl",
+      "sha256": "132d4ae5ba0219f22b8a2ecaef064ea477b874201a13402b86f889f15d866461"
+    },
+    {
+      "file": "meshes/rear-nameplate-ink.stl",
+      "sha256": "7e0d3976d569c6b871b16ce61c6172fbbf667626f65bac99a2c9aae8c19520d8"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -664,8 +684,16 @@
       "sha256": "3cb19c18138cae1aaa9ec6920d1eca87d805bfe61cff8f6e9e2f52b1d0162f0a"
     },
     {
+      "file": "photos/PXL_20261012_124827690.jpg",
+      "sha256": "70b1fc5c2f49b02d3865b1ede83cf5e3d498c5f62c6a0a993d4b88c8678aaf9d"
+    },
+    {
       "file": "photos/PXL_20261012_125132359.MP.jpg",
       "sha256": "99460552cdb8f6b50b3cb71fe4619718af4c7755c2a0e3e7967080747634eddc"
+    },
+    {
+      "file": "photos/PXL_20261012_125300878.jpg",
+      "sha256": "dbbe99659711d4b04a714a6f24ea7a766bede5a16fdb5572c2bdf7e029056421"
     },
     {
       "file": "photos/PXL_20261012_125413618.jpg",
@@ -674,6 +702,18 @@
     {
       "file": "photos/PXL_20261012_125417620.jpg",
       "sha256": "3dbef0102d382ef598ff16a579e6d5789b78063180c1e4d4f737f2b5c67282b4"
+    },
+    {
+      "file": "photos/PXL_20261012_125449006.jpg",
+      "sha256": "6aae0732dc54f651cc4a6f352dc4848f2236456234d779c83dac421c8fbafa51"
+    },
+    {
+      "file": "photos/PXL_20261012_125457861.jpg",
+      "sha256": "7cc1b4e481564dccf857edcff5aaaa6b78437d9380658ec37a58fd15b3ba7786"
+    },
+    {
+      "file": "photos/PXL_20261012_125502437.jpg",
+      "sha256": "8f4042704da556932bdf21eef71f6545673647a9af784a19e21f54b0c27cff53"
     },
     {
       "file": "photos/PXL_20261012_131106217.jpg",
@@ -825,23 +865,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "c3a355c51ec74c4f3f75bc6fa02fd7270eee8c8f74e8d450103582cbe4247b45"
+      "sha256": "98c86e6a8334ed0f7165b53547bfb579b4fd73c2ba2f3beb0ddc1b1ee2b58501"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "ac2fd5039200e6883af79701e7fbb6a5f071e94e60a0bf5659d802174c0f9eeb"
+      "sha256": "67190f1aa9c3694901e1fe2dd61586cf0c31c2f9ac08fdd571fd879c94daaa36"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "c81822a3c0ff3bc36c0873035225da960b7c89161afa4548ac91e0db2c8d6ec7"
+      "sha256": "c50770b730a1115e3c08bd70e8797c1d1711ac30aec7b3a7cbe24102a9ded428"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "5b4d4abcf56b64cd278d42a6686e727e5214bf902df267d45d400a02c598625a"
+      "sha256": "e2e00758d76ad22be04c2c0955945d0d080cd6287e7749a993b6cead1baaab38"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "e3e5677cf8418ff18815696dc09868cc9b5d880d31edd98b57615b8e82d919f6"
+      "sha256": "969be0f6f2fba2873b32fae947e398daf25a59d6c1b313615aa5ecc36a6b63ef"
     }
   ]
 }

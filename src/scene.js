@@ -164,10 +164,29 @@ export function createScene(
     powered = false,
     modelError = false;
   let modifiers = {};
+  const loading = document.getElementById("model-loading"),
+    loadingBar = document.getElementById("model-loading-bar"),
+    loadingPercent = document.getElementById("model-loading-percent");
+  function loadingProgress(percent) {
+    if (modelError) return;
+    loadingPercent.textContent = `${percent}%`;
+    loadingBar.setAttribute("aria-valuenow", String(percent));
+    loadingBar.firstElementChild.style.width = `${percent}%`;
+    document.getElementById("model-loading-detail").textContent =
+      percent === 100 ? "Ready to explore" : "Preparing the exhibit…";
+  }
   function visibility() {
     renderRequested = true;
     renderer.shadowMap.needsUpdate = true;
     machine.visible = kind !== 2 || !robotron;
+    loading.hidden = kind !== 2 || !!robotron;
+    container.setAttribute("aria-busy", String(kind === 2 && !robotron && !modelError));
+    if (modelError) {
+      loading.dataset.error = "true";
+      loadingBar.hidden = loadingPercent.hidden = true;
+      document.getElementById("model-loading-title").textContent = "3D model couldn’t load";
+      document.getElementById("model-loading-detail").textContent = "You can still use the computer controls below.";
+    }
     if (robotron) robotron.group.visible = kind === 2;
     container.dataset.model =
       kind === 2
@@ -187,7 +206,7 @@ export function createScene(
             : "LOADING DANILA’S MACHINE…";
   }
   visibility();
-  loadRobotron(texture)
+  loadRobotron(texture, loadingProgress)
     .then((model) => {
       robotron = model;
       scene.add(model.group);
