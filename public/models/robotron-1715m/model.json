@@ -1,7 +1,65 @@
 {
-  "version": 11,
+  "version": 12,
   "pcbComponents": {
-    "version": 2,
+    "mounts": [
+      [
+        -225,
+        -170,
+        3,
+        13.6,
+        "motherboard"
+      ],
+      [
+        -225,
+        165,
+        3,
+        13.6,
+        "motherboard"
+      ],
+      [
+        12,
+        -170,
+        3,
+        13.6,
+        "motherboard"
+      ],
+      [
+        12,
+        165,
+        3,
+        13.6,
+        "motherboard"
+      ],
+      [
+        -216,
+        16,
+        13.6,
+        42.6,
+        "floppy-controller"
+      ],
+      [
+        -216,
+        168,
+        13.6,
+        42.6,
+        "floppy-controller"
+      ],
+      [
+        -9,
+        16,
+        13.6,
+        42.6,
+        "floppy-controller"
+      ],
+      [
+        -9,
+        168,
+        13.6,
+        42.6,
+        "floppy-controller"
+      ]
+    ],
+    "version": 3,
     "models": [
       {
         "id": "DIP-14_W7.62mm",
@@ -18981,7 +19039,7 @@
       "name": "drive-mechanisms",
       "file": "meshes/drive-mechanisms.stl",
       "color": "#bec2bd",
-      "sha256": "74262abc2e1ca8e59d00630071872f40c84c6bb1aa5821bab456a1e1f9223935",
+      "sha256": "11acba136516e2a479b87b37fd918750b94d52858879f5daa0d8b5512b139722",
       "section": "interior",
       "material": "metal"
     },
@@ -19029,7 +19087,7 @@
       "name": "logic-boards-motherboard",
       "file": "meshes/logic-boards-motherboard.stl",
       "color": "#386349",
-      "sha256": "21cbbf32677f683501295a4636717c86db9644b8ff8087b9e4fab67ecb30a60d",
+      "sha256": "6ee62610a3e4d84c3dddd4c2440e8f217e62e90a2da3192a482c427d922d1998",
       "board": "motherboard",
       "part": "logic-boards",
       "section": "interior",
@@ -19039,7 +19097,7 @@
       "name": "logic-boards-floppy-controller",
       "file": "meshes/logic-boards-floppy-controller.stl",
       "color": "#386349",
-      "sha256": "eac864318abfa370ace2387e0861a95019087e9d3b9e25d26390f5929827a1ad",
+      "sha256": "cdc8184836821139b6ffd3838eea6829a38440752e401b1f7f66b34164736a2c",
       "board": "floppy-controller",
       "part": "logic-boards",
       "section": "interior",
@@ -19117,7 +19175,7 @@
       "name": "power-wires-red",
       "file": "meshes/power-wires-red.stl",
       "color": "#9e3930",
-      "sha256": "9df4b9d4ee265c2dc58729e50f31b87f693c6e67978496df6a169163a5a300e8",
+      "sha256": "a3174342a7cc52722aec704f175e9200b0bf6df1bb9b2cbf0ec653857f98942d",
       "section": "interior",
       "material": "rubber"
     },
@@ -19125,7 +19183,7 @@
       "name": "power-wires-black",
       "file": "meshes/power-wires-black.stl",
       "color": "#252a28",
-      "sha256": "a75c6c272c8fc64b407205ca4b66577e57d18648997ff1adb24ee6e24efa355c",
+      "sha256": "216a8f07acd76b99fbb6700734856a088a5e8c759e97fa513b625775058b211b",
       "section": "interior",
       "material": "rubber"
     },
@@ -19133,7 +19191,7 @@
       "name": "power-wires-yellow",
       "file": "meshes/power-wires-yellow.stl",
       "color": "#b6a05b",
-      "sha256": "a190389df73a0fac06911179dbf188edb9c7466974e510760ac42ecaf4964adf",
+      "sha256": "d2cf607027f5ce01fbc2e772e2dc71649bf6e251d5f20bfa3cfc3b0b462c4bdf",
       "section": "interior",
       "material": "rubber"
     },
@@ -19275,7 +19333,7 @@
       "name": "drive-spindle-0",
       "file": "meshes/drive-spindle-0.stl",
       "color": "#a8aaa4",
-      "sha256": "80c04898f2f7e5fde69aaf5123c6b328d8d7b87b61b40798add7289cabc4fea8",
+      "sha256": "fef28e58428c438d2dcfa16a9ea19d0df7a251f43f314f102dd31751670a69bc",
       "section": "interior",
       "material": "metal"
     },
@@ -19283,7 +19341,7 @@
       "name": "drive-spindle-1",
       "file": "meshes/drive-spindle-1.stl",
       "color": "#a8aaa4",
-      "sha256": "626d5a68860640effacf0b053971786b5c7cdd9dbaebabbaf3a959a3cc477bae",
+      "sha256": "4c1c6f7949e3a96066f043347f2fbef7cb52b501d4facc3a03826027f139ed49",
       "section": "interior",
       "material": "metal"
     },
@@ -19291,7 +19349,7 @@
       "name": "drive-head-0",
       "file": "meshes/drive-head-0.stl",
       "color": "#30322f",
-      "sha256": "f4161f412b8494b059f3574b2ef372679495122c604a2c6101e14d4194dae975",
+      "sha256": "4fe92d890ec9ef499945d632fe3eb7b6bafd7b572444e5ba79a86aa8f22a7c85",
       "section": "interior",
       "material": "plastic"
     },
@@ -19299,7 +19357,7 @@
       "name": "drive-head-1",
       "file": "meshes/drive-head-1.stl",
       "color": "#30322f",
-      "sha256": "0e1029dfbc4d2499230858ccd02be878040d41c4977fbd396af6ffce53ee9eaf",
+      "sha256": "45d420a7aab57e090780062e66439512cc9b6d9088dd395ba6f67f73ccbd823f",
       "section": "interior",
       "material": "plastic"
     },
@@ -19330,7 +19388,7 @@
       "name": "drive-head-metal-0",
       "file": "meshes/drive-head-metal-0.stl",
       "color": "#b5b9b2",
-      "sha256": "2bf415f62e228776c9eba5805ac025ba454d0e6eb93b17c6e92ab444b6789557",
+      "sha256": "966089be22adf89d7a9c08697f82ad9c65a617c302afa1783ac0ed54f48f956a",
       "section": "interior",
       "material": "metal"
     },
@@ -19338,7 +19396,7 @@
       "name": "drive-head-metal-1",
       "file": "meshes/drive-head-metal-1.stl",
       "color": "#b5b9b2",
-      "sha256": "4956f56d6518f0f34ccff94d986f7d99095784a9592e188a2eb77b7d062ddfa1",
+      "sha256": "df1917a45942329f7253752ffd878567079fe3bd1934271feeee45e2a5fb1a5b",
       "section": "interior",
       "material": "metal"
     },
@@ -19351,10 +19409,22 @@
       "material": "plastic"
     },
     {
-      "name": "logic-mounts",
-      "file": "meshes/logic-mounts.stl",
+      "name": "logic-mounts-motherboard",
+      "file": "meshes/logic-mounts-motherboard.stl",
       "color": "#b5b9b2",
-      "sha256": "ecd4f10895109c1e60bb371ee4380ceb369abcf09248002d467efb426146dc65",
+      "sha256": "93f70a15ecf7f90a00b3b8b626d2107acbcfb13a9e0aa6dcdbf7ad2f73e44f43",
+      "board": "motherboard",
+      "part": "logic-mounts",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "logic-mounts-floppy-controller",
+      "file": "meshes/logic-mounts-floppy-controller.stl",
+      "color": "#b5b9b2",
+      "sha256": "d99fa526dc0a1ebf383ee1102ceeaf3643f77db4c9d510258bb5f668f60edc1d",
+      "board": "floppy-controller",
+      "part": "logic-mounts",
       "section": "interior",
       "material": "metal"
     },
@@ -19559,6 +19629,22 @@
       "sha256": "f5b7b32d41f591adda578f094c16ee1ab97be4b6d951c98bfde580575822824b",
       "section": "prototype",
       "material": "metal"
+    },
+    {
+      "name": "ribbon-ridges",
+      "file": "meshes/ribbon-ridges.stl",
+      "color": "#b0b3a9",
+      "sha256": "653cb232348262f2899ea501b385cc1a3a01af55d1f64cdc0a22f81f258154fc",
+      "section": "interior",
+      "material": "rubber"
+    },
+    {
+      "name": "drive-cable-plugs",
+      "file": "meshes/drive-cable-plugs.stl",
+      "color": "#353936",
+      "sha256": "d321ad7d2279b2f7d1e84ca29b3eeec9a6b152ef749c68811086da4c76bff07c",
+      "section": "interior",
+      "material": "plastic"
     }
   ],
   "keys": [

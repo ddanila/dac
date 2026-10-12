@@ -129,6 +129,12 @@ inspections["floppy-controller"] = {
   title: "Floppy controller",
   text: "The floppy controller is shown independently, including photo-estimated yellow film capacitors, different electrolytic sizes, a divided two-row connector and individual contacts. Orbit below it to see lead-aligned solder fillets. The board artwork comes from another PC 1715; pin count, connector keying, component values and the underside routing remain unverified for this specimen.",
 };
+for (const board of ["motherboard", "floppy-controller"])
+  inspections[board + "-under"] = {
+    ...inspections[board],
+    title: inspections[board].title + " underside",
+    text: "Mounting screws, washers and hex standoffs share the board’s clearance-hole positions. Component leads have metal pads and solder fillets. Underside tracks and exact mounting dimensions are not verified for Danila’s specimen and are not reconstructed. Orbit or zoom to inspect; the reference-photo toggle returns to the component side.",
+  };
 let currentInspection = "overview";
 function photoUrl(photo) {
   return new URL(

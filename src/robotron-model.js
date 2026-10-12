@@ -353,12 +353,14 @@ export async function loadRobotron(displayTexture) {
       cableRest.set(name, mesh.geometry.attributes.position.array.slice());
   }
   let inspection = {
+    referencePhoto: false,
     isolated: "all",
     transparent: false,
     keyboardOpen: false,
     clamps: false,
   };
   let inspectionDirty = true;
+  let fineDetails = true;
   function belongs(name, wanted) {
     if (wanted === "keyboard") return /^(keyboard|keys-|prototype-)/.test(name);
     if (wanted === "drives")
@@ -568,6 +570,20 @@ export async function loadRobotron(displayTexture) {
         mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
       }
     for (const mesh of pcbPhotos) {
+      if (mesh.userData.artwork) {
+        const source = inspection.referencePhoto
+          ? mesh.userData.original
+          : mesh.userData.artwork;
+        if (mesh.material.map !== source.texture) {
+          mesh.geometry = source.geometry;
+          mesh.material.map = source.texture;
+          mesh.material.transparent = !inspection.referencePhoto;
+          mesh.material.alphaTest = inspection.referencePhoto ? 0 : 0.08;
+          mesh.material.needsUpdate = true;
+        }
+        for (const child of mesh.children)
+          child.visible = !inspection.referencePhoto;
+      }
       const monitor = mesh.userData.section === "monitor-interior";
       mesh.visible = monitor
         ? monitorOpen ||
@@ -737,6 +753,20 @@ export async function loadRobotron(displayTexture) {
     for (const mesh of [...objects.values(), ...pcbPhotos, ...patches]) {
       if (inspection.isolated !== "all")
         mesh.visible &&= belongs(mesh.name, inspection.isolated);
+      if (
+        inspection.referencePhoto &&
+        mesh.userData.board &&
+        !mesh.name.startsWith("reference-") &&
+        !mesh.name.startsWith("logic-boards-")
+      )
+        mesh.visible = false;
+      if (
+        !fineDetails &&
+        /^(logic-pad-|logic-solder-|logic-connector-contacts-|logic-package-.*-leads-|ribbon-ridges)/.test(
+          mesh.name,
+        )
+      )
+        mesh.visible = false;
       if (covers.has(mesh.name)) {
         mesh.material.transparent = inspection.transparent;
         mesh.material.opacity = inspection.transparent ? 0.16 : 1;
@@ -762,6 +792,13 @@ export async function loadRobotron(displayTexture) {
   }
   return {
     group,
+    detailDistance(distance) {
+      const next = distance < (fineDetails ? 2.0 : 1.7);
+      if (next !== fineDetails) {
+        fineDetails = next;
+        inspectionDirty = true;
+      }
+    },
     inspect(value) {
       inspection = { ...inspection, ...value };
       inspectionDirty = true;

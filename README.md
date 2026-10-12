@@ -155,3 +155,13 @@ capacitors and photo-estimated electrolytic sizes. Traces and markings are
 extracted from the credited comparative photographs onto a consistently lit
 substrate; hidden routing and electrical connectivity are not reconstructed.
 The exact board revision, sockets and connector details remain provisional.
+
+The **Inspect board underside** button isolates the selected motherboard or floppy
+controller and shows its solder side. **Show original reference board photo**
+switches back to the component side and replaces modeled components with the
+credited source photo; turning it off restores the reconstruction. Mounting
+holes, washers and hex supports now share positions. Drive rail bearings,
+spindle retainers, carriage springs, rear cable plugs, power entries and ribbon
+ridges add photo-guided detail. Small pads, solder, contacts, IC leads and ribbon
+ridges are hidden at distant zoom levels and restored nearby with hysteresis;
+static inspection still stops rendering when nothing changes.

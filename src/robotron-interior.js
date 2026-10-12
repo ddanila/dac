@@ -116,6 +116,22 @@ export function pcbArtwork(board, image, descriptions) {
     );
     ctx.fill();
   }
+  for (const [x, y, , z, name] of descriptions?.mounts || []) {
+    if (name !== board.name) continue;
+    const u = board.rotated ? 1 - (y - oy) / h : (x - ox) / w;
+    const v = board.rotated ? 1 - (x - ox) / w : 1 - (y - oy) / h;
+    ctx.beginPath();
+    ctx.ellipse(
+      x0 + u * (x1 - x0),
+      y0 + v * (y1 - y0),
+      (1.8 * (x1 - x0)) / (board.rotated ? h : w),
+      (1.8 * (y1 - y0)) / (board.rotated ? w : h),
+      0,
+      0,
+      Math.PI * 2,
+    );
+    ctx.fill();
+  }
   return canvas;
 }
 export async function loadPcbPhotos(data, base) {
@@ -168,6 +184,19 @@ export async function loadPcbPhotos(data, base) {
         markings.name = `logic-markings-${board.name}`;
         markings.userData.detail = board.name;
         mesh.add(markings);
+      }
+      if (board.components?.length) {
+        mesh.userData.artwork = { geometry: mesh.geometry, texture: artwork };
+        mesh.userData.original = {
+          geometry: pcbPhotoGeometry({
+            ...board,
+            components: [],
+            passives: [],
+            exclude: [],
+            packages: [],
+          }),
+          texture,
+        };
       }
       mesh.name = `reference-${board.name}`;
       mesh.userData.board = board.name;
