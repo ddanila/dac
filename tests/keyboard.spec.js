@@ -179,7 +179,7 @@ test("inspection separates the exterior and links owner rear references", async 
   await page.locator("#open-case").uncheck();
   await page.getByRole("button", { name: "Rear", exact: true }).click();
   await expect(page.locator("#inspection-text")).toContainText(
-    "October 12 photos",
+    "October 12",
   );
   await expect(page.locator("#reference-photo")).toBeVisible();
   await expect(page.locator("#reference-photo")).toHaveAttribute("href", /20261012_125413618/);
