@@ -353,6 +353,11 @@ export async function loadRobotron(displayTexture) {
       cableRest.set(name, mesh.geometry.attributes.position.array.slice());
   }
   let inspection = {
+    focus: "none",
+    demo: false,
+    demoAnimate: false,
+    demoPhase: 0,
+    disconnectCables: true,
     referencePhoto: false,
     isolated: "all",
     transparent: false,
@@ -361,6 +366,9 @@ export async function loadRobotron(displayTexture) {
   };
   let inspectionDirty = true;
   let fineDetails = true;
+  let highlightedFocus,
+    demoClock = 0,
+    demoLast;
   function belongs(name, wanted) {
     if (wanted === "keyboard") return /^(keyboard|keys-|prototype-)/.test(name);
     if (wanted === "drives")
@@ -535,6 +543,41 @@ export async function loadRobotron(displayTexture) {
     else pressed.delete(id);
   }
   function tick() {
+    const now = performance.now();
+    const demoDt =
+      demoLast === undefined ? 0 : Math.min(0.05, (now - demoLast) / 1000);
+    demoLast = now;
+    if (highlightedFocus !== inspection.focus) {
+      highlightedFocus = inspection.focus;
+      for (const mesh of [...objects.values(), ...pcbPhotos]) {
+        const name = mesh.name,
+          focus = inspection.focus;
+        const selected =
+          focus === "head"
+            ? name.startsWith("drive-head-")
+            : focus === "spindle"
+              ? name.startsWith("drive-spindle-")
+              : focus === "clamp"
+                ? name.startsWith("drive-clamp-") ||
+                  name.startsWith("drive-latch-")
+                : focus !== "none" && mesh.userData.board === focus;
+        if (mesh.userData.baseMaterial) {
+          mesh.material.dispose();
+          mesh.material = mesh.userData.baseMaterial;
+          delete mesh.userData.baseMaterial;
+        }
+        mesh.userData.highlighted = !!selected;
+        if (selected && mesh.material?.emissive) {
+          const base = mesh.material;
+          mesh.userData.baseMaterial = base;
+          mesh.material = base.clone();
+          mesh.material.onBeforeCompile = base.onBeforeCompile;
+          mesh.material.customProgramCacheKey = base.customProgramCacheKey;
+          mesh.material.emissive.setHex(0xb87718);
+          mesh.material.emissiveIntensity = 0.55;
+        }
+      }
+    }
     let dirty =
       inside !== wasInside ||
       monitorOpen !== wasMonitorOpen ||
@@ -622,6 +665,10 @@ export async function loadRobotron(displayTexture) {
       dirty ||= before !== material.emissive.getHex();
     }
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const demoActive = inspection.demo && inspection.isolated === "drives";
+    const demoAnimate =
+      demoActive && inspection.demoAnimate && !reduced && !document.hidden;
+    if (demoAnimate) demoClock += demoDt / 12;
     const fanMoved = moveFan(
       performance.now(),
       power,
@@ -661,6 +708,8 @@ export async function loadRobotron(displayTexture) {
         mesh.position.z = split * 115;
         mesh.position.y = -split * 145;
       }
+      if (name === "drive-cable-plugs" && inspection.disconnectCables)
+        mesh.position.set(0, split * (data.cableParking?.[1] || 18), 0);
       if (cableRest.has(name)) {
         mesh.visible = inside || inspection.transparent;
         // Inspection deformation: retain fixed board/PSU ends while moving drive ends.
@@ -676,8 +725,14 @@ export async function loadRobotron(displayTexture) {
             pos.setXYZ(
               i,
               rest[i * 3],
-              rest[i * 3 + 1] - split * 145 * weight,
-              rest[i * 3 + 2] + split * 115 * weight,
+              rest[i * 3 + 1] +
+                split *
+                  (inspection.disconnectCables
+                    ? data.cableParking?.[1] || 18
+                    : -145) *
+                  weight,
+              rest[i * 3 + 2] +
+                (inspection.disconnectCables ? 0 : split * 115 * weight),
             );
           }
           pos.needsUpdate = true;
@@ -749,6 +804,9 @@ export async function loadRobotron(displayTexture) {
       split,
       reduced,
       inspection.clamps,
+      demoActive
+        ? { phase: inspection.demoPhase + demoClock, animate: demoAnimate }
+        : null,
     );
     for (const mesh of [...objects.values(), ...pcbPhotos, ...patches]) {
       if (inspection.isolated !== "all")
@@ -800,6 +858,12 @@ export async function loadRobotron(displayTexture) {
       }
     },
     inspect(value) {
+      if (
+        (value.demoPhase !== undefined &&
+          value.demoPhase !== inspection.demoPhase) ||
+        (value.demo !== undefined && value.demo !== inspection.demo)
+      )
+        demoClock = 0;
       inspection = { ...inspection, ...value };
       inspectionDirty = true;
       releaseKeys();

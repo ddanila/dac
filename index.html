@@ -78,6 +78,46 @@
             <button id="reference-details" type="button">
               Inspect photo and details
             </button>
+            <details id="model-downloads">
+              <summary>Download board and drive models</summary>
+              <p>
+                STL geometry in millimetres, with editable OpenSCAD sources,
+                evidence notes and licences. Reference reconstructions; no photo
+                textures in STL.
+              </p>
+              <ul>
+                <li>
+                  <a
+                    download
+                    href="models/robotron-1715m/downloads/motherboard.zip"
+                    >Motherboard model</a
+                  >
+                </li>
+                <li>
+                  <a
+                    download
+                    href="models/robotron-1715m/downloads/floppy-controller.zip"
+                    >Floppy controller model</a
+                  >
+                </li>
+                <li>
+                  <a download href="models/robotron-1715m/downloads/drive-0.zip"
+                    >Drive 0 · short sensor board</a
+                  >
+                </li>
+                <li>
+                  <a download href="models/robotron-1715m/downloads/drive-1.zip"
+                    >Drive 1 · long sensor board</a
+                  >
+                </li>
+              </ul>
+              <p>
+                <a
+                  href="https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m"
+                  >Canonical sources and provenance</a
+                >
+              </p>
+            </details>
             <details id="component-guide">
               <summary>Explore the components</summary>
               <p>
@@ -219,6 +259,55 @@
               <option value="monitor">Monitor</option>
               <option value="psu">Power supply and fan</option>
             </select>
+            <label for="component-focus">Highlight component</label>
+            <select id="component-focus" disabled>
+              <option value="none">No highlight</option>
+              <option value="head">Head carriage</option>
+              <option value="spindle">Spindle</option>
+              <option value="clamp">Clamp and latch</option>
+              <option value="floppy-controller">Floppy controller</option>
+              <option value="motherboard">Motherboard</option>
+            </select>
+            <div class="secondary-controls">
+              <button data-view="drive-top">Drive top</button
+              ><button data-view="drive-rear">Drive rear</button>
+            </div>
+            <label class="assembly-control"
+              ><input id="disconnect-cables" type="checkbox" checked disabled />
+              Disconnect drive cables when separating</label
+            >
+            <p id="drive-demo-status" class="hint" role="status" hidden>
+              Mechanical demo active · visual only. Emulator activity continues
+              independently.
+            </p>
+            <details id="mechanism-demo">
+              <summary>Mechanical motion demo</summary>
+              <p>
+                Visual demonstration only. Does not operate the emulator or
+                eject a disk.
+              </p>
+              <label
+                ><input id="drive-demo" type="checkbox" disabled /> Demonstrate
+                drive mechanisms</label
+              >
+              <label
+                ><input id="drive-demo-play" type="checkbox" disabled /> Animate
+                slowly (12-second cycle)</label
+              >
+              <label for="drive-demo-phase">Manual position</label
+              ><input
+                id="drive-demo-phase"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                disabled
+              />
+              <p class="hint">
+                Reduced-motion preference keeps the demo manual. Switch off to
+                return to live drive activity.
+              </p>
+            </details>
             <button id="board-underside" disabled>
               Inspect board underside
             </button>
@@ -232,8 +321,8 @@
             </p>
             <p class="hint">
               Disassembly is illustrative. Releasing the clamps here does not
-              eject an emulated disk. Separated cables stretch to show their
-              connections.
+              eject an emulated disk. Disconnected plugs stay with the cables.
+              Turning disconnection off uses illustrative stretched cables.
             </p>
             <button
               id="key-list-toggle"

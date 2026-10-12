@@ -135,6 +135,33 @@ for (const board of ["motherboard", "floppy-controller"])
     title: inspections[board].title + " underside",
     text: "Mounting screws, washers and hex standoffs share the board’s clearance-hole positions. Component leads have metal pads and solder fillets. Underside tracks and exact mounting dimensions are not verified for Danila’s specimen and are not reconstructed. Orbit or zoom to inspect; the reference-photo toggle returns to the component side.",
   };
+Object.assign(inspections, {
+  "focus-head": {
+    title: "Head carriage",
+    text: "The highlighted carriage and shield follow Danila’s drive photographs. Their rail bores now clear the fixed guide rods at all 80 modeled track positions. Travel is a 35 mm estimate; this is not a verified head-position calibration.",
+    photo: "20250212_094033966",
+  },
+  "focus-spindle": {
+    title: "Spindle and retaining ring",
+    text: "The highlighted hub follows the owner’s overview photo. Shape and speed are estimates. Normal operation follows emulator motor activity; the separate mechanical demo is visual only.",
+    photo: "20250212_094033966",
+  },
+  "focus-clamp": {
+    title: "Clamp and latch",
+    text: "These parts follow the owner’s mechanism photos. Their demonstration is illustrative: hidden linkage geometry and exact kinematics remain unverified. It does not eject media from the emulator.",
+    photo: "20250212_094038758",
+  },
+  "drive-top": { ...inspections.drives, title: "Drive mechanisms from above" },
+  "drive-rear": {
+    ...inspections["drive-labels"],
+    title: "Drive connectors and rear plates",
+  },
+  "drive-demo": {
+    title: "Mechanical motion demo · visual only",
+    text: "A slow 12-second cycle illustrates head travel, spindle rotation and latch/clamp movement. It sends no commands to the emulator. Use Manual position with reduced motion, or switch the demo off to restore live drive activity. Linkage timing and geometry remain illustrative.",
+    photo: "20250212_094033966",
+  },
+});
 let currentInspection = "overview";
 function photoUrl(photo) {
   return new URL(

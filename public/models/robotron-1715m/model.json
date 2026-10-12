@@ -1,5 +1,10 @@
 {
-  "version": 12,
+  "version": 13,
+  "cableParking": [
+    0,
+    18,
+    0
+  ],
   "pcbComponents": {
     "mounts": [
       [
@@ -18803,6 +18808,30 @@
       "grain": 0.015,
       "grainScale": 4.0
     },
+    "plated-steel": {
+      "roughness": 0.43,
+      "metalness": 0.72,
+      "grain": 0.016,
+      "grainScale": 4.5
+    },
+    "cast-alloy": {
+      "roughness": 0.57,
+      "metalness": 0.62,
+      "grain": 0.03,
+      "grainScale": 2.2
+    },
+    "solder": {
+      "roughness": 0.48,
+      "metalness": 0.66,
+      "grain": 0.009,
+      "grainScale": 5
+    },
+    "aged-plastic": {
+      "roughness": 0.74,
+      "metalness": 0,
+      "grain": 0.026,
+      "grainScale": 3.5
+    },
     "metal": {
       "roughness": 0.38,
       "metalness": 0.72,
@@ -18857,7 +18886,7 @@
       "file": "meshes/drives.stl",
       "color": "#242627",
       "sha256": "40a52de13bd5b51b38ed82279fb1f1b489576e18e4bf50da01ac0e0f08351319",
-      "material": "plastic"
+      "material": "aged-plastic"
     },
     {
       "name": "power",
@@ -18927,7 +18956,7 @@
       "file": "meshes/keyboard-deck.stl",
       "color": "#242929",
       "sha256": "607f4eb779dedbc378400a5399d4ef331abcd8ad3b67308ef8d8da5b914e4829",
-      "material": "plastic"
+      "material": "aged-plastic"
     },
     {
       "name": "hardware",
@@ -19033,15 +19062,15 @@
       "color": "#a2a4a0",
       "sha256": "54963ad5e4ebe085dc6f8900ed18ed2050afe302642e3d3d7f85b8861dd41b74",
       "section": "interior",
-      "material": "metal"
+      "material": "cast-alloy"
     },
     {
       "name": "drive-mechanisms",
       "file": "meshes/drive-mechanisms.stl",
       "color": "#bec2bd",
-      "sha256": "11acba136516e2a479b87b37fd918750b94d52858879f5daa0d8b5512b139722",
+      "sha256": "2fccbf4adc894662d97d45d1c04dbd28115d8e3ba129980c846a6e1f037fc33b",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "drive-motors",
@@ -19081,7 +19110,7 @@
       "color": "#afb4ae",
       "sha256": "bb985a420293e7b4b2b69ec99b661534a462e3f8db0c51ec05b0e17df58b7ac7",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "logic-boards-motherboard",
@@ -19111,7 +19140,7 @@
       "board": "motherboard",
       "part": "logic-connectors",
       "section": "interior",
-      "material": "plastic"
+      "material": "aged-plastic"
     },
     {
       "name": "logic-connectors-floppy-controller",
@@ -19121,7 +19150,7 @@
       "board": "floppy-controller",
       "part": "logic-connectors",
       "section": "interior",
-      "material": "plastic"
+      "material": "aged-plastic"
     },
     {
       "name": "psu-chassis",
@@ -19129,7 +19158,7 @@
       "color": "#a2a6a3",
       "sha256": "8f73227f65fa6730540e1f3fa5e46126a44452a8841aaddd048b294b6f52dff1",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "psu-cover",
@@ -19137,7 +19166,7 @@
       "color": "#b5b9b2",
       "sha256": "b3b029b15585e056fa5a26c02fe4438214f01dc76d7f916224f0b98438ac3d98",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "fan-frame",
@@ -19145,7 +19174,7 @@
       "color": "#818984",
       "sha256": "6a259a1c0ee07f61370ceeb3f8f8efd3395b0a371ff5cf02c2e567310c098e5e",
       "section": "interior",
-      "material": "metal"
+      "material": "cast-alloy"
     },
     {
       "name": "fan-rotor",
@@ -19335,7 +19364,7 @@
       "color": "#a8aaa4",
       "sha256": "fef28e58428c438d2dcfa16a9ea19d0df7a251f43f314f102dd31751670a69bc",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "drive-spindle-1",
@@ -19343,13 +19372,13 @@
       "color": "#a8aaa4",
       "sha256": "4c1c6f7949e3a96066f043347f2fbef7cb52b501d4facc3a03826027f139ed49",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "drive-head-0",
       "file": "meshes/drive-head-0.stl",
       "color": "#30322f",
-      "sha256": "4fe92d890ec9ef499945d632fe3eb7b6bafd7b572444e5ba79a86aa8f22a7c85",
+      "sha256": "b81c2b49ca4411cc77d5c8ffb0ee24395cb8cb2b5e35d0ff2ff4fc9df29f50c5",
       "section": "interior",
       "material": "plastic"
     },
@@ -19357,7 +19386,7 @@
       "name": "drive-head-1",
       "file": "meshes/drive-head-1.stl",
       "color": "#30322f",
-      "sha256": "45d420a7aab57e090780062e66439512cc9b6d9088dd395ba6f67f73ccbd823f",
+      "sha256": "5bd11c0c03cb25a8eab24d7fcd270a35895245029af6cb85b3eb0c1f71fc8fa9",
       "section": "interior",
       "material": "plastic"
     },
@@ -19374,7 +19403,7 @@
       "color": "#b5b9b2",
       "sha256": "cd6f68b674d68333619b130505878b8ec069145ea48139a1ec5c1bc7676672b5",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "drive-clamp-1",
@@ -19382,7 +19411,7 @@
       "color": "#b5b9b2",
       "sha256": "5cca7a40ce9455b028c9c1c55d46fb5cff62fcf2e0b561488222854e32d801f5",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "drive-head-metal-0",
@@ -19390,7 +19419,7 @@
       "color": "#b5b9b2",
       "sha256": "966089be22adf89d7a9c08697f82ad9c65a617c302afa1783ac0ed54f48f956a",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "drive-head-metal-1",
@@ -19398,7 +19427,7 @@
       "color": "#b5b9b2",
       "sha256": "df1917a45942329f7253752ffd878567079fe3bd1934271feeee45e2a5fb1a5b",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "drive-board-components",
@@ -19416,7 +19445,7 @@
       "board": "motherboard",
       "part": "logic-mounts",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "logic-mounts-floppy-controller",
@@ -19426,7 +19455,7 @@
       "board": "floppy-controller",
       "part": "logic-mounts",
       "section": "interior",
-      "material": "metal"
+      "material": "plated-steel"
     },
     {
       "name": "chassis-fasteners",
@@ -19628,7 +19657,7 @@
       "color": "#aaa99c",
       "sha256": "f5b7b32d41f591adda578f094c16ee1ab97be4b6d951c98bfde580575822824b",
       "section": "prototype",
-      "material": "metal"
+      "material": "solder"
     },
     {
       "name": "ribbon-ridges",
@@ -19644,7 +19673,7 @@
       "color": "#353936",
       "sha256": "d321ad7d2279b2f7d1e84ca29b3eeec9a6b152ef749c68811086da4c76bff07c",
       "section": "interior",
-      "material": "plastic"
+      "material": "aged-plastic"
     }
   ],
   "keys": [

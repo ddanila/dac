@@ -360,6 +360,11 @@ export function createScene(
       robotron?.separate(false);
       robotron?.interior(false);
       robotron?.inspect({
+        focus: "none",
+        demo: false,
+        demoAnimate: false,
+        demoPhase: 0,
+        disconnectCables: true,
         referencePhoto: false,
         isolated: "all",
         transparent: false,
@@ -432,6 +437,14 @@ export function createScene(
         connector: [
           [-1.08, 0.38, 0.72],
           [-0.66, 0.055, 0.36],
+        ],
+        "drive-top": [
+          [-0.15, 1.55, 0.34],
+          [-0.2, 0.2, 0.25],
+        ],
+        "drive-rear": [
+          [-0.2, 0.63, -0.9],
+          [-0.2, 0.2, 0.04],
         ],
         drives: [
           [0.45, 1.15, 1.1],
