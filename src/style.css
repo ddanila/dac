@@ -644,3 +644,25 @@ textarea {
   font: 0.8rem/1.5 ui-monospace, monospace;
   overflow-wrap: anywhere;
 }
+
+.model-loading {
+  position: absolute;
+  z-index: 4;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(390px, calc(100% - 36px));
+  padding: 24px;
+  border: 1px solid #bbcf9b;
+  border-radius: 10px;
+  background: #17201ef5;
+  box-shadow: 0 12px 45px #0008;
+  pointer-events: none;
+}
+.model-loading-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.model-loading-heading strong { font-size: 18px; line-height: 1.3; }
+#model-loading-percent { font-size: 32px; font-weight: 700; font-variant-numeric: tabular-nums; color: #d1e7ab; }
+#model-loading-bar { height: 10px; margin-top: 18px; border-radius: 5px; overflow: hidden; background: #455047; }
+#model-loading-bar span { display: block; height: 100%; width: 0; background: #c1d79c; }
+.model-loading p { color: #d0d9d2; font-size: 13px; line-height: 1.5; margin: 12px 0 0; }
+.model-loading[data-error="true"] { border-color: #d8b987; }

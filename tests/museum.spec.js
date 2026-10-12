@@ -180,3 +180,36 @@ test("a missing model preserves the accessible emulator and honest labels", asyn
   await page.locator("#machine").selectOption("0");
   await expect(page.locator("#model-note")).toContainText("PROVISIONAL");
 });
+
+
+test("model loading shows real percentage progress and clears when ready", async ({ page }) => {
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  await page.route("**/meshes/case-base.stl?*", async route => { await gate; await route.continue(); });
+  await page.goto("/");
+  const card = page.locator("#model-loading"), bar = page.getByRole("progressbar", {name: "3D model loading"});
+  await expect(card).toBeVisible();
+  await expect(page.locator("#viewport")).toHaveAttribute("aria-busy", "true");
+  await expect.poll(async () => Number(await bar.getAttribute("aria-valuenow"))).toBeGreaterThan(0);
+  await page.evaluate(() => {
+    const bar = document.getElementById("model-loading-bar");
+    window.loadingSamples = [Number(bar.getAttribute("aria-valuenow"))];
+    new MutationObserver(() => window.loadingSamples.push(Number(bar.getAttribute("aria-valuenow"))))
+      .observe(bar, { attributes: true, attributeFilter: ["aria-valuenow"] });
+  });
+  const percent = Number(await bar.getAttribute("aria-valuenow"));
+  expect(percent).toBeLessThan(100);
+  await expect(page.locator("#model-loading-percent")).toContainText("%");
+  await page.locator("#machine").selectOption("0");
+  await expect(card).toBeHidden();
+  await page.locator("#machine").selectOption("2");
+  await expect(card).toBeVisible();
+  release();
+  await expect(page.locator("#viewport")).toHaveAttribute("data-model", "robotron-photo", {timeout: 20000});
+  await expect(card).toBeHidden();
+  await expect(page.locator("#model-loading-bar")).toHaveAttribute("aria-valuenow", "100");
+  const samples = await page.evaluate(() => window.loadingSamples);
+  expect(samples.length).toBeGreaterThan(2);
+  expect(samples.every((value, index) => index === 0 || value >= samples[index - 1])).toBe(true);
+  await expect(page.locator("#viewport")).toHaveAttribute("aria-busy", "false");
+});

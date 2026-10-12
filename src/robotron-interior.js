@@ -134,13 +134,14 @@ export function pcbArtwork(board, image, descriptions) {
   }
   return canvas;
 }
-export async function loadPcbPhotos(data, base) {
+export async function loadPcbPhotos(data, base, onAsset = () => {}) {
   const loader = new THREE.TextureLoader();
   return Promise.all(
     (data.pcbReferences || []).map(async (board) => {
       const texture = await loader.loadAsync(
         modelAsset(board.file, base, board.sha256).href,
       );
+      onAsset();
       texture.colorSpace = THREE.SRGBColorSpace;
       texture.anisotropy = 4;
       let artwork = texture;
@@ -208,7 +209,7 @@ export async function loadPcbPhotos(data, base) {
 }
 
 // Mesh instances preserve nominal package dimensions and share geometry/GPU draws.
-export async function loadPcbComponents(data, base) {
+export async function loadPcbComponents(data, base, onAsset = () => {}) {
   const loader = new STLLoader(),
     result = [];
   const descriptions = data.pcbComponents;
@@ -228,6 +229,7 @@ export async function loadPcbComponents(data, base) {
           ),
           Math.PI / 4,
         );
+        onAsset();
         const material = new THREE.MeshStandardMaterial({
           color: kind === "body" ? 0x29282a : 0xb9b7ac,
           roughness: kind === "body" ? 0.7 : 0.32,

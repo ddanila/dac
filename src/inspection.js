@@ -6,8 +6,8 @@ export const inspections = {
   },
   front: {
     title: "The working front panel",
-    text: "Power and reset operate the emulator. The switch shapes and vent pattern follow Danila’s photographs; their exact dimensions are estimated.",
-    photo: "133019620",
+    text: "Power and reset operate the emulator. The reset pad is grey and recessed almost flush with the lower front panel, as in Danila’s close-up; it is distinct from the protruding power rocker. Local dimensions and the vent pattern remain photo estimates.",
+    photo: "20261012_124827690",
   },
   keyboard: {
     title: "A keyboard you can use",
@@ -62,7 +62,7 @@ export const inspections = {
   back: {
     title: "Rear connections",
     photo: "20261012_125413618",
-    text: "Danila’s October 12 photos establish the DISPLAY, V24, PRINTER and FLOPPY-DISK sockets, blanking plates, monitor power outlet, mains inlet and two fuse holders. Their small dimensions remain estimates. The model shows the sockets unplugged for inspection.",
+    text: "Danila’s October 12 close-ups guide the recessed socket openings, pale keyed inserts, retaining blocks, three-contact monitor outlet, vertical mains inlet and cross-slotted fuse caps. The clean nameplate preserves Typ W 1715/330 and Masch.-Nr. 67581. V24’s alternating populated positions follow the close-up; hidden contact details and local dimensions remain estimates. The sockets are shown unplugged for inspection.",
   },
   under: {
     title: "Under the keyboard",

@@ -1,5 +1,5 @@
 {
-  "version": 17,
+  "version": 18,
   "cableParking": [
     0,
     18,
@@ -18885,7 +18885,7 @@
       "name": "case-base",
       "file": "meshes/case-base.stl",
       "color": "#b6ae93",
-      "sha256": "b1914b97323f8ace41288323656a565ef1fb5528531eff5b18cc50d46c6d8614",
+      "sha256": "809d2b90fa86b702494bd36758ba3559608a12c8c6132ec31d1f3418ee0b09b4",
       "material": "paint"
     },
     {
@@ -18919,8 +18919,8 @@
     {
       "name": "reset",
       "file": "meshes/reset.stl",
-      "color": "#333839",
-      "sha256": "9ec66bf81d87c3411d05b63439c000bd72b893531ac10701adb6c4208b5b854a",
+      "color": "#74776f",
+      "sha256": "755765242fff31bd984ae6d3a699d8fedee2f16f4028ccffc0a164161da9a983",
       "material": "plastic"
     },
     {
@@ -19832,43 +19832,78 @@
     {
       "name": "rear-socket-bodies",
       "file": "meshes/rear-socket-bodies.stl",
-      "color": "#c4ceca",
-      "sha256": "10ea31aaadd9a0101f8fe385cd3969d2f27b616b9ead9a40a0970732a028728e",
+      "color": "#a5aaa2",
+      "sha256": "e3ad26ec35ec103a924e0877795109b545272f1ac4a9d34fcf72331ab222bda1",
       "material": "plastic"
     },
     {
       "name": "rear-socket-contacts",
       "file": "meshes/rear-socket-contacts.stl",
       "color": "#b5ad7f",
-      "sha256": "730971d041df64d954279260471a796ab4d45e0cb62dadc6d1dde26abe2d7c61",
+      "sha256": "5472ccbbf1e5501bf4ff0335ff2151d480c5ca1a9fdbd640ec3e354478e88ecd",
       "material": "plated-steel"
     },
     {
       "name": "rear-power-black",
       "file": "meshes/rear-power-black.stl",
       "color": "#252928",
-      "sha256": "4ae03e832865b7f475f3ecb3c635d2b2f6e250ad9f1467a462176c897c25af4e",
+      "sha256": "36a73fb6933b4172071b62c5c6b30aebe78aaa4f8eb67ae652aaddde3cd19d22",
       "material": "plastic"
     },
     {
       "name": "rear-blanking-plates",
       "file": "meshes/rear-blanking-plates.stl",
       "color": "#babdb7",
-      "sha256": "f4063ec19b5bd5332a76abb91e0572039315fccfc2af957a706447ab046d8240",
+      "sha256": "6105ff9475458580533a1ef7dbee7a32d2f50f4e92422b862dfd0d1c951c8690",
       "material": "plated-steel"
     },
     {
       "name": "rear-legends",
       "file": "meshes/rear-legends.stl",
-      "color": "#67685f",
-      "sha256": "2e113b1e3454c1766caa189b0130cb51ebd2bde14003c192c10a467ced8974bb",
+      "color": "#777362",
+      "sha256": "b50dc0f029108221a69f9ecd09d13acf3e354179a5094093bc46495db375214a",
       "material": "paint"
     },
     {
       "name": "rear-panel",
       "file": "meshes/rear-panel.stl",
-      "color": "#a19e8b",
-      "sha256": "e74899dbd27dfa70e57e658d510bab69451ee55671204fb13c1678251d4cdca9",
+      "color": "#a9a18c",
+      "sha256": "ac61bfca0a51f4559978b7056e01e525d781d4cd5527b3ed2791deaf33115300",
+      "material": "paint"
+    },
+    {
+      "name": "rear-recesses",
+      "file": "meshes/rear-recesses.stl",
+      "color": "#181c1c",
+      "sha256": "11315a564f449b8ecaad2cbc38e635b60e3407c8661c92f04f50a6b2a0088823",
+      "material": "plastic"
+    },
+    {
+      "name": "rear-socket-inserts",
+      "file": "meshes/rear-socket-inserts.stl",
+      "color": "#c4c1a8",
+      "sha256": "c19c5d40b2ea2637671b24deb8d39c751b46a78a946e8b3c2bf992995dd003ba",
+      "material": "plastic"
+    },
+    {
+      "name": "rear-fasteners",
+      "file": "meshes/rear-fasteners.stl",
+      "color": "#b7b8ae",
+      "sha256": "09f7de36dac53875b439e28f0ffc4f579d19346343315d8c3f98163a6943179a",
+      "material": "plated-steel"
+    },
+    {
+      "name": "rear-nameplate",
+      "file": "meshes/rear-nameplate.stl",
+      "color": "#bfc1b8",
+      "sha256": "132d4ae5ba0219f22b8a2ecaef064ea477b874201a13402b86f889f15d866461",
+      "material": "plated-steel"
+    },
+    {
+      "name": "rear-nameplate-ink",
+      "file": "meshes/rear-nameplate-ink.stl",
+      "color": "#343b39",
+      "sha256": "7e0d3976d569c6b871b16ce61c6172fbbf667626f65bac99a2c9aae8c19520d8",
       "material": "paint"
     }
   ],
@@ -24257,6 +24292,11 @@
     "PXL_20250212_094109733.jpg",
     "PXL_20250212_094038758.jpg",
     "PXL_20250212_094103763.jpg",
+    "PXL_20261012_124827690.jpg",
+    "PXL_20261012_125300878.jpg",
+    "PXL_20261012_125449006.jpg",
+    "PXL_20261012_125457861.jpg",
+    "PXL_20261012_125502437.jpg",
     "PXL_20261012_123622947.jpg",
     "PXL_20261012_123907435.jpg",
     "PXL_20261012_125132359.MP.jpg",
