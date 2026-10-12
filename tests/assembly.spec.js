@@ -76,6 +76,20 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
     const springs = model.group.getObjectByName("keyboard-springs");
     const stems = model.group.getObjectByName("keyboard-stems");
     const rubbers = model.group.getObjectByName("keyboard-rubbers");
+    // Compare in the inclined key frame, not global Z: otherwise pads can sit
+    // beneath the PCB even when their absolute Z coordinates appear higher.
+    springs.parent.updateMatrix();
+    const toKey = springs.parent.matrix.clone().invert();
+    function keyFrameBounds(name) {
+      const geometry = model.objects.get(name).geometry.clone().applyMatrix4(toKey);
+      geometry.computeBoundingBox();
+      const bounds = geometry.boundingBox.clone();
+      geometry.dispose();
+      return bounds;
+    }
+    const contactBounds = keyFrameBounds("keyboard-contact-pads");
+    const pcbBounds = keyFrameBounds("keyboard-pcb");
+    rubbers.geometry.computeBoundingBox();
     const matrix = new Matrix4(),
       position = new Vector3(),
       scale = new Vector3(),
@@ -133,6 +147,8 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
       pressed,
       stem,
       rubber,
+      contactClearance: contactBounds.min.z - pcbBounds.max.z,
+      contactGap: rubbers.geometry.boundingBox.min.z + rubber.z - contactBounds.max.z,
       releasedRubber: transform(rubbers),
       released,
       fixed,
@@ -150,6 +166,9 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
   expect(result.pressed.scale).toBeCloseTo(17.4 / 19.6);
   expect(result.stem.z).toBeCloseTo(-2.2);
   expect(result.rubber).toEqual(result.stem);
+  expect(result.contactClearance).toBeGreaterThan(0);
+  expect(result.contactClearance).toBeLessThan(0.03);
+  expect(Math.abs(result.contactGap)).toBeLessThan(0.001);
   expect(result.releasedRubber.z).toBeCloseTo(0);
   expect(result.released.scale).toBeCloseTo(1);
   expect(result.fixed).toBeGreaterThan(0);
