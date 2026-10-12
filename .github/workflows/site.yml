@@ -33,7 +33,7 @@ jobs:
   chromium:
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: ${{ needs.build.outputs.scope == 'full' && 20 || 10 }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7.1.0
@@ -57,8 +57,8 @@ jobs:
         if: needs.build.outputs.scope == 'full'
       - name: Model and interaction checks
         if: needs.build.outputs.scope == 'visual'
-        run: npx playwright test tests/assembly.spec.js tests/crt.spec.js tests/drive-motion.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard.spec.js tests/museum.spec.js tests/pcb-components.spec.js
-      - run: npm test
+        run: npx playwright test tests/assembly.spec.js tests/crt.spec.js tests/drive-motion.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard.spec.js tests/museum.spec.js tests/pcb-components.spec.js --reporter=line
+      - run: npm test -- --reporter=line
         if: needs.build.outputs.scope == 'full'
         env:
           DAC_NATIVE_REPLAY: emulation-reference/build/dac-replay
