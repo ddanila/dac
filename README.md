@@ -221,3 +221,9 @@ pressing a key compresses its spring and moves the rubber with its carrier. The
 PCB opens contact-face up. Hidden contact geometry, installed height, travel and
 small fit dimensions remain estimates; the keycap has not been fit-tested. The
 18/23 mm raised wide-key widths and existing firmware input are retained.
+
+Rendering and picking keep the detailed interiors economical: closed opaque caps
+skip their hidden pale cores, raycasting prunes hidden assemblies before testing
+triangles, and CRT video changes request a 3D redraw only while the screen is in
+the camera view. The raster stays current for the next visible render. These
+optimizations retain geometry and the existing interaction-test time limits.
