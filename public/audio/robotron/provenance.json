@@ -1,0 +1,72 @@
+{
+  "owner": "Danila",
+  "license": "MIT",
+  "sourceFormat": "44.1 kHz stereo signed 8-bit AIFF",
+  "sources": {
+    "boot.aiff": "6f333459c89d20166da52217bcc5648b51238bcbf46d103a54af69174f87d1b8",
+    "keypresses.aiff": "79685a276b1ffd226d055d2c3d8abfff16fe997f5acd49a87ae0a39406844679"
+  },
+  "cutsSeconds": {
+    "power-on": [
+      "boot",
+      0.36,
+      22
+    ],
+    "fan": [
+      "boot",
+      22,
+      30
+    ],
+    "power-off": [
+      "boot",
+      37.06,
+      44.1
+    ],
+    "regular-1": [
+      "keypresses",
+      1.4,
+      2.12
+    ],
+    "regular-2": [
+      "keypresses",
+      2.42,
+      3.1399999999999997
+    ],
+    "regular-3": [
+      "keypresses",
+      3.44,
+      4.16
+    ],
+    "space-1": [
+      "keypresses",
+      5.1,
+      5.819999999999999
+    ],
+    "space-2": [
+      "keypresses",
+      6.05,
+      6.77
+    ],
+    "space-3": [
+      "keypresses",
+      7.0,
+      7.72
+    ],
+    "enter-1": [
+      "keypresses",
+      8.5,
+      9.22
+    ],
+    "enter-2": [
+      "keypresses",
+      9.44,
+      10.16
+    ],
+    "enter-3": [
+      "keypresses",
+      10.4,
+      11.120000000000001
+    ]
+  },
+  "processing": "Mono 22050 Hz PCM16; high-pass 45 Hz / gain 6 for boot, 90 Hz / gain 12 for keys; 4 ms onset and 25 ms tail fade; fan loop 150 ms wrap crossfade. No pitch shifts."
+}
