@@ -119,6 +119,8 @@ for (const gesture of ["click", "drag", "cancel"]) {
   test(`3D key ${gesture} sends input only for a completed click`, async ({
     page,
   }) => {
+    // Includes model load, camera movement and a complete pointer gesture.
+    test.setTimeout(60000);
     await page.setViewportSize({ width: 1280, height: 900 });
     await observeKeys(page);
     await page.getByRole("button", { name: "Keyboard", exact: true }).click();
@@ -305,4 +307,27 @@ test("CRT video invalidation respects the camera and ancestor visibility", () =>
   expect(inCameraView(screen, camera)).toBe(false);
   root.visible = true;
   expect(inCameraView(screen, camera)).toBe(true);
+});
+
+test("latched Shift changes input state without leaving its keycap depressed", async ({ page }) => {
+  test.setTimeout(60000);
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await observeKeys(page);
+  await page.locator('#key-list-toggle').click();
+  await page.locator('[data-view="keyboard"]').click();
+  const model = await (await page.request.get('/models/robotron-1715m/model.json')).json();
+  const key = model.keys.find(k => k.input.modifier === 'shift');
+  const point = await keyPoint(page, key, model);
+  const clip = { x:Math.round(point.x)-12, y:Math.round(point.y)-10, width:24, height:20 };
+  const resting = await page.screenshot({clip});
+  const button = page.locator(`#key-list [data-key="${key.id}"]`);
+  await button.dispatchEvent('click');
+  await expect(button).toHaveAttribute('aria-pressed','true');
+  await expect.poll(async () => (await page.screenshot({clip})).equals(resting)).toBe(true);
+  await page.locator('#viewport').focus();
+  await page.keyboard.down('Shift');
+  await page.waitForTimeout(200);
+  expect((await page.screenshot({clip})).equals(resting)).toBe(false);
+  await page.keyboard.up('Shift');
+  await expect.poll(async () => (await page.screenshot({clip})).equals(resting)).toBe(true);
 });
