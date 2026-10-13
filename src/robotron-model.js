@@ -612,6 +612,14 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
   let driveStates = [0, 0],
     driveMechanics = null,
     drivesDirty = false;
+  let driveAvailable = null;
+  const diskTags = [0,1].map(unit => {
+    const canvas = document.createElement("canvas"); canvas.width=128; canvas.height=48;
+    const c=canvas.getContext("2d"); c.fillStyle="#182624"; c.fillRect(0,0,128,48);
+    c.fillStyle="#ffffff"; c.font="bold 28px sans-serif"; c.textAlign="center"; c.fillText(`Disk ${unit ? "B" : "A"}`,64,34);
+    const tag=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(canvas),depthTest:false}));
+    tag.scale.set(70,26,1); tag.position.set(330+unit*145,-175,8); group.add(tag); return tag;
+  });
   const moveDrives = createDriveMotion(objects, data.driveMotion);
   const moveFan = createFanMotion(objects.get("fan-rotor"));
   const pressed = new Set();
@@ -857,6 +865,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       }
     objects.get("fascia").position.y = -split * 40;
     const keyboardLift = Math.max(split, inspection.keyboardOpen ? 1 : 0);
+    objects.get("keyboard-entry-wires").visible &&= keyboardLift === 0;
     // Detach the narrow controller as a unit so both boards can be inspected.
     for (const [name, mesh] of objects) {
       if (name.startsWith("keyboard-controller-"))
@@ -873,7 +882,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     objects.get("keyboard-guides").position.set(0, -keyboardLift * 155, keyboardLift * 55);
     // Keep the contact face up; orbit underneath to inspect the solder buses.
     const boardAngle = 0;
-    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-pcb-metal", "keyboard-insulators", "keyboard-contact-pads"]) {
+    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-pcb-metal", "keyboard-insulators", "keyboard-contact-pads", "keyboard-pcb-supports", "keyboard-pcb-fasteners", "keyboard-contact-routes"]) {
       const mesh = objects.get(name);
       mesh.rotation.x = boardAngle;
       mesh.position.set(0,
@@ -926,6 +935,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       objects.get(d.spindle).visible &&= ["all", "drives"].includes(
         inspection.isolated,
       );
+    diskTags.forEach((tag,u) => { tag.visible = !!driveAvailable?.[u] && !(driveStates[u]&8) && inspection.isolated === "all"; });
     const drivesMoved = moveDrives(
       performance.now(),
       driveStates,
@@ -937,11 +947,13 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
         ? { phase: inspection.demoPhase + demoClock, animate: demoAnimate }
         : null,
       driveMechanics,
+      driveAvailable,
     );
     for (const mesh of patches) if (mesh.userData.disketteUnit !== undefined) {
       const jacket = objects.get(`drive-diskette-${mesh.userData.disketteUnit}`);
       mesh.position.copy(mesh.userData.rest).add(jacket.position);
-      mesh.visible = jacket.visible && (inside || split > .01 || inspection.transparent || inspection.isolated === "drives");
+      mesh.visible = jacket.visible;
+      mesh.userData.removedDisk = jacket.userData.removedDisk;
     }
     for (const mesh of [...objects.values(), ...pcbPhotos, ...patches]) {
       if (inspection.isolated !== "all")
@@ -1010,6 +1022,20 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       inspectionDirty = true;
       releaseKeys();
     },
+    diskDragCopy(unit) {
+      const copy=new THREE.Group();
+      copy.rotation.copy(group.rotation); copy.scale.copy(group.scale);
+      for(const source of [objects.get(`drive-diskette-${unit}`),objects.get(`drive-medium-${unit}`),objects.get(`drive-diskette-label-${unit}`),...patches.filter(p=>p.userData.disketteUnit===unit)]) {
+        const mesh=source.clone();mesh.visible=true;mesh.userData={};copy.add(mesh);
+      }
+      return copy;
+    },
+    diskDropTarget(ray, unit) {
+      const local = ray.clone().applyMatrix4(group.matrixWorld.clone().invert());
+      const target = local.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0), 213 + split*145), new THREE.Vector3());
+      const x = [-231,-77][unit];
+      return !!target && target.x >= x && target.x <= x+146 && target.z >= 55+split*115 && target.z <= 108+split*115;
+    },
     objects,
     keys: data.keys,
     keyObjects,
@@ -1033,7 +1059,9 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       driveStates = [0, 1].map(u => (driveStates[u] & ~8) | (present[u] ? 8 : 0));
       drivesDirty = true;
     },
-    drives(states, mechanics = null) {
+    drives(states, mechanics = null, available = null) {
+      drivesDirty ||= JSON.stringify(available) !== JSON.stringify(driveAvailable);
+      driveAvailable = available;
       drivesDirty ||=
         states.some((s, u) => s !== driveStates[u]) ||
         (mechanics || []).some(

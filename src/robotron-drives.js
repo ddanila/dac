@@ -12,6 +12,8 @@ export function createDriveMotion(objects, descriptions = []) {
     if (latch) latch.geometry.translate(...d.latchPivot.map((v) => -v));
     const latchTrim = objects.get(d.latchTrim);
     if (latchTrim) latchTrim.geometry.translate(...d.latchPivot.map(v => -v));
+    const shaft = objects.get(d.shaft);
+    if (shaft) shaft.geometry.translate(...d.latchPivot.map(v => -v));
     const headArm = objects.get(d.headArm),
       medium = objects.get(d.medium);
     if (headArm) headArm.geometry.translate(...d.armPivot.map((v) => -v));
@@ -28,6 +30,8 @@ export function createDriveMotion(objects, descriptions = []) {
       head,
       latch,
       latchTrim,
+      shaft,
+      release: objects.get(d.release),
       clamp,
       headMetal,
       headArm,
@@ -48,6 +52,7 @@ export function createDriveMotion(objects, descriptions = []) {
     clampsOpen = false,
     demo = null,
     mechanics = null,
+    available = null,
   ) => {
     const dt = last === undefined ? 0 : Math.min(0.05, (now - last) / 1000);
     last = now;
@@ -64,8 +69,13 @@ export function createDriveMotion(objects, descriptions = []) {
       const target = Number(!!(state & 8));
       if (d.insertion === undefined || reduced) d.insertion = target;
       else d.insertion += Math.sign(target - d.insertion) * Math.min(Math.abs(target - d.insertion), dt / .45);
-      const mediaVisible = target === 1 || d.insertion > 0;
-      const slide = -145 * (1 - d.insertion);
+      const parked = !!available?.[d.unit];
+      const mediaVisible = parked || target === 1 || d.insertion > 0;
+      const outside = Math.min(1, (1 - d.insertion) * 2);
+      const parking = parked ? Math.max(0, 1 - d.insertion * 2) : 0;
+      const slide = -145 * outside + parking * (199 + split * 145);
+      const side = parking * (330 + d.unit * 145 - d.pivot[0]);
+      const lower = parking * (5 - d.pivot[2] - split * 115);
       moving ||= d.insertion !== target;
       const telemetry = mechanics?.[d.unit];
       if (!demo && telemetry && !reduced) {
@@ -108,16 +118,19 @@ export function createDriveMotion(objects, descriptions = []) {
         d.headArm.rotation.x = -0.08 * (1 - load);
       }
       if (d.medium) {
-        d.medium.visible = d.spindle.visible && mediaVisible;
+        d.medium.visible = (d.spindle.visible || parked) && mediaVisible;
         d.medium.position.copy(d.spindle.position);
         d.medium.position.y += slide;
+        d.medium.position.x += side;
+        d.medium.position.z += lower;
         if (!clampAmount) d.medium.rotation.z = d.spindle.rotation.z;
       }
       // The sleeve does not rotate with the magnetic disc. A released clamp
       // is an inspection state, not media ejection.
       for (const jacket of [d.jacket, d.disketteLabel]) if (jacket) {
         jacket.visible = mediaVisible;
-        jacket.position.set(0, -split * 145 + slide, split * 115);
+        jacket.position.set(side, -split * 145 + slide, split * 115 + lower);
+        jacket.userData.removedDisk = parked && target === 0 ? d.unit : undefined;
       }
       if (d.latch) {
         d.latch.position.set(
@@ -128,8 +141,12 @@ export function createDriveMotion(objects, descriptions = []) {
         d.latch.rotation.y = ((1 - clampAmount) * Math.PI) / 2;
         if (d.latchTrim) { d.latchTrim.position.copy(d.latch.position); d.latchTrim.rotation.copy(d.latch.rotation); }
       }
-      if (d.clamp)
-        d.clamp.position.set(0, -split * 145, split * 115 + clampAmount * 5);
+      if (d.shaft && d.latch) {
+        d.shaft.position.copy(d.latch.position);
+        d.shaft.rotation.copy(d.latch.rotation);
+      }
+      for (const follower of [d.clamp, d.release]) if (follower)
+        follower.position.set(0, -split * 145, split * 115 + clampAmount * 5);
     }
     return moving;
   };

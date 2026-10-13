@@ -1,3 +1,4 @@
+import { createDriveSceneState } from "./drive-scene-state.js";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
@@ -202,6 +203,7 @@ export function createScene(
     powered = false,
     modelError = false;
   let modifiers = {}, mediaPresent = [false, false];
+  const driveState = createDriveSceneState();
   const loading = document.getElementById("model-loading"),
     loadingBar = document.getElementById("model-loading-bar"),
     loadingPercent = document.getElementById("model-loading-percent");
@@ -251,6 +253,7 @@ export function createScene(
       model.power(powered);
       model.modifiers(modifiers);
       model.media(mediaPresent);
+      if (driveState.snapshot) model.drives(...driveState.snapshot);
       interaction.onKeysReady?.(model.keys);
       visibility();
       fitRearView();
@@ -282,7 +285,11 @@ export function createScene(
   function cancelGesture() {
     if (down?.key)
       robotron?.keyState(down.key.id, false);
+    if (down?.ghost) scene.remove(down.ghost);
+    renderRequested = true;
     down = undefined;
+    controls.enabled = true;
+    document.getElementById("disk-drag-hint")?.remove();
   }
   renderer.domElement.addEventListener("pointerdown", (e) => {
     if (!e.isPrimary || e.button !== 0) {
@@ -296,8 +303,19 @@ export function createScene(
       id: e.pointerId,
       key: hit?.userData.key,
       object: hit,
+      disk: hit?.userData.removedDisk,
       dragged: false,
     };
+    if (down.disk !== undefined) {
+      controls.enabled = false;
+      down.ghost=robotron.diskDragCopy(down.disk);scene.add(down.ghost);
+      const center=new THREE.Box3().setFromObject(hit).getCenter(new THREE.Vector3());
+      down.plane=new THREE.Plane().setFromNormalAndCoplanarPoint(camera.getWorldDirection(new THREE.Vector3()),center);
+      down.origin=ray.ray.intersectPlane(down.plane,new THREE.Vector3());
+      const hint=document.createElement("div"); hint.id="disk-drag-hint"; hint.textContent=`Disk ${down.disk ? "B" : "A"} · drop into its open drive`;
+      hint.style.left=e.clientX+12+"px"; hint.style.top=e.clientY+12+"px"; document.body.append(hint);
+      renderer.domElement.setPointerCapture(e.pointerId);
+    }
     if (down.key) robotron.keyState(down.key.id, true);
   });
   renderer.domElement.addEventListener("pointermove", (e) => {
@@ -305,7 +323,16 @@ export function createScene(
       down.dragged = true;
       if (down.key) robotron?.keyState(down.key.id, false);
     }
-    if (down) return;
+    if (down) {
+      if(down.ghost && down.origin){
+        hitAt(e);
+        const p=ray.ray.intersectPlane(down.plane,new THREE.Vector3());
+        if(p){down.ghost.position.copy(p.sub(down.origin));renderRequested=true;}
+      }
+      const hint=document.getElementById("disk-drag-hint");
+      if(hint){hint.style.left=e.clientX+12+"px";hint.style.top=e.clientY+12+"px";}
+      return;
+    }
     const hit = hitAt(e),
       key = hit?.userData.key;
     renderer.domElement.style.cursor =
@@ -318,7 +345,9 @@ export function createScene(
         ? "pointer"
         : "grab";
     interaction.onHover?.(
-      key
+      hit?.userData.removedDisk !== undefined
+        ? `Drag disk ${hit.userData.removedDisk ? "B" : "A"} into its open drive, or click to inspect`
+        : key
         ? `${key.label}${key.input.unsupported ? " · mapping unverified" : ""}`
         : hit?.userData.driveUnit !== undefined
           ? `Click to operate drive ${hit.userData.driveUnit ? "B" : "A"} lever`
@@ -332,6 +361,10 @@ export function createScene(
     const gesture = down,
       hit = hitAt(e);
     cancelGesture();
+    if (gesture.disk !== undefined && gesture.dragged) {
+      if (robotron.diskDropTarget(ray.ray, gesture.disk)) interaction.onInsertDisk?.(gesture.disk);
+      return;
+    }
     if (
       gesture.dragged ||
       Math.hypot(e.clientX - gesture.x, e.clientY - gesture.y) > 5
@@ -413,11 +446,12 @@ export function createScene(
   });
   return {
     activity: (active) => robotron?.activity(active),
-    drives: (states, mechanics) => {
+    drives: (states, mechanics, available) => {
+      driveState.frame(states, mechanics, available);
       mediaPresent = [0,1].map(u => !!(states[u] & 8));
-      robotron?.drives(states, mechanics);
+      robotron?.drives(...driveState.snapshot);
     },
-    media: (present) => { mediaPresent = present; robotron?.media(present); renderRequested = true; },
+    media: (present) => { mediaPresent = present.slice(); driveState.media(present); robotron?.media(present); renderRequested = true; },
     modifiers: (state) => {
       modifiers = state;
       renderRequested = true;
