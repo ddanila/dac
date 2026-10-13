@@ -1016,6 +1016,10 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       updateIndicators();
       objects.get("power").material.emissive.set(on ? 0x152417 : 0);
     },
+    media(present) {
+      driveStates = [0, 1].map(u => (driveStates[u] & ~8) | (present[u] ? 8 : 0));
+      drivesDirty = true;
+    },
     drives(states, mechanics = null) {
       drivesDirty ||=
         states.some((s, u) => s !== driveStates[u]) ||

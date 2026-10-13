@@ -467,6 +467,7 @@ worker.onmessage = ({ data: d }) => {
   if (d.type === "record-status") $("record-status").textContent = d.message;
   if (d.type === "mounted-a") {
     disk = true;
+    scene?.media([disk, diskB]);
     $("export").disabled = false;
   }
   if (d.type === "paste-status") $("paste-status").textContent = d.message;
@@ -572,6 +573,7 @@ $("forget-disk").onclick = () => {
 $("export").onclick = () => send({ type: "export" });
 function updateDriveB(present) {
   diskB = !!present;
+  scene?.media([disk, diskB]);
   $("export-b").disabled = !diskB;
   $("eject-b").disabled = on || !diskB;
   $("disk-b-status").textContent = diskB

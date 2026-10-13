@@ -101,6 +101,9 @@ test("bad media is rejected clearly and diagnostic can recover", async ({
 test("physical Robotron switches power and reset the live core", async ({
   page,
 }) => {
+  // Several camera changes and live-core gestures share this test budget.
+  // Software WebGL on CI needs longer than the default 30 seconds.
+  test.setTimeout(60000);
   const { PerspectiveCamera, Vector3 } = await import("three");
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");

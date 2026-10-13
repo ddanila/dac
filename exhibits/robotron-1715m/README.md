@@ -129,3 +129,11 @@ Modifier keycaps are spring-return controls. Physical host/pointer presses drive
 key travel; logical click-to-type Shift/Ctrl selection no longer holds a cap down.
 The historical profile runs S600 keyboard firmware and feeds matrix switches;
 its controller behavior remains separate from the model's visual key travel.
+
+### Diskettes and drive levers
+
+Model v23 adds canonical generic diskette sleeves and blank labels. Media presence
+closes each drive's lever downward even while powered off; an empty drive leaves
+its lever open. Opening clamps for inspection does not remove the diskette. The
+jacket/label stay stationary while the magnetic disc follows spindle telemetry.
+These are visual references, not print-verified parts or specimen-specific labels.

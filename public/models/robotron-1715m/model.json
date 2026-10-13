@@ -1,5 +1,5 @@
 {
-  "version": 22,
+  "version": 23,
   "modelVerification": {
     "models/robotron-1715m/display-base-ring/model.scad": {
       "physicalVerification": "unverified",
@@ -22,6 +22,10 @@
       "evidence": []
     },
     "models/robotron-1715m/model.scad": {
+      "physicalVerification": "unverified",
+      "evidence": []
+    },
+    "models/robotron-1715m/diskette/model.scad": {
       "physicalVerification": "unverified",
       "evidence": []
     }
@@ -18848,6 +18852,8 @@
         90
       ],
       "medium": "drive-medium-0",
+      "jacket": "drive-diskette-0",
+      "disketteLabel": "drive-diskette-label-0",
       "latch": "drive-latch-0",
       "clamp": "drive-clamp-0",
       "latchPivot": [
@@ -18880,6 +18886,8 @@
         90
       ],
       "medium": "drive-medium-1",
+      "jacket": "drive-diskette-1",
+      "disketteLabel": "drive-diskette-label-1",
       "latch": "drive-latch-1",
       "clamp": "drive-clamp-1",
       "latchPivot": [
@@ -20106,6 +20114,34 @@
       "sha256": "5b3f431104fd9a57a8703bdbfb35b76a238e02e712e27a5ab7096267760036d7",
       "section": "prototype",
       "material": "rubber"
+    },
+    {
+      "name": "drive-diskette-0",
+      "file": "meshes/drive-diskette-0.stl",
+      "color": "#242321",
+      "sha256": "9a190a9bffe95d842cab9637e799cf0fbadbb1bdeb0bc83c3e8e6cc77c2a7b86",
+      "material": "plastic"
+    },
+    {
+      "name": "drive-diskette-1",
+      "file": "meshes/drive-diskette-1.stl",
+      "color": "#242321",
+      "sha256": "e2f3a92deda338ee4087f60e486e4afe8ba30c69e8f44fc79ad29fc40654fe38",
+      "material": "plastic"
+    },
+    {
+      "name": "drive-diskette-label-0",
+      "file": "meshes/drive-diskette-label-0.stl",
+      "color": "#d8d4bf",
+      "sha256": "24ed10f00761dd919be73bb02a04634bcfb429c7b70a50ff5e8a2f8198b373ea",
+      "material": "plastic"
+    },
+    {
+      "name": "drive-diskette-label-1",
+      "file": "meshes/drive-diskette-label-1.stl",
+      "color": "#d8d4bf",
+      "sha256": "1f9d7b1a6b34438e62ab183d608afcf602a0a903157261e2c5edf4064b88e77c",
+      "material": "plastic"
     }
   ],
   "keys": [

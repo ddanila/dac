@@ -201,7 +201,7 @@ export function createScene(
     robotron,
     powered = false,
     modelError = false;
-  let modifiers = {};
+  let modifiers = {}, mediaPresent = [false, false];
   const loading = document.getElementById("model-loading"),
     loadingBar = document.getElementById("model-loading-bar"),
     loadingPercent = document.getElementById("model-loading-percent");
@@ -250,6 +250,7 @@ export function createScene(
       scene.add(model.group);
       model.power(powered);
       model.modifiers(modifiers);
+      model.media(mediaPresent);
       interaction.onKeysReady?.(model.keys);
       visibility();
       fitRearView();
@@ -407,7 +408,11 @@ export function createScene(
   });
   return {
     activity: (active) => robotron?.activity(active),
-    drives: (states, mechanics) => robotron?.drives(states, mechanics),
+    drives: (states, mechanics) => {
+      mediaPresent = [0,1].map(u => !!(states[u] & 8));
+      robotron?.drives(states, mechanics);
+    },
+    media: (present) => { mediaPresent = present; robotron?.media(present); renderRequested = true; },
     modifiers: (state) => {
       modifiers = state;
       renderRequested = true;
