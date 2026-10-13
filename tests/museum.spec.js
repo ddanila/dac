@@ -149,7 +149,9 @@ test("physical Robotron switches power and reset the live core", async ({
         .getImageData(0, 0, c.width, c.height)
         .data.reduce((n, v) => n + v, 0),
     );
-  await expect.poll(hash).toBeGreaterThan(640 * 288 * 255);
+  // Cold software-WebGL initialization can delay delivery of the first frame.
+  // Keep the pixel assertion, but allow the existing 60s test budget to cover it.
+  await expect.poll(hash, { timeout: 20000 }).toBeGreaterThan(640 * 288 * 255);
   const before = await hash();
   await page.getByRole("button", { name: "Screen", exact: true }).click();
   await page.locator("#screen").focus();
