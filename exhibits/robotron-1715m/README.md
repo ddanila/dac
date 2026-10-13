@@ -106,3 +106,21 @@ and slack remain estimates; wear is omitted. Opening the case keeps the captive
 ends with the lifted monitor, parks the rear plugs when disconnection is enabled,
 and restores the original geometry when closed. Exploded cable extension is
 illustrative. Source photos and evidence are retained in the canonical CAD repo.
+
+### Accepted keyboard exterior synchronized (October 13)
+
+Browser model v22 imports CAD commit `9a6eb6501eeff001f93cc675171494e49817924c`,
+including the accepted exterior reviewed at `cf7e113`. The light base uses 1 mm
+sheet, rises from 15 to 29 mm, then stays level behind the black overlay. The
+closed pencil trough, separate 1 mm bottom plate, two-sided cable rubber and
+lid tabs are included. The black overlay has an 8 mm uniform skirt, 1 mm sheet,
+5 mm outer bends and a 1 mm gap. The exporter now evaluates the shared SCAD
+keyboard height/tilt so browser keys, lamps and mechanisms match the case.
+The black panel uses painted metal and the cable guide uses rubber materials.
+Internal construction remains provisional. The prior audio deployment had not
+included these CAD-only review changes; this sync publishes their actual meshes.
+
+Physical print status is supplied by the canonical `model-status.json` registry
+and included in browser `model.json` as `modelVerification`. All Robotron records
+currently remain unverified; the accepted exterior is a separate visual-review
+milestone. See the [collection catalogue](https://github.com/ddanila/3d-models/blob/main/MODEL-STATUS.md).
