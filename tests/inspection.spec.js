@@ -138,3 +138,18 @@ test("rear views keep their controls clear of the canvas on desktop and mobile",
   await expect(page.locator("#detail-photo")).toHaveAttribute("src", /20261012_125413618/);
   expect(errors).toEqual([]);
 });
+
+test("flat display leaves wrapped view controls clickable on desktop and mobile",async({page})=>{
+ await page.emulateMedia({reducedMotion:"reduce"});await page.goto("/");
+ await expect(page.locator("#viewport")).toHaveAttribute("data-model","robotron-photo");
+ for(const width of [1280,390]){
+  await page.setViewportSize({width,height:900});
+  await page.locator("#screen-view").click();
+  await expect(page.locator("#screen-panel")).toBeVisible();
+  const panel=await page.locator("#screen-panel").boundingBox();
+  const controls=await page.locator(".stage-bottom").boundingBox();
+  expect(panel.y+panel.height).toBeLessThan(controls.y);
+  await page.locator('[data-view="keyboard"]').click();
+  await expect(page.locator("#screen-panel")).toBeHidden();
+ }
+});
