@@ -82,7 +82,9 @@ test("modeled manufacturer plate opens its owner photo and Escape restores the v
   camera.position.set(-0.22, 0.75, -0.42);
   camera.lookAt(-0.22, 0.49, 0.36);
   camera.updateMatrixWorld();
-  const p = new Vector3(-140.75, 0.23 - 145, 91.4 + 115)
+  // The owner adapter board covers the middle of the manufacturer plate.
+  // Pick the exposed left end, as on the actual drive.
+  const p = new Vector3(-212, 0.23 - 145, 91.4 + 115)
     .applyEuler(new Euler(-Math.PI / 2, 0, 0))
     .multiplyScalar(0.0025)
     .project(camera);
