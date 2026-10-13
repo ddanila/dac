@@ -155,6 +155,10 @@ try {
   scene = createScene($("viewport"), screen, power, resetMachine, {
     onKey: modelKey,
     onDriveLever: toggleDriveLever,
+    onInsertDisk: (unit) => {
+      if (!replayBusy && ready && driveDoorsSupported && driveDoors[unit] && !drivePresent[unit])
+        send({type:"drive-inserted", unit, inserted:true});
+    },
     onInspect: (name) => {
       const focus = name.startsWith("focus-")
         ? name.slice(6)
@@ -428,7 +432,7 @@ worker.onmessage = ({ data: d }) => {
     }
     if (Number($("machine").value) === 2) {
       const drives = d.drives || [0, 0];
-      scene?.drives(drives, d.driveMechanics);
+      scene?.drives(drives, d.driveMechanics, d.driveAvailable);
       if ($("drive-diagnostics").open) {
         $("drive-diagnostic-values").textContent = on
           ? drives

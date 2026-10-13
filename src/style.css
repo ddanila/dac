@@ -695,3 +695,7 @@ textarea {
 #drive-handling [data-component] { grid-column: 1 / -1; }
 #detail-views { flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 #detail-views button[aria-pressed="true"] { color: var(--accent); text-decoration: underline; }
+#disk-drag-hint {position:fixed; z-index:100; pointer-events:none; background:#182624; color:white; padding:.6rem; border:2px solid #b7d7c1; border-radius:.4rem;}
+#diskette-viewer {height:340px; width:100%; background:#ced3cc; border-radius:.5rem; touch-action:none;}
+#diskette-viewer canvas {width:100%; height:100%; display:block;}
+#diskette-tools {display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin:.7rem 0;}

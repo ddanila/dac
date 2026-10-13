@@ -205,3 +205,31 @@ test('inserted diskettes close levers without power; sleeves stay still and clam
   expect(objects.get('jacket-0').visible).toBe(false);
   expect(objects.get('latch-1').rotation.y).toBeCloseTo(Math.PI/2);
 });
+
+test('loading retains complete frames and later media changes without shared-array mutation', async()=>{
+  const {createDriveSceneState}=await import('../src/drive-scene-state.js');
+  const state=createDriveSceneState();
+  const frames=[40 | (25<<8),8], mechanics=[{position:24.5,headLoad:.25},{position:0}], available=[true,true];
+  state.frame(frames,mechanics,available);
+  frames[0]=0;mechanics[0].position=79;available[0]=false;
+  state.media([false,true]);
+  expect(state.snapshot).toEqual([[32 | (25<<8),8],[{position:24.5,headLoad:.25},{position:0}],[true,true]]);
+});
+
+test('retained media parks beside the machine and linkage follows its own lever',()=>{
+  const objects=new Map();
+  const d={unit:0,pivot:[-161,-144,88],latchPivot:[-113,-209,92],travel:[0,-20,0]};
+  for(const name of ['spindle','head','jacket','disketteLabel','medium','latch','shaft','clamp','release']){
+    d[name]=name;objects.set(name,new Mesh(new BoxGeometry(),new MeshBasicMaterial()));
+  }
+  const move=createDriveMotion(objects,[d]);
+  move(0,[32],false,0,true,false,null,null,[true]);
+  expect(objects.get('jacket').visible).toBe(true);
+  expect(objects.get('jacket').userData.removedDisk).toBe(0);
+  expect(objects.get('medium').position.x).toBe(330);
+  expect(objects.get('release').position.z).toBe(5);
+  move(1,[8],false,0,true,false,null,null,[true]);
+  expect(objects.get('jacket').userData.removedDisk).toBeUndefined();
+  expect(objects.get('shaft').rotation.y).toBeCloseTo(Math.PI/2);
+  expect(objects.get('release').position.z).toBe(0);
+});

@@ -227,3 +227,25 @@ skip their hidden pale cores, raycasting prunes hidden assemblies before testing
 triangles, and CRT video changes request a 3D redraw only while the screen is in
 the camera view. The raster stays current for the next visible render. These
 optimizations retain geometry and the existing interaction-test time limits.
+
+
+### Disk handling and specimen inspection
+
+The 3D scene retains complete drive frames while meshes load, including door,
+head position and mechanical state. Media-only updates preserve the other bits.
+Removed session disks remain beside the case with separate A/B museum labels.
+Drag a disk into its matching open drive, or use the accessible Insert disk
+button; closed doors and playback reject insertion. Disk bytes stay in the core.
+Moving one image between A and B is not implemented by this gesture.
+
+Diskette inspection loads the canonical jacket, magnetic medium, label and paper
+sleeve meshes on demand. Orbit/zoom, flip, and slide the disk into/out of the
+sleeve. Only the small owner label uses a photo texture; sleeve instructions
+remain reference photos. Closing the dialog disposes its WebGL resources.
+Reduced motion snaps sleeve and drive insertion to their final positions.
+
+Drive rods/cams and clamp-release rails now follow each drive's lever. The
+keyboard adds aligned insulating PCB supports, washers, contact fan-outs and an
+incoming controller wire bundle, using owner photographs. Hidden dimensions and
+routes remain approximate; these changes do not assert electrical connectivity,
+measured linkage dynamics, or physical print verification.

@@ -1,7 +1,9 @@
+import { createDisketteViewer } from "./diskette-viewer.js";
+let disketteViewer, detailGeneration=0;
 export const inspections = {
   diskette: {
     title: "Danila’s diskette and storage sleeve",
-    text: "This is the diskette used with the museum machine. The handwritten label belongs to this specimen; the emulated disk contents are selected separately. The white sleeve is the one Danila uses, not original packaging. Choose a side to examine the label, jacket seams or sleeve instructions.",
+    text: "This is the diskette used with the museum machine. The handwritten label belongs to this specimen; the emulated disk contents are selected separately. The white sleeve is the one Danila uses, not original packaging. Rotate and flip the CAD model, or slide the disk into its sleeve. The sleeve uses clean paper geometry; its printed instructions remain available in the reference photos below. A/B labels beside removed session disks identify their drive, not markings on this physical specimen. Drag a removed disk into its matching open drive, or use Insert disk.",
     photo: "20261013_113451775",
     views: [["Diskette · label", "20261013_113451775"], ["Diskette · reverse", "20261013_113457457"], ["Sleeve · plain", "20261013_113428737"], ["Sleeve · instructions", "20261013_113436448"]],
   },
@@ -92,7 +94,7 @@ Object.assign(inspections, {
   "keyboard-inside": {
     title: "Inside the keyboard",
     evidence: "Owner board and loose-key photographs · local dimensions estimated",
-    text: "The keycaps and deck move back and up; the mounting plate, switches and springs move forward so the broad switch PCB stays visible from above, with the paired contact pads facing upward. Orbit below the board to see the photo-referenced buses and solder details. The pale slotted guides, circular cap cups and dark rubber contact pads follow the loose-key photos and owner confirmation. The narrow controller lifts out separately, showing its socketed processor, replacement EPROM and metallic trace detail. Visible routing is approximate, not an electrical netlist. The springs use the owner’s 13 mm outer diameter, 23 mm free length and 0.4 mm wire. Turn count follows the spring photo; travel, installed compression and hidden contact details remain estimates.",
+    text: "The keycaps and deck move back and up; the mounting plate, switches and springs move forward so the broad switch PCB stays visible from above, with the paired contact pads facing upward. Orbit below the board to see the photo-referenced buses and solder details. Six hole-aligned insulating supports and washers retain the switch PCB; short contact fan-outs and the controller entry bundle are modeled as estimated routes, not an electrical netlist. The pale slotted guides, circular cap cups and dark rubber contact pads follow the loose-key photos and owner confirmation. The narrow controller lifts out separately, showing its socketed processor, replacement EPROM and metallic trace detail. Visible routing is approximate, not an electrical netlist. The springs use the owner’s 13 mm outer diameter, 23 mm free length and 0.4 mm wire. Turn count follows the spring photo; travel, installed compression and hidden contact details remain estimates.",
     photo: "20261012_123907435",
   },
   "component-logic": {
@@ -156,7 +158,7 @@ Object.assign(inspections, {
   },
   "focus-clamp": {
     title: "Clamp and latch",
-    text: "These parts follow the owner’s mechanism photos. Their demonstration is illustrative: hidden linkage geometry and exact kinematics remain unverified. It does not eject media from the emulator.",
+    text: "The lever turns a separate journal-supported shaft and eccentric cam. The slotted follower lifts the clamp and a release rail above the upper head. Normal operation follows each drive door; the inspection demo remains visual only. Hidden linkage dimensions, cam profile and exact head-lift kinematics are estimates from the owner photos, not measured mechanics.",
     photo: "20250212_094038758",
   },
   "drive-top": { ...inspections.drives, title: "Drive mechanisms from above" },
@@ -180,6 +182,10 @@ function photoUrl(photo) {
 export function showSpecimenDetail(name = currentInspection) {
   const entry = inspections[name];
   if (!entry) return;
+  const generation=++detailGeneration;
+  disketteViewer?.dispose(); disketteViewer=undefined;
+  document.getElementById("diskette-viewer")?.remove();
+  document.getElementById("diskette-tools")?.remove();
   document.getElementById("detail-title").textContent = entry.title;
   document.getElementById("detail-description").textContent =
     (entry.evidence ? entry.evidence + ". " : "") + entry.text;
@@ -206,6 +212,11 @@ export function showSpecimenDetail(name = currentInspection) {
     choices.append(button);
   }
   document.getElementById("specimen-detail").showModal();
+  if(name==="diskette") {
+    const host=document.createElement("div");host.id="diskette-viewer";host.setAttribute("aria-label","Rotate the 3D diskette and sleeve");
+    const tools=document.createElement("div");tools.id="diskette-tools"; choices.before(host,tools);
+    createDisketteViewer(host,tools).then(viewer=>{if(generation!==detailGeneration)viewer.dispose();else disketteViewer=viewer;});
+  }
 }
 document.getElementById("reference-details").onclick = () =>
   showSpecimenDetail();
@@ -237,3 +248,5 @@ interiorReferences.addEventListener("toggle", () => {
 
 for (const button of document.querySelectorAll("[data-component]"))
   button.onclick = () => showSpecimenDetail(button.dataset.component);
+
+document.getElementById("specimen-detail").addEventListener("close",()=>{detailGeneration++;disketteViewer?.dispose();disketteViewer=undefined;});

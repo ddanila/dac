@@ -1,5 +1,12 @@
 {
-  "version": 25,
+  "version": 26,
+  "specimenMeshes": [
+    {
+      "name": "specimen-sleeve",
+      "file": "meshes/specimen-sleeve.stl",
+      "sha256": "062825c05ae31901484d9fdb16bb728b330b5adc2b3a9a610d0f9c4e9f00ecc9"
+    }
+  ],
   "modelVerification": {
     "models/robotron-1715m/display-base-ring/model.scad": {
       "physicalVerification": "unverified",
@@ -18857,6 +18864,8 @@
       "latch": "drive-latch-0",
       "latchTrim": "drive-latch-trim-0",
       "clamp": "drive-clamp-0",
+      "shaft": "drive-shaft-0",
+      "release": "drive-release-0",
       "latchPivot": [
         -113,
         -209,
@@ -18892,6 +18901,8 @@
       "latch": "drive-latch-1",
       "latchTrim": "drive-latch-trim-1",
       "clamp": "drive-clamp-1",
+      "shaft": "drive-shaft-1",
+      "release": "drive-release-1",
       "latchPivot": [
         41,
         -209,
@@ -19218,7 +19229,7 @@
       "name": "drive-mechanisms",
       "file": "meshes/drive-mechanisms.stl",
       "color": "#bec2bd",
-      "sha256": "2fccbf4adc894662d97d45d1c04dbd28115d8e3ba129980c846a6e1f037fc33b",
+      "sha256": "adf7d6a49552ac0399aa29e6afe174334edb77acb82af352c786c1b65043a5cc",
       "section": "interior",
       "material": "plated-steel"
     },
@@ -20172,6 +20183,70 @@
       "color": "#d0d2c7",
       "sha256": "4f121f9841e7879f8daf9f4d42915d603f88e1e752a2235002313961c994c920",
       "material": "ink"
+    },
+    {
+      "name": "drive-shaft-0",
+      "file": "meshes/drive-shaft-0.stl",
+      "color": "#a6a7a0",
+      "sha256": "2bf33409f8ae14038e175323b5daee288c46a61716a01427171117257e9e9937",
+      "section": "interior",
+      "material": "plated-steel"
+    },
+    {
+      "name": "drive-shaft-1",
+      "file": "meshes/drive-shaft-1.stl",
+      "color": "#a6a7a0",
+      "sha256": "d3d3f64700d973b8aa838f54fb0a57b9a75f48ddc71743ad89ede6fb5ee2d39c",
+      "section": "interior",
+      "material": "plated-steel"
+    },
+    {
+      "name": "drive-release-0",
+      "file": "meshes/drive-release-0.stl",
+      "color": "#a6a7a0",
+      "sha256": "b66a4f73d9140377ba7783ed551466f63245128301fca14eed7a6f779a1cb437",
+      "section": "interior",
+      "material": "plated-steel"
+    },
+    {
+      "name": "drive-release-1",
+      "file": "meshes/drive-release-1.stl",
+      "color": "#a6a7a0",
+      "sha256": "ae77fee848cfe908d0b8175e445d2fd3a002418f5501b78e079c82612da68d05",
+      "section": "interior",
+      "material": "plated-steel"
+    },
+    {
+      "name": "keyboard-pcb-supports",
+      "file": "meshes/keyboard-pcb-supports.stl",
+      "color": "#59424a",
+      "sha256": "05e3ea05a217c4e6319188b3a7605a0ee8408507663e3ef41c4cc57b67b84e1a",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-pcb-fasteners",
+      "file": "meshes/keyboard-pcb-fasteners.stl",
+      "color": "#b8bbb4",
+      "sha256": "43ca4763526803301e398800838c028130cab27992135fa0924204cd7faa7194",
+      "section": "interior",
+      "material": "metal"
+    },
+    {
+      "name": "keyboard-entry-wires",
+      "file": "meshes/keyboard-entry-wires.stl",
+      "color": "#c6c5bb",
+      "sha256": "552c3b60dc3bc86e6b7a319633c84fea889a66a02524d0104540a5574fc0369d",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-contact-routes",
+      "file": "meshes/keyboard-contact-routes.stl",
+      "color": "#487856",
+      "sha256": "329fdba2b496643a967ba380376f11c49657b7ebf290d2feedf89bfadfe1e27e",
+      "section": "interior",
+      "material": "plastic"
     }
   ],
   "keys": [

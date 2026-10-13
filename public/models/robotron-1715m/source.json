@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "5f5d3f177c9153495dd0274cbc7b2f167a4f7e6b",
+  "revision": "5f9faa1f0d4cf320d74180b4133647e8393aaa7a",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "ac3c8c785fdba2e07c0216594c35caa22521b69e9e67ab112319717b5e5263c4"
+      "sha256": "1263d09e13883858830592ace1742910639e856b82dbd9a8f6164ae14908e24a"
     },
     {
       "file": "LICENSE",
@@ -161,7 +161,7 @@
     },
     {
       "file": "meshes/drive-mechanisms.stl",
-      "sha256": "2fccbf4adc894662d97d45d1c04dbd28115d8e3ba129980c846a6e1f037fc33b"
+      "sha256": "adf7d6a49552ac0399aa29e6afe174334edb77acb82af352c786c1b65043a5cc"
     },
     {
       "file": "meshes/drive-motors.stl",
@@ -636,6 +636,38 @@
       "sha256": "4f121f9841e7879f8daf9f4d42915d603f88e1e752a2235002313961c994c920"
     },
     {
+      "file": "meshes/drive-shaft-0.stl",
+      "sha256": "2bf33409f8ae14038e175323b5daee288c46a61716a01427171117257e9e9937"
+    },
+    {
+      "file": "meshes/drive-shaft-1.stl",
+      "sha256": "d3d3f64700d973b8aa838f54fb0a57b9a75f48ddc71743ad89ede6fb5ee2d39c"
+    },
+    {
+      "file": "meshes/drive-release-0.stl",
+      "sha256": "b66a4f73d9140377ba7783ed551466f63245128301fca14eed7a6f779a1cb437"
+    },
+    {
+      "file": "meshes/drive-release-1.stl",
+      "sha256": "ae77fee848cfe908d0b8175e445d2fd3a002418f5501b78e079c82612da68d05"
+    },
+    {
+      "file": "meshes/keyboard-pcb-supports.stl",
+      "sha256": "05e3ea05a217c4e6319188b3a7605a0ee8408507663e3ef41c4cc57b67b84e1a"
+    },
+    {
+      "file": "meshes/keyboard-pcb-fasteners.stl",
+      "sha256": "43ca4763526803301e398800838c028130cab27992135fa0924204cd7faa7194"
+    },
+    {
+      "file": "meshes/keyboard-entry-wires.stl",
+      "sha256": "552c3b60dc3bc86e6b7a319633c84fea889a66a02524d0104540a5574fc0369d"
+    },
+    {
+      "file": "meshes/keyboard-contact-routes.stl",
+      "sha256": "329fdba2b496643a967ba380376f11c49657b7ebf290d2feedf89bfadfe1e27e"
+    },
+    {
       "file": "meshes/keycap-0.stl",
       "sha256": "739896adef17f9dc30b42e374c40c58a52892cdaaa955efb2a686f0f10faf2dd"
     },
@@ -694,6 +726,10 @@
     {
       "file": "meshes/keycap-7-core.stl",
       "sha256": "38bbd54e449b9d0814d30de839342c9adca7389b534779a5f05429418c61249c"
+    },
+    {
+      "file": "meshes/specimen-sleeve.stl",
+      "sha256": "062825c05ae31901484d9fdb16bb728b330b5adc2b3a9a610d0f9c4e9f00ecc9"
     },
     {
       "file": "photos/PXL_20250212_094033966.jpg",
@@ -1061,23 +1097,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "031fc3c667dc4b0fc0f87c57a35c60a0624d1966f08f1e28da6b1dacf7501651"
+      "sha256": "bd2155f6ad9a8e6a0345a086099db2ee53f21af053c4edebd070d0216942bf89"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "4ea3e216f104e2802041e51fb81d2d2f73336d5b36bdebf41880e5bec7e51d34"
+      "sha256": "a23eaefba70264a239dc232aa707a91ee093c8fd3d4aac9d3c284e110999ee99"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "78fdcc51d78b37c89f0960b58badd3d89f48a00d88a28c8a08a4371d14109e31"
+      "sha256": "ede9e76d861700f93b8b68cbc12c2a66f8235442ad1b7308a66cca4054134e1a"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "e7044207aff3ab1f125549ee166b2dda828beb977daf854a953796cd3b9d59cf"
+      "sha256": "3acb755065fef6f018ea27303e8d9e6b3d0948b6e7ac42dd6877038593eec1e9"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "a7b8d3948684236c5eb6f3f350048f8f1699dbd6c0b575ebf356f701e6728a98"
+      "sha256": "fc2c9d5c26b941055774f904d8d87eb1febd3e190ff136b711d65b62bc76a8e9"
     }
   ]
 }
