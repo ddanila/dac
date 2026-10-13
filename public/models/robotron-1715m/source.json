@@ -1,15 +1,47 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "fe87f5a01508d96d3bf7cbd1b7b9847a64cdedef",
+  "revision": "5f5d3f177c9153495dd0274cbc7b2f167a4f7e6b",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "ee728e489eb48ee511bbee479f845a1038c3de4da975c1d9b8369bef049b5149"
+      "sha256": "ac3c8c785fdba2e07c0216594c35caa22521b69e9e67ab112319717b5e5263c4"
     },
     {
       "file": "LICENSE",
       "sha256": "5f37b6aa73439398b45f8b972c02bfbd07418c4e00d374adb68695a6edb38e5f"
+    },
+    {
+      "file": "textures/brand.jpg",
+      "sha256": "e39acbecf0c7f2de77612b56da14069ec83789719e8e62b00605b25d7488fdcd"
+    },
+    {
+      "file": "textures/drive-label-ratan.jpg",
+      "sha256": "5ae11daae4ecb23cd0bf7d34191b0b495b85fdc72141864567cf6190724c424d"
+    },
+    {
+      "file": "textures/drive-label-robotron-id.jpg",
+      "sha256": "e1a7ea4794246f9a657f472f573dace61071be215df91af0a685b2c2638c45ce"
+    },
+    {
+      "file": "textures/drive-label-robotron-maker.jpg",
+      "sha256": "5cb4361a07ee59c9580f96008fa6b07fcbb8e86720540d0de222f642790abe44"
+    },
+    {
+      "file": "textures/drive-label-teac-2064.jpg",
+      "sha256": "9cc2d63fdd564ed1bd94a37f4e319eaaa3e12c008985ff769b0cf1b88858ea45"
+    },
+    {
+      "file": "textures/drive-label-teac-2092.jpg",
+      "sha256": "b233c609d6e89450ad68035ed05a92fccd823c52507c2196b6ce49e48843f765"
+    },
+    {
+      "file": "textures/drive-diskette-ink-0.jpg",
+      "sha256": "c0b8e1801d93347ab62f87348b640941d520a44464490c07cce6ba55c66dd6ab"
+    },
+    {
+      "file": "textures/drive-diskette-ink-1.jpg",
+      "sha256": "c0b8e1801d93347ab62f87348b640941d520a44464490c07cce6ba55c66dd6ab"
     },
     {
       "file": "meshes/case-base.stl",
@@ -41,7 +73,7 @@
     },
     {
       "file": "meshes/ring.stl",
-      "sha256": "3c0884ba9be9e6dbb89423acfc6ea0fbcc1b756b012f423c2a2b4fef6ea884e0"
+      "sha256": "d73db317f8aefc15ccc00ae8224a31956b675362be5b10352ba6610cad0c3ea3"
     },
     {
       "file": "meshes/monitor-shell-lower.stl",
@@ -77,11 +109,11 @@
     },
     {
       "file": "meshes/drive-insets.stl",
-      "sha256": "d11bb35147a9ed71fc2d0accdb39258008441c1056348d5f286cc344a04f20e0"
+      "sha256": "04d61bab19497dcb93f3e470f94aae1a86d042478554dd7dc1ea8a5d68384bda"
     },
     {
       "file": "meshes/drive-latch-0.stl",
-      "sha256": "f25de7dabda21e66418e084365ea20cc8ba549d618a0c51952f0f75df9fafead"
+      "sha256": "d7c126dcc65894c144e0f680ea72174cf16c1cfb20b75b5e9ca334978038db13"
     },
     {
       "file": "meshes/drive-led-0.stl",
@@ -289,7 +321,7 @@
     },
     {
       "file": "meshes/drive-latch-1.stl",
-      "sha256": "ea3f3f8d5118231ac752a2d24ab7a069cd7dcdc8f4ab4fb66209d4cb31aea38f"
+      "sha256": "d6ea04f85493780fe6bd10f6eed0664506fac5ad8199ec07193478c05d151dbe"
     },
     {
       "file": "meshes/drive-clamp-0.stl",
@@ -586,6 +618,22 @@
     {
       "file": "meshes/drive-diskette-label-1.stl",
       "sha256": "21ac68dc1078e453c4945e440312bab0d500d86b7a42a45fec96894124e900fb"
+    },
+    {
+      "file": "meshes/drive-latch-trim-0.stl",
+      "sha256": "b096978ba809b5443553f1641cbe6f724303fb48c58d70b28c7463b971bb83d9"
+    },
+    {
+      "file": "meshes/drive-latch-trim-1.stl",
+      "sha256": "c2011564a2c9cf0a2b154fc53933817bcfd647fa3d9a8dcb5e6c47b3420ea0bb"
+    },
+    {
+      "file": "meshes/drive-direction-0.stl",
+      "sha256": "47416523e1e89a4a08f65ddf036d404d1487377562738bc7184b51a3448a691d"
+    },
+    {
+      "file": "meshes/drive-direction-1.stl",
+      "sha256": "4f121f9841e7879f8daf9f4d42915d603f88e1e752a2235002313961c994c920"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1013,23 +1061,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "f1054024e3f2078a35f8f91f8d2b9e54dc2f295779f3a8e02b20e5479ae064a8"
+      "sha256": "031fc3c667dc4b0fc0f87c57a35c60a0624d1966f08f1e28da6b1dacf7501651"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "eb5bc42d48df211b22298e82ec898b55fa2b23096d65044e29f3f438dc46588b"
+      "sha256": "4ea3e216f104e2802041e51fb81d2d2f73336d5b36bdebf41880e5bec7e51d34"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "3248051c9a362142ee36c9ec88ca609eb73bbe1b40768f55dbd2083b02e6879e"
+      "sha256": "78fdcc51d78b37c89f0960b58badd3d89f48a00d88a28c8a08a4371d14109e31"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "0c74d896dbd6bc0951f9ff2312616eec69a66d48c21e8c5ad47608abddbdd344"
+      "sha256": "e7044207aff3ab1f125549ee166b2dda828beb977daf854a953796cd3b9d59cf"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "32655108fa5eb1b4f3ba1b55310b851d415965d03df89957652d067d4e711cb6"
+      "sha256": "a7b8d3948684236c5eb6f3f350048f8f1699dbd6c0b575ebf356f701e6728a98"
     }
   ]
 }

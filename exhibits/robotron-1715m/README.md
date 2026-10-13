@@ -147,3 +147,30 @@ label remain stationary while the magnetic disc follows spindle telemetry.
 The owner's separate white storage envelope is not original packaging. Its CAD
 reference is included in the standalone diskette preview, not inside the drive;
 both envelope photos are preserved with the source references.
+
+### Working levers, media handling and inspection (0.8.0 / model v25)
+
+Click either modeled lever or its accessible button to operate that drive. An
+open lever clears READY and head loading in the emulator, interrupts an active
+transfer with Not Ready, and suppresses disk index pulses. Closing requires
+fresh qualifying index pulses. The two drives are independent.
+
+Remove/Insert controls require an open lever. Removal retains the session image
+and its writes for reinsertion/export; it is not deletion. A short sliding
+animation follows insertion state, with immediate transitions under reduced
+motion. The released disk stops following the spindle. Opening a lever during
+a write can leave a partial sector, as with interrupting real media access.
+
+Lever and insertion states survive power/reset and snapshots and are included
+in deterministic recordings (opcodes 9/10). The previous 0.7.1 core is archived
+for its snapshots; physical lever controls are disabled on preserved old cores.
+The “Show released drive clamps” checkbox remains a visual inspection override.
+
+“Inspect diskette and sleeve” provides both sides of each owner specimen. The
+white sleeve is non-original packaging. The emulated image is selected separately
+from the depicted physical diskette and its handwritten label. Drive-front CAD
+now includes the asymmetric lever, metal rim, direction arrow and open slot.
+
+Small precomputed label textures replace about 12.1 MB of startup photo downloads
+with 681 KB of crops. Full photographs load when their inspection view is opened.
+The museum ring matches the owner-revised 174/167 × 5 mm standalone insert.

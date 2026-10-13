@@ -320,6 +320,8 @@ function frame() {
       activity: module._dac_disk_activity(handle),
       keyboardLeds: module._dac_keyboard_leds(handle),
       drive: module._dac_drive_status(handle),
+      driveDoorsSupported: !!module._dac_drive_door,
+      driveAvailable: [0,1].map(u => !!module._dac_disk_size_unit(handle, u)),
       drives: [0, 1].map((u) => module._dac_drive_status_unit(handle, u)),
       driveMechanics: module._dac_drive_phase_unit
         ? [0, 1].map((u) => ({
@@ -662,6 +664,14 @@ async function receive(d) {
         recording = null;
         throw Error("Recording reset failed.");
       }
+      if (kind === 2 && module._dac_drive_door)
+        for (const u of [0,1]) {
+          const state = module._dac_drive_status_unit(handle, u);
+          if (module._dac_disk_size_unit(handle, u) && !(state & 8)) {
+            recordEvent([9,u,1]); recordEvent([10,u,0]);
+          }
+          recordEvent([9, u, Number(!!(state & 32))]);
+        }
       owed = 0;
       last = performance.now();
       postMessage({
@@ -732,6 +742,16 @@ async function receive(d) {
       ]);
     } else if (d.type === "import-state") {
       await importState(d.bytes);
+    } else if (d.type === "drive-inserted") {
+      if (!module._dac_drive_inserted || module._dac_drive_inserted(handle, d.unit, Number(d.inserted)) < 0)
+        throw Error("Open the drive lever before removing or inserting its disk.");
+      recordEvent([10, d.unit, Number(d.inserted)]);
+      frame();
+    } else if (d.type === "drive-door") {
+      if (kind !== 2 || !module._dac_drive_door) throw Error("Reload media to use working drive levers with this emulator version.");
+      if (module._dac_drive_door(handle, d.unit, Number(d.open)) < 0) throw Error("Drive lever rejected.");
+      recordEvent([9, d.unit, Number(d.open)]);
+      frame();
     } else if (d.type === "mount-b") {
       if (kind !== 2 || running)
         throw Error("Power off before changing drive B media.");

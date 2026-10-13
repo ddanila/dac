@@ -11,6 +11,8 @@ target=Path(__file__).resolve().parents[1]/'public/models/robotron-1715m'
 data=json.loads((source/'browser/model.json').read_text())
 photos={p['file']:p for p in json.loads((source/'reference/photos.json').read_text())['photos']}
 files=[('browser/model.json','model.json',None),('LICENSE','LICENSE',None)]
+for patch in data['patches']:
+    if patch.get('texture'):files.append(('browser/'+patch['texture'],patch['texture'],patch['textureSha256']))
 for part in data['parts']+data.get('keyMeshes',[]):files.append(('browser/'+part['file'],part['file'],part['sha256']))
 for name in sorted({p['photo'] for p in data['patches']} | set(data.get('references', []))):files.append(('reference/photos/'+name,'photos/'+name,photos[name]['sha256']))
 for board in data.get('pcbReferences',[]):files.append((board['file'],board['file'],board['sha256']))

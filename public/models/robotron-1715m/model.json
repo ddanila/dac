@@ -1,5 +1,5 @@
 {
-  "version": 24,
+  "version": 25,
   "modelVerification": {
     "models/robotron-1715m/display-base-ring/model.scad": {
       "physicalVerification": "unverified",
@@ -18855,6 +18855,7 @@
       "jacket": "drive-diskette-0",
       "disketteLabel": "drive-diskette-label-0",
       "latch": "drive-latch-0",
+      "latchTrim": "drive-latch-trim-0",
       "clamp": "drive-clamp-0",
       "latchPivot": [
         -113,
@@ -18889,6 +18890,7 @@
       "jacket": "drive-diskette-1",
       "disketteLabel": "drive-diskette-label-1",
       "latch": "drive-latch-1",
+      "latchTrim": "drive-latch-trim-1",
       "clamp": "drive-clamp-1",
       "latchPivot": [
         41,
@@ -19061,7 +19063,7 @@
       "name": "ring",
       "file": "meshes/ring.stl",
       "color": "#333333",
-      "sha256": "3c0884ba9be9e6dbb89423acfc6ea0fbcc1b756b012f423c2a2b4fef6ea884e0",
+      "sha256": "d73db317f8aefc15ccc00ae8224a31956b675362be5b10352ba6610cad0c3ea3",
       "material": "rubber"
     },
     {
@@ -19124,14 +19126,14 @@
       "name": "drive-insets",
       "file": "meshes/drive-insets.stl",
       "color": "#101312",
-      "sha256": "d11bb35147a9ed71fc2d0accdb39258008441c1056348d5f286cc344a04f20e0",
+      "sha256": "04d61bab19497dcb93f3e470f94aae1a86d042478554dd7dc1ea8a5d68384bda",
       "material": "plastic"
     },
     {
       "name": "drive-latch-0",
       "file": "meshes/drive-latch-0.stl",
       "color": "#242827",
-      "sha256": "f25de7dabda21e66418e084365ea20cc8ba549d618a0c51952f0f75df9fafead",
+      "sha256": "d7c126dcc65894c144e0f680ea72174cf16c1cfb20b75b5e9ca334978038db13",
       "material": "plastic"
     },
     {
@@ -19542,7 +19544,7 @@
       "name": "drive-latch-1",
       "file": "meshes/drive-latch-1.stl",
       "color": "#242827",
-      "sha256": "ea3f3f8d5118231ac752a2d24ab7a069cd7dcdc8f4ab4fb66209d4cb31aea38f",
+      "sha256": "d6ea04f85493780fe6bd10f6eed0664506fac5ad8199ec07193478c05d151dbe",
       "material": "plastic"
     },
     {
@@ -20142,6 +20144,34 @@
       "color": "#d8d4bf",
       "sha256": "21ac68dc1078e453c4945e440312bab0d500d86b7a42a45fec96894124e900fb",
       "material": "plastic"
+    },
+    {
+      "name": "drive-latch-trim-0",
+      "file": "meshes/drive-latch-trim-0.stl",
+      "color": "#a6a7a0",
+      "sha256": "b096978ba809b5443553f1641cbe6f724303fb48c58d70b28c7463b971bb83d9",
+      "material": "metal"
+    },
+    {
+      "name": "drive-latch-trim-1",
+      "file": "meshes/drive-latch-trim-1.stl",
+      "color": "#a6a7a0",
+      "sha256": "c2011564a2c9cf0a2b154fc53933817bcfd647fa3d9a8dcb5e6c47b3420ea0bb",
+      "material": "metal"
+    },
+    {
+      "name": "drive-direction-0",
+      "file": "meshes/drive-direction-0.stl",
+      "color": "#d0d2c7",
+      "sha256": "47416523e1e89a4a08f65ddf036d404d1487377562738bc7184b51a3448a691d",
+      "material": "ink"
+    },
+    {
+      "name": "drive-direction-1",
+      "file": "meshes/drive-direction-1.stl",
+      "color": "#d0d2c7",
+      "sha256": "4f121f9841e7879f8daf9f4d42915d603f88e1e752a2235002313961c994c920",
+      "material": "ink"
     }
   ],
   "keys": [
@@ -24175,7 +24205,27 @@
           0.721048798252003
         ]
       ],
-      "ink": true
+      "ink": true,
+      "texture": "textures/brand.jpg",
+      "textureSha256": "e39acbecf0c7f2de77612b56da14069ec83789719e8e62b00605b25d7488fdcd",
+      "textureUv": [
+        [
+          0.0017494230626069619,
+          0.12206242969871295
+        ],
+        [
+          0.9983622422392615,
+          0.016148286695657137
+        ],
+        [
+          0.9951983920196532,
+          0.9164185022216276
+        ],
+        [
+          0.009659048611628062,
+          0.9826148415985397
+        ]
+      ]
     },
     {
       "name": "drive-label-ratan",
@@ -24213,7 +24263,27 @@
         180
       ],
       "section": "interior",
-      "assembly": "drives"
+      "assembly": "drives",
+      "texture": "textures/drive-label-ratan.jpg",
+      "textureSha256": "5ae11daae4ecb23cd0bf7d34191b0b495b85fdc72141864567cf6190724c424d",
+      "textureUv": [
+        [
+          0.0006377551020408163,
+          0.004806845147193657
+        ],
+        [
+          0.9992279806659505,
+          0.002551365035359487
+        ],
+        [
+          0.9813960123523093,
+          0.9272982108873905
+        ],
+        [
+          0.004204148764769067,
+          0.9972180943542512
+        ]
+      ]
     },
     {
       "name": "drive-label-robotron-id",
@@ -24251,7 +24321,27 @@
         180
       ],
       "section": "interior",
-      "assembly": "drives"
+      "assembly": "drives",
+      "texture": "textures/drive-label-robotron-id.jpg",
+      "textureSha256": "e1a7ea4794246f9a657f472f573dace61071be215df91af0a685b2c2638c45ce",
+      "textureUv": [
+        [
+          0.0019050150629097342,
+          0.0074943143432736935
+        ],
+        [
+          0.9979399255715045,
+          0.1446074005846945
+        ],
+        [
+          0.9979399255715045,
+          0.9922155700771143
+        ],
+        [
+          0.0019050150629097342,
+          0.8488700708247192
+        ]
+      ]
     },
     {
       "name": "drive-label-robotron-maker",
@@ -24289,7 +24379,27 @@
         180
       ],
       "section": "interior",
-      "assembly": "drives"
+      "assembly": "drives",
+      "texture": "textures/drive-label-robotron-maker.jpg",
+      "textureSha256": "5cb4361a07ee59c9580f96008fa6b07fcbb8e86720540d0de222f642790abe44",
+      "textureUv": [
+        [
+          0.0013970110461338752,
+          0.004544347264797683
+        ],
+        [
+          0.9983105912930476,
+          0.14129766772969365
+        ],
+        [
+          0.9817413905133202,
+          0.9960059206352938
+        ],
+        [
+          0.0013970110461338752,
+          0.8250642700541735
+        ]
+      ]
     },
     {
       "name": "drive-label-teac-2064",
@@ -24327,7 +24437,27 @@
         180
       ],
       "section": "interior",
-      "assembly": "drives"
+      "assembly": "drives",
+      "texture": "textures/drive-label-teac-2064.jpg",
+      "textureSha256": "9cc2d63fdd564ed1bd94a37f4e319eaaa3e12c008985ff769b0cf1b88858ea45",
+      "textureUv": [
+        [
+          0.006522286577688194,
+          0.26901052387134883
+        ],
+        [
+          0.9783178040795769,
+          0.009597622892851428
+        ],
+        [
+          0.9975824729287333,
+          0.7391964068948771
+        ],
+        [
+          0.0022412490556535107,
+          0.9905026547177982
+        ]
+      ]
     },
     {
       "name": "drive-label-teac-2092",
@@ -24365,7 +24495,27 @@
         180
       ],
       "section": "interior",
-      "assembly": "drives"
+      "assembly": "drives",
+      "texture": "textures/drive-label-teac-2092.jpg",
+      "textureSha256": "b233c609d6e89450ad68035ed05a92fccd823c52507c2196b6ce49e48843f765",
+      "textureUv": [
+        [
+          0.019488219094247212,
+          0.3247265531843584
+        ],
+        [
+          0.9769736842105263,
+          0.007921417476103627
+        ],
+        [
+          0.998106640146879,
+          0.6283314749047682
+        ],
+        [
+          0.001606487148102902,
+          0.9913373595704777
+        ]
+      ]
     },
     {
       "name": "drive-diskette-ink-0",
@@ -24404,7 +24554,27 @@
       ],
       "section": "interior",
       "assembly": "drives",
-      "disketteUnit": 0
+      "disketteUnit": 0,
+      "texture": "textures/drive-diskette-ink-0.jpg",
+      "textureSha256": "c0b8e1801d93347ab62f87348b640941d520a44464490c07cce6ba55c66dd6ab",
+      "textureUv": [
+        [
+          0.0022727272727275545,
+          0.0030129870129872913
+        ],
+        [
+          0.9969834710743801,
+          0.0030129870129872913
+        ],
+        [
+          0.9969834710743801,
+          0.9959826839826839
+        ],
+        [
+          0.0022727272727275545,
+          0.9959826839826839
+        ]
+      ]
     },
     {
       "name": "drive-diskette-ink-1",
@@ -24443,7 +24613,27 @@
       ],
       "section": "interior",
       "assembly": "drives",
-      "disketteUnit": 1
+      "disketteUnit": 1,
+      "texture": "textures/drive-diskette-ink-1.jpg",
+      "textureSha256": "c0b8e1801d93347ab62f87348b640941d520a44464490c07cce6ba55c66dd6ab",
+      "textureUv": [
+        [
+          0.0022727272727275545,
+          0.0030129870129872913
+        ],
+        [
+          0.9969834710743801,
+          0.0030129870129872913
+        ],
+        [
+          0.9969834710743801,
+          0.9959826839826839
+        ],
+        [
+          0.0022727272727275545,
+          0.9959826839826839
+        ]
+      ]
     }
   ],
   "driveLabels": {
@@ -24484,7 +24674,27 @@
           180
         ],
         "section": "interior",
-        "assembly": "drives"
+        "assembly": "drives",
+        "texture": "textures/drive-label-ratan.jpg",
+        "textureSha256": "5ae11daae4ecb23cd0bf7d34191b0b495b85fdc72141864567cf6190724c424d",
+        "textureUv": [
+          [
+            0.0006377551020408163,
+            0.004806845147193657
+          ],
+          [
+            0.9992279806659505,
+            0.002551365035359487
+          ],
+          [
+            0.9813960123523093,
+            0.9272982108873905
+          ],
+          [
+            0.004204148764769067,
+            0.9972180943542512
+          ]
+        ]
       },
       {
         "name": "drive-label-robotron-id",
@@ -24522,7 +24732,27 @@
           180
         ],
         "section": "interior",
-        "assembly": "drives"
+        "assembly": "drives",
+        "texture": "textures/drive-label-robotron-id.jpg",
+        "textureSha256": "e1a7ea4794246f9a657f472f573dace61071be215df91af0a685b2c2638c45ce",
+        "textureUv": [
+          [
+            0.0019050150629097342,
+            0.0074943143432736935
+          ],
+          [
+            0.9979399255715045,
+            0.1446074005846945
+          ],
+          [
+            0.9979399255715045,
+            0.9922155700771143
+          ],
+          [
+            0.0019050150629097342,
+            0.8488700708247192
+          ]
+        ]
       },
       {
         "name": "drive-label-robotron-maker",
@@ -24560,7 +24790,27 @@
           180
         ],
         "section": "interior",
-        "assembly": "drives"
+        "assembly": "drives",
+        "texture": "textures/drive-label-robotron-maker.jpg",
+        "textureSha256": "5cb4361a07ee59c9580f96008fa6b07fcbb8e86720540d0de222f642790abe44",
+        "textureUv": [
+          [
+            0.0013970110461338752,
+            0.004544347264797683
+          ],
+          [
+            0.9983105912930476,
+            0.14129766772969365
+          ],
+          [
+            0.9817413905133202,
+            0.9960059206352938
+          ],
+          [
+            0.0013970110461338752,
+            0.8250642700541735
+          ]
+        ]
       },
       {
         "name": "drive-label-teac-2064",
@@ -24598,7 +24848,27 @@
           180
         ],
         "section": "interior",
-        "assembly": "drives"
+        "assembly": "drives",
+        "texture": "textures/drive-label-teac-2064.jpg",
+        "textureSha256": "9cc2d63fdd564ed1bd94a37f4e319eaaa3e12c008985ff769b0cf1b88858ea45",
+        "textureUv": [
+          [
+            0.006522286577688194,
+            0.26901052387134883
+          ],
+          [
+            0.9783178040795769,
+            0.009597622892851428
+          ],
+          [
+            0.9975824729287333,
+            0.7391964068948771
+          ],
+          [
+            0.0022412490556535107,
+            0.9905026547177982
+          ]
+        ]
       },
       {
         "name": "drive-label-teac-2092",
@@ -24636,7 +24906,27 @@
           180
         ],
         "section": "interior",
-        "assembly": "drives"
+        "assembly": "drives",
+        "texture": "textures/drive-label-teac-2092.jpg",
+        "textureSha256": "b233c609d6e89450ad68035ed05a92fccd823c52507c2196b6ce49e48843f765",
+        "textureUv": [
+          [
+            0.019488219094247212,
+            0.3247265531843584
+          ],
+          [
+            0.9769736842105263,
+            0.007921417476103627
+          ],
+          [
+            0.998106640146879,
+            0.6283314749047682
+          ],
+          [
+            0.001606487148102902,
+            0.9913373595704777
+          ]
+        ]
       }
     ],
     "reconstructedText": {

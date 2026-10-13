@@ -1,4 +1,10 @@
 export const inspections = {
+  diskette: {
+    title: "Danila’s diskette and storage sleeve",
+    text: "This is the diskette used with the museum machine. The handwritten label belongs to this specimen; the emulated disk contents are selected separately. The white sleeve is the one Danila uses, not original packaging. Choose a side to examine the label, jacket seams or sleeve instructions.",
+    photo: "20261013_113451775",
+    views: [["Diskette · label", "20261013_113451775"], ["Diskette · reverse", "20261013_113457457"], ["Sleeve · plain", "20261013_113428737"], ["Sleeve · instructions", "20261013_113436448"]],
+  },
   overview: {
     title: "Danila’s Robotron",
     text: "The overall dimensions come from the original manual. Shapes and colors follow the owner’s photographs. Painted metal, plastic and rubber use consistent materials; small dimensions and curves are estimated.",
@@ -187,6 +193,18 @@ export function showSpecimenDetail(name = currentInspection) {
   link.textContent = entry.photo
     ? "View owner’s original photograph ↗"
     : "View credited reference ↗";
+  let choices = document.getElementById("detail-views");
+  if (!choices) { choices = document.createElement("div"); choices.id = "detail-views"; choices.className = "secondary-controls"; photo.before(choices); }
+  choices.replaceChildren();
+  for (const [label, source] of entry.views || []) {
+    const button = document.createElement("button"); button.textContent = label;
+    button.setAttribute("aria-pressed", String(source === entry.photo));
+    button.onclick = () => {
+      photo.src = photoUrl(source); photo.alt = `Danila’s photograph: ${label}`; link.href = photo.src;
+      for (const b of choices.children) b.setAttribute("aria-pressed", String(b === button));
+    };
+    choices.append(button);
+  }
   document.getElementById("specimen-detail").showModal();
 }
 document.getElementById("reference-details").onclick = () =>

@@ -1,4 +1,5 @@
 export function componentDetail(name) {
+  if (name.startsWith("drive-diskette")) return "diskette";
   if (/^keyboard-(controller-|insulators|matrix-artwork)/.test(name)) return "component-keyboard";
   if (name.startsWith("rear-")) return "back";
   if (["monitor-under-controls", "monitor-stand-metal"].includes(name)) return "monitor";

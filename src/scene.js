@@ -311,6 +311,7 @@ export function createScene(
     renderer.domElement.style.cursor =
       hit &&
       (key ||
+        hit.userData.driveUnit !== undefined ||
         hit.userData.detail ||
         hit === robotron?.objects.get("power") ||
         hit === robotron?.objects.get("reset"))
@@ -319,6 +320,8 @@ export function createScene(
     interaction.onHover?.(
       key
         ? `${key.label}${key.input.unsupported ? " · mapping unverified" : ""}`
+        : hit?.userData.driveUnit !== undefined
+          ? `Click to operate drive ${hit.userData.driveUnit ? "B" : "A"} lever`
         : hit?.userData.detail
           ? "Click to inspect this component and its evidence"
           : "",
@@ -338,7 +341,9 @@ export function createScene(
     if (!hit) return;
     if (gesture.key && hit?.userData.key?.id === gesture.key.id) {
       if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
-    } else if (hit.userData.detail && gesture.object === hit)
+    } else if (hit.userData.driveUnit !== undefined && gesture.object === hit)
+      interaction.onDriveLever?.(hit.userData.driveUnit);
+    else if (hit.userData.detail && gesture.object === hit)
       interaction.onInspect?.(hit.userData.detail);
     else if (hit === robotron?.objects.get("power") || hit === power) onPower();
     else if (hit === robotron?.objects.get("reset")) onReset?.();
