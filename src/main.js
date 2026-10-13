@@ -385,12 +385,17 @@ worker.onmessage = ({ data: d }) => {
     drivePresent = (d.drives || [0,0]).map(v => !!(v & 8));
     for (const u of [0,1]) {
       const button = $("drive-lever-"+u);
-      button.disabled = replayBusy || !driveDoorsSupported;
-      button.textContent = `${driveDoors[u] ? "Close" : "Open"} drive ${u ? "B" : "A"} lever`;
-      button.setAttribute("aria-pressed", String(driveDoors[u]));
+      const disabled = replayBusy || !driveDoorsSupported;
+      if (button.disabled !== disabled) button.disabled = disabled;
+      const label = `${driveDoors[u] ? "Close" : "Open"} drive ${u ? "B" : "A"} lever`;
+      if (button.textContent !== label) button.textContent = label;
+      const pressed = String(driveDoors[u]);
+      if (button.getAttribute("aria-pressed") !== pressed) button.setAttribute("aria-pressed", pressed);
       const mediaButton = $("drive-media-"+u);
-      mediaButton.disabled = replayBusy || !driveDoorsSupported || !driveDoors[u] || !d.driveAvailable?.[u];
-      mediaButton.textContent = `${drivePresent[u] ? "Remove" : "Insert"} disk ${u ? "B" : "A"}`;
+      const mediaDisabled = disabled || !driveDoors[u] || !d.driveAvailable?.[u];
+      if (mediaButton.disabled !== mediaDisabled) mediaButton.disabled = mediaDisabled;
+      const mediaLabel = `${drivePresent[u] ? "Remove" : "Insert"} disk ${u ? "B" : "A"}`;
+      if (mediaButton.textContent !== mediaLabel) mediaButton.textContent = mediaLabel;
     }
     if (screen.width !== d.width || screen.height !== d.height) {
       screen.width = d.width;

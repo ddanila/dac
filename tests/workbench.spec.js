@@ -88,9 +88,9 @@ test("paste, deterministic browser/native replay and damaged recording rejection
   await expect(page.locator("#status")).toHaveText("Running");
   await page.locator("#drive-lever-1").click();
   await expect(page.locator("#drive-media-1")).toBeEnabled();
-  await page.locator("#drive-media-1").click();
+  await page.locator("#drive-media-1").click({ delay: 150 });
   await expect(page.locator("#drive-media-1")).toHaveText("Insert disk B");
-  await page.locator("#drive-media-1").click();
+  await page.locator("#drive-media-1").click({ delay: 150 });
   await expect(page.locator("#drive-media-1")).toHaveText("Remove disk B");
   await page.locator("#drive-lever-1").click();
   await page.waitForTimeout(200);
