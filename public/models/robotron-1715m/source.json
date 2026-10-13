@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "03a34dd02c3fe6e1d2caad6fe489d721eb816cd0",
+  "revision": "812e61f667fd53b89973a26518320f2fb19e1c44",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "f590acf3bd4abba43fdd59764f5250ab5915a2ef32943f7c5f3f38479d22a2fd"
+      "sha256": "4400eed3603afdfb2e1b313ad0a4dcff3fa64e82db0720c793b7f9519a73c741"
     },
     {
       "file": "LICENSE",
@@ -49,7 +49,7 @@
     },
     {
       "file": "meshes/case-lid.stl",
-      "sha256": "e756837ebf0dd8b43c636af4f805ff4c88729034e8bff1e47d554db7969133d1"
+      "sha256": "520cb0a9a9bb5c8082bac83ca5d98694d089e2adbaac9a4f526a6a3cb60f44e3"
     },
     {
       "file": "meshes/fascia.stl",
@@ -185,19 +185,19 @@
     },
     {
       "file": "meshes/logic-boards-motherboard.stl",
-      "sha256": "6ee62610a3e4d84c3dddd4c2440e8f217e62e90a2da3192a482c427d922d1998"
+      "sha256": "12aa60850302688f3bd04fe342d83bcb5db0fd27c179baa1cc5b2e87940832fe"
     },
     {
-      "file": "meshes/logic-boards-floppy-controller.stl",
-      "sha256": "cdc8184836821139b6ffd3838eea6829a38440752e401b1f7f66b34164736a2c"
+      "file": "meshes/logic-boards-display-controller.stl",
+      "sha256": "c1d391620bd26f88e2b571b6b2b9f9041e501fe0255be33edad91ca51773ee56"
     },
     {
       "file": "meshes/logic-connectors-motherboard.stl",
-      "sha256": "3c19b09915da00bb2be91afb7ff69db463f0237bb237b78b42828a27b6efa7e5"
+      "sha256": "8355ecdee88bf387a25d59f57c6e58f1b3724dd9e8e6f3e57dcd842180db925f"
     },
     {
-      "file": "meshes/logic-connectors-floppy-controller.stl",
-      "sha256": "3c72cf0e3a36319d106d562b181e78332a3a19e2530164e9ae28707944602bf2"
+      "file": "meshes/logic-connectors-display-controller.stl",
+      "sha256": "2365a89e7edccca010901458ccb6f33e2be79b64806330c034f565f745a24b23"
     },
     {
       "file": "meshes/psu-chassis.stl",
@@ -217,11 +217,11 @@
     },
     {
       "file": "meshes/ribbon-cables.stl",
-      "sha256": "8e2d72d6869f78e5a21feaacf153aae82b2461d0f666421b533829ef442892e2"
+      "sha256": "9c31ae94b31fd09e4a0e16588d798d6adea9cc30e05f26e2c27ee84de72dbbea"
     },
     {
       "file": "meshes/ribbon-stripes.stl",
-      "sha256": "d31f493e40274325928f8486860107f91a3d28955568abf3647d47521e1e6c70"
+      "sha256": "b6a374693332d5b5f1a67873bb53da8411574b160f1626541a08fe69bb7ef635"
     },
     {
       "file": "meshes/power-wires-red.stl",
@@ -345,11 +345,11 @@
     },
     {
       "file": "meshes/logic-mounts-motherboard.stl",
-      "sha256": "93f70a15ecf7f90a00b3b8b626d2107acbcfb13a9e0aa6dcdbf7ad2f73e44f43"
+      "sha256": "358937fb913db26efea016ef3c316a496216d8171a06bbaf431e783c0f3f9d3b"
     },
     {
-      "file": "meshes/logic-mounts-floppy-controller.stl",
-      "sha256": "d99fa526dc0a1ebf383ee1102ceeaf3643f77db4c9d510258bb5f668f60edc1d"
+      "file": "meshes/logic-mounts-display-controller.stl",
+      "sha256": "200efc48d4b47c31179f8cfe53893ecbeaac4f252ed76ef1e138ff17c085a335"
     },
     {
       "file": "meshes/chassis-fasteners.stl",
@@ -380,56 +380,36 @@
       "sha256": "c9575295382374d7e3575981ae48b432c459c1f7a2e88531505436ca8333d4da"
     },
     {
-      "file": "meshes/logic-resistors-motherboard.stl",
-      "sha256": "5c1d0dc7952a4b9ffd7f8356d6cd6c1e0c29119eca2085684add0ffbf5bbe724"
-    },
-    {
-      "file": "meshes/logic-resistors-floppy-controller.stl",
-      "sha256": "6e35a97a6febd0a49f5e1eab1427efb263fbf5368e6bfbb01e851bc4c12282d0"
-    },
-    {
       "file": "meshes/logic-ceramics-motherboard.stl",
-      "sha256": "343b9d3336698cb3ad6a2d3a1defc601fedc9648392c962a9100f9d34d08a62f"
+      "sha256": "21a51b3c02c6f0c5d467d15bb40d4590200fa101bf3b12d932c11848dc6f3385"
     },
     {
-      "file": "meshes/logic-ceramics-floppy-controller.stl",
-      "sha256": "aee2a7c2ebb7f83f5b7f7cc71d815443789fbe3c1a56c949375e623f526b929b"
+      "file": "meshes/logic-ceramics-display-controller.stl",
+      "sha256": "4eadf80b9f549d7bc3953f0cab7fa2f11e65d70fc7cc779f6754b40ed30d80e0"
     },
     {
       "file": "meshes/logic-electrolytics-motherboard.stl",
-      "sha256": "0139903c0e75dd67848601b74bf99229f92d7846a400631cfaf1d838fb0d7ae0"
-    },
-    {
-      "file": "meshes/logic-electrolytics-floppy-controller.stl",
-      "sha256": "aa8fcb7918e0ed182364017f945ce06887e9bdd1d4ad633b03cc0c4e5aaa2181"
+      "sha256": "9af8da41849c33ff56160429655b5cfb6d5f9edd0a31f5427dbea1cc5fce450c"
     },
     {
       "file": "meshes/logic-crystals-motherboard.stl",
-      "sha256": "604463d8331188cf89b71932d0a567aa9436ca2ed660586877953cada498e1f4"
-    },
-    {
-      "file": "meshes/logic-crystals-floppy-controller.stl",
-      "sha256": "370edbfffd7a1ef6f3658f2dd1f6191b5295e5fd44128e7604a8d3374a0a4113"
+      "sha256": "c6632df5a55fbf06b49c862dabf7528cc4b3748209bf4f320af8751087284934"
     },
     {
       "file": "meshes/logic-passive-leads-motherboard.stl",
-      "sha256": "5d242bad7f85aefb11460d73b3f02fdbd0703d1b04e7df45eca970219d824c1d"
+      "sha256": "3d2fc5dc6dd064a751802eef57f86a620b236f9da0516f2c6d33a28c4aadcc28"
     },
     {
-      "file": "meshes/logic-passive-leads-floppy-controller.stl",
-      "sha256": "1dabb89a7345097552d47432ad6112c78f5b01ddab058ad5ec97511ac850b4d8"
-    },
-    {
-      "file": "meshes/logic-film-floppy-controller.stl",
-      "sha256": "b5c36827128dfbffe5e509e7ed2ce313b67627162df9c166f99db0fe13f4d4e6"
+      "file": "meshes/logic-passive-leads-display-controller.stl",
+      "sha256": "f77895a30d6de3597b081236c08e93de20d0d7cc87e368c56f33756eca39e861"
     },
     {
       "file": "meshes/logic-connector-contacts-motherboard.stl",
-      "sha256": "66d6d5ee8042c292b90baa0ddec192f06a3f2f78df98e23a33f5ebe5173ee452"
+      "sha256": "8e124f4fe1d2462fa6d5f6c4e3c3ce4e743fd90632818d17d36904139474dd3f"
     },
     {
-      "file": "meshes/logic-connector-contacts-floppy-controller.stl",
-      "sha256": "e9eea56954a2aae09321e61c6062c7fc8ad5bb412dfbda67a697ba6e0075ef6d"
+      "file": "meshes/logic-connector-contacts-display-controller.stl",
+      "sha256": "690d5025548e602270995a991bedd7417e490d95b66eafcff518086b117d2c76"
     },
     {
       "file": "meshes/prototype-pcb-pad.stl",
@@ -441,11 +421,11 @@
     },
     {
       "file": "meshes/ribbon-ridges.stl",
-      "sha256": "653cb232348262f2899ea501b385cc1a3a01af55d1f64cdc0a22f81f258154fc"
+      "sha256": "8e1c1d5a9b661942082d0e195b243013f823e4aa7d7e2ef4216863cd9d2244db"
     },
     {
       "file": "meshes/drive-cable-plugs.stl",
-      "sha256": "d321ad7d2279b2f7d1e84ca29b3eeec9a6b152ef749c68811086da4c76bff07c"
+      "sha256": "b38100359ce93b6966c48f09014af4e5793a789ff04468fbec2f315e76523fd8"
     },
     {
       "file": "meshes/drive-head-arm-0.stl",
@@ -709,15 +689,35 @@
     },
     {
       "file": "meshes/drive-adapter-boards.stl",
-      "sha256": "5cd098b544decfbd4f181fb4633c7dc4d6506f86acdb08d8d23ebe77448bedbb"
+      "sha256": "bf2e6b6bb21d2d126ab972710e078768fac2b1bdb8060d0de2b0487dca631948"
     },
     {
       "file": "meshes/drive-adapter-traces.stl",
-      "sha256": "155b991e15b3da5c9fd7f65ae728f9157deef86ff87d8c4844690690a41a6837"
+      "sha256": "10152ceebd84074fb14dbccc45596bd955b1d51c17c65932c9ba7f6640517a16"
     },
     {
       "file": "meshes/drive-adapter-sockets.stl",
-      "sha256": "f598541b077a0c8b7af8d66cc91c063fba470ebb8c8a9ed247247536f30fe0e3"
+      "sha256": "4b4ab793ad0027aa1855c091f3a1803bb3e8a59d43fac6ba44f7e13aa32cc509"
+    },
+    {
+      "file": "meshes/logic-artwork-display-controller.stl",
+      "sha256": "90c5684d5b2c82c24b429ff2ab417680ca4697bed3da56c0afd449a989a518be"
+    },
+    {
+      "file": "meshes/drive-adapter-edge.stl",
+      "sha256": "5011a95e964b7f5b6b2ecb45dd8ba5aeaf4f7140f7ced9e87dba274c45dbc01d"
+    },
+    {
+      "file": "meshes/drive-adapter-contacts.stl",
+      "sha256": "f6fd546e4b2c2212f2a9ac8315b0073fcdfa93b38ce42f5f9aac562cea60a035"
+    },
+    {
+      "file": "meshes/case-lid-inserts.stl",
+      "sha256": "44d0c4085194ec4ce5508e511a93fc5bb34f2d3de6632baa8148861864a4a495"
+    },
+    {
+      "file": "meshes/case-lid-fixings.stl",
+      "sha256": "664d7a9657470acd9eb51ce5118a4f1d38627ac2cade7087afe126a4e4aa5dfb"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1104,16 +1104,12 @@
       "sha256": "c4315e042e36bcc5792184b4c441ec75a1bbe182dee51540112c442607a00be1"
     },
     {
-      "file": "reference/oldcrap/motherboard.jpeg",
-      "sha256": "6e3810bd1c8d84bca3318933d596f37812b5f0e8ac8cb83e8fb24547e9a04eb5"
-    },
-    {
-      "file": "reference/oldcrap/floppy-controller.jpeg",
-      "sha256": "8e8c0f41c9ffa76a551f3fb1d6cc4ae436ef4e7d948cb7550be817fcd1a4d875"
-    },
-    {
       "file": "reference/robotrontechnik/monitor-board.jpeg",
       "sha256": "cdd00f4f69605d2511a00fa0bdc02ed954b42f8150712ac796c183ff2d01732a"
+    },
+    {
+      "file": "reference/photos/PXL_20261013_150312308.jpg",
+      "sha256": "7ca09e059158784dc5d48c60a53b60a7d33abe324161aa291c26054b65f501e9"
     },
     {
       "file": "components/kicad/meshes/DIP-14_W7.62mm-body.stl",
@@ -1228,32 +1224,28 @@
       "sha256": "9fc3b57fbf43071703129824663ff111a1f473479e9cb3944bf60cce242551ae"
     },
     {
-      "file": "reference/oldcrap/NOTICE.txt",
-      "sha256": "f4272b8b0cb2add80db3cbb363efe8ec3607e992ad67654f50fe511abd4b2561"
-    },
-    {
       "file": "reference/robotrontechnik/NOTICE.txt",
       "sha256": "557d3ccca22270e2ac574e17d5646b75da393209083dfaf46fb0cdb5a6add9b3"
     },
     {
       "file": "downloads.json",
-      "sha256": "e67159f8f9956bc6745f25801fe11e6f49e0ebfda222193500fa8e60cb5422d7"
+      "sha256": "136d6b8342a313a4afc657489c684e48b074d6647bc0972fa3ac36af40ee96d4"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "8d4c76d30a677e8097663b2a86f92b8223bd3c61a52141216312a8bc5e77bb1b"
+      "sha256": "8ded6dc66351bcf63798a0fc01ff5511d13951bdd06f77d602b17de846755722"
     },
     {
-      "file": "downloads/floppy-controller.zip",
-      "sha256": "e08c2f9207b6b9f279e9c0b5b7f1ca0bda8eb38b577b17fc3d12058a289b2568"
+      "file": "downloads/display-controller.zip",
+      "sha256": "00205dd2e40c6fe7c6f05f2b4e9565ee506b787d91db7461f6503139f37ab93e"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "89f628183c8882394004fb7d49297f7e73dbe651c9e88f08f591a305bd406f73"
+      "sha256": "0fc5dc144a9bccb4f58d36b194f1db99b8f28c5f2824f0a433d2f90d6325e281"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "165ebb8aab9c530c553118ed2ec1bff2681c134dc90ea2e0c88310e762e4223c"
+      "sha256": "7a9f5f77426ea79ba77cc753ae694c9c894d61d0e9546472f4ac6ae98161a88c"
     }
   ]
 }

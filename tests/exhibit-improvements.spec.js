@@ -65,3 +65,20 @@ test('the modeled notch toggles protection in both directions',async({page})=>{
  await click();await expect(page.locator('#drive-protect-0')).toHaveText('Cover disk A notch');
  await click();await expect(page.locator('#drive-protect-0')).toHaveText('Uncover disk A notch');
 });
+
+test('specimen close-ups keep canonical evidence separate from print verification',async({page})=>{
+ test.setTimeout(60000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
+ await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+ for(const [view,assembly] of [['fan-detail','psu'],['adapter-detail','adapters'],['case-cover','case-cover'],['display-controller','display-controller']]){
+  await page.locator(`[data-view="${view}"]`).click();
+  await expect(page.locator('#isolate-assembly')).toHaveValue(assembly);
+  await expect(page.locator('#open-case')).toBeChecked();
+ }
+ await expect(page.locator('#viewport')).toHaveAttribute('data-details','ready');
+ await page.locator('#assembly-evidence').evaluate(e=>e.open=true);
+ await expect(page.locator('#assembly-evidence')).toContainText('Your specimen + Documented W/M design');
+ await expect(page.locator('#assembly-evidence')).toContainText('Physical verification: unverified');
+ await expect(page.locator('#assembly-evidence')).toContainText('Monitor internals: Comparative estimate');
+ expect(errors).toEqual([]);
+});

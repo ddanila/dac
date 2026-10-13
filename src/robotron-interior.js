@@ -201,6 +201,7 @@ export async function loadPcbPhotos(data, base, onAsset = () => {}) {
       }
       mesh.name = `reference-${board.name}`;
       mesh.userData.board = board.name;
+      mesh.userData.evidenceOnly = !!board.evidenceOnly;
       mesh.userData.credit = board.credit;
       mesh.userData.section = board.section || "interior";
       return mesh;
@@ -244,7 +245,7 @@ export async function loadPcbComponents(data, base, onAsset = () => {}) {
           );
           boardPlacements.forEach((p, i) => {
             matrix.position.set(...p.position);
-            matrix.rotation.set(0, 0, (p.rotation * Math.PI) / 180);
+            matrix.rotation.set(p.side===-1?Math.PI:0, 0, (p.rotation * Math.PI) / 180, "ZYX");
             matrix.updateMatrix();
             mesh.setMatrixAt(i, matrix.matrix);
           });
@@ -309,4 +310,25 @@ export function pcbMarkingGeometry(board, descriptions) {
   geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
   geometry.computeVertexNormals();
   return geometry;
+}
+
+// Clean documented device labels, generated from the canonical layout metadata.
+// One atlas, one mesh per board; no photographic chip silhouettes or baked wear.
+export function loadPcbLabels(data) {
+  const items=data.pcbComponents.instances.filter(p=>!p.label.startsWith('Logic footprint'));
+  const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=Math.ceil(items.length/8)*64;
+  const ctx=canvas.getContext('2d');ctx.fillStyle='#c8c9bd';ctx.textAlign='center';ctx.font='13px monospace';
+  const groups=new Map(),pose=new THREE.Matrix4(),rotation=new THREE.Matrix4();
+  items.forEach((p,i)=>{
+    const col=i%8,row=Math.floor(i/8);ctx.fillText(p.ref,col*128+64,row*64+23);ctx.fillText(p.label.split(' (')[0].slice(0,16),col*128+64,row*64+43);
+    if(!groups.has(p.board))groups.set(p.board,{positions:[],uvs:[]});const g=groups.get(p.board);
+    const model=data.pcbComponents.models.find(m=>m.id===p.model),w=model.bodySize[0]*.82,h=model.bodySize[1]*.75;
+    pose.makeRotationZ(p.rotation*Math.PI/180).multiply(rotation.makeRotationX(p.side===-1?Math.PI:0)).setPosition(...p.position);
+    for(const n of [0,1,2,0,2,3]){const q=[[-.5,-.5],[.5,-.5],[.5,.5],[-.5,.5]][n];const v=new THREE.Vector3(q[0]*w,q[1]*h,p.top+.05).applyMatrix4(pose);g.positions.push(...v.toArray());g.uvs.push((col+q[0]+.5)/8,1-(row+.5-q[1])/(canvas.height/64));}
+  });
+  const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;
+  return [...groups].map(([board,g])=>{
+    const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(g.positions,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(g.uvs,2));geometry.computeVertexNormals();
+    const mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({map:texture,transparent:true,depthWrite:false,roughness:.8}));mesh.name=`logic-labels-${board}`;mesh.userData={board,interior:true,detail:board};mesh.visible=false;return mesh;
+  });
 }

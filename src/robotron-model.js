@@ -2,7 +2,7 @@ import { componentDetail } from "./component-detail.js";
 import { createDriveMotion } from "./robotron-drives.js";
 import { createFanMotion } from "./robotron-fan.js";
 import { modelAsset } from "./model-assets.js";
-import { loadPcbPhotos, loadPcbComponents } from "./robotron-interior.js";
+import { loadPcbPhotos, loadPcbComponents, loadPcbLabels } from "./robotron-interior.js";
 import { crtGeometry, crtMaterial } from "./robotron-crt.js";
 import * as THREE from "three";
 import {
@@ -245,7 +245,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   for (const kind of ["pad", "solder"]) {
     const prototype = objects.get(`prototype-pcb-${kind}`);
     if (!prototype) continue;
-    for (const board of ["motherboard", "floppy-controller"]) {
+    for (const board of ["motherboard", "display-controller"]) {
       const points = data.pcbComponents.footprints.filter(
         (p) => p[3] === board,
       );
@@ -256,7 +256,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       );
       const matrix = new THREE.Matrix4();
       points.forEach((p, i) =>
-        mesh.setMatrixAt(i, matrix.makeTranslation(...p.slice(0, 3))),
+        mesh.setMatrixAt(i, matrix.makeRotationX(p[4]===-1?Math.PI:0).setPosition(...p.slice(0, 3))),
       );
       mesh.instanceMatrix.needsUpdate = true;
       mesh.computeBoundingBox();
@@ -279,7 +279,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         const geometry=toCreasedNormals(await stl.loadAsync(modelAsset(part.file,base,part.sha256).href),Math.PI/4);
         const mesh=objects.get(part.name);mesh.geometry.dispose();mesh.geometry=geometry;mesh.userData.loaded=true;
       }))]).then(([packages,photos])=>{
-      for(const mesh of packages){group.add(mesh);objects.set(mesh.name,mesh);}
+      for(const mesh of [...packages,...loadPcbLabels(data)]){group.add(mesh);objects.set(mesh.name,mesh);}
       for(const mesh of photos){mesh.visible=false;group.add(mesh);pcbPhotos.push(mesh);}
       inspectionDirty=true;group.userData.newDetails=true;onDetails("ready");
     }).catch(error=>{onDetails("error");throw error;});
@@ -416,13 +416,15 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     demoClock = 0,
     demoLast;
   function belongs(name, wanted) {
+    if (wanted === "case-cover") return name.startsWith("case-lid") || name==="fascia" || name==="brand";
+    if (wanted === "adapters") return name.startsWith("drive-adapter") || name.startsWith("ribbon-");
     if (wanted === "keyboard") return /^(keyboard|keys-|prototype-)/.test(name);
     if (wanted === "drives")
       return name === "drives" || name.startsWith("drive-");
-    if (["motherboard", "floppy-controller"].includes(wanted))
+    if (["motherboard", "display-controller"].includes(wanted))
       return name.endsWith("-" + wanted);
     if (wanted === "logic")
-      return /^(logic-|reference-(motherboard|floppy))/.test(name);
+      return /^(logic-|reference-(motherboard|display))/.test(name);
     if (wanted === "monitor")
       return /^(monitor-|tube-|crt-|bezel|pedestal|ring|reference-monitor)/.test(
         name,
@@ -431,6 +433,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   }
   const covers = new Set([
     "case-lid",
+    "case-lid-inserts",
+    "case-lid-fixings",
     "fascia",
     "monitor-shell-upper",
     "monitor-shell-lower",
@@ -734,7 +738,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         : inside ||
           split > 0.01 ||
           inspection.transparent ||
-          ["logic", "motherboard", "floppy-controller"].includes(
+          ["logic", "motherboard", "display-controller"].includes(
             inspection.isolated,
           );
       if (monitor) mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
@@ -827,7 +831,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       dirty = true;
     }
     objects.get("case-lid").visible = true;
-    objects.get("case-lid").position.set(0, inside ? 400 : 0, inside ? 180 : 0);
+    for(const name of ["case-lid","case-lid-inserts","case-lid-fixings"])objects.get(name).position.set(0, inside ? 400 : 0, inside ? 180 : 0);
     for (const [name, mesh] of objects) {
       if (name === "drives" || name.startsWith("drive-")) {
         mesh.position.z = split * 115;
@@ -873,7 +877,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         mesh.position.y -= split * 145;
         mesh.position.z += split * 115;
       }
-    objects.get("fascia").position.y = -split * 40;
+    objects.get("fascia").position.set(0,(inside?400:0),inside?180:0);
     const keyboardLift = Math.max(split, inspection.keyboardOpen ? 1 : 0);
     objects.get("keyboard-entry-wires").visible &&= keyboardLift === 0;
     // Detach the narrow controller as a unit so both boards can be inspected.
@@ -928,7 +932,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     for (const mesh of patches) {
       mesh.position.copy(mesh.userData.rest);
       mesh.visible = true;
-      if (mesh.name === "brand") mesh.position.y -= split * 40;
+      if (mesh.name === "brand") {mesh.position.y += (inside?400:0);mesh.position.z += inside?180:0;}
       if (mesh.userData.assembly === "drives") {
         mesh.visible =
           inside ||
@@ -970,6 +974,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       const tab=objects.get(`drive-protect-tab-${u}`),jacket=objects.get(`drive-diskette-${u}`);
       if(tab){tab.position.copy(jacket.position);tab.visible=jacket.visible;tab.material.transparent=true;tab.material.opacity=(driveStates[u]&4)?0:1;tab.material.depthWrite=!(driveStates[u]&4);tab.castShadow=!(driveStates[u]&4);tab.userData.protectUnit=jacket.userData.removedDisk;}
     }
+    for(const mesh of pcbPhotos)if(mesh.userData.evidenceOnly)mesh.visible &&= inspection.referencePhoto;
     for (const mesh of [...objects.values(), ...pcbPhotos, ...patches]) {
       if (inspection.isolated !== "all")
         mesh.visible &&= belongs(mesh.name, inspection.isolated);
@@ -1021,6 +1026,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   return {
     group,
     annotations: data.annotations || [],
+    evidence: data.evidence,
     loadDetails,
     detailDistance(distance) {
       const next = distance < (fineDetails ? 2.0 : 1.7);
@@ -1030,7 +1036,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       }
     },
     inspect(value) {
-      if(value.keyboardOpen || value.transparent || value.referencePhoto || ["keyboard","monitor","logic","motherboard","floppy-controller"].includes(value.isolated) || ["motherboard","floppy-controller"].includes(value.focus)) requestDetails();
+      if(value.keyboardOpen || value.transparent || value.referencePhoto || ["keyboard","monitor","logic","motherboard","display-controller"].includes(value.isolated) || ["motherboard","display-controller"].includes(value.focus)) requestDetails();
       if (
         (value.demoPhase !== undefined &&
           value.demoPhase !== inspection.demoPhase) ||

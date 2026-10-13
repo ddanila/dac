@@ -60,7 +60,11 @@
                 ><button data-view="drive-labels" data-robotron>
                   Drive labels</button
                 ><button data-view="monitor" data-robotron>Monitor</button
-                ><button data-view="inside" data-robotron>Inside</button
+                ><button data-view="fan-detail" aria-pressed="false">Fan</button>
+              <button data-view="adapter-detail" aria-pressed="false">Adapters</button>
+              <button data-view="case-cover" aria-pressed="false">Cover underside</button>
+              <button data-view="display-controller" aria-pressed="false">Display board</button>
+              <button data-view="inside" data-robotron>Inside</button
                 ><button data-view="monitor-inside" data-robotron>
                   Inside monitor</button
                 ><button data-view="back">Rear</button
@@ -108,8 +112,8 @@
                 <li>
                   <a
                     download
-                    href="models/robotron-1715m/downloads/floppy-controller.zip"
-                    >Original 1715 FDC reference model</a
+                    href="models/robotron-1715m/downloads/display-controller.zip"
+                    >W/M display-controller model</a
                   >
                 </li>
                 <li>
@@ -267,8 +271,10 @@
               <option value="drives">Drives</option>
               <option value="logic">Logic boards</option>
               <option value="motherboard">Motherboard</option>
-              <option value="floppy-controller">1715 FDC (comparative)</option>
+              <option value="display-controller">W/M display controller</option>
               <option value="monitor">Monitor</option>
+              <option value="adapters">Drive adapters</option>
+              <option value="case-cover">Case cover</option>
               <option value="psu">Power supply and fan</option>
             </select>
             <label for="component-focus">Highlight component</label>
@@ -277,7 +283,7 @@
               <option value="head">Head carriage</option>
               <option value="spindle">Spindle</option>
               <option value="clamp">Clamp and latch</option>
-              <option value="floppy-controller">1715 FDC (comparative)</option>
+              <option value="display-controller">W/M display controller</option>
               <option value="motherboard">Motherboard</option>
             </select>
             <div class="secondary-controls">

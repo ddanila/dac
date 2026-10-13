@@ -131,7 +131,7 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
         if (Math.abs(original[i + 1] - lifted[i + 1]) < 0.001) fixed++;
         else throw Error("controller cable endpoint moved");
       }
-      if (original[i + 1] < 4 && original[i + 2] > 66) {
+      if (original[i + 1] < 14 && original[i + 2] > 66) {
         if (Math.abs(lifted[i + 1] - original[i + 1] + 145) < 0.001) moving++;
       }
     }

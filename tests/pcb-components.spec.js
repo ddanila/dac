@@ -52,6 +52,7 @@ test("pinned package meshes retain geometry bounds and fit without chip-body int
   const boxes = manifest.pcbComponents.instances.map((p) => {
     const b = models.get(p.model).meshes.body.bounds;
     const matrix = new Matrix4().makeRotationZ((p.rotation * Math.PI) / 180);
+    matrix.multiply(new Matrix4().makeRotationX(p.side===-1?Math.PI:0));
     matrix.setPosition(...p.position);
     return {
       board: p.board,
@@ -126,7 +127,7 @@ test("logic-board close-up loads reusable geometry and preserves source credits"
 
 test("board holes are open at component leads and solid between holes", () => {
   const loader = new STLLoader();
-  for (const board of ["motherboard", "floppy-controller"]) {
+  for (const board of ["motherboard", "display-controller"]) {
     const part = manifest.parts.find((p) => p.name === `logic-boards-${board}`);
     const bytes = readFileSync(new URL(part.file, root));
     const geometry = loader.parse(
@@ -182,8 +183,8 @@ test("individual boards hide other assemblies and restore their geometry", async
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   for (const [value, title] of [
-    ["motherboard", "Motherboard"],
-    ["floppy-controller", "Original 1715 FDC — comparative model"],
+    ["motherboard", "W/M motherboard"],
+    ["display-controller", "W/M display controller"],
   ]) {
     await page.locator("#isolate-assembly").selectOption(value);
     await expect(page.locator("#inspection-title")).toHaveText(title);
@@ -191,7 +192,7 @@ test("individual boards hide other assemblies and restore their geometry", async
   await page.locator("#reference-board-photo").check();
   await page.locator("#board-underside").click();
   await expect(page.locator("#inspection-title")).toHaveText(
-    "Original 1715 FDC — comparative model underside",
+    "W/M display controller underside",
   );
   await expect(page.locator("#reference-board-photo")).not.toBeChecked();
   const results = await page.evaluate(async () => {
@@ -202,7 +203,7 @@ test("individual boards hide other assemblies and restore their geometry", async
     const model = await loadRobotron(new Texture());
     await model.loadDetails();
     const records = [];
-    for (const board of ["motherboard", "floppy-controller"]) {
+    for (const board of ["motherboard", "display-controller"]) {
       model.inspect({ isolated: board });
       model.tick();
       const visible = model.group.children.filter((o) => o.visible && o.isMesh);
@@ -220,20 +221,19 @@ test("individual boards hide other assemblies and restore their geometry", async
         photo: visible.some((o) => o.name === `reference-${board}`),
       });
     }
-    model.inspect({ isolated: "motherboard", referencePhoto: true });
+    model.inspect({ isolated: "display-controller", referencePhoto: true });
     model.tick();
-    const photo = model.group.getObjectByName("reference-motherboard");
+    const photo = model.group.getObjectByName("reference-display-controller");
     const original =
-      photo.geometry === photo.userData.original.geometry &&
-      photo.children.every((m) => !m.visible);
+      photo.visible && photo.userData.evidenceOnly && photo.material.map.image.width > 0;
     const noDuplicate =
       [...model.objects.values()].filter(
         (o) =>
           o.visible &&
-          o.userData.board === "motherboard" &&
+          o.userData.board === "display-controller" &&
           !o.name.startsWith("logic-boards-"),
       ).length === 0;
-    model.inspect({ referencePhoto: false });
+    model.inspect({ referencePhoto: false, isolated: "motherboard" });
     model.detailDistance(3);
     model.tick();
     const solder = model.objects.get("logic-solder-motherboard");
@@ -245,7 +245,7 @@ test("individual boards hide other assemblies and restore their geometry", async
     model.tick();
     const stable = solder.visible;
     const idle = !model.tick().dirty;
-    const artwork = photo.geometry === photo.userData.artwork.geometry;
+    const artwork = !photo.visible;
     model.inspect({ isolated: "all" });
     model.interior(true);
     model.tick();
@@ -258,7 +258,7 @@ test("individual boards hide other assemblies and restore their geometry", async
       idle,
       artwork,
       records,
-      restored: ["motherboard", "floppy-controller"].every(
+      restored: ["motherboard", "display-controller"].every(
         (b) => model.objects.get(`logic-boards-${b}`).visible,
       ),
       prototypes: [...model.objects.values()].filter(
@@ -268,8 +268,8 @@ test("individual boards hide other assemblies and restore their geometry", async
   });
   for (const r of results.records) {
     expect(r.foreign).toEqual([]);
-    expect(r.photo).toBe(true);
-    expect(r.chips).toBe(r.board === "motherboard" ? 92 : 40);
+    expect(r.photo).toBe(false);
+    expect(r.chips).toBe(manifest.pcbComponents.instances.filter(p=>p.board===r.board).length);
     expect(r.pads).toBe(
       manifest.pcbComponents.footprints.filter((p) => p[3] === r.board).length,
     );
@@ -287,3 +287,15 @@ test("individual boards hide other assemblies and restore their geometry", async
   expect(results.restored).toBe(true);
   expect(results.prototypes).toBe(0);
 });
+
+ test("W/M electronics put integrated FDC on motherboard and display components below solder face",()=>{
+ const parts=manifest.pcbComponents.instances;
+ expect(parts.find(p=>p.ref==="A44"&&p.board==="motherboard").label).toContain("8272");
+ expect(parts.some(p=>p.board==="floppy-controller")).toBe(false);
+ const display=parts.filter(p=>p.board==="display-controller");
+ expect(display.length).toBeGreaterThan(20);
+ expect(display.every(p=>p.side===-1)).toBe(true);
+ expect(manifest.pcbReferences.find(p=>p.name==="display-controller").evidenceOnly).toBe(true);
+ expect(manifest.evidence.assemblies.find(a=>a.id==="motherboard").classes).toEqual(["documented"]);
+ expect(manifest.evidence.assemblies.every(a=>a.physicalVerification==="unverified")).toBe(true);
+ });

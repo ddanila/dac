@@ -186,7 +186,7 @@ try {
     onInspect: (name) => {
       const focus = name.startsWith("focus-")
         ? name.slice(6)
-        : ["motherboard", "floppy-controller"].includes(name)
+        : ["motherboard", "display-controller"].includes(name)
           ? name
           : null;
       if (focus) {
@@ -724,10 +724,11 @@ for (const id of [
     updateCase();
     if (id === "open-keyboard" && $(id).checked) selectView("keyboard-inside");
     if (id === "reference-board-photo" && $(id).checked) {
+      $("isolate-assembly").value="display-controller";
       $("component-focus").value = "none";
       const board =
-        $("isolate-assembly").value === "floppy-controller"
-          ? "floppy-controller"
+        $("isolate-assembly").value === "display-controller"
+          ? "display-controller"
           : "motherboard";
       $("isolate-assembly").value = board;
       updateCase();
@@ -740,7 +741,9 @@ for (const id of [
           all: "overview",
           keyboard: $("open-keyboard").checked ? "keyboard-inside" : "keyboard",
           logic: "logic",
-          psu: "inside",
+          psu: "fan-detail",
+          adapters:"adapter-detail",
+          "case-cover":"case-cover",
           monitor: "monitor-inside",
         }[assembly] || assembly,
       );
@@ -748,8 +751,8 @@ for (const id of [
   };
 $("board-underside").onclick = () => {
   const board =
-    $("isolate-assembly").value === "floppy-controller"
-      ? "floppy-controller"
+    $("isolate-assembly").value === "display-controller"
+      ? "display-controller"
       : "motherboard";
   $("isolate-assembly").value = board;
   $("reference-board-photo").checked = false;
@@ -760,7 +763,7 @@ $("component-focus").onchange = () => {
   const focus = $("component-focus").value;
   if (focus !== "none") {
     $("reference-board-photo").checked = false;
-    const board = ["motherboard", "floppy-controller"].includes(focus);
+    const board = ["motherboard", "display-controller"].includes(focus);
     if (!board) $("separate-parts").checked = false;
     $("isolate-assembly").value = board ? focus : "drives";
     updateCase();
@@ -834,6 +837,10 @@ for (const b of document.querySelectorAll("[data-view]"))
     if (b.dataset.view === "drive-labels") {
       $("open-case").checked = true;
       $("separate-parts").checked = true;
+    }
+    if (["fan-detail","adapter-detail","case-cover","display-controller"].includes(b.dataset.view)) {
+      $("open-case").checked=true;$("separate-parts").checked=false;
+      $("isolate-assembly").value={"fan-detail":"psu","adapter-detail":"adapters","case-cover":"case-cover","display-controller":"display-controller"}[b.dataset.view];
     }
     if (b.dataset.view === "inside") $("open-case").checked = true;
     if (b.dataset.view === "monitor-inside") $("open-monitor").checked = true;
