@@ -1,6 +1,8 @@
 import "./style.css";
 import { describeDrive, createDriveSound } from "./robotron-drives.js";
 const driveSound = createDriveSound();
+import { createRobotronSound } from "./robotron-sound.js";
+const robotronSound = createRobotronSound();
 import { createFirmwareKeyboard, matrixKey } from "./robotron-matrix.js";
 import { loadHistoricalRobotron } from "./historical-media.js";
 import { createScene } from "./scene.js";
@@ -48,6 +50,7 @@ function release() {
 }
 function power() {
   if (replayBusy || !ready || $("power").disabled) return;
+  robotronSound.unlock().catch(e => fail(e.message));
   release();
   powerPending = true;
   $("power").disabled = true;
@@ -92,7 +95,9 @@ const firmwareKeys = createFirmwareKeyboard({
 });
 function modelKey(key) {
   if (replayBusy) return false;
-  return (firmwareKeyboard ? firmwareKeys : keyboard).activate(key);
+  const accepted = (firmwareKeyboard ? firmwareKeys : keyboard).activate(key);
+  if (accepted && Number($("machine").value) === 2) robotronSound.key(key);
+  return accepted;
 }
 function keyButtons(keys) {
   $("open-case").disabled = false;
@@ -182,6 +187,7 @@ async function configure(demo, historical = false) {
   $("power").disabled = true;
   fail("");
   on = false;
+  robotronSound.reset();
   scene?.power(false);
   $("power-label").textContent = "Power on";
   $("reset").disabled = true;
@@ -338,6 +344,7 @@ worker.onmessage = ({ data: d }) => {
       scene?.releaseKeys();
     }
     scene?.power(on);
+    if (Number($("machine").value) === 2) robotronSound.power(on).catch(e => fail(e.message));
     $("power-label").textContent = on ? "Power off" : "Power on";
     $("status").textContent = on ? "Running" : "Powered off";
     $("reset").disabled = !on;
@@ -482,6 +489,7 @@ worker.onmessage = ({ data: d }) => {
     on = false;
     powerPending = false;
     release();
+    robotronSound.reset();
     scene?.power(false);
     $("status").textContent = "Stopped";
     $("power-label").textContent = "Power on";
@@ -515,10 +523,13 @@ worker.onmessage = ({ data: d }) => {
 worker.onerror = (e) => fail(e.message || "Emulator worker failed");
 $("power").onclick = power;
 $("reset").onclick = resetMachine;
-$("drive-sound").onchange = () =>
-  driveSound.enable($("drive-sound").checked).catch((e) => fail(e.message));
+$("drive-sound").onchange = () => {
+  const enabled = $("drive-sound").checked;
+  Promise.all([driveSound.enable(enabled), robotronSound.enable(enabled)]).catch(e => fail(e.message));
+};
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) driveSound.update([], false);
+  robotronSound.visibility(document.hidden).catch(e => fail(e.message));
 });
 $("turbo").onchange = () =>
   send({ type: "speed", value: $("turbo").checked ? 4 : 1 });
@@ -844,6 +855,7 @@ function keyDown(e) {
     if (n !== undefined) {
       e.preventDefault();
       if (e.repeat || held.has(e.code)) return;
+      robotronSound.key(modeled);
       held.set(e.code, n);
       heldModelKeys.set(e.code, modeled.id);
       // Printable case is determined by actual modifier switches in the ROM.
@@ -863,6 +875,7 @@ function keyDown(e) {
     const modeled = modelKeys.find((k) => k.input.modifier === modifier);
     if (modeled) {
       e.preventDefault();
+      if (!e.repeat && !heldModelKeys.has(e.code)) robotronSound.key(modeled);
       heldModelKeys.set(e.code, modeled.id);
       scene?.keyState(modeled.id, true);
     }
@@ -884,6 +897,7 @@ function keyDown(e) {
       (k) => k.input.code === value || k.input.shiftCode === value,
     );
     if (modeled) {
+      if (!e.repeat && !heldModelKeys.has(e.code)) robotronSound.key(modeled);
       keyboard.activate(modeled, {
         shift: e.shiftKey,
         ctrl: e.ctrlKey,
