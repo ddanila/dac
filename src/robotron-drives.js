@@ -94,7 +94,7 @@ export function createDriveMotion(objects, descriptions = []) {
         );
         const load = demo
           ? 1 - clampAmount
-          : (telemetry?.headLoad ?? (power && state & 2 ? 1 : 0));
+          : clampAmount ? 0 : (telemetry?.headLoad ?? (power && state & 2 ? 1 : 0));
         d.headArm.rotation.x = -0.08 * (1 - load);
       }
       if (d.medium) {

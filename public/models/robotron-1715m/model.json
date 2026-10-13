@@ -1,5 +1,5 @@
 {
-  "version": 23,
+  "version": 24,
   "modelVerification": {
     "models/robotron-1715m/display-base-ring/model.scad": {
       "physicalVerification": "unverified",
@@ -19843,7 +19843,7 @@
       "name": "drive-medium-0",
       "file": "meshes/drive-medium-0.stl",
       "color": "#46322a",
-      "sha256": "071123bd27eb23e3b327b009ea2deb4eacf247fba20cc35374a06b166c378e31",
+      "sha256": "213be06899ce5594a55ebf2bc0e9c3df6161a8da571d71140301528c38103ceb",
       "section": "interior",
       "material": "plastic"
     },
@@ -19851,7 +19851,7 @@
       "name": "drive-medium-1",
       "file": "meshes/drive-medium-1.stl",
       "color": "#46322a",
-      "sha256": "6c7dcd3e2f38cf66b05bdcaa02d7272d977c8bdb5e1e94b15672ed8f7f9aa828",
+      "sha256": "7f7971458cfe8f5e6fdd898168fcf9dce894752d5350931c718d0c2e8e2c008a",
       "section": "interior",
       "material": "plastic"
     },
@@ -20119,28 +20119,28 @@
       "name": "drive-diskette-0",
       "file": "meshes/drive-diskette-0.stl",
       "color": "#242321",
-      "sha256": "9a190a9bffe95d842cab9637e799cf0fbadbb1bdeb0bc83c3e8e6cc77c2a7b86",
+      "sha256": "33c0212bae2f5dc57d2561de50f734d9d06314fc128ef2e65c00c1de5d223f8c",
       "material": "plastic"
     },
     {
       "name": "drive-diskette-1",
       "file": "meshes/drive-diskette-1.stl",
       "color": "#242321",
-      "sha256": "e2f3a92deda338ee4087f60e486e4afe8ba30c69e8f44fc79ad29fc40654fe38",
+      "sha256": "12a78ac860ee24292a4bd2e76966322d25c19096f137e9aefffb0fea5a65cdb1",
       "material": "plastic"
     },
     {
       "name": "drive-diskette-label-0",
       "file": "meshes/drive-diskette-label-0.stl",
       "color": "#d8d4bf",
-      "sha256": "24ed10f00761dd919be73bb02a04634bcfb429c7b70a50ff5e8a2f8198b373ea",
+      "sha256": "03b5a1bb767fd0600a33f0eb7a8acb786a4f9f49213baac004dde41cf6eee69e",
       "material": "plastic"
     },
     {
       "name": "drive-diskette-label-1",
       "file": "meshes/drive-diskette-label-1.stl",
       "color": "#d8d4bf",
-      "sha256": "1f9d7b1a6b34438e62ab183d608afcf602a0a903157261e2c5edf4064b88e77c",
+      "sha256": "21ac68dc1078e453c4945e440312bab0d500d86b7a42a45fec96894124e900fb",
       "material": "plastic"
     }
   ],
@@ -24366,6 +24366,84 @@
       ],
       "section": "interior",
       "assembly": "drives"
+    },
+    {
+      "name": "drive-diskette-ink-0",
+      "photo": "PXL_20261013_113451775.jpg",
+      "uv": [
+        [
+          0.54,
+          0.654
+        ],
+        [
+          0.776,
+          0.654
+        ],
+        [
+          0.776,
+          0.878
+        ],
+        [
+          0.54,
+          0.878
+        ]
+      ],
+      "position": [
+        -125,
+        -188,
+        90.32
+      ],
+      "size": [
+        51,
+        36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "section": "interior",
+      "assembly": "drives",
+      "disketteUnit": 0
+    },
+    {
+      "name": "drive-diskette-ink-1",
+      "photo": "PXL_20261013_113451775.jpg",
+      "uv": [
+        [
+          0.54,
+          0.654
+        ],
+        [
+          0.776,
+          0.654
+        ],
+        [
+          0.776,
+          0.878
+        ],
+        [
+          0.54,
+          0.878
+        ]
+      ],
+      "position": [
+        29,
+        -188,
+        90.32
+      ],
+      "size": [
+        51,
+        36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "section": "interior",
+      "assembly": "drives",
+      "disketteUnit": 1
     }
   ],
   "driveLabels": {
@@ -24652,7 +24730,13 @@
     "PXL_20261012_185834871.jpg",
     "PXL_20261012_185855185.jpg",
     "PXL_20261012_190054608.jpg",
-    "PXL_20261013_084425145.jpg"
+    "PXL_20261013_084425145.jpg",
+    "PXL_20261013_113428737.jpg",
+    "PXL_20261013_113436448.jpg",
+    "PXL_20261013_113451775.jpg",
+    "PXL_20261013_113457457.jpg",
+    "PXL_20261013_113529099.jpg",
+    "PXL_20261013_113537277.jpg"
   ],
   "pcbReferences": [
     {

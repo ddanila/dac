@@ -139,6 +139,9 @@ test("head loading pivots only the upper arm; inserted medium shares spindle pha
   move(20, [8], true, 0, false, false, null, sample);
   expect(objects.get("arm").rotation.x).toBeCloseTo(0);
   expect(objects.get("h").rotation.x).toBe(0);
+  move(25, [8], true, 0, false, true, null, sample);
+  expect(objects.get("arm").rotation.x).toBeCloseTo(-0.08);
+  expect(objects.get("medium").visible).toBe(true);
   move(30, [0], true, 0, false, false, null, sample);
   expect(objects.get("medium").visible).toBe(false);
 });

@@ -132,8 +132,18 @@ its controller behavior remains separate from the model's visual key travel.
 
 ### Diskettes and drive levers
 
-Model v23 adds canonical generic diskette sleeves and blank labels. Media presence
-closes each drive's lever downward even while powered off; an empty drive leaves
-its lever open. Opening clamps for inspection does not remove the diskette. The
-jacket/label stay stationary while the magnetic disc follows spindle telemetry.
-These are visual references, not print-verified parts or specimen-specific labels.
+Model v24 follows the owner's diskette photographs: rounded head window, offset
+index aperture, edge notches, reverse folds, hub reinforcement and handwritten
+corner label. Only the small label uses a photo projection. Geometry dimensions
+are photo estimates using the nominal 133.35 mm jacket for scale, not measured
+or print-verified parts. Six source photos are preserved in canonical 3d-models.
+
+The normal loaded state closes the lever even while powered off; an empty drive
+leaves it open. “Release clamps” shows the photographed inserted-but-open state,
+lifting the upper head without removing the diskette. This inspection override
+is visual; it does not change emulator media or controller state. The jacket and
+label remain stationary while the magnetic disc follows spindle telemetry.
+
+The owner's separate white storage envelope is not original packaging. Its CAD
+reference is included in the standalone diskette preview, not inside the drive;
+both envelope photos are preserved with the source references.
