@@ -3,6 +3,10 @@ import { readFile, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { InputSequence, pasteText, clockDebt } from "../src/input-sequence.js";
 async function ready(page) {
+  // These tests cover core input, persistence and sidebar controls. The dedicated
+  // museum/keyboard/drive tests exercise the full CAD scene. Keep repeated core
+  // reloads off the software renderer's multi-million-triangle path.
+  await page.route("**/models/robotron-1715m/model.json?*", route => route.fulfill({status:503,body:"CAD omitted in workbench fixture"}));
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator("#power")).toBeEnabled({ timeout: 15000 });

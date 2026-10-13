@@ -249,3 +249,9 @@ keyboard adds aligned insulating PCB supports, washers, contact fan-outs and an
 incoming controller wire bundle, using owner photographs. Hidden dimensions and
 routes remain approximate; these changes do not assert electrical connectivity,
 measured linkage dynamics, or physical print verification.
+
+Workbench tests omit the CAD manifest and use the existing model-unavailable
+fallback. They exercise sidebar controls, persistence, paste and replay, while
+the dedicated museum, keyboard, assembly and drive suites retain full geometry.
+This avoids repeatedly compiling/rendering the full exhibit during core reload
+checks on software WebGL; assertions and per-test deadlines remain unchanged.
