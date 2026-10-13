@@ -279,3 +279,30 @@ viewers draw only on interaction/animation and dispose their resources on close.
 Detailed KiCad packages and comparison PCB photographs load only when interiors
 are requested, with a visible loading status. Core simulation remains independent
 of rendering visibility. No Verilog simulation is required for these checks.
+
+### Protected media, evidence labels and remembered views
+
+Removed session disks have a clickable write-protect notch plus accessible
+Cover/Uncover buttons. An opaque sticker means protected. The 0.8.2 core changes
+protection without remounting or resetting; inserted disks reject tab changes.
+The protection follows transfers, remembered mounts, snapshots and recording
+opcode 12. Original media files are never overwritten by these controls.
+
+Enable Inspection labels for anchored part names. Each opens its owner photograph
+or credited comparative source, with measured, nominal or estimated dimensions
+stated separately from physical print verification. Keyboard underside routes,
+connector leads and cable-entry choke follow existing owner photos; CRT mounting,
+clamping, insulation and shielding remain comparative estimates. Exact hidden
+keyboard electrode geometry and specimen CRT electronics await better evidence.
+
+The exhibit remembers the camera, open covers, selected assembly, transparency,
+reference-photo and label settings locally. Reset view clears that layout without
+changing the emulated machine. Invalid stored selections/camera coordinates are
+ignored. Demo animation and emulator power/media are not part of the view preset.
+
+Keyboard and monitor interior STL geometry now loads on first interior request,
+alongside the detailed PCB packages. Exterior controls and key mechanisms remain
+available immediately. Empty geometry placeholders preserve assembly identities
+until the canonical meshes arrive; a visible detail-loading status reports errors.
+
+The October 13 system-unit archive is evidence for Danila’s **specific museum specimen**. Canonical v29 adds folded cover stiffeners, crossed fan retainers/cushions, PSU access grommets and brown drive adapters, with owner-photo inspection labels. The rear board is visibly solder-side up in the new photographs; its current comparative component reconstruction still needs a separate layout revision. Unseen monitor/PSU electronics remain explicitly provisional. Published references are MIT owner photos with metadata stripped; wear is not reproduced.

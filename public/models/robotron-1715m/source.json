@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "1455a4b11cb62cde3303257281e9736f547db5ae",
+  "revision": "03a34dd02c3fe6e1d2caad6fe489d721eb816cd0",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "2e303ea1705f74e029a093ed7a62c27efc9708bd90ef72e8ebd2207cabb76818"
+      "sha256": "f590acf3bd4abba43fdd59764f5250ab5915a2ef32943f7c5f3f38479d22a2fd"
     },
     {
       "file": "LICENSE",
@@ -49,7 +49,7 @@
     },
     {
       "file": "meshes/case-lid.stl",
-      "sha256": "91e9ad5fd8e957397fc205c7605f8eae4669098efec6060103bb6ab735292e16"
+      "sha256": "e756837ebf0dd8b43c636af4f805ff4c88729034e8bff1e47d554db7969133d1"
     },
     {
       "file": "meshes/fascia.stl",
@@ -205,7 +205,7 @@
     },
     {
       "file": "meshes/psu-cover.stl",
-      "sha256": "b3b029b15585e056fa5a26c02fe4438214f01dc76d7f916224f0b98438ac3d98"
+      "sha256": "820a2d1f80c2368f73232449d64840d454965a02de99311a67a6466dd5c18a94"
     },
     {
       "file": "meshes/fan-frame.stl",
@@ -281,7 +281,7 @@
     },
     {
       "file": "meshes/monitor-shield.stl",
-      "sha256": "972e4105e15bd2aa7fd363dbb84d7d196927df7594b71dae6481bcfb444eee11"
+      "sha256": "8f0234a95250d158ef9d87bf01ab9e38090b699090fde903abd8a2015f17b016"
     },
     {
       "file": "meshes/monitor-wires.stl",
@@ -501,7 +501,7 @@
     },
     {
       "file": "meshes/keyboard-matrix-artwork.stl",
-      "sha256": "25521ef345a2eecd8bbfd9e93c5b8ad5e020b9e1cc152b8fcab53ed075cc5c68"
+      "sha256": "d91f78bbba209d7574ac0dd8317b74451c9ce5fbb11508c8ab63c54f78417653"
     },
     {
       "file": "meshes/system-foot-metal.stl",
@@ -565,11 +565,11 @@
     },
     {
       "file": "meshes/keyboard-pcb-metal.stl",
-      "sha256": "6c574c3852fddd09f148c42fec3024be8435c7537fd8447b7ad995cb1fe0b16e"
+      "sha256": "8e6ab051ebb1a5c307e94651dc08e2b41664487405760c7fc35aa5650b187227"
     },
     {
       "file": "meshes/keyboard-controller-traces.stl",
-      "sha256": "7eb5b6a423159b373fd8730c4e712318d8bd0564ba01397d3dd6ab62d1480f17"
+      "sha256": "32efb6e7c2ea6a22b142ae0740b5e5d3af0ba1ff15553917ecf5a45910af1fca"
     },
     {
       "file": "meshes/monitor-power-lead.stl",
@@ -670,6 +670,54 @@
     {
       "file": "meshes/keyboard-controller-solder.stl",
       "sha256": "be7493096391485daa832cb40abd32b14d1927c74834cfd46c99355e44737f07"
+    },
+    {
+      "file": "meshes/drive-protect-tab-0.stl",
+      "sha256": "2f95483f64bdee3ba6636d1fc54b09ea606339db3e5085d270dad22786cf528b"
+    },
+    {
+      "file": "meshes/drive-protect-tab-1.stl",
+      "sha256": "91ee538e93841c51ad7d028b23c5a29e6f990cfa6e002f2344802d20e56da1fd"
+    },
+    {
+      "file": "meshes/keyboard-controller-leads.stl",
+      "sha256": "0d5208a0232e34d0da9d371fc7f6d76ad3e71b39e75f3ed692791ee4be773e05"
+    },
+    {
+      "file": "meshes/keyboard-entry-choke.stl",
+      "sha256": "f7717abf2586380d6f787ce78fc2d451cabc24bad2d78060db4df937c1479061"
+    },
+    {
+      "file": "meshes/monitor-mount-pads.stl",
+      "sha256": "0986fceda8e95d5b49541fde19ef402f0b2a5cbb275521bf4ff738c833344d41"
+    },
+    {
+      "file": "meshes/monitor-cable-clips.stl",
+      "sha256": "d26c5e42766374feb03f3cecc50ead6806e24edfba388edfbe25770aeaae2dfa"
+    },
+    {
+      "file": "meshes/fan-retainers.stl",
+      "sha256": "58ba24a7faaa491937d01605b6a4e0c04ab368299c18787a7647d7add5c142d1"
+    },
+    {
+      "file": "meshes/fan-cushions.stl",
+      "sha256": "994441bde89f79f065d9e964bf36f2ba474d392cec6d42ca93b8f9234b24d83f"
+    },
+    {
+      "file": "meshes/psu-grommets.stl",
+      "sha256": "1c47312834d61a785bef08dea57c7f020a4c8c475afb1545aa38998d9c497a41"
+    },
+    {
+      "file": "meshes/drive-adapter-boards.stl",
+      "sha256": "5cd098b544decfbd4f181fb4633c7dc4d6506f86acdb08d8d23ebe77448bedbb"
+    },
+    {
+      "file": "meshes/drive-adapter-traces.stl",
+      "sha256": "155b991e15b3da5c9fd7f65ae728f9157deef86ff87d8c4844690690a41a6837"
+    },
+    {
+      "file": "meshes/drive-adapter-sockets.stl",
+      "sha256": "f598541b077a0c8b7af8d66cc91c063fba470ebb8c8a9ed247247536f30fe0e3"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -984,6 +1032,78 @@
       "sha256": "f06a60ebc71f64b019bd4a9d717dd3d48c1768fe1b147fb4547178dcd3f1be16"
     },
     {
+      "file": "photos/PXL_20261013_150009163.jpg",
+      "sha256": "defc03203441186b7299f9672d804c6cb248d1825776e314cf2e11a99e76f878"
+    },
+    {
+      "file": "photos/PXL_20261013_150037354.jpg",
+      "sha256": "6f9aa72462dae228b9dff978fd2524fa481fd90675ccca16b483bc45f37ee09f"
+    },
+    {
+      "file": "photos/PXL_20261013_150144938.jpg",
+      "sha256": "67ed9313fd280ab5287d839cf4edd267f47b8f0497d40909cc084a661f875f11"
+    },
+    {
+      "file": "photos/PXL_20261013_150242933.jpg",
+      "sha256": "9e13339cf8e942545b2d443c113592a0c7805fd696a84c4a8d04c8dc26be41e0"
+    },
+    {
+      "file": "photos/PXL_20261013_150247694.jpg",
+      "sha256": "e01c3766539e4aa3e3458fac1c697a458277536e37102ca0ae58b659cba9fb0f"
+    },
+    {
+      "file": "photos/PXL_20261013_150303351.jpg",
+      "sha256": "20df25117bbc6b79bce2ca8690853dec5dab8c1ddacf8faec27dd04b72f0552f"
+    },
+    {
+      "file": "photos/PXL_20261013_150312308.jpg",
+      "sha256": "7ca09e059158784dc5d48c60a53b60a7d33abe324161aa291c26054b65f501e9"
+    },
+    {
+      "file": "photos/PXL_20261013_150334561.jpg",
+      "sha256": "0823fda638eecd0ae324c651d35548f0dee863bd6a958f19c844e4b3029a8642"
+    },
+    {
+      "file": "photos/PXL_20261013_150351188.jpg",
+      "sha256": "a1864df5bb6c4f286eb4b1c891f24a8dbfa0e006aa8be8b0e69290764802a10a"
+    },
+    {
+      "file": "photos/PXL_20261013_150416654.jpg",
+      "sha256": "5cc2972c7d9be176888b640af4ab349c7a44472653f260870cc29dba6b2ee00c"
+    },
+    {
+      "file": "photos/PXL_20261013_150436601.jpg",
+      "sha256": "36227c6848e0ce9d1d6f1c1498ecc3cfda9b4e169c6f9fe69a5c800bac7fac9b"
+    },
+    {
+      "file": "photos/PXL_20261013_150516969.jpg",
+      "sha256": "586cc7474e909160d67eb75d7b19521bef2c396ccac01ffc0e81caeb6a2238c4"
+    },
+    {
+      "file": "photos/PXL_20261013_150520316.jpg",
+      "sha256": "a023eb83fce69f95149b8ded4dfbb5bbb04c9e4b855f1a80df143a1d6bb01781"
+    },
+    {
+      "file": "photos/PXL_20261013_150549721.jpg",
+      "sha256": "29ddb290654a46e7dad07bad310d45607eabc611132a220a07b279b3688d4fb9"
+    },
+    {
+      "file": "photos/PXL_20261013_150554378.jpg",
+      "sha256": "5017ae73b200a0030b5ef3ef6e5ba318606475487707dfe9127f936ec4a4e184"
+    },
+    {
+      "file": "photos/PXL_20261013_150605909.jpg",
+      "sha256": "5b17d4a2273d017b8551f6fd403838df342d5e03cfdb9bdec25edc3753eb034e"
+    },
+    {
+      "file": "photos/PXL_20261013_151902765.jpg",
+      "sha256": "55cf63d1dc779cd1665a8688c215be4e9d2546453bbe6cac8f39b8f62e499042"
+    },
+    {
+      "file": "photos/PXL_20261013_151912803.jpg",
+      "sha256": "c4315e042e36bcc5792184b4c441ec75a1bbe182dee51540112c442607a00be1"
+    },
+    {
       "file": "reference/oldcrap/motherboard.jpeg",
       "sha256": "6e3810bd1c8d84bca3318933d596f37812b5f0e8ac8cb83e8fb24547e9a04eb5"
     },
@@ -1117,23 +1237,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "624da3a34bf4c1be01a9ad13f57b4678989df6b6021f414fca9e1282d1a82699"
+      "sha256": "e67159f8f9956bc6745f25801fe11e6f49e0ebfda222193500fa8e60cb5422d7"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "53571a4efea58134d090459668edff4fbcf56d1ad3fcfbeed9f50b93de97bf62"
+      "sha256": "8d4c76d30a677e8097663b2a86f92b8223bd3c61a52141216312a8bc5e77bb1b"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "70fd8fbae82e03816507a6557eb684cfa72cc13506da012e3225645d5cd4c363"
+      "sha256": "e08c2f9207b6b9f279e9c0b5b7f1ca0bda8eb38b577b17fc3d12058a289b2568"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "6d56172a5374086e6a2a3b78800d289ba88aea57c20569f0bf75ef7e02da2178"
+      "sha256": "89f628183c8882394004fb7d49297f7e73dbe651c9e88f08f591a305bd406f73"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "072f6f009c48a7a0c6c75d2b00410368931e1d545e09943980c6527782de2978"
+      "sha256": "165ebb8aab9c530c553118ed2ec1bff2681c134dc90ea2e0c88310e762e4223c"
     }
   ]
 }

@@ -1,5 +1,100 @@
 {
-  "version": 27,
+  "version": 29,
+  "annotations": [
+    {
+      "id": "keyboard-controller",
+      "part": "keyboard-controller-chips",
+      "position": [
+        -3,
+        -273,
+        14.15
+      ],
+      "title": "UB880D keyboard controller",
+      "photo": "20261012_123622947",
+      "evidence": "Owner photo",
+      "dimensions": "Package pitch nominal; placement photo-estimated."
+    },
+    {
+      "id": "keyboard-matrix",
+      "part": "keyboard-pcb",
+      "title": "Keyboard contact PCB",
+      "photo": "20261012_123907435",
+      "evidence": "Owner photo",
+      "dimensions": "Underside routing follows visible paths; no verified electrical netlist."
+    },
+    {
+      "id": "monitor-yoke",
+      "part": "monitor-yoke",
+      "title": "CRT deflection yoke",
+      "evidence": "Comparative reference",
+      "dimensions": "Position, clamp and winding dimensions estimated; not confirmed on this specimen.",
+      "source": "https://www.robotrontechnik.de/index.htm?/html/komponenten/monitore.htm"
+    },
+    {
+      "id": "monitor-shield",
+      "part": "monitor-shield",
+      "title": "Screened high-voltage section",
+      "evidence": "Comparative reference",
+      "dimensions": "Shield and mounting dimensions estimated.",
+      "source": "https://www.robotrontechnik.de/index.htm?/html/komponenten/monitore.htm"
+    },
+    {
+      "id": "monitor-ring",
+      "part": "ring",
+      "title": "Monitor stand ring",
+      "photo": "20261012_125132359.MP",
+      "evidence": "Owner measurement",
+      "dimensions": "174 mm OD \u00d7 167 mm ID \u00d7 5 mm. Physical print/fit unverified."
+    },
+    {
+      "id": "rear-signal",
+      "part": "rear-socket-inserts",
+      "title": "Rear connectors",
+      "photo": "20261012_125413618",
+      "evidence": "Owner photo",
+      "dimensions": "Socket outlines follow photos; contact spacing and hidden depths estimated."
+    },
+    {
+      "id": "drive-head",
+      "part": "drive-head-0",
+      "title": "Read/write head carriage",
+      "photo": "20250212_094038758",
+      "evidence": "Owner photo + specification",
+      "dimensions": "96-tpi reference travel; specimen drive suffix and hidden mechanism dimensions unverified."
+    },
+    {
+      "id": "fan-mount",
+      "part": "fan-retainers",
+      "title": "Crossed fan retainers",
+      "photo": "20261013_150303351",
+      "evidence": "This museum specimen \u2014 owner photo",
+      "dimensions": "Crossed straps and cushioning observed; dimensions photo-estimated."
+    },
+    {
+      "id": "drive-adapter",
+      "part": "drive-adapter-boards",
+      "title": "05-330-0024 drive adapter",
+      "photo": "20261013_150520316",
+      "evidence": "This museum specimen \u2014 owner photo",
+      "dimensions": "Brown board and routing follow this specimen. 2.54 mm pitch nominal; outline and placement estimated."
+    },
+    {
+      "id": "cover-ribs",
+      "part": "case-lid",
+      "title": "Folded cover stiffeners",
+      "photo": "20261013_150009163",
+      "evidence": "This museum specimen \u2014 owner photo",
+      "dimensions": "Two underside channels observed; local dimensions estimated."
+    },
+    {
+      "id": "psu-cover",
+      "part": "psu-grommets",
+      "title": "PSU cover access grommets",
+      "photo": "20261013_150247694",
+      "evidence": "This museum specimen \u2014 owner photo",
+      "dimensions": "Two dark access grommets observed. Shield interior remains unverified."
+    }
+  ],
   "specimenMeshes": [
     {
       "name": "specimen-sleeve",
@@ -19065,7 +19160,7 @@
       "name": "case-lid",
       "file": "meshes/case-lid.stl",
       "color": "#b6ae93",
-      "sha256": "91e9ad5fd8e957397fc205c7605f8eae4669098efec6060103bb6ab735292e16",
+      "sha256": "e756837ebf0dd8b43c636af4f805ff4c88729034e8bff1e47d554db7969133d1",
       "material": "paint"
     },
     {
@@ -19358,14 +19453,14 @@
       "name": "psu-cover",
       "file": "meshes/psu-cover.stl",
       "color": "#b5b9b2",
-      "sha256": "b3b029b15585e056fa5a26c02fe4438214f01dc76d7f916224f0b98438ac3d98",
+      "sha256": "820a2d1f80c2368f73232449d64840d454965a02de99311a67a6466dd5c18a94",
       "section": "interior",
       "material": "plated-steel"
     },
     {
       "name": "fan-frame",
       "file": "meshes/fan-frame.stl",
-      "color": "#818984",
+      "color": "#303634",
       "sha256": "6a259a1c0ee07f61370ceeb3f8f8efd3395b0a371ff5cf02c2e567310c098e5e",
       "section": "interior",
       "material": "cast-alloy"
@@ -19509,7 +19604,7 @@
       "name": "monitor-shield",
       "file": "meshes/monitor-shield.stl",
       "color": "#979e92",
-      "sha256": "972e4105e15bd2aa7fd363dbb84d7d196927df7594b71dae6481bcfb444eee11",
+      "sha256": "8f0234a95250d158ef9d87bf01ab9e38090b699090fde903abd8a2015f17b016",
       "section": "monitor-interior",
       "material": "metal"
     },
@@ -19977,7 +20072,7 @@
       "name": "keyboard-matrix-artwork",
       "file": "meshes/keyboard-matrix-artwork.stl",
       "color": "#487856",
-      "sha256": "25521ef345a2eecd8bbfd9e93c5b8ad5e020b9e1cc152b8fcab53ed075cc5c68",
+      "sha256": "d91f78bbba209d7574ac0dd8317b74451c9ce5fbb11508c8ab63c54f78417653",
       "section": "interior",
       "material": "pcb"
     },
@@ -20090,7 +20185,7 @@
       "name": "keyboard-pcb-metal",
       "file": "meshes/keyboard-pcb-metal.stl",
       "color": "#bec4bd",
-      "sha256": "6c574c3852fddd09f148c42fec3024be8435c7537fd8447b7ad995cb1fe0b16e",
+      "sha256": "8e6ab051ebb1a5c307e94651dc08e2b41664487405760c7fc35aa5650b187227",
       "section": "interior",
       "material": "solder"
     },
@@ -20098,7 +20193,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "7eb5b6a423159b373fd8730c4e712318d8bd0564ba01397d3dd6ab62d1480f17",
+      "sha256": "32efb6e7c2ea6a22b142ae0740b5e5d3af0ba1ff15553917ecf5a45910af1fca",
       "section": "interior",
       "material": "solder"
     },
@@ -20286,6 +20381,102 @@
       "file": "meshes/keyboard-controller-solder.stl",
       "color": "#b8bbb4",
       "sha256": "be7493096391485daa832cb40abd32b14d1927c74834cfd46c99355e44737f07",
+      "section": "interior",
+      "material": "solder"
+    },
+    {
+      "name": "drive-protect-tab-0",
+      "file": "meshes/drive-protect-tab-0.stl",
+      "color": "#b4b5ad",
+      "sha256": "2f95483f64bdee3ba6636d1fc54b09ea606339db3e5085d270dad22786cf528b",
+      "section": "interior",
+      "material": "tape"
+    },
+    {
+      "name": "drive-protect-tab-1",
+      "file": "meshes/drive-protect-tab-1.stl",
+      "color": "#b4b5ad",
+      "sha256": "91ee538e93841c51ad7d028b23c5a29e6f990cfa6e002f2344802d20e56da1fd",
+      "section": "interior",
+      "material": "tape"
+    },
+    {
+      "name": "keyboard-controller-leads",
+      "file": "meshes/keyboard-controller-leads.stl",
+      "color": "Silver",
+      "sha256": "0d5208a0232e34d0da9d371fc7f6d76ad3e71b39e75f3ed692791ee4be773e05",
+      "section": "interior",
+      "material": "solder"
+    },
+    {
+      "name": "keyboard-entry-choke",
+      "file": "meshes/keyboard-entry-choke.stl",
+      "color": "#35352f",
+      "sha256": "f7717abf2586380d6f787ce78fc2d451cabc24bad2d78060db4df937c1479061",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "monitor-mount-pads",
+      "file": "meshes/monitor-mount-pads.stl",
+      "color": "#292d29",
+      "sha256": "0986fceda8e95d5b49541fde19ef402f0b2a5cbb275521bf4ff738c833344d41",
+      "section": "monitor-interior",
+      "material": "rubber"
+    },
+    {
+      "name": "monitor-cable-clips",
+      "file": "meshes/monitor-cable-clips.stl",
+      "color": "#b7b9b1",
+      "sha256": "d26c5e42766374feb03f3cecc50ead6806e24edfba388edfbe25770aeaae2dfa",
+      "section": "monitor-interior",
+      "material": "metal"
+    },
+    {
+      "name": "fan-retainers",
+      "file": "meshes/fan-retainers.stl",
+      "color": "#afb7aa",
+      "sha256": "58ba24a7faaa491937d01605b6a4e0c04ab368299c18787a7647d7add5c142d1",
+      "section": "interior",
+      "material": "plated-steel"
+    },
+    {
+      "name": "fan-cushions",
+      "file": "meshes/fan-cushions.stl",
+      "color": "#c8bd8e",
+      "sha256": "994441bde89f79f065d9e964bf36f2ba474d392cec6d42ca93b8f9234b24d83f",
+      "section": "interior",
+      "material": "rubber"
+    },
+    {
+      "name": "psu-grommets",
+      "file": "meshes/psu-grommets.stl",
+      "color": "#292d2c",
+      "sha256": "1c47312834d61a785bef08dea57c7f020a4c8c475afb1545aa38998d9c497a41",
+      "section": "interior",
+      "material": "rubber"
+    },
+    {
+      "name": "drive-adapter-boards",
+      "file": "meshes/drive-adapter-boards.stl",
+      "color": "#70444b",
+      "sha256": "5cd098b544decfbd4f181fb4633c7dc4d6506f86acdb08d8d23ebe77448bedbb",
+      "section": "interior",
+      "material": "pcb"
+    },
+    {
+      "name": "drive-adapter-traces",
+      "file": "meshes/drive-adapter-traces.stl",
+      "color": "#b9c1b7",
+      "sha256": "155b991e15b3da5c9fd7f65ae728f9157deef86ff87d8c4844690690a41a6837",
+      "section": "interior",
+      "material": "solder"
+    },
+    {
+      "name": "drive-adapter-sockets",
+      "file": "meshes/drive-adapter-sockets.stl",
+      "color": "#c9c7ae",
+      "sha256": "f598541b077a0c8b7af8d66cc91c063fba470ebb8c8a9ed247247536f30fe0e3",
       "section": "interior",
       "material": "plastic"
     }
@@ -25142,7 +25333,25 @@
     "PXL_20261013_113451775.jpg",
     "PXL_20261013_113457457.jpg",
     "PXL_20261013_113529099.jpg",
-    "PXL_20261013_113537277.jpg"
+    "PXL_20261013_113537277.jpg",
+    "PXL_20261013_150009163.jpg",
+    "PXL_20261013_150037354.jpg",
+    "PXL_20261013_150144938.jpg",
+    "PXL_20261013_150242933.jpg",
+    "PXL_20261013_150247694.jpg",
+    "PXL_20261013_150303351.jpg",
+    "PXL_20261013_150312308.jpg",
+    "PXL_20261013_150334561.jpg",
+    "PXL_20261013_150351188.jpg",
+    "PXL_20261013_150416654.jpg",
+    "PXL_20261013_150436601.jpg",
+    "PXL_20261013_150516969.jpg",
+    "PXL_20261013_150520316.jpg",
+    "PXL_20261013_150549721.jpg",
+    "PXL_20261013_150554378.jpg",
+    "PXL_20261013_150605909.jpg",
+    "PXL_20261013_151902765.jpg",
+    "PXL_20261013_151912803.jpg"
   ],
   "pcbReferences": [
     {
@@ -27905,7 +28114,7 @@
     ],
     "source": "https://oldcrap.org/2017/12/26/robotron-1715/",
     "specification": "https://retrocmp.de/fdd/teac/TEAC_FD55-FV.pdf",
-    "note": "Drive envelopes are documented. Drive mechanisms and rear plates now follow owner photos; the nominal envelope remains a reference. Logic-board population, mounting and wiring still use comparative evidence."
+    "note": "Drive envelopes are documented. Drive mechanisms and rear plates now follow owner photos; the nominal envelope remains a reference. Owner October 13 photos establish cover stiffeners, fan retainers, PSU cover and brown drive adapters. Logic-board component population and unseen wiring remain comparative; the visible owner board is solder-side up."
   },
   "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m"
 }

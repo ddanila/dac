@@ -9,7 +9,7 @@ import { loadRobotron } from "./robotron-model.js";
 export function visiblePickTargets(root) {
   const targets = [];
   function visit(node) {
-    if (!node.visible || (node.material?.transparent && node.material.opacity < 0.2)) return;
+    if (!node.visible || (node.material?.transparent && node.material.opacity < 0.2 && node.userData.protectUnit === undefined)) return;
     if (node.geometry) targets.push(node);
     for (const child of node.children) visit(child);
   }
@@ -255,6 +255,7 @@ export function createScene(
     .then((model) => {
       robotron = model;
       scene.add(model.group);
+      window.dispatchEvent(new Event("dac-model-ready"));
       model.power(powered);
       model.modifiers(modifiers);
       model.media(mediaPresent);
@@ -358,7 +359,9 @@ export function createScene(
         ? "pointer"
         : "grab";
     interaction.onHover?.(
-      hit?.userData.removedDisk !== undefined
+      hit?.userData.protectUnit !== undefined
+        ? "Click the notch to cover/uncover write protection"
+        : hit?.userData.removedDisk !== undefined
         ? "Drag this disk into an open, empty drive, or click to inspect"
         : key
         ? `${key.label}${key.input.unsupported ? " · mapping unverified" : ""}`
@@ -390,6 +393,8 @@ export function createScene(
       if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
     } else if (hit.userData.driveUnit !== undefined && gesture.object === hit)
       interaction.onDriveLever?.(hit.userData.driveUnit);
+    else if (hit.userData.protectUnit !== undefined && gesture.object === hit)
+      interaction.onProtect?.(hit.userData.protectUnit);
     else if (hit.userData.detail && gesture.object === hit)
       interaction.onInspect?.(hit.userData.detail);
     else if (hit === robotron?.objects.get("power") || hit === power) onPower();
@@ -448,6 +453,40 @@ export function createScene(
     renderRequested = true;
   });
   observer.observe(container);
+  const labelLayer=document.createElement("div");labelLayer.className="inspection-label-layer";container.append(labelLayer);
+  let labelsEnabled=false;
+  const labelButtons=new Map();
+  function drawLabels(){
+    const occupied=[];
+    for(const annotation of robotron?.annotations || []){
+      let button=labelButtons.get(annotation.id);
+      if(!button){button=document.createElement("button");button.className="inspection-label";button.dataset.annotation=annotation.id;button.textContent=annotation.title;button.title=annotation.evidence+" · "+annotation.dimensions;button.onclick=()=>interaction.onAnnotation?.(annotation);labelLayer.append(button);labelButtons.set(annotation.id,button);}
+      const mesh=robotron.objects.get(annotation.part);
+      button.hidden=true;
+      if(!labelsEnabled || kind!==2 || !mesh?.visible || mesh.userData.loaded===false)continue;
+      mesh.updateWorldMatrix(true,false);mesh.geometry.computeBoundingBox();
+      const point=annotation.position?new THREE.Vector3(...annotation.position):mesh.geometry.boundingBox?.getCenter(new THREE.Vector3());
+      if(!point)continue;point.applyMatrix4(mesh.matrixWorld).project(camera);
+      if(Math.abs(point.x)>.94||Math.abs(point.y)>.94||point.z< -1||point.z>1)continue;
+      button.hidden=false;
+      const anchorX=(point.x+1)*container.clientWidth/2,anchorY=(1-point.y)*container.clientHeight/2;
+      const width=button.offsetWidth,height=button.offsetHeight;
+      const x=Math.max(14,Math.min(container.clientWidth-width-4,anchorX+9));
+      let y=anchorY-height/2,found=false;
+      for(const offset of [0,32,-32,64,-64,96,-96,128,-128]){
+        const candidate=Math.max(4,Math.min(container.clientHeight-height-4,y+offset));
+        if(!occupied.some(r=>x<r.x+r.w+5&&x+width+5>r.x&&candidate<r.y+r.h+5&&candidate+height+5>r.y)){
+          y=candidate;found=true;break;
+        }
+      }
+      if(!found){button.hidden=true;continue;}
+      occupied.push({x,y,w:width,h:height});
+      button.style.left=`${x}px`;button.style.top=`${y}px`;
+      const dx=anchorX-x,dy=anchorY-y-height/2;
+      button.style.setProperty('--leader-length',`${Math.hypot(dx,dy)}px`);
+      button.style.setProperty('--leader-angle',`${Math.atan2(dy,dx)}rad`);
+    }
+  }
   const drawFrame = () => {
     controls.update();
     robotron?.detailDistance(camera.position.distanceTo(controls.target));
@@ -455,6 +494,7 @@ export function createScene(
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     if (renderRequested || changed?.dirty) {
       renderer.render(scene, camera);
+      drawLabels();
       renderRequested = false;
     }
   };
@@ -469,6 +509,10 @@ export function createScene(
   document.addEventListener("visibilitychange",updateRendering);
   updateRendering();
   return {
+    annotations(on){labelsEnabled=on;renderRequested=true;},
+    cameraState(){return {position:camera.position.toArray(),target:controls.target.toArray()};},
+    restoreCamera(value){if(!value || ![value.position,value.target].every(a=>Array.isArray(a)&&a.length===3&&a.every(n=>Number.isFinite(n)&&Math.abs(n)<40)))return;const damping=controls.enableDamping;controls.enableDamping=false;controls.update();controls.enableDamping=damping;camera.position.fromArray(value.position);controls.target.fromArray(value.target);controls.update();renderRequested=true;},
+    onCameraChange(fn){controls.addEventListener("change",fn);},
     activity: (active) => robotron?.activity(active),
     drives: (states, mechanics, available, labels) => {
       driveState.frame(states, mechanics, available, labels);
@@ -652,6 +696,7 @@ export function createScene(
         views.overview = views.assembly;
       }
       const view = views[name] || views.overview;
+      const damping=controls.enableDamping;controls.enableDamping=false;controls.update();controls.enableDamping=damping;
       camera.position.set(...view[0]);
       controls.target.set(...view[1]);
       fittedView = name;

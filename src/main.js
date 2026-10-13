@@ -1,3 +1,5 @@
+import { installExhibitLayout } from "./exhibit-layout.js";
+import { showAnnotation } from "./inspection.js";
 import "./style.css";
 import { describeDrive, createDriveSound } from "./robotron-drives.js";
 const driveSound = createDriveSound();
@@ -139,8 +141,13 @@ function keyButtons(keys) {
     $("key-list").append(button);
   }
 }
+let driveWritable=[false,false],driveProtectSupported=false;
 let driveTransferSupported = false, driveAvailable=[false,false];
 let driveDoors = [false, false], driveDoorsSupported = false, drivePresent = [false,false];
+function toggleDiskProtection(unit){
+  if(replayBusy || !driveProtectSupported || drivePresent[unit] || !driveAvailable[unit])return;
+  send({type:"drive-protect",unit,protected:driveWritable[unit]});
+}
 function toggleDriveLever(unit) {
   if (replayBusy || !ready || !driveDoorsSupported) return;
   send({ type: "drive-door", unit, open: !driveDoors[unit] });
@@ -149,7 +156,8 @@ for (const u of [0,1]) {
   const transfer=document.createElement("button");transfer.id="drive-transfer-"+u;
   transfer.textContent=`Move removed disk to ${u?"A":"B"}`;
   transfer.onclick=()=>send({type:"drive-transfer",from:u,to:1-u});
-  $("drive-handling").append(transfer);
+  const protect=document.createElement("button");protect.id="drive-protect-"+u;protect.onclick=()=>toggleDiskProtection(u);
+  $("drive-handling").append(transfer,protect);
   $("drive-lever-"+u).onclick = () => toggleDriveLever(u);
   $("drive-media-"+u).onclick = () => {
     if (!replayBusy) send({type:"drive-inserted", unit:u, inserted:!drivePresent[u]});
@@ -173,6 +181,8 @@ try {
       if (!replayBusy && ready && driveDoorsSupported && driveDoors[to] && !drivePresent[to])
         send(from===to?{type:"drive-inserted",unit:to,inserted:true}:{type:"drive-transfer",from,to});
     },
+    onAnnotation: showAnnotation,
+    onProtect: toggleDiskProtection,
     onInspect: (name) => {
       const focus = name.startsWith("focus-")
         ? name.slice(6)
@@ -363,6 +373,7 @@ worker.onmessage = ({ data: d }) => {
     if (d.writableA !== undefined) $("writable").checked = d.writableA;
     if (d.writableB !== undefined) $("writable-b").checked = d.writableB;
     $("export").disabled = !disk;
+    window.dispatchEvent(new Event("dac-configured"));
   }
   if (d.type === "media-moved") {
     disk=d.present[0];updateDriveB(d.present[1]);
@@ -403,6 +414,14 @@ worker.onmessage = ({ data: d }) => {
       $(id).disabled = on;
   }
   if (d.type === "frame") {
+    driveProtectSupported=!!d.driveProtectSupported;
+    driveWritable=d.driveProtection || (d.drives || [0,0]).map(v=>!!(v&4));
+    for(const u of [0,1]){
+      const button=$("drive-protect-"+u);button.disabled=replayBusy||!driveProtectSupported||!d.driveAvailable?.[u]||!!((d.drives?.[u]||0)&8);
+      button.textContent=`${driveWritable[u]?"Cover":"Uncover"} disk ${u?"B":"A"} notch`;
+      button.setAttribute("aria-pressed",String(!driveWritable[u]));
+      $(u?"writable-b":"writable").checked=driveWritable[u];
+    }
     driveTransferSupported = !!d.driveTransferSupported;
     driveAvailable = d.driveAvailable || [false,false];
     driveDoorsSupported = !!d.driveDoorsSupported;
@@ -1056,3 +1075,9 @@ $("record-file").onchange = async () => {
   }
   $("record-file").value = "";
 };
+
+$("inspection-labels").onchange=()=>scene?.annotations($("inspection-labels").checked);
+installExhibitLayout(scene,layout=>{
+  updateCase();selectView(layout.view || "overview");scene?.annotations($("inspection-labels").checked);
+  if(layout.camera)scene?.restoreCamera(layout.camera);
+});

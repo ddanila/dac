@@ -322,6 +322,7 @@ function frame() {
       keyboardLeds: module._dac_keyboard_leds(handle),
       drive: module._dac_drive_status(handle),
       driveTransferSupported: !!module._dac_drive_transfer,
+      driveProtectSupported: !!module._dac_drive_protect,
       driveLabels: diskLabels,
       driveProtection: writableUnits.map(Boolean),
       driveDoorsSupported: !!module._dac_drive_door,
@@ -756,6 +757,19 @@ async function receive(d) {
       ]);
     } else if (d.type === "import-state") {
       await importState(d.bytes);
+    } else if (d.type === "drive-protect") {
+      await persistDisk(true);
+      if(!module._dac_drive_protect || module._dac_drive_protect(handle,d.unit,Number(d.protected))<0)
+        throw Error("Remove the disk before changing its protection tab.");
+      recordEvent([12,d.unit,Number(d.protected)]);
+      writableUnits[d.unit]=!d.protected;writable=!!writableUnits[0];
+      // Preserve both the current disk bytes and mount identity for reload.
+      const bytes=diskBytes(d.unit);
+      mounts[d.unit]={bytes,sha256:await digest(bytes),writable:!d.protected,library:libraries[d.unit],label:diskLabels[d.unit],ejected:true,doorOpen:!!(module._dac_drive_status_unit(handle,d.unit)&32)};
+      identities[d.unit]=await sessionIdentity(kind,firmware,bytes)+(libraries[d.unit]?":"+libraries[d.unit]:"");
+      refreshStateKey();await saveMounts();await persistDisk(true);
+      storageStatus(d.protected?"Notch covered: disk is write protected.":"Notch uncovered: writes enabled for this session disk.",{hasState:!!(await compatibleStateKey())});
+      frame();
     } else if (d.type === "drive-transfer") {
       await persistDisk(true);
       if (!module._dac_drive_transfer || module._dac_drive_transfer(handle,d.from,d.to)<0)
@@ -763,6 +777,9 @@ async function receive(d) {
       recordEvent([11,d.from,d.to]);
       if(d.from!==d.to) for(const values of [identities,writableUnits,libraries,diskLabels])
         [values[0],values[1]]=[values[1],values[0]];
+      // Empty drive slots have no writable medium; do not carry the UI's
+      // default for future mounts into snapshot identities after a transfer.
+      for(const u of [0,1])writableUnits[u]=!!(module._dac_drive_status_unit(handle,u)&4);
       writable=!!writableUnits[0];
       // Capture actual bytes before yielding. Keep explicit empty slots so a
       // reload cannot silently put the stock A disk back after moving it to B.
@@ -775,7 +792,7 @@ async function receive(d) {
       for(const u of [0,1]) identities[u]=u && !images[u].byteLength ? null : await sessionIdentity(kind,firmware,images[u].byteLength?images[u]:null)+(libraries[u]?":"+libraries[u]:"");
       refreshStateKey(); await saveMounts(); await persistDisk(true);
       postMessage({type:"media-moved",present:images.map(b=>!!b.byteLength),writable:writableUnits});
-      storageStatus(`${diskLabels[d.to]} inserted in drive ${d.to?"B":"A"}.`);
+      storageStatus(`${diskLabels[d.to]} inserted in drive ${d.to?"B":"A"}.`,{hasState:!!(await compatibleStateKey())});
       frame();
     } else if (d.type === "drive-inserted") {
       if (!module._dac_drive_inserted || module._dac_drive_inserted(handle, d.unit, Number(d.inserted)) < 0)
@@ -842,6 +859,7 @@ async function receive(d) {
         d.writable ? "Drive B is writable." : "Drive B is write protected.",
         { hasState: !!(await compatibleStateKey()) },
       );
+      frame();
     } else if (d.type === "library-save") {
       await persistDisk(true);
       const bytes = diskBytes(d.unit);
@@ -980,6 +998,7 @@ async function receive(d) {
         "mount-b",
         "protect-b",
         "drive-transfer",
+        "drive-protect",
         "printer",
       ].includes(d.type)
     )
