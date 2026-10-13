@@ -94,7 +94,14 @@ test("paste, deterministic browser/native replay and damaged recording rejection
   await expect(page.locator("#drive-media-1")).toBeEnabled();
   await page.locator("#drive-media-1").click({ delay: 150 });
   await expect(page.locator("#drive-media-1")).toHaveText("Insert disk B");
-  await page.locator("#drive-media-1").click({ delay: 150 });
+  // Move the blank B disk into empty A and back; replay must preserve it.
+  await page.locator("#drive-lever-0").click();
+  await page.locator("#drive-transfer-1").click();
+  await expect(page.locator("#storage-status")).toContainText("inserted in drive A");
+  await page.locator("#drive-media-0").click();
+  await page.locator("#drive-transfer-0").click();
+  await expect(page.locator("#storage-status")).toContainText("inserted in drive B");
+  await page.locator("#drive-lever-0").click();
   await expect(page.locator("#drive-media-1")).toHaveText("Remove disk B");
   await page.locator("#drive-lever-1").click();
   await page.waitForTimeout(200);
@@ -161,7 +168,7 @@ test("owner and comparative evidence is visible in component cards", async ({
   );
   await expect(page.locator("#detail-photo")).toBeVisible();
 });
-for (const version of ["0.3.0", "0.4.0", "0.5.0", "0.6.0", "0.7.0", "0.7.1"])
+for (const version of ["0.3.0", "0.4.0", "0.5.0", "0.6.0", "0.7.0", "0.7.1", "0.8.0"])
   test(`preserved ${version} snapshot restores after emulator upgrade`, async ({
     page,
   }) => {

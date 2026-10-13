@@ -1,10 +1,30 @@
 {
-  "version": 26,
+  "version": 27,
   "specimenMeshes": [
     {
       "name": "specimen-sleeve",
       "file": "meshes/specimen-sleeve.stl",
       "sha256": "062825c05ae31901484d9fdb16bb728b330b5adc2b3a9a610d0f9c4e9f00ecc9"
+    },
+    {
+      "name": "specimen-switch-guide",
+      "file": "meshes/specimen-switch-guide.stl",
+      "sha256": "cd9985c434d239c07583bd27449720d95a00dbd076f8de400b94b3fd04cb7179"
+    },
+    {
+      "name": "specimen-switch-mount",
+      "file": "meshes/specimen-switch-mount.stl",
+      "sha256": "1bf0c6ea12e57c967cdb0dc32850b7c67473c2d710257b128e12e817f2cda9b9"
+    },
+    {
+      "name": "specimen-switch-contacts",
+      "file": "meshes/specimen-switch-contacts.stl",
+      "sha256": "e52d88d3489c344a7c0950e0657d4875a61853763d3720f7ae4a84a572852b92"
+    },
+    {
+      "name": "specimen-switch-pcb",
+      "file": "meshes/specimen-switch-pcb.stl",
+      "sha256": "710a22c33ae505b0c9d60b74743b4d47722c7901dc152ff8c0e452459f32bddb"
     }
   ],
   "modelVerification": {
@@ -18925,6 +18945,13 @@
   "units": "mm",
   "scale": 0.0025,
   "materials": {
+    "paper": {
+      "roughness": 0.94,
+      "metalness": 0,
+      "grain": 0.025,
+      "grainScale": 3,
+      "grainRelief": 0.001
+    },
     "ink": {
       "roughness": 0.86,
       "metalness": 0
@@ -18951,21 +18978,22 @@
       "clearcoat": 0.18
     },
     "clear-key": {
-      "roughness": 0.15,
+      "roughness": 0.12,
       "metalness": 0,
       "grain": 0.002,
       "grainScale": 4.0,
       "clearcoat": 1,
+      "ior": 1.49,
       "transparent": true,
-      "opacity": 0.24,
+      "opacity": 0.32,
       "depthWrite": false
     },
     "rubber": {
-      "roughness": 0.96,
+      "roughness": 0.92,
       "metalness": 0,
-      "grain": 0.025,
-      "grainScale": 4.0,
-      "grainRelief": 0.008
+      "grain": 0.04,
+      "grainScale": 5.0,
+      "grainRelief": 0.012
     },
     "plated-steel": {
       "roughness": 0.3,
@@ -18993,11 +19021,16 @@
       "grainScale": 3.5
     },
     "metal": {
-      "roughness": 0.26,
-      "metalness": 0.9,
-      "grain": 0.008,
+      "roughness": 0.32,
+      "metalness": 0.86,
+      "grain": 0.018,
       "grainScale": 5.0,
-      "grainRelief": 0.002
+      "grainRelief": 0.002,
+      "grainStretch": [
+        0.08,
+        1,
+        1
+      ]
     },
     "lens": {
       "roughness": 0.24,
@@ -19872,7 +19905,7 @@
       "name": "keyboard-controller-board",
       "file": "meshes/keyboard-controller-board.stl",
       "color": "#aaa982",
-      "sha256": "df1fbd7c2d263593ae14d3b0ffde319449f70715802bc29327ae438efb93eccb",
+      "sha256": "7eab851a98e66895352d2cc378eaefe4c31726a5d209daf64f3321e88969e51d",
       "section": "interior",
       "material": "pcb"
     },
@@ -19928,7 +19961,7 @@
       "name": "keyboard-controller-ink",
       "file": "meshes/keyboard-controller-ink.stl",
       "color": "#c8c8bd",
-      "sha256": "c485c958e894641a73f9cdcf5413178173aed828838f9cd013e906945138876a",
+      "sha256": "bbc8e8a27feb55b6ab021aa6acafe2d072374a47b4b4689604f81f6808c0bc51",
       "section": "interior",
       "material": "plastic"
     },
@@ -20245,6 +20278,14 @@
       "file": "meshes/keyboard-contact-routes.stl",
       "color": "#487856",
       "sha256": "329fdba2b496643a967ba380376f11c49657b7ebf290d2feedf89bfadfe1e27e",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-solder",
+      "file": "meshes/keyboard-controller-solder.stl",
+      "color": "#b8bbb4",
+      "sha256": "be7493096391485daa832cb40abd32b14d1927c74834cfd46c99355e44737f07",
       "section": "interior",
       "material": "plastic"
     }

@@ -246,7 +246,12 @@ export function createScene(
             : "LOADING DANILA’S MACHINE…";
   }
   visibility();
-  loadRobotron(texture, loadingProgress)
+  const detailLoading=document.createElement("div");detailLoading.id="detail-loading";detailLoading.hidden=true;detailLoading.setAttribute("role","status");container.append(detailLoading);
+  loadRobotron(texture, loadingProgress, state=>{
+    container.dataset.details=state;detailLoading.hidden=state==="ready";
+    detailLoading.textContent=state==="error"?"Some interior details could not load. Reload to retry.":"Loading interior details…";
+    renderRequested=true;renderer.shadowMap.needsUpdate=true;
+  })
     .then((model) => {
       robotron = model;
       scene.add(model.group);
@@ -286,6 +291,7 @@ export function createScene(
     if (down?.key)
       robotron?.keyState(down.key.id, false);
     if (down?.ghost) scene.remove(down.ghost);
+    robotron?.diskDropHighlight(null);
     renderRequested = true;
     down = undefined;
     controls.enabled = true;
@@ -312,7 +318,7 @@ export function createScene(
       const center=new THREE.Box3().setFromObject(hit).getCenter(new THREE.Vector3());
       down.plane=new THREE.Plane().setFromNormalAndCoplanarPoint(camera.getWorldDirection(new THREE.Vector3()),center);
       down.origin=ray.ray.intersectPlane(down.plane,new THREE.Vector3());
-      const hint=document.createElement("div"); hint.id="disk-drag-hint"; hint.textContent=`Disk ${down.disk ? "B" : "A"} · drop into its open drive`;
+      const hint=document.createElement("div"); hint.id="disk-drag-hint"; hint.textContent="Drag to an open, empty drive";
       hint.style.left=e.clientX+12+"px"; hint.style.top=e.clientY+12+"px"; document.body.append(hint);
       renderer.domElement.setPointerCapture(e.pointerId);
     }
@@ -330,7 +336,14 @@ export function createScene(
         if(p){down.ghost.position.copy(p.sub(down.origin));renderRequested=true;}
       }
       const hint=document.getElementById("disk-drag-hint");
-      if(hint){hint.style.left=e.clientX+12+"px";hint.style.top=e.clientY+12+"px";}
+      if(hint){
+        hint.style.left=e.clientX+12+"px";hint.style.top=e.clientY+12+"px";
+        const target=robotron.diskDropTarget(ray.ray);
+        const reason=target===null?"Move over a drive":interaction.diskDropStatus?.(down.disk,target);
+        hint.textContent=reason||`Release to insert in drive ${target?"B":"A"}`;
+        hint.dataset.allowed=String(target!==null&&!reason);
+        robotron.diskDropHighlight(target,target!==null&&!reason);renderRequested=true;
+      }
       return;
     }
     const hit = hitAt(e),
@@ -346,7 +359,7 @@ export function createScene(
         : "grab";
     interaction.onHover?.(
       hit?.userData.removedDisk !== undefined
-        ? `Drag disk ${hit.userData.removedDisk ? "B" : "A"} into its open drive, or click to inspect`
+        ? "Drag this disk into an open, empty drive, or click to inspect"
         : key
         ? `${key.label}${key.input.unsupported ? " · mapping unverified" : ""}`
         : hit?.userData.driveUnit !== undefined
@@ -362,7 +375,8 @@ export function createScene(
       hit = hitAt(e);
     cancelGesture();
     if (gesture.disk !== undefined && gesture.dragged) {
-      if (robotron.diskDropTarget(ray.ray, gesture.disk)) interaction.onInsertDisk?.(gesture.disk);
+      const target=robotron.diskDropTarget(ray.ray);
+      if(target!==null && !interaction.diskDropStatus?.(gesture.disk,target)) interaction.onInsertDisk?.(gesture.disk,target);
       return;
     }
     if (
@@ -434,7 +448,7 @@ export function createScene(
     renderRequested = true;
   });
   observer.observe(container);
-  renderer.setAnimationLoop(() => {
+  const drawFrame = () => {
     controls.update();
     robotron?.detailDistance(camera.position.distanceTo(controls.target));
     const changed = robotron?.tick();
@@ -443,11 +457,21 @@ export function createScene(
       renderer.render(scene, camera);
       renderRequested = false;
     }
-  });
+  };
+  let inViewport=true;
+  function updateRendering(){
+    const active=inViewport&&!document.hidden;
+    container.dataset.rendering=active?"active":"paused";
+    renderRequested=true;
+    renderer.setAnimationLoop(active?drawFrame:null);
+  }
+  const intersection=new IntersectionObserver(entries=>{inViewport=entries[0].isIntersecting;updateRendering();});intersection.observe(container);
+  document.addEventListener("visibilitychange",updateRendering);
+  updateRendering();
   return {
     activity: (active) => robotron?.activity(active),
-    drives: (states, mechanics, available) => {
-      driveState.frame(states, mechanics, available);
+    drives: (states, mechanics, available, labels) => {
+      driveState.frame(states, mechanics, available, labels);
       mediaPresent = [0,1].map(u => !!(states[u] & 8));
       robotron?.drives(...driveState.snapshot);
     },

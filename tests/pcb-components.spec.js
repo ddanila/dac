@@ -200,6 +200,7 @@ test("individual boards hide other assemblies and restore their geometry", async
       "/node_modules/three/build/three.module.js"
     );
     const model = await loadRobotron(new Texture());
+    await model.loadDetails();
     const records = [];
     for (const board of ["motherboard", "floppy-controller"]) {
       model.inspect({ isolated: board });

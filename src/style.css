@@ -699,3 +699,8 @@ textarea {
 #diskette-viewer {height:340px; width:100%; background:#ced3cc; border-radius:.5rem; touch-action:none;}
 #diskette-viewer canvas {width:100%; height:100%; display:block;}
 #diskette-tools {display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin:.7rem 0;}
+
+#disk-drag-hint[data-allowed="false"] {border-color:#f77b65;}
+#disk-drag-hint[data-allowed="true"] {border-color:#6cf3ac;}
+#key-contact-state {display:block; width:100%; font-weight:600;}
+#detail-loading {position:absolute;left:1rem;top:1rem;background:#182624;color:white;padding:.6rem;border-radius:.4rem;pointer-events:none;}

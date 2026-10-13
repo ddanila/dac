@@ -3,8 +3,9 @@
 export function createDriveSceneState() {
   let snapshot;
   return {
-    frame(states, mechanics, available) {
+    frame(states, mechanics, available, labels) {
       snapshot=[states.slice(),structuredClone(mechanics),available?.slice()];
+      if(labels) snapshot.push(labels.slice());
       return snapshot;
     },
     media(present) {
