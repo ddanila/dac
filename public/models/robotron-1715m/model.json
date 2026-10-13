@@ -1,5 +1,31 @@
 {
-  "version": 21,
+  "version": 22,
+  "modelVerification": {
+    "models/robotron-1715m/display-base-ring/model.scad": {
+      "physicalVerification": "unverified",
+      "evidence": []
+    },
+    "models/robotron-1715m/key-switch/model.scad": {
+      "physicalVerification": "unverified",
+      "evidence": []
+    },
+    "models/robotron-1715m/keyboard/model.scad": {
+      "physicalVerification": "unverified",
+      "evidence": []
+    },
+    "models/robotron-1715m/keycap/model.scad": {
+      "physicalVerification": "unverified",
+      "evidence": []
+    },
+    "models/robotron-1715m/keycap-spring-mandrel/model.scad": {
+      "physicalVerification": "unverified",
+      "evidence": []
+    },
+    "models/robotron-1715m/model.scad": {
+      "physicalVerification": "unverified",
+      "evidence": []
+    }
+  },
   "rearMarkings": [
     {
       "x": 10,
@@ -19062,15 +19088,15 @@
       "name": "keyboard-shell",
       "file": "meshes/keyboard-shell.stl",
       "color": "#9daeb1",
-      "sha256": "007493b1cbf4ecf9a71ca0b009b61b1cbf9e2f479c4802e59550b5a6176419ea",
+      "sha256": "cbefa80f26acb07fde8ebe289cfa303da72c365b9a8e2b42e53870fd30ca3d17",
       "material": "paint"
     },
     {
       "name": "keyboard-deck",
       "file": "meshes/keyboard-deck.stl",
       "color": "#242929",
-      "sha256": "5a31b5cfbfa11e52f76f8bc5e6f324d5fb85656845eed1083708422ff4b40a7a",
-      "material": "aged-plastic"
+      "sha256": "e58182a471579d7a658baba80f551863c7e6a901c3b306aa605e0837291491cd",
+      "material": "paint"
     },
     {
       "name": "hardware",
@@ -19118,7 +19144,7 @@
       "name": "keyboard-bottom",
       "file": "meshes/keyboard-bottom.stl",
       "color": "#9daeb1",
-      "sha256": "07eee108ed4fe6f286319175d71e72d106bd3c8f0bff2302829b4b14df3bf634",
+      "sha256": "06c5c882d56a0515cbc2cd040bd6e4119b44c6d00695d380dca8cd8c5e5ad494",
       "material": "paint"
     },
     {
@@ -19139,14 +19165,14 @@
       "name": "keyboard-grommet",
       "file": "meshes/keyboard-grommet.stl",
       "color": "#30312e",
-      "sha256": "5cc4da5727b7d922379b16cf2a5c202e261733c21a8e2d67730385472435e30f",
-      "material": "metal"
+      "sha256": "3fa1ddbd418ae3007b8fe577cc36ce3a7a5421a4ad2c567bb43e7f7948690b34",
+      "material": "rubber"
     },
     {
       "name": "keyboard-fillers",
       "file": "meshes/keyboard-fillers.stl",
       "color": "#242929",
-      "sha256": "fa3f19977845a149a736e0cf6baee4665361be9b8fd313be962381ae01378904",
+      "sha256": "f1d4d89ff8c3d3eb43411846a13d5ea6247660277dce4eae180ab5da0635a134",
       "material": "plastic"
     },
     {
@@ -19342,7 +19368,7 @@
       "name": "keyboard-pcb",
       "file": "meshes/keyboard-pcb.stl",
       "color": "#91ae94",
-      "sha256": "c5aad912ad476d32484badb83f7a2c6ae35fb08a0e18002955ff3d5223db69a5",
+      "sha256": "89b83e2485c548a7aebf2f20da4e219ba19b214ba95bae387ed4bf139179f886",
       "section": "interior",
       "material": "pcb"
     },
@@ -19350,7 +19376,7 @@
       "name": "keyboard-switches",
       "file": "meshes/keyboard-switches.stl",
       "color": "#30352f",
-      "sha256": "330aba9db658a80ffa389dc83492a1871c7a8148a8545637d596ae208ea2034c",
+      "sha256": "c6b322910c721f16c1b8033a11474a0374f808f066a24eb55e16022522ea7bba",
       "section": "interior",
       "material": "plastic"
     },
@@ -19583,7 +19609,7 @@
       "name": "keyboard-plate",
       "file": "meshes/keyboard-plate.stl",
       "color": "#242929",
-      "sha256": "567cb9b22927b2434c0666d0524312f0cac5f099ef2baded1a7280c0ccf33918",
+      "sha256": "888c66458e6adcb94a1a23376bcd658bbbff0b0e6d54bb3a500cb8758ee23844",
       "section": "interior",
       "material": "metal"
     },
@@ -19889,7 +19915,7 @@
       "name": "keyboard-insulators",
       "file": "meshes/keyboard-insulators.stl",
       "color": "#59424a",
-      "sha256": "372efe71dc6f7bfe77147c1f69c01c0fe1c735e5c1af47ffa4c9e32ff7230324",
+      "sha256": "2be377278b465fb010095439a29db00c05686ba20c71a38531f10067654d7636",
       "section": "interior",
       "material": "plastic"
     },
@@ -19897,7 +19923,7 @@
       "name": "keyboard-matrix-artwork",
       "file": "meshes/keyboard-matrix-artwork.stl",
       "color": "#487856",
-      "sha256": "004ef00378741c3527c1f806856b42e57f7d0d9b423eb6bca183bc539bdc84a6",
+      "sha256": "25521ef345a2eecd8bbfd9e93c5b8ad5e020b9e1cc152b8fcab53ed075cc5c68",
       "section": "interior",
       "material": "pcb"
     },
@@ -20010,7 +20036,7 @@
       "name": "keyboard-pcb-metal",
       "file": "meshes/keyboard-pcb-metal.stl",
       "color": "#bec4bd",
-      "sha256": "e5afc6eed2b62035c107c365d8b228b8eac33ad1a35520dc5fc4379c51c3da82",
+      "sha256": "6c574c3852fddd09f148c42fec3024be8435c7537fd8447b7ad995cb1fe0b16e",
       "section": "interior",
       "material": "solder"
     },
@@ -20061,7 +20087,7 @@
       "name": "keyboard-guides",
       "file": "meshes/keyboard-guides.stl",
       "color": "#d9d9c8",
-      "sha256": "c8fd6ba0031876c32722349b0e215d4cb8afe34bbc498ec55ab178ab0ab60893",
+      "sha256": "84af50abd7dbb67b16717975b8648ea6a1a7e8a44c8313e7ccb5179905c855c0",
       "section": "interior",
       "material": "plastic"
     },
@@ -20069,7 +20095,7 @@
       "name": "keyboard-contact-pads",
       "file": "meshes/keyboard-contact-pads.stl",
       "color": "#363833",
-      "sha256": "a8a14e799850e01a37bccce3464e0f072774d266b88e81cfbdb63e494724bc12",
+      "sha256": "781a95d65e0eb3cc8ea81fd3249e2bbf9a4bd8a4da64616f8d2ab72bb4734ba5",
       "section": "interior",
       "material": "plastic"
     },
@@ -24050,9 +24076,9 @@
   ],
   "keyboard": {
     "y": -355,
-    "z": 28,
-    "slope": 6,
-    "pitch": 19.0
+    "z": 30.8244,
+    "slope": 5.03193,
+    "pitch": 19
   },
   "screen": {
     "size": [
@@ -24589,7 +24615,8 @@
     "PXL_20261012_185826600.jpg",
     "PXL_20261012_185834871.jpg",
     "PXL_20261012_185855185.jpg",
-    "PXL_20261012_190054608.jpg"
+    "PXL_20261012_190054608.jpg",
+    "PXL_20261013_084425145.jpg"
   ],
   "pcbReferences": [
     {
