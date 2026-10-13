@@ -4,7 +4,7 @@ import * as THREE from "three";
 // Grain is evaluated in model millimetres, so it wraps every face at the same
 // scale without UV seams, repeated cables, feet, shadows or reflections.
 export function specimenMaterial(color, profile = {}) {
-  const { grain = 0, grainScale = 3, grainRelief = grain * 0.4, ...physical } = profile;
+  const { grain = 0, grainScale = 3, grainRelief = grain * 0.4, grainStretch = [1,1,1], ...physical } = profile;
   const Material = physical.clearcoat
     ? THREE.MeshPhysicalMaterial
     : THREE.MeshStandardMaterial;
@@ -13,6 +13,7 @@ export function specimenMaterial(color, profile = {}) {
   material.onBeforeCompile = (shader) => {
     shader.uniforms.grainAmount = { value: grain };
     shader.uniforms.grainScale = { value: grainScale };
+    shader.uniforms.grainStretch = { value: new THREE.Vector3(...grainStretch) };
     // Relief is in model millimetres; the museum places the model at 0.0025.
     shader.uniforms.grainRelief = { value: grainRelief * 0.0025 };
     shader.vertexShader =
@@ -25,6 +26,7 @@ export function specimenMaterial(color, profile = {}) {
       `
       varying vec3 specimenPosition;
       uniform float grainAmount, grainScale, grainRelief;
+      uniform vec3 grainStretch;
       float grainHash(vec3 p) {
         p=fract(p*.1031); p+=dot(p,p.yzx+33.33);
         return fract((p.x+p.y)*p.z);
@@ -40,9 +42,9 @@ export function specimenMaterial(color, profile = {}) {
     shader.fragmentShader = shader.fragmentShader.replace(
       "#include <color_fragment>",
       `#include <color_fragment>
-       float specimenGrain=specimenNoise(specimenPosition*grainScale)-.5;
+       float specimenGrain=specimenNoise(specimenPosition*grainScale*grainStretch)-.5;
        // Fade subpixel grain to prevent distant shimmer.
-       float grainVisibility=1.0-smoothstep(.4,1.8,length(fwidth(specimenPosition*grainScale)));
+       float grainVisibility=1.0-smoothstep(.4,1.8,length(fwidth(specimenPosition*grainScale*grainStretch)));
        specimenGrain*=grainVisibility;
        diffuseColor.rgb*=1.0+specimenGrain*grainAmount;`,
     );
@@ -60,7 +62,7 @@ export function specimenMaterial(color, profile = {}) {
          (dFdx(specimenGrain)*grainR1+dFdy(specimenGrain)*grainR2)*grainRelief);`,
     );
   };
-  material.customProgramCacheKey = () => "specimen-grain-v2";
+  material.customProgramCacheKey = () => "specimen-grain-v3";
   return material;
 }
 

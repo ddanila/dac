@@ -139,12 +139,17 @@ function keyButtons(keys) {
     $("key-list").append(button);
   }
 }
+let driveTransferSupported = false, driveAvailable=[false,false];
 let driveDoors = [false, false], driveDoorsSupported = false, drivePresent = [false,false];
 function toggleDriveLever(unit) {
   if (replayBusy || !ready || !driveDoorsSupported) return;
   send({ type: "drive-door", unit, open: !driveDoors[unit] });
 }
 for (const u of [0,1]) {
+  const transfer=document.createElement("button");transfer.id="drive-transfer-"+u;
+  transfer.textContent=`Move removed disk to ${u?"A":"B"}`;
+  transfer.onclick=()=>send({type:"drive-transfer",from:u,to:1-u});
+  $("drive-handling").append(transfer);
   $("drive-lever-"+u).onclick = () => toggleDriveLever(u);
   $("drive-media-"+u).onclick = () => {
     if (!replayBusy) send({type:"drive-inserted", unit:u, inserted:!drivePresent[u]});
@@ -155,9 +160,18 @@ try {
   scene = createScene($("viewport"), screen, power, resetMachine, {
     onKey: modelKey,
     onDriveLever: toggleDriveLever,
-    onInsertDisk: (unit) => {
-      if (!replayBusy && ready && driveDoorsSupported && driveDoors[unit] && !drivePresent[unit])
-        send({type:"drive-inserted", unit, inserted:true});
+    diskDropStatus: (from,to) => {
+      if(replayBusy || !ready) return "Controls unavailable during replay or loading";
+      if(drivePresent[from] || !driveAvailable[from]) return "Remove the disk first";
+      if(from!==to && !driveDoors[from]) return "Open the source drive lever before moving this disk";
+      if(!driveDoors[to]) return `Open drive ${to ? "B" : "A"} lever`;
+      if(drivePresent[to]) return `Drive ${to ? "B" : "A"} is occupied`;
+      if(from!==to && !driveTransferSupported) return "This preserved emulator cannot move disks between drives";
+      return "";
+    },
+    onInsertDisk: (from,to=from) => {
+      if (!replayBusy && ready && driveDoorsSupported && driveDoors[to] && !drivePresent[to])
+        send(from===to?{type:"drive-inserted",unit:to,inserted:true}:{type:"drive-transfer",from,to});
     },
     onInspect: (name) => {
       const focus = name.startsWith("focus-")
@@ -334,7 +348,7 @@ worker.onmessage = ({ data: d }) => {
     hasState = !!d.hasState;
     $("restore-state").disabled = !hasState;
     $("save-state").disabled = $("export-state").disabled = true;
-    $("forget-disk").disabled = !disk;
+    $("forget-disk").disabled = !disk && !diskB;
     for (const button of $("key-list").querySelectorAll("[data-key]")) {
       const key = modelKeys.find((k) => k.id === button.dataset.key);
       button.title = firmwareKeyboard
@@ -349,6 +363,11 @@ worker.onmessage = ({ data: d }) => {
     if (d.writableA !== undefined) $("writable").checked = d.writableA;
     if (d.writableB !== undefined) $("writable-b").checked = d.writableB;
     $("export").disabled = !disk;
+  }
+  if (d.type === "media-moved") {
+    disk=d.present[0];updateDriveB(d.present[1]);
+    $("export").disabled=!disk;$("forget-disk").disabled=on||(!disk&&!diskB);
+    $("writable").checked=!!d.writable[0];$("writable-b").checked=!!d.writable[1];
   }
   if (d.type === "power") {
     on = d.on;
@@ -368,7 +387,7 @@ worker.onmessage = ({ data: d }) => {
     for (const id of ["disk-b", "writable-b", "insert-b", "blank-b"])
       $(id).disabled = on;
     $("eject-b").disabled = on || !diskB;
-    $("forget-disk").disabled = on || !disk;
+    $("forget-disk").disabled = on || (!disk && !diskB);
     for (const id of [
       "load",
       "demo",
@@ -384,10 +403,14 @@ worker.onmessage = ({ data: d }) => {
       $(id).disabled = on;
   }
   if (d.type === "frame") {
+    driveTransferSupported = !!d.driveTransferSupported;
+    driveAvailable = d.driveAvailable || [false,false];
     driveDoorsSupported = !!d.driveDoorsSupported;
     driveDoors = (d.drives || [0,0]).map(v => !!(v & 32));
     drivePresent = (d.drives || [0,0]).map(v => !!(v & 8));
     for (const u of [0,1]) {
+      const transfer=$("drive-transfer-"+u);
+      transfer.disabled=replayBusy||!driveTransferSupported||!driveAvailable[u]||drivePresent[u]||!driveDoors[u]||!driveDoors[1-u]||drivePresent[1-u];
       const button = $("drive-lever-"+u);
       const disabled = replayBusy || !driveDoorsSupported;
       if (button.disabled !== disabled) button.disabled = disabled;
@@ -432,7 +455,7 @@ worker.onmessage = ({ data: d }) => {
     }
     if (Number($("machine").value) === 2) {
       const drives = d.drives || [0, 0];
-      scene?.drives(drives, d.driveMechanics, d.driveAvailable);
+      scene?.drives(drives, d.driveMechanics, d.driveAvailable, d.driveLabels);
       if ($("drive-diagnostics").open) {
         $("drive-diagnostic-values").textContent = on
           ? drives
@@ -606,6 +629,7 @@ $("forget-disk").onclick = () => {
 $("export").onclick = () => send({ type: "export" });
 function updateDriveB(present) {
   diskB = !!present;
+  $("forget-disk").disabled = on || (!disk && !diskB);
   scene?.media([disk, diskB]);
   $("export-b").disabled = !diskB;
   $("eject-b").disabled = on || !diskB;

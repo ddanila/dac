@@ -127,6 +127,7 @@ let paste,
 let mountKey,
   mounts = [],
   libraries = [];
+let diskLabels = ["Disk 1", "Disk 2"];
 async function publishLibrary() {
   postMessage({
     type: "library",
@@ -320,6 +321,9 @@ function frame() {
       activity: module._dac_disk_activity(handle),
       keyboardLeds: module._dac_keyboard_leds(handle),
       drive: module._dac_drive_status(handle),
+      driveTransferSupported: !!module._dac_drive_transfer,
+      driveLabels: diskLabels,
+      driveProtection: writableUnits.map(Boolean),
       driveDoorsSupported: !!module._dac_drive_door,
       driveAvailable: [0,1].map(u => !!module._dac_disk_size_unit(handle, u)),
       drives: [0, 1].map((u) => module._dac_drive_status_unit(handle, u)),
@@ -520,9 +524,12 @@ async function receive(d) {
       mountKey = "mounts:" + identity;
       mounts = d.remember ? (await stored(mountKey)) || [] : [];
       libraries = [];
+      diskLabels = ["Disk 1", "Disk 2"];
       for (const u of [0, 1]) {
         const entry = mounts[u];
         if (!entry) continue;
+        if (entry.label) diskLabels[u] = entry.label;
+        if (entry.empty) { if(u) {d.diskB=null;d.writableB=false;} else {d.disk=null;d.writable=false;} continue; }
         if (
           !(entry.bytes instanceof ArrayBuffer) ||
           (await digest(entry.bytes)) !== entry.sha256
@@ -605,6 +612,13 @@ async function receive(d) {
         copy(imageB, (p, n) =>
           module._dac_mount_unit(handle, 1, p, n, Number(d.writableB)),
         );
+      if (kind === 2 && module._dac_drive_door) for (const u of [0,1]) {
+        const entry=mounts[u];
+        if(entry?.ejected && module._dac_disk_size_unit(handle,u)) {
+          module._dac_drive_door(handle,u,1);module._dac_drive_inserted(handle,u,0);
+        }
+        if(entry?.doorOpen !== undefined) module._dac_drive_door(handle,u,Number(entry.doorOpen));
+      }
       postMessage({
         type: "configured",
         diskB: !!imageB,
@@ -742,15 +756,38 @@ async function receive(d) {
       ]);
     } else if (d.type === "import-state") {
       await importState(d.bytes);
+    } else if (d.type === "drive-transfer") {
+      await persistDisk(true);
+      if (!module._dac_drive_transfer || module._dac_drive_transfer(handle,d.from,d.to)<0)
+        throw Error("Remove the disk first; both levers must be open and the target drive empty. Wait for the controller to finish its command.");
+      recordEvent([11,d.from,d.to]);
+      if(d.from!==d.to) for(const values of [identities,writableUnits,libraries,diskLabels])
+        [values[0],values[1]]=[values[1],values[0]];
+      writable=!!writableUnits[0];
+      // Capture actual bytes before yielding. Keep explicit empty slots so a
+      // reload cannot silently put the stock A disk back after moving it to B.
+      const images=[diskBytes(0),diskBytes(1)];
+      mounts=await Promise.all(images.map(async(bytes,u)=>({
+        ...(bytes.byteLength?{bytes,sha256:await digest(bytes),writable:!!writableUnits[u],library:libraries[u]}:{empty:true}),
+        label:diskLabels[u], ejected:!(module._dac_drive_status_unit(handle,u)&8),
+        doorOpen:!!(module._dac_drive_status_unit(handle,u)&32),
+      })));
+      for(const u of [0,1]) identities[u]=u && !images[u].byteLength ? null : await sessionIdentity(kind,firmware,images[u].byteLength?images[u]:null)+(libraries[u]?":"+libraries[u]:"");
+      refreshStateKey(); await saveMounts(); await persistDisk(true);
+      postMessage({type:"media-moved",present:images.map(b=>!!b.byteLength),writable:writableUnits});
+      storageStatus(`${diskLabels[d.to]} inserted in drive ${d.to?"B":"A"}.`);
+      frame();
     } else if (d.type === "drive-inserted") {
       if (!module._dac_drive_inserted || module._dac_drive_inserted(handle, d.unit, Number(d.inserted)) < 0)
         throw Error("Open the drive lever before removing or inserting its disk.");
       recordEvent([10, d.unit, Number(d.inserted)]);
+      if(mounts[d.unit]) { mounts[d.unit].ejected=!d.inserted; await saveMounts(); }
       frame();
     } else if (d.type === "drive-door") {
       if (kind !== 2 || !module._dac_drive_door) throw Error("Reload media to use working drive levers with this emulator version.");
       if (module._dac_drive_door(handle, d.unit, Number(d.open)) < 0) throw Error("Drive lever rejected.");
       recordEvent([9, d.unit, Number(d.open)]);
+      if(mounts[d.unit]) { mounts[d.unit].doorOpen=!!d.open; await saveMounts(); }
       frame();
     } else if (d.type === "mount-b") {
       if (kind !== 2 || running)
@@ -942,6 +979,7 @@ async function receive(d) {
         "export-state",
         "mount-b",
         "protect-b",
+        "drive-transfer",
         "printer",
       ].includes(d.type)
     )

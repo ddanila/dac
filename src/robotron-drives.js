@@ -53,6 +53,7 @@ export function createDriveMotion(objects, descriptions = []) {
     demo = null,
     mechanics = null,
     available = null,
+    parkingSlots = [0,1],
   ) => {
     const dt = last === undefined ? 0 : Math.min(0.05, (now - last) / 1000);
     last = now;
@@ -74,7 +75,7 @@ export function createDriveMotion(objects, descriptions = []) {
       const outside = Math.min(1, (1 - d.insertion) * 2);
       const parking = parked ? Math.max(0, 1 - d.insertion * 2) : 0;
       const slide = -145 * outside + parking * (199 + split * 145);
-      const side = parking * (330 + d.unit * 145 - d.pivot[0]);
+      const side = parking * (330 + (parkingSlots[d.unit] ?? d.unit) * 145 - d.pivot[0]);
       const lower = parking * (5 - d.pivot[2] - split * 115);
       moving ||= d.insertion !== target;
       const telemetry = mechanics?.[d.unit];

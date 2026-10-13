@@ -22,5 +22,9 @@
   "a6eac6b2eba6d379329185348f963eea74b56ffa6ae219680b2bc220e2f33770": {
     "version": "0.7.1",
     "javascript": "710cba37b450854e428e45b34781e9db848786822f3671383634b4afc6697540"
+  },
+  "a0b3cb1c700b4679b59c137fc7180f96b0add04fbe7a287adc12580d76d1b52b": {
+    "version": "0.8.0",
+    "javascript": "9640389ca9e02a5a1ad2fc6e078f3a8eaaf6cb9cfe2f0d02e068c9f6c864fd58"
   }
 }

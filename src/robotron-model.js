@@ -74,7 +74,7 @@ function surface(width, height, radius = 0, bulge = 0) {
   geometry.computeVertexNormals();
   return geometry;
 }
-export async function loadRobotron(displayTexture, onProgress = () => {}) {
+export async function loadRobotron(displayTexture, onProgress = () => {}, onDetails = () => {}) {
   onProgress(0);
   const base = new URL(
     "models/robotron-1715m/",
@@ -96,10 +96,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     keyGeometry = new Map();
   const filenames = new Map(data.patches.map(p => [p.texture || `photos/${p.photo}`, p.textureSha256]));
   // Fixed denominator across all load phases: no resets when a new batch starts.
-  const packages = (data.pcbComponents?.models || []).filter(model =>
-    data.pcbComponents.instances.some(instance => instance.model === model.id));
-  const total = 2 + filenames.size + data.parts.length + data.keyMeshes.length +
-    packages.length * 2 + (data.pcbReferences || []).length;
+  const total = 2 + filenames.size + data.parts.length + data.keyMeshes.length;
   let completed = 1;
   const advance = () => onProgress(Math.min(99, Math.floor(++completed * 100 / total)));
   onProgress(Math.floor(completed * 100 / total));
@@ -268,16 +265,19 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       objects.set(mesh.name, mesh);
     }
   }
-  const packageMeshes = await loadPcbComponents(data, base, advance);
-  for (const mesh of packageMeshes) {
-    group.add(mesh);
-    objects.set(mesh.name, mesh);
+  const pcbPhotos=[];
+  let detailPromise;
+  function loadDetails() {
+    if(detailPromise)return detailPromise;
+    onDetails("loading");
+    detailPromise=Promise.all([loadPcbComponents(data,base),loadPcbPhotos(data,base)]).then(([packages,photos])=>{
+      for(const mesh of packages){group.add(mesh);objects.set(mesh.name,mesh);}
+      for(const mesh of photos){mesh.visible=false;group.add(mesh);pcbPhotos.push(mesh);}
+      inspectionDirty=true;group.userData.newDetails=true;onDetails("ready");
+    }).catch(error=>{onDetails("error");throw error;});
+    return detailPromise;
   }
-  const pcbPhotos = await loadPcbPhotos(data, base, advance);
-  for (const mesh of pcbPhotos) {
-    mesh.visible = false;
-    group.add(mesh);
-  }
+  function requestDetails(){loadDetails().catch(error=>console.error("Interior details unavailable",error));}
   const keyboard = new THREE.Group();
   keyboard.position.set(0, data.keyboard.y, data.keyboard.z);
   keyboard.rotation.x = THREE.MathUtils.degToRad(data.keyboard.slope);
@@ -612,13 +612,15 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
   let driveStates = [0, 0],
     driveMechanics = null,
     drivesDirty = false;
-  let driveAvailable = null;
+  const dropHighlight=new THREE.Mesh(new THREE.PlaneGeometry(146,46),new THREE.MeshBasicMaterial({transparent:true,opacity:.35,depthWrite:false,side:THREE.DoubleSide}));
+  dropHighlight.rotation.x=Math.PI/2;dropHighlight.visible=false;
+  let driveAvailable = null, mediaLabels=[];
   const diskTags = [0,1].map(unit => {
     const canvas = document.createElement("canvas"); canvas.width=128; canvas.height=48;
     const c=canvas.getContext("2d"); c.fillStyle="#182624"; c.fillRect(0,0,128,48);
-    c.fillStyle="#ffffff"; c.font="bold 28px sans-serif"; c.textAlign="center"; c.fillText(`Disk ${unit ? "B" : "A"}`,64,34);
+    c.fillStyle="#ffffff"; c.font="bold 28px sans-serif"; c.textAlign="center"; c.fillText(`Disk ${unit+1}`,64,34);
     const tag=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(canvas),depthTest:false}));
-    tag.scale.set(70,26,1); tag.position.set(330+unit*145,-175,8); group.add(tag); return tag;
+    tag.scale.set(70,26,1); tag.position.set(330+unit*145,-175,8); group.add(tag); tag.userData.context=c; return tag;
   });
   const moveDrives = createDriveMotion(objects, data.driveMotion);
   const moveFan = createFanMotion(objects.get("fan-rotor"));
@@ -948,6 +950,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
         : null,
       driveMechanics,
       driveAvailable,
+      mediaLabels.map((label,u)=>label === "Disk 1"?0:label === "Disk 2"?1:u),
     );
     for (const mesh of patches) if (mesh.userData.disketteUnit !== undefined) {
       const jacket = objects.get(`drive-diskette-${mesh.userData.disketteUnit}`);
@@ -995,15 +998,17 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       if (["reset-label", "power-label"].includes(mesh.name))
         mesh.visible = inspection.isolated === "all";
     }
+    const newDetails=!!group.userData.newDetails;group.userData.newDetails=false;
     return {
-      dirty: dirty || beforeSplit !== split || drivesMoved,
+      dirty: newDetails || dirty || beforeSplit !== split || drivesMoved,
       shadows:
-        changedInside || beforeSplit !== split || fanMoved || drivesMoved,
+        newDetails || changedInside || beforeSplit !== split || fanMoved || drivesMoved,
     };
   }
   onProgress(100);
   return {
     group,
+    loadDetails,
     detailDistance(distance) {
       const next = distance < (fineDetails ? 2.0 : 1.7);
       if (next !== fineDetails) {
@@ -1012,6 +1017,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       }
     },
     inspect(value) {
+      if(value.transparent || value.referencePhoto || ["logic","motherboard","floppy-controller"].includes(value.isolated) || ["motherboard","floppy-controller"].includes(value.focus)) requestDetails();
       if (
         (value.demoPhase !== undefined &&
           value.demoPhase !== inspection.demoPhase) ||
@@ -1030,11 +1036,17 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       }
       return copy;
     },
-    diskDropTarget(ray, unit) {
+    diskDropHighlight(unit, allowed=false) {
+      if(!dropHighlight.parent) group.add(dropHighlight);
+      dropHighlight.visible=unit!==null;
+      if(unit!==null){dropHighlight.position.set([-158,-4][unit],-215-split*145,80+split*115);dropHighlight.material.color.set(allowed?0x6cf3ac:0xf77b65);}
+    },
+    diskDropTarget(ray) {
       const local = ray.clone().applyMatrix4(group.matrixWorld.clone().invert());
       const target = local.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0), 213 + split*145), new THREE.Vector3());
-      const x = [-231,-77][unit];
-      return !!target && target.x >= x && target.x <= x+146 && target.z >= 55+split*115 && target.z <= 108+split*115;
+      if(!target || target.z < 55+split*115 || target.z >108+split*115) return null;
+      for(const unit of [0,1]) if(target.x >= [-231,-77][unit] && target.x <= [-231,-77][unit]+146) return unit;
+      return null;
     },
     objects,
     keys: data.keys,
@@ -1059,7 +1071,11 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       driveStates = [0, 1].map(u => (driveStates[u] & ~8) | (present[u] ? 8 : 0));
       drivesDirty = true;
     },
-    drives(states, mechanics = null, available = null) {
+    drives(states, mechanics = null, available = null, labels = []) {
+      for(const [u,label] of labels.entries()) if(label!==mediaLabels[u]){
+        const tag=diskTags[u],c=tag.userData.context;c.fillStyle="#182624";c.fillRect(0,0,128,48);c.fillStyle="white";c.fillText(label,64,34);tag.material.map.needsUpdate=true;tag.position.x=330+(label === "Disk 1"?0:label === "Disk 2"?1:u)*145;drivesDirty=true;
+      }
+      mediaLabels=labels.slice();
       drivesDirty ||= JSON.stringify(available) !== JSON.stringify(driveAvailable);
       driveAvailable = available;
       drivesDirty ||=
@@ -1090,10 +1106,12 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
       releaseKeys();
     },
     interior(value) {
+      if(value) requestDetails();
       inside = value;
       releaseKeys();
     },
     separate(value) {
+      if(value) requestDetails();
       splitTarget = value ? 1 : 0;
       releaseKeys();
     },

@@ -233,10 +233,14 @@ optimizations retain geometry and the existing interaction-test time limits.
 
 The 3D scene retains complete drive frames while meshes load, including door,
 head position and mechanical state. Media-only updates preserve the other bits.
-Removed session disks remain beside the case with separate A/B museum labels.
-Drag a disk into its matching open drive, or use the accessible Insert disk
-button; closed doors and playback reject insertion. Disk bytes stay in the core.
-Moving one image between A and B is not implemented by this gesture.
+Removed session disks remain beside the case with stable Disk 1/2 labels.
+Drag a disk into either open, empty drive, or use the accessible Insert/Move
+buttons. Green/red target feedback explains closed or occupied drives. The
+0.8.1 core transfers actual bytes, format metadata and write protection atomically;
+a second removed disk remains parked. Mounts and empty slots survive reload, and
+transfers are recorded for deterministic browser/native replay. A busy controller
+rejects a transfer until its command finishes. Preserved older cores retain their
+original capabilities.
 
 Diskette inspection loads the canonical jacket, magnetic medium, label and paper
 sleeve meshes on demand. Orbit/zoom, flip, and slide the disk into/out of the
@@ -255,3 +259,23 @@ fallback. They exercise sidebar controls, persistence, paste and replay, while
 the dedicated museum, keyboard, assembly and drive suites retain full geometry.
 This avoids repeatedly compiling/rendering the full exhibit during core reload
 checks on software WebGL; assertions and per-test deadlines remain unchanged.
+
+
+### Key mechanism, PCB finish and rendering
+
+The key mechanism card loads canonical cap, carrier, spring, rubber, guide, mount,
+contact and PCB meshes independently. Hold a key, adjust travel or separate the
+parts; a transparent view exposes the mechanism. This is a mechanical inspection,
+not an OS input control. The owner's spring dimensions are measured; installed
+travel and hidden contact geometry remain estimates.
+
+Controller PCB lead holes, solder fillets and owner-readable chip markings add
+underside detail. Rubber, clear plastic, brushed metal and paper use shared CAD
+material profiles; no wear is baked into the exhibit. The keyboard exterior and
+physical print-verification statuses are unchanged.
+
+Main-scene and specimen rendering stop offscreen or in a hidden tab. Specimen
+viewers draw only on interaction/animation and dispose their resources on close.
+Detailed KiCad packages and comparison PCB photographs load only when interiors
+are requested, with a visible loading status. Core simulation remains independent
+of rendering visibility. No Verilog simulation is required for these checks.

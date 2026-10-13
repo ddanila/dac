@@ -1,6 +1,13 @@
+import { createKeyViewer } from "./key-viewer.js";
 import { createDisketteViewer } from "./diskette-viewer.js";
 let disketteViewer, detailGeneration=0;
 export const inspections = {
+  "key-mechanism": {
+    title:"One key, from cap to contact",
+    text:"Isolate and press a complete spring-return key. The rubber pad meets two separated PCB electrodes. This is a mechanical demonstration; the keyboard controller and OS are unchanged. The dimensions of the spring are owner measurements; installed compression, travel and contact pattern remain estimates.",
+    photo:"20261012_185834871",
+    views:[["Loose key parts","20261012_185834871"],["Switch base","20261012_185855185"],["Keyboard PCB","20261012_123907435"]],
+  },
   diskette: {
     title: "Danila’s diskette and storage sleeve",
     text: "This is the diskette used with the museum machine. The handwritten label belongs to this specimen; the emulated disk contents are selected separately. The white sleeve is the one Danila uses, not original packaging. Rotate and flip the CAD model, or slide the disk into its sleeve. The sleeve uses clean paper geometry; its printed instructions remain available in the reference photos below. A/B labels beside removed session disks identify their drive, not markings on this physical specimen. Drag a removed disk into its matching open drive, or use Insert disk.",
@@ -212,10 +219,10 @@ export function showSpecimenDetail(name = currentInspection) {
     choices.append(button);
   }
   document.getElementById("specimen-detail").showModal();
-  if(name==="diskette") {
-    const host=document.createElement("div");host.id="diskette-viewer";host.setAttribute("aria-label","Rotate the 3D diskette and sleeve");
+  if(name==="diskette" || name==="key-mechanism") {
+    const host=document.createElement("div");host.id="diskette-viewer";host.setAttribute("aria-label",name==="diskette"?"Rotate the 3D diskette and sleeve":"Inspect a complete key mechanism");
     const tools=document.createElement("div");tools.id="diskette-tools"; choices.before(host,tools);
-    createDisketteViewer(host,tools).then(viewer=>{if(generation!==detailGeneration)viewer.dispose();else disketteViewer=viewer;});
+    Promise.resolve(name==="diskette"?createDisketteViewer(host,tools):createKeyViewer(host,tools)).then(viewer=>{if(generation!==detailGeneration)viewer.dispose();else disketteViewer=viewer;});
   }
 }
 document.getElementById("reference-details").onclick = () =>
