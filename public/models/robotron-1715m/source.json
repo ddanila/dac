@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "f4a11600a7cc7a9f8e40e25ff24ddf29cc7b1303",
+  "revision": "15aa500c19ab9426af51b2c7e95ccade523032b8",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "f90323e4c9a02aea429e31cc15190a428e73c4908af6376420d8b77e33c34bb3"
+      "sha256": "e1f051c409cef8a420d861d6be929b90251d25651a5b5a14a157e35307206dc5"
     },
     {
       "file": "LICENSE",
@@ -572,6 +572,22 @@
       "sha256": "5b3f431104fd9a57a8703bdbfb35b76a238e02e712e27a5ab7096267760036d7"
     },
     {
+      "file": "meshes/drive-diskette-0.stl",
+      "sha256": "9a190a9bffe95d842cab9637e799cf0fbadbb1bdeb0bc83c3e8e6cc77c2a7b86"
+    },
+    {
+      "file": "meshes/drive-diskette-1.stl",
+      "sha256": "e2f3a92deda338ee4087f60e486e4afe8ba30c69e8f44fc79ad29fc40654fe38"
+    },
+    {
+      "file": "meshes/drive-diskette-label-0.stl",
+      "sha256": "24ed10f00761dd919be73bb02a04634bcfb429c7b70a50ff5e8a2f8198b373ea"
+    },
+    {
+      "file": "meshes/drive-diskette-label-1.stl",
+      "sha256": "1f9d7b1a6b34438e62ab183d608afcf602a0a903157261e2c5edf4064b88e77c"
+    },
+    {
       "file": "meshes/keycap-0.stl",
       "sha256": "739896adef17f9dc30b42e374c40c58a52892cdaaa955efb2a686f0f10faf2dd"
     },
@@ -973,23 +989,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "cebb4b4710f2f9a0bda4caa8216b64624f759fe41b36392e73a57476fa4baaa7"
+      "sha256": "2068f5887d21754c6918f0d02a072d794082e0e0bf94a3493b807e8852786fa9"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "5dde8ec51bd73dfd522519a3e137b15d8d729a187fe3508897c091b7691f0fa9"
+      "sha256": "2a08d67cbc112ffa615742d95e28323b258a3573da92130db6599472be4ebf04"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "e381d579e019ff0d4ae56f8e7aba86a500b6e1256af3abe6568c34373848455a"
+      "sha256": "0bc3e50bdc2ad03829855063f8a091aa7b22c95266553372e03b331c9111f64e"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "ba0cfdbe5896d6aecfdebeaccb1c33a1a134af7777be1e0dbf83c62b27e8dcd7"
+      "sha256": "a7f795372c237fcdb1a467a9e9c51d94d8e9bc7dac29558813f71fc59fcce0aa"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "a933563744e662d974000917468c0d869068bb90ae2bdab5d29ffd1e8bb4c365"
+      "sha256": "79af0a82766a16e982f6bff33bf9dc104a204ebad310bf6ca0369557c6cd127b"
     }
   ]
 }

@@ -16,9 +16,9 @@ export function createDriveMotion(objects, descriptions = []) {
     if (medium) {
       medium.geometry.translate(...d.pivot.map((v) => -v));
       medium.material = medium.material.clone();
-      medium.material.transparent = true;
-      medium.material.opacity = 0.35;
-      medium.material.depthWrite = false;
+      medium.material.transparent = false;
+      medium.material.opacity = 1;
+      medium.material.depthWrite = true;
     }
     return {
       ...d,
@@ -29,6 +29,8 @@ export function createDriveMotion(objects, descriptions = []) {
       headMetal,
       headArm,
       medium,
+      jacket: objects.get(d.jacket),
+      disketteLabel: objects.get(d.disketteLabel),
       angle: 0,
     };
   });
@@ -54,7 +56,7 @@ export function createDriveMotion(objects, descriptions = []) {
           : Math.min(79, mechanics?.[d.unit]?.position ?? (state >> 8) & 255),
         clampAmount = demo
           ? 0.5 - 0.5 * Math.cos(phase * Math.PI * 2)
-          : Number(clampsOpen);
+          : Number(clampsOpen || !(state & 8));
       const telemetry = mechanics?.[d.unit];
       if (!demo && telemetry && !reduced) {
         const angle = telemetry.phase * 2 * Math.PI;
@@ -96,9 +98,15 @@ export function createDriveMotion(objects, descriptions = []) {
         d.headArm.rotation.x = -0.08 * (1 - load);
       }
       if (d.medium) {
-        d.medium.visible = d.spindle.visible && !!(state & 8) && !clampsOpen;
+        d.medium.visible = d.spindle.visible && !!(state & 8);
         d.medium.position.copy(d.spindle.position);
         d.medium.rotation.z = d.spindle.rotation.z;
+      }
+      // The sleeve does not rotate with the magnetic disc. A released clamp
+      // is an inspection state, not media ejection.
+      for (const jacket of [d.jacket, d.disketteLabel]) if (jacket) {
+        jacket.visible = !!(state & 8);
+        jacket.position.set(0, -split * 145, split * 115);
       }
       if (d.latch) {
         d.latch.position.set(
@@ -106,7 +114,7 @@ export function createDriveMotion(objects, descriptions = []) {
           d.latchPivot[1] - split * 145,
           d.latchPivot[2] + split * 115,
         );
-        d.latch.rotation.y = (clampAmount * Math.PI) / 2;
+        d.latch.rotation.y = ((1 - clampAmount) * Math.PI) / 2;
       }
       if (d.clamp)
         d.clamp.position.set(0, -split * 145, split * 115 + clampAmount * 5);

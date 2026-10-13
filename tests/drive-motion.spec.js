@@ -164,3 +164,31 @@ test("diagnostics distinguish controller selection, index counts and unavailable
   );
   expect(describeDrive(0, null, 0)).toContain("unavailable");
 });
+
+test('inserted diskettes close levers without power; sleeves stay still and clamps do not eject media', () => {
+  const objects = new Map();
+  const descriptions = [0,1].map(unit => {
+    const d = { unit, pivot:[0,0,0], latchPivot:[0,0,0], travel:[0,-20,0] };
+    for (const part of ['spindle','head','latch','clamp','medium','jacket','disketteLabel']) {
+      d[part] = `${part}-${unit}`;
+      objects.set(d[part], new Mesh(new BoxGeometry(),new MeshBasicMaterial()));
+    }
+    return d;
+  });
+  const move = createDriveMotion(objects,descriptions);
+  move(0,[8,0],false,0,false);
+  expect(objects.get('latch-0').rotation.y).toBeCloseTo(Math.PI/2);
+  expect(objects.get('latch-1').rotation.y).toBe(0);
+  expect(objects.get('jacket-0').visible).toBe(true);
+  expect(objects.get('jacket-1').visible).toBe(false);
+  move(10,[8,8],true,1,false,true,null,[{phase:.25},{phase:.5}]);
+  expect(objects.get('latch-0').rotation.y).toBe(0);
+  expect(objects.get('jacket-0').visible).toBe(true);
+  expect(objects.get('medium-0').visible).toBe(true);
+  expect(objects.get('medium-0').rotation.z).toBeCloseTo(Math.PI/2);
+  expect(objects.get('jacket-0').rotation.z).toBe(0);
+  expect(objects.get('disketteLabel-0').position.y).toBe(-145);
+  move(20,[0,8],false,0,true);
+  expect(objects.get('jacket-0').visible).toBe(false);
+  expect(objects.get('latch-1').rotation.y).toBeCloseTo(Math.PI/2);
+});

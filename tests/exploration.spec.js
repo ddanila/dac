@@ -19,7 +19,7 @@ test("mechanical demonstration restores live head and latch state without changi
     before = states.slice();
   move(0, states, true, 0, false, false, { phase: 0.5, animate: false });
   expect(objects.get("drive-head-0").position.y).toBeCloseTo((-79 * 25.4) / 96);
-  expect(objects.get("drive-latch-0").rotation.y).toBeCloseTo(Math.PI / 2);
+  expect(objects.get("drive-latch-0").rotation.y).toBeCloseTo(0);
   move(16, states, true, 0, false, false);
   expect(objects.get("drive-head-0").position.y).toBeCloseTo(
     (((-79 * 25.4) / 96) * 23) / 79,
