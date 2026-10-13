@@ -74,6 +74,7 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
       "/node_modules/three/build/three.module.js"
     );
     const model = await loadRobotron(new Texture());
+    await model.loadDetails();
     model.tick();
     const springs = model.group.getObjectByName("keyboard-springs");
     const stems = model.group.getObjectByName("keyboard-stems");

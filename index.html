@@ -50,7 +50,7 @@
             <div class="stage-bottom">
               <span>DRAG TO ROTATE · SCROLL TO ZOOM</span>
               <div class="views">
-                <button data-view="overview">Overview</button
+                <button id="reset-exhibit-view" type="button">Reset view</button><button data-view="overview">Overview</button
                 ><button data-view="front">Front</button
                 ><button data-view="typing" data-robotron>Type</button
                 ><button data-view="keyboard" data-robotron>Keyboard</button
@@ -109,7 +109,7 @@
                   <a
                     download
                     href="models/robotron-1715m/downloads/floppy-controller.zip"
-                    >Floppy controller model</a
+                    >Original 1715 FDC reference model</a
                   >
                 </li>
                 <li>
@@ -267,7 +267,7 @@
               <option value="drives">Drives</option>
               <option value="logic">Logic boards</option>
               <option value="motherboard">Motherboard</option>
-              <option value="floppy-controller">Floppy controller</option>
+              <option value="floppy-controller">1715 FDC (comparative)</option>
               <option value="monitor">Monitor</option>
               <option value="psu">Power supply and fan</option>
             </select>
@@ -277,7 +277,7 @@
               <option value="head">Head carriage</option>
               <option value="spindle">Spindle</option>
               <option value="clamp">Clamp and latch</option>
-              <option value="floppy-controller">Floppy controller</option>
+              <option value="floppy-controller">1715 FDC (comparative)</option>
               <option value="motherboard">Motherboard</option>
             </select>
             <div class="secondary-controls">
@@ -512,7 +512,8 @@
             <p id="runtime-status" role="status"></p>
           </details>
           <button data-robotron data-component="key-mechanism">Inspect one key mechanism</button>
-          <div data-robotron id="drive-handling" aria-label="Drive levers">
+          <label class="check"><input type="checkbox" id="inspection-labels" /> Inspection labels</label>
+              <div data-robotron id="drive-handling" aria-label="Drive levers">
             <button id="drive-lever-0" disabled>Open drive A lever</button>
             <button id="drive-lever-1" disabled>Open drive B lever</button>
             <button id="drive-media-0" disabled>Remove disk A</button>

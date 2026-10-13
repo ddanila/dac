@@ -96,7 +96,10 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     keyGeometry = new Map();
   const filenames = new Map(data.patches.map(p => [p.texture || `photos/${p.photo}`, p.textureSha256]));
   // Fixed denominator across all load phases: no resets when a new batch starts.
-  const total = 2 + filenames.size + data.parts.length + data.keyMeshes.length;
+  const deferred = data.parts.filter(p => p.section === "monitor-interior" ||
+    (p.section === "interior" && p.name.startsWith("keyboard-")));
+  const deferredNames = new Set(deferred.map(p => p.name));
+  const total = 2 + filenames.size + data.parts.length - deferred.length + data.keyMeshes.length;
   let completed = 1;
   const advance = () => onProgress(Math.min(99, Math.floor(++completed * 100 / total)));
   onProgress(Math.floor(completed * 100 / total));
@@ -111,10 +114,10 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   );
   await Promise.all(
     data.parts.map(async (part) => {
-      const geometry = toCreasedNormals(
-        await stl.loadAsync(modelAsset(part.file, base, part.sha256).href),
-        Math.PI / 4,
-      );
+      const lazy=deferredNames.has(part.name);
+      const geometry = lazy ? new THREE.BufferGeometry() : toCreasedNormals(
+        await stl.loadAsync(modelAsset(part.file, base, part.sha256).href), Math.PI / 4);
+
       const mesh = new THREE.Mesh(
         geometry,
         specimenMaterial(part.color, data.materials[part.material]),
@@ -131,8 +134,9 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       mesh.userData.prototype = part.section === "prototype";
       if (mesh.userData.prototype) mesh.visible = false;
       group.add(mesh);
+      mesh.userData.loaded=!lazy;
       objects.set(part.name, mesh);
-      advance();
+      if(!lazy) advance();
     }),
   );
   await Promise.all(data.keyMeshes.map(async (part) => {
@@ -270,7 +274,11 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   function loadDetails() {
     if(detailPromise)return detailPromise;
     onDetails("loading");
-    detailPromise=Promise.all([loadPcbComponents(data,base),loadPcbPhotos(data,base)]).then(([packages,photos])=>{
+    detailPromise=Promise.all([loadPcbComponents(data,base),loadPcbPhotos(data,base),
+      Promise.all(deferred.map(async part=>{
+        const geometry=toCreasedNormals(await stl.loadAsync(modelAsset(part.file,base,part.sha256).href),Math.PI/4);
+        const mesh=objects.get(part.name);mesh.geometry.dispose();mesh.geometry=geometry;mesh.userData.loaded=true;
+      }))]).then(([packages,photos])=>{
       for(const mesh of packages){group.add(mesh);objects.set(mesh.name,mesh);}
       for(const mesh of photos){mesh.visible=false;group.add(mesh);pcbPhotos.push(mesh);}
       inspectionDirty=true;group.userData.newDetails=true;onDetails("ready");
@@ -870,7 +878,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     objects.get("keyboard-entry-wires").visible &&= keyboardLift === 0;
     // Detach the narrow controller as a unit so both boards can be inspected.
     for (const [name, mesh] of objects) {
-      if (name.startsWith("keyboard-controller-"))
+      if (name.startsWith("keyboard-controller-") || name === "keyboard-entry-choke")
         mesh.position.set(0, keyboardLift * 160, keyboardLift * 70);
     }
     objects
@@ -958,6 +966,10 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       mesh.visible = jacket.visible;
       mesh.userData.removedDisk = jacket.userData.removedDisk;
     }
+    for(const u of [0,1]) {
+      const tab=objects.get(`drive-protect-tab-${u}`),jacket=objects.get(`drive-diskette-${u}`);
+      if(tab){tab.position.copy(jacket.position);tab.visible=jacket.visible;tab.material.transparent=true;tab.material.opacity=(driveStates[u]&4)?0:1;tab.material.depthWrite=!(driveStates[u]&4);tab.castShadow=!(driveStates[u]&4);tab.userData.protectUnit=jacket.userData.removedDisk;}
+    }
     for (const mesh of [...objects.values(), ...pcbPhotos, ...patches]) {
       if (inspection.isolated !== "all")
         mesh.visible &&= belongs(mesh.name, inspection.isolated);
@@ -1008,6 +1020,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   onProgress(100);
   return {
     group,
+    annotations: data.annotations || [],
     loadDetails,
     detailDistance(distance) {
       const next = distance < (fineDetails ? 2.0 : 1.7);
@@ -1017,7 +1030,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       }
     },
     inspect(value) {
-      if(value.transparent || value.referencePhoto || ["logic","motherboard","floppy-controller"].includes(value.isolated) || ["motherboard","floppy-controller"].includes(value.focus)) requestDetails();
+      if(value.keyboardOpen || value.transparent || value.referencePhoto || ["keyboard","monitor","logic","motherboard","floppy-controller"].includes(value.isolated) || ["motherboard","floppy-controller"].includes(value.focus)) requestDetails();
       if (
         (value.demoPhase !== undefined &&
           value.demoPhase !== inspection.demoPhase) ||
@@ -1031,7 +1044,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     diskDragCopy(unit) {
       const copy=new THREE.Group();
       copy.rotation.copy(group.rotation); copy.scale.copy(group.scale);
-      for(const source of [objects.get(`drive-diskette-${unit}`),objects.get(`drive-medium-${unit}`),objects.get(`drive-diskette-label-${unit}`),...patches.filter(p=>p.userData.disketteUnit===unit)]) {
+      for(const source of [objects.get(`drive-diskette-${unit}`),objects.get(`drive-medium-${unit}`),objects.get(`drive-diskette-label-${unit}`),objects.get(`drive-protect-tab-${unit}`),...patches.filter(p=>p.userData.disketteUnit===unit)]) {
         const mesh=source.clone();mesh.visible=true;mesh.userData={};copy.add(mesh);
       }
       return copy;
@@ -1102,6 +1115,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       updateIndicators();
     },
     openMonitor(value) {
+      if(value) requestDetails();
       monitorOpen = value;
       releaseKeys();
     },

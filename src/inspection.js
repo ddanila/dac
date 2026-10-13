@@ -10,7 +10,7 @@ export const inspections = {
   },
   diskette: {
     title: "Danila’s diskette and storage sleeve",
-    text: "This is the diskette used with the museum machine. The handwritten label belongs to this specimen; the emulated disk contents are selected separately. The white sleeve is the one Danila uses, not original packaging. Rotate and flip the CAD model, or slide the disk into its sleeve. The sleeve uses clean paper geometry; its printed instructions remain available in the reference photos below. Disk 1/2 labels beside removed session disks identify their contents and stay with them when moved; they are museum labels, not markings on the physical specimen. Drag a removed disk into either open, empty drive, or use the Insert/Move buttons.",
+    text: "This is the diskette used with the museum machine. The handwritten label belongs to this specimen; the emulated disk contents are selected separately. The white sleeve is the one Danila uses, not original packaging. Rotate and flip the CAD model, or slide the disk into its sleeve. The sleeve uses clean paper geometry; its printed instructions remain available in the reference photos below. Disk 1/2 labels beside removed session disks identify their contents and stay with them when moved; they are museum labels, not markings on the physical specimen. Drag a removed disk into either open, empty drive, or use the Insert/Move buttons. Remove a disk to cover or uncover its write-protect notch; the modeled sticker and emulator share the same protection state.",
     photo: "20261013_113451775",
     views: [["Diskette · label", "20261013_113451775"], ["Diskette · reverse", "20261013_113457457"], ["Sleeve · plain", "20261013_113428737"], ["Sleeve · instructions", "20261013_113436448"]],
   },
@@ -85,8 +85,9 @@ export const inspections = {
     photo: "20261012_131106217",
   },
   inside: {
-    title: "Inside the system unit",
-    text: "The cover and monitor move up and back together. The fan spins while powered on (illustrative speed; reduced-motion settings pause it). Choose Drives for a close view of the mechanisms, or lift the drives to see below them. The two drives follow owner photographs and include their distinct boards and manufacturer plates, frames, spindle clamps, head carriages and motors. The mounting bracket, power supply shield, fan, photographic logic boards and cable runs follow another PC 1715. Exact drive suffix, board version and wiring remain unverified for this 1715M/W.",
+    title: "Inside this museum machine",
+    photo: "20261013_150242933",
+    text: "The cover and monitor move up and back together. The fan spins while powered on (illustrative speed; reduced-motion settings pause it). Choose Drives for a close view of the mechanisms, or lift the drives to see below them. The two drives follow owner photographs and include their distinct boards and manufacturer plates, frames, spindle clamps, head carriages and motors. Danila’s October 13 photos now guide the cover stiffeners, crossed fan retainers and cushioning, PSU access grommets, and brown 05-330-0024 drive adapters. These are this museum machine’s details, with estimated dimensions. The visible rear board is solder-side up and is likely the W/M display controller: the original W manual places the U8272 floppy controller on the main board. Its marking differs from the available CRT drawing, so its exact revision remains unconfirmed. The current comparative logic-board geometry still awaits replacement. Hidden PSU electronics, exact drive suffix and wiring remain unverified.",
   },
   "monitor-inside": {
     title: "Inside the monitor",
@@ -94,7 +95,7 @@ export const inspections = {
   },
   assembly: {
     title: "Open the case and keyboard",
-    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; logic boards, the power supply shield, fan and wiring still use comparative references. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
+    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; logic-board geometry and hidden wiring still use comparative references. Owner photos now establish the fan retainers, PSU-cover grommets and drive adapters. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
   },
 };
 Object.assign(inspections, {
@@ -143,8 +144,8 @@ inspections.motherboard = {
 };
 inspections["floppy-controller"] = {
   ...inspections["component-logic"],
-  title: "Floppy controller",
-  text: "The floppy controller is shown independently, including photo-estimated yellow film capacitors, different electrolytic sizes, a divided two-row connector and individual contacts. Orbit below it to see lead-aligned solder fillets. The board artwork comes from another PC 1715; pin count, connector keying, component values and the underside routing remain unverified for this specimen.",
+  title: "Original 1715 FDC — comparative model",
+  text: "This is the original 64 KB 1715’s separate floppy controller, retained as a comparative model; it is not confirmed hardware from this W/M specimen. The W/M manual places the U8272 FDC on the main board and display control on a separate card. The reference card is shown independently, including photo-estimated yellow film capacitors, different electrolytic sizes, a divided two-row connector and individual contacts. Orbit below it to see lead-aligned solder fillets. The board artwork comes from another PC 1715; pin count, connector keying, component values and the underside routing remain unverified for this specimen.",
 };
 for (const board of ["motherboard", "floppy-controller"])
   inspections[board + "-under"] = {
@@ -257,3 +258,9 @@ for (const button of document.querySelectorAll("[data-component]"))
   button.onclick = () => showSpecimenDetail(button.dataset.component);
 
 document.getElementById("specimen-detail").addEventListener("close",()=>{detailGeneration++;disketteViewer?.dispose();disketteViewer=undefined;});
+
+export function showAnnotation(annotation){
+  const id="annotation-"+annotation.id;
+  inspections[id]={title:annotation.title,text:annotation.dimensions,evidence:annotation.evidence,photo:annotation.photo,reference:annotation.source};
+  showSpecimenDetail(id);
+}

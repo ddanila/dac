@@ -704,3 +704,8 @@ textarea {
 #disk-drag-hint[data-allowed="true"] {border-color:#6cf3ac;}
 #key-contact-state {display:block; width:100%; font-weight:600;}
 #detail-loading {position:absolute;left:1rem;top:1rem;background:#182624;color:white;padding:.6rem;border-radius:.4rem;pointer-events:none;}
+
+.inspection-label-layer { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.inspection-label { position:absolute; pointer-events:auto; max-width:170px; font-size:11px; line-height:1.25; padding:5px 7px; background:#142320ed; border:1px solid #b9cdb4; color:#fff; }
+.inspection-label::before { content:""; position:absolute; left:0; top:50%; width:var(--leader-length,11px); transform:rotate(var(--leader-angle,180deg)); transform-origin:0 0; border-top:1px solid #d9eccb; pointer-events:none; }
+.inspection-label[hidden] { display:none; }
