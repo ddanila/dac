@@ -87,7 +87,7 @@ export const inspections = {
   inside: {
     title: "Inside this museum machine",
     photo: "20261013_150242933",
-    text: "The cover and monitor move up and back together. The fan spins while powered on (illustrative speed; reduced-motion settings pause it). Choose Drives for a close view of the mechanisms, or lift the drives to see below them. The two drives follow owner photographs and include their distinct boards and manufacturer plates, frames, spindle clamps, head carriages and motors. Danila’s October 13 photos now guide the cover stiffeners, crossed fan retainers and cushioning, PSU access grommets, and brown 05-330-0024 drive adapters. These are this museum machine’s details, with estimated dimensions. The visible rear board is solder-side up and is likely the W/M display controller: the original W manual places the U8272 floppy controller on the main board. Its marking differs from the available CRT drawing, so its exact revision remains unconfirmed. The current comparative logic-board geometry still awaits replacement. Hidden PSU electronics, exact drive suffix and wiring remain unverified.",
+    text: "The cover and monitor move up and back together. The fan spins while powered on (illustrative speed; reduced-motion settings pause it). Choose Drives for a close view of the mechanisms, or lift the drives to see below them. The two drives follow owner photographs and include their distinct boards and manufacturer plates, frames, spindle clamps, head carriages and motors. Danila’s October 13 photos now guide the cover stiffeners, crossed fan retainers and cushioning, PSU access grommets, and brown 05-330-0024 drive adapters. These are this museum machine’s details, with estimated dimensions. The W/M main board now follows its placement drawing, including U8272 at A44. The separate display board is solder-side up as photographed, with components underneath. The exact photographed display-board revision remains unconfirmed. Hidden PSU electronics, exact drive suffix and wiring remain unverified.",
   },
   "monitor-inside": {
     title: "Inside the monitor",
@@ -95,7 +95,7 @@ export const inspections = {
   },
   assembly: {
     title: "Open the case and keyboard",
-    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the fascia and keyboard deck lift away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; logic-board geometry and hidden wiring still use comparative references. Owner photos now establish the fan retainers, PSU-cover grommets and drive adapters. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
+    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the keyboard deck lifts away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; the W/M logic boards follow the W drawings and owner solder-side photo, while unseen wiring remains estimated. Owner photos now establish the fan retainers, PSU-cover grommets and drive adapters. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
   },
 };
 Object.assign(inspections, {
@@ -107,15 +107,15 @@ Object.assign(inspections, {
   },
   "component-logic": {
     title: "System logic boards",
-    evidence: "Comparative reference · another PC 1715",
-    text: "These photographic boards come from Old Crap Vintage Computing’s PC 1715. They show the arrangement of logic, memory and connectors; the PCB revision and component identities in Danila’s 1715M have not been verified. Reusable KiCad DIP packages now provide shaped bodies, pin-one notches and bent metal leads. Resistors, ceramic capacitors, electrolytics and metal-can components follow visible photo locations. Package matches, orientation and hidden details remain provisional; this is not an electrical reconstruction. KiCad model credits and file-specific licences are preserved with the exhibit.",
-    reference: "https://oldcrap.org/2017/12/26/robotron-1715/",
+    evidence: "Documented W/M design with owner display-board reference",
+    text: "The W/M motherboard integrates the U8272 floppy controller, CPU and 256 KB RAM. The separate display controller is installed solder-side up, as photographed in this specimen. Mainboard placement follows the W drawings; display footprints follow the owner photo. Hidden component identities, exact board revision and unmeasured dimensions remain provisional. KiCad package credits and licences are retained.",
+    reference: "https://xepb.org/robotron/docs/1715w.zip",
   },
   "component-psu": {
     title: "Power supply and fan",
-    evidence: "Comparative reference · dimensions estimated",
-    text: "The shield and fan placement follow another PC 1715. The inside of the shield is not modeled. Fan motion indicates museum power state; its speed is illustrative.",
-    reference: "https://oldcrap.org/2017/12/26/robotron-1715/",
+    evidence: "Your specimen · dimensions estimated",
+    text: "The cover, grommets, fan straps and cushions follow Danila’s photographs. The unseen power-supply electronics are not reconstructed. Fan motion indicates museum power state; its speed is illustrative.",
+    photo: "20261013_150303351",
   },
   "component-keyboard": {
     title: "Keyboard electronics",
@@ -138,20 +138,24 @@ Object.assign(inspections, {
 inspections["rear-panel"] = { ...inspections.back, title: "Rear sockets and markings" };
 inspections.logic = inspections["component-logic"];
 inspections.motherboard = {
-  ...inspections["component-logic"],
-  title: "Motherboard",
-  text: "The controller and chassis are hidden so the lower board can be inspected from either side. KiCad packages, drilled holes, metal pads and solder fillets share the same lead positions. Pale traces and markings are extracted from the comparative photograph; hidden routing and electrical connectivity are not reconstructed. Connector dimensions, passive sizes and package assignments remain estimates until Danila’s board is photographed.",
+  ...inspections["component-logic"], title:"W/M motherboard",
+  evidence:"Documented W/M design · placement and dimensions estimated",
+  text:"The original W placement drawing guides the 32 U2164 RAM packages, UA880 CPU, UA858 DMA, UA8560 SIO, two CTCs and U8272 floppy controller at A44. The controller belongs on this main board. KiCad package geometry supplies nominal bodies and leads; local dimensions and the exact population of this specimen remain unverified. This is a clean drawing-based reconstruction, not a traced electrical netlist.",
+  reference:"https://xepb.org/robotron/docs/1715w.zip"
 };
-inspections["floppy-controller"] = {
-  ...inspections["component-logic"],
-  title: "Original 1715 FDC — comparative model",
-  text: "This is the original 64 KB 1715’s separate floppy controller, retained as a comparative model; it is not confirmed hardware from this W/M specimen. The W/M manual places the U8272 FDC on the main board and display control on a separate card. The reference card is shown independently, including photo-estimated yellow film capacitors, different electrolytic sizes, a divided two-row connector and individual contacts. Orbit below it to see lead-aligned solder fillets. The board artwork comes from another PC 1715; pin count, connector keying, component values and the underside routing remain unverified for this specimen.",
+inspections["display-controller"] = {
+  title:"W/M display controller", evidence:"Your specimen + documented W/M design · exact revision unconfirmed",
+  photo:"20261013_150312308",
+  text:"The owner photograph establishes the solder-side-up mounting, visible footprint groups and selected trace bends. Packages are underneath the board, with drilled lead holes, pads and solder on top. The CRT schematic guides the controller and SRAM package roles; the photographed 310402 marking is not an exact revision match to the available 310412 drawing. Dimensions, hidden component assignments and untraced routing remain estimates. Source-photo mode is optional evidence, not the normal board surface."
 };
-for (const board of ["motherboard", "floppy-controller"])
+inspections["fan-detail"]={title:"Fan mounting",evidence:"Your specimen · local dimensions estimated",photo:"20261013_150303351",text:"Crossed metal retaining strips, corner screws and pale cushioning follow this machine. The rotor spins when powered; speed remains illustrative."};
+inspections["adapter-detail"]={title:"Drive ribbon adapters",evidence:"Your specimen + documented interface · local dimensions estimated",photo:"20261013_150516969",text:"The brown 05-330-0024 boards carry a black drive-edge socket and a taller pale ribbon connector with its retaining latch. Individual 34-way drive and 26-way ribbon contacts replace the previous blocks. Clean routing follows visible staggered bends without claiming a verified electrical pinout. Ribbon routes terminate on the W/M main board; hidden slack remains estimated."};
+inspections["case-cover"]={title:"Inside the case cover",evidence:"Your specimen · local dimensions estimated",photo:"20261013_150009163",text:"Two hat-section stiffeners span the width. Separate black vent inserts, their screws, folded return lips and slotted fixing strips follow the removed cover photographs. The fascia remains attached when the cover lifts. Wear and corrosion are not reproduced."};
+for (const board of ["motherboard", "display-controller"])
   inspections[board + "-under"] = {
     ...inspections[board],
     title: inspections[board].title + " underside",
-    text: "Mounting screws, washers and hex standoffs share the board’s clearance-hole positions. Component leads have metal pads and solder fillets. Underside tracks and exact mounting dimensions are not verified for Danila’s specimen and are not reconstructed. Orbit or zoom to inspect; the reference-photo toggle returns to the component side.",
+    text: board === "display-controller" ? "This lower face carries the modeled packages. The upper face is the photographed solder side. Exact hidden component population and dimensions remain provisional; the CRT schematic supplies documented package roles." : "Mounting holes, metal pads and solder fillets follow the drawing-based package placement. Unseen underside routing is not invented.",
   };
 Object.assign(inspections, {
   "focus-head": {
@@ -264,3 +268,17 @@ export function showAnnotation(annotation){
   inspections[id]={title:annotation.title,text:annotation.dimensions,evidence:annotation.evidence,photo:annotation.photo,reference:annotation.source};
   showSpecimenDetail(id);
 }
+
+window.addEventListener("dac-model-ready",event=>{
+  const evidence=event.detail?.evidence;if(!evidence)return;
+  let panel=document.getElementById("assembly-evidence");if(panel)return;
+  panel=document.createElement("details");panel.id="assembly-evidence";
+  const summary=document.createElement("summary");summary.textContent="Model evidence and physical verification";panel.append(summary);
+  for(const entry of evidence.assemblies){
+    const p=document.createElement("p");
+    const categories=entry.classes || [];
+    p.textContent=`${entry.title}: ${(Array.isArray(categories)?categories:[categories]).map(c=>evidence.categories[c]||c).join(" + ")}. ${entry.note} Physical verification: ${entry.physicalVerification}.`;
+    panel.append(p);
+  }
+  document.getElementById("inspection-text").after(panel);
+});

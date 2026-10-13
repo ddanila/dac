@@ -255,7 +255,7 @@ export function createScene(
     .then((model) => {
       robotron = model;
       scene.add(model.group);
-      window.dispatchEvent(new Event("dac-model-ready"));
+      window.dispatchEvent(new CustomEvent("dac-model-ready",{detail:{evidence:model.evidence}}));
       model.power(powered);
       model.modifiers(modifiers);
       model.media(mediaPresent);
@@ -457,7 +457,10 @@ export function createScene(
   let labelsEnabled=false;
   const labelButtons=new Map();
   function drawLabels(){
-    const occupied=[];
+    const occupied=[],blockers=[];
+    if(labelsEnabled)robotron?.group.traverseVisible(m=>{
+      if(m.isMesh && /^(case-lid|fascia|logic-boards|psu-cover|psu-chassis|keyboard-shell|keyboard-deck|keycap-|silver-key-inlay|monitor-shell|drive-frames|drive-mechanisms)/.test(m.name) && (m.material?.opacity ?? 1)>.95)blockers.push(m);
+    });
     for(const annotation of robotron?.annotations || []){
       let button=labelButtons.get(annotation.id);
       if(!button){button=document.createElement("button");button.className="inspection-label";button.dataset.annotation=annotation.id;button.textContent=annotation.title;button.title=annotation.evidence+" · "+annotation.dimensions;button.onclick=()=>interaction.onAnnotation?.(annotation);labelLayer.append(button);labelButtons.set(annotation.id,button);}
@@ -466,7 +469,11 @@ export function createScene(
       if(!labelsEnabled || kind!==2 || !mesh?.visible || mesh.userData.loaded===false)continue;
       mesh.updateWorldMatrix(true,false);mesh.geometry.computeBoundingBox();
       const point=annotation.position?new THREE.Vector3(...annotation.position):mesh.geometry.boundingBox?.getCenter(new THREE.Vector3());
-      if(!point)continue;point.applyMatrix4(mesh.matrixWorld).project(camera);
+      if(!point)continue;point.applyMatrix4(mesh.matrixWorld);
+      const direction=point.clone().sub(camera.position),distance=direction.length();
+      const ray=new THREE.Raycaster(camera.position,direction.normalize(),0,Math.max(0,distance-.0005));
+      if(ray.intersectObjects(blockers,false).length)continue;
+      point.project(camera);
       if(Math.abs(point.x)>.94||Math.abs(point.y)>.94||point.z< -1||point.z>1)continue;
       button.hidden=false;
       const anchorX=(point.x+1)*container.clientWidth/2,anchorY=(1-point.y)*container.clientHeight/2;
@@ -622,7 +629,10 @@ export function createScene(
           [0.4, 1.35, 0.75],
           [-0.27, 0.034, 0],
         ],
-        "floppy-controller": [
+        "fan-detail": [[-.35,.48,-.25],[.2,.17,-.27]],
+        "adapter-detail": [[-.25,.58,-.7],[-.2,.19,-.02]],
+        "case-cover": [[1.6,-.7,.4],[0,.65,-1]],
+        "display-controller": [
           [0.12, 0.94, 0.43],
           [-0.28, 0.107, -0.23],
         ],
@@ -630,7 +640,7 @@ export function createScene(
           [0.4, -1.25, 0.75],
           [-0.27, 0.034, 0],
         ],
-        "floppy-controller-under": [
+        "display-controller-under": [
           [0.12, -0.84, 0.43],
           [-0.28, 0.107, -0.23],
         ],

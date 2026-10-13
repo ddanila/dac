@@ -306,3 +306,20 @@ available immediately. Empty geometry placeholders preserve assembly identities
 until the canonical meshes arrive; a visible detail-loading status reports errors.
 
 The October 13 system-unit archive is evidence for Danila’s **specific museum specimen**. Canonical v29 adds folded cover stiffeners, crossed fan retainers/cushions, PSU access grommets and brown drive adapters, with owner-photo inspection labels. The rear board is visibly solder-side up in the new photographs; its current comparative component reconstruction still needs a separate layout revision. Unseen monitor/PSU electronics remain explicitly provisional. Published references are MIT owner photos with metadata stripped; wear is not reproduced.
+
+
+### W/M board and specimen hardware update (model v30)
+
+The canonical `3d-models` export now replaces the comparative original-1715 logic
+boards with a W/M motherboard (integrated U8272) and a solder-side-up display
+controller. Owner photos guide display footprints, drive adapters, cover vent
+inserts/retainers and fan hardware; the W drawings guide documented device roles
+and motherboard placement. Exact display-board revision, hidden population and
+unmeasured dimensions remain provisional. The monitor interior remains comparative.
+
+New Fan, Adapters, Cover underside and Display board views isolate these assemblies.
+The fascia stays attached to the lifted cover. Labels avoid opaque cover/board
+occlusion. The evidence panel reads canonical assembly provenance and keeps
+physical verification separate; none of these assemblies is marked printed and
+verified. The display solder photo is opt-in reference evidence, not a default skin.
+Downloads include the new display controller and source layout/evidence records.

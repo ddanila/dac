@@ -156,11 +156,11 @@ test("owner and comparative evidence is visible in component cards", async ({
   await open(page, "#component-guide");
   await page.locator('[data-component="component-logic"]').click();
   await expect(page.locator("#detail-description")).toContainText(
-    "another PC 1715",
+    "Documented W/M design",
   );
   await expect(page.locator("#detail-original")).toHaveAttribute(
     "href",
-    "https://oldcrap.org/2017/12/26/robotron-1715/",
+    "https://xepb.org/robotron/docs/1715w.zip",
   );
   await expect(page.locator("#detail-photo")).toBeHidden();
   await page.locator("#detail-close").click();

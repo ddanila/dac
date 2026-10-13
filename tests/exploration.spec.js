@@ -38,7 +38,7 @@ test("download archives match their published hashes", () => {
   const downloads = JSON.parse(readFileSync(new URL("downloads.json", root)));
   expect(downloads.map((d) => d.name)).toEqual([
     "motherboard",
-    "floppy-controller",
+    "display-controller",
     "drive-0",
     "drive-1",
   ]);
