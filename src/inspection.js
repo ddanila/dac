@@ -10,7 +10,7 @@ export const inspections = {
   },
   diskette: {
     title: "Danila’s diskette and storage sleeve",
-    text: "This is the diskette used with the museum machine. The handwritten label belongs to this specimen; the emulated disk contents are selected separately. The white sleeve is the one Danila uses, not original packaging. Rotate and flip the CAD model, or slide the disk into its sleeve. The sleeve uses clean paper geometry; its printed instructions remain available in the reference photos below. A/B labels beside removed session disks identify their drive, not markings on this physical specimen. Drag a removed disk into its matching open drive, or use Insert disk.",
+    text: "This is the diskette used with the museum machine. The handwritten label belongs to this specimen; the emulated disk contents are selected separately. The white sleeve is the one Danila uses, not original packaging. Rotate and flip the CAD model, or slide the disk into its sleeve. The sleeve uses clean paper geometry; its printed instructions remain available in the reference photos below. Disk 1/2 labels beside removed session disks identify their contents and stay with them when moved; they are museum labels, not markings on the physical specimen. Drag a removed disk into either open, empty drive, or use the Insert/Move buttons.",
     photo: "20261013_113451775",
     views: [["Diskette · label", "20261013_113451775"], ["Diskette · reverse", "20261013_113457457"], ["Sleeve · plain", "20261013_113428737"], ["Sleeve · instructions", "20261013_113436448"]],
   },
