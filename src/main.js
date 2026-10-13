@@ -139,10 +139,22 @@ function keyButtons(keys) {
     $("key-list").append(button);
   }
 }
+let driveDoors = [false, false], driveDoorsSupported = false, drivePresent = [false,false];
+function toggleDriveLever(unit) {
+  if (replayBusy || !ready || !driveDoorsSupported) return;
+  send({ type: "drive-door", unit, open: !driveDoors[unit] });
+}
+for (const u of [0,1]) {
+  $("drive-lever-"+u).onclick = () => toggleDriveLever(u);
+  $("drive-media-"+u).onclick = () => {
+    if (!replayBusy) send({type:"drive-inserted", unit:u, inserted:!drivePresent[u]});
+  };
+}
 showInspection("overview");
 try {
   scene = createScene($("viewport"), screen, power, resetMachine, {
     onKey: modelKey,
+    onDriveLever: toggleDriveLever,
     onInspect: (name) => {
       const focus = name.startsWith("focus-")
         ? name.slice(6)
@@ -368,6 +380,18 @@ worker.onmessage = ({ data: d }) => {
       $(id).disabled = on;
   }
   if (d.type === "frame") {
+    driveDoorsSupported = !!d.driveDoorsSupported;
+    driveDoors = (d.drives || [0,0]).map(v => !!(v & 32));
+    drivePresent = (d.drives || [0,0]).map(v => !!(v & 8));
+    for (const u of [0,1]) {
+      const button = $("drive-lever-"+u);
+      button.disabled = replayBusy || !driveDoorsSupported;
+      button.textContent = `${driveDoors[u] ? "Close" : "Open"} drive ${u ? "B" : "A"} lever`;
+      button.setAttribute("aria-pressed", String(driveDoors[u]));
+      const mediaButton = $("drive-media-"+u);
+      mediaButton.disabled = replayBusy || !driveDoorsSupported || !driveDoors[u] || !d.driveAvailable?.[u];
+      mediaButton.textContent = `${drivePresent[u] ? "Remove" : "Insert"} disk ${u ? "B" : "A"}`;
+    }
     if (screen.width !== d.width || screen.height !== d.height) {
       screen.width = d.width;
       screen.height = d.height;

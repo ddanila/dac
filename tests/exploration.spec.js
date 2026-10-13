@@ -135,6 +135,7 @@ test("highlight, manual demonstration, parked plugs and live restoration", async
 });
 
 test("owner diskette labels follow inserted media and stay with open clamps", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   const result = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");

@@ -90,6 +90,7 @@ export async function decodeRecording(bytes) {
       b < r.media.length
     )
       continue;
+    if ([9,10].includes(op) && e.length === 3 && a >= 0 && a < 2 && b >= 0 && b < 2) continue;
     if ([4, 5, 6, 8].includes(op) && e.length === 1) continue;
     throw Error("Unsupported recording event.");
   }
@@ -125,6 +126,11 @@ export function playEvent(module, handle, e, media = []) {
     } finally {
       if (p) module._free(p);
     }
+    return;
+  }
+  if (op === 9 || op === 10) {
+    const action = op === 9 ? module._dac_drive_door : module._dac_drive_inserted;
+    if (!action || action(handle, a, b) < 0) throw Error("Recorded drive lever rejected.");
     return;
   }
   if (op === 8) {

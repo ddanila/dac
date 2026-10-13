@@ -86,6 +86,13 @@ test("paste, deterministic browser/native replay and damaged recording rejection
   await expect(page.locator("#disk-b-status")).toContainText("inserted");
   await page.locator("#power").click();
   await expect(page.locator("#status")).toHaveText("Running");
+  await page.locator("#drive-lever-1").click();
+  await expect(page.locator("#drive-media-1")).toBeEnabled();
+  await page.locator("#drive-media-1").click();
+  await expect(page.locator("#drive-media-1")).toHaveText("Insert disk B");
+  await page.locator("#drive-media-1").click();
+  await expect(page.locator("#drive-media-1")).toHaveText("Remove disk B");
+  await page.locator("#drive-lever-1").click();
   await page.waitForTimeout(200);
   const download = page.waitForEvent("download");
   await page.locator("#record-stop").click();
@@ -150,7 +157,7 @@ test("owner and comparative evidence is visible in component cards", async ({
   );
   await expect(page.locator("#detail-photo")).toBeVisible();
 });
-for (const version of ["0.3.0", "0.4.0", "0.5.0", "0.6.0", "0.7.0"])
+for (const version of ["0.3.0", "0.4.0", "0.5.0", "0.6.0", "0.7.0", "0.7.1"])
   test(`preserved ${version} snapshot restores after emulator upgrade`, async ({
     page,
   }) => {

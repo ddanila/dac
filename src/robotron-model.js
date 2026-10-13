@@ -94,7 +94,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     objects = new Map(),
     keyObjects = new Map(),
     keyGeometry = new Map();
-  const filenames = new Set(data.patches.map((k) => k.photo));
+  const filenames = new Map(data.patches.map(p => [p.texture || `photos/${p.photo}`, p.textureSha256]));
   // Fixed denominator across all load phases: no resets when a new batch starts.
   const packages = (data.pcbComponents?.models || []).filter(model =>
     data.pcbComponents.instances.some(instance => instance.model === model.id));
@@ -104,9 +104,9 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
   const advance = () => onProgress(Math.min(99, Math.floor(++completed * 100 / total)));
   onProgress(Math.floor(completed * 100 / total));
   await Promise.all(
-    [...filenames].map(async (name) => {
+    [...filenames].map(async ([name, hash]) => {
       const texture = await loader.loadAsync(
-        modelAsset(`photos/${name}`, base).href,
+        modelAsset(name, base, hash).href,
       );
       textures.set(name, texture);
       advance();
@@ -155,7 +155,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
   ) {
     // Extract only the small marking into its own texture. Full owner photos
     // remain reference files, never whole-panel GPU skins.
-    const source = textures.get(photo).image;
+    const source = textures.get(options.texture || `photos/${photo}`).image;
+    uv = options.textureUv || uv;
     const x = Math.max(
       0,
       Math.floor(Math.min(...uv.map((p) => p[0])) * source.width) - 2,
@@ -428,6 +429,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     "keyboard-shell",
     "keyboard-deck",
   ]);
+  for (const u of [0,1]) for (const name of [`drive-latch-${u}`,`drive-latch-trim-${u}`])
+    if (objects.has(name)) objects.get(name).userData.driveUnit = u;
   const patches = [];
   for (const p of data.patches) {
     const mesh = photoPlane(p.name, ...p.size, p.uv, p.photo, 0, p);
@@ -446,6 +449,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
             : p.name.includes("2092")
               ? "board-2092"
               : undefined;
+    if (p.disketteUnit !== undefined) mesh.userData.detail = "diskette";
     mesh.visible = p.section !== "interior";
     group.add(mesh);
     patches.push(mesh);
@@ -934,6 +938,11 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
         : null,
       driveMechanics,
     );
+    for (const mesh of patches) if (mesh.userData.disketteUnit !== undefined) {
+      const jacket = objects.get(`drive-diskette-${mesh.userData.disketteUnit}`);
+      mesh.position.copy(mesh.userData.rest).add(jacket.position);
+      mesh.visible = jacket.visible && (inside || split > .01 || inspection.transparent || inspection.isolated === "drives");
+    }
     for (const mesh of [...objects.values(), ...pcbPhotos, ...patches]) {
       if (inspection.isolated !== "all")
         mesh.visible &&= belongs(mesh.name, inspection.isolated);

@@ -142,7 +142,7 @@ test("head loading pivots only the upper arm; inserted medium shares spindle pha
   move(25, [8], true, 0, false, true, null, sample);
   expect(objects.get("arm").rotation.x).toBeCloseTo(-0.08);
   expect(objects.get("medium").visible).toBe(true);
-  move(30, [0], true, 0, false, false, null, sample);
+  move(30, [0], true, 0, true, false, null, sample);
   expect(objects.get("medium").visible).toBe(false);
 });
 test("diagnostics distinguish controller selection, index counts and unavailable older cores", () => {
@@ -188,10 +188,20 @@ test('inserted diskettes close levers without power; sleeves stay still and clam
   expect(objects.get('latch-0').rotation.y).toBe(0);
   expect(objects.get('jacket-0').visible).toBe(true);
   expect(objects.get('medium-0').visible).toBe(true);
-  expect(objects.get('medium-0').rotation.z).toBeCloseTo(Math.PI/2);
+  expect(objects.get('medium-0').rotation.z).toBe(0); // released disc does not follow the spindle
   expect(objects.get('jacket-0').rotation.z).toBe(0);
   expect(objects.get('disketteLabel-0').position.y).toBe(-145);
-  move(20,[0,8],false,0,true);
+  move(20,[32,8],false,0,false);
+  expect(objects.get('jacket-0').visible).toBe(true);
+  expect(objects.get('jacket-0').position.y).toBeLessThan(0);
+  for (let t=70;t<=570;t+=50) move(t,[32,8],false,0,false);
+  expect(objects.get('jacket-0').visible).toBe(false);
+  move(580,[40,8],false,0,false);
+  expect(objects.get('jacket-0').position.y).toBeLessThan(-100);
+  for (let t=630;t<=1130;t+=50) move(t,[40,8],false,0,false);
+  expect(objects.get('jacket-0').position.y).toBeCloseTo(0);
+  expect(objects.get('latch-0').rotation.y).toBe(0);
+  move(1140,[0,8],false,0,true);
   expect(objects.get('jacket-0').visible).toBe(false);
   expect(objects.get('latch-1').rotation.y).toBeCloseTo(Math.PI/2);
 });

@@ -689,3 +689,9 @@ textarea {
   .stage:not(.typing) .stage-bottom { margin: 8px 12px 12px; gap: 6px; }
   .stage:not(.typing) .stage-bottom > span { display: none; }
 }
+
+#drive-handling { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }
+#drive-handling button { font-size: 12px; padding: 10px 8px; }
+#drive-handling [data-component] { grid-column: 1 / -1; }
+#detail-views { flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+#detail-views button[aria-pressed="true"] { color: var(--accent); text-decoration: underline; }
