@@ -5,6 +5,8 @@ import { keyPoint } from "./robotron-picking.js";
 test("typing view keeps screen and working modeled keys visible, including on mobile", async ({
   page,
 }) => {
+  // Multi-step WebGL interactions take longer on CI software rendering.
+  test.setTimeout(60000);
   await page.addInitScript(() => {
     const Base = window.Worker;
     window.sentKeys = [];

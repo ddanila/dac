@@ -124,3 +124,8 @@ Physical print status is supplied by the canonical `model-status.json` registry
 and included in browser `model.json` as `modelVerification`. All Robotron records
 currently remain unverified; the accepted exterior is a separate visual-review
 milestone. See the [collection catalogue](https://github.com/ddanila/3d-models/blob/main/MODEL-STATUS.md).
+
+Modifier keycaps are spring-return controls. Physical host/pointer presses drive
+key travel; logical click-to-type Shift/Ctrl selection no longer holds a cap down.
+The historical profile runs S600 keyboard firmware and feeds matrix switches;
+its controller behavior remains separate from the model's visual key travel.

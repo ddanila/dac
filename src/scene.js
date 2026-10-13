@@ -280,7 +280,7 @@ export function createScene(
   }
   function cancelGesture() {
     if (down?.key)
-      robotron?.keyState(down.key.id, !!modifiers[down.key.input.modifier]);
+      robotron?.keyState(down.key.id, false);
     down = undefined;
   }
   renderer.domElement.addEventListener("pointerdown", (e) => {
@@ -412,9 +412,8 @@ export function createScene(
       modifiers = state;
       renderRequested = true;
       robotron?.modifiers(state);
-      for (const key of robotron?.keys || [])
-        if (key.input.modifier)
-          robotron.keyState(key.id, state[key.input.modifier]);
+      // Latched electrical modifiers do not hold their spring-return keycaps down.
+      // Physical travel is driven only by pointer/key down and release events.
     },
     releaseKeys: () => robotron?.releaseKeys(),
     pulse: (id) => robotron?.pulse(id),

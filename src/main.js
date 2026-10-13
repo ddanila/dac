@@ -920,11 +920,9 @@ function keyUp(e) {
   if (id) {
     e.preventDefault();
     heldModelKeys.delete(e.code);
-    const key = modelKeys.find((k) => k.id === id);
     scene?.keyState(
       id,
-      [...heldModelKeys.values()].includes(id) ||
-        !!keyboard.state[key?.input.modifier],
+      [...heldModelKeys.values()].includes(id),
     );
   }
   const key = held.get(e.code);

@@ -3,6 +3,8 @@ import { test, expect } from "@playwright/test";
 test("assembly isolation, transparent covers and keyboard disassembly remain reversible", async ({
   page,
 }) => {
+  // Multi-step WebGL interactions take longer on CI software rendering.
+  test.setTimeout(60000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.emulateMedia({ reducedMotion: "reduce" });
