@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "15aa500c19ab9426af51b2c7e95ccade523032b8",
+  "revision": "fe87f5a01508d96d3bf7cbd1b7b9847a64cdedef",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "e1f051c409cef8a420d861d6be929b90251d25651a5b5a14a157e35307206dc5"
+      "sha256": "ee728e489eb48ee511bbee479f845a1038c3de4da975c1d9b8369bef049b5149"
     },
     {
       "file": "LICENSE",
@@ -425,11 +425,11 @@
     },
     {
       "file": "meshes/drive-medium-0.stl",
-      "sha256": "071123bd27eb23e3b327b009ea2deb4eacf247fba20cc35374a06b166c378e31"
+      "sha256": "213be06899ce5594a55ebf2bc0e9c3df6161a8da571d71140301528c38103ceb"
     },
     {
       "file": "meshes/drive-medium-1.stl",
-      "sha256": "6c7dcd3e2f38cf66b05bdcaa02d7272d977c8bdb5e1e94b15672ed8f7f9aa828"
+      "sha256": "7f7971458cfe8f5e6fdd898168fcf9dce894752d5350931c718d0c2e8e2c008a"
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
@@ -573,19 +573,19 @@
     },
     {
       "file": "meshes/drive-diskette-0.stl",
-      "sha256": "9a190a9bffe95d842cab9637e799cf0fbadbb1bdeb0bc83c3e8e6cc77c2a7b86"
+      "sha256": "33c0212bae2f5dc57d2561de50f734d9d06314fc128ef2e65c00c1de5d223f8c"
     },
     {
       "file": "meshes/drive-diskette-1.stl",
-      "sha256": "e2f3a92deda338ee4087f60e486e4afe8ba30c69e8f44fc79ad29fc40654fe38"
+      "sha256": "12a78ac860ee24292a4bd2e76966322d25c19096f137e9aefffb0fea5a65cdb1"
     },
     {
       "file": "meshes/drive-diskette-label-0.stl",
-      "sha256": "24ed10f00761dd919be73bb02a04634bcfb429c7b70a50ff5e8a2f8198b373ea"
+      "sha256": "03b5a1bb767fd0600a33f0eb7a8acb786a4f9f49213baac004dde41cf6eee69e"
     },
     {
       "file": "meshes/drive-diskette-label-1.stl",
-      "sha256": "1f9d7b1a6b34438e62ab183d608afcf602a0a903157261e2c5edf4064b88e77c"
+      "sha256": "21ac68dc1078e453c4945e440312bab0d500d86b7a42a45fec96894124e900fb"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -856,6 +856,30 @@
       "sha256": "ca1cbfd93757821cbb5e596d7537a01f64c26bc2a994c5a8e17c96f8bab52365"
     },
     {
+      "file": "photos/PXL_20261013_113428737.jpg",
+      "sha256": "a834029497d5005c914ea995dc4799908687609f4486a7dbb1e620a616c60fab"
+    },
+    {
+      "file": "photos/PXL_20261013_113436448.jpg",
+      "sha256": "63aea1af80c0af9e567fc2763b3852234786e8b0d35fdea622ff1a9d7ca374ab"
+    },
+    {
+      "file": "photos/PXL_20261013_113451775.jpg",
+      "sha256": "bf180bb00a30ca8e583dae44d023ae69cd78004ae03e4253de29698e8654f3ef"
+    },
+    {
+      "file": "photos/PXL_20261013_113457457.jpg",
+      "sha256": "0a36b30f75f846f6202e5a03435f7a218079ba7c96a86da34fed92bd2361e79b"
+    },
+    {
+      "file": "photos/PXL_20261013_113529099.jpg",
+      "sha256": "6229a9e179bab726bf561cefd25b856d3e89aafa98f033dd29ddd7577a267596"
+    },
+    {
+      "file": "photos/PXL_20261013_113537277.jpg",
+      "sha256": "f06a60ebc71f64b019bd4a9d717dd3d48c1768fe1b147fb4547178dcd3f1be16"
+    },
+    {
       "file": "reference/oldcrap/motherboard.jpeg",
       "sha256": "6e3810bd1c8d84bca3318933d596f37812b5f0e8ac8cb83e8fb24547e9a04eb5"
     },
@@ -989,23 +1013,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "2068f5887d21754c6918f0d02a072d794082e0e0bf94a3493b807e8852786fa9"
+      "sha256": "f1054024e3f2078a35f8f91f8d2b9e54dc2f295779f3a8e02b20e5479ae064a8"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "2a08d67cbc112ffa615742d95e28323b258a3573da92130db6599472be4ebf04"
+      "sha256": "eb5bc42d48df211b22298e82ec898b55fa2b23096d65044e29f3f438dc46588b"
     },
     {
       "file": "downloads/floppy-controller.zip",
-      "sha256": "0bc3e50bdc2ad03829855063f8a091aa7b22c95266553372e03b331c9111f64e"
+      "sha256": "3248051c9a362142ee36c9ec88ca609eb73bbe1b40768f55dbd2083b02e6879e"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "a7f795372c237fcdb1a467a9e9c51d94d8e9bc7dac29558813f71fc59fcce0aa"
+      "sha256": "0c74d896dbd6bc0951f9ff2312616eec69a66d48c21e8c5ad47608abddbdd344"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "79af0a82766a16e982f6bff33bf9dc104a204ebad310bf6ca0369557c6cd127b"
+      "sha256": "32655108fa5eb1b4f3ba1b55310b851d415965d03df89957652d067d4e711cb6"
     }
   ]
 }

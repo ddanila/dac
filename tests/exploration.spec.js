@@ -133,3 +133,24 @@ test("highlight, manual demonstration, parked plugs and live restoration", async
     page.getByRole("link", { name: "Motherboard model", exact: true }),
   ).toHaveAttribute("download", "");
 });
+
+test("owner diskette labels follow inserted media and stay with open clamps", async ({ page }) => {
+  await page.goto("/");
+  const result = await page.evaluate(async () => {
+    const { loadRobotron } = await import("/src/robotron-model.js");
+    const { Texture } = await import("/node_modules/three/build/three.module.js");
+    const model = await loadRobotron(new Texture());
+    model.interior(true);
+    model.media([true, false]);
+    model.tick();
+    const labels = [0, 1].map(i => model.group.getObjectByName(`drive-diskette-ink-${i}`));
+    const before = labels.map(m => m.visible);
+    model.inspect({ clamps: true });
+    model.tick();
+    const open = labels.map(m => m.visible);
+    model.media([false, true]);
+    model.tick();
+    return { before, open, after: labels.map(m => m.visible) };
+  });
+  expect(result).toEqual({ before: [true, false], open: [true, false], after: [false, true] });
+});

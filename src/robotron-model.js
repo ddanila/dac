@@ -435,6 +435,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     mesh.rotation.set(...p.rotation.map(THREE.MathUtils.degToRad));
     mesh.userData.rest = mesh.position.clone();
     mesh.userData.assembly = p.assembly;
+    mesh.userData.disketteUnit = p.disketteUnit;
     mesh.userData.detail =
       p.name.includes("robotron") || p.name === "drive-label-country"
         ? "plate-robotron"
@@ -528,6 +529,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
     mesh.rotation.set(...p.rotation.map(THREE.MathUtils.degToRad));
     mesh.userData.rest = mesh.position.clone();
     mesh.userData.assembly = p.assembly;
+    mesh.userData.disketteUnit = p.disketteUnit;
     mesh.userData.detail =
       p.name.includes("robotron") || p.name === "drive-label-country"
         ? "plate-robotron"
@@ -913,6 +915,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}) {
         mesh.position.y -= split * 145;
         mesh.position.z += split * 115;
       }
+      if (mesh.userData.disketteUnit !== undefined)
+        mesh.visible &&= !!(driveStates[mesh.userData.disketteUnit] & 8);
     }
     for (const d of data.driveMotion)
       objects.get(d.spindle).visible &&= ["all", "drives"].includes(
