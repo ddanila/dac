@@ -183,7 +183,7 @@ test("individual boards hide other assemblies and restore their geometry", async
   await page.goto("/");
   for (const [value, title] of [
     ["motherboard", "Motherboard"],
-    ["floppy-controller", "Floppy controller"],
+    ["floppy-controller", "Original 1715 FDC — comparative model"],
   ]) {
     await page.locator("#isolate-assembly").selectOption(value);
     await expect(page.locator("#inspection-title")).toHaveText(title);
@@ -191,7 +191,7 @@ test("individual boards hide other assemblies and restore their geometry", async
   await page.locator("#reference-board-photo").check();
   await page.locator("#board-underside").click();
   await expect(page.locator("#inspection-title")).toHaveText(
-    "Floppy controller underside",
+    "Original 1715 FDC — comparative model underside",
   );
   await expect(page.locator("#reference-board-photo")).not.toBeChecked();
   const results = await page.evaluate(async () => {
