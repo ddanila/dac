@@ -2,6 +2,8 @@ import { test, expect } from "@playwright/test";
 test("power, live pixels, keyboard, reset, inspection and three profiles", async ({
   page,
 }) => {
+  // Three profiles, model loading, typing and reset share this budget on software WebGL.
+  test.setTimeout(60000);
   const errors = [];
   const enclosurePhotos = [];
   page.on("request", (request) => {
