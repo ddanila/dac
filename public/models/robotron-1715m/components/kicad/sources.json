@@ -46,6 +46,16 @@
       "file": "source/DIP-40_W15.24mm.step",
       "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_DIP.3dshapes/DIP-40_W15.24mm.step",
       "sha256": "56fb239cc3f47dd58a0eac0bd4aeae847d6aac80463bd6713647a9e06bc34a04"
+    },
+    {
+      "file": "source/TO-92_Inline.step",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_TO_SOT_THT.3dshapes/TO-92_Inline.step",
+      "sha256": "f0b61c32ecbf0067157adc5a3d4966ceadf5d6dafe93c51af35f76c41c71a54a"
+    },
+    {
+      "file": "source/TO_SOT_CREDITS.md",
+      "url": "https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/8975715167d1a76f9b44be155ac02326f704cdbb/Package_TO_SOT_THT.3dshapes/CREDITS.md",
+      "sha256": "dc452c3f08da79359ec36f715ce5626680f458e0bafd70888ad3dcfa74d4576a"
     }
   ]
 }

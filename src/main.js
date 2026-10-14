@@ -185,7 +185,7 @@ try {
     onAnnotation: showAnnotation,
     onProtect: toggleDiskProtection,
     onInspect: (name) => {
-      const focus = name.startsWith("focus-")
+      const focus = typeof name === "string" && name.startsWith("focus-")
         ? name.slice(6)
         : ["motherboard", "display-controller"].includes(name)
           ? name

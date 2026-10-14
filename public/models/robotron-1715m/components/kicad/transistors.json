@@ -1,0 +1,40 @@
+{
+  "id": "TO-92_Inline",
+  "licence": "CC-BY-SA-4.0 with KiCad libraries exception",
+  "source": "source/TO-92_Inline.step",
+  "placement": "Generic package; specimen mould and lead bends provisional",
+  "meshes": {
+    "body": {
+      "file": "meshes/TO-92_Inline-body.stl",
+      "sha256": "0c487e316e3ef8d3dfc4486b82239529c55b833f34720d38480c85108b7f495c",
+      "bounds": [
+        [
+          -2.415,
+          -1.33,
+          2.5
+        ],
+        [
+          2.415,
+          2.415,
+          7.3
+        ]
+      ]
+    },
+    "leads": {
+      "file": "meshes/TO-92_Inline-leads.stl",
+      "sha256": "c0ec383370f9a630d7bb5b4255bfcafce8830649a49e6bc0cb5d94724b285111",
+      "bounds": [
+        [
+          -1.51,
+          -0.19,
+          -2.5
+        ],
+        [
+          1.5099999999999998,
+          0.19,
+          2.5
+        ]
+      ]
+    }
+  }
+}

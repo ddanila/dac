@@ -143,7 +143,7 @@ inspections.motherboard = {
   evidence:"Your specimen + documented W/M design · placement and dimensions estimated",
   photo:"20261014_072654600",
   views:[["Motherboard components","20261014_072654600"],["Processor area","20261014_073200542"],["Rear connectors","20261014_073219091"]],
-  text:"The original W placement drawing guides the 32 U2164 RAM packages, UA880 CPU, UA858 DMA, UA8560 SIO, two CTCs and U8272 floppy controller at A44. The controller belongs on this main board. KiCad package geometry supplies nominal bodies and leads; local dimensions and the exact population of this specimen remain unverified. This is a clean drawing-based reconstruction, not a traced electrical netlist.",
+  text:"The original W placement drawing guides the 32 RAM packages (M4164B-12 in your photo; U2164 in the drawing), UA880 CPU, UA858 DMA, UA8560 SIO, two CTCs and U8272 floppy controller at A44. The controller belongs on this main board. KiCad package geometry supplies nominal bodies and leads; local dimensions and complete placement remain unverified. Click an individual chip to inspect its role, owner photo and original drawing. This is a clean drawing-based reconstruction, not a traced electrical netlist.",
   reference:"https://xepb.org/robotron/docs/1715w.zip"
 };
 inspections["display-controller"] = {
@@ -197,7 +197,7 @@ function photoUrl(photo) {
   ).href;
 }
 export function showSpecimenDetail(name = currentInspection) {
-  const entry = inspections[name];
+  const entry = typeof name === "object" ? name : inspections[name];
   if (!entry) return;
   const generation=++detailGeneration;
   disketteViewer?.dispose(); disketteViewer=undefined;
@@ -216,6 +216,15 @@ export function showSpecimenDetail(name = currentInspection) {
   link.textContent = entry.photo
     ? "View owner’s original photograph ↗"
     : "View credited reference ↗";
+  let drawing = document.getElementById("detail-drawing");
+  if (!drawing) {
+    drawing = document.createElement("a"); drawing.id = "detail-drawing";
+    drawing.target = "_blank"; drawing.rel = "noopener noreferrer";
+    drawing.style.marginLeft = "1em"; link.after(drawing);
+  }
+  drawing.hidden = !(entry.photo && entry.reference);
+  drawing.href = entry.reference || "#";
+  drawing.textContent = "Open original drawing / source ↗";
   let choices = document.getElementById("detail-views");
   if (!choices) { choices = document.createElement("div"); choices.id = "detail-views"; choices.className = "secondary-controls"; photo.before(choices); }
   choices.replaceChildren();
