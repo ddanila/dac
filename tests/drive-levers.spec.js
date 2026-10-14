@@ -61,7 +61,8 @@ test('3D specimen rotates independently, slides into its sleeve and releases the
   await expect(page.locator('#diskette-viewer canvas')).toHaveCount(1);
 });
 
-test('drag feedback rejects a closed drive and permits moving a disk into B', async({page})=>{
+for (const open of [false, true]) {
+test(`drag feedback ${open ? 'accepts an open' : 'rejects a closed'} drive B`, async({page})=>{
   test.setTimeout(60000);
   const {PerspectiveCamera,Vector3}=await import('three');
   await page.setViewportSize({width:1440,height:1100});
@@ -77,25 +78,23 @@ test('drag feedback rejects a closed drive and permits moving a disk into B', as
   camera.position.set(0,1.9,3.8);camera.lookAt(0,.5,0);camera.updateMatrixWorld();
   function point(x,y,z){const p=new Vector3(x*.0025,z*.0025,-y*.0025).project(camera);return {x:box.x+(p.x+1)*box.width/2,y:box.y+(1-p.y)*box.height/2};}
   const start=point(365,-110,6.5),end=point(-4,-213,78);
-  await page.mouse.move(start.x,start.y);await page.mouse.down();
-  await expect(page.locator('#disk-drag-hint')).toBeVisible();
-  await page.mouse.move(end.x,end.y,{steps:4});
-  await expect(page.locator('#disk-drag-hint')).toHaveAttribute('data-allowed','false');
-  await expect(page.locator('#disk-drag-hint')).toContainText('lever');
-  await page.mouse.up();
-  await expect(page.locator('#drive-media-0')).toHaveText('Insert disk A');
-  await page.locator('#drive-lever-1').click();
+  if (open) await page.locator('#drive-lever-1').click();
   await page.locator('#viewport').scrollIntoViewIfNeeded();
-  // Sidebar scrolling can move the viewport; reproject with its current offset.
   const fresh=await page.locator('#viewport').boundingBox();
   const dx=fresh.x-box.x,dy=fresh.y-box.y;
   await page.mouse.move(start.x+dx,start.y+dy);await page.mouse.down();
+  await expect(page.locator('#disk-drag-hint')).toBeVisible();
   await page.mouse.move(end.x+dx,end.y+dy,{steps:4});
-  await expect(page.locator('#disk-drag-hint')).toHaveAttribute('data-allowed','true');
+  await expect(page.locator('#disk-drag-hint')).toHaveAttribute('data-allowed',String(open));
+  if (!open) await expect(page.locator('#disk-drag-hint')).toContainText('lever');
   await page.mouse.up();
-  await expect(page.locator('#drive-media-1')).toHaveText('Remove disk B');
-  await expect(page.locator('#drive-media-0')).toBeDisabled();
+  if (open) {
+    await expect(page.locator('#drive-media-1')).toHaveText('Remove disk B');
+    await expect(page.locator('#drive-media-0')).toBeDisabled();
+  } else await expect(page.locator('#drive-media-0')).toHaveText('Insert disk A');
 });
+}
+
 
 
 test('removed media moves to B with its protection and survives reload without resurrecting A',async({page})=>{

@@ -1,3 +1,4 @@
+import { specimenMaterial } from "./robotron-materials.js";
 import { modelAsset } from "./model-assets.js";
 import * as THREE from "three";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
@@ -240,11 +241,11 @@ export async function loadPcbComponents(data, base, onAsset = () => {}, cache = 
         }
         const geometry = await cache.get(url);
         onAsset();
-        const material = new THREE.MeshStandardMaterial({
-          color: kind === "body" ? 0x29282a : 0xb9b7ac,
-          roughness: kind === "body" ? 0.7 : 0.32,
-          metalness: kind === "body" ? 0 : 0.78,
-        });
+        const material = specimenMaterial(
+          kind === "body" ? 0x29282a : 0xb9b7ac,
+          data.materials?.[kind === "body" ? "ic-moulding" : "tinned-lead"] ||
+            {roughness: kind === "body" ? .72 : .27, metalness: kind === "body" ? 0 : .9},
+        );
         for (const board of [...new Set(placements.map((p) => p.board))]) {
           const boardPlacements = placements.filter((p) => p.board === board);
           const mesh = new THREE.InstancedMesh(
