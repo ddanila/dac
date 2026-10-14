@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "8e7b09260a2513da5e0c3c642bc4c19acfb140ef",
+  "revision": "8dc44b7222e65ea74bb9dcc154c68a3111296145",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "05f9507bcfe3a13a0874597e9552976b6823fba680012798eeff737c6e85913f"
+      "sha256": "4f0e9f97a74a953a9487f25cc3d2a62f7661d193fc77e5d2aca3fe0e3f437ab9"
     },
     {
       "file": "LICENSE",
@@ -45,7 +45,7 @@
     },
     {
       "file": "meshes/case-base.stl",
-      "sha256": "b39999e34d26e45d66b4cc3fcc3034dabefd75bfc07d07f03461baefb7d1f4ff"
+      "sha256": "a96c43d21412b60e6a6ebd81c2b23dd341f1fdba3ab80cb350528623d15ae003"
     },
     {
       "file": "meshes/case-lid.stl",
@@ -57,11 +57,11 @@
     },
     {
       "file": "meshes/drives.stl",
-      "sha256": "40a52de13bd5b51b38ed82279fb1f1b489576e18e4bf50da01ac0e0f08351319"
+      "sha256": "23f09474b0f767439a8b0d28104af5c8ea92705e66508a0b777f79c9e4b913a3"
     },
     {
       "file": "meshes/power.stl",
-      "sha256": "6cfb14f30df054dc1951c8fd855e943222d7bb1901c331de8f330e8ef766dabd"
+      "sha256": "7070462c653bcc0036af2369f690a555ec50dbde8e3e417adde12eef44623dc6"
     },
     {
       "file": "meshes/reset.stl",
@@ -109,7 +109,7 @@
     },
     {
       "file": "meshes/drive-insets.stl",
-      "sha256": "04d61bab19497dcb93f3e470f94aae1a86d042478554dd7dc1ea8a5d68384bda"
+      "sha256": "d20c9d480c99403e8158a50e6c131ad04e806adf88a7a742905e186cfe8e0f88"
     },
     {
       "file": "meshes/drive-latch-0.stl",
@@ -612,20 +612,12 @@
       "sha256": "21ac68dc1078e453c4945e440312bab0d500d86b7a42a45fec96894124e900fb"
     },
     {
-      "file": "meshes/drive-latch-trim-0.stl",
-      "sha256": "b096978ba809b5443553f1641cbe6f724303fb48c58d70b28c7463b971bb83d9"
-    },
-    {
-      "file": "meshes/drive-latch-trim-1.stl",
-      "sha256": "c2011564a2c9cf0a2b154fc53933817bcfd647fa3d9a8dcb5e6c47b3420ea0bb"
-    },
-    {
       "file": "meshes/drive-direction-0.stl",
-      "sha256": "47416523e1e89a4a08f65ddf036d404d1487377562738bc7184b51a3448a691d"
+      "sha256": "2b1730221ef5e1776b304937dab93d611aa2e2509ea75f60f0502e7805244bc1"
     },
     {
       "file": "meshes/drive-direction-1.stl",
-      "sha256": "4f121f9841e7879f8daf9f4d42915d603f88e1e752a2235002313961c994c920"
+      "sha256": "5f5c888e7283edcd0e77d1871e487dae5a5d85ed67393116f621e18640e99242"
     },
     {
       "file": "meshes/drive-shaft-0.stl",
@@ -738,6 +730,14 @@
     {
       "file": "meshes/logic-inductors-display-controller.stl",
       "sha256": "aae90ecdbc6fa9cafcf21030537b0b9cfbc42a4ba955396ba6e81c19390e1379"
+    },
+    {
+      "file": "meshes/power-housing.stl",
+      "sha256": "329d6871c591bd6cf4c3b995983f83aedf0ffd0042d6f21afa2f277c3f4b5245"
+    },
+    {
+      "file": "meshes/front-labels.stl",
+      "sha256": "41dddf39a0fc601d9e7308feaa8a178b674b02859a76ab5a7f4b665daf558acb"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1337,23 +1337,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "f8282dd7b66ac7ee2b26458cb4aab877c67c6d0504f455bdc6edd3c07d52ce74"
+      "sha256": "d0b57fc7415af3d2756718524da0b630197e3f9104984eaa49fd52137a0feb9a"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "1755c2c3e2352ff57b9cdf17bb4d9c5d53ebf73085a1ce22958b51b20cca55aa"
+      "sha256": "799a42f686ea620f238f7321936f68097c6bd9ce4122a33950c8cae459d288cb"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "6463365e23cf68ab24495eed6318ad47e4fb7e12b3a041198df684ecc72219c1"
+      "sha256": "f36c37bb774834a54637ca3fadf0ff93e37260bfb0918963e308dc0c19a2acbe"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "2f531f79836327fa1e8f561799f63f5fc1622eed6d7f71d682418ebf22775fa8"
+      "sha256": "2c6f53a913cb3ecf31ab072ad6cbc89cbb8a52734ea3bdce600bfcf8d3d77569"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "f7871f416a6e6f080fb9f845f9035cc24995231059606e22ee119274ec877203"
+      "sha256": "793d3305e883107de11270fb8083cb071f3016138de1069afe535283bb2c6b28"
     }
   ]
 }

@@ -596,41 +596,6 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     mesh.visible = false;
     patches.push(mesh);
   }
-  const arrow = markingTexture((c) => {
-    c.lineWidth = 9;
-    c.lineCap = "round";
-    c.beginPath();
-    c.arc(98, 25, 66, 0.1, Math.PI / 2);
-    c.stroke();
-    c.beginPath();
-    c.moveTo(165, 14);
-    c.lineTo(145, 36);
-    c.lineTo(177, 37);
-    c.closePath();
-    c.fill();
-  });
-  for (const x of [-158, -4])
-    marking("drive-direction", [21, 16], [x + 43, -208.6, 72], arrow);
-  for (const [name, x, text] of [
-    ["reset-label", -208, "RESET"],
-    ["power-label", 207, "POWER"],
-  ]) {
-    marking(
-      name,
-      [name === "reset-label" ? 14 : 22, name === "reset-label" ? 3.2 : 4.3],
-      [x, -200.05, 4.8],
-      markingTexture(
-        (c, w, h) => {
-          c.textAlign = "center";
-          c.textBaseline = "middle";
-          c.font = "500 74px Arial";
-          c.fillText(text, w / 2, h / 2, w - 4);
-        },
-        512,
-        128,
-      ),
-    );
-  }
   const indicatorMaterials = [0, 1].map(() => new THREE.MeshStandardMaterial({
     color: 0x89621d, roughness: 0.3, emissiveIntensity: 2.5,
   }));
@@ -896,13 +861,6 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         }
       }
     }
-    for (const mesh of group.children)
-      if (mesh.name === "drive-direction") {
-        if (!mesh.userData.rest) mesh.userData.rest = mesh.position.clone();
-        mesh.position.copy(mesh.userData.rest);
-        mesh.position.y -= split * 145;
-        mesh.position.z += split * 115;
-      }
     objects.get("fascia").position.set(0,(inside?400:0),inside?180:0);
     const keyboardLift = Math.max(split, inspection.keyboardOpen ? 1 : 0);
     objects.get("keyboard-entry-wires").visible &&= keyboardLift === 0;
@@ -1029,13 +987,6 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     for (const key of keyObjects.values()) {
       const core = key.getObjectByName("keycap-pale-core");
       if (core) core.visible = keyboardLift > 0 || inspection.transparent;
-    }
-    for (const mesh of group.children) {
-      if (mesh.name === "drive-direction")
-        mesh.visible =
-          inspection.isolated === "all" || inspection.isolated === "drives";
-      if (["reset-label", "power-label"].includes(mesh.name))
-        mesh.visible = inspection.isolated === "all";
     }
     const newDetails=!!group.userData.newDetails;group.userData.newDetails=false;
     return {

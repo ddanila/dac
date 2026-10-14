@@ -67,6 +67,12 @@ export function createDriveMotion(objects, descriptions = []) {
         clampAmount = demo
           ? 0.5 - 0.5 * Math.cos(phase * Math.PI * 2)
           : Number(!!(clampsOpen || (state & 32) || !(state & 8)));
+      // Visual hand-operated lever travel; controller state remains authoritative.
+      // Keep the shaft and clamp followers together, including reversals mid-travel.
+      const previousClamp = d.clampVisual;
+      if (d.clampVisual === undefined || reduced || demo) d.clampVisual = clampAmount;
+      else d.clampVisual += Math.sign(clampAmount - d.clampVisual) * Math.min(Math.abs(clampAmount - d.clampVisual), dt / .32);
+      moving ||= d.clampVisual !== clampAmount || previousClamp !== d.clampVisual;
       const target = Number(!!(state & 8));
       if (d.insertion === undefined || reduced) d.insertion = target;
       else d.insertion += Math.sign(target - d.insertion) * Math.min(Math.abs(target - d.insertion), dt / .45);
@@ -139,7 +145,7 @@ export function createDriveMotion(objects, descriptions = []) {
           d.latchPivot[1] - split * 145,
           d.latchPivot[2] + split * 115,
         );
-        d.latch.rotation.y = ((1 - clampAmount) * Math.PI) / 2;
+        d.latch.rotation.y = ((1 - d.clampVisual) * Math.PI) / 2;
         if (d.latchTrim) { d.latchTrim.position.copy(d.latch.position); d.latchTrim.rotation.copy(d.latch.rotation); }
       }
       if (d.shaft && d.latch) {
@@ -147,7 +153,7 @@ export function createDriveMotion(objects, descriptions = []) {
         d.shaft.rotation.copy(d.latch.rotation);
       }
       for (const follower of [d.clamp, d.release]) if (follower)
-        follower.position.set(0, -split * 145, split * 115 + clampAmount * 5);
+        follower.position.set(0, -split * 145, split * 115 + d.clampVisual * 5);
     }
     return moving;
   };
