@@ -1,5 +1,5 @@
 {
-  "version": 38,
+  "version": 39,
   "hardwareAudit": {
     "date": "2026-10-14",
     "sources": {
@@ -29,7 +29,10 @@
         "A41": "CAS/bank decode PROM",
         "A44": "Floppy-disk controller"
       },
-      "placement": "32 RAM and two CTC positions registered against owner photos; eleven processor-area packages and one long socket use a local projective fit to nominal DIP-40 lead pitch. Global board dimensions and reference correspondence remain provisional."
+      "placement": "32 RAM and two CTC positions registered against owner photos; eleven processor-area packages and one long socket use a local projective fit to nominal DIP-40 lead pitch. Global board dimensions and reference correspondence remain provisional.",
+      "artwork": "Partial visible masked copper paths and board marking traced from owner 073200542 using the existing local pitch fit. No hidden routes or electrical netlist inferred.",
+      "passives": "Eleven lower-board resistors/capacitors registered from owner 073200542; nominal body dimensions and unknown electrical values.",
+      "ribbon": "Motherboard ribbon socket and plug registered to owner 073200542; drive-to-board service loops remain approximate."
     },
     "keyboard": {
       "cpu": "A5 U880 in schematic; UB880D in owner photo",
@@ -69,8 +72,8 @@
     "display": {
       "controller": "SAB8275P in owner photo; D05 8275-compatible device in drawing",
       "fetch": "Local counters, RAM and multiplexers. Do not conflate with system UA858 floppy DMA.",
-      "implemented": "Bounded attribute FIFO; row-based nominal character-clock scheduling; programmed burst gaps and stop-DMA dummy consumption; read-clear FO, DU and raster IR status; underrun blanking/retrace recovery. Runtime timing is separate from host rendering.",
-      "remaining": "Display-board DACK response is idealized at one byte per character clock. Row bytes are sampled together; no per-byte bus contention or visible raster tearing. Nominal 13.824 MHz / 8 clock is a family reference, not measured on this W/M specimen. CPU interrupt wiring, light pen, spaced-row pixel output and exact board delays remain unverified/unimplemented."
+      "implemented": "Bounded attribute FIFO; row-based nominal character-clock scheduling; programmed burst gaps and stop-DMA dummy consumption; read-clear FO, DU and raster IR status; underrun blanking/retrace recovery. Runtime timing is separate from host rendering. Completed fetched rows now latch at scanout boundaries with retained field attributes; host rendering reads historical rows, not current VRAM.",
+      "remaining": "Display-board DACK response is idealized at one byte per character clock. Row bytes are sampled together; row-level scanout only, without per-byte bus contention or scanline-accurate tearing. Nominal 13.824 MHz / 8 clock is a family reference, not measured on this W/M specimen. CPU interrupt wiring, light pen, spaced-row pixel output and exact board delays remain unverified/unimplemented."
     }
   },
   "reviewViews": {
@@ -2429,23 +2432,238 @@
             "label": "K170AP2",
             "model": "DIP-14_W7.62mm",
             "position": [
-              -171,
-              144,
+              -195.164,
+              101.622,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "status": "Visible 14-pin body registered from owner 073200542; A22 is a provisional drawing correspondence, not an identified specimen reference.",
+            "inspection": {
+              "title": "A22 \u00b7 K170AP2",
+              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Position follows the visible right-side 14-pin package in owner 073200542; reference correspondence remains unverified.",
+              "evidence": "Owner photograph + W/M documentation; estimated placement",
+              "photo": "20261014_073200542",
+              "reference": "https://xepb.org/robotron/docs/1715w.zip"
+            },
+            "photoCentre": [
+              1204,
+              691
+            ]
+          }
+        ],
+        "passives": [
+          {
+            "kind": "crystal",
+            "position": [
+              -180,
+              -165,
               13.6
             ],
             "rotation": 180,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
-            "inspection": {
-              "title": "A22 \u00b7 K170AP2",
-              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
-              "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
-              "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
-          }
-        ],
-        "passives": [
+            "diameter": 5,
+            "height": 6
+          },
+          {
+            "kind": "crystal",
+            "position": [
+              -128,
+              -165,
+              13.6
+            ],
+            "rotation": 180,
+            "side": 1,
+            "diameter": 5,
+            "height": 6
+          },
+          {
+            "kind": "ceramic",
+            "position": [
+              -101.765,
+              24.237,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              707,
+              307
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "ceramic",
+            "position": [
+              -50.965,
+              28.153,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              485,
+              337
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "ceramic",
+            "position": [
+              -52.49,
+              53.702,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              487,
+              452
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "ceramic",
+            "position": [
+              -53.135,
+              74.995,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              486,
+              552
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "ceramic",
+            "position": [
+              -91.984,
+              92.767,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              661,
+              639
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "ceramic",
+            "position": [
+              -123.881,
+              95.136,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              817,
+              652
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "ceramic",
+            "position": [
+              -150.704,
+              93.512,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              955,
+              644
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "resistor",
+            "position": [
+              -110.16,
+              59.137,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 2.5,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              747,
+              470
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "resistor",
+            "position": [
+              -76.669,
+              85.223,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 2.5,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              590,
+              601
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "electrolytic",
+            "position": [
+              -60.647,
+              75.294,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 5,
+            "height": 8,
+            "side": 1,
+            "photoCentre": [
+              519,
+              553
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
+          {
+            "kind": "electrolytic",
+            "position": [
+              -27.652,
+              114.285,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 5,
+            "height": 8,
+            "side": 1,
+            "photoCentre": [
+              366,
+              744
+            ],
+            "status": "Owner photo 073200542, local pitch fit; dimensions estimated and electrical values unknown"
+          },
           {
             "kind": "ceramic",
             "position": [
@@ -2493,206 +2711,6 @@
             "side": 1,
             "diameter": 5,
             "height": 4
-          },
-          {
-            "kind": "ceramic",
-            "position": [
-              -106,
-              40,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 5,
-            "height": 4
-          },
-          {
-            "kind": "ceramic",
-            "position": [
-              -135,
-              40,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 5,
-            "height": 4
-          },
-          {
-            "kind": "ceramic",
-            "position": [
-              -162,
-              40,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 5,
-            "height": 4
-          },
-          {
-            "kind": "ceramic",
-            "position": [
-              -5,
-              105,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 5,
-            "height": 4
-          },
-          {
-            "kind": "ceramic",
-            "position": [
-              -72,
-              113,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 5,
-            "height": 4
-          },
-          {
-            "kind": "ceramic",
-            "position": [
-              -202,
-              130,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 5,
-            "height": 4
-          },
-          {
-            "kind": "electrolytic",
-            "position": [
-              13,
-              118,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 6.3,
-            "height": 10
-          },
-          {
-            "kind": "electrolytic",
-            "position": [
-              -33,
-              120,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 6.3,
-            "height": 10
-          },
-          {
-            "kind": "electrolytic",
-            "position": [
-              -91,
-              120,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 6.3,
-            "height": 10
-          },
-          {
-            "kind": "electrolytic",
-            "position": [
-              -201,
-              110,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 6.3,
-            "height": 10
-          },
-          {
-            "kind": "crystal",
-            "position": [
-              -180,
-              -165,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 5,
-            "height": 6
-          },
-          {
-            "kind": "crystal",
-            "position": [
-              -128,
-              -165,
-              13.6
-            ],
-            "rotation": 180,
-            "side": 1,
-            "diameter": 5,
-            "height": 6
-          },
-          {
-            "ref": "R19",
-            "kind": "resistor",
-            "position": [
-              -14,
-              56,
-              13.6
-            ],
-            "rotation": 90,
-            "diameter": 2.5,
-            "height": 4,
-            "side": 1,
-            "evidence": "1715W placement drawing 1.93.310411.8/09, sheet B; relative CPU/DMA adjacency. Position and package size estimated, electrical value untranscribed."
-          },
-          {
-            "ref": "R102",
-            "kind": "resistor",
-            "position": [
-              -57,
-              54.5,
-              13.6
-            ],
-            "rotation": 90,
-            "diameter": 2.5,
-            "height": 4,
-            "side": 1,
-            "evidence": "1715W placement drawing 1.93.310411.8/09, sheet B; relative CPU/DMA adjacency. Position and package size estimated, electrical value untranscribed."
-          },
-          {
-            "ref": "C90",
-            "kind": "ceramic",
-            "position": [
-              -25,
-              82,
-              13.6
-            ],
-            "rotation": 180,
-            "diameter": 5.5,
-            "height": 4,
-            "side": 1,
-            "evidence": "1715W placement drawing 1.93.310411.8/09, sheet B; relative CPU/DMA adjacency. Position and package size estimated, electrical value untranscribed."
-          },
-          {
-            "ref": "C91",
-            "kind": "ceramic",
-            "position": [
-              -68,
-              82,
-              13.6
-            ],
-            "rotation": 180,
-            "diameter": 5.5,
-            "height": 4,
-            "side": 1,
-            "evidence": "1715W placement drawing 1.93.310411.8/09, sheet B; relative CPU/DMA adjacency. Position and package size estimated, electrical value untranscribed."
           }
         ],
         "connectors": [
@@ -2708,13 +2726,14 @@
           },
           {
             "position": [
-              7,
-              35,
+              -177.66,
+              138.819,
               13.6
             ],
             "n": 13,
-            "rotation": 180,
-            "side": 1
+            "rotation": 90,
+            "side": 1,
+            "status": "Ribbon socket visible in owner 073200542; local photo fit, nominal 26-way pitch; hidden wiring provisional"
           },
           {
             "position": [
@@ -7122,20 +7141,24 @@
         "label": "K170AP2",
         "model": "DIP-14_W7.62mm",
         "position": [
-          -171,
-          144,
+          -195.164,
+          101.622,
           13.6
         ],
-        "rotation": 180,
+        "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Visible 14-pin body registered from owner 073200542; A22 is a provisional drawing correspondence, not an identified specimen reference.",
         "inspection": {
           "title": "A22 \u00b7 K170AP2",
-          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Position follows the visible right-side 14-pin package in owner 073200542; reference correspondence remains unverified.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          1204,
+          691
+        ],
         "id": "motherboard-A22",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -17784,99 +17807,281 @@
         1
       ],
       [
-        -167.19,
-        151.35325,
+        -187.81074999999998,
+        97.812,
         13.6,
         "motherboard",
         1
       ],
       [
-        -167.19,
-        149.08,
+        -190.08399999999997,
+        97.812,
         13.6,
         "motherboard",
         1
       ],
       [
-        -167.19,
-        146.54,
+        -192.624,
+        97.812,
         13.6,
         "motherboard",
         1
       ],
       [
-        -167.19,
-        144.0,
+        -195.164,
+        97.812,
         13.6,
         "motherboard",
         1
       ],
       [
-        -167.19,
-        141.46,
+        -197.70399999999998,
+        97.812,
         13.6,
         "motherboard",
         1
       ],
       [
-        -167.19,
-        138.92,
+        -200.244,
+        97.812,
         13.6,
         "motherboard",
         1
       ],
       [
-        -167.19,
-        136.64675,
+        -202.51725,
+        97.812,
         13.6,
         "motherboard",
         1
       ],
       [
-        -174.81,
-        151.35325,
+        -187.81074999999998,
+        105.432,
         13.6,
         "motherboard",
         1
       ],
       [
-        -174.81,
-        149.08,
+        -190.08399999999997,
+        105.432,
         13.6,
         "motherboard",
         1
       ],
       [
-        -174.81,
-        146.54,
+        -192.624,
+        105.432,
         13.6,
         "motherboard",
         1
       ],
       [
-        -174.81,
-        144.0,
+        -195.164,
+        105.432,
         13.6,
         "motherboard",
         1
       ],
       [
-        -174.81,
-        141.46,
+        -197.70399999999998,
+        105.432,
         13.6,
         "motherboard",
         1
       ],
       [
-        -174.81,
-        138.92,
+        -200.244,
+        105.432,
         13.6,
         "motherboard",
         1
       ],
       [
-        -174.81,
-        136.64675,
+        -202.51725,
+        105.432,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -180.0,
+        -163.75,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -180.0,
+        -166.25,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -128.0,
+        -163.75,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -128.0,
+        -166.25,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -100.515,
+        24.237,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -103.015,
+        24.237,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -49.715,
+        28.153,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -52.215,
+        28.153,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -51.24,
+        53.702,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -53.74,
+        53.702,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -51.885,
+        74.995,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -54.385,
+        74.995,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -90.734,
+        92.767,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -93.234,
+        92.767,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -122.631,
+        95.136,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -125.131,
+        95.136,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -149.454,
+        93.512,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -151.954,
+        93.512,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -110.16,
+        54.637,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -110.16,
+        63.637,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -76.669,
+        80.723,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -76.669,
+        89.723,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -60.647,
+        74.044,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -60.647,
+        76.544,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -27.652,
+        113.035,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -27.652,
+        115.535,
         13.6,
         "motherboard",
         1
@@ -17938,230 +18143,6 @@
         1
       ],
       [
-        -106.0,
-        41.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -106.0,
-        38.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -135.0,
-        41.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -135.0,
-        38.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -162.0,
-        41.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -162.0,
-        38.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -5.0,
-        106.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -5.0,
-        103.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -72.0,
-        114.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -72.0,
-        111.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -202.0,
-        131.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -202.0,
-        128.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        13.0,
-        119.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        13.0,
-        116.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -33.0,
-        121.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -33.0,
-        118.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -91.0,
-        121.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -91.0,
-        118.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -201.0,
-        111.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -201.0,
-        108.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -180.0,
-        -163.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -180.0,
-        -166.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -128.0,
-        -163.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -128.0,
-        -166.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -9.5,
-        56.0,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -18.5,
-        56.0,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -52.5,
-        54.5,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -61.5,
-        54.5,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -25.0,
-        83.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -25.0,
-        80.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -68.0,
-        83.25,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
-        -68.0,
-        80.75,
-        13.6,
-        "motherboard",
-        1
-      ],
-      [
         -205.73,
         11.24,
         13.6,
@@ -18344,183 +18325,183 @@
         1
       ],
       [
-        8.270000000000001,
-        50.24,
+        -162.42,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.270000000000001,
-        47.7,
+        -164.96,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.270000000000001,
-        45.16,
+        -167.5,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.270000000000001,
-        42.62,
+        -170.04,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.27,
-        40.08,
+        -172.57999999999998,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.27,
-        37.54,
+        -175.12,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.27,
-        35.0,
+        -177.66,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.27,
-        32.46,
+        -180.2,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.27,
-        29.92,
+        -182.74,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.269999999999998,
-        27.38,
+        -185.28,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.269999999999998,
-        24.84,
+        -187.82,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.269999999999998,
-        22.3,
+        -190.35999999999999,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        8.269999999999998,
-        19.759999999999998,
+        -192.9,
+        137.54899999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.730000000000002,
-        50.24,
+        -162.42,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.730000000000002,
-        47.7,
+        -164.96,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.730000000000001,
-        45.16,
+        -167.5,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.730000000000001,
-        42.62,
+        -170.04,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.730000000000001,
-        40.08,
+        -172.57999999999998,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.73,
-        37.54,
+        -175.12,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.73,
-        35.0,
+        -177.66,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.73,
-        32.46,
+        -180.2,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.7299999999999995,
-        29.92,
+        -182.74,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.7299999999999995,
-        27.38,
+        -185.28,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.7299999999999995,
-        24.84,
+        -187.82,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.729999999999999,
-        22.3,
+        -190.35999999999999,
+        140.089,
         13.6,
         "motherboard",
         1
       ],
       [
-        5.729999999999999,
-        19.759999999999998,
+        -192.9,
+        140.089,
         13.6,
         "motherboard",
         1
@@ -24655,7 +24636,7 @@
       "name": "logic-boards-motherboard",
       "file": "meshes/logic-boards-motherboard.stl",
       "color": "#386349",
-      "sha256": "baad0f3ea626e31a856cb5d1ee55f65c3d69c0f708dc80454dfe8d03de277605",
+      "sha256": "3c85df0df9a92f538aef7cee9b8233a49cb92eb76766227f0d48693f531981d0",
       "board": "motherboard",
       "part": "logic-boards",
       "section": "interior",
@@ -24675,7 +24656,7 @@
       "name": "logic-connectors-motherboard",
       "file": "meshes/logic-connectors-motherboard.stl",
       "color": "#b1b5a1",
-      "sha256": "9d1bd6bc5fc43b8d3b334283f964b2af4bd937f9aaa6b128724f00e261995925",
+      "sha256": "dc34f0e87113bac756ac67daccb903d004ea81f7e47c6e0bd87c838f4ebd8ca6",
       "board": "motherboard",
       "part": "logic-connectors",
       "section": "interior",
@@ -24727,7 +24708,7 @@
       "name": "ribbon-cables",
       "file": "meshes/ribbon-cables.stl",
       "color": "#a0a59b",
-      "sha256": "21bf158dd7adb6055c4bb9489d8ff734065bac4854a3f6ee18e6956cf59aecac",
+      "sha256": "d67065c1dbbb1edb1ef6b0209c8209fa03468bd54b9cbee3353cd3ea4bba146e",
       "section": "interior",
       "material": "rubber"
     },
@@ -24735,7 +24716,7 @@
       "name": "ribbon-stripes",
       "file": "meshes/ribbon-stripes.stl",
       "color": "#975b50",
-      "sha256": "415c8253f1c3354fcca5562a810e5213ccc7be98c6a55d54dd690a6735b94b91",
+      "sha256": "4e6f94da1185f12622fce4ada802155284abc81de39357f04a1f73e5e048d372",
       "section": "interior",
       "material": "rubber"
     },
@@ -25056,7 +25037,7 @@
       "name": "logic-resistors-motherboard",
       "file": "meshes/logic-resistors-motherboard.stl",
       "color": "#71917c",
-      "sha256": "0d6e38f2195e9d5c4d0ea7732dada5efc4d1ea2a8f1fc398dec98e20fe236c69",
+      "sha256": "b46d145b222ccdf84763a0a5471a48e18eca20e4e9d74a22ab22bb82455b3e35",
       "board": "motherboard",
       "part": "logic-resistors",
       "section": "interior",
@@ -25066,7 +25047,7 @@
       "name": "logic-ceramics-motherboard",
       "file": "meshes/logic-ceramics-motherboard.stl",
       "color": "#aa622e",
-      "sha256": "3bc9ecc9ac11cd4a8e2fd7e6a833b62440fe58daa6fe29f9b799fe8beb984dc7",
+      "sha256": "b99f0a0e4258f2b2f3522a3ec22c64f74be6ec18c3b4b24027c012ea15dc1343",
       "board": "motherboard",
       "part": "logic-ceramics",
       "section": "interior",
@@ -25086,7 +25067,7 @@
       "name": "logic-electrolytics-motherboard",
       "file": "meshes/logic-electrolytics-motherboard.stl",
       "color": "#282a28",
-      "sha256": "699d2ec708e4820030bd879b4d304a181e61ee1df729d52d926ddc4fa08c3d54",
+      "sha256": "c39d2063b6919d750d14ab35a5a86bf7216725f431d70853aebea5fa50096cf8",
       "board": "motherboard",
       "part": "logic-electrolytics",
       "section": "interior",
@@ -25116,7 +25097,7 @@
       "name": "logic-passive-leads-motherboard",
       "file": "meshes/logic-passive-leads-motherboard.stl",
       "color": "#b8b7ac",
-      "sha256": "30e687efb08da0d74a018fb0aff95755bed8eabe3cd9afc2d0c61e0c8aa53ecb",
+      "sha256": "2f834e1d27ced472d7589e98603795fe842ccb90942e3362ef663d63f604b770",
       "board": "motherboard",
       "part": "logic-passive-leads",
       "section": "interior",
@@ -25146,7 +25127,7 @@
       "name": "logic-connector-contacts-motherboard",
       "file": "meshes/logic-connector-contacts-motherboard.stl",
       "color": "#b9b7ac",
-      "sha256": "6b70109c6777371b93ad43d64ec1331bf7b066879f1ff3c575109362c1fa7b3a",
+      "sha256": "bbff40527eb1572fb9e5011496a57f07c816b1b4f1ba1a9577f32b8d0f58dd15",
       "board": "motherboard",
       "part": "logic-connector-contacts",
       "section": "interior",
@@ -25182,7 +25163,7 @@
       "name": "ribbon-ridges",
       "file": "meshes/ribbon-ridges.stl",
       "color": "#b0b3a9",
-      "sha256": "1429fd7f2b5912e8a0fd25936f8b20e3730769376300bfa6f74c3c3daf6f13ba",
+      "sha256": "e8996902cccf3d397b5dd19ccc2b076fcabca5318aa1608c3c7ea14682621ee9",
       "section": "interior",
       "material": "rubber"
     },
@@ -25697,10 +25678,20 @@
       "material": "plastic"
     },
     {
+      "name": "logic-artwork-motherboard",
+      "file": "meshes/logic-artwork-motherboard.stl",
+      "color": "#7d9354",
+      "sha256": "707ae15eee6b968eacd3445f8d6fb1a063d3cfa36f73001dbb158d3e63a5c7e2",
+      "board": "motherboard",
+      "part": "logic-artwork",
+      "section": "interior",
+      "material": "pcb"
+    },
+    {
       "name": "logic-artwork-display-controller",
       "file": "meshes/logic-artwork-display-controller.stl",
       "color": "#5b9f8f",
-      "sha256": "90c5684d5b2c82c24b429ff2ab417680ca4697bed3da56c0afd449a989a518be",
+      "sha256": "0a0cc3afc353953f4abffbf9c6afe0842bd907e692f4ecf75d09ee23c4f3803f",
       "board": "display-controller",
       "part": "logic-artwork",
       "section": "interior",
@@ -25838,6 +25829,26 @@
       "file": "meshes/keyboard-entry-blue.stl",
       "color": "#3185b5",
       "sha256": "9a60de7a2f15e2f67dd8cdec5b8cfbd28da2797bf00a34bea1c17347cfce4a21",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "logic-silkscreen-motherboard",
+      "file": "meshes/logic-silkscreen-motherboard.stl",
+      "color": "#c4c5a8",
+      "sha256": "520c9cbd392452cb19c1f3238af3cba62f39a1dd74e49e87e66c3582e087f5b3",
+      "board": "motherboard",
+      "part": "logic-silkscreen",
+      "section": "interior",
+      "material": "ink"
+    },
+    {
+      "name": "logic-ribbon-plug-motherboard",
+      "file": "meshes/logic-ribbon-plug-motherboard.stl",
+      "color": "#b5af98",
+      "sha256": "f60ffae19b10905b5e6b9bd5f2ad796ce55ce377ef649a0d3377036c8428d685",
+      "board": "motherboard",
+      "part": "logic-ribbon-plug",
       "section": "interior",
       "material": "plastic"
     }

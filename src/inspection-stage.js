@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { inspectionEnvironment } from './inspection-lighting.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 // A close-up renderer owns its resources and submits frames only when needed.
@@ -8,6 +9,7 @@ export function createInspectionStage(host, {near=1, far=1500}={}) {
   host.replaceChildren(renderer.domElement);
   const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(40,1,near,far);
   const controls=new OrbitControls(camera,renderer.domElement),owned=[];
+  owned.push(inspectionEnvironment(renderer,scene));
   scene.add(new THREE.HemisphereLight(0xffffff,0x687773,2));
   const light=new THREE.DirectionalLight(0xfff7ed,2.5);light.position.set(-100,-180,350);scene.add(light);
   const rim=new THREE.DirectionalLight(0xe4edff,1.2);rim.position.set(160,100,100);scene.add(rim);
