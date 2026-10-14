@@ -96,7 +96,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     keyGeometry = new Map();
   const filenames = new Map(data.patches.map(p => [p.texture || `photos/${p.photo}`, p.textureSha256]));
   // Fixed denominator across all load phases: no resets when a new batch starts.
-  const deferred = data.parts.filter(p => p.section === "monitor-interior" ||
+  const deferred = data.parts.filter(p => p.board || p.section === "monitor-interior" ||
     (p.section === "interior" && p.name.startsWith("keyboard-")));
   const deferredNames = new Set(deferred.map(p => p.name));
   const total = 2 + filenames.size + data.parts.length - deferred.length + data.keyMeshes.length;
@@ -270,22 +270,59 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     }
   }
   const pcbPhotos=[];
-  let detailPromise;
-  function loadDetails() {
-    if(detailPromise)return detailPromise;
-    onDetails("loading");
-    detailPromise=Promise.all([loadPcbComponents(data,base),loadPcbPhotos(data,base),
-      Promise.all(deferred.map(async part=>{
-        const geometry=toCreasedNormals(await stl.loadAsync(modelAsset(part.file,base,part.sha256).href),Math.PI/4);
-        const mesh=objects.get(part.name);mesh.geometry.dispose();mesh.geometry=geometry;mesh.userData.loaded=true;
-      }))]).then(([packages,photos])=>{
-      for(const mesh of [...packages,...loadPcbLabels(data)]){group.add(mesh);objects.set(mesh.name,mesh);}
-      for(const mesh of photos){mesh.visible=false;group.add(mesh);pcbPhotos.push(mesh);}
-      inspectionDirty=true;group.userData.newDetails=true;onDetails("ready");
-    }).catch(error=>{onDetails("error");throw error;});
-    return detailPromise;
+  const detailPromises = new Map(), packageGeometry = new Map();
+  let pendingDetails = 0;
+  const failedDetails = new Set();
+  const detailScopes = ["keyboard", "monitor", "motherboard", "display-controller"];
+  const partScope = p => p.section === "monitor-interior" ? "monitor" : p.board || "keyboard";
+  function loadDetails(scopes = detailScopes) {
+    if (typeof scopes === "string") scopes = [scopes];
+    return Promise.all(scopes.map(scope => {
+      if (detailPromises.has(scope)) return detailPromises.get(scope);
+      pendingDetails++; failedDetails.delete(scope); onDetails("loading");
+      const boardData = {...data, pcbComponents: {...data.pcbComponents,
+        instances: data.pcbComponents.instances.filter(p => p.board === scope)},
+        pcbReferences: (data.pcbReferences || []).filter(p =>
+          scope === "monitor" ? p.section === "monitor-interior" : p.name === scope)};
+      const promise = Promise.all([
+        loadPcbComponents(boardData, base, () => {}, packageGeometry),
+        loadPcbPhotos(boardData, base),
+        Promise.all(deferred.filter(p => partScope(p) === scope).map(async part => {
+          const mesh = objects.get(part.name);
+          if (mesh.userData.loaded) return;
+          const geometry = toCreasedNormals(await stl.loadAsync(modelAsset(part.file,base,part.sha256).href),Math.PI/4);
+          mesh.geometry.dispose(); mesh.geometry=geometry; mesh.userData.loaded=true;
+        }))
+      ]).then(([packages,photos]) => {
+        for (const mesh of [...packages,...loadPcbLabels(boardData)]) {group.add(mesh);objects.set(mesh.name,mesh);}
+        for (const mesh of photos) {mesh.visible=false;group.add(mesh);pcbPhotos.push(mesh);}
+        inspectionDirty=true;group.userData.newDetails=true;
+        if (--pendingDetails === 0) onDetails(failedDetails.size ? "error" : "ready");
+      }).catch(error => {
+        --pendingDetails; failedDetails.add(scope); detailPromises.delete(scope); onDetails("error"); throw error;
+      });
+      detailPromises.set(scope,promise);
+      return promise;
+    }));
   }
-  function requestDetails(){loadDetails().catch(error=>console.error("Interior details unavailable",error));}
+  let detailRequestQueued = false;
+  function requestDetails() {
+    if (detailRequestQueued) return;
+    detailRequestQueued = true;
+    queueMicrotask(() => {
+      detailRequestQueued = false;
+      const selected = inspection.isolated, scopes = new Set();
+      if (selected && selected !== "all") {
+        if (detailScopes.includes(selected)) scopes.add(selected);
+        if (selected === "logic") {scopes.add("motherboard");scopes.add("display-controller");}
+      } else {
+        if (inspection.keyboardOpen || inspection.transparent || splitTarget) scopes.add("keyboard");
+        if (monitorOpen || inspection.transparent || splitTarget) scopes.add("monitor");
+        if (inside || inspection.transparent || splitTarget) {scopes.add("motherboard");scopes.add("display-controller");}
+      }
+      loadDetails([...scopes]).catch(error=>console.error("Interior details unavailable",error));
+    });
+  }
   const keyboard = new THREE.Group();
   keyboard.position.set(0, data.keyboard.y, data.keyboard.z);
   keyboard.rotation.x = THREE.MathUtils.degToRad(data.keyboard.slope);

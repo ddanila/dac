@@ -96,7 +96,7 @@ test("highlight, manual demonstration, parked plugs and live restoration", async
         if (Math.abs(p.getY(i) - rest[i * 3 + 1]) < 0.001) fixed++;
         else throw Error("Fixed connector moved");
       }
-      if (rest[i * 3 + 1] < 4 && rest[i * 3 + 2] > 66) {
+      if (Math.abs(rest[i * 3 + 1] - 16) < 0.6 && rest[i * 3 + 2] > 66) {
         if (
           Math.abs(p.getY(i) - rest[i * 3 + 1] - 18) < 0.001 &&
           Math.abs(p.getZ(i) - rest[i * 3 + 2]) < 0.001

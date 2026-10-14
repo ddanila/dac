@@ -299,3 +299,37 @@ test("individual boards hide other assemblies and restore their geometry", async
  expect(manifest.evidence.assemblies.find(a=>a.id==="motherboard").classes).toEqual(["documented"]);
  expect(manifest.evidence.assemblies.every(a=>a.physicalVerification==="unverified")).toBe(true);
  });
+
+test('board-scoped loading shares package geometry without fetching other interiors', async ({page}) => {
+  test.setTimeout(60000);
+  const requests=[];page.on('request',r=>requests.push(r.url()));
+  await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+  const result=await page.evaluate(async()=>{
+    const {loadRobotron}=await import('/src/robotron-model.js');
+    const model=await loadRobotron();await model.loadDetails('motherboard');
+    const unloaded=model.objects.get('logic-boards-display-controller').userData.loaded===false;
+    await model.loadDetails('display-controller');
+    const bodies=[...model.objects.values()].filter(m=>m.name.startsWith('logic-package-')&&m.name.includes('-body-'));
+    const shared=bodies.filter(m=>m.userData.board==='motherboard').some(m=>bodies.some(n=>n.userData.board==='display-controller'&&n.geometry===m.geometry));
+    return {unloaded,shared};
+  });
+  expect(result).toEqual({unloaded:true,shared:true});
+  expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(false);
+  expect(requests.some(u=>u.includes('/meshes/keyboard-controller-board.stl'))).toBe(false);
+});
+
+test('a failed interior asset can retry without duplicating board instances', async ({page}) => {
+  test.setTimeout(60000);let attempts=0;
+  await page.route('**/meshes/logic-boards-motherboard.stl?*',r=>++attempts===1?r.fulfill({status:503,body:'retry fixture'}):r.continue());
+  await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+  const result=await page.evaluate(async()=>{
+    const {loadRobotron}=await import('/src/robotron-model.js');const states=[];
+    const model=await loadRobotron(undefined,undefined,s=>states.push(s));
+    let failed=false;try{await model.loadDetails('motherboard');}catch{failed=true;}
+    await model.loadDetails('motherboard');await model.loadDetails('motherboard');
+    const names=model.group.children.filter(m=>m.name.startsWith('logic-package-')).map(m=>m.name);
+    return {failed,loaded:model.objects.get('logic-boards-motherboard').userData.loaded,states,unique:new Set(names).size===names.length};
+  });
+  expect(attempts).toBe(2);expect(result.failed).toBe(true);expect(result.loaded).toBe(true);expect(result.unique).toBe(true);
+  expect(result.states.at(-1)).toBe('ready');expect(result.states).toContain('error');
+});

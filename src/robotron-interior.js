@@ -210,7 +210,7 @@ export async function loadPcbPhotos(data, base, onAsset = () => {}) {
 }
 
 // Mesh instances preserve nominal package dimensions and share geometry/GPU draws.
-export async function loadPcbComponents(data, base, onAsset = () => {}) {
+export async function loadPcbComponents(data, base, onAsset = () => {}, cache = new Map()) {
   const loader = new STLLoader(),
     result = [];
   const descriptions = data.pcbComponents;
@@ -224,12 +224,13 @@ export async function loadPcbComponents(data, base, onAsset = () => {}) {
       if (!placements.length) return;
       for (const kind of ["body", "leads"]) {
         const record = model.meshes[kind];
-        const geometry = toCreasedNormals(
-          await loader.loadAsync(
-            modelAsset(record.file, base, record.sha256).href,
-          ),
-          Math.PI / 4,
-        );
+        const url = modelAsset(record.file, base, record.sha256).href;
+        if (!cache.has(url)) {
+          const promise = loader.loadAsync(url).then(g => toCreasedNormals(g, Math.PI / 4));
+          cache.set(url, promise);
+          promise.catch(() => cache.delete(url));
+        }
+        const geometry = await cache.get(url);
         onAsset();
         const material = new THREE.MeshStandardMaterial({
           color: kind === "body" ? 0x29282a : 0xb9b7ac,
@@ -316,6 +317,7 @@ export function pcbMarkingGeometry(board, descriptions) {
 // One atlas, one mesh per board; no photographic chip silhouettes or baked wear.
 export function loadPcbLabels(data) {
   const items=data.pcbComponents.instances.filter(p=>!p.label.startsWith('Logic footprint'));
+  if (!items.length) return [];
   const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=Math.ceil(items.length/8)*64;
   const ctx=canvas.getContext('2d');ctx.fillStyle='#c8c9bd';ctx.textAlign='center';ctx.font='13px monospace';
   const groups=new Map(),pose=new THREE.Matrix4(),rotation=new THREE.Matrix4();
