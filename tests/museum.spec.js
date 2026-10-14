@@ -60,7 +60,8 @@ test("Robotron power, live pixels, keyboard, reset and inspection", async ({
   await waitForDiagnostic(page);
   const before = await hash();
   await canvas.focus();
-  await page.keyboard.type("HELLO");
+  // One glyph proves input/reset; longer text is covered by keyboard/OS tests.
+  await page.keyboard.press("a");
   await expect.poll(hash).not.toBe(before);
   await page.getByRole("button", { name: "Reset", exact: true }).click();
   await expect.poll(hash).toBe(before);
@@ -173,7 +174,8 @@ test("physical Robotron switches power and reset the live core", async ({
   const before = await hash();
   await page.getByRole("button", { name: "Screen", exact: true }).click();
   await page.locator("#screen").focus();
-  await page.keyboard.type("OWNER MODEL");
+  // One glyph proves input/reset; longer text is covered by keyboard/OS tests.
+  await page.keyboard.press("a");
   await expect.poll(hash).not.toBe(before);
   await switchAt(-208);
   await expect.poll(hash).toBe(before);
