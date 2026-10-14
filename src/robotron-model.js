@@ -1,3 +1,4 @@
+import { cableWeight } from './robotron-cables.js';
 import { componentDetail } from "./component-detail.js";
 import { createDriveMotion } from "./robotron-drives.js";
 import { createFanMotion } from "./robotron-fan.js";
@@ -852,7 +853,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         mesh.position.z = split * 115;
         mesh.position.y = -split * 145;
       }
-      if (name === "drive-cable-plugs" && inspection.disconnectCables)
+      if (["drive-cable-plugs", "drive-cable-contacts"].includes(name) && inspection.disconnectCables)
         mesh.position.set(0, split * (data.cableParking?.[1] || 18), 0);
       if (cableRest.has(name)) {
         mesh.visible = inside || inspection.transparent;
@@ -862,10 +863,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
           pos = mesh.geometry.attributes.position;
         if (beforeSplit !== split || changedInside) {
           for (let i = 0; i < pos.count; i++) {
-            const weight = name.startsWith("ribbon-")
-              ? THREE.MathUtils.clamp((40 - rest[i * 3 + 1]) / 20, 0, 1) *
-                THREE.MathUtils.clamp((rest[i * 3 + 2] - 53) / 13, 0, 1)
-              : THREE.MathUtils.clamp((-30 - rest[i * 3]) / 23, 0, 1);
+            const weight = cableWeight(name, rest[i*3], rest[i*3+1], rest[i*3+2]);
             pos.setXYZ(
               i,
               rest[i * 3],

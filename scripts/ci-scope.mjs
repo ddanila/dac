@@ -1,13 +1,14 @@
 // Conservative allowlist: emulator/runtime/dependency changes always run the full suite.
 import { execFileSync } from 'node:child_process';
 import { appendFileSync } from 'node:fs';
+import { visualTestPattern } from './ci-shards.mjs';
 export function scopeFor(files) {
-  const visualTests = /^(assembly|crt|drive-levers|drive-motion|exhibit-improvements|exploration|fan|inspection|interior|keyboard|museum|pcb-components|sessions)\.spec\.js$/;
+
   const visual = files.length && files.every(file =>
     file.startsWith('public/models/') || file.startsWith('exhibits/') ||
     file.endsWith('.md') || file === '.github/workflows/site.yml' || file === 'scripts/ci-scope.mjs' || file === 'playwright.config.js' ||
     /^src\/(robotron-(model|materials|interior)|component-detail|inspection|scene)\.js$/.test(file) ||
-    (file.startsWith('tests/') && visualTests.test(file.slice(6))));
+    (file.startsWith('tests/') && visualTestPattern.test(file.slice(6))));
   return visual ? 'visual' : 'full';
 }
 if (process.env.GITHUB_OUTPUT) {

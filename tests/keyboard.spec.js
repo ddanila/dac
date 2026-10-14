@@ -72,22 +72,39 @@ test('keyboard buttons send documented bytes and latch modifiers', async ({page}
   ]);
 });
 
+test('physical letters and special keys send their documented bytes', async ({page}) => {
+  await test.step('Load model and diagnostic', () => observeKeys(page));
+  await page.locator('#viewport').focus();
+  await test.step('Type mixed case and special keys', async () => {
+    await page.keyboard.type('Ab');
+    await page.keyboard.press('F1');
+    await page.keyboard.press('Delete');
+  });
+  expect(await page.evaluate(() => window.sentKeys)).toEqual([65,98,0xd1,0x7f]);
+});
+
 test('physical keys share Caps Lock state with keyboard buttons', async ({page}) => {
-  await observeKeys(page);
-  await page.locator("#key-list-toggle").click();
-  const keys = page.locator("#key-list");
-  const press = label => keys.getByRole("button", {name:label,exact:true}).first().dispatchEvent("click");
-  await page.locator("#viewport").focus();
-  await page.keyboard.type("Ab");
-  await page.keyboard.press("F1");
-  await page.keyboard.press("Delete");
-  await press("Caps Lock");
-  await page.locator("#viewport").focus();
-  await page.keyboard.type("c");
-  await press("Caps Lock");
-  expect(await page.evaluate(() => window.sentKeys)).toEqual([
-    65, 98, 0xd1, 0x7f, 67,
-  ]);
+  await test.step('Load model and diagnostic', () => observeKeys(page));
+  await page.locator('#key-list-toggle').click();
+  const caps = page.locator('#key-list').getByRole('button',{name:'Caps Lock',exact:true});
+  await test.step('Button Caps Lock affects physical typing', async () => {
+    await caps.dispatchEvent('click');
+    await expect(caps).toHaveAttribute('aria-pressed','true');
+    await page.locator('#viewport').focus();
+    await page.keyboard.type('c');
+  });
+  await test.step('Physical Caps Lock releases shared state', async () => {
+    await page.keyboard.press('CapsLock');
+    await expect(caps).toHaveAttribute('aria-pressed','false');
+    await page.keyboard.type('c');
+  });
+  // Host Caps must not be applied again on top of the shared museum state.
+  await page.evaluate(()=>{
+    const target=document.querySelector('#viewport');
+    target.dispatchEvent(new KeyboardEvent('keydown',{key:'C',code:'KeyC',modifierCapsLock:true,bubbles:true}));
+    target.dispatchEvent(new KeyboardEvent('keyup',{key:'C',code:'KeyC',modifierCapsLock:true,bubbles:true}));
+  });
+  expect(await page.evaluate(() => window.sentKeys)).toEqual([67,99,99]);
 });
 
 test('keyboard control combinations and unsupported keys are explicit', async ({page}) => {

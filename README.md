@@ -188,3 +188,32 @@ After inspecting intentional changes, pass `--update` to replace the three
 baselines. Review the images before committing them; never auto-update on CI.
 This check remains local to avoid another expensive browser job. Existing
 clearance, material, enclosure and browser checks remain in CI.
+
+### v40 / core 0.8.7
+
+The motherboard now includes twenty additional photo-registered package bodies,
+three pale IC sockets with contacts, visible jumper blocks and more discrete
+components. Unidentified bodies carry `PHOTO-*` inspection identifiers and no
+invented chip markings. The ribbon is a continuous board-to-two-drive chain;
+rounded sections preserve its width, conductor ridges and edge stripe. Separated
+views carry the complete drive-to-drive span and all four power-wire ends with
+their plugs, while the board/PSU ends remain fixed. Intermediate slack, socket
+internals and unseen dimensions remain estimated. Owner evidence labels now
+clearly distinguish our boards from the retained comparative gallery.
+
+The display reads individual bytes on scheduled local DACKs and retains decoded
+row pixels, cursor and attributes. Partial fetches survive snapshot layout 6;
+core 0.8.6 remains archived for older sessions. This includes the upstream shared
+runtime refactor. Nominal local acknowledgement timing is not a measurement of
+the specimen's bus contention or individual scanline timing.
+
+CI still has two Chromium workers total, one per job. `scripts/ci-shards.mjs`
+assigns complete test files by longest estimated duration first, using recorded
+successful run timings in `tests/ci-durations.json`. Unknown files get a default
+weight and always run. Visual-only runs balance their own subset. A coverage
+check ensures every file is assigned once; no retries or timeouts were added.
+The former combined keyboard test is split into physical-byte and shared-Caps
+behaviors with named steps, reducing cumulative setup/input time in each test.
+The stronger Caps test also exposed and fixed diagnostic-adapter physical Caps
+handling, including avoiding double application of the host OS's Caps state.
+Firmware keyboard input still goes directly to the S600 controller matrix.

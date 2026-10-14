@@ -468,6 +468,45 @@
     ]
   },
   {
+    "name": "drive-cable-contacts",
+    "vertices": 1024,
+    "indices": 3072,
+    "bounds": [
+      -218.149994,
+      1.5,
+      66.849998,
+      -49.349998,
+      5,
+      68.150002
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b9b7ac",
+        "roughness": 0.27,
+        "metalness": 0.9,
+        "opacity": 1
+      }
+    ]
+  },
+  {
     "name": "drive-cable-plugs",
     "vertices": 608,
     "indices": 1680,
@@ -2458,15 +2497,15 @@
   },
   {
     "name": "power-wires-black",
-    "vertices": 1105,
-    "indices": 3846,
+    "vertices": 2011,
+    "indices": 9576,
     "bounds": [
       -218.399994,
       4.144049,
       21.248943,
       97,
       55.951057,
-      85.055954
+      84.199951
     ],
     "transform": [
       0.0025,
@@ -2497,15 +2536,15 @@
   },
   {
     "name": "power-wires-red",
-    "vertices": 626,
-    "indices": 2136,
+    "vertices": 1202,
+    "indices": 5832,
     "bounds": [
       -213.899994,
       4.144049,
       19.048943,
       97,
       55.951057,
-      82.855949
+      81.999954
     ],
     "transform": [
       0.0025,
@@ -2536,15 +2575,15 @@
   },
   {
     "name": "power-wires-yellow",
-    "vertices": 639,
-    "indices": 2178,
+    "vertices": 1206,
+    "indices": 5844,
     "bounds": [
-      -207.899994,
+      -207.300003,
       4.144049,
       23.448944,
       97,
       55.951057,
-      87.255951
+      86.399948
     ],
     "transform": [
       0.0025,

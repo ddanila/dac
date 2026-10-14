@@ -32,6 +32,9 @@ jobs:
           path: dist
   chromium:
     needs: build
+    env:
+      DAC_CI_SHARD: ${{ matrix.shard }}
+      DAC_CI_SCOPE: ${{ needs.build.outputs.scope }}
     strategy:
       fail-fast: false
       matrix:
@@ -61,8 +64,8 @@ jobs:
         if: needs.build.outputs.scope == 'full'
       - name: Model and interaction checks
         if: needs.build.outputs.scope == 'visual'
-        run: npx playwright test tests/assembly.spec.js tests/crt.spec.js tests/drive-levers.spec.js tests/drive-motion.spec.js tests/exhibit-improvements.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard.spec.js tests/museum.spec.js tests/pcb-components.spec.js tests/sessions.spec.js --reporter=line --shard=${{ matrix.shard }}/2
-      - run: npm test -- --reporter=line --shard=${{ matrix.shard }}/2
+        run: npx playwright test tests/assembly.spec.js tests/crt.spec.js tests/drive-levers.spec.js tests/drive-motion.spec.js tests/exhibit-improvements.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard.spec.js tests/museum.spec.js tests/pcb-components.spec.js tests/sessions.spec.js --reporter=line
+      - run: npm test -- --reporter=line
         if: needs.build.outputs.scope == 'full'
         env:
           DAC_NATIVE_REPLAY: emulation-reference/build/dac-replay

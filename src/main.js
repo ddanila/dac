@@ -41,10 +41,12 @@ try {
     localStorage.getItem("dac-remember-disk") !== "false";
 } catch {}
 const heldModelKeys = new Map();
+let managedHostCaps = false;
 function release() {
   if (on) send({ type: "cancel-paste" });
   held.clear();
   heldModelKeys.clear();
+  managedHostCaps = false;
   keyboard.reset();
   firmwareKeys.reset();
   scene?.releaseKeys();
@@ -961,7 +963,13 @@ function keyDown(e) {
     const modeled = modelKeys.find((k) => k.input.modifier === modifier);
     if (modeled) {
       e.preventDefault();
-      if (!e.repeat && !heldModelKeys.has(e.code)) robotronSound.key(modeled);
+      if (!e.repeat && !heldModelKeys.has(e.code)) {
+        robotronSound.key(modeled);
+        if (modifier === "caps" && on && !powerPending) {
+          keyboard.activate(modeled);
+          managedHostCaps = true;
+        }
+      }
       heldModelKeys.set(e.code, modeled.id);
       scene?.keyState(modeled.id, true);
     }
@@ -987,7 +995,11 @@ function keyDown(e) {
       keyboard.activate(modeled, {
         shift: e.shiftKey,
         ctrl: e.ctrlKey,
-        upper: e.key.length === 1 ? e.key === e.key.toUpperCase() : undefined,
+        // Once a physical Caps press is handled here, remove the host OS's
+        // capitalization before applying the shared emulated Caps state.
+        upper: e.key.length === 1
+          ? (e.key === e.key.toUpperCase()) !== (managedHostCaps && e.getModifierState("CapsLock"))
+          : undefined,
       });
       heldModelKeys.set(e.code, modeled.id);
       for (const id of heldModelKeys.values()) scene?.keyState(id, true);
