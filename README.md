@@ -157,3 +157,34 @@ keeping one worker per runner and unchanged job limits. Closed/open drive drags
 and desktop/mobile typing checks are independent scenarios, so a slow combined
 interaction sequence no longer consumes their shared timeout. See
 [Playwright sharding](https://playwright.dev/docs/test-sharding).
+
+### Robotron v39 inspection and display update
+
+Canonical models now include partial owner-photo copper artwork, the visible
+board marking, registered small components, and a ribbon plug/socket endpoint.
+Exact electrical values and hidden cable routing remain provisional; physical
+print verification is unchanged. Close-up and review renderers use a disposable
+neutral room reflection environment, preserving canonical material colors and
+all geometry. No new shadow map or continuously running render loop is added.
+
+Core 0.8.6 draws completed controller row buffers, retaining fetched bytes and
+starting attributes across host frames and snapshots. Writes after fetch start
+wait for a subsequent fetch; this is row-level, not cycle-perfect video DMA.
+Core 0.8.5 remains archived for previous saved sessions.
+
+For local visual regression, start Vite on port 4173 and run
+`npm run review:robotron -- http://127.0.0.1:4173 /tmp/dac-review`.
+The gallery compares all eight views with owner photos and checks three PNG
+baselines (drive front, keyboard controller underside, motherboard processor).
+Each view also checks visible object names, vertex/index counts, bounds, instance
+placements and material colors/finishes against a structural baseline, catching
+small missing parts that a tolerant image comparison could overlook.
+Images are reduced to 240×180 before comparison to tolerate antialiasing noise;
+mean RGB error must stay below 0.018 and fewer than 3.5% of pixels may differ by
+more than 0.12 in any channel. This catches substantial visible changes, not
+subpixel geometry errors. GPU/driver differences may still need manual review.
+
+After inspecting intentional changes, pass `--update` to replace the three
+baselines. Review the images before committing them; never auto-update on CI.
+This check remains local to avoid another expensive browser job. Existing
+clearance, material, enclosure and browser checks remain in CI.

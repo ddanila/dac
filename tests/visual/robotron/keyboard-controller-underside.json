@@ -1,0 +1,509 @@
+[
+  {
+    "name": "keyboard-controller-board",
+    "vertices": 15690,
+    "indices": 50046,
+    "bounds": [
+      -200,
+      -304,
+      8,
+      70,
+      -258,
+      9.6
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "aaa982",
+        "roughness": 0.68,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-caps",
+    "vertices": 480,
+    "indices": 1380,
+    "bounds": [
+      -197.5,
+      -299.5,
+      9.6,
+      61.5,
+      -263.5,
+      18.6
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "23383b",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-ceramic",
+    "vertices": 592,
+    "indices": 1704,
+    "bounds": [
+      -195,
+      -295.75,
+      9.1,
+      -23.1,
+      -273.799988,
+      14.3
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ad8875",
+        "roughness": 0.34,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-chips",
+    "vertices": 7832,
+    "indices": 23940,
+    "bounds": [
+      -196,
+      -300.414703,
+      9.6,
+      57.414856,
+      -263.942719,
+      16.9
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "272a2b",
+        "roughness": 0.72,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-connectors",
+    "vertices": 1166,
+    "indices": 2568,
+    "bounds": [
+      -78,
+      -289,
+      9.6,
+      -32,
+      -279,
+      15.6
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "c4ceca",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-ink",
+    "vertices": 9762,
+    "indices": 27024,
+    "bounds": [
+      -195,
+      -295,
+      13.29,
+      -12.455273,
+      -268.188782,
+      14.57
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "c8c8bd",
+        "roughness": 0.86,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-leads",
+    "vertices": 7405,
+    "indices": 21630,
+    "bounds": [
+      -70.760002,
+      -291.266296,
+      7.233704,
+      15.25,
+      -269.762238,
+      12.266295
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "c0c0c0",
+        "roughness": 0.27,
+        "metalness": 0.9,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-metal",
+    "vertices": 43057,
+    "indices": 116856,
+    "bounds": [
+      -197.5,
+      -301.5,
+      6.3,
+      67.5,
+      -260.5,
+      18.85
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b8bbb4",
+        "roughness": 0.27,
+        "metalness": 0.9,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-resistor-bands",
+    "vertices": 3072,
+    "indices": 9216,
+    "bounds": [
+      -28.17,
+      -278.649994,
+      9.83,
+      16.17,
+      -273.100006,
+      12.17
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "3186ad",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-resistors",
+    "vertices": 768,
+    "indices": 2208,
+    "bounds": [
+      -28.15,
+      -279,
+      9.85,
+      16.15,
+      -273,
+      12.15
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "9a9d95",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-rom-cover",
+    "vertices": 112,
+    "indices": 324,
+    "bounds": [
+      -186,
+      -295.5,
+      14.35,
+      -168,
+      -282.5,
+      14.5
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "168dcc",
+        "roughness": 0.93,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-solder",
+    "vertices": 64460,
+    "indices": 194988,
+    "bounds": [
+      -198,
+      -302,
+      7.45,
+      68,
+      -260,
+      9.65
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b8bbb4",
+        "roughness": 0.46,
+        "metalness": 0.82,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-traces",
+    "vertices": 56942,
+    "indices": 179682,
+    "bounds": [
+      -194.699997,
+      -302.109985,
+      7.9,
+      63.240002,
+      -259.76001,
+      9.72
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b8beb7",
+        "roughness": 0.27,
+        "metalness": 0.9,
+        "opacity": 1
+      }
+    ]
+  }
+]

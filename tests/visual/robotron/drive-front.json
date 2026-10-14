@@ -1,0 +1,2615 @@
+[
+  {
+    "name": "case-base",
+    "vertices": 4282,
+    "indices": 15354,
+    "bounds": [
+      -249.980743,
+      -199.980743,
+      0.019261,
+      249.980743,
+      199.980743,
+      41
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b6ae93",
+        "roughness": 0.69,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "case-lid",
+    "vertices": 4202,
+    "indices": 14514,
+    "bounds": [
+      -249.975922,
+      -197,
+      39.001171,
+      249.975922,
+      199.975922,
+      129.975922
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b6ae93",
+        "roughness": 0.69,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "case-lid-fixings",
+    "vertices": 2176,
+    "indices": 5976,
+    "bounds": [
+      -246,
+      -194,
+      38,
+      246,
+      187,
+      119
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "a9afaa",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "case-lid-inserts",
+    "vertices": 4776,
+    "indices": 14724,
+    "bounds": [
+      -246.5,
+      -194,
+      45,
+      234,
+      190,
+      118
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "2c3030",
+        "roughness": 0.69,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-adapter-boards",
+    "vertices": 368,
+    "indices": 1080,
+    "bounds": [
+      -187,
+      0.4,
+      57,
+      25,
+      2,
+      95
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "70444b",
+        "roughness": 0.68,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-adapter-contacts",
+    "vertices": 2928,
+    "indices": 4392,
+    "bounds": [
+      -179,
+      0.2,
+      62,
+      18,
+      18,
+      89.089996
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b8bcb5",
+        "roughness": 0.46,
+        "metalness": 0.82,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-adapter-edge",
+    "vertices": 96,
+    "indices": 168,
+    "bounds": [
+      -182,
+      2,
+      58,
+      20,
+      11,
+      68
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "262b29",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-adapter-sockets",
+    "vertices": 302,
+    "indices": 684,
+    "bounds": [
+      -179,
+      0,
+      81,
+      18,
+      20,
+      95
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "c9c7ae",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-adapter-traces",
+    "vertices": 10885,
+    "indices": 35508,
+    "bounds": [
+      -179.800003,
+      0.15,
+      61.200001,
+      16.440001,
+      0.4,
+      89.339996
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b9c1b7",
+        "roughness": 0.46,
+        "metalness": 0.82,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-board-components",
+    "vertices": 1976,
+    "indices": 3984,
+    "bounds": [
+      -221.266022,
+      -179.924866,
+      66.599998,
+      61,
+      -9,
+      96
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "282c2b",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-boards",
+    "vertices": 230,
+    "indices": 420,
+    "bounds": [
+      -226,
+      -196,
+      64.800003,
+      62,
+      3,
+      92.599998
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "28675a",
+        "roughness": 0.61,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-bracket",
+    "vertices": 2363,
+    "indices": 6834,
+    "bounds": [
+      -235,
+      -199,
+      22,
+      75,
+      -2,
+      62
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "afb4ae",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-cable-plugs",
+    "vertices": 608,
+    "indices": 1680,
+    "bounds": [
+      -220,
+      -2,
+      64,
+      12.5,
+      16,
+      89.699997
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "353936",
+        "roughness": 0.74,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-clamp-0",
+    "vertices": 292,
+    "indices": 810,
+    "bounds": [
+      -171,
+      -150,
+      92,
+      -127,
+      -127,
+      96
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b5b9b2",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-clamp-1",
+    "vertices": 292,
+    "indices": 810,
+    "bounds": [
+      -17,
+      -150,
+      92,
+      27,
+      -127,
+      96
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b5b9b2",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-coils",
+    "vertices": 1724,
+    "indices": 3360,
+    "bounds": [
+      -204,
+      -58,
+      80,
+      -32,
+      -34,
+      95
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "9e793b",
+        "roughness": 0.32,
+        "metalness": 0.86,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-contacts",
+    "vertices": 2816,
+    "indices": 6288,
+    "bounds": [
+      -220.5,
+      -190.149994,
+      66.400002,
+      27.82,
+      2,
+      93.300003
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b3a775",
+        "roughness": 0.32,
+        "metalness": 0.86,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-direction-0",
+    "vertices": 180,
+    "indices": 468,
+    "bounds": [
+      -117,
+      -208.237808,
+      64.679192,
+      -100.300003,
+      -204.109863,
+      80.899971
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "d0d2c7",
+        "roughness": 0.86,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-direction-1",
+    "vertices": 180,
+    "indices": 468,
+    "bounds": [
+      37,
+      -208.237808,
+      64.679192,
+      53.700001,
+      -204.109863,
+      80.899971
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "d0d2c7",
+        "roughness": 0.86,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-diskette-0",
+    "vertices": 1314,
+    "indices": 3810,
+    "bounds": [
+      -227.675003,
+      -203.675003,
+      89,
+      -94.324997,
+      -70.324997,
+      90.199997
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "242321",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-diskette-1",
+    "vertices": 1314,
+    "indices": 3810,
+    "bounds": [
+      -73.675003,
+      -203.675003,
+      89,
+      59.674999,
+      -70.324997,
+      90.199997
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "242321",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-diskette-ink-0",
+    "vertices": 117,
+    "indices": 576,
+    "bounds": [
+      -25.5,
+      -18,
+      0,
+      25.5,
+      18,
+      0
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      -0.3125,
+      0.2258,
+      0.4525,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ffffff",
+        "roughness": 0.9,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-diskette-ink-1",
+    "vertices": 117,
+    "indices": 576,
+    "bounds": [
+      -25.5,
+      -18,
+      0,
+      25.5,
+      18,
+      0
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0.0725,
+      0.2258,
+      0.4525,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ffffff",
+        "roughness": 0.9,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-diskette-label-0",
+    "vertices": 624,
+    "indices": 1860,
+    "bounds": [
+      -178,
+      -199,
+      89.599998,
+      -99.5,
+      -120,
+      90.300003
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "d8d4bf",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-diskette-label-1",
+    "vertices": 624,
+    "indices": 1860,
+    "bounds": [
+      -24,
+      -199,
+      89.599998,
+      54.5,
+      -120,
+      90.300003
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "d8d4bf",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-frames",
+    "vertices": 2006,
+    "indices": 5520,
+    "bounds": [
+      -231,
+      -203,
+      60,
+      69,
+      0,
+      98
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "a2a4a0",
+        "roughness": 0.57,
+        "metalness": 0.62,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-head-0",
+    "vertices": 1061,
+    "indices": 3018,
+    "bounds": [
+      -188,
+      -77,
+      75,
+      -136,
+      -43,
+      90
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "30322f",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-head-1",
+    "vertices": 1061,
+    "indices": 3018,
+    "bounds": [
+      -34,
+      -77,
+      75,
+      18,
+      -43,
+      90
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "30322f",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-head-arm-0",
+    "vertices": 125,
+    "indices": 246,
+    "bounds": [
+      -9,
+      -26,
+      -1,
+      9,
+      0,
+      1
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0002,
+      -0.002492,
+      0,
+      0,
+      0.002492,
+      -0.0002,
+      0,
+      -0.4,
+      0.225,
+      0.12,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b5b9b2",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-head-arm-1",
+    "vertices": 125,
+    "indices": 246,
+    "bounds": [
+      -9,
+      -26,
+      -1,
+      9,
+      0,
+      1
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0002,
+      -0.002492,
+      0,
+      0,
+      0.002492,
+      -0.0002,
+      0,
+      -0.015,
+      0.225,
+      0.12,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b5b9b2",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-head-metal-0",
+    "vertices": 1632,
+    "indices": 4776,
+    "bounds": [
+      -169,
+      -51,
+      83,
+      -151,
+      -45,
+      88.599998
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b5b9b2",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-head-metal-1",
+    "vertices": 1632,
+    "indices": 4776,
+    "bounds": [
+      -15,
+      -51,
+      83,
+      3,
+      -45,
+      88.599998
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b5b9b2",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-insets",
+    "vertices": 664,
+    "indices": 1836,
+    "bounds": [
+      -230,
+      -208.5,
+      61,
+      68,
+      -202.5,
+      101.050003
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "101312",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-label-country",
+    "vertices": 4,
+    "indices": 6,
+    "bounds": [
+      -23.75,
+      -3.6,
+      0,
+      23.75,
+      3.6,
+      0
+    ],
+    "transform": [
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      -0.351875,
+      0.2015,
+      -0.0006,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ffffff",
+        "roughness": 0.85,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-label-plates",
+    "vertices": 48,
+    "indices": 72,
+    "bounds": [
+      -225,
+      -0.05,
+      70,
+      58,
+      0.2,
+      98.599998
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "c2bba4",
+        "roughness": 0.32,
+        "metalness": 0.86,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-label-ratan",
+    "vertices": 117,
+    "indices": 576,
+    "bounds": [
+      -46,
+      -14,
+      0,
+      46,
+      14,
+      0
+    ],
+    "transform": [
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0.03,
+      0.21,
+      -0.000575,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ffffff",
+        "roughness": 0.9,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-label-robotron-id",
+    "vertices": 117,
+    "indices": 576,
+    "bounds": [
+      -23.75,
+      -7.2,
+      0,
+      23.75,
+      7.2,
+      0
+    ],
+    "transform": [
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      -0.351875,
+      0.2285,
+      -0.000575,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ffffff",
+        "roughness": 0.9,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-label-robotron-maker",
+    "vertices": 117,
+    "indices": 576,
+    "bounds": [
+      -30.25,
+      -10.8,
+      0,
+      30.25,
+      10.8,
+      0
+    ],
+    "transform": [
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      -0.486875,
+      0.2195,
+      -0.000575,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ffffff",
+        "roughness": 0.9,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-label-teac-2064",
+    "vertices": 117,
+    "indices": 576,
+    "bounds": [
+      -18,
+      -3.5,
+      0,
+      18,
+      3.5,
+      0
+    ],
+    "transform": [
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      -0.49375,
+      0.23195,
+      0.36,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ffffff",
+        "roughness": 0.9,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-label-teac-2092",
+    "vertices": 117,
+    "indices": 576,
+    "bounds": [
+      -18,
+      -3.5,
+      0,
+      18,
+      3.5,
+      0
+    ],
+    "transform": [
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      -0.10875,
+      0.23195,
+      0.36,
+      1
+    ],
+    "materials": [
+      {
+        "color": "ffffff",
+        "roughness": 0.9,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-latch-0",
+    "vertices": 514,
+    "indices": 1524,
+    "bounds": [
+      -6.5,
+      -8,
+      -6.5,
+      30,
+      0,
+      6.5
+    ],
+    "transform": [
+      0,
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      -0.2825,
+      0.23,
+      0.5275,
+      1
+    ],
+    "materials": [
+      {
+        "color": "242827",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-latch-1",
+    "vertices": 514,
+    "indices": 1524,
+    "bounds": [
+      -6.5,
+      -8,
+      -6.5,
+      30,
+      0,
+      6.5
+    ],
+    "transform": [
+      0,
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0.1025,
+      0.23,
+      0.5275,
+      1
+    ],
+    "materials": [
+      {
+        "color": "242827",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-led-0",
+    "vertices": 112,
+    "indices": 324,
+    "bounds": [
+      -223,
+      -208.5,
+      94.25,
+      -213,
+      -207.800003,
+      97.75
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "590b0b",
+        "roughness": 0.24,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-led-1",
+    "vertices": 112,
+    "indices": 324,
+    "bounds": [
+      -69,
+      -208.5,
+      94.25,
+      -59,
+      -207.800003,
+      97.75
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "590b0b",
+        "roughness": 0.24,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-mechanisms",
+    "vertices": 3968,
+    "indices": 11376,
+    "bounds": [
+      -225.5,
+      -201.5,
+      62,
+      62.5,
+      -10,
+      95.5
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "bec2bd",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-medium-0",
+    "vertices": 768,
+    "indices": 2316,
+    "bounds": [
+      -65,
+      -65,
+      1.5,
+      65,
+      65,
+      1.580002
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      -0.4025,
+      0.22,
+      0.3425,
+      1
+    ],
+    "materials": [
+      {
+        "color": "46322a",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-medium-1",
+    "vertices": 768,
+    "indices": 2316,
+    "bounds": [
+      -65,
+      -65,
+      1.5,
+      65,
+      65,
+      1.580002
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      -0.0175,
+      0.22,
+      0.3425,
+      1
+    ],
+    "materials": [
+      {
+        "color": "46322a",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-motors",
+    "vertices": 192,
+    "indices": 288,
+    "bounds": [
+      -220,
+      -175,
+      71,
+      61,
+      -23,
+      96.599998
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "282c2b",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-power-sockets",
+    "vertices": 96,
+    "indices": 168,
+    "bounds": [
+      -222,
+      -7,
+      63,
+      -45,
+      3,
+      73
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "d0c6a4",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-protect-tab-0",
+    "vertices": 60,
+    "indices": 120,
+    "bounds": [
+      -227.800003,
+      -175,
+      88.800003,
+      -219.800003,
+      -166,
+      90.400002
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b4b5ad",
+        "roughness": 0.93,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-protect-tab-1",
+    "vertices": 60,
+    "indices": 120,
+    "bounds": [
+      -73.800003,
+      -175,
+      88.800003,
+      -65.800003,
+      -166,
+      90.400002
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b4b5ad",
+        "roughness": 0.93,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-release-0",
+    "vertices": 150,
+    "indices": 360,
+    "bounds": [
+      -153,
+      -157,
+      86,
+      -103,
+      -48,
+      95.199997
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "a6a7a0",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-release-1",
+    "vertices": 150,
+    "indices": 360,
+    "bounds": [
+      1,
+      -157,
+      86,
+      51,
+      -48,
+      95.199997
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "a6a7a0",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-shaft-0",
+    "vertices": 448,
+    "indices": 1332,
+    "bounds": [
+      -3.5,
+      0,
+      -3.5,
+      7.5,
+      60,
+      3.5
+    ],
+    "transform": [
+      0,
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      -0.2825,
+      0.23,
+      0.5275,
+      1
+    ],
+    "materials": [
+      {
+        "color": "a6a7a0",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-shaft-1",
+    "vertices": 448,
+    "indices": 1332,
+    "bounds": [
+      -3.5,
+      0,
+      -3.5,
+      7.5,
+      60,
+      3.5
+    ],
+    "transform": [
+      0,
+      -0.0025,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0.1025,
+      0.23,
+      0.5275,
+      1
+    ],
+    "materials": [
+      {
+        "color": "a6a7a0",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-spindle-0",
+    "vertices": 1144,
+    "indices": 3396,
+    "bounds": [
+      -41,
+      -41,
+      -30,
+      41,
+      41,
+      12
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      -0.4025,
+      0.22,
+      0.3425,
+      1
+    ],
+    "materials": [
+      {
+        "color": "a8aaa4",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-spindle-1",
+    "vertices": 1144,
+    "indices": 3396,
+    "bounds": [
+      -41,
+      -41,
+      -30,
+      41,
+      41,
+      12
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      -0.0175,
+      0.22,
+      0.3425,
+      1
+    ],
+    "materials": [
+      {
+        "color": "a8aaa4",
+        "roughness": 0.3,
+        "metalness": 0.88,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drive-traces",
+    "vertices": 1000,
+    "indices": 2100,
+    "bounds": [
+      -224,
+      -193,
+      92.650002,
+      -38.200001,
+      -79,
+      92.769997
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "78a58d",
+        "roughness": 0.61,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "drives",
+    "vertices": 1096,
+    "indices": 3240,
+    "bounds": [
+      -231,
+      -208.5,
+      60,
+      69,
+      -206,
+      102
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "242627",
+        "roughness": 0.74,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "fascia",
+    "vertices": 2184,
+    "indices": 7404,
+    "bounds": [
+      -249,
+      -209.001007,
+      36,
+      249,
+      -195,
+      130
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "8d887a",
+        "roughness": 0.69,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "front-labels",
+    "vertices": 2474,
+    "indices": 6612,
+    "bounds": [
+      -215.111588,
+      -200.160004,
+      3.226752,
+      240.84407,
+      -200.080002,
+      18.47492
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "dedfd0",
+        "roughness": 0.86,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "power",
+    "vertices": 10654,
+    "indices": 23016,
+    "bounds": [
+      -17,
+      -2.149997,
+      -6,
+      17,
+      -0.000003,
+      6
+    ],
+    "transform": [
+      0.002476,
+      0,
+      0.000348,
+      0,
+      0.000348,
+      0,
+      -0.002476,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0.5175,
+      0.0425,
+      0.487,
+      1
+    ],
+    "materials": [
+      {
+        "color": "d6d9cf",
+        "roughness": 0.25,
+        "metalness": 0,
+        "opacity": 0.55
+      }
+    ]
+  },
+  {
+    "name": "power-housing",
+    "vertices": 224,
+    "indices": 660,
+    "bounds": [
+      186,
+      -199,
+      8.5,
+      228,
+      -188,
+      25.5
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "222522",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "power-wires-black",
+    "vertices": 1105,
+    "indices": 3846,
+    "bounds": [
+      -218.399994,
+      4.144049,
+      21.248943,
+      97,
+      55.951057,
+      85.055954
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "252a28",
+        "roughness": 0.92,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "power-wires-red",
+    "vertices": 626,
+    "indices": 2136,
+    "bounds": [
+      -213.899994,
+      4.144049,
+      19.048943,
+      97,
+      55.951057,
+      82.855949
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "9e3930",
+        "roughness": 0.92,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "power-wires-yellow",
+    "vertices": 639,
+    "indices": 2178,
+    "bounds": [
+      -207.899994,
+      4.144049,
+      23.448944,
+      97,
+      55.951057,
+      87.255951
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "b6a05b",
+        "roughness": 0.92,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "reset",
+    "vertices": 112,
+    "indices": 324,
+    "bounds": [
+      -216,
+      -199.600006,
+      9,
+      -200,
+      -198.800003,
+      25
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "74776f",
+        "roughness": 0.48,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  }
+]

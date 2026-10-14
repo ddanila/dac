@@ -7,7 +7,11 @@ import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const url=process.argv[2] || 'http://127.0.0.1:4173';
 const output=resolve(process.argv[3] || '/tmp/dac-robotron-review');
-const canonical=resolve(process.argv[4] || '../3d-models/models/robotron-1715m');
+const canonical=resolve('../3d-models/models/robotron-1715m');
+const update=process.argv.includes('--update');
+const baseline=resolve(root,'tests/visual/robotron');
+const regressionViews=new Set(['drive-front','keyboard-controller-underside','motherboard-processor']);
+if(update)await mkdir(baseline,{recursive:true});
 const manifest=JSON.parse(await readFile(resolve(root,'public/models/robotron-1715m/model.json')));
 const source=JSON.parse(await readFile(resolve(root,'public/models/robotron-1715m/source.json')));
 await mkdir(output,{recursive:true});
@@ -29,11 +33,12 @@ try {
   const fill=new T.DirectionalLight(0xdce8ff,1);fill.position.set(3,1,-2);scene.add(fill);
   const underside=new T.DirectionalLight(0xffffff,2);underside.position.set(0,-3,1);scene.add(underside);
   const renderer=new T.WebGLRenderer({antialias:true});renderer.setSize(1200,900);
-  renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
+  const {inspectionEnvironment}=await import('/src/inspection-lighting.js');
+  inspectionEnvironment(renderer,scene);
   document.body.replaceChildren(renderer.domElement);
   window.review={T,model,scene,renderer};
  });
- const sections=[];
+ const sections=[],comparisons=[];
  const escape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  for(const view of manifest.reviewViews.views){
   await page.evaluate(view=>{
@@ -47,7 +52,30 @@ try {
    if(view.up)camera.up.copy(convert(view.up).normalize());
    camera.lookAt(convert(view.target));renderer.render(scene,camera);
   },view);
-  await page.screenshot({path:resolve(output,view.name+'.png')});
+  const screenshot=await page.screenshot({path:resolve(output,view.name+'.png')});
+  if(regressionViews.has(view.name)){
+   const target=resolve(baseline,view.name+'.png');
+   const structure=await page.evaluate(()=>window.review.model.group.children.filter(o=>o.visible&&o.geometry).map(o=>{
+    o.geometry.computeBoundingBox();const box=o.geometry.boundingBox;
+    const numeric=values=>Array.from(values,v=>Math.round(v*1e6)/1e6);
+    const materials=(Array.isArray(o.material)?o.material:[o.material]).map(m=>({color:m.color?.getHexString(),roughness:m.roughness,metalness:m.metalness,opacity:m.opacity}));
+    return {name:o.name,vertices:o.geometry.attributes.position.count,indices:o.geometry.index?.count||0,bounds:numeric([...box.min.toArray(),...box.max.toArray()]),transform:numeric(o.matrixWorld.elements),instances:o.isInstancedMesh?numeric(o.instanceMatrix.array):undefined,materials};
+   }).sort((a,b)=>a.name.localeCompare(b.name)));
+   const structurePath=resolve(baseline,view.name+'.json');
+   if(update){await writeFile(target,screenshot);await writeFile(structurePath,JSON.stringify(structure,null,2)+'\n');}
+   else {
+    const expectedStructure=JSON.parse(await readFile(structurePath));
+    const structureMatches=JSON.stringify(structure)===JSON.stringify(expectedStructure);
+    const reference=await readFile(target);
+    const result=await page.evaluate(async([actual,expected])=>{
+     async function pixels(data){const img=new Image();img.src='data:image/png;base64,'+data;await img.decode();const c=document.createElement('canvas');c.width=240;c.height=180;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,240,180);return ctx.getImageData(0,0,240,180).data;}
+     const a=await pixels(actual),b=await pixels(expected);let sum=0,changed=0;
+     for(let i=0;i<a.length;i+=4){let delta=0;for(let j=0;j<3;j++){const d=Math.abs(a[i+j]-b[i+j])/255;sum+=d;delta=Math.max(delta,d);}if(delta>.12)changed++;}
+     return {mean:sum/(240*180*3),changed:changed/(240*180)};
+    },[screenshot.toString('base64'),reference.toString('base64')]);
+    comparisons.push({view:view.name,...result,structureMatches,passed:structureMatches&&result.mean<.018&&result.changed<.035});
+   }
+  }
   await copyFile(resolve(canonical,'reference/photos',view.photo),resolve(output,view.photo));
   sections.push(`<section><h2>${escape(view.name)}</h2><p>${escape(view.note)}</p><div><figure><img src="${view.photo}"><figcaption>Your specimen · ${view.photo}</figcaption></figure><figure><img src="${view.name}.png"><figcaption>Clean reconstruction</figcaption></figure></div></section>`);
   console.log('Reviewed '+view.name);
@@ -55,5 +83,8 @@ try {
  if(errors.length)throw Error(errors.join('\n'));
  await writeFile(resolve(output,'index.html'),`<!doctype html><meta charset="utf-8"><title>Robotron owner-photo review</title><style>body{font:16px system-ui;background:#202622;color:#eee;margin:24px}div{display:flex;gap:12px}figure{margin:0;width:50%}img{width:100%;height:480px;object-fit:contain;background:#414844}section{margin-bottom:36px}figcaption{font-size:13px}</style><h1>Owner photos and canonical model</h1><p>${escape(manifest.reviewViews.status)}</p><p>Model v${manifest.version}; source ${source.revision}${source.dirty?' (local edits)':''}. Generated ${new Date().toISOString()}.</p>${sections.join('')}`);
  await writeFile(resolve(output,'review.json'),JSON.stringify({modelVersion:manifest.version,source,views:manifest.reviewViews},null,2)+'\n');
+ await writeFile(resolve(output,'regression.json'),JSON.stringify(comparisons,null,2)+'\n');
+ if(update)await writeFile(resolve(baseline,'source.json'),JSON.stringify({modelVersion:manifest.version,source:{revision:source.revision,dirty:source.dirty},views:[...regressionViews]},null,2)+'\n');
  console.log('Open '+resolve(output,'index.html'));
+ if(comparisons.some(c=>!c.passed))throw Error('Visual changes need review: '+JSON.stringify(comparisons));
 } finally {await browser.close();}

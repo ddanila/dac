@@ -45,5 +45,10 @@
     "javascript": "b53a916f0ec2417f1d3883c759b9f14b959299f23fe915d4cc3bed868de17d4e",
     "version": "0.8.4",
     "commit": "6a5e03167030b5c37410b8ce5ac0b461b9bee4e4"
+  },
+  "c35e1a7917cf47dfa466fc4434f4d1f90924b672d48ac3cb5da4014d1b2c1e33": {
+    "javascript": "b53a916f0ec2417f1d3883c759b9f14b959299f23fe915d4cc3bed868de17d4e",
+    "version": "0.8.5",
+    "commit": "ac9d531f1cebd02641e07f6caf953cab2e21f5bd"
   }
 }

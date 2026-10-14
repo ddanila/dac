@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "7cfff121fcb541222acb762a615e6493e5b60cba",
+  "revision": "053adb4b5c68cf11e8a873fe38d6c5b689348567",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "874b349e8f0a3fee037fe7313c3334fee5fa5a423dd7b09225aa1a15b59c89a8"
+      "sha256": "90eb32a88c9963251ac101b2e1557cb21007e3bdfd27601d68dffe04baca360e"
     },
     {
       "file": "LICENSE",
@@ -185,7 +185,7 @@
     },
     {
       "file": "meshes/logic-boards-motherboard.stl",
-      "sha256": "baad0f3ea626e31a856cb5d1ee55f65c3d69c0f708dc80454dfe8d03de277605"
+      "sha256": "3c85df0df9a92f538aef7cee9b8233a49cb92eb76766227f0d48693f531981d0"
     },
     {
       "file": "meshes/logic-boards-display-controller.stl",
@@ -193,7 +193,7 @@
     },
     {
       "file": "meshes/logic-connectors-motherboard.stl",
-      "sha256": "9d1bd6bc5fc43b8d3b334283f964b2af4bd937f9aaa6b128724f00e261995925"
+      "sha256": "dc34f0e87113bac756ac67daccb903d004ea81f7e47c6e0bd87c838f4ebd8ca6"
     },
     {
       "file": "meshes/logic-connectors-display-controller.stl",
@@ -217,11 +217,11 @@
     },
     {
       "file": "meshes/ribbon-cables.stl",
-      "sha256": "21bf158dd7adb6055c4bb9489d8ff734065bac4854a3f6ee18e6956cf59aecac"
+      "sha256": "d67065c1dbbb1edb1ef6b0209c8209fa03468bd54b9cbee3353cd3ea4bba146e"
     },
     {
       "file": "meshes/ribbon-stripes.stl",
-      "sha256": "415c8253f1c3354fcca5562a810e5213ccc7be98c6a55d54dd690a6735b94b91"
+      "sha256": "4e6f94da1185f12622fce4ada802155284abc81de39357f04a1f73e5e048d372"
     },
     {
       "file": "meshes/power-wires-red.stl",
@@ -381,11 +381,11 @@
     },
     {
       "file": "meshes/logic-resistors-motherboard.stl",
-      "sha256": "0d6e38f2195e9d5c4d0ea7732dada5efc4d1ea2a8f1fc398dec98e20fe236c69"
+      "sha256": "b46d145b222ccdf84763a0a5471a48e18eca20e4e9d74a22ab22bb82455b3e35"
     },
     {
       "file": "meshes/logic-ceramics-motherboard.stl",
-      "sha256": "3bc9ecc9ac11cd4a8e2fd7e6a833b62440fe58daa6fe29f9b799fe8beb984dc7"
+      "sha256": "b99f0a0e4258f2b2f3522a3ec22c64f74be6ec18c3b4b24027c012ea15dc1343"
     },
     {
       "file": "meshes/logic-ceramics-display-controller.stl",
@@ -393,7 +393,7 @@
     },
     {
       "file": "meshes/logic-electrolytics-motherboard.stl",
-      "sha256": "699d2ec708e4820030bd879b4d304a181e61ee1df729d52d926ddc4fa08c3d54"
+      "sha256": "c39d2063b6919d750d14ab35a5a86bf7216725f431d70853aebea5fa50096cf8"
     },
     {
       "file": "meshes/logic-electrolytics-display-controller.stl",
@@ -405,7 +405,7 @@
     },
     {
       "file": "meshes/logic-passive-leads-motherboard.stl",
-      "sha256": "30e687efb08da0d74a018fb0aff95755bed8eabe3cd9afc2d0c61e0c8aa53ecb"
+      "sha256": "2f834e1d27ced472d7589e98603795fe842ccb90942e3362ef663d63f604b770"
     },
     {
       "file": "meshes/logic-passive-leads-display-controller.stl",
@@ -417,7 +417,7 @@
     },
     {
       "file": "meshes/logic-connector-contacts-motherboard.stl",
-      "sha256": "6b70109c6777371b93ad43d64ec1331bf7b066879f1ff3c575109362c1fa7b3a"
+      "sha256": "bbff40527eb1572fb9e5011496a57f07c816b1b4f1ba1a9577f32b8d0f58dd15"
     },
     {
       "file": "meshes/logic-connector-contacts-display-controller.stl",
@@ -433,7 +433,7 @@
     },
     {
       "file": "meshes/ribbon-ridges.stl",
-      "sha256": "1429fd7f2b5912e8a0fd25936f8b20e3730769376300bfa6f74c3c3daf6f13ba"
+      "sha256": "e8996902cccf3d397b5dd19ccc2b076fcabca5318aa1608c3c7ea14682621ee9"
     },
     {
       "file": "meshes/drive-cable-plugs.stl",
@@ -704,8 +704,12 @@
       "sha256": "4b4ab793ad0027aa1855c091f3a1803bb3e8a59d43fac6ba44f7e13aa32cc509"
     },
     {
+      "file": "meshes/logic-artwork-motherboard.stl",
+      "sha256": "707ae15eee6b968eacd3445f8d6fb1a063d3cfa36f73001dbb158d3e63a5c7e2"
+    },
+    {
       "file": "meshes/logic-artwork-display-controller.stl",
-      "sha256": "90c5684d5b2c82c24b429ff2ab417680ca4697bed3da56c0afd449a989a518be"
+      "sha256": "0a0cc3afc353953f4abffbf9c6afe0842bd907e692f4ecf75d09ee23c4f3803f"
     },
     {
       "file": "meshes/drive-adapter-edge.stl",
@@ -774,6 +778,14 @@
     {
       "file": "meshes/keyboard-entry-blue.stl",
       "sha256": "9a60de7a2f15e2f67dd8cdec5b8cfbd28da2797bf00a34bea1c17347cfce4a21"
+    },
+    {
+      "file": "meshes/logic-silkscreen-motherboard.stl",
+      "sha256": "520c9cbd392452cb19c1f3238af3cba62f39a1dd74e49e87e66c3582e087f5b3"
+    },
+    {
+      "file": "meshes/logic-ribbon-plug-motherboard.stl",
+      "sha256": "f60ffae19b10905b5e6b9bd5f2ad796ce55ce377ef649a0d3377036c8428d685"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1393,23 +1405,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "db780eda9cbe7be58dc7b865df3edc6935deb4f2b8a89948670b8b105e1e2acb"
+      "sha256": "0f5763337f4790fe0437aa815fc992f0da96853d78270592218cf933b333e844"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "2186317e10bd1039c131f8144ae98eaafff0df7f1664154b49f4f111ecbbd5ff"
+      "sha256": "953c283c1b6cbc8779ea78e13e59267c9f2f756bd3ddeae64f61999086c4657d"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "391486cdba68e6dfdee014534f99b351a832f37eda979c56ffc246b54d63dfc7"
+      "sha256": "c011a9b0b4ea67e1c89b414d5c0d3a9c6da1e966fa88aa0c648e0653cbc6ecea"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "eb8794319f10dba6503b87666aa1cc89cc8219cfb0ac4f64890891697c8d32be"
+      "sha256": "dcee7bba4de554c4da700b25206646dad6678057ccd733eaf2bbfd4d37f31bb4"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "c250e4229bdeb40abcccc0a4c0bf0a1748f522970cbcec50e4dfa2b29e88071f"
+      "sha256": "6e4a5c97df425c63377974772b36e6aa6dd1a423ecb318b185d240bc1f88a05d"
     }
   ]
 }
