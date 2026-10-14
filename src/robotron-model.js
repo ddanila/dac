@@ -73,6 +73,29 @@ function surface(width, height, radius = 0, bulge = 0) {
   geometry.computeVertexNormals();
   return geometry;
 }
+// Physical front controls use canonical pivots; reset is a momentary pushbutton.
+export function createCaseControls(objects, config) {
+  const rocker=objects.get("power"), reset=objects.get("reset");
+  rocker.geometry.translate(...config.powerPivot.map(v=>-v));
+  rocker.position.set(...config.powerPivot);
+  let pressed=false, pulseUntil=0, angle;
+  return {
+    press(value){pressed=value;},
+    pulse(now){pulseUntil=now+160;},
+    tick(now,on,reduced){
+      const target=(on?1:-1)*config.rockerAngle*Math.PI/180;
+      const before=angle;
+      angle=angle===undefined||reduced?target:angle+(target-angle)*.35;
+      if(Math.abs(angle-target)<.0001)angle=target;
+      rocker.rotation.z=angle;
+      const y=pressed||now<pulseUntil?config.resetTravel:0;
+      const moved=reset.position.y!==y || before!==angle;
+      reset.position.y=y;
+      return moved;
+    },
+  };
+}
+
 export async function loadRobotron(displayTexture, onProgress = () => {}, onDetails = () => {}) {
   onProgress(0);
   const base = new URL(
@@ -615,6 +638,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     lamp.position.add(new THREE.Vector3(0, data.keyboard.y, data.keyboard.z));
     objects.get("keyboard-fillers").add(lamp);
   }
+  const caseControls=createCaseControls(objects,data.controls);
   let power = false,
     activityUntil = 0,
     split = 0,
@@ -769,7 +793,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         ["all", "psu"].includes(inspection.isolated),
       reduced,
     );
-    dirty = fanMoved || dirty;
+    const controlsMoved=caseControls.tick(now,power,reduced);
+    dirty = fanMoved || controlsMoved || dirty;
     split = reduced
       ? splitTarget
       : THREE.MathUtils.lerp(split, splitTarget, 0.15);
@@ -863,7 +888,19 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     }
     objects.get("fascia").position.set(0,(inside?400:0),inside?180:0);
     const keyboardLift = Math.max(split, inspection.keyboardOpen ? 1 : 0);
-    objects.get("keyboard-entry-wires").visible &&= keyboardLift === 0;
+    // Keep the input wires attached to their PCB. In exploded inspection the
+    // internal cable flexes from the fixed bush to the moving controller.
+    objects.get("keyboard-entry-wires").position.set(0,keyboardLift*160,keyboardLift*70);
+    const inputCable=objects.get("keyboard-internal-cable");
+    if(inputCable.userData.lift!==keyboardLift){
+      const pos=inputCable.geometry.attributes.position;
+      const rest=inputCable.userData.restVertices ||= pos.array.slice();
+      for(let i=0;i<pos.count;i++){
+        const weight=THREE.MathUtils.clamp((rest[i*3+1]-(data.keyboard.y+65))/9,0,1);
+        pos.setXYZ(i,rest[i*3],rest[i*3+1]+keyboardLift*160*weight,rest[i*3+2]+keyboardLift*70*weight);
+      }
+      pos.needsUpdate=true;inputCable.geometry.computeVertexNormals();inputCable.geometry.computeBoundingBox();inputCable.geometry.computeBoundingSphere();inputCable.userData.lift=keyboardLift;
+    }
     // Detach the narrow controller as a unit so both boards can be inspected.
     for (const [name, mesh] of objects) {
       if (name.startsWith("keyboard-controller-") || name === "keyboard-entry-choke")
@@ -992,7 +1029,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     return {
       dirty: newDetails || dirty || beforeSplit !== split || drivesMoved,
       shadows:
-        newDetails || changedInside || beforeSplit !== split || fanMoved || drivesMoved,
+        newDetails || changedInside || beforeSplit !== split || fanMoved || drivesMoved || controlsMoved,
     };
   }
   await loadDetails();
@@ -1053,6 +1090,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       const key = keyObjects.get(id);
       if (key) key.userData.pulseUntil = performance.now() + 140;
     },
+    resetPressed(value) {caseControls.press(value);},
+    resetFeedback() {caseControls.pulse(performance.now());},
     power(on) {
       power = on;
       if (!on) {

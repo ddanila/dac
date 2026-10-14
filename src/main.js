@@ -80,6 +80,7 @@ function resetMachine() {
   if (on && !powerPending) {
     release();
     send({ type: "reset" });
+    scene?.resetFeedback();
   }
 }
 const firmwareKeys = createFirmwareKeyboard({

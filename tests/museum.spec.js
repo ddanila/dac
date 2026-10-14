@@ -113,6 +113,10 @@ test("physical Robotron switches power and reset the live core", async ({
   await page.emulateMedia({ reducedMotion: "reduce" });
   const { PerspectiveCamera, Vector3 } = await import("three");
   await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.addInitScript(()=>{
+    const Base=window.Worker;window.physicalResets=0;
+    window.Worker=class extends Base {postMessage(message,...args){if(message.type==="reset")window.physicalResets++;return super.postMessage(message,...args);}};
+  });
   await page.goto("/");
   await expect(page.locator("#power")).toBeEnabled();
   await page.locator("#media-controls summary").click();
@@ -162,6 +166,9 @@ test("physical Robotron switches power and reset the live core", async ({
   await expect.poll(hash).toBe(before);
   await switchAt(207);
   await expect(page.getByRole("status")).toHaveText("Powered off");
+  expect(await page.evaluate(()=>window.physicalResets)).toBe(1);
+  await switchAt(-208);
+  expect(await page.evaluate(()=>window.physicalResets)).toBe(1);
 });
 
 test("a missing model preserves the accessible emulator and honest labels", async ({
@@ -220,4 +227,19 @@ test("model loading shows real percentage progress and clears when ready", async
   expect(samples.length).toBeGreaterThan(2);
   expect(samples.every((value, index) => index === 0 || value >= samples[index - 1])).toBe(true);
   await expect(page.locator("#viewport")).toHaveAttribute("aria-busy", "false");
+});
+
+
+test('front controls rock left/right and reset returns after release or pulse', async()=>{
+  const {Mesh,BoxGeometry,MeshBasicMaterial}=await import('three');
+  const {createCaseControls}=await import('../src/robotron-model.js');
+  const objects=new Map(['power','reset'].map(n=>[n,new Mesh(new BoxGeometry(),new MeshBasicMaterial())]));
+  const controls=createCaseControls(objects,{powerPivot:[207,-194.8,17],rockerAngle:8,resetTravel:1.2});
+  controls.tick(0,false,true);const off=objects.get('power').rotation.z;
+  controls.tick(1,true,true);expect(objects.get('power').rotation.z).toBe(-off);
+  controls.press(true);controls.tick(2,true,true);expect(objects.get('reset').position.y).toBe(1.2);
+  controls.press(false);controls.tick(3,true,true);expect(objects.get('reset').position.y).toBe(0);
+  controls.pulse(4);controls.tick(5,true,true);expect(objects.get('reset').position.y).toBe(1.2);
+  expect(controls.tick(165,true,true)).toBe(true);expect(objects.get('reset').position.y).toBe(0);
+  expect(controls.tick(166,true,true)).toBe(false);
 });

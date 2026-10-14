@@ -297,6 +297,7 @@ export function createScene(
       : ray.intersectObject(power)[0]?.object;
   }
   function cancelGesture() {
+    robotron?.resetPressed(false);
     if (down?.key)
       robotron?.keyState(down.key.id, false);
     if (down?.ghost) scene.remove(down.ghost);
@@ -332,11 +333,13 @@ export function createScene(
       renderer.domElement.setPointerCapture(e.pointerId);
     }
     if (down.key) robotron.keyState(down.key.id, true);
+    if (hit && hit===robotron?.objects.get("reset")) robotron.resetPressed(true);
   });
   renderer.domElement.addEventListener("pointermove", (e) => {
     if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 5) {
       down.dragged = true;
       if (down.key) robotron?.keyState(down.key.id, false);
+      robotron?.resetPressed(false);
     }
     if (down) {
       if(down.ghost && down.origin){
@@ -598,6 +601,7 @@ export function createScene(
       kind = value;
       visibility();
     },
+    resetFeedback: () => {robotron?.resetFeedback();renderRequested=true;},
     power: (on) => {
       powered = on;
       renderRequested = true;
