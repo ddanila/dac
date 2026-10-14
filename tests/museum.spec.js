@@ -136,7 +136,7 @@ test("physical Robotron switches power and reset the live core", async ({
   async function switchAt(x) {
     await page.getByRole("button", { name: "Front", exact: true }).click();
     viewport = await page.locator("#viewport").boundingBox();
-    const p = new Vector3(x * 0.0025, 17 * 0.0025, 211 * 0.0025).project(
+    const p = new Vector3(x * 0.0025, 17 * 0.0025, (x > 0 ? 198.4 : 199.6) * 0.0025).project(
       camera,
     );
     await page.mouse.click(
@@ -146,16 +146,13 @@ test("physical Robotron switches power and reset the live core", async ({
   }
   await switchAt(207);
   await expect(page.getByRole("status")).toHaveText("Running");
-  const hash = () =>
-    page.locator("#screen").evaluate((c) =>
-      c
-        .getContext("2d")
-        .getImageData(0, 0, c.width, c.height)
-        .data.reduce((n, v) => n + v, 0),
-    );
-  // Cold software-WebGL initialization can delay delivery of the first frame.
-  // Keep the pixel assertion, but allow the existing 60s test budget to cover it.
-  await expect.poll(hash, { timeout: 20000 }).toBeGreaterThan(640 * 288 * 255);
+  const hash = (inputOnly = true) =>
+    page.locator("#screen").evaluate((c, inputOnly) =>
+      c.getContext("2d").getImageData(0, inputOnly ? 80 : 0, c.width, inputOnly ? 16 : c.height)
+        .data.reduce((n, v) => n + v, 0), inputOnly);
+  // Observe live boot pixels, then compare the input row independently of
+  // boot text that may still be finishing its first raster scan.
+  await expect.poll(() => hash(false), { timeout: 20000 }).toBeGreaterThan(640 * 288 * 255);
   const before = await hash();
   await page.getByRole("button", { name: "Screen", exact: true }).click();
   await page.locator("#screen").focus();

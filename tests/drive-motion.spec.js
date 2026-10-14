@@ -185,7 +185,8 @@ test('inserted diskettes close levers without power; sleeves stay still and clam
   expect(objects.get('jacket-0').visible).toBe(true);
   expect(objects.get('jacket-1').visible).toBe(false);
   move(10,[8,8],true,1,false,true,null,[{phase:.25},{phase:.5}]);
-  expect(objects.get('latch-0').rotation.y).toBe(0);
+  expect(objects.get('latch-0').rotation.y).toBeGreaterThan(0);
+  expect(objects.get('latch-0').rotation.y).toBeLessThan(Math.PI/2);
   expect(objects.get('jacket-0').visible).toBe(true);
   expect(objects.get('medium-0').visible).toBe(true);
   expect(objects.get('medium-0').rotation.z).toBe(0); // released disc does not follow the spindle
@@ -232,4 +233,25 @@ test('retained media parks beside the machine and linkage follows its own lever'
   expect(objects.get('jacket').userData.removedDisk).toBeUndefined();
   expect(objects.get('shaft').rotation.y).toBeCloseTo(Math.PI/2);
   expect(objects.get('release').position.z).toBe(0);
+});
+
+
+test('lever travel is gradual, reversible and synchronized with shaft and clamp', () => {
+  const objects = new Map(['spindle','head','latch','shaft','clamp'].map(n => [n,new Mesh(new BoxGeometry(),new MeshBasicMaterial())]));
+  const move = createDriveMotion(objects,[{unit:0,spindle:'spindle',head:'head',latch:'latch',shaft:'shaft',clamp:'clamp',pivot:[0,0,0],latchPivot:[0,0,0],travel:[0,-20,0]}]);
+  move(0,[8],false,0,false);
+  expect(objects.get('latch').rotation.y).toBeCloseTo(Math.PI/2);
+  expect(move(40,[40],false,0,false)).toBe(true);
+  const opening = objects.get('latch').rotation.y;
+  expect(opening).toBeGreaterThan(0);
+  expect(opening).toBeLessThan(Math.PI/2);
+  expect(objects.get('shaft').rotation.y).toBe(opening);
+  expect(objects.get('clamp').position.z).toBeCloseTo((1-opening/(Math.PI/2))*5);
+  move(60,[8],false,0,false);
+  expect(objects.get('latch').rotation.y).toBeGreaterThan(opening);
+  for(let t=100;t<=420;t+=40) move(t,[40],false,0,false);
+  expect(objects.get('latch').rotation.y).toBe(0);
+  expect(move(460,[40],false,0,false)).toBe(false);
+  move(480,[8],false,0,true);
+  expect(objects.get('latch').rotation.y).toBeCloseTo(Math.PI/2);
 });

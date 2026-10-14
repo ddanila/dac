@@ -1,5 +1,5 @@
 {
-  "version": 32,
+  "version": 33,
   "evidence": {
     "categories": {
       "specimen": "Your specimen",
@@ -21870,7 +21870,6 @@
       "jacket": "drive-diskette-0",
       "disketteLabel": "drive-diskette-label-0",
       "latch": "drive-latch-0",
-      "latchTrim": "drive-latch-trim-0",
       "clamp": "drive-clamp-0",
       "shaft": "drive-shaft-0",
       "release": "drive-release-0",
@@ -21907,7 +21906,6 @@
       "jacket": "drive-diskette-1",
       "disketteLabel": "drive-diskette-label-1",
       "latch": "drive-latch-1",
-      "latchTrim": "drive-latch-trim-1",
       "clamp": "drive-clamp-1",
       "shaft": "drive-shaft-1",
       "release": "drive-release-1",
@@ -21964,6 +21962,15 @@
       "grain": 0.01,
       "grainScale": 4.0,
       "clearcoat": 0.18
+    },
+    "clear-switch": {
+      "roughness": 0.25,
+      "metalness": 0,
+      "clearcoat": 1,
+      "ior": 1.49,
+      "transparent": true,
+      "opacity": 0.55,
+      "depthWrite": false
     },
     "clear-key": {
       "roughness": 0.12,
@@ -22046,7 +22053,7 @@
       "name": "case-base",
       "file": "meshes/case-base.stl",
       "color": "#b6ae93",
-      "sha256": "b39999e34d26e45d66b4cc3fcc3034dabefd75bfc07d07f03461baefb7d1f4ff",
+      "sha256": "a96c43d21412b60e6a6ebd81c2b23dd341f1fdba3ab80cb350528623d15ae003",
       "material": "paint"
     },
     {
@@ -22067,15 +22074,15 @@
       "name": "drives",
       "file": "meshes/drives.stl",
       "color": "#242627",
-      "sha256": "40a52de13bd5b51b38ed82279fb1f1b489576e18e4bf50da01ac0e0f08351319",
+      "sha256": "23f09474b0f767439a8b0d28104af5c8ea92705e66508a0b777f79c9e4b913a3",
       "material": "aged-plastic"
     },
     {
       "name": "power",
       "file": "meshes/power.stl",
-      "color": "#333839",
-      "sha256": "6cfb14f30df054dc1951c8fd855e943222d7bb1901c331de8f330e8ef766dabd",
-      "material": "plastic"
+      "color": "#d6d9cf",
+      "sha256": "7070462c653bcc0036af2369f690a555ec50dbde8e3e417adde12eef44623dc6",
+      "material": "clear-switch"
     },
     {
       "name": "reset",
@@ -22158,7 +22165,7 @@
       "name": "drive-insets",
       "file": "meshes/drive-insets.stl",
       "color": "#101312",
-      "sha256": "04d61bab19497dcb93f3e470f94aae1a86d042478554dd7dc1ea8a5d68384bda",
+      "sha256": "d20c9d480c99403e8158a50e6c131ad04e806adf88a7a742905e186cfe8e0f88",
       "material": "plastic"
     },
     {
@@ -23158,31 +23165,17 @@
       "material": "plastic"
     },
     {
-      "name": "drive-latch-trim-0",
-      "file": "meshes/drive-latch-trim-0.stl",
-      "color": "#a6a7a0",
-      "sha256": "b096978ba809b5443553f1641cbe6f724303fb48c58d70b28c7463b971bb83d9",
-      "material": "metal"
-    },
-    {
-      "name": "drive-latch-trim-1",
-      "file": "meshes/drive-latch-trim-1.stl",
-      "color": "#a6a7a0",
-      "sha256": "c2011564a2c9cf0a2b154fc53933817bcfd647fa3d9a8dcb5e6c47b3420ea0bb",
-      "material": "metal"
-    },
-    {
       "name": "drive-direction-0",
       "file": "meshes/drive-direction-0.stl",
       "color": "#d0d2c7",
-      "sha256": "47416523e1e89a4a08f65ddf036d404d1487377562738bc7184b51a3448a691d",
+      "sha256": "2b1730221ef5e1776b304937dab93d611aa2e2509ea75f60f0502e7805244bc1",
       "material": "ink"
     },
     {
       "name": "drive-direction-1",
       "file": "meshes/drive-direction-1.stl",
       "color": "#d0d2c7",
-      "sha256": "4f121f9841e7879f8daf9f4d42915d603f88e1e752a2235002313961c994c920",
+      "sha256": "5f5c888e7283edcd0e77d1871e487dae5a5d85ed67393116f621e18640e99242",
       "material": "ink"
     },
     {
@@ -23412,6 +23405,20 @@
       "part": "logic-inductors",
       "section": "interior",
       "material": "plastic"
+    },
+    {
+      "name": "power-housing",
+      "file": "meshes/power-housing.stl",
+      "color": "#222522",
+      "sha256": "329d6871c591bd6cf4c3b995983f83aedf0ffd0042d6f21afa2f277c3f4b5245",
+      "material": "plastic"
+    },
+    {
+      "name": "front-labels",
+      "file": "meshes/front-labels.stl",
+      "color": "#dedfd0",
+      "sha256": "41dddf39a0fc601d9e7308feaa8a178b674b02859a76ab5a7f4b665daf558acb",
+      "material": "ink"
     }
   ],
   "keys": [
