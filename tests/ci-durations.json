@@ -1,0 +1,24 @@
+{
+  "source": "GitHub run 38610467726: successful Chromium jobs 116012393022 and 116020652901; elapsed per file, including browser setup. Estimates only, never grounds to skip tests.",
+  "seconds": {
+    "tests/assembly.spec.js": 50.9,
+    "tests/crt.spec.js": 4.1,
+    "tests/disk-layout.spec.js": 13.3,
+    "tests/drive-levers.spec.js": 94.1,
+    "tests/drive-motion.spec.js": 0.1,
+    "tests/drive-regression.spec.js": 21.9,
+    "tests/exhibit-improvements.spec.js": 55.4,
+    "tests/exploration.spec.js": 18.0,
+    "tests/fan.spec.js": 0.0,
+    "tests/historical-media.spec.js": 42.0,
+    "tests/inspection.spec.js": 81.4,
+    "tests/interior.spec.js": 30.9,
+    "tests/keyboard.spec.js": 378.9,
+    "tests/museum.spec.js": 132.1,
+    "tests/pcb-components.spec.js": 86.1,
+    "tests/portable-sessions.spec.js": 69.7,
+    "tests/robotron-sound.spec.js": 0.2,
+    "tests/sessions.spec.js": 32.4,
+    "tests/workbench.spec.js": 127.9
+  }
+}

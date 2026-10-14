@@ -1,5 +1,5 @@
 {
-  "version": 39,
+  "version": 40,
   "hardwareAudit": {
     "date": "2026-10-14",
     "sources": {
@@ -32,7 +32,8 @@
       "placement": "32 RAM and two CTC positions registered against owner photos; eleven processor-area packages and one long socket use a local projective fit to nominal DIP-40 lead pitch. Global board dimensions and reference correspondence remain provisional.",
       "artwork": "Partial visible masked copper paths and board marking traced from owner 073200542 using the existing local pitch fit. No hidden routes or electrical netlist inferred.",
       "passives": "Eleven lower-board resistors/capacitors registered from owner 073200542; nominal body dimensions and unknown electrical values.",
-      "ribbon": "Motherboard ribbon socket and plug registered to owner 073200542; drive-to-board service loops remain approximate."
+      "ribbon": "Single continuous board-to-drive-1-to-drive-0 daisy-chain reconstruction with rounded folds and consistent width; intermediate path/slack remain illustrative. Nominal recessed power contacts follow the four visible entry wells.",
+      "detailPass": "v40: nine formerly estimated package positions registered and twenty additional visible packages added from owner 073200542. PHOTO identifiers are not schematic references. Pale sockets under CPU/FDC/EPROM and visible jumper blocks are photo-estimated."
     },
     "keyboard": {
       "cpu": "A5 U880 in schematic; UB880D in owner photo",
@@ -72,8 +73,8 @@
     "display": {
       "controller": "SAB8275P in owner photo; D05 8275-compatible device in drawing",
       "fetch": "Local counters, RAM and multiplexers. Do not conflate with system UA858 floppy DMA.",
-      "implemented": "Bounded attribute FIFO; row-based nominal character-clock scheduling; programmed burst gaps and stop-DMA dummy consumption; read-clear FO, DU and raster IR status; underrun blanking/retrace recovery. Runtime timing is separate from host rendering. Completed fetched rows now latch at scanout boundaries with retained field attributes; host rendering reads historical rows, not current VRAM.",
-      "remaining": "Display-board DACK response is idealized at one byte per character clock. Row bytes are sampled together; row-level scanout only, without per-byte bus contention or scanline-accurate tearing. Nominal 13.824 MHz / 8 clock is a family reference, not measured on this W/M specimen. CPU interrupt wiring, light pen, spaced-row pixel output and exact board delays remain unverified/unimplemented."
+      "implemented": "Individual byte fetches with programmed burst gaps, FIFO overflow at the overflowing write, stop/dummy consumption and row deadlines. Completed rows retain decoded glyph/cursor/blink/attribute output; host rendering does not re-read VRAM or character ROM. Snapshot layout 6 retains partial fetch state.",
+      "remaining": "Local DACK response remains idealized at one byte per character clock. Scanout sampling is per row, not per scanline; CPU contention, exact W/M clock/delays, light pen and CPU IRQ wiring remain unverified/unimplemented."
     }
   },
   "reviewViews": {
@@ -1475,7 +1476,9 @@
             "photoCentre": [
               808,
               503
-            ]
+            ],
+            "socketHeight": 2.5,
+            "socketEvidence": "Pale socket rails visible in owner 073200542; nominal pitch, estimated 2.5 mm lift and hidden contact geometry."
           },
           {
             "ref": "A2",
@@ -1547,7 +1550,9 @@
             "photoCentre": [
               1080,
               503
-            ]
+            ],
+            "socketHeight": 2.5,
+            "socketEvidence": "Pale socket rails visible in owner 073200542; nominal pitch, estimated 2.5 mm lift and hidden contact geometry."
           },
           {
             "ref": "A4",
@@ -1621,7 +1626,9 @@
             "photoCentre": [
               498,
               278
-            ]
+            ],
+            "socketHeight": 2.5,
+            "socketEvidence": "Pale socket rails visible in owner 073200542; nominal pitch, estimated 2.5 mm lift and hidden contact geometry."
           },
           {
             "ref": "A45",
@@ -1724,20 +1731,24 @@
             "label": "DS8205",
             "model": "DIP-16_W7.62mm",
             "position": [
-              -9,
-              46,
+              -142.541,
+              -25.412,
               13.6
             ],
             "rotation": 90,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
+            "status": "Photo-registered body; schematic reference correspondence remains provisional",
             "inspection": {
               "title": "A12 \u00b7 DS8205",
-              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-16_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-16_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
               "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
+              "photo": "20261014_073200542",
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
+            },
+            "photoCentre": [
+              890,
+              72
+            ]
           },
           {
             "ref": "A99",
@@ -1784,8 +1795,8 @@
             "label": "DS8205",
             "model": "DIP-16_W7.62mm",
             "position": [
-              -189.056,
-              124.547,
+              -184.144,
+              126.061,
               13.6
             ],
             "rotation": 90,
@@ -1799,8 +1810,8 @@
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
             },
             "photoCentre": [
-              1180,
-              824
+              1152,
+              832
             ]
           },
           {
@@ -1808,20 +1819,24 @@
             "label": "74S287",
             "model": "DIP-16_W7.62mm",
             "position": [
-              -46,
-              36,
+              -141.894,
+              -7.459,
               13.6
             ],
             "rotation": 90,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
+            "status": "Photo-registered body; schematic reference correspondence remains provisional",
             "inspection": {
               "title": "A41 \u00b7 74S287",
-              "text": "CAS/bank decode PROM. Documented W/M design; package and local placement estimated. Package: DIP-16_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+              "text": "CAS/bank decode PROM. Documented W/M design; package and local placement estimated. Package: DIP-16_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
               "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
+              "photo": "20261014_073200542",
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
+            },
+            "photoCentre": [
+              890,
+              151
+            ]
           },
           {
             "ref": "A114",
@@ -2312,120 +2327,144 @@
             "label": "DL004",
             "model": "DIP-14_W7.62mm",
             "position": [
-              3,
-              144,
+              -10.411,
+              149.16,
               13.6
             ],
-            "rotation": 180,
+            "rotation": 90,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
+            "status": "Photo-registered body; schematic reference correspondence remains provisional",
             "inspection": {
               "title": "A18 \u00b7 DL004",
-              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
               "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
+              "photo": "20261014_073200542",
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
+            },
+            "photoCentre": [
+              280,
+              920
+            ]
           },
           {
             "ref": "A19",
             "label": "K170UP2",
             "model": "DIP-14_W7.62mm",
             "position": [
-              -26,
-              144,
+              -39.688,
+              128.834,
               13.6
             ],
-            "rotation": 180,
+            "rotation": 90,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
+            "status": "Photo-registered body; schematic reference correspondence remains provisional",
             "inspection": {
               "title": "A19 \u00b7 K170UP2",
-              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
               "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
+              "photo": "20261014_073200542",
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
+            },
+            "photoCentre": [
+              415,
+              820
+            ]
           },
           {
             "ref": "A24",
             "label": "K155LP2",
             "model": "DIP-14_W7.62mm",
             "position": [
-              -55,
-              144,
+              -69.39,
+              123.332,
               13.6
             ],
-            "rotation": 180,
+            "rotation": 90,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
+            "status": "Photo-registered body; schematic reference correspondence remains provisional",
             "inspection": {
               "title": "A24 \u00b7 K155LP2",
-              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
               "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
+              "photo": "20261014_073200542",
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
+            },
+            "photoCentre": [
+              552,
+              796
+            ]
           },
           {
             "ref": "A21",
             "label": "K170AP2",
             "model": "DIP-14_W7.62mm",
             "position": [
-              -84,
-              144,
+              -69.927,
+              135.086,
               13.6
             ],
-            "rotation": 180,
+            "rotation": 90,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
+            "status": "Photo-registered body; schematic reference correspondence remains provisional",
             "inspection": {
               "title": "A21 \u00b7 K170AP2",
-              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
               "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
+              "photo": "20261014_073200542",
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
+            },
+            "photoCentre": [
+              553,
+              859
+            ]
           },
           {
             "ref": "A23",
             "label": "K170UP2",
             "model": "DIP-14_W7.62mm",
             "position": [
-              -113,
-              144,
+              -70.652,
+              146.206,
               13.6
             ],
-            "rotation": 180,
+            "rotation": 90,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
+            "status": "Photo-registered body; schematic reference correspondence remains provisional",
             "inspection": {
               "title": "A23 \u00b7 K170UP2",
-              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
               "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
+              "photo": "20261014_073200542",
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
+            },
+            "photoCentre": [
+              555,
+              920
+            ]
           },
           {
             "ref": "A20",
             "label": "K170UP2",
             "model": "DIP-14_W7.62mm",
             "position": [
-              -142,
-              144,
+              -99.701,
+              128.663,
               13.6
             ],
-            "rotation": 180,
+            "rotation": 90,
             "side": 1,
-            "status": "Documented W/M design; package and local placement estimated",
+            "status": "Photo-registered body; schematic reference correspondence remains provisional",
             "inspection": {
               "title": "A20 \u00b7 K170UP2",
-              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+              "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
               "evidence": "Owner photograph + W/M documentation; estimated placement",
-              "photo": "20261014_072654600",
+              "photo": "20261014_073200542",
               "reference": "https://xepb.org/robotron/docs/1715w.zip"
-            }
+            },
+            "photoCentre": [
+              698,
+              830
+            ]
           },
           {
             "ref": "A22",
@@ -2450,6 +2489,466 @@
               1204,
               691
             ]
+          },
+          {
+            "ref": "PHOTO-01",
+            "model": "DIP-16_W7.62mm",
+            "position": [
+              -141.328,
+              8.228,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              890,
+              222
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 1",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-02",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -172.672,
+              -4.949,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1040,
+              150
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 2",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-03",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -171.728,
+              10.272,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1040,
+              221
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 3",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-04",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -170.68,
+              27.167,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1040,
+              302
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 4",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-05",
+            "model": "DIP-16_W7.62mm",
+            "position": [
+              -197.361,
+              0.01,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1168,
+              163
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 5",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-06",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -196.082,
+              13.122,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1167,
+              226
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 6",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-07",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -195.002,
+              28.387,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1168,
+              301
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 7",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-08",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -205.478,
+              48.401,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1235,
+              400
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 8",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-09",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -203.211,
+              63.133,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1230,
+              478
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 9",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-10",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -202.025,
+              75.879,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1230,
+              547
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 10",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-11",
+            "model": "DIP-16_W7.62mm",
+            "position": [
+              -200.833,
+              88.696,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1230,
+              618
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 11",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-12",
+            "model": "DIP-16_W7.62mm",
+            "position": [
+              -169.486,
+              102.108,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1059,
+              692
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 12",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-13",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -185.064,
+              114.637,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1152,
+              765
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 13",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-14",
+            "model": "DIP-16_W7.62mm",
+            "position": [
+              -140.332,
+              114.645,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              905,
+              759
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 14",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-15",
+            "model": "DIP-16_W7.62mm",
+            "position": [
+              -139.85,
+              127.09,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              905,
+              829
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 15",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-16",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -99.711,
+              115.59,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              698,
+              759
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 16",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-17",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -99.691,
+              141.953,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              698,
+              904
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 17",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-18",
+            "model": "DIP-16_W7.62mm",
+            "position": [
+              -139.517,
+              140.441,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              906,
+              906
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 18",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-19",
+            "model": "DIP-16_W7.62mm",
+            "position": [
+              -139.056,
+              152.295,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              906,
+              976
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 19",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
+          },
+          {
+            "ref": "PHOTO-21",
+            "model": "DIP-14_W7.62mm",
+            "position": [
+              -164.397,
+              128.465,
+              13.6
+            ],
+            "rotation": 90,
+            "side": 1,
+            "photoCentre": [
+              1040,
+              842
+            ],
+            "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+            "inspection": {
+              "title": "Photographed logic package 21",
+              "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+              "photo": "20261014_073200542",
+              "evidence": "Your specimen; photo-estimated placement"
+            },
+            "label": ""
           }
         ],
         "passives": [
@@ -2711,6 +3210,261 @@
             "side": 1,
             "diameter": 5,
             "height": 4
+          },
+          {
+            "kind": "film",
+            "position": [
+              -194.779,
+              39.946,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              1172,
+              359
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "film",
+            "position": [
+              -205.047,
+              58.672,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              1238,
+              454
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "film",
+            "position": [
+              -200.656,
+              79.328,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              1224,
+              566
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "film",
+            "position": [
+              -201.858,
+              96.128,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              1240,
+              660
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "film",
+            "position": [
+              -202.357,
+              110.482,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              1251,
+              743
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "film",
+            "position": [
+              -135.317,
+              122.467,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              880,
+              802
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "film",
+            "position": [
+              -135.263,
+              134.945,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              882,
+              873
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "film",
+            "position": [
+              -135.222,
+              146.784,
+              13.6
+            ],
+            "rotation": 90,
+            "diameter": 4,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              884,
+              942
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "electrolytic",
+            "position": [
+              -154.791,
+              116.255,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 3.3,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              983,
+              770
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "electrolytic",
+            "position": [
+              -152.844,
+              125.599,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 3.3,
+            "height": 6,
+            "side": 1,
+            "photoCentre": [
+              975,
+              823
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "resistor",
+            "position": [
+              -160.654,
+              112.759,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 2.5,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              1014,
+              751
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "resistor",
+            "position": [
+              -162.84,
+              112.711,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 2.5,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              1026,
+              751
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "resistor",
+            "position": [
+              -167.364,
+              112.612,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 2.5,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              1051,
+              751
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "resistor",
+            "position": [
+              -169.522,
+              112.564,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 2.5,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              1063,
+              751
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
+          },
+          {
+            "kind": "resistor",
+            "position": [
+              -173.812,
+              112.47,
+              13.6
+            ],
+            "rotation": 0,
+            "diameter": 2.5,
+            "height": 4,
+            "side": 1,
+            "photoCentre": [
+              1087,
+              751
+            ],
+            "status": "Owner 073200542, photo-estimated body dimensions; electrical value unknown"
           }
         ],
         "connectors": [
@@ -2722,7 +3476,9 @@
             ],
             "n": 13,
             "rotation": 180,
-            "side": 1
+            "side": 1,
+            "hidden": true,
+            "status": "Old drawing-based placeholder omitted: owner 073200542 shows logic packages at this location, not this connector."
           },
           {
             "position": [
@@ -5985,7 +6741,7 @@
         "position": [
           -122.708,
           66.117,
-          13.6
+          16.1
         ],
         "rotation": 180,
         "side": 1,
@@ -6001,6 +6757,8 @@
           808,
           503
         ],
+        "socketHeight": 2.5,
+        "socketEvidence": "Pale socket rails visible in owner 073200542; nominal pitch, estimated 2.5 mm lift and hidden contact geometry.",
         "id": "motherboard-A1",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -6069,7 +6827,7 @@
         "position": [
           -175.676,
           67.22,
-          13.6
+          16.1
         ],
         "rotation": 180,
         "side": 1,
@@ -6085,6 +6843,8 @@
           1080,
           503
         ],
+        "socketHeight": 2.5,
+        "socketEvidence": "Pale socket rails visible in owner 073200542; nominal pitch, estimated 2.5 mm lift and hidden contact geometry.",
         "id": "motherboard-A44",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -6155,7 +6915,7 @@
         "position": [
           -53.54,
           14.797,
-          13.6
+          16.1
         ],
         "rotation": 90,
         "side": 1,
@@ -6171,6 +6931,8 @@
           498,
           278
         ],
+        "socketHeight": 2.5,
+        "socketEvidence": "Pale socket rails visible in owner 073200542; nominal pitch, estimated 2.5 mm lift and hidden contact geometry.",
         "id": "motherboard-A6",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -6293,20 +7055,24 @@
         "label": "DS8205",
         "model": "DIP-16_W7.62mm",
         "position": [
-          -9,
-          46,
+          -142.541,
+          -25.412,
           13.6
         ],
         "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Photo-registered body; schematic reference correspondence remains provisional",
         "inspection": {
           "title": "A12 \u00b7 DS8205",
-          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-16_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-16_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          890,
+          72
+        ],
         "id": "motherboard-A12",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -6365,8 +7131,8 @@
         "label": "DS8205",
         "model": "DIP-16_W7.62mm",
         "position": [
-          -189.056,
-          124.547,
+          -184.144,
+          126.061,
           13.6
         ],
         "rotation": 90,
@@ -6380,8 +7146,8 @@
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
         "photoCentre": [
-          1180,
-          824
+          1152,
+          832
         ],
         "id": "motherboard-A11",
         "board": "motherboard",
@@ -6393,20 +7159,24 @@
         "label": "74S287",
         "model": "DIP-16_W7.62mm",
         "position": [
-          -46,
-          36,
+          -141.894,
+          -7.459,
           13.6
         ],
         "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Photo-registered body; schematic reference correspondence remains provisional",
         "inspection": {
           "title": "A41 \u00b7 74S287",
-          "text": "CAS/bank decode PROM. Documented W/M design; package and local placement estimated. Package: DIP-16_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "CAS/bank decode PROM. Documented W/M design; package and local placement estimated. Package: DIP-16_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          890,
+          151
+        ],
         "id": "motherboard-A41",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -6997,20 +7767,24 @@
         "label": "DL004",
         "model": "DIP-14_W7.62mm",
         "position": [
-          3,
-          144,
+          -10.411,
+          149.16,
           13.6
         ],
-        "rotation": 180,
+        "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Photo-registered body; schematic reference correspondence remains provisional",
         "inspection": {
           "title": "A18 \u00b7 DL004",
-          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          280,
+          920
+        ],
         "id": "motherboard-A18",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -7021,20 +7795,24 @@
         "label": "K170UP2",
         "model": "DIP-14_W7.62mm",
         "position": [
-          -26,
-          144,
+          -39.688,
+          128.834,
           13.6
         ],
-        "rotation": 180,
+        "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Photo-registered body; schematic reference correspondence remains provisional",
         "inspection": {
           "title": "A19 \u00b7 K170UP2",
-          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          415,
+          820
+        ],
         "id": "motherboard-A19",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -7045,20 +7823,24 @@
         "label": "K155LP2",
         "model": "DIP-14_W7.62mm",
         "position": [
-          -55,
-          144,
+          -69.39,
+          123.332,
           13.6
         ],
-        "rotation": 180,
+        "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Photo-registered body; schematic reference correspondence remains provisional",
         "inspection": {
           "title": "A24 \u00b7 K155LP2",
-          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          552,
+          796
+        ],
         "id": "motherboard-A24",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -7069,20 +7851,24 @@
         "label": "K170AP2",
         "model": "DIP-14_W7.62mm",
         "position": [
-          -84,
-          144,
+          -69.927,
+          135.086,
           13.6
         ],
-        "rotation": 180,
+        "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Photo-registered body; schematic reference correspondence remains provisional",
         "inspection": {
           "title": "A21 \u00b7 K170AP2",
-          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          553,
+          859
+        ],
         "id": "motherboard-A21",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -7093,20 +7879,24 @@
         "label": "K170UP2",
         "model": "DIP-14_W7.62mm",
         "position": [
-          -113,
-          144,
+          -70.652,
+          146.206,
           13.6
         ],
-        "rotation": 180,
+        "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Photo-registered body; schematic reference correspondence remains provisional",
         "inspection": {
           "title": "A23 \u00b7 K170UP2",
-          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          555,
+          920
+        ],
         "id": "motherboard-A23",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -7117,20 +7907,24 @@
         "label": "K170UP2",
         "model": "DIP-14_W7.62mm",
         "position": [
-          -142,
-          144,
+          -99.701,
+          128.663,
           13.6
         ],
-        "rotation": 180,
+        "rotation": 90,
         "side": 1,
-        "status": "Documented W/M design; package and local placement estimated",
+        "status": "Photo-registered body; schematic reference correspondence remains provisional",
         "inspection": {
           "title": "A20 \u00b7 K170UP2",
-          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified.",
+          "text": "Logic/package placement on the W/M motherboard. Documented W/M design; package and local placement estimated. Package: DIP-14_W7.62mm. A references follow the W placement drawing 1.93.310411.8/09; exact specimen revision and pin-one orientation remain unverified. Body position follows owner 073200542; schematic reference correspondence is provisional.",
           "evidence": "Owner photograph + W/M documentation; estimated placement",
-          "photo": "20261014_072654600",
+          "photo": "20261014_073200542",
           "reference": "https://xepb.org/robotron/docs/1715w.zip"
         },
+        "photoCentre": [
+          698,
+          830
+        ],
         "id": "motherboard-A20",
         "board": "motherboard",
         "top": 3.680000066757202,
@@ -7160,6 +7954,546 @@
           691
         ],
         "id": "motherboard-A22",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-01",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -141.328,
+          8.228,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          890,
+          222
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 1",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-01",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-02",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -172.672,
+          -4.949,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1040,
+          150
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 2",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-02",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-03",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -171.728,
+          10.272,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1040,
+          221
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 3",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-03",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-04",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -170.68,
+          27.167,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1040,
+          302
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 4",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-04",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-05",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -197.361,
+          0.01,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1168,
+          163
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 5",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-05",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-06",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -196.082,
+          13.122,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1167,
+          226
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 6",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-06",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-07",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -195.002,
+          28.387,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1168,
+          301
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 7",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-07",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-08",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -205.478,
+          48.401,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1235,
+          400
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 8",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-08",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-09",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -203.211,
+          63.133,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1230,
+          478
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 9",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-09",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-10",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -202.025,
+          75.879,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1230,
+          547
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 10",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-10",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-11",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -200.833,
+          88.696,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1230,
+          618
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 11",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-11",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-12",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -169.486,
+          102.108,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1059,
+          692
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 12",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-12",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-13",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -185.064,
+          114.637,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1152,
+          765
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 13",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-13",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-14",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -140.332,
+          114.645,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          905,
+          759
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 14",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-14",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-15",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -139.85,
+          127.09,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          905,
+          829
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 15",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-15",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-16",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -99.711,
+          115.59,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          698,
+          759
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 16",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-16",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-17",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -99.691,
+          141.953,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          698,
+          904
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 17",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-17",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-18",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -139.517,
+          140.441,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          906,
+          906
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 18",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-18",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-19",
+        "model": "DIP-16_W7.62mm",
+        "position": [
+          -139.056,
+          152.295,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          906,
+          976
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 19",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-19",
+        "board": "motherboard",
+        "top": 3.680000066757202,
+        "markings": false
+      },
+      {
+        "ref": "PHOTO-21",
+        "model": "DIP-14_W7.62mm",
+        "position": [
+          -164.397,
+          128.465,
+          13.6
+        ],
+        "rotation": 90,
+        "side": 1,
+        "photoCentre": [
+          1040,
+          842
+        ],
+        "status": "Owner-photo package silhouette; pin count nominal, electrical identity not assigned",
+        "inspection": {
+          "title": "Photographed logic package 21",
+          "text": "Visible package body registered from owner 073200542. This photo identifier is not a schematic reference. Nominal DIP geometry; identity, pin-one direction and exact dimensions remain unverified.",
+          "photo": "20261014_073200542",
+          "evidence": "Your specimen; photo-estimated placement"
+        },
+        "label": "",
+        "id": "motherboard-PHOTO-21",
         "board": "motherboard",
         "top": 3.680000066757202,
         "markings": false
@@ -13971,113 +15305,113 @@
         1
       ],
       [
-        -0.3767499999999995,
-        42.19,
+        -133.91774999999998,
+        -29.221999999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        -2.6500000000000004,
-        42.19,
+        -136.191,
+        -29.221999999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        -5.1899999999999995,
-        42.19,
+        -138.731,
+        -29.221999999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        -7.73,
-        42.19,
+        -141.271,
+        -29.221999999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        -10.27,
-        42.19,
+        -143.811,
+        -29.221999999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        -12.81,
-        42.19,
+        -146.351,
+        -29.221999999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        -15.35,
-        42.19,
+        -148.891,
+        -29.221999999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        -17.62325,
-        42.19,
+        -151.16425,
+        -29.221999999999998,
         13.6,
         "motherboard",
         1
       ],
       [
-        -0.3767499999999995,
-        49.81,
+        -133.91774999999998,
+        -21.602,
         13.6,
         "motherboard",
         1
       ],
       [
-        -2.6500000000000004,
-        49.81,
+        -136.191,
+        -21.602,
         13.6,
         "motherboard",
         1
       ],
       [
-        -5.1899999999999995,
-        49.81,
+        -138.731,
+        -21.602,
         13.6,
         "motherboard",
         1
       ],
       [
-        -7.73,
-        49.81,
+        -141.271,
+        -21.602,
         13.6,
         "motherboard",
         1
       ],
       [
-        -10.27,
-        49.81,
+        -143.811,
+        -21.602,
         13.6,
         "motherboard",
         1
       ],
       [
-        -12.81,
-        49.81,
+        -146.351,
+        -21.602,
         13.6,
         "motherboard",
         1
       ],
       [
-        -15.35,
-        49.81,
+        -148.891,
+        -21.602,
         13.6,
         "motherboard",
         1
       ],
       [
-        -17.62325,
-        49.81,
+        -151.16425,
+        -21.602,
         13.6,
         "motherboard",
         1
@@ -14307,225 +15641,225 @@
         1
       ],
       [
-        -180.43275,
-        120.737,
+        -175.52075,
+        122.251,
         13.6,
         "motherboard",
         1
       ],
       [
-        -182.70600000000002,
-        120.737,
+        -177.794,
+        122.251,
         13.6,
         "motherboard",
         1
       ],
       [
-        -185.246,
-        120.737,
+        -180.334,
+        122.251,
         13.6,
         "motherboard",
         1
       ],
       [
-        -187.786,
-        120.737,
+        -182.874,
+        122.251,
         13.6,
         "motherboard",
         1
       ],
       [
-        -190.32600000000002,
-        120.737,
+        -185.41400000000002,
+        122.251,
         13.6,
         "motherboard",
         1
       ],
       [
-        -192.866,
-        120.737,
+        -187.954,
+        122.251,
         13.6,
         "motherboard",
         1
       ],
       [
-        -195.406,
-        120.737,
+        -190.494,
+        122.251,
         13.6,
         "motherboard",
         1
       ],
       [
-        -197.67925000000002,
-        120.737,
+        -192.76725000000002,
+        122.251,
         13.6,
         "motherboard",
         1
       ],
       [
-        -180.43275,
-        128.357,
+        -175.52075,
+        129.871,
         13.6,
         "motherboard",
         1
       ],
       [
-        -182.70600000000002,
-        128.357,
+        -177.794,
+        129.871,
         13.6,
         "motherboard",
         1
       ],
       [
-        -185.246,
-        128.357,
+        -180.334,
+        129.871,
         13.6,
         "motherboard",
         1
       ],
       [
-        -187.786,
-        128.357,
+        -182.874,
+        129.871,
         13.6,
         "motherboard",
         1
       ],
       [
-        -190.32600000000002,
-        128.357,
+        -185.41400000000002,
+        129.871,
         13.6,
         "motherboard",
         1
       ],
       [
-        -192.866,
-        128.357,
+        -187.954,
+        129.871,
         13.6,
         "motherboard",
         1
       ],
       [
-        -195.406,
-        128.357,
+        -190.494,
+        129.871,
         13.6,
         "motherboard",
         1
       ],
       [
-        -197.67925000000002,
-        128.357,
+        -192.76725000000002,
+        129.871,
         13.6,
         "motherboard",
         1
       ],
       [
-        -37.37675,
-        32.19,
+        -133.27075,
+        -11.269,
         13.6,
         "motherboard",
         1
       ],
       [
-        -39.65,
-        32.19,
+        -135.544,
+        -11.269,
         13.6,
         "motherboard",
         1
       ],
       [
-        -42.19,
-        32.19,
+        -138.084,
+        -11.269,
         13.6,
         "motherboard",
         1
       ],
       [
-        -44.73,
-        32.19,
+        -140.624,
+        -11.269,
         13.6,
         "motherboard",
         1
       ],
       [
-        -47.27,
-        32.19,
+        -143.16400000000002,
+        -11.269,
         13.6,
         "motherboard",
         1
       ],
       [
-        -49.81,
-        32.19,
+        -145.704,
+        -11.269,
         13.6,
         "motherboard",
         1
       ],
       [
-        -52.35,
-        32.19,
+        -148.244,
+        -11.269,
         13.6,
         "motherboard",
         1
       ],
       [
-        -54.62325,
-        32.19,
+        -150.51725000000002,
+        -11.269,
         13.6,
         "motherboard",
         1
       ],
       [
-        -37.37675,
-        39.81,
+        -133.27075,
+        -3.649,
         13.6,
         "motherboard",
         1
       ],
       [
-        -39.65,
-        39.81,
+        -135.544,
+        -3.649,
         13.6,
         "motherboard",
         1
       ],
       [
-        -42.19,
-        39.81,
+        -138.084,
+        -3.649,
         13.6,
         "motherboard",
         1
       ],
       [
-        -44.73,
-        39.81,
+        -140.624,
+        -3.6489999999999996,
         13.6,
         "motherboard",
         1
       ],
       [
-        -47.27,
-        39.81,
+        -143.16400000000002,
+        -3.6489999999999996,
         13.6,
         "motherboard",
         1
       ],
       [
-        -49.81,
-        39.81,
+        -145.704,
+        -3.648999999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -52.35,
-        39.81,
+        -148.244,
+        -3.648999999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -54.62325,
-        39.81,
+        -150.51725000000002,
+        -3.648999999999999,
         13.6,
         "motherboard",
         1
@@ -17219,589 +18553,589 @@
         1
       ],
       [
-        6.810000000000001,
-        151.35325,
+        -3.0577499999999995,
+        145.35,
         13.6,
         "motherboard",
         1
       ],
       [
-        6.810000000000001,
-        149.08,
+        -5.3309999999999995,
+        145.35,
         13.6,
         "motherboard",
         1
       ],
       [
-        6.8100000000000005,
-        146.54,
+        -7.8709999999999996,
+        145.35,
         13.6,
         "motherboard",
         1
       ],
       [
-        6.8100000000000005,
-        144.0,
+        -10.411,
+        145.35,
         13.6,
         "motherboard",
         1
       ],
       [
-        6.8100000000000005,
-        141.46,
+        -12.951,
+        145.35,
         13.6,
         "motherboard",
         1
       ],
       [
-        6.81,
-        138.92,
+        -15.491,
+        145.35,
         13.6,
         "motherboard",
         1
       ],
       [
-        6.81,
-        136.64675,
+        -17.76425,
+        145.35,
         13.6,
         "motherboard",
         1
       ],
       [
-        -0.8099999999999992,
-        151.35325,
+        -3.0577499999999995,
+        152.97,
         13.6,
         "motherboard",
         1
       ],
       [
-        -0.8099999999999994,
-        149.08,
+        -5.3309999999999995,
+        152.97,
         13.6,
         "motherboard",
         1
       ],
       [
-        -0.8099999999999997,
-        146.54,
+        -7.8709999999999996,
+        152.97,
         13.6,
         "motherboard",
         1
       ],
       [
-        -0.81,
-        144.0,
+        -10.411,
+        152.97,
         13.6,
         "motherboard",
         1
       ],
       [
-        -0.8100000000000004,
-        141.46,
+        -12.951,
+        152.97,
         13.6,
         "motherboard",
         1
       ],
       [
-        -0.8100000000000007,
-        138.92,
+        -15.491,
+        152.97,
         13.6,
         "motherboard",
         1
       ],
       [
-        -0.8100000000000009,
-        136.64675,
+        -17.76425,
+        152.97,
         13.6,
         "motherboard",
         1
       ],
       [
-        -22.19,
-        151.35325,
+        -32.33475,
+        125.024,
         13.6,
         "motherboard",
         1
       ],
       [
-        -22.19,
-        149.08,
+        -34.608000000000004,
+        125.024,
         13.6,
         "motherboard",
         1
       ],
       [
-        -22.19,
-        146.54,
+        -37.148,
+        125.024,
         13.6,
         "motherboard",
         1
       ],
       [
-        -22.19,
-        144.0,
+        -39.688,
+        125.024,
         13.6,
         "motherboard",
         1
       ],
       [
-        -22.19,
-        141.46,
+        -42.228,
+        125.024,
         13.6,
         "motherboard",
         1
       ],
       [
-        -22.19,
-        138.92,
+        -44.768,
+        125.024,
         13.6,
         "motherboard",
         1
       ],
       [
-        -22.19,
-        136.64675,
+        -47.041250000000005,
+        125.024,
         13.6,
         "motherboard",
         1
       ],
       [
-        -29.81,
-        151.35325,
+        -32.33475,
+        132.644,
         13.6,
         "motherboard",
         1
       ],
       [
-        -29.81,
-        149.08,
+        -34.608000000000004,
+        132.644,
         13.6,
         "motherboard",
         1
       ],
       [
-        -29.81,
-        146.54,
+        -37.148,
+        132.644,
         13.6,
         "motherboard",
         1
       ],
       [
-        -29.81,
-        144.0,
+        -39.688,
+        132.644,
         13.6,
         "motherboard",
         1
       ],
       [
-        -29.81,
-        141.46,
+        -42.228,
+        132.644,
         13.6,
         "motherboard",
         1
       ],
       [
-        -29.81,
-        138.92,
+        -44.768,
+        132.644,
         13.6,
         "motherboard",
         1
       ],
       [
-        -29.81,
-        136.64675,
+        -47.041250000000005,
+        132.644,
         13.6,
         "motherboard",
         1
       ],
       [
-        -51.19,
-        151.35325,
+        -62.03675,
+        119.52199999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -51.19,
-        149.08,
+        -64.31,
+        119.52199999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -51.19,
-        146.54,
+        -66.85,
+        119.52199999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -51.19,
-        144.0,
+        -69.39,
+        119.52199999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -51.19,
-        141.46,
+        -71.93,
+        119.52199999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -51.19,
-        138.92,
+        -74.47,
+        119.52199999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -51.19,
-        136.64675,
+        -76.74325,
+        119.52199999999999,
         13.6,
         "motherboard",
         1
       ],
       [
-        -58.81,
-        151.35325,
+        -62.03675,
+        127.142,
         13.6,
         "motherboard",
         1
       ],
       [
-        -58.81,
-        149.08,
+        -64.31,
+        127.142,
         13.6,
         "motherboard",
         1
       ],
       [
-        -58.81,
-        146.54,
+        -66.85,
+        127.142,
         13.6,
         "motherboard",
         1
       ],
       [
-        -58.81,
-        144.0,
+        -69.39,
+        127.142,
         13.6,
         "motherboard",
         1
       ],
       [
-        -58.81,
-        141.46,
+        -71.93,
+        127.142,
         13.6,
         "motherboard",
         1
       ],
       [
-        -58.81,
-        138.92,
+        -74.47,
+        127.142,
         13.6,
         "motherboard",
         1
       ],
       [
-        -58.81,
-        136.64675,
+        -76.74325,
+        127.142,
         13.6,
         "motherboard",
         1
       ],
       [
-        -80.19,
-        151.35325,
+        -62.573750000000004,
+        131.276,
         13.6,
         "motherboard",
         1
       ],
       [
-        -80.19,
-        149.08,
+        -64.84700000000001,
+        131.276,
         13.6,
         "motherboard",
         1
       ],
       [
-        -80.19,
-        146.54,
+        -67.387,
+        131.276,
         13.6,
         "motherboard",
         1
       ],
       [
-        -80.19,
-        144.0,
+        -69.927,
+        131.276,
         13.6,
         "motherboard",
         1
       ],
       [
-        -80.19,
-        141.46,
+        -72.46700000000001,
+        131.276,
         13.6,
         "motherboard",
         1
       ],
       [
-        -80.19,
-        138.92,
+        -75.007,
+        131.276,
         13.6,
         "motherboard",
         1
       ],
       [
-        -80.19,
-        136.64675,
+        -77.28025000000001,
+        131.276,
         13.6,
         "motherboard",
         1
       ],
       [
-        -87.81,
-        151.35325,
+        -62.573750000000004,
+        138.89600000000002,
         13.6,
         "motherboard",
         1
       ],
       [
-        -87.81,
-        149.08,
+        -64.84700000000001,
+        138.89600000000002,
         13.6,
         "motherboard",
         1
       ],
       [
-        -87.81,
-        146.54,
+        -67.387,
+        138.89600000000002,
         13.6,
         "motherboard",
         1
       ],
       [
-        -87.81,
-        144.0,
+        -69.927,
+        138.89600000000002,
         13.6,
         "motherboard",
         1
       ],
       [
-        -87.81,
-        141.46,
+        -72.46700000000001,
+        138.89600000000002,
         13.6,
         "motherboard",
         1
       ],
       [
-        -87.81,
-        138.92,
+        -75.007,
+        138.89600000000002,
         13.6,
         "motherboard",
         1
       ],
       [
-        -87.81,
-        136.64675,
+        -77.28025000000001,
+        138.89600000000002,
         13.6,
         "motherboard",
         1
       ],
       [
-        -109.19,
-        151.35325,
+        -63.29875,
+        142.396,
         13.6,
         "motherboard",
         1
       ],
       [
-        -109.19,
-        149.08,
+        -65.572,
+        142.396,
         13.6,
         "motherboard",
         1
       ],
       [
-        -109.19,
-        146.54,
+        -68.112,
+        142.396,
         13.6,
         "motherboard",
         1
       ],
       [
-        -109.19,
-        144.0,
+        -70.652,
+        142.396,
         13.6,
         "motherboard",
         1
       ],
       [
-        -109.19,
-        141.46,
+        -73.19200000000001,
+        142.396,
         13.6,
         "motherboard",
         1
       ],
       [
-        -109.19,
-        138.92,
+        -75.732,
+        142.396,
         13.6,
         "motherboard",
         1
       ],
       [
-        -109.19,
-        136.64675,
+        -78.00525,
+        142.396,
         13.6,
         "motherboard",
         1
       ],
       [
-        -116.81,
-        151.35325,
+        -63.29875,
+        150.016,
         13.6,
         "motherboard",
         1
       ],
       [
-        -116.81,
-        149.08,
+        -65.572,
+        150.016,
         13.6,
         "motherboard",
         1
       ],
       [
-        -116.81,
-        146.54,
+        -68.112,
+        150.016,
         13.6,
         "motherboard",
         1
       ],
       [
-        -116.81,
-        144.0,
+        -70.652,
+        150.016,
         13.6,
         "motherboard",
         1
       ],
       [
-        -116.81,
-        141.46,
+        -73.19200000000001,
+        150.016,
         13.6,
         "motherboard",
         1
       ],
       [
-        -116.81,
-        138.92,
+        -75.732,
+        150.016,
         13.6,
         "motherboard",
         1
       ],
       [
-        -116.81,
-        136.64675,
+        -78.00525,
+        150.016,
         13.6,
         "motherboard",
         1
       ],
       [
-        -138.19,
-        151.35325,
+        -92.34774999999999,
+        124.85300000000001,
         13.6,
         "motherboard",
         1
       ],
       [
-        -138.19,
-        149.08,
+        -94.621,
+        124.85300000000001,
         13.6,
         "motherboard",
         1
       ],
       [
-        -138.19,
-        146.54,
+        -97.16099999999999,
+        124.85300000000001,
         13.6,
         "motherboard",
         1
       ],
       [
-        -138.19,
-        144.0,
+        -99.701,
+        124.85300000000001,
         13.6,
         "motherboard",
         1
       ],
       [
-        -138.19,
-        141.46,
+        -102.241,
+        124.85300000000001,
         13.6,
         "motherboard",
         1
       ],
       [
-        -138.19,
-        138.92,
+        -104.78099999999999,
+        124.85300000000001,
         13.6,
         "motherboard",
         1
       ],
       [
-        -138.19,
-        136.64675,
+        -107.05425,
+        124.85300000000001,
         13.6,
         "motherboard",
         1
       ],
       [
-        -145.81,
-        151.35325,
+        -92.34774999999999,
+        132.473,
         13.6,
         "motherboard",
         1
       ],
       [
-        -145.81,
-        149.08,
+        -94.621,
+        132.473,
         13.6,
         "motherboard",
         1
       ],
       [
-        -145.81,
-        146.54,
+        -97.16099999999999,
+        132.473,
         13.6,
         "motherboard",
         1
       ],
       [
-        -145.81,
-        144.0,
+        -99.701,
+        132.473,
         13.6,
         "motherboard",
         1
       ],
       [
-        -145.81,
-        141.46,
+        -102.241,
+        132.473,
         13.6,
         "motherboard",
         1
       ],
       [
-        -145.81,
-        138.92,
+        -104.78099999999999,
+        132.473,
         13.6,
         "motherboard",
         1
       ],
       [
-        -145.81,
-        136.64675,
+        -107.05425,
+        132.473,
         13.6,
         "motherboard",
         1
@@ -17900,6 +19234,2078 @@
       [
         -202.51725,
         105.432,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -132.70475,
+        4.417999999999998,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -134.978,
+        4.417999999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -137.518,
+        4.417999999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -140.058,
+        4.417999999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -142.598,
+        4.417999999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -145.138,
+        4.417999999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -147.678,
+        4.417999999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -149.95125000000002,
+        4.418,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -132.70475,
+        12.038,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -134.978,
+        12.038,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -137.518,
+        12.038,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -140.058,
+        12.038,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -142.598,
+        12.038,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -145.138,
+        12.038,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -147.678,
+        12.038,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -149.95125000000002,
+        12.038,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -165.31875,
+        -8.759,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -167.59199999999998,
+        -8.759,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -170.132,
+        -8.759,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -172.672,
+        -8.759,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -175.212,
+        -8.759,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -177.752,
+        -8.759,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -180.02525,
+        -8.759,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -165.31875,
+        -1.1390000000000002,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -167.59199999999998,
+        -1.139,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -170.132,
+        -1.139,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -172.672,
+        -1.1389999999999998,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -175.212,
+        -1.1389999999999996,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -177.752,
+        -1.1389999999999996,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -180.02525,
+        -1.1389999999999993,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -164.37475,
+        6.461999999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -166.648,
+        6.462,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -169.18800000000002,
+        6.462,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -171.728,
+        6.462,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -174.268,
+        6.462,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -176.80800000000002,
+        6.462,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -179.08125,
+        6.462000000000001,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -164.37475,
+        14.082,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -166.648,
+        14.082,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -169.18800000000002,
+        14.082,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -171.728,
+        14.082,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -174.268,
+        14.082,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -176.80800000000002,
+        14.082,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -179.08125,
+        14.082,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -163.32675,
+        23.357000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -165.6,
+        23.357000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -168.14000000000001,
+        23.357000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -170.68,
+        23.357000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -173.22,
+        23.357000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -175.76000000000002,
+        23.357000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -178.03325,
+        23.357000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -163.32675,
+        30.977,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -165.6,
+        30.977,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -168.14000000000001,
+        30.977,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -170.68,
+        30.977,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -173.22,
+        30.977,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -175.76000000000002,
+        30.977,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -178.03325,
+        30.977,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -188.73774999999998,
+        -3.8000000000000007,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -191.011,
+        -3.8000000000000007,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -193.551,
+        -3.8000000000000007,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -196.09099999999998,
+        -3.8000000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -198.631,
+        -3.8000000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -201.171,
+        -3.8,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -203.71099999999998,
+        -3.8,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -205.98425,
+        -3.8,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -188.73774999999998,
+        3.8199999999999994,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -191.011,
+        3.8199999999999994,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -193.551,
+        3.8199999999999994,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -196.09099999999998,
+        3.82,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -198.631,
+        3.82,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -201.171,
+        3.8200000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -203.71099999999998,
+        3.8200000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -205.98425,
+        3.8200000000000003,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -188.72875,
+        9.312,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -191.00199999999998,
+        9.312,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -193.542,
+        9.312,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -196.082,
+        9.312,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -198.62199999999999,
+        9.312,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -201.162,
+        9.312,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -203.43525,
+        9.312,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -188.72875,
+        16.932,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -191.00199999999998,
+        16.932,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -193.542,
+        16.932,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -196.082,
+        16.932,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -198.62199999999999,
+        16.932,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -201.162,
+        16.932,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -203.43525,
+        16.932,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -187.64875,
+        24.577,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -189.922,
+        24.577,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -192.46200000000002,
+        24.577,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -195.002,
+        24.577,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -197.542,
+        24.577,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -200.08200000000002,
+        24.577,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -202.35525,
+        24.577,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -187.64875,
+        32.197,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -189.922,
+        32.197,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -192.46200000000002,
+        32.197,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -195.002,
+        32.197,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -197.542,
+        32.197,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -200.08200000000002,
+        32.197,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -202.35525,
+        32.197,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -198.12475,
+        44.591,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -200.398,
+        44.591,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -202.93800000000002,
+        44.591,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -205.478,
+        44.591,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -208.018,
+        44.591,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -210.55800000000002,
+        44.591,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -212.83125,
+        44.591,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -198.12475,
+        52.211000000000006,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -200.398,
+        52.211000000000006,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -202.93800000000002,
+        52.211000000000006,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -205.478,
+        52.211000000000006,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -208.018,
+        52.211000000000006,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -210.55800000000002,
+        52.211000000000006,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -212.83125,
+        52.211000000000006,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -195.85775,
+        59.323,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -198.131,
+        59.323,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -200.67100000000002,
+        59.323,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -203.211,
+        59.323,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -205.751,
+        59.323,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -208.29100000000003,
+        59.323,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -210.56425000000002,
+        59.323,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -195.85775,
+        66.943,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -198.131,
+        66.943,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -200.67100000000002,
+        66.943,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -203.211,
+        66.943,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -205.751,
+        66.943,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -208.29100000000003,
+        66.943,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -210.56425000000002,
+        66.943,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -194.67175,
+        72.069,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -196.945,
+        72.069,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -199.485,
+        72.069,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -202.025,
+        72.069,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -204.565,
+        72.069,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -207.10500000000002,
+        72.069,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -209.37825,
+        72.069,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -194.67175,
+        79.68900000000001,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -196.945,
+        79.68900000000001,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -199.485,
+        79.68900000000001,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -202.025,
+        79.68900000000001,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -204.565,
+        79.68900000000001,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -207.10500000000002,
+        79.68900000000001,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -209.37825,
+        79.68900000000001,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -192.20974999999999,
+        84.886,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -194.483,
+        84.886,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -197.023,
+        84.886,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -199.563,
+        84.886,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -202.103,
+        84.886,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -204.643,
+        84.886,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -207.183,
+        84.886,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -209.45625,
+        84.886,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -192.20974999999999,
+        92.506,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -194.483,
+        92.506,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -197.023,
+        92.506,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -199.563,
+        92.506,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -202.103,
+        92.506,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -204.643,
+        92.506,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -207.183,
+        92.506,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -209.45625,
+        92.506,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -160.86274999999998,
+        98.298,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -163.136,
+        98.298,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -165.676,
+        98.298,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -168.21599999999998,
+        98.298,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -170.756,
+        98.298,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -173.296,
+        98.298,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -175.83599999999998,
+        98.298,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -178.10925,
+        98.298,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -160.86274999999998,
+        105.918,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -163.136,
+        105.918,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -165.676,
+        105.918,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -168.21599999999998,
+        105.918,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -170.756,
+        105.918,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -173.296,
+        105.918,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -175.83599999999998,
+        105.918,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -178.10925,
+        105.918,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -177.71075,
+        110.827,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -179.98399999999998,
+        110.827,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -182.524,
+        110.827,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -185.064,
+        110.827,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -187.60399999999998,
+        110.827,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -190.144,
+        110.827,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -192.41725,
+        110.827,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -177.71075,
+        118.447,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -179.98399999999998,
+        118.447,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -182.524,
+        118.447,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -185.064,
+        118.447,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -187.60399999999998,
+        118.447,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -190.144,
+        118.447,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -192.41725,
+        118.447,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -131.70874999999998,
+        110.835,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -133.982,
+        110.835,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -136.522,
+        110.835,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -139.06199999999998,
+        110.835,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -141.602,
+        110.835,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -144.142,
+        110.835,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -146.682,
+        110.835,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -148.95525,
+        110.835,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -131.70874999999998,
+        118.455,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -133.982,
+        118.455,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -136.522,
+        118.455,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -139.06199999999998,
+        118.455,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -141.602,
+        118.455,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -144.142,
+        118.455,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -146.682,
+        118.455,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -148.95525,
+        118.455,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -131.22674999999998,
+        123.28,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -133.5,
+        123.28,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -136.04,
+        123.28,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -138.57999999999998,
+        123.28,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -141.12,
+        123.28,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -143.66,
+        123.28,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -146.2,
+        123.28,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -148.47325,
+        123.28,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -131.22674999999998,
+        130.9,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -133.5,
+        130.9,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -136.04,
+        130.9,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -138.57999999999998,
+        130.9,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -141.12,
+        130.9,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -143.66,
+        130.9,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -146.2,
+        130.9,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -148.47325,
+        130.9,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -92.35775,
+        111.78,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -94.631,
+        111.78,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -97.17099999999999,
+        111.78,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -99.711,
+        111.78,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -102.251,
+        111.78,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -104.791,
+        111.78,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -107.06425,
+        111.78,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -92.35775,
+        119.4,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -94.631,
+        119.4,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -97.17099999999999,
+        119.4,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -99.711,
+        119.4,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -102.251,
+        119.4,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -104.791,
+        119.4,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -107.06425,
+        119.4,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -92.33775,
+        138.143,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -94.611,
+        138.143,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -97.151,
+        138.143,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -99.691,
+        138.143,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -102.23100000000001,
+        138.143,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -104.771,
+        138.143,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -107.04425,
+        138.143,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -92.33775,
+        145.763,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -94.611,
+        145.763,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -97.151,
+        145.763,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -99.691,
+        145.763,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -102.23100000000001,
+        145.763,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -104.771,
+        145.763,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -107.04425,
+        145.763,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -130.89374999999998,
+        136.631,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -133.167,
+        136.631,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -135.707,
+        136.631,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -138.24699999999999,
+        136.631,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -140.787,
+        136.631,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -143.327,
+        136.631,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -145.867,
+        136.631,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -148.14025,
+        136.631,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -130.89374999999998,
+        144.251,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -133.167,
+        144.251,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -135.707,
+        144.251,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -138.24699999999999,
+        144.251,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -140.787,
+        144.251,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -143.327,
+        144.251,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -145.867,
+        144.251,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -148.14025,
+        144.251,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -130.43275,
+        148.48499999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -132.70600000000002,
+        148.48499999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -135.246,
+        148.48499999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -137.786,
+        148.48499999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -140.32600000000002,
+        148.48499999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -142.866,
+        148.48499999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -145.406,
+        148.48499999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -147.67925000000002,
+        148.48499999999999,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -130.43275,
+        156.105,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -132.70600000000002,
+        156.105,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -135.246,
+        156.105,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -137.786,
+        156.105,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -140.32600000000002,
+        156.105,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -142.866,
+        156.105,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -145.406,
+        156.105,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -147.67925000000002,
+        156.105,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -157.04375,
+        124.655,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -159.31699999999998,
+        124.655,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -161.857,
+        124.655,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -164.397,
+        124.655,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -166.93699999999998,
+        124.655,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -169.477,
+        124.655,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -171.75025,
+        124.655,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -157.04375,
+        132.275,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -159.31699999999998,
+        132.275,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -161.857,
+        132.275,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -164.397,
+        132.275,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -166.93699999999998,
+        132.275,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -169.477,
+        132.275,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -171.75025,
+        132.275,
         13.6,
         "motherboard",
         1
@@ -18143,183 +21549,211 @@
         1
       ],
       [
-        -205.73,
-        11.24,
+        -193.529,
+        39.946,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        8.7,
+        -196.029,
+        39.946,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        6.16,
+        -203.797,
+        58.672,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        3.62,
+        -206.297,
+        58.672,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        1.08,
+        -199.406,
+        79.328,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        -1.46,
+        -201.906,
+        79.328,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        -4.0,
+        -200.608,
+        96.128,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        -6.54,
+        -203.108,
+        96.128,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        -9.08,
+        -201.107,
+        110.482,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        -11.620000000000001,
+        -203.607,
+        110.482,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        -14.16,
+        -134.067,
+        122.467,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        -16.7,
+        -136.567,
+        122.467,
         13.6,
         "motherboard",
         1
       ],
       [
-        -205.73,
-        -19.240000000000002,
+        -134.013,
+        134.945,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        11.24,
+        -136.513,
+        134.945,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        8.7,
+        -133.972,
+        146.784,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        6.16,
+        -136.472,
+        146.784,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        3.62,
+        -154.791,
+        115.005,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        1.08,
+        -154.791,
+        117.505,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        -1.46,
+        -152.844,
+        124.349,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        -4.0,
+        -152.844,
+        126.849,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        -6.54,
+        -160.654,
+        108.259,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        -9.08,
+        -160.654,
+        117.259,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        -11.620000000000001,
+        -162.84,
+        108.211,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        -14.16,
+        -162.84,
+        117.211,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        -16.7,
+        -167.364,
+        108.112,
         13.6,
         "motherboard",
         1
       ],
       [
-        -208.27,
-        -19.240000000000002,
+        -167.364,
+        117.112,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -169.522,
+        108.064,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -169.522,
+        117.064,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -173.812,
+        107.97,
+        13.6,
+        "motherboard",
+        1
+      ],
+      [
+        -173.812,
+        116.97,
         13.6,
         "motherboard",
         1
@@ -24636,7 +28070,7 @@
       "name": "logic-boards-motherboard",
       "file": "meshes/logic-boards-motherboard.stl",
       "color": "#386349",
-      "sha256": "3c85df0df9a92f538aef7cee9b8233a49cb92eb76766227f0d48693f531981d0",
+      "sha256": "9a203390ae3bf983306b640c5a335ed21e2b0dd65ce2309edcab038e57e2e6c2",
       "board": "motherboard",
       "part": "logic-boards",
       "section": "interior",
@@ -24656,7 +28090,7 @@
       "name": "logic-connectors-motherboard",
       "file": "meshes/logic-connectors-motherboard.stl",
       "color": "#b1b5a1",
-      "sha256": "dc34f0e87113bac756ac67daccb903d004ea81f7e47c6e0bd87c838f4ebd8ca6",
+      "sha256": "4fafc36166f73c505664e4ce577067246c30c4c201c88bacfd82f7c5c4e6638a",
       "board": "motherboard",
       "part": "logic-connectors",
       "section": "interior",
@@ -24708,7 +28142,7 @@
       "name": "ribbon-cables",
       "file": "meshes/ribbon-cables.stl",
       "color": "#a0a59b",
-      "sha256": "d67065c1dbbb1edb1ef6b0209c8209fa03468bd54b9cbee3353cd3ea4bba146e",
+      "sha256": "373bc9b7eaaa0e55afbaa20d16b1a1e496db49d6b41275db55e312c26094386b",
       "section": "interior",
       "material": "rubber"
     },
@@ -24716,7 +28150,7 @@
       "name": "ribbon-stripes",
       "file": "meshes/ribbon-stripes.stl",
       "color": "#975b50",
-      "sha256": "4e6f94da1185f12622fce4ada802155284abc81de39357f04a1f73e5e048d372",
+      "sha256": "e85c4569beac563e9bcaaf750b5e065afc7eef22c519b615d0e5cf7a4c3bd0b7",
       "section": "interior",
       "material": "rubber"
     },
@@ -24724,7 +28158,7 @@
       "name": "power-wires-red",
       "file": "meshes/power-wires-red.stl",
       "color": "#9e3930",
-      "sha256": "a3174342a7cc52722aec704f175e9200b0bf6df1bb9b2cbf0ec653857f98942d",
+      "sha256": "2d556294d957c95fa12f0475347283d5a07b9865a4cb5b4514a8b1e20467233a",
       "section": "interior",
       "material": "rubber"
     },
@@ -24732,7 +28166,7 @@
       "name": "power-wires-black",
       "file": "meshes/power-wires-black.stl",
       "color": "#252a28",
-      "sha256": "216a8f07acd76b99fbb6700734856a088a5e8c759e97fa513b625775058b211b",
+      "sha256": "ee466d18653cab9944423014bde9ca78f23135738e36e6b91f9a27c42b1e2338",
       "section": "interior",
       "material": "rubber"
     },
@@ -24740,7 +28174,7 @@
       "name": "power-wires-yellow",
       "file": "meshes/power-wires-yellow.stl",
       "color": "#b6a05b",
-      "sha256": "d2cf607027f5ce01fbc2e772e2dc71649bf6e251d5f20bfa3cfc3b0b462c4bdf",
+      "sha256": "f4c92062e025c467b18b5326d0c909292364d63040a4d808a8c6de3760cb89d2",
       "section": "interior",
       "material": "rubber"
     },
@@ -25067,7 +28501,7 @@
       "name": "logic-electrolytics-motherboard",
       "file": "meshes/logic-electrolytics-motherboard.stl",
       "color": "#282a28",
-      "sha256": "c39d2063b6919d750d14ab35a5a86bf7216725f431d70853aebea5fa50096cf8",
+      "sha256": "600eaf399104001594319df88306af0d90ce3fbe2fe2cd565f43ff9abb4e7eb0",
       "board": "motherboard",
       "part": "logic-electrolytics",
       "section": "interior",
@@ -25097,7 +28531,7 @@
       "name": "logic-passive-leads-motherboard",
       "file": "meshes/logic-passive-leads-motherboard.stl",
       "color": "#b8b7ac",
-      "sha256": "2f834e1d27ced472d7589e98603795fe842ccb90942e3362ef663d63f604b770",
+      "sha256": "2ca2cb49fb551e80f70d90e21080687e87f8fd49016897c4277b812eda97d5b5",
       "board": "motherboard",
       "part": "logic-passive-leads",
       "section": "interior",
@@ -25114,6 +28548,16 @@
       "material": "tinned-lead"
     },
     {
+      "name": "logic-film-motherboard",
+      "file": "meshes/logic-film-motherboard.stl",
+      "color": "#bd403d",
+      "sha256": "31535bc2e0ef2a9c6a96d3aa2acf28ff700d6a656b0f9e47d44ce256dfd3b292",
+      "board": "motherboard",
+      "part": "logic-film",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
       "name": "logic-film-display-controller",
       "file": "meshes/logic-film-display-controller.stl",
       "color": "#bd403d",
@@ -25127,7 +28571,7 @@
       "name": "logic-connector-contacts-motherboard",
       "file": "meshes/logic-connector-contacts-motherboard.stl",
       "color": "#b9b7ac",
-      "sha256": "bbff40527eb1572fb9e5011496a57f07c816b1b4f1ba1a9577f32b8d0f58dd15",
+      "sha256": "c77fe70c32eb9863d4d308d4ba22427630b61fc2d4abf0f99d0298810baefa52",
       "board": "motherboard",
       "part": "logic-connector-contacts",
       "section": "interior",
@@ -25163,7 +28607,7 @@
       "name": "ribbon-ridges",
       "file": "meshes/ribbon-ridges.stl",
       "color": "#b0b3a9",
-      "sha256": "e8996902cccf3d397b5dd19ccc2b076fcabca5318aa1608c3c7ea14682621ee9",
+      "sha256": "055e718b1ad3242161e3a0fe2649984063e469b88f9f7e55865db6061506c8f9",
       "section": "interior",
       "material": "rubber"
     },
@@ -25851,6 +29295,44 @@
       "part": "logic-ribbon-plug",
       "section": "interior",
       "material": "plastic"
+    },
+    {
+      "name": "logic-ic-sockets-motherboard",
+      "file": "meshes/logic-ic-sockets-motherboard.stl",
+      "color": "#b8b09a",
+      "sha256": "824d88bcda35c30881e58cb206fa333df490a87c4673848c22319246acdbb2d4",
+      "board": "motherboard",
+      "part": "logic-ic-sockets",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "logic-ic-contacts-motherboard",
+      "file": "meshes/logic-ic-contacts-motherboard.stl",
+      "color": "#b9b7ac",
+      "sha256": "b8badca0e93ef9d81d79fb0e5333992a443d2ddc3a81127342b72c6c5a69ae9e",
+      "board": "motherboard",
+      "part": "logic-ic-contacts",
+      "section": "interior",
+      "material": "tinned-lead"
+    },
+    {
+      "name": "logic-jumpers-motherboard",
+      "file": "meshes/logic-jumpers-motherboard.stl",
+      "color": "#c1baa6",
+      "sha256": "d4217efd9f381959f3e4b19aa75ca9e327f8400a81c4437648ad65bd4f0c33c9",
+      "board": "motherboard",
+      "part": "logic-jumpers",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "drive-cable-contacts",
+      "file": "meshes/drive-cable-contacts.stl",
+      "color": "#b9b7ac",
+      "sha256": "178473bf5a0e8133607d1344e53d0bd246df5d4544a84cedbd594f34457b1e6d",
+      "section": "interior",
+      "material": "tinned-lead"
     }
   ],
   "keys": [

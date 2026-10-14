@@ -326,7 +326,7 @@ export function pcbMarkingGeometry(board, descriptions) {
 // Clean documented device labels, generated from the canonical layout metadata.
 // One atlas, one mesh per board; no photographic chip silhouettes or baked wear.
 export function loadPcbLabels(data) {
-  const items=data.pcbComponents.instances.filter(p=>!p.label.startsWith('Logic footprint'));
+  const items=data.pcbComponents.instances.filter(p=>p.label && !p.label.startsWith('Logic footprint'));
   if (!items.length) return [];
   const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=Math.ceil(items.length/8)*64;
   const ctx=canvas.getContext('2d');ctx.fillStyle='#c8c9bd';ctx.textAlign='center';ctx.font='13px monospace';

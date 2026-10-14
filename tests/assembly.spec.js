@@ -358,3 +358,17 @@ test("monitor cabinet keeps its width at the back and captive leads follow inspe
   }
   expect(result.parked).toBe(24);expect(result.plugRest).toBe(0);expect(result.restored).toBe(true);
 });
+
+test('cable deformation anchors board ends and carries every drive power termination',async()=>{
+ const {cableWeight}=await import('../src/robotron-cables.js');
+ for(const name of ['ribbon-cables','ribbon-ridges','ribbon-stripes']){
+  expect(cableWeight(name,-158,16,87.5)).toBe(1);
+  expect(cableWeight(name,-4,16,87.5)).toBe(1);
+  expect(cableWeight(name,-100,39,120)).toBe(1); // Entire drive-to-drive span.
+  expect(cableWeight(name,-177.66,138.819,25.2)).toBe(0);
+ }
+ for(const name of ['power-wires-red','power-wires-black','power-wires-yellow']){
+  for(const x of [-207,-53])for(const dx of [-10.5,-6,-1.5,3])expect(cableWeight(name,x+dx,5,67.5)).toBe(1);
+  expect(cableWeight(name,96,46,59)).toBe(0);
+ }
+});
