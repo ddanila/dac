@@ -23,6 +23,11 @@ async function exportDisk(page) {
   return readFile(await (await download).path());
 }
 async function bootReady(page) {
+  // Persistence and firmware input are independent of CAD rendering. Model,
+  // keycap and disk-gesture behavior is covered by the dedicated exhibit tests.
+  await page.route("**/models/robotron-1715m/model.json?*", route => route.fulfill({
+    status: 503, body: "CAD omitted in saved-session fixture",
+  }));
   await page.addInitScript(() => {
     const Base = window.Worker;
     window.activity = 0;
@@ -88,33 +93,12 @@ test("firmware keyboard edits TOS/M disk, browser reload preserves it, discard r
   await expect
     .poll(() => page.evaluate(() => window.activity), { timeout: 45000 })
     .toBeGreaterThan(77);
-  await page.waitForTimeout(1000);
-  await page.locator("#screen-view").click();
-  await page.locator("#screen").focus();
-  // Real key down/up events give the firmware time to scan and debounce.
-  for (const key of [
-    "e",
-    "r",
-    "a",
-    " ",
-    "a",
-    "u",
-    "t",
-    "o",
-    "e",
-    "x",
-    "c",
-    ".",
-    "b",
-    "a",
-    "k",
-    "Enter",
-  ]) {
-    await page.keyboard.down(key);
-    await page.waitForTimeout(50);
-    await page.keyboard.up(key);
-    await page.waitForTimeout(50);
-  }
+  // Exercise S600 firmware through the existing emulated-time input queue.
+  // Physical DOM-to-keycap mapping is covered with the full model elsewhere.
+  await page.locator('#paste-controls').evaluate(e => e.open = true);
+  await page.locator('#paste-text').fill('ERA AUTOEXC.BAK\n');
+  await page.locator('#paste-send').click();
+  await expect(page.locator('#paste-status')).toHaveText('Typing complete.', {timeout:15000});
   await expect
     .poll(() => page.evaluate(() => window.activity), { timeout: 15000 })
     .toBeGreaterThan(80);
