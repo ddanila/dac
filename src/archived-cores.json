@@ -30,5 +30,10 @@
   "5a2371f1bb3393d0918d6d92e19ab8cccffc61d2e7a65456b847358faae0989b": {
     "version": "0.8.1",
     "javascript": "f18f431fe545408826808c040cca87bbf6bf3d91b570b66b15c5005aa3e52084"
+  },
+  "6e9b484730aefc260159ad221d4d9bce3f6a8e8a0e6a3f5c8a5847a8d5d2a6b0": {
+    "javascript": "b53a916f0ec2417f1d3883c759b9f14b959299f23fe915d4cc3bed868de17d4e",
+    "version": "0.8.2",
+    "commit": "3c523db6089f6ad7a1a686ed4201ff8add971f55"
   }
 }

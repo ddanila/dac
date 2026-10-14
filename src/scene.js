@@ -17,6 +17,12 @@ export function visiblePickTargets(root) {
   return targets;
 }
 
+// Keep per-instance identity: hundreds of chips share a handful of meshes.
+export function inspectionForHit(hit) {
+  return hit?.object.userData.componentDetails?.[hit.instanceId]
+    ?? hit?.object.userData.detail;
+}
+
 const videoFrustum = new THREE.Frustum(), videoProjection = new THREE.Matrix4();
 export function inCameraView(object, camera) {
   for (let node = object; node; node = node.parent) if (!node.visible) return false;
@@ -292,9 +298,11 @@ export function createScene(
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     machine.updateWorldMatrix(true, true);
     robotron?.group.updateWorldMatrix(true, true);
-    return kind === 2 && robotron
-      ? ray.intersectObjects(visiblePickTargets(robotron.group), false)[0]?.object
-      : ray.intersectObject(power)[0]?.object;
+    const hit = kind === 2 && robotron
+      ? ray.intersectObjects(visiblePickTargets(robotron.group), false)[0]
+      : ray.intersectObject(power)[0];
+    if (hit) hit.object.userData.pickedDetail = inspectionForHit(hit);
+    return hit?.object;
   }
   function cancelGesture() {
     robotron?.resetPressed(false);
@@ -319,6 +327,7 @@ export function createScene(
       id: e.pointerId,
       key: hit?.userData.key,
       object: hit,
+      detail: hit?.userData.pickedDetail,
       disk: hit?.userData.removedDisk,
       dragged: false,
     };
@@ -381,7 +390,7 @@ export function createScene(
         : hit?.userData.driveUnit !== undefined
           ? `Click to operate drive ${hit.userData.driveUnit ? "B" : "A"} lever`
         : hit?.userData.detail
-          ? "Click to inspect this component and its evidence"
+          ? (hit.userData.pickedDetail?.title || "Click to inspect this component and its evidence")
           : "",
     );
   });
@@ -408,8 +417,9 @@ export function createScene(
       interaction.onDriveLever?.(hit.userData.driveUnit);
     else if (hit.userData.protectUnit !== undefined && gesture.object === hit)
       interaction.onProtect?.(hit.userData.protectUnit);
-    else if (hit.userData.detail && gesture.object === hit)
-      interaction.onInspect?.(hit.userData.detail);
+    else if (hit.userData.detail && gesture.object === hit &&
+             gesture.detail === hit.userData.pickedDetail)
+      interaction.onInspect?.(hit.userData.pickedDetail);
     else if (hit === robotron?.objects.get("power") || hit === power) onPower();
     else if (hit === robotron?.objects.get("reset")) onReset?.();
   });

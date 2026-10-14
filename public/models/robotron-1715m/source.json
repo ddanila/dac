@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "b9be36945a361b9c71635a2e52bf7b8ce83f8351",
+  "revision": "257b12818f81c7af532f7dd81c0ea16b4b117400",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "de8522e9dcaaae9eed34766c6999c3cb726e36d576c7b67a4c59765d6aa48c86"
+      "sha256": "7e77480c6f14c86dbd047ed03101f831349697c2a3ebc743abfb4079aca96211"
     },
     {
       "file": "LICENSE",
@@ -457,11 +457,11 @@
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
-      "sha256": "c4e362562281157a5e0f33acd38b938add469dfd59475830aae6a89f7f859103"
+      "sha256": "dbdc936583e006655db7cbd299855060ab0ba0e9a25da977d574784c9e41436b"
     },
     {
       "file": "meshes/keyboard-controller-chips.stl",
-      "sha256": "df36e6759162579cc8742b0e221b3fe732cd84443e0c92ebdc3c3ae4410b10a1"
+      "sha256": "2e30501f57bb6df974484280bcaf89dcfd07e59df7cd668d812afab16e0ab7cb"
     },
     {
       "file": "meshes/keyboard-controller-ceramic.stl",
@@ -481,7 +481,7 @@
     },
     {
       "file": "meshes/keyboard-controller-metal.stl",
-      "sha256": "78c89c088b7554e1d583f96da86f193db66fbfd82f8f649101e2aa45ee8fc478"
+      "sha256": "0f5d91ef6380614e4eb2efcc54b45b4517b63c7f7d837ecd4da76d36e1159f39"
     },
     {
       "file": "meshes/keyboard-controller-ink.stl",
@@ -645,7 +645,7 @@
     },
     {
       "file": "meshes/keyboard-entry-wires.stl",
-      "sha256": "140a206b174b2098506def30649d3cc829743ac707604c9fb6cf8235ab7539de"
+      "sha256": "5f31976e3a14baa7d1902e82281be3f2eb93c9f68e3f9b5ef5cafc08231678e9"
     },
     {
       "file": "meshes/keyboard-contact-routes.stl",
@@ -721,7 +721,7 @@
     },
     {
       "file": "meshes/case-lid-fixings.stl",
-      "sha256": "664d7a9657470acd9eb51ce5118a4f1d38627ac2cade7087afe126a4e4aa5dfb"
+      "sha256": "216b4334764aec8e9de18075e15202e08e8d5df24ff3fa29b433fe6751527063"
     },
     {
       "file": "meshes/logic-inductors-motherboard.stl",
@@ -762,6 +762,18 @@
     {
       "file": "meshes/keyboard-controller-resistor-bands.stl",
       "sha256": "ebcdb61ff2be578fdb5718503fc4336859a0edb22068e8e1081568f6a6d0c22f"
+    },
+    {
+      "file": "meshes/keyboard-entry-black.stl",
+      "sha256": "f32f05957c08ceb257898116c679c5a0e65d2e3bc5e07e019012480856e7fc24"
+    },
+    {
+      "file": "meshes/keyboard-entry-pink.stl",
+      "sha256": "1ef84ee73a5bc874ca735a124555bbc8add53658702d30634d225a36c26ab4ed"
+    },
+    {
+      "file": "meshes/keyboard-entry-blue.stl",
+      "sha256": "9a60de7a2f15e2f67dd8cdec5b8cfbd28da2797bf00a34bea1c17347cfce4a21"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1344,16 +1356,36 @@
       "sha256": "45d2bce75e5a4208f5afb01b8fb2c406e700371c4fe2b5f5cd5c443d46db4d8f"
     },
     {
+      "file": "components/kicad/source/TO-92_Inline.step",
+      "sha256": "f0b61c32ecbf0067157adc5a3d4966ceadf5d6dafe93c51af35f76c41c71a54a"
+    },
+    {
+      "file": "components/kicad/source/TO_SOT_CREDITS.md",
+      "sha256": "dc452c3f08da79359ec36f715ce5626680f458e0bafd70888ad3dcfa74d4576a"
+    },
+    {
       "file": "components/kicad/NOTICE.txt",
-      "sha256": "ca7969baee63cc0471a2f0ac809ea080192d3edff59b37a1349783326f883785"
+      "sha256": "1d1249a278df6ed157586510c06661dd31839765d397076098d12727a126413c"
     },
     {
       "file": "components/kicad/sources.json",
-      "sha256": "111ea4db4584f68d601acbf087f5d3f9506fdeab721afd4cdc9e628c42ef4005"
+      "sha256": "a8bcbedd043eb04c239ec450f167cd7721160d05d6bd85dc053a150d70b40930"
     },
     {
       "file": "components/kicad/models.json",
       "sha256": "9fc3b57fbf43071703129824663ff111a1f473479e9cb3944bf60cce242551ae"
+    },
+    {
+      "file": "components/kicad/transistors.json",
+      "sha256": "371eae5e6cbe77adb15cb72843acb15625a97c996282ec7dfeac60caaa9eb3b8"
+    },
+    {
+      "file": "components/kicad/meshes/TO-92_Inline-body.stl",
+      "sha256": "0c487e316e3ef8d3dfc4486b82239529c55b833f34720d38480c85108b7f495c"
+    },
+    {
+      "file": "components/kicad/meshes/TO-92_Inline-leads.stl",
+      "sha256": "c0ec383370f9a630d7bb5b4255bfcafce8830649a49e6bc0cb5d94724b285111"
     },
     {
       "file": "reference/robotrontechnik/NOTICE.txt",
@@ -1361,23 +1393,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "072301cd95dba3c0e9c12dd192419198a261710a5c4b64dcee07b294fd5f3e7a"
+      "sha256": "0c770457b8df69ece31766ea398829b34f76e998b5918eba67f0f867c7673e09"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "f7579476efc6fcb8fc0e45887dd8b122c6e8dda7c0677b04e4e9d90beb50baa9"
+      "sha256": "fbac8bae5eea0e49a2ec2bbd52c624b79069a0daa3517ebb91f138d3aa68fa81"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "7fa9ffdd9330cb99aebe6399267e98562f45431c5010bcbd0c461997ea1e6031"
+      "sha256": "f5cfaacee7fa950a3ba0c4236a3088dcfc2ca476bf4346bd32137181c1a9de0c"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "ecce3de7eb0b4681b5312343a713a8eda0a297b8465dda6de4aa86ecb9489e02"
+      "sha256": "5f5884f7f25b5cec8e1f6424749559a3cab5cacbd18dbca95e0acea13835dc44"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "e2134006419ab31a1704c349fb42f54a5c7fb53b70b65eeb4a0a70c848dddcf7"
+      "sha256": "33a275da54adc1a9aaea2bd84ba7c3ea3ee5c676530877cb64f4bf583bf6f503"
     }
   ]
 }

@@ -265,6 +265,7 @@ export async function loadPcbComponents(data, base, onAsset = () => {}, cache = 
           mesh.userData.board = board;
           mesh.userData.interior = true;
           mesh.userData.detail = board;
+          mesh.userData.componentDetails = boardPlacements.map(p => p.inspection);
           mesh.userData.credit = descriptions.credit;
           mesh.castShadow = mesh.receiveShadow = true;
           mesh.visible = false;

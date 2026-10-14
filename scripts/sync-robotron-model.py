@@ -21,8 +21,11 @@ for component in data.get('pcbComponents',{}).get('models',[]):
 # Ship upstream sources and licences with the reusable derived component library.
 for path in sorted((source/'components/kicad').glob('source/*')):
     name=str(path.relative_to(source));files.append((name,name,None))
-for name in ['NOTICE.txt','sources.json','models.json']:
+for name in ['NOTICE.txt','sources.json','models.json','transistors.json']:
     name='components/kicad/'+name;files.append((name,name,None))
+
+for mesh in json.loads((source/'components/kicad/transistors.json').read_text())['meshes'].values():
+    name='components/kicad/'+mesh['file'];files.append((name,name,mesh['sha256']))
 
 for directory in sorted({str(Path(b['file']).parent) for b in data.get('pcbReferences',[])}):
     if (source/directory/'NOTICE.txt').exists():files.append((directory+'/NOTICE.txt',directory+'/NOTICE.txt',None))

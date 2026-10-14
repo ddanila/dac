@@ -327,3 +327,32 @@ test('an interior download failure cannot present an empty detailed model as rea
   await page.reload();await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
   expect(attempts).toBe(2);
 });
+
+test("individual chip inspection preserves instance identity and both evidence links", async ({page}) => {
+  await page.goto("/");
+  await expect(page.locator("#viewport")).toHaveAttribute("data-model", "robotron-photo", {timeout:20000});
+  const result = await page.evaluate(async () => {
+    const {loadPcbComponents} = await import('/src/robotron-interior.js');
+    const {inspectionForHit} = await import('/src/scene.js');
+    const {showSpecimenDetail} = await import('/src/inspection.js');
+    const data = await (await fetch('/models/robotron-1715m/model.json')).json();
+    const meshes = await loadPcbComponents(data,new URL('/models/robotron-1715m/',location.href));
+    const mesh = meshes.find(m => m.name==='logic-package-DIP-40_W15.24mm-body-motherboard');
+    const first = inspectionForHit({object:mesh,instanceId:0});
+    const second = inspectionForHit({object:mesh,instanceId:1});
+    showSpecimenDetail(second);
+    const answer = {first:first.title,second:second.title,fallback:inspectionForHit({object:{userData:{detail:'motherboard'}}})};
+    const geometries = new Set(meshes.map(m=>m.geometry));
+    for(const g of geometries)g.dispose();for(const m of meshes)m.material.dispose();
+    return answer;
+  });
+  expect(result.first).not.toBe(result.second);
+  expect(result.fallback).toBe('motherboard');
+  await expect(page.locator('#detail-title')).toHaveText(result.second);
+  await expect(page.locator('#detail-original')).toHaveAttribute('href',/072654600/);
+  await expect(page.locator('#detail-drawing')).toBeVisible();
+  await expect(page.locator('#detail-drawing')).toHaveAttribute('href','https://xepb.org/robotron/docs/1715w.zip');
+  await page.keyboard.press('Escape');
+  await page.evaluate(async()=>{const {showSpecimenDetail}=await import('/src/inspection.js');showSpecimenDetail('front');});
+  await expect(page.locator('#detail-drawing')).toBeHidden();
+});

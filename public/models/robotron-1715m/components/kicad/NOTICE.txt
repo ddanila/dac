@@ -33,3 +33,11 @@ show another PC 1715, not Danila's exact 1715M/W motherboard.
 The derived models.json footprint coordinates are measured from STEP lead
 sections at the seating plane by tools/convert-kicad.py. They retain the
 corresponding source model licence, like the derived tessellated meshes.
+
+2026-10-14: TO-92_Inline.step from Package_TO_SOT_THT.3dshapes, same pinned
+revision; kicad StepUp / FreeCAD authors and TO_SOT_CREDITS.md preserved.
+Licence: CC-BY-SA-4.0 with KiCad libraries exception. Derived body/leads
+are separated at z=2.5 mm and centered at x=1.27 mm; geometry unchanged.
+See tools/convert-transistors.py and transistors.json. The keyboard uses
+this generic package; manufacturer mould, exact lead bends and electrical
+part identification remain provisional. These derivatives are NOT MIT.
