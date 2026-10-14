@@ -1,8 +1,16 @@
 import { test, expect } from "@playwright/test";
-test("power, live pixels, keyboard, reset, inspection and three profiles", async ({
+// Wait for the final glyph of the diagnostic boot message, not merely the
+// opaque blank framebuffer: input sent before boot completes can be lost.
+async function waitForDiagnostic(page) {
+  await expect.poll(() => page.locator("#screen").evaluate(canvas => {
+    const pixels = canvas.getContext("2d").getImageData(23 * 8, 3 * 16, 8, 16).data;
+    return pixels.some((v, i) => i % 4 === 1 && v > 100);
+  }), {timeout: 20000}).toBe(true);
+}
+test("Robotron power, live pixels, keyboard, reset and inspection", async ({
   page,
 }) => {
-  // Three profiles, model loading, typing and reset share this budget on software WebGL.
+  // Model loading, typing and reset share this budget on software WebGL.
   test.setTimeout(60000);
   // Fan animation has dedicated coverage; keep input/core checks deterministic.
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -49,6 +57,7 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
       return n;
     }, inputOnly);
   await expect.poll(() => hash(false)).toBeGreaterThan(640 * 384 * 18);
+  await waitForDiagnostic(page);
   const before = await hash();
   await canvas.focus();
   await page.keyboard.type("HELLO");
@@ -65,20 +74,23 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
   expect(model.patches.some((p) => p.name.includes("wear"))).toBe(false);
   await page.getByRole("button", { name: "Power off", exact: false }).click();
   await expect(page.getByRole("status")).toHaveText("Powered off");
-  for (const value of ["0", "1"]) {
-    await page.locator("#machine").selectOption(value);
-    await expect(page.locator("#viewport")).toHaveAttribute(
-      "data-model",
-      "provisional",
-    );
-    await expect(power).toBeEnabled();
-    await power.click();
-    await expect(page.getByRole("status")).toHaveText("Running");
-    await page.getByRole("button", { name: "Power off", exact: false }).click();
-  }
   expect(errors).toEqual([]);
   await expect(page.locator("#error")).toBeEmpty();
 });
+for (const value of ["0", "1"]) {
+  test(`profile ${value} powers on and off independently`, async ({page}) => {
+    await page.goto("/");
+    await expect(page.locator("#power")).toBeEnabled();
+    await page.locator("#machine").selectOption(value);
+    await expect(page.locator("#viewport")).toHaveAttribute("data-model", "provisional");
+    await page.locator("#power").click();
+    await expect(page.getByRole("status")).toHaveText("Running");
+    await page.locator("#power").click();
+    await expect(page.getByRole("status")).toHaveText("Powered off");
+    await expect(page.locator("#error")).toBeEmpty();
+  });
+}
+
 test("bad media is rejected clearly and diagnostic can recover", async ({
   page,
 }) => {
@@ -157,6 +169,7 @@ test("physical Robotron switches power and reset the live core", async ({
   // Observe live boot pixels, then compare the input row independently of
   // boot text that may still be finishing its first raster scan.
   await expect.poll(() => hash(false), { timeout: 20000 }).toBeGreaterThan(640 * 288 * 255);
+  await waitForDiagnostic(page);
   const before = await hash();
   await page.getByRole("button", { name: "Screen", exact: true }).click();
   await page.locator("#screen").focus();
