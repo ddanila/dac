@@ -140,9 +140,12 @@ test("head loading pivots only the upper arm; inserted medium shares spindle pha
   expect(objects.get("arm").rotation.x).toBeCloseTo(0);
   expect(objects.get("h").rotation.x).toBe(0);
   move(25, [8], true, 0, false, true, null, sample);
-  expect(objects.get("arm").rotation.x).toBeCloseTo(-0.08);
+  expect(objects.get("arm").rotation.x).toBeLessThan(0);
+  expect(objects.get("arm").rotation.x).toBeGreaterThan(-.08);
+  for(let t=65;t<=385;t+=40)move(t,[8],true,0,false,true,null,sample);
+  expect(objects.get("arm").rotation.x).toBeCloseTo(-.08);
   expect(objects.get("medium").visible).toBe(true);
-  move(30, [0], true, 0, true, false, null, sample);
+  move(400, [0], true, 0, true, false, null, sample);
   expect(objects.get("medium").visible).toBe(false);
 });
 test("diagnostics distinguish controller selection, index counts and unavailable older cores", () => {
@@ -254,4 +257,29 @@ test('lever travel is gradual, reversible and synchronized with shaft and clamp'
   expect(move(460,[40],false,0,false)).toBe(false);
   move(480,[8],false,0,true);
   expect(objects.get('latch').rotation.y).toBeCloseTo(Math.PI/2);
+});
+
+test('head and disc stay released until the visible lever seats; insertion redraws its endpoint',()=>{
+ const names=['spindle','head','arm','medium','jacket','latch','clamp'];
+ const objects=new Map(names.map(n=>[n,new Mesh(new BoxGeometry(),new MeshBasicMaterial())]));
+ const move=createDriveMotion(objects,[{unit:0,spindle:'spindle',head:'head',headArm:'arm',medium:'medium',jacket:'jacket',latch:'latch',clamp:'clamp',pivot:[0,0,0],armPivot:[0,0,0],latchPivot:[0,0,0],travel:[0,-20,0]}]);
+ const telemetry=[{phase:.25,position:0,headLoad:1}];
+ move(0,[40],true,0,false,false,null,telemetry);
+ expect(objects.get('arm').rotation.x).toBeCloseTo(-.08);
+ expect(objects.get('medium').rotation.z).toBe(0);
+ move(40,[8],true,0,false,false,null,telemetry);
+ expect(objects.get('arm').rotation.x).toBeLessThan(0);
+ expect(objects.get('arm').rotation.x).toBeGreaterThan(-.08);
+ expect(objects.get('medium').rotation.z).toBe(0);
+ for(let t=80;t<=360;t+=40)move(t,[8],true,0,false,false,null,telemetry);
+ expect(objects.get('arm').rotation.x).toBeCloseTo(0);
+ expect(objects.get('medium').rotation.z).toBeCloseTo(Math.PI/2);
+ // Releasing the lever lifts the head progressively even if an older core
+ // still reports it loaded; the magnetic disc no longer follows the spindle.
+ move(400,[40],true,0,false,false,null,[{...telemetry[0],phase:.5}]);
+ expect(objects.get('arm').rotation.x).toBeLessThan(0);
+ expect(objects.get('medium').rotation.z).toBeCloseTo(Math.PI/2);
+ move(440,[32],false,0,true);
+ expect(move(480,[40],false,0,true)).toBe(true);
+ expect(move(520,[40],false,0,true)).toBe(false);
 });
