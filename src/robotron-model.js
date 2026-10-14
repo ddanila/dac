@@ -2,7 +2,7 @@ import { componentDetail } from "./component-detail.js";
 import { createDriveMotion } from "./robotron-drives.js";
 import { createFanMotion } from "./robotron-fan.js";
 import { modelAsset } from "./model-assets.js";
-import { loadPcbPhotos, loadPcbComponents, loadPcbLabels } from "./robotron-interior.js";
+import { loadPcbPhotos, loadPcbComponents, loadPcbLabels, detailedGeometry } from "./robotron-interior.js";
 import { crtGeometry, crtMaterial } from "./robotron-crt.js";
 import * as THREE from "three";
 import {
@@ -11,7 +11,6 @@ import {
   legendLayout,
   markingTexture,
 } from "./robotron-materials.js";
-import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 
 // Project a unit square into the photographed quadrilateral. Subdivision keeps
@@ -118,7 +117,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   );
   await Promise.all(
     data.parts.map(async (part) => {
-      const geometry = toCreasedNormals(
+      const geometry = detailedGeometry(
         await stl.loadAsync(modelAsset(part.file, base, part.sha256).href), Math.PI / 4);
 
       const mesh = new THREE.Mesh(
@@ -143,7 +142,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     }),
   );
   await Promise.all(data.keyMeshes.map(async (part) => {
-    const geometry = toCreasedNormals(
+    const geometry = detailedGeometry(
       await stl.loadAsync(modelAsset(part.file, base, part.sha256).href), Math.PI / 2.1);
     keyGeometry.set(part.name, geometry);
     advance();
@@ -892,6 +891,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
           }
           pos.needsUpdate = true;
           mesh.geometry.computeVertexNormals();
+          mesh.geometry.computeBoundingBox();
           mesh.geometry.computeBoundingSphere();
         }
       }

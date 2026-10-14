@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
-import { pcbPoint, pcbPhotoGeometry } from "../src/robotron-interior.js";
+import { pcbPoint, pcbPhotoGeometry, detailedGeometry } from "../src/robotron-interior.js";
 const root = new URL("../public/models/robotron-1715m/", import.meta.url);
 const manifest = JSON.parse(readFileSync(new URL("model.json", root)));
 
@@ -207,4 +207,20 @@ test('closed vents reveal loaded internal parts without opening any cover',async
   expect(result.caseVent[0]?.interior,JSON.stringify(result.caseVent)).toBe(true);
   expect(result.monitorVent[0]?.interior,JSON.stringify(result.monitorVent)).toBe(true);
   await expect(page.locator('#open-case')).not.toBeChecked();await expect(page.locator('#open-monitor')).not.toBeChecked();
+});
+
+
+test("indexed model geometry preserves every triangle and normal without simplification", async () => {
+  const { toCreasedNormals } = await import("three/addons/utils/BufferGeometryUtils.js");
+  let before = 0, after = 0;
+  for (const name of ["case-lid", "logic-boards-motherboard", "keyboard-guides", "drive-spindle-0"]) {
+    const bytes = readFileSync(new URL(`meshes/${name}.stl`, root));
+    const source = new STLLoader().parse(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+    const original = toCreasedNormals(source, Math.PI / 4), indexed = detailedGeometry(source);
+    const expanded = indexed.toNonIndexed();
+    for (const attribute of Object.keys(original.attributes))
+      expect(Buffer.from(expanded.attributes[attribute].array.buffer).equals(Buffer.from(original.attributes[attribute].array.buffer))).toBe(true);
+    before += original.attributes.position.count; after += indexed.attributes.position.count;
+  }
+  expect(after).toBeLessThan(before * .75);
 });

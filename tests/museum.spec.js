@@ -4,6 +4,8 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
 }) => {
   // Three profiles, model loading, typing and reset share this budget on software WebGL.
   test.setTimeout(60000);
+  // Fan animation has dedicated coverage; keep input/core checks deterministic.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   const errors = [];
   const enclosurePhotos = [];
   page.on("request", (request) => {
@@ -105,6 +107,8 @@ test("physical Robotron switches power and reset the live core", async ({
   // Several camera changes and live-core gestures share this test budget.
   // Software WebGL on CI needs longer than the default 30 seconds.
   test.setTimeout(60000);
+  // Fan animation has dedicated coverage; keep input/core checks deterministic.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   const { PerspectiveCamera, Vector3 } = await import("three");
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");

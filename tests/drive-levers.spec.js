@@ -79,7 +79,7 @@ test('drag feedback rejects a closed drive and permits moving a disk into B', as
   const start=point(365,-110,6.5),end=point(-4,-213,78);
   await page.mouse.move(start.x,start.y);await page.mouse.down();
   await expect(page.locator('#disk-drag-hint')).toBeVisible();
-  await page.mouse.move(end.x,end.y,{steps:12});
+  await page.mouse.move(end.x,end.y,{steps:4});
   await expect(page.locator('#disk-drag-hint')).toHaveAttribute('data-allowed','false');
   await expect(page.locator('#disk-drag-hint')).toContainText('lever');
   await page.mouse.up();
@@ -90,7 +90,7 @@ test('drag feedback rejects a closed drive and permits moving a disk into B', as
   const fresh=await page.locator('#viewport').boundingBox();
   const dx=fresh.x-box.x,dy=fresh.y-box.y;
   await page.mouse.move(start.x+dx,start.y+dy);await page.mouse.down();
-  await page.mouse.move(end.x+dx,end.y+dy,{steps:12});
+  await page.mouse.move(end.x+dx,end.y+dy,{steps:4});
   await expect(page.locator('#disk-drag-hint')).toHaveAttribute('data-allowed','true');
   await page.mouse.up();
   await expect(page.locator('#drive-media-1')).toHaveText('Remove disk B');

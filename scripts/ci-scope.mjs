@@ -2,7 +2,7 @@
 import { execFileSync } from 'node:child_process';
 import { appendFileSync } from 'node:fs';
 export function scopeFor(files) {
-  const visualTests = /^(assembly|crt|drive-motion|exploration|fan|inspection|interior|keyboard|museum|pcb-components)\.spec\.js$/;
+  const visualTests = /^(assembly|crt|drive-levers|drive-motion|exhibit-improvements|exploration|fan|inspection|interior|keyboard|museum|pcb-components)\.spec\.js$/;
   const visual = files.length && files.every(file =>
     file.startsWith('public/models/') || file.startsWith('exhibits/') ||
     file.endsWith('.md') || file === '.github/workflows/site.yml' || file === 'scripts/ci-scope.mjs' ||
