@@ -917,7 +917,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     objects.get("keyboard-guides").position.set(0, -keyboardLift * 155, keyboardLift * 55);
     // Keep the contact face up; orbit underneath to inspect the solder buses.
     const boardAngle = 0;
-    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-pcb-metal", "keyboard-insulators", "keyboard-contact-pads", "keyboard-pcb-supports", "keyboard-pcb-fasteners", "keyboard-contact-routes"]) {
+    for (const name of ["keyboard-pcb", "keyboard-matrix-artwork", "keyboard-pcb-metal", "keyboard-insulators", "keyboard-contact-pads", "keyboard-pcb-supports", "keyboard-pcb-fasteners", "keyboard-contact-routes", "keyboard-matrix-socket", "keyboard-matrix-contacts"]) {
       const mesh = objects.get(name);
       mesh.rotation.x = boardAngle;
       mesh.position.set(0,

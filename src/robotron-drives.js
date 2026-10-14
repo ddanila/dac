@@ -74,6 +74,7 @@ export function createDriveMotion(objects, descriptions = []) {
       else d.clampVisual += Math.sign(clampAmount - d.clampVisual) * Math.min(Math.abs(clampAmount - d.clampVisual), dt / .32);
       moving ||= d.clampVisual !== clampAmount || previousClamp !== d.clampVisual;
       const target = Number(!!(state & 8));
+      const previousInsertion = d.insertion;
       if (d.insertion === undefined || reduced) d.insertion = target;
       else d.insertion += Math.sign(target - d.insertion) * Math.min(Math.abs(target - d.insertion), dt / .45);
       const parked = !!available?.[d.unit];
@@ -83,7 +84,7 @@ export function createDriveMotion(objects, descriptions = []) {
       const slide = -145 * outside + parking * (199 + split * 145);
       const side = parking * (330 + (parkingSlots[d.unit] ?? d.unit) * 145 - d.pivot[0]);
       const lower = parking * (5 - d.pivot[2] - split * 115);
-      moving ||= d.insertion !== target;
+      moving ||= d.insertion !== target || previousInsertion !== d.insertion;
       const telemetry = mechanics?.[d.unit];
       if (!demo && telemetry && !reduced) {
         const angle = telemetry.phase * 2 * Math.PI;
@@ -119,9 +120,10 @@ export function createDriveMotion(objects, descriptions = []) {
         d.headArm.position.set(
           ...d.armPivot.map((v, i) => v + d.head.position.getComponent(i)),
         );
-        const load = demo
-          ? 1 - clampAmount
-          : clampAmount ? 0 : (telemetry?.headLoad ?? (power && state & 2 ? 1 : 0));
+        // Keep the upper head clear while the hand lever still lifts its rail.
+        // Telemetry remains authoritative; this only limits the displayed pose.
+        const commandedLoad = demo ? 1 - clampAmount : (telemetry?.headLoad ?? (power && state & 2 ? 1 : 0));
+        const load = Math.min(commandedLoad, 1 - d.clampVisual);
         d.headArm.rotation.x = -0.08 * (1 - load);
       }
       if (d.medium) {
@@ -130,7 +132,7 @@ export function createDriveMotion(objects, descriptions = []) {
         d.medium.position.y += slide;
         d.medium.position.x += side;
         d.medium.position.z += lower;
-        if (!clampAmount) d.medium.rotation.z = d.spindle.rotation.z;
+        if (d.clampVisual === 0 && d.insertion === 1) d.medium.rotation.z = d.spindle.rotation.z;
       }
       // The sleeve does not rotate with the magnetic disc. A released clamp
       // is an inspection state, not media ejection.

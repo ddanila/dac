@@ -76,7 +76,7 @@ drive PIP copying and printer output using the bundled reference disk.
 
 ## Current Robotron model
 
-Canonical model v34 uses the W/M motherboard with integrated U8272 and a separate solder-side-up display controller. Owner photographs guide the fan, drive adapters, carrier windows, underside rotors, cover hardware and clean exterior. The enclosures have 1 mm bent painted skins, hollow front returns and open vents. The October 14 photos of this specimen also establish 39 display-board ICs and visible passives; mainboard placement still needs complete photo calibration. The browser imports the canonical export; physical verification remains independent of photo/schematic evidence. The museum does not claim an exact reconstruction of hidden circuitry.
+Canonical model v35 uses the W/M motherboard with integrated U8272 and a separate solder-side-up display controller. Owner photographs guide the fan, drive adapters, carrier windows, underside rotors, cover hardware and clean exterior. The enclosures have 1 mm bent painted skins, hollow front returns and open vents. The October 14 photos of this specimen also establish 39 display-board ICs and visible passives; mainboard placement still needs complete photo calibration. The browser imports the canonical export; physical verification remains independent of photo/schematic evidence. The museum does not claim an exact reconstruction of hidden circuitry.
 
 All keyboard, monitor and logic-board geometry loads before the exhibit is marked ready, so internals remain visible through openings with the covers closed. Repeated DIP package meshes share geometry across boards, including concurrent requests. Optional reference-photo overlays load only when selected. The percentage includes all required geometry; a failed geometry request leaves an explicit unavailable state rather than presenting an empty case as complete. Reloading retries it. Loading optimizations must preserve the visual experience. STL triangles now use shared indexed vertices after crease normals are computed: all 203 meshes retain identical expanded attributes, while the stored vertex count drops by 66%. Bounds accelerate picking, and disk dragging computes its ray directly instead of repeatedly picking the entire model.
 
@@ -87,3 +87,21 @@ The canonical repository includes repeatable photo/STL overlays and bounded soli
 ### CI scope
 
 Model/viewer-only changes (including scene lighting and camera code) run two isolated Chromium shards covering model, keyboard, assembly, inspection, rendering and saved-session interactions, plus small Firefox/WebKit assembly checks. Each runner uses one browser worker to avoid competing software renderers. Interaction checks default to reduced motion; dedicated mechanism tests explicitly exercise animation. Saved-session fixtures omit CAD loading, while the dedicated exhibit tests retain the complete model. These runs do not build the native emulator or run unrelated replay suites. Runtime, emulator, dependency or unrecognized changes run the complete suite and native replay checks; manual workflow dispatch also runs everything. `scripts/ci-scope.mjs` uses a conservative path allowlist and defaults to full coverage if the base revision cannot be read. Pages deployment still requires the build and browser checks. Linux browser dependencies use Ubuntu’s main mirror to avoid the slow Azure mirror seen in previous runs.
+
+### Local photo review
+
+With Vite running, `node scripts/review-robotron.mjs` creates
+`/tmp/dac-robotron-review/index.html`: six owner-photo/render pairs from camera
+poses stored in the canonical model. Optional arguments are the Vite URL, output
+directory and canonical Robotron source directory. It uses the actual model
+loader without starting the emulator. Run it locally after visual changes;
+these are manually fitted comparison directions, not calibrated cameras.
+
+Model v35 adds the keyboard matrix PCB tongue, pale socket and bent contact tails,
+separate grey/blue controller resistors, rounded sheet tabs, and a painted 1 mm
+support plate. PCB supports and routes also appear in the fast SCAD previews.
+Controller docking and electrical routing remain provisional. PCB material now
+has a nonmetallic fine-grain finish. The drive's upper head follows the moving
+release rail; the disc follows spindle phase only after the visible clamp seats.
+The final insertion frame requests a redraw, including reduced-motion changes.
+These are presentation corrections, not changes to controller timing.

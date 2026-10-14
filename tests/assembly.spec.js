@@ -204,6 +204,8 @@ test("owner controller separates as one assembly and monitor underside follows i
     model.tick();
     const opened = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
     const pcb = model.objects.get("keyboard-pcb");
+    const socketParts=["keyboard-matrix-socket","keyboard-matrix-contacts"].map(name=>model.objects.get(name));
+    const socketOpen=socketParts.every(mesh=>mesh.visible && mesh.position.equals(pcb.position));
     const boardOpen = { visible: pcb.visible, angle: pcb.rotation.x,
       artwork: model.objects.get("keyboard-matrix-artwork").visible,
       pads: model.objects.get("keyboard-pcb-metal").visible,
@@ -231,8 +233,10 @@ test("owner controller separates as one assembly and monitor underside follows i
       mesh.geometry.computeBoundingBox();
       return { min: mesh.geometry.boundingBox.min.z, max: mesh.geometry.boundingBox.max.z };
     });
-    return { seam, opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
+    return { socketOpen, socketClosed:socketParts.every(mesh=>mesh.position.equals(pcb.position)), seam, opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
   });
+  expect(state.socketOpen).toBe(true);
+  expect(state.socketClosed).toBe(true);
   expect(state.boardOpen.visible).toBe(true);
   expect(state.boardOpen).toMatchObject({ artwork: true, pads: true, traces: true });
   expect(state.boardOpen.capsY).toBeGreaterThan(-300);

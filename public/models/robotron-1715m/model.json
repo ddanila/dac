@@ -1,5 +1,123 @@
 {
-  "version": 34,
+  "version": 35,
+  "reviewViews": {
+    "status": "Repeatable owner-photo comparison directions, manually fitted; not calibrated cameras or dimensional validation. Compare clean geometry, not wear or photographed lighting.",
+    "units": "Canonical model millimetres, Z up",
+    "views": [
+      {
+        "name": "drive-front",
+        "photo": "PXL_20261013_113537277.jpg",
+        "position": [
+          -90,
+          -900,
+          220
+        ],
+        "target": [
+          -70,
+          -205,
+          80
+        ],
+        "fov": 30,
+        "include": "^(case-|fascia|drives$|drive-|power|reset|front-labels)",
+        "note": "Check inserted media depth, closed lever clearance, flush lamps and fascia seams."
+      },
+      {
+        "name": "keyboard-board",
+        "photo": "PXL_20261012_123048886.jpg",
+        "position": [
+          0,
+          -395,
+          -700
+        ],
+        "target": [
+          0,
+          -355,
+          15
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "fov": 43,
+        "include": "^keyboard-(shell|pcb$|pcb-metal|matrix-|insulators|pcb-supports|pcb-fasteners)",
+        "note": "Bottom lid and controller removed as in the photo; check board tongue, socket, traces and rounded sheet tabs."
+      },
+      {
+        "name": "keyboard-controller",
+        "photo": "PXL_20261012_123622947.jpg",
+        "position": [
+          -65,
+          -281,
+          620
+        ],
+        "target": [
+          -65,
+          -281,
+          8
+        ],
+        "up": [
+          1,
+          0,
+          0
+        ],
+        "fov": 31,
+        "include": "^keyboard-(controller-|entry-choke|entry-wires)",
+        "note": "Separate narrow controller; clean component construction and approximate placement, not an electrical reconstruction."
+      },
+      {
+        "name": "keyboard-cable",
+        "photo": "PXL_20261012_123539882.jpg",
+        "position": [
+          110,
+          -200,
+          145
+        ],
+        "target": [
+          65,
+          -281,
+          11
+        ],
+        "fov": 38,
+        "include": "^keyboard-(controller-|entry|grommet|cable-support|internal-cable)",
+        "note": "Incoming lead, round bush, bent support and shield clamp; the owner's photo shows these removed from the shell."
+      },
+      {
+        "name": "keyboard-plug",
+        "photo": "PXL_20261010_090425989.jpg",
+        "position": [
+          -480,
+          -330,
+          220
+        ],
+        "target": [
+          -275,
+          -145,
+          25
+        ],
+        "fov": 24,
+        "include": "^(cable-plug|plug-)",
+        "note": "Asymmetric housing, fasteners and offset cable outlet; cable route outside the crop is omitted."
+      },
+      {
+        "name": "monitor-profile",
+        "photo": "PXL_20261012_125018215.jpg",
+        "position": [
+          900,
+          -270,
+          370
+        ],
+        "target": [
+          0,
+          25,
+          320
+        ],
+        "fov": 30,
+        "include": "^(monitor-|bezel|crt-|tube-|pedestal|ring)",
+        "note": "Compare bezel return, curved glass and shell joint. Hidden monitor electronics remain reference-based."
+      }
+    ]
+  },
   "evidence": {
     "categories": {
       "specimen": "Your specimen",
@@ -22048,7 +22166,10 @@
     },
     "pcb": {
       "roughness": 0.61,
-      "metalness": 0.05
+      "metalness": 0,
+      "grain": 0.012,
+      "grainScale": 6,
+      "grainRelief": 0.001
     },
     "tape": {
       "roughness": 0.93,
@@ -22146,7 +22267,7 @@
       "name": "keyboard-shell",
       "file": "meshes/keyboard-shell.stl",
       "color": "#9daeb1",
-      "sha256": "cbefa80f26acb07fde8ebe289cfa303da72c365b9a8e2b42e53870fd30ca3d17",
+      "sha256": "3551d92ef4ca8bef3eb1868317517ec3bafd72b0d28210af3c9e6bd2a1f0a425",
       "material": "paint"
     },
     {
@@ -22426,7 +22547,7 @@
       "name": "keyboard-pcb",
       "file": "meshes/keyboard-pcb.stl",
       "color": "#91ae94",
-      "sha256": "89b83e2485c548a7aebf2f20da4e219ba19b214ba95bae387ed4bf139179f886",
+      "sha256": "444a0073ebcc3a81877abec65b29a0f83a9c9deab0dc30d30134b963b45f8ff6",
       "section": "interior",
       "material": "pcb"
     },
@@ -22667,9 +22788,9 @@
       "name": "keyboard-plate",
       "file": "meshes/keyboard-plate.stl",
       "color": "#242929",
-      "sha256": "888c66458e6adcb94a1a23376bcd658bbbff0b0e6d54bb3a500cb8758ee23844",
+      "sha256": "ca15827e7f0370a801ed542ebfb908a860f1f46273a1c8787d9c5d8854351524",
       "section": "interior",
-      "material": "metal"
+      "material": "paint"
     },
     {
       "name": "monitor-fasteners",
@@ -22905,7 +23026,7 @@
       "name": "keyboard-controller-ceramic",
       "file": "meshes/keyboard-controller-ceramic.stl",
       "color": "#ad8875",
-      "sha256": "3c978882b8be64827ff244a2ff3a34e8c0b030f8a3107fafb6acd71be4a7961a",
+      "sha256": "7a8409241316449b42a39b6031a3b685e9ea7379e59e37bfd88117650e21f3e5",
       "section": "interior",
       "material": "plastic"
     },
@@ -23443,6 +23564,38 @@
       "sha256": "250d3dffbabeb63103e0bf12543f8084d14ff5caf2bba0e4aac3560db364fcb8",
       "section": "interior",
       "material": "rubber"
+    },
+    {
+      "name": "keyboard-matrix-socket",
+      "file": "meshes/keyboard-matrix-socket.stl",
+      "color": "#c4ceca",
+      "sha256": "b5b78a0c1c856e56163df502a7b78ce739408f8246b3a19cc66317f3eee8deb0",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-matrix-contacts",
+      "file": "meshes/keyboard-matrix-contacts.stl",
+      "color": "#b8bbb4",
+      "sha256": "5e1b2a9186001f0ef021d07c568440999adfa1223d56511ff7719d0d6ab3ee5d",
+      "section": "interior",
+      "material": "solder"
+    },
+    {
+      "name": "keyboard-controller-resistors",
+      "file": "meshes/keyboard-controller-resistors.stl",
+      "color": "#9a9d95",
+      "sha256": "4244d84449e94c39b356923534c8fc7a863e933a75cd466fccf6835ab8717d26",
+      "section": "interior",
+      "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-resistor-bands",
+      "file": "meshes/keyboard-controller-resistor-bands.stl",
+      "color": "#3186ad",
+      "sha256": "ebcdb61ff2be578fdb5718503fc4336859a0edb22068e8e1081568f6a6d0c22f",
+      "section": "interior",
+      "material": "plastic"
     }
   ],
   "keys": [
