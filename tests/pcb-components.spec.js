@@ -349,7 +349,7 @@ test("individual chip inspection preserves instance identity and both evidence l
   expect(result.first).not.toBe(result.second);
   expect(result.fallback).toBe('motherboard');
   await expect(page.locator('#detail-title')).toHaveText(result.second);
-  await expect(page.locator('#detail-original')).toHaveAttribute('href',/072654600/);
+  await expect(page.locator('#detail-original')).toHaveAttribute('href',/073200542/);
   await expect(page.locator('#detail-drawing')).toBeVisible();
   await expect(page.locator('#detail-drawing')).toHaveAttribute('href','https://xepb.org/robotron/docs/1715w.zip');
   await page.keyboard.press('Escape');
