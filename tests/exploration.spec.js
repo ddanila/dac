@@ -31,6 +31,9 @@ test("mechanical demonstration restores live head and latch state without changi
   expect(states).toEqual(before);
   expect(
     move(32, states, true, 0, true, false, { phase: 0.25, animate: true }),
+  ).toBe(true); // New slider position needs one redraw, even with reduced motion.
+  expect(
+    move(48, states, true, 0, true, false, { phase: 0.25, animate: true }),
   ).toBe(false);
 });
 

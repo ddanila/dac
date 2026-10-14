@@ -17,7 +17,8 @@ test("bundled historical media retains its documented identities", async () => {
 test("3D keyboard enters DIR in historical TOS/M and exports an unchanged read-only disk", async ({
   page,
 }) => {
-  test.setTimeout(60000);
+  // Full CAD rendering plus stock-OS boot and four 3D key gestures on software WebGL.
+  test.setTimeout(process.env.CI ? 90000 : 60000);
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => {

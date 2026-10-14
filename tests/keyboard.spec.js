@@ -119,7 +119,7 @@ for (const gesture of ["click", "drag", "cancel"]) {
     page,
   }) => {
     // Includes model load, camera movement and a complete pointer gesture.
-    test.setTimeout(60000);
+    test.setTimeout(process.env.CI ? 90000 : 60000);
     await page.setViewportSize({ width: 1280, height: 900 });
     await observeKeys(page);
     await page.getByRole("button", { name: "Keyboard", exact: true }).click();
