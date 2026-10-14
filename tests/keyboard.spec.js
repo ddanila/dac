@@ -231,7 +231,11 @@ test("physical keyboard holds the modeled key down until release and blur clears
     height: 24,
   };
   const picture = () => page.screenshot({ clip });
-  const resting = await picture();
+  let resting;
+  await expect.poll(async () => {
+    const frame = await picture(), stable = resting?.equals(frame);
+    resting = frame; return !!stable;
+  }).toBe(true);
   await page.keyboard.down("a");
   await page.waitForTimeout(250); // longer than the former 140 ms pulse
   const held = await picture();
@@ -316,7 +320,11 @@ test("latched Shift changes input state without leaving its keycap depressed", a
   const key = model.keys.find(k => k.input.modifier === 'shift');
   const point = await keyPoint(page, key, model);
   const clip = { x:Math.round(point.x)-12, y:Math.round(point.y)-10, width:24, height:20 };
-  const resting = await page.screenshot({clip});
+  let resting;
+  await expect.poll(async () => {
+    const frame = await page.screenshot({clip}), stable = resting?.equals(frame);
+    resting = frame; return !!stable;
+  }).toBe(true);
   const button = page.locator(`#key-list [data-key="${key.id}"]`);
   await button.dispatchEvent('click');
   await expect(button).toHaveAttribute('aria-pressed','true');

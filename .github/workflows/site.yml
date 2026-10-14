@@ -32,6 +32,10 @@ jobs:
           path: dist
   chromium:
     needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
     runs-on: ubuntu-latest
     timeout-minutes: ${{ needs.build.outputs.scope == 'full' && 20 || 15 }}
     steps:
@@ -57,15 +61,15 @@ jobs:
         if: needs.build.outputs.scope == 'full'
       - name: Model and interaction checks
         if: needs.build.outputs.scope == 'visual'
-        run: npx playwright test tests/assembly.spec.js tests/crt.spec.js tests/drive-levers.spec.js tests/drive-motion.spec.js tests/exhibit-improvements.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard.spec.js tests/museum.spec.js tests/pcb-components.spec.js tests/sessions.spec.js --reporter=line
-      - run: npm test -- --reporter=line
+        run: npx playwright test tests/assembly.spec.js tests/crt.spec.js tests/drive-levers.spec.js tests/drive-motion.spec.js tests/exhibit-improvements.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard.spec.js tests/museum.spec.js tests/pcb-components.spec.js tests/sessions.spec.js --reporter=line --shard=${{ matrix.shard }}/2
+      - run: npm test -- --reporter=line --shard=${{ matrix.shard }}/2
         if: needs.build.outputs.scope == 'full'
         env:
           DAC_NATIVE_REPLAY: emulation-reference/build/dac-replay
       - uses: actions/upload-artifact@v7
         if: failure()
         with:
-          name: chromium-failures
+          name: chromium-failures-${{ matrix.shard }}
           path: test-results/
           retention-days: 3
   cross-browser:

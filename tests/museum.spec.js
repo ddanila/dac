@@ -39,14 +39,16 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
   await page.getByRole("button", { name: "Screen", exact: true }).click();
   const canvas = page.locator("#screen");
   await expect(canvas).toBeVisible();
-  const hash = () =>
-    canvas.evaluate((c) => {
-      const p = c.getContext("2d").getImageData(0, 0, c.width, c.height).data;
+  const hash = (inputOnly = true) =>
+    canvas.evaluate((c, inputOnly) => {
+      // The diagnostic writes typed input on row 5; boot text can still be
+      // finishing its scan when the first live raster arrives.
+      const p = c.getContext("2d").getImageData(0, inputOnly ? 80 : 0, c.width, inputOnly ? 16 : c.height).data;
       let n = 0;
       for (let i = 0; i < p.length; i += 4) n += p[i];
       return n;
-    });
-  await expect.poll(hash).toBeGreaterThan(640 * 384 * 18);
+    }, inputOnly);
+  await expect.poll(() => hash(false)).toBeGreaterThan(640 * 384 * 18);
   const before = await hash();
   await canvas.focus();
   await page.keyboard.type("HELLO");
