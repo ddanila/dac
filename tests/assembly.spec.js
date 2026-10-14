@@ -131,7 +131,7 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
         if (Math.abs(original[i + 1] - lifted[i + 1]) < 0.001) fixed++;
         else throw Error("controller cable endpoint moved");
       }
-      if (original[i + 1] < 14 && original[i + 2] > 66) {
+      if (Math.abs(original[i + 1] - 16) < 0.6 && original[i + 2] > 66) {
         if (Math.abs(lifted[i + 1] - original[i + 1] + 145) < 0.001) moving++;
       }
     }
@@ -272,7 +272,10 @@ test("opaque keycaps have continuous sidewalls around every exported shape", asy
       if (key.topWidth) {
         const vertices = body.geometry.attributes.position;
         let lo = Infinity, hi = -Infinity;
-        for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= (key.style === 0 ? 11.39 : 9.39)) {
+        // Owner widths describe the raised body; the corrected black crown tapers.
+        for (let i = 0; i < vertices.count; i++) if (key.style === 0
+          ? vertices.getZ(i) >= 6.39 && vertices.getZ(i) <= 6.41
+          : vertices.getZ(i) >= 9.39) {
           lo = Math.min(lo, vertices.getX(i)); hi = Math.max(hi, vertices.getX(i));
         }
         if (Math.abs(hi - lo - key.topWidth) > 0.05)
@@ -281,8 +284,9 @@ test("opaque keycaps have continuous sidewalls around every exported shape", asy
       // Derive the minimum solid outer radius from the raised profile, so
       // spacing refinements do not assume the former 19.5 mm key pitch.
       const vertices = body.geometry.attributes.position;
-      let topX = 0, topY = 0;
-      for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= (key.style === 0 ? 11.39 : 9.39)) {
+      let topX = 0, topY = 0, topZ = -Infinity;
+      for (let i = 0; i < vertices.count; i++) topZ = Math.max(topZ, vertices.getZ(i));
+      for (let i = 0; i < vertices.count; i++) if (vertices.getZ(i) >= topZ - 0.02) {
         topX = Math.max(topX, Math.abs(vertices.getX(i)));
         topY = Math.max(topY, Math.abs(vertices.getY(i)));
       }

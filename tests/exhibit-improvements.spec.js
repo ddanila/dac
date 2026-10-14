@@ -28,6 +28,8 @@ test('hidden keyboard/monitor parts defer loading and labels disclose their evid
  await page.locator('[data-view="keyboard-inside"]').click();
  await expect(page.locator('#viewport')).toHaveAttribute('data-details','ready');
  expect(requests.some(u=>u.includes('/meshes/keyboard-controller-board.stl'))).toBe(true);
+ expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(false);
+ expect(requests.some(u=>u.includes('/meshes/logic-boards-motherboard.stl'))).toBe(false);
  await page.locator('#inspection-labels').check();
  await expect(page.locator('[data-annotation="keyboard-controller"]')).toBeVisible();
  await page.locator('[data-annotation="keyboard-controller"]').click();

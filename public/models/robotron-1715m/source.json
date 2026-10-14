@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "812e61f667fd53b89973a26518320f2fb19e1c44",
+  "revision": "fd20077d80e69c83a5a898c8bb1a3349073a0bac",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "4400eed3603afdfb2e1b313ad0a4dcff3fa64e82db0720c793b7f9519a73c741"
+      "sha256": "94b9e0cdc196ec679a8f9d5c92075555f6911a6e1b81a5dd488dcdd9b28db746"
     },
     {
       "file": "LICENSE",
@@ -185,11 +185,11 @@
     },
     {
       "file": "meshes/logic-boards-motherboard.stl",
-      "sha256": "12aa60850302688f3bd04fe342d83bcb5db0fd27c179baa1cc5b2e87940832fe"
+      "sha256": "d24fce6f600e980b6f225742d6f8c1959a629789d09b408c8666c36bad8ec3dc"
     },
     {
       "file": "meshes/logic-boards-display-controller.stl",
-      "sha256": "c1d391620bd26f88e2b571b6b2b9f9041e501fe0255be33edad91ca51773ee56"
+      "sha256": "063d7ac2340dbbaebd651856005266f29837aa48067d8aa90aa9cb325afdf3a5"
     },
     {
       "file": "meshes/logic-connectors-motherboard.stl",
@@ -201,7 +201,7 @@
     },
     {
       "file": "meshes/psu-chassis.stl",
-      "sha256": "8f73227f65fa6730540e1f3fa5e46126a44452a8841aaddd048b294b6f52dff1"
+      "sha256": "190b8441631d3a47dbcd65f8bb21151beace930731bca491bde1f8864dc93b77"
     },
     {
       "file": "meshes/psu-cover.stl",
@@ -213,15 +213,15 @@
     },
     {
       "file": "meshes/fan-rotor.stl",
-      "sha256": "187691e2151d092d72224242d3bbe2d74a0770dceec73b248f7fe13818addc39"
+      "sha256": "08b4f11642e87a7d6398202f26f0e0327be12db2e0cc38b610b22271c3340a3b"
     },
     {
       "file": "meshes/ribbon-cables.stl",
-      "sha256": "9c31ae94b31fd09e4a0e16588d798d6adea9cc30e05f26e2c27ee84de72dbbea"
+      "sha256": "57aa12e7b732cae2c9cce4aa95c7e0ba9486a8594d7d0c2a6a710a17faf39119"
     },
     {
       "file": "meshes/ribbon-stripes.stl",
-      "sha256": "b6a374693332d5b5f1a67873bb53da8411574b160f1626541a08fe69bb7ef635"
+      "sha256": "cde9ad06fcbca1a4959fe2b9ab9a909bb775846d5933d45610fc256b8dfe6f80"
     },
     {
       "file": "meshes/power-wires-red.stl",
@@ -380,12 +380,16 @@
       "sha256": "c9575295382374d7e3575981ae48b432c459c1f7a2e88531505436ca8333d4da"
     },
     {
+      "file": "meshes/logic-resistors-motherboard.stl",
+      "sha256": "1def38c3576b6c856eaf22592ec7db2f985c69c6baece9fdd1aa8120952f29dc"
+    },
+    {
       "file": "meshes/logic-ceramics-motherboard.stl",
-      "sha256": "21a51b3c02c6f0c5d467d15bb40d4590200fa101bf3b12d932c11848dc6f3385"
+      "sha256": "45e6b5dfe6e727ab558ef4c395ff655e04ae4208cc217f7a45ee34e42c86745a"
     },
     {
       "file": "meshes/logic-ceramics-display-controller.stl",
-      "sha256": "4eadf80b9f549d7bc3953f0cab7fa2f11e65d70fc7cc779f6754b40ed30d80e0"
+      "sha256": "ae344e06153cf95c9ef6046b9fe3d371a077aa0f474c6517cc53f0bbb43c33f7"
     },
     {
       "file": "meshes/logic-electrolytics-motherboard.stl",
@@ -397,11 +401,11 @@
     },
     {
       "file": "meshes/logic-passive-leads-motherboard.stl",
-      "sha256": "3d2fc5dc6dd064a751802eef57f86a620b236f9da0516f2c6d33a28c4aadcc28"
+      "sha256": "39fdb1329114c64d9b7637c6c47e749b6e1007d9b58ad4a3421c62cbba36c21e"
     },
     {
       "file": "meshes/logic-passive-leads-display-controller.stl",
-      "sha256": "f77895a30d6de3597b081236c08e93de20d0d7cc87e368c56f33756eca39e861"
+      "sha256": "d7df6867f2cc9b7357bf11c122d867024e32a05b2b146fea258cdb280b9a6827"
     },
     {
       "file": "meshes/logic-connector-contacts-motherboard.stl",
@@ -421,11 +425,11 @@
     },
     {
       "file": "meshes/ribbon-ridges.stl",
-      "sha256": "8e1c1d5a9b661942082d0e195b243013f823e4aa7d7e2ef4216863cd9d2244db"
+      "sha256": "1ddeb03fd6ad78da1cbff3e453f35dbc591548cdfcad91496d67a16602e970fd"
     },
     {
       "file": "meshes/drive-cable-plugs.stl",
-      "sha256": "b38100359ce93b6966c48f09014af4e5793a789ff04468fbec2f315e76523fd8"
+      "sha256": "5e7121205200e44d2e94b15a07ec1af6fac9d2ff8eabcce55443913912cd3119"
     },
     {
       "file": "meshes/drive-head-arm-0.stl",
@@ -689,7 +693,7 @@
     },
     {
       "file": "meshes/drive-adapter-boards.stl",
-      "sha256": "bf2e6b6bb21d2d126ab972710e078768fac2b1bdb8060d0de2b0487dca631948"
+      "sha256": "e149676a7f800621d283c948a0b5983e54b3dca7e7389c4c08bdd78150ddb672"
     },
     {
       "file": "meshes/drive-adapter-traces.stl",
@@ -729,43 +733,43 @@
     },
     {
       "file": "meshes/keycap-1.stl",
-      "sha256": "f9fcd34b23f1770cae9188968fe3ebf6e1c320f6b5d31c124200a9a4b62d5b77"
+      "sha256": "77625f8e3440d7017d89d32565a927ed705a5887960eec62a973dc268a85c59d"
     },
     {
       "file": "meshes/keycap-1-core.stl",
-      "sha256": "1c6214dc68afeb78184be43041f2f53bef91421dcebf12a2b2a6020ee796be7a"
+      "sha256": "d3d302dd21ae4c7426d3f890037cf2bb96544632e5a3373e1a1ae4a1000ada1c"
     },
     {
       "file": "meshes/keycap-2.stl",
-      "sha256": "f2c5beade7251432fdde3bdee36745c4d329764cbea770ac192abcf31f930ca7"
+      "sha256": "df23799e6e0dc41e21a51836e9217aa290a4f70db73d0c3f6679a66f25ee722c"
     },
     {
       "file": "meshes/keycap-2-core.stl",
-      "sha256": "5b1669f2cfb5b28f1c36063dd219e44c4c5afd7b29941e1adf969f41f8223460"
+      "sha256": "25f5bea6c2adb3b2320001713fd9fc20e372398135f8d9c39bc28e226b936f38"
     },
     {
       "file": "meshes/keycap-3.stl",
-      "sha256": "2493cae5786b2efe1e4f1cd26b769fa1f6fd3ec5bc64e45c96a22897bfcdb287"
+      "sha256": "64a95066eeb29d986170b005405b5fe792ed82573ad27cd7090a93268aea988b"
     },
     {
       "file": "meshes/keycap-3-core.stl",
-      "sha256": "41925947ee7457742d65f1ba053c3b9b5ffcaf3f320495573832784c7f6eee01"
+      "sha256": "f42b27c0cc1b3e6ee33845578d86a695cee2c0e6a18861b21f8e8fd5577daf02"
     },
     {
       "file": "meshes/keycap-4.stl",
-      "sha256": "65b767ef06dc8c5dff55b53a8cd10b8163cc075bcfab8d6828623dcf5dfbe7b2"
+      "sha256": "ba5ce217961ed1a4009734e208a402d47bb55888ee6e928a9644c133e131a76b"
     },
     {
       "file": "meshes/keycap-4-core.stl",
-      "sha256": "5b1669f2cfb5b28f1c36063dd219e44c4c5afd7b29941e1adf969f41f8223460"
+      "sha256": "25f5bea6c2adb3b2320001713fd9fc20e372398135f8d9c39bc28e226b936f38"
     },
     {
       "file": "meshes/keycap-5.stl",
-      "sha256": "77359b9cba176437c781a914c401ca505f9c47ef184377d113616f5d2185d3bf"
+      "sha256": "46574219ecb3d8d5b4c8da570508b09a179a5bb839a7998f77ab3233bf48b35f"
     },
     {
       "file": "meshes/keycap-5-core.stl",
-      "sha256": "f41607f7c1684ac32706b09ec4123023a913475b5e089ba4e66ed63f8c6d716f"
+      "sha256": "1b2af13bcf601669fa7d73e9e805d3e4f5ed5fb061a260ee414363d83e44faa4"
     },
     {
       "file": "meshes/keycap-6.stl",
@@ -773,11 +777,11 @@
     },
     {
       "file": "meshes/keycap-7.stl",
-      "sha256": "64f0ef53ffb9bc9752a1059e125ea3b8b4187b446088890f25b6c1ca5174d81b"
+      "sha256": "1e6695ae4622743bd22e052467bd84259482bf64a6bd8edd672654fe18bffd32"
     },
     {
       "file": "meshes/keycap-7-core.stl",
-      "sha256": "38bbd54e449b9d0814d30de839342c9adca7389b534779a5f05429418c61249c"
+      "sha256": "2c6a7d9819e7a4abe0b3e7ba885b268007f17f37337f4870cf8bcb80e10f4a9a"
     },
     {
       "file": "meshes/specimen-sleeve.stl",
@@ -1229,23 +1233,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "136d6b8342a313a4afc657489c684e48b074d6647bc0972fa3ac36af40ee96d4"
+      "sha256": "90807e1a137a93bc563bf5143a743ee2bb48f3886e497b53a467c1b1f37faa69"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "8ded6dc66351bcf63798a0fc01ff5511d13951bdd06f77d602b17de846755722"
+      "sha256": "6965eb30a527e2fc2d15a04a72bc67f8fdff46dce07644c754e81e02e31ffe94"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "00205dd2e40c6fe7c6f05f2b4e9565ee506b787d91db7461f6503139f37ab93e"
+      "sha256": "19837d2163700101642d06fc5ca0d9684396d34156103f4d52c0730550d577b9"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "0fc5dc144a9bccb4f58d36b194f1db99b8f28c5f2824f0a433d2f90d6325e281"
+      "sha256": "d2bcd9f94a181af7908f421843f9f1a6d8da1a7cecc6f0438336461af91620eb"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "7a9f5f77426ea79ba77cc753ae694c9c894d61d0e9546472f4ac6ae98161a88c"
+      "sha256": "49bcfa89c2804adadf15043ddc159cacf85b2d58ad6b02170fddf0b1ad36ab7d"
     }
   ]
 }

@@ -249,7 +249,7 @@ export function createScene(
   const detailLoading=document.createElement("div");detailLoading.id="detail-loading";detailLoading.hidden=true;detailLoading.setAttribute("role","status");container.append(detailLoading);
   loadRobotron(texture, loadingProgress, state=>{
     container.dataset.details=state;detailLoading.hidden=state==="ready";
-    detailLoading.textContent=state==="error"?"Some interior details could not load. Reload to retry.":"Loading interior details…";
+    detailLoading.textContent=state==="error"?"Some interior details could not load. Reopen this assembly to retry.":"Loading interior details…";
     renderRequested=true;renderer.shadowMap.needsUpdate=true;
   })
     .then((model) => {
