@@ -20,16 +20,16 @@ test('removed disk notch protection follows transfer and reload',async({page})=>
  await expect(page.locator('#writable-b')).not.toBeChecked();
  await expect(page.locator('#error')).toBeEmpty();
 });
-test('hidden keyboard/monitor parts defer loading and labels disclose their evidence',async({page})=>{
+test('interior geometry is ready before display and labels disclose its evidence',async({page})=>{
  test.setTimeout(60000);const requests=[];page.on('request',r=>requests.push(r.url()));
- await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
- expect(requests.some(u=>u.includes('/meshes/keyboard-controller-board.stl'))).toBe(false);
- expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(false);
+ await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
+ expect(requests.some(u=>u.includes('/meshes/keyboard-controller-board.stl'))).toBe(true);
+ expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(true);
  await page.locator('[data-view="keyboard-inside"]').click();
  await expect(page.locator('#viewport')).toHaveAttribute('data-details','ready');
  expect(requests.some(u=>u.includes('/meshes/keyboard-controller-board.stl'))).toBe(true);
- expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(false);
- expect(requests.some(u=>u.includes('/meshes/logic-boards-motherboard.stl'))).toBe(false);
+ expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(true);
+ expect(requests.some(u=>u.includes('/meshes/logic-boards-motherboard.stl'))).toBe(true);
  await page.locator('#inspection-labels').check();
  await expect(page.locator('[data-annotation="keyboard-controller"]')).toBeVisible();
  await page.locator('[data-annotation="keyboard-controller"]').click();
@@ -40,11 +40,11 @@ test('hidden keyboard/monitor parts defer loading and labels disclose their evid
 });
 test('exhibit layout survives reload and Reset view clears it',async({page})=>{
  test.setTimeout(60000);
- await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+ await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
  await page.locator('[data-view="monitor-inside"]').click();
  await page.locator('#inspection-labels').check();
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('dac-exhibit-layout-v1'))?.checks['open-monitor'])).toBe(true);
- await page.reload();await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+ await page.reload();await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
  await expect(page.locator('#open-monitor')).toBeChecked();
  await expect(page.locator('#inspection-labels')).toBeChecked();
  await expect(page.locator('[data-view="monitor-inside"]')).toHaveAttribute('aria-pressed','true');
@@ -57,7 +57,7 @@ test('exhibit layout survives reload and Reset view clears it',async({page})=>{
 test('the modeled notch toggles protection in both directions',async({page})=>{
  const {PerspectiveCamera,Vector3}=await import('three');
  await page.setViewportSize({width:1440,height:1100});await page.emulateMedia({reducedMotion:'reduce'});
- await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+ await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
  await page.locator('#drive-lever-0').click();await page.locator('#drive-media-0').click();
  await page.locator('[data-view="front"]').click();await page.locator('#viewport').scrollIntoViewIfNeeded();
  const box=await page.locator('#viewport').boundingBox(),camera=new PerspectiveCamera(36,box.width/box.height,.01,40);
@@ -71,7 +71,7 @@ test('the modeled notch toggles protection in both directions',async({page})=>{
 test('specimen close-ups keep canonical evidence separate from print verification',async({page})=>{
  test.setTimeout(60000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
- await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+ await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
  for(const [view,assembly] of [['fan-detail','psu'],['adapter-detail','adapters'],['case-cover','case-cover'],['display-controller','display-controller']]){
   await page.locator(`[data-view="${view}"]`).click();
   await expect(page.locator('#isolate-assembly')).toHaveValue(assembly);

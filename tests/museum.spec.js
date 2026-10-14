@@ -29,8 +29,7 @@ test("power, live pixels, keyboard, reset, inspection and three profiles", async
 
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   const power = page.getByRole("button", { name: "Power on", exact: false });
   await expect(power).toBeEnabled();
   await power.click();
@@ -116,8 +115,7 @@ test("physical Robotron switches power and reset the live core", async ({
 
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await expect(page.locator("#power")).toBeEnabled();
   let viewport = await page.locator("#viewport").boundingBox();
   const camera = new PerspectiveCamera(

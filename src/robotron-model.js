@@ -96,13 +96,17 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     keyGeometry = new Map();
   const filenames = new Map(data.patches.map(p => [p.texture || `photos/${p.photo}`, p.textureSha256]));
   // Fixed denominator across all load phases: no resets when a new batch starts.
-  const deferred = data.parts.filter(p => p.board || p.section === "monitor-interior" ||
-    (p.section === "interior" && p.name.startsWith("keyboard-")));
-  const deferredNames = new Set(deferred.map(p => p.name));
-  const total = 2 + filenames.size + data.parts.length - deferred.length + data.keyMeshes.length;
+  // Enclosure openings expose real contents even with every cover closed.
+  // All geometry is required before the exhibit is ready; package instances
+  // still share meshes, and inspection requests reuse the completed promises.
+  const packageJobs = data.pcbComponents.models.filter(m => data.pcbComponents.instances.some(p => p.model === m.id)).length * 2;
+  const total = 2 + filenames.size + data.parts.length + data.keyMeshes.length + packageJobs;
   let completed = 1;
   const advance = () => onProgress(Math.min(99, Math.floor(++completed * 100 / total)));
   onProgress(Math.floor(completed * 100 / total));
+  const packageGeometry = new Map();
+  const initialPackages = loadPcbComponents(data, base, advance, packageGeometry);
+  initialPackages.catch(() => {}); // Failure is propagated by the awaited assembly below.
   await Promise.all(
     [...filenames].map(async ([name, hash]) => {
       const texture = await loader.loadAsync(
@@ -114,8 +118,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   );
   await Promise.all(
     data.parts.map(async (part) => {
-      const lazy=deferredNames.has(part.name);
-      const geometry = lazy ? new THREE.BufferGeometry() : toCreasedNormals(
+      const geometry = toCreasedNormals(
         await stl.loadAsync(modelAsset(part.file, base, part.sha256).href), Math.PI / 4);
 
       const mesh = new THREE.Mesh(
@@ -134,9 +137,9 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       mesh.userData.prototype = part.section === "prototype";
       if (mesh.userData.prototype) mesh.visible = false;
       group.add(mesh);
-      mesh.userData.loaded=!lazy;
+      mesh.userData.loaded=true;
       objects.set(part.name, mesh);
-      if(!lazy) advance();
+      advance();
     }),
   );
   await Promise.all(data.keyMeshes.map(async (part) => {
@@ -270,32 +273,20 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     }
   }
   const pcbPhotos=[];
-  const detailPromises = new Map(), packageGeometry = new Map();
+  const detailPromises = new Map();
   let pendingDetails = 0;
   const failedDetails = new Set();
   const detailScopes = ["keyboard", "monitor", "motherboard", "display-controller"];
-  const partScope = p => p.section === "monitor-interior" ? "monitor" : p.board || "keyboard";
   function loadDetails(scopes = detailScopes) {
     if (typeof scopes === "string") scopes = [scopes];
     return Promise.all(scopes.map(scope => {
       if (detailPromises.has(scope)) return detailPromises.get(scope);
       pendingDetails++; failedDetails.delete(scope); onDetails("loading");
       const boardData = {...data, pcbComponents: {...data.pcbComponents,
-        instances: data.pcbComponents.instances.filter(p => p.board === scope)},
-        pcbReferences: (data.pcbReferences || []).filter(p =>
-          scope === "monitor" ? p.section === "monitor-interior" : p.name === scope)};
-      const promise = Promise.all([
-        loadPcbComponents(boardData, base, () => {}, packageGeometry),
-        loadPcbPhotos(boardData, base),
-        Promise.all(deferred.filter(p => partScope(p) === scope).map(async part => {
-          const mesh = objects.get(part.name);
-          if (mesh.userData.loaded) return;
-          const geometry = toCreasedNormals(await stl.loadAsync(modelAsset(part.file,base,part.sha256).href),Math.PI/4);
-          mesh.geometry.dispose(); mesh.geometry=geometry; mesh.userData.loaded=true;
-        }))
-      ]).then(([packages,photos]) => {
+        instances: data.pcbComponents.instances.filter(p => p.board === scope)}};
+      const promise = initialPackages.then(meshes => {
+        const packages = meshes.filter(m => m.userData.board === scope);
         for (const mesh of [...packages,...loadPcbLabels(boardData)]) {group.add(mesh);objects.set(mesh.name,mesh);}
-        for (const mesh of photos) {mesh.visible=false;group.add(mesh);pcbPhotos.push(mesh);}
         inspectionDirty=true;group.userData.newDetails=true;
         if (--pendingDetails === 0) onDetails(failedDetails.size ? "error" : "ready");
       }).catch(error => {
@@ -304,6 +295,16 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       detailPromises.set(scope,promise);
       return promise;
     }));
+  }
+  let referencePromise;
+  function requestReferencePhotos() {
+    if (referencePromise) return referencePromise;
+    onDetails("loading");
+    referencePromise = loadPcbPhotos(data, base).then(photos => {
+      for (const mesh of photos) {mesh.visible=false;group.add(mesh);pcbPhotos.push(mesh);}
+      inspectionDirty=true;group.userData.newDetails=true;onDetails("ready");
+    }).catch(error => {referencePromise=undefined;onDetails("error");console.error("Reference photographs unavailable",error);});
+    return referencePromise;
   }
   let detailRequestQueued = false;
   function requestDetails() {
@@ -735,23 +736,11 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         !mesh.userData.prototype
       )
         mesh.visible = true;
-    for (const mesh of objects.values())
-      if (mesh.userData.interior)
-        mesh.visible =
-          inside ||
-          split > 0.01 ||
-          inspection.transparent ||
-          inspection.isolated !== "all" ||
-          (inspection.keyboardOpen && mesh.name.startsWith("keyboard-")) ||
-          ["psu-chassis", "keyboard-plate", "keyboard-switches"].includes(mesh.name);
-    for (const mesh of objects.values())
-      if (mesh.userData.monitorInterior) {
-        mesh.visible =
-          monitorOpen ||
-          inspection.transparent ||
-          inspection.isolated === "monitor";
+    for (const mesh of objects.values()) {
+      if (mesh.userData.interior || mesh.userData.monitorInterior) mesh.visible = true;
+      if (mesh.userData.monitorInterior)
         mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
-      }
+    }
     for (const mesh of pcbPhotos) {
       if (mesh.userData.artwork) {
         const source = inspection.referencePhoto
@@ -943,11 +932,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     objects.get("cable").visible = true;
     keyboard.position.set(0, data.keyboard.y + keyboardLift * 110, data.keyboard.z + keyboardLift * 110);
     mechanism.position.set(0, data.keyboard.y - keyboardLift * 155, data.keyboard.z + keyboardLift * 55);
-    mechanism.visible =
-      inside ||
-      keyboardLift > 0 ||
-      inspection.transparent ||
-      inspection.isolated === "keyboard";
+    mechanism.visible = true;
     // Instance transforms only change on input or disassembly, not every idle frame.
     if (dirty || beforeSplit !== split) {
       for (const [i, key] of data.keys.entries()) {
@@ -1059,12 +1044,14 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         newDetails || changedInside || beforeSplit !== split || fanMoved || drivesMoved,
     };
   }
+  await loadDetails();
   onProgress(100);
   return {
     group,
     annotations: data.annotations || [],
     evidence: data.evidence,
     loadDetails,
+    loadReferences: requestReferencePhotos,
     detailDistance(distance) {
       const next = distance < (fineDetails ? 2.0 : 1.7);
       if (next !== fineDetails) {
@@ -1073,6 +1060,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       }
     },
     inspect(value) {
+      if (value.referencePhoto) requestReferencePhotos();
       if(value.keyboardOpen || value.transparent || value.referencePhoto || ["keyboard","monitor","logic","motherboard","display-controller"].includes(value.isolated) || ["motherboard","display-controller"].includes(value.focus)) requestDetails();
       if (
         (value.demoPhase !== undefined &&

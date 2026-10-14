@@ -38,8 +38,7 @@ test("assembly isolation, transparent covers and keyboard disassembly remain rev
   }
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await page.locator("#open-keyboard").check();
   await expect(page.locator("#inspection-title")).toHaveText(
     "Inside the keyboard",
@@ -246,7 +245,7 @@ test("owner controller separates as one assembly and monitor underside follows i
   expect(state.opened.length).toBeGreaterThan(1);
   expect(state.opened.every(p => p.visible && p.position[2] > 0)).toBe(true);
   expect(new Set(state.opened.map(p => JSON.stringify(p.position))).size).toBe(1);
-  expect(state.closed.every(p => !p.visible && p.position.every(v => v === 0))).toBe(true);
+  expect(state.closed.every(p => p.visible && p.position.every(v => v === 0))).toBe(true);
   expect(state.moved[1]).toEqual(state.moved[0]);
   expect(state.moved[2]).toEqual(state.moved[0]);
   expect(state.moved[3]).toEqual(state.moved[0]);

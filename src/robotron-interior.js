@@ -322,7 +322,7 @@ export function loadPcbLabels(data) {
   const ctx=canvas.getContext('2d');ctx.fillStyle='#c8c9bd';ctx.textAlign='center';ctx.font='13px monospace';
   const groups=new Map(),pose=new THREE.Matrix4(),rotation=new THREE.Matrix4();
   items.forEach((p,i)=>{
-    const col=i%8,row=Math.floor(i/8);ctx.fillText(p.ref,col*128+64,row*64+23);ctx.fillText(p.label.split(' (')[0].slice(0,16),col*128+64,row*64+43);
+    const col=i%8,row=Math.floor(i/8);if(!p.ref.startsWith('P'))ctx.fillText(p.ref,col*128+64,row*64+23);ctx.fillText(p.label.split(' (')[0].slice(0,16),col*128+64,row*64+43);
     if(!groups.has(p.board))groups.set(p.board,{positions:[],uvs:[]});const g=groups.get(p.board);
     const model=data.pcbComponents.models.find(m=>m.id===p.model),w=model.bodySize[0]*.82,h=model.bodySize[1]*.75;
     pose.makeRotationZ(p.rotation*Math.PI/180).multiply(rotation.makeRotationX(p.side===-1?Math.PI:0)).setPosition(...p.position);

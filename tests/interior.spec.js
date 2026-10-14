@@ -85,8 +85,7 @@ test("Inside stays open across camera changes and closes only with its control",
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   expect(modelRequests).toEqual([revision]);
   const mechanism = manifest.parts.find((p) => p.name === "drive-mechanisms");
   expect(
@@ -134,8 +133,7 @@ test("monitor shell opens independently and exposes reference tube geometry", as
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await page
     .getByRole("button", { name: "Inside monitor", exact: true })
     .click();
@@ -165,4 +163,48 @@ test("monitor shell opens independently and exposes reference tube geometry", as
   expect(manifest.parts.some((p) => p.name === "monitor-shell-lower")).toBe(
     true,
   );
+});
+
+test('closed sheet-metal enclosures have 1 mm skins and genuine vent openings', async () => {
+  const {Mesh,MeshBasicMaterial,DoubleSide,Raycaster,Vector3}=await import('three');
+  const samples=[
+    ['case-base',[100,-80,-10],[0,0,1]],
+    ['case-base',[-270,-180,20],[1,0,0]],
+    ['case-lid',[100,0,150],[0,0,-1]],
+    ['fascia',[60,-230,110],[0,1,0]],
+    ['monitor-shell-lower',[-180,25,250],[1,0,0]],
+    ['bezel',[143,-180,320],[0,1,0]],
+    ['keyboard-bottom',[180,manifest.keyboard.y,-10],[0,0,1]],
+    ['keyboard-shell',[-270,manifest.keyboard.y,10],[1,0,0]],
+  ];
+  for(const [name,origin,direction] of samples){
+    const bytes=readFileSync(new URL(`meshes/${name}.stl`,root));
+    const geometry=new STLLoader().parse(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+    const mesh=new Mesh(geometry,new MeshBasicMaterial({side:DoubleSide}));mesh.updateMatrixWorld();
+    const distances=new Raycaster(new Vector3(...origin),new Vector3(...direction)).intersectObject(mesh).map(h=>h.distance).filter((d,i,a)=>!i||Math.abs(d-a[i-1])>.001);
+    expect(distances.length,name).toBeGreaterThanOrEqual(2);
+    expect(Math.abs(distances[1]-distances[0]-1),name).toBeLessThan(.02); // tessellated bend surfaces
+    geometry.dispose();mesh.material.dispose();
+  }
+});
+
+test('closed vents reveal loaded internal parts without opening any cover',async({page})=>{
+  test.setTimeout(60000);
+  await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
+  const result=await page.evaluate(async()=>{
+    const {loadRobotron}=await import('/src/robotron-model.js');
+    const {Texture,Raycaster,Vector3}=await import('/node_modules/three/build/three.module.js');
+    const model=await loadRobotron(new Texture());model.tick();model.group.updateMatrixWorld(true);
+    const probe=(origin,direction)=>{
+      const ray=new Raycaster(new Vector3(...origin).applyMatrix4(model.group.matrixWorld),new Vector3(...direction).transformDirection(model.group.matrixWorld));
+      const hits=ray.intersectObjects([...model.objects.values()].filter(m=>m.visible&&!m.userData.prototype),false);
+      return hits.slice(0,3).map(h=>({name:h.object.name,interior:!!(h.object.userData.interior||h.object.userData.monitorInterior)}));
+    };
+    const required=['logic-boards-motherboard','logic-boards-display-controller','tube-funnel','tube-neck','keyboard-pcb','keyboard-controller-board','drive-frames'];
+    return {caseVent:probe([-270,-155,72],[1,0,0]),monitorVent:probe([0,95,500],[0,0,-1]),complete:required.every(n=>{const m=model.objects.get(n);return m.visible&&m.userData.loaded&&m.geometry.attributes.position.count>0;})};
+  });
+  expect(result.complete).toBe(true);
+  expect(result.caseVent[0]?.interior,JSON.stringify(result.caseVent)).toBe(true);
+  expect(result.monitorVent[0]?.interior,JSON.stringify(result.monitorVent)).toBe(true);
+  await expect(page.locator('#open-case')).not.toBeChecked();await expect(page.locator('#open-monitor')).not.toBeChecked();
 });
