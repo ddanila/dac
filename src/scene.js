@@ -273,7 +273,7 @@ export function createScene(
   const ray = new THREE.Raycaster(),
     point = new THREE.Vector2();
   let down;
-  function hitAt(e) {
+  function pointerRay(e) {
     const r = renderer.domElement.getBoundingClientRect();
     point.set(
       ((e.clientX - r.left) / r.width) * 2 - 1,
@@ -281,9 +281,12 @@ export function createScene(
     );
     // Picking must not depend on whether an on-demand render has happened yet.
     camera.updateMatrixWorld();
+    ray.setFromCamera(point, camera);
+  }
+  function hitAt(e) {
+    pointerRay(e);
     machine.updateWorldMatrix(true, true);
     robotron?.group.updateWorldMatrix(true, true);
-    ray.setFromCamera(point, camera);
     return kind === 2 && robotron
       ? ray.intersectObjects(visiblePickTargets(robotron.group), false)[0]?.object
       : ray.intersectObject(power)[0]?.object;
@@ -332,7 +335,9 @@ export function createScene(
     }
     if (down) {
       if(down.ghost && down.origin){
-        hitAt(e);
+        // Drag placement needs only the ray/plane intersection, not a pick
+        // against every triangle inside the museum machine.
+        pointerRay(e);
         const p=ray.ray.intersectPlane(down.plane,new THREE.Vector3());
         if(p){down.ghost.position.copy(p.sub(down.origin));renderRequested=true;}
       }
