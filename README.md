@@ -76,7 +76,7 @@ drive PIP copying and printer output using the bundled reference disk.
 
 ## Current Robotron model
 
-Canonical model v36 uses the W/M motherboard with integrated U8272 and a separate solder-side-up display controller. Owner photographs guide the fan, drive adapters, carrier windows, underside rotors, cover hardware and clean exterior. The enclosures have 1 mm bent painted skins, hollow front returns and open vents. The October 14 photos of this specimen also establish 39 display-board ICs and visible passives; mainboard placement still needs complete photo calibration. The browser imports the canonical export; physical verification remains independent of photo/schematic evidence. The museum does not claim an exact reconstruction of hidden circuitry.
+Canonical model v37 uses the W/M motherboard with integrated U8272 and a separate solder-side-up display controller. Owner photographs guide the fan, drive adapters, carrier windows, underside rotors, cover hardware and clean exterior. The enclosures have 1 mm bent painted skins, hollow front returns and open vents. The October 14 photos of this specimen also establish 39 display-board ICs and visible passives; mainboard placement still needs complete photo calibration. The browser imports the canonical export; physical verification remains independent of photo/schematic evidence. The museum does not claim an exact reconstruction of hidden circuitry.
 
 All keyboard, monitor and logic-board geometry loads before the exhibit is marked ready, so internals remain visible through openings with the covers closed. Repeated DIP package meshes share geometry across boards, including concurrent requests. Optional reference-photo overlays load only when selected. The percentage includes all required geometry; a failed geometry request leaves an explicit unavailable state rather than presenting an empty case as complete. Reloading retries it. Loading optimizations must preserve the visual experience. STL triangles now use shared indexed vertices after crease normals are computed: all 203 meshes retain identical expanded attributes, while the stored vertex count drops by 66%. Bounds accelerate picking, and disk dragging computes its ray directly instead of repeatedly picking the entire model.
 
@@ -122,3 +122,20 @@ errors. Exact raster/DMA scheduling and the 16-byte FIFO overflow behavior
 remain unimplemented. Focused peripheral tests, S600 modifier-release tests,
 WASM smoke/snapshot tests and native/WASM historical-boot parity pass. No
 Verilog checks were run. Physical print/fit classifications are unchanged.
+
+
+Model v37 reuses the pinned KiCad DIP bodies and bent leads on the keyboard
+controller, with shared footprint-derived holes and solder eyes. Clean top and
+underside routing follows the owner photos; it remains visual artwork, not a
+verified netlist. The visible motherboard RAM, CTC and four large processor-area package positions now use owner
+photo registration against the provisional board envelope. Hidden regions and
+exact dimensions remain unverified. The canonical review set includes a
+separate controller-underside comparison.
+
+Emulator 0.8.4 adds per-row 16 × 7-bit attribute FIFOs, wrap/overwrite behavior
+and read-clear overflow status. FO is sampled on the existing nominal display
+frame cadence, independent of rendering; exact row-fetch/DMA latency remains
+unimplemented. Native/WASM historical boot and snapshot checks pass. The old
+long keyboard test is split into four independent scenarios with the same
+coverage and existing timeout, avoiding a single near-limit interaction chain.
+The previous 0.8.3 core is preserved for saved sessions.

@@ -143,7 +143,7 @@ inspections.motherboard = {
   evidence:"Your specimen + documented W/M design · placement and dimensions estimated",
   photo:"20261014_072654600",
   views:[["Motherboard components","20261014_072654600"],["Processor area","20261014_073200542"],["Rear connectors","20261014_073219091"]],
-  text:"The original W placement drawing guides the 32 RAM packages (M4164B-12 in your photo; U2164 in the drawing), UA880 CPU, UA858 DMA, UA8560 SIO, two CTCs and U8272 floppy controller at A44. The controller belongs on this main board. KiCad package geometry supplies nominal bodies and leads; local dimensions and complete placement remain unverified. Click an individual chip to inspect its role, owner photo and original drawing. This is a clean drawing-based reconstruction, not a traced electrical netlist.",
+  text:"Owner photos now guide the positions of the two CTCs and 32 RAM packages (M4164B-12 in your photo; U2164 in the drawing). The UA880 CPU, UA858 DMA, UA8560 SIO and U8272 floppy controller at A44 follow the documented W design. The W drawing supplies component references; the four large processor-area packages also use owner-photo registration. Smaller unregistered parts retain estimated placement. The controller belongs on this main board. KiCad package geometry supplies nominal bodies and leads; local dimensions and complete placement remain unverified. Click an individual chip to inspect its role, owner photo and original drawing. This is a clean drawing-based reconstruction, not a traced electrical netlist.",
   reference:"https://xepb.org/robotron/docs/1715w.zip"
 };
 inspections["display-controller"] = {

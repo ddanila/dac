@@ -41,3 +41,8 @@ are separated at z=2.5 mm and centered at x=1.27 mm; geometry unchanged.
 See tools/convert-transistors.py and transistors.json. The keyboard uses
 this generic package; manufacturer mould, exact lead bends and electrical
 part identification remain provisional. These derivatives are NOT MIT.
+
+2026-10-14, export v37: keyboard-controller DIP bodies/leads now reuse the
+same pinned library. tools/configure-keyboard-components.py rotates upstream
+footprints -90 degrees for board holes and solder joints. Package shapes are
+unchanged; positioning, socket seating and artwork are photo estimates.
