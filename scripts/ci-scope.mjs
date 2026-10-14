@@ -5,7 +5,7 @@ export function scopeFor(files) {
   const visualTests = /^(assembly|crt|drive-levers|drive-motion|exhibit-improvements|exploration|fan|inspection|interior|keyboard|museum|pcb-components)\.spec\.js$/;
   const visual = files.length && files.every(file =>
     file.startsWith('public/models/') || file.startsWith('exhibits/') ||
-    file.endsWith('.md') || file === '.github/workflows/site.yml' || file === 'scripts/ci-scope.mjs' ||
+    file.endsWith('.md') || file === '.github/workflows/site.yml' || file === 'scripts/ci-scope.mjs' || file === 'playwright.config.js' ||
     /^src\/(robotron-(model|materials|interior)|component-detail|inspection|scene)\.js$/.test(file) ||
     (file.startsWith('tests/') && visualTests.test(file.slice(6))));
   return visual ? 'visual' : 'full';

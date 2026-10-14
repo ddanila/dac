@@ -285,6 +285,11 @@ export function createScene(
   }
   function hitAt(e) {
     pointerRay(e);
+    // Apply queued key/media/inspection state before picking, even when a
+    // software-rendered frame has not caught up with the input event yet.
+    const changed = robotron?.tick();
+    if (changed?.dirty) renderRequested = true;
+    if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     machine.updateWorldMatrix(true, true);
     robotron?.group.updateWorldMatrix(true, true);
     return kind === 2 && robotron
