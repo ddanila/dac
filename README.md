@@ -76,7 +76,7 @@ drive PIP copying and printer output using the bundled reference disk.
 
 ## Current Robotron model
 
-Canonical model v37 uses the W/M motherboard with integrated U8272 and a separate solder-side-up display controller. Owner photographs guide the fan, drive adapters, carrier windows, underside rotors, cover hardware and clean exterior. The enclosures have 1 mm bent painted skins, hollow front returns and open vents. The October 14 photos of this specimen also establish 39 display-board ICs and visible passives; mainboard placement still needs complete photo calibration. The browser imports the canonical export; physical verification remains independent of photo/schematic evidence. The museum does not claim an exact reconstruction of hidden circuitry.
+Canonical model v38 uses the W/M motherboard with integrated U8272 and a separate solder-side-up display controller. Owner photographs guide the fan, drive adapters, carrier windows, underside rotors, cover hardware and clean exterior. The enclosures have 1 mm bent painted skins, hollow front returns and open vents. The October 14 photos of this specimen also establish 39 display-board ICs and visible passives; mainboard placement still needs complete photo calibration. The browser imports the canonical export; physical verification remains independent of photo/schematic evidence. The museum does not claim an exact reconstruction of hidden circuitry.
 
 All keyboard, monitor and logic-board geometry loads before the exhibit is marked ready, so internals remain visible through openings with the covers closed. Repeated DIP package meshes share geometry across boards, including concurrent requests. Optional reference-photo overlays load only when selected. The percentage includes all required geometry; a failed geometry request leaves an explicit unavailable state rather than presenting an empty case as complete. Reloading retries it. Loading optimizations must preserve the visual experience. STL triangles now use shared indexed vertices after crease normals are computed: all 203 meshes retain identical expanded attributes, while the stored vertex count drops by 66%. Bounds accelerate picking, and disk dragging computes its ray directly instead of repeatedly picking the entire model.
 
@@ -133,9 +133,27 @@ exact dimensions remain unverified. The canonical review set includes a
 separate controller-underside comparison.
 
 Emulator 0.8.4 adds per-row 16 × 7-bit attribute FIFOs, wrap/overwrite behavior
-and read-clear overflow status. FO is sampled on the existing nominal display
-frame cadence, independent of rendering; exact row-fetch/DMA latency remains
-unimplemented. Native/WASM historical boot and snapshot checks pass. The old
+and read-clear overflow status. In 0.8.4, FO was sampled on a nominal frame cadence; the current scheduler is described below. Native/WASM historical boot and snapshot checks pass. The old
 long keyboard test is split into four independent scenarios with the same
 coverage and existing timeout, avoiding a single near-limit interaction chain.
 The previous 0.8.3 core is preserved for saved sessions.
+
+Model v38 locally registers eleven processor-area packages and the long socket
+against nominal DIP-40 pin pitch in the owner photograph. Surrounding parts and
+whole-board dimensions remain provisional. Connector/resistor leads now pass
+through matching keyboard PCB holes with solder eyes; the pale connector has
+its photographed closed segmented bridge. Clean material profiles distinguish
+solder, tinned metal, phenolic substrate, ceramic and IC moulding. The canonical
+review gallery adds a motherboard processor-area view.
+
+Emulator 0.8.5 schedules 8275 row fills, burst gaps, stop-DMA dummy reads,
+underrun suppression and raster IR status independently of browser rendering.
+The nominal family clock and idealized local memory response are documented;
+this is not per-byte board timing or verified CPU interrupt wiring. Snapshot
+layout 4 retains scheduler state; the preserved 0.8.4 core serves older sessions.
+
+CI now distributes individual tests across the existing two Chromium runners,
+keeping one worker per runner and unchanged job limits. Closed/open drive drags
+and desktop/mobile typing checks are independent scenarios, so a slow combined
+interaction sequence no longer consumes their shared timeout. See
+[Playwright sharding](https://playwright.dev/docs/test-sharding).

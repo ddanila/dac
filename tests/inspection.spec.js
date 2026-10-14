@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { PerspectiveCamera, Vector3, Euler } from "three";
 import { keyPoint } from "./robotron-picking.js";
 
-test("typing view keeps screen and working modeled keys visible, including on mobile", async ({
+test("typing view routes modeled and physical keyboard input", async ({
   page,
 }) => {
   // Multi-step WebGL interactions take longer on CI software rendering.
@@ -47,7 +47,13 @@ test("typing view keeps screen and working modeled keys visible, including on mo
     [70, true],
     [70, false],
   ]);
+});
+
+test("mobile typing view keeps screen, model and notes ordered", async ({page}) => {
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo',{timeout:20000});
+  await page.locator('[data-view="typing"]').click();
   await expect(page.locator("#screen-panel")).toBeVisible();
   await expect
     .poll(() =>
