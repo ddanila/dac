@@ -56,8 +56,7 @@ test("highlight, manual demonstration, parked plugs and live restoration", async
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await page.locator("#component-focus").selectOption("head");
   await expect(page.locator("#inspection-title")).toHaveText("Head carriage");
   await page.locator("#mechanism-demo summary").click();

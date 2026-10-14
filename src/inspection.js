@@ -95,7 +95,7 @@ export const inspections = {
   },
   assembly: {
     title: "Open the case and keyboard",
-    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the keyboard deck lifts away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; the W/M logic boards follow the W drawings and owner solder-side photo, while unseen wiring remains estimated. Owner photos now establish the fan retainers, PSU-cover grommets and drive adapters. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
+    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the keyboard deck lifts away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; the mainboard follows the W drawing and the display-board population follows the new owner component-side photos, while unseen wiring remains estimated. Owner photos now establish the fan retainers, PSU-cover grommets and drive adapters. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
   },
 };
 Object.assign(inspections, {
@@ -108,7 +108,7 @@ Object.assign(inspections, {
   "component-logic": {
     title: "System logic boards",
     evidence: "Documented W/M design with owner display-board reference",
-    text: "The W/M motherboard integrates the U8272 floppy controller, CPU and 256 KB RAM. The separate display controller is installed solder-side up, as photographed in this specimen. Mainboard placement follows the W drawings; display footprints follow the owner photo. Hidden component identities, exact board revision and unmeasured dimensions remain provisional. KiCad package credits and licences are retained.",
+    text: "The W/M motherboard integrates the U8272 floppy controller, CPU and 256 KB RAM. The separate display controller is installed solder-side up, as photographed in this specimen. Mainboard placement follows the W drawings; display footprints follow the owner photo. The October 14 photos now show both component faces. Display population follows this specimen; motherboard placement and unmeasured dimensions remain provisional. KiCad package credits and licences are retained.",
     reference: "https://xepb.org/robotron/docs/1715w.zip",
   },
   "component-psu": {
@@ -133,29 +133,34 @@ Object.assign(inspections, {
   "component-drives": {
     ...inspections["drive-labels"],
     evidence: "Owner photographs · hidden dimensions estimated",
+    views:[["Carrier underside","20261014_073718163"],["Drive rear board","20261014_073642069"],["Rear plate","20261014_073636885"]],
   },
 });
 inspections["rear-panel"] = { ...inspections.back, title: "Rear sockets and markings" };
 inspections.logic = inspections["component-logic"];
 inspections.motherboard = {
   ...inspections["component-logic"], title:"W/M motherboard",
-  evidence:"Documented W/M design · placement and dimensions estimated",
+  evidence:"Your specimen + documented W/M design · placement and dimensions estimated",
+  photo:"20261014_072654600",
+  views:[["Motherboard components","20261014_072654600"],["Processor area","20261014_073200542"],["Rear connectors","20261014_073219091"]],
   text:"The original W placement drawing guides the 32 U2164 RAM packages, UA880 CPU, UA858 DMA, UA8560 SIO, two CTCs and U8272 floppy controller at A44. The controller belongs on this main board. KiCad package geometry supplies nominal bodies and leads; local dimensions and the exact population of this specimen remain unverified. This is a clean drawing-based reconstruction, not a traced electrical netlist.",
   reference:"https://xepb.org/robotron/docs/1715w.zip"
 };
 inspections["display-controller"] = {
   title:"W/M display controller", evidence:"Your specimen + documented W/M design · exact revision unconfirmed",
-  photo:"20261013_150312308",
-  text:"The owner photograph establishes the solder-side-up mounting, visible footprint groups and selected trace bends. Packages are underneath the board, with drilled lead holes, pads and solder on top. The CRT schematic guides the controller and SRAM package roles; the photographed 310402 marking is not an exact revision match to the available 310412 drawing. Dimensions, hidden component assignments and untraced routing remain estimates. Source-photo mode is optional evidence, not the normal board surface."
+  photo:"20261014_072935298",
+  views:[["Component side","20261014_072935298"],["Board marking","20261014_072941759"],["Wound component","20261014_072944002"],["Installed solder side","20261013_150312308"]],
+  text:"The board is mounted solder-side up. Its component side now follows Danila’s October 14 photo: 39 visible IC packages, three UL6516D memories, Siemens SAB8275P, upright red capacitors and the wound component. Clean geometry and legible package labels replace inferred hidden population; small dimensions, pin-one orientation and copper routing remain provisional. The visible 1.93.310402.1 B 2 marking does not prove equivalence to the available 310412 drawing. Source-photo mode remains optional evidence."
+
 };
 inspections["fan-detail"]={title:"Fan mounting",evidence:"Your specimen · local dimensions estimated",photo:"20261013_150303351",text:"Crossed metal retaining strips, corner screws and pale cushioning follow this machine. The rotor spins when powered; speed remains illustrative."};
 inspections["adapter-detail"]={title:"Drive ribbon adapters",evidence:"Your specimen + documented interface · local dimensions estimated",photo:"20261013_150516969",text:"The brown 05-330-0024 boards carry a black drive-edge socket and a taller pale ribbon connector with its retaining latch. Individual 34-way drive and 26-way ribbon contacts replace the previous blocks. Clean routing follows visible staggered bends without claiming a verified electrical pinout. Ribbon routes terminate on the W/M main board; hidden slack remains estimated."};
-inspections["case-cover"]={title:"Inside the case cover",evidence:"Your specimen · local dimensions estimated",photo:"20261013_150009163",text:"Two hat-section stiffeners span the width. Separate black vent inserts, their screws, folded return lips and slotted fixing strips follow the removed cover photographs. The fascia remains attached when the cover lifts. Wear and corrosion are not reproduced."};
+inspections["case-cover"]={title:"Inside the case cover",evidence:"Your specimen · local dimensions estimated",photo:"20261013_150009163",text:"Two hat-section stiffeners span the width. Separate black vent inserts, their screws, folded return lips and slotted fixing strips follow the removed cover photographs. The fascia remains attached when the cover lifts. All three enclosures use owner-confirmed 1 mm bent painted sheet, with hollow returns rather than thick solid fronts. Wear and corrosion are not reproduced."};
 for (const board of ["motherboard", "display-controller"])
   inspections[board + "-under"] = {
     ...inspections[board],
     title: inspections[board].title + " underside",
-    text: board === "display-controller" ? "This lower face carries the modeled packages. The upper face is the photographed solder side. Exact hidden component population and dimensions remain provisional; the CRT schematic supplies documented package roles." : "Mounting holes, metal pads and solder fillets follow the drawing-based package placement. Unseen underside routing is not invented.",
+    text: board === "display-controller" ? "This lower face now follows the owner’s component-side photo, including 39 IC packages, upright red capacitors and the wound component. The upper face is the solder side. Small dimensions and untraced routing remain provisional." : "Mounting holes, metal pads and solder fillets follow the drawing-based package placement. Unseen underside routing is not invented.",
   };
 Object.assign(inspections, {
   "focus-head": {

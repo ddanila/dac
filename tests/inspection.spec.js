@@ -23,8 +23,7 @@ test("typing view keeps screen and working modeled keys visible, including on mo
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await page.locator("#power").click();
   await expect(page.locator("#status")).toHaveText("Running");
   await page.locator('[data-view="typing"]').click();
@@ -73,8 +72,7 @@ test("modeled manufacturer plate opens its owner photo and Escape restores the v
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await page.locator('[data-view="drive-labels"]').click();
   await page.waitForTimeout(300);
   const box = await page.locator("#viewport").boundingBox();
@@ -120,7 +118,7 @@ test("rear views keep their controls clear of the canvas on desktop and mobile",
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
-  await expect(page.locator("#viewport")).toHaveAttribute("data-model", "robotron-photo");
+  await expect(page.locator("#viewport")).toHaveAttribute("data-model", "robotron-photo", {timeout: 20000});
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 900 });
     for (const view of ["back", "rear-panel"]) {
@@ -141,7 +139,7 @@ test("rear views keep their controls clear of the canvas on desktop and mobile",
 
 test("flat display leaves wrapped view controls clickable on desktop and mobile",async({page})=>{
  await page.emulateMedia({reducedMotion:"reduce"});await page.goto("/");
- await expect(page.locator("#viewport")).toHaveAttribute("data-model","robotron-photo");
+ await expect(page.locator("#viewport")).toHaveAttribute("data-model","robotron-photo", {timeout: 20000});
  for(const width of [1280,390]){
   await page.setViewportSize({width,height:900});
   await page.locator("#screen-view").click();

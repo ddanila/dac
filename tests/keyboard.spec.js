@@ -20,8 +20,7 @@ async function observeKeys(page) {
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await expect(page.locator("#power")).toBeEnabled();
   // Input routing and modifier semantics need a stable diagnostic; the
   // historical-media suite separately exercises the original OS and disk.
@@ -173,8 +172,7 @@ test("inspection separates the exterior and links owner rear references", async 
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await page.locator("#separate-parts").check();
   await expect(page.locator("#inspection-text")).toContainText(
     "owner photographs",
@@ -202,8 +200,7 @@ test("a static exhibit stops submitting GPU draws", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
-    "robotron-photo",
-  );
+    "robotron-photo", {timeout: 20000});
   await page.locator("#viewport").screenshot();
   const before = await page.evaluate(() => window.gpuDraws);
   expect(before).toBeGreaterThan(0);

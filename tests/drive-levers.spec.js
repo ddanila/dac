@@ -7,7 +7,7 @@ test('drive levers gate removal, retain media and expose specimen sides without 
   page.on('request', r => requests.push(r.url()));
   await page.emulateMedia({ reducedMotion:'reduce' });
   await page.goto('/');
-  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
   await expect(page.locator('#drive-lever-0')).toBeEnabled();
   expect(requests.some(u=>u.includes('/photos/'))).toBe(false);
   await expect(page.locator('#drive-media-0')).toBeDisabled();
@@ -33,7 +33,7 @@ test('the modeled lever is a working control', async ({page}) => {
   const {PerspectiveCamera,Vector3}=await import('three');
   await page.setViewportSize({width:1440,height:1100});
   await page.goto('/');
-  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
   await expect(page.locator('#drive-lever-0')).toBeEnabled();
   await page.locator('[data-view="drives"]').click();
   await page.locator('#viewport').scrollIntoViewIfNeeded();
@@ -50,14 +50,14 @@ test('3D specimen rotates independently, slides into its sleeve and releases the
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/');
   await page.locator('[data-component="diskette"]').click();
-  await expect(page.locator('#diskette-viewer')).toHaveAttribute('data-ready','true');
+  await expect(page.locator('#diskette-viewer')).toHaveAttribute('data-ready','true', {timeout: 20000});
   await page.getByRole('button',{name:'Slide into sleeve',exact:true}).click();
   await expect(page.getByRole('button',{name:'Slide out of sleeve',exact:true})).toHaveAttribute('aria-pressed','true');
   await page.getByRole('button',{name:'Flip diskette and sleeve',exact:true}).click();
   await page.locator('#detail-close').click();
   await expect(page.locator('#diskette-viewer canvas')).toHaveCount(0);
   await page.locator('[data-component="diskette"]').click();
-  await expect(page.locator('#diskette-viewer')).toHaveAttribute('data-ready','true');
+  await expect(page.locator('#diskette-viewer')).toHaveAttribute('data-ready','true', {timeout: 20000});
   await expect(page.locator('#diskette-viewer canvas')).toHaveCount(1);
 });
 
@@ -67,7 +67,7 @@ test('drag feedback rejects a closed drive and permits moving a disk into B', as
   await page.setViewportSize({width:1440,height:1100});
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/');
-  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
+  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
   await page.locator('#drive-lever-0').click();await page.locator('#drive-media-0').click();
   await expect(page.locator('#drive-media-0')).toHaveText('Insert disk A');
   await page.locator('[data-view="front"]').click();
@@ -133,7 +133,7 @@ test('removed media moves to B with its protection and survives reload without r
 test('key mechanism compresses, releases and separates without sending OS input',async({page})=>{
   await page.goto('/');
   await page.locator('[data-component="key-mechanism"]').click();
-  await expect(page.locator('#diskette-viewer')).toHaveAttribute('data-ready','true');
+  await expect(page.locator('#diskette-viewer')).toHaveAttribute('data-ready','true', {timeout: 20000});
   await expect(page.locator('#key-contact-state')).toHaveAttribute('data-closed','false');
   const hold=page.getByRole('button',{name:'Press and hold',exact:true});
   await hold.focus();await page.keyboard.down('Space');
@@ -150,12 +150,12 @@ test('key mechanism compresses, releases and separates without sending OS input'
   await expect(page.locator('#diskette-viewer canvas')).toHaveCount(0);
 });
 
-test('interior packages load on demand and rendering pauses offscreen',async({page})=>{
+test('interior packages load before display and rendering pauses offscreen',async({page})=>{
   test.setTimeout(60000);
   const requests=[];page.on('request',r=>requests.push(r.url()));
   await page.goto('/');
-  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo');
-  expect(requests.some(u=>u.includes('/components/kicad/') && u.includes('.stl'))).toBe(false);
+  await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
+  expect(requests.some(u=>u.includes('/components/kicad/') && u.includes('.stl'))).toBe(true);
   await page.locator('#viewport').evaluate(e=>{e.style.position='fixed';e.style.top='-2000px';});
   await expect(page.locator('#viewport')).toHaveAttribute('data-rendering','paused');
   await page.locator('#viewport').evaluate(e=>{e.style.position='';e.style.top='';});

@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "fd20077d80e69c83a5a898c8bb1a3349073a0bac",
+  "revision": "8e7b09260a2513da5e0c3c642bc4c19acfb140ef",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "94b9e0cdc196ec679a8f9d5c92075555f6911a6e1b81a5dd488dcdd9b28db746"
+      "sha256": "05f9507bcfe3a13a0874597e9552976b6823fba680012798eeff737c6e85913f"
     },
     {
       "file": "LICENSE",
@@ -45,15 +45,15 @@
     },
     {
       "file": "meshes/case-base.stl",
-      "sha256": "809d2b90fa86b702494bd36758ba3559608a12c8c6132ec31d1f3418ee0b09b4"
+      "sha256": "b39999e34d26e45d66b4cc3fcc3034dabefd75bfc07d07f03461baefb7d1f4ff"
     },
     {
       "file": "meshes/case-lid.stl",
-      "sha256": "520cb0a9a9bb5c8082bac83ca5d98694d089e2adbaac9a4f526a6a3cb60f44e3"
+      "sha256": "d55623aa9d5dc9fea3e34c887e54dc9044b4a7debd2ccfde432d946a958ef4d3"
     },
     {
       "file": "meshes/fascia.stl",
-      "sha256": "0d13029017d36f4fb567beee8a014f656ae670c965dc2d9d0cbbca73a466314f"
+      "sha256": "7e7125399d412bb8284360c59e90bec75e12f29c84b2f1d1b2af87cfaf5975d5"
     },
     {
       "file": "meshes/drives.stl",
@@ -77,11 +77,11 @@
     },
     {
       "file": "meshes/monitor-shell-lower.stl",
-      "sha256": "352c75f65a0aa41cfc55f67de801f4f083c17d484a94bfb02e7849c7cfc2a2ec"
+      "sha256": "fd483cb23dd2e08b5ab648b0b453feb4adda0eaa85bd3cede01f2df8094a1df7"
     },
     {
       "file": "meshes/bezel.stl",
-      "sha256": "4e42560d25d85607212332418d1650ad54aa63af7537ad28b8956b5397a1e453"
+      "sha256": "4f341ab095bdd5a2a2c853429abfde174fce33f332f7d8ffb17aeacf8976c030"
     },
     {
       "file": "meshes/crt-rim.stl",
@@ -181,7 +181,7 @@
     },
     {
       "file": "meshes/drive-bracket.stl",
-      "sha256": "bb985a420293e7b4b2b69ec99b661534a462e3f8db0c51ec05b0e17df58b7ac7"
+      "sha256": "2f68387a7b3a52482e3d72347e32bd7f742ff7b9a4d36a95931da8717eec81d4"
     },
     {
       "file": "meshes/logic-boards-motherboard.stl",
@@ -189,7 +189,7 @@
     },
     {
       "file": "meshes/logic-boards-display-controller.stl",
-      "sha256": "063d7ac2340dbbaebd651856005266f29837aa48067d8aa90aa9cb325afdf3a5"
+      "sha256": "adbfe6ed42fe3999166296c845c0e75a677e11072ac5b2e4526c6e7f1ed34040"
     },
     {
       "file": "meshes/logic-connectors-motherboard.stl",
@@ -201,11 +201,11 @@
     },
     {
       "file": "meshes/psu-chassis.stl",
-      "sha256": "190b8441631d3a47dbcd65f8bb21151beace930731bca491bde1f8864dc93b77"
+      "sha256": "f29c4289e1f71961d8a1c0dcfba1e57d70fb6a7330324617e313366b1960cdb5"
     },
     {
       "file": "meshes/psu-cover.stl",
-      "sha256": "820a2d1f80c2368f73232449d64840d454965a02de99311a67a6466dd5c18a94"
+      "sha256": "75261fc9993cec4bacbddd782c0b7278a0de440a0de304d7f7e3c1cc12825d79"
     },
     {
       "file": "meshes/fan-frame.stl",
@@ -245,7 +245,7 @@
     },
     {
       "file": "meshes/monitor-shell-upper.stl",
-      "sha256": "1a6b7d060143d636f6c6704bc6922eb586a0ef183ccfb524e58a3d93369d6289"
+      "sha256": "2389b1fa9254859700c8d211b801b0d5ca6206aae88de2154e53062f3bf374fa"
     },
     {
       "file": "meshes/tube-funnel.stl",
@@ -305,11 +305,11 @@
     },
     {
       "file": "meshes/drive-spindle-0.stl",
-      "sha256": "fef28e58428c438d2dcfa16a9ea19d0df7a251f43f314f102dd31751670a69bc"
+      "sha256": "20a8a87751946b1be1d510204c41a360d710553df646c01a1d40bc2586aab6d6"
     },
     {
       "file": "meshes/drive-spindle-1.stl",
-      "sha256": "4c1c6f7949e3a96066f043347f2fbef7cb52b501d4facc3a03826027f139ed49"
+      "sha256": "a375d68aab3afe74d998bb9b1dab29c6f030e389af1f0a9660f5bfd5f3043375"
     },
     {
       "file": "meshes/drive-head-0.stl",
@@ -345,7 +345,7 @@
     },
     {
       "file": "meshes/logic-mounts-motherboard.stl",
-      "sha256": "358937fb913db26efea016ef3c316a496216d8171a06bbaf431e783c0f3f9d3b"
+      "sha256": "d778c04c25d94a6edb5f5cb3fd7e7b0d7414ec66d40e51b4b1a89f8244a8e0ae"
     },
     {
       "file": "meshes/logic-mounts-display-controller.stl",
@@ -353,7 +353,7 @@
     },
     {
       "file": "meshes/chassis-fasteners.stl",
-      "sha256": "ccdb97d8879384b90cb95d68821836afe676f8c402783b5d1a37caa34d893850"
+      "sha256": "20bfa50bf42f72c2e76b725b6c78849303a09924fb86270139dc16af07cf12f4"
     },
     {
       "file": "meshes/keyboard-plate.stl",
@@ -385,15 +385,19 @@
     },
     {
       "file": "meshes/logic-ceramics-motherboard.stl",
-      "sha256": "45e6b5dfe6e727ab558ef4c395ff655e04ae4208cc217f7a45ee34e42c86745a"
+      "sha256": "2bc9b5f59cd98ae9e05a855fe2fefcabc1ba86a9dcc20203a26ef8e1f8120a09"
     },
     {
       "file": "meshes/logic-ceramics-display-controller.stl",
-      "sha256": "ae344e06153cf95c9ef6046b9fe3d371a077aa0f474c6517cc53f0bbb43c33f7"
+      "sha256": "25f3adcf43f17a4d9ab89f9c0d1df34e33f64f99eda8ddf51ae6d5d60a3335f6"
     },
     {
       "file": "meshes/logic-electrolytics-motherboard.stl",
       "sha256": "9af8da41849c33ff56160429655b5cfb6d5f9edd0a31f5427dbea1cc5fce450c"
+    },
+    {
+      "file": "meshes/logic-electrolytics-display-controller.stl",
+      "sha256": "79472d6bf7f25769f42d8d78f11eabfe73d098cfa17b143ab34cbb386b836315"
     },
     {
       "file": "meshes/logic-crystals-motherboard.stl",
@@ -405,7 +409,11 @@
     },
     {
       "file": "meshes/logic-passive-leads-display-controller.stl",
-      "sha256": "d7df6867f2cc9b7357bf11c122d867024e32a05b2b146fea258cdb280b9a6827"
+      "sha256": "e2318fc98c68a4327603f89ac50c556dc1baa39992ffa6415ef10aed0e717e0e"
+    },
+    {
+      "file": "meshes/logic-film-display-controller.stl",
+      "sha256": "c892a559afb795bf93efc6e90c87979cbe6faea958a0f474e33a4e0cf9620a1f"
     },
     {
       "file": "meshes/logic-connector-contacts-motherboard.stl",
@@ -513,7 +521,7 @@
     },
     {
       "file": "meshes/rear-blanking-plates.stl",
-      "sha256": "6105ff9475458580533a1ef7dbee7a32d2f50f4e92422b862dfd0d1c951c8690"
+      "sha256": "bb17b279165d40831b1a88a0b8349ba68bc3987b43ead606f3c4adb9647a90d9"
     },
     {
       "file": "meshes/rear-legends.stl",
@@ -545,7 +553,7 @@
     },
     {
       "file": "meshes/monitor-joint-lip.stl",
-      "sha256": "321ef4e013c5118fb6e7886e23f775d31f598dd8d1f6d814c37f15c7c1c9bdc1"
+      "sha256": "b5b920006879a285bfd507c6ae1cef5bca4153d395ea69c98f68daddd3214194"
     },
     {
       "file": "meshes/keyboard-pcb-metal.stl",
@@ -689,7 +697,7 @@
     },
     {
       "file": "meshes/psu-grommets.stl",
-      "sha256": "1c47312834d61a785bef08dea57c7f020a4c8c475afb1545aa38998d9c497a41"
+      "sha256": "117a21a61fde5bf0753e2bf78529deaffdd961341e33145845f70c8cff66e86e"
     },
     {
       "file": "meshes/drive-adapter-boards.stl",
@@ -722,6 +730,14 @@
     {
       "file": "meshes/case-lid-fixings.stl",
       "sha256": "664d7a9657470acd9eb51ce5118a4f1d38627ac2cade7087afe126a4e4aa5dfb"
+    },
+    {
+      "file": "meshes/logic-inductors-motherboard.stl",
+      "sha256": "c107c81fca4a6263bc670aceda727d2e882e4e042e33b73b2307d0381e0f3515"
+    },
+    {
+      "file": "meshes/logic-inductors-display-controller.stl",
+      "sha256": "aae90ecdbc6fa9cafcf21030537b0b9cfbc42a4ba955396ba6e81c19390e1379"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1108,6 +1124,94 @@
       "sha256": "c4315e042e36bcc5792184b4c441ec75a1bbe182dee51540112c442607a00be1"
     },
     {
+      "file": "photos/PXL_20261014_072654600.jpg",
+      "sha256": "9180e8433e201d026233cea53f8a42321bbdb174bad33d0a2118e98c33be7b8f"
+    },
+    {
+      "file": "photos/PXL_20261014_072658072.jpg",
+      "sha256": "f2cc8ef0cd5736464ae93f0c039a721cf2e9abf6017a5f61fac5632b70170b01"
+    },
+    {
+      "file": "photos/PXL_20261014_072700902.jpg",
+      "sha256": "788862df1cd2dffc1a4c165e74af6cc6d2155ffe11f7aa10b877a0c3de39d927"
+    },
+    {
+      "file": "photos/PXL_20261014_072704307.jpg",
+      "sha256": "f614a7623c802d8d12abf0f0dcda490702f6adfb0f4d844936eb77e283e57c63"
+    },
+    {
+      "file": "photos/PXL_20261014_072709950.jpg",
+      "sha256": "b48421d841028e964786d788e92ece36ca0e1cbce1ebb573e21e4c1db6ccd848"
+    },
+    {
+      "file": "photos/PXL_20261014_072719957.jpg",
+      "sha256": "5b511e760ce7951ab31a58664d1a07d9962ea86f089f799c79cf6b6e82bc83a4"
+    },
+    {
+      "file": "photos/PXL_20261014_072723829.jpg",
+      "sha256": "a937be9a2e0624cf9c14e813e1c1a7fce3b08aa92ade34903f8e6799dac6f1cb"
+    },
+    {
+      "file": "photos/PXL_20261014_072935298.jpg",
+      "sha256": "ccd0564094dd402c9cbbb4e4d62524fecbd25e1a5eb4469d65b03eecc906f1c5"
+    },
+    {
+      "file": "photos/PXL_20261014_072941759.jpg",
+      "sha256": "ba341be35b01eaea92c5ddc1db3a1485e48bf00e4d5a4e1782fda56dc054ef51"
+    },
+    {
+      "file": "photos/PXL_20261014_072944002.jpg",
+      "sha256": "7e13487ca39a2f80f446236c6c5bd82105b2ceb4053c9fa1534ac6b73746d11f"
+    },
+    {
+      "file": "photos/PXL_20261014_073200542.jpg",
+      "sha256": "009c5c33ee7699a137a67b2bd0de70a6c697650e7f9b07b46d15d371c8372283"
+    },
+    {
+      "file": "photos/PXL_20261014_073203748.jpg",
+      "sha256": "7288638de437cb165eca0f67a7049b83739c3130c2084002b95f5dade5278072"
+    },
+    {
+      "file": "photos/PXL_20261014_073213563.jpg",
+      "sha256": "7ed70e6c8f911100b2d2fc5bcbab7dfaedc92d15979c0383ec28cf8f93b02800"
+    },
+    {
+      "file": "photos/PXL_20261014_073219091.jpg",
+      "sha256": "9fbc047c7d3fc08bc6d2ca73b90bd2f79f7ad2286ba5658d99d7cbdb6d0256cf"
+    },
+    {
+      "file": "photos/PXL_20261014_073309497.jpg",
+      "sha256": "fbf170463d15b0237a0fa5d623acefc3e3684c812315c493409a5ab6391953d5"
+    },
+    {
+      "file": "photos/PXL_20261014_073311162.jpg",
+      "sha256": "1d0ebf327a6451f2f6eb50360b943d168cba15051bcf7dfd0b0646d61ec822e7"
+    },
+    {
+      "file": "photos/PXL_20261014_073322148.jpg",
+      "sha256": "a0c95da0669919137cb923036f788a384ab3d66f5f90a13e646cdbf7cce645e0"
+    },
+    {
+      "file": "photos/PXL_20261014_073327415.jpg",
+      "sha256": "f9280c44478cf6007bd40cb804e174b1bd312435dd7ae34da5e80ed57277d56d"
+    },
+    {
+      "file": "photos/PXL_20261014_073636885.jpg",
+      "sha256": "e84d39f71858c5d10515868c2b45a8586561dc719bcfaa6b117e11329b7c18d8"
+    },
+    {
+      "file": "photos/PXL_20261014_073642069.jpg",
+      "sha256": "74e85357a78c91a5c0336ebdd36658b398ee8a89c32dbeaba340a7b437155e75"
+    },
+    {
+      "file": "photos/PXL_20261014_073718163.jpg",
+      "sha256": "f55ecfd0dec4d1d47153900bfecdec60dde530c0a5bd2ba680e74c0c8b67c04c"
+    },
+    {
+      "file": "photos/PXL_20261014_073730822.jpg",
+      "sha256": "8002e2129090fedadad003786551d08020a9a54ce4adee961d4ab1441ac033f2"
+    },
+    {
       "file": "reference/robotrontechnik/monitor-board.jpeg",
       "sha256": "cdd00f4f69605d2511a00fa0bdc02ed954b42f8150712ac796c183ff2d01732a"
     },
@@ -1233,23 +1337,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "90807e1a137a93bc563bf5143a743ee2bb48f3886e497b53a467c1b1f37faa69"
+      "sha256": "f8282dd7b66ac7ee2b26458cb4aab877c67c6d0504f455bdc6edd3c07d52ce74"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "6965eb30a527e2fc2d15a04a72bc67f8fdff46dce07644c754e81e02e31ffe94"
+      "sha256": "1755c2c3e2352ff57b9cdf17bb4d9c5d53ebf73085a1ce22958b51b20cca55aa"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "19837d2163700101642d06fc5ca0d9684396d34156103f4d52c0730550d577b9"
+      "sha256": "6463365e23cf68ab24495eed6318ad47e4fb7e12b3a041198df684ecc72219c1"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "d2bcd9f94a181af7908f421843f9f1a6d8da1a7cecc6f0438336461af91620eb"
+      "sha256": "2f531f79836327fa1e8f561799f63f5fc1622eed6d7f71d682418ebf22775fa8"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "49bcfa89c2804adadf15043ddc159cacf85b2d58ad6b02170fddf0b1ad36ab7d"
+      "sha256": "f7871f416a6e6f080fb9f845f9035cc24995231059606e22ee119274ec877203"
     }
   ]
 }
