@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "8dc44b7222e65ea74bb9dcc154c68a3111296145",
+  "revision": "f35fa767761abe692d0fa296862595f2e79a520f",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "4f0e9f97a74a953a9487f25cc3d2a62f7661d193fc77e5d2aca3fe0e3f437ab9"
+      "sha256": "9de77002c58f4045ce70b2e6a68117a1ba88b0455eede72a5115999da83c6d2d"
     },
     {
       "file": "LICENSE",
@@ -53,15 +53,15 @@
     },
     {
       "file": "meshes/fascia.stl",
-      "sha256": "7e7125399d412bb8284360c59e90bec75e12f29c84b2f1d1b2af87cfaf5975d5"
+      "sha256": "ac557c8a0786602c777e2d597b653c8d0b2e72994830d0860d0093aed1088d60"
     },
     {
       "file": "meshes/drives.stl",
-      "sha256": "23f09474b0f767439a8b0d28104af5c8ea92705e66508a0b777f79c9e4b913a3"
+      "sha256": "2fe6058670f8b735b2c2e733133f615fdd60a34d33dc390e930cc30147785fab"
     },
     {
       "file": "meshes/power.stl",
-      "sha256": "7070462c653bcc0036af2369f690a555ec50dbde8e3e417adde12eef44623dc6"
+      "sha256": "d7cca8855b7f5139fdfa2917247a6b7b581a0e36006d081909c045a23832ba31"
     },
     {
       "file": "meshes/reset.stl",
@@ -81,11 +81,11 @@
     },
     {
       "file": "meshes/bezel.stl",
-      "sha256": "4f341ab095bdd5a2a2c853429abfde174fce33f332f7d8ffb17aeacf8976c030"
+      "sha256": "b6bbff752620e7175fbdcd9f2bc930e8f3b2def25af9227a899d342b8abeafa9"
     },
     {
       "file": "meshes/crt-rim.stl",
-      "sha256": "a8affc4b42cbe12cfbcd48befbcc66863bc4e159d478a4db919f39953554f582"
+      "sha256": "604e5f0fa58f8bdb96e00b13665eca9e4bd54e03e56a73d20ae19bc08130c692"
     },
     {
       "file": "meshes/crt-glass.stl",
@@ -105,23 +105,23 @@
     },
     {
       "file": "meshes/cable.stl",
-      "sha256": "121eb2e453825cdbf189a032ce0575e888f17693c7b55c824a04d947a40bad4f"
+      "sha256": "4212dc1b4c88c8f73ca925553eb105803360376234c10061c5f95150d722f98a"
     },
     {
       "file": "meshes/drive-insets.stl",
-      "sha256": "d20c9d480c99403e8158a50e6c131ad04e806adf88a7a742905e186cfe8e0f88"
+      "sha256": "8fdb9d00414309a7f0a0f01ed25da0135ade46b861f442f2c723d2cebf74db7e"
     },
     {
       "file": "meshes/drive-latch-0.stl",
-      "sha256": "d7c126dcc65894c144e0f680ea72174cf16c1cfb20b75b5e9ca334978038db13"
+      "sha256": "2ae16010d5a22706c370d82f61cf401336eef6f5c002da7e39cec47e13964579"
     },
     {
       "file": "meshes/drive-led-0.stl",
-      "sha256": "2e1b0614e5996b46203c1b6021728a8aa4b779d7a85f0b279dfa9726f532dba9"
+      "sha256": "2225dd37ce454151d683b7abf031e67ce52727e6ef26a9daa1022b0f93dc5bc4"
     },
     {
       "file": "meshes/drive-led-1.stl",
-      "sha256": "3dc06b40a5136bdc617a0844e082e78bdc2045fe8ab3aa8d4313304069aff54a"
+      "sha256": "c3fc599048d01990b852ddfd7aa7d4a7dce77c6ec2b6e00e1d7b5986108d7d43"
     },
     {
       "file": "meshes/keyboard-bottom.stl",
@@ -137,7 +137,7 @@
     },
     {
       "file": "meshes/keyboard-grommet.stl",
-      "sha256": "3fa1ddbd418ae3007b8fe577cc36ce3a7a5421a4ad2c567bb43e7f7948690b34"
+      "sha256": "1bb35b03003e219faabef5961dbab3e57c7c1d12d256ed50e5d71ea90b04648e"
     },
     {
       "file": "meshes/keyboard-fillers.stl",
@@ -145,11 +145,11 @@
     },
     {
       "file": "meshes/cable-plug.stl",
-      "sha256": "17cfd5377b1d65c8015d558712f2c1be487d391aa0beefa98f4b07f0eb764121"
+      "sha256": "382033d9c35488e7b5fc57b3271297c6a69cba5ef6ae28d30dac15c77955b767"
     },
     {
       "file": "meshes/plug-screws.stl",
-      "sha256": "efa32ad7bfde400e8e95c4c0b27c2cd9c1949367390563941818b69f0ac1f3f8"
+      "sha256": "dad1adac4ef6c563739278b5836ae09df04bc1eaab10f1dd328c0a8ee7b7fdf3"
     },
     {
       "file": "meshes/monitor-tape.stl",
@@ -305,39 +305,39 @@
     },
     {
       "file": "meshes/drive-spindle-0.stl",
-      "sha256": "20a8a87751946b1be1d510204c41a360d710553df646c01a1d40bc2586aab6d6"
+      "sha256": "7a8349510d9c343fe6011fe0108e8048862b8bbf8472b6cdbd17a329136964b4"
     },
     {
       "file": "meshes/drive-spindle-1.stl",
-      "sha256": "a375d68aab3afe74d998bb9b1dab29c6f030e389af1f0a9660f5bfd5f3043375"
+      "sha256": "16eae32740c7f72719ac665501fbc2203bc993af86dbcd53aaa72400f8887479"
     },
     {
       "file": "meshes/drive-head-0.stl",
-      "sha256": "b81c2b49ca4411cc77d5c8ffb0ee24395cb8cb2b5e35d0ff2ff4fc9df29f50c5"
+      "sha256": "6c9d697497e680309aca9a44f13ca5b85c4871cef54f51d1caab5b8722ddf417"
     },
     {
       "file": "meshes/drive-head-1.stl",
-      "sha256": "5bd11c0c03cb25a8eab24d7fcd270a35895245029af6cb85b3eb0c1f71fc8fa9"
+      "sha256": "4d6f20918990692c6b1179c919f35f44ccd1c32f786e506c32dd6f13b016ff7a"
     },
     {
       "file": "meshes/drive-latch-1.stl",
-      "sha256": "d6ea04f85493780fe6bd10f6eed0664506fac5ad8199ec07193478c05d151dbe"
+      "sha256": "c812fe287b60e20eb1f228d3b259e1fb4d442302a8cca624b2d284d3c1b15609"
     },
     {
       "file": "meshes/drive-clamp-0.stl",
-      "sha256": "cd6f68b674d68333619b130505878b8ec069145ea48139a1ec5c1bc7676672b5"
+      "sha256": "b6b73777619c92cc8d5331b2b47677c1fbf6b33f4ba4ef4984d8ef5d08b92ef5"
     },
     {
       "file": "meshes/drive-clamp-1.stl",
-      "sha256": "5cca7a40ce9455b028c9c1c55d46fb5cff62fcf2e0b561488222854e32d801f5"
+      "sha256": "08299dfbee64d93b906d607c8a1509e478c8fa66bd94423327bc9916586b326d"
     },
     {
       "file": "meshes/drive-head-metal-0.stl",
-      "sha256": "1cd9c90e6974f1275dfec2fb085a506a967fabcfd6bd00d80b247764cc5a318a"
+      "sha256": "604f76e1174f4e4098a5fa2de1848077b12ccf8611c89ec12a280cb690143c35"
     },
     {
       "file": "meshes/drive-head-metal-1.stl",
-      "sha256": "50d32f20017b051de6c0ac19ea21679bf669401c63bee0ec2bdb23a618e3e79a"
+      "sha256": "1f70afd86a9c88f2593a358c8698e054086616b1bc2306c885734dd64333d075"
     },
     {
       "file": "meshes/drive-board-components.stl",
@@ -441,51 +441,51 @@
     },
     {
       "file": "meshes/drive-head-arm-0.stl",
-      "sha256": "902a969a910fa37ba7548865a5759147d4185ee44fba7a54ae17b8a696e4456a"
+      "sha256": "f49324840552ba4c494584238e4accf5d5993428eba60a9cff731a7098875f6c"
     },
     {
       "file": "meshes/drive-head-arm-1.stl",
-      "sha256": "f7ddba6fc51c342854e3148ce3228b9f5abb169f3feea6b1916e9102c7eacfab"
+      "sha256": "750af3e2206912e80ea8e8c744b39b095b4d3cedbbe6f4da98961781c2b75f43"
     },
     {
       "file": "meshes/drive-medium-0.stl",
-      "sha256": "213be06899ce5594a55ebf2bc0e9c3df6161a8da571d71140301528c38103ceb"
+      "sha256": "b6e07f77d4bb5a95709936abaa0cc89c1730f917a91e7b344b1d53e186e921c2"
     },
     {
       "file": "meshes/drive-medium-1.stl",
-      "sha256": "7f7971458cfe8f5e6fdd898168fcf9dce894752d5350931c718d0c2e8e2c008a"
+      "sha256": "21ac6990ce9e868f63f18b6d2d5c906da17cfe5829239a31a6cbfcf148a0636b"
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
-      "sha256": "7eab851a98e66895352d2cc378eaefe4c31726a5d209daf64f3321e88969e51d"
+      "sha256": "c4e362562281157a5e0f33acd38b938add469dfd59475830aae6a89f7f859103"
     },
     {
       "file": "meshes/keyboard-controller-chips.stl",
-      "sha256": "15506c2575ef1e53e2f2b1b47c838eb64fb7ec2cd149bf1a9a181083e96956aa"
+      "sha256": "df36e6759162579cc8742b0e221b3fe732cd84443e0c92ebdc3c3ae4410b10a1"
     },
     {
       "file": "meshes/keyboard-controller-ceramic.stl",
-      "sha256": "eed24bf08aa0f69d7300cdd6ef7dd5993ab5988995ddef7600bd236a4c9458d3"
+      "sha256": "3c978882b8be64827ff244a2ff3a34e8c0b030f8a3107fafb6acd71be4a7961a"
     },
     {
       "file": "meshes/keyboard-controller-rom-cover.stl",
-      "sha256": "b42eeda96ff398fee7c636aa197afc0a04b0f05f8fc9b358b4ea010a5c2d4bd4"
+      "sha256": "8a70b0fee896cc50d0aed7cfaa46d12510a39360f92053531eed8b0d09d1fb6d"
     },
     {
       "file": "meshes/keyboard-controller-connectors.stl",
-      "sha256": "2d256cd13a93b6de721a8abc85018e89b0118ee7de1eb6ac1dafa12f162189b8"
+      "sha256": "41bb85bcd2414c357a17822ba5f85197e76929e744b9e2479babb6590a28f45f"
     },
     {
       "file": "meshes/keyboard-controller-caps.stl",
-      "sha256": "cbb2c56538f4407a22ce09eb438b91e4f70385e3074fba401ea704deb6b89313"
+      "sha256": "f392966bec4762f29fbf9c206363fbb88e964154b9c9ac373d27e1656e034f50"
     },
     {
       "file": "meshes/keyboard-controller-metal.stl",
-      "sha256": "c5d9d7b289ab7afc24c2d1542ac3a72bb124748f1821051b4d36572256c246fd"
+      "sha256": "78c89c088b7554e1d583f96da86f193db66fbfd82f8f649101e2aa45ee8fc478"
     },
     {
       "file": "meshes/keyboard-controller-ink.stl",
-      "sha256": "bbc8e8a27feb55b6ab021aa6acafe2d072374a47b4b4689604f81f6808c0bc51"
+      "sha256": "e454175d77e00af8c01a53062ef7ee389428302413448baaf24b204f3a20d4dd"
     },
     {
       "file": "meshes/keyboard-insulators.stl",
@@ -561,7 +561,7 @@
     },
     {
       "file": "meshes/keyboard-controller-traces.stl",
-      "sha256": "32efb6e7c2ea6a22b142ae0740b5e5d3af0ba1ff15553917ecf5a45910af1fca"
+      "sha256": "2c1cf50f2936ace2729e2e3d8dfc1d942e4acadcb2d1b40fc88d8003a7a6a3c1"
     },
     {
       "file": "meshes/monitor-power-lead.stl",
@@ -597,19 +597,19 @@
     },
     {
       "file": "meshes/drive-diskette-0.stl",
-      "sha256": "33c0212bae2f5dc57d2561de50f734d9d06314fc128ef2e65c00c1de5d223f8c"
+      "sha256": "366ecbf7e8c1b4ec6db945181e1918ad904ca9e5fa363fecb6df8803dbc2616a"
     },
     {
       "file": "meshes/drive-diskette-1.stl",
-      "sha256": "12a78ac860ee24292a4bd2e76966322d25c19096f137e9aefffb0fea5a65cdb1"
+      "sha256": "9cb793e640de33fa9124a1f7c56e1cf4251fbf5d0b7517579412e138d856beef"
     },
     {
       "file": "meshes/drive-diskette-label-0.stl",
-      "sha256": "03b5a1bb767fd0600a33f0eb7a8acb786a4f9f49213baac004dde41cf6eee69e"
+      "sha256": "ebc6857ba3d2bb658707858c49d1e14422ac41e12249f77ef10dac004d1c7251"
     },
     {
       "file": "meshes/drive-diskette-label-1.stl",
-      "sha256": "21ac68dc1078e453c4945e440312bab0d500d86b7a42a45fec96894124e900fb"
+      "sha256": "a206d4ad26970300bfaba59dc3ceb88c9aae4e20ba12ef54e4c96d2e7222af8e"
     },
     {
       "file": "meshes/drive-direction-0.stl",
@@ -621,11 +621,11 @@
     },
     {
       "file": "meshes/drive-shaft-0.stl",
-      "sha256": "2bf33409f8ae14038e175323b5daee288c46a61716a01427171117257e9e9937"
+      "sha256": "f26a222150398854e6c39cd1242cd35d4baae84648e182976a4c262802e22f17"
     },
     {
       "file": "meshes/drive-shaft-1.stl",
-      "sha256": "d3d3f64700d973b8aa838f54fb0a57b9a75f48ddc71743ad89ede6fb5ee2d39c"
+      "sha256": "209f563b2843ffdada1d27a3ce611f6146fdb2f3c575fa0e97a3d576b6844ad3"
     },
     {
       "file": "meshes/drive-release-0.stl",
@@ -645,7 +645,7 @@
     },
     {
       "file": "meshes/keyboard-entry-wires.stl",
-      "sha256": "552c3b60dc3bc86e6b7a319633c84fea889a66a02524d0104540a5574fc0369d"
+      "sha256": "140a206b174b2098506def30649d3cc829743ac707604c9fb6cf8235ab7539de"
     },
     {
       "file": "meshes/keyboard-contact-routes.stl",
@@ -653,23 +653,23 @@
     },
     {
       "file": "meshes/keyboard-controller-solder.stl",
-      "sha256": "be7493096391485daa832cb40abd32b14d1927c74834cfd46c99355e44737f07"
+      "sha256": "cf92f32eed67d8a8bb50a82f03d8ccb46a0d5a84793eeb084597adc4ba1bb437"
     },
     {
       "file": "meshes/drive-protect-tab-0.stl",
-      "sha256": "2f95483f64bdee3ba6636d1fc54b09ea606339db3e5085d270dad22786cf528b"
+      "sha256": "9f45edbbbc52f92e9035f4f251576b8fba8557a2ebaaa1d9a97b50632939d88c"
     },
     {
       "file": "meshes/drive-protect-tab-1.stl",
-      "sha256": "91ee538e93841c51ad7d028b23c5a29e6f990cfa6e002f2344802d20e56da1fd"
+      "sha256": "89d559d8ec3bd17cbd6242f7b35a495fef4fa7e05098ce3d1ce0346cf8e1b0ff"
     },
     {
       "file": "meshes/keyboard-controller-leads.stl",
-      "sha256": "0d5208a0232e34d0da9d371fc7f6d76ad3e71b39e75f3ed692791ee4be773e05"
+      "sha256": "88f48933dcd3c50dd4c243a8d2ac6a768c421f0235ff37c4fcfc7d967deefa00"
     },
     {
       "file": "meshes/keyboard-entry-choke.stl",
-      "sha256": "f7717abf2586380d6f787ce78fc2d451cabc24bad2d78060db4df937c1479061"
+      "sha256": "3cbbaaa35d2de29b5817dd37be60bba3a8d7ca4d3af81c76b5df1c05b89b63a7"
     },
     {
       "file": "meshes/monitor-mount-pads.stl",
@@ -733,11 +733,19 @@
     },
     {
       "file": "meshes/power-housing.stl",
-      "sha256": "329d6871c591bd6cf4c3b995983f83aedf0ffd0042d6f21afa2f277c3f4b5245"
+      "sha256": "681012326d55dbc1ba9ea6fa8270911362a18a743c049c697a401784fffa13d5"
     },
     {
       "file": "meshes/front-labels.stl",
       "sha256": "41dddf39a0fc601d9e7308feaa8a178b674b02859a76ab5a7f4b665daf558acb"
+    },
+    {
+      "file": "meshes/keyboard-cable-support.stl",
+      "sha256": "acbe34aa338ce475ad9d73982f9c26ee3ba1340bce39909f26193c1149e1bbe6"
+    },
+    {
+      "file": "meshes/keyboard-internal-cable.stl",
+      "sha256": "250d3dffbabeb63103e0bf12543f8084d14ff5caf2bba0e4aac3560db364fcb8"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1337,23 +1345,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "d0b57fc7415af3d2756718524da0b630197e3f9104984eaa49fd52137a0feb9a"
+      "sha256": "67972d8d9f777f7c9c35207a82fb9ba50f0cfb302b49d3f00959aaa91b4ce12a"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "799a42f686ea620f238f7321936f68097c6bd9ce4122a33950c8cae459d288cb"
+      "sha256": "f14dc458e742389a2a01a0aa5991f94fd36d90891b377b8ed649e8114cfe0c53"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "f36c37bb774834a54637ca3fadf0ff93e37260bfb0918963e308dc0c19a2acbe"
+      "sha256": "5337448f875a788a8048453f9fca69ee6dc41dae6431398f2ee919be3a0aa5e3"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "2c6f53a913cb3ecf31ab072ad6cbc89cbb8a52734ea3bdce600bfcf8d3d77569"
+      "sha256": "3ad451e3e0f2fd04334b8186664093004f57b0289be9d126a5bd007bd6456c8c"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "793d3305e883107de11270fb8083cb071f3016138de1069afe535283bb2c6b28"
+      "sha256": "6e83f48bcd4badf0590daf1eeb8a2c587d792412cd17a44a96d0e652a94bce1a"
     }
   ]
 }

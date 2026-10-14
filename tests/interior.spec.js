@@ -173,7 +173,7 @@ test('closed sheet-metal enclosures have 1 mm skins and genuine vent openings', 
     ['case-lid',[100,0,150],[0,0,-1]],
     ['fascia',[60,-230,110],[0,1,0]],
     ['monitor-shell-lower',[-180,25,250],[1,0,0]],
-    ['bezel',[143,-180,320],[0,1,0]],
+    ['bezel',[0,-180,446],[0,1,0]], // Flat top lip; the side now has a formed slope.
     ['keyboard-bottom',[180,manifest.keyboard.y,-10],[0,0,1]],
     ['keyboard-shell',[-270,manifest.keyboard.y,10],[1,0,0]],
   ];
@@ -223,4 +223,19 @@ test("indexed model geometry preserves every triangle and normal without simplif
     before += original.attributes.position.count; after += indexed.attributes.position.count;
   }
   expect(after).toBeLessThan(before * .75);
+});
+
+
+test('drive lenses are flush and inserted media clears the full lever sweep',()=>{
+  const bounds=name=>{const b=readFileSync(new URL(`meshes/${name}.stl`,root));const g=new STLLoader().parse(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength));g.computeBoundingBox();const box=g.boundingBox.clone();g.dispose();return box;};
+  const face=bounds('drives');
+  for(const u of [0,1]){
+    expect(bounds(`drive-led-${u}`).min.y).toBeCloseTo(face.min.y,3);
+    const lever=bounds(`drive-latch-${u}`),disk=bounds(`drive-diskette-${u}`);
+    // Lever rotation is about Y, so its entire sweep preserves these Y bounds.
+    expect(disk.min.y-lever.max.y).toBeGreaterThan(6);
+    expect(disk.min.y-face.min.y).toBeGreaterThan(4);
+    expect(face.min.y-lever.min.y).toBeGreaterThan(9);
+    expect(manifest.driveMotion[u].pivot[1]).toBeCloseTo((disk.min.y+disk.max.y)/2,3);
+  }
 });

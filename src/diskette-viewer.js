@@ -28,8 +28,10 @@ export async function createDisketteViewer(host, tools) {
     const {scene,camera,controls}=stage;
     const assembly=new THREE.Group(), disk=new THREE.Group(); assembly.add(disk); scene.add(assembly);
     const colors=[0x242321,0x544039,0xd8d4bf,0xebe9df];
+    geometries[0].computeBoundingBox();
+    const diskCenter=geometries[0].boundingBox.getCenter(new THREE.Vector3());
     geometries.forEach((geometry,i)=>{
-      geometry.translate(...(i===3?[-69.5,-72.5,-1]:[161,144,-89.5]));
+      geometry.translate(...(i===3?[-69.5,-72.5,-1]:diskCenter.toArray().map(v=>-v)));
       const material=specimenMaterial(colors[i],data.materials[i===3?"paper":"plastic"]);owned.push(material);
       const mesh=new THREE.Mesh(geometry,material);(i===3?assembly:disk).add(mesh);
     });
@@ -42,7 +44,7 @@ export async function createDisketteViewer(host, tools) {
     const uv=geometry.attributes.uv;
     for(let i=0;i<uv.count;i++){const [u,v]=photoProjection(patch.textureUv,uv.getX(i),1-uv.getY(i));uv.setXY(i,u,1-v);}
     const material=new THREE.MeshStandardMaterial({map:texture,roughness:.9});owned.push(material);
-    const label=new THREE.Mesh(geometry,material);label.position.set(36,-44,.84);disk.add(label);
+    const label=new THREE.Mesh(geometry,material);label.position.set(...patch.position).sub(diskCenter);disk.add(label);
     camera.position.set(0,-180,460);
     controls.target.set(0,65,0);controls.minDistance=170;controls.maxDistance=850;controls.update();
     let amount=0, target=0;
