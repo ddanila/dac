@@ -62,7 +62,17 @@ test('the modeled notch toggles protection in both directions',async({page})=>{
  await page.locator('[data-view="front"]').click();await page.locator('#viewport').scrollIntoViewIfNeeded();
  const box=await page.locator('#viewport').boundingBox(),camera=new PerspectiveCamera(36,box.width/box.height,.01,40);
  camera.position.set(0,1.9,3.8);camera.lookAt(0,.5,0);camera.updateMatrixWorld();
- const p=new Vector3(267.2*.0025,7.5*.0025,123.5*.0025).project(camera);
+ // Aim at the canonical tab, including the media seating depth and parked pose.
+ const {readFileSync}=await import('node:fs');
+ const {STLLoader}=await import('three/addons/loaders/STLLoader.js');
+ const root=new URL('../public/models/robotron-1715m/',import.meta.url);
+ const manifest=JSON.parse(readFileSync(new URL('model.json',root)));
+ const bytes=readFileSync(new URL('meshes/drive-protect-tab-0.stl',root));
+ const geometry=new STLLoader().parse(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+ geometry.computeBoundingBox();const center=geometry.boundingBox.getCenter(new Vector3());geometry.dispose();
+ const pivot=manifest.driveMotion[0].pivot;
+ center.add(new Vector3(330-pivot[0],54,5-pivot[2]));
+ const p=new Vector3(center.x,center.z,-center.y).multiplyScalar(.0025).project(camera);
  const click=()=>page.mouse.click(box.x+(p.x+1)*box.width/2,box.y+(1-p.y)*box.height/2);
  await click();await expect(page.locator('#drive-protect-0')).toHaveText('Cover disk A notch');
  await click();await expect(page.locator('#drive-protect-0')).toHaveText('Uncover disk A notch');
