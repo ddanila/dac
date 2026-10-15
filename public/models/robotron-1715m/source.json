@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "e08eb33ebe25390097500314f565745151608dcc",
+  "revision": "b9f4533e681a2adf2b1ca636d35cf64a49f001be",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "981c1448fc39547fff811397b0509c64fada14ba3da121ffcdeb071b3df6af56"
+      "sha256": "16e5b744cb4f5fd40970ae532f9b06dba6a0dcd15909e47b1a237acbcb84d91f"
     },
     {
       "file": "LICENSE",
@@ -313,11 +313,11 @@
     },
     {
       "file": "meshes/drive-head-0.stl",
-      "sha256": "6c9d697497e680309aca9a44f13ca5b85c4871cef54f51d1caab5b8722ddf417"
+      "sha256": "d5397de4af53a3bc116dca35f14232c8543c552c605b95856e061288e7918f39"
     },
     {
       "file": "meshes/drive-head-1.stl",
-      "sha256": "4d6f20918990692c6b1179c919f35f44ccd1c32f786e506c32dd6f13b016ff7a"
+      "sha256": "d8236381fa689f50cb3d976d3849f1664a6944ea1969057a11b6ead3a48d2584"
     },
     {
       "file": "meshes/drive-latch-1.stl",
@@ -445,11 +445,11 @@
     },
     {
       "file": "meshes/drive-head-arm-0.stl",
-      "sha256": "f49324840552ba4c494584238e4accf5d5993428eba60a9cff731a7098875f6c"
+      "sha256": "177f1f004afc7e2f016d4746764d928cb0158bab914afa390b1f0d0ea3ea18d4"
     },
     {
       "file": "meshes/drive-head-arm-1.stl",
-      "sha256": "750af3e2206912e80ea8e8c744b39b095b4d3cedbbe6f4da98961781c2b75f43"
+      "sha256": "7c87e94d333f52cb345217ab45965a4eec2c026397512c94dc05b6bdd6c59752"
     },
     {
       "file": "meshes/drive-medium-0.stl",
@@ -1477,23 +1477,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "41baf3ae506964be07f9386d693f20711c245e062eb54732ed711b15fc921275"
+      "sha256": "6846c125de20807ab719ae56fd26685c7affc85a9d36b503e0ae643a2963bad7"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "cb1bb27592d2dd5c98e4e4a93041481ee4443959211eca500221f7c412e223cc"
+      "sha256": "725aba1b4fee14e3d354a4669ab78103cb73854ea3981acccc2943887942ce06"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "f48467fa507c2eb3e7260f85fc1591041494828de933da86c0db445ca55a3543"
+      "sha256": "b4c24dff214053c155a7e2e3dd15c52d298cdb01a22dd43bc9095871273eb1ca"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "eb18054011381a99134392094e9e50a4b7a0d6271b2c7b72d65335a5233dd5fa"
+      "sha256": "6e70ad979d0d7f35a03121e9956db771fd0731ca9496691e1f07371efa735579"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "6e1fdbcd1ead87a0a243811111e32809851c8d7c7b9419bbf25d12bc44a68ac6"
+      "sha256": "096cd7cc28d42c6b6e4e95d94a27c031a5ebcd052f21194413bb160ec93587b7"
     }
   ]
 }
