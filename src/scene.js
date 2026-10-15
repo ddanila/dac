@@ -540,6 +540,7 @@ export function createScene(
   updateRendering();
   return {
     annotations(on){labelsEnabled=on;renderRequested=true;},
+    markTrack(value){robotron?.markTrack(value);renderRequested=true;},
     cameraState(){return {position:camera.position.toArray(),target:controls.target.toArray()};},
     restoreCamera(value){if(!value || ![value.position,value.target].every(a=>Array.isArray(a)&&a.length===3&&a.every(n=>Number.isFinite(n)&&Math.abs(n)<40)))return;const damping=controls.enableDamping;controls.enableDamping=false;controls.update();controls.enableDamping=damping;camera.position.fromArray(value.position);controls.target.fromArray(value.target);controls.update();renderRequested=true;},
     onCameraChange(fn){controls.addEventListener("change",fn);},

@@ -1,3 +1,4 @@
+import { createDiskTrackMarker } from './disk-track-marker.js';
 import { cableWeight, bindRibbon } from './robotron-cables.js';
 import { componentDetail } from "./component-detail.js";
 import { createDriveMotion } from "./robotron-drives.js";
@@ -665,6 +666,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     tag.scale.set(70,26,1); tag.position.set(330+unit*145,-175,8); group.add(tag); tag.userData.context=c; return tag;
   });
   const moveDrives = createDriveMotion(objects, data.driveMotion);
+  const trackMarker=createDiskTrackMarker(group,objects,data.driveMotion);
   const moveFan = createFanMotion(objects.get("fan-rotor"));
   const pressed = new Set();
   function releaseKeys() {
@@ -1030,6 +1032,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       const core = key.getObjectByName("keycap-pale-core");
       if (core) core.visible = keyboardLift > 0 || inspection.transparent;
     }
+    trackMarker.update();
     const newDetails=!!group.userData.newDetails;group.userData.newDetails=false;
     return {
       dirty: newDetails || dirty || beforeSplit !== split || drivesMoved,
@@ -1041,6 +1044,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   onProgress(100);
   return {
     group,
+    markTrack(value){trackMarker.select(value);inspectionDirty=true;},
     annotations: data.annotations || [],
     evidence: data.evidence,
     loadDetails,

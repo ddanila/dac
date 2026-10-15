@@ -319,7 +319,7 @@ readable. Raw 800 KiB images use the emulator's CHS ordering. Standard/extended 
 use track headers and stored sector order; mixed-size sectors can be inspected,
 but unsupported/weak sector lengths are rejected. DSK container offsets include
 headers. The map uses the documented TEAC side-specific radii and 96-TPI pitch;
-equal angular wedges are schematic, not recovered magnetic timing.
+ID marks, data spans and gaps use the emulator’s reference MFM byte-clock layout, not recovered magnetic timing.
 
 Live inspection copies the current worker disk at serialized command boundaries
 every 1.5 seconds while the dialog is visible. Uncheck **Live updates** to freeze;
@@ -331,3 +331,35 @@ Implementation: [disk parser](src/disk-map.js), [explorer](src/disk-explorer.js)
 References: the [CP/M 2.2 alteration guide](https://www.gaby.de/cpm/manuals/archive/cpm22htm/ch6.htm),
 [TEAC FD-55FV specification, p.108](https://retrocmp.de/fdd/teac/TEAC_FD55-FV.pdf#page=10),
 and the emulator's [disk adapter](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/disk.c).
+
+### Inspecting bytes, files and changes
+
+Click a hex byte (or use arrow keys) to see its image offset, C/H/R address,
+allocation block, directory entry, extent and file offset. Allocation padding is
+identified separately from record-rounded file contents. Free space remains blank.
+
+**Preview file** chooses text or hex using a printable-byte heuristic; either mode
+can be selected explicitly. The preview is limited to 64 KiB. **Download file**
+reconstructs all extents in file order, including fragmented blocks and user areas,
+and preserves every byte up to the 128-byte-record length. It does not strip a
+Ctrl-Z EOF marker or padding. Missing extents prevent a complete download rather
+than silently filling holes. **How this file is allocated** links directory entry
+numbers → extents → allocation blocks; click a block to inspect its sectors.
+
+Live snapshots highlight observed sector changes in pink for about 4.5 seconds,
+list changed directory entries and file names, and highlight affected allocation
+rows. These are differences between snapshots, not a history of every write:
+multiple writes (or a write followed by restoration) between samples may be missed.
+Unallocated-to-unallocated changes are intentionally ignored. Disk replacement can
+also produce differences. Inspection remains read-only.
+
+**Show track in drive** opens the drive view with a green track ring and a white
+nominal contact point. This overlay follows the disk’s display position, including
+separation/removal, and uses the canonical model’s side-specific head radii. It
+never commands a seek or changes drive mechanics. Clear it from the explorer.
+
+The map now places the first CHRN at byte-clock 162, payload 44 byte-clocks later,
+and subsequent IDs after payload size + 62 + GAP3, in a 6250-byte-clock revolution.
+Raw media use GAP3=27; DSK uses each track header’s GAP3 and stored sector order.
+This matches the current emulator layout, including mixed-size sector spans. Gap
+clicks report that no stored payload is present; they do not select a nearby sector.

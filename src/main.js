@@ -16,7 +16,16 @@ const $ = (id) => document.getElementById(id),
 const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
   type: "module",
 });
-const diskExplorer=createDiskExplorer((unit,request)=>send({type:"inspect-disk",unit,request}));
+const diskExplorer=createDiskExplorer((unit,request)=>send({type:"inspect-disk",unit,request}),target=>{
+  scene?.markTrack(target);
+  if(target){
+    $("open-case").checked=true;$("isolate-assembly").value="drives";$("component-focus").value="none";
+    updateCase();selectView("drive-top");
+    $("inspection-title").textContent=`Disk ${target.unit?'B':'A'} · cylinder ${target.c}, side ${target.h}`;
+    $("inspection-text").textContent="Green ring: selected track. White point: its nominal head contact position. The emulator continues independently. Reopen the disk explorer to clear the marker.";
+    $("viewport").scrollIntoView({block:"center"});
+  }
+});
 document.addEventListener("explore-disk",e=>diskExplorer.open(e.detail?.unit||0));
 for(const u of [0,1]){
   const button=document.createElement("button");button.textContent=`Explore disk ${u?"B":"A"}`;button.id=`explore-disk-${u}`;

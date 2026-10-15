@@ -11,6 +11,7 @@ export function inspectDisk(input, filesystem = 'tosm') {
     sectors.push({c,h,r,n,offset,size,slot,count,idC,idH,flags,kind:'unknown'});
   };
   let cylinders=80,sides=2;
+  const gaps=new Map();
   if(!extended&&!standard){
     if(bytes.length!==819200)throw Error('Supported images: Robotron 800 KiB raw, standard DSK and extended DSK.');
     for(let c=0;c<80;c++)for(let h=0;h<2;h++)for(let r=1;r<=5;r++)add(c,h,r,3,((c*2+h)*5+r-1)*1024,r-1,5);
@@ -24,6 +25,7 @@ export function inspectDisk(input, filesystem = 'tosm') {
       const c=Math.floor(t/sides),h=t%sides;
       if(length<256||offset+length>bytes.length||text(offset,offset+12)!=='Track-Info\r\n'||bytes[offset+16]!==c||bytes[offset+17]!==h)throw Error('Invalid DSK track');
       const count=bytes[offset+21];if(count>29)throw Error('Unsupported sector count');
+      gaps.set(`${c}:${h}`,bytes[offset+22]);
       let data=offset+256;
       for(let slot=0;slot<count;slot++){
         const p=offset+24+slot*8,n=bytes[p+3],size=128*2**n;
@@ -33,6 +35,18 @@ export function inspectDisk(input, filesystem = 'tosm') {
       offset+=length;
     }
     if(offset!==bytes.length)throw Error('Unexpected trailing DSK data');
+  }
+  // Same byte-clock layout as robotron1715m/disk.c positions():
+  // first CHRN at byte 162, data 44 bytes later, 62+GAP3 overhead per sector.
+  const trackPositions=new Map();
+  for(const sector of sectors){
+    const key=`${sector.c}:${sector.h}`,id=trackPositions.get(key)??162,gap=gaps.get(key)??27;
+    sector.idStart=id/6250;sector.idEnd=(id+4)/6250;
+    sector.dataStart=(id+44)/6250;sector.dataEnd=(id+44+sector.size)/6250;
+    sector.gap3=gap;
+    const next=id+sector.size+62+gap;
+    if(next-16>6250)throw Error('Track exceeds the emulator MFM capacity');
+    trackPositions.set(key,next);
   }
   const result={bytes,sectors,cylinders,sides,files:[],filesystem:false,note:'Raw sectors; no filesystem interpretation.'};
   if(filesystem!=='tosm')return result;
@@ -56,24 +70,27 @@ export function inspectDisk(input, filesystem = 'tosm') {
       if(!name||!/^[\x21-\x7e]+$/.test(name)||!/^[\x21-\x7e]*$/.test(ext))throw Error('Invalid filename');
       const key=`${e[0]}:${name}${ext?'.'+ext:''}`,extent=(e[14]&63)*32+(e[12]&31);
       if(extents.has(key+':'+extent))throw Error('Duplicate extent');extents.add(key+':'+extent);
-      if(!files.has(key))files.set(key,{key,name:key,size:0,sectors:[]});
+      if(!files.has(key))files.set(key,{key,name:key,size:0,sectors:[],extents:[]});
       const file=files.get(key);file.size=Math.max(file.size,extent*16384+e[15]*128);
+      const entry={index:i,extent,records:e[15],blocks:[]};file.extents.push(entry);
       for(let j=0;j<8;j++){
         const block=e[16+j*2]+256*e[17+j*2];
         if(!block){if(j*2048<e[15]*128)throw Error('Missing allocation block');continue;}
         if(block<2||block>389||owners.has(block))throw Error('Invalid or shared allocation block');
-        owners.set(block,{file,fileOffset:extent*16384+j*2048,valid:Math.max(0,Math.min(2048,e[15]*128-j*2048))});
+        entry.blocks.push(block);
+        owners.set(block,{file,entry,block,fileOffset:extent*16384+j*2048,valid:Math.max(0,Math.min(2048,e[15]*128-j*2048))});
       }
     }
   }catch(error){result.note=`TOS/M allocation unavailable: ${error.message}. Raw sectors remain readable.`;return result;}
   ordered.forEach((s,i)=>{
     s.logicalOffset=i*1024;
+    if(i>=20)s.block=Math.floor((i-20)/2);
     if(i<20)s.kind='system';
     else if(i<24)s.kind='directory';
     else{
       const owner=owners.get(Math.floor((i*1024-20480)/2048));
       s.kind=owner?'file':'free';
-      if(owner){s.file=owner.file.key;s.fileOffset=owner.fileOffset+((i-20)%2)*1024;s.valid=Math.max(0,Math.min(1024,owner.valid-((i-20)%2)*1024));owner.file.sectors.push(s);}
+      if(owner){s.entry=owner.entry.index;s.extent=owner.entry.extent;s.file=owner.file.key;s.fileOffset=owner.fileOffset+((i-20)%2)*1024;s.valid=Math.max(0,Math.min(1024,owner.valid-((i-20)%2)*1024));owner.file.sectors.push(s);}
     }
   });
   return {...result,filesystem:true,files:[...files.values()].sort((a,b)=>a.name.localeCompare(b.name)),note:'TOS/M reference layout · free space is displayed blank · file lengths have 128-byte record precision.'};
@@ -86,4 +103,44 @@ export function sectorText(map,sector){
     lines.push(i.toString(16).padStart(4,'0')+'  '+[...row].map(b=>b.toString(16).padStart(2,'0')).join(' ').padEnd(47)+'  '+[...row].map(b=>b>=32&&b<127?String.fromCharCode(b):'.').join(''));
   }
   return lines.join('\n');
+}
+
+export function fileBytes(map,file){
+  if(file.size>798720)throw Error('File has missing extents; a complete download is unavailable.');
+  const output=new Uint8Array(file.size),coverage=new Uint8Array(Math.ceil(file.size/128));
+  for(const sector of file.sectors){
+    const length=Math.min(sector.valid,file.size-sector.fileOffset);
+    if(length<=0)continue;
+    output.set(map.bytes.subarray(sector.offset,sector.offset+length),sector.fileOffset);
+    coverage.fill(1,sector.fileOffset/128,Math.ceil((sector.fileOffset+length)/128));
+  }
+  if(coverage.some(v=>!v))throw Error('File has missing extents; a complete download is unavailable.');
+  return output;
+}
+export function byteLocation(sector,index){
+  if(!Number.isInteger(index)||index<0||index>=sector.size||sector.kind==='free')return null;
+  return {c:sector.c,h:sector.h,r:sector.r,index,imageOffset:sector.offset+index,
+    file:sector.file,fileOffset:sector.file&&index<sector.valid?sector.fileOffset+index:null,
+    block:sector.block,entry:sector.entry,extent:sector.extent,
+    phase:sector.dataStart+index/6250};
+}
+export function diskChanges(previous,next){
+  if(!previous)return {sectors:[],entries:[],files:[]};
+  const key=s=>`${s.c}:${s.h}:${s.slot}`,old=new Map(previous.sectors.map(s=>[key(s),s]));
+  const sectors=[],entries=[],modifiedFiles=new Set();
+  for(const s of next.sectors){
+    const before=old.get(key(s));
+    const changed=!before||before.size!==s.size||before.r!==s.r||before.flags!==s.flags||next.bytes.subarray(s.offset,s.offset+s.size).some((b,i)=>b!==previous.bytes[before.offset+i]);
+    // Free-to-free changes are deliberately hidden, as are deleted file contents.
+    if(changed&&(s.kind!=='free'||before?.kind==='file')||before?.kind!==s.kind||before?.file!==s.file){
+      sectors.push(key(s));if(s.file)modifiedFiles.add(s.file);if(before?.file)modifiedFiles.add(before.file);
+    }
+    if(s.kind==='directory'&&before)for(let i=0;i<s.size;i+=32){
+      if(next.bytes.subarray(s.offset+i,s.offset+i+32).some((b,j)=>b!==previous.bytes[before.offset+i+j]))entries.push((s.logicalOffset-20480+i)/32);
+    }
+  }
+  const beforeFiles=new Map(previous.files.map(f=>[f.key,f]));
+  const files=next.files.filter(f=>!beforeFiles.has(f.key)||f.size!==beforeFiles.get(f.key).size).map(f=>f.key);
+  files.push(...previous.files.filter(f=>!next.files.some(n=>n.key===f.key)).map(f=>f.key));
+  return {sectors,entries,files:[...new Set([...files,...modifiedFiles])]};
 }
