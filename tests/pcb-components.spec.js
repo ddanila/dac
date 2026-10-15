@@ -1,3 +1,4 @@
+import {cachedMesh,requestedMesh,requestedPackage} from './model-asset-paths.js';
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -315,12 +316,15 @@ test('complete interior loading shares package geometry across boards', async ({
     return {loaded,shared};
   });
   expect(result).toEqual({loaded:true,shared:true});
-  expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(true);
-  expect(requests.some(u=>u.includes('/meshes/keyboard-controller-board.stl'))).toBe(true);
+  expect(requestedMesh(requests,'meshes/tube-funnel.stl')).toBe(true);
+  expect(requestedMesh(requests,'meshes/keyboard-controller-board.stl')).toBe(true);
 });
 
 test('an interior download failure cannot present an empty detailed model as ready', async ({page}) => {
   test.setTimeout(60000);let attempts=0;
+  // A corrupt derived cache must fall back to STL; an STL failure still blocks
+  // readiness and remains retryable. This covers both transport paths.
+  await page.route('**/'+cachedMesh('meshes/logic-boards-motherboard.stl').file+'?*',r=>r.fulfill({body:'corrupt cache'}));
   await page.route('**/meshes/logic-boards-motherboard.stl?*',r=>++attempts===1?r.fulfill({status:503,body:'retry fixture'}):r.continue());
   await page.goto('/');
   await expect(page.locator('#viewport')).toHaveAttribute('data-model','unavailable');

@@ -1,3 +1,4 @@
+import {cachedMesh,requestedMesh,requestedPackage} from './model-asset-paths.js';
 import {test,expect} from '@playwright/test';
 test('removed disk notch protection follows transfer and reload',async({page})=>{
  await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'Core fixture'}));
@@ -23,13 +24,13 @@ test('removed disk notch protection follows transfer and reload',async({page})=>
 test('interior geometry is ready before display and labels disclose its evidence',async({page})=>{
  test.setTimeout(60000);const requests=[];page.on('request',r=>requests.push(r.url()));
  await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
- expect(requests.some(u=>u.includes('/meshes/keyboard-controller-board.stl'))).toBe(true);
- expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(true);
+ expect(requestedMesh(requests,'meshes/keyboard-controller-board.stl')).toBe(true);
+ expect(requestedMesh(requests,'meshes/tube-funnel.stl')).toBe(true);
  await page.locator('[data-view="keyboard-inside"]').click();
  await expect(page.locator('#viewport')).toHaveAttribute('data-details','ready');
- expect(requests.some(u=>u.includes('/meshes/keyboard-controller-board.stl'))).toBe(true);
- expect(requests.some(u=>u.includes('/meshes/tube-funnel.stl'))).toBe(true);
- expect(requests.some(u=>u.includes('/meshes/logic-boards-motherboard.stl'))).toBe(true);
+ expect(requestedMesh(requests,'meshes/keyboard-controller-board.stl')).toBe(true);
+ expect(requestedMesh(requests,'meshes/tube-funnel.stl')).toBe(true);
+ expect(requestedMesh(requests,'meshes/logic-boards-motherboard.stl')).toBe(true);
  await page.locator('#inspection-labels').check();
  await expect(page.locator('[data-annotation="keyboard-controller"]')).toBeVisible();
  await page.locator('[data-annotation="keyboard-controller"]').click();

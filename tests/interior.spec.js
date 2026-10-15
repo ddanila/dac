@@ -1,3 +1,4 @@
+import {cachedMesh,requestedMesh,requestedPackage} from './model-asset-paths.js';
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -79,7 +80,7 @@ test("Inside stays open across camera changes and closes only with its control",
   });
   const meshRequests = [];
   page.on("request", (request) => {
-    if (new URL(request.url()).pathname.endsWith(".stl"))
+    if (/\.(stl|dacgeom)$/.test(new URL(request.url()).pathname))
       meshRequests.push(new URL(request.url()));
   });
   await page.goto("/");
@@ -87,14 +88,7 @@ test("Inside stays open across camera changes and closes only with its control",
     "data-model",
     "robotron-photo", {timeout: 20000});
   expect(modelRequests).toEqual([revision]);
-  const mechanism = manifest.parts.find((p) => p.name === "drive-mechanisms");
-  expect(
-    meshRequests.some(
-      (url) =>
-        url.pathname.endsWith("drive-mechanisms.stl") &&
-        url.searchParams.get("v") === mechanism.sha256,
-    ),
-  ).toBe(true);
+  expect(requestedMesh(meshRequests,'meshes/drive-mechanisms.stl')).toBe(true);
   await page.getByRole("button", { name: "Inside", exact: true }).click();
   await expect(page.locator("#viewport")).toHaveAttribute(
     "data-interior",
