@@ -1,3 +1,4 @@
+import { createDiskExplorer } from "./disk-explorer.js";
 import { installExhibitLayout } from "./exhibit-layout.js";
 import { showAnnotation } from "./inspection.js";
 import "./style.css";
@@ -15,6 +16,12 @@ const $ = (id) => document.getElementById(id),
 const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
   type: "module",
 });
+const diskExplorer=createDiskExplorer((unit,request)=>send({type:"inspect-disk",unit,request}));
+document.addEventListener("explore-disk",e=>diskExplorer.open(e.detail?.unit||0));
+for(const u of [0,1]){
+  const button=document.createElement("button");button.textContent=`Explore disk ${u?"B":"A"}`;button.id=`explore-disk-${u}`;
+  button.onclick=()=>diskExplorer.open(u);$("drive-handling").append(button);
+}
 const screen = $("screen"),
   ctx = screen.getContext("2d");
 let replayBusy = false;
@@ -186,7 +193,8 @@ try {
     },
     onAnnotation: showAnnotation,
     onProtect: toggleDiskProtection,
-    onInspect: (name) => {
+    onInspect: (name, meshName) => {
+      if(name==="diskette"){diskExplorer.open(Number(meshName?.match(/([01])$/)?.[1]||0));return;}
       const focus = typeof name === "string" && name.startsWith("focus-")
         ? name.slice(6)
         : ["motherboard", "display-controller"].includes(name)
@@ -349,6 +357,7 @@ worker.onmessage = ({ data: d }) => {
       replayDisabled.clear();
     }
   }
+  if (d.type === "disk-inspection") diskExplorer.receive(d);
   if (d.type === "ready") {
     ready = true;
     configure(true, true).catch((e) => fail(e.message));
@@ -478,6 +487,7 @@ worker.onmessage = ({ data: d }) => {
     if (Number($("machine").value) === 2) {
       const drives = d.drives || [0, 0];
       scene?.drives(drives, d.driveMechanics, d.driveAvailable, d.driveLabels);
+      diskExplorer.activity(drives,d.driveMechanics,on);
       if ($("drive-diagnostics").open) {
         $("drive-diagnostic-values").textContent = on
           ? drives

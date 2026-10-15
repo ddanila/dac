@@ -295,3 +295,39 @@ WebKit share one fail-fast matrix, so a failed job cancels its siblings and
 blocks deployment. Branch-scoped concurrency cancels superseded runs when a
 new commit arrives; runs on other branches remain independent. Failure
 artifacts are retained for three days.
+
+## Disk contents explorer
+
+Click a modeled diskette, or choose **Explore disk A/B**, to open the mounted
+session image. The specimen viewer also links to the explorer. Choose a file to
+highlight its allocation, then select a sector on the map or use the cylinder,
+side and sector controls. The sector pane shows image/file offsets, hexadecimal
+bytes and ASCII; map and text have independent zoom controls.
+
+The default **TOS/M reference filesystem** profile uses 80 cylinders, two sides,
+five 1024-byte sectors per side-track, four reserved side-tracks, 2 KiB allocation
+blocks, 128 directory entries and 16-bit block pointers (EXM=0, DSM=389).
+Directory extents and user areas are retained. File lengths have CP/M's 128-byte
+record precision. This profile is an explicit interpretation, not automatic
+identification of every disk of that size. Inconsistent directories or incompatible
+geometry fall back to sectors without file ownership. **Raw sectors** disables
+filesystem interpretation.
+
+Unallocated space appears blank in the filesystem view; inspection never erases
+or modifies stored bytes. Reserved system sectors and directory entries remain
+readable. Raw 800 KiB images use the emulator's CHS ordering. Standard/extended DSK
+use track headers and stored sector order; mixed-size sectors can be inspected,
+but unsupported/weak sector lengths are rejected. DSK container offsets include
+headers. The map uses the documented TEAC side-specific radii and 96-TPI pitch;
+equal angular wedges are schematic, not recovered magnetic timing.
+
+Live inspection copies the current worker disk at serialized command boundaries
+every 1.5 seconds while the dialog is visible. Uncheck **Live updates** to freeze;
+**Refresh** takes another snapshot. Current sampled controller access is marked
+red. Closing the dialog stops polling. This does not pause the emulated computer
+or change its disk protection, save state, recording, or contents.
+
+Implementation: [disk parser](src/disk-map.js), [explorer](src/disk-explorer.js).
+References: the [CP/M 2.2 alteration guide](https://www.gaby.de/cpm/manuals/archive/cpm22htm/ch6.htm),
+[TEAC FD-55FV specification, p.108](https://retrocmp.de/fdd/teac/TEAC_FD55-FV.pdf#page=10),
+and the emulator's [disk adapter](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/disk.c).

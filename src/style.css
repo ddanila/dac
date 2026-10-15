@@ -726,3 +726,21 @@ textarea {
 #component-confidence dd { margin:0; }
 @media(max-width:600px){.component-pair { grid-template-columns:1fr; }}
 #component-confidence dt,#component-confidence dd{font-size:.9rem;letter-spacing:normal;text-transform:none;text-align:left}
+
+#disk-explorer {width:min(1200px,94vw);max-width:94vw;max-height:92vh;overflow:auto;background:#171d25;color:#e5ecf3;border:1px solid #657587;border-radius:12px;padding:20px}
+#disk-explorer::backdrop {background:#000b}
+.disk-map-controls {display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.disk-map-controls label {display:flex;align-items:center;gap:6px}
+.disk-map-grid {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.disk-map-scroll {overflow:auto;max-height:65vh;margin-top:12px}
+.disk-map-scroll canvas {display:block;width:100%;max-width:none;cursor:crosshair}
+#disk-explorer pre {overflow:auto;max-height:60vh;font-size:13px;line-height:1.6;background:#10151c;padding:12px}
+#disk-explorer input[type=number] {width:5em}
+@media(max-width:800px){.disk-map-grid{grid-template-columns:1fr}}
+
+#disk-explorer select, #disk-explorer input, #disk-explorer button {font-size:16px}
+#disk-explorer [data-activity]:empty {display:none}
+.disk-map-grid > div {min-width:0}
+#disk-explorer select {max-width:100%;min-width:0}
+#disk-explorer .disk-map-controls label {max-width:100%;flex-wrap:wrap}
+@media(max-width:800px){.disk-map-grid{grid-template-columns:minmax(0,1fr)}}

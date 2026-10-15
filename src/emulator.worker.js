@@ -960,6 +960,12 @@ async function receive(d) {
       recordEvent([8]);
       frame();
     } else if (d.type === "speed") speed = d.value === 4 ? 4 : 1;
+    else if (d.type === "inspect-disk") {
+      const unit=d.unit===1?1:0;
+      const bytes=diskBytes(unit);
+      if(!bytes.byteLength)postMessage({type:"disk-inspection",unit,request:d.request,error:"No disk available in this drive."});
+      else postMessage({type:"disk-inspection",unit,request:d.request,bytes},[bytes]);
+    }
     else if (d.type === "export") {
       const u = d.unit || 0;
       const p = module._dac_disk_data_unit(handle, u),
@@ -977,6 +983,7 @@ async function receive(d) {
       );
     }
   } catch (e) {
+    if(d.type==="inspect-disk") {postMessage({type:"disk-inspection",unit:d.unit,request:d.request,error:e.message});return;}
     if (d.type.startsWith("record-") || recording) {
       postMessage({ type: "record-status", message: e.message });
       return;
@@ -1015,6 +1022,10 @@ self.onmessage = ({ data }) => {
   }
   if (replaying && data.type === "visibility") {
     hidden = !!data.hidden;
+    return;
+  }
+  if (replaying && data.type === "inspect-disk") {
+    postMessage({type:"disk-inspection",unit:data.unit,request:data.request,error:"Disk inspection resumes when replay finishes."});
     return;
   }
   if (replaying) {
