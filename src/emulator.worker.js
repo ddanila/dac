@@ -1,3 +1,4 @@
+import {exportCollection,importCollection} from './collection-backup.js';
 import { archivedCore, hasArchivedCore } from "./archived-core.js";
 let currentModule, coreBase;
 import {
@@ -355,6 +356,11 @@ function frame() {
               : {}),
           }))
         : null,
+      circuitTelemetry:module._dac_circuit_activity?[0,1,2,3].map(i=>module._dac_circuit_activity(handle,i)):null,
+      serialPeerSupported:!!module._dac_serial_peer,
+      serialPeerBaud:module._dac_serial_peer_baud?.(handle)||0,
+      serialPeerFormat:module._dac_serial_peer_format?.(handle)||0,
+      serialErrors:module._dac_serial_errors?.(handle)||0,
       serialSupported:!!module._dac_serial_send,
       serialStatus:module._dac_serial_status?.(handle)||0,
       serialSize:module._dac_serial_size?.(handle)||0,
@@ -685,7 +691,7 @@ async function receive(d) {
         recording = null;
         throw Error("Recording reset failed.");
       }
-      if(kind===2 && module._dac_serial_signals){recordEvent([14,module._dac_serial_status(handle)&7]);recordEvent([16,module._dac_cable_status(handle)]);}
+      if(kind===2 && module._dac_serial_signals){recordEvent([14,module._dac_serial_status(handle)&7]);recordEvent([16,module._dac_cable_status(handle)]);if(module._dac_serial_peer)recordEvent([17,module._dac_serial_peer_baud(handle),module._dac_serial_peer_format(handle)]);}
       if (kind === 2 && module._dac_drive_door)
         for (const u of [0,1]) {
           const state = module._dac_drive_status_unit(handle, u);
@@ -743,6 +749,14 @@ async function receive(d) {
       storageStatus(
         "Saved disk discarded. Reload original media to start fresh.",
       );
+    } else if(d.type === "collection-export"){
+      await persistDisk(true);
+      const bytes=await exportCollection();postMessage({type:"download",name:"dac-collection.daccollection",bytes},[bytes]);
+      postMessage({type:"collection-status",message:"Saved collection exported. Keep the backup outside this browser."});
+    } else if(d.type === "collection-import"){
+      if(running || recording)throw Error("Power off and stop recording before restoring a collection.");
+      const result=await importCollection(d.bytes);await publishLibrary();
+      postMessage({type:"collection-status",message:`Imported ${result.added} records; skipped ${result.duplicates} identical records. Reload the page to use restored drive assignments and states.`});
     } else if (d.type === "save-state") {
       await saveRecord(stateKey, snapshotBytes());
       storageStatus("Machine state saved in this browser.", { hasState: true });
@@ -955,6 +969,12 @@ async function receive(d) {
       }
       await publishLibrary();
       frame();
+    } else if(d.type==="serial-peer"){
+      if(!module._dac_serial_peer || module._dac_serial_peer(handle,d.baud,d.format)<0)throw Error("Incoming peer settings rejected.");
+      recordEvent([17,d.baud,d.format]);frame();
+    } else if(d.type==="serial-cancel"){
+      if(!module._dac_serial_cancel)throw Error("Preserved core cannot cancel queued input.");
+      module._dac_serial_cancel(handle);recordEvent([18]);frame();
     } else if(d.type==="serial-send"){
       if(!module._dac_serial_send)throw Error("Preserved core has no V.24 support.");
       const bytes=new Uint8Array(d.bytes);
@@ -1007,6 +1027,7 @@ async function receive(d) {
       );
     }
   } catch (e) {
+    if(d.type?.startsWith("collection-")){postMessage({type:"collection-status",message:e.message});return;}
     if(d.type?.startsWith("serial-")){postMessage({type:"serial-error",message:e.message});return;}
     if(d.type==="inspect-disk") {postMessage({type:"disk-inspection",unit:d.unit,request:d.request,error:e.message});return;}
     if (d.type.startsWith("record-") || recording) {

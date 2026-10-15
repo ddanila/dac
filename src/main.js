@@ -1,3 +1,4 @@
+import {createCollectionPanel} from './collection-backup.js';
 import {createElectricalPanel} from './robotron-experiments.js';
 import {createCircuitPanel} from './robotron-circuits.js';
 import { createSerialPanel } from "./robotron-serial.js";
@@ -20,10 +21,12 @@ const $ = (id) => document.getElementById(id),
 const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
   type: "module",
 });
+const collectionPanel=createCollectionPanel(send);
 const serialPanel=createSerialPanel(send);
 const electricalPanel=createElectricalPanel(send);
-createCircuitPanel(c=>{
-  $("open-case").checked=true;$("isolate-assembly").value="motherboard";$("component-focus").value="motherboard";
+const circuitPanel=createCircuitPanel((c,related)=>{
+  scene?.focusCircuit(c?.ref,related);if(!c)return;
+  $("open-case").checked=true;$("isolate-assembly").value="motherboard";$("component-focus").value="none";
   updateCase();selectView("motherboard");
   showSpecimenDetail({title:`${c.ref} · ${c.name}`,text:`${c.role} ${c.signal} Drawing: 1715W/teil_b/Stromlaufplan ${c.sheet}.jpg in the linked archive.`,evidence:"W/M schematic relationship; specimen mapping provisional",photo:"20261014_072654600",reference:"https://xepb.org/robotron/docs/1715w.zip",sheet:`Stromlaufplan ${c.sheet}.jpg`});
 });
@@ -389,6 +392,7 @@ function requestPrinterPreview(force=false){
 $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPreview();};
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
+  collectionPanel.message(d);
   serialPanel.message(d);
   if(d.type==="capture-reset" || d.type==="configured"){lastPreviewSize=-1;previewPending=false;}
   if (d.type === "printer-preview") {
@@ -587,6 +591,7 @@ worker.onmessage = ({ data: d }) => {
         : "";
       serialPanel.frame(d,on,replayBusy);
       electricalPanel.frame(d,replayBusy);
+      circuitPanel.frame(d);
       if((d.printerSize||0)!==lastPreviewSize)requestPrinterPreview();
       $("printer-status").textContent = d.printerOverflow
         ? "Capture full (64 KB). Export and clear to continue."

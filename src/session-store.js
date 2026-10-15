@@ -122,3 +122,29 @@ export async function decodeSnapshot(file, key) {
     throw Error("Snapshot failed its integrity check.");
   return bytes;
 }
+
+// One transaction keeps a collection snapshot coherent across tabs.
+export async function collectionRecords() {
+  const db=await database();
+  try {return await new Promise((resolve,reject)=>{
+    const tx=db.transaction('copies'),store=tx.objectStore('copies');
+    const keys=store.getAllKeys(),values=store.getAll();
+    tx.oncomplete=()=>resolve(keys.result.map((key,i)=>[key,values.result[i]]));
+    tx.onabort=tx.onerror=()=>reject(tx.error);
+  });}finally{db.close();}
+}
+export async function mergeCollection(rows,equal) {
+  const db=await database();
+  try{return await new Promise((resolve,reject)=>{
+    const tx=db.transaction('copies','readwrite'),store=tx.objectStore('copies');
+    let failure,added=0,duplicates=0;
+    for(const [key,value] of rows){const req=store.get(key);req.onsuccess=()=>{
+      if(failure)return;
+      if(req.result===undefined){store.put(value,key);added++;}
+      else if(equal(req.result,value))duplicates++;
+      else{failure=Error(`A different saved record already exists (${key.slice(0,90)}). Nothing imported. Restore into a separate browser profile to keep both collections.`);tx.abort();}
+    };}
+    tx.oncomplete=()=>resolve({added,duplicates});
+    tx.onabort=tx.onerror=()=>reject(failure||tx.error||Error('Collection import aborted.'));
+  });}finally{db.close();}
+}
