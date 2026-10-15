@@ -375,5 +375,15 @@ The canonical source also includes expanded assembly and PCB interface audits.
 A self-contained local museum can be produced with
 `python3 scripts/package-preservation.py /path/to/dac-preservation.zip` after a
 root-base production build. Its launcher verifies file hashes before serving.
-See the matrix for the remaining V.24, electrical experiment and independent
-reference-trace work; those are not claimed complete by this pass.
+Core 0.9.0 adds an asynchronous V.24 terminal with raw file transfer, explicit
+keyboard/monitor electrical experiments, and snapshot/replay support for both.
+The previous 0.8.9 core remains available for old sessions. Circuit cards name
+specific W/M schematic files and distinguish documented signals from inferred
+specimen routing. An original diagnostic now agrees with MAME for memory, DMA,
+I/O writes, a CTC interrupt and display character RAM; raster timing is not
+independently qualified. See [the capability matrix](docs/robotron/capabilities.md)
+for evidence, reproduction commands and limits.
+
+The model profiler found no duplicate asset URLs. A parallel-loading experiment
+was slower and was rejected: geometry, textures and visible detail are unchanged.
+CI shards use measured file runtimes, with all tests retained.

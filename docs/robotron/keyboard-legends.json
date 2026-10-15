@@ -1,0 +1,2394 @@
+{
+  "scope": "Specimen key mapping versus observed S600 packets; special protocol values are not ASCII mismatches. Printed legends and reference firmware are separate evidence.",
+  "rows": [
+    {
+      "id": "key-000",
+      "label": "ALT",
+      "matrix": 66,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            27
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            27
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-001",
+      "label": "1",
+      "matrix": 58,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            49
+          ],
+          "legendCode": 49,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            33
+          ],
+          "legendCode": 33,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-002",
+      "label": "2",
+      "matrix": 18,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            50
+          ],
+          "legendCode": 50,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            34
+          ],
+          "legendCode": 34,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-003",
+      "label": "3",
+      "matrix": 10,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            51
+          ],
+          "legendCode": 51,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            35
+          ],
+          "legendCode": 35,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-004",
+      "label": "4",
+      "matrix": 2,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            52
+          ],
+          "legendCode": 52,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            36
+          ],
+          "legendCode": 52,
+          "result": "differs"
+        }
+      ]
+    },
+    {
+      "id": "key-005",
+      "label": "5",
+      "matrix": 90,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            53
+          ],
+          "legendCode": 53,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            37
+          ],
+          "legendCode": 37,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-006",
+      "label": "6",
+      "matrix": 98,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            54
+          ],
+          "legendCode": 54,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            38
+          ],
+          "legendCode": 38,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-007",
+      "label": "7",
+      "matrix": 50,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            55
+          ],
+          "legendCode": 55,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            39
+          ],
+          "legendCode": 39,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-008",
+      "label": "8",
+      "matrix": 74,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            56
+          ],
+          "legendCode": 56,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            40
+          ],
+          "legendCode": 40,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-009",
+      "label": "9",
+      "matrix": 82,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            57
+          ],
+          "legendCode": 57,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            41
+          ],
+          "legendCode": 41,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-010",
+      "label": "0",
+      "matrix": 34,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            48
+          ],
+          "legendCode": 48,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            95
+          ],
+          "legendCode": 95,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-011",
+      "label": "ß",
+      "matrix": 26,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            45
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            61
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-012",
+      "label": "^",
+      "matrix": 42,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            94
+          ],
+          "legendCode": 94,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            126
+          ],
+          "legendCode": 94,
+          "result": "differs"
+        }
+      ]
+    },
+    {
+      "id": "key-013",
+      "label": "R",
+      "matrix": 70,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-014",
+      "label": "SI SO",
+      "matrix": 71,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-015",
+      "label": "CTRL",
+      "matrix": 64,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-016",
+      "label": "Q",
+      "matrix": 56,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            113
+          ],
+          "legendCode": 113,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            81
+          ],
+          "legendCode": 81,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-017",
+      "label": "W",
+      "matrix": 16,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            119
+          ],
+          "legendCode": 119,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            87
+          ],
+          "legendCode": 87,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-018",
+      "label": "E",
+      "matrix": 8,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            101
+          ],
+          "legendCode": 101,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            69
+          ],
+          "legendCode": 69,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-019",
+      "label": "R",
+      "matrix": 0,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            114
+          ],
+          "legendCode": 114,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            82
+          ],
+          "legendCode": 82,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-020",
+      "label": "T",
+      "matrix": 88,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            116
+          ],
+          "legendCode": 116,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            84
+          ],
+          "legendCode": 84,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-021",
+      "label": "Y",
+      "matrix": 96,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            121
+          ],
+          "legendCode": 121,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            89
+          ],
+          "legendCode": 89,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-022",
+      "label": "U",
+      "matrix": 48,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            117
+          ],
+          "legendCode": 117,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            85
+          ],
+          "legendCode": 85,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-023",
+      "label": "I",
+      "matrix": 72,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            105
+          ],
+          "legendCode": 105,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            73
+          ],
+          "legendCode": 73,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-024",
+      "label": "O",
+      "matrix": 80,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            111
+          ],
+          "legendCode": 111,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            79
+          ],
+          "legendCode": 79,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-025",
+      "label": "P",
+      "matrix": 32,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            112
+          ],
+          "legendCode": 112,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            80
+          ],
+          "legendCode": 80,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-026",
+      "label": "@",
+      "matrix": 24,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            64
+          ],
+          "legendCode": 64,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            96
+          ],
+          "legendCode": 64,
+          "result": "differs"
+        }
+      ]
+    },
+    {
+      "id": "key-027",
+      "label": "{",
+      "matrix": 40,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            91
+          ],
+          "legendCode": 91,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            123
+          ],
+          "legendCode": 123,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-028",
+      "label": "Tab",
+      "matrix": 102,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            141
+          ],
+          "legendCode": 128,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            141
+          ],
+          "legendCode": 128,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-029",
+      "label": "INS",
+      "matrix": 46,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            130
+          ],
+          "legendCode": 130,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            130
+          ],
+          "legendCode": 130,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-030",
+      "label": "DEL",
+      "matrix": 54,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            127
+          ],
+          "legendCode": 127,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            127
+          ],
+          "legendCode": 127,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-031",
+      "label": "Caps Lock",
+      "matrix": 69,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-032",
+      "label": "A",
+      "matrix": 61,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            97
+          ],
+          "legendCode": 97,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            65
+          ],
+          "legendCode": 65,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-033",
+      "label": "S",
+      "matrix": 21,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            115
+          ],
+          "legendCode": 115,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            83
+          ],
+          "legendCode": 83,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-034",
+      "label": "D",
+      "matrix": 13,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            100
+          ],
+          "legendCode": 100,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            68
+          ],
+          "legendCode": 68,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-035",
+      "label": "F",
+      "matrix": 5,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            102
+          ],
+          "legendCode": 102,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            70
+          ],
+          "legendCode": 70,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-036",
+      "label": "G",
+      "matrix": 93,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            103
+          ],
+          "legendCode": 103,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            71
+          ],
+          "legendCode": 71,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-037",
+      "label": "H",
+      "matrix": 101,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            104
+          ],
+          "legendCode": 104,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            72
+          ],
+          "legendCode": 72,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-038",
+      "label": "J",
+      "matrix": 53,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            106
+          ],
+          "legendCode": 106,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            74
+          ],
+          "legendCode": 74,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-039",
+      "label": "K",
+      "matrix": 77,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            107
+          ],
+          "legendCode": 107,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            75
+          ],
+          "legendCode": 75,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-040",
+      "label": "L",
+      "matrix": 85,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            108
+          ],
+          "legendCode": 108,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            76
+          ],
+          "legendCode": 76,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-041",
+      "label": "+",
+      "matrix": 37,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            59
+          ],
+          "legendCode": 59,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            43
+          ],
+          "legendCode": 43,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-042",
+      "label": "*",
+      "matrix": 29,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            58
+          ],
+          "legendCode": 58,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            42
+          ],
+          "legendCode": 42,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-043",
+      "label": "}",
+      "matrix": 45,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            93
+          ],
+          "legendCode": 93,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            125
+          ],
+          "legendCode": 125,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-044",
+      "label": "Shift",
+      "matrix": 65,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-045",
+      "label": "|",
+      "matrix": 60,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            92
+          ],
+          "legendCode": 92,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            124
+          ],
+          "legendCode": 124,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-046",
+      "label": "Z",
+      "matrix": 44,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            122
+          ],
+          "legendCode": 122,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            90
+          ],
+          "legendCode": 90,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-047",
+      "label": "X",
+      "matrix": 20,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            120
+          ],
+          "legendCode": 120,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            88
+          ],
+          "legendCode": 88,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-048",
+      "label": "C",
+      "matrix": 12,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            99
+          ],
+          "legendCode": 99,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            67
+          ],
+          "legendCode": 67,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-049",
+      "label": "V",
+      "matrix": 4,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            118
+          ],
+          "legendCode": 118,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            86
+          ],
+          "legendCode": 86,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-050",
+      "label": "B",
+      "matrix": 92,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            98
+          ],
+          "legendCode": 98,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            66
+          ],
+          "legendCode": 66,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-051",
+      "label": "N",
+      "matrix": 100,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            110
+          ],
+          "legendCode": 110,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            78
+          ],
+          "legendCode": 78,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-052",
+      "label": "M",
+      "matrix": 52,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            109
+          ],
+          "legendCode": 109,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            77
+          ],
+          "legendCode": 77,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-053",
+      "label": ",",
+      "matrix": 76,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            44
+          ],
+          "legendCode": 44,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            60
+          ],
+          "legendCode": 60,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-054",
+      "label": ".",
+      "matrix": 84,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            46
+          ],
+          "legendCode": 46,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            62
+          ],
+          "legendCode": 62,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-055",
+      "label": "/",
+      "matrix": 36,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            47
+          ],
+          "legendCode": 47,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            63
+          ],
+          "legendCode": 63,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-056",
+      "label": "Shift",
+      "matrix": 68,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-057",
+      "label": "Space",
+      "matrix": 97,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            32
+          ],
+          "legendCode": 32,
+          "result": "matches"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            32
+          ],
+          "legendCode": 32,
+          "result": "matches"
+        }
+      ]
+    },
+    {
+      "id": "key-058",
+      "label": "ET",
+      "matrix": 28,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            158
+          ],
+          "legendCode": 13,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            158
+          ],
+          "legendCode": 13,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-059",
+      "label": "⇤",
+      "matrix": 103,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            135
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            135
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-060",
+      "label": "↑",
+      "matrix": 47,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            139
+          ],
+          "legendCode": 139,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            139
+          ],
+          "legendCode": 139,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-061",
+      "label": "⇥",
+      "matrix": 55,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            137
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            137
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-062",
+      "label": "←",
+      "matrix": 99,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            136
+          ],
+          "legendCode": 136,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            136
+          ],
+          "legendCode": 136,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-063",
+      "label": "↱",
+      "matrix": 43,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            140
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            140
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-064",
+      "label": "→",
+      "matrix": 51,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            134
+          ],
+          "legendCode": 134,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            134
+          ],
+          "legendCode": 134,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-065",
+      "label": "↵",
+      "matrix": 27,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            157
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            157
+          ],
+          "legendCode": null,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-066",
+      "label": "↓",
+      "matrix": 31,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            138
+          ],
+          "legendCode": 138,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            138
+          ],
+          "legendCode": 138,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-067",
+      "label": "F15",
+      "matrix": 49,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            142
+          ],
+          "legendCode": 142,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            142
+          ],
+          "legendCode": 142,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-068",
+      "label": "PF1",
+      "matrix": 39,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            209
+          ],
+          "legendCode": 209,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            209
+          ],
+          "legendCode": 209,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-069",
+      "label": "PF2",
+      "matrix": 38,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            210
+          ],
+          "legendCode": 210,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            210
+          ],
+          "legendCode": 210,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-070",
+      "label": "PF3",
+      "matrix": 81,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            211
+          ],
+          "legendCode": 211,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            211
+          ],
+          "legendCode": 211,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-071",
+      "label": "7",
+      "matrix": 62,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            183
+          ],
+          "legendCode": 183,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            183
+          ],
+          "legendCode": 183,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-072",
+      "label": "8",
+      "matrix": 22,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            184
+          ],
+          "legendCode": 184,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            184
+          ],
+          "legendCode": 184,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-073",
+      "label": "9",
+      "matrix": 14,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            185
+          ],
+          "legendCode": 185,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            185
+          ],
+          "legendCode": 185,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-074",
+      "label": "4",
+      "matrix": 63,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            180
+          ],
+          "legendCode": 180,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            180
+          ],
+          "legendCode": 180,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-075",
+      "label": "5",
+      "matrix": 23,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            181
+          ],
+          "legendCode": 181,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            181
+          ],
+          "legendCode": 181,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-076",
+      "label": "6",
+      "matrix": 15,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            182
+          ],
+          "legendCode": 182,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            182
+          ],
+          "legendCode": 182,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-077",
+      "label": "1",
+      "matrix": 59,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            177
+          ],
+          "legendCode": 177,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            177
+          ],
+          "legendCode": 177,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-078",
+      "label": "2",
+      "matrix": 19,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            178
+          ],
+          "legendCode": 178,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            178
+          ],
+          "legendCode": 178,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-079",
+      "label": "3",
+      "matrix": 11,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            179
+          ],
+          "legendCode": 179,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            179
+          ],
+          "legendCode": 179,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-080",
+      "label": "0",
+      "matrix": 57,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            176
+          ],
+          "legendCode": 176,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            176
+          ],
+          "legendCode": 176,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-081",
+      "label": "00",
+      "matrix": 17,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            187
+          ],
+          "legendCode": 187,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            187
+          ],
+          "legendCode": 187,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-082",
+      "label": ",",
+      "matrix": 9,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            172
+          ],
+          "legendCode": 172,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            172
+          ],
+          "legendCode": 172,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-083",
+      "label": "PF4",
+      "matrix": 83,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            212
+          ],
+          "legendCode": 212,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            212
+          ],
+          "legendCode": 212,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-084",
+      "label": "CE",
+      "matrix": 6,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            206
+          ],
+          "legendCode": 206,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            206
+          ],
+          "legendCode": 206,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-085",
+      "label": "-",
+      "matrix": 7,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            189
+          ],
+          "legendCode": 189,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            189
+          ],
+          "legendCode": 189,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-086",
+      "label": "↔",
+      "matrix": 1,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            208
+          ],
+          "legendCode": 208,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            208
+          ],
+          "legendCode": 208,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-087",
+      "label": "PF5",
+      "matrix": 86,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            207
+          ],
+          "legendCode": 207,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            207
+          ],
+          "legendCode": 207,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-088",
+      "label": "PF10",
+      "matrix": 87,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            131
+          ],
+          "legendCode": 131,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            131
+          ],
+          "legendCode": 131,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-089",
+      "label": "PF6",
+      "matrix": 94,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            160
+          ],
+          "legendCode": 160,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            160
+          ],
+          "legendCode": 160,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-090",
+      "label": "PF11",
+      "matrix": 78,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            193
+          ],
+          "legendCode": 193,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            193
+          ],
+          "legendCode": 193,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-091",
+      "label": "PF7",
+      "matrix": 95,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            161
+          ],
+          "legendCode": 161,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            161
+          ],
+          "legendCode": 161,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-092",
+      "label": "PF12",
+      "matrix": 79,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            192
+          ],
+          "legendCode": 192,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            192
+          ],
+          "legendCode": 192,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-093",
+      "label": "PF8",
+      "matrix": 91,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            162
+          ],
+          "legendCode": 162,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            162
+          ],
+          "legendCode": 162,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-094",
+      "label": "PF13",
+      "matrix": 75,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            194
+          ],
+          "legendCode": 194,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            194
+          ],
+          "legendCode": 194,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-095",
+      "label": "PF9",
+      "matrix": 89,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            163
+          ],
+          "legendCode": 163,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            163
+          ],
+          "legendCode": 163,
+          "result": "special-or-unqualified"
+        }
+      ]
+    },
+    {
+      "id": "key-096",
+      "label": "PF14",
+      "matrix": 73,
+      "states": [
+        {
+          "modifiers": 0,
+          "packet": [
+            224,
+            205
+          ],
+          "legendCode": 205,
+          "result": "special-or-unqualified"
+        },
+        {
+          "modifiers": 1,
+          "packet": [
+            226,
+            205
+          ],
+          "legendCode": 205,
+          "result": "special-or-unqualified"
+        }
+      ]
+    }
+  ]
+}

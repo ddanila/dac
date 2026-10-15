@@ -65,5 +65,10 @@
     "version": "0.8.8",
     "javascript": "b53a916f0ec2417f1d3883c759b9f14b959299f23fe915d4cc3bed868de17d4e",
     "commit": "65ac4213d9377d57916413e6e6be31bc84a39b7b"
+  },
+  "50ad832bcc0c64b912a03a1c87b50553a4d22efd57dd343518c4c3599c1a13fa": {
+    "version": "0.8.9",
+    "javascript": "b53a916f0ec2417f1d3883c759b9f14b959299f23fe915d4cc3bed868de17d4e",
+    "commit": "edb8d245bd9ba1b12913cff71520ed81d17cd829"
   }
 }

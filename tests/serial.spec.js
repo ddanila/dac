@@ -1,0 +1,44 @@
+import {test,expect} from '@playwright/test';
+const rom=new Uint8Array(2048);let code=[0xf3,0x31,0xff,0x7f];
+for(const v of [3,0xc1,4,0x44,5,0xea])code.push(0x3e,v,0xd3,0x0f);
+for(const v of [7,1])code.push(0x3e,v,0xd3,9);
+code.push(0xdb,0x0f,0xe6,1,0x28,0xfa,0xdb,0x0d,0xd3,0x0d,0x18,0xf4);rom.set(code);
+test('V.24 terminal sends exact file bytes through guest SIO echo and exports capture',async({page})=>{
+ await page.goto('/?activity=printer');
+ await expect(page.locator('#power')).toBeEnabled({timeout:30000});
+ await page.locator('#media-controls summary').click();
+ await page.locator('#rom').setInputFiles({name:'serial-echo.bin',mimeType:'application/octet-stream',buffer:Buffer.from(rom)});
+ await page.locator('#prom').setInputFiles('public/media/robotron/cas.bin');
+ await page.locator('#load').click();await expect(page.locator('#power')).toBeEnabled();
+ await expect(page.locator('#media-label')).toHaveText('serial-echo.bin');
+ await page.locator('#power').click();await page.locator('#serial-panel summary').click();
+ await page.locator('#record-controls summary').click();await page.locator('#record-start').click();
+ await expect(page.locator('#record-status')).toContainText('Recording from restart');
+ await expect(page.locator('#serial-cts')).toBeEnabled();
+ await page.locator('#serial-cts').check();await page.locator('#serial-dcd').check();
+ const bytes=Buffer.from([0,0x41,0x7f,0x80,0xff]);
+ await page.locator('#serial-file').setInputFiles({name:'bytes.bin',mimeType:'application/octet-stream',buffer:bytes});
+ await expect(page.locator('#serial-status')).toContainText('5 received');
+ const download=page.waitForEvent('download');await page.locator('#serial-export').click();
+ const {readFile}=await import('node:fs/promises');expect(await readFile(await(await download).path())).toEqual(bytes);
+ await page.locator('#electrical-panel summary').click();await page.locator('#electrical-enable').check();
+ await page.locator('#electrical-monitor').uncheck();await expect(page.locator('#viewport')).toHaveAttribute('data-electrical','2');
+ const recorded=page.waitForEvent('download');await page.locator('#record-stop').click();
+ const path=await(await recorded).path(),record=await readFile(path);
+ await page.locator('#record-file').setInputFiles({name:'serial.dacrecord',mimeType:'application/json',buffer:record});
+ await expect(page.locator('#record-status')).toContainText('Replay verified',{timeout:30000});
+ if(process.env.DAC_NATIVE_REPLAY){const {execFileSync}=await import('node:child_process');expect(execFileSync('node',['scripts/replay-native.mjs',path,process.env.DAC_NATIVE_REPLAY==='1'?'../dac-emulation/build/dac-replay':process.env.DAC_NATIVE_REPLAY],{encoding:'utf8'})).toContain('PASS native replay');}
+ await page.locator('#serial-clear').click();await expect(page.locator('#serial-status')).toContainText('0 received');
+});
+test('open printer preview updates when the guest prints without a refresh click',async({page})=>{
+ const boot=new Uint8Array(2048),program=[0xf3];
+ for(const [port,values] of [[14,[4,4,5,0x68]],[8,[7,1]],[12,[65]]])for(const v of values)program.push(0x3e,v,0xd3,port);
+ program.push(0x76);boot.set(program);
+ await page.goto('/?activity=printer');await expect(page.locator('#power')).toBeEnabled({timeout:30000});
+ await page.locator('#media-controls summary').click();
+ await page.locator('#rom').setInputFiles({name:'print.bin',mimeType:'application/octet-stream',buffer:Buffer.from(boot)});
+ await page.locator('#prom').setInputFiles('public/media/robotron/cas.bin');await page.locator('#load').click();
+ await expect(page.locator('#media-label')).toHaveText('print.bin');await expect(page.locator('#power')).toBeEnabled();
+ await page.locator('#printer-panel summary').click();await expect(page.locator('#printer-paper')).toContainText('(blank page)');
+ await page.locator('#power').click();await expect(page.locator('#printer-paper')).toHaveText('A');
+});

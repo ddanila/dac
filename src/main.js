@@ -1,3 +1,6 @@
+import {createElectricalPanel} from './robotron-experiments.js';
+import {createCircuitPanel} from './robotron-circuits.js';
+import { createSerialPanel } from "./robotron-serial.js";
 import { printerPages, activities } from "./robotron-activities.js";
 import { createDiskExplorer } from "./disk-explorer.js";
 import { installExhibitLayout } from "./exhibit-layout.js";
@@ -16,6 +19,13 @@ const $ = (id) => document.getElementById(id),
   send = (d) => worker.postMessage(d);
 const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
   type: "module",
+});
+const serialPanel=createSerialPanel(send);
+const electricalPanel=createElectricalPanel(send);
+createCircuitPanel(c=>{
+  $("open-case").checked=true;$("isolate-assembly").value="motherboard";$("component-focus").value="motherboard";
+  updateCase();selectView("motherboard");
+  showSpecimenDetail({title:`${c.ref} · ${c.name}`,text:`${c.role} ${c.signal} Drawing: 1715W/teil_b/Stromlaufplan ${c.sheet}.jpg in the linked archive.`,evidence:"W/M schematic relationship; specimen mapping provisional",photo:"20261014_072654600",reference:"https://xepb.org/robotron/docs/1715w.zip",sheet:`Stromlaufplan ${c.sheet}.jpg`});
 });
 const diskExplorer=createDiskExplorer((unit,request)=>send({type:"inspect-disk",unit,request}),target=>{
   scene?.markTrack(target);
@@ -64,8 +74,18 @@ if (practice) {
   $("remember-disk").disabled = true;
   $("guided-activities").open = true;
   const heading = document.createElement("h3"); heading.textContent = practice.title;
-  const text = document.createElement("pre"); text.textContent = practice.steps;
-  $("activity-instructions").append(heading, text);
+  const progress=document.createElement("p"); progress.setAttribute("role","status");
+  const steps=practice.steps.split(/\n(?=\d+\.)/), checks=[];
+  const update=()=>{progress.textContent=`${checks.filter(c=>c.checked).length} of ${checks.length} steps checked · mark each step as you finish it.`;};
+  const list=document.createElement("div");
+  for(const step of steps){
+    const label=document.createElement("label"),check=document.createElement("input"),text=document.createElement("span");
+    check.type="checkbox";check.onchange=update;checks.push(check);text.textContent=step;
+    label.append(check,text);list.append(label);
+  }
+  const reset=document.createElement("button");reset.textContent="Reset practice progress";
+  reset.onclick=()=>{checks.forEach(c=>c.checked=false);update();};
+  $("activity-instructions").append(heading,progress,list,reset);update();
 }
 const heldModelKeys = new Map();
 let managedHostCaps = false;
@@ -361,8 +381,18 @@ async function configure(demo, historical = false) {
     build: import.meta.env.VITE_EMULATOR_REVISION,
   });
 }
+let previewPending=false, lastPreviewSize=-1;
+function requestPrinterPreview(force=false){
+  if(replayBusy || !ready || previewPending || document.hidden || (!force && !$("printer-panel").open))return;
+  previewPending=true;send({type:"printer-preview"});
+}
+$("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPreview();};
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
+  serialPanel.message(d);
+  if(d.type==="capture-reset" || d.type==="configured"){lastPreviewSize=-1;previewPending=false;}
   if (d.type === "printer-preview") {
+    previewPending=false;lastPreviewSize=d.bytes.byteLength;
     $("printer-paper").replaceChildren(...printerPages(new Uint8Array(d.bytes)).map((text,i) => {
       const paper = document.createElement("pre");paper.textContent = text || "(blank page)";
       paper.setAttribute("aria-label", `Printed page ${i+1}`);return paper;
@@ -370,6 +400,7 @@ worker.onmessage = ({ data: d }) => {
   }
   if (d.type === "replay") {
     replayBusy = d.active;
+    previewPending=false;
     if (d.active) {
       for (const control of document.querySelectorAll(
         "aside button, aside input, aside select, aside textarea",
@@ -387,6 +418,7 @@ worker.onmessage = ({ data: d }) => {
   if (d.type === "disk-inspection") diskExplorer.receive(d);
   if (d.type === "ready") {
     ready = true;
+    lastPreviewSize=-1;
     configure(true, true).catch((e) => fail(e.message));
   }
   if (d.type === "configured") {
@@ -553,6 +585,9 @@ worker.onmessage = ({ data: d }) => {
             })
             .join(" / ")
         : "";
+      serialPanel.frame(d,on,replayBusy);
+      electricalPanel.frame(d,replayBusy);
+      if((d.printerSize||0)!==lastPreviewSize)requestPrinterPreview();
       $("printer-status").textContent = d.printerOverflow
         ? "Capture full (64 KB). Export and clear to continue."
         : `${d.printerSize || 0} bytes captured.`;
@@ -725,12 +760,16 @@ $("export-b").onclick = () => send({ type: "export", unit: 1 });
 $("writable-b").onchange = () => {
   if (diskB) send({ type: "protect-b", writable: $("writable-b").checked });
 };
-function adjustDisplay(){scene?.displaySettings({brightness: +$("crt-brightness").value, contrast: +$("crt-contrast").value, persistence: +$("crt-persistence").value});}
+function adjustDisplay(){
+  for(const name of ["brightness","contrast","persistence"]){
+    const value=+$("crt-"+name).value;$("crt-"+name+"-value").value=name==="persistence"?`${value} ms`:`${value.toFixed(2)}×`;
+  }
+  scene?.displaySettings({brightness: +$("crt-brightness").value, contrast: +$("crt-contrast").value, persistence: +$("crt-persistence").value});}
 $("crt-brightness").oninput = adjustDisplay;
 $("crt-contrast").oninput = adjustDisplay;
 $("crt-persistence").oninput = adjustDisplay;
 $("crt-defaults").onclick = () => {$("crt-brightness").value=1;$("crt-contrast").value=1;$("crt-persistence").value=0;adjustDisplay();};
-$("printer-preview").onclick = () => {if(ready)send({type:"printer-preview"});};
+$("printer-preview").onclick = () => requestPrinterPreview(true);
 $("printer-export").onclick = () => send({ type: "printer" });
 $("printer-clear").onclick = () => {send({ type: "clear-printer" });$("printer-paper").replaceChildren();};
 $("export-state").onclick = () => {

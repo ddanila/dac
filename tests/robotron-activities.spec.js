@@ -32,3 +32,17 @@ test('CRT persistence keeps source pixels intact and resets after a long pause',
   expect(result.glow).toBeGreaterThan(result.decayed);
   expect(result.original).toBe(16);expect(result.afterPause).toBe(16);
 });
+test('display values and practice progress are visible and resettable',async({page})=>{
+ await page.goto('/?activity=wordstar');
+ const activity=page.locator('#activity-instructions');
+ await expect(activity.getByRole('status')).toContainText('0 of 5');
+ await activity.locator('input').first().check();
+ await expect(activity.getByRole('status')).toContainText('1 of 5');
+ await activity.getByRole('button').click();
+ await expect(activity.getByRole('status')).toContainText('0 of 5');
+ await page.getByText('Display adjustments',{exact:true}).click();
+ await page.locator('#crt-brightness').fill('1.5');await page.locator('#crt-brightness').dispatchEvent('input');
+ await expect(page.locator('#crt-brightness-value')).toHaveText('1.50×');
+ await page.locator('#crt-defaults').click();await expect(page.locator('#crt-brightness-value')).toHaveText('1.00×');
+ await expect(page.getByRole('link',{name:'Download the standalone museum preservation package'})).toBeVisible();
+});

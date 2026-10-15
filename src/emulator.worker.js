@@ -43,7 +43,7 @@ async function finishRecording() {
   stopPaste();
   const record = recording;
   recording = null;
-  record.result = await outputHashes(module, handle);
+  record.result = await outputHashes(module, handle, !!module._dac_serial_data);
   const bytes = await encodeRecording(record);
   postMessage({ type: "download", name: "dac-session.dacrecord", bytes }, [
     bytes,
@@ -92,15 +92,15 @@ async function replayRecording(bytes) {
       });
       await new Promise((resolve) => setTimeout(resolve, 0));
     }
-    const result = await outputHashes(module, next);
+    const result = await outputHashes(module, next, record.result.length===5);
     if (result.some((hash, i) => hash !== record.result[i]))
       throw Error(
-        "Replay differs from the recorded display, disks or printer. Current machine preserved.",
+        "Replay differs from the recorded display, disks, printer or serial output. Current machine preserved.",
       );
     // Replay is an isolated verification, never an implicit replacement of the visitor's work.
     postMessage({
       type: "record-status",
-      message: "Replay verified: display, both disks and printer match.",
+      message: `Replay verified: display, both disks, printer${record.result.length===5?" and V.24":""} match.`,
     });
   } finally {
     module._dac_destroy(next);
@@ -271,6 +271,7 @@ function snapshotBytes() {
 }
 function restore(bytes) {
   copy(bytes, (p, n) => module._dac_state_load(handle, p, n));
+  postMessage({type:"capture-reset"});
   stopPaste();
   running = true;
   clearTimeout(timer);
@@ -354,6 +355,11 @@ function frame() {
               : {}),
           }))
         : null,
+      serialSupported:!!module._dac_serial_send,
+      serialStatus:module._dac_serial_status?.(handle)||0,
+      serialSize:module._dac_serial_size?.(handle)||0,
+      serialOverflow:module._dac_serial_overflow?.(handle)||0,
+      cables:module._dac_cable_status?.(handle)||0,
       printerSize: module._dac_printer_size(handle),
       printerOverflow: module._dac_printer_overflow(handle),
     },
@@ -679,6 +685,7 @@ async function receive(d) {
         recording = null;
         throw Error("Recording reset failed.");
       }
+      if(kind===2 && module._dac_serial_signals){recordEvent([14,module._dac_serial_status(handle)&7]);recordEvent([16,module._dac_cable_status(handle)]);}
       if (kind === 2 && module._dac_drive_door)
         for (const u of [0,1]) {
           const state = module._dac_drive_status_unit(handle, u);
@@ -948,6 +955,23 @@ async function receive(d) {
       }
       await publishLibrary();
       frame();
+    } else if(d.type==="serial-send"){
+      if(!module._dac_serial_send)throw Error("Preserved core has no V.24 support.");
+      const bytes=new Uint8Array(d.bytes);
+      if(bytes.length>65536-(module._dac_serial_status(handle)>>>8))throw Error("V.24 input queue is full; wait for the guest to receive it.");
+      if(recording && recording.events.length+bytes.length>RECORD_LIMIT)throw Error("Export the recording before sending this many serial bytes.");
+      for(const byte of bytes){if(module._dac_serial_send(handle,byte)<0)throw Error("Power on before sending serial data.");recordEvent([13,byte]);}
+      frame();
+    } else if(d.type==="serial-signals" || d.type==="cables"){
+      const fn=d.type==="cables"?module._dac_cables:module._dac_serial_signals;
+      if(!fn || fn(handle,d.value)<0)throw Error("Connection setting unsupported.");
+      recordEvent([d.type==="cables"?16:14,d.value]);frame();
+    } else if(d.type==="serial-clear"){
+      module._dac_serial_clear?.(handle);recordEvent([15]);frame();
+    } else if(d.type==="serial-preview" || d.type==="serial-export"){
+      if(!module._dac_serial_data)throw Error("Preserved core has no V.24 support.");
+      const p=module._dac_serial_data(handle),n=module._dac_serial_size(handle),bytes=module.HEAPU8.slice(p,p+n).buffer;
+      postMessage({type:d.type==="serial-preview"?"serial-preview":"download",name:"dac-v24.bin",bytes},[bytes]);
     } else if (d.type === "printer" || d.type === "printer-preview") {
       const p = module._dac_printer_data(handle),
         n = module._dac_printer_size(handle);
@@ -983,6 +1007,7 @@ async function receive(d) {
       );
     }
   } catch (e) {
+    if(d.type?.startsWith("serial-")){postMessage({type:"serial-error",message:e.message});return;}
     if(d.type==="inspect-disk") {postMessage({type:"disk-inspection",unit:d.unit,request:d.request,error:e.message});return;}
     if (d.type.startsWith("record-") || recording) {
       postMessage({ type: "record-status", message: e.message });
