@@ -1,4 +1,4 @@
-import { cableWeight } from './robotron-cables.js';
+import { cableWeight, bindRibbon } from './robotron-cables.js';
 import { componentDetail } from "./component-detail.js";
 import { createDriveMotion } from "./robotron-drives.js";
 import { createFanMotion } from "./robotron-fan.js";
@@ -449,11 +449,14 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     return mesh;
   });
   const instance = new THREE.Object3D();
-  const cableRest = new Map();
+  const cableRest = new Map(), ribbonBindings = new Map();
   for (const [name, mesh] of objects) {
     if (name.startsWith("ribbon-") || name.startsWith("power-wires"))
       cableRest.set(name, mesh.geometry.attributes.position.array.slice());
   }
+  for (const [name, rest] of cableRest)
+    if (name.startsWith("ribbon-") && data.ribbonPaths)
+      ribbonBindings.set(name, bindRibbon(rest, data.ribbonPaths));
   const monitorCableRest = new Map(
     ["monitor-power-lead", "monitor-signal-lead"].map(name =>
       [name, objects.get(name).geometry.attributes.position.array.slice()]),
@@ -862,7 +865,9 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         const rest = cableRest.get(name),
           pos = mesh.geometry.attributes.position;
         if (beforeSplit !== split || changedInside) {
-          for (let i = 0; i < pos.count; i++) {
+          const ribbon = ribbonBindings.get(name);
+          if (ribbon) pos.array.set(ribbon(split, inspection.disconnectCables, data.cableParking?.[1] || 18));
+          else for (let i = 0; i < pos.count; i++) {
             const weight = cableWeight(name, rest[i*3], rest[i*3+1], rest[i*3+2]);
             pos.setXYZ(
               i,

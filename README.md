@@ -217,3 +217,26 @@ behaviors with named steps, reducing cumulative setup/input time in each test.
 The stronger Caps test also exposed and fixed diagnostic-adapter physical Caps
 handling, including avoiding double application of the host OS's Caps state.
 Firmware keyboard input still goes directly to the S600 controller matrix.
+
+### v41 / core 0.8.8
+
+Photo-registered motherboard placements now share a two-photo fit using six
+nominal DIP lead rectangles. An independent common-chip check differs by
+1.15 mm; board edges and unseen mounts remain estimates. Readable specimen
+legends, DMA/SIO orientation, additional visible copper and tinned lands improve
+the clean reconstruction. Downloadable board STLs include the sockets and
+contacts visible in the museum. The canonical metadata checker runs before
+model import and verifies counts, evidence, hashes and embedded source files.
+
+The ribbon now clears the display-board edge. Its canonical path sections move
+with rigid cross sections, preserving width and stripes. Cheap geometry tests
+sample 21 separation positions in connected and parked modes, checking PCB,
+chip and drive-carrier clearance, width, endpoints and restoration. Cable slack
+and separated-view extension remain illustrative; no visual detail is removed.
+
+Core 0.8.8 samples glyph, cursor and attributes at scanline boundaries, retaining
+already emitted lines and per-line intensity. Snapshot layout 7 preserves the
+partially refreshed frame; core 0.8.7 remains archived for existing sessions.
+Exact dot timing, specimen bus contention and unverified IRQ wiring remain
+outside the model. Native/WASM historical boot parity and focused timing,
+snapshot, geometry and browser checks cover this release.
