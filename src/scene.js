@@ -1,3 +1,4 @@
+import { createCrtPresentation } from "./crt-presentation.js";
 import { createDriveSceneState } from "./drive-scene-state.js";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
@@ -141,7 +142,9 @@ export function createScene(
   box(0.82, 0.67, 0.63, beige, 0, 0.76, -0.08);
   box(0.77, 0.6, 0.022, dark, 0, 0.76, 0.247);
   box(0.19, 0.09, 0.21, dark, 0, 0.39, -0.08);
-  const texture = new THREE.CanvasTexture(screen);
+  const presentation = createCrtPresentation(screen);
+  presentation.tick(performance.now());
+  const texture = new THREE.CanvasTexture(presentation.canvas);
   texture.minFilter = THREE.LinearMipmapLinearFilter;
   texture.anisotropy = 4;
   texture.magFilter = THREE.NearestFilter;
@@ -252,6 +255,8 @@ export function createScene(
             : "LOADING DANILA’S MACHINE…";
   }
   visibility();
+  let crtSettings={};
+  const soundPoint=new THREE.Vector3();
   const detailLoading=document.createElement("div");detailLoading.id="detail-loading";detailLoading.hidden=true;detailLoading.setAttribute("role","status");container.append(detailLoading);
   loadRobotron(texture, loadingProgress, state=>{
     container.dataset.details=state;detailLoading.hidden=state==="ready";
@@ -260,6 +265,7 @@ export function createScene(
   })
     .then((model) => {
       robotron = model;
+      model.displaySettings(crtSettings);
       scene.add(model.group);
       window.dispatchEvent(new CustomEvent("dac-model-ready",{detail:{evidence:model.evidence}}));
       model.power(powered);
@@ -519,12 +525,17 @@ export function createScene(
   }
   const drawFrame = () => {
     controls.update();
+    if(presentation.tick(performance.now())){texture.needsUpdate=true;renderRequested ||= kind !== 2 || !robotron || inCameraView(robotron.objects.get("crt-glass"), camera);}
     robotron?.detailDistance(camera.position.distanceTo(controls.target));
     const changed = robotron?.tick();
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     if (renderRequested || changed?.dirty) {
       renderer.render(scene, camera);
       drawLabels();
+      if(robotron && interaction.onSoundPosition) {
+        const pan=(x,y,z)=>{soundPoint.set(x,y,z);robotron.group.localToWorld(soundPoint);soundPoint.project(camera);return Math.max(-.8,Math.min(.8,soundPoint.x));};
+        interaction.onSoundPosition({keyboard:pan(0,-330,30),case:pan(0,0,100)});
+      }
       renderRequested = false;
     }
   };
@@ -582,10 +593,11 @@ export function createScene(
       cancelGesture();
       robotron?.separate(on);
     },
+    displaySettings: value => {crtSettings=value;presentation.settings(value);robotron?.displaySettings(value);renderRequested=true;},
     update: () => {
       // Keep the latest raster for the next render, but do not redraw the whole
       // machine for offscreen CRT updates (for example, while typing below it).
-      texture.needsUpdate = true;
+      presentation.update();
       renderRequested ||= kind !== 2 || !robotron ||
         inCameraView(robotron.objects.get("crt-glass"), camera);
     },

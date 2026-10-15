@@ -1,0 +1,3667 @@
+{
+  "profile": "S600 reference; observed packets, not specimen legend qualification",
+  "cases": [
+    {
+      "key": 0,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        114
+      ]
+    },
+    {
+      "key": 1,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        208
+      ]
+    },
+    {
+      "key": 2,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        52
+      ]
+    },
+    {
+      "key": 3,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        208
+      ]
+    },
+    {
+      "key": 4,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        118
+      ]
+    },
+    {
+      "key": 5,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        102
+      ]
+    },
+    {
+      "key": 6,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        206
+      ]
+    },
+    {
+      "key": 7,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        189
+      ]
+    },
+    {
+      "key": 8,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        101
+      ]
+    },
+    {
+      "key": 9,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        172
+      ]
+    },
+    {
+      "key": 10,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        51
+      ]
+    },
+    {
+      "key": 11,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        179
+      ]
+    },
+    {
+      "key": 12,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        99
+      ]
+    },
+    {
+      "key": 13,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        100
+      ]
+    },
+    {
+      "key": 14,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        185
+      ]
+    },
+    {
+      "key": 15,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        182
+      ]
+    },
+    {
+      "key": 16,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        119
+      ]
+    },
+    {
+      "key": 17,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        187
+      ]
+    },
+    {
+      "key": 18,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        50
+      ]
+    },
+    {
+      "key": 19,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        178
+      ]
+    },
+    {
+      "key": 20,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        120
+      ]
+    },
+    {
+      "key": 21,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        115
+      ]
+    },
+    {
+      "key": 22,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        184
+      ]
+    },
+    {
+      "key": 23,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        181
+      ]
+    },
+    {
+      "key": 24,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        64
+      ]
+    },
+    {
+      "key": 25,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        158
+      ]
+    },
+    {
+      "key": 26,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        45
+      ]
+    },
+    {
+      "key": 27,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        157
+      ]
+    },
+    {
+      "key": 28,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        158
+      ]
+    },
+    {
+      "key": 29,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        58
+      ]
+    },
+    {
+      "key": 30,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        0
+      ]
+    },
+    {
+      "key": 31,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        138
+      ]
+    },
+    {
+      "key": 32,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        112
+      ]
+    },
+    {
+      "key": 33,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        0
+      ]
+    },
+    {
+      "key": 34,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        48
+      ]
+    },
+    {
+      "key": 35,
+      "modifiers": 0,
+      "leds": 1,
+      "packet": [
+        228,
+        0
+      ]
+    },
+    {
+      "key": 36,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        47
+      ]
+    },
+    {
+      "key": 37,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        59
+      ]
+    },
+    {
+      "key": 38,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        210
+      ]
+    },
+    {
+      "key": 39,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        209
+      ]
+    },
+    {
+      "key": 40,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        91
+      ]
+    },
+    {
+      "key": 41,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        0
+      ]
+    },
+    {
+      "key": 42,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        94
+      ]
+    },
+    {
+      "key": 43,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        140
+      ]
+    },
+    {
+      "key": 44,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        122
+      ]
+    },
+    {
+      "key": 45,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        93
+      ]
+    },
+    {
+      "key": 46,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        130
+      ]
+    },
+    {
+      "key": 47,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        139
+      ]
+    },
+    {
+      "key": 48,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        117
+      ]
+    },
+    {
+      "key": 49,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        142
+      ]
+    },
+    {
+      "key": 50,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        55
+      ]
+    },
+    {
+      "key": 51,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        134
+      ]
+    },
+    {
+      "key": 52,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        109
+      ]
+    },
+    {
+      "key": 53,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        106
+      ]
+    },
+    {
+      "key": 54,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        127
+      ]
+    },
+    {
+      "key": 55,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        137
+      ]
+    },
+    {
+      "key": 56,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        113
+      ]
+    },
+    {
+      "key": 57,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        176
+      ]
+    },
+    {
+      "key": 58,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        49
+      ]
+    },
+    {
+      "key": 59,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        177
+      ]
+    },
+    {
+      "key": 60,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        92
+      ]
+    },
+    {
+      "key": 61,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        97
+      ]
+    },
+    {
+      "key": 62,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        183
+      ]
+    },
+    {
+      "key": 63,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        180
+      ]
+    },
+    {
+      "key": 64,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 65,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 66,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        27
+      ]
+    },
+    {
+      "key": 67,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 68,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 69,
+      "modifiers": 0,
+      "leds": 2,
+      "packet": []
+    },
+    {
+      "key": 70,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 71,
+      "modifiers": 0,
+      "leds": 1,
+      "packet": []
+    },
+    {
+      "key": 72,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        105
+      ]
+    },
+    {
+      "key": 73,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        205
+      ]
+    },
+    {
+      "key": 74,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        56
+      ]
+    },
+    {
+      "key": 75,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        194
+      ]
+    },
+    {
+      "key": 76,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        44
+      ]
+    },
+    {
+      "key": 77,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        107
+      ]
+    },
+    {
+      "key": 78,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        193
+      ]
+    },
+    {
+      "key": 79,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        192
+      ]
+    },
+    {
+      "key": 80,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        111
+      ]
+    },
+    {
+      "key": 81,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        211
+      ]
+    },
+    {
+      "key": 82,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        57
+      ]
+    },
+    {
+      "key": 83,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        212
+      ]
+    },
+    {
+      "key": 84,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        46
+      ]
+    },
+    {
+      "key": 85,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        108
+      ]
+    },
+    {
+      "key": 86,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        207
+      ]
+    },
+    {
+      "key": 87,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        131
+      ]
+    },
+    {
+      "key": 88,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        116
+      ]
+    },
+    {
+      "key": 89,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        163
+      ]
+    },
+    {
+      "key": 90,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        53
+      ]
+    },
+    {
+      "key": 91,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        162
+      ]
+    },
+    {
+      "key": 92,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        98
+      ]
+    },
+    {
+      "key": 93,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        103
+      ]
+    },
+    {
+      "key": 94,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        160
+      ]
+    },
+    {
+      "key": 95,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        161
+      ]
+    },
+    {
+      "key": 96,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        121
+      ]
+    },
+    {
+      "key": 97,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        32
+      ]
+    },
+    {
+      "key": 98,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        54
+      ]
+    },
+    {
+      "key": 99,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        136
+      ]
+    },
+    {
+      "key": 100,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        110
+      ]
+    },
+    {
+      "key": 101,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        104
+      ]
+    },
+    {
+      "key": 102,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        141
+      ]
+    },
+    {
+      "key": 103,
+      "modifiers": 0,
+      "leds": 0,
+      "packet": [
+        224,
+        135
+      ]
+    },
+    {
+      "key": 0,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        82
+      ]
+    },
+    {
+      "key": 1,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        208
+      ]
+    },
+    {
+      "key": 2,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        36
+      ]
+    },
+    {
+      "key": 3,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        208
+      ]
+    },
+    {
+      "key": 4,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        86
+      ]
+    },
+    {
+      "key": 5,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        70
+      ]
+    },
+    {
+      "key": 6,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        206
+      ]
+    },
+    {
+      "key": 7,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        189
+      ]
+    },
+    {
+      "key": 8,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        69
+      ]
+    },
+    {
+      "key": 9,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        172
+      ]
+    },
+    {
+      "key": 10,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        35
+      ]
+    },
+    {
+      "key": 11,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        179
+      ]
+    },
+    {
+      "key": 12,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        67
+      ]
+    },
+    {
+      "key": 13,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        68
+      ]
+    },
+    {
+      "key": 14,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        185
+      ]
+    },
+    {
+      "key": 15,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        182
+      ]
+    },
+    {
+      "key": 16,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        87
+      ]
+    },
+    {
+      "key": 17,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        187
+      ]
+    },
+    {
+      "key": 18,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        34
+      ]
+    },
+    {
+      "key": 19,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        178
+      ]
+    },
+    {
+      "key": 20,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        88
+      ]
+    },
+    {
+      "key": 21,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        83
+      ]
+    },
+    {
+      "key": 22,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        184
+      ]
+    },
+    {
+      "key": 23,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        181
+      ]
+    },
+    {
+      "key": 24,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        96
+      ]
+    },
+    {
+      "key": 25,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        158
+      ]
+    },
+    {
+      "key": 26,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        61
+      ]
+    },
+    {
+      "key": 27,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        157
+      ]
+    },
+    {
+      "key": 28,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        158
+      ]
+    },
+    {
+      "key": 29,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        42
+      ]
+    },
+    {
+      "key": 30,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        0
+      ]
+    },
+    {
+      "key": 31,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        138
+      ]
+    },
+    {
+      "key": 32,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        80
+      ]
+    },
+    {
+      "key": 33,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        0
+      ]
+    },
+    {
+      "key": 34,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        95
+      ]
+    },
+    {
+      "key": 35,
+      "modifiers": 1,
+      "leds": 1,
+      "packet": [
+        230,
+        0
+      ]
+    },
+    {
+      "key": 36,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        63
+      ]
+    },
+    {
+      "key": 37,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        43
+      ]
+    },
+    {
+      "key": 38,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        210
+      ]
+    },
+    {
+      "key": 39,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        209
+      ]
+    },
+    {
+      "key": 40,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        123
+      ]
+    },
+    {
+      "key": 41,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        0
+      ]
+    },
+    {
+      "key": 42,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        126
+      ]
+    },
+    {
+      "key": 43,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        140
+      ]
+    },
+    {
+      "key": 44,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        90
+      ]
+    },
+    {
+      "key": 45,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        125
+      ]
+    },
+    {
+      "key": 46,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        130
+      ]
+    },
+    {
+      "key": 47,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        139
+      ]
+    },
+    {
+      "key": 48,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        85
+      ]
+    },
+    {
+      "key": 49,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        142
+      ]
+    },
+    {
+      "key": 50,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        39
+      ]
+    },
+    {
+      "key": 51,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        134
+      ]
+    },
+    {
+      "key": 52,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        77
+      ]
+    },
+    {
+      "key": 53,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        74
+      ]
+    },
+    {
+      "key": 54,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        127
+      ]
+    },
+    {
+      "key": 55,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        137
+      ]
+    },
+    {
+      "key": 56,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        81
+      ]
+    },
+    {
+      "key": 57,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        176
+      ]
+    },
+    {
+      "key": 58,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        33
+      ]
+    },
+    {
+      "key": 59,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        177
+      ]
+    },
+    {
+      "key": 60,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        124
+      ]
+    },
+    {
+      "key": 61,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        65
+      ]
+    },
+    {
+      "key": 62,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        183
+      ]
+    },
+    {
+      "key": 63,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        180
+      ]
+    },
+    {
+      "key": 64,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 65,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 66,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        27
+      ]
+    },
+    {
+      "key": 67,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 68,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 69,
+      "modifiers": 1,
+      "leds": 2,
+      "packet": []
+    },
+    {
+      "key": 70,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 71,
+      "modifiers": 1,
+      "leds": 1,
+      "packet": []
+    },
+    {
+      "key": 72,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        73
+      ]
+    },
+    {
+      "key": 73,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        205
+      ]
+    },
+    {
+      "key": 74,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        40
+      ]
+    },
+    {
+      "key": 75,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        194
+      ]
+    },
+    {
+      "key": 76,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        60
+      ]
+    },
+    {
+      "key": 77,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        75
+      ]
+    },
+    {
+      "key": 78,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        193
+      ]
+    },
+    {
+      "key": 79,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        192
+      ]
+    },
+    {
+      "key": 80,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        79
+      ]
+    },
+    {
+      "key": 81,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        211
+      ]
+    },
+    {
+      "key": 82,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        41
+      ]
+    },
+    {
+      "key": 83,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        212
+      ]
+    },
+    {
+      "key": 84,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        62
+      ]
+    },
+    {
+      "key": 85,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        76
+      ]
+    },
+    {
+      "key": 86,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        207
+      ]
+    },
+    {
+      "key": 87,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        131
+      ]
+    },
+    {
+      "key": 88,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        84
+      ]
+    },
+    {
+      "key": 89,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        163
+      ]
+    },
+    {
+      "key": 90,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        37
+      ]
+    },
+    {
+      "key": 91,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        162
+      ]
+    },
+    {
+      "key": 92,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        66
+      ]
+    },
+    {
+      "key": 93,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        71
+      ]
+    },
+    {
+      "key": 94,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        160
+      ]
+    },
+    {
+      "key": 95,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        161
+      ]
+    },
+    {
+      "key": 96,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        89
+      ]
+    },
+    {
+      "key": 97,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        32
+      ]
+    },
+    {
+      "key": 98,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        38
+      ]
+    },
+    {
+      "key": 99,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        136
+      ]
+    },
+    {
+      "key": 100,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        78
+      ]
+    },
+    {
+      "key": 101,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        72
+      ]
+    },
+    {
+      "key": 102,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        141
+      ]
+    },
+    {
+      "key": 103,
+      "modifiers": 1,
+      "leds": 0,
+      "packet": [
+        226,
+        135
+      ]
+    },
+    {
+      "key": 0,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        114
+      ]
+    },
+    {
+      "key": 1,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        208
+      ]
+    },
+    {
+      "key": 2,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        52
+      ]
+    },
+    {
+      "key": 3,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        208
+      ]
+    },
+    {
+      "key": 4,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        118
+      ]
+    },
+    {
+      "key": 5,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        102
+      ]
+    },
+    {
+      "key": 6,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        206
+      ]
+    },
+    {
+      "key": 7,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        189
+      ]
+    },
+    {
+      "key": 8,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        101
+      ]
+    },
+    {
+      "key": 9,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        172
+      ]
+    },
+    {
+      "key": 10,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        51
+      ]
+    },
+    {
+      "key": 11,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        179
+      ]
+    },
+    {
+      "key": 12,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        99
+      ]
+    },
+    {
+      "key": 13,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        100
+      ]
+    },
+    {
+      "key": 14,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        185
+      ]
+    },
+    {
+      "key": 15,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        182
+      ]
+    },
+    {
+      "key": 16,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        119
+      ]
+    },
+    {
+      "key": 17,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        187
+      ]
+    },
+    {
+      "key": 18,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        50
+      ]
+    },
+    {
+      "key": 19,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        178
+      ]
+    },
+    {
+      "key": 20,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        120
+      ]
+    },
+    {
+      "key": 21,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        115
+      ]
+    },
+    {
+      "key": 22,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        184
+      ]
+    },
+    {
+      "key": 23,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        181
+      ]
+    },
+    {
+      "key": 24,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        64
+      ]
+    },
+    {
+      "key": 25,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        158
+      ]
+    },
+    {
+      "key": 26,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        45
+      ]
+    },
+    {
+      "key": 27,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        157
+      ]
+    },
+    {
+      "key": 28,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        158
+      ]
+    },
+    {
+      "key": 29,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        58
+      ]
+    },
+    {
+      "key": 30,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        0
+      ]
+    },
+    {
+      "key": 31,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        138
+      ]
+    },
+    {
+      "key": 32,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        112
+      ]
+    },
+    {
+      "key": 33,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        0
+      ]
+    },
+    {
+      "key": 34,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        48
+      ]
+    },
+    {
+      "key": 35,
+      "modifiers": 2,
+      "leds": 1,
+      "packet": [
+        229,
+        0
+      ]
+    },
+    {
+      "key": 36,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        47
+      ]
+    },
+    {
+      "key": 37,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        59
+      ]
+    },
+    {
+      "key": 38,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        210
+      ]
+    },
+    {
+      "key": 39,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        209
+      ]
+    },
+    {
+      "key": 40,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        91
+      ]
+    },
+    {
+      "key": 41,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        0
+      ]
+    },
+    {
+      "key": 42,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        94
+      ]
+    },
+    {
+      "key": 43,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        140
+      ]
+    },
+    {
+      "key": 44,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        122
+      ]
+    },
+    {
+      "key": 45,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        93
+      ]
+    },
+    {
+      "key": 46,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        130
+      ]
+    },
+    {
+      "key": 47,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        139
+      ]
+    },
+    {
+      "key": 48,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        117
+      ]
+    },
+    {
+      "key": 49,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        142
+      ]
+    },
+    {
+      "key": 50,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        55
+      ]
+    },
+    {
+      "key": 51,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        134
+      ]
+    },
+    {
+      "key": 52,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        109
+      ]
+    },
+    {
+      "key": 53,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        106
+      ]
+    },
+    {
+      "key": 54,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        127
+      ]
+    },
+    {
+      "key": 55,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        137
+      ]
+    },
+    {
+      "key": 56,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        113
+      ]
+    },
+    {
+      "key": 57,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        176
+      ]
+    },
+    {
+      "key": 58,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        49
+      ]
+    },
+    {
+      "key": 59,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        177
+      ]
+    },
+    {
+      "key": 60,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        92
+      ]
+    },
+    {
+      "key": 61,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        97
+      ]
+    },
+    {
+      "key": 62,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        183
+      ]
+    },
+    {
+      "key": 63,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        180
+      ]
+    },
+    {
+      "key": 64,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 65,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 66,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        27
+      ]
+    },
+    {
+      "key": 67,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 68,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 69,
+      "modifiers": 2,
+      "leds": 2,
+      "packet": []
+    },
+    {
+      "key": 70,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 71,
+      "modifiers": 2,
+      "leds": 1,
+      "packet": []
+    },
+    {
+      "key": 72,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        105
+      ]
+    },
+    {
+      "key": 73,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        205
+      ]
+    },
+    {
+      "key": 74,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        56
+      ]
+    },
+    {
+      "key": 75,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        194
+      ]
+    },
+    {
+      "key": 76,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        44
+      ]
+    },
+    {
+      "key": 77,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        107
+      ]
+    },
+    {
+      "key": 78,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        193
+      ]
+    },
+    {
+      "key": 79,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        192
+      ]
+    },
+    {
+      "key": 80,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        111
+      ]
+    },
+    {
+      "key": 81,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        211
+      ]
+    },
+    {
+      "key": 82,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        57
+      ]
+    },
+    {
+      "key": 83,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        212
+      ]
+    },
+    {
+      "key": 84,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        46
+      ]
+    },
+    {
+      "key": 85,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        108
+      ]
+    },
+    {
+      "key": 86,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        207
+      ]
+    },
+    {
+      "key": 87,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        131
+      ]
+    },
+    {
+      "key": 88,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        116
+      ]
+    },
+    {
+      "key": 89,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        163
+      ]
+    },
+    {
+      "key": 90,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        53
+      ]
+    },
+    {
+      "key": 91,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        162
+      ]
+    },
+    {
+      "key": 92,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        98
+      ]
+    },
+    {
+      "key": 93,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        103
+      ]
+    },
+    {
+      "key": 94,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        160
+      ]
+    },
+    {
+      "key": 95,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        161
+      ]
+    },
+    {
+      "key": 96,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        121
+      ]
+    },
+    {
+      "key": 97,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        32
+      ]
+    },
+    {
+      "key": 98,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        54
+      ]
+    },
+    {
+      "key": 99,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        136
+      ]
+    },
+    {
+      "key": 100,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        110
+      ]
+    },
+    {
+      "key": 101,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        104
+      ]
+    },
+    {
+      "key": 102,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        141
+      ]
+    },
+    {
+      "key": 103,
+      "modifiers": 2,
+      "leds": 0,
+      "packet": [
+        225,
+        135
+      ]
+    },
+    {
+      "key": 0,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        82
+      ]
+    },
+    {
+      "key": 1,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        208
+      ]
+    },
+    {
+      "key": 2,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        36
+      ]
+    },
+    {
+      "key": 3,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        208
+      ]
+    },
+    {
+      "key": 4,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        86
+      ]
+    },
+    {
+      "key": 5,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        70
+      ]
+    },
+    {
+      "key": 6,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        206
+      ]
+    },
+    {
+      "key": 7,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        189
+      ]
+    },
+    {
+      "key": 8,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        69
+      ]
+    },
+    {
+      "key": 9,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        172
+      ]
+    },
+    {
+      "key": 10,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        35
+      ]
+    },
+    {
+      "key": 11,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        179
+      ]
+    },
+    {
+      "key": 12,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        67
+      ]
+    },
+    {
+      "key": 13,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        68
+      ]
+    },
+    {
+      "key": 14,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        185
+      ]
+    },
+    {
+      "key": 15,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        182
+      ]
+    },
+    {
+      "key": 16,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        87
+      ]
+    },
+    {
+      "key": 17,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        187
+      ]
+    },
+    {
+      "key": 18,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        34
+      ]
+    },
+    {
+      "key": 19,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        178
+      ]
+    },
+    {
+      "key": 20,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        88
+      ]
+    },
+    {
+      "key": 21,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        83
+      ]
+    },
+    {
+      "key": 22,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        184
+      ]
+    },
+    {
+      "key": 23,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        181
+      ]
+    },
+    {
+      "key": 24,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        96
+      ]
+    },
+    {
+      "key": 25,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        158
+      ]
+    },
+    {
+      "key": 26,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        61
+      ]
+    },
+    {
+      "key": 27,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        157
+      ]
+    },
+    {
+      "key": 28,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        158
+      ]
+    },
+    {
+      "key": 29,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        42
+      ]
+    },
+    {
+      "key": 30,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        0
+      ]
+    },
+    {
+      "key": 31,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        138
+      ]
+    },
+    {
+      "key": 32,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        80
+      ]
+    },
+    {
+      "key": 33,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        0
+      ]
+    },
+    {
+      "key": 34,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        95
+      ]
+    },
+    {
+      "key": 35,
+      "modifiers": 3,
+      "leds": 1,
+      "packet": [
+        231,
+        0
+      ]
+    },
+    {
+      "key": 36,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        63
+      ]
+    },
+    {
+      "key": 37,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        43
+      ]
+    },
+    {
+      "key": 38,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        210
+      ]
+    },
+    {
+      "key": 39,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        209
+      ]
+    },
+    {
+      "key": 40,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        123
+      ]
+    },
+    {
+      "key": 41,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        0
+      ]
+    },
+    {
+      "key": 42,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        126
+      ]
+    },
+    {
+      "key": 43,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        140
+      ]
+    },
+    {
+      "key": 44,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        90
+      ]
+    },
+    {
+      "key": 45,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        125
+      ]
+    },
+    {
+      "key": 46,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        130
+      ]
+    },
+    {
+      "key": 47,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        139
+      ]
+    },
+    {
+      "key": 48,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        85
+      ]
+    },
+    {
+      "key": 49,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        142
+      ]
+    },
+    {
+      "key": 50,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        39
+      ]
+    },
+    {
+      "key": 51,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        134
+      ]
+    },
+    {
+      "key": 52,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        77
+      ]
+    },
+    {
+      "key": 53,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        74
+      ]
+    },
+    {
+      "key": 54,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        127
+      ]
+    },
+    {
+      "key": 55,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        137
+      ]
+    },
+    {
+      "key": 56,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        81
+      ]
+    },
+    {
+      "key": 57,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        176
+      ]
+    },
+    {
+      "key": 58,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        33
+      ]
+    },
+    {
+      "key": 59,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        177
+      ]
+    },
+    {
+      "key": 60,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        124
+      ]
+    },
+    {
+      "key": 61,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        65
+      ]
+    },
+    {
+      "key": 62,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        183
+      ]
+    },
+    {
+      "key": 63,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        180
+      ]
+    },
+    {
+      "key": 64,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 65,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 66,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        27
+      ]
+    },
+    {
+      "key": 67,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 68,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 69,
+      "modifiers": 3,
+      "leds": 2,
+      "packet": []
+    },
+    {
+      "key": 70,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": []
+    },
+    {
+      "key": 71,
+      "modifiers": 3,
+      "leds": 1,
+      "packet": []
+    },
+    {
+      "key": 72,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        73
+      ]
+    },
+    {
+      "key": 73,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        205
+      ]
+    },
+    {
+      "key": 74,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        40
+      ]
+    },
+    {
+      "key": 75,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        194
+      ]
+    },
+    {
+      "key": 76,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        60
+      ]
+    },
+    {
+      "key": 77,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        75
+      ]
+    },
+    {
+      "key": 78,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        193
+      ]
+    },
+    {
+      "key": 79,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        192
+      ]
+    },
+    {
+      "key": 80,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        79
+      ]
+    },
+    {
+      "key": 81,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        211
+      ]
+    },
+    {
+      "key": 82,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        41
+      ]
+    },
+    {
+      "key": 83,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        212
+      ]
+    },
+    {
+      "key": 84,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        62
+      ]
+    },
+    {
+      "key": 85,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        76
+      ]
+    },
+    {
+      "key": 86,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        207
+      ]
+    },
+    {
+      "key": 87,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        131
+      ]
+    },
+    {
+      "key": 88,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        84
+      ]
+    },
+    {
+      "key": 89,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        163
+      ]
+    },
+    {
+      "key": 90,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        37
+      ]
+    },
+    {
+      "key": 91,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        162
+      ]
+    },
+    {
+      "key": 92,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        66
+      ]
+    },
+    {
+      "key": 93,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        71
+      ]
+    },
+    {
+      "key": 94,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        160
+      ]
+    },
+    {
+      "key": 95,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        161
+      ]
+    },
+    {
+      "key": 96,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        89
+      ]
+    },
+    {
+      "key": 97,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        32
+      ]
+    },
+    {
+      "key": 98,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        38
+      ]
+    },
+    {
+      "key": 99,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        136
+      ]
+    },
+    {
+      "key": 100,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        78
+      ]
+    },
+    {
+      "key": 101,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        72
+      ]
+    },
+    {
+      "key": 102,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        141
+      ]
+    },
+    {
+      "key": 103,
+      "modifiers": 3,
+      "leds": 0,
+      "packet": [
+        227,
+        135
+      ]
+    }
+  ],
+  "romSha256": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
+  "scope": "All 104 matrix contacts in four modifier states. Generated by executing S600; packets are observed reference behavior, not an independent oracle or specimen legend verification."
+}

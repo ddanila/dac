@@ -1,3 +1,4 @@
+import { printerPages, activities } from "./robotron-activities.js";
 import { createDiskExplorer } from "./disk-explorer.js";
 import { installExhibitLayout } from "./exhibit-layout.js";
 import { showAnnotation } from "./inspection.js";
@@ -56,6 +57,16 @@ try {
   $("remember-disk").checked =
     localStorage.getItem("dac-remember-disk") !== "false";
 } catch {}
+const activityName = new URLSearchParams(location.search).get("activity");
+const practice = activities[activityName];
+if (practice) {
+  $("remember-disk").checked = false;
+  $("remember-disk").disabled = true;
+  $("guided-activities").open = true;
+  const heading = document.createElement("h3"); heading.textContent = practice.title;
+  const text = document.createElement("pre"); text.textContent = practice.steps;
+  $("activity-instructions").append(heading, text);
+}
 const heldModelKeys = new Map();
 let managedHostCaps = false;
 function release() {
@@ -185,6 +196,7 @@ for (const u of [0,1]) {
 showInspection("overview");
 try {
   scene = createScene($("viewport"), screen, power, resetMachine, {
+    onSoundPosition: value => robotronSound.position(value),
     onKey: modelKey,
     onDriveLever: toggleDriveLever,
     diskDropStatus: (from,to) => {
@@ -350,6 +362,12 @@ async function configure(demo, historical = false) {
   });
 }
 worker.onmessage = ({ data: d }) => {
+  if (d.type === "printer-preview") {
+    $("printer-paper").replaceChildren(...printerPages(new Uint8Array(d.bytes)).map((text,i) => {
+      const paper = document.createElement("pre");paper.textContent = text || "(blank page)";
+      paper.setAttribute("aria-label", `Printed page ${i+1}`);return paper;
+    }));
+  }
   if (d.type === "replay") {
     replayBusy = d.active;
     if (d.active) {
@@ -621,6 +639,7 @@ worker.onmessage = ({ data: d }) => {
 worker.onerror = (e) => fail(e.message || "Emulator worker failed");
 $("power").onclick = power;
 $("reset").onclick = resetMachine;
+$("spatial-sound").onchange = () => robotronSound.spatial($("spatial-sound").checked);
 $("drive-sound").onchange = () => {
   const enabled = $("drive-sound").checked;
   Promise.all([driveSound.enable(enabled), robotronSound.enable(enabled)]).catch(e => fail(e.message));
@@ -706,8 +725,14 @@ $("export-b").onclick = () => send({ type: "export", unit: 1 });
 $("writable-b").onchange = () => {
   if (diskB) send({ type: "protect-b", writable: $("writable-b").checked });
 };
+function adjustDisplay(){scene?.displaySettings({brightness: +$("crt-brightness").value, contrast: +$("crt-contrast").value, persistence: +$("crt-persistence").value});}
+$("crt-brightness").oninput = adjustDisplay;
+$("crt-contrast").oninput = adjustDisplay;
+$("crt-persistence").oninput = adjustDisplay;
+$("crt-defaults").onclick = () => {$("crt-brightness").value=1;$("crt-contrast").value=1;$("crt-persistence").value=0;adjustDisplay();};
+$("printer-preview").onclick = () => send({type:"printer-preview"});
 $("printer-export").onclick = () => send({ type: "printer" });
-$("printer-clear").onclick = () => send({ type: "clear-printer" });
+$("printer-clear").onclick = () => {send({ type: "clear-printer" });$("printer-paper").replaceChildren();};
 $("export-state").onclick = () => {
   release();
   send({ type: "export-state" });

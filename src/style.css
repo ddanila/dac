@@ -752,3 +752,7 @@ textarea {
 #disk-explorer [data-preview-panel] {margin-top:14px}
 #disk-explorer [data-preview-bytes] {max-height:35vh}
 #disk-explorer .disk-entry-changed {background:#572e4e}
+
+#printer-paper { max-height: 28rem; overflow: auto; }
+#printer-paper pre { background: #fffdf4; color: #17211c; padding: 1rem; min-height: 8rem; margin: .6rem 0; white-space: pre; overflow: auto; }
+#activity-instructions pre { white-space: pre-wrap; line-height: 1.6; }

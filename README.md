@@ -1,5 +1,7 @@
 # DAC — Danila’s Archive of Computing
 
+Current implementation and remaining evidence: [capability matrix](docs/robotron/capabilities.md). Dated notes below retain development history.
+
 *A museum of computers and the worlds they opened.*
 
 A working browser prototype: rotate a computer, inspect its underside, click its case power button, and type on its live emulated screen. The museum uses pinned [DAC Emulation](https://github.com/ddanila/dac-emulation) WebAssembly cores in a worker.
@@ -363,3 +365,15 @@ and subsequent IDs after payload size + 62 + GAP3, in a 6250-byte-clock revoluti
 Raw media use GAP3=27; DSK uses each track header’s GAP3 and stored sector order.
 This matches the current emulator layout, including mixed-size sector spans. Gap
 clicks report that no stored payload is present; they do not select a nearby sector.
+
+Robotron's current qualification status is tracked in the capability matrix above.
+This pass adds printer paper preview, isolated WordStar/Pascal/printing practice
+sessions, 3D brightness/contrast and optional phosphor persistence, and optional
+camera-relative stereo for the owner recordings. Core 0.8.9 separates DMA read
+and write cycles; 0.8.8 remains archived for existing portable sessions.
+The canonical source also includes expanded assembly and PCB interface audits.
+A self-contained local museum can be produced with
+`python3 scripts/package-preservation.py /path/to/dac-preservation.zip` after a
+root-base production build. Its launcher verifies file hashes before serving.
+See the matrix for the remaining V.24, electrical experiment and independent
+reference-trace work; those are not claimed complete by this pass.

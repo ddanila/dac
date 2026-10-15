@@ -1,7 +1,7 @@
 {
-  "version": "0.8.8",
+  "version": "0.8.9",
   "repository": "https://github.com/ddanila/dac-emulation",
-  "commit": "65ac4213d9377d57916413e6e6be31bc84a39b7b",
+  "commit": "65711a049d9665319745ac78c042909f47e2a555",
   "abi": 1,
   "emscripten": "6.0.12",
   "sha256": {
@@ -9,7 +9,7 @@
     "NOTICE": "6254d78393a11a6317ea65bf2108f4e2b147bb09bebf4770ce82b114dc7c5034",
     "chips-LICENSE": "0c692ece632a8ec6d2a566c9234fdabda655644e6abc70027da9ff7c35e48634",
     "dac.js": "b53a916f0ec2417f1d3883c759b9f14b959299f23fe915d4cc3bed868de17d4e",
-    "dac.wasm": "63f68868db4df78dbaa29213a81394e6154fda7fb35ca3554c3dec1c532ee9a9",
+    "dac.wasm": "50ad832bcc0c64b912a03a1c87b50553a4d22efd57dd343518c4c3599c1a13fa",
     "demo/cas.bin": "605d3ca65a8561d008d6e45cf0b66cbbc1cd19c9587cb3a5e0409012687cf2ea",
     "demo/glyphs.bin": "0dbe552cbdb211727f0b91b655f8b3571f9a06f224bd6c2d837b0b6a4b567da0",
     "demo/juku.bin": "54a89a9bd6a47bd44994e5c4abd4c34490ad2b64ca0c4ad01102cbf0c9ea7b0e",
