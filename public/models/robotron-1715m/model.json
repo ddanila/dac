@@ -1,5 +1,5 @@
 {
-  "version": 44,
+  "version": 45,
   "componentCounts": {
     "packages": 138,
     "leadHoles": 2568
@@ -618,7 +618,7 @@
           0
         ],
         "fov": 45,
-        "include": "^keyboard-(bottom|entry-rubber|base-insulator|cable-support|grommet)$",
+        "include": "^keyboard-(bottom|metal|entry-rubber|base-insulator|cable-support|grommet)$",
         "note": "Inner bottom lid: two edge strips and short-edge bush support toward the controller insulation sheet."
       },
       {
@@ -642,6 +642,23 @@
         "fov": 45,
         "include": "^keyboard-(shell|pcb$|pcb-metal|matrix-|insulators|controller-|entry|internal-cable|grommet|cable-support)",
         "note": "Installed underside: narrow controller overlaps the rear matrix-board edge; its cable end faces the lid opening."
+      },
+      {
+        "name": "monitor-bezel",
+        "photo": "PXL_20261012_125018215.jpg",
+        "position": [
+          410,
+          -680,
+          420
+        ],
+        "target": [
+          0,
+          -142,
+          324
+        ],
+        "fov": 29,
+        "include": "^(monitor-shell|bezel|crt-)",
+        "note": "Owner glass edge and formed bezel transition; camera and material estimates, not optical calibration."
       }
     ]
   },
@@ -31623,6 +31640,11 @@
       "metalness": 0,
       "clearcoat": 0.8
     },
+    "glass-border": {
+      "roughness": 0.07,
+      "metalness": 0,
+      "clearcoat": 1
+    },
     "glass": {
       "roughness": 0.16,
       "metalness": 0.05,
@@ -31727,15 +31749,15 @@
       "name": "bezel",
       "file": "meshes/bezel.stl",
       "color": "#8c857a",
-      "sha256": "b6bbff752620e7175fbdcd9f2bc930e8f3b2def25af9227a899d342b8abeafa9",
+      "sha256": "beb9d2693ef74d84f748728f6ada2933ea480d3fa2a03b6ff0bb8faa65dccb34",
       "material": "paint"
     },
     {
       "name": "crt-rim",
       "file": "meshes/crt-rim.stl",
-      "color": "#141919",
-      "sha256": "604e5f0fa58f8bdb96e00b13665eca9e4bd54e03e56a73d20ae19bc08130c692",
-      "material": "glass"
+      "color": "#111914",
+      "sha256": "095546a2e73ac5a7b8529e4af440d2bdf7b5fdcf3379c9c1a489af1278f7ac26",
+      "material": "glass-border"
     },
     {
       "name": "crt-glass",
@@ -31804,7 +31826,7 @@
       "name": "keyboard-bottom",
       "file": "meshes/keyboard-bottom.stl",
       "color": "#9daeb1",
-      "sha256": "d1500f57bc9613527a72cd0a16af18cf0fd23037bf7111ce799063b4c9bf09b3",
+      "sha256": "9d01418dfc5fb9fd4aa85546ff6a96148d8eff4838e9a3f855241783190b05ee",
       "material": "paint"
     },
     {
@@ -31818,7 +31840,7 @@
       "name": "keyboard-metal",
       "file": "meshes/keyboard-metal.stl",
       "color": "#96988f",
-      "sha256": "eb09a12f923569e38ab1a891b486733901978427fc3ae46906364239864e33dc",
+      "sha256": "30558463a908d70044d784a46279791277aded60bfe4344cefda5d388983bb68",
       "material": "metal"
     },
     {
@@ -31839,14 +31861,14 @@
       "name": "cable-plug",
       "file": "meshes/cable-plug.stl",
       "color": "#c3b995",
-      "sha256": "382033d9c35488e7b5fc57b3271297c6a69cba5ef6ae28d30dac15c77955b767",
+      "sha256": "20a0629c9de4dcaff2cbf660e95d70c63d158fabe7f8f40a0d627139226a4fbe",
       "material": "plastic"
     },
     {
       "name": "plug-screws",
       "file": "meshes/plug-screws.stl",
       "color": "#96988f",
-      "sha256": "dad1adac4ef6c563739278b5836ae09df04bc1eaab10f1dd328c0a8ee7b7fdf3",
+      "sha256": "9bcfb216897624f7aebb12a3a508112f9e0b035cf1bd9e9cf16d2fbab1a23027",
       "material": "metal"
     },
     {
@@ -32130,8 +32152,8 @@
     {
       "name": "plug-insert",
       "file": "meshes/plug-insert.stl",
-      "color": "#969782",
-      "sha256": "5d652ab5e4f90a49d48359284d58754b6ab4ed734b5010e03988a366d9ba99fd",
+      "color": "#8c9087",
+      "sha256": "a062544fa107280da4f1dc4c2913dd739f2a639bae7d08b2f3f3e54a60bda2a0",
       "material": "plastic"
     },
     {
@@ -32501,7 +32523,7 @@
       "name": "keyboard-controller-board",
       "file": "meshes/keyboard-controller-board.stl",
       "color": "#92977a",
-      "sha256": "4c4dbc3cc22e2bd9e370d5e0a16fd061cf3a18f5e8f1741caeb90ae69bb27f7a",
+      "sha256": "eb05f4ba0a962606f939734fcc6df08b1184946839c0485b3e8baff44f0031a2",
       "section": "interior",
       "material": "controller-laminate"
     },
@@ -32509,7 +32531,7 @@
       "name": "keyboard-controller-chips",
       "file": "meshes/keyboard-controller-chips.stl",
       "color": "#272a2b",
-      "sha256": "897d84a07871d2cc19bef5caac33a01b0a2a2af4b78970f0fe757b7ec40dc028",
+      "sha256": "8c252440c828642c6aba385921454a2cd8e59dd12632af94808adb6b7482c10c",
       "section": "interior",
       "material": "ic-moulding"
     },
@@ -32524,7 +32546,7 @@
     {
       "name": "keyboard-controller-rom-cover",
       "file": "meshes/keyboard-controller-rom-cover.stl",
-      "color": "#168dcc",
+      "color": "#0877bc",
       "sha256": "2cf2fab740671d86ed3dc67de274ad0493791aa041afab984d9668f548e3cb19",
       "section": "interior",
       "material": "tape"
@@ -32541,7 +32563,7 @@
       "name": "keyboard-controller-caps",
       "file": "meshes/keyboard-controller-caps.stl",
       "color": "#23383b",
-      "sha256": "396b26666359fdc5060ca4688eadee0854e88a09ff9ab3346f28be4397a691cd",
+      "sha256": "9b2a61e3fec087010993f12b5e00bec00d44feb77e2ea62ffbe8dccfc7e09b51",
       "section": "interior",
       "material": "plastic"
     },
@@ -32549,7 +32571,7 @@
       "name": "keyboard-controller-metal",
       "file": "meshes/keyboard-controller-metal.stl",
       "color": "#b8bbb4",
-      "sha256": "7d1cd03fac7a4d7a0ebddb1100f6ca6f45fb3d6ec91516bd1639391b60fa741d",
+      "sha256": "3c43f9f79860c724054652066f00922527be2375b8d848d1da90ed10a97e804d",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32557,7 +32579,7 @@
       "name": "keyboard-controller-ink",
       "file": "meshes/keyboard-controller-ink.stl",
       "color": "#c8c8bd",
-      "sha256": "e9630ba4b3630b7abada67454fc519f332715e0589349e0842b4e047ee8f05b9",
+      "sha256": "9d730ac9c5c1916c004bcfb012c059be78a1aae8dd9bb72664fc28d93effc734",
       "section": "interior",
       "material": "ink"
     },
@@ -32694,7 +32716,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "662a8ebff4df8ac14b2910a595ed1a85ebbeb528858d1ad170cf0f4ab2472ace",
+      "sha256": "c02b51ab005a09c8b1eeaa1fa69ce19c0e8a0674cba56b6d2783ad98038e2226",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32867,7 +32889,7 @@
       "name": "keyboard-controller-solder",
       "file": "meshes/keyboard-controller-solder.stl",
       "color": "#b8bbb4",
-      "sha256": "cc42c537d88102792a8ece2b3ca170b10ae48f86f2bb30b736c15cf262043b9c",
+      "sha256": "87983619f6fa769fa9c4533ac5489c57c3370a283f2fa25390b240f0c7231279",
       "section": "interior",
       "material": "solder"
     },
@@ -32891,7 +32913,7 @@
       "name": "keyboard-controller-leads",
       "file": "meshes/keyboard-controller-leads.stl",
       "color": "Silver",
-      "sha256": "c42491c6ee2f79c1a195137b86f904f16f6bd183dbd36c2651c47b490d5eaa4e",
+      "sha256": "c4147b4bdae38afa9b06be0a65c79d2dd1182765a1cb4463ff6e194550462fcd",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -33086,7 +33108,7 @@
       "name": "keyboard-controller-resistors",
       "file": "meshes/keyboard-controller-resistors.stl",
       "color": "#9a9d95",
-      "sha256": "6cc122cfc410276968cc26eb745c07d9b973e524af5bbe1ac3800069559f9779",
+      "sha256": "b8343efe68554e6f1606990d6e0849e61eb662cd71db8448066cdb1cf8cd05d3",
       "section": "interior",
       "material": "plastic"
     },
@@ -33094,7 +33116,7 @@
       "name": "keyboard-controller-resistor-bands",
       "file": "meshes/keyboard-controller-resistor-bands.stl",
       "color": "#3186ad",
-      "sha256": "c4efffe9f95b375b8e45bc62fb10792eb25e1866f65ace580d04b2548b876285",
+      "sha256": "a60edb58758d293d43ac1bfca1d5bcfef14529a034e38bd7f82d657799b7a39c",
       "section": "interior",
       "material": "plastic"
     },
@@ -33201,9 +33223,9 @@
     {
       "name": "keyboard-base-insulator",
       "file": "meshes/keyboard-base-insulator.stl",
-      "color": "#513e32",
-      "sha256": "e156f80285bde4f85ef757462664aab6618bda0f7babf5978533cd2ed546cdec",
-      "material": "plastic"
+      "color": "#33251c",
+      "sha256": "e71b8bfbc20a3e3fe115e1b228dcfd1a1ee98d0e1432e3dca6532e9b2b8e95f0",
+      "material": "phenolic"
     },
     {
       "name": "keyboard-controller-mounts",
@@ -33220,6 +33242,14 @@
       "sha256": "8806269d19a5f7c13797e900cfb20c74b5013d772d1fea8b13cdb422f1e86867",
       "section": "interior",
       "material": "solder"
+    },
+    {
+      "name": "keyboard-controller-rom-ink",
+      "file": "meshes/keyboard-controller-rom-ink.stl",
+      "color": "#45423b",
+      "sha256": "b3b5039870189afefa36773ac5623da14b0e1e397779f6ddb46bf13f99599569",
+      "section": "interior",
+      "material": "ink"
     }
   ],
   "keys": [

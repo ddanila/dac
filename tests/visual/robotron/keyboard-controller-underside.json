@@ -1,8 +1,8 @@
 [
   {
     "name": "keyboard-controller-board",
-    "vertices": 15690,
-    "indices": 50046,
+    "vertices": 16808,
+    "indices": 53592,
     "bounds": [
       -40,
       -331.399994,
@@ -40,14 +40,14 @@
   },
   {
     "name": "keyboard-controller-caps",
-    "vertices": 480,
-    "indices": 1380,
+    "vertices": 384,
+    "indices": 1104,
     "bounds": [
-      -31.5,
-      -325.899994,
+      -22.195,
+      -315.399994,
       7.1,
-      227.5,
-      -289.899994,
+      229.5,
+      -287.789001,
       16.1
     ],
     "transform": [
@@ -118,14 +118,14 @@
   },
   {
     "name": "keyboard-controller-chips",
-    "vertices": 7832,
-    "indices": 23940,
+    "vertices": 7012,
+    "indices": 21648,
     "bounds": [
-      -27.414854,
-      -325.457275,
+      -25.809855,
+      -323.575012,
       7.1,
       226,
-      -288.985291,
+      -290.899994,
       14.400001
     ],
     "transform": [
@@ -196,13 +196,13 @@
   },
   {
     "name": "keyboard-controller-ink",
-    "vertices": 9762,
-    "indices": 27024,
+    "vertices": 13836,
+    "indices": 38628,
     "bounds": [
       42.455273,
-      -321.211212,
-      10.79,
-      225,
+      -328.421692,
+      7.22,
+      224.800003,
       -294.399994,
       12.07
     ],
@@ -235,14 +235,14 @@
   },
   {
     "name": "keyboard-controller-leads",
-    "vertices": 10294,
-    "indices": 41088,
+    "vertices": 15578,
+    "indices": 63450,
     "bounds": [
-      14.75,
-      -319.637756,
+      -17.2005,
+      -321.828796,
       4.733704,
-      100.760002,
-      -298.133698,
+      223.531479,
+      -287.487915,
       9.766295
     ],
     "transform": [
@@ -274,14 +274,14 @@
   },
   {
     "name": "keyboard-controller-metal",
-    "vertices": 42445,
-    "indices": 115176,
+    "vertices": 42177,
+    "indices": 114612,
     "bounds": [
       -34,
-      -325.649994,
+      -324.337006,
       3.8,
-      227.25,
-      -290.149994,
+      229.25,
+      -288.039001,
       16.35
     ],
     "transform": [
@@ -313,15 +313,15 @@
   },
   {
     "name": "keyboard-controller-resistor-bands",
-    "vertices": 3072,
-    "indices": 9216,
+    "vertices": 7296,
+    "indices": 21888,
     "bounds": [
-      13.83,
-      -316.299988,
-      7.33,
-      58.169998,
-      -310.75,
-      9.67
+      -17.975239,
+      -319.363098,
+      7.53,
+      224.310806,
+      -288.488129,
+      9.87
     ],
     "transform": [
       0.0025,
@@ -352,15 +352,15 @@
   },
   {
     "name": "keyboard-controller-resistors",
-    "vertices": 768,
-    "indices": 2208,
+    "vertices": 1824,
+    "indices": 5244,
     "bounds": [
-      13.85,
-      -316.399994,
-      7.35,
-      58.150002,
-      -310.399994,
-      9.65
+      -17.964758,
+      -319.586487,
+      7.55,
+      224.304382,
+      -288.505676,
+      9.85
     ],
     "transform": [
       0.0025,
@@ -421,8 +421,47 @@
     ],
     "materials": [
       {
-        "color": "168dcc",
+        "color": "0877bc",
         "roughness": 0.93,
+        "metalness": 0,
+        "opacity": 1
+      }
+    ]
+  },
+  {
+    "name": "keyboard-controller-rom-ink",
+    "vertices": 820,
+    "indices": 2316,
+    "bounds": [
+      219.82341,
+      -303.446716,
+      11.99,
+      222.576599,
+      -297.351471,
+      12.04
+    ],
+    "transform": [
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.0025,
+      0,
+      0,
+      0.0025,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "materials": [
+      {
+        "color": "45423b",
+        "roughness": 0.86,
         "metalness": 0,
         "opacity": 1
       }
@@ -469,14 +508,14 @@
   },
   {
     "name": "keyboard-controller-solder",
-    "vertices": 64408,
-    "indices": 194808,
+    "vertices": 67536,
+    "indices": 203958,
     "bounds": [
       -39.900002,
       -325.26001,
       4.95,
       229.899994,
-      -289,
+      -286.875671,
       7.15
     ],
     "transform": [
@@ -508,14 +547,14 @@
   },
   {
     "name": "keyboard-controller-traces",
-    "vertices": 62108,
-    "indices": 199236,
+    "vertices": 67452,
+    "indices": 216138,
     "bounds": [
-      -33.240002,
+      -25.264999,
       -330.398987,
       5.4,
       225.419006,
-      -288.095001,
+      -285.549988,
       7.22
     ],
     "transform": [
