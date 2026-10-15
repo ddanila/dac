@@ -40,8 +40,8 @@
   },
   {
     "name": "logic-boards-motherboard",
-    "vertices": 88042,
-    "indices": 285996,
+    "vertices": 88126,
+    "indices": 286248,
     "bounds": [
       -235,
       -183,
@@ -469,14 +469,14 @@
   },
   {
     "name": "logic-labels-motherboard",
-    "vertices": 546,
+    "vertices": 306,
     "indices": 0,
     "bounds": [
-      -216.924744,
-      -168.679382,
+      -217.210495,
+      -168.967026,
       17.33,
-      -1.9655,
-      154.152496,
+      -2.699243,
+      119.800377,
       19.83
     ],
     "transform": [
@@ -508,13 +508,13 @@
   },
   {
     "name": "logic-mounts-motherboard",
-    "vertices": 2064,
-    "indices": 5856,
+    "vertices": 1548,
+    "indices": 4392,
     "bounds": [
       -227,
-      -173,
+      -180.425995,
       1,
-      16,
+      -16.114,
       168,
       15.55
     ],

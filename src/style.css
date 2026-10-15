@@ -716,3 +716,13 @@ textarea {
   inset: 8px 12px;
   min-height: 0;
 }
+
+.component-pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.component-pair figure { margin:0; min-width:0; }
+#component-photo-crop { width:100%; height:280px; object-fit:contain; background:#202823; }
+#component-model { height:280px; background:#202823; }
+.component-pair figcaption { font-size:.85rem; margin-top:6px; }
+#component-confidence { display:grid; grid-template-columns:max-content 1fr; gap:6px 12px; }
+#component-confidence dd { margin:0; }
+@media(max-width:600px){.component-pair { grid-template-columns:1fr; }}
+#component-confidence dt,#component-confidence dd{font-size:.9rem;letter-spacing:normal;text-transform:none;text-align:left}

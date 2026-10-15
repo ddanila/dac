@@ -352,7 +352,33 @@ test("individual chip inspection preserves instance identity and both evidence l
   await expect(page.locator('#detail-original')).toHaveAttribute('href',/073200542/);
   await expect(page.locator('#detail-drawing')).toBeVisible();
   await expect(page.locator('#detail-drawing')).toHaveAttribute('href','https://xepb.org/robotron/docs/1715w.zip');
+  await expect(page.locator('#component-photo-crop')).toHaveAttribute('data-ready','true');
+  await expect(page.locator('#component-model canvas')).toBeVisible();
+  await expect(page.locator('#component-confidence')).toContainText('Observed in owner photo');
   await page.keyboard.press('Escape');
+  await expect(page.locator('#component-model canvas')).toHaveCount(0);
   await page.evaluate(async()=>{const {showSpecimenDetail}=await import('/src/inspection.js');showSpecimenDetail('front');});
+  await expect(page.locator('#component-comparison')).toHaveCount(0);
   await expect(page.locator('#detail-drawing')).toBeHidden();
+});
+
+
+test('chip legends preserve full observed text and uniform atlas proportions',async({page})=>{
+ await page.goto('/');
+ const result=await page.evaluate(async()=>{
+  const {loadPcbLabels}=await import('/src/robotron-interior.js');
+  const data=await(await fetch('/models/robotron-1715m/model.json')).json();
+  const sample=data.pcbComponents.instances.find(p=>p.marking?.text);
+  const full='OBSERVED LONG MARKING 0123456789';
+  const drawn=[],original=CanvasRenderingContext2D.prototype.fillText;
+  CanvasRenderingContext2D.prototype.fillText=function(text,...args){drawn.push(text);return original.call(this,text,...args);};
+  let labels;
+  try{labels=loadPcbLabels({...data,pcbComponents:{...data.pcbComponents,instances:[{...sample,ref:'SCHEMATIC-ONLY',marking:{text:full}},{...sample,ref:'UNVERIFIED',marking:undefined}]}});}finally{CanvasRenderingContext2D.prototype.fillText=original;}
+  const markings=labels.flatMap(m=>m.userData.markings);
+  labels.forEach(m=>{m.geometry.dispose();m.material.map.dispose();m.material.dispose();});
+  return {drawn,markings};
+ });
+ expect(result.drawn).toEqual(['OBSERVED LONG MARKING 0123456789']);
+ expect(result.markings).toHaveLength(1);
+ expect(result.markings[0].width/result.markings[0].height).toBeCloseTo(4,5);
 });

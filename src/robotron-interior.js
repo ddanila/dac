@@ -266,7 +266,7 @@ export async function loadPcbComponents(data, base, onAsset = () => {}, cache = 
           mesh.userData.board = board;
           mesh.userData.interior = true;
           mesh.userData.detail = board;
-          mesh.userData.componentDetails = boardPlacements.map(p => p.inspection);
+          mesh.userData.componentDetails = boardPlacements.map(p => ({...p.inspection, component:p, packageModel:data.pcbComponents.models.find(m=>m.id===p.model)}));
           mesh.userData.credit = descriptions.credit;
           mesh.castShadow = mesh.receiveShadow = true;
           mesh.visible = false;
@@ -323,24 +323,30 @@ export function pcbMarkingGeometry(board, descriptions) {
   return geometry;
 }
 
-// Clean documented device labels, generated from the canonical layout metadata.
-// One atlas, one mesh per board; no photographic chip silhouettes or baked wear.
+// Only canonical photo-supported markings are printed on package bodies.
+// Fixed atlas aspect and a uniform physical scale preserve lettering proportions.
 export function loadPcbLabels(data) {
-  const items=data.pcbComponents.instances.filter(p=>p.label && !p.label.startsWith('Logic footprint'));
+  const items=data.pcbComponents.instances.filter(p=>p.marking?.text);
   if (!items.length) return [];
-  const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=Math.ceil(items.length/8)*64;
-  const ctx=canvas.getContext('2d');ctx.fillStyle='#c8c9bd';ctx.textAlign='center';ctx.font='13px monospace';
+  const cellW=512,cellH=128,columns=4;
+  const canvas=document.createElement('canvas');canvas.width=columns*cellW;canvas.height=Math.ceil(items.length/columns)*cellH;
+  const ctx=canvas.getContext('2d');ctx.fillStyle='#c8c9bd';ctx.textAlign='center';ctx.textBaseline='middle';
   const groups=new Map(),pose=new THREE.Matrix4(),rotation=new THREE.Matrix4();
   items.forEach((p,i)=>{
-    const col=i%8,row=Math.floor(i/8);if(!p.ref.startsWith('P'))ctx.fillText(p.ref,col*128+64,row*64+23);ctx.fillText(p.label.split(' (')[0].slice(0,16),col*128+64,row*64+43);
-    if(!groups.has(p.board))groups.set(p.board,{positions:[],uvs:[]});const g=groups.get(p.board);
-    const model=data.pcbComponents.models.find(m=>m.id===p.model),w=model.bodySize[0]*.82,h=model.bodySize[1]*.75;
+    const col=i%columns,row=Math.floor(i/columns),text=p.marking.text;
+    ctx.font='64px monospace';const font=Math.min(64,64*(cellW-32)/Math.max(1,ctx.measureText(text).width));
+    ctx.font=`${font}px monospace`;ctx.fillText(text,col*cellW+cellW/2,row*cellH+cellH/2);
+    if(!groups.has(p.board))groups.set(p.board,{positions:[],uvs:[],markings:[]});const g=groups.get(p.board);
+    const model=data.pcbComponents.models.find(m=>m.id===p.model);
+    const scale=Math.min(model.bodySize[1]*.78/cellW,model.bodySize[0]*.65/cellH),w=cellW*scale,h=cellH*scale;
     pose.makeRotationZ(p.rotation*Math.PI/180).multiply(rotation.makeRotationX(p.side===-1?Math.PI:0)).setPosition(...p.position);
-    for(const n of [0,1,2,0,2,3]){const q=[[-.5,-.5],[.5,-.5],[.5,.5],[-.5,.5]][n];const v=new THREE.Vector3(q[0]*w,q[1]*h,p.top+.05).applyMatrix4(pose);g.positions.push(...v.toArray());g.uvs.push((col+q[0]+.5)/8,1-(row+.5-q[1])/(canvas.height/64));}
+    // Text baseline follows the long package axis. Pin-one orientation is separate evidence.
+    for(const n of [0,1,2,0,2,3]){const q=[[-.5,-.5],[.5,-.5],[.5,.5],[-.5,.5]][n];const v=new THREE.Vector3(-q[1]*h,q[0]*w,p.top+.05).applyMatrix4(pose);g.positions.push(...v.toArray());g.uvs.push((col+q[0]+.5)/columns,1-(row+.5-q[1])/(canvas.height/cellH));}
+    g.markings.push({ref:p.ref,text,width:w,height:h});
   });
-  const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;
+  const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=8;
   return [...groups].map(([board,g])=>{
     const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(g.positions,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(g.uvs,2));geometry.computeVertexNormals();
-    const mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({map:texture,transparent:true,depthWrite:false,roughness:.8}));mesh.name=`logic-labels-${board}`;mesh.userData={board,interior:true,detail:board};mesh.visible=false;return mesh;
+    const mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({map:texture,transparent:true,depthWrite:false,roughness:.8}));mesh.name=`logic-labels-${board}`;mesh.userData={board,interior:true,detail:board,markings:g.markings};mesh.visible=false;return mesh;
   });
 }
