@@ -1,7 +1,7 @@
 {
   "version": "0.8.9",
   "repository": "https://github.com/ddanila/dac-emulation",
-  "commit": "65711a049d9665319745ac78c042909f47e2a555",
+  "commit": "edb8d245bd9ba1b12913cff71520ed81d17cd829",
   "abi": 1,
   "emscripten": "6.0.12",
   "sha256": {
