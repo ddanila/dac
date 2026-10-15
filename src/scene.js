@@ -419,7 +419,7 @@ export function createScene(
       interaction.onProtect?.(hit.userData.protectUnit);
     else if (hit.userData.detail && gesture.object === hit &&
              gesture.detail === hit.userData.pickedDetail)
-      interaction.onInspect?.(hit.userData.pickedDetail);
+      interaction.onInspect?.(hit.userData.pickedDetail, hit.name);
     else if (hit === robotron?.objects.get("power") || hit === power) onPower();
     else if (hit === robotron?.objects.get("reset")) onReset?.();
   });

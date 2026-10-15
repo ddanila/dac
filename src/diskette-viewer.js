@@ -53,7 +53,9 @@ export async function createDisketteViewer(host, tools) {
     const sleeve=document.createElement('button');sleeve.textContent='Slide into sleeve';sleeve.setAttribute('aria-pressed','false');
     sleeve.onclick=()=>{target=1-target;sleeve.textContent=target?'Slide out of sleeve':'Slide into sleeve';sleeve.setAttribute('aria-pressed',String(!!target));stage.invalidate();};
     const help=document.createElement('span');help.textContent='Drag to rotate · scroll or pinch to zoom';
-    tools.replaceChildren(flip,sleeve,help);
+    const contents=document.createElement('button');contents.textContent='Explore mounted disk contents';
+    contents.onclick=()=>document.dispatchEvent(new CustomEvent('explore-disk'));
+    tools.replaceChildren(flip,sleeve,contents,help);
     stage.setAnimation(dt=>{
       if(amount!==target)amount=matchMedia('(prefers-reduced-motion: reduce)').matches?target:amount+Math.sign(target-amount)*Math.min(Math.abs(target-amount),dt/.7);
       disk.position.y=(1-amount)*155;
