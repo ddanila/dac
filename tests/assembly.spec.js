@@ -214,7 +214,7 @@ test("owner controller separates as one assembly and monitor underside follows i
     model.tick();
     const cable = model.objects.get("keyboard-internal-cable");
     const cableRest = cable.geometry.attributes.position.array.slice();
-    const fixedNames = ["keyboard-entry-rubber", "keyboard-base-insulator", "keyboard-cable-support", "keyboard-grommet"];
+    const fixedNames = ["keyboard-pcb-supports", "keyboard-entry-rubber", "keyboard-base-insulator", "keyboard-cable-support", "keyboard-grommet"];
     const bounds = name => {
       const g=model.objects.get(name).geometry;g.computeBoundingBox();
       return {min:g.boundingBox.min.toArray(),max:g.boundingBox.max.toArray()};
