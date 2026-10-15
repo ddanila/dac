@@ -1,5 +1,5 @@
 {
-  "version": 47,
+  "version": 48,
   "componentCounts": {
     "packages": 138,
     "leadHoles": 2568
@@ -31490,6 +31490,23 @@
         0
       ],
       "trackPitch": 0.26458333333333334,
+      "headContacts": [
+        [
+          -161,
+          -79.85,
+          89.5
+        ],
+        [
+          -161,
+          -81.967,
+          89.58
+        ]
+      ],
+      "trackZeroRadii": [
+        57.15,
+        55.033
+      ],
+      "trackSource": "https://retrocmp.de/fdd/teac/TEAC_FD55-FV.pdf#page=10",
       "travelSource": "TEAC FD-55FV-13 specification p.108: 96 tpi; specimen suffix unverified"
     },
     {
@@ -31526,6 +31543,23 @@
         0
       ],
       "trackPitch": 0.26458333333333334,
+      "headContacts": [
+        [
+          -7,
+          -79.85,
+          89.5
+        ],
+        [
+          -7,
+          -81.967,
+          89.58
+        ]
+      ],
+      "trackZeroRadii": [
+        57.15,
+        55.033
+      ],
+      "trackSource": "https://retrocmp.de/fdd/teac/TEAC_FD55-FV.pdf#page=10",
       "travelSource": "TEAC FD-55FV-13 specification p.108: 96 tpi; specimen suffix unverified"
     }
   ],
@@ -32222,7 +32256,7 @@
       "name": "drive-head-0",
       "file": "meshes/drive-head-0.stl",
       "color": "#30322f",
-      "sha256": "6c9d697497e680309aca9a44f13ca5b85c4871cef54f51d1caab5b8722ddf417",
+      "sha256": "d5397de4af53a3bc116dca35f14232c8543c552c605b95856e061288e7918f39",
       "section": "interior",
       "material": "plastic"
     },
@@ -32230,7 +32264,7 @@
       "name": "drive-head-1",
       "file": "meshes/drive-head-1.stl",
       "color": "#30322f",
-      "sha256": "4d6f20918990692c6b1179c919f35f44ccd1c32f786e506c32dd6f13b016ff7a",
+      "sha256": "d8236381fa689f50cb3d976d3849f1664a6944ea1969057a11b6ead3a48d2584",
       "section": "interior",
       "material": "plastic"
     },
@@ -32513,7 +32547,7 @@
       "name": "drive-head-arm-0",
       "file": "meshes/drive-head-arm-0.stl",
       "color": "#b5b9b2",
-      "sha256": "f49324840552ba4c494584238e4accf5d5993428eba60a9cff731a7098875f6c",
+      "sha256": "177f1f004afc7e2f016d4746764d928cb0158bab914afa390b1f0d0ea3ea18d4",
       "section": "interior",
       "material": "plated-steel"
     },
@@ -32521,7 +32555,7 @@
       "name": "drive-head-arm-1",
       "file": "meshes/drive-head-arm-1.stl",
       "color": "#b5b9b2",
-      "sha256": "750af3e2206912e80ea8e8c744b39b095b4d3cedbbe6f4da98961781c2b75f43",
+      "sha256": "7c87e94d333f52cb345217ab45965a4eec2c026397512c94dc05b6bdd6c59752",
       "section": "interior",
       "material": "plated-steel"
     },

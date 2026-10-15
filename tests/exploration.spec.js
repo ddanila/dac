@@ -157,3 +157,38 @@ test("owner diskette labels follow inserted media and stay with open clamps", as
   });
   expect(result).toEqual({ before: [true, false], open: [true, false], after: [false, true] });
 });
+
+test("both physical head faces follow documented disk radii and opposite surfaces", async () => {
+  const { STLLoader } = await import('three/addons/loaders/STLLoader.js');
+  const { Raycaster, Vector3, DoubleSide } = await import('three');
+  const objects = new Map();
+  for (const d of manifest.driveMotion) {
+    for (const name of [d.head, d.headMetal, d.headArm, d.spindle, d.medium]) {
+      const bytes = readFileSync(new URL(`meshes/${name}.stl`, root));
+      const geometry = new STLLoader().parse(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+      objects.set(name, new Mesh(geometry, new MeshBasicMaterial({side: DoubleSide})));
+    }
+  }
+  const move = createDriveMotion(objects, manifest.driveMotion);
+  for (const track of [...Array(80).keys(), 17.5, 78.75]) {
+    // Fractional telemetry must win over a deliberately conflicting packed track.
+    move(track, [8,8], true, 0, false, false, null,
+      [0,1].map(() => ({position: track, phase: 0, headLoad: 1})));
+    for (const d of manifest.driveMotion) {
+      for (const [side, name] of [d.head, d.headArm].entries()) {
+        const p = new Vector3(...d.headContacts[side]);
+        p.y -= track * 25.4 / 96;
+        expect(Math.hypot(p.x-d.pivot[0], p.y-d.pivot[1])).toBeCloseTo([57.150,55.033][side]-track*25.4/96, 4);
+        const mesh = objects.get(name); mesh.updateMatrixWorld(true);
+        // Probe the actual exported shoe face from the medium, not just metadata.
+        const direction = new Vector3(0,0,side ? 1 : -1);
+        const ray = new Raycaster(p.clone().addScaledVector(direction,-.001),direction,0,.01);
+        expect(ray.intersectObject(mesh)[0]?.distance).toBeCloseTo(.001,4);
+        const medium = objects.get(d.medium); medium.updateMatrixWorld(true);
+        const diskRay = new Raycaster(p.clone().addScaledVector(direction,.01),direction.clone().negate(),0,.02);
+        expect(diskRay.intersectObject(medium)[0]?.distance).toBeCloseTo(.01,4);
+      }
+    }
+  }
+  for (const mesh of objects.values()) {mesh.geometry.dispose();mesh.material.dispose();}
+});
