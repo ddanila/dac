@@ -197,7 +197,7 @@ test("owner controller separates as one assembly and monitor underside follows i
   await page.goto("/");
   const state = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
-    const { Texture } = await import("/node_modules/three/build/three.module.js");
+    const { Texture, Mesh, MeshBasicMaterial, Raycaster, Vector3, DoubleSide } = await import("/node_modules/three/build/three.module.js");
     const model = await loadRobotron(new Texture());
     const parts = [...model.objects].filter(([name]) => name.startsWith("keyboard-controller-"));
     model.tick();
@@ -208,6 +208,13 @@ test("owner controller separates as one assembly and monitor underside follows i
       const g=model.objects.get(name).geometry;g.computeBoundingBox();
       return {min:g.boundingBox.min.toArray(),max:g.boundingBox.max.toArray()};
     };
+    const lidMesh = new Mesh(model.objects.get("keyboard-bottom").geometry, new MeshBasicMaterial({side:DoubleSide}));
+    const cast=(x,y,z,direction)=>new Raycaster(new Vector3(x,y,z),new Vector3(0,0,direction)).intersectObject(lidMesh)[0]?.point.z;
+    const pocket={top:cast(200,-290,5,-1),bottom:cast(200,-290,-5,1)};
+    const edgeSlotOpen=cast(0,-448,5,-1)===undefined;
+    lidMesh.material.dispose();
+    const matrixMaterial=model.objects.get("keyboard-pcb").material;
+    const laminate={opacity:matrixMaterial.opacity,transparent:matrixMaterial.transparent};
     const installed = {
       controller:bounds("keyboard-controller-board"), matrix:bounds("keyboard-pcb"),
       support:bounds("keyboard-cable-support"), rubber:bounds("keyboard-entry-rubber"),
@@ -262,8 +269,14 @@ test("owner controller separates as one assembly and monitor underside follows i
       mesh.geometry.computeBoundingBox();
       return { min: mesh.geometry.boundingBox.min.z, max: mesh.geometry.boundingBox.max.z };
     });
-    return { installed, anchored, following, baseFixed, cableRestored, socketOpen, socketClosed:socketParts.every(mesh=>mesh.position.equals(pcb.position)), seam, opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
+    return { pocket, edgeSlotOpen, laminate, installed, anchored, following, baseFixed, cableRestored, socketOpen, socketClosed:socketParts.every(mesh=>mesh.position.equals(pcb.position)), seam, opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
   });
+  expect(state.pocket.top).toBeCloseTo(-.2, 3);
+  expect(state.pocket.top-state.pocket.bottom).toBeCloseTo(1, 3);
+  expect(state.edgeSlotOpen).toBe(true);
+  expect(state.laminate.transparent).toBe(true);
+  expect(state.laminate.opacity).toBeGreaterThan(.9);
+  expect(state.laminate.opacity).toBeLessThan(1);
   // Photo orientation: rear controller overlaps the matrix, cable opening lies to its left.
   expect(state.installed.controller.min[0]).toBeGreaterThan(-50);
   expect(state.installed.controller.min[1]).toBeLessThan(state.installed.matrix.max[1]);

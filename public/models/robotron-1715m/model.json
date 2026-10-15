@@ -1,5 +1,5 @@
 {
-  "version": 43,
+  "version": 44,
   "componentCounts": {
     "packages": 138,
     "leadHoles": 2568
@@ -403,7 +403,7 @@
       "leds": "A6A/A6B DL074 latches: address A14/A13 data, IORQ with A15 low clocks them",
       "transistors": "Schematic: V4.1\u2013V4.8 SC308C input stages, V3.1/V3.2 SC236D and V4.9 SC308C oscillator stages. Generic TO-92 model; photographed substitutes not electrically identified.",
       "unresolved": "Exact controller-to-matrix mating depth and hidden lead bends; no invented joining cable. Visible connector/resistor tails share PCB holes and underside solder eyes.",
-      "internalReview": "Paired open controller-board end holes, small matrix PCB corner rounding and observed 2\u04230 connector legend. Exposed switch-contact geometry and hidden controller/matrix mating remain unresolved."
+      "internalReview": "v44: installed end screws/visible straps, photo-projected matrix and controller underside artwork, irregular solder joints, shared end-hole/ring coordinates, clean braided shield termination and 1 mm pressed bottom-lid pockets. Exact hidden attachments, electrical continuity and optical properties remain unverified."
     },
     "connectors": [
       {
@@ -574,8 +574,8 @@
           0
         ],
         "fov": 31,
-        "include": "^keyboard-controller-",
-        "note": "Compare long underside buses, diagonal breaks and through-hole solder eyes; visual artwork, not a verified netlist."
+        "include": "^keyboard-controller-(?!mounts)",
+        "note": "Compare long underside buses, diagonal breaks and through-hole solder eyes; visual artwork, not a verified netlist. Retaining straps are omitted here to match the detached photograph; see installed-board view."
       },
       {
         "name": "motherboard-processor",
@@ -31628,6 +31628,23 @@
       "metalness": 0.05,
       "clearcoat": 1
     },
+    "matrix-laminate": {
+      "roughness": 0.55,
+      "metalness": 0,
+      "transparent": true,
+      "opacity": 0.94,
+      "depthWrite": true,
+      "grain": 0.018,
+      "grainScale": 5,
+      "grainRelief": 0.001
+    },
+    "controller-laminate": {
+      "roughness": 0.64,
+      "metalness": 0,
+      "grain": 0.018,
+      "grainScale": 5,
+      "grainRelief": 0.001
+    },
     "pcb": {
       "roughness": 0.61,
       "metalness": 0,
@@ -31787,7 +31804,7 @@
       "name": "keyboard-bottom",
       "file": "meshes/keyboard-bottom.stl",
       "color": "#9daeb1",
-      "sha256": "448677c6ab71e6aba7e5e1af5d24aa13a3768b8b9496f8abf3bc017fbf174335",
+      "sha256": "d1500f57bc9613527a72cd0a16af18cf0fd23037bf7111ce799063b4c9bf09b3",
       "material": "paint"
     },
     {
@@ -32010,10 +32027,10 @@
     {
       "name": "keyboard-pcb",
       "file": "meshes/keyboard-pcb.stl",
-      "color": "#91ae94",
+      "color": "#6f9c80",
       "sha256": "c578e7ac7d6db02c1b33dea6e323a549aa00c3df3c17215829a4705bafc23e31",
       "section": "interior",
-      "material": "pcb"
+      "material": "matrix-laminate"
     },
     {
       "name": "keyboard-switches",
@@ -32483,10 +32500,10 @@
     {
       "name": "keyboard-controller-board",
       "file": "meshes/keyboard-controller-board.stl",
-      "color": "#aaa982",
+      "color": "#92977a",
       "sha256": "4c4dbc3cc22e2bd9e370d5e0a16fd061cf3a18f5e8f1741caeb90ae69bb27f7a",
       "section": "interior",
-      "material": "phenolic"
+      "material": "controller-laminate"
     },
     {
       "name": "keyboard-controller-chips",
@@ -32555,8 +32572,8 @@
     {
       "name": "keyboard-matrix-artwork",
       "file": "meshes/keyboard-matrix-artwork.stl",
-      "color": "#487856",
-      "sha256": "d91f78bbba209d7574ac0dd8317b74451c9ce5fbb11508c8ab63c54f78417653",
+      "color": "#326b42",
+      "sha256": "510e6d641e028da7440274004b3633a7e77f4ec4f8520a383e5ef363343b3331",
       "section": "interior",
       "material": "pcb"
     },
@@ -32669,7 +32686,7 @@
       "name": "keyboard-pcb-metal",
       "file": "meshes/keyboard-pcb-metal.stl",
       "color": "#bec4bd",
-      "sha256": "8e6ab051ebb1a5c307e94651dc08e2b41664487405760c7fc35aa5650b187227",
+      "sha256": "37a4d84552e15def872e8f32e5d78113b9c27d8231d9c4ad8f6b3c0f4fc37f16",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32677,7 +32694,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "1cf4c49b06b45923ea488278d219e472b9e041abbc2aea5b701f5ca09e7c54ba",
+      "sha256": "662a8ebff4df8ac14b2910a595ed1a85ebbeb528858d1ad170cf0f4ab2472ace",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32834,7 +32851,7 @@
       "name": "keyboard-entry-wires",
       "file": "meshes/keyboard-entry-wires.stl",
       "color": "#c6c5bb",
-      "sha256": "dadb37e40876f5334e6e46503f7df77a251fc4b9ba6012cce0cbcd3d219d5eec",
+      "sha256": "cd59f4aef7d352f90f1b9638314f0e7b1c54eacb489649d6e0af9e815314a81a",
       "section": "interior",
       "material": "plastic"
     },
@@ -32850,7 +32867,7 @@
       "name": "keyboard-controller-solder",
       "file": "meshes/keyboard-controller-solder.stl",
       "color": "#b8bbb4",
-      "sha256": "77ed73de23ee69d161458d5e8cb50743cb3b119a459b1795d456d4756a12d9c6",
+      "sha256": "cc42c537d88102792a8ece2b3ca170b10ae48f86f2bb30b736c15cf262043b9c",
       "section": "interior",
       "material": "solder"
     },
@@ -33045,7 +33062,7 @@
       "name": "keyboard-internal-cable",
       "file": "meshes/keyboard-internal-cable.stl",
       "color": "#b7b3a0",
-      "sha256": "9987cab8cd186ad2491233e822df5029379c05ce3704c9c90d1dfc29cf917a2d",
+      "sha256": "69c1065934afecd918200ffc76943b412f08064ad879b049d4b94878ed90cade",
       "section": "interior",
       "material": "rubber"
     },
@@ -33085,7 +33102,7 @@
       "name": "keyboard-entry-black",
       "file": "meshes/keyboard-entry-black.stl",
       "color": "#202020",
-      "sha256": "8fecab279a4e5e4f8e72da58f9788293e2898f0f02f580a822502abf827b13f5",
+      "sha256": "60e6879b17b5abec9069af6b7e60b1d5b669fcbbccfbad2b0604633142400f73",
       "section": "interior",
       "material": "plastic"
     },
@@ -33093,7 +33110,7 @@
       "name": "keyboard-entry-pink",
       "file": "meshes/keyboard-entry-pink.stl",
       "color": "#ad415d",
-      "sha256": "928f130b48a3faf9443b9e1ab64e272ca4727e3a1cd9e63e4cf2013064b6829d",
+      "sha256": "fa4482e1fbf3bbbf0b981c2105696c8669c6f42bda226a41583dcdc845c8bfdc",
       "section": "interior",
       "material": "plastic"
     },
@@ -33101,7 +33118,7 @@
       "name": "keyboard-entry-blue",
       "file": "meshes/keyboard-entry-blue.stl",
       "color": "#3185b5",
-      "sha256": "010d7976e90a6988523f1fb843fb0bd7a5321dc0fef57dafbd5f6a9e2a7db62a",
+      "sha256": "593a936f1b648fe5c101b69c89c7f47943d974a8bc394b026ead2c99945b7594",
       "section": "interior",
       "material": "plastic"
     },
@@ -33187,6 +33204,22 @@
       "color": "#513e32",
       "sha256": "e156f80285bde4f85ef757462664aab6618bda0f7babf5978533cd2ed546cdec",
       "material": "plastic"
+    },
+    {
+      "name": "keyboard-controller-mounts",
+      "file": "meshes/keyboard-controller-mounts.stl",
+      "color": "#b4b5ad",
+      "sha256": "a69058258ec3531b151d3e695b668ea06719b70d56f305254cd1fe40569637eb",
+      "section": "interior",
+      "material": "plated-steel"
+    },
+    {
+      "name": "keyboard-controller-shield",
+      "file": "meshes/keyboard-controller-shield.stl",
+      "color": "#aeb6b6",
+      "sha256": "8806269d19a5f7c13797e900cfb20c74b5013d772d1fea8b13cdb422f1e86867",
+      "section": "interior",
+      "material": "solder"
     }
   ],
   "keys": [
