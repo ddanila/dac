@@ -7,10 +7,21 @@ export const circuits = [
  {ref:'A4',name:'System timer · UA857',sheet:'C',role:'Provides system CTC timer/counter channels and vectored interrupts.',signal:'The drawing shows ZC/TO1 feeding CLK/TRG2. The independent comparison exercises an IM2 timer interrupt; it does not certify every timing edge.'},
  {ref:'A5',name:'Serial clock · UA857',sheet:'D',role:'Provides programmable serial clock pulses.',signal:'ZC/TO0 supplies the channel-A clock route. ZC/TO1 reaches channel-B clocking through buffering and S1. DAC uses the internal reference route; the physical S1 setting remains unidentified.'},
 ];
+export const relatedCircuits={A1:['A2','A3','A4','A44'],A2:['A1','A44'],A44:['A2'],A3:['A5','A1'],A4:['A1'],A5:['A3']};
 export function createCircuitPanel(show) {
  const panel=document.createElement('details');panel.id='circuit-panel';panel.dataset.robotron='';
  const summary=document.createElement('summary');summary.textContent='Explore the circuits';panel.append(summary);
  const note=document.createElement('p');note.textContent='Choose a component for its role, documented signals and exact drawing file. These describe the W/M design; specimen correspondence and hidden routing remain provisional.';panel.append(note);
- for(const c of circuits){const button=document.createElement('button');button.textContent=`${c.ref} · ${c.name}`;button.dataset.circuit=c.ref;button.onclick=()=>show(c);panel.append(button);}
+ for(const c of circuits){const button=document.createElement('button');button.textContent=`${c.ref} · ${c.name}`;button.dataset.circuit=c.ref;button.onclick=()=>show(c,relatedCircuits[c.ref]);panel.append(button);}
+ const clear=document.createElement('button');clear.textContent='Clear chip highlights';clear.onclick=()=>show(null);panel.append(clear);
+ const label=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.id='circuit-activity';label.append(check,' Show sampled emulator activity');panel.append(label);
+ const activity=document.createElement('p');activity.id='circuit-activity-status';activity.setAttribute('role','status');panel.append(activity);
+ const legend=document.createElement('p');legend.textContent='Cyan: selected chip. Amber: related components. Activity is sampled emulator telemetry, not physical LEDs or a pin-level logic analyser.';panel.append(legend);
  document.getElementById('electrical-panel').before(panel);
+ let previous=[];
+ return {frame(data){const values=data.circuitTelemetry;
+   activity.hidden=!check.checked;if(!check.checked)return;
+   activity.textContent=values?['CPU clocks','DMA transfer count','Serial frames','FDC byte position'].map((name,i)=>`${name}: ${values[i]}${previous[i]!==undefined&&previous[i]!==values[i]?' ●':''}`).join(' · '):'Activity telemetry unavailable in this preserved core.';
+   previous=values||[];
+ }};
 }

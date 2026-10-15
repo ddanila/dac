@@ -48,3 +48,6 @@ revision=subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD'],text=
 dirty=bool(subprocess.check_output(['git','-C',str(repo),'status','--porcelain','--','models/robotron-1715m'],text=True).strip())
 (target/'source.json').write_text(json.dumps(dict(repository='https://github.com/ddanila/3d-models',revision=revision,dirty=dirty,files=records),indent=2)+'\n')
 print(f'Synced {len(files)} verified files from {revision}'+(' (uncommitted changes)' if dirty else ''))
+
+# Derived browser cache preserves canonical STL geometry; no CAD edits.
+subprocess.run(["node",str(Path(__file__).with_name("build-geometry-cache.mjs"))],check=True)

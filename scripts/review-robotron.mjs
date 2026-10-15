@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Local visual review only. Start Vite first; no emulator, CI or screenshots of a remote site.
 import {chromium} from '@playwright/test';
+import {reviewControls,reviewStyle,reviewScript} from './photo-review-ui.mjs';
 import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -62,6 +63,7 @@ try {
     const materials=(Array.isArray(o.material)?o.material:[o.material]).map(m=>({color:m.color?.getHexString(),roughness:m.roughness,metalness:m.metalness,opacity:m.opacity}));
     return {name:o.name,vertices:o.geometry.attributes.position.count,indices:o.geometry.index?.count||0,bounds:numeric([...box.min.toArray(),...box.max.toArray()]),transform:numeric(o.matrixWorld.elements),instances:o.isInstancedMesh?numeric(o.instanceMatrix.array):undefined,materials};
    }).sort((a,b)=>a.name.localeCompare(b.name)));
+   await writeFile(resolve(output,view.name+'.json'),JSON.stringify(structure,null,2)+'\n');
    const structurePath=resolve(baseline,view.name+'.json');
    if(update){await writeFile(target,screenshot);await writeFile(structurePath,JSON.stringify(structure,null,2)+'\n');}
    else {
@@ -78,11 +80,11 @@ try {
    }
   }
   await copyFile(resolve(canonical,'reference/photos',view.photo),resolve(output,view.photo));
-  sections.push(`<section><h2>${escape(view.name)}</h2><p>${escape(view.note)}</p><div><figure><img src="${view.photo}"><figcaption>Your specimen · ${view.photo}</figcaption></figure><figure><img src="${view.name}.png"><figcaption>Clean reconstruction</figcaption></figure></div></section>`);
+  sections.push(`<section><h2>${escape(view.name)}</h2><p>${escape(view.note)}</p><div><figure><img src="${view.photo}"><figcaption>Your specimen · ${view.photo}</figcaption></figure><figure><img src="${view.name}.png"><figcaption>Clean reconstruction</figcaption></figure></div>${reviewControls(view)}</section>`);
   console.log('Reviewed '+view.name);
  }
  if(errors.length)throw Error(errors.join('\n'));
- await writeFile(resolve(output,'index.html'),`<!doctype html><meta charset="utf-8"><title>Robotron owner-photo review</title><style>body{font:16px system-ui;background:#202622;color:#eee;margin:24px}div{display:flex;gap:12px}figure{margin:0;width:50%}img{width:100%;height:480px;object-fit:contain;background:#414844}section{margin-bottom:36px}figcaption{font-size:13px}</style><h1>Owner photos and canonical model</h1><p>${escape(manifest.reviewViews.status)}</p><p>Model v${manifest.version}; source ${source.revision}${source.dirty?' (local edits)':''}. Generated ${new Date().toISOString()}.</p>${sections.join('')}`);
+ await writeFile(resolve(output,'index.html'),`<!doctype html><meta charset="utf-8"><title>Robotron owner-photo review</title><style>body{font:16px system-ui;background:#202622;color:#eee;margin:24px}div{display:flex;gap:12px}figure{margin:0;width:50%}img{width:100%;height:480px;object-fit:contain;background:#414844}section{margin-bottom:36px}figcaption{font-size:13px}</style><h1>Owner photos and canonical model</h1><p>${escape(manifest.reviewViews.status)}</p><p>Model v${manifest.version}; source ${source.revision}${source.dirty?' (local edits)':''}. Generated ${new Date().toISOString()}.</p>${sections.join('')}${reviewScript}`);
  await writeFile(resolve(output,'review.json'),JSON.stringify({modelVersion:manifest.version,source,views:manifest.reviewViews},null,2)+'\n');
  await writeFile(resolve(output,'regression.json'),JSON.stringify(comparisons,null,2)+'\n');
  if(update)await writeFile(resolve(baseline,'source.json'),JSON.stringify({modelVersion:manifest.version,source:{revision:source.revision,dirty:source.dirty},views:[...regressionViews]},null,2)+'\n');

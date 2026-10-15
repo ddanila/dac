@@ -1,11 +1,23 @@
 {
-  "environment": "Local macOS Chromium, cold contexts against Vite; all detailed geometry ready",
-  "resourceCount": 233,
-  "decodedModelBytes": 53495354,
-  "duplicateUrls": [],
-  "baselineReadyMs": [7851, 7521],
-  "parallelBatchExperimentReadyMs": [10774],
-  "decision": "Retain existing loader. Parallel texture/enclosure/key download batches completed network earlier but delayed readiness in this local experiment. No meshes, textures or resolution removed.",
-  "reproduce": "npm run dev -- --port 4173; node scripts/profile-model.mjs http://127.0.0.1:4173/ /tmp/dac-loading-profile.json",
-  "limits": "Local samples are diagnostic, not a public-host performance benchmark. Cached, throttled and mobile results may differ."
+  "baseline": {
+    "scope": "Cold local browser context, all detailed model geometry ready; development server",
+    "readyMs": 7895,
+    "resources": 233,
+    "decodedBytes": 53495354,
+    "duplicateUrls": [],
+    "firstRequestMs": 162,
+    "lastResponseMs": 3219
+  },
+  "cached": {
+    "scope": "Cold local browser context, all detailed model geometry ready; development server",
+    "readyMs": 6661,
+    "resources": 233,
+    "decodedBytes": 12010354,
+    "duplicateUrls": [],
+    "firstRequestMs": 101,
+    "lastResponseMs": 1891
+  },
+  "decision": "Keep: all 223 mesh position/normal/index arrays match exactly; rendered regressions pass. Single cold local measurements are indicative, not a cross-device guarantee.",
+  "canonicalSource": "3d-models v48, 58241dca6ea73b806cca115489addd9b57481a7c",
+  "limits": "The cache preserves every triangle and all materials. STL fallback is retained. Network transport and device decoding costs vary."
 }

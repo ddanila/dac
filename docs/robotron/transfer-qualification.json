@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "guest": "TOS/M 1.0",
+  "protocol": "XMODEM-128 checksum",
+  "bytes": 256,
+  "sha256": "5beba29861f5382e8430173d16ae9f9ef8ea9d73e8474cd433381b2a5eed8071",
+  "checks": [
+    "guest COM loaded through filesystem",
+    "bad checksum NAK and retry",
+    "duplicate block ACK without duplicate write",
+    "EOT ACK after BDOS close",
+    "guest-created file byte equality"
+  ],
+  "limitations": [
+    "128-byte record length; final block padded",
+    "No physical UART qualification",
+    "Receiver timeout re-NAKs; explicit cancellation required to exit waiting receiver"
+  ]
+}

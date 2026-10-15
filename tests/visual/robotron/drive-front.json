@@ -1054,15 +1054,15 @@
   },
   {
     "name": "drive-head-0",
-    "vertices": 1061,
-    "indices": 3018,
+    "vertices": 1095,
+    "indices": 3090,
     "bounds": [
       -188,
-      -77,
+      -82.849998,
       75,
       -136,
       -43,
-      90
+      89.5
     ],
     "transform": [
       0.0025,
@@ -1093,15 +1093,15 @@
   },
   {
     "name": "drive-head-1",
-    "vertices": 1061,
-    "indices": 3018,
+    "vertices": 1095,
+    "indices": 3090,
     "bounds": [
       -34,
-      -77,
+      -82.849998,
       75,
       18,
       -43,
-      90
+      89.5
     ],
     "transform": [
       0.0025,
@@ -1132,12 +1132,12 @@
   },
   {
     "name": "drive-head-arm-0",
-    "vertices": 125,
-    "indices": 246,
+    "vertices": 96,
+    "indices": 192,
     "bounds": [
       -9,
-      -26,
-      -1,
+      -36.967003,
+      -0.419998,
       9,
       0,
       1
@@ -1171,12 +1171,12 @@
   },
   {
     "name": "drive-head-arm-1",
-    "vertices": 125,
-    "indices": 246,
+    "vertices": 96,
+    "indices": 192,
     "bounds": [
       -9,
-      -26,
-      -1,
+      -36.967003,
+      -0.419998,
       9,
       0,
       1

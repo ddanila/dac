@@ -1,6 +1,6 @@
 # Robotron capability and evidence matrix
 
-Current baseline: DAC Emulation 0.9.0, scanline output, snapshot layout 9;
+Current baseline: DAC Emulation 0.10.0, scanline output, snapshot layout 10;
 canonical model v48. This matrix describes present behavior. Dated development
 sections elsewhere are history, not cumulative lists of current limitations.
 
@@ -110,3 +110,49 @@ existing sound routing. Source raster resolution and model geometry are unchange
 Primary references: [W/M documentation archive](https://xepb.org/robotron/docs/1715w.zip),
 [Zilog Z80 peripherals manual](https://www.zilog.com/docs/z80/um0081.pdf),
 [MAME Lua memory interface](https://docs.mamedev.org/luascript/ref-mem.html).
+
+
+## 0.10.0 qualification pass
+
+This section supersedes the 0.9.0 serial/timing limitations above where stated.
+
+- Collection backup preserves saved disks, originals, states and drive assignments.
+  Every byte record and the enclosing manifest is checked. Exact duplicate records
+  are skipped; conflicting keys abort the entire import without partial writes.
+  Save current state first: transient unsaved state and custom firmware are excluded.
+- Circuit selection highlights individual packages and related components. Opt-in
+  sampled CPU/DMA/serial/FDC activity is explicitly separate from physical LEDs.
+- The owner-photo review generator now provides overlay opacity, alignment controls,
+  paired landmarks and exportable image-space residuals with viewport dimensions.
+  It uses repeatable existing cameras, not calibrated photogrammetry. All three
+  rendered regressions passed. The drive-front structural baseline was stale at v47;
+  it now records the already-published v48 head geometry. No new CAD dimensions were
+  inferred from these residuals. Recheck the adapter's 10.86-pixel right-landmark
+  residual against camera/lens alignment before changing physical geometry.
+- Independent incoming serial baud, width, parity and 1/1.5/2 stop bits; parity and
+  framing status, three-byte FIFO replacement on overrun, CTS/DCD status latching
+  and vectored interrupts. Outgoing bytes are captured after guest TX timing;
+  they are not decoded by a separate peer UART. Break, synchronous modes,
+  first-character special-error locking and TX x1 half-clock edges remain limited.
+- Original MIT DACRX.COM is qualified inside TOS/M using a copied boot disk:
+  checksum retry, duplicate-block handling, EOT acknowledgement after close and
+  byte equality of the guest-created file. The browser has XMODEM progress/cancel,
+  raw text/file input, and hex/ASCII capture. CP/M file lengths have 128-byte
+  precision; cancellation can leave a partial file. See transfer-qualification.json.
+- DMA masked search, transfer/search, stop-on-match and match vectors; timing-reset
+  commands and reset recovery; WAIT holds completion and active CPU bus strobes
+  finish before handover. Native bounded tests cover these. Half-clock arbitration,
+  auto-repeat, pulse output and every byte/burst distinction are not certified.
+- The expanded MAME probe passes bank aliasing, two ordered CTC handlers, attribute
+  RAM, FDC invalid commands and SIO reset status as well as the previous checks.
+  First-difference output is included. Serial line errors are native diagnostics,
+  not independently driven through MAME in this harness.
+- Derived browser geometry caches preserve position/normal/index arrays exactly,
+  verified during generation. They are gzip-compressed .dacgeom files, keyed by
+  canonical STL hash and crease angle, with checked checksums and STL fallback.
+  Materials, triangles, photographs and interior visibility remain unchanged.
+  Regenerate with node scripts/build-geometry-cache.mjs; canonical sync does this
+  automatically. These caches do not change printed-and-verified classifications.
+- Snapshot 10 and recording peer/cancel events use the new core; 0.9.0 is archived.
+  Normal CI keeps fail-fast/cancel-on-new-commit; no Verilog, MAME installation or
+  historical guest-transfer qualification was added to routine CI.

@@ -550,6 +550,7 @@ export function createScene(
   document.addEventListener("visibilitychange",updateRendering);
   updateRendering();
   return {
+    focusCircuit(ref,related){robotron?.focusCircuit(ref,related);renderRequested=true;},
     annotations(on){labelsEnabled=on;renderRequested=true;},
     markTrack(value){robotron?.markTrack(value);renderRequested=true;},
     cameraState(){return {position:camera.position.toArray(),target:controls.target.toArray()};},

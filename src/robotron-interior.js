@@ -1,16 +1,8 @@
 import { specimenMaterial } from "./robotron-materials.js";
 import { modelAsset } from "./model-assets.js";
 import * as THREE from "three";
-import { STLLoader } from "three/addons/loaders/STLLoader.js";
-import { toCreasedNormals, mergeVertices } from "three/addons/utils/BufferGeometryUtils.js";
-
-// Index repeated STL vertices after computing the same crease normals. This
-// preserves every triangle and normal while avoiding repeated vertex shading.
-export function detailedGeometry(source, creaseAngle = Math.PI / 4) {
-  const geometry = mergeVertices(toCreasedNormals(source, creaseAngle), Number.EPSILON);
-  geometry.computeBoundingBox(); // Reject missed pick rays before testing triangles.
-  return geometry;
-}
+export {detailedGeometry} from './geometry-codec.js';
+import {loadGeometry} from './geometry-loader.js';
 
 // Image landmarks also generate the OpenSCAD package bodies. No generic chip grid.
 export function pcbPoint(board, x, y, height = 0) {
@@ -220,8 +212,7 @@ export async function loadPcbPhotos(data, base, onAsset = () => {}) {
 
 // Mesh instances preserve nominal package dimensions and share geometry/GPU draws.
 export async function loadPcbComponents(data, base, onAsset = () => {}, cache = new Map()) {
-  const loader = new STLLoader(),
-    result = [];
+  const result = [];
   const descriptions = data.pcbComponents;
   if (!descriptions) return result;
   const matrix = new THREE.Object3D();
@@ -235,7 +226,7 @@ export async function loadPcbComponents(data, base, onAsset = () => {}, cache = 
         const record = model.meshes[kind];
         const url = modelAsset(record.file, base, record.sha256).href;
         if (!cache.has(url)) {
-          const promise = loader.loadAsync(url).then(g => detailedGeometry(g));
+          const promise = loadGeometry(record,base);
           cache.set(url, promise);
           promise.catch(() => cache.delete(url));
         }

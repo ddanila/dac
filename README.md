@@ -387,3 +387,13 @@ for evidence, reproduction commands and limits.
 The model profiler found no duplicate asset URLs. A parallel-loading experiment
 was slower and was rejected: geometry, textures and visible detail are unchanged.
 CI shards use measured file runtimes, with all tests retained.
+
+
+The 0.10.0 update adds whole-collection backups, individual circuit highlights,
+owner-photo overlay measurements, independent incoming serial framing and a
+qualified TOS/M XMODEM example. Download the prepared guest disk from the V.24
+panel, mount it writable, run `DACRX NAME.EXT`, then send a file using XMODEM.
+The receiver source is MIT; existing stock-media notices remain applicable.
+Model loading uses an exact derived geometry cache with canonical STL fallback.
+See [qualification details](docs/robotron/capabilities.md) and
+[guest instructions](public/examples/robotron-v24/README.txt).

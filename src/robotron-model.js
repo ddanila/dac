@@ -4,7 +4,7 @@ import { componentDetail } from "./component-detail.js";
 import { createDriveMotion } from "./robotron-drives.js";
 import { createFanMotion } from "./robotron-fan.js";
 import { modelAsset } from "./model-assets.js";
-import { loadPcbPhotos, loadPcbComponents, loadPcbLabels, detailedGeometry } from "./robotron-interior.js";
+import { loadPcbPhotos, loadPcbComponents, loadPcbLabels } from "./robotron-interior.js";
 import { crtGeometry, crtMaterial } from "./robotron-crt.js";
 import * as THREE from "three";
 import {
@@ -13,7 +13,7 @@ import {
   legendLayout,
   markingTexture,
 } from "./robotron-materials.js";
-import { STLLoader } from "three/addons/loaders/STLLoader.js";
+import {loadGeometry} from './geometry-loader.js';
 
 // Project a unit square into the photographed quadrilateral. Subdivision keeps
 // the perspective correction smooth across triangles rather than one diagonal.
@@ -112,8 +112,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   const group = new THREE.Group();
   group.rotation.x = -Math.PI / 2;
   group.scale.setScalar(data.scale);
-  const stl = new STLLoader(),
-    loader = new THREE.TextureLoader();
+  const loader = new THREE.TextureLoader();
   const textures = new Map(),
     objects = new Map(),
     keyObjects = new Map(),
@@ -142,8 +141,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   );
   await Promise.all(
     data.parts.map(async (part) => {
-      const geometry = detailedGeometry(
-        await stl.loadAsync(modelAsset(part.file, base, part.sha256).href), Math.PI / 4);
+      const geometry = await loadGeometry(part,base,Math.PI/4);
 
       const mesh = new THREE.Mesh(
         geometry,
@@ -167,8 +165,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     }),
   );
   await Promise.all(data.keyMeshes.map(async (part) => {
-    const geometry = detailedGeometry(
-      await stl.loadAsync(modelAsset(part.file, base, part.sha256).href), Math.PI / 2.1);
+    const geometry = await loadGeometry(part,base,Math.PI/2.1);
     keyGeometry.set(part.name, geometry);
     advance();
   }));
@@ -1040,10 +1037,32 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         newDetails || changedInside || beforeSplit !== split || fanMoved || drivesMoved || controlsMoved,
     };
   }
+  const circuitOutlines=[];
+  function focusCircuit(ref,related=[]){
+    for(const h of circuitOutlines){h.removeFromParent();h.geometry.dispose();h.material.dispose();}
+    circuitOutlines.length=0;
+    if(ref)for(const mesh of objects.values()){
+      if(mesh.userData.board!=="motherboard" || !mesh.isInstancedMesh || !mesh.name.includes("-body-"))continue;
+      mesh.geometry.computeBoundingBox();
+      mesh.userData.componentDetails.forEach((d,i)=>{
+        if(d.component.ref!==ref && !related.includes(d.component.ref))return;
+        const helper=new THREE.Box3Helper(mesh.geometry.boundingBox.clone().expandByScalar(.4),d.component.ref===ref?0x50e7ff:0xffbd55);
+        helper.updateMatrixWorld=function(force){THREE.Object3D.prototype.updateMatrixWorld.call(this,force);};
+        // Box3Helper normally derives its transform from its box; retain the
+        // instance placement and follow the parent package during inspection.
+        const box=mesh.geometry.boundingBox.clone().expandByScalar(.4),center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3()).multiplyScalar(.5);
+        const local=new THREE.Matrix4().compose(center,new THREE.Quaternion(),size),instance=new THREE.Matrix4();mesh.getMatrixAt(i,instance);
+        helper.matrixAutoUpdate=false;helper.matrix.multiplyMatrices(instance,local);helper.raycast=()=>{};
+        helper.userData.circuitRef=d.component.ref;mesh.add(helper);circuitOutlines.push(helper);
+      });
+    }
+    inspectionDirty=true;
+  }
   await loadDetails();
   onProgress(100);
   return {
     group,
+    focusCircuit,
     displaySettings(value){display.material.userData.adjust(value);inspectionDirty=true;},
     markTrack(value){trackMarker.select(value);inspectionDirty=true;},
     annotations: data.annotations || [],
