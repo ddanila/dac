@@ -730,7 +730,7 @@ $("crt-brightness").oninput = adjustDisplay;
 $("crt-contrast").oninput = adjustDisplay;
 $("crt-persistence").oninput = adjustDisplay;
 $("crt-defaults").onclick = () => {$("crt-brightness").value=1;$("crt-contrast").value=1;$("crt-persistence").value=0;adjustDisplay();};
-$("printer-preview").onclick = () => send({type:"printer-preview"});
+$("printer-preview").onclick = () => {if(ready)send({type:"printer-preview"});};
 $("printer-export").onclick = () => send({ type: "printer" });
 $("printer-clear").onclick = () => {send({ type: "clear-printer" });$("printer-paper").replaceChildren();};
 $("export-state").onclick = () => {
