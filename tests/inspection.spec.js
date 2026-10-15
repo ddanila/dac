@@ -12,6 +12,7 @@ test("typing view routes modeled and physical keyboard input", async ({
     window.sentKeys = [];
     window.contacts = [];
     window.Worker = class extends Base {
+      constructor(...args) { super(...args); window.inputWorker = this; }
       postMessage(m, ...args) {
         if (m.type === "tap") window.sentKeys.push(m.key);
         if (m.type === "matrix") window.contacts.push([m.key, m.down]);
@@ -26,6 +27,11 @@ test("typing view routes modeled and physical keyboard input", async ({
     "robotron-photo", {timeout: 20000});
   await page.locator("#power").click();
   await expect(page.locator("#status")).toHaveText("Running");
+  // This fixture checks input routing, not instruction execution. Suspend the
+  // real worker's clock through its visibility protocol so software WebGL and
+  // continuous emulation do not compete for the CI runner's CPU. Input still
+  // reaches the powered real worker; live OS behavior is covered in museum.spec.
+  await page.evaluate(() => window.inputWorker.postMessage({type:"visibility",hidden:true}));
   await page.locator('[data-view="typing"]').click();
   await expect(page.locator("#screen-panel")).toBeVisible();
   const manifest = await (
