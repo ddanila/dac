@@ -744,3 +744,11 @@ textarea {
 #disk-explorer select {max-width:100%;min-width:0}
 #disk-explorer .disk-map-controls label {max-width:100%;flex-wrap:wrap}
 @media(max-width:800px){.disk-map-grid{grid-template-columns:minmax(0,1fr)}}
+
+#disk-explorer [data-bytes] button {font:inherit;color:inherit;background:transparent;border:0;border-radius:2px;padding:0;margin:0;line-height:inherit;min-height:0}
+#disk-explorer [data-bytes] button[aria-pressed=true] {background:#285b77;color:white;outline:1px solid #9edfff}
+#disk-explorer [data-extents] button {padding:2px 6px;font-size:13px}
+#disk-explorer [data-byte-info] {overflow-wrap:anywhere}
+#disk-explorer [data-preview-panel] {margin-top:14px}
+#disk-explorer [data-preview-bytes] {max-height:35vh}
+#disk-explorer .disk-entry-changed {background:#572e4e}
