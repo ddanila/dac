@@ -1,6 +1,7 @@
+import { createChipViewer } from "./chip-viewer.js";
 import { createKeyViewer } from "./key-viewer.js";
 import { createDisketteViewer } from "./diskette-viewer.js";
-let disketteViewer, detailGeneration=0;
+let disketteViewer, chipViewer, detailGeneration=0;
 export const inspections = {
   "key-mechanism": {
     title:"One key, from cap to contact",
@@ -95,7 +96,7 @@ export const inspections = {
   },
   assembly: {
     title: "Open the case and keyboard",
-    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the keyboard deck lifts away. Cable runs are hidden while parts are separated. Drive mechanisms and rear plates follow owner photographs; the mainboard follows the W drawing and the display-board population follows the new owner component-side photos, while unseen wiring remains estimated. Owner photos now establish the fan retainers, PSU-cover grommets and drive adapters. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
+    text: "The lid and monitor move up and back together; the drive assembly moves forward and up, and the keyboard deck lifts away. Cable endpoints remain attached while parts are separated; intermediate extension is illustrative. Drive mechanisms and rear plates follow owner photographs; the mainboard follows the W drawing and the display-board population follows the new owner component-side photos, while unseen wiring remains estimated. Owner photos now establish the fan retainers, PSU-cover grommets and drive adapters. The separate keyboard controller now follows owner photos; switch construction and local dimensions remain approximate; the contents of the PSU shield remain unmodeled. Open the monitor separately to inspect its reference CRT and electronics.",
   },
 };
 Object.assign(inspections, {
@@ -143,7 +144,7 @@ inspections.motherboard = {
   evidence:"Your specimen + documented W/M design · placement and dimensions estimated",
   photo:"20261014_072654600",
   views:[["Motherboard components","20261014_072654600"],["Processor area","20261014_073200542"],["Rear connectors","20261014_073219091"]],
-  text:"Owner photos now guide the positions of the two CTCs and 32 RAM packages (M4164B-12 in your photo; U2164 in the drawing). The UA880 CPU, UA858 DMA, UA8560 SIO and U8272 floppy controller at A44 follow the documented W design. The W drawing supplies component references; eleven processor-area packages and the long socket use a local projective fit to nominal DIP-40 lead pitch. Smaller unregistered parts and global board dimensions retain estimated placement. The controller belongs on this main board. KiCad package geometry supplies nominal bodies and leads; local dimensions and complete placement remain unverified. Click an individual chip to inspect its role, owner photo and original drawing. This is a clean drawing-based reconstruction, not a traced electrical netlist.",
+  text:"Owner photos now guide the positions of the two CTCs and 32 RAM packages (M4164B-12 in your photo; U2164 in the drawing). The UA880 CPU, UA858 DMA, UA8560 SIO and U8272 floppy controller at A44 follow the documented W design. The W drawing supplies component references; photo-registered components share two calibrated photo planes based on six nominal DIP packages. Visible mounting holes and screws are distinguished from obscured estimated mounts. Unregistered parts and the board envelope remain estimates. The controller belongs on this main board. KiCad package geometry supplies nominal bodies and leads; local dimensions and complete placement remain unverified. Click an individual chip to inspect its role, owner photo and original drawing. This is a clean drawing-based reconstruction, not a traced electrical netlist.",
   reference:"https://xepb.org/robotron/docs/1715w.zip"
 };
 inspections["display-controller"] = {
@@ -201,6 +202,7 @@ export function showSpecimenDetail(name = currentInspection) {
   if (!entry) return;
   const generation=++detailGeneration;
   disketteViewer?.dispose(); disketteViewer=undefined;
+  chipViewer?.dispose();chipViewer=undefined;document.getElementById("component-comparison")?.remove();
   document.getElementById("diskette-viewer")?.remove();
   document.getElementById("diskette-tools")?.remove();
   document.getElementById("detail-title").textContent = entry.title;
@@ -236,6 +238,20 @@ export function showSpecimenDetail(name = currentInspection) {
       for (const b of choices.children) b.setAttribute("aria-pressed", String(b === button));
     };
     choices.append(button);
+  }
+  if(entry.component && entry.packageModel){
+    const panel=document.createElement('section');panel.id='component-comparison';
+    const evidence=document.createElement('dl');evidence.id='component-confidence';
+    for(const [term,value]of Object.entries(entry.confidence||{})){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=term;dd.textContent=value;evidence.append(dt,dd);}
+    const pair=document.createElement('div');pair.className='component-pair';
+    const figure=document.createElement('figure'),caption=document.createElement('figcaption');caption.textContent='Your machine · original photograph';
+    const crop=document.createElement('canvas');crop.id='component-photo-crop';crop.setAttribute('role','img');crop.setAttribute('aria-label',`Owner photograph crop: ${entry.title}`);figure.append(crop,caption);
+    const modelFigure=document.createElement('figure'),host=document.createElement('div'),modelCaption=document.createElement('figcaption');host.id='component-model';host.setAttribute('aria-label','Rotate the clean package model');modelCaption.textContent='Clean package model · nominal dimensions';modelFigure.append(host,modelCaption);
+    pair.append(figure,modelFigure);panel.append(pair,evidence);photo.before(panel);
+    if(entry.crop && entry.photo){
+      photo.hidden=true;const img=new Image();img.onload=()=>{if(generation!==detailGeneration)return;const [x,y,w,h]=entry.crop;const sw=Math.min(w,1-x)*img.naturalWidth,sh=Math.min(h,1-y)*img.naturalHeight;crop.width=Math.min(1000,Math.round(sw));crop.height=Math.round(crop.width*sh/sw);crop.getContext('2d').drawImage(img,x*img.naturalWidth,y*img.naturalHeight,sw,sh,0,0,crop.width,crop.height);crop.dataset.ready='true';};img.onerror=()=>{if(generation!==detailGeneration)return;figure.hidden=true;photo.hidden=false;};img.src=photoUrl(entry.photo);
+    }else{figure.hidden=true;}
+    chipViewer=createChipViewer(host,entry);
   }
   document.getElementById("specimen-detail").showModal();
   if(name==="diskette" || name==="key-mechanism") {
@@ -275,7 +291,7 @@ interiorReferences.addEventListener("toggle", () => {
 for (const button of document.querySelectorAll("[data-component]"))
   button.onclick = () => showSpecimenDetail(button.dataset.component);
 
-document.getElementById("specimen-detail").addEventListener("close",()=>{detailGeneration++;disketteViewer?.dispose();disketteViewer=undefined;});
+document.getElementById("specimen-detail").addEventListener("close",()=>{detailGeneration++;disketteViewer?.dispose();disketteViewer=undefined;chipViewer?.dispose();chipViewer=undefined;});
 
 export function showAnnotation(annotation){
   const id="annotation-"+annotation.id;

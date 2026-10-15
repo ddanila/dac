@@ -274,14 +274,14 @@
   },
   {
     "name": "keyboard-controller-metal",
-    "vertices": 43057,
-    "indices": 116856,
+    "vertices": 42449,
+    "indices": 115176,
     "bounds": [
-      -197.5,
-      -301.5,
+      -197.25,
+      -299.25,
       6.3,
-      67.5,
-      -260.5,
+      64,
+      -263.75,
       18.85
     ],
     "transform": [

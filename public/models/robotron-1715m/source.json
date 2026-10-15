@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "ee0abbb42231727e349bcbf3fc1d1e56726ad1eb",
+  "revision": "b5f9b6af71548c2374390db335b123062f421d4f",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "4155230ac600d36a1263f82b19c5a6cf938b7605db7d36f0521e297155e10870"
+      "sha256": "ec4d38fee04871a1088df2bb0e55b8f2d50b379780aa6e8d088aa24c8dbec65f"
     },
     {
       "file": "LICENSE",
@@ -185,7 +185,7 @@
     },
     {
       "file": "meshes/logic-boards-motherboard.stl",
-      "sha256": "7fbe279a64aed05585e941e3392778fd681fba9cb4243c4a8d1343492aaa4e52"
+      "sha256": "1ea643a83024ff54f6c05776ddfce26733392301a4f857293929bee661f33e7d"
     },
     {
       "file": "meshes/logic-boards-display-controller.stl",
@@ -217,11 +217,11 @@
     },
     {
       "file": "meshes/ribbon-cables.stl",
-      "sha256": "b3f7e758994391cfcc6c9a218f9966b7bf61aac1201ed2631230d0e5533d50c9"
+      "sha256": "b14775d1fd2a2b069d8636cae3e24af66ddc0bf3494ac29e695cfb5ff1993a3b"
     },
     {
       "file": "meshes/ribbon-stripes.stl",
-      "sha256": "2efd7cb0f69329f6c2f7a343097981dabddad5fe70bbe677020af339f32c0cc8"
+      "sha256": "0348b5c51892c66d32c5a5e5aa9d91c52e1647f9796a25123a0a8729f303b3a3"
     },
     {
       "file": "meshes/power-wires-red.stl",
@@ -237,7 +237,7 @@
     },
     {
       "file": "meshes/keyboard-pcb.stl",
-      "sha256": "444a0073ebcc3a81877abec65b29a0f83a9c9deab0dc30d30134b963b45f8ff6"
+      "sha256": "c578e7ac7d6db02c1b33dea6e323a549aa00c3df3c17215829a4705bafc23e31"
     },
     {
       "file": "meshes/keyboard-switches.stl",
@@ -345,7 +345,7 @@
     },
     {
       "file": "meshes/logic-mounts-motherboard.stl",
-      "sha256": "60d344146423e4ed0bf996248f3f0248c0353028ced7aa890e1cf1d15b334923"
+      "sha256": "cbaa72d4f82d7e6559e171521f270a32d9bd3b83635b38d099eaaa24f9282001"
     },
     {
       "file": "meshes/logic-mounts-display-controller.stl",
@@ -437,7 +437,7 @@
     },
     {
       "file": "meshes/ribbon-ridges.stl",
-      "sha256": "abba0628b2cc8b5c04fcc731045dd24733b1288846c5051e696be201f3da2114"
+      "sha256": "f354f856e4fcedbd65098625d72f636fbfa21e975316af6f3cb40add935e20f4"
     },
     {
       "file": "meshes/drive-cable-plugs.stl",
@@ -461,7 +461,7 @@
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
-      "sha256": "f1143b14ab821d890a38be87822ddd6c4a5ce7597328b8deff95ac9e78292d0c"
+      "sha256": "c6028100ad51f86f0651c6f7e7d5edce60e6883860b248b34aa12945f5330ddb"
     },
     {
       "file": "meshes/keyboard-controller-chips.stl",
@@ -485,7 +485,7 @@
     },
     {
       "file": "meshes/keyboard-controller-metal.stl",
-      "sha256": "bc86159efde2e16f1a358b34ce5f9e5a100936ef0fe100a91385866f93e5501e"
+      "sha256": "061d299ab974c4c7507a7b7a9c3c381c0ce3312d543373ada6d3095f63f5c9fd"
     },
     {
       "file": "meshes/keyboard-controller-ink.stl",
@@ -757,7 +757,7 @@
     },
     {
       "file": "meshes/keyboard-matrix-socket.stl",
-      "sha256": "b5b78a0c1c856e56163df502a7b78ce739408f8246b3a19cc66317f3eee8deb0"
+      "sha256": "bf8696de80a160b1ad0b2b1304d759e0e411f90129aa3275e42ff3ee5528194d"
     },
     {
       "file": "meshes/keyboard-matrix-contacts.stl",
@@ -1429,23 +1429,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "0381c50259f6a2ed31142143960b673b09a507715f97374e287eba277426080b"
+      "sha256": "66fc9f19a2f0efc56363d03f4bba013fab9e38ec72afb3c4f818932a0e80edca"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "90d204fb574cf318f0899c46f1a006f46f7273fec27e68129ea7e398440ac6f1"
+      "sha256": "5f5cf15971c9542380a1ae5d057d588788de33b7c6799d0726467ed8579975bf"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "8d38c9d8e983a36e4819d811fbeda65391d2d8d0f090867e408c6eb98a58e1c4"
+      "sha256": "2bc527345dfa402bd027f3967c6eb969192c5649c1cb1d2a7e131b1e4f88ed62"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "1d7111a828a90d4596a077b33269d3c67c5b2842e8c2e3c240a221cec3925197"
+      "sha256": "dafe54dc2a966984b8aa333763d572a9d8f27ad73ec5e377166c889e24ba5d91"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "a4ff14352204258dde04785660ef9a038bbdc5e5b59851c58e6eb629dab6f802"
+      "sha256": "bf85a4bcda26cb842f08c927b606145b0eb2af0262c49a80d9e2a610b88bf322"
     }
   ]
 }

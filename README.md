@@ -240,3 +240,31 @@ partially refreshed frame; core 0.8.7 remains archived for existing sessions.
 Exact dot timing, specimen bus contention and unverified IRQ wiring remain
 outside the model. Native/WASM historical boot parity and focused timing,
 snapshot, geometry and browser checks cover this release.
+
+### v42: component inspection and assembly review
+
+Click a motherboard/display-board chip to compare its owner-photo crop with a
+rotatable clean nominal package. Confidence distinguishes observed markings,
+estimated placement and provisional schematic identity. Package lettering now
+keeps its proportions and complete text; unconfirmed markings and schematic
+references are omitted from chip surfaces. Original photographs and drawings
+remain linked.
+
+Canonical model v42 audits visible motherboard fasteners/open holes and refines
+keyboard controller end holes, matrix-board corners and the connector legend.
+The approved keyboard exterior and physical verification classifications are
+unchanged. Hidden switch contacts and controller/matrix mating are unresolved.
+
+Cable tests now include connector envelopes, PSU/case boundaries and full-width
+ribbon self-crossings over 21 poses for both connection states. The estimated
+ribbon folds were corrected at the rear wall and where the two spans crossed;
+animated sections keep their width and their photographed endpoints. Two
+power-harness terminations still penetrate the simplified PSU wall, within
+explicitly bounded audit exceptions. Those entry apertures need better evidence;
+they are not silently counted as correct. Tests do not establish cable slack,
+bend stress or thickness clearance between coplanar ribbon surfaces.
+
+Additional native core tests cover scanline geometry changes, spaced rows,
+blink transitions and public snapshots just before/after a line boundary,
+compared against uninterrupted execution. The published core remains 0.8.8
+(snapshot layout 7); this pass changes coverage, not emulation behavior.
