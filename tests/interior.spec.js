@@ -173,7 +173,6 @@ test('closed sheet-metal enclosures have 1 mm skins and genuine vent openings', 
     ['case-lid',[100,0,150],[0,0,-1]],
     ['fascia',[60,-230,110],[0,1,0]],
     ['monitor-shell-lower',[-180,25,250],[1,0,0]],
-    ['bezel',[0,-180,446],[0,1,0]], // Flat top lip; the side now has a formed slope.
     ['keyboard-bottom',[180,manifest.keyboard.y,-10],[0,0,1]],
     ['keyboard-shell',[-270,manifest.keyboard.y,10],[1,0,0]],
   ];
@@ -186,6 +185,24 @@ test('closed sheet-metal enclosures have 1 mm skins and genuine vent openings', 
     expect(Math.abs(distances[1]-distances[0]-1),name).toBeLessThan(.02); // tessellated bend surfaces
     geometry.dispose();mesh.material.dispose();
   }
+  // The bezel has a rolled bead and an inset step, so a front-to-back ray
+  // crosses it obliquely. Measure along each sampled face's normal instead.
+  const bytes=readFileSync(new URL('meshes/bezel.stl',root));
+  const geometry=new STLLoader().parse(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+  const mesh=new Mesh(geometry,new MeshBasicMaterial({side:DoubleSide}));mesh.updateMatrixWorld();
+  try {
+    for(const z of [440,443,446,448,450,452]) {
+      const first=new Raycaster(new Vector3(0,-180,z),new Vector3(0,1,0)).intersectObject(mesh)[0];
+      expect(first,`bezel surface at z=${z}`).toBeTruthy();
+      const normal=first.face.normal.clone();if(normal.y>0)normal.negate();
+      const origin=first.point.clone().addScaledVector(normal,.001);
+      const distances=new Raycaster(origin,normal.negate()).intersectObject(mesh)
+        .map(h=>h.distance).filter((d,i,a)=>!i||Math.abs(d-a[i-1])>.001);
+      expect(distances.length,`bezel skins at z=${z}`).toBeGreaterThanOrEqual(2);
+      // Nominal 1 mm normal offset, allowing interpolation across formed bends.
+      expect(Math.abs(distances[1]-distances[0]-1),`bezel thickness at z=${z}`).toBeLessThan(.05);
+    }
+  } finally { geometry.dispose();mesh.material.dispose(); }
 });
 
 test('closed vents reveal loaded internal parts without opening any cover',async({page})=>{
