@@ -347,6 +347,8 @@ export function loadPcbLabels(data) {
   const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=8;
   return [...groups].map(([board,g])=>{
     const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(g.positions,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(g.uvs,2));geometry.computeVertexNormals();
-    const mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({map:texture,transparent:true,depthWrite:false,roughness:.8}));mesh.name=`logic-labels-${board}`;mesh.userData={board,interior:true,detail:board,markings:g.markings};mesh.visible=false;return mesh;
+    const mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({map:texture,transparent:true,depthWrite:false,roughness:.8}));mesh.name=`logic-labels-${board}`;mesh.userData={board,interior:true,detail:board,markings:g.markings};
+    // Decorative ink must not intercept clicks intended for the chip below.
+    mesh.raycast=()=>{};mesh.visible=false;return mesh;
   });
 }
