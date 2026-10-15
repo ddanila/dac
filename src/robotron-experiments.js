@@ -9,13 +9,19 @@ export function createElectricalPanel(send) {
  <p>Unplugging the keyboard stops its controller; reconnecting cold-starts its firmware. Removing monitor video blanks the picture while the computer keeps running. This models functional connections, not analogue voltages. Disabling experiments reconnects both.</p>`;
  document.getElementById('serial-panel').before(panel);
  const enable=panel.querySelector('#electrical-enable'),keyboard=panel.querySelector('#electrical-keyboard'),monitor=panel.querySelector('#electrical-monitor'),status=panel.querySelector('#electrical-status');
- let supported=false,busy=false;
+ let supported=false,busy=false,pending=null;
+ function request(value){pending=value;send({type:"cables",value});}
  function controls(){enable.disabled=!supported||busy;keyboard.disabled=monitor.disabled=!supported||busy||!enable.checked;}
- enable.onchange=()=>{if(!enable.checked)send({type:'cables',value:0});controls();};
- keyboard.onchange=monitor.onchange=()=>send({type:'cables',value:(keyboard.checked?0:1)|(monitor.checked?0:2)});
+ enable.onchange=()=>{if(!enable.checked)request(0);controls();};
+ keyboard.onchange=monitor.onchange=()=>request((keyboard.checked?0:1)|(monitor.checked?0:2));
  return {frame(data,replaying){supported=!!data.serialSupported;busy=replaying;
-  const mask=data.cables||0;if(mask){enable.checked=true;panel.open=true;}
-  keyboard.checked=!(mask&1);monitor.checked=!(mask&2);controls();
+  const mask=data.cables||0;
+  if(!supported||busy||mask===pending)pending=null;
+  // Render the requested controls until the worker echoes them. In-flight frames
+  // may still describe the old connection state after a user clicks.
+  const shown=pending??mask;
+  if(shown && pending===null){enable.checked=true;panel.open=true;}
+  keyboard.checked=!(shown&1);monitor.checked=!(shown&2);controls();
   status.textContent=!supported?'This preserved core does not support electrical experiments.':mask?`Experiment active: ${[mask&1?'keyboard disconnected':'',mask&2?'monitor video disconnected':''].filter(Boolean).join('; ')}.`:'Connections intact.';
   document.getElementById('viewport').dataset.electrical=String(mask);
  }};
