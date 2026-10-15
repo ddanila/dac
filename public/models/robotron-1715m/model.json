@@ -1,5 +1,5 @@
 {
-  "version": 46,
+  "version": 47,
   "componentCounts": {
     "packages": 138,
     "leadHoles": 2568
@@ -640,12 +640,12 @@
           0
         ],
         "fov": 45,
-        "include": "^keyboard-(shell|pcb$|pcb-metal|matrix-|insulators|controller-|entry|internal-cable|grommet|cable-support)",
+        "include": "^keyboard-(shell|pcb$|pcb-metal|matrix-|insulators|controller-|entry|internal-cable|grommet|cable-support|pcb-supports|pcb-fasteners)",
         "note": "Installed underside: narrow controller overlaps the rear matrix-board edge; its cable end faces the lid opening."
       },
       {
         "name": "monitor-bezel",
-        "photo": "PXL_20261012_125018215.jpg",
+        "photo": "PXL_20261012_125012845.jpg",
         "position": [
           410,
           -680,
@@ -658,7 +658,29 @@
         ],
         "fov": 29,
         "include": "^(monitor-shell|bezel|crt-)",
-        "note": "Owner glass edge and formed bezel transition; camera and material estimates, not optical calibration."
+        "note": "Rolled raised bead, inner step, recessed land and CRT-edge lip from owner close-up; local radii remain photo estimates."
+      },
+      {
+        "name": "keyboard-case-mounts",
+        "photo": "PXL_20261012_123106382.jpg",
+        "position": [
+          -90,
+          -160,
+          -140
+        ],
+        "target": [
+          60,
+          -310,
+          10
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "fov": 48,
+        "include": "^keyboard-(shell|pcb-supports|pcb-fasteners|insulators|pcb$)$",
+        "note": "Case-fixed bent sheet supports and slotted edge-strip fasteners; bottom lid and controller omitted."
       }
     ]
   },
@@ -31749,7 +31771,7 @@
       "name": "bezel",
       "file": "meshes/bezel.stl",
       "color": "#8c857a",
-      "sha256": "beb9d2693ef74d84f748728f6ada2933ea480d3fa2a03b6ff0bb8faa65dccb34",
+      "sha256": "c8b2419b9dd9f392f22996250c564a371e000d61920bc95ee33663a39807b084",
       "material": "paint"
     },
     {
@@ -32587,7 +32609,7 @@
       "name": "keyboard-insulators",
       "file": "meshes/keyboard-insulators.stl",
       "color": "#59424a",
-      "sha256": "2be377278b465fb010095439a29db00c05686ba20c71a38531f10067654d7636",
+      "sha256": "fd4fab970bab7595e4475952142dc2c626cb500420c310cb7a105e106ef9f25f",
       "section": "interior",
       "material": "plastic"
     },
@@ -32856,16 +32878,16 @@
     {
       "name": "keyboard-pcb-supports",
       "file": "meshes/keyboard-pcb-supports.stl",
-      "color": "#59424a",
-      "sha256": "05e3ea05a217c4e6319188b3a7605a0ee8408507663e3ef41c4cc57b67b84e1a",
+      "color": "#b6b8b4",
+      "sha256": "2476b09208fbdb4e8a0d73226bef798cae208c98c3bd976e4a7af4cc6beb65d7",
       "section": "interior",
-      "material": "plastic"
+      "material": "plated-steel"
     },
     {
       "name": "keyboard-pcb-fasteners",
       "file": "meshes/keyboard-pcb-fasteners.stl",
       "color": "#b8bbb4",
-      "sha256": "43ca4763526803301e398800838c028130cab27992135fa0924204cd7faa7194",
+      "sha256": "6cb8de6e11271313fe14104b3888e8bd09a1dbe3030f05c2c77ac069db34bf51",
       "section": "interior",
       "material": "metal"
     },
@@ -33231,7 +33253,7 @@
       "name": "keyboard-controller-mounts",
       "file": "meshes/keyboard-controller-mounts.stl",
       "color": "#b4b5ad",
-      "sha256": "a69058258ec3531b151d3e695b668ea06719b70d56f305254cd1fe40569637eb",
+      "sha256": "75c23b77c424a1f29fa5abe137e26dac24e75fddd7753e3c323ed6a2525f78a8",
       "section": "interior",
       "material": "plated-steel"
     },
@@ -38106,6 +38128,13 @@
     "PXL_20261012_185855185.jpg",
     "PXL_20261012_190054608.jpg",
     "PXL_20261013_084425145.jpg",
+    "PXL_20261012_123106382.jpg",
+    "PXL_20261012_123109703.jpg",
+    "PXL_20261012_123114519.jpg",
+    "PXL_20261012_123122852.jpg",
+    "PXL_20261012_123126017.jpg",
+    "PXL_20261012_125012845.jpg",
+    "PXL_20261012_125025415.jpg",
     "PXL_20261013_113428737.jpg",
     "PXL_20261013_113436448.jpg",
     "PXL_20261013_113451775.jpg",

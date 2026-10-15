@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "e5082eab64dcf390175585293ada30eefc140013",
+  "revision": "e08eb33ebe25390097500314f565745151608dcc",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "09de925124caac8da5ad2a37d8d6d71d24d2dc076d6a820528cfaf62ba16ba06"
+      "sha256": "981c1448fc39547fff811397b0509c64fada14ba3da121ffcdeb071b3df6af56"
     },
     {
       "file": "LICENSE",
@@ -81,7 +81,7 @@
     },
     {
       "file": "meshes/bezel.stl",
-      "sha256": "beb9d2693ef74d84f748728f6ada2933ea480d3fa2a03b6ff0bb8faa65dccb34"
+      "sha256": "c8b2419b9dd9f392f22996250c564a371e000d61920bc95ee33663a39807b084"
     },
     {
       "file": "meshes/crt-rim.stl",
@@ -493,7 +493,7 @@
     },
     {
       "file": "meshes/keyboard-insulators.stl",
-      "sha256": "2be377278b465fb010095439a29db00c05686ba20c71a38531f10067654d7636"
+      "sha256": "fd4fab970bab7595e4475952142dc2c626cb500420c310cb7a105e106ef9f25f"
     },
     {
       "file": "meshes/keyboard-matrix-artwork.stl",
@@ -641,11 +641,11 @@
     },
     {
       "file": "meshes/keyboard-pcb-supports.stl",
-      "sha256": "05e3ea05a217c4e6319188b3a7605a0ee8408507663e3ef41c4cc57b67b84e1a"
+      "sha256": "2476b09208fbdb4e8a0d73226bef798cae208c98c3bd976e4a7af4cc6beb65d7"
     },
     {
       "file": "meshes/keyboard-pcb-fasteners.stl",
-      "sha256": "43ca4763526803301e398800838c028130cab27992135fa0924204cd7faa7194"
+      "sha256": "6cb8de6e11271313fe14104b3888e8bd09a1dbe3030f05c2c77ac069db34bf51"
     },
     {
       "file": "meshes/keyboard-entry-wires.stl",
@@ -821,7 +821,7 @@
     },
     {
       "file": "meshes/keyboard-controller-mounts.stl",
-      "sha256": "a69058258ec3531b151d3e695b668ea06719b70d56f305254cd1fe40569637eb"
+      "sha256": "75c23b77c424a1f29fa5abe137e26dac24e75fddd7753e3c323ed6a2525f78a8"
     },
     {
       "file": "meshes/keyboard-controller-shield.stl",
@@ -1020,6 +1020,26 @@
       "sha256": "78ea5acbf5cb35d1b59ca31bb25bdbe8b5505167d20920b9f3dea778e5d40e61"
     },
     {
+      "file": "photos/PXL_20261012_123106382.jpg",
+      "sha256": "bcc15908c8f8c41ec25b2ca915b67fb493e15aaeded12ea302f05b39d48db3b8"
+    },
+    {
+      "file": "photos/PXL_20261012_123109703.jpg",
+      "sha256": "698db6f8e982b9baa9a4331c72a6e00949828cbfe91866af2b54644ead587a72"
+    },
+    {
+      "file": "photos/PXL_20261012_123114519.jpg",
+      "sha256": "3bac62de64d9799493a1ae4dd4c45f87fca7637b1576531047b6f8898c79709d"
+    },
+    {
+      "file": "photos/PXL_20261012_123122852.jpg",
+      "sha256": "a77e382c1f8c18354750d94991dd78111551ec375cd540c2cc2e8670b6ae1abe"
+    },
+    {
+      "file": "photos/PXL_20261012_123126017.jpg",
+      "sha256": "c6d58cfae2ed5e57df23b0361c8d470758387c710611bbdcc31ca77fe950cfd7"
+    },
+    {
       "file": "photos/PXL_20261012_123622947.jpg",
       "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
     },
@@ -1036,8 +1056,16 @@
       "sha256": "70b1fc5c2f49b02d3865b1ede83cf5e3d498c5f62c6a0a993d4b88c8678aaf9d"
     },
     {
+      "file": "photos/PXL_20261012_125012845.jpg",
+      "sha256": "dd05d7acc281b966ab28b90f2c964e998200aea4655742848e4dc6e9beffd96e"
+    },
+    {
       "file": "photos/PXL_20261012_125018215.jpg",
       "sha256": "6c7d028c30563c80cf9f712bb16eacb8b330b8e30cea4cde8da6f1df48682dcf"
+    },
+    {
+      "file": "photos/PXL_20261012_125025415.jpg",
+      "sha256": "736f4e4966f2e354670441797adc22bd618a7a25f74b76ab2400354c8f2e32de"
     },
     {
       "file": "photos/PXL_20261012_125123660.jpg",
@@ -1449,23 +1477,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "32530292543735910dd6b5824aa25b5172cbf79c1f5439e25cfb0a27936afcd2"
+      "sha256": "41baf3ae506964be07f9386d693f20711c245e062eb54732ed711b15fc921275"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "4415c85bf31bbfbc54f9173e23ec9526005711c6249b2cdee78fcb7654c54507"
+      "sha256": "cb1bb27592d2dd5c98e4e4a93041481ee4443959211eca500221f7c412e223cc"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "1860ea7b54fdfbef7f88f4f1eeb0316bbd6218bfc5a3b09edac83b71e7c51eb3"
+      "sha256": "f48467fa507c2eb3e7260f85fc1591041494828de933da86c0db445ca55a3543"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "bca3b8c3b3fe5e854e17748deccad846f71875b53a49b6140c5a7b707145027b"
+      "sha256": "eb18054011381a99134392094e9e50a4b7a0d6271b2c7b72d65335a5233dd5fa"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "bccbd12abeda33635bd13eb1bff213bcce1f850b4a84f2c36c2fdc9ca268b8b9"
+      "sha256": "6e1fdbcd1ead87a0a243811111e32809851c8d7c7b9419bbf25d12bc44a68ac6"
     }
   ]
 }
