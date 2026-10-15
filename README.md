@@ -268,3 +268,10 @@ Additional native core tests cover scanline geometry changes, spaced rows,
 blink transitions and public snapshots just before/after a line boundary,
 compared against uninterrupted execution. The published core remains 0.8.8
 (snapshot layout 7); this pass changes coverage, not emulation behavior.
+
+Robotron model v43 corrects the installed keyboard controller position using
+owner underside photos. The controller overlaps the matrix PCB’s rear edge;
+the cable passes through a horizontal grooved bush on the opening’s short edge.
+Two rubber edge strips and the bottom-cover insulating sheet are restored.
+The cable stays anchored at the bush when the controller lifts for inspection.
+Exact connector mating depth remains estimated; this is not a print-verified assembly.

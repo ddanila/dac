@@ -200,8 +200,36 @@ test("owner controller separates as one assembly and monitor underside follows i
     const { Texture } = await import("/node_modules/three/build/three.module.js");
     const model = await loadRobotron(new Texture());
     const parts = [...model.objects].filter(([name]) => name.startsWith("keyboard-controller-"));
+    model.tick();
+    const cable = model.objects.get("keyboard-internal-cable");
+    const cableRest = cable.geometry.attributes.position.array.slice();
+    const fixedNames = ["keyboard-entry-rubber", "keyboard-base-insulator", "keyboard-cable-support", "keyboard-grommet"];
+    const bounds = name => {
+      const g=model.objects.get(name).geometry;g.computeBoundingBox();
+      return {min:g.boundingBox.min.toArray(),max:g.boundingBox.max.toArray()};
+    };
+    const installed = {
+      controller:bounds("keyboard-controller-board"), matrix:bounds("keyboard-pcb"),
+      support:bounds("keyboard-cable-support"), rubber:bounds("keyboard-entry-rubber"),
+      rubberMaterial:model.objects.get("keyboard-entry-rubber").material.metalness,
+    };
     model.inspect({ keyboardOpen: true, isolated: "keyboard" });
     model.tick();
+    const cableLift = cable.geometry.attributes.position.array;
+    let anchored=0, following=0;
+    for(let i=0;i<cableRest.length;i+=3){
+      if(cableRest[i] < -62){
+        if(Math.abs(cableLift[i+1]-cableRest[i+1])>.001 || Math.abs(cableLift[i+2]-cableRest[i+2])>.001)
+          throw Error("Keyboard cable moved through its fixed bush");
+        anchored++;
+      }
+      if(cableRest[i] >= -30){
+        if(Math.abs(cableLift[i+1]-cableRest[i+1]-160)>.001 || Math.abs(cableLift[i+2]-cableRest[i+2]-70)>.001)
+          throw Error("Keyboard cable detached from the lifted controller");
+        following++;
+      }
+    }
+    const baseFixed=fixedNames.every(name=>model.objects.get(name).position.toArray().every(v=>v===0));
     const opened = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
     const pcb = model.objects.get("keyboard-pcb");
     const socketParts=["keyboard-matrix-socket","keyboard-matrix-contacts"].map(name=>model.objects.get(name));
@@ -221,6 +249,7 @@ test("owner controller separates as one assembly and monitor underside follows i
       beneathShell: inlay.geometry.boundingBox.max.z < shell.geometry.boundingBox.max.z };
     model.inspect({ keyboardOpen: false, isolated: "all" });
     model.tick();
+    const cableRestored=cable.geometry.attributes.position.array.every((v,i)=>v===cableRest[i]);
     const closed = parts.map(([, mesh]) => ({ visible: mesh.visible, position: mesh.position.toArray() }));
     model.interior(true);
     model.tick();
@@ -233,8 +262,18 @@ test("owner controller separates as one assembly and monitor underside follows i
       mesh.geometry.computeBoundingBox();
       return { min: mesh.geometry.boundingBox.min.z, max: mesh.geometry.boundingBox.max.z };
     });
-    return { socketOpen, socketClosed:socketParts.every(mesh=>mesh.position.equals(pcb.position)), seam, opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
+    return { installed, anchored, following, baseFixed, cableRestored, socketOpen, socketClosed:socketParts.every(mesh=>mesh.position.equals(pcb.position)), seam, opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
   });
+  // Photo orientation: rear controller overlaps the matrix, cable opening lies to its left.
+  expect(state.installed.controller.min[0]).toBeGreaterThan(-50);
+  expect(state.installed.controller.min[1]).toBeLessThan(state.installed.matrix.max[1]);
+  expect(state.installed.support.max[0]).toBeLessThan(state.installed.controller.min[0]);
+  expect(state.installed.rubber.max[0]).toBeLessThan(0);
+  expect(state.installed.rubberMaterial).toBe(0);
+  expect(state.anchored).toBeGreaterThan(0);
+  expect(state.following).toBeGreaterThan(0);
+  expect(state.baseFixed).toBe(true);
+  expect(state.cableRestored).toBe(true);
   expect(state.socketOpen).toBe(true);
   expect(state.socketClosed).toBe(true);
   expect(state.boardOpen.visible).toBe(true);
