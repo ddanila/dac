@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import {
   Box3,
   Matrix4,
+  PerspectiveCamera,
   Vector3,
   Mesh,
   MeshBasicMaterial,
@@ -334,13 +335,12 @@ test("individual chip inspection preserves instance identity and both evidence l
   const result = await page.evaluate(async () => {
     const {loadPcbComponents} = await import('/src/robotron-interior.js');
     const {inspectionForHit} = await import('/src/scene.js');
-    const {showSpecimenDetail} = await import('/src/inspection.js');
     const data = await (await fetch('/models/robotron-1715m/model.json')).json();
     const meshes = await loadPcbComponents(data,new URL('/models/robotron-1715m/',location.href));
     const mesh = meshes.find(m => m.name==='logic-package-DIP-40_W15.24mm-body-motherboard');
     const first = inspectionForHit({object:mesh,instanceId:0});
     const second = inspectionForHit({object:mesh,instanceId:1});
-    showSpecimenDetail(second);
+
     const answer = {first:first.title,second:second.title,fallback:inspectionForHit({object:{userData:{detail:'motherboard'}}})};
     const geometries = new Set(meshes.map(m=>m.geometry));
     for(const g of geometries)g.dispose();for(const m of meshes)m.material.dispose();
@@ -348,6 +348,17 @@ test("individual chip inspection preserves instance identity and both evidence l
   });
   expect(result.first).not.toBe(result.second);
   expect(result.fallback).toBe('motherboard');
+  // Click the actual marked chip surface: decorative ink must not swallow it.
+  await page.locator('#isolate-assembly').selectOption('motherboard');
+  await expect(page.locator('#viewport')).toHaveAttribute('data-details','ready');
+  await page.locator('#viewport').scrollIntoViewIfNeeded();
+  const box=await page.locator('#viewport').boundingBox();
+  const manifest=JSON.parse(readFileSync(new URL('model.json',root)));
+  const p=manifest.pcbComponents.instances.find(p=>p.ref==='A2');
+  const camera=new PerspectiveCamera(36,box.width/box.height,.01,40);
+  camera.position.set(.4,1.35,.75);camera.lookAt(-.27,.034,0);camera.updateMatrixWorld();
+  const v=new Vector3(p.position[0],p.position[2]+p.top,-p.position[1]).multiplyScalar(.0025).project(camera);
+  await page.mouse.click(box.x+(v.x+1)*box.width/2,box.y+(1-v.y)*box.height/2);
   await expect(page.locator('#detail-title')).toHaveText(result.second);
   await expect(page.locator('#detail-original')).toHaveAttribute('href',/073200542/);
   await expect(page.locator('#detail-drawing')).toBeVisible();
