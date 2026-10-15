@@ -82,7 +82,7 @@ export const inspections = {
   },
   under: {
     title: "Under the keyboard",
-    text: "The separate bottom plate, four rubber feet with metal inserts, fasteners and cable grommet are modeled from the photos. A single lead connects the keyboard to the case; its resting route and small dimensions are estimated. The new system-unit underside photos also establish rectangular rubber frames with metal inserts.",
+    text: "The separate bottom plate, four rubber feet with metal inserts, fasteners, two cable-opening rubber strips and a round cable bush in a folded short-edge support are modeled from the photos. A single lead connects the keyboard to the case; its resting route and small dimensions are estimated. The new system-unit underside photos also establish rectangular rubber frames with metal inserts.",
     photo: "20261012_131106217",
   },
   inside: {

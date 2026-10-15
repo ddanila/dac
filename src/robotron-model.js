@@ -899,7 +899,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       const pos=inputCable.geometry.attributes.position;
       const rest=inputCable.userData.restVertices ||= pos.array.slice();
       for(let i=0;i<pos.count;i++){
-        const weight=THREE.MathUtils.clamp((rest[i*3+1]-(data.keyboard.y+65))/9,0,1);
+        const weight=THREE.MathUtils.clamp((rest[i*3]-(data.keyboard.cableSupportX+3))/(data.keyboard.controllerX-125-(data.keyboard.cableSupportX+3)),0,1);
         pos.setXYZ(i,rest[i*3],rest[i*3+1]+keyboardLift*160*weight,rest[i*3+2]+keyboardLift*70*weight);
       }
       pos.needsUpdate=true;inputCable.geometry.computeVertexNormals();inputCable.geometry.computeBoundingBox();inputCable.geometry.computeBoundingSphere();inputCable.userData.lift=keyboardLift;
