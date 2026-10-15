@@ -281,3 +281,17 @@ plate, cable shielding and solder lands. Owner-photo coordinates now drive
 denser PCB artwork and irregular solder joints. The matrix laminate has a
 greener, mildly transmitting finish; the controller uses a separate warm
 fibreglass finish. Geometry and optical values remain photo-based estimates.
+
+Browser geometry tests use an isolated HTML harness and the same Vite-resolved
+Three.js module as the application. They do not boot a second museum instance.
+Duplicate Three.js warnings and mismatched class identity fail the assembly
+checks; the photo-review script also rejects duplicate-instance warnings.
+Keyboard routing tests retain the real worker but pause its CPU clock after
+boot; separate historical-media tests exercise live OS input. Model releases
+retain Chromium coverage and Firefox/WebKit assembly checks.
+
+CI stops each Playwright job on its first failure. Chromium shards, Firefox and
+WebKit share one fail-fast matrix, so a failed job cancels its siblings and
+blocks deployment. Branch-scoped concurrency cancels superseded runs when a
+new commit arrives; runs on other branches remain independent. Failure
+artifacts are retained for three days.

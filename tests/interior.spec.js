@@ -193,7 +193,7 @@ test('closed vents reveal loaded internal parts without opening any cover',async
   await page.goto('/');await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
   const result=await page.evaluate(async()=>{
     const {loadRobotron}=await import('/src/robotron-model.js');
-    const {Texture,Raycaster,Vector3}=await import('/node_modules/three/build/three.module.js');
+    const {Texture,Raycaster,Vector3}=await import('/tests/browser-three.js');
     const model=await loadRobotron(new Texture());model.tick();model.group.updateMatrixWorld(true);
     const probe=(origin,direction)=>{
       const ray=new Raycaster(new Vector3(...origin).applyMatrix4(model.group.matrixWorld),new Vector3(...direction).transformDirection(model.group.matrixWorld));

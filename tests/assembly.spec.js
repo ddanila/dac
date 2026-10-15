@@ -1,4 +1,15 @@
-import { test, expect } from "@playwright/test";
+import { test as base, expect } from "@playwright/test";
+
+const test = base.extend({
+  threeInstanceWarnings: [async ({ page }, use) => {
+    const warnings=[];
+    page.on('console', message => {
+      if (/Multiple instances of Three\.js/.test(message.text())) warnings.push(message.text());
+    });
+    await use();
+    expect(warnings, 'Application and browser harness must share Three.js').toEqual([]);
+  }, {auto:true}],
+});
 
 test("assembly isolation, transparent covers and keyboard disassembly remain reversible", async ({
   page,
@@ -66,11 +77,11 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto("/tests/model-harness.html");
   const result = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
     const { Texture, Matrix4, Vector3, Quaternion } = await import(
-      "/node_modules/three/build/three.module.js"
+      "/tests/browser-three.js"
     );
     const model = await loadRobotron(new Texture());
     await model.loadDetails();
@@ -194,10 +205,10 @@ test("moving mechanisms preserve endpoints, follow keys and restore visibility",
 
 test("owner controller separates as one assembly and monitor underside follows its shell", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto("/tests/model-harness.html");
   const state = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
-    const { Texture, Mesh, MeshBasicMaterial, Raycaster, Vector3, DoubleSide } = await import("/node_modules/three/build/three.module.js");
+    const { Texture, Mesh, MeshBasicMaterial, Raycaster, Vector3, DoubleSide } = await import("/tests/browser-three.js");
     const model = await loadRobotron(new Texture());
     const parts = [...model.objects].filter(([name]) => name.startsWith("keyboard-controller-"));
     model.tick();
@@ -216,6 +227,7 @@ test("owner controller separates as one assembly and monitor underside follows i
     const matrixMaterial=model.objects.get("keyboard-pcb").material;
     const laminate={opacity:matrixMaterial.opacity,transparent:matrixMaterial.transparent};
     const installed = {
+      sharedThree:model.objects.get("keyboard-controller-board") instanceof Mesh,
       controller:bounds("keyboard-controller-board"), matrix:bounds("keyboard-pcb"),
       support:bounds("keyboard-cable-support"), rubber:bounds("keyboard-entry-rubber"),
       rubberMaterial:model.objects.get("keyboard-entry-rubber").material.metalness,
@@ -271,6 +283,7 @@ test("owner controller separates as one assembly and monitor underside follows i
     });
     return { pocket, edgeSlotOpen, laminate, installed, anchored, following, baseFixed, cableRestored, socketOpen, socketClosed:socketParts.every(mesh=>mesh.position.equals(pcb.position)), seam, opened, closed, moved, restored, boardOpen, boardClosed: { angle: pcb.rotation.x, position: pcb.position.toArray() }, clearKey };
   });
+  expect(state.installed.sharedThree).toBe(true);
   expect(state.pocket.top).toBeCloseTo(-.2, 3);
   expect(state.pocket.top-state.pocket.bottom).toBeCloseTo(1, 3);
   expect(state.edgeSlotOpen).toBe(true);
@@ -314,10 +327,10 @@ test("owner controller separates as one assembly and monitor underside follows i
 // Owner side photos show uninterrupted walls, including the diagonal views
 // where an oversized rectangular underside cavity used to pierce the cylinder.
 test("opaque keycaps have continuous sidewalls around every exported shape", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/tests/model-harness.html");
   const failures = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
-    const { Texture, Mesh, Raycaster, Vector3 } = await import("/node_modules/three/build/three.module.js");
+    const { Texture, Mesh, Raycaster, Vector3 } = await import("/tests/browser-three.js");
     const model = await loadRobotron(new Texture());
     const checked = new Set(), failures = [];
     model.group.traverse(body => {
@@ -369,10 +382,10 @@ test("opaque keycaps have continuous sidewalls around every exported shape", asy
 
 test("monitor cabinet keeps its width at the back and captive leads follow inspection", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto("/tests/model-harness.html");
   const result = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
-    const { Texture, Mesh, Raycaster, Vector3 } = await import("/node_modules/three/build/three.module.js");
+    const { Texture, Mesh, Raycaster, Vector3 } = await import("/tests/browser-three.js");
     const model = await loadRobotron(new Texture());
     model.tick();
     const shell = model.objects.get("monitor-shell-upper");
@@ -411,7 +424,7 @@ test("monitor cabinet keeps its width at the back and captive leads follow inspe
   expect(result.parked).toBe(24);expect(result.plugRest).toBe(0);expect(result.restored).toBe(true);
 });
 
-test('cable deformation anchors board ends and carries every drive power termination',async()=>{
+base('cable deformation anchors board ends and carries every drive power termination',async()=>{
  const {cableWeight}=await import('../src/robotron-cables.js');
  for(const name of ['ribbon-cables','ribbon-ridges','ribbon-stripes']){
   expect(cableWeight(name,-158,16,87.5)).toBe(1);

@@ -5,6 +5,7 @@ import { visualTestPattern } from './ci-shards.mjs';
 export function scopeFor(files) {
 
   const visual = files.length && files.every(file =>
+    ['tests/browser-three.js','tests/model-harness.html','scripts/review-robotron.mjs'].includes(file) ||
     file.startsWith('public/models/') || file.startsWith('exhibits/') ||
     /^tests\/visual\/robotron\/[^/]+\.(png|json)$/.test(file) ||
     file.endsWith('.md') || file === 'tests/ci-durations.json' || file === '.github/workflows/site.yml' || file === 'scripts/ci-scope.mjs' || file === 'playwright.config.js' ||

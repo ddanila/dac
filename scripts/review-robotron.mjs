@@ -19,11 +19,12 @@ const browser=await chromium.launch();const errors=[];
 try {
  const page=await browser.newPage({viewport:{width:1200,height:900},deviceScaleFactor:1,reducedMotion:'reduce'});
  page.on('pageerror',e=>errors.push(e.message));
+ page.on('console',m=>{if(/Multiple instances of Three\.js/.test(m.text()))errors.push(m.text());});
  // Avoid loading a second full exhibit: the harness uses the real model loader.
  await page.route(url+'/',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><body style="margin:0">'}));
  await page.goto(url+'/');
  await page.evaluate(async()=>{
-  const T=await import('/node_modules/three/build/three.module.js');
+  const T=await import('/tests/browser-three.js');
   const {loadRobotron}=await import('/src/robotron-model.js');
   const canvas=document.createElement('canvas');canvas.width=640;canvas.height=480;
   const model=await loadRobotron(new T.CanvasTexture(canvas));model.drives([8,8]);model.tick();
