@@ -8,6 +8,7 @@ args=parser.parse_args()
 repo=args.repository.resolve()
 source=repo/'models/robotron-1715m'
 target=Path(__file__).resolve().parents[1]/'public/models/robotron-1715m'
+subprocess.run(['python3',str(source/'tools/check-metadata.py')],check=True)
 data=json.loads((source/'browser/model.json').read_text())
 photos={p['file']:p for p in json.loads((source/'reference/photos.json').read_text())['photos']}
 files=[('browser/model.json','model.json',None),('LICENSE','LICENSE',None)]
