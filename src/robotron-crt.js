@@ -35,14 +35,23 @@ export function crtMaterial(texture) {
     clearcoatRoughness: 0.13,
     envMapIntensity: 0.55,
   });
+  const controls = { brightness: {value: 1}, contrast: {value: 1} };
+  material.userData.adjust = ({brightness = 1, contrast = 1}) => {
+    controls.brightness.value = Math.max(0.25, Math.min(2, Number(brightness) || 1));
+    controls.contrast.value = Math.max(0.5, Math.min(2, Number(contrast) || 1));
+  };
   material.onBeforeCompile = (shader) => {
+    shader.uniforms.crtBrightness = controls.brightness;
+    shader.uniforms.crtContrast = controls.contrast;
+    shader.fragmentShader = 'uniform float crtBrightness;\nuniform float crtContrast;\n' + shader.fragmentShader;
     shader.fragmentShader = shader.fragmentShader.replace(
       "#include <emissivemap_fragment>",
       `#include <emissivemap_fragment>
+       totalEmissiveRadiance = pow(max(totalEmissiveRadiance, vec3(0.0)), vec3(crtContrast)) * crtBrightness;
        totalEmissiveRadiance *= step(0.0,vEmissiveMapUv.x)*step(vEmissiveMapUv.x,1.0)
          *step(0.0,vEmissiveMapUv.y)*step(vEmissiveMapUv.y,1.0);`,
     );
   };
-  material.customProgramCacheKey = () => "inset-crt-raster-v1";
+  material.customProgramCacheKey = () => "inset-crt-raster-v2";
   return material;
 }

@@ -948,11 +948,11 @@ async function receive(d) {
       }
       await publishLibrary();
       frame();
-    } else if (d.type === "printer") {
+    } else if (d.type === "printer" || d.type === "printer-preview") {
       const p = module._dac_printer_data(handle),
         n = module._dac_printer_size(handle);
       const bytes = module.HEAPU8.slice(p, p + n).buffer;
-      postMessage({ type: "download", name: "dac-printer.prn", bytes }, [
+      postMessage({ type: d.type === "printer-preview" ? "printer-preview" : "download", name: "dac-printer.prn", bytes }, [
         bytes,
       ]);
     } else if (d.type === "clear-printer") {

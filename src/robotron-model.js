@@ -1044,6 +1044,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   onProgress(100);
   return {
     group,
+    displaySettings(value){display.material.userData.adjust(value);inspectionDirty=true;},
     markTrack(value){trackMarker.select(value);inspectionDirty=true;},
     annotations: data.annotations || [],
     evidence: data.evidence,

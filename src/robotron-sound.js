@@ -9,7 +9,8 @@ export function createRobotronSound({
   base = `${import.meta.env?.BASE_URL || '/'}audio/robotron/`,
 } = {}) {
   let context, master, loading, enabled = false, powered = false, hidden = false;
-  let epoch = 0;
+  let epoch = 0, spatial = false, pans = {keyboard:0,case:0};
+  const panners = {};
   const buffers = new Map(), voices = new Set(), variants = { regular: 0, space: 0, enter: 0 };
   const names = ['power-on', 'fan', 'power-off', ...Object.keys(variants).flatMap(k => [1,2,3].map(i => `${k}-${i}`))];
   function stop() {
@@ -21,7 +22,7 @@ export function createRobotronSound({
     if (!enabled || hidden || !buffers.has(name)) return;
     const source = context.createBufferSource();
     source.buffer = buffers.get(name); source.loop = loop;
-    source.connect(master); voices.add(source);
+    source.connect(panners[/^(regular|space|enter)-/.test(name)?'keyboard':'case'] || master); voices.add(source);
     source.onended = () => { voices.delete(source); source.disconnect(); ended?.(); };
     source.start();
     return source;
@@ -32,6 +33,10 @@ export function createRobotronSound({
     if (!context) {
       context = createContext(); master = context.createGain();
       master.gain.value = .45; master.connect(context.destination);
+      if(context.createStereoPanner) for(const group of ['keyboard','case']) {
+        const panner = context.createStereoPanner();panner.pan.value=spatial?pans[group]:0;
+        panner.connect(master);panners[group]=panner;
+      }
     }
     await context.resume();
     if (!loading) loading = Promise.all(names.map(async name => {
@@ -43,6 +48,8 @@ export function createRobotronSound({
   }
   return {
     unlock,
+    spatial(value) {spatial=!!value;for(const group of Object.keys(panners))panners[group].pan.setTargetAtTime(spatial?pans[group]:0,context.currentTime,.05);},
+    position(value) {pans=value;for(const group of Object.keys(panners))panners[group].pan.setTargetAtTime(spatial?pans[group]:0,context.currentTime,.05);},
     async enable(value) {
       enabled = value; stop();
       const token = epoch;

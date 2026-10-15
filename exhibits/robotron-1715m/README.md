@@ -1,5 +1,7 @@
 # Robotron 1715M
 
+Current implementation and remaining evidence: [capability matrix](../../docs/robotron/capabilities.md). Dated notes below retain development history.
+
 First planned exhibit in Danila’s Archive of Computing.
 
 ## Status

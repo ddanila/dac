@@ -557,6 +557,9 @@
           </details>
           <details data-robotron>
             <summary>Printer output</summary>
+            <button id="printer-preview">Refresh paper preview</button>
+            <p>Text preview interprets CR, LF, tab, backspace and page feed. Other control bytes appear as ⟦hex⟧; no particular printer’s escape language is assumed.</p>
+            <div id="printer-paper" aria-live="polite"></div>
             <p>
               Virtual serial printer · raw bytes, including control codes.
               Capture is limited to 64 KB per session; export before clearing.
@@ -564,6 +567,24 @@
             <p id="printer-status">No output yet.</p>
             <button id="printer-export" disabled>Export printer output</button>
             <button id="printer-clear" disabled>Clear output</button>
+          </details>
+          <details data-robotron>
+            <summary>Display adjustments</summary>
+            <p>Presentation settings for the 3D screen; these are not measured monitor potentiometer settings. The emulator’s pixels stay unchanged.</p>
+            <label>Brightness <input id="crt-brightness" type="range" min="0.25" max="2" step="0.05" value="1"></label>
+            <label>Contrast <input id="crt-contrast" type="range" min="0.5" max="2" step="0.05" value="1"></label>
+            <label>Phosphor persistence (illustrative milliseconds) <input id="crt-persistence" type="range" min="0" max="160" step="10" value="0"></label>
+            <button id="crt-defaults">Restore display defaults</button>
+          </details>
+          <label data-robotron><input type="checkbox" id="spatial-sound"> Stereo placement for recorded sounds</label>
+          <p data-robotron>Optional camera-relative keyboard and case placement; acoustic distances are not measured.</p>
+          <details data-robotron id="guided-activities">
+            <summary>Try historical software</summary>
+            <p>Open a fresh practice session in another tab. Its disk changes are temporary; your remembered disks stay intact.</p>
+            <a href="?activity=wordstar" target="_blank" rel="noopener">Write with WordStar</a> ·
+            <a href="?activity=pascal" target="_blank" rel="noopener">Run Turbo Pascal</a> ·
+            <a href="?activity=printer" target="_blank" rel="noopener">Print a file</a>
+            <div id="activity-instructions"></div>
           </details>
           <details id="media-controls">
             <summary>Boot media and session disk <span>+</span></summary>
