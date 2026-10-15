@@ -275,3 +275,9 @@ the cable passes through a horizontal grooved bush on the opening’s short edge
 Two rubber edge strips and the bottom-cover insulating sheet are restored.
 The cable stays anchored at the bush when the controller lifts for inspection.
 Exact connector mating depth remains estimated; this is not a print-verified assembly.
+
+Model v44 refines the keyboard’s installed screws/straps, 1 mm pressed bottom
+plate, cable shielding and solder lands. Owner-photo coordinates now drive
+denser PCB artwork and irregular solder joints. The matrix laminate has a
+greener, mildly transmitting finish; the controller uses a separate warm
+fibreglass finish. Geometry and optical values remain photo-based estimates.
