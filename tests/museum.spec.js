@@ -1,3 +1,4 @@
+import {cachedMesh,requestedMesh,requestedPackage} from './model-asset-paths.js';
 import { test, expect } from "@playwright/test";
 // Wait for the final glyph of the diagnostic boot message, not merely the
 // opaque blank framebuffer: input sent before boot completes can be lost.
@@ -215,7 +216,7 @@ test("a missing model preserves the accessible emulator and honest labels", asyn
 test("model loading shows real percentage progress and clears when ready", async ({ page }) => {
   let release;
   const gate = new Promise(resolve => { release = resolve; });
-  await page.route("**/meshes/case-base.stl?*", async route => { await gate; await route.continue(); });
+  await page.route("**/"+cachedMesh("meshes/case-base.stl").file+"?*", async route => { await gate; await route.continue(); });
   await page.goto("/");
   const card = page.locator("#model-loading"), bar = page.getByRole("progressbar", {name: "3D model loading"});
   await expect(card).toBeVisible();

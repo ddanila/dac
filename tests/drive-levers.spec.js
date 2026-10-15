@@ -1,3 +1,4 @@
+import {cachedMesh,requestedMesh,requestedPackage} from './model-asset-paths.js';
 import { test, expect } from '@playwright/test';
 
 test('drive levers gate removal, retain media and expose specimen sides without loading full label photos', async ({page}) => {
@@ -154,7 +155,7 @@ test('interior packages load before display and rendering pauses offscreen',asyn
   const requests=[];page.on('request',r=>requests.push(r.url()));
   await page.goto('/');
   await expect(page.locator('#viewport')).toHaveAttribute('data-model','robotron-photo', {timeout: 20000});
-  expect(requests.some(u=>u.includes('/components/kicad/') && u.includes('.stl'))).toBe(true);
+  expect(requestedPackage(requests)).toBe(true);
   await page.locator('#viewport').evaluate(e=>{e.style.position='fixed';e.style.top='-2000px';});
   await expect(page.locator('#viewport')).toHaveAttribute('data-rendering','paused');
   await page.locator('#viewport').evaluate(e=>{e.style.position='';e.style.top='';});
@@ -162,5 +163,5 @@ test('interior packages load before display and rendering pauses offscreen',asyn
   await expect(page.locator('#viewport')).toHaveAttribute('data-rendering','active');
   await page.locator('#isolate-assembly').selectOption('logic');
   await expect(page.locator('#viewport')).toHaveAttribute('data-details','ready');
-  expect(requests.some(u=>u.includes('/components/kicad/') && u.includes('.stl'))).toBe(true);
+  expect(requestedPackage(requests)).toBe(true);
 });
