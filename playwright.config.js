@@ -20,6 +20,8 @@ export default defineConfig({
   ...(testMatch ? {testMatch} : {}),
   // Keep independent tests isolated; CI file assignment uses recorded runtimes.
   fullyParallel: true,
+  // Stop this worker group immediately; the Actions matrix cancels siblings.
+  maxFailures: process.env.CI ? 1 : undefined,
   timeout: 60000,
   expect: { timeout: process.env.CI ? 10000 : 5000 },
   // CI uses software WebGL; avoid competing renderers on the same CPU.

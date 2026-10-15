@@ -198,7 +198,7 @@ test("individual boards hide other assemblies and restore their geometry", async
   const results = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
     const { Texture } = await import(
-      "/node_modules/three/build/three.module.js"
+      "/tests/browser-three.js"
     );
     const model = await loadRobotron(new Texture());
     await model.loadDetails();
@@ -375,7 +375,7 @@ test("individual chip inspection preserves instance identity and both evidence l
 
 
 test('chip legends preserve full observed text and uniform atlas proportions',async({page})=>{
- await page.goto('/');
+ await page.goto("/tests/model-harness.html");
  const result=await page.evaluate(async()=>{
   const {loadPcbLabels}=await import('/src/robotron-interior.js');
   const data=await(await fetch('/models/robotron-1715m/model.json')).json();

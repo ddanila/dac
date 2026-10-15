@@ -10,6 +10,7 @@ async function observeKeys(page) {
     const WorkerBase = window.Worker;
     window.sentKeys = [];
     window.Worker = class extends WorkerBase {
+      constructor(...args) { super(...args); window.observedWorker=this; }
       postMessage(message, ...args) {
         if (message.type === "key" && message.down)
           window.sentKeys.push(message.key);
@@ -30,6 +31,10 @@ async function observeKeys(page) {
   await expect(page.locator("#power")).toBeEnabled();
   await page.locator("#power").click();
   await expect(page.locator("#status")).toHaveText("Running");
+  // These tests inspect routed key messages and keycap state, not CPU output.
+  // Keep the real worker, but pause its clock to avoid competing with WebGL.
+  // Historical-media tests continue to exercise live OS keyboard input.
+  await page.evaluate(() => window.observedWorker.postMessage({type:"visibility",hidden:true}));
 }
 
 test("photo projection preserves corners and perspective, not just a diagonal blend", () => {
@@ -281,9 +286,9 @@ test("physical keyboard holds the modeled key down until release and blur clears
 
 
 test("firmware LED bits independently light both model lamps and survive gesture release", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/tests/model-harness.html");
   const result = await page.evaluate(async () => {
-    const { Texture } = await import("/node_modules/three/build/three.module.js");
+    const { Texture } = await import("/tests/browser-three.js");
     const { loadRobotron } = await import("/src/robotron-model.js");
     const { createFirmwareKeyboard } = await import("/src/robotron-matrix.js");
     const model = await loadRobotron(new Texture());

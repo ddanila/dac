@@ -71,7 +71,7 @@ test("highlight, manual demonstration, parked plugs and live restoration", async
   const result = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
     const { Texture } =
-      await import("/node_modules/three/build/three.module.js");
+      await import("/tests/browser-three.js");
     const model = await loadRobotron(new Texture());
     model.interior(true);
     model.inspect({ focus: "head", isolated: "drives" });
@@ -138,10 +138,10 @@ test("highlight, manual demonstration, parked plugs and live restoration", async
 
 test("owner diskette labels follow inserted media and stay with open clamps", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto("/tests/model-harness.html");
   const result = await page.evaluate(async () => {
     const { loadRobotron } = await import("/src/robotron-model.js");
-    const { Texture } = await import("/node_modules/three/build/three.module.js");
+    const { Texture } = await import("/tests/browser-three.js");
     const model = await loadRobotron(new Texture());
     model.interior(true);
     model.media([true, false]);
