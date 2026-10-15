@@ -18,3 +18,14 @@ test('electrical disconnection is opt-in, blanks video and preserves running gue
  await expect(page.locator('#detail-description')).toContainText('CTSB/DCDB');
  await expect(page.locator('#detail-drawing')).toHaveAttribute('href','https://xepb.org/robotron/docs/1715w.zip');
 });
+
+test('older frames cannot undo a pending reconnection checkbox click',async({page})=>{
+ await page.goto('/tests/model-harness.html');
+ await page.evaluate(async()=>{document.body.innerHTML='<div id="serial-panel"></div><div id="viewport"></div>';const {createElectricalPanel}=await import('/src/robotron-experiments.js');window.sent=[];window.panel=createElectricalPanel(d=>window.sent.push(d));window.panel.frame({serialSupported:true,cables:3},false);});
+ await page.locator('#electrical-enable').uncheck();
+ await page.evaluate(()=>window.panel.frame({serialSupported:true,cables:3},false));
+ await expect(page.locator('#electrical-enable')).not.toBeChecked();await expect(page.locator('#electrical-keyboard')).toBeChecked();
+ await page.evaluate(()=>window.panel.frame({serialSupported:true,cables:0},false));
+ await expect(page.locator('#electrical-status')).toHaveText('Connections intact.');
+ expect(await page.evaluate(()=>window.sent)).toEqual([{type:'cables',value:0}]);
+});

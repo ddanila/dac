@@ -27,7 +27,7 @@ export function createSerialPanel(send){
  <button id="serial-export">Download received bytes</button> <button id="serial-clear">Clear received bytes</button>
  <p>Capture and pending input are each limited to 64 KiB. Reset clears both buffers. Export before resetting. Unknown text control bytes are shown as ⟦hex⟧.</p>`;
  document.getElementById('printer-panel').before(panel);
- const $=id=>panel.querySelector('#'+id);let supported=false,pending=false,lastSize=-1,busy=false,received=new Uint8Array(),transfer=null,transferSeen=0,lastPeer='';
+ const $=id=>panel.querySelector('#'+id);let supported=false,pending=false,lastSize=-1,busy=false,received=new Uint8Array(),transfer=null,transferSeen=0,lastPeer='',requestedSignals=null;
  const render=()=>{$('serial-paper').textContent=$('serial-hex').checked?Array.from({length:Math.ceil(received.length/16)},(_,i)=>{const b=received.slice(i*16,i*16+16);return (i*16).toString(16).padStart(4,'0')+'  '+[...b].map(v=>v.toString(16).padStart(2,'0')).join(' ').padEnd(47)+'  '+[...b].map(v=>v>=32&&v<127?String.fromCharCode(v):'.').join('');}).join('\n'):printerPages(received).join('\n── page feed ──\n');};
  $('serial-hex').onchange=render;
  $('serial-guest-disk').onclick=async()=>{try{const load=async url=>{const r=await fetch(url);if(!r.ok)throw Error('Guest example download failed.');return new Uint8Array(await r.arrayBuffer());};const [disk,com]=await Promise.all([load('media/robotron/tosm10.img'),load('examples/robotron-v24/DACRX.COM')]);const url=URL.createObjectURL(new Blob([transferDisk(disk,com)]));const a=document.createElement('a');a.href=url;a.download='tosm-dacrx.img';a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(e){fail(e.message);}};
@@ -41,7 +41,7 @@ export function createSerialPanel(send){
  const fail=message=>{$('serial-error').textContent=message;};
  const preview=()=>{if(supported && !busy && (panel.open || (transfer&&!transfer.done)) && !document.hidden && !pending){pending=true;send({type:'serial-preview'});}};
  panel.ontoggle=preview;document.addEventListener('visibilitychange',()=>{if(!document.hidden)preview();});
- for(const name of ['cts','dcd','rts'])$('serial-'+name).onchange=()=>send({type:'serial-signals',value:Number($('serial-cts').checked)+2*Number($('serial-dcd').checked)+4*Number($('serial-rts').checked)});
+ for(const name of ['cts','dcd','rts'])$('serial-'+name).onchange=()=>{requestedSignals=Number($('serial-cts').checked)+2*Number($('serial-dcd').checked)+4*Number($('serial-rts').checked);send({type:'serial-signals',value:requestedSignals});};
  $('serial-send').onclick=()=>{
   fail('');
   const text=$('serial-text').value.replace(/\r?\n/g,'\r');
@@ -62,7 +62,8 @@ export function createSerialPanel(send){
    if(transferring){if(!on||busy)transfer.cancel('Machine stopped or replay started; transfer cancelled.');else {transfer.tick();preview();}}
    if(!data.serialPeerSupported)$('serial-xmodem').disabled=true;
    $('serial-export').disabled=$('serial-clear').disabled=!supported||busy||!data.serialSize;
-   for(const [name,bit] of [['cts',1],['dcd',2],['rts',4]])$('serial-'+name).checked=!!(data.serialStatus&bit);
+   if(busy||!supported||(data.serialStatus&7)===requestedSignals)requestedSignals=null;
+   for(const [name,bit] of [['cts',1],['dcd',2],['rts',4]])$('serial-'+name).checked=!!((requestedSignals??data.serialStatus)&bit);
    $('serial-apply').disabled=$('serial-cancel').disabled=!data.serialPeerSupported||busy;
    if(transferring)$('serial-apply').disabled=$('serial-clear').disabled=true;
    $('serial-status').textContent=supported?`${data.serialStatus>>>8} bytes queued · ${data.serialSize} received${data.serialOverflow?' · capture full':''} · RX errors: ${['parity','overrun','framing'].filter((_,i)=>data.serialErrors&(16<<i)).join(', ')||'none'} · incoming ${data.serialPeerBaud||'adaptive'}`:'This preserved core has no V.24 terminal support.';
