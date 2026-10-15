@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "e090c2c4959c59a01cc371bfe7746e8b165942e7",
+  "revision": "e5082eab64dcf390175585293ada30eefc140013",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "1f294223d4a6080c059040c9c11b524f14cffa16695c984e454dcfb4c375e033"
+      "sha256": "09de925124caac8da5ad2a37d8d6d71d24d2dc076d6a820528cfaf62ba16ba06"
     },
     {
       "file": "LICENSE",
@@ -617,11 +617,11 @@
     },
     {
       "file": "meshes/drive-direction-0.stl",
-      "sha256": "2b1730221ef5e1776b304937dab93d611aa2e2509ea75f60f0502e7805244bc1"
+      "sha256": "d0b0db190f1c0328c222c741055f924d91cfe9ce4625544893536c08af62567f"
     },
     {
       "file": "meshes/drive-direction-1.stl",
-      "sha256": "5f5c888e7283edcd0e77d1871e487dae5a5d85ed67393116f621e18640e99242"
+      "sha256": "18c84e229912e33851c88451888c4e3778fe1e26723464846dd7666d85b26102"
     },
     {
       "file": "meshes/drive-shaft-0.stl",
@@ -1449,23 +1449,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "2c40e94f8721d8ce6762b1441bf9daef1754e78a2cf6bc11a0a46c20a925b0c7"
+      "sha256": "32530292543735910dd6b5824aa25b5172cbf79c1f5439e25cfb0a27936afcd2"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "fc35840ca48f836f8d7ae6566c37a3787d54771b209f48e2c81543282d954509"
+      "sha256": "4415c85bf31bbfbc54f9173e23ec9526005711c6249b2cdee78fcb7654c54507"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "b918fe03c39b94c570b258a14904cfc8c21cf2d1851316b6701fabbec2a42728"
+      "sha256": "1860ea7b54fdfbef7f88f4f1eeb0316bbd6218bfc5a3b09edac83b71e7c51eb3"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "4a629e2dcad3a2e05192e72bb41001b93a4136e7285de72079acc6026fc4b2c9"
+      "sha256": "bca3b8c3b3fe5e854e17748deccad846f71875b53a49b6140c5a7b707145027b"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "6c48ae914165d97fd1418984acb06868d790f28d9767615ef1933ae6ca5e4ee9"
+      "sha256": "bccbd12abeda33635bd13eb1bff213bcce1f850b4a84f2c36c2fdc9ca268b8b9"
     }
   ]
 }

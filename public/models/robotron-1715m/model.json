@@ -1,5 +1,5 @@
 {
-  "version": 45,
+  "version": 46,
   "componentCounts": {
     "packages": 138,
     "leadHoles": 2568
@@ -32811,14 +32811,14 @@
       "name": "drive-direction-0",
       "file": "meshes/drive-direction-0.stl",
       "color": "#d0d2c7",
-      "sha256": "2b1730221ef5e1776b304937dab93d611aa2e2509ea75f60f0502e7805244bc1",
+      "sha256": "d0b0db190f1c0328c222c741055f924d91cfe9ce4625544893536c08af62567f",
       "material": "ink"
     },
     {
       "name": "drive-direction-1",
       "file": "meshes/drive-direction-1.stl",
       "color": "#d0d2c7",
-      "sha256": "5f5c888e7283edcd0e77d1871e487dae5a5d85ed67393116f621e18640e99242",
+      "sha256": "18c84e229912e33851c88451888c4e3778fe1e26723464846dd7666d85b26102",
       "material": "ink"
     },
     {
