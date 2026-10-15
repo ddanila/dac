@@ -13,7 +13,7 @@ const input = await readFile(file);
 const record = await decodeRecording(
   input.buffer.slice(input.byteOffset, input.byteOffset + input.length),
 );
-const chunks = [Buffer.from("DACR1")];
+const chunks = [Buffer.from(record.result.length===5?"DACR2":"DACR1")];
 const number = (n) => {
   const b = Buffer.alloc(4);
   b.writeUInt32LE(n);
@@ -58,7 +58,7 @@ if (result.status !== 0)
   );
 let offset = 0;
 const hashes = [];
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < record.result.length; i++) {
   const n = result.stdout.readUInt32LE(offset);
   offset += 4;
   if (offset + n > result.stdout.length) throw Error("Truncated native output");

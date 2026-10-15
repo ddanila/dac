@@ -1,0 +1,11 @@
+{
+  "environment": "Local macOS Chromium, cold contexts against Vite; all detailed geometry ready",
+  "resourceCount": 233,
+  "decodedModelBytes": 53495354,
+  "duplicateUrls": [],
+  "baselineReadyMs": [7851, 7521],
+  "parallelBatchExperimentReadyMs": [10774],
+  "decision": "Retain existing loader. Parallel texture/enclosure/key download batches completed network earlier but delayed readiness in this local experiment. No meshes, textures or resolution removed.",
+  "reproduce": "npm run dev -- --port 4173; node scripts/profile-model.mjs http://127.0.0.1:4173/ /tmp/dac-loading-profile.json",
+  "limits": "Local samples are diagnostic, not a public-host performance benchmark. Cached, throttled and mobile results may differ."
+}

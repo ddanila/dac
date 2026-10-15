@@ -555,7 +555,7 @@
             </div>
             <p id="disk-b-status">Drive B is empty.</p>
           </details>
-          <details data-robotron>
+          <details data-robotron id="printer-panel">
             <summary>Printer output</summary>
             <button id="printer-preview">Refresh paper preview</button>
             <p>Text preview interprets CR, LF, tab, backspace and page feed. Other control bytes appear as ⟦hex⟧; no particular printer’s escape language is assumed.</p>
@@ -571,9 +571,9 @@
           <details data-robotron>
             <summary>Display adjustments</summary>
             <p>Presentation settings for the 3D screen; these are not measured monitor potentiometer settings. The emulator’s pixels stay unchanged.</p>
-            <label>Brightness <input id="crt-brightness" type="range" min="0.25" max="2" step="0.05" value="1"></label>
-            <label>Contrast <input id="crt-contrast" type="range" min="0.5" max="2" step="0.05" value="1"></label>
-            <label>Phosphor persistence (illustrative milliseconds) <input id="crt-persistence" type="range" min="0" max="160" step="10" value="0"></label>
+            <label>Brightness <output id="crt-brightness-value" for="crt-brightness">1.00×</output> <input id="crt-brightness" type="range" min="0.25" max="2" step="0.05" value="1"></label>
+            <label>Contrast <output id="crt-contrast-value" for="crt-contrast">1.00×</output> <input id="crt-contrast" type="range" min="0.5" max="2" step="0.05" value="1"></label>
+            <label>Phosphor persistence (illustrative milliseconds) <output id="crt-persistence-value" for="crt-persistence">0 ms</output> <input id="crt-persistence" type="range" min="0" max="160" step="10" value="0"></label>
             <button id="crt-defaults">Restore display defaults</button>
           </details>
           <label data-robotron><input type="checkbox" id="spatial-sound"> Stereo placement for recorded sounds</label>
@@ -585,6 +585,7 @@
             <a href="?activity=pascal" target="_blank" rel="noopener">Run Turbo Pascal</a> ·
             <a href="?activity=printer" target="_blank" rel="noopener">Print a file</a>
             <div id="activity-instructions"></div>
+            <p><a href="https://github.com/ddanila/dac/releases/tag/preservation-2026-10-15-090" target="_blank" rel="noopener">Download the standalone museum preservation package</a></p>
           </details>
           <details id="media-controls">
             <summary>Boot media and session disk <span>+</span></summary>

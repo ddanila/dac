@@ -170,7 +170,7 @@ test("owner and comparative evidence is visible in component cards", async ({
   );
   await expect(page.locator("#detail-photo")).toBeVisible();
 });
-for (const version of ["0.3.0", "0.4.0", "0.5.0", "0.6.0", "0.7.0", "0.7.1", "0.8.0", "0.8.1"])
+for (const version of ["0.3.0", "0.4.0", "0.5.0", "0.6.0", "0.7.0", "0.7.1", "0.8.0", "0.8.1", "0.8.9"])
   test(`preserved ${version} snapshot restores after emulator upgrade`, async ({
     page,
   }) => {

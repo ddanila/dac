@@ -20,7 +20,7 @@ export async function encodeRecording(record) {
   const payload = JSON.stringify(record);
   return new TextEncoder().encode(
     JSON.stringify({
-      format: "DAC-recording-1",
+      format: record.result.length===5 ? "DAC-recording-2" : "DAC-recording-1",
       sha256: await digest(new TextEncoder().encode(payload)),
       payload,
     }),
@@ -31,7 +31,7 @@ export async function decodeRecording(bytes) {
     throw Error("Recording exceeds 16 MB.");
   const file = JSON.parse(new TextDecoder().decode(bytes));
   if (
-    file.format !== "DAC-recording-1" ||
+    !["DAC-recording-1","DAC-recording-2"].includes(file.format) ||
     typeof file.payload !== "string" ||
     (await digest(new TextEncoder().encode(file.payload))) !== file.sha256
   )
@@ -91,12 +91,14 @@ export async function decodeRecording(bytes) {
     )
       continue;
     if ([9,10,11,12].includes(op) && e.length === 3 && a >= 0 && a < 2 && b >= 0 && b < 2) continue;
+    if(file.format==="DAC-recording-2" && [13,14,16].includes(op) && e.length===2 && a>=0 && a<=(op===13?255:op===14?7:3))continue;
+    if(file.format==="DAC-recording-2" && op===15 && e.length===1)continue;
     if ([4, 5, 6, 8].includes(op) && e.length === 1) continue;
     throw Error("Unsupported recording event.");
   }
   if (
     !Array.isArray(r.result) ||
-    r.result.length !== 4 ||
+    r.result.length !== (file.format==="DAC-recording-2"?5:4) ||
     !r.result.every((x) => typeof x === "string" && /^[a-f0-9]{64}$/.test(x))
   )
     throw Error("Invalid recording result.");
@@ -133,6 +135,10 @@ export function playEvent(module, handle, e, media = []) {
     if (!action || action(handle, a, b) < 0) throw Error("Recorded drive lever rejected.");
     return;
   }
+  if([13,14,15,16].includes(op)){
+    const action=op===13?module._dac_serial_send:op===14?module._dac_serial_signals:op===15?module._dac_serial_clear:module._dac_cables;
+    if(!action || action(handle,a)<0)throw Error("Serial/connection event rejected by emulator.");return;
+  }
   if (op === 8) {
     module._dac_printer_clear(handle);
     return;
@@ -152,7 +158,7 @@ export function playEvent(module, handle, e, media = []) {
   if (result < 0 || (op === 0 && result === 0))
     throw Error("Recording event rejected by emulator.");
 }
-export async function outputHashes(module, handle) {
+export async function outputHashes(module, handle, serial=false) {
   const pixels = module._dac_video(handle),
     n = module._dac_width(handle) * module._dac_height(handle) * 4;
   const bytes = [module.HEAPU8.slice(pixels, pixels + n)];
@@ -164,5 +170,6 @@ export async function outputHashes(module, handle) {
   const p = module._dac_printer_data(handle),
     size = module._dac_printer_size(handle);
   bytes.push(module.HEAPU8.slice(p, p + size));
+  if(serial){const p=module._dac_serial_data(handle),n=module._dac_serial_size(handle);bytes.push(module.HEAPU8.slice(p,p+n));}
   return Promise.all(bytes.map(digest));
 }

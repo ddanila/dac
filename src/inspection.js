@@ -1,3 +1,4 @@
+import {circuits} from './robotron-circuits.js';
 import { createChipViewer } from "./chip-viewer.js";
 import { createKeyViewer } from "./key-viewer.js";
 import { createDisketteViewer } from "./diskette-viewer.js";
@@ -198,7 +199,9 @@ function photoUrl(photo) {
   ).href;
 }
 export function showSpecimenDetail(name = currentInspection) {
-  const entry = typeof name === "object" ? name : inspections[name];
+  let entry = typeof name === "object" ? name : inspections[name];
+  const circuit = entry?.component?.board === "motherboard" && circuits.find(c=>c.ref===entry.component.ref);
+  if(circuit) entry={...entry,sheet:`Stromlaufplan ${circuit.sheet}.jpg`,text:`${entry.text} ${circuit.signal} Drawing: 1715W/teil_b/Stromlaufplan ${circuit.sheet}.jpg in the linked archive.`};
   if (!entry) return;
   const generation=++detailGeneration;
   disketteViewer?.dispose(); disketteViewer=undefined;
@@ -226,7 +229,7 @@ export function showSpecimenDetail(name = currentInspection) {
   }
   drawing.hidden = !(entry.photo && entry.reference);
   drawing.href = entry.reference || "#";
-  drawing.textContent = "Open original drawing / source ↗";
+  drawing.textContent = entry.sheet ? `Download W/M drawings · ${entry.sheet} ↗` : "Open original drawing / source ↗";
   let choices = document.getElementById("detail-views");
   if (!choices) { choices = document.createElement("div"); choices.id = "detail-views"; choices.className = "secondary-controls"; photo.before(choices); }
   choices.replaceChildren();
