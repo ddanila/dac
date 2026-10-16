@@ -43,7 +43,8 @@ Duration estimates now use successful workflow 38891503217. Keyboard input tests
 load the real manifest and worker but deliberately block CAD requests; gestures
 and visible key travel still run with the full model. The input-suite estimate is
 provisional until its first new CI timing. Fail-fast and superseded-run cancellation
-remain enabled. No Verilog or additional historical-ROM boots were added.
+remain enabled. Test collection now checks module imports in the build job,
+before installing any browsers. No Verilog or additional historical-ROM boots were added.
 
 Core 0.15.0 adds a bounded mixed workload/snapshot test and native explicit RX/TX
 clock-pin fixtures with fractional frame accounting. It also fixes an in-flight
