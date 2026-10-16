@@ -8,6 +8,8 @@ New: [Robotron 0.16.0 qualification, guided practice and model evidence](docs/ro
 
 Current implementation and remaining evidence: [capability matrix](docs/robotron/capabilities.md). Dated notes below retain development history.
 
+Planned: [keyboard controller reconstruction and KiCad, OpenSCAD and co-simulation synchronization](docs/robotron/keyboard-controller-plan.md).
+
 *A museum of computers and the worlds they opened.*
 
 A working browser prototype: rotate a computer, inspect its underside, click its case power button, and type on its live emulated screen. The museum uses pinned [DAC Emulation](https://github.com/ddanila/dac-emulation) WebAssembly cores in a worker.
