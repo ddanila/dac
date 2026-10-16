@@ -1042,6 +1042,17 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     };
   }
   const circuitOutlines=[];
+  let controllerMarker;
+  function keyboardControllerSelection(points){
+    if(controllerMarker){controllerMarker.removeFromParent();controllerMarker.geometry.dispose();controllerMarker.material.dispose();controllerMarker=null;}
+    const board=objects.get('keyboard-controller-board');
+    if(board && points.length){
+      const geometry=new THREE.BufferGeometry().setFromPoints(points.map(([x,y])=>new THREE.Vector3(x+data.keyboard.controllerX,y+data.keyboard.y+data.keyboard.controllerY,data.keyboard.controllerZ+1.8)));
+      controllerMarker=new THREE.Points(geometry,new THREE.PointsMaterial({color:0xffe16a,size:7,sizeAttenuation:false,depthTest:false}));
+      controllerMarker.name='controller-reference-pad-highlight';controllerMarker.raycast=()=>{};controllerMarker.renderOrder=105;board.add(controllerMarker);
+    }
+    inspectionDirty=true;
+  }
   function focusCircuit(ref,related=[]){
     for(const h of circuitOutlines){h.removeFromParent();h.geometry.dispose();h.material.dispose();}
     circuitOutlines.length=0;
@@ -1067,6 +1078,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   return {
     group,
     focusCircuit,
+    keyboardControllerSelection,
     displaySettings(value){display.material.userData.adjust(value);inspectionDirty=true;},
     markTrack(value){trackMarker.select(value);inspectionDirty=true;},
     annotations: data.annotations || [],

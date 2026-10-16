@@ -604,6 +604,7 @@ export function createScene(
     section(value){if(!['off','x','y','z'].includes(value.axis)||!Number.isFinite(value.position)||Math.abs(value.position)>4)return;section={axis:value.axis,position:value.position,reverse:!!value.reverse,showPlane:!!value.showPlane,caps:!!value.caps,drag:!!value.drag};applySection();},
     navigate(key){const offset=camera.position.clone().sub(controls.target),sphere=new THREE.Spherical().setFromVector3(offset);if(key==='ArrowLeft')sphere.theta-=.12;if(key==='ArrowRight')sphere.theta+=.12;if(key==='ArrowUp')sphere.phi-=.12;if(key==='ArrowDown')sphere.phi+=.12;if(key==='+'||key==='=')sphere.radius*=.9;if(key==='-')sphere.radius*=1.1;sphere.radius=Math.max(.1,Math.min(15,sphere.radius));sphere.makeSafe();camera.position.copy(controls.target).add(offset.setFromSpherical(sphere));controls.update();renderRequested=true;},
     focusCircuit(ref,related){robotron?.focusCircuit(ref,related);renderRequested=true;},
+    keyboardControllerSelection(points){robotron?.keyboardControllerSelection(points);renderRequested=true;},
     annotations(on){labelsEnabled=on;renderRequested=true;},
     markTrack(value){robotron?.markTrack(value);renderRequested=true;},
     sectionRange(axis){if(!robotron||!["x","y","z"].includes(axis))return null;robotron.tick();robotron.group.updateWorldMatrix(true,true);const box=new THREE.Box3();for(const o of visiblePickTargets(robotron.group))box.expandByObject(o);return box.isEmpty()?null:[box.min[axis],box.max[axis]];},
