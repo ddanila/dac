@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "reference": "0.289 (unknown)",
+  "core": "19280f6fed9ed38dceb9487c85a79bf4e16879d7",
+  "firmwareSha256": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
+  "scope": [
+    "S600 A packet through real keyboard CPU and SIO A",
+    "8N1 reception",
+    "deliberate 7E1 receiver mismatch: per-character parity status"
+  ],
+  "dac": [
+    "RX 0 e0 00",
+    "RX 0 61 00",
+    "RX 1 e0 10",
+    "RX 1 61 10"
+  ],
+  "mame": [
+    "RX 0 e0 00",
+    "RX 0 61 00",
+    "RX 1 e0 10",
+    "RX 1 61 10"
+  ],
+  "limitations": [
+    "Stable bytes/status, not bit-edge timing or physical hardware.",
+    "No V.24 noise, synchronous modes or exhaustive error combinations."
+  ]
+}

@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import create from "../public/emulator/dac.js";
+import keyMap from "../src/s600-paste.json" with { type: "json" };
 
 // Independent CP/M directory decoding for the bundled SCP3 disk layout.
 function fileContents(bytes, name) {
@@ -26,7 +27,8 @@ function fileContents(bytes, name) {
   }
   return Buffer.concat(extents.sort((a, b) => a[0] - b[0]).map((e) => e[1]));
 }
-test("TOS/M write resumes from a mid-transfer snapshot with identical controller timing and media", async () => {
+for (const firmwareKeyboard of (process.env.DAC_HISTORICAL_QUALIFICATION === '1' ? [false, true] : [false]))
+test(`TOS/M ${firmwareKeyboard ? 'S600' : 'adapter'} write resumes from a mid-transfer snapshot with identical controller timing and media`, async () => {
   test.setTimeout(90000);
   const w = await create({
     wasmBinary: await readFile(
@@ -68,15 +70,18 @@ test("TOS/M write resumes from a mid-transfer snapshot with identical controller
   try {
     await bytes("s550.bin", (p, n) => w._dac_load(s, 0, p, n));
     await bytes("cas.bin", (p, n) => w._dac_load(s, 1, p, n));
+    if (firmwareKeyboard) await bytes("s600.bin", (p, n) => w._dac_load(s, 3, p, n));
     await bytes("tosm10.img", (p, n) => w._dac_mount(s, p, n, 1));
     expect(w._dac_power(s, 1)).toBe(0);
     run(100000000);
     const initial = disk();
+    const input = code => firmwareKeyboard
+      ? w._dac_tap(s, ...keyMap[code]) : w._dac_key(s, code, 1);
     for (const c of "PIP DACREG.COM=PIP.COM") {
-      expect(w._dac_key(s, c.charCodeAt(0), 1)).toBe(0);
+      expect(input(c.charCodeAt(0))).toBe(0);
       run(1000000);
     }
-    expect(w._dac_key(s, 13, 1)).toBe(0);
+    expect(input(13)).toBe(0);
     let found = false;
     for (let clocks = 0; clocks < 20000000; clocks += 64) {
       w._dac_run(s, 64);

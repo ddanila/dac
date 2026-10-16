@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "specimen": "Owner Robotron 1715M; identities unresolved",
+  "firmware": {
+    "boot_rom": {
+      "expectedBytes": 2048,
+      "referenceSha256": "37e58472a049e1785c3521ec6b23c2d269d93fa5fede696dc7bd72eabb4af031",
+      "status": "not supplied"
+    },
+    "cas_prom": {
+      "expectedBytes": 256,
+      "referenceSha256": "8a085e4b8988c47de9ca05bdd65cfa7657d45b87efb72e3ee6a0bbcbf6bab23b",
+      "status": "not supplied"
+    },
+    "keyboard_rom": {
+      "expectedBytes": 2048,
+      "referenceSha256": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
+      "status": "not supplied"
+    }
+  },
+  "measurements": [],
+  "identification": {},
+  "remainingEvidence": [
+    "Board revision and straps",
+    "Drive model suffixes and jumpers",
+    "Main and keyboard clock frequencies",
+    "Disk index/startup/seek timing",
+    "Display DACK/CPU bus and IRQ routing",
+    "SIO clock routing and duty cycle"
+  ]
+}
