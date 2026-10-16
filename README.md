@@ -1,6 +1,8 @@
 # DAC — Danila’s Archive of Computing
 
-New: [named measurements, evidence colours, safer inspection paths and quicker checkpoint lists](docs/robotron/inspection-015.md).
+New: [Robotron 0.15.1 qualification and remaining specimen evidence](docs/robotron/emulation-qualification.md).
+
+[named measurements, evidence colours, safer inspection paths and quicker checkpoint lists](docs/robotron/inspection-015.md).
 
 [Grouped controls, cutaway caps, measurements, Z80 debugging and printer readiness](docs/robotron/inspection-workbench.md). [Checkpoints and disk comparisons](docs/robotron/inspection-and-checkpoints.md) remain available.
 
@@ -10,7 +12,7 @@ Current implementation and remaining evidence: [capability matrix](docs/robotron
 
 A working browser prototype: rotate a computer, inspect its underside, click its case power button, and type on its live emulated screen. The museum uses pinned [DAC Emulation](https://github.com/ddanila/dac-emulation) WebAssembly cores in a worker.
 
-[Open the public prototype](https://ddanila.github.io/dac/) · [Emulator release 0.1.1](https://github.com/ddanila/dac-emulation/releases/tag/v0.1.1)
+[Open the public prototype](https://ddanila.github.io/dac/) · [Pinned emulator build](public/emulator/manifest.json)
 
 ## Try locally
 
@@ -39,7 +41,7 @@ Disk writes are off by default. Enabling them changes only a session copy; **Exp
 
 Robotron cold boot, keyboard, file creation, reading, text/binary copying, export/reboot and deletion pass bounded native checks. Native and WASM boot pixels and complete session disks after create/read/copy match exactly. VJUGA matches a bounded Juku boot framebuffer in both native decode modes. The viewer has automated power/reset/input/media recovery tests and inspected desktop/mobile layouts.
 
-The cores are experimental. Robotron has simplified FDC/DMA/SIO/CTC timing and an incomplete 8275 display model, with tested completion/interrupt behavior, programmed row height, field attributes and cursor. Juku accepts one key contact at a time; clock rollover is covered by focused native and WASM tests. No full hardware-fidelity claim is made. Focused session/media tests cover Chromium, Firefox and Playwright WebKit; this is not qualification of every retail Safari version. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
+The cores remain experimental. Robotron has timed FDC/DMA/SIO/CTC behavior and scanline 8275 output with scheduled byte fetches, attributes and cursor. Independent MAME checks cover historical text/raster checkpoints and a two-drive file copy; exact specimen timing and wiring remain unverified. Juku accepts one key contact at a time; clock rollover is covered by focused native and WASM tests. No full hardware-fidelity claim is made. Focused session/media tests cover Chromium, Firefox and Playwright WebKit; this is not qualification of every retail Safari version. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
 
 ## Models and provenance
 

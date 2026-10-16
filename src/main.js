@@ -1161,6 +1161,7 @@ send({
 
 $("paste-send").onclick = () => {
   release();
+  $("paste-status").textContent = "Starting typing…";
   send({ type: "paste", text: $("paste-text").value });
 };
 $("paste-cancel").onclick = () => send({ type: "cancel-paste" });
