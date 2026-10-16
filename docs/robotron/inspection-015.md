@@ -22,9 +22,10 @@ clicks while active. Colours restore when the mode exits.
 Canonical source rules and motion waypoints live in `3d-models`, with copies in
 `src/robotron-evidence.json` and `src/robotron-inspection-paths.json`.
 [Motion audit](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/checks/mechanical-review.md#sampled-inspection-motion--2026-10-16)
-found collisions in the straight controller removal path. It now moves forward,
-lifts, then moves rearward, including attached components and cable endpoint.
-All 44 sampled enclosure checks are clear. Sampling is not continuous clearance
+found collisions in the straight controller removal path. It now opens the keyboard layers, moves the raised matrix aside, then moves
+the controller forward, up and rearward with its components and cable endpoint.
+The matrix returns to its usual inspection position after the controller clears.
+All 205 sampled enclosure and controller/matrix checks are clear. Sampling is not continuous clearance
 certification; physical cable slack remains unmeasured. No geometry simplification
 or reduced visual detail was introduced.
 
