@@ -72,7 +72,7 @@ jobs:
         if: matrix.browser == 'chromium' && needs.build.outputs.scope == 'full'
       - name: Model and interaction checks
         if: matrix.browser == 'chromium' && needs.build.outputs.scope == 'visual'
-        run: npx playwright test tests/assembly.spec.js tests/cable-geometry.spec.js tests/crt.spec.js tests/drive-levers.spec.js tests/drive-motion.spec.js tests/exhibit-improvements.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard.spec.js tests/museum.spec.js tests/pcb-components.spec.js tests/sessions.spec.js --reporter=line
+        run: npx playwright test tests/assembly.spec.js tests/cable-geometry.spec.js tests/crt.spec.js tests/drive-levers.spec.js tests/drive-motion.spec.js tests/exhibit-improvements.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard*.spec.js tests/museum.spec.js tests/pcb-components.spec.js tests/sessions.spec.js --reporter=line
       - name: Full Chromium checks
         if: matrix.browser == 'chromium' && needs.build.outputs.scope == 'full'
         run: npm test -- --reporter=line

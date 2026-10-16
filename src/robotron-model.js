@@ -109,6 +109,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   });
   if (!response.ok) throw Error(`Model manifest: ${response.status}`);
   const data = await response.json();
+  const identity={version:data.version,source:data.source,manifestSha256:[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(JSON.stringify(data))))].map(v=>v.toString(16).padStart(2,"0")).join("")};
   const group = new THREE.Group();
   group.rotation.x = -Math.PI / 2;
   group.scale.setScalar(data.scale);
@@ -1067,6 +1068,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     markTrack(value){trackMarker.select(value);inspectionDirty=true;},
     annotations: data.annotations || [],
     evidence: data.evidence,
+    identity,
     loadDetails,
     loadReferences: requestReferencePhotos,
     detailDistance(distance) {

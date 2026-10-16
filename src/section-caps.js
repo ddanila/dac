@@ -19,5 +19,18 @@ export function sectionCap(geometry,matrix,plane){
  for(let i=0;i<loops.length;i++){if(depths[i]%2)continue;const holes=loops.filter((loop,j)=>depths[j]===depths[i]+1&&inside(loop[0],loops[i])),flat=[loops[i],...holes].flat();for(const face of T.ShapeUtils.triangulateShape(loops[i],holes))for(const n of face){const p=origin.clone().addScaledVector(u,flat[n].x).addScaledVector(v,flat[n].y);positions.push(...p.toArray());}}
  if(!positions.length)return null;const result=new T.BufferGeometry();result.setAttribute('position',new T.Float32BufferAttribute(positions,3));result.computeVertexNormals();return result;
 }
-export function clearCaps(group){for(const mesh of [...group.children]){mesh.geometry.dispose();mesh.material.dispose();group.remove(mesh);}}
-export function buildCaps(root,plane,group){clearCaps(group);root.updateWorldMatrix(true,true);root.traverseVisible(o=>{if(!/^(case-base|case-lid|fascia|keyboard-shell|keyboard-deck|monitor-shell.*|bezel|ring)$/.test(o.name)||!o.isMesh||o.isInstancedMesh||!o.geometry||Array.isArray(o.material)||o.material.transparent)return;const g=sectionCap(o.geometry,o.matrixWorld,plane);if(g){const m=new T.MeshStandardMaterial({color:o.material.color,roughness:.8,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1});const mesh=new T.Mesh(g,m);mesh.name='section-cap';group.add(mesh);}});return group.children.length;}
+export function clearCaps(group){group.userData.skipped=[];for(const mesh of [...group.children]){mesh.geometry.dispose();mesh.material.dispose();group.remove(mesh);}}
+export function buildCaps(root,plane,group){
+ clearCaps(group);const skipped=[];root.updateWorldMatrix(true,true);
+ root.traverseVisible(o=>{
+  if(!/^(case-base|case-lid|fascia|keyboard-shell|keyboard-deck|monitor-shell.*|bezel|ring)$/.test(o.name)||!o.isMesh)return;
+  const skip=reason=>skipped.push({part:o.name,reason});
+  if(o.isInstancedMesh||!o.geometry||Array.isArray(o.material))return skip('Unsupported mesh/material structure');
+  if(o.material.transparent)return skip('Transparent shell');
+  if((o.geometry.index?.count??o.geometry.attributes.position.count)>150000)return skip('Exceeds the 50,000-triangle interactive limit');
+  o.geometry.computeBoundingBox();if(!new T.Box3().copy(o.geometry.boundingBox).applyMatrix4(o.matrixWorld).intersectsPlane(plane))return skip('Plane does not cross this shell');
+  const g=sectionCap(o.geometry,o.matrixWorld,plane);
+  if(!g)return skip('Open, tangent or ambiguous intersection contour');
+  const m=new T.MeshStandardMaterial({color:o.material.color,roughness:.8,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1});const mesh=new T.Mesh(g,m);mesh.name='section-cap';group.add(mesh);
+ });group.userData.skipped=skipped;return group.children.length;
+}
