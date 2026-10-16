@@ -1,9 +1,10 @@
+import {withoutCAD} from './without-cad.js';
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 for (const kind of ["2", "0", "1"])
   test(`export/import state for machine ${kind}`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/");
+    await withoutCAD(page);await page.goto("/");
     // Fresh CI browsers compile WASM and initialize the 3D model together.
     await expect(page.locator("#power")).toBeEnabled({ timeout: 15000 });
     if (kind !== "2") await page.locator("#machine").selectOption(kind);
@@ -44,7 +45,7 @@ for (const kind of ["2", "0", "1"])
     await expect(page.locator("#error")).toBeEmpty();
   });
 test("drive B insert/export/eject and snapshot identity", async ({ page }) => {
-  await page.goto("/");
+  await withoutCAD(page);await page.goto("/");
   await expect(page.locator("#power")).toBeEnabled({ timeout: 15000 });
   await page.locator("#drive-b-controls summary").click();
   await page.locator("#blank-b").click();

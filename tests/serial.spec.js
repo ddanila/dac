@@ -1,10 +1,11 @@
+import {withoutCAD} from './without-cad.js';
 import {test,expect} from '@playwright/test';
 const rom=new Uint8Array(2048);let code=[0xf3,0x31,0xff,0x7f];
 for(const v of [3,0xc1,4,0x44,5,0xea])code.push(0x3e,v,0xd3,0x0f);
 for(const v of [7,1])code.push(0x3e,v,0xd3,9);
 code.push(0xdb,0x0f,0xe6,1,0x28,0xfa,0xdb,0x0d,0xd3,0x0d,0x18,0xf4);rom.set(code);
 test('V.24 terminal sends exact file bytes through guest SIO echo and exports capture',async({page})=>{
- await page.goto('/?activity=printer');
+ await withoutCAD(page);await page.goto('/?activity=printer');
  await expect(page.locator('#power')).toBeEnabled({timeout:30000});
  await page.locator('#media-controls summary').click();
  await page.locator('#rom').setInputFiles({name:'serial-echo.bin',mimeType:'application/octet-stream',buffer:Buffer.from(rom)});
@@ -41,7 +42,7 @@ test('open printer preview updates when the guest prints without a refresh click
  const boot=new Uint8Array(2048),program=[0xf3];
  for(const [port,values] of [[14,[4,4,5,0x68]],[8,[7,1]],[12,[65]]])for(const v of values)program.push(0x3e,v,0xd3,port);
  program.push(0x76);boot.set(program);
- await page.goto('/?activity=printer');await expect(page.locator('#power')).toBeEnabled({timeout:30000});
+ await withoutCAD(page);await page.goto('/?activity=printer');await expect(page.locator('#power')).toBeEnabled({timeout:30000});
  await page.locator('#media-controls summary').click();
  await page.locator('#rom').setInputFiles({name:'print.bin',mimeType:'application/octet-stream',buffer:Buffer.from(boot)});
  await page.locator('#prom').setInputFiles('public/media/robotron/cas.bin');await page.locator('#load').click();

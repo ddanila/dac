@@ -1,6 +1,7 @@
+import {withoutCAD} from './without-cad.js';
 import {test,expect} from '@playwright/test';
 test('electrical disconnection is opt-in, blanks video and preserves running guest',async({page})=>{
- await page.goto('/?activity=printer');await expect(page.locator('#power')).toBeEnabled({timeout:30000});
+ await withoutCAD(page);await page.goto('/?activity=printer');await expect(page.locator('#power')).toBeEnabled({timeout:30000});
  await page.locator('#media-controls summary').click();await page.locator('#demo').click();
  await expect(page.locator('#media-label')).toHaveText('DAC diagnostic ROM');await page.locator('#power').click();
  await page.locator('#electrical-panel summary').click();await expect(page.locator('#electrical-monitor')).toBeDisabled();

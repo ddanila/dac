@@ -463,7 +463,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     ["monitor-power-lead", "monitor-signal-lead"].map(name =>
       [name, objects.get(name).geometry.attributes.position.array.slice()]),
   );
-  let monitorCablePose = "";
+  let monitorCablePose = "0:0"; // Canonical meshes already contain the closed, connected pose.
   let inspection = {
     focus: "none",
     demo: false,
@@ -844,7 +844,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       for (const [name, rest] of monitorCableRest) {
         const mesh = objects.get(name), vertices = mesh.geometry.attributes.position;
         if(!mesh.userData.monitorLeadBinding)mesh.userData.monitorLeadBinding=bindMonitorLead(name,rest);
-        vertices.array.set(mesh.userData.monitorLeadBinding(caseOffset,monitorPlugPark));
+        mesh.userData.monitorLeadBinding(caseOffset,monitorPlugPark,vertices.array);
         vertices.needsUpdate = true;
         mesh.geometry.computeVertexNormals();
         mesh.geometry.computeBoundingBox();
