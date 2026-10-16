@@ -1,3 +1,6 @@
+import {createDebugPanel} from './debug-panel.js';
+import {installMeasurementPanel} from './measurement-panel.js';
+import {installControlGroups} from './control-groups.js';
 import {installInspectionControls} from './inspection-controls.js';
 import {createCheckpointPanel} from './checkpoints.js';
 import {createCollectionPanel} from './collection-backup.js';
@@ -33,6 +36,7 @@ const circuitPanel=createCircuitPanel((c,related)=>{
   updateCase();selectView("motherboard");
   showSpecimenDetail({title:`${c.ref} · ${c.name}`,text:`${c.role} ${c.signal} Drawing: 1715W/teil_b/Stromlaufplan ${c.sheet}.jpg in the linked archive.`,evidence:"W/M schematic relationship; specimen mapping provisional",photo:"20261014_072654600",reference:"https://xepb.org/robotron/docs/1715w.zip",sheet:`Stromlaufplan ${c.sheet}.jpg`});
 },send,row=>{scene?.markTrack({unit:row.unit,c:row.cylinder,h:row.head});$('open-case').checked=true;$('isolate-assembly').value='drives';updateCase();selectView('drive-top');});
+const debugPanel=createDebugPanel(send);
 const diskExplorer=createDiskExplorer((unit,request,original)=>send({type:"inspect-disk",unit,request,original}),target=>{
   scene?.markTrack(target);
   if(target){
@@ -395,6 +399,7 @@ function requestPrinterPreview(force=false){
 $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPreview();};
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
+  debugPanel.message(d);
   checkpointPanel.message(d);
   if(d.type==='checkpoint-restored'){release();$("remember-disk").checked=false;}
   collectionPanel.message(d);
@@ -599,9 +604,11 @@ worker.onmessage = ({ data: d }) => {
       electricalPanel.frame(d,replayBusy);
       circuitPanel.frame(d);
       if((d.printerSize||0)!==lastPreviewSize)requestPrinterPreview();
+      $("printer-state").value=String(d.printerState||0);
+      $("printer-state").disabled=replayBusy||!d.printerSupported;
       $("printer-status").textContent = d.printerOverflow
         ? "Capture full (64 KB). Export and clear to continue."
-        : `${d.printerSize || 0} bytes captured.`;
+        : `${d.printerSize || 0} bytes captured. ${d.printerDropped||0} bytes lost while not ready.`;
       $("printer-export").disabled = $("printer-clear").disabled =
         !d.printerSize;
     }
@@ -780,6 +787,7 @@ $("crt-brightness").oninput = adjustDisplay;
 $("crt-contrast").oninput = adjustDisplay;
 $("crt-persistence").oninput = adjustDisplay;
 $("crt-defaults").onclick = () => {$("crt-brightness").value=1;$("crt-contrast").value=1;$("crt-persistence").value=0;adjustDisplay();};
+$("printer-state").onchange=()=>send({type:"printer-state",state:Number($("printer-state").value)});
 $("printer-preview").onclick = () => requestPrinterPreview(true);
 $("printer-export").onclick = () => send({ type: "printer" });
 $("printer-clear").onclick = () => {send({ type: "clear-printer" });$("printer-paper").replaceChildren();};
@@ -1198,3 +1206,6 @@ installExhibitLayout(scene,layout=>{
   updateCase();selectView(layout.view || "overview");scene?.annotations($("inspection-labels").checked);
   if(layout.camera)scene?.restoreCamera(layout.camera);
 });
+
+installMeasurementPanel(scene,release);
+installControlGroups();

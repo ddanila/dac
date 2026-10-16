@@ -14,6 +14,7 @@ test('V.24 terminal sends exact file bytes through guest SIO echo and exports ca
  await page.locator('#power').click();await page.locator('#serial-panel summary').click();
  await page.locator('#record-controls summary').click();await page.locator('#record-start').click();
  await expect(page.locator('#record-status')).toContainText('Recording from restart');
+ await page.locator('#printer-panel').evaluate(e=>e.open=true);await page.locator('#printer-state').selectOption('2');await page.locator('#printer-state').selectOption('0');
  await expect(page.locator('#serial-cts')).toBeEnabled();
  await page.locator('#serial-cts').check();await page.locator('#serial-dcd').check();
  await page.locator('#serial-apply').click();

@@ -1,5 +1,5 @@
 const key='dac-exhibit-layout-v1';
-const checks=['open-case','open-monitor','open-keyboard','separate-parts','transparent-covers','release-clamps','disconnect-cables','reference-board-photo','inspection-labels','section-reverse'];
+const checks=['open-case','open-monitor','open-keyboard','separate-parts','transparent-covers','release-clamps','disconnect-cables','reference-board-photo','inspection-labels','section-reverse','section-plane','section-caps'];
 const selects=['isolate-assembly','component-focus','section-axis'];
 export function installExhibitLayout(scene,apply){
   let restored=false,busy=false,timer;

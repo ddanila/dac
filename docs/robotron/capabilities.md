@@ -1,6 +1,6 @@
 # Robotron capability and evidence matrix
 
-Current baseline: DAC Emulation 0.12.0, scanline output, snapshot layout 11;
+Current baseline: DAC Emulation 0.13.0, scanline output, snapshot layout 12;
 canonical model v48. This matrix describes present behavior. Dated development
 sections elsewhere are history, not cumulative lists of current limitations.
 
@@ -10,7 +10,7 @@ sections elsewhere are history, not cumulative lists of current limitations.
 | Display | Scheduled byte fetches, burst gaps, FIFO, scanline-sampled glyphs/cursor/intensity | Ideal local DACK, no dot-level contention or verified CPU IRQ wiring | `robotron_devices_test.c`; current 0.8.8 section in emulator README |
 | DMA | Addressing, search, WAIT, terminal count, interrupts, timed read/write phases, auto-restart and byte/burst/continuous ownership | Half-clock BUSRQ/BUSAK edges, pulse output and exhaustive silicon qualification absent | Native device tests; implementation in `robotron.c` |
 | Keyboard | Unpatched S600 CPU, matrix, serial packets, Caps/SI/SO LED latches | Specimen replacement EPROM and legend differences not identified | S600 ROM tests; owner keyboard photos |
-| Serial/printer | Clocked keyboard RX; V.24 CTS/DCD/BREAK interrupts, first-character error lock, independent incoming waveform and outgoing peer decoder; raw capture | External clock and synchronous modes absent; TX x1 half-stop rounding; printer assumes ready | `sio.c`; printer integration checks |
+| Serial/printer | Clocked keyboard RX; V.24 CTS/DCD/BREAK interrupts, first-character error lock, independent incoming waveform and outgoing peer decoder; raw capture; printer CTS readiness and external/status interrupts | External clock and synchronous modes absent; TX x1 half-stop rounding; printer-specific escape language absent | `sio.c`; printer integration checks |
 | Floppy | Independent mechanics, DSK/raw, timed searches/bytes, errors, writes, format | Reference trajectories; no flux/PLL, weak sectors or specimen measurements | `DRIVE-FIDELITY.md` and native/WASM tests |
 | Enclosures | Owner-referenced 1 mm sheet, bends, split monitor/keyboard/system shells | Local bend radii and hidden joins remain estimates | Canonical CAD/evidence and static intersections |
 | Boards | Owner-referenced packages, sockets, holes, supports and artwork | Artwork is not a verified netlist; some orientations/mounts unresolved | CAD hardware audit and calibration reports |
@@ -19,10 +19,15 @@ sections elsewhere are history, not cumulative lists of current limitations.
 
 ## Inspection and recovery
 
+[Inspection workbench and debugger](inspection-workbench.md): grouped controls,
+cutaway presets/plane guide, shell caps, model-derived measurements, instruction
+stepping, mapped memory/disassembly and bus-event stops. Printer readiness is
+recorded and preserved in checkpoints.
+
 [Checkpoint and inspection guide](inspection-and-checkpoints.md): recover WebGL
 without restarting the emulator; section planes and shareable inspection links;
 explicit keyboard inspection mode; bounded triggered bus capture; persistent
-original/checkpoint disk comparisons. Cuts have no cap geometry. Event capture is
+original/checkpoint disk comparisons. Optional caps close unambiguous shell contours; open/tangent/oversized contours are skipped. Event capture is
 emulated, and disk reports explicitly mark unsupported layouts or range limits.
 
 ## Specimen inventory still requiring physical evidence
@@ -73,7 +78,7 @@ investigation leads, not proof that either implementation matches hardware.
   derived assets, not canonical models. Heap measurements omit GPU/worker memory.
 - **CI:** scope from a successful ancestral push, not the immediately previous push.
   Missing evidence/PRs select full coverage. Fail-fast and cancellation of superseded
-  runs remain enabled. File-duration estimates come from successful run 38801150730;
+  runs remain enabled. File-duration estimates come from successful run 38873331518;
   `scripts/update-ci-durations.mjs` refreshes them from downloaded logs without a
   new CI run. Ordinary CI does not install MAME or run Verilog/historical ROM boots.
 

@@ -768,3 +768,9 @@ output[for^="crt-"] { font-variant-numeric:tabular-nums; margin:0 .5rem; }
 :focus-visible { outline:3px solid #78c8ff; outline-offset:3px; }
 #inspection-link { width:100%; }
 @media (pointer:coarse) { button:not([data-byte]),summary,select { min-height:44px; } input[type=range] { min-height:44px; } }
+
+.control-navigation {display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0;}
+.control-navigation [aria-pressed=true] {background:#315745;color:white;}
+.control-group {border-top:1px solid #a9b4a6;margin-top:1rem;padding-top:.5rem;}
+.control-group h2 {font-size:1rem;margin:.5rem 0;}
+.control-group[hidden] {display:none;}
