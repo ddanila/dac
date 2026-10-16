@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: museum-${{ github.ref }}
   cancel-in-progress: true
@@ -24,7 +25,7 @@ jobs:
       - id: scope
         run: node scripts/ci-scope.mjs
         env:
-          CI_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          GH_TOKEN: ${{ github.token }}
       - run: npm ci
       - run: DAC_BASE=/dac/ npm run build
       - uses: actions/upload-pages-artifact@v5.0.0

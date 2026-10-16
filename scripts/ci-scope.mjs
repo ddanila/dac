@@ -1,3 +1,4 @@
+import {validatedBaseline} from './ci-baseline.mjs';
 // Conservative allowlist: emulator/runtime/dependency changes always run the full suite.
 import { execFileSync } from 'node:child_process';
 import { appendFileSync } from 'node:fs';
@@ -15,7 +16,7 @@ export function scopeFor(files) {
 }
 if (process.env.GITHUB_OUTPUT) {
   let scope = 'full';
-  const base = process.env.CI_BASE;
+  const base = validatedBaseline();
   if (process.env.GITHUB_EVENT_NAME !== 'workflow_dispatch' && /^[a-f0-9]{40}$/.test(base || '') && !/^0+$/.test(base)) {
     try {
       try { execFileSync('git', ['cat-file', '-e', base]); }

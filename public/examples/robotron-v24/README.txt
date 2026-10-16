@@ -19,3 +19,11 @@ Receiver source: https://github.com/ddanila/dac-emulation/tree/main/examples/rob
 Protocol: Ward Christensen's XMODEM-128/checksum (ACK=06h).
 The downloaded disk retains the stock-media notice in media/robotron/NOTICE.txt;
 the original DACRX.COM addition is MIT licensed.
+
+Guest-to-browser transfer:
+The generated transfer disk also includes DACTX.COM (original MIT source in
+ dac-emulation/examples/robotron-v24/build-tx.py).
+Choose Receive XMODEM file from guest, then run DACTX NAME.EXT in TOS/M.
+Use 1200 baud, 8 data bits, no parity, one stop bit, CTS and DCD enabled.
+Downloads preserve CP/M's 128-byte record padding; the protocol does not
+carry the original byte length. Maximum receive size is 64 KiB.
