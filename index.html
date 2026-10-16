@@ -557,6 +557,8 @@
           </details>
           <details data-robotron id="printer-panel">
             <summary>Printer output</summary>
+            <label>Printer state <select id="printer-state"><option value="0">Ready</option><option value="1">Busy</option><option value="2">Offline</option><option value="3">Paper out</option></select></label>
+            <p>Busy, offline and paper out all deassert the printer’s CTS ready signal. Software that ignores readiness can lose output; no printer-specific escape language is simulated.</p>
             <button id="printer-preview">Refresh paper preview</button>
             <p>Text preview interprets CR, LF, tab, backspace and page feed. Other control bytes appear as ⟦hex⟧; no particular printer’s escape language is assumed.</p>
             <div id="printer-paper" aria-live="polite"></div>

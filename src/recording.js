@@ -93,6 +93,7 @@ export async function decodeRecording(bytes) {
     if ([9,10,11,12].includes(op) && e.length === 3 && a >= 0 && a < 2 && b >= 0 && b < 2) continue;
     if(file.format==="DAC-recording-2" && [13,14,16].includes(op) && e.length===2 && a>=0 && a<=(op===13?255:op===14?7:3))continue;
     if(file.format==="DAC-recording-2" && op===17 && e.length===3 && a>=0 && a<=115200 && b>=0 && b<=0x73f && (!a || (a>=50 && (b&15)>=5 && (b&15)<=8 && ((b>>4)&3)<=2 && ((b>>8)&7)>=2 && ((b>>8)&7)<=4 && !(b&~0x73f))))continue;
+    if(file.format==="DAC-recording-2" && op===19 && e.length===2 && a>=0 && a<=3)continue;
     if(file.format==="DAC-recording-2" && op===18 && e.length===1)continue;
     if(file.format==="DAC-recording-2" && op===15 && e.length===1)continue;
     if ([4, 5, 6, 8].includes(op) && e.length === 1) continue;
@@ -137,6 +138,7 @@ export function playEvent(module, handle, e, media = []) {
     if (!action || action(handle, a, b) < 0) throw Error("Recorded drive lever rejected.");
     return;
   }
+  if(op===19){if(!module._dac_printer_state||module._dac_printer_state(handle,a)<0)throw Error("Printer readiness event rejected.");return;}
   if(op===17){if(!module._dac_serial_peer || module._dac_serial_peer(handle,a,b)<0)throw Error("Incoming peer event rejected.");return;}
   if(op===18){if(!module._dac_serial_cancel)throw Error("Core cannot cancel serial input.");module._dac_serial_cancel(handle);return;}
   if([13,14,15,16].includes(op)){

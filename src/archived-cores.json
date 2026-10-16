@@ -82,5 +82,9 @@
   "bde1d9529af40cb42614158c4dc47418720f1b786916a00afcd6bbc2a4b4ff0c": {
     "version": "0.11.0",
     "javascript": "c4bceaa7230502112a7f13a066307fec20d0295c34e918b87412b3e1cd775282"
+  },
+  "a51242fadb75b16f5634058e8fc5febd8bbe90dcc7bb587d2f836f9ceecc25f8": {
+    "version": "0.12.0",
+    "javascript": "c7d0a1f2096ba44d7543c39a103b43eb0ccded8b11ccff97e4d1705b5527286c"
   }
 }

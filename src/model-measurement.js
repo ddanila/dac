@@ -1,0 +1,11 @@
+import * as T from 'three';
+export function createMeasurement(scene,notify){
+ let enabled=false,points=[];const group=new T.Group();scene.add(group);const material=new T.MeshBasicMaterial({color:0xffd34d,depthTest:false});
+ const markers=[0,1].map(()=>{const m=new T.Mesh(new T.SphereGeometry(.008,12,8),material);m.renderOrder=100;group.add(m);return m;});
+ const line=new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3()]),new T.LineBasicMaterial({color:0xffd34d,depthTest:false}));line.renderOrder=100;group.add(line);group.visible=false;
+ const world=p=>{const v=p.local.clone();if(p.instanceId!==undefined){const m=new T.Matrix4();p.object.getMatrixAt(p.instanceId,m);v.applyMatrix4(m);}p.object.updateWorldMatrix(true,false);return p.object.localToWorld(v);};
+ function choose(hit,slot){const local=hit.object.worldToLocal(hit.point.clone());if(hit.instanceId!==undefined){const m=new T.Matrix4();hit.object.getMatrixAt(hit.instanceId,m);local.applyMatrix4(m.invert());}const point={object:hit.object,instanceId:hit.instanceId,local};if(slot!==undefined)points[slot]=point;else{if(points.filter(Boolean).length===2)points=[];points[points[0]?1:0]=point;}update();}
+ let scale=.0025,last='';
+ function update(){group.visible=enabled;markers.forEach((m,i)=>{m.visible=enabled&&!!points[i];if(points[i])m.position.copy(world(points[i]));});line.visible=enabled&&points.filter(Boolean).length===2;if(line.visible){const a=world(points[0]),b=world(points[1]);line.geometry.setFromPoints([a,b]);const value={millimetres:a.distanceTo(b)/scale,classification:'Model-derived estimate',frame:'Displayed assembly; separation and motion affect distance',points:points.map(p=>({part:p.object.name,instance:p.instanceId,local:p.local.toArray()}))};const text=JSON.stringify(value);if(text!==last){last=text;notify(value);}}else if(last!=='pending'){last='pending';notify(null);}}
+ return {get enabled(){return enabled;},set(value){enabled=value;update();},pick:choose,update,clear(){points=[];update();},scale(value){scale=value;},centre(object,slot){object.geometry.computeBoundingBox();const point=object.geometry.boundingBox.getCenter(new T.Vector3());object.updateWorldMatrix(true,false);choose({object,point:object.localToWorld(point)},slot);}};
+}

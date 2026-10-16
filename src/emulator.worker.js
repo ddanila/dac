@@ -1,3 +1,4 @@
+let debugPaused=false,debugArmed=false;
 import {checkpoints,saveCheckpoint,loadCheckpoint} from './checkpoints.js';
 import {exportCollection,importCollection} from './collection-backup.js';
 import { archivedCore, hasArchivedCore } from "./archived-core.js";
@@ -273,6 +274,7 @@ function snapshotBytes() {
   }
 }
 function restore(bytes) {
+  debugPaused=debugArmed=false;module._dac_debug_break?.(handle,0);
   copy(bytes, (p, n) => module._dac_state_load(handle, p, n));
   postMessage({type:"capture-reset"});
   stopPaste();
@@ -370,26 +372,38 @@ function frame() {
       serialSize:module._dac_serial_size?.(handle)||0,
       serialOverflow:module._dac_serial_overflow?.(handle)||0,
       cables:module._dac_cable_status?.(handle)||0,
+      printerState: module._dac_printer_status?.(handle)||0,
+      printerSupported: !!module._dac_printer_state,
+      printerDropped: module._dac_printer_dropped?.(handle)||0,
       printerSize: module._dac_printer_size(handle),
       printerOverflow: module._dac_printer_overflow(handle),
     },
     [pixels.buffer],
   );
 }
+function debugState(message,address){
+ if(kind!==2||!module._dac_debug_reg||!module._dac_state_size(handle))throw Error('Power on a Robotron using a core with debugger support.');
+ const names=['PC','SP','AF','BC','DE','HL','IX','IY',"AF′","BC′","DE′","HL′",'IM','IFF1','IFF2','I','R','clocks low','clocks high','bank','HALT','instruction boundary','bus address'],values=names.map((_,i)=>module._dac_debug_reg(handle,i)),hex=(n,width=4)=>n.toString(16).padStart(width,'0');
+ let pc=values[21]?values[22]:values[0];const lines=[];
+ for(let i=0;i<10;i++){const next=module._dac_debug_disassemble(handle,pc),p=module._dac_debug_text(handle);let end=p;while(end<p+128&&module.HEAPU8[end])end++;lines.push(hex(pc)+'  '+new TextDecoder().decode(module.HEAPU8.subarray(p,end)));pc=next;}
+ let memory;if(address!==undefined){const rows=[];for(let i=0;i<128;i+=16){const a=(address+i)&65535,bytes=Array.from({length:16},(_,j)=>module._dac_debug_byte(handle,(a+j)&65535)),r=module._dac_debug_map(handle,a,0),w=module._dac_debug_map(handle,a,1);rows.push(hex(a)+'  '+bytes.map(b=>hex(b,2)).join(' ')+'  '+bytes.map(b=>b>=32&&b<127?String.fromCharCode(b):'.').join('')+`  read space ${r>>>24}:${hex(r&0xffffff,5)} write ${w>>>24}:${hex(w&0xffffff,5)}`);}memory=rows.join('\n');}
+ postMessage({type:'debug-state',paused:debugPaused,message,registers:names.map((name,i)=>name+': '+hex(values[i])).join('  '),disassembly:lines.join('\n'),memory});
+}
 function tick() {
-  if (!running || hidden || replaying) return;
+  if (!running || debugPaused || hidden || replaying) return;
   try {
     const now = performance.now();
     owed = clockDebt(last, now, owed, kind === 0 ? 2000000 : 3993600, speed);
     last = now;
     const deadline = now + 7;
-    while (running && owed > 0 && performance.now() < deadline) {
+    while (running && !debugPaused && owed > 0 && performance.now() < deadline) {
       if (recording && recording.events.length >= RECORD_LIMIT - 3) {
         awaitLimit();
         break;
       }
       const budget = Math.min(paste ? 10000 : 100000, Math.ceil(owed));
-      const used = module._dac_run(handle, budget);
+      const used = debugArmed?module._dac_debug_run(handle,budget):module._dac_run(handle, budget);
+      if(debugArmed&&module._dac_debug_hit(handle)){debugPaused=true;debugArmed=false;module._dac_debug_break(handle,0);module._dac_timeline_stop(handle);owed=0;debugState("Paused after the clock containing the matching bus event.");frame();}
       recordEvent([0, budget]);
       if (!used) break;
       owed -= used;
@@ -448,7 +462,7 @@ async function restoreCheckpoint(key){
   nextMounts=r.disks.map((d,u)=>d.bytes.byteLength?{bytes:d.bytes,sha256:d.sha256,writable:d.writable,label:d.label,ejected:!(core._dac_drive_status_unit(next,u)&8),doorOpen:!!(core._dac_drive_status_unit(next,u)&32)}:{empty:true,label:d.label});
   await persistDisk(true);
  }catch(e){core._dac_destroy(next);throw e;}
- clearTimeout(timer);stopPaste();module._dac_destroy(handle);module=core;handle=next;build=r.build;
+ debugPaused=debugArmed=false;clearTimeout(timer);stopPaste();module._dac_destroy(handle);module=core;handle=next;build=r.build;
  originals=r.disks.map(d=>d.bytes.slice(0));identities=nextIdentities;writableUnits=r.disks.map(d=>d.writable);writable=writableUnits[0];libraries=[];mounts=nextMounts;identity=nextIdentities[0];diskLabels=r.disks.map(d=>d.label);remember=false;persistenceFailed=false;refreshStateKey();
  running=true;owed=0;last=performance.now();lastSavedActivity=-1;
  storageStatus('Checkpoint restored to private disk copies.',{hasState:false});
@@ -547,6 +561,7 @@ async function receive(d) {
     }
     if (!module) throw Error("Emulator is not ready");
     if (d.type === "configure") {
+      debugPaused=debugArmed=false;
       stopPaste();
       running = false;
       clearTimeout(timer);
@@ -685,6 +700,7 @@ async function receive(d) {
       if (r < 0)
         throw Error("Boot ROM and, for Robotron, CAS PROM are required");
       recordEvent([d.on ? 6 : 5]);
+      debugPaused=debugArmed=false;module._dac_debug_break?.(handle,0);
       running = d.on;
       clearTimeout(timer);
       owed = 0;
@@ -696,6 +712,9 @@ async function receive(d) {
       stopPaste();
       if (module._dac_reset(handle) < 0) throw Error("Reset failed");
       recordEvent([4]);
+      debugPaused=debugArmed=false;module._dac_debug_break?.(handle,0);clearTimeout(timer);
+      if(running)timer=setTimeout(tick,0);
+      postMessage({type:"debug-state",paused:false,message:"Machine reset."});
       owed = 0;
       last = performance.now();
       frame();
@@ -705,6 +724,7 @@ async function receive(d) {
     } else if (d.type === "record-start") {
       if (recording) throw Error("A recording is already active.");
       if (!running) throw Error("Power on before recording.");
+      if(debugPaused||debugArmed)throw Error("Resume and clear debugger breakpoints before recording.");
       stopPaste();
       recording = {
         kind,
@@ -721,6 +741,7 @@ async function receive(d) {
         recording = null;
         throw Error("Recording reset failed.");
       }
+      if(kind===2 && module._dac_printer_status)recordEvent([19,module._dac_printer_status(handle)]);
       if(kind===2 && module._dac_serial_signals){recordEvent([14,module._dac_serial_status(handle)&7]);recordEvent([16,module._dac_cable_status(handle)]);if(module._dac_serial_peer)recordEvent([17,module._dac_serial_peer_baud(handle),module._dac_serial_peer_format(handle)]);}
       if (kind === 2 && module._dac_drive_door)
         for (const u of [0,1]) {
@@ -779,6 +800,15 @@ async function receive(d) {
       storageStatus(
         "Saved disk discarded. Reload original media to start fresh.",
       );
+    } else if(d.type.startsWith('debug-')){
+      if(recording||replaying)throw Error('Stop recording or replay before debugging.');
+      if(kind!==2||!module._dac_debug_reg||!module._dac_state_size(handle))throw Error('Power on a Robotron using a core with debugger support.');
+      let message;
+      if(d.type==='debug-pause'){debugPaused=true;clearTimeout(timer);stopPaste();}
+      if(d.type==='debug-resume'){debugPaused=false;clearTimeout(timer);owed=0;last=performance.now();timer=setTimeout(tick,0);}
+      if(d.type==='debug-step'){if(!debugPaused)throw Error('Pause before stepping.');const ticks=module._dac_debug_step(handle);message=`Advanced ${ticks} clocks${ticks===100000?' · limit reached before an instruction boundary':''}.`;frame();}
+      if(d.type==='debug-memory'&&(!Number.isInteger(d.address)||d.address<0||d.address>65535))throw Error('Invalid memory address.');
+      debugState(message,d.type==='debug-memory'?d.address:undefined);
     } else if(d.type==='checkpoint-list'){
       postMessage({type:'checkpoints',entries:await checkpoints()});
     } else if(d.type==='checkpoint-save'){
@@ -792,9 +822,9 @@ async function receive(d) {
     } else if(d.type==='checkpoint-delete'){
       await loadCheckpoint(d.key);await stored(d.key,null);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint deleted.'});
     } else if(d.type === "timeline-capture"){
-      if(d.trigger){if(!module._dac_timeline_arm)throw Error('Triggered capture is unavailable in this preserved core.');const t=d.trigger;if(module._dac_timeline_arm(handle,t.mode,t.address,t.pre,t.filter,t.master)<0)throw Error('Invalid capture settings.');}
-      else if(d.stop)module._dac_timeline_stop?.(handle);
-      else module._dac_timeline_capture?.(handle,d.enabled?1:0);
+      if(d.stopOnTrigger&&(recording||replaying))throw Error('Stop recording or replay before setting a breakpoint.');
+      if(d.trigger){if(!module._dac_timeline_arm)throw Error('Triggered capture is unavailable in this preserved core.');const t=d.trigger;if(module._dac_timeline_arm(handle,t.mode,t.address,t.pre,t.filter,t.master)<0)throw Error('Invalid capture settings.');debugArmed=!!d.stopOnTrigger;if(debugArmed&&(!module._dac_debug_break||module._dac_debug_break(handle,1)<0))throw Error('Breakpoint unavailable. Power on the current Robotron core.');if(!debugArmed)module._dac_debug_break?.(handle,0);}
+      else {debugArmed=false;module._dac_debug_break?.(handle,0);if(d.stop)module._dac_timeline_stop?.(handle);else module._dac_timeline_capture?.(handle,d.enabled?1:0);}
     } else if(d.type === "timeline-preview"){
       const count=module._dac_timeline_count?.(handle)||0,p=module._dac_timeline_data?.(handle)||0;
       const bytes=module.HEAPU8.slice(p,p+count*13*4).buffer;
@@ -1047,6 +1077,9 @@ async function receive(d) {
       if(!module._dac_serial_data)throw Error("Preserved core has no V.24 support.");
       const p=module._dac_serial_data(handle),n=module._dac_serial_size(handle),bytes=module.HEAPU8.slice(p,p+n).buffer;
       postMessage({type:d.type==="serial-preview"?"serial-preview":"download",name:"dac-v24.bin",bytes},[bytes]);
+    } else if(d.type==="printer-state") {
+      if(!module._dac_printer_state||!Number.isInteger(d.state)||module._dac_printer_state(handle,d.state)<0)throw Error("Printer state unavailable or invalid.");
+      recordEvent([19,d.state]);frame();
     } else if (d.type === "printer" || d.type === "printer-preview") {
       const p = module._dac_printer_data(handle),
         n = module._dac_printer_size(handle);
@@ -1082,6 +1115,7 @@ async function receive(d) {
       );
     }
   } catch (e) {
+    if(d.type?.startsWith("debug-")){postMessage({type:"debug-error",message:e.message});return;}
     if(d.type?.startsWith("timeline-")){postMessage({type:"timeline-error",message:e.message});return;}
     if(d.type?.startsWith("checkpoint-")){postMessage({type:"checkpoint-status",message:e.message});return;}
     if(d.type?.startsWith("collection-")){postMessage({type:"collection-status",message:e.message});return;}

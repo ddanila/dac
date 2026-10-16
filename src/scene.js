@@ -1,3 +1,5 @@
+import {buildCaps,clearCaps} from './section-caps.js';
+import {createMeasurement} from './model-measurement.js';
 import {installRenderRecovery} from './render-recovery.js';
 import { createCrtPresentation } from "./crt-presentation.js";
 import { createDriveSceneState } from "./drive-scene-state.js";
@@ -72,14 +74,21 @@ export function createScene(
   function rebuildEnvironment(){environment?.dispose();const studio=new RoomEnvironment(),pmrem=new THREE.PMREMGenerator(renderer);environment=pmrem.fromScene(studio,.04);scene.environment=environment.texture;scene.environmentIntensity=.55;studio.dispose();pmrem.dispose();}
   rebuildEnvironment();
   const controls = new OrbitControls(camera, renderer.domElement);
-  let section={axis:'off',position:0,reverse:false},sectionRoot;
+  let section={axis:'off',position:0,reverse:false},sectionRoot,lastHit;
+  const measurement=createMeasurement(scene,value=>window.dispatchEvent(new CustomEvent('model-measurement',{detail:value})));
+  const capGroup=new THREE.Group();scene.add(capGroup);
   const sectionPlane=new THREE.Plane();renderer.localClippingEnabled=true;
+  const planeHelper=new THREE.PlaneHelper(sectionPlane,2,0xe9aa3c);planeHelper.visible=false;scene.add(planeHelper);
   function sectionVisible(point){return section.axis==='off'||sectionPlane.distanceToPoint(point)>=0;}
   function applySection(){
     if(!robotron)return;sectionRoot=robotron.group;
     const normal=new THREE.Vector3();normal[section.axis==='off'?'x':section.axis]=section.reverse?-1:1;
     sectionPlane.set(normal,-section.position*(section.reverse?-1:1));
     robotron.group.traverse(o=>{for(const m of [o.material].flat().filter(Boolean)){m.clippingPlanes=section.axis==='off'?[]:[sectionPlane];m.clipShadows=true;m.needsUpdate=true;}});
+    planeHelper.visible=kind===2&&section.axis!=='off'&&!!section.showPlane;
+    capGroup.visible=kind===2;
+    const caps=section.axis!=='off'&&section.caps?buildCaps(robotron.group,sectionPlane,capGroup):(clearCaps(capGroup),0);
+    window.dispatchEvent(new CustomEvent('section-caps',{detail:caps}));
     renderRequested=true;renderer.shadowMap.needsUpdate=true;
   }
   controls.target.set(0, 0.55, 0);
@@ -233,6 +242,8 @@ export function createScene(
       percent === 100 ? "Ready to explore" : "Preparing the exhibit…";
   }
   function visibility() {
+    capGroup.visible=kind===2;
+    planeHelper.visible=kind===2&&section.axis!=='off'&&!!section.showPlane;
     renderRequested = true;
     renderer.shadowMap.needsUpdate = true;
     machine.visible = kind !== 2 || !robotron;
@@ -272,7 +283,7 @@ export function createScene(
     renderRequested=true;renderer.shadowMap.needsUpdate=true;
   })
     .then((model) => {
-      robotron = model;
+      robotron = model;measurement.scale(model.group.scale.x);
       model.displaySettings(crtSettings);
       scene.add(model.group);
       window.dispatchEvent(new CustomEvent("dac-model-ready",{detail:{evidence:model.evidence}}));
@@ -315,6 +326,7 @@ export function createScene(
     const hit = kind === 2 && robotron
       ? ray.intersectObjects(visiblePickTargets(robotron.group), false).find(hit=>sectionVisible(hit.point))
       : ray.intersectObject(power)[0];
+    lastHit=hit;
     if (hit) hit.object.userData.pickedDetail = inspectionForHit(hit);
     return hit?.object;
   }
@@ -339,10 +351,10 @@ export function createScene(
       x: e.clientX,
       y: e.clientY,
       id: e.pointerId,
-      key: hit?.userData.key,
+      key: measurement.enabled?undefined:hit?.userData.key,
       object: hit,
       detail: hit?.userData.pickedDetail,
-      disk: hit?.userData.removedDisk,
+      disk: measurement.enabled?undefined:hit?.userData.removedDisk,
       dragged: false,
     };
     if (down.disk !== undefined) {
@@ -356,7 +368,7 @@ export function createScene(
       renderer.domElement.setPointerCapture(e.pointerId);
     }
     if (down.key) robotron.keyState(down.key.id, true);
-    if (hit && hit===robotron?.objects.get("reset")) robotron.resetPressed(true);
+    if (!measurement.enabled && hit && hit===robotron?.objects.get("reset")) robotron.resetPressed(true);
   });
   renderer.domElement.addEventListener("pointermove", (e) => {
     if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 5) {
@@ -425,6 +437,7 @@ export function createScene(
       return;
     container.focus({ preventScroll: true });
     if (!hit) return;
+    if(measurement.enabled){measurement.pick(lastHit);renderRequested=true;return;}
     if (gesture.key && hit?.userData.key?.id === gesture.key.id) {
       if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
     } else if (hit.userData.driveUnit !== undefined && gesture.object === hit)
@@ -539,6 +552,7 @@ export function createScene(
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     if (renderRequested || changed?.dirty) {
       if(sectionRoot!==robotron?.group)applySection();
+      measurement.update();
       renderer.render(scene, camera);
       drawLabels();
       if(robotron && interaction.onSoundPosition) {
@@ -560,11 +574,15 @@ export function createScene(
   document.addEventListener("visibilitychange",updateRendering);
   updateRendering();
   return {
-    section(value){if(!['off','x','y','z'].includes(value.axis)||!Number.isFinite(value.position)||Math.abs(value.position)>4)return;section={axis:value.axis,position:value.position,reverse:!!value.reverse};applySection();},
+    section(value){if(!['off','x','y','z'].includes(value.axis)||!Number.isFinite(value.position)||Math.abs(value.position)>4)return;section={axis:value.axis,position:value.position,reverse:!!value.reverse,showPlane:!!value.showPlane,caps:!!value.caps};applySection();},
     navigate(key){const offset=camera.position.clone().sub(controls.target),sphere=new THREE.Spherical().setFromVector3(offset);if(key==='ArrowLeft')sphere.theta-=.12;if(key==='ArrowRight')sphere.theta+=.12;if(key==='ArrowUp')sphere.phi-=.12;if(key==='ArrowDown')sphere.phi+=.12;if(key==='+'||key==='=')sphere.radius*=.9;if(key==='-')sphere.radius*=1.1;sphere.radius=Math.max(.1,Math.min(15,sphere.radius));sphere.makeSafe();camera.position.copy(controls.target).add(offset.setFromSpherical(sphere));controls.update();renderRequested=true;},
     focusCircuit(ref,related){robotron?.focusCircuit(ref,related);renderRequested=true;},
     annotations(on){labelsEnabled=on;renderRequested=true;},
     markTrack(value){robotron?.markTrack(value);renderRequested=true;},
+    measurement(on){cancelGesture();measurement.set(on);renderRequested=true;},
+    clearMeasurement(){measurement.clear();renderRequested=true;},
+    measurementParts(){return [...(robotron?.objects.values()||[])].filter(o=>o.isMesh&&!o.isInstancedMesh&&o.geometry).map(o=>o.name);},
+    measureCentre(name,slot){const object=robotron?.objects.get(name);if(object){measurement.set(true);measurement.centre(object,slot);renderRequested=true;}},
     cameraState(){return {position:camera.position.toArray(),target:controls.target.toArray()};},
     restoreCamera(value){if(!value || ![value.position,value.target].every(a=>Array.isArray(a)&&a.length===3&&a.every(n=>Number.isFinite(n)&&Math.abs(n)<40)))return;const damping=controls.enableDamping;controls.enableDamping=false;controls.update();controls.enableDamping=damping;camera.position.fromArray(value.position);controls.target.fromArray(value.target);controls.update();renderRequested=true;},
     onCameraChange(fn){controls.addEventListener("change",fn);},
@@ -586,22 +604,26 @@ export function createScene(
     pulse: (id) => robotron?.pulse(id),
     keyState: (id, pressed) => robotron?.keyState(id, pressed),
     inspect: (value) => {
+      sectionRoot=null;
       cancelGesture();
       robotron?.inspect(value);
       renderRequested = true;
     },
     openMonitor: (on) => {
+      sectionRoot=null;
       cancelGesture();
       robotron?.openMonitor(on);
       renderRequested = true;
     },
     interior: (on) => {
+      sectionRoot=null;
       caseOpen = on;
       cancelGesture();
       robotron?.interior(on);
       renderRequested = true;
     },
     separate: (on) => {
+      sectionRoot=null;
       assembliesLifted = on;
       cancelGesture();
       robotron?.separate(on);
@@ -615,6 +637,7 @@ export function createScene(
         inCameraView(robotron.objects.get("crt-glass"), camera);
     },
     setMachine: (value) => {
+      measurement.clear();measurement.set(false);sectionRoot=null;
       cancelGesture();
       robotron?.releaseKeys();
       robotron?.separate(false);

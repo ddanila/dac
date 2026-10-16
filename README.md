@@ -1,6 +1,6 @@
 # DAC — Danila’s Archive of Computing
 
-New: [named checkpoints, section views, triggered capture and disk comparisons](docs/robotron/inspection-and-checkpoints.md).
+New: [grouped controls, cutaway caps, measurements, Z80 debugging and printer readiness](docs/robotron/inspection-workbench.md). [Checkpoints and disk comparisons](docs/robotron/inspection-and-checkpoints.md) remain available.
 
 Current implementation and remaining evidence: [capability matrix](docs/robotron/capabilities.md). Dated notes below retain development history.
 
