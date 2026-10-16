@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "offline": true,
+  "externalRequests": 0,
+  "transfer": "Completed 39 bytes; guest file is padded to 128-byte records.",
+  "guestBytes": 39,
+  "reverseBytes": 128,
+  "scope": "Local browser UI with external requests blocked; TOS/M loaded from bundled reference media. DACTX returns full CP/M records."
+}

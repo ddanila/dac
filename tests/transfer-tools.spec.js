@@ -31,3 +31,8 @@ test('receiver rejects corrupt packets, acknowledges duplicates and handles bloc
  for(let i=1;i<=257;i++){rx.feed(packet(i));if(i===1)rx.feed(packet(i));}
  rx.feed(Uint8Array.of(4));expect(rx.done).toBe(true);expect(output.length).toBe(257*128);expect(output[255*128]).toBe(0);expect(output[256*128]).toBe(1);const count=replies.length;rx.feed(Uint8Array.of(4));expect(replies.length).toBe(count+1);expect(replies.at(-1)).toBe(6);
 });
+test('queued duplicate replies trigger at most one new packet per received batch',()=>{
+ const sent=[];const s=xmodemSender(new Uint8Array(256),bytes=>sent.push(bytes.slice()),()=>{});
+ s.feed(Uint8Array.of(21));s.feed(Uint8Array.of(21,21,21));expect(sent.length).toBe(2);
+ s.feed(Uint8Array.of(6,6));expect(sent.length).toBe(3);expect(sent.at(-1)[1]).toBe(2);
+});
