@@ -3,78 +3,150 @@
   "scope": "Evidence for geometry and placement, not proof of every dimension. Measured features do not confer printed-and-verified status.",
   "rules": [
     {
+      "pattern": "^logic-.*display-controller$",
+      "assembly": "display-controller",
+      "category": "photo",
+      "note": "Owner display-controller placement; nominal package dimensions, untraced copper and exact revision unverified."
+    },
+    {
+      "pattern": "^(cable$|cable-plug|plug-)",
+      "assembly": "keyboard",
+      "category": "photo",
+      "note": "Owner cable/connector photos; hidden contacts and resting cable route estimated."
+    },
+    {
+      "pattern": "^(ribbon-|power-wires)",
+      "assembly": "adapters",
+      "category": "photo",
+      "note": "Owner routing reference; hidden slack and electrical pinout unverified."
+    },
+    {
+      "pattern": "^(hardware|chassis-fasteners)$",
+      "assembly": "exterior",
+      "category": "reference",
+      "note": "Nominal fastener shapes; hidden fit and thread dimensions unmeasured."
+    },
+    {
+      "pattern": "^(case-base|fascia)$",
+      "assembly": "exterior",
+      "category": "photo",
+      "measuredFeatures": "Sheet thickness approximately 1 mm.",
+      "estimatedFeatures": "Bend radii, hidden joins and local feature dimensions.",
+      "note": "Owner confirms bent painted sheet."
+    },
+    {
+      "pattern": "^case-lid",
+      "assembly": "case-cover",
+      "category": "photo",
+      "measuredFeatures": "Sheet thickness approximately 1 mm.",
+      "estimatedFeatures": "Bend radii, hidden joins and local feature dimensions.",
+      "note": "Owner confirms bent painted sheet."
+    },
+    {
+      "pattern": "^(keyboard-shell|keyboard-bottom)$",
+      "assembly": "keyboard",
+      "category": "photo",
+      "measuredFeatures": "Sheet thickness approximately 1 mm.",
+      "estimatedFeatures": "Bend radii, hidden joins and local feature dimensions.",
+      "note": "Owner confirms bent painted sheet."
+    },
+    {
+      "pattern": "^monitor-shell",
+      "assembly": "monitor",
+      "category": "photo",
+      "measuredFeatures": "Sheet thickness approximately 1 mm.",
+      "estimatedFeatures": "Bend radii, hidden joins and local feature dimensions.",
+      "note": "Owner confirms bent painted sheet."
+    },
+    {
       "pattern": "^ring$",
       "assembly": "monitor",
       "category": "measured",
       "note": "Owner-supplied stand-ring dimensions; adjoining monitor geometry remains estimated.",
-      "verification": "display-base-ring"
+      "verification": "display-base-ring",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below.",
+      "measuredFeatures": "Owner-supplied stand-ring dimensions; adjoining monitor geometry remains estimated."
     },
     {
       "pattern": "^(prototype-spring|keyboard-springs)$",
       "assembly": "keyboard",
       "category": "measured",
       "note": "Owner spring: 13 mm outer diameter, 23 mm free length, 0.4 mm wire. Installed compression and hidden details are estimates.",
-      "verification": "key-switch"
+      "verification": "key-switch",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below.",
+      "measuredFeatures": "Owner spring: 13 mm outer diameter, 23 mm free length, 0.4 mm wire. Installed compression and hidden details are estimates."
     },
     {
       "pattern": "^keyboard-deck$",
       "assembly": "keyboard",
       "category": "measured",
       "note": "Owner overlay height 8 mm, 1 mm gap and approximately 1 mm sheet; remaining shape follows photos.",
-      "verification": "keyboard"
+      "verification": "keyboard",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below.",
+      "measuredFeatures": "Owner overlay height 8 mm, 1 mm gap and approximately 1 mm sheet; remaining shape follows photos."
     },
     {
       "pattern": "^(tube-|monitor-(yoke|coils|chassis|boards|components|capacitors|shield|wires|fasteners|passives|socket))",
       "assembly": "monitor-interior",
-      "category": "reference"
+      "category": "reference",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^(opaque-key-cap|clear-key-shell|keycap-|silver-key-|key-[0-9])",
       "assembly": "keyboard",
       "category": "photo",
       "verification": "keycap",
-      "note": "Owner keycap photos; known raised widths and spring dimensions are recorded separately."
+      "note": "Owner keycap photos; known raised widths and spring dimensions are recorded separately.",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^(keyboard|keycap|silver-key|keys-|prototype-)",
       "assembly": "keyboard",
       "category": "photo",
-      "verification": "keyboard"
+      "verification": "keyboard",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^drive-adapter",
       "assembly": "adapters",
-      "category": "photo"
+      "category": "photo",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^(drive-|drives$)",
       "assembly": "drives",
-      "category": "photo"
+      "category": "photo",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^(psu-|fan-)",
       "assembly": "psu",
-      "category": "photo"
+      "category": "photo",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^(logic-|pcb-)",
       "assembly": "motherboard",
-      "category": "photo"
+      "category": "photo",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^(monitor|bezel|crt-|pedestal)",
       "assembly": "monitor",
-      "category": "photo"
+      "category": "photo",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^case-lid",
       "assembly": "case-cover",
-      "category": "photo"
+      "category": "photo",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     },
     {
       "pattern": "^(case-base|fascia|rear-|power|reset|front-|system-foot)",
       "assembly": "exterior",
-      "category": "photo"
+      "category": "photo",
+      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below."
     }
   ]
 }

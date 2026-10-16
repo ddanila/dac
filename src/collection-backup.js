@@ -31,7 +31,7 @@ async function validate(rows){
  for(const row of rows){
   if(!Array.isArray(row)||row.length!==2)throw Error('Invalid collection entry.');
   const [key,r]=row;
-  if(typeof key!=='string'||key.length>4096||! /^(library:|state:|disk:|disk-b:|mounts:|checkpoint:|comparison:)/.test(key)||keys.has(key))throw Error('Invalid or duplicate collection key.');
+  if(typeof key!=='string'||key.length>4096||! /^(library:|state:|disk:|disk-b:|mounts:|checkpoint:|comparison:|inspection:)/.test(key)||keys.has(key))throw Error('Invalid or duplicate collection key.');
   keys.add(key);
   const check=async v=>{if(!(v?.bytes instanceof ArrayBuffer)||(await digest(v.bytes))!==v.sha256)throw Error('Saved record failed its checksum: '+key);};
   if(key.startsWith('checkpoint:')){await validateCheckpoint(r);}
@@ -40,6 +40,7 @@ async function validate(rows){
    for(const v of r)if(v && !v.empty)await check(v);
   }else{
    await check(r);
+   if(key.startsWith('inspection:')){if(r.bytes.byteLength>262144||typeof r.name!=='string'||r.name.length>80||!/^inspection:(measurements$|view:[a-zA-Z0-9-]+$)/.test(key))throw Error('Invalid inspection record.');const value=JSON.parse(new TextDecoder().decode(r.bytes));if(!value||typeof value!=='object')throw Error('Invalid inspection data.');}
    if(key.startsWith('library:') && (typeof r.name!=='string'||!r.name.trim()||r.name.length>80||![0,1,2].includes(r.kind)||!(r.original instanceof ArrayBuffer)||await digest(r.original)!==r.originalHash))throw Error('Invalid library disk.');
   }
  }
@@ -90,7 +91,7 @@ export async function importCollection(bytes,choices){
 }
 export function createCollectionPanel(send){
  const panel=document.createElement('details');panel.id='collection-controls';
- panel.innerHTML=`<summary>Back up the whole collection</summary><p>Includes saved disks, originals, saved machine states, named checkpoints, comparison baselines and drive assignments from this browser. Save the current machine state first; unsaved work and separately selected firmware files are not included. Restoring states still requires matching media and firmware.</p><button id="collection-export">Download collection backup</button><label>Restore collection<input id="collection-import" type="file" accept=".daccollection"></label><div id="collection-preview"></div><button id="collection-restore" hidden>Restore selected records</button><button id="collection-usage">Check browser storage</button><p id="collection-status" role="status"></p>`;
+ panel.innerHTML=`<summary>Back up the whole collection</summary><p>Includes saved disks, originals, saved machine states, named checkpoints, comparison baselines, named measurements, saved inspection views and drive assignments from this browser. Save the current machine state first; unsaved work and separately selected firmware files are not included. Restoring states still requires matching media and firmware.</p><button id="collection-export">Download collection backup</button><label>Restore collection<input id="collection-import" type="file" accept=".daccollection"></label><div id="collection-preview"></div><button id="collection-restore" hidden>Restore selected records</button><button id="collection-usage">Check browser storage</button><p id="collection-status" role="status"></p>`;
  document.getElementById('session-controls').after(panel);
  const status=panel.querySelector('#collection-status');
  panel.querySelector('#collection-export').onclick=()=>send({type:'collection-export'});
@@ -108,5 +109,5 @@ export function createCollectionPanel(send){
  };
  restore.onclick=()=>{if(backup)send({type:'collection-import',bytes:backup,choices:Object.fromEntries([...preview.querySelectorAll('select')].map(e=>[e.dataset.key,e.value]))});};
  panel.querySelector('#collection-usage').onclick=async()=>{try{const s=await navigator.storage.estimate();status.textContent=`This origin uses approximately ${(s.usage/1048576).toFixed(1)} MiB of ${(s.quota/1048576).toFixed(0)} MiB available quota. Browser storage is not a backup.`;}catch(e){status.textContent=e.message;}};
- return {message(d){if(d.type==='collection-status')status.textContent=d.message;}};
+ return {message(d){if(d.type==='collection-status'){status.textContent=d.message;window.dispatchEvent(new Event('dac-collection-restored'));}}};
 }

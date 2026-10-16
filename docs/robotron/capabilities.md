@@ -91,3 +91,6 @@ See [historical qualification notes](capability-history.md) for prior releases.
 
 See [0.15 inspection and bounded diagnostic changes](inspection-015.md) for the
 current checkpoint metadata, named measurements, evidence mode and motion audit.
+
+Portable inspection views, staged covers and the expanded qualification are
+documented in [inspection workspaces](inspection-workspaces.md).

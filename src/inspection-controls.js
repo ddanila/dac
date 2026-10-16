@@ -13,5 +13,12 @@ export function installInspectionControls(scene,release){
   if(!$('inspection-navigation').checked||e.target!==$('viewport'))return;
   e.stopImmediatePropagation();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','Home'].includes(e.key)){e.preventDefault();if(e.key==='Home')scene?.view('overview');else scene?.navigate(e.key);}
  },true);
+ const parts=document.createElement('details');parts.id='component-search';parts.innerHTML=`<summary>Find a component</summary><label>Search <input data-search type="search" placeholder="PCB, support, connector…"></label><button data-refresh>Refresh parts</button><label>Component <select data-parts size="6"></select></label><button data-focus>Focus selected part</button><button data-reveal>Reveal through covers</button><button data-clear>Clear highlight</button><p data-status role="status"></p>`;panel.append(parts);
+ const q=s=>parts.querySelector(s);function refresh(){const term=q('[data-search]').value.trim().toLowerCase(),rows=(scene?.inspectionParts?.()||[]).filter(p=>p.name.toLowerCase().includes(term));q('[data-parts]').replaceChildren(...rows.map(p=>new Option(p.name,p.id)));if(rows.length)q('[data-parts]').selectedIndex=0;q('[data-status]').textContent=`${rows.length} matching parts. Refresh after additional detail loads.`;}
+ q('[data-search]').oninput=refresh;q('[data-refresh]').onclick=refresh;parts.addEventListener('toggle',()=>{if(parts.open)refresh();});
+ const focus=()=>{try{release();scene?.selectPart(q('[data-parts]').value,true);}catch(e){q('[data-status]').textContent=e.message;}};q('[data-focus]').onclick=focus;
+ q('[data-clear]').onclick=()=>scene?.selectPart(null);
+ q('[data-reveal]').onclick=()=>{$('isolate-assembly').value='all';$('isolate-assembly').dispatchEvent(new Event('change'));$('transparent-covers').checked=true;$('transparent-covers').dispatchEvent(new Event('change'));$('section-axis').value='off';update();focus();};
+ window.addEventListener('dac-part-selected',e=>{q('[data-status]').textContent=`${e.detail.name}. ${e.detail.evidence?.text||''}`;});
  return update;
 }

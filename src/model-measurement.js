@@ -1,3 +1,4 @@
+import {partId,findPart} from './model-part-id.js';
 import * as T from 'three';
 export function createMeasurement(scene,notify){
  let enabled=false,points=[],scale=.0025,last='',root,identity={},frame='displayed',axesFrame='world',endpoint=null,snap=false,visible=()=>true;
@@ -26,7 +27,7 @@ export function createMeasurement(scene,notify){
    const a=world(points[0],frame==='assembled'),b=world(points[1],frame==='assembled'),delta=b.clone().sub(a).divideScalar(scale);
    if(axesFrame!=='world'){const basis=axesFrame==='model'?root.matrixWorld:matrix(points[0],frame==='assembled');delta.applyQuaternion(new T.Quaternion().setFromRotationMatrix(new T.Matrix4().extractRotation(basis)).invert());}
    if(line.visible)line.geometry.setFromPoints(points.map(p=>world(p)));
-   const value={millimetres:delta.length(),axes:{x:delta.x,y:delta.y,z:delta.z},classification:'Model-derived estimate',frame,axesFrame,identity,points:points.map(p=>({part:p.object.name,path:path(p.object),instance:p.instanceId,local:p.local.toArray(),snapped:!!p.snapped,displayedMatrix:matrix(p).toArray(),assembledMatrix:matrix(p,true).toArray()}))};
+   const value={millimetres:delta.length(),axes:{x:delta.x,y:delta.y,z:delta.z},classification:'Model-derived estimate',frame,axesFrame,identity,points:points.map(p=>({part:p.object.name,locator:root?partId(root,p.object):undefined,path:path(p.object),instance:p.instanceId,local:p.local.toArray(),snapped:!!p.snapped,displayedMatrix:matrix(p).toArray(),assembledMatrix:matrix(p,true).toArray()}))};
    const text=JSON.stringify(value);if(text!==last){last=text;notify(value);}
   }else if(last!=='pending'){last='pending';notify(null);}
  }
@@ -36,7 +37,7 @@ export function createMeasurement(scene,notify){
   options(value){if(value.frame)frame=value.frame==='assembled'?'assembled':'displayed';if(value.axesFrame)axesFrame=['world','model','part-a'].includes(value.axesFrame)?value.axesFrame:'world';if(value.snap!==undefined)snap=!!value.snap;if(value.visible)visible=value.visible;update();},
   restore(record){
    if(!root||record.format!=='DAC-model-measurement-2'||JSON.stringify(record.identity)!==JSON.stringify(identity)||!Array.isArray(record.points)||record.points.length!==2)throw Error('Measurement model identity does not match this exhibit.');
-   const next=record.points.map(p=>{if(!Array.isArray(p.path)||p.path.length>40||!p.path.every(i=>Number.isInteger(i)&&i>=0)||!Array.isArray(p.local)||p.local.length!==3||!p.local.every(v=>Number.isFinite(v)&&Math.abs(v)<100000))throw Error('Invalid measurement point.');let object=root;for(const i of p.path)object=object?.children[i];if(!object?.isMesh||object.name!==p.part||(object.isInstancedMesh&&p.instance===undefined)||(p.instance!==undefined&&(!object.isInstancedMesh||!Number.isInteger(p.instance)||p.instance<0||p.instance>=object.count)))throw Error('Measurement part does not match.');return {object,instanceId:p.instance,local:new T.Vector3(...p.local),snapped:!!p.snapped};});
+   const next=record.points.map(p=>{if(!Array.isArray(p.path)||p.path.length>40||!p.path.every(i=>Number.isInteger(i)&&i>=0)||!Array.isArray(p.local)||p.local.length!==3||!p.local.every(v=>Number.isFinite(v)&&Math.abs(v)<100000))throw Error('Invalid measurement point.');let object=root;if(p.locator)object=findPart(root,p.locator);else{for(const i of p.path)object=object?.children[i];if(object?.name!==p.part){const matches=[];root.traverse(o=>{if(o.isMesh&&o.name===p.part)matches.push(o);});if(matches.length===1)object=matches[0];}}if(!object?.isMesh||object.name!==p.part||(object.isInstancedMesh&&p.instance===undefined)||(p.instance!==undefined&&(!object.isInstancedMesh||!Number.isInteger(p.instance)||p.instance<0||p.instance>=object.count)))throw Error('Measurement part does not match.');return {object,instanceId:p.instance,local:new T.Vector3(...p.local),snapped:!!p.snapped};});
    points=next;frame=record.frame==='assembled'?'assembled':'displayed';axesFrame=['world','model','part-a'].includes(record.axesFrame)?record.axesFrame:'world';endpoint=null;enabled=true;last='';update();
   },
   centre(object,slot){object.geometry.computeBoundingBox();const point=object.geometry.boundingBox.getCenter(new T.Vector3());object.updateWorldMatrix(true,false);choose({object,point:object.localToWorld(point)},slot);}

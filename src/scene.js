@@ -1,4 +1,5 @@
-import {createEvidenceView} from './model-evidence.js';
+import {partId,findPart} from './model-part-id.js';
+import {createEvidenceView,evidenceCoverage} from './model-evidence.js';
 import {buildCaps,clearCaps} from './section-caps.js';
 import {createMeasurement} from './model-measurement.js';
 import {installRenderRecovery} from './render-recovery.js';
@@ -66,6 +67,7 @@ export function createScene(
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
   let renderRequested = true;
+  let selectedPart=null,partOutline;
   let caseOpen = false;
   let assembliesLifted = false;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -570,6 +572,7 @@ export function createScene(
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     if (renderRequested || changed?.dirty) {
       if(sectionRoot!==robotron?.group)applySection();
+      if(partOutline)partOutline.update();
       measurement.update();evidenceView?.refresh();
       renderer.render(scene, camera);
       drawLabels();
@@ -598,6 +601,7 @@ export function createScene(
     annotations(on){labelsEnabled=on;renderRequested=true;},
     markTrack(value){robotron?.markTrack(value);renderRequested=true;},
     sectionRange(axis){if(!robotron||!["x","y","z"].includes(axis))return null;robotron.tick();robotron.group.updateWorldMatrix(true,true);const box=new THREE.Box3();for(const o of visiblePickTargets(robotron.group))box.expandByObject(o);return box.isEmpty()?null:[box.min[axis],box.max[axis]];},
+    evidenceCoverage(){return robotron?evidenceCoverage(robotron):[];},
     evidenceMode(on){inspectionMode(on?'evidence':'operate');},
     measurement(on){inspectionMode(on?'measure':'operate');},
     measurementEndpoint(slot){inspectionMode('measure');measurement.endpoint(slot);},
@@ -606,6 +610,18 @@ export function createScene(
     clearMeasurement(){measurement.clear();renderRequested=true;},
     measurementParts(){if(kind!==2)return [];return [...(robotron?.objects.values()||[])].filter(o=>o.isMesh&&!o.isInstancedMesh&&o.geometry).map(o=>o.name);},
     measureCentre(name,slot){if(kind!==2)return;const object=robotron?.objects.get(name);if(object){inspectionMode('measure');measurement.centre(object,slot);renderRequested=true;}},
+    modelIdentity(){return kind===2?robotron?.identity:null;},
+    selectedPart(){return selectedPart;},
+    inspectionParts(){if(kind!==2||!robotron)return [];const rows=[];function walk(o,path){if(o.isMesh&&o.name)rows.push({id:partId(robotron.group,o),name:o.userData?.pickedDetail?.title||o.name});o.children.forEach((c,i)=>walk(c,[...path,i]));}walk(robotron.group,[]);return rows.sort((a,b)=>a.name.localeCompare(b.name));},
+    selectPart(id,focus=false){
+      partOutline?.removeFromParent();partOutline?.geometry.dispose();partOutline?.material.dispose();partOutline=null;selectedPart=null;
+      if(!id){renderRequested=true;return;}
+      if(kind!==2||!robotron)throw Error('Load the Robotron first.');
+      const object=findPart(robotron.group,id);
+      selectedPart=id;robotron.group.updateWorldMatrix(true,true);partOutline=new THREE.BoxHelper(object,0xffd34d);partOutline.material.depthTest=false;partOutline.renderOrder=101;partOutline.userData.target=object;scene.add(partOutline);
+      if(focus){const box=new THREE.Box3().setFromObject(object),center=box.getCenter(new THREE.Vector3()),radius=box.getSize(new THREE.Vector3()).length()/2,direction=camera.position.clone().sub(controls.target).normalize();const fov=2*Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov/2))/camera.zoom);const distance=Math.max(.06,radius/Math.sin(fov/2)/Math.min(1,camera.aspect)*1.25);controls.target.copy(center);camera.position.copy(center).addScaledVector(direction,distance);controls.update();}
+      window.dispatchEvent(new CustomEvent('dac-part-selected',{detail:{id,name:object.name,evidence:evidenceView?.info(object)}}));renderRequested=true;
+    },
     cameraState(){return {position:camera.position.toArray(),target:controls.target.toArray()};},
     restoreCamera(value){if(!value || ![value.position,value.target].every(a=>Array.isArray(a)&&a.length===3&&a.every(n=>Number.isFinite(n)&&Math.abs(n)<40)))return;const damping=controls.enableDamping;controls.enableDamping=false;controls.update();controls.enableDamping=damping;camera.position.fromArray(value.position);controls.target.fromArray(value.target);controls.update();renderRequested=true;},
     onCameraChange(fn){controls.addEventListener("change",fn);},
@@ -660,6 +676,7 @@ export function createScene(
         inCameraView(robotron.objects.get("crt-glass"), camera);
     },
     setMachine: (value) => {
+      partOutline?.removeFromParent();partOutline?.geometry.dispose();partOutline?.material.dispose();partOutline=null;selectedPart=null;
       measurement.clear();inspectionMode('operate');sectionRoot=null;
       cancelGesture();
       robotron?.releaseKeys();

@@ -10,7 +10,8 @@ other. Component deltas can use world, model or part-A axes; distance is unchang
 by that choice. The assembled/displayed distance frame remains independent.
 Up to 20 named measurements are browser-local; JSON export remains the portable
 copy. Old format-2 exports default to world axes and still validate model identity.
-Named measurements are not included in collection backups.
+The later [portable inspection update](inspection-workspaces.md) migrates named
+measurements into collection backups.
 
 The optional evidence view colours owner dimensions green, owner-photo-derived
 parts blue, generic/comparative parts purple and unmapped parts grey. Selecting a
