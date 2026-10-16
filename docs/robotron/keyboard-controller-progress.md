@@ -90,7 +90,8 @@ export cannot silently bless stale controller meshes with new source hashes.
 - Canonical model/download metadata checks pass; CAD and core CI pass.
 - 26 focused Chromium checks, eight controller checks across Firefox/WebKit,
   and preserved 0.16.0 snapshot restoration pass. The panel tests distinguish
-  raw latch values from display persistence.
+  raw latch values from display persistence. Controller checks are included in
+  model-only CI selection as well as the full suite.
 - Eight historical browser checks pass, including S600 DIR input, mid-write
   snapshot continuation, file editing/checkpoint recovery and WordStar save/reopen.
 - Visual review confirms the controller migration; unrelated drive and motherboard

@@ -1,7 +1,8 @@
 import {test,expect} from '@playwright/test';
-import {assignFiles} from '../scripts/ci-shards.mjs';
+import {assignFiles,visualTestPattern} from '../scripts/ci-shards.mjs';
 import {readFileSync,readdirSync} from 'node:fs';
 test('duration-based CI assignment includes every test file exactly once',()=>{
+ expect(visualTestPattern.test('keyboard-controller.spec.js')).toBe(true);
  const files=readdirSync(new URL('./',import.meta.url)).filter(f=>f.endsWith('.spec.js')).map(f=>'tests/'+f);
  const seconds=JSON.parse(readFileSync(new URL('./ci-durations.json',import.meta.url))).seconds;
  const bins=assignFiles([...files,'tests/future.spec.js'],seconds);
