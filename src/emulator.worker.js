@@ -1,6 +1,7 @@
+import {checkpoints,saveCheckpoint,loadCheckpoint} from './checkpoints.js';
 import {exportCollection,importCollection} from './collection-backup.js';
 import { archivedCore, hasArchivedCore } from "./archived-core.js";
-let currentModule, coreBase;
+let currentModule, currentBuild, coreBase;
 import {
   RECORD_LIMIT,
   base64,
@@ -128,6 +129,7 @@ let paste,
 let mountKey,
   mounts = [],
   libraries = [];
+let originals=[];
 let diskLabels = ["Disk 1", "Disk 2"];
 async function publishLibrary() {
   postMessage({
@@ -430,6 +432,30 @@ async function compatibleStateKey() {
       hasArchivedCore(key.split(":")[1]),
   );
 }
+async function restoreCheckpoint(key){
+ if(recording||replaying)throw Error('Stop recording or replay before restoring a checkpoint.');
+ const r=await loadCheckpoint(key);
+ if(r.kind!==kind||r.firmwareIdentity!==await sessionIdentity(kind,firmware,null))throw Error('Load the checkpoint machine and matching firmware first.');
+ const core=r.build===build?module:r.build===currentBuild?currentModule:await archivedCore(r.build,coreBase),next=core._dac_create(kind);
+ if(!next)throw Error('Cannot create checkpoint machine.');
+ function load(bytes,fn){const p=core._malloc(bytes.byteLength);if(!p)throw Error('Not enough memory.');try{core.HEAPU8.set(new Uint8Array(bytes),p);if(fn(p,bytes.byteLength)<0)throw Error('Checkpoint state or disk rejected; current machine preserved.');}finally{core._free(p);}}
+ let nextIdentities, nextMounts;
+ try{
+  for(const [slot,data] of firmware)load(data,(p,n)=>core._dac_load(next,slot,p,n));
+  for(let u=0;u<2;u++)if(r.disks[u].bytes.byteLength)load(r.disks[u].bytes,(p,n)=>core._dac_mount_unit(next,u,p,n,Number(r.disks[u].writable)));
+  load(r.bytes,(p,n)=>core._dac_state_load(next,p,n));
+  nextIdentities=await Promise.all(r.disks.map((disk,u)=>u&&!disk.bytes.byteLength?null:sessionIdentity(kind,firmware,disk.bytes.byteLength?disk.bytes:null)));
+  nextMounts=r.disks.map((d,u)=>d.bytes.byteLength?{bytes:d.bytes,sha256:d.sha256,writable:d.writable,label:d.label,ejected:!(core._dac_drive_status_unit(next,u)&8),doorOpen:!!(core._dac_drive_status_unit(next,u)&32)}:{empty:true,label:d.label});
+  await persistDisk(true);
+ }catch(e){core._dac_destroy(next);throw e;}
+ clearTimeout(timer);stopPaste();module._dac_destroy(handle);module=core;handle=next;build=r.build;
+ originals=r.disks.map(d=>d.bytes.slice(0));identities=nextIdentities;writableUnits=r.disks.map(d=>d.writable);writable=writableUnits[0];libraries=[];mounts=nextMounts;identity=nextIdentities[0];diskLabels=r.disks.map(d=>d.label);remember=false;persistenceFailed=false;refreshStateKey();
+ running=true;owed=0;last=performance.now();lastSavedActivity=-1;
+ storageStatus('Checkpoint restored to private disk copies.',{hasState:false});
+ postMessage({type:'capture-reset'});postMessage({type:'checkpoint-restored'});
+ postMessage({type:'media-moved',present:r.disks.map(d=>!!d.bytes.byteLength),writable:writableUnits});
+ postMessage({type:'runtime',preserved:module!==currentModule});postMessage({type:'power',on:true});frame();if(!hidden)tick();
+}
 async function importState(file) {
   const { header } = snapshotHeader(file);
   const version = header.key.split(":")[1];
@@ -514,6 +540,7 @@ async function receive(d) {
         locateFile: (n) => new URL(n + "?v=" + d.build, d.base).href,
       });
       currentModule = module;
+      currentBuild = d.build;
       coreBase = d.base;
       postMessage({ type: "ready" });
       return;
@@ -560,6 +587,7 @@ async function receive(d) {
           d.writable = entry.writable;
         }
       }
+      originals=[d.disk?.slice(0),d.diskB?.slice(0)];
       identities = [
         await sessionIdentity(kind, firmware, d.disk),
         d.diskB ? await sessionIdentity(d.kind, firmware, d.diskB) : null,
@@ -751,12 +779,26 @@ async function receive(d) {
       storageStatus(
         "Saved disk discarded. Reload original media to start fresh.",
       );
+    } else if(d.type==='checkpoint-list'){
+      postMessage({type:'checkpoints',entries:await checkpoints()});
+    } else if(d.type==='checkpoint-save'){
+      // Capture synchronously before checksum/storage awaits; state and disks share one boundary.
+      const bytes=snapshotBytes(),disks=[0,1].map(u=>({bytes:diskBytes(u),writable:!!writableUnits[u],label:diskLabels[u]||`Disk ${u+1}`}));
+      const record={name:d.name,bytes,disks,kind,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),firmwareIdentity:await sessionIdentity(kind,firmware,null)};
+      for(const disk of disks)disk.sha256=await digest(disk.bytes);
+      await saveCheckpoint(record);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint saved with both disks.'});
+    } else if(d.type==='checkpoint-restore'){
+      await restoreCheckpoint(d.key);postMessage({type:'checkpoint-status',message:'Checkpoint restored. Private disk copies are running; remember changes is off.'});
+    } else if(d.type==='checkpoint-delete'){
+      await loadCheckpoint(d.key);await stored(d.key,null);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint deleted.'});
     } else if(d.type === "timeline-capture"){
-      module._dac_timeline_capture?.(handle,d.enabled?1:0);
+      if(d.trigger){if(!module._dac_timeline_arm)throw Error('Triggered capture is unavailable in this preserved core.');const t=d.trigger;if(module._dac_timeline_arm(handle,t.mode,t.address,t.pre,t.filter,t.master)<0)throw Error('Invalid capture settings.');}
+      else if(d.stop)module._dac_timeline_stop?.(handle);
+      else module._dac_timeline_capture?.(handle,d.enabled?1:0);
     } else if(d.type === "timeline-preview"){
       const count=module._dac_timeline_count?.(handle)||0,p=module._dac_timeline_data?.(handle)||0;
       const bytes=module.HEAPU8.slice(p,p+count*13*4).buffer;
-      postMessage({type:'timeline',bytes},[bytes]);
+      postMessage({type:'timeline',bytes,status:module._dac_timeline_status?.(handle),trigger:module._dac_timeline_trigger?.(handle)},[bytes]);
     } else if(d.type === "collection-export"){
       await persistDisk(true);
       const bytes=await exportCollection();postMessage({type:"download",name:"dac-collection.daccollection",bytes},[bytes]);
@@ -804,7 +846,7 @@ async function receive(d) {
       if (!module._dac_drive_transfer || module._dac_drive_transfer(handle,d.from,d.to)<0)
         throw Error("Remove the disk first; both levers must be open and the target drive empty. Wait for the controller to finish its command.");
       recordEvent([11,d.from,d.to]);
-      if(d.from!==d.to) for(const values of [identities,writableUnits,libraries,diskLabels])
+      if(d.from!==d.to) for(const values of [identities,writableUnits,libraries,diskLabels,originals])
         [values[0],values[1]]=[values[1],values[0]];
       // Empty drive slots have no writable medium; do not carry the UI's
       // default for future mounts into snapshot identities after a transfer.
@@ -846,6 +888,7 @@ async function receive(d) {
         );
       else if (module._dac_mount_unit(handle, 1, 0, 0, 0) < 0)
         throw Error("Eject failed");
+      originals[1]=bytes?.slice(0);
       libraries[1] = null;
       mounts[1] = bytes
         ? { bytes, sha256: await digest(bytes), writable: !!d.writable }
@@ -953,6 +996,7 @@ async function receive(d) {
               Number(writableUnits[u] || false),
             ),
           );
+          originals[u]=record.original.slice(0);
           libraries[u] = d.id;
           identities[u] =
             (await sessionIdentity(kind, firmware, record.original)) +
@@ -1019,7 +1063,7 @@ async function receive(d) {
       const unit=d.unit===1?1:0;
       const bytes=diskBytes(unit);
       if(!bytes.byteLength)postMessage({type:"disk-inspection",unit,request:d.request,error:"No disk available in this drive."});
-      else postMessage({type:"disk-inspection",unit,request:d.request,bytes},[bytes]);
+      else {const original=d.original?(libraries[unit]?(await libraryDisk(libraries[unit])).original:originals[unit]?.slice(0)):undefined;postMessage({type:"disk-inspection",unit,request:d.request,bytes,original},original?[bytes,original]:[bytes]);}
     }
     else if (d.type === "export") {
       const u = d.unit || 0;
@@ -1038,6 +1082,8 @@ async function receive(d) {
       );
     }
   } catch (e) {
+    if(d.type?.startsWith("timeline-")){postMessage({type:"timeline-error",message:e.message});return;}
+    if(d.type?.startsWith("checkpoint-")){postMessage({type:"checkpoint-status",message:e.message});return;}
     if(d.type?.startsWith("collection-")){postMessage({type:"collection-status",message:e.message});return;}
     if(d.type?.startsWith("serial-")){postMessage({type:"serial-error",message:e.message});return;}
     if(d.type==="inspect-disk") {postMessage({type:"disk-inspection",unit:d.unit,request:d.request,error:e.message});return;}

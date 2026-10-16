@@ -1,3 +1,4 @@
+import {installRenderRecovery} from './render-recovery.js';
 import * as THREE from 'three';
 import { inspectionEnvironment } from './inspection-lighting.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -14,16 +15,17 @@ export function createInspectionStage(host, {near=1, far=1500}={}) {
   const light=new THREE.DirectionalLight(0xfff7ed,2.5);light.position.set(-100,-180,350);scene.add(light);
   const rim=new THREE.DirectionalLight(0xe4edff,1.2);rim.position.set(160,100,100);scene.add(rim);
   let disposed=false,visible=true,frame,previous,animate;
-  function invalidate(){if(!disposed&&visible&&!document.hidden&&!frame)frame=requestAnimationFrame(draw);}
-  function draw(now){frame=undefined;if(disposed||!visible||document.hidden)return;
+  function invalidate(){if(!disposed&&!recovery.lost&&visible&&!document.hidden&&!frame)frame=requestAnimationFrame(draw);}
+  function draw(now){frame=undefined;if(disposed||recovery.lost||!visible||document.hidden)return;
     const moving=animate?.(previous===undefined?0:Math.min(.05,(now-previous)/1000));previous=now;
     renderer.render(scene,camera);if(moving)invalidate();
   }
+  const recovery=installRenderRecovery(renderer,host,ready=>{if(ready){owned[0].dispose();owned[0]=inspectionEnvironment(renderer,scene);}invalidate();});
   controls.addEventListener('change',invalidate);
   const resize=new ResizeObserver(()=>{const {width,height}=host.getBoundingClientRect();if(!width||!height)return;camera.aspect=width/height;camera.updateProjectionMatrix();renderer.setSize(width,height);invalidate();});resize.observe(host);
   const intersection=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;previous=undefined;if(!visible){cancelAnimationFrame(frame);frame=undefined;}else invalidate();});intersection.observe(host);
   const visibility=()=>{previous=undefined;if(document.hidden){cancelAnimationFrame(frame);frame=undefined;}else invalidate();};document.addEventListener('visibilitychange',visibility);
   return {scene,camera,controls,owned,invalidate,setAnimation(fn){animate=fn;invalidate();},
-    dispose(){disposed=true;cancelAnimationFrame(frame);resize.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',visibility);controls.dispose();for(const resource of owned)resource.dispose();renderer.dispose();host.replaceChildren();},
+    dispose(){disposed=true;recovery.dispose();cancelAnimationFrame(frame);resize.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',visibility);controls.dispose();for(const resource of owned)resource.dispose();renderer.dispose();host.replaceChildren();},
   };
 }

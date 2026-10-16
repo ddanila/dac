@@ -763,3 +763,8 @@ output[for^="crt-"] { font-variant-numeric:tabular-nums; margin:0 .5rem; }
 
 #serial-paper {max-height:20rem;overflow:auto;white-space:pre;}
 #serial-text {width:100%;box-sizing:border-box;}
+
+.render-recovery { position:absolute; z-index:20; inset:1rem 1rem auto; padding:1rem; background:#292014; color:#fff1d3; border:2px solid #e7ad4b; }
+:focus-visible { outline:3px solid #78c8ff; outline-offset:3px; }
+#inspection-link { width:100%; }
+@media (pointer:coarse) { button:not([data-byte]),summary,select { min-height:44px; } input[type=range] { min-height:44px; } }
