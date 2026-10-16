@@ -4,12 +4,12 @@ import {printerPages} from './robotron-activities.js';
 export function createSerialPanel(send){
  const panel=document.createElement('details');panel.dataset.robotron='';panel.id='serial-panel';
  panel.innerHTML=`<summary>V.24 terminal and file transfer</summary>
- <p>Incoming peer defaults to following guest framing. Fixed settings allow mismatched baud, parity and framing experiments. The terminal shows raw guest TX bytes. Download the independently decoded peer bytes to compare framing; fixed peer settings apply in both directions. Uses the reference internal CTC clock route; external-clock wiring is not emulated. Start a serial program on the guest before sending.</p>
- <label>Incoming baud<select id="serial-baud"><option value="0">Follow guest</option>${[300,600,1200,2400,4800,9600,19200,38400].map(n=>`<option>${n}</option>`).join('')}</select></label>
+ <p>Serial peer defaults to following guest framing. Fixed settings allow mismatched baud, parity and framing experiments. The terminal shows raw guest TX bytes. Download the independently decoded peer bytes to compare framing; fixed peer settings apply in both directions. Uses the reference internal CTC clock route; external-clock wiring is not emulated. Start a serial program on the guest before sending.</p>
+ <label>Peer baud<select id="serial-baud"><option value="0">Follow guest</option>${[300,600,1200,2400,4800,9600,19200,38400].map(n=>`<option>${n}</option>`).join('')}</select></label>
  <label>Data bits<select id="serial-width">${[8,7,6,5].map(n=>`<option>${n}</option>`).join('')}</select></label>
  <label>Parity<select id="serial-parity"><option value="0">None</option><option value="1">Odd</option><option value="2">Even</option></select></label>
  <label>Stop bits<select id="serial-stops"><option value="2">1</option><option value="3">1.5</option><option value="4">2</option></select></label>
- <button id="serial-apply">Apply incoming framing</button>
+ <button id="serial-apply">Apply peer framing</button>
  <label><input id="serial-cts" type="checkbox"> Peer ready (CTS)</label>
  <label><input id="serial-dcd" type="checkbox"> Connection present (DCD)</label>
  <label><input id="serial-rts" type="checkbox"> Wait for guest RTS before sending</label>
