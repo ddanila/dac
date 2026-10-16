@@ -407,11 +407,14 @@ test("monitor cabinet keeps its width at the back and captive leads follow inspe
     });
     const leads = ["monitor-power-lead", "monitor-signal-lead"].map(n => model.objects.get(n));
     const originals = leads.map(m => m.geometry.attributes.position.array.slice());
-    const endIndices = originals.map(a => {
+    const endIndices = originals.map((a,lead) => {
+      // Power exits downward; signal exits towards -X. Lowest Z on the
+      // signal lead belongs to its bend, not its plug attachment.
+      const endAxis=lead===0?2:0;
       let top=0, bottom=0;
       for(let i=1;i<a.length/3;i++) {
         if(a[i*3+2]>a[top*3+2])top=i;
-        if(a[i*3+2]<a[bottom*3+2])bottom=i;
+        if(a[i*3+endAxis]<a[bottom*3+endAxis])bottom=i;
       }
       return {top,bottom};
     });
