@@ -1,7 +1,7 @@
 {
   "reference": "0.289 (unknown)",
   "machine": "rt1715w",
-  "core": "19280f6fed9ed38dceb9487c85a79bf4e16879d7",
+  "core": "5350310fa3a999070ab6e9f97d544d7c21240055",
   "diagnosticSha256": "bfc7058890db508abe3501f4a17ed419b406c1760b35424841a11300fa266acb",
   "firmware": {
     "cas.bin": "8a085e4b8988c47de9ca05bdd65cfa7657d45b87efb72e3ee6a0bbcbf6bab23b",

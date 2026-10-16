@@ -835,9 +835,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       objects.get("monitor-tape").position.z += monitorOffset[2];
       objects.get("monitor-tape").position.y += monitorOffset[1];
     }
-    // Captive ends follow the monitor; rear plugs stay with the system unit.
-    // Exploded-view extension is illustrative, not a cable-length measurement.
-    const monitorPlugPark = inspection.disconnectCables && (inside || split > 0.01) ? 24 : 0;
+    // Unplug and carry monitor leads with the lifted assembly. Never stretch them.
+    const monitorPlugPark = caseFraction > 0 ? 18 * Math.min(1, caseFraction * 40) : inspection.disconnectCables && split > 0.01 ? 18 : 0;
     const cablePose = `${caseFraction}:${monitorPlugPark}`;
     if (cablePose !== monitorCablePose) {
       monitorCablePose = cablePose;
@@ -851,7 +850,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         mesh.geometry.computeBoundingSphere();
       }
       for (const name of ["monitor-plug-bodies", "monitor-plug-metal", "monitor-plug-collars"])
-        objects.get(name).position.y = monitorPlugPark;
+        objects.get(name).position.set(caseOffset[0], caseOffset[1] + monitorPlugPark, caseOffset[2]);
       dirty = true;
     }
     objects.get("case-lid").visible = true;

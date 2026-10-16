@@ -35,14 +35,23 @@ test('CRT persistence keeps source pixels intact and resets after a long pause',
 test('display values and practice progress are visible and resettable',async({page})=>{
  await page.goto('/?activity=wordstar');
  const activity=page.locator('#activity-instructions');
- await expect(activity.getByRole('status')).toContainText('0 of 5');
+ await expect(activity.getByRole('status')).toContainText('0 of 6');
  await activity.locator('input').first().check();
- await expect(activity.getByRole('status')).toContainText('1 of 5');
- await activity.getByRole('button').click();
- await expect(activity.getByRole('status')).toContainText('0 of 5');
+ await expect(activity.getByRole('status')).toContainText('1 of 6');
+ await activity.getByRole('button',{name:'Reset practice progress'}).click();
+ await expect(activity.getByRole('status')).toContainText('0 of 6');
  await page.getByText('Display adjustments',{exact:true}).click();
  await page.locator('#crt-brightness').fill('1.5');await page.locator('#crt-brightness').dispatchEvent('input');
  await expect(page.locator('#crt-brightness-value')).toHaveText('1.50×');
  await page.locator('#crt-defaults').click();await expect(page.locator('#crt-brightness-value')).toHaveText('1.00×');
  await expect(page.getByRole('link',{name:'Download the standalone museum preservation package'})).toBeVisible();
+});
+
+test('practice milestones require saved bytes before claiming save or reopen',async()=>{
+ const {practiceObservations}=await import('../src/practice-guide.js');
+ expect(practiceObservations('wordstar','DAC.TXT\nHELLO FROM DAC',false)[4]).toBe(false);
+ expect(practiceObservations('wordstar','EDITING NO FILE',true)[3]).toBe(true);
+ expect(practiceObservations('wordstar','DAC.TXT\nHELLO FROM DAC',true)[4]).toBe(true);
+ expect(practiceObservations('pascal','COMPILING\nRUNNING\nHELLO FROM DAC')[6]).toBe(true);
+ expect(practiceObservations('pascal',"begin writeln('HELLO FROM DAC') end.")[6]).toBe(false);
 });

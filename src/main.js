@@ -1,3 +1,4 @@
+import {installPracticeGuide} from './practice-guide.js';
 import {installSoundMixer} from './sound-controls.js';
 import {installDiagnosticReport} from './diagnostic-report.js';
 import {installEvidenceControls} from './model-evidence.js';
@@ -82,23 +83,11 @@ try {
 } catch {}
 const activityName = new URLSearchParams(location.search).get("activity");
 const practice = activities[activityName];
+let practiceGuide;
 if (practice) {
-  $("remember-disk").checked = false;
-  $("remember-disk").disabled = true;
-  $("guided-activities").open = true;
-  const heading = document.createElement("h3"); heading.textContent = practice.title;
-  const progress=document.createElement("p"); progress.setAttribute("role","status");
-  const steps=practice.steps.split(/\n(?=\d+\.)/), checks=[];
-  const update=()=>{progress.textContent=`${checks.filter(c=>c.checked).length} of ${checks.length} steps checked · mark each step as you finish it.`;};
-  const list=document.createElement("div");
-  for(const step of steps){
-    const label=document.createElement("label"),check=document.createElement("input"),text=document.createElement("span");
-    check.type="checkbox";check.onchange=update;checks.push(check);text.textContent=step;
-    label.append(check,text);list.append(label);
-  }
-  const reset=document.createElement("button");reset.textContent="Reset practice progress";
-  reset.onclick=()=>{checks.forEach(c=>c.checked=false);update();};
-  $("activity-instructions").append(heading,progress,list,reset);update();
+  $('remember-disk').checked=false;$('remember-disk').disabled=true;
+  $('guided-activities').open=true;
+  practiceGuide=installPracticeGuide($('activity-instructions'),activityName,practice,send);
 }
 const heldModelKeys = new Map();
 let managedHostCaps = false;
@@ -293,6 +282,7 @@ const descriptions = {
 async function configure(demo, historical = false) {
   if (!ready || replayBusy) return;
   const ticket = ++configuration;
+  practiceGuide?.configure(null);
   $("power").disabled = true;
   fail("");
   on = false;
@@ -342,6 +332,7 @@ async function configure(demo, historical = false) {
     ({ firmware, disk: image } = await loadHistoricalRobotron(
       new URL(import.meta.env.BASE_URL, location.origin),
     ));
+    practiceGuide?.configure(image);
     $("media-label").textContent = "S550 · TOS/M 1.0";
     $("fidelity").textContent =
       "Historical S550 ROM and TOS/M 1.0 disk. Power on, open Screen, and wait for A>. Try DIR. This reference setup is not yet matched to Danila’s own ROMs or disks. Writes affect only a browser copy when enabled. S600 runs the reference keyboard; some shifted legends may differ from this specimen.";
@@ -410,6 +401,7 @@ worker.onmessage = ({ data: d }) => {
   debugPanel.message(d);
   if(d.type==="debug-state"&&on)$("status").textContent=d.paused?"Paused · powered on":"Running";
   checkpointPanel.message(d);
+  practiceGuide?.message(d);
   if(d.type==='checkpoint-restored'){release();$("remember-disk").checked=false;}
   collectionPanel.message(d);
   circuitPanel.message(d);
@@ -562,6 +554,7 @@ worker.onmessage = ({ data: d }) => {
       scene?.update();
     }
     previousPixels = pixels;
+    practiceGuide?.frame(d,on&&!replayBusy);
     if (firmwareKeyboard) {
       firmwareKeys.leds(d.keyboardLeds);
       $("keyboard-mode").textContent =

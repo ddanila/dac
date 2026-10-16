@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "core": "19280f6fed9ed38dceb9487c85a79bf4e16879d7",
+  "core": "5350310fa3a999070ab6e9f97d544d7c21240055",
   "reference": "0.289 (unknown)",
   "firmware": {
     "s550.bin": "37e58472a049e1785c3521ec6b23c2d269d93fa5fede696dc7bd72eabb4af031",
@@ -8,17 +8,20 @@
     "s600.bin": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
     "tosm10.img": "f724763d5e48c0f15341e95d7b85f645533dd7dfa270cbce4e44d3025e62b23b"
   },
-  "inputSha256": "4eb06040f9c0670b80ba5982c8533fc750490a58412a188f217f566f77f7555b",
+  "inputSha256": "64e240d782a6f1cb2ce985d6eb41b93840149f7f33ad73aaae15d5b6690aa575",
+  "suite": "basic",
   "commands": [
     "DIR\r",
     "TYPE AUTOEXC.SUB\r",
     "PIP B:=A:PIP.COM\r",
-    "DIR B:\r"
+    "DIR B:\r",
+    "PIP LST:=AUTOEXC.SUB\r"
   ],
   "checks": [
     {
       "checkpoint": "boot",
       "textEqual": true,
+      "milestone": true,
       "prompt": true,
       "rasterEqualOutsideCursor": true,
       "firstPixelDifferences": [],
@@ -36,6 +39,7 @@
     {
       "checkpoint": "DIR",
       "textEqual": true,
+      "milestone": true,
       "prompt": true,
       "rasterEqualOutsideCursor": true,
       "firstPixelDifferences": [],
@@ -53,6 +57,7 @@
     {
       "checkpoint": "TYPE AUTOEXC.SUB",
       "textEqual": true,
+      "milestone": true,
       "prompt": true,
       "rasterEqualOutsideCursor": true,
       "firstPixelDifferences": [],
@@ -70,6 +75,7 @@
     {
       "checkpoint": "PIP B:=A:PIP.COM",
       "textEqual": true,
+      "milestone": true,
       "prompt": true,
       "rasterEqualOutsideCursor": true,
       "firstPixelDifferences": [],
@@ -87,6 +93,7 @@
     {
       "checkpoint": "DIR B:",
       "textEqual": true,
+      "milestone": true,
       "prompt": true,
       "rasterEqualOutsideCursor": true,
       "firstPixelDifferences": [],
@@ -100,6 +107,24 @@
       ],
       "dacText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>DIR\nA: MODCS    COM : SUBMIT   COM : COPYSYS  COM : CP       COM : SCP3     SYS\nA: FKEY     COM : AUTOEXC  BAK : AUTOEXC  SUB : COMMON0  ZGF : COMMON2  ZGF\nA: KOI70    ZGF : KOI71    ZGF : KOI72    ZGF : TP       COM : INIT     COM\nA: PIP      COM : TURBO    MSG : TURBO    OVR : SCAN     COM : DISCOPY  COM\nA: WS       COM : WSOVLY1  OVR : WSMSGS   OVR\nA>TYPE AUTOEXC.SUB\nMODCS COMMON0.ZGF[1] KOI71.ZGF[2]\nFKEY [88=08,8B=05,8A=18,86=04,87=01,89=06,82=16,8C=19,9D=07,8E=0B44,BD=12,D0=03,\nD4=1A,CE=17,D1=01,CF=0B42,83=0B4B,A0=0B43]\nFKEY [A1=0B56]\n\nA>PIP B:=A:PIP.COM\n\nA>DIR B:\nB: PIP      COM\nA>",
       "mameText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>DIR\nA: MODCS    COM : SUBMIT   COM : COPYSYS  COM : CP       COM : SCP3     SYS\nA: FKEY     COM : AUTOEXC  BAK : AUTOEXC  SUB : COMMON0  ZGF : COMMON2  ZGF\nA: KOI70    ZGF : KOI71    ZGF : KOI72    ZGF : TP       COM : INIT     COM\nA: PIP      COM : TURBO    MSG : TURBO    OVR : SCAN     COM : DISCOPY  COM\nA: WS       COM : WSOVLY1  OVR : WSMSGS   OVR\nA>TYPE AUTOEXC.SUB\nMODCS COMMON0.ZGF[1] KOI71.ZGF[2]\nFKEY [88=08,8B=05,8A=18,86=04,87=01,89=06,82=16,8C=19,9D=07,8E=0B44,BD=12,D0=03,\nD4=1A,CE=17,D1=01,CF=0B42,83=0B4B,A0=0B43]\nFKEY [A1=0B56]\n\nA>PIP B:=A:PIP.COM\n\nA>DIR B:\nB: PIP      COM\nA>"
+    },
+    {
+      "checkpoint": "PIP LST:=AUTOEXC.SUB",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": true,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>DIR\nA: MODCS    COM : SUBMIT   COM : COPYSYS  COM : CP       COM : SCP3     SYS\nA: FKEY     COM : AUTOEXC  BAK : AUTOEXC  SUB : COMMON0  ZGF : COMMON2  ZGF\nA: KOI70    ZGF : KOI71    ZGF : KOI72    ZGF : TP       COM : INIT     COM\nA: PIP      COM : TURBO    MSG : TURBO    OVR : SCAN     COM : DISCOPY  COM\nA: WS       COM : WSOVLY1  OVR : WSMSGS   OVR\nA>TYPE AUTOEXC.SUB\nMODCS COMMON0.ZGF[1] KOI71.ZGF[2]\nFKEY [88=08,8B=05,8A=18,86=04,87=01,89=06,82=16,8C=19,9D=07,8E=0B44,BD=12,D0=03,\nD4=1A,CE=17,D1=01,CF=0B42,83=0B4B,A0=0B43]\nFKEY [A1=0B56]\n\nA>PIP B:=A:PIP.COM\n\nA>DIR B:\nB: PIP      COM\nA>PIP LST:=AUTOEXC.SUB\n\nA>",
+      "mameText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>DIR\nA: MODCS    COM : SUBMIT   COM : COPYSYS  COM : CP       COM : SCP3     SYS\nA: FKEY     COM : AUTOEXC  BAK : AUTOEXC  SUB : COMMON0  ZGF : COMMON2  ZGF\nA: KOI70    ZGF : KOI71    ZGF : KOI72    ZGF : TP       COM : INIT     COM\nA: PIP      COM : TURBO    MSG : TURBO    OVR : SCAN     COM : DISCOPY  COM\nA: WS       COM : WSOVLY1  OVR : WSMSGS   OVR\nA>TYPE AUTOEXC.SUB\nMODCS COMMON0.ZGF[1] KOI71.ZGF[2]\nFKEY [88=08,8B=05,8A=18,86=04,87=01,89=06,82=16,8C=19,9D=07,8E=0B44,BD=12,D0=03,\nD4=1A,CE=17,D1=01,CF=0B42,83=0B4B,A0=0B43]\nFKEY [A1=0B56]\n\nA>PIP B:=A:PIP.COM\n\nA>DIR B:\nB: PIP      COM\nA>PIP LST:=AUTOEXC.SUB\n\nA>"
     }
   ],
   "limitations": [
@@ -113,5 +138,12 @@
     "sha256": "339155d6918910b2e7a3a00f66274c77228ad9e9474aa7b37c9d61082339d15d",
     "dacEqual": true,
     "mameEqual": true
+  },
+  "printer": {
+    "bytes": 175,
+    "dacEqual": true,
+    "mameEqual": true,
+    "dacSha256": "45caebddd58e4d814eb2affc8d323c7c0ad0247326b91561e8a8ad22c2d8d38f",
+    "mameSha256": "45caebddd58e4d814eb2affc8d323c7c0ad0247326b91561e8a8ad22c2d8d38f"
   }
 }

@@ -62,3 +62,38 @@ test('S600 file editing and checkpoint restore preserve guest text and disk byte
     .toMatch(/TYPE DACEDIT\.TXT\nS600 CHECKPOINT TEXT\nA>$/);
   await expect(page.locator('#error')).toBeEmpty();
 });
+
+test('WordStar guide detects save and reopen and restores its own recovery point', async ({page})=>{
+ test.skip(process.env.DAC_HISTORICAL_QUALIFICATION!=='1','Optional real application workflow.');
+ test.setTimeout(150000);
+ await page.route(/\/models\/robotron-1715m\/(?!model\.json)/,r=>r.fulfill({status:503,body:'No geometry in application fixture'}));
+ await page.goto('/?activity=wordstar');
+ await expect(page.locator('#power')).toBeEnabled();
+ await page.locator('#media-controls').evaluate(e=>e.open=true);
+ await page.locator('#writable').check();await page.locator('#historical').click();
+ await expect(page.locator('#power')).toBeEnabled();await page.locator('#turbo').check();await page.locator('#power').click();
+ await expectHistoricalPrompt(page);
+ const guide=page.locator('#activity-instructions'),checks=guide.locator('input[type=checkbox]');
+ await expect(checks.nth(0)).toBeChecked();
+ await guide.getByRole('button',{name:'Save practice recovery point',exact:true}).click();
+ await expect(guide.locator('[data-practice-status]')).toContainText('saved');
+ await typeHistorical(page,'WS DAC.TXT\n');
+ await expect.poll(()=>historicalScreen(page),{timeout:20000}).toContain('A:DAC.TXT');
+ await typeHistorical(page,'HELLO FROM DAC\n');
+ await expect(checks.nth(2)).toBeChecked();
+ await page.locator('#screen-view').click();await page.locator('#screen').focus();
+ await page.keyboard.press('Control+KeyK',{delay:150});
+ await typeHistorical(page,'D');
+ await expect.poll(()=>historicalScreen(page),{timeout:20000}).toContain('EDITING NO FILE');
+ await expect(checks.nth(3)).toBeChecked({timeout:10000});
+ await typeHistorical(page,'D');
+ await expect.poll(()=>historicalScreen(page)).toContain('NAME OF FILE');
+ await typeHistorical(page,'DAC.TXT\n');
+ await expect.poll(()=>historicalScreen(page),{timeout:20000}).toContain('HELLO FROM DAC');
+ await expect(checks.nth(4)).toBeChecked();
+ await guide.getByRole('button',{name:'Restore practice recovery point',exact:true}).click();
+ await expectHistoricalPrompt(page);
+ await expect(checks.nth(3)).not.toBeChecked();
+ await expect(checks.nth(4)).not.toBeChecked();
+ await expect(page.locator('#error')).toBeEmpty();
+});

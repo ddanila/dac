@@ -20,7 +20,7 @@ export function printerPages(bytes) {
   finish(); return pages;
 }
 export const activities = Object.freeze({
-  wordstar: {title:'Practice: WordStar', steps:'1. Power on and wait for A>.\n2. Type WS DAC.TXT and press Enter.\n3. Write a few lines.\n4. Press Ctrl+K, then D to save and return.\n5. Export the practice disk if you want to keep it.'},
-  pascal: {title:'Practice: Turbo Pascal', steps:"1. Power on and wait for A>.\n2. Type PIP DAC.PAS=CON: and press Enter.\n3. Type these lines, pressing Enter after each:\nprogram DAC;\nbegin writeln('HELLO FROM DAC') end.\n4. Press Ctrl+Z to finish the file.\n5. Type TP and press Enter.\n6. Answer N to messages; W selects the work file.\n7. Enter DAC.PAS, then R to compile and run."},
+  wordstar: {title:'Practice: WordStar', steps:'1. Power on and wait for A>.\n2. Type WS DAC.TXT and press Enter.\n3. Write HELLO FROM DAC and press Enter.\n4. Press Ctrl+K, then D to save and return to the WordStar menu.\n5. Press D, wait for NAME OF FILE, enter DAC.TXT and press Enter to reopen your saved document.\n6. Export the practice disk if you want to keep it.'},
+  pascal: {title:'Practice: Turbo Pascal', steps:"1. Power on and wait for A>.\n2. Type PIP and press Enter. Wait for *, then type DAC.PAS=CON: and press Enter.\n3. Type these lines, pressing Enter after each:\nprogram DAC;\nbegin writeln('HELLO FROM DAC') end.\n4. Press Ctrl+Z, wait for *, then press Enter to return to A>.\n5. Type TP and press Enter.\n6. Answer N to messages; W selects the work file.\n7. Enter DAC.PAS, then R to compile and run."},
   printer: {title:'Practice: printer', steps:'1. Power on and wait for A>.\n2. Type PIP LST:=AUTOEXC.SUB and press Enter.\n3. Open Printer output and refresh the paper preview.\n4. Export printer output for the original bytes.'},
 });

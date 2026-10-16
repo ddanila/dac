@@ -841,7 +841,7 @@ async function receive(d) {
       const bytes=snapshotBytes(),disks=[0,1].map(u=>({bytes:diskBytes(u),writable:!!writableUnits[u],label:diskLabels[u]||`Disk ${u+1}`}));
       const record={name:d.name,bytes,disks,kind,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),firmwareIdentity:await sessionIdentity(kind,firmware,null)};
       for(const disk of disks)disk.sha256=await digest(disk.bytes);
-      await saveCheckpoint(record);await postCheckpoints();postMessage({type:'checkpoint-status',message:'Checkpoint saved with both disks.'});
+      const key=await saveCheckpoint(record);if(Number.isInteger(d.practice))postMessage({type:'practice-checkpoint',practice:d.practice,key});await postCheckpoints();postMessage({type:'checkpoint-status',message:'Checkpoint saved with both disks.'});
     } else if(d.type==='checkpoint-restore'){
       await restoreCheckpoint(d.key);postMessage({type:'checkpoint-status',message:'Checkpoint restored. Private disk copies are running; remember changes is off.'});
     } else if(d.type==='checkpoint-delete'){

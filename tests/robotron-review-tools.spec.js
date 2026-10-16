@@ -2,11 +2,11 @@ import {test,expect} from '@playwright/test';
 import {monitorLeadPath,leadMetrics,leadLidClear,segmentIntersectsBox} from '../src/monitor-cables.js';
 import {createRobotronSound} from '../src/robotron-sound.js';
 import {effectiveSoundLevels} from '../src/sound-controls.js';
-test('segment collision catches crossings with both endpoints outside; cable length growth is disclosed',()=>{
+test('segment collision catches crossings with both endpoints outside; detached monitor leads preserve length',()=>{
  expect(segmentIntersectsBox([-2,0,0],[2,0,0],[-1,-1,-1],[1,1,1])).toBe(true);
  expect(segmentIntersectsBox([-2,2,0],[2,2,0],[-1,-1,-1],[1,1,1])).toBe(false);
  expect(segmentIntersectsBox([0,0,0],[0,0,0],[-1,-1,-1],[1,1,1])).toBe(true);
- for(const name of ['monitor-power-lead','monitor-signal-lead']){const closed=monitorLeadPath(name),open=monitorLeadPath(name,[0,400,180],24);expect(leadLidClear(open,[0,400,180],4.2)).toBe(true);expect(leadMetrics(open).length).toBeGreaterThan(leadMetrics(closed).length);}
+ for(const name of ['monitor-power-lead','monitor-signal-lead']){const closed=monitorLeadPath(name),open=monitorLeadPath(name,[0,400,180],18);expect(leadLidClear(open,[0,400,180],4.2)).toBe(true);expect(leadMetrics(open).length).toBeCloseTo(leadMetrics(closed).length,6);}
 });
 test('audio preview respects enable, source recording, duration, mute/solo and blocked resume',async()=>{
  const played=[],context={state:'suspended',currentTime:4,destination:{},createGain:()=>({gain:{},connect(){}}),resume:async()=>{context.state='running';},decodeAudioData:async b=>b,createBufferSource:()=>({connect(){},disconnect(){},start(){played.push(this);},stop(at){this.stopAt=at;}})};
@@ -20,7 +20,7 @@ test('report viewer checks checksums, compares metadata and events locally, and 
  await page.locator('#diagnostic-viewer').evaluate(e=>e.open=true);
  const upload=async(i,data)=>page.locator(`[data-report="${i}"]`).setInputFiles({name:'report.json',mimeType:'application/json',buffer:Buffer.from(data)});
  await upload(0,files[0]);await expect(page.locator('[data-overview]')).toContainText('first');await expect(page.locator('[data-overview] img')).toHaveCount(0);await expect(page.locator('[data-events]')).toContainText('"cycle":12');
- await upload(1,files[1]);await expect(page.locator('[data-comparison]')).toContainText('hardware.speed');await expect(page.locator('[data-comparison]')).toContainText('second');await expect(page.locator('[data-comparison]')).toContainText('Captured event at index 0');
+ await upload(1,files[1]);await expect(page.locator('[data-comparison]')).toContainText('hardware.speed');await expect(page.locator('[data-comparison]')).toContainText('second');await expect(page.locator('[data-comparison]')).toContainText('Aligned event A:0 B:0');
  const corrupt=JSON.parse(Buffer.from(files[1]).toString());corrupt.payload+=' ';await upload(1,Buffer.from(JSON.stringify(corrupt)));await expect(page.locator('[data-status]')).toContainText('checksum failed');await expect(page.locator('[data-comparison]')).not.toContainText('second');
  await upload(1,files[2]);await expect(page.locator('[data-status]')).toContainText('Invalid captured');expect(await page.evaluate(()=>window.restores)).toBe(0);
  await page.locator('[data-clear]').click();await expect(page.locator('[data-overview]')).not.toContainText('first');
@@ -31,4 +31,26 @@ test('remap overlay distinguishes captured placement from current projection and
 test('sound mixer mutes without losing levels, solos temporarily and restores defaults',async({page})=>{
  await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{document.body.innerHTML='<label><input id="drive-sound" type="checkbox" checked>Sound</label>';const {installSoundMixer}=await import('/src/sound-controls.js');window.levels={};installSoundMixer({volume:(g,v)=>window.levels[g]=v,status:()=> 'suspended',preview:async()=>{window.previewed=true;}},{volume:v=>window.levels.drives=v,status:()=> 'running'});document.getElementById('sound-mixer').open=true;});
  await page.locator('[data-sound=fan]').fill('40');await page.locator('[data-mute=fan]').check();await page.locator('[data-solo=keyboard]').click();expect(await page.evaluate(()=>window.levels)).toEqual({fan:0,keyboard:1,power:0,drives:0});await page.locator('[data-solo=keyboard]').click();await page.locator('[data-mute=fan]').uncheck();expect(await page.evaluate(()=>window.levels.fan)).toBe(.4);await expect(page.locator('[data-audio-status]')).toContainText('suspended');await page.locator('[data-preview-sound=keyboard]').click();expect(await page.evaluate(()=>window.previewed)).toBe(true);await page.locator('[data-sound-defaults]').click();expect(await page.evaluate(()=>window.levels)).toEqual({fan:1,keyboard:1,power:1,drives:1});expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('dac-sound-mutes')).fan)).toBe(false);
+});
+
+test('event alignment isolates inserted operations, changed values and relative timing',async()=>{
+ const {alignEvents,compareDiagnostics}=await import('../src/diagnostic-viewer.js');
+ const event=(address,value,cycle)=>({master:'CPU',kind:'IW',address,value,cycle,space:0,offset:0});
+ const a=[event(12,1,10),event(13,2,20),event(14,3,30)],b=[event(12,1,110),event(99,7,115),event(13,9,120),event(14,3,133)];
+ expect(alignEvents(a,b)).toEqual([[0,0],[null,1],[1,2],[2,3]]);
+ const report=events=>({hardware:{},disks:[],timeline:{count:events.length,words:events.flatMap(e=>[e.cycle,0,3,e.address,e.value,0,0,0,0,0,0,0,0])}});
+ const changes=compareDiagnostics(report(a),report(b));
+ expect(changes.filter(c=>c.key.startsWith('Unmatched'))).toHaveLength(1);
+ expect(changes.filter(c=>c.key.startsWith('Aligned event A:'))).toHaveLength(1);
+ expect(changes.find(c=>c.key.startsWith('First relative'))?.right).toContain('3 clocks');
+ expect(alignEvents([],a)).toEqual([[null,0],[null,1],[null,2]]);
+ expect(alignEvents([a[0],a[0]],[a[0]])).toEqual([[0,0],[1,null]]);
+});
+
+test('evidence cards separate measured dimensions, estimates and physical verification',async({page})=>{
+ await page.goto('/tests/model-harness.html');
+ const info=await page.evaluate(async()=>{const {evidenceFor}=await import('/src/model-evidence.js');return evidenceFor({name:'case-lid',userData:{}},{});});
+ expect(info.features.find(f=>f.label==='Measured dimensions').value).toContain('1 mm');
+ expect(info.features.find(f=>f.label==='Estimated details').value).toContain('Bend radii');
+ expect(info.features.find(f=>f.label==='Physical verification').value).toBe('unknown');
 });

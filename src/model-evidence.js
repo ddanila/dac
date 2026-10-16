@@ -3,7 +3,15 @@ export const evidenceCategories={measured:{label:'Includes owner dimensions',col
 export function evidenceFor(mesh,model){
  const rule=rules.rules.find(r=>new RegExp(r.pattern).test(mesh.name))||{},assembly=model.evidence?.assemblies?.find(a=>a.id===(mesh.userData?.board||rule.assembly)),category=rule.category||'unknown',file=rule.verification?`models/robotron-1715m/${rule.verification}/model.scad`:'models/robotron-1715m/model.scad';
  const verification=model.modelVerification?.[file]?.physicalVerification||'unknown';
- return {title:mesh.userData?.key?`${mesh.userData.key.label||'Blank'} key`:mesh.userData?.pickedDetail?.title||mesh.name||'Model surface',category,evidence:evidenceCategories[category].label,photo:rule.photo||assembly?.photo,reference:rule.source||assembly?.source,text:[rule.measuredFeatures&&`Measured features: ${rule.measuredFeatures}`,rule.estimatedFeatures&&`Estimated features: ${rule.estimatedFeatures}`,rule.note,assembly?.note,rules.scope,`Physical print verification: ${verification}.`].filter(Boolean).join(' '),physicalVerification:verification};
+ return {title:mesh.userData?.key?`${mesh.userData.key.label||'Blank'} key`:mesh.userData?.pickedDetail?.title||mesh.name||'Model surface',category,evidence:evidenceCategories[category].label,photo:rule.photo||assembly?.photo,reference:rule.source||assembly?.source,text:[rule.measuredFeatures&&`Measured features: ${rule.measuredFeatures}`,rule.estimatedFeatures&&`Estimated features: ${rule.estimatedFeatures}`,rule.note,assembly?.note,rules.scope,`Physical print verification: ${verification}.`].filter(Boolean).join(' '),physicalVerification:verification,
+ features:[
+  {label:'Measured dimensions',value:rule.measuredFeatures||'No individual dimensions recorded for this part.'},
+  {label:'Photo-derived shape',value:rule.photoFeatures||(category==='photo'?'Follows owner photographs; individual shape features are not yet catalogued.':'No photo-derived shape features recorded.')},
+  {label:'Placement',value:rule.placementEvidence||'Placement has not been separately verified.'},
+  {label:'Estimated details',value:rule.estimatedFeatures||rule.note||'No feature-level estimate recorded; do not infer verification.'},
+  {label:'Evidence record',value:rules.source},
+  {label:'Physical verification',value:verification}
+ ]};
 }
 export function createEvidenceView(model){
  let active=false;const originals=new Map(),categories=new WeakMap();
