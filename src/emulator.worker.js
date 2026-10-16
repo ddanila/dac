@@ -327,6 +327,7 @@ function frame() {
       pixels: pixels.buffer,
       activity: module._dac_disk_activity(handle),
       keyboardLeds: module._dac_keyboard_leds(handle),
+      keyboardLatches: module._dac_keyboard_latches?.(handle) ?? null,
       drive: module._dac_drive_status(handle),
       driveTransferSupported: !!module._dac_drive_transfer,
       driveProtectSupported: !!module._dac_drive_protect,
@@ -827,7 +828,7 @@ async function receive(d) {
       const disks=[0,1].map(u=>({bytes:diskBytes(u),writable:!!writableUnits[u],label:diskLabels[u]||`Disk ${u+1}`}));
       const snapshot=d.checkpoint?snapshotBytes():null,roms=firmware.map(([slot,bytes])=>[slot,bytes.slice(0)]);
       const captured={kind,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),running,debugPaused,speed,
-        cables:module._dac_cable_status?.(handle),keyboardLeds:module._dac_keyboard_leds?.(handle),printerState:module._dac_printer_status?.(handle),serialStatus:module._dac_serial_status?.(handle),serialPeerBaud:module._dac_serial_peer_baud?.(handle),serialPeerFormat:module._dac_serial_peer_format?.(handle),drives:[0,1].map(u=>module._dac_drive_status_unit(handle,u))};
+        cables:module._dac_cable_status?.(handle),keyboardLeds:module._dac_keyboard_leds?.(handle),keyboardLatches:module._dac_keyboard_latches?.(handle) ?? null,printerState:module._dac_printer_status?.(handle),serialStatus:module._dac_serial_status?.(handle),serialPeerBaud:module._dac_serial_peer_baud?.(handle),serialPeerFormat:module._dac_serial_peer_format?.(handle),drives:[0,1].map(u=>module._dac_drive_status_unit(handle,u))};
       for(const disk of disks)disk.sha256=await digest(disk.bytes);
       const firmwareIdentity=await sessionIdentity(captured.kind,roms,null);
       const report={date:new Date().toISOString(),appRevision:d.appRevision,coreSha256:captured.build,model:d.inspection?.identity,inspection:d.inspection,hardware:captured,firmwareIdentity,

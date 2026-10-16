@@ -1,8 +1,8 @@
 [
   {
     "name": "keyboard-controller-board",
-    "vertices": 16808,
-    "indices": 53592,
+    "vertices": 16565,
+    "indices": 52776,
     "bounds": [
       -40,
       -331.399994,
@@ -118,14 +118,14 @@
   },
   {
     "name": "keyboard-controller-chips",
-    "vertices": 7012,
-    "indices": 21648,
+    "vertices": 6972,
+    "indices": 21504,
     "bounds": [
       -25.809855,
       -323.575012,
       7.1,
       226,
-      -290.899994,
+      -287.057648,
       14.400001
     ],
     "transform": [
@@ -196,14 +196,14 @@
   },
   {
     "name": "keyboard-controller-ink",
-    "vertices": 13836,
-    "indices": 38628,
+    "vertices": 13428,
+    "indices": 37428,
     "bounds": [
-      42.455273,
+      39.971237,
       -328.421692,
       7.22,
       224.800003,
-      -294.399994,
+      -290.782501,
       12.07
     ],
     "transform": [
@@ -274,14 +274,14 @@
   },
   {
     "name": "keyboard-controller-metal",
-    "vertices": 42177,
-    "indices": 114612,
+    "vertices": 41249,
+    "indices": 112068,
     "bounds": [
       -34,
       -324.337006,
       3.8,
       229.25,
-      -288.039001,
+      -287.483612,
       16.35
     ],
     "transform": [
@@ -508,14 +508,14 @@
   },
   {
     "name": "keyboard-controller-solder",
-    "vertices": 67536,
-    "indices": 203958,
+    "vertices": 66548,
+    "indices": 200988,
     "bounds": [
       -39.900002,
       -325.26001,
       4.95,
       229.899994,
-      -286.875671,
+      -286.571198,
       7.15
     ],
     "transform": [
@@ -547,14 +547,14 @@
   },
   {
     "name": "keyboard-controller-traces",
-    "vertices": 67452,
-    "indices": 216138,
+    "vertices": 40589,
+    "indices": 120606,
     "bounds": [
       -25.264999,
       -330.398987,
       5.4,
-      225.419006,
-      -285.549988,
+      225.143997,
+      -285.399994,
       7.22
     ],
     "transform": [

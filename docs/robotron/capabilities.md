@@ -1,6 +1,6 @@
 # Robotron capability and evidence matrix
 
-Current baseline: DAC Emulation 0.16.0, scanline output, snapshot layout 14;
+Current baseline: DAC Emulation 0.17.0, scanline output, snapshot layout 15;
 canonical model v48. This matrix describes present behavior. Dated development
 sections elsewhere are history, not cumulative lists of current limitations.
 
@@ -16,6 +16,10 @@ sections elsewhere are history, not cumulative lists of current limitations.
 | Boards | Owner-referenced packages, sockets, holes, supports and artwork | Artwork is not a verified netlist; some orientations/mounts unresolved | CAD hardware audit and calibration reports |
 | Sound | Owner power/fan/key recordings; synthesized drive activity | Unmeasured spatial/acoustic response and drive timbre | Audio manifest and playback tests |
 | Persistence | Checksummed named checkpoints with both disks; collection preview/selective restore; disk copies, portable states, preserved old cores, replay | Checkpoint firmware must match (including supplied custom ROMs); 20 named checkpoints; quick-save states/mounts keep or replace | Session/portable/replay checks |
+
+Keyboard controller 0.17.0 closes reference bus/LED logical discrepancies and
+separates raw latch diagnostics from display persistence. See the
+[controller implementation record](keyboard-controller-progress.md) for scope.
 
 ## Inspection and recovery
 
