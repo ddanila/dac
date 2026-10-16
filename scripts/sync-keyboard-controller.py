@@ -14,6 +14,11 @@ blob={k:json.loads(v.read_text()) for k,v in paths.items()};digest=lambda p:hash
 if digest(paths['connectivity'])!=digest(core/'reference/connectivity.json'):raise SystemExit('CAD and HDL are pinned to different connectivity')
 report=json.loads((core/'reports/full-audit.json').read_text())
 if report['connectivitySha256']!=digest(paths['connectivity']):raise SystemExit('Co-simulation report uses different connectivity')
+for name,expected in {**report['sources'],**report['cpuSources']}.items():
+ if digest(a.emulation/name)!=expected:raise SystemExit('Stale co-simulation report source: '+name)
+if digest(a.emulation/'machines/robotron1715m/keyboard.c')!=report['productionKeyboardSha256']:raise SystemExit('Stale production keyboard comparison')
+for name,expected in report['firmware']['cpu']['files'].items():
+ if digest(a.emulation/'third_party/cpu/tv80'/name)!=expected:raise SystemExit('Stale TV80 comparison: '+name)
 blob['source']={'cad':{'repository':'https://github.com/ddanila/3d-models','revision':cadrev},'emulation':{'repository':'https://github.com/ddanila/dac-emulation','revision':emurev},'files':{k:digest(v) for k,v in paths.items()},'reportSha256':digest(core/'reports/full-audit.json')}
 blob['cosimulation']={k:report[k] for k in ['bus','firmware','equivalent']}
 target=root/'public/models/robotron-1715m/keyboard-controller.json';target.write_text(json.dumps(blob,indent=2)+'\n');print('Pinned keyboard controller:',cadrev,emurev)

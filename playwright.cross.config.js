@@ -8,6 +8,7 @@ export default {
     "assembly.spec.js",
     "robotron-review-tools.spec.js",
     "robotron-activities.spec.js",
+    "keyboard-controller.spec.js",
   ],
   workers: 1,
   timeout: 60000,

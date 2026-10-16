@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "d6772e626e18c04de96179dfe62aa9a8b9f79de3",
+  "revision": "3e9d1e102f454989ccc95f7de2a49eda01b8b4fc",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "16e5b744cb4f5fd40970ae532f9b06dba6a0dcd15909e47b1a237acbcb84d91f"
+      "sha256": "98e12f6ae7e1eb11043cf654d6c117a021c52c02ddc0089027fe68ffe4a23155"
     },
     {
       "file": "LICENSE",
@@ -489,7 +489,7 @@
     },
     {
       "file": "meshes/keyboard-controller-ink.stl",
-      "sha256": "9d730ac9c5c1916c004bcfb012c059be78a1aae8dd9bb72664fc28d93effc734"
+      "sha256": "6fa0f763d3730f62b137c9828f01598fbb275c5312815a88640da912a2361f2d"
     },
     {
       "file": "meshes/keyboard-insulators.stl",
@@ -1477,27 +1477,27 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "8062bc2c3554710604824cc6091a375f4e29e52f6399e2829f62a070f1a649a5"
+      "sha256": "1b5dc398ec9fb8598b1caad1a71b08778a6e6a1431bf6d694db23e88f99c2251"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "00c6381b66afdf264e20338a8f42570c4ae951921a43fdeef01cc4902d213b75"
+      "sha256": "a815253d55579ec07c97a8d5c11704efe81884e811b4438bc795c4ac671f26bc"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "82f718b40befb43731b39689c3fce89eb54a06bd5ff33312070bbe1a04ccbcb6"
+      "sha256": "d374e9e0f156bb5e4b77006d9724988ef3205a1f231db32c5f12596a3ff7906a"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "9dca12d70e85464e08d3db1a7d0a923459c30970daf926c24dc859fb52fc1944"
+      "sha256": "aae7c40b7b56b87cf63ba20463416391601d673357b56ac033ca2ead2d5f68dc"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "bb3cbf7b416d54ebda5136fe0df17716caba8f6fec3e8bb3a819c29136e04743"
+      "sha256": "64db8699a22d3f34b7febf34f74d3ad2cd02067220ebc92b984edea7b867e44d"
     }
   ],
   "inspection": {
-    "robotron-evidence.json": "7e36699d1e3ea75765248d8c72fd6ce65f23ba6b245855839754cd9edfd02c54",
+    "robotron-evidence.json": "0e09f4a1ff603f8a38bce9b52eea315670bb438d33a491ffa7ec028646df48fe",
     "robotron-inspection-paths.json": "a0b96f6a19d022b48978423fd02555dec9a3447a35a411745ae30b10103ac590",
     "robotron-relationships.json": "38b71d36467e725a418302bfc1183516299c6da12b011373065c07ee2055f0cf",
     "robotron-monitor-cable-paths.json": "3dd0971b1069a0babf64d96853597909630e928f673b3cd8ba912ccbf78b4ce3"
