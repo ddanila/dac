@@ -1,0 +1,92 @@
+{
+  "scope": "Cold local Chromium development server; separate contexts. Mobile means 390x844 and 4x CPU throttling, not a physical handset.",
+  "baseline": [
+    {
+      "scope": "Cold local browser context, all detailed model geometry ready; development server",
+      "readyMs": 7032,
+      "resources": 233,
+      "decodedBytes": 12010354,
+      "duplicateUrls": [],
+      "firstRequestMs": 217,
+      "lastResponseMs": 2126
+    },
+    {
+      "scope": "Cold local browser context, all detailed model geometry ready; development server",
+      "readyMs": 6739,
+      "resources": 233,
+      "decodedBytes": 12069952,
+      "duplicateUrls": [],
+      "firstRequestMs": 104,
+      "lastResponseMs": 1867
+    },
+    {
+      "scope": "Cold local browser context, all detailed model geometry ready; development server",
+      "readyMs": 6594,
+      "resources": 233,
+      "decodedBytes": 12069952,
+      "duplicateUrls": [],
+      "firstRequestMs": 139,
+      "lastResponseMs": 1922
+    }
+  ],
+  "packs": [
+    {
+      "scope": "Cold local browser context, all detailed model geometry ready; development server",
+      "readyMs": 7790,
+      "resources": 21,
+      "decodedBytes": 12069952,
+      "duplicateUrls": [],
+      "firstRequestMs": 127,
+      "lastResponseMs": 2154
+    },
+    {
+      "scope": "Cold local browser context, all detailed model geometry ready; development server",
+      "readyMs": 6554,
+      "resources": 21,
+      "decodedBytes": 12069952,
+      "duplicateUrls": [],
+      "firstRequestMs": 140,
+      "lastResponseMs": 1771
+    },
+    {
+      "scope": "Cold local browser context, all detailed model geometry ready; development server",
+      "readyMs": 6397,
+      "resources": 21,
+      "decodedBytes": 12069952,
+      "duplicateUrls": [],
+      "firstRequestMs": 148,
+      "lastResponseMs": 1730
+    }
+  ],
+  "worker": {
+    "scope": "Cold local browser context, all detailed model geometry ready; development server",
+    "readyMs": 6302,
+    "heapBytes": 72200000,
+    "resources": 233,
+    "decodedBytes": 12069952,
+    "duplicateUrls": [],
+    "firstRequestMs": 94,
+    "lastResponseMs": 1819
+  },
+  "mobileBaseline": {
+    "scope": "Cold local browser context, all detailed model geometry ready; development server",
+    "readyMs": 8295,
+    "heapBytes": 76600000,
+    "resources": 233,
+    "decodedBytes": 12069952,
+    "duplicateUrls": [],
+    "firstRequestMs": 281,
+    "lastResponseMs": 2625
+  },
+  "mobileWorkerPacks": {
+    "scope": "Cold local browser context, all detailed model geometry ready; development server",
+    "readyMs": 8018,
+    "heapBytes": 76600000,
+    "resources": 21,
+    "decodedBytes": 12069952,
+    "duplicateUrls": [],
+    "firstRequestMs": 275,
+    "lastResponseMs": 2092
+  },
+  "decision": "Keep current default transport. Packing cuts requests but average desktop readiness is slightly slower across three samples. Worker/mobile samples are promising but insufficient to justify changing defaults. Experimental worker and generated pack paths are opt-in; no alternate meshes, quantization or hidden interiors. Heap readings are approximate Chromium measurements and omit GPU and worker heaps."
+}

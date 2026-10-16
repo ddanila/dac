@@ -11,3 +11,9 @@ test('duration-based CI assignment includes every test file exactly once',()=>{
  expect(assignFiles([...files].reverse(),seconds)).toEqual(assignFiles(files,seconds));
  expect(()=>assignFiles(files,seconds,0)).toThrow();
 });
+test('CI baseline ignores cancelled and failed pushes',async()=>{
+ const {successfulBaseline}=await import('../scripts/ci-baseline.mjs');
+ const run=(sha,conclusion,event='push',branch='main')=>({head_sha:sha,conclusion,event,head_branch:branch});
+ expect(successfulBaseline([run('c','cancelled'),run('b','failure'),run('a','success')],'main','d')).toBe('a');
+ expect(successfulBaseline([run('a','success','pull_request'),run('b','success','push','other')],'main','c')).toBe(null);
+});

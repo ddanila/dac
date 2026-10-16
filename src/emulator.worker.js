@@ -363,6 +363,8 @@ function frame() {
       serialErrors:module._dac_serial_errors?.(handle)||0,
       serialSupported:!!module._dac_serial_send,
       serialStatus:module._dac_serial_status?.(handle)||0,
+      serialDecodedSize:module._dac_serial_decoded_size?.(handle)||0,
+      serialDecodedErrors:module._dac_serial_decoded_errors?.(handle)||0,
       serialSize:module._dac_serial_size?.(handle)||0,
       serialOverflow:module._dac_serial_overflow?.(handle)||0,
       cables:module._dac_cable_status?.(handle)||0,
@@ -749,13 +751,19 @@ async function receive(d) {
       storageStatus(
         "Saved disk discarded. Reload original media to start fresh.",
       );
+    } else if(d.type === "timeline-capture"){
+      module._dac_timeline_capture?.(handle,d.enabled?1:0);
+    } else if(d.type === "timeline-preview"){
+      const count=module._dac_timeline_count?.(handle)||0,p=module._dac_timeline_data?.(handle)||0;
+      const bytes=module.HEAPU8.slice(p,p+count*13*4).buffer;
+      postMessage({type:'timeline',bytes},[bytes]);
     } else if(d.type === "collection-export"){
       await persistDisk(true);
       const bytes=await exportCollection();postMessage({type:"download",name:"dac-collection.daccollection",bytes},[bytes]);
       postMessage({type:"collection-status",message:"Saved collection exported. Keep the backup outside this browser."});
     } else if(d.type === "collection-import"){
       if(running || recording)throw Error("Power off and stop recording before restoring a collection.");
-      const result=await importCollection(d.bytes);await publishLibrary();
+      const result=await importCollection(d.bytes,d.choices);await publishLibrary();
       postMessage({type:"collection-status",message:`Imported ${result.added} records; skipped ${result.duplicates} identical records. Reload the page to use restored drive assignments and states.`});
     } else if (d.type === "save-state") {
       await saveRecord(stateKey, snapshotBytes());
@@ -986,6 +994,9 @@ async function receive(d) {
       const fn=d.type==="cables"?module._dac_cables:module._dac_serial_signals;
       if(!fn || fn(handle,d.value)<0)throw Error("Connection setting unsupported.");
       recordEvent([d.type==="cables"?16:14,d.value]);frame();
+    } else if(d.type==='serial-decoded'){
+      const p=module._dac_serial_decoded_data?.(handle)||0,n=module._dac_serial_decoded_size?.(handle)||0,bytes=module.HEAPU8.slice(p,p+n).buffer;
+      postMessage({type:'download',name:'dac-v24-peer.bin',bytes},[bytes]);
     } else if(d.type==="serial-clear"){
       module._dac_serial_clear?.(handle);recordEvent([15]);frame();
     } else if(d.type==="serial-preview" || d.type==="serial-export"){

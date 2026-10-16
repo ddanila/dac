@@ -17,13 +17,16 @@ test('V.24 terminal sends exact file bytes through guest SIO echo and exports ca
  await expect(page.locator('#serial-cts')).toBeEnabled();
  await page.locator('#serial-cts').check();await page.locator('#serial-dcd').check();
  await page.locator('#serial-apply').click();
- await expect(page.locator('#serial-status')).toContainText('incoming adaptive');
+ await expect(page.locator('#serial-status')).toContainText('peer adaptive');
  const bytes=Buffer.from([0,0x41,0x7f,0x80,0xff]);
  await page.locator('#serial-file').setInputFiles({name:'bytes.bin',mimeType:'application/octet-stream',buffer:bytes});
  await expect(page.locator('#serial-status')).toContainText('5 received');
  await page.locator('#serial-hex').check();await expect(page.locator('#serial-paper')).toContainText('00 41 7f 80 ff');
  const download=page.waitForEvent('download');await page.locator('#serial-export').click();
  const {readFile}=await import('node:fs/promises');expect(await readFile(await(await download).path())).toEqual(bytes);
+ const decoded=page.waitForEvent('download');await page.locator('#serial-decoded').click();expect(await readFile(await(await decoded).path())).toEqual(bytes);
+ await page.locator('#circuit-panel summary').click();await page.getByRole('button',{name:'Capture next 512 bus events'}).click();
+ await expect(async()=>{await page.getByRole('button',{name:'Show captured events'}).click();await expect(page.locator('#circuit-panel ol li')).not.toHaveCount(0);}).toPass();
  await page.locator('#electrical-panel summary').click();await page.locator('#electrical-enable').check();
  await page.locator('#electrical-monitor').uncheck();await expect(page.locator('#viewport')).toHaveAttribute('data-electrical','2');
  const recorded=page.waitForEvent('download');await page.locator('#record-stop').click();

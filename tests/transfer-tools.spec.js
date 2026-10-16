@@ -22,3 +22,12 @@ test('guest example disk preserves existing allocations and adds the original re
 });
 
 test('cancellation leaves a CAN beyond any partial receive block',()=>{const sent=[];const s=xmodemSender(Uint8Array.of(1),b=>sent.push(b),()=>{});s.feed(Uint8Array.of(21));s.cancel();expect(s.done).toBe(true);expect(sent.at(-1).length).toBeGreaterThan(131);expect([...sent.at(-1)].every(v=>v===24)).toBe(true);});
+
+test('receiver rejects corrupt packets, acknowledges duplicates and handles block wrap',async()=>{
+ const {xmodemReceiver}=await import('../src/xmodem.js');
+ const replies=[];let output;const rx=xmodemReceiver(b=>replies.push(...b),()=>{},b=>output=b);
+ const packet=n=>{const data=new Uint8Array(128).fill(n&255);return Uint8Array.from([1,n&255,255-(n&255),...data,(128*n)&255]);};
+ const damaged=packet(1);damaged[30]^=1;rx.feed(damaged);expect(replies.at(-1)).toBe(21);
+ for(let i=1;i<=257;i++){rx.feed(packet(i));if(i===1)rx.feed(packet(i));}
+ rx.feed(Uint8Array.of(4));expect(rx.done).toBe(true);expect(output.length).toBe(257*128);expect(output[255*128]).toBe(0);expect(output[256*128]).toBe(1);const count=replies.length;rx.feed(Uint8Array.of(4));expect(replies.length).toBe(count+1);expect(replies.at(-1)).toBe(6);
+});

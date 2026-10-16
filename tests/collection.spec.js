@@ -24,3 +24,19 @@ test('collection preserves bytes and references, skips duplicates and atomically
  expect(result.bytes).toEqual([0,128,255]);expect(result.mount).toEqual({empty:true,label:'B'});
  expect(result.conflict).toContain('Nothing imported');expect(result.hasState).toBe(false);expect(result.name).toBe('Changed locally');expect(result.corrupt).toBeTruthy();
 });
+test('selective restore previews conflicts and copies disk identities with their states',async({page})=>{
+ await page.goto('/tests/model-harness.html');
+ const result=await page.evaluate(async()=>{
+  const {stored,storedKeys,saveRecord}=await import('/src/session-store.js');
+  const {saveLibraryDisk}=await import('/src/disk-library.js');
+  const {exportCollection,importCollection,previewCollection}=await import('/src/collection-backup.js');
+  const id=await saveLibraryDisk('Original',2,new Uint8Array([1,2]).buffer),state='state:example:'+id;
+  await saveRecord(state,new Uint8Array([3]).buffer);const bytes=await exportCollection();
+  await stored(id,{...await stored(id),name:'Local'});
+  const preview=await previewCollection(bytes);
+  await importCollection(bytes,{[id]:'copy',[state]:'restore'});
+  const keys=await storedKeys(),copy=keys.find(k=>k.startsWith('library:')&&k!==id);
+  return {preview:preview.find(r=>r.key===id).status,local:(await stored(id)).name,copy:(await stored(copy)).name,state:!!await stored('state:example:'+copy)};
+ });
+ expect(result).toEqual({preview:'conflict',local:'Local',copy:'Original (restored copy)',state:true});
+});

@@ -9,7 +9,8 @@
     "bad checksum NAK and retry",
     "duplicate block ACK without duplicate write",
     "EOT ACK after BDOS close",
-    "guest-created file byte equality"
+    "guest-created file byte equality",
+    "DACTX guest-to-host binary equality"
   ],
   "limitations": [
     "128-byte record length; final block padded",

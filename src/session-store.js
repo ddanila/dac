@@ -133,7 +133,7 @@ export async function collectionRecords() {
     tx.onabort=tx.onerror=()=>reject(tx.error);
   });}finally{db.close();}
 }
-export async function mergeCollection(rows,equal) {
+export async function mergeCollection(rows,equal,replace=new Map()) {
   const db=await database();
   try{return await new Promise((resolve,reject)=>{
     const tx=db.transaction('copies','readwrite'),store=tx.objectStore('copies');
@@ -142,6 +142,7 @@ export async function mergeCollection(rows,equal) {
       if(failure)return;
       if(req.result===undefined){store.put(value,key);added++;}
       else if(equal(req.result,value))duplicates++;
+      else if(replace.has(key)&&equal(req.result,replace.get(key))){store.put(value,key);added++;}
       else{failure=Error(`A different saved record already exists (${key.slice(0,90)}). Nothing imported. Restore into a separate browser profile to keep both collections.`);tx.abort();}
     };}
     tx.oncomplete=()=>resolve({added,duplicates});

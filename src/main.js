@@ -29,7 +29,7 @@ const circuitPanel=createCircuitPanel((c,related)=>{
   $("open-case").checked=true;$("isolate-assembly").value="motherboard";$("component-focus").value="none";
   updateCase();selectView("motherboard");
   showSpecimenDetail({title:`${c.ref} · ${c.name}`,text:`${c.role} ${c.signal} Drawing: 1715W/teil_b/Stromlaufplan ${c.sheet}.jpg in the linked archive.`,evidence:"W/M schematic relationship; specimen mapping provisional",photo:"20261014_072654600",reference:"https://xepb.org/robotron/docs/1715w.zip",sheet:`Stromlaufplan ${c.sheet}.jpg`});
-});
+},send,row=>{scene?.markTrack({unit:row.unit,c:row.cylinder,h:row.head});$('open-case').checked=true;$('isolate-assembly').value='drives';updateCase();selectView('drive-top');});
 const diskExplorer=createDiskExplorer((unit,request)=>send({type:"inspect-disk",unit,request}),target=>{
   scene?.markTrack(target);
   if(target){
@@ -393,6 +393,7 @@ $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPrevie
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
   collectionPanel.message(d);
+  circuitPanel.message(d);
   serialPanel.message(d);
   if(d.type==="capture-reset" || d.type==="configured"){lastPreviewSize=-1;previewPending=false;}
   if (d.type === "printer-preview") {
