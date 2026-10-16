@@ -25,6 +25,9 @@ test('inspection controls scope keyboard navigation and share validated view sta
  });expect(result.nav).toEqual(['ArrowLeft']);expect(result.guest).toBe(0);expect(result.cuts.at(-1).axis).toBe('y');expect(result.shared.selects['section-axis']).toBe('y');expect(result.shared.camera.position).toEqual([1,2,3]);
 });
 test('full exhibit clips, shares its cut and recovers graphics while the worker remains alive',async({page})=>{
+ // Includes full CAD load, real handle dragging and WebGL context restoration.
+ // Software rendering in CI needs a larger total budget; no extra waits.
+ test.setTimeout(process.env.CI?90000:60000);
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/src/scene.js',async r=>{const response=await r.fetch(),source=await response.text();await r.fulfill({response,body:source.replace('sectionGizmo.size=.65;','sectionGizmo.size=.65;window.__cutProbe={gizmo:sectionGizmo,camera,controls,THREE};')});});
  await page.addInitScript(()=>{const Base=Worker;window.frames=0;window.Worker=class extends Base{constructor(...args){super(...args);this.addEventListener('message',({data})=>{if(data.type==='frame')window.frames++;});}};});
