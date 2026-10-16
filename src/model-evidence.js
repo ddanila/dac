@@ -1,4 +1,4 @@
-import rules from './robotron-evidence.json';
+import rules from './robotron-evidence.json' with {type:'json'};
 export const evidenceCategories={measured:{label:'Includes owner dimensions',color:0x61d68a},photo:{label:'Owner photo-derived geometry',color:0x58c9f3},reference:{label:'Generic / comparative reference',color:0xcb9aff},unknown:{label:'Evidence not mapped',color:0x969696}};
 export function evidenceFor(mesh,model){
  const rule=rules.rules.find(r=>new RegExp(r.pattern).test(mesh.name))||{},assembly=model.evidence?.assemblies?.find(a=>a.id===(mesh.userData?.board||rule.assembly)),category=rule.category||'unknown',file=rule.verification?`models/robotron-1715m/${rule.verification}/model.scad`:'models/robotron-1715m/model.scad';
