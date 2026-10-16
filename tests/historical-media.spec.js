@@ -18,8 +18,9 @@ test("3D keyboard enters DIR in historical TOS/M and exports an unchanged read-o
   page,
 }) => {
   // Full CAD rendering plus stock-OS boot and four 3D key gestures on software WebGL.
+  // Bound the raster workload; keep all geometry, gestures and assertions.
   test.setTimeout(process.env.CI ? 90000 : 60000);
-  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.setViewportSize({ width: 960, height: 720 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => {
     const Base = window.Worker;
