@@ -1,0 +1,6 @@
+export function installSoundMixer(recorded,drives){
+ const panel=document.createElement('details');panel.id='sound-mixer';panel.innerHTML='<summary>Sound levels</summary><p>Enable sound with the sound checkbox above. Levels are saved in this browser.</p>';const values={fan:1,keyboard:1,power:1,drives:1};
+ try{const saved=JSON.parse(localStorage.getItem('dac-sound-levels')||'{}');for(const key of Object.keys(values))if(Number.isFinite(saved[key])&&saved[key]>=0&&saved[key]<=1)values[key]=saved[key];}catch{}
+ for(const [key,label] of [['fan','Fan'],['keyboard','Keyboard'],['power','Power switch'],['drives','Disk drives']]){const row=document.createElement('label'),input=document.createElement('input'),out=document.createElement('output');input.type='range';input.min=0;input.max=100;input.value=values[key]*100;input.dataset.sound=key;row.append(document.createTextNode(label+' '),input,out);panel.append(row);const update=()=>{values[key]=Number(input.value)/100;out.textContent=`${input.value}%`;if(key==='drives')drives.volume(values[key]);else recorded.volume(key,values[key]);};input.oninput=()=>{update();try{localStorage.setItem('dac-sound-levels',JSON.stringify(values));}catch{}};update();}
+ document.getElementById('drive-sound').closest('label').after(panel);
+}

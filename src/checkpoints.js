@@ -19,7 +19,8 @@ export async function saveCheckpoint(record){
 export async function loadCheckpoint(key){if(!/^checkpoint:[a-f0-9-]{36}$/.test(key))throw Error('Choose a checkpoint.');const r=await stored(key);await validateCheckpoint(r);return r;}
 export async function renameCheckpoint(key,name){const r=await loadCheckpoint(key);r.name=String(name).trim();await validateCheckpoint(r);await stored(key,r);}
 export async function deleteCheckpoint(key){if(!/^checkpoint:[a-f0-9-]{36}$/.test(key))throw Error('Choose a checkpoint.');await stored(key,null);}
-export async function exportCheckpoint(key){const r=await loadCheckpoint(key),payload={...r,bytes:base64(r.bytes),disks:r.disks.map(d=>({...d,bytes:base64(d.bytes)}))};return new TextEncoder().encode(JSON.stringify({format:'DAC-checkpoint-1',payload,sha256:await digest(new TextEncoder().encode(JSON.stringify(payload)))})).buffer;}
+export async function exportCheckpoint(key){return encodeCheckpoint(await loadCheckpoint(key));}
+export async function encodeCheckpoint(r){await validateCheckpoint(r);const payload={...r,bytes:base64(r.bytes),disks:r.disks.map(d=>({...d,bytes:base64(d.bytes)}))};return new TextEncoder().encode(JSON.stringify({format:'DAC-checkpoint-1',payload,sha256:await digest(new TextEncoder().encode(JSON.stringify(payload)))})).buffer;}
 export async function importCheckpoint(bytes){
  if(!(bytes instanceof ArrayBuffer)||bytes.byteLength>16*1024*1024)throw Error('Checkpoint file exceeds 16 MB.');
  const file=JSON.parse(new TextDecoder().decode(bytes));if(file.format!=='DAC-checkpoint-1'||await digest(new TextEncoder().encode(JSON.stringify(file.payload)))!==file.sha256)throw Error('Checkpoint file checksum failed.');

@@ -1,3 +1,4 @@
+import {bindMonitorLead} from './monitor-cables.js';
 import {inspectionOffset,keyboardLayersFraction} from './inspection-paths.js';
 import { createDiskTrackMarker } from './disk-track-marker.js';
 import { cableWeight, bindRibbon } from './robotron-cables.js';
@@ -842,12 +843,8 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       monitorCablePose = cablePose;
       for (const [name, rest] of monitorCableRest) {
         const mesh = objects.get(name), vertices = mesh.geometry.attributes.position;
-        for (let i = 0; i < vertices.count; i++) {
-          const z = rest[i * 3 + 2];
-          const t = THREE.MathUtils.clamp((z - 100) / 60, 0, 1);
-          const w = t * t * (3 - 2 * t);
-          vertices.setXYZ(i, rest[i * 3], rest[i * 3 + 1] + caseOffset[1] * w + monitorPlugPark * (1 - w), z + caseOffset[2] * w);
-        }
+        if(!mesh.userData.monitorLeadBinding)mesh.userData.monitorLeadBinding=bindMonitorLead(name,rest);
+        vertices.array.set(mesh.userData.monitorLeadBinding(caseOffset,monitorPlugPark));
         vertices.needsUpdate = true;
         mesh.geometry.computeVertexNormals();
         mesh.geometry.computeBoundingBox();

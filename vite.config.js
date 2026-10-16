@@ -1,9 +1,11 @@
+import {execFileSync} from 'node:child_process';
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { defineConfig } from "vite";
 export default defineConfig({
   base: process.env.DAC_BASE || "/",
   define: {
+    "import.meta.env.VITE_APP_REVISION":JSON.stringify(execFileSync("git",["rev-parse","HEAD"],{encoding:"utf8"}).trim()),
     "import.meta.env.VITE_EMULATOR_REVISION": JSON.stringify(
       createHash("sha256")
         .update(

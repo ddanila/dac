@@ -1,0 +1,74 @@
+{
+  "scope": "Photo-referenced mechanical groups. No group certifies electrical continuity, hidden fastening details or physical print verification.",
+  "groups": [
+    {
+      "title": "Keyboard matrix mounting",
+      "kind": "mechanical",
+      "members": [
+        "keyboard-pcb",
+        "keyboard-pcb-supports",
+        "keyboard-pcb-fasteners",
+        "keyboard-shell"
+      ],
+      "photo": "20261012_123907435",
+      "note": "Photo-referenced mechanical mounting. Hidden joins and fastener dimensions remain estimates."
+    },
+    {
+      "title": "Keyboard controller mounting",
+      "kind": "mechanical",
+      "members": [
+        "keyboard-controller-board",
+        "keyboard-controller-mounts",
+        "keyboard-controller-metal",
+        "keyboard-controller-shield",
+        "keyboard-shell"
+      ],
+      "photo": "20261012_123622947",
+      "note": "Mechanical mounting only; shield and mounting dimensions are photo estimates."
+    },
+    {
+      "title": "Keyboard cable entry",
+      "kind": "mechanical",
+      "members": [
+        "cable",
+        "keyboard-grommet",
+        "keyboard-cable-support",
+        "keyboard-internal-cable",
+        "keyboard-entry-wires",
+        "keyboard-controller-connectors",
+        "keyboard-controller-board"
+      ],
+      "photo": "20261012_131106217",
+      "note": "Visible cable route and restraint. This is not an assertion of electrical pinout or conductor continuity."
+    },
+    {
+      "title": "Monitor captive leads and rear plugs",
+      "kind": "mechanical",
+      "members": [
+        "monitor-power-lead",
+        "monitor-signal-lead",
+        "monitor-plug-bodies",
+        "monitor-plug-metal",
+        "monitor-plug-collars",
+        "monitor-under-controls"
+      ],
+      "photo": "20261012_125132359.MP",
+      "note": "Mechanical cable attachment and routing. Hidden slack and pin wiring are unverified."
+    },
+    {
+      "title": "Drive adapter and ribbon",
+      "kind": "mechanical",
+      "members": [
+        "drive-adapter-boards",
+        "drive-adapter-sockets",
+        "drive-adapter-edge",
+        "drive-adapter-contacts",
+        "ribbon-cables",
+        "drive-cable-plugs",
+        "logic-ribbon-plug-motherboard"
+      ],
+      "photo": "20261013_150516969",
+      "note": "Visible connectors and approximate ribbon routing, not a traced electrical netlist."
+    }
+  ]
+}

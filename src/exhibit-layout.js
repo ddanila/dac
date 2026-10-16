@@ -56,4 +56,5 @@ export function installExhibitLayout(scene,apply){
   q('[data-delete]').onclick=async()=>{try{await removeInspection(q('[data-list]').value);await refresh();q('[data-status]').textContent='Inspection deleted.';}catch(e){q('[data-status]').textContent=e.message;}};
   window.addEventListener('dac-collection-restored',refresh);refresh();
   restore();
+  return {capture:write,measurement:()=>currentMeasurement};
 }

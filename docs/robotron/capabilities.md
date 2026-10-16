@@ -94,3 +94,7 @@ current checkpoint metadata, named measurements, evidence mode and motion audit.
 
 Portable inspection views, staged covers and the expanded qualification are
 documented in [inspection workspaces](inspection-workspaces.md).
+
+[Diagnostic reports and model review](diagnostics-and-model-review.md) documents
+independent sound levels, mechanical relationships, explicit measurement remaps,
+monitor cable qualification and the optional S600 mixed-workload target.

@@ -175,6 +175,7 @@ export function driveStepOffsets(previous, sample) {
   return ages.map((age) => (ages[0] - age) / rate);
 }
 export function createDriveSound() {
+  let volume=1,output;
   let context,
     gain,
     enabled = false,
@@ -191,6 +192,7 @@ export function createDriveSound() {
     clicks.clear();
   }
   return {
+    volume(value){if(!Number.isFinite(value)||value<0||value>1)throw Error("Invalid drive volume.");volume=value;if(output)output.gain.setTargetAtTime(value,context.currentTime,.025);},
     async enable(value) {
       enabled = value;
       if (!value) cancelClicks();
@@ -199,7 +201,8 @@ export function createDriveSound() {
         context = new AudioContext();
         gain = context.createGain();
         gain.gain.value = 0;
-        gain.connect(context.destination);
+        output=context.createGain();output.gain.value=volume;output.connect(context.destination);
+        gain.connect(output);
         for (const frequency of [70, 103]) {
           const o = context.createOscillator();
           o.frequency.value = frequency;
@@ -259,7 +262,7 @@ export function createDriveSound() {
           g.gain.setValueAtTime(0.035, t);
           g.gain.exponentialRampToValueAtTime(0.0001, t + 0.035);
           o.connect(g);
-          g.connect(context.destination);
+          g.connect(output);
           clicks.add(o);
           o.start(t);
           o.stop(t + 0.04);
