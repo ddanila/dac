@@ -967,8 +967,18 @@
   ],
   "modelVerification": {
     "models/robotron-1715m/display-base-ring/model.scad": {
-      "physicalVerification": "unverified",
-      "evidence": []
+      "physicalVerification": "printed-and-verified",
+      "evidence": [
+        {
+          "date": "2026-10-15",
+          "verifiedBy": "Danila",
+          "result": "Owner confirms the latest monitor base ring was printed and fits perfectly on his printer: 174.5 mm OD, 167.5 mm ID, 3.5 mm radial wall, 5 mm height. Confirmation date; exact print date, printer model, material and slicer settings not recorded. Verification applies to this version and his print setup.",
+          "files": {
+            "models/robotron-1715m/display-base-ring/model.scad": "25682b29d1e52467e54831048abb37ebab2c30674b5f213b19ee0e22ede6d252",
+            "models/robotron-1715m/display-base-ring/robotron-1715m-display-base-ring.stl": "2d1e2e5654d54c0d6cada724bc21892c8a3ff2653fb500a16f06433bfbf91fc7"
+          }
+        }
+      ]
     },
     "models/robotron-1715m/key-switch/model.scad": {
       "physicalVerification": "unverified",
@@ -32635,7 +32645,7 @@
       "name": "keyboard-controller-ink",
       "file": "meshes/keyboard-controller-ink.stl",
       "color": "#c8c8bd",
-      "sha256": "9d730ac9c5c1916c004bcfb012c059be78a1aae8dd9bb72664fc28d93effc734",
+      "sha256": "6fa0f763d3730f62b137c9828f01598fbb275c5312815a88640da912a2361f2d",
       "section": "interior",
       "material": "ink"
     },

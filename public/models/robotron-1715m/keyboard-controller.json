@@ -11807,7 +11807,8 @@
         "side": "bottom",
         "width": 0.35
       }
-    ]
+    ],
+    "vias": []
   },
   "connectivity": {
     "authority": "controller.kicad_sch",
@@ -12557,11 +12558,18 @@
         "path": "../reference/photos/PXL_20261012_123648677.jpg",
         "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
         "use": "Specimen placement and visible copper; approximate planar registration"
+      },
+      {
+        "id": "kbdbabel-comparison",
+        "url": "https://xepb.org/robotron/docs/kbdbabel_doc_robotron_pc1715.pdf",
+        "sha256": "88c1aa6171e143ebda660147fa5d6c43ea128080ef5d9558fed630f3d9fc28e1",
+        "use": "Comparison: 05-330-4102-8 1c board markings match the specimen family. Drawing shows 2732 and different connector/clock details; not blindly merged with Zander connectivity.",
+        "credit": "Andreas Kurz / kbdbabel, revision 1.3, 2009-01-18; document states CC-BY-SA 3.0. PDF not redistributed."
       }
     ],
     "specimen": {
-      "boardMarking": "062-330-4102",
-      "revision": "Unconfirmed against reference schematic 56-330-4103-7",
+      "boardMarking": "05-330-4102-8 1c L (underside); 05-330-4102 and -8 B 1c (top)",
+      "revision": "Photo marking matches the board family/revision in kbdbabel; component substitutions and electrical identity still require verification.",
       "rom": "Replacement EPROM, unread; S600 is reference firmware"
     },
     "gaps": [
@@ -12589,25 +12597,30 @@
         "id": "package-pinmap",
         "status": "unresolved",
         "detail": "Specimen substitutions and discrete package orientations require verification."
+      },
+      {
+        "id": "clock-source-disagreement",
+        "status": "unresolved",
+        "detail": "Zander connects WR to the output inverter; kbdbabel connects RD and leaves WR unused. Resolve by following specimen copper/continuity. The current HDL explicitly models the Zander reference."
       }
     ]
   },
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "62228d6a3b31ba6016b43a839abadeb92998f5f8"
+      "revision": "3e9d1e102f454989ccc95f7de2a49eda01b8b4fc"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "a01618951042641062156a4f2ca355827c969fa8"
+      "revision": "48524e8afee230a43288e0478edf082dbdc19dfd"
     },
     "files": {
-      "layout": "b592e6a79fa0d820d93a35211f33e36df58312ad7908753f0a584784c81074e5",
+      "layout": "2cc2ad9e953fa4a40f5427f27169a9159a8e1ab18d76cc033adf94b9f131ab6e",
       "connectivity": "2f72140842b1b8ebab498c22bb36112720f8c210d4457c0ee9fc3c459e3febc6",
       "qualification": "7539c10cbe77e23401a35df555dc99dabf97f47f229de8bac5c1c54999acccc9",
-      "evidence": "4d21260c17c43d13c2f5c27080df30fc99496917e97cdee1f86c9ad6ea216ac0"
+      "evidence": "e57eeeea1fc8f9d495c96e2b9d99e34b7a3dd1d2ec03957655467b6bc8ddd3b8"
     },
-    "reportSha256": "6a0a481796d6898e76b9c9e5b3e18960bf171f4ea91e8a2ea1869a210cde8c7c"
+    "reportSha256": "13dc2fdf5e3a8dec528dac14429e17b1f5bc44ed479fb86c3f8b44e00476f219"
   },
   "cosimulation": {
     "bus": {
@@ -12644,14 +12657,44 @@
           "tv80n.v": "c7176c748d2f3dcba95c8cf24fa88b7a0f62c06780ca14ce3632150f2a9d06f7"
         }
       },
-      "cycles": 3200000,
-      "cBits": 130,
-      "hdlBits": 130,
+      "cycles": 4600000,
+      "stimulusCoverage": {
+        "normal": 26,
+        "shift": 26,
+        "ctrl": 26,
+        "repeat": 260,
+        "afterRepeatRelease": 0,
+        "afterReset": 26
+      },
+      "stimulusCoveragePassed": true,
+      "cBits": 390,
+      "hdlBits": 390,
       "serialSequenceEquivalent": true,
       "firstSerialDifference": null,
-      "ledDifferences": [],
-      "cLedEdges": 5,
-      "hdlLedEdges": 6783,
+      "ledDifferences": [
+        {
+          "cycle": 1599999,
+          "c": "3",
+          "hdl": "0"
+        },
+        {
+          "cycle": 2199999,
+          "c": "3",
+          "hdl": "0"
+        },
+        {
+          "cycle": 2799999,
+          "c": "3",
+          "hdl": "0"
+        },
+        {
+          "cycle": 3799999,
+          "c": "3",
+          "hdl": "0"
+        }
+      ],
+      "cLedEdges": 28,
+      "hdlLedEdges": 11971,
       "ledTransitionsEquivalent": false,
       "serialCycleOffsets": [
         2
@@ -12687,38 +12730,66 @@
         ],
         [
           1599999,
-          "1"
+          "3"
         ],
         [
           1799999,
-          "1"
+          "3"
         ],
         [
           1999999,
-          "1"
+          "3"
         ],
         [
           2199999,
-          "1"
+          "3"
         ],
         [
           2399999,
-          "1"
+          "3"
         ],
         [
           2599999,
-          "1"
+          "3"
         ],
         [
           2799999,
-          "1"
+          "3"
         ],
         [
           2999999,
-          "0"
+          "3"
         ],
         [
           3199999,
+          "3"
+        ],
+        [
+          3399999,
+          "3"
+        ],
+        [
+          3599999,
+          "3"
+        ],
+        [
+          3799999,
+          "3"
+        ],
+        [
+          3999999,
+          "3"
+        ],
+        [
+          4199999,
+          "3"
+        ],
+        [
+          4399999,
+          "0"
+        ],
+        [
+          4599999,
           "0"
         ]
       ],
@@ -12753,38 +12824,66 @@
         ],
         [
           1599999,
-          "1"
-        ],
-        [
-          1799999,
-          "1"
-        ],
-        [
-          1999999,
-          "1"
-        ],
-        [
-          2199999,
-          "1"
-        ],
-        [
-          2399999,
-          "1"
-        ],
-        [
-          2599999,
-          "1"
-        ],
-        [
-          2799999,
-          "1"
-        ],
-        [
-          2999999,
           "0"
         ],
         [
+          1799999,
+          "3"
+        ],
+        [
+          1999999,
+          "3"
+        ],
+        [
+          2199999,
+          "0"
+        ],
+        [
+          2399999,
+          "3"
+        ],
+        [
+          2599999,
+          "3"
+        ],
+        [
+          2799999,
+          "0"
+        ],
+        [
+          2999999,
+          "3"
+        ],
+        [
           3199999,
+          "3"
+        ],
+        [
+          3399999,
+          "3"
+        ],
+        [
+          3599999,
+          "3"
+        ],
+        [
+          3799999,
+          "0"
+        ],
+        [
+          3999999,
+          "3"
+        ],
+        [
+          4199999,
+          "3"
+        ],
+        [
+          4399999,
+          "0"
+        ],
+        [
+          4599999,
           "0"
         ]
       ],
