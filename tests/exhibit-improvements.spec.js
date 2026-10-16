@@ -32,6 +32,10 @@ test('interior geometry is ready before display and labels disclose its evidence
  expect(requestedMesh(requests,'meshes/tube-funnel.stl')).toBe(true);
  expect(requestedMesh(requests,'meshes/logic-boards-motherboard.stl')).toBe(true);
  await page.locator('#inspection-labels').check();
+ // Checking a control can scroll the canvas out of view. Offscreen rendering
+ // is intentionally paused; inspect labels only after bringing it back.
+ await page.locator('#viewport').scrollIntoViewIfNeeded();
+ await expect(page.locator('#viewport')).toHaveAttribute('data-rendering','active');
  await expect(page.locator('[data-annotation="keyboard-controller"]')).toBeVisible();
  await page.locator('[data-annotation="keyboard-controller"]').click();
  await expect(page.locator('#detail-description')).toContainText('Owner photo');
