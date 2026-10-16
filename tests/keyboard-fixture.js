@@ -1,5 +1,5 @@
 import {expect} from "@playwright/test";
-export async function observeKeys(page) {
+export async function observeKeys(page, {geometry=true}={}) {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => {
     const WorkerBase = window.Worker;
@@ -13,10 +13,12 @@ export async function observeKeys(page) {
       }
     };
   });
+  if(!geometry)await page.route(/\/models\/robotron-1715m\/(?!model\.json)/,r=>r.fulfill({status:503,body:"Input routing does not need CAD"}));
   await page.goto("/");
-  await expect(page.locator("#viewport")).toHaveAttribute(
+  if(geometry)await expect(page.locator("#viewport")).toHaveAttribute(
     "data-model",
     "robotron-photo", {timeout: 20000});
+  await expect(page.locator("#key-list-toggle")).toBeEnabled();
   await expect(page.locator("#power")).toBeEnabled();
   // Input routing and modifier semantics need a stable diagnostic; the
   // historical-media suite separately exercises the original OS and disk.

@@ -46,7 +46,16 @@ for old in previous:
         (target/name).unlink(missing_ok=True)
 revision=subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD'],text=True).strip()
 dirty=bool(subprocess.check_output(['git','-C',str(repo),'status','--porcelain','--','models/robotron-1715m'],text=True).strip())
-(target/'source.json').write_text(json.dumps(dict(repository='https://github.com/ddanila/3d-models',revision=revision,dirty=dirty,files=records),indent=2)+'\n')
+# Canonical inspection metadata is source code, not generated CAD geometry.
+inspection={}
+for name in ['evidence', 'inspection-paths']:
+    original = source / ('evidence-map.json' if name == 'evidence' else name+'.json')
+    blob=original.read_bytes()
+    dest='robotron-'+name+'.json'
+    (target.parents[2]/'src'/dest).write_bytes(blob)
+    inspection[dest]=hashlib.sha256(blob).hexdigest()
+
+(target/'source.json').write_text(json.dumps(dict(repository='https://github.com/ddanila/3d-models',revision=revision,dirty=dirty,files=records,inspection=inspection),indent=2)+'\n')
 print(f'Synced {len(files)} verified files from {revision}'+(' (uncommitted changes)' if dirty else ''))
 
 # Derived browser cache preserves canonical STL geometry; no CAD edits.

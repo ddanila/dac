@@ -1,7 +1,7 @@
 import {test,expect} from "@playwright/test";
 import {observeKeys} from "./keyboard-fixture.js";
 test('keyboard buttons send documented bytes and latch modifiers', async ({page}) => {
-  await observeKeys(page);
+  await observeKeys(page,{geometry:false});
   await page.locator("#key-list-toggle").click();
   const keys = page.locator("#key-list");
   const press = label => keys.getByRole("button", {name:label,exact:true}).first().dispatchEvent("click");
@@ -22,7 +22,7 @@ test('keyboard buttons send documented bytes and latch modifiers', async ({page}
 });
 
 test('physical letters and special keys send their documented bytes', async ({page}) => {
-  await test.step('Load model and diagnostic', () => observeKeys(page));
+  await test.step('Load key metadata and diagnostic', () => observeKeys(page,{geometry:false}));
   await page.locator('#viewport').focus();
   await test.step('Type mixed case and special keys', async () => {
     await page.keyboard.type('Ab');
@@ -33,7 +33,7 @@ test('physical letters and special keys send their documented bytes', async ({pa
 });
 
 test('physical keys share Caps Lock state with keyboard buttons', async ({page}) => {
-  await test.step('Load model and diagnostic', () => observeKeys(page));
+  await test.step('Load key metadata and diagnostic', () => observeKeys(page,{geometry:false}));
   await page.locator('#key-list-toggle').click();
   const caps = page.locator('#key-list').getByRole('button',{name:'Caps Lock',exact:true});
   await test.step('Button Caps Lock affects physical typing', async () => {
@@ -57,7 +57,7 @@ test('physical keys share Caps Lock state with keyboard buttons', async ({page})
 });
 
 test('keyboard control combinations and unsupported keys are explicit', async ({page}) => {
-  await observeKeys(page);
+  await observeKeys(page,{geometry:false});
   await page.locator("#key-list-toggle").click();
   const keys = page.locator("#key-list");
   const press = label => keys.getByRole("button", {name:label,exact:true}).first().dispatchEvent("click");
@@ -72,7 +72,7 @@ test('keyboard control combinations and unsupported keys are explicit', async ({
 });
 
 test('reset, blur and power-off clear keyboard input state', async ({page}) => {
-  await observeKeys(page);
+  await observeKeys(page,{geometry:false});
   await page.locator("#key-list-toggle").click();
   const keys = page.locator("#key-list");
   const press = label => keys.getByRole("button", {name:label,exact:true}).first().dispatchEvent("click");

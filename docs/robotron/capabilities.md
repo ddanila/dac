@@ -1,6 +1,6 @@
 # Robotron capability and evidence matrix
 
-Current baseline: DAC Emulation 0.14.0, scanline output, snapshot layout 12;
+Current baseline: DAC Emulation 0.15.0, scanline output, snapshot layout 13;
 canonical model v48. This matrix describes present behavior. Dated development
 sections elsewhere are history, not cumulative lists of current limitations.
 
@@ -83,8 +83,11 @@ investigation leads, not proof that either implementation matches hardware.
   derived assets, not canonical models. Heap measurements omit GPU/worker memory.
 - **CI:** scope from a successful ancestral push, not the immediately previous push.
   Missing evidence/PRs select full coverage. Fail-fast and cancellation of superseded
-  runs remain enabled. File-duration estimates come from successful run 38883094600;
+  runs remain enabled. File-duration estimates come from successful run 38891503217;
   `scripts/update-ci-durations.mjs` refreshes them from downloaded logs without a
   new CI run. Ordinary CI does not install MAME or run Verilog/historical ROM boots.
 
 See [historical qualification notes](capability-history.md) for prior releases.
+
+See [0.15 inspection and bounded diagnostic changes](inspection-015.md) for the
+current checkpoint metadata, named measurements, evidence mode and motion audit.

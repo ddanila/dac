@@ -1,3 +1,4 @@
+import {createEvidenceView} from './model-evidence.js';
 import {buildCaps,clearCaps} from './section-caps.js';
 import {createMeasurement} from './model-measurement.js';
 import {installRenderRecovery} from './render-recovery.js';
@@ -75,8 +76,13 @@ export function createScene(
   function rebuildEnvironment(){environment?.dispose();const studio=new RoomEnvironment(),pmrem=new THREE.PMREMGenerator(renderer);environment=pmrem.fromScene(studio,.04);scene.environment=environment.texture;scene.environmentIntensity=.55;studio.dispose();pmrem.dispose();}
   rebuildEnvironment();
   const controls = new OrbitControls(camera, renderer.domElement);
+  let evidenceView,evidenceEnabled=false;
   let section={axis:'off',position:0,reverse:false},sectionRoot,lastHit;
   const measurement=createMeasurement(scene,value=>window.dispatchEvent(new CustomEvent('model-measurement',{detail:value})));
+  function inspectionMode(mode){
+    cancelGesture();evidenceEnabled=mode==='evidence';evidenceView?.set(evidenceEnabled);measurement.set(mode==='measure');
+    window.dispatchEvent(new CustomEvent('dac-inspection-mode',{detail:mode}));renderRequested=true;
+  }
   const capGroup=new THREE.Group();scene.add(capGroup);
   const sectionHandle=new THREE.Object3D();scene.add(sectionHandle);
   const sectionGizmo=new TransformControls(camera,renderer.domElement);sectionGizmo.enabled=false;sectionGizmo.size=.65;sectionGizmo.showXY=sectionGizmo.showYZ=sectionGizmo.showXZ=sectionGizmo.showXYZE=false;scene.add(sectionGizmo.getHelper());
@@ -290,8 +296,9 @@ export function createScene(
     sectionRoot=null;container.dataset.details=state;detailLoading.hidden=state==="ready";
     detailLoading.textContent=state==="error"?"Some interior details could not load. Reopen this assembly to retry.":"Loading interior details…";
     renderRequested=true;renderer.shadowMap.needsUpdate=true;
-  })
+  },keys=>interaction.onKeysReady?.(keys,false))
     .then((model) => {
+      evidenceView=createEvidenceView(model);evidenceView.set(evidenceEnabled);
       robotron = model;measurement.scale(model.group.scale.x);
       model.displaySettings(crtSettings);
       scene.add(model.group);measurement.configure(model.group,model.identity);measurement.options({visible:sectionVisible});
@@ -361,10 +368,10 @@ export function createScene(
       x: e.clientX,
       y: e.clientY,
       id: e.pointerId,
-      key: measurement.enabled?undefined:hit?.userData.key,
+      key: measurement.enabled||evidenceView?.active?undefined:hit?.userData.key,
       object: hit,
       detail: hit?.userData.pickedDetail,
-      disk: measurement.enabled?undefined:hit?.userData.removedDisk,
+      disk: measurement.enabled||evidenceView?.active?undefined:hit?.userData.removedDisk,
       dragged: false,
     };
     if (down.disk !== undefined) {
@@ -378,7 +385,7 @@ export function createScene(
       renderer.domElement.setPointerCapture(e.pointerId);
     }
     if (down.key) robotron.keyState(down.key.id, true);
-    if (!measurement.enabled && hit && hit===robotron?.objects.get("reset")) robotron.resetPressed(true);
+    if (!measurement.enabled && !evidenceView?.active && hit && hit===robotron?.objects.get("reset")) robotron.resetPressed(true);
   });
   renderer.domElement.addEventListener("pointermove", (e) => {
     if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 5) {
@@ -417,7 +424,7 @@ export function createScene(
         ? "pointer"
         : "grab";
     interaction.onHover?.(
-      hit?.userData.protectUnit !== undefined
+      evidenceView?.active && hit ? "Click to inspect this surface’s evidence" : hit?.userData.protectUnit !== undefined
         ? "Click the notch to cover/uncover write protection"
         : hit?.userData.removedDisk !== undefined
         ? "Drag this disk into an open, empty drive, or click to inspect"
@@ -447,6 +454,7 @@ export function createScene(
       return;
     container.focus({ preventScroll: true });
     if (!hit) return;
+    if(evidenceView?.active){interaction.onEvidence?.(evidenceView.info(hit));return;}
     if(measurement.enabled){try{measurement.pick(lastHit);}catch(error){window.dispatchEvent(new CustomEvent("measurement-error",{detail:error.message}));}renderRequested=true;return;}
     if (gesture.key && hit?.userData.key?.id === gesture.key.id) {
       if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
@@ -562,7 +570,7 @@ export function createScene(
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     if (renderRequested || changed?.dirty) {
       if(sectionRoot!==robotron?.group)applySection();
-      measurement.update();
+      measurement.update();evidenceView?.refresh();
       renderer.render(scene, camera);
       drawLabels();
       if(robotron && interaction.onSoundPosition) {
@@ -590,12 +598,14 @@ export function createScene(
     annotations(on){labelsEnabled=on;renderRequested=true;},
     markTrack(value){robotron?.markTrack(value);renderRequested=true;},
     sectionRange(axis){if(!robotron||!["x","y","z"].includes(axis))return null;robotron.tick();robotron.group.updateWorldMatrix(true,true);const box=new THREE.Box3();for(const o of visiblePickTargets(robotron.group))box.expandByObject(o);return box.isEmpty()?null:[box.min[axis],box.max[axis]];},
-    measurement(on){cancelGesture();measurement.set(on);renderRequested=true;},
+    evidenceMode(on){inspectionMode(on?'evidence':'operate');},
+    measurement(on){inspectionMode(on?'measure':'operate');},
+    measurementEndpoint(slot){inspectionMode('measure');measurement.endpoint(slot);},
     measurementOptions(value){measurement.options(value);renderRequested=true;},
-    restoreMeasurement(value){measurement.restore(value);renderRequested=true;},
+    restoreMeasurement(value){measurement.restore(value);inspectionMode('measure');},
     clearMeasurement(){measurement.clear();renderRequested=true;},
     measurementParts(){if(kind!==2)return [];return [...(robotron?.objects.values()||[])].filter(o=>o.isMesh&&!o.isInstancedMesh&&o.geometry).map(o=>o.name);},
-    measureCentre(name,slot){if(kind!==2)return;const object=robotron?.objects.get(name);if(object){measurement.set(true);measurement.centre(object,slot);renderRequested=true;}},
+    measureCentre(name,slot){if(kind!==2)return;const object=robotron?.objects.get(name);if(object){inspectionMode('measure');measurement.centre(object,slot);renderRequested=true;}},
     cameraState(){return {position:camera.position.toArray(),target:controls.target.toArray()};},
     restoreCamera(value){if(!value || ![value.position,value.target].every(a=>Array.isArray(a)&&a.length===3&&a.every(n=>Number.isFinite(n)&&Math.abs(n)<40)))return;const damping=controls.enableDamping;controls.enableDamping=false;controls.update();controls.enableDamping=damping;camera.position.fromArray(value.position);controls.target.fromArray(value.target);controls.update();renderRequested=true;},
     onCameraChange(fn){controls.addEventListener("change",fn);},
@@ -650,7 +660,7 @@ export function createScene(
         inCameraView(robotron.objects.get("crt-glass"), camera);
     },
     setMachine: (value) => {
-      measurement.clear();measurement.set(false);sectionRoot=null;
+      measurement.clear();inspectionMode('operate');sectionRoot=null;
       cancelGesture();
       robotron?.releaseKeys();
       robotron?.separate(false);

@@ -1,0 +1,26 @@
+{
+  "source": "models/robotron-1715m/inspection-paths.json",
+  "scope": "Museum inspection paths, not a certified physical disassembly sequence. Remove fasteners first; available cable slack is unmeasured.",
+  "keyboard-controller": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      -16,
+      0
+    ],
+    [
+      0,
+      -16,
+      70
+    ],
+    [
+      0,
+      160,
+      70
+    ]
+  ]
+}

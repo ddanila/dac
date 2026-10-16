@@ -1,4 +1,5 @@
 import { test as base, expect } from "@playwright/test";
+import {keyPoint} from "./robotron-picking.js";
 
 const test = base.extend({
   threeInstanceWarnings: [async ({ page }, use) => {
@@ -62,6 +63,16 @@ test("assembly isolation, transparent covers and keyboard disassembly remain rev
   await page.locator("#open-keyboard").uncheck();
   await page.locator("#transparent-covers").uncheck();
   await page.locator("#release-clamps").uncheck();
+  const evidence=page.locator('#evidence-controls'),measure=page.locator('#measurement-panel');
+  await evidence.evaluate(e=>e.open=true);await evidence.locator('input').check();
+  await measure.evaluate(e=>e.open=true);await measure.locator('[data-enable]').check();
+  await expect(evidence.locator('input')).not.toBeChecked();
+  await evidence.locator('input').check();await expect(measure.locator('[data-enable]')).not.toBeChecked();
+  await page.locator('[data-view="keyboard"]').click();await page.locator('#viewport').scrollIntoViewIfNeeded();
+  const manifest=await(await page.request.get('/models/robotron-1715m/model.json')).json(),key=manifest.keys.find(k=>k.input.code===97),point=await keyPoint(page,key,manifest);
+  await page.mouse.click(point.x,point.y);await expect(page.locator('#detail-description')).toContainText('Physical print verification: unverified');
+  await expect(page.locator('#detail-original')).toHaveAttribute('href',/photos/);await page.locator('#detail-close').click();
+  await evidence.locator('input').uncheck();
   await page.locator("#power").click();
   await expect(page.locator("#status")).toHaveText("Running");
   await page.setViewportSize({ width: 390, height: 844 });
