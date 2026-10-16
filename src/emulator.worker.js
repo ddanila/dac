@@ -1,5 +1,5 @@
 let debugPaused=false,debugArmed=false,debugMemoryAddress;
-import {checkpoints,saveCheckpoint,loadCheckpoint,renameCheckpoint,deleteCheckpoint,exportCheckpoint,importCheckpoint} from './checkpoints.js';
+import {checkpointMetadata,checkpoints,saveCheckpoint,loadCheckpoint,renameCheckpoint,deleteCheckpoint,exportCheckpoint,importCheckpoint} from './checkpoints.js';
 import {exportCollection,importCollection} from './collection-backup.js';
 import { archivedCore, hasArchivedCore } from "./archived-core.js";
 let currentModule, currentBuild, coreBase;
@@ -447,6 +447,8 @@ async function compatibleStateKey() {
       hasArchivedCore(key.split(":")[1]),
   );
 }
+let checkpointListGeneration=0,checkpointValidation=Promise.resolve();
+async function postCheckpoints(){const generation=++checkpointListGeneration,send=entries=>{if(generation===checkpointListGeneration)postMessage({type:'checkpoints',entries});};send(await checkpointMetadata());checkpointValidation=checkpointValidation.catch(()=>{}).then(()=>generation===checkpointListGeneration?checkpoints(send,()=>generation===checkpointListGeneration):undefined);await checkpointValidation;}
 async function restoreCheckpoint(key){
  if(recording||replaying)throw Error('Stop recording or replay before restoring a checkpoint.');
  const r=await loadCheckpoint(key);
@@ -817,23 +819,23 @@ async function receive(d) {
       if(d.type==='debug-memory'&&(!Number.isInteger(d.address)||d.address<0||d.address>65535))throw Error('Invalid memory address.');
       debugState(message,d.type==='debug-memory'?d.address:undefined);
     } else if(d.type==='checkpoint-list'){
-      postMessage({type:'checkpoints',entries:await checkpoints()});
+      await postCheckpoints();
     } else if(d.type==='checkpoint-save'){
       // Capture synchronously before checksum/storage awaits; state and disks share one boundary.
       const bytes=snapshotBytes(),disks=[0,1].map(u=>({bytes:diskBytes(u),writable:!!writableUnits[u],label:diskLabels[u]||`Disk ${u+1}`}));
       const record={name:d.name,bytes,disks,kind,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),firmwareIdentity:await sessionIdentity(kind,firmware,null)};
       for(const disk of disks)disk.sha256=await digest(disk.bytes);
-      await saveCheckpoint(record);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint saved with both disks.'});
+      await saveCheckpoint(record);await postCheckpoints();postMessage({type:'checkpoint-status',message:'Checkpoint saved with both disks.'});
     } else if(d.type==='checkpoint-restore'){
       await restoreCheckpoint(d.key);postMessage({type:'checkpoint-status',message:'Checkpoint restored. Private disk copies are running; remember changes is off.'});
     } else if(d.type==='checkpoint-delete'){
-      await deleteCheckpoint(d.key);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint deleted.'});
+      await deleteCheckpoint(d.key);await postCheckpoints();postMessage({type:'checkpoint-status',message:'Checkpoint deleted.'});
     } else if(d.type==='checkpoint-rename'){
-      await renameCheckpoint(d.key,d.name);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint renamed.'});
+      await renameCheckpoint(d.key,d.name);await postCheckpoints();postMessage({type:'checkpoint-status',message:'Checkpoint renamed.'});
     } else if(d.type==='checkpoint-export'){
       const bytes=await exportCheckpoint(d.key);postMessage({type:'download',name:'robotron.daccheckpoint',bytes},[bytes]);
     } else if(d.type==='checkpoint-import'){
-      await importCheckpoint(d.bytes);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint imported as a new entry. Check compatibility before restoring.'});
+      await importCheckpoint(d.bytes);await postCheckpoints();postMessage({type:'checkpoint-status',message:'Checkpoint imported as a new entry. Check compatibility before restoring.'});
     } else if(d.type==='checkpoint-preview'){
       const r=await loadCheckpoint(d.key),machine=r.kind===kind,firmwareMatch=machine&&r.firmwareIdentity===await sessionIdentity(kind,firmware||[],null),core=r.build===build||r.build===currentBuild||hasArchivedCore(r.build);
       postMessage({type:'checkpoint-preview',message:`${machine?'Machine matches':'Choose '+['Juku','VJUGA','Robotron'][r.kind]}. ${firmwareMatch?'Firmware matches':'Supply matching ROM files in Media controls'}. ${core?'Matching core available':'Core unavailable'}. Required firmware identity: ${r.firmwareIdentity}. Disk copies: ${r.disks.map(d=>d.label+' ('+d.bytes.byteLength+' bytes)').join(', ')}.`});

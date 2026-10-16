@@ -12,10 +12,16 @@ export async function sessionIdentity(kind, firmware, disk) {
   );
   return `${kind}:${parts.sort().join(":")}:${disk ? await digest(disk) : "empty"}`;
 }
+function checkpointMeta(key,r){return {key,name:typeof r?.name==='string'?r.name.slice(0,80):'Damaged checkpoint',date:Number.isFinite(r?.date)?r.date:0,kind:r?.kind,build:r?.build,checking:true};}
+export async function checkpointMetadata(){const db=await database();try{return await new Promise((resolve,reject)=>{const tx=db.transaction('checkpoint-meta'),req=tx.objectStore('checkpoint-meta').getAll();tx.oncomplete=()=>resolve(req.result.sort((a,b)=>b.date-a.date));tx.onabort=tx.onerror=()=>reject(tx.error);});}finally{db.close();}}
 function database() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open("dac-sessions", 1);
-    request.onupgradeneeded = () => request.result.createObjectStore("copies");
+    const request = indexedDB.open("dac-sessions", 2);
+    request.onupgradeneeded = () => {
+      const db=request.result;if(!db.objectStoreNames.contains('copies'))db.createObjectStore('copies');
+      const meta=db.createObjectStore('checkpoint-meta'),cursor=request.transaction.objectStore('copies').openCursor();
+      cursor.onsuccess=()=>{const c=cursor.result;if(!c)return;if(String(c.key).startsWith('checkpoint:'))meta.put(checkpointMeta(c.key,c.value),c.key);c.continue();};
+    };
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
   });
@@ -25,7 +31,7 @@ export async function stored(key, value) {
   try {
     return await new Promise((resolve, reject) => {
       const tx = db.transaction(
-        "copies",
+        value === undefined ? "copies" : ["copies","checkpoint-meta"],
         value === undefined ? "readonly" : "readwrite",
       );
       const store = tx.objectStore("copies");
@@ -35,6 +41,7 @@ export async function stored(key, value) {
           : value === null
             ? store.delete(key)
             : store.put(value, key);
+      if(value!==undefined&&key.startsWith('checkpoint:')){const meta=tx.objectStore('checkpoint-meta');if(value===null)meta.delete(key);else meta.put(checkpointMeta(key,value),key);}
       tx.oncomplete = () => resolve(req.result);
       tx.onerror = () => reject(tx.error);
       tx.onabort = () =>
@@ -136,13 +143,14 @@ export async function collectionRecords() {
 export async function mergeCollection(rows,equal,replace=new Map()) {
   const db=await database();
   try{return await new Promise((resolve,reject)=>{
-    const tx=db.transaction('copies','readwrite'),store=tx.objectStore('copies');
+    const tx=db.transaction(['copies','checkpoint-meta'],'readwrite'),store=tx.objectStore('copies');
+    const put=(value,key)=>{store.put(value,key);if(key.startsWith('checkpoint:'))tx.objectStore('checkpoint-meta').put(checkpointMeta(key,value),key);};
     let failure,added=0,duplicates=0;
     for(const [key,value] of rows){const req=store.get(key);req.onsuccess=()=>{
       if(failure)return;
-      if(req.result===undefined){store.put(value,key);added++;}
+      if(req.result===undefined){put(value,key);added++;}
       else if(equal(req.result,value))duplicates++;
-      else if(replace.has(key)&&equal(req.result,replace.get(key))){store.put(value,key);added++;}
+      else if(replace.has(key)&&equal(req.result,replace.get(key))){put(value,key);added++;}
       else{failure=Error(`A different saved record already exists (${key.slice(0,90)}). Nothing imported. Restore into a separate browser profile to keep both collections.`);tx.abort();}
     };}
     tx.oncomplete=()=>resolve({added,duplicates});

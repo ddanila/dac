@@ -1,3 +1,4 @@
+import {installEvidenceControls} from './model-evidence.js';
 import {createDebugPanel} from './debug-panel.js';
 import {installMeasurementPanel} from './measurement-panel.js';
 import {installControlGroups} from './control-groups.js';
@@ -161,7 +162,8 @@ function modelKey(key) {
   if (accepted && Number($("machine").value) === 2) robotronSound.key(key);
   return accepted;
 }
-function keyButtons(keys) {
+function keyButtons(keys, geometryReady=true) {
+  if(geometryReady){
   $("open-case").disabled = false;
   $("open-monitor").disabled = false;
   $("separate-parts").disabled = false;
@@ -180,6 +182,8 @@ function keyButtons(keys) {
     "reference-board-photo",
   ])
     $(id).disabled = false;
+  }
+  $("key-list-toggle").disabled = false;
   modelKeys = keys;
   $("key-list").replaceChildren();
   for (const key of keys) {
@@ -242,6 +246,7 @@ try {
       if (!replayBusy && ready && driveDoorsSupported && driveDoors[to] && !drivePresent[to])
         send(from===to?{type:"drive-inserted",unit:to,inserted:true}:{type:"drive-transfer",from,to});
     },
+    onEvidence: showSpecimenDetail,
     onAnnotation: showAnnotation,
     onProtect: toggleDiskProtection,
     onInspect: (name, meshName) => {
@@ -1209,4 +1214,5 @@ installExhibitLayout(scene,layout=>{
 });
 
 installMeasurementPanel(scene,release);
+installEvidenceControls(scene);
 installControlGroups();

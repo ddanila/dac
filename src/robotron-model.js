@@ -1,3 +1,4 @@
+import {inspectionOffset} from './inspection-paths.js';
 import { createDiskTrackMarker } from './disk-track-marker.js';
 import { cableWeight, bindRibbon } from './robotron-cables.js';
 import { componentDetail } from "./component-detail.js";
@@ -98,7 +99,7 @@ export function createCaseControls(objects, config) {
   };
 }
 
-export async function loadRobotron(displayTexture, onProgress = () => {}, onDetails = () => {}) {
+export async function loadRobotron(displayTexture, onProgress = () => {}, onDetails = () => {}, onKeys = () => {}) {
   onProgress(0);
   const base = new URL(
     "models/robotron-1715m/",
@@ -109,6 +110,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   });
   if (!response.ok) throw Error(`Model manifest: ${response.status}`);
   const data = await response.json();
+  onKeys(data.keys);
   const identity={version:data.version,source:data.source,manifestSha256:[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(JSON.stringify(data))))].map(v=>v.toString(16).padStart(2,"0")).join("")};
   const group = new THREE.Group();
   group.rotation.x = -Math.PI / 2;
@@ -891,23 +893,24 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     }
     objects.get("fascia").position.set(0,(inside?400:0),inside?180:0);
     const keyboardLift = Math.max(split, inspection.keyboardOpen ? 1 : 0);
+    const controllerOffset=inspectionOffset('keyboard-controller',keyboardLift);
     // Keep the input wires attached to their PCB. In exploded inspection the
     // internal cable flexes from the fixed bush to the moving controller.
-    objects.get("keyboard-entry-wires").position.set(0,keyboardLift*160,keyboardLift*70);
+    objects.get("keyboard-entry-wires").position.set(...controllerOffset);
     const inputCable=objects.get("keyboard-internal-cable");
     if(inputCable.userData.lift!==keyboardLift){
       const pos=inputCable.geometry.attributes.position;
       const rest=inputCable.userData.restVertices ||= pos.array.slice();
       for(let i=0;i<pos.count;i++){
         const weight=THREE.MathUtils.clamp((rest[i*3]-(data.keyboard.cableSupportX+3))/(data.keyboard.controllerX-125-(data.keyboard.cableSupportX+3)),0,1);
-        pos.setXYZ(i,rest[i*3],rest[i*3+1]+keyboardLift*160*weight,rest[i*3+2]+keyboardLift*70*weight);
+        pos.setXYZ(i,rest[i*3],rest[i*3+1]+controllerOffset[1]*weight,rest[i*3+2]+controllerOffset[2]*weight);
       }
       pos.needsUpdate=true;inputCable.geometry.computeVertexNormals();inputCable.geometry.computeBoundingBox();inputCable.geometry.computeBoundingSphere();inputCable.userData.lift=keyboardLift;
     }
     // Detach the narrow controller as a unit so both boards can be inspected.
     for (const [name, mesh] of objects) {
       if (name.startsWith("keyboard-controller-") || name === "keyboard-entry-choke")
-        mesh.position.set(0, keyboardLift * 160, keyboardLift * 70);
+        mesh.position.set(...controllerOffset);
     }
     objects
       .get("keyboard-deck")
@@ -1068,6 +1071,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     markTrack(value){trackMarker.select(value);inspectionDirty=true;},
     annotations: data.annotations || [],
     evidence: data.evidence,
+    modelVerification: data.modelVerification,
     identity,
     loadDetails,
     loadReferences: requestReferencePhotos,
