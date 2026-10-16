@@ -2,6 +2,7 @@ import {installPracticeGuide} from './practice-guide.js';
 import {installSoundMixer} from './sound-controls.js';
 import {installDiagnosticReport} from './diagnostic-report.js';
 import {installEvidenceControls} from './model-evidence.js';
+import {installKeyboardControllerReview} from './keyboard-controller-review.js';
 import {createDebugPanel} from './debug-panel.js';
 import {installMeasurementPanel} from './measurement-panel.js';
 import {installControlGroups} from './control-groups.js';
@@ -398,6 +399,7 @@ $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPrevie
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
   diagnosticPanel.message(d);
+  keyboardControllerReview.message(d);
   debugPanel.message(d);
   if(d.type==="debug-state"&&on)$("status").textContent=d.paused?"Paused · powered on":"Running";
   checkpointPanel.message(d);
@@ -1212,6 +1214,7 @@ const exhibitLayout=installExhibitLayout(scene,layout=>{
 
 installMeasurementPanel(scene,release);
 installEvidenceControls(scene);
+const keyboardControllerReview=installKeyboardControllerReview(scene);
 const diagnosticPanel=installDiagnosticReport(send,()=>({identity:scene?.modelIdentity(),layout:exhibitLayout.capture(),measurement:exhibitLayout.measurement(),part:scene?.selectedPart()}));
 installSoundMixer(robotronSound,driveSound);
 installControlGroups();

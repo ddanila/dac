@@ -1,6 +1,9 @@
 # Robotron keyboard controller reconstruction and synchronization plan
 
-Recorded 2026-10-16. Status: planned; implementation milestones below are not yet complete.
+Recorded 2026-10-16. Status: implementation in progress; physical reconstruction
+and full electrical equivalence are not complete. See the
+[implementation record](keyboard-controller-progress.md) for commits, validation
+results and unresolved work.
 
 Reconstruct the keyboard controller as a KiCad schematic and PCB, generate its
 OpenSCAD geometry, and qualify its digital behavior against the emulator using

@@ -8,7 +8,7 @@ New: [Robotron 0.16.0 qualification, guided practice and model evidence](docs/ro
 
 Current implementation and remaining evidence: [capability matrix](docs/robotron/capabilities.md). Dated notes below retain development history.
 
-Planned: [keyboard controller reconstruction and KiCad, OpenSCAD and co-simulation synchronization](docs/robotron/keyboard-controller-plan.md).
+In progress: [keyboard controller KiCad reconstruction, co-simulation and circuit review](docs/robotron/keyboard-controller-progress.md), following the [synchronization plan](docs/robotron/keyboard-controller-plan.md).
 
 *A museum of computers and the worlds they opened.*
 
