@@ -1,6 +1,6 @@
 # Robotron capability and evidence matrix
 
-Current baseline: DAC Emulation 0.13.0, scanline output, snapshot layout 12;
+Current baseline: DAC Emulation 0.14.0, scanline output, snapshot layout 12;
 canonical model v48. This matrix describes present behavior. Dated development
 sections elsewhere are history, not cumulative lists of current limitations.
 
@@ -10,14 +10,19 @@ sections elsewhere are history, not cumulative lists of current limitations.
 | Display | Scheduled byte fetches, burst gaps, FIFO, scanline-sampled glyphs/cursor/intensity | Ideal local DACK, no dot-level contention or verified CPU IRQ wiring | `robotron_devices_test.c`; current 0.8.8 section in emulator README |
 | DMA | Addressing, search, WAIT, terminal count, interrupts, timed read/write phases, auto-restart and byte/burst/continuous ownership | Half-clock BUSRQ/BUSAK edges, pulse output and exhaustive silicon qualification absent | Native device tests; implementation in `robotron.c` |
 | Keyboard | Unpatched S600 CPU, matrix, serial packets, Caps/SI/SO LED latches | Specimen replacement EPROM and legend differences not identified | S600 ROM tests; owner keyboard photos |
-| Serial/printer | Clocked keyboard RX; V.24 CTS/DCD/BREAK interrupts, first-character error lock, independent incoming waveform and outgoing peer decoder; raw capture; printer CTS readiness and external/status interrupts | External clock and synchronous modes absent; TX x1 half-stop rounding; printer-specific escape language absent | `sio.c`; printer integration checks |
+| Serial/printer | Clocked keyboard RX; V.24 CTS/DCD/BREAK interrupts, first-character error lock, independent incoming waveform and outgoing peer decoder; raw capture; printer CTS readiness and external/status interrupts | Independent RX/TX diagnostic edges available; browser external clock and synchronous modes absent; TX x1 half-stop rounding; printer-specific escape language absent | `sio.c`; printer integration checks |
 | Floppy | Independent mechanics, DSK/raw, timed searches/bytes, errors, writes, format | Reference trajectories; no flux/PLL, weak sectors or specimen measurements | `DRIVE-FIDELITY.md` and native/WASM tests |
 | Enclosures | Owner-referenced 1 mm sheet, bends, split monitor/keyboard/system shells | Local bend radii and hidden joins remain estimates | Canonical CAD/evidence and static intersections |
 | Boards | Owner-referenced packages, sockets, holes, supports and artwork | Artwork is not a verified netlist; some orientations/mounts unresolved | CAD hardware audit and calibration reports |
 | Sound | Owner power/fan/key recordings; synthesized drive activity | Unmeasured spatial/acoustic response and drive timbre | Audio manifest and playback tests |
-| Persistence | Checksummed named checkpoints with both disks; collection preview/selective restore; disk copies, portable states, preserved old cores, replay | Checkpoint firmware must match; custom firmware excluded; 20 named checkpoints; quick-save states/mounts keep or replace | Session/portable/replay checks |
+| Persistence | Checksummed named checkpoints with both disks; collection preview/selective restore; disk copies, portable states, preserved old cores, replay | Checkpoint firmware must match (including supplied custom ROMs); 20 named checkpoints; quick-save states/mounts keep or replace | Session/portable/replay checks |
 
 ## Inspection and recovery
+
+[0.14.0 inspection and checkpoint guide](inspection-014.md): execution targets,
+changed-state highlights, reproducible measurements, draggable sections, individual
+checkpoint files, mechanical audit and serial clock qualification.
+
 
 [Inspection workbench and debugger](inspection-workbench.md): grouped controls,
 cutaway presets/plane guide, shell caps, model-derived measurements, instruction
@@ -78,7 +83,7 @@ investigation leads, not proof that either implementation matches hardware.
   derived assets, not canonical models. Heap measurements omit GPU/worker memory.
 - **CI:** scope from a successful ancestral push, not the immediately previous push.
   Missing evidence/PRs select full coverage. Fail-fast and cancellation of superseded
-  runs remain enabled. File-duration estimates come from successful run 38873331518;
+  runs remain enabled. File-duration estimates come from successful run 38883094600;
   `scripts/update-ci-durations.mjs` refreshes them from downloaded logs without a
   new CI run. Ordinary CI does not install MAME or run Verilog/historical ROM boots.
 

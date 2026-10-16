@@ -774,3 +774,5 @@ output[for^="crt-"] { font-variant-numeric:tabular-nums; margin:0 .5rem; }
 .control-group {border-top:1px solid #a9b4a6;margin-top:1rem;padding-top:.5rem;}
 .control-group h2 {font-size:1rem;margin:.5rem 0;}
 .control-group[hidden] {display:none;}
+
+.debug-changed { background: #71551c; color: #fff1a5; border-bottom: 2px solid #ffd45c; }

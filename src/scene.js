@@ -5,6 +5,7 @@ import { createCrtPresentation } from "./crt-presentation.js";
 import { createDriveSceneState } from "./drive-scene-state.js";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { TransformControls } from "three/addons/controls/TransformControls.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 import { loadRobotron } from "./robotron-model.js";
@@ -77,6 +78,11 @@ export function createScene(
   let section={axis:'off',position:0,reverse:false},sectionRoot,lastHit;
   const measurement=createMeasurement(scene,value=>window.dispatchEvent(new CustomEvent('model-measurement',{detail:value})));
   const capGroup=new THREE.Group();scene.add(capGroup);
+  const sectionHandle=new THREE.Object3D();scene.add(sectionHandle);
+  const sectionGizmo=new TransformControls(camera,renderer.domElement);sectionGizmo.enabled=false;sectionGizmo.size=.65;sectionGizmo.showXY=sectionGizmo.showYZ=sectionGizmo.showXZ=sectionGizmo.showXYZE=false;scene.add(sectionGizmo.getHelper());
+  sectionGizmo.addEventListener('dragging-changed',e=>{controls.enabled=!e.value;if(e.value){down=undefined;robotron?.releaseKeys();}else applySection();});
+  sectionGizmo.addEventListener('change',()=>{renderRequested=true;});
+  sectionGizmo.addEventListener('objectChange',()=>{section.position=Math.max(-2,Math.min(2,sectionHandle.position[section.axis]));applySection();window.dispatchEvent(new CustomEvent('section-position-change',{detail:section.position}));});
   const sectionPlane=new THREE.Plane();renderer.localClippingEnabled=true;
   const planeHelper=new THREE.PlaneHelper(sectionPlane,2,0xe9aa3c);planeHelper.visible=false;scene.add(planeHelper);
   function sectionVisible(point){return section.axis==='off'||sectionPlane.distanceToPoint(point)>=0;}
@@ -87,8 +93,10 @@ export function createScene(
     robotron.group.traverse(o=>{for(const m of [o.material].flat().filter(Boolean)){m.clippingPlanes=section.axis==='off'?[]:[sectionPlane];m.clipShadows=true;m.needsUpdate=true;}});
     planeHelper.visible=kind===2&&section.axis!=='off'&&!!section.showPlane;
     capGroup.visible=kind===2;
-    const caps=section.axis!=='off'&&section.caps?buildCaps(robotron.group,sectionPlane,capGroup):(clearCaps(capGroup),0);
-    window.dispatchEvent(new CustomEvent('section-caps',{detail:caps}));
+    sectionGizmo.enabled=kind===2&&section.axis!=='off'&&section.drag;
+    if(sectionGizmo.enabled){sectionGizmo.showX=section.axis==='x';sectionGizmo.showY=section.axis==='y';sectionGizmo.showZ=section.axis==='z';if(!sectionGizmo.dragging){const box=new THREE.Box3();for(const o of visiblePickTargets(robotron.group))box.expandByObject(o);if(!box.isEmpty())box.getCenter(sectionHandle.position);sectionHandle.position[section.axis]=section.position;}if(!sectionGizmo.object)sectionGizmo.attach(sectionHandle);}else sectionGizmo.detach();
+    const caps=section.axis!=='off'&&section.caps&&!sectionGizmo.dragging?buildCaps(robotron.group,sectionPlane,capGroup):(clearCaps(capGroup),0);
+    window.dispatchEvent(new CustomEvent('section-caps',{detail:{count:caps,skipped:capGroup.userData.skipped||[]}}));
     renderRequested=true;renderer.shadowMap.needsUpdate=true;
   }
   controls.target.set(0, 0.55, 0);
@@ -242,6 +250,7 @@ export function createScene(
       percent === 100 ? "Ready to explore" : "Preparing the exhibit…";
   }
   function visibility() {
+    if(kind!==2){sectionGizmo.enabled=false;sectionGizmo.detach();}
     capGroup.visible=kind===2;
     planeHelper.visible=kind===2&&section.axis!=='off'&&!!section.showPlane;
     renderRequested = true;
@@ -285,7 +294,7 @@ export function createScene(
     .then((model) => {
       robotron = model;measurement.scale(model.group.scale.x);
       model.displaySettings(crtSettings);
-      scene.add(model.group);
+      scene.add(model.group);measurement.configure(model.group,model.identity);measurement.options({visible:sectionVisible});
       window.dispatchEvent(new CustomEvent("dac-model-ready",{detail:{evidence:model.evidence}}));
       model.power(powered);
       model.modifiers(modifiers);
@@ -346,6 +355,7 @@ export function createScene(
       cancelGesture();
       return;
     }
+    if(sectionGizmo.enabled&&sectionGizmo.axis)return;
     const hit = hitAt(e);
     down = {
       x: e.clientX,
@@ -437,7 +447,7 @@ export function createScene(
       return;
     container.focus({ preventScroll: true });
     if (!hit) return;
-    if(measurement.enabled){measurement.pick(lastHit);renderRequested=true;return;}
+    if(measurement.enabled){try{measurement.pick(lastHit);}catch(error){window.dispatchEvent(new CustomEvent("measurement-error",{detail:error.message}));}renderRequested=true;return;}
     if (gesture.key && hit?.userData.key?.id === gesture.key.id) {
       if (interaction.onKey?.(gesture.key)) robotron.pulse(gesture.key.id);
     } else if (hit.userData.driveUnit !== undefined && gesture.object === hit)
@@ -574,12 +584,15 @@ export function createScene(
   document.addEventListener("visibilitychange",updateRendering);
   updateRendering();
   return {
-    section(value){if(!['off','x','y','z'].includes(value.axis)||!Number.isFinite(value.position)||Math.abs(value.position)>4)return;section={axis:value.axis,position:value.position,reverse:!!value.reverse,showPlane:!!value.showPlane,caps:!!value.caps};applySection();},
+    section(value){if(!['off','x','y','z'].includes(value.axis)||!Number.isFinite(value.position)||Math.abs(value.position)>4)return;section={axis:value.axis,position:value.position,reverse:!!value.reverse,showPlane:!!value.showPlane,caps:!!value.caps,drag:!!value.drag};applySection();},
     navigate(key){const offset=camera.position.clone().sub(controls.target),sphere=new THREE.Spherical().setFromVector3(offset);if(key==='ArrowLeft')sphere.theta-=.12;if(key==='ArrowRight')sphere.theta+=.12;if(key==='ArrowUp')sphere.phi-=.12;if(key==='ArrowDown')sphere.phi+=.12;if(key==='+'||key==='=')sphere.radius*=.9;if(key==='-')sphere.radius*=1.1;sphere.radius=Math.max(.1,Math.min(15,sphere.radius));sphere.makeSafe();camera.position.copy(controls.target).add(offset.setFromSpherical(sphere));controls.update();renderRequested=true;},
     focusCircuit(ref,related){robotron?.focusCircuit(ref,related);renderRequested=true;},
     annotations(on){labelsEnabled=on;renderRequested=true;},
     markTrack(value){robotron?.markTrack(value);renderRequested=true;},
+    sectionRange(axis){if(!robotron||!["x","y","z"].includes(axis))return null;robotron.tick();robotron.group.updateWorldMatrix(true,true);const box=new THREE.Box3();for(const o of visiblePickTargets(robotron.group))box.expandByObject(o);return box.isEmpty()?null:[box.min[axis],box.max[axis]];},
     measurement(on){cancelGesture();measurement.set(on);renderRequested=true;},
+    measurementOptions(value){measurement.options(value);renderRequested=true;},
+    restoreMeasurement(value){measurement.restore(value);renderRequested=true;},
     clearMeasurement(){measurement.clear();renderRequested=true;},
     measurementParts(){if(kind!==2)return [];return [...(robotron?.objects.values()||[])].filter(o=>o.isMesh&&!o.isInstancedMesh&&o.geometry).map(o=>o.name);},
     measureCentre(name,slot){if(kind!==2)return;const object=robotron?.objects.get(name);if(object){measurement.set(true);measurement.centre(object,slot);renderRequested=true;}},

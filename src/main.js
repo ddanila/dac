@@ -400,6 +400,7 @@ $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPrevie
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
   debugPanel.message(d);
+  if(d.type==="debug-state"&&on)$("status").textContent=d.paused?"Paused · powered on":"Running";
   checkpointPanel.message(d);
   if(d.type==='checkpoint-restored'){release();$("remember-disk").checked=false;}
   collectionPanel.message(d);

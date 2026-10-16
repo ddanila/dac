@@ -86,5 +86,9 @@
   "a51242fadb75b16f5634058e8fc5febd8bbe90dcc7bb587d2f836f9ceecc25f8": {
     "version": "0.12.0",
     "javascript": "c7d0a1f2096ba44d7543c39a103b43eb0ccded8b11ccff97e4d1705b5527286c"
+  },
+  "e6667a2bc24f5e2ce5045a2ca12b14092f82945ffb476af4d4291056ada542f8": {
+    "version": "0.13.0",
+    "javascript": "7519abe320f81e742a2b7163068aba944c8acb9b654341b47b360328983957f2"
   }
 }

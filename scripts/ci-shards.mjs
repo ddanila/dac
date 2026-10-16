@@ -1,5 +1,5 @@
 // Deterministic longest-first assignment. Estimates affect placement, never coverage.
-export const visualTestPattern = /^(assembly|cable-geometry|crt|drive-levers|drive-motion|exhibit-improvements|exploration|fan|inspection|interior|keyboard|museum|pcb-components|sessions)\.spec\.js$/;
+export const visualTestPattern = /^(assembly|cable-geometry|crt|drive-levers|drive-motion|exhibit-improvements|exploration|fan|inspection|interior|keyboard(?:-input|-gestures|-keycaps)?|museum|pcb-components|sessions)\.spec\.js$/;
 export function assignFiles(files, seconds, count = 2) {
   if (!Number.isInteger(count) || count < 1) throw Error('Invalid shard count');
   const bins = Array.from({length: count}, () => ({seconds: 0, files: []}));

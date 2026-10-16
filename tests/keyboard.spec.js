@@ -1,41 +1,8 @@
-import { keyPoint } from "./robotron-picking.js";
 import { test, expect } from "@playwright/test";
 import { PerspectiveCamera, Vector3, Euler, Group, Mesh, MeshBasicMaterial, BoxGeometry, Raycaster } from "three";
 import { visiblePickTargets, inCameraView } from "../src/scene.js";
 import { photoProjection } from "../src/robotron-model.js";
 
-async function observeKeys(page) {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.addInitScript(() => {
-    const WorkerBase = window.Worker;
-    window.sentKeys = [];
-    window.Worker = class extends WorkerBase {
-      constructor(...args) { super(...args); window.observedWorker=this; }
-      postMessage(message, ...args) {
-        if (message.type === "key" && message.down)
-          window.sentKeys.push(message.key);
-        return super.postMessage(message, ...args);
-      }
-    };
-  });
-  await page.goto("/");
-  await expect(page.locator("#viewport")).toHaveAttribute(
-    "data-model",
-    "robotron-photo", {timeout: 20000});
-  await expect(page.locator("#power")).toBeEnabled();
-  // Input routing and modifier semantics need a stable diagnostic; the
-  // historical-media suite separately exercises the original OS and disk.
-  await page.locator("#media-controls summary").click();
-  await page.locator("#demo").click();
-  await expect(page.locator("#media-label")).toHaveText("DAC diagnostic ROM");
-  await expect(page.locator("#power")).toBeEnabled();
-  await page.locator("#power").click();
-  await expect(page.locator("#status")).toHaveText("Running");
-  // These tests inspect routed key messages and keycap state, not CPU output.
-  // Keep the real worker, but pause its clock to avoid competing with WebGL.
-  // Historical-media tests continue to exercise live OS keyboard input.
-  await page.evaluate(() => window.observedWorker.postMessage({type:"visibility",hidden:true}));
-}
 
 test("photo projection preserves corners and perspective, not just a diagonal blend", () => {
   const quad = [
@@ -56,150 +23,8 @@ test("photo projection preserves corners and perspective, not just a diagonal bl
   expect(centre[1]).toBeCloseTo(2 / 3);
 });
 
-test('keyboard buttons send documented bytes and latch modifiers', async ({page}) => {
-  await observeKeys(page);
-  await page.locator("#key-list-toggle").click();
-  const keys = page.locator("#key-list");
-  const press = label => keys.getByRole("button", {name:label,exact:true}).first().dispatchEvent("click");
-  await press("A");
-  await press("Shift");
-  await press("A");
-  await press("CTRL");
-  await press("C");
-  await press("Caps Lock");
-  await press("A");
-  await press("Caps Lock");
-  await press("PF1 · numeric or function keypad");
-  await press("1 · numeric or function keypad");
-  await press("Tab");
-  expect(await page.evaluate(() => window.sentKeys)).toEqual([
-    97, 65, 3, 65, 0xd1, 0xb1, 0x80,
-  ]);
-});
-
-test('physical letters and special keys send their documented bytes', async ({page}) => {
-  await test.step('Load model and diagnostic', () => observeKeys(page));
-  await page.locator('#viewport').focus();
-  await test.step('Type mixed case and special keys', async () => {
-    await page.keyboard.type('Ab');
-    await page.keyboard.press('F1');
-    await page.keyboard.press('Delete');
-  });
-  expect(await page.evaluate(() => window.sentKeys)).toEqual([65,98,0xd1,0x7f]);
-});
-
-test('physical keys share Caps Lock state with keyboard buttons', async ({page}) => {
-  await test.step('Load model and diagnostic', () => observeKeys(page));
-  await page.locator('#key-list-toggle').click();
-  const caps = page.locator('#key-list').getByRole('button',{name:'Caps Lock',exact:true});
-  await test.step('Button Caps Lock affects physical typing', async () => {
-    await caps.dispatchEvent('click');
-    await expect(caps).toHaveAttribute('aria-pressed','true');
-    await page.locator('#viewport').focus();
-    await page.keyboard.type('c');
-  });
-  await test.step('Physical Caps Lock releases shared state', async () => {
-    await page.keyboard.press('CapsLock');
-    await expect(caps).toHaveAttribute('aria-pressed','false');
-    await page.keyboard.type('c');
-  });
-  // Host Caps must not be applied again on top of the shared museum state.
-  await page.evaluate(()=>{
-    const target=document.querySelector('#viewport');
-    target.dispatchEvent(new KeyboardEvent('keydown',{key:'C',code:'KeyC',modifierCapsLock:true,bubbles:true}));
-    target.dispatchEvent(new KeyboardEvent('keyup',{key:'C',code:'KeyC',modifierCapsLock:true,bubbles:true}));
-  });
-  expect(await page.evaluate(() => window.sentKeys)).toEqual([67,99,99]);
-});
-
-test('keyboard control combinations and unsupported keys are explicit', async ({page}) => {
-  await observeKeys(page);
-  await page.locator("#key-list-toggle").click();
-  const keys = page.locator("#key-list");
-  const press = label => keys.getByRole("button", {name:label,exact:true}).first().dispatchEvent("click");
-  await press("CTRL");
-  await press("{");
-  await press("CTRL");
-  await press("@");
-  expect(await page.evaluate(() => window.sentKeys.slice(-2))).toEqual([27, 0]);
-  await press("ALT");
-  await expect(page.locator("#key-feedback")).toContainText("not verified");
-  expect(await page.evaluate(() => window.sentKeys.length)).toBe(2);
-});
-
-test('reset, blur and power-off clear keyboard input state', async ({page}) => {
-  await observeKeys(page);
-  await page.locator("#key-list-toggle").click();
-  const keys = page.locator("#key-list");
-  const press = label => keys.getByRole("button", {name:label,exact:true}).first().dispatchEvent("click");
-  await press("CTRL");
-  await page.locator("#reset").click();
-  await expect(
-    keys.getByRole("button", { name: "CTRL", exact: true }),
-  ).toHaveAttribute("aria-pressed", "false");
-  await press("Caps Lock");
-  await page.evaluate(() => window.dispatchEvent(new Event("blur")));
-  await expect(
-    keys.getByRole("button", { name: "Caps Lock", exact: true }),
-  ).toHaveAttribute("aria-pressed", "false");
-  await page.locator("#power").click();
-  await expect(page.locator("#status")).toHaveText("Powered off");
-  await press("A");
-  await expect(page.locator("#key-feedback")).toContainText("Power on");
-  expect(await page.evaluate(() => window.sentKeys.length)).toBe(0);
-});
 
 
-for (const gesture of ["click", "drag", "cancel"]) {
-  test(`3D key ${gesture} sends input only for a completed click`, async ({
-    page,
-  }) => {
-    // Includes model load, camera movement and a complete pointer gesture.
-    test.setTimeout(process.env.CI ? 90000 : 60000);
-    await page.setViewportSize({ width: 1280, height: 900 });
-    await observeKeys(page);
-    await page.getByRole("button", { name: "Keyboard", exact: true }).click();
-    const manifest = await (
-      await page.request.get("/models/robotron-1715m/model.json")
-    ).json();
-    const key = manifest.keys.find((k) => k.label === "A");
-    const box = await page.locator("#viewport").boundingBox();
-    const camera = new PerspectiveCamera(36, box.width / box.height, 0.01, 40);
-    camera.position.set(0, 1.55, 1.45);
-    camera.lookAt(0, 0.07, 0.88);
-    camera.updateMatrixWorld();
-    const vector = new Vector3(key.x, key.y, 8.1).applyEuler(
-      new Euler((manifest.keyboard.slope * Math.PI) / 180, 0, 0),
-    );
-    vector
-      .add(new Vector3(0, manifest.keyboard.y, manifest.keyboard.z))
-      .applyEuler(new Euler(-Math.PI / 2, 0, 0))
-      .multiplyScalar(manifest.scale)
-      .project(camera);
-    const x = box.x + ((vector.x + 1) * box.width) / 2,
-      y = box.y + ((1 - vector.y) * box.height) / 2;
-    if (gesture === "click") {
-      await page.mouse.click(x, y);
-      await expect(page.locator("#key-feedback")).toHaveText("Sent A");
-      await page.locator("#viewport").focus();
-      await page.keyboard.press("Escape");
-      await expect(page.locator("#viewport")).not.toBeFocused();
-    } else {
-      await page.mouse.move(x, y);
-      await page.mouse.down();
-      if (gesture === "drag")
-        await page.mouse.move(x + 60, y + 30, { steps: 5 });
-      else
-        await page
-          .locator("#viewport canvas")
-          .dispatchEvent("pointercancel", { pointerId: 1 });
-      await page.mouse.up();
-    }
-    expect(await page.evaluate(() => window.sentKeys)).toEqual(
-      gesture === "click" ? [97] : [],
-    );
-  });
-}
 
 test("inspection separates the exterior and links owner rear references", async ({
   page,
@@ -248,41 +73,6 @@ test("a static exhibit stops submitting GPU draws", async ({ page }) => {
     .toBeGreaterThan(before);
 });
 
-test("physical keyboard holds the modeled key down until release and blur clears it", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 1280, height: 900 });
-  await observeKeys(page);
-  await page.locator('[data-view="keyboard"]').click();
-  const model = await (
-    await page.request.get("/models/robotron-1715m/model.json")
-  ).json();
-  const key = model.keys.find((k) => k.input.code === 97);
-  await page.locator("#viewport").focus();
-  const point = await keyPoint(page, key, model);
-  const clip = {
-    x: Math.round(point.x) - 16,
-    y: Math.round(point.y) - 12,
-    width: 32,
-    height: 24,
-  };
-  const picture = () => page.screenshot({ clip });
-  let resting;
-  await expect.poll(async () => {
-    const frame = await picture(), stable = resting?.equals(frame);
-    resting = frame; return !!stable;
-  }).toBe(true);
-  await page.keyboard.down("a");
-  await page.waitForTimeout(250); // longer than the former 140 ms pulse
-  const held = await picture();
-  expect(held.equals(resting)).toBe(false);
-  await page.keyboard.up("a");
-  await expect.poll(async () => (await picture()).equals(resting)).toBe(true);
-  await page.keyboard.down("a");
-  await page.locator("#viewport").evaluate((el) => el.blur());
-  await expect.poll(async () => (await picture()).equals(resting)).toBe(true);
-  await page.keyboard.up("a");
-});
 
 
 test("firmware LED bits independently light both model lamps and survive gesture release", async ({ page }) => {
@@ -344,31 +134,4 @@ test("CRT video invalidation respects the camera and ancestor visibility", () =>
   expect(inCameraView(screen, camera)).toBe(false);
   root.visible = true;
   expect(inCameraView(screen, camera)).toBe(true);
-});
-
-test("latched Shift changes input state without leaving its keycap depressed", async ({ page }) => {
-  test.setTimeout(60000);
-  await page.setViewportSize({ width: 1280, height: 900 });
-  await observeKeys(page);
-  await page.locator('#key-list-toggle').click();
-  await page.locator('[data-view="keyboard"]').click();
-  const model = await (await page.request.get('/models/robotron-1715m/model.json')).json();
-  const key = model.keys.find(k => k.input.modifier === 'shift');
-  const point = await keyPoint(page, key, model);
-  const clip = { x:Math.round(point.x)-12, y:Math.round(point.y)-10, width:24, height:20 };
-  let resting;
-  await expect.poll(async () => {
-    const frame = await page.screenshot({clip}), stable = resting?.equals(frame);
-    resting = frame; return !!stable;
-  }).toBe(true);
-  const button = page.locator(`#key-list [data-key="${key.id}"]`);
-  await button.dispatchEvent('click');
-  await expect(button).toHaveAttribute('aria-pressed','true');
-  await expect.poll(async () => (await page.screenshot({clip})).equals(resting)).toBe(true);
-  await page.locator('#viewport').focus();
-  await page.keyboard.down('Shift');
-  await page.waitForTimeout(200);
-  expect((await page.screenshot({clip})).equals(resting)).toBe(false);
-  await page.keyboard.up('Shift');
-  await expect.poll(async () => (await page.screenshot({clip})).equals(resting)).toBe(true);
 });

@@ -1,5 +1,5 @@
-let debugPaused=false,debugArmed=false;
-import {checkpoints,saveCheckpoint,loadCheckpoint} from './checkpoints.js';
+let debugPaused=false,debugArmed=false,debugMemoryAddress;
+import {checkpoints,saveCheckpoint,loadCheckpoint,renameCheckpoint,deleteCheckpoint,exportCheckpoint,importCheckpoint} from './checkpoints.js';
 import {exportCollection,importCollection} from './collection-backup.js';
 import { archivedCore, hasArchivedCore } from "./archived-core.js";
 let currentModule, currentBuild, coreBase;
@@ -381,13 +381,14 @@ function frame() {
     [pixels.buffer],
   );
 }
-function debugState(message,address){
+function debugState(message,address=debugMemoryAddress){
+ if(address!==undefined)debugMemoryAddress=address;
  if(kind!==2||!module._dac_debug_reg||!module._dac_state_size(handle))throw Error('Power on a Robotron using a core with debugger support.');
  const names=['PC','SP','AF','BC','DE','HL','IX','IY',"AF′","BC′","DE′","HL′",'IM','IFF1','IFF2','I','R','clocks low','clocks high','bank','HALT','instruction boundary','bus address'],values=names.map((_,i)=>module._dac_debug_reg(handle,i)),hex=(n,width=4)=>n.toString(16).padStart(width,'0');
  let pc=values[21]?values[22]:values[0];const lines=[];
  for(let i=0;i<10;i++){const next=module._dac_debug_disassemble(handle,pc),p=module._dac_debug_text(handle);let end=p;while(end<p+128&&module.HEAPU8[end])end++;lines.push(hex(pc)+'  '+new TextDecoder().decode(module.HEAPU8.subarray(p,end)));pc=next;}
- let memory;if(address!==undefined){const rows=[];for(let i=0;i<128;i+=16){const a=(address+i)&65535,bytes=Array.from({length:16},(_,j)=>module._dac_debug_byte(handle,(a+j)&65535)),r=module._dac_debug_map(handle,a,0),w=module._dac_debug_map(handle,a,1);rows.push(hex(a)+'  '+bytes.map(b=>hex(b,2)).join(' ')+'  '+bytes.map(b=>b>=32&&b<127?String.fromCharCode(b):'.').join('')+`  read space ${r>>>24}:${hex(r&0xffffff,5)} write ${w>>>24}:${hex(w&0xffffff,5)}`);}memory=rows.join('\n');}
- postMessage({type:'debug-state',paused:debugPaused,message,registers:names.map((name,i)=>name+': '+hex(values[i])).join('  '),disassembly:lines.join('\n'),memory});
+ let memory,memoryRows;if(address!==undefined){const rows=[];memoryRows=[];for(let i=0;i<128;i+=16){const a=(address+i)&65535,bytes=Array.from({length:16},(_,j)=>module._dac_debug_byte(handle,(a+j)&65535)),r=module._dac_debug_map(handle,a,0),w=module._dac_debug_map(handle,a,1);memoryRows.push({address:a,bytes,read:r,write:w});rows.push(hex(a)+'  '+bytes.map(b=>hex(b,2)).join(' ')+'  '+bytes.map(b=>b>=32&&b<127?String.fromCharCode(b):'.').join('')+`  read space ${r>>>24}:${hex(r&0xffffff,5)} write ${w>>>24}:${hex(w&0xffffff,5)}`);}memory=rows.join('\n');}
+ postMessage({type:'debug-state',paused:debugPaused,message,values,names,memoryRows,registers:names.map((name,i)=>name+': '+hex(values[i])).join('  '),disassembly:lines.join('\n'),memory});
 }
 function tick() {
   if (!running || debugPaused || hidden || replaying) return;
@@ -403,7 +404,7 @@ function tick() {
       }
       const budget = Math.min(paste ? 10000 : 100000, Math.ceil(owed));
       const used = debugArmed?module._dac_debug_run(handle,budget):module._dac_run(handle, budget);
-      if(debugArmed&&module._dac_debug_hit(handle)){debugPaused=true;debugArmed=false;module._dac_debug_break(handle,0);module._dac_timeline_stop(handle);owed=0;debugState("Paused after the clock containing the matching bus event.");frame();}
+      if(debugArmed&&module._dac_debug_hit(handle)){const reason=module._dac_debug_hit(handle);debugPaused=true;debugArmed=false;module._dac_debug_break(handle,0);module._dac_timeline_stop(handle);owed=0;debugState(reason===2?"Paused at the target instruction fetch boundary.":"Paused after the clock containing the matching bus event.");frame();}
       recordEvent([0, budget]);
       if (!used) break;
       owed -= used;
@@ -804,6 +805,12 @@ async function receive(d) {
       if(recording||replaying)throw Error('Stop recording or replay before debugging.');
       if(kind!==2||!module._dac_debug_reg||!module._dac_state_size(handle))throw Error('Power on a Robotron using a core with debugger support.');
       let message;
+      if(d.type==='debug-run-to'||d.type==='debug-arm-execution'){
+        if(!Number.isInteger(d.address)||d.address<0||d.address>65535||!module._dac_debug_target)throw Error('Execution breakpoint unavailable or invalid.');
+        module._dac_debug_break(handle,0);if(module._dac_debug_target(handle,d.address)<0)throw Error('Execution breakpoint rejected.');debugArmed=true;message='Execution breakpoint armed.';
+        if(d.type==='debug-run-to'){debugPaused=false;clearTimeout(timer);owed=0;last=performance.now();timer=setTimeout(tick,0);}
+      }
+      if(d.type==='debug-clear-break'){debugArmed=false;module._dac_debug_break(handle,0);message='Breakpoints cleared.';}
       if(d.type==='debug-pause'){debugPaused=true;clearTimeout(timer);stopPaste();}
       if(d.type==='debug-resume'){debugPaused=false;clearTimeout(timer);owed=0;last=performance.now();timer=setTimeout(tick,0);}
       if(d.type==='debug-step'){if(!debugPaused)throw Error('Pause before stepping.');const ticks=module._dac_debug_step(handle);message=`Advanced ${ticks} clocks${ticks===100000?' · limit reached before an instruction boundary':''}.`;frame();}
@@ -820,7 +827,16 @@ async function receive(d) {
     } else if(d.type==='checkpoint-restore'){
       await restoreCheckpoint(d.key);postMessage({type:'checkpoint-status',message:'Checkpoint restored. Private disk copies are running; remember changes is off.'});
     } else if(d.type==='checkpoint-delete'){
-      await loadCheckpoint(d.key);await stored(d.key,null);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint deleted.'});
+      await deleteCheckpoint(d.key);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint deleted.'});
+    } else if(d.type==='checkpoint-rename'){
+      await renameCheckpoint(d.key,d.name);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint renamed.'});
+    } else if(d.type==='checkpoint-export'){
+      const bytes=await exportCheckpoint(d.key);postMessage({type:'download',name:'robotron.daccheckpoint',bytes},[bytes]);
+    } else if(d.type==='checkpoint-import'){
+      await importCheckpoint(d.bytes);postMessage({type:'checkpoints',entries:await checkpoints()});postMessage({type:'checkpoint-status',message:'Checkpoint imported as a new entry. Check compatibility before restoring.'});
+    } else if(d.type==='checkpoint-preview'){
+      const r=await loadCheckpoint(d.key),machine=r.kind===kind,firmwareMatch=machine&&r.firmwareIdentity===await sessionIdentity(kind,firmware||[],null),core=r.build===build||r.build===currentBuild||hasArchivedCore(r.build);
+      postMessage({type:'checkpoint-preview',message:`${machine?'Machine matches':'Choose '+['Juku','VJUGA','Robotron'][r.kind]}. ${firmwareMatch?'Firmware matches':'Supply matching ROM files in Media controls'}. ${core?'Matching core available':'Core unavailable'}. Required firmware identity: ${r.firmwareIdentity}. Disk copies: ${r.disks.map(d=>d.label+' ('+d.bytes.byteLength+' bytes)').join(', ')}.`});
     } else if(d.type === "timeline-capture"){
       if(d.stopOnTrigger&&(recording||replaying))throw Error('Stop recording or replay before setting a breakpoint.');
       if(d.trigger){if(!module._dac_timeline_arm)throw Error('Triggered capture is unavailable in this preserved core.');const t=d.trigger;if(module._dac_timeline_arm(handle,t.mode,t.address,t.pre,t.filter,t.master)<0)throw Error('Invalid capture settings.');debugArmed=!!d.stopOnTrigger;if(debugArmed&&(!module._dac_debug_break||module._dac_debug_break(handle,1)<0))throw Error('Breakpoint unavailable. Power on the current Robotron core.');if(!debugArmed)module._dac_debug_break?.(handle,0);}
