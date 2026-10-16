@@ -1,3 +1,4 @@
+import {validateCheckpoint} from './checkpoints.js';
 import {collectionRecords,mergeCollection,digest} from './session-store.js';
 import {base64} from './recording.js';
 const LIMIT=128*1024*1024;
@@ -30,10 +31,11 @@ async function validate(rows){
  for(const row of rows){
   if(!Array.isArray(row)||row.length!==2)throw Error('Invalid collection entry.');
   const [key,r]=row;
-  if(typeof key!=='string'||key.length>4096||! /^(library:|state:|disk:|disk-b:|mounts:)/.test(key)||keys.has(key))throw Error('Invalid or duplicate collection key.');
+  if(typeof key!=='string'||key.length>4096||! /^(library:|state:|disk:|disk-b:|mounts:|checkpoint:|comparison:)/.test(key)||keys.has(key))throw Error('Invalid or duplicate collection key.');
   keys.add(key);
   const check=async v=>{if(!(v?.bytes instanceof ArrayBuffer)||(await digest(v.bytes))!==v.sha256)throw Error('Saved record failed its checksum: '+key);};
-  if(key.startsWith('mounts:')){
+  if(key.startsWith('checkpoint:')){await validateCheckpoint(r);}
+  else if(key.startsWith('mounts:')){
    if(!Array.isArray(r)||r.length>2)throw Error('Invalid saved drive mounts.');
    for(const v of r)if(v && !v.empty)await check(v);
   }else{
@@ -88,7 +90,7 @@ export async function importCollection(bytes,choices){
 }
 export function createCollectionPanel(send){
  const panel=document.createElement('details');panel.id='collection-controls';
- panel.innerHTML=`<summary>Back up the whole collection</summary><p>Includes saved disks, originals, saved machine states and drive assignments from this browser. Save the current machine state first; unsaved work and separately selected firmware files are not included. Restoring states still requires matching media and firmware.</p><button id="collection-export">Download collection backup</button><label>Restore collection<input id="collection-import" type="file" accept=".daccollection"></label><div id="collection-preview"></div><button id="collection-restore" hidden>Restore selected records</button><button id="collection-usage">Check browser storage</button><p id="collection-status" role="status"></p>`;
+ panel.innerHTML=`<summary>Back up the whole collection</summary><p>Includes saved disks, originals, saved machine states, named checkpoints, comparison baselines and drive assignments from this browser. Save the current machine state first; unsaved work and separately selected firmware files are not included. Restoring states still requires matching media and firmware.</p><button id="collection-export">Download collection backup</button><label>Restore collection<input id="collection-import" type="file" accept=".daccollection"></label><div id="collection-preview"></div><button id="collection-restore" hidden>Restore selected records</button><button id="collection-usage">Check browser storage</button><p id="collection-status" role="status"></p>`;
  document.getElementById('session-controls').after(panel);
  const status=panel.querySelector('#collection-status');
  panel.querySelector('#collection-export').onclick=()=>send({type:'collection-export'});

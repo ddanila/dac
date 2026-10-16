@@ -1,3 +1,4 @@
+import {createDiskComparison} from './disk-comparison.js';
 import {inspectDisk,sectorText,fileBytes,byteLocation,diskChanges} from './disk-map.js';
 export function createDiskExplorer(request,onTrack=()=>{}){
   const dialog=document.createElement('dialog');dialog.id='disk-explorer';dialog.setAttribute('aria-labelledby','disk-map-title');
@@ -21,6 +22,7 @@ export function createDiskExplorer(request,onTrack=()=>{}){
   const $=s=>dialog.querySelector(s),canvas=$('canvas'),ctx=canvas.getContext('2d');
   let map,buffer,selected,sequence=0,pending=false,timer,activity=[],selectedByte=0,byteSignature='',changes={sectors:[],entries:[],files:[]},flashUntil=0;
   const unit=()=>Number($('[data-unit]').value),side=()=>Number($('[data-side]').value);
+  const comparison=createDiskComparison(dialog,()=>({unit:unit(),bytes:buffer,layout:$('[data-layout]').value}),()=>{pending=true;request(unit(),++sequence,true);});
   function refresh(){if(!dialog.open||pending||document.hidden)return;pending=true;request(unit(),++sequence);}
   function selectSector(s){if(selected?.offset!==s?.offset)selectedByte=0;selected=s;if(s){$('[data-cylinder]').value=s.c;$('[data-sector]').value=String(map.sectors.indexOf(s));}renderBytes();draw();}
   function sectors(){
@@ -129,7 +131,7 @@ export function createDiskExplorer(request,onTrack=()=>{}){
   $('[data-sector]').onchange=()=>selectSector(map?.sectors[Number($('[data-sector]').value)]);
   $('[data-cylinder]').onchange=$('[data-side]').onchange=sectors;
   $('[data-layout]').onchange=()=>{map=undefined;if(buffer)parse();};
-  $('[data-unit]').onchange=()=>{sequence++;pending=false;clear('Loading disk…');refresh();};
+  $('[data-unit]').onchange=()=>{sequence++;pending=false;clear('Loading disk…');comparison.reset();refresh();};
   $('[data-refresh]').onclick=refresh;
   $('[data-live]').onchange=()=>{if($('[data-live]').checked)refresh();else{sequence++;pending=false;}};
   $('[data-zoom]').oninput=()=>canvas.style.width=`${Number($('[data-zoom]').value)*100}%`;
@@ -151,7 +153,7 @@ export function createDiskExplorer(request,onTrack=()=>{}){
       if(JSON.stringify(next)===JSON.stringify(activity))return;
       activity=next;const a=activity[unit()];$('[data-activity]').textContent=a?`Controller access: cylinder ${a.c}, side ${a.h}, sector ${a.r} (red)`:'Controller idle';draw();
     },
-    open(u=0){$('[data-unit]').value=u;sequence++;pending=false;clear('Loading disk…');if(!dialog.open)dialog.showModal();refresh();clearInterval(timer);timer=setInterval(()=>{if($('[data-live]').checked)refresh();if(dialog.open&&!document.hidden)draw();},1500);},
-    receive(d){if(!dialog.open||d.request!==sequence||d.unit!==unit())return;pending=false;if(d.error){clear(d.error);return;}buffer=d.bytes;parse();}
+    open(u=0){$('[data-unit]').value=u;comparison.reset();sequence++;pending=false;clear('Loading disk…');if(!dialog.open)dialog.showModal();refresh();clearInterval(timer);timer=setInterval(()=>{if($('[data-live]').checked)refresh();if(dialog.open&&!document.hidden)draw();},1500);},
+    receive(d){if(!dialog.open||d.request!==sequence||d.unit!==unit())return;pending=false;if(d.error){clear(d.error);return;}buffer=d.bytes;if(d.original)comparison.original(d.original,d.unit);parse();}
   };
 }

@@ -1,3 +1,4 @@
+import {installRenderRecovery} from './render-recovery.js';
 import { createCrtPresentation } from "./crt-presentation.js";
 import { createDriveSceneState } from "./drive-scene-state.js";
 import * as THREE from "three";
@@ -67,13 +68,20 @@ export function createScene(
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   container.append(renderer.domElement);
-  const studio = new RoomEnvironment();
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(studio, 0.04).texture;
-  scene.environmentIntensity = 0.55;
-  studio.dispose();
-  pmrem.dispose();
+  let environment;
+  function rebuildEnvironment(){environment?.dispose();const studio=new RoomEnvironment(),pmrem=new THREE.PMREMGenerator(renderer);environment=pmrem.fromScene(studio,.04);scene.environment=environment.texture;scene.environmentIntensity=.55;studio.dispose();pmrem.dispose();}
+  rebuildEnvironment();
   const controls = new OrbitControls(camera, renderer.domElement);
+  let section={axis:'off',position:0,reverse:false},sectionRoot;
+  const sectionPlane=new THREE.Plane();renderer.localClippingEnabled=true;
+  function sectionVisible(point){return section.axis==='off'||sectionPlane.distanceToPoint(point)>=0;}
+  function applySection(){
+    if(!robotron)return;sectionRoot=robotron.group;
+    const normal=new THREE.Vector3();normal[section.axis==='off'?'x':section.axis]=section.reverse?-1:1;
+    sectionPlane.set(normal,-section.position*(section.reverse?-1:1));
+    robotron.group.traverse(o=>{for(const m of [o.material].flat().filter(Boolean)){m.clippingPlanes=section.axis==='off'?[]:[sectionPlane];m.clipShadows=true;m.needsUpdate=true;}});
+    renderRequested=true;renderer.shadowMap.needsUpdate=true;
+  }
   controls.target.set(0, 0.55, 0);
   controls.enableDamping = true;
   controls.addEventListener("change", () => {
@@ -259,7 +267,7 @@ export function createScene(
   const soundPoint=new THREE.Vector3();
   const detailLoading=document.createElement("div");detailLoading.id="detail-loading";detailLoading.hidden=true;detailLoading.setAttribute("role","status");container.append(detailLoading);
   loadRobotron(texture, loadingProgress, state=>{
-    container.dataset.details=state;detailLoading.hidden=state==="ready";
+    sectionRoot=null;container.dataset.details=state;detailLoading.hidden=state==="ready";
     detailLoading.textContent=state==="error"?"Some interior details could not load. Reopen this assembly to retry.":"Loading interior details…";
     renderRequested=true;renderer.shadowMap.needsUpdate=true;
   })
@@ -305,7 +313,7 @@ export function createScene(
     machine.updateWorldMatrix(true, true);
     robotron?.group.updateWorldMatrix(true, true);
     const hit = kind === 2 && robotron
-      ? ray.intersectObjects(visiblePickTargets(robotron.group), false)[0]
+      ? ray.intersectObjects(visiblePickTargets(robotron.group), false).find(hit=>sectionVisible(hit.point))
       : ray.intersectObject(power)[0];
     if (hit) hit.object.userData.pickedDetail = inspectionForHit(hit);
     return hit?.object;
@@ -498,10 +506,10 @@ export function createScene(
       if(!labelsEnabled || kind!==2 || !mesh?.visible || mesh.userData.loaded===false)continue;
       mesh.updateWorldMatrix(true,false);mesh.geometry.computeBoundingBox();
       const point=annotation.position?new THREE.Vector3(...annotation.position):mesh.geometry.boundingBox?.getCenter(new THREE.Vector3());
-      if(!point)continue;point.applyMatrix4(mesh.matrixWorld);
+      if(!point)continue;point.applyMatrix4(mesh.matrixWorld);if(!sectionVisible(point))continue;
       const direction=point.clone().sub(camera.position),distance=direction.length();
       const ray=new THREE.Raycaster(camera.position,direction.normalize(),0,Math.max(0,distance-.0005));
-      if(ray.intersectObjects(blockers,false).length)continue;
+      if(ray.intersectObjects(blockers,false).some(hit=>sectionVisible(hit.point)))continue;
       point.project(camera);
       if(Math.abs(point.x)>.94||Math.abs(point.y)>.94||point.z< -1||point.z>1)continue;
       button.hidden=false;
@@ -530,6 +538,7 @@ export function createScene(
     const changed = robotron?.tick();
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     if (renderRequested || changed?.dirty) {
+      if(sectionRoot!==robotron?.group)applySection();
       renderer.render(scene, camera);
       drawLabels();
       if(robotron && interaction.onSoundPosition) {
@@ -541,15 +550,18 @@ export function createScene(
   };
   let inViewport=true;
   function updateRendering(){
-    const active=inViewport&&!document.hidden;
+    const active=inViewport&&!document.hidden&&!recovery.lost;
     container.dataset.rendering=active?"active":"paused";
     renderRequested=true;
     renderer.setAnimationLoop(active?drawFrame:null);
   }
+  const recovery=installRenderRecovery(renderer,container,ready=>{cancelGesture();if(ready){rebuildEnvironment();applySection();presentation.update();}updateRendering();});
   const intersection=new IntersectionObserver(entries=>{inViewport=entries[0].isIntersecting;updateRendering();});intersection.observe(container);
   document.addEventListener("visibilitychange",updateRendering);
   updateRendering();
   return {
+    section(value){if(!['off','x','y','z'].includes(value.axis)||!Number.isFinite(value.position)||Math.abs(value.position)>4)return;section={axis:value.axis,position:value.position,reverse:!!value.reverse};applySection();},
+    navigate(key){const offset=camera.position.clone().sub(controls.target),sphere=new THREE.Spherical().setFromVector3(offset);if(key==='ArrowLeft')sphere.theta-=.12;if(key==='ArrowRight')sphere.theta+=.12;if(key==='ArrowUp')sphere.phi-=.12;if(key==='ArrowDown')sphere.phi+=.12;if(key==='+'||key==='=')sphere.radius*=.9;if(key==='-')sphere.radius*=1.1;sphere.radius=Math.max(.1,Math.min(15,sphere.radius));sphere.makeSafe();camera.position.copy(controls.target).add(offset.setFromSpherical(sphere));controls.update();renderRequested=true;},
     focusCircuit(ref,related){robotron?.focusCircuit(ref,related);renderRequested=true;},
     annotations(on){labelsEnabled=on;renderRequested=true;},
     markTrack(value){robotron?.markTrack(value);renderRequested=true;},

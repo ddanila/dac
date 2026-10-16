@@ -1,5 +1,7 @@
 # DAC — Danila’s Archive of Computing
 
+New: [named checkpoints, section views, triggered capture and disk comparisons](docs/robotron/inspection-and-checkpoints.md).
+
 Current implementation and remaining evidence: [capability matrix](docs/robotron/capabilities.md). Dated notes below retain development history.
 
 *A museum of computers and the worlds they opened.*

@@ -3,6 +3,7 @@ export default {
   ...base,
   testMatch: [
     "portable-sessions.spec.js",
+    "checkpoints.spec.js",
     "workbench.spec.js",
     "assembly.spec.js",
   ],

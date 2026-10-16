@@ -1,6 +1,6 @@
 # Robotron capability and evidence matrix
 
-Current baseline: DAC Emulation 0.11.0, scanline output, snapshot layout 11;
+Current baseline: DAC Emulation 0.12.0, scanline output, snapshot layout 11;
 canonical model v48. This matrix describes present behavior. Dated development
 sections elsewhere are history, not cumulative lists of current limitations.
 
@@ -15,7 +15,15 @@ sections elsewhere are history, not cumulative lists of current limitations.
 | Enclosures | Owner-referenced 1 mm sheet, bends, split monitor/keyboard/system shells | Local bend radii and hidden joins remain estimates | Canonical CAD/evidence and static intersections |
 | Boards | Owner-referenced packages, sockets, holes, supports and artwork | Artwork is not a verified netlist; some orientations/mounts unresolved | CAD hardware audit and calibration reports |
 | Sound | Owner power/fan/key recordings; synthesized drive activity | Unmeasured spatial/acoustic response and drive timbre | Audio manifest and playback tests |
-| Persistence | Checksummed collection preview, selective transactional restore, disk copies with reference remapping, portable states, preserved old cores, replay | Unsaved running state and custom firmware are excluded; states/mounts offer keep or replace, not duplicate identities | Session/portable/replay checks |
+| Persistence | Checksummed named checkpoints with both disks; collection preview/selective restore; disk copies, portable states, preserved old cores, replay | Checkpoint firmware must match; custom firmware excluded; 20 named checkpoints; quick-save states/mounts keep or replace | Session/portable/replay checks |
+
+## Inspection and recovery
+
+[Checkpoint and inspection guide](inspection-and-checkpoints.md): recover WebGL
+without restarting the emulator; section planes and shareable inspection links;
+explicit keyboard inspection mode; bounded triggered bus capture; persistent
+original/checkpoint disk comparisons. Cuts have no cap geometry. Event capture is
+emulated, and disk reports explicitly mark unsupported layouts or range limits.
 
 ## Specimen inventory still requiring physical evidence
 

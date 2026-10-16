@@ -1,3 +1,5 @@
+import {installInspectionControls} from './inspection-controls.js';
+import {createCheckpointPanel} from './checkpoints.js';
 import {createCollectionPanel} from './collection-backup.js';
 import {createElectricalPanel} from './robotron-experiments.js';
 import {createCircuitPanel} from './robotron-circuits.js';
@@ -21,6 +23,7 @@ const $ = (id) => document.getElementById(id),
 const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
   type: "module",
 });
+const checkpointPanel=createCheckpointPanel(send);
 const collectionPanel=createCollectionPanel(send);
 const serialPanel=createSerialPanel(send);
 const electricalPanel=createElectricalPanel(send);
@@ -30,7 +33,7 @@ const circuitPanel=createCircuitPanel((c,related)=>{
   updateCase();selectView("motherboard");
   showSpecimenDetail({title:`${c.ref} · ${c.name}`,text:`${c.role} ${c.signal} Drawing: 1715W/teil_b/Stromlaufplan ${c.sheet}.jpg in the linked archive.`,evidence:"W/M schematic relationship; specimen mapping provisional",photo:"20261014_072654600",reference:"https://xepb.org/robotron/docs/1715w.zip",sheet:`Stromlaufplan ${c.sheet}.jpg`});
 },send,row=>{scene?.markTrack({unit:row.unit,c:row.cylinder,h:row.head});$('open-case').checked=true;$('isolate-assembly').value='drives';updateCase();selectView('drive-top');});
-const diskExplorer=createDiskExplorer((unit,request)=>send({type:"inspect-disk",unit,request}),target=>{
+const diskExplorer=createDiskExplorer((unit,request,original)=>send({type:"inspect-disk",unit,request,original}),target=>{
   scene?.markTrack(target);
   if(target){
     $("open-case").checked=true;$("isolate-assembly").value="drives";$("component-focus").value="none";
@@ -392,6 +395,8 @@ function requestPrinterPreview(force=false){
 $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPreview();};
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
+  checkpointPanel.message(d);
+  if(d.type==='checkpoint-restored'){release();$("remember-disk").checked=false;}
   collectionPanel.message(d);
   circuitPanel.message(d);
   serialPanel.message(d);
@@ -993,6 +998,7 @@ function keyCode(e) {
   return keys[e.key];
 }
 function keyDown(e) {
+  if (e.defaultPrevented || (e.target!==e.currentTarget && e.target.closest("button,input,select,textarea,a")))return;
   if (replayBusy) return;
   if (e.key === "Escape") {
     release();
@@ -1186,7 +1192,9 @@ $("record-file").onchange = async () => {
 };
 
 $("inspection-labels").onchange=()=>scene?.annotations($("inspection-labels").checked);
+const updateSection=installInspectionControls(scene,release);
 installExhibitLayout(scene,layout=>{
+  updateSection();
   updateCase();selectView(layout.view || "overview");scene?.annotations($("inspection-labels").checked);
   if(layout.camera)scene?.restoreCamera(layout.camera);
 });
