@@ -39,6 +39,8 @@ export function installKeyboardControllerReview(scene){
   if(selection){
    const placed=selection.points.length,total=selection.pins.length;
    get('[data-selection]').textContent=`${kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
+   const bridges=data.evidence.serviceInterfaces?.bridges.filter(b=>selection.refs.includes(b.ref))||[];
+   for(const bridge of bridges)get('[data-selection]').textContent+=` ${bridge.ref}: ${bridge.role} Reference state: ${bridge.referenceState}. ${bridge.testUse} Physical location unverified.`;
    const alignment=data.photoRegistration?.components.filter(c=>selection.refs.includes(c.ref))||[];
    if(alignment.length)get('[data-selection]').textContent+=' Photo alignment: '+alignment.map(c=>`${c.ref} ${c.maxResidualMm.toFixed(2)} mm maximum residual${c.maxResidualMm>data.photoRegistration.toleranceMm?' (outside tolerance)':''}`).join('; ')+'. Nominal board scale; not metrology.';
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
@@ -58,6 +60,7 @@ export function installKeyboardControllerReview(scene){
    const q=data.qualification,f=data.cosimulation.firmware;
    const bus=data.cosimulation.bus;
    get('[data-qualification]').textContent=`PCB: ${q.drc.unconnectedItems} unresolved airwires; ${q.electricalCopperSegments} assigned copper segments. Reference co-simulation: ${bus.vectors.toLocaleString('en-US')} bus transactions, ${bus.mismatches} mismatches; ${f.cBits} C / ${f.hdlBits} HDL serial bits. Bus and LED transition comparisons ${data.cosimulation.equivalent?'pass':'do not pass'}. This is scoped logical agreement; CPU phase offsets and physical copper remain unqualified.`;
+   if(data.cosimulation.service)get('[data-qualification]').textContent+=` Bridge isolation: ${data.cosimulation.service.checks} digital checks; ${data.cosimulation.service.mismatches} mismatches, including external reset/clock injection and conflicting drivers. Analog timing is not simulated.`;
    get('[data-cad]').href=`${data.source.cad.repository}/tree/${data.source.cad.revision}/models/robotron-1715m/keyboard-controller`;
    get('[data-hdl]').href=`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/reports/full-audit.json`;
    live();select('component','A1');get('[data-component]').value='A1';

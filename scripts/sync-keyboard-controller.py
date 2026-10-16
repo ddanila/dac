@@ -20,6 +20,12 @@ if digest(a.emulation/'machines/robotron1715m/keyboard.c')!=report['productionKe
 if digest(a.emulation/'machines/robotron1715m/keyboard.h')!=report['productionKeyboardHeaderSha256']:raise SystemExit('Stale keyboard layout comparison')
 for name,expected in report['firmware']['cpu']['files'].items():
  if digest(a.emulation/'third_party/cpu/tv80'/name)!=expected:raise SystemExit('Stale TV80 comparison: '+name)
+for bridge in blob['evidence'].get('serviceInterfaces',{}).get('bridges',[]):
+ pins=blob['connectivity']['components'][bridge['ref']]['pins']
+ for terminal,key in [('1','source'),('2','cpu')]:
+  endpoint=bridge[key]
+  if pins[terminal]!=endpoint['net'] or blob['connectivity']['components'][endpoint['ref']]['pins'][endpoint['pin']]!=endpoint['net']:
+   raise SystemExit('Stale bridge evidence endpoint: '+bridge['ref'])
 blob['source']={'cad':{'repository':'https://github.com/ddanila/3d-models','revision':cadrev},'emulation':{'repository':'https://github.com/ddanila/dac-emulation','revision':emurev},'files':{k:digest(v) for k,v in paths.items()},'reportSha256':digest(core/'reports/full-audit.json'),'geometryScadSha256':digest(board/'generated/controller.scad')}
-blob['cosimulation']={k:report[k] for k in ['bus','firmware','equivalent']}
+blob['cosimulation']={k:report[k] for k in ['bus','firmware','service','equivalent']}
 target=root/'public/models/robotron-1715m/keyboard-controller.json';target.write_text(json.dumps(blob,indent=2)+'\n');print('Pinned keyboard controller:',cadrev,emurev)
