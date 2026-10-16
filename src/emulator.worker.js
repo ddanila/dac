@@ -1,5 +1,6 @@
+import {encodeDiagnostic,diagnosticBytes} from './diagnostic-report.js';
 let debugPaused=false,debugArmed=false,debugMemoryAddress;
-import {checkpointMetadata,checkpoints,saveCheckpoint,loadCheckpoint,renameCheckpoint,deleteCheckpoint,exportCheckpoint,importCheckpoint} from './checkpoints.js';
+import {checkpointMetadata,checkpoints,saveCheckpoint,loadCheckpoint,renameCheckpoint,deleteCheckpoint,exportCheckpoint,importCheckpoint,encodeCheckpoint} from './checkpoints.js';
 import {exportCollection,importCollection} from './collection-backup.js';
 import { archivedCore, hasArchivedCore } from "./archived-core.js";
 let currentModule, currentBuild, coreBase;
@@ -818,6 +819,21 @@ async function receive(d) {
       if(d.type==='debug-step'){if(!debugPaused)throw Error('Pause before stepping.');const ticks=module._dac_debug_step(handle);message=`Advanced ${ticks} clocks${ticks===100000?' · limit reached before an instruction boundary':''}.`;frame();}
       if(d.type==='debug-memory'&&(!Number.isInteger(d.address)||d.address<0||d.address>65535))throw Error('Invalid memory address.');
       debugState(message,d.type==='debug-memory'?d.address:undefined);
+    } else if(d.type==='diagnostic-report'){
+      if(kind!==2||!handle)throw Error('Load the Robotron first.');
+      // Copy every mutable byte range before hashing: one emulator boundary.
+      const n=Math.min(512,module._dac_timeline_count?.(handle)||0),p=module._dac_timeline_data?.(handle)||0;
+      const timeline=Array.from(new Uint32Array(module.HEAPU8.slice(p,p+n*52).buffer));
+      const disks=[0,1].map(u=>({bytes:diskBytes(u),writable:!!writableUnits[u],label:diskLabels[u]||`Disk ${u+1}`}));
+      const snapshot=d.checkpoint?snapshotBytes():null,roms=firmware.map(([slot,bytes])=>[slot,bytes.slice(0)]);
+      const captured={kind,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),running,debugPaused,speed,
+        cables:module._dac_cable_status?.(handle),keyboardLeds:module._dac_keyboard_leds?.(handle),printerState:module._dac_printer_status?.(handle),serialStatus:module._dac_serial_status?.(handle),serialPeerBaud:module._dac_serial_peer_baud?.(handle),serialPeerFormat:module._dac_serial_peer_format?.(handle),drives:[0,1].map(u=>module._dac_drive_status_unit(handle,u))};
+      for(const disk of disks)disk.sha256=await digest(disk.bytes);
+      const firmwareIdentity=await sessionIdentity(captured.kind,roms,null);
+      const report={date:new Date().toISOString(),appRevision:d.appRevision,coreSha256:captured.build,model:d.inspection?.identity,inspection:d.inspection,hardware:captured,firmwareIdentity,
+        timeline:{format:'13 little-endian uint32 words per event; existing capture only',count:n,words:timeline},disks:disks.map(v=>({label:v.label,size:v.bytes.byteLength,sha256:v.sha256,writable:v.writable,...(d.disks?diagnosticBytes(v.bytes):{})}))};
+      if(snapshot){const checkpoint={name:'Diagnostic checkpoint',date:Date.now(),bytes:snapshot,sha256:await digest(snapshot),disks,kind:captured.kind,build:captured.build,stateKey:captured.stateKey,firmwareIdentity};report.checkpoint=JSON.parse(new TextDecoder().decode(await encodeCheckpoint(checkpoint)));}
+      const bytes=await encodeDiagnostic(report);postMessage({type:'diagnostic-report-result',bytes},[bytes]);
     } else if(d.type==='checkpoint-list'){
       await postCheckpoints();
     } else if(d.type==='checkpoint-save'){
@@ -1134,6 +1150,7 @@ async function receive(d) {
     }
   } catch (e) {
     if(d.type?.startsWith("debug-")){postMessage({type:"debug-error",message:e.message});return;}
+    if(d.type==='diagnostic-report'){postMessage({type:"diagnostic-report-error",message:e.message});return;}
     if(d.type?.startsWith("timeline-")){postMessage({type:"timeline-error",message:e.message});return;}
     if(d.type?.startsWith("checkpoint-")){postMessage({type:"checkpoint-status",message:e.message});return;}
     if(d.type?.startsWith("collection-")){postMessage({type:"collection-status",message:e.message});return;}

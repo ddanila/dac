@@ -1,3 +1,5 @@
+import {remapCandidates,remapMeasurement} from './measurement-remap.js';
+import {relationshipsFor} from './component-relationships.js';
 import {partId,findPart} from './model-part-id.js';
 import {createEvidenceView,evidenceCoverage} from './model-evidence.js';
 import {buildCaps,clearCaps} from './section-caps.js';
@@ -67,7 +69,9 @@ export function createScene(
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
   let renderRequested = true;
-  let selectedPart=null,partOutline;
+  let selectedPart=null,partOutline;const relatedOutlines=[];
+  function clearRelated(){for(const h of relatedOutlines){h.removeFromParent();h.geometry.dispose();h.material.dispose();}relatedOutlines.length=0;}
+
   let caseOpen = false;
   let assembliesLifted = false;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -572,7 +576,7 @@ export function createScene(
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;
     if (renderRequested || changed?.dirty) {
       if(sectionRoot!==robotron?.group)applySection();
-      if(partOutline)partOutline.update();
+      if(partOutline)partOutline.update();for(const h of relatedOutlines)h.update();
       measurement.update();evidenceView?.refresh();
       renderer.render(scene, camera);
       drawLabels();
@@ -606,6 +610,8 @@ export function createScene(
     measurement(on){inspectionMode(on?'measure':'operate');},
     measurementEndpoint(slot){inspectionMode('measure');measurement.endpoint(slot);},
     measurementOptions(value){measurement.options(value);renderRequested=true;},
+    measurementRemapCandidates(record){if(!robotron||kind!==2)throw Error("Load the Robotron model first.");return remapCandidates(robotron.group,record);},
+    previewMeasurementRemap(record,ids){return remapMeasurement(robotron.group,robotron.identity,record,ids);},
     restoreMeasurement(value){measurement.restore(value);inspectionMode('measure');},
     clearMeasurement(){measurement.clear();renderRequested=true;},
     measurementParts(){if(kind!==2)return [];return [...(robotron?.objects.values()||[])].filter(o=>o.isMesh&&!o.isInstancedMesh&&o.geometry).map(o=>o.name);},
@@ -613,8 +619,10 @@ export function createScene(
     modelIdentity(){return kind===2?robotron?.identity:null;},
     selectedPart(){return selectedPart;},
     inspectionParts(){if(kind!==2||!robotron)return [];const rows=[];function walk(o,path){if(o.isMesh&&o.name)rows.push({id:partId(robotron.group,o),name:o.userData?.pickedDetail?.title||o.name});o.children.forEach((c,i)=>walk(c,[...path,i]));}walk(robotron.group,[]);return rows.sort((a,b)=>a.name.localeCompare(b.name));},
+    relatedParts(){if(!robotron||!selectedPart)return [];const object=findPart(robotron.group,selectedPart);return relationshipsFor(object.name);},
+    highlightRelated(on){clearRelated();if(on&&robotron&&selectedPart){const selected=findPart(robotron.group,selectedPart),names=new Set(relationshipsFor(selected.name).flatMap(g=>g.members));robotron.group.traverse(o=>{if(o.isMesh&&o!==selected&&names.has(o.name)){const h=new THREE.BoxHelper(o,0x58c9f3);h.material.depthTest=false;h.renderOrder=100;scene.add(h);relatedOutlines.push(h);}});}renderRequested=true;},
     selectPart(id,focus=false){
-      partOutline?.removeFromParent();partOutline?.geometry.dispose();partOutline?.material.dispose();partOutline=null;selectedPart=null;
+      clearRelated();partOutline?.removeFromParent();partOutline?.geometry.dispose();partOutline?.material.dispose();partOutline=null;selectedPart=null;
       if(!id){renderRequested=true;return;}
       if(kind!==2||!robotron)throw Error('Load the Robotron first.');
       const object=findPart(robotron.group,id);
@@ -676,7 +684,7 @@ export function createScene(
         inCameraView(robotron.objects.get("crt-glass"), camera);
     },
     setMachine: (value) => {
-      partOutline?.removeFromParent();partOutline?.geometry.dispose();partOutline?.material.dispose();partOutline=null;selectedPart=null;
+      clearRelated();partOutline?.removeFromParent();partOutline?.geometry.dispose();partOutline?.material.dispose();partOutline=null;selectedPart=null;
       measurement.clear();inspectionMode('operate');sectionRoot=null;
       cancelGesture();
       robotron?.releaseKeys();

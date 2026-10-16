@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 import { createRobotronSound, keySoundGroup } from '../src/robotron-sound.js';
 function fixture(fetchAsset = async url => ({ ok: true, arrayBuffer: async () => url })) {
-  const played = [];
+  const played = [],gains=[];
   const context = {
     destination: {}, resume: async () => {}, decodeAudioData: async value => value,
-    createGain: () => ({ gain: {}, connect() {} }),
-    createBufferSource: () => ({ connect() {}, disconnect() {}, stop() { this.stopped = true; }, start() { played.push(this); } }),
+    createGain: () => {const g={gain:{},connect(){}};gains.push(g);return g;},
+    createBufferSource: () => ({ connect(node) {this.destination=node;}, disconnect() {}, stop() { this.stopped = true; }, start() { played.push(this); } }),
   };
-  return { sound: createRobotronSound({ createContext: () => context, fetchAsset, base: '/' }), played };
+  return { sound: createRobotronSound({ createContext: () => context, fetchAsset, base: '/' }), played, gains };
 }
 test('recorded startup becomes a fan loop; shutdown replaces it and mute cancels it', async () => {
   const { sound, played } = fixture();
@@ -62,4 +62,8 @@ test('browser decodes all recorded WAVs and starts/stops actual audio sources', 
     await window.recordedSound.enable(false);
     await window.audioContext.close();
   });
+});
+
+test('fan, power and keyboard levels route independently, including pre-unlock settings',async()=>{
+ const {sound,played}=fixture();sound.volume('fan',0);sound.volume('power',.8);sound.volume('keyboard',.2);await sound.enable(true);await sound.power(true);expect(played[0].destination.gain.value).toBe(.8);played[0].onended();expect(played[1].destination.gain.value).toBe(0);sound.key(65);expect(played[2].destination.gain.value).toBe(.2);sound.volume('fan',.4);expect(played[1].destination.gain.value).toBe(.4);expect(played[2].destination.gain.value).toBe(.2);expect(()=>sound.volume('fan',2)).toThrow();
 });

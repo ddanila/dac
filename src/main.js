@@ -1,3 +1,5 @@
+import {installSoundMixer} from './sound-controls.js';
+import {installDiagnosticReport} from './diagnostic-report.js';
 import {installEvidenceControls} from './model-evidence.js';
 import {createDebugPanel} from './debug-panel.js';
 import {installMeasurementPanel} from './measurement-panel.js';
@@ -404,6 +406,7 @@ function requestPrinterPreview(force=false){
 $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPreview();};
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
+  diagnosticPanel.message(d);
   debugPanel.message(d);
   if(d.type==="debug-state"&&on)$("status").textContent=d.paused?"Paused · powered on":"Running";
   checkpointPanel.message(d);
@@ -1207,7 +1210,7 @@ $("record-file").onchange = async () => {
 
 $("inspection-labels").onchange=()=>scene?.annotations($("inspection-labels").checked);
 const updateSection=installInspectionControls(scene,release);
-installExhibitLayout(scene,layout=>{
+const exhibitLayout=installExhibitLayout(scene,layout=>{
   updateSection();
   updateCase();selectView(layout.view || "overview");scene?.annotations($("inspection-labels").checked);
   if(layout.camera)scene?.restoreCamera(layout.camera);
@@ -1215,4 +1218,6 @@ installExhibitLayout(scene,layout=>{
 
 installMeasurementPanel(scene,release);
 installEvidenceControls(scene);
+const diagnosticPanel=installDiagnosticReport(send,()=>({identity:scene?.modelIdentity(),layout:exhibitLayout.capture(),measurement:exhibitLayout.measurement(),part:scene?.selectedPart()}));
+installSoundMixer(robotronSound,driveSound);
 installControlGroups();

@@ -48,7 +48,7 @@ revision=subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD'],text=
 dirty=bool(subprocess.check_output(['git','-C',str(repo),'status','--porcelain','--','models/robotron-1715m'],text=True).strip())
 # Canonical inspection metadata is source code, not generated CAD geometry.
 inspection={}
-for name in ['evidence', 'inspection-paths']:
+for name in ['evidence', 'inspection-paths', 'relationships', 'monitor-cable-paths']:
     original = source / ('evidence-map.json' if name == 'evidence' else name+'.json')
     blob=original.read_bytes()
     dest='robotron-'+name+'.json'
