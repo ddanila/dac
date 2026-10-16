@@ -646,6 +646,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   const caseControls=createCaseControls(objects,data.controls);
   let power = false,
     activityUntil = 0,
+    caseFraction = 0, monitorFraction = 0,
     split = 0,
     splitTarget = 0,
     inside = false,
@@ -713,8 +714,14 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         }
       }
     }
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const advance = (value,target) => reduced || Math.abs(value-target)<.001 ? target : THREE.MathUtils.lerp(value,target,1-Math.exp(-Math.min(demoDt,.1)*12));
+    const oldCase=caseFraction,oldMonitor=monitorFraction;
+    caseFraction=advance(caseFraction,Number(inside));monitorFraction=advance(monitorFraction,Number(monitorOpen));
+    const coversMoved=oldCase!==caseFraction || oldMonitor!==monitorFraction;
+    const caseOffset=inspectionOffset('system-lid',caseFraction),monitorOffset=inspectionOffset('monitor-upper',monitorFraction);
     let dirty =
-      inside !== wasInside ||
+      coversMoved || inside !== wasInside ||
       monitorOpen !== wasMonitorOpen ||
       drivesDirty ||
       inspectionDirty;
@@ -733,7 +740,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     for (const mesh of objects.values()) {
       if (mesh.userData.interior || mesh.userData.monitorInterior) mesh.visible = true;
       if (mesh.userData.monitorInterior)
-        mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
+        mesh.position.set(0, caseOffset[1], caseOffset[2]);
     }
     for (const mesh of pcbPhotos) {
       if (mesh.userData.artwork) {
@@ -761,7 +768,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
           ["logic", "motherboard", "display-controller"].includes(
             inspection.isolated,
           );
-      if (monitor) mesh.position.set(0, inside ? 400 : 0, inside ? 180 : 0);
+      if (monitor) mesh.position.set(0, caseOffset[1], caseOffset[2]);
     }
     const beforeSplit = split;
     for (const [id, key] of keyObjects) {
@@ -787,7 +794,6 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       );
       dirty ||= before !== material.emissive.getHex();
     }
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const demoActive = inspection.demo && inspection.isolated === "drives";
     const demoAnimate =
       demoActive && inspection.demoAnimate && !reduced && !document.hidden;
@@ -819,19 +825,19 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       "monitor-stand-metal",
     ];
     for (const name of monitor) {
-      objects.get(name).position.set(0, inside ? 400 : 0, inside ? 180 : 0);
+      objects.get(name).position.set(0, caseOffset[1], caseOffset[2]);
       objects.get(name).visible = true;
     }
-    if (monitorOpen) {
-      objects.get("monitor-shell-upper").position.z += 155;
-      objects.get("monitor-shell-upper").position.y -= 210;
-      objects.get("monitor-tape").position.z += 155;
-      objects.get("monitor-tape").position.y -= 210;
+    if (monitorFraction > 0) {
+      objects.get("monitor-shell-upper").position.z += monitorOffset[2];
+      objects.get("monitor-shell-upper").position.y += monitorOffset[1];
+      objects.get("monitor-tape").position.z += monitorOffset[2];
+      objects.get("monitor-tape").position.y += monitorOffset[1];
     }
     // Captive ends follow the monitor; rear plugs stay with the system unit.
     // Exploded-view extension is illustrative, not a cable-length measurement.
     const monitorPlugPark = inspection.disconnectCables && (inside || split > 0.01) ? 24 : 0;
-    const cablePose = `${inside}:${monitorPlugPark}`;
+    const cablePose = `${caseFraction}:${monitorPlugPark}`;
     if (cablePose !== monitorCablePose) {
       monitorCablePose = cablePose;
       for (const [name, rest] of monitorCableRest) {
@@ -840,7 +846,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
           const z = rest[i * 3 + 2];
           const t = THREE.MathUtils.clamp((z - 100) / 60, 0, 1);
           const w = t * t * (3 - 2 * t);
-          vertices.setXYZ(i, rest[i * 3], rest[i * 3 + 1] + (inside ? 400 * w : 0) + monitorPlugPark * (1 - w), z + (inside ? 180 * w : 0));
+          vertices.setXYZ(i, rest[i * 3], rest[i * 3 + 1] + caseOffset[1] * w + monitorPlugPark * (1 - w), z + caseOffset[2] * w);
         }
         vertices.needsUpdate = true;
         mesh.geometry.computeVertexNormals();
@@ -852,7 +858,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
       dirty = true;
     }
     objects.get("case-lid").visible = true;
-    for(const name of ["case-lid","case-lid-inserts","case-lid-fixings"])objects.get(name).position.set(0, inside ? 400 : 0, inside ? 180 : 0);
+    for(const name of ["case-lid","case-lid-inserts","case-lid-fixings"])objects.get(name).position.set(0, caseOffset[1], caseOffset[2]);
     for (const [name, mesh] of objects) {
       if (name === "drives" || name.startsWith("drive-")) {
         mesh.position.z = split * 115;
@@ -891,7 +897,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
         }
       }
     }
-    objects.get("fascia").position.set(0,(inside?400:0),inside?180:0);
+    objects.get("fascia").position.set(0,(caseOffset[1]),caseOffset[2]);
     const keyboardProgress = Math.max(split, inspection.keyboardOpen ? 1 : 0);
     const keyboardLift=keyboardLayersFraction(keyboardProgress),controllerOffset=inspectionOffset('keyboard-controller',keyboardProgress),matrixOffset=inspectionOffset('keyboard-matrix',keyboardProgress);
     // Keep the input wires attached to their PCB. In exploded inspection the
@@ -955,7 +961,7 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
     for (const mesh of patches) {
       mesh.position.copy(mesh.userData.rest);
       mesh.visible = true;
-      if (mesh.name === "brand") {mesh.position.y += (inside?400:0);mesh.position.z += inside?180:0;}
+      if (mesh.name === "brand") {mesh.position.y += (caseOffset[1]);mesh.position.z += caseOffset[2];}
       if (mesh.userData.assembly === "drives") {
         mesh.visible =
           inside ||

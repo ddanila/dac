@@ -115,5 +115,39 @@
       22
     ]
   ],
-  "keyboard-layer-opening-fraction": 0.5
+  "keyboard-layer-opening-fraction": 0.5,
+  "system-lid": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      180
+    ],
+    [
+      0,
+      400,
+      180
+    ]
+  ],
+  "monitor-upper": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      155
+    ],
+    [
+      0,
+      -210,
+      155
+    ]
+  ]
 }
