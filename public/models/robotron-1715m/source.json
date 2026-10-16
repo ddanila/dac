@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "9e18eaef433c7ef1acc885148feffcbaf7c7491c",
+  "revision": "1207a1ad7b2a5e9ea1e8c33fc4469393914962bc",
   "dirty": false,
   "files": [
     {
@@ -1498,6 +1498,6 @@
   ],
   "inspection": {
     "robotron-evidence.json": "470be2f0ab3d05a75dc12878c775d532858e165a0c890d4c757c273ff543114e",
-    "robotron-inspection-paths.json": "c956683a37581328701235214990fbea3796774123e3e2c3d08b44c821bb9792"
+    "robotron-inspection-paths.json": "3bef86a53f197834762f8f23aaeafb6d8449f0b643cfe8d5ee9568627a890dfe"
   }
 }

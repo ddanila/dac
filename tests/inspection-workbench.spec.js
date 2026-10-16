@@ -57,7 +57,7 @@ test('evidence colour does not promote print verification and restores original 
  await page.goto('/tests/model-harness.html');const r=await page.evaluate(async()=>{const T=await import('/tests/browser-three.js'),{createEvidenceView,evidenceFor}=await import('/src/model-evidence.js');const group=new T.Group(),mesh=new T.Mesh(new T.BoxGeometry(),new T.MeshStandardMaterial({color:0x123456}));mesh.name='keyboard-deck';group.add(mesh);const model={group,evidence:{assemblies:[{id:'keyboard',photo:'owner-photo'}]},modelVerification:{'models/robotron-1715m/keyboard/model.scad':{physicalVerification:'not-printed'}}};const info=evidenceFor(mesh,model),v=createEvidenceView(model),before=mesh.material.color.getHex();v.set(true);const during=mesh.material.color.getHex();v.set(false);return {info,before,during,after:mesh.material.color.getHex()};});expect(r.info).toMatchObject({category:'measured',photo:'owner-photo',physicalVerification:'not-printed'});expect(r.during).not.toBe(r.before);expect(r.after).toBe(r.before);
 });
 test('controller inspection path moves forward, lifts, then clears the rear wall',async({page})=>{
- await page.goto('/tests/model-harness.html');const r=await page.evaluate(async()=>{const {inspectionOffset:f}=await import('/src/inspection-paths.js');return [-1,1/3,2/3,2].map(t=>f('keyboard-controller',t));});expect(r).toEqual([[0,0,0],[0,-16,0],[0,-16,70],[0,160,70]]);
+ await page.goto('/tests/model-harness.html');const r=await page.evaluate(async()=>{const {inspectionOffset:f}=await import('/src/inspection-paths.js');return [-1,.7,.8,2].map(t=>f('keyboard-controller',t));});expect(r).toEqual([[0,0,0],[0,-16,0],[0,-16,70],[0,160,70]]);
 });
 
 test('inspection metadata copies match the pinned canonical source hashes',async()=>{
