@@ -1,129 +1,161 @@
 # Keyboard controller implementation record
 
-The controller now has native KiCad schematic and PCB authorities, generated
-connectivity and OpenSCAD review geometry, an independent CPU co-simulation
-harness, and a museum circuit-review panel. This is intermediate implementation
-of the [plan](keyboard-controller-plan.md), not a completed physical replica.
+Second implementation pass, 2026-10-16. Digital reference qualification now passes,
+and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
+The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
+discrete component identification and specimen measurements are still open.
 
-## Deliverables and repositories
+## Current revisions
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Source hashes and evidence ledger; native 68-component schematic and unrouted PCB; pad/net comparison; generated layout, SCAD and review SVG; deterministic checks and CI | `3e9d1e1` |
-| `dac-emulation` | Generated numbered-pin HDL; separate chip models; bus comparison; pinned TV80 CPU and S600 workload; discrepancy reports and common-subset CI | `48524e8` |
-| `dac` | Pinned reconstruction sidecar; component/net selectors; estimated pad highlights in the board drawing and 3D model; live emulator LED samples and qualification links | This change |
+| `3d-models` | 68-component schematic; native PCB; photo landmark review; generated detailed OpenSCAD packages; migrated museum DIP geometry; export and browser freshness checks | `9d1ca8a` |
+| `dac-emulation` | Corrected reference decoding, raw/display LED separation, memory-write serial clocks, independent TV80 qualification; core 0.17.0, snapshot layout 15 | `911cf46` |
+| `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
-The published placement PDF proved to be an unfinished sheet, not a placed board.
-The owner photographs remain the physical placement evidence. The reference
-schematic and specimen revision have not been established as identical.
+Full-resolution owner photos establish **05-330-4102-8 1c**, correcting the former
+model-derived board identifier. The kbdbabel drawing names this family but uses
+RD for the output clock where Zander uses WR, and names a different ROM type.
+The implemented electrical reference remains explicitly Zander's drawing. Neither
+successful co-simulation nor matching board markings resolves that disagreement.
 
-Full-resolution owner photos establish **05-330-4102-8 1c**, correcting the old
-model-derived `062-330-4102` text. The canonical model inscription and visible
-`К555ЛА3` chip marking are corrected. The kbdbabel drawing names this board family
-but disagrees with Zander on the output-clock signal (RD versus WR) and ROM type.
-The evidence ledger records both sources; the present circuit remains the Zander
-reference transcription. Specimen ROM and timing measurements remain planned.
+## What the second pass closes
 
-## Validation and findings
+### Reference digital comparison
 
-- CAD export checks all numbered pad/net assignments against the schematic.
-  Five fast tests cover hashes, asymmetric landmarks, outline topology, curved
-  geometry and stale source/output rejection. A KiCad integration test checks
-  curved copper/via export and deliberately mismatched pad rejection. The standalone SCAD review exports successfully with
-  the Manifold backend.
-- KiCad ERC has two documented isolated-label warnings: unused CPU RD_N and
-  the external cable shield. PCB DRC remains incomplete: 233 airwires, 87 silk
-  violations, 57 unplaced reference components and no assigned copper segments.
-  The 294 photo-artwork segments remain unassigned review graphics.
-- The common bus subset passes 8,210 comparisons. The full 98,304-transaction
-  audit finds 57,101 mismatches and returns failure.
-- Independent TV80 and C CPU runs produce identical 390-bit serial sequences
-  over 4.6 million CPU clocks, with explicit coverage checks for normal, Shift,
-  Ctrl, actual REP repeats, silence after REP release and typing after reset, with a constant
-  two-clock timestamp offset. This is workload evidence, not specimen timing.
-- Both coarse LED samples and transition sequences disagree; exact counts are
-  retained in the qualification report (28 C state records versus 11,971 HDL
-  records, including initialization). Matrix decoding, multi-column sense,
-  LED clocks and wider serial-write decoding require reconciliation. A production
-  behavioral experiment broke the stable-LED S600 test and was reverted.
-- The existing production S600 qualification still passes. No new runtime core
-  or WASM distribution is introduced by this work.
-- Nineteen Chromium checks pass for the new review panel, existing circuit tools
-  and inspection workbench,
-  including load failure/retry, net selection, unplaced evidence, marker following
-  and marker disposal without changes to model geometry. The three new tests
-  also pass in Firefox and WebKit (six additional checks). The production build
-  passes. Canonical metadata synchronization preserves the existing museum
-  evidence notes and fixes their previously stale source hashes.
+The previous 57,101 bus mismatches were emulator differences from the reference
+circuit, not grounds for changing the schematic to match the emulator. Corrections:
+
+- Every I/O access clocks the LED latches; A15 controls the 8282 output enable.
+- A15-high addresses read the matrix; active contacts combine with OR.
+- WR clocks serial output for memory writes as well as I/O writes.
+- Repeated callback ticks do not generate duplicate serial strobes.
+
+The expanded audit passes **131,072 transactions with zero differences**: 65,536
+I/O reads, 32,768 I/O writes and 32,768 memory writes. A15-high writes remain outside
+the model because CPU and latch drivers can contend on the physical data bus.
+
+Independent TV80 and C CPU runs produce identical **390 serial bits and 11,971
+raw LED state records** over 4.6 million CPU clocks. Coverage requires normal,
+Shift, Ctrl, REP repeats, quiet after REP release, and typing after reset. Coarse
+LED samples also agree. Full bus auditing is now an ordinary CI check.
+
+This is scoped logical equivalence. Serial timestamps differ by two clocks;
+LED transition offsets depend on CPU callback phase, with separate initialization
+and reset settling offsets. The report retains their histogram and explicitly
+marks cycle equivalence false. Oscillator, analog front-end thresholds, reset
+transients, contact resistance and propagation delay are not qualified.
+
+The production latch value is raw electrical state. Display indicators use a
+separate **2 ms peak hold**, explicitly a visualization approximation. It prevents
+short scan-time lows from becoming frame-rate flicker and never feeds the circuit.
+The museum review shows both values separately. Snapshot layout 15 preserves the
+hold state; core 0.16.0 is archived for older sessions.
+
+### Physical alignment and model synchronization
+
+Numbered top-photo lead landmarks now cover eight DIP packages, with held-out
+check points for seven. Seven placements meet a **1.25 mm photo-review tolerance**
+after rigid fitting. This is a nominal photo registration, not dimensional
+metrology. A4 (8282) still fails; its inherited placement was retained. A8 and
+discrete pin orientation remain unqualified. Reference designators do not by
+themselves establish specimen electrical identity.
+
+The native PCB now drives the museum's DIP positions, orientations and pin counts,
+CPU/ROM socket transforms, associated ink, DIP pads/holes, outline and controller
+artwork. A1/A6 are correctly represented as DIP-14 rather than DIP-16. Existing
+pinned KiCad body/lead meshes are reused. Generic procedural fanouts were removed.
+The 294 photo-artwork segments remain unassigned graphics, not verified copper.
+Other discrete and mechanical visuals remain estimates pending reconstruction.
+
+Reference labels now belong to F.Fab; evidence fields are hidden metadata rather
+than invented historical silkscreen. DRC has **zero other violations but 233
+unconnected items**. There are still **57 unplaced reference components and zero
+assigned copper segments**. This is not a fabrication-ready board.
+
+The export checks every numbered PCB pad/net against the schematic. Source hashes
+bind the photo evidence, native PCB, generated geometry, HDL and qualification
+reports. Browser metadata additionally binds the consumed SCAD sources; a partial
+export cannot silently bless stale controller meshes with new source hashes.
+
+## Validation
+
+- Native device/runtime tests, Python verification, AddressSanitizer and
+  UndefinedBehaviorSanitizer pass.
+- WASM lifecycle, snapshot, clock and peripheral fixtures pass.
+- Optional S600 keyboard and mixed DMA/printer/V24 snapshot workloads pass.
+- Common subset and full bus/firmware co-simulation pass within the scope above.
+- Six fast CAD checks and the KiCad arc/via/pad-mismatch integration test pass.
+- Detailed OpenSCAD review renders with the Manifold backend without errors.
+- Canonical model/download metadata checks pass; CAD and core CI pass.
+- 26 focused Chromium checks, eight controller checks across Firefox/WebKit,
+  and preserved 0.16.0 snapshot restoration pass. The panel tests distinguish
+  raw latch values from display persistence.
+- Eight historical browser checks pass, including S600 DIR input, mid-write
+  snapshot continuation, file editing/checkpoint recovery and WordStar save/reopen.
+- Visual review confirms the controller migration; unrelated drive and motherboard
+  views retain their geometry. Unassigned artwork is clipped at the board edge
+  only for museum rendering; native review preserves registration overshoot.
 
 ## Review and reproduce
 
-In the museum, open **Keyboard controller circuit review**. Select a component
-or net to see its numbered pins, estimated pad positions and unresolved placement.
-Cyan lines are photo artwork without net assignments. Both drawing sides retain
-the same top-view coordinate convention. The 3D markers follow the controller
-during inspection. The underlying accepted model has not been replaced by the
-incomplete PCB reconstruction.
-
-The live Caps/SI-SO values are C emulator samples. They are not measurements of
-the board or full HDL waveforms; the panel explicitly reports the transition
-disagreement. Links open the exact pinned CAD and co-simulation revisions.
+Open **Keyboard controller circuit review** in the museum. Select a component or
+net for numbered pins, estimated pad positions, unplaced components and available
+photo-alignment residuals. Cyan lines have no net assignment. Both board sides use
+one top-view coordinate frame. Links identify exact pinned source revisions.
 
 From the canonical CAD controller directory:
 
 ```sh
 python3 tools/export.py --check
 python3 tools/test_export.py
-# Regeneration requires KiCad's Python with pcbnew:
+python3 tools/photo_registration.py
+# The following require KiCad's Python/pcbnew:
 python3 tools/export.py
-openscad -o /tmp/controller.stl review.scad
+python3 tools/test_kicad.py
+openscad --backend=Manifold -o /tmp/controller.stl review.scad
 ```
+
+`generated/photo-registration.svg` overlays PCB pads (red) and observed landmarks
+(green) on the original photo. `photo_registration.py --apply --refs A1 ...` applies
+explicitly selected acceptable fits to the native PCB; regenerate afterward.
 
 From `dac-emulation`:
 
 ```sh
-make test-keyboard-controller
-make audit-keyboard-controller
+make test-keyboard-controller audit-keyboard-controller
 make qualify-keyboard-controller S600_ROM=/path/to/s600.bin
+make test-s600-workload S600_ROM=/path/to/s600.bin
 ```
 
-The last two targets intentionally report current failures with nonzero exit
-status. Vectors, logs and optional waveforms are retained under
-`build/keyboard-controller/`; committed reports live in
-`verification/robotron-keyboard/reports/`.
+Logs, vectors and optional VCD waveforms remain under `build/keyboard-controller/`;
+committed qualification reports live in `verification/robotron-keyboard/reports/`.
+After a schematic change, use `sync_reference.py`, rerun comparisons and commit
+reports. A geometry-only change does not require a different connectivity hash.
 
-After committing compatible source changes, refresh the museum sidecar with:
+After committing compatible sources, refresh museum assets with:
 
 ```sh
+python3 scripts/sync-robotron-model.py ../3d-models
 python3 scripts/sync-keyboard-controller.py ../3d-models ../dac-emulation
 npx playwright test tests/keyboard-controller.spec.js --workers=1
 ```
 
-The sync command rejects dirty source checkouts, stale CAD/HDL exports and
-different connectivity hashes between CAD, HDL and the qualification report.
-It also verifies the report hashes against the current harness, generated wiring,
-production keyboard and both CPU implementations. Update the core pin first with
-`python3 verification/robotron-keyboard/sync_reference.py ../3d-models` from the
-core repository, rerun qualification, and commit the resulting reports.
+These checks reject dirty source repositories, stale exports, inconsistent
+connectivity and reports whose implementation/CPU/header hashes have changed.
 
-## Remaining implementation and evidence
+## Remaining work against the plan
 
-1. Independently review the schematic transcription, analog section and jumper
-   representation; reconcile the LED and decoding discrepancies against the
-   photographed board and additional source evidence.
-2. Establish discrete lead numbering and package orientation, place the remaining
-   components, and connect observed photo routes to actual numbered pads/nets.
-3. Resolve airwires and physical-rule issues. Curved tracks and through vias
-   now export with explicit geometry; zones, blind vias and internal layers
-   still fail explicitly and require exporter support before use.
-4. Qualify physical placement against independent photo landmarks, then migrate
-   the accepted controller geometry and detailed package transforms to the checked
-   PCB export. Current standalone packages are nominal review envelopes.
-5. Complete full-board equivalence, including memory-write clocks and analog
-   boundary qualification. Existing digital comparisons are deliberately scoped.
-6. Obtain the planned specimen ROM and timing evidence before claiming specimen
-   firmware identity, oscillator frequency or exact physical behavior.
+| Phase | Remaining requirement |
+| --- | --- |
+| Identity/evidence | Resolve specimen clock wiring and ROM identity; identify remaining physical parts |
+| Schematic | Review analog circuitry and explicitly reconstruct BR1/BR2 jumper configuration |
+| PCB | Resolve A4/A8 placement/orientation, place 57 components, trace and assign actual copper, clear 233 airwires |
+| OpenSCAD | Migrate remaining discrete parts and qualify pad/lead interfaces and physical dimensions |
+| Co-simulation | Resolve CPU phase timing if cycle equivalence is required; qualify analog and contention boundaries |
+| Museum/sync | Extend verified net geometry and signal mappings as physical reconstruction progresses |
 
-The first end-to-end output-path milestone is therefore only partially complete:
-the data/clock nets have schematic pins, HDL, co-simulation and selectable review
-geometry, but their physical copper continuity is still unresolved.
+The data/clock path now has passing reference logic and synchronized geometry,
+but its physical copper continuity remains unresolved. Specimen ROM dumps and
+timing measurements remain planned. Software consistency cannot substitute for
+those measurements or for reviewing the remaining visible/hidden routes.

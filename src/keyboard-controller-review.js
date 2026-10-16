@@ -9,13 +9,15 @@ export function controllerSelection(data,kind,value){
 }
 export function installKeyboardControllerReview(scene){
  const panel=document.createElement('details');panel.id='keyboard-controller-review';panel.dataset.robotron='';
- panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><p data-live>Live LED latch samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
+ panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
  document.getElementById('evidence-controls').after(panel);
- let data=null,pending=false,selection=null,leds=null;
+ let data=null,pending=false,selection=null,leds=null,latches=null;
  const get=selector=>panel.querySelector(selector),status=get('[data-status]');
  function live(){
   if(!data)return;
-  get('[data-live]').textContent=Number.isInteger(leds)?`C emulator latch sample: Caps ${leds&2?'on':'off'}; SI/SO ${leds&1?'on':'off'}. The reference HDL shows additional scan-time transitions; this is not a measured PCB waveform.`:'Live LED latch samples are unavailable.';
+  const states=value=>`Caps ${value&2?'on':'off'}; SI/SO ${value&1?'on':'off'}`;
+  get('[data-live]').textContent=(Number.isInteger(latches)?`Raw C latch sample: ${states(latches)}. `:'Raw latch samples are unavailable in this core. ')+(Number.isInteger(leds)?`Display indicators: ${states(leds)}. `:'')+(Number.isInteger(latches)?'Display indicators use a 2 ms peak hold. ':'This core does not expose separate raw latches. ')+'Frame samples are not full waveforms or specimen measurements.';
+
  }
  function draw(){
   const side=get('[data-side]').value,svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox','-140 -28 280 56');svg.setAttribute('role','img');svg.setAttribute('aria-label',`Controller ${side} reference pad map; cyan artwork has no assigned nets`);svg.style.cssText=`width:${Number(get('[data-zoom]').value)*100}%;max-width:none;min-height:140px;background:#14232d;margin-top:8px`;
@@ -37,6 +39,8 @@ export function installKeyboardControllerReview(scene){
   if(selection){
    const placed=selection.points.length,total=selection.pins.length;
    get('[data-selection]').textContent=`${kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
+   const alignment=data.photoRegistration?.components.filter(c=>selection.refs.includes(c.ref))||[];
+   if(alignment.length)get('[data-selection]').textContent+=' Photo alignment: '+alignment.map(c=>`${c.ref} ${c.maxResidualMm.toFixed(2)} mm maximum residual${c.maxResidualMm>data.photoRegistration.toleranceMm?' (outside tolerance)':''}`).join('; ')+'. Nominal board scale; not metrology.';
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
   }else get('[data-selection]').textContent='Select a component or net to inspect its pins.';
@@ -52,7 +56,8 @@ export function installKeyboardControllerReview(scene){
    }
    get('[data-tools]').hidden=false;status.textContent=`${Object.keys(data.connectivity.components).length} reference components. Reconstruction is incomplete.`;
    const q=data.qualification,f=data.cosimulation.firmware;
-   get('[data-qualification]').textContent=`PCB: ${q.drc.unconnectedItems} unresolved airwires; ${q.electricalCopperSegments} assigned copper segments. Co-simulation: ${f.cBits} serial bits match; full bus and LED transition comparisons do not pass.`;
+   const bus=data.cosimulation.bus;
+   get('[data-qualification]').textContent=`PCB: ${q.drc.unconnectedItems} unresolved airwires; ${q.electricalCopperSegments} assigned copper segments. Reference co-simulation: ${bus.vectors.toLocaleString('en-US')} bus transactions, ${bus.mismatches} mismatches; ${f.cBits} C / ${f.hdlBits} HDL serial bits. Bus and LED transition comparisons ${data.cosimulation.equivalent?'pass':'do not pass'}. This is scoped logical agreement; CPU phase offsets and physical copper remain unqualified.`;
    get('[data-cad]').href=`${data.source.cad.repository}/tree/${data.source.cad.revision}/models/robotron-1715m/keyboard-controller`;
    get('[data-hdl]').href=`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/reports/full-audit.json`;
    live();select('component','A1');get('[data-component]').value='A1';
@@ -62,5 +67,5 @@ export function installKeyboardControllerReview(scene){
  get('[data-component]').onchange=e=>select('component',e.target.value);get('[data-net]').onchange=e=>select('net',e.target.value);get('[data-side]').onchange=draw;
  get('[data-zoom]').oninput=draw;get('[data-view-controller]').onclick=()=>document.querySelector('[data-view="keyboard-inside"]')?.click();
  get('[data-clear]').onclick=()=>{get('[data-component]').value='';get('[data-net]').value='';select('component','');};
- return {message(message){if(message.type==='configured')leds=null;if(message.keyboardLeds!==undefined)leds=message.keyboardLeds;if(panel.open)live();}};
+ return {message(message){if(message.type==='configured'){leds=null;latches=null;}if(message.keyboardLeds!==undefined)leds=message.keyboardLeds;if(message.keyboardLatches!==undefined)latches=message.keyboardLatches;if(panel.open)live();}};
 }

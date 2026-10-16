@@ -1,7 +1,8 @@
 # Robotron keyboard controller reconstruction and synchronization plan
 
 Recorded 2026-10-16. Status: implementation in progress; physical reconstruction
-and full electrical equivalence are not complete. See the
+and specimen fidelity are not complete. Reference digital comparisons now pass;
+cycle timing and analog boundaries remain unqualified. See the
 [implementation record](keyboard-controller-progress.md) for commits, validation
 results and unresolved work.
 

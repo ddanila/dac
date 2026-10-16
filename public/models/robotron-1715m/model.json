@@ -32589,7 +32589,7 @@
       "name": "keyboard-controller-board",
       "file": "meshes/keyboard-controller-board.stl",
       "color": "#92977a",
-      "sha256": "eb05f4ba0a962606f939734fcc6df08b1184946839c0485b3e8baff44f0031a2",
+      "sha256": "fa087bdd6386df4613e934f5b25dc1f39baba5bb2dd7d5bca11c3d0acd506a8a",
       "section": "interior",
       "material": "controller-laminate"
     },
@@ -32597,7 +32597,7 @@
       "name": "keyboard-controller-chips",
       "file": "meshes/keyboard-controller-chips.stl",
       "color": "#272a2b",
-      "sha256": "8c252440c828642c6aba385921454a2cd8e59dd12632af94808adb6b7482c10c",
+      "sha256": "0fc8fdd0b02f34327c3bf4d72588ee334e8c2a0193004339cde8dc9b0cc4e362",
       "section": "interior",
       "material": "ic-moulding"
     },
@@ -32637,7 +32637,7 @@
       "name": "keyboard-controller-metal",
       "file": "meshes/keyboard-controller-metal.stl",
       "color": "#b8bbb4",
-      "sha256": "3c43f9f79860c724054652066f00922527be2375b8d848d1da90ed10a97e804d",
+      "sha256": "83b7d2b614bbd66ba166244019ed2b9d5a3f5e8611f6fdc389b869fa6e559bb3",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32645,7 +32645,7 @@
       "name": "keyboard-controller-ink",
       "file": "meshes/keyboard-controller-ink.stl",
       "color": "#c8c8bd",
-      "sha256": "6fa0f763d3730f62b137c9828f01598fbb275c5312815a88640da912a2361f2d",
+      "sha256": "1afd1731fba14b3e4b2edeece15a326ddf557f482d80d468f16858a5f94581a8",
       "section": "interior",
       "material": "ink"
     },
@@ -32782,7 +32782,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "c02b51ab005a09c8b1eeaa1fa69ce19c0e8a0674cba56b6d2783ad98038e2226",
+      "sha256": "4bce044dcaf154811fab24a11371e7f785ae30e3c91b32e2d5edbf9b88c60431",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32955,7 +32955,7 @@
       "name": "keyboard-controller-solder",
       "file": "meshes/keyboard-controller-solder.stl",
       "color": "#b8bbb4",
-      "sha256": "87983619f6fa769fa9c4533ac5489c57c3370a283f2fa25390b240f0c7231279",
+      "sha256": "0c684a8273e18b900fffdde8208bff55759ca585b79567a984f298cb0b8dcfd3",
       "section": "interior",
       "material": "solder"
     },
@@ -38333,5 +38333,10 @@
     "specification": "https://retrocmp.de/fdd/teac/TEAC_FD55-FV.pdf",
     "note": "Drive envelopes are documented. Drive mechanisms and rear plates now follow owner photos; the nominal envelope remains a reference. Owner October 13 photos establish cover stiffeners, fan retainers, PSU cover and brown drive adapters. W/M motherboard follows the original placement drawing; display controller uses October 14 component-side photos for 39 IC positions, three memories, upright capacitors and a wound component. The 1 mm enclosures and carrier windows preserve views of internal geometry. Local dimensions and exact revision match remain provisional."
   },
-  "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m"
+  "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m",
+  "keyboardControllerSource": {
+    "specimen-details.scad": "668a49eaf746d81f1b625f2a20a880c767c29af5704b5296e0dbadee34a75358",
+    "keyboard-controller/generated/controller.scad": "8eddaa4b07188d7afea48c2a8e5e4d461e88b0ef48f156e04e9106381f46f3bf",
+    "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
+  }
 }

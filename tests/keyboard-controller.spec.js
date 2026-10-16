@@ -6,7 +6,9 @@ test('controller net selection preserves physical pin identity and unplaced evid
  const s=controllerSelection(data,'net','/TA_DATEN');
  expect(s.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:4','L1.1:1','R10.2:2']);
  expect(s.points).toHaveLength(1);expect(s.unplaced.sort()).toEqual(['L1.1','R10.2']);
- expect(data.cosimulation.equivalent).toBe(false);expect(data.layout.routes).toEqual([]);
+ expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes).toEqual([]);
+ const model=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/model.json',import.meta.url)));
+ expect(model.keyboardControllerSource['keyboard-controller/generated/controller.scad']).toBe(data.source.geometryScadSha256);
  expect(data.layout.unresolvedArtwork.every(r=>r.net===null)).toBe(true);
 });
 test('controller review selects nets, reports gaps and retries a failed load',async({page})=>{
@@ -19,7 +21,7 @@ test('controller review selects nets, reports gaps and retries a failed load',as
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
  await expect(panel.locator('[data-selection]')).toContainText('3 pins; 1 with estimated positions');
  await expect(panel.locator('[data-selection]')).toContainText('L1.1, R10.2');
- await expect(panel.locator('[data-qualification]')).toContainText('do not pass');
+ await expect(panel.locator('[data-qualification]')).toContainText('comparisons pass');
  await panel.getByLabel('Controller board side').selectOption('bottom');await expect(panel.locator('svg')).toHaveAttribute('aria-label',/bottom/);
  await panel.getByRole('button',{name:'Clear highlight'}).click();await expect(panel.locator('[data-selection]')).toContainText('Select a component');
  expect(errors).toEqual([]);
@@ -37,4 +39,17 @@ test('estimated pad markers follow the controller and dispose cleanly',async({pa
   model.keyboardControllerSelection([]);
   return {delta,attached,disposed,remaining:board.children.filter(o=>o.name==='controller-reference-pad-highlight').length,unchanged:before.every((v,i)=>v===board.geometry.attributes.position.array[i])};
  });expect(result).toEqual({delta:[2,2],attached:true,disposed:2,remaining:0,unchanged:true});
+});
+
+test('controller review separates raw latch samples from display persistence',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  window.review=installKeyboardControllerReview({keyboardControllerSelection(){}});
+  window.review.message({keyboardLatches:0,keyboardLeds:3});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const live=page.locator('[data-live]');await expect(live).toContainText('Raw C latch sample: Caps off; SI/SO off');
+ await expect(live).toContainText('Display indicators: Caps on; SI/SO on');await expect(live).toContainText('2 ms peak hold');
+ await page.evaluate(()=>window.review.message({type:'configured'}));await expect(live).toContainText('unavailable');
 });

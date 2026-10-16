@@ -1,11 +1,20 @@
 # Robotron emulation qualification
 
-Current baseline: **DAC Emulation 0.16.0**, snapshot layout **14**, canonical
+Current baseline: **DAC Emulation 0.17.0**, snapshot layout **15**, canonical
 model **v48**. The [capability matrix](capabilities.md) describes current behavior;
-older dated release sections are history. Machine-readable results are in
-[emulation-qualification.json](emulation-qualification.json).
+older dated release sections are history. The earlier full historical-workflow result bundle remains pinned to 0.16.0 in
+[emulation-qualification.json](emulation-qualification.json). Current keyboard
+qualification and its source-bound reports are described in the
+[controller implementation record](keyboard-controller-progress.md).
 
-## Changes
+## Keyboard update in 0.17.0
+
+Reference bus decoding and raw LED transitions now match the independent HDL
+comparison. Memory writes also clock the serial line. Visible indicators use an
+explicit 2 ms peak hold, separately observable from raw latches. Snapshot layout
+15 includes that display state; 0.16.0 is preserved by hash for existing sessions.
+
+## Previous changes in 0.16.0
 
 Both SIO receive channels now track errors alongside each FIFO character.
 Framing errors follow their character; parity and overrun become sticky when the
