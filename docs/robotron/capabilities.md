@@ -1,6 +1,6 @@
 # Robotron capability and evidence matrix
 
-Current baseline: DAC Emulation 0.15.1, scanline output, snapshot layout 13;
+Current baseline: DAC Emulation 0.16.0, scanline output, snapshot layout 14;
 canonical model v48. This matrix describes present behavior. Dated development
 sections elsewhere are history, not cumulative lists of current limitations.
 
@@ -10,7 +10,7 @@ sections elsewhere are history, not cumulative lists of current limitations.
 | Display | Scheduled byte fetches, burst gaps, FIFO, scanline-sampled glyphs/cursor/intensity | Ideal local DACK, no dot-level contention or verified CPU IRQ wiring | `robotron_devices_test.c`; historical MAME monochrome raster comparison |
 | DMA | Addressing, search, WAIT, terminal count, interrupts, timed read/write phases, auto-restart and byte/burst/continuous ownership | Half-clock BUSRQ/BUSAK edges, pulse output and exhaustive silicon qualification absent | Native device tests; implementation in `robotron.c` |
 | Keyboard | Unpatched S600 CPU, matrix, serial packets, Caps/SI/SO LED latches | Specimen replacement EPROM and legend differences not identified | S600 ROM tests; owner keyboard photos |
-| Serial/printer | Clocked keyboard RX; 5–7-bit receive parity/padding; V.24 CTS/DCD/BREAK interrupts, first-character error lock, independent incoming waveform and outgoing peer decoder; raw capture; printer CTS readiness and external/status interrupts | Independent RX/TX diagnostic edges available; browser external clock and synchronous modes absent; TX x1 half-stop rounding; printer-specific escape language absent | `sio.c`; printer integration checks |
+| Serial/printer | Clocked keyboard RX; per-character error FIFOs on both channels; 5–7-bit receive parity/padding; V.24 CTS/DCD/BREAK interrupts, first-character error lock, independent incoming waveform and outgoing peer decoder; raw capture; printer CTS readiness and external/status interrupts | Independent RX/TX diagnostic edges available; browser external clock and synchronous modes absent; TX x1 half-stop rounding; printer-specific escape language absent | `sio.c`; printer integration checks |
 | Floppy | Independent mechanics, DSK/raw, timed searches/bytes, errors, writes, format | Reference trajectories; no flux/PLL, weak sectors or specimen measurements | `DRIVE-FIDELITY.md` and native/WASM tests |
 | Enclosures | Owner-referenced 1 mm sheet, bends, split monitor/keyboard/system shells | Local bend radii and hidden joins remain estimates | Canonical CAD/evidence and static intersections |
 | Boards | Owner-referenced packages, sockets, holes, supports and artwork | Artwork is not a verified netlist; some orientations/mounts unresolved | CAD hardware audit and calibration reports |
@@ -100,5 +100,5 @@ independent sound levels, mechanical relationships, explicit measurement remaps,
 monitor cable qualification and the optional S600 mixed-workload target.
 
 [Current qualification and specimen inventory](emulation-qualification.md) documents
-0.15.1, the independent historical/serial comparisons, stronger browser workflows,
+0.16.0, independent historical/application/serial comparisons, stronger browser workflows,
 and the physical evidence still needed.

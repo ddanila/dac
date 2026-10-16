@@ -6,6 +6,8 @@ export default {
     "checkpoints.spec.js",
     "workbench.spec.js",
     "assembly.spec.js",
+    "robotron-review-tools.spec.js",
+    "robotron-activities.spec.js",
   ],
   workers: 1,
   timeout: 60000,

@@ -1,6 +1,6 @@
 # DAC — Danila’s Archive of Computing
 
-New: [Robotron 0.15.1 qualification and remaining specimen evidence](docs/robotron/emulation-qualification.md).
+New: [Robotron 0.16.0 qualification, guided practice and model evidence](docs/robotron/emulation-qualification.md).
 
 [named measurements, evidence colours, safer inspection paths and quicker checkpoint lists](docs/robotron/inspection-015.md).
 

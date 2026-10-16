@@ -433,9 +433,9 @@ test("monitor cabinet keeps its width at the back and captive leads follow inspe
   expect(result.widths[1]).toBeCloseTo(result.widths[0], 5);
   for(const end of result.shifted) {
     expect(end.topY).toBeCloseTo(400);expect(end.topZ).toBeCloseTo(180);
-    expect(end.bottomY).toBeCloseTo(24);expect(end.bottomZ).toBeCloseTo(0);
+    expect(end.bottomY).toBeCloseTo(418);expect(end.bottomZ).toBeCloseTo(180);
   }
-  expect(result.parked).toBe(24);expect(result.plugRest).toBe(0);expect(result.restored).toBe(true);
+  expect(result.parked).toBe(418);expect(result.plugRest).toBe(0);expect(result.restored).toBe(true);
 });
 
 base('cable deformation anchors board ends and carries every drive power termination',async()=>{

@@ -211,6 +211,13 @@ export function showSpecimenDetail(name = currentInspection) {
   document.getElementById("detail-title").textContent = entry.title;
   document.getElementById("detail-description").textContent =
     (entry.evidence ? entry.evidence + ". " : "") + entry.text;
+  document.getElementById('detail-feature-evidence')?.remove();
+  if(entry.features){
+    const table=document.createElement('table');table.id='detail-feature-evidence';
+    const caption=document.createElement('caption');caption.textContent='Evidence by feature';table.append(caption);
+    for(const feature of entry.features){const row=document.createElement('tr'),label=document.createElement('th'),value=document.createElement('td');label.scope='row';label.textContent=feature.label;value.textContent=feature.value;row.append(label,value);table.append(row);}
+    document.getElementById('detail-description').after(table);
+  }
   const photo = document.getElementById("detail-photo");
   photo.hidden = !entry.photo;
   if (entry.photo) photo.src = photoUrl(entry.photo);

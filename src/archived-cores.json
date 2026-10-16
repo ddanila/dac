@@ -98,5 +98,10 @@
   "ba3af76d476c546890f0d4aeb4eabe62353d5ae164e9cb845e42be11a06baf13": {
     "version": "0.15.0",
     "javascript": "bd7565d06a450b18e78b4f6f999760be899910d7606ee81b92ced0e337531699"
+  },
+  "45759ce5ebedadcc246cc519a6db066786e87b6ecaf4959307db877f3c9bbd84": {
+    "version": "0.15.1",
+    "javascript": "bd7565d06a450b18e78b4f6f999760be899910d7606ee81b92ced0e337531699",
+    "commit": "19280f6fed9ed38dceb9487c85a79bf4e16879d7"
   }
 }

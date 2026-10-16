@@ -1,0 +1,227 @@
+{
+  "passed": true,
+  "core": "5350310fa3a999070ab6e9f97d544d7c21240055",
+  "reference": "0.289 (unknown)",
+  "firmware": {
+    "s550.bin": "37e58472a049e1785c3521ec6b23c2d269d93fa5fede696dc7bd72eabb4af031",
+    "cas.bin": "8a085e4b8988c47de9ca05bdd65cfa7657d45b87efb72e3ee6a0bbcbf6bab23b",
+    "s600.bin": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
+    "tosm10.img": "f724763d5e48c0f15341e95d7b85f645533dd7dfa270cbce4e44d3025e62b23b"
+  },
+  "inputSha256": "64e240d782a6f1cb2ce985d6eb41b93840149f7f33ad73aaae15d5b6690aa575",
+  "suite": "pascal",
+  "commands": [
+    "PIP\r",
+    "DAC.PAS=CON:\r",
+    "program DAC;\rbegin writeln('HELLO FROM DAC') end.\r",
+    "\u001a",
+    "\r",
+    "TP\r",
+    "n",
+    "wDAC.PAS\r",
+    "r"
+  ],
+  "checks": [
+    {
+      "checkpoint": "boot",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": true,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>",
+      "mameText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>"
+    },
+    {
+      "checkpoint": "PIP",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": false,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*",
+      "mameText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*"
+    },
+    {
+      "checkpoint": "DAC.PAS=CON:",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": false,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*DAC.PAS=CON:",
+      "mameText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*DAC.PAS=CON:"
+    },
+    {
+      "checkpoint": "program DAC;\rbegin writeln('HELLO FROM DAC') end.",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": false,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*DAC.PAS=CON:\nbegin writeln('HELLO FROM DAC') end.",
+      "mameText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*DAC.PAS=CON:\nbegin writeln('HELLO FROM DAC') end."
+    },
+    {
+      "checkpoint": "\u001a",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": false,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*DAC.PAS=CON:\n*egin writeln('HELLO FROM DAC') end.",
+      "mameText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*DAC.PAS=CON:\n*egin writeln('HELLO FROM DAC') end."
+    },
+    {
+      "checkpoint": "",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": true,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*DAC.PAS=CON:\n*egin writeln('HELLO FROM DAC') end.\n\nA>",
+      "mameText": "tos/m FKEY V1.0 - nastrojka funkcionalxnyh klawi{\n-------------------------------------------------\nA1  --->  0B56  \".V\"\n\nA>PIP\nPIP wersiq 1.0 dlq tos/m\n*DAC.PAS=CON:\n*egin writeln('HELLO FROM DAC') end.\n\nA>"
+    },
+    {
+      "checkpoint": "TP",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": false,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "---------------------------------------\nTURBO PASCAL SYSTEM       VERSION 3.02A\n                           CP/M-80, Z80\n\nCOPYRIGHT (C) 1983,84,85   BORLAND INC.\n---------------------------------------\n\nTERMINAL: ROBOTRON-1715\n\n\n\nINCLUDE ERROR MESSAGES (Y/N)?",
+      "mameText": "---------------------------------------\nTURBO PASCAL SYSTEM       VERSION 3.02A\n                           CP/M-80, Z80\n\nCOPYRIGHT (C) 1983,84,85   BORLAND INC.\n---------------------------------------\n\nTERMINAL: ROBOTRON-1715\n\n\n\nINCLUDE ERROR MESSAGES (Y/N)?"
+    },
+    {
+      "checkpoint": "n",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": false,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "LOGGED DRIVE: A\n\nWORK FILE:\nMAIN FILE:\n\nEDIT     COMPILE  RUN   SAVE\n\neXECUTE  DIR      QUIT  COMPILER OPTIONS\n\nTEXT:     0 BYTES (7BF5-7BF5)\nFREE: 27664 BYTES (7BF6-E806)\n\n>",
+      "mameText": "LOGGED DRIVE: A\n\nWORK FILE:\nMAIN FILE:\n\nEDIT     COMPILE  RUN   SAVE\n\neXECUTE  DIR      QUIT  COMPILER OPTIONS\n\nTEXT:     0 BYTES (7BF5-7BF5)\nFREE: 27664 BYTES (7BF6-E806)\n\n>"
+    },
+    {
+      "checkpoint": "wDAC.PAS",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": false,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "LOGGED DRIVE: A\n\nWORK FILE:\nMAIN FILE:\n\nEDIT     COMPILE  RUN   SAVE\n\neXECUTE  DIR      QUIT  COMPILER OPTIONS\n\nTEXT:     0 BYTES (7BF5-7BF5)\nFREE: 27664 BYTES (7BF6-E806)\n\n>\n\nWORK FILE NAME: DAC.PAS\n\nLOADING A:DAC.PAS\n>",
+      "mameText": "LOGGED DRIVE: A\n\nWORK FILE:\nMAIN FILE:\n\nEDIT     COMPILE  RUN   SAVE\n\neXECUTE  DIR      QUIT  COMPILER OPTIONS\n\nTEXT:     0 BYTES (7BF5-7BF5)\nFREE: 27664 BYTES (7BF6-E806)\n\n>\n\nWORK FILE NAME: DAC.PAS\n\nLOADING A:DAC.PAS\n>"
+    },
+    {
+      "checkpoint": "r",
+      "textEqual": true,
+      "milestone": true,
+      "prompt": false,
+      "rasterEqualOutsideCursor": true,
+      "firstPixelDifferences": [],
+      "dacSize": [
+        640,
+        288
+      ],
+      "mameSize": [
+        640,
+        288
+      ],
+      "dacText": "\neXECUTE  DIR      QUIT  COMPILER OPTIONS\n\nTEXT:     0 BYTES (7BF5-7BF5)\nFREE: 27664 BYTES (7BF6-E806)\n\n>\n\nWORK FILE NAME: DAC.PAS\n\nLOADING A:DAC.PAS\n>\n\nCOMPILING\n  2 LINE\n\nCODE:    55 BYTES (7C29-7C60)\nFREE: 28573 BYTES (7C61-EBFE)\nDATA:     7 BYTES (EBFF-EC06)\n\nRUNNING\nHELLO FROM DAC\n\n>",
+      "mameText": "\neXECUTE  DIR      QUIT  COMPILER OPTIONS\n\nTEXT:     0 BYTES (7BF5-7BF5)\nFREE: 27664 BYTES (7BF6-E806)\n\n>\n\nWORK FILE NAME: DAC.PAS\n\nLOADING A:DAC.PAS\n>\n\nCOMPILING\n  2 LINE\n\nCODE:    55 BYTES (7C29-7C60)\nFREE: 28573 BYTES (7C61-EBFE)\nDATA:     7 BYTES (EBFF-EC06)\n\nRUNNING\nHELLO FROM DAC\n\n>"
+    }
+  ],
+  "limitations": [
+    "Stable checkpoints, not equal CPU clocks.",
+    "Raster comparison normalizes colours and excludes the final prompt cursor cell.",
+    "MAME agreement is not physical-specimen qualification.",
+    "No injected serial errors or flux-level disk comparison.",
+    "Application raster differences are recorded but not qualified; prompt cursor exclusion only applies to basic suite."
+  ],
+  "copy": {
+    "bytes": 10240,
+    "sha256": "339155d6918910b2e7a3a00f66274c77228ad9e9474aa7b37c9d61082339d15d",
+    "dacEqual": false,
+    "mameEqual": false
+  },
+  "savedFile": {
+    "name": "DAC     PAS",
+    "expected": "program DAC;\rbegin writeln('HELLO FROM DAC') end.\r",
+    "dacEqual": true,
+    "mameEqual": true,
+    "dacSha256": "b65dcd998ccf009d208a77a109ad0179d65bb589daaf2b2b07eb9f0f601db634",
+    "mameSha256": "b65dcd998ccf009d208a77a109ad0179d65bb589daaf2b2b07eb9f0f601db634"
+  }
+}

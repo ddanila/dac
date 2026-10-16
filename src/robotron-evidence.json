@@ -32,7 +32,9 @@
       "category": "photo",
       "measuredFeatures": "Sheet thickness approximately 1 mm.",
       "estimatedFeatures": "Bend radii, hidden joins and local feature dimensions.",
-      "note": "Owner confirms bent painted sheet."
+      "note": "Owner confirms bent painted sheet.",
+      "photoFeatures": "Visible panel outline, folds and openings follow owner photographs.",
+      "placementEvidence": "Assembly placement follows owner photographs; hidden attachment positions remain estimated."
     },
     {
       "pattern": "^case-lid",
@@ -40,7 +42,9 @@
       "category": "photo",
       "measuredFeatures": "Sheet thickness approximately 1 mm.",
       "estimatedFeatures": "Bend radii, hidden joins and local feature dimensions.",
-      "note": "Owner confirms bent painted sheet."
+      "note": "Owner confirms bent painted sheet.",
+      "photoFeatures": "Visible panel outline, folds and openings follow owner photographs.",
+      "placementEvidence": "Assembly placement follows owner photographs; hidden attachment positions remain estimated."
     },
     {
       "pattern": "^(keyboard-shell|keyboard-bottom)$",
@@ -48,7 +52,9 @@
       "category": "photo",
       "measuredFeatures": "Sheet thickness approximately 1 mm.",
       "estimatedFeatures": "Bend radii, hidden joins and local feature dimensions.",
-      "note": "Owner confirms bent painted sheet."
+      "note": "Owner confirms bent painted sheet.",
+      "photoFeatures": "Visible panel outline, folds and openings follow owner photographs.",
+      "placementEvidence": "Assembly placement follows owner photographs; hidden attachment positions remain estimated."
     },
     {
       "pattern": "^monitor-shell",
@@ -56,7 +62,9 @@
       "category": "photo",
       "measuredFeatures": "Sheet thickness approximately 1 mm.",
       "estimatedFeatures": "Bend radii, hidden joins and local feature dimensions.",
-      "note": "Owner confirms bent painted sheet."
+      "note": "Owner confirms bent painted sheet.",
+      "photoFeatures": "Visible panel outline, folds and openings follow owner photographs.",
+      "placementEvidence": "Assembly placement follows owner photographs; hidden attachment positions remain estimated."
     },
     {
       "pattern": "^ring$",
@@ -64,8 +72,8 @@
       "category": "measured",
       "note": "Owner-supplied stand-ring dimensions; adjoining monitor geometry remains estimated.",
       "verification": "display-base-ring",
-      "estimatedFeatures": "Local dimensions, hidden joins and placement unless explicitly measured below.",
-      "measuredFeatures": "Owner-supplied stand-ring dimensions; adjoining monitor geometry remains estimated."
+      "estimatedFeatures": "Adjoining monitor geometry and concealed fit.",
+      "measuredFeatures": "Owner-supplied stand-ring dimensions; see the linked evidence record for values."
     },
     {
       "pattern": "^(prototype-spring|keyboard-springs)$",

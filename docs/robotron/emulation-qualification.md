@@ -1,24 +1,25 @@
 # Robotron emulation qualification
 
-Current baseline: **DAC Emulation 0.15.1**, snapshot layout **13**, canonical
+Current baseline: **DAC Emulation 0.16.0**, snapshot layout **14**, canonical
 model **v48**. The [capability matrix](capabilities.md) describes current behavior;
 older dated release sections are history. Machine-readable results are in
 [emulation-qualification.json](emulation-qualification.json).
 
 ## Changes
 
-An independent S600/MAME comparison found that 5–7-bit SIO receive data lost
-parity and unused high bits. Both receive channels now retain parity and fill
-unused high bits with ones, as specified by
-[Zilog UM008101](https://www.zilog.com/docs/z80/um0081.pdf), printed pp.235–236.
-For example, seven data bits `61h` plus parity one read back as `E1h`. Native
-tests cover both channels, four clock divisors, four widths and all three parity
-modes. A WASM test restores a snapshot during short-word reception and checks
-the received register after both batched and single-clock execution.
+Both SIO receive channels now track errors alongside each FIFO character.
+Framing errors follow their character; parity and overrun become sticky when the
+affected character reaches the head. Overflow replaces the third character.
+First-character error lock/reset and special receive vectors now agree across
+channels. V.24 BREAK considers the parity bit, and x16/x32/x64 framing errors add
+half-bit recovery. The x1 path still lacks half-clock sampling resolution.
+These changes follow [Zilog UM008101](https://www.zilog.com/docs/z80/um0081.pdf),
+printed pp.235–237, and targeted native/MAME checks. The existing 5–7-bit receive
+parity/padding correction remains covered in native and WASM tests.
 
-The current core has the same state layout; the previous 0.15.0 binary remains
-archived by hash for existing portable sessions. Layout equality does not waive
-the existing same-build requirement.
+The new per-character state requires snapshot layout **14**. Core **0.15.1** is
+preserved by hash for existing sessions/checkpoints; restoration retains the
+same-build requirement. ABI remains 1.
 
 The historical browser test now decodes the actual 640×288 canvas using the
 bundled TOS/M disk's 8×12 font at offset 106496. Font identity is checked. It
@@ -41,27 +42,61 @@ samples, disk bytes and independently decoded copied file contents after restore
 
 The original diagnostic MAME probe remains available. A new historical probe
 boots the unmodified S550 ROM and TOS/M disk in DAC and MAME 0.289 `rt1715w`,
-drives the same S600 switch coordinates, and compares five checkpoints:
+drives the same S600 switch coordinates, and compares six checkpoints:
 
 1. Boot to `A>`.
 2. `DIR`.
 3. `TYPE AUTOEXC.SUB`.
 4. `PIP B:=A:PIP.COM`.
 5. `DIR B:`.
+6. `PIP LST:=AUTOEXC.SUB`, including exact captured printer bytes.
 
 Text and monochrome pixels are compared. Colour and only the final blinking
 cursor cell are excluded. The 10,240-byte PIP.COM copy on each B disk must equal
 the original, using an independent CP/M directory reader. Original media are
-copied into temporary storage. Separate native application checks exercise
-WordStar, Turbo Pascal and printer output; those checks use the character adapter.
+copied into temporary storage. Additional independent suites use the real S600 to create/save/reopen a WordStar
+document and create/compile/run a Turbo Pascal program. Full text screens and
+saved file bytes must match; application raster differences are recorded but do
+not affect pass/fail because their cursor is not the CCP prompt cursor.
+Native fault regressions interrupt writes at 1/128/255 bytes by motor loss,
+controller reset and drive-door opening. They preserve the written prefix,
+CRC-error metadata, remaining sectors and the other drive. Existing formatting
+interruption and mixed DMA/S600/printer/V.24 snapshot checks remain separate from
+MAME qualification.
 
 The serial probe compares S600 input through the real keyboard CPU and SIO A,
-including 8N1 and an intentionally mismatched 7E1 receiver. It compares full data
+including 8N1, an intentionally mismatched 7E1 receiver, and FIFO overflow.
+All seven data/status observations match, including overrun visibility at the FIFO head. It compares full data
 registers and parity status, rather than masking away a discrepancy. Neither
 probe establishes clock equality, arbitrary external line-error behavior or
 physical-specimen accuracy. Source behavior and Lua observation interfaces are
 documented in [MAME's driver](https://github.com/mamedev/mame/blob/mame0289/src/mame/robotron/rt1715.cpp)
 and [Lua device reference](https://docs.mamedev.org/luascript/ref-devices.html).
+
+## Museum improvements
+
+Practice pages retain manual step checks and now recognise reference-font screen
+milestones. Saved WordStar/Pascal contents are independently read from the disk
+copy. WordStar save/reopen has a full browser test, including saving/restoring the
+practice recovery point. Loading unrelated media disables automatic recognition.
+The guide waits for application prompts in its instructions; sending a whole
+workflow while an application is loading can lose keyboard input.
+
+Diagnostic comparison aligns operations and reports changed values, insertions,
+clock offsets and relative timing separately. Repeated operations can be ambiguous;
+it does not infer equivalent guest execution. Evidence cards now separate measured
+dimensions, photo-derived shape, placement, estimated details and verification.
+Missing feature-level evidence is explicitly identified.
+
+Monitor inspection carries disconnected leads with the lifted assembly. Rear
+slack redistribution preserves their modelled centreline lengths. The 164-pose
+audit covers the lid, fixed chassis panels and PSU envelopes, alongside endpoints
+and bends. Actual cable lengths, hidden slack and the disassembly sequence remain
+estimates. See [inspection review details](diagnostics-and-model-review.md).
+
+Reports: [historical commands and printer](historical-comparison.json),
+[WordStar](wordstar-comparison.json), [Turbo Pascal](pascal-comparison.json),
+[serial](serial-comparison.json), and [original diagnostic](mame-comparison.json).
 
 ## Reproduce
 
@@ -77,7 +112,11 @@ npm run build
 `test:historical` explicitly enables the longer S600 workflow and S600 mid-write
 variant. Ordinary CI retains its existing historical `DIR` check and adapter
 mid-write test, but does not add the longer boot workflows, MAME or HDL.
-Cross-browser qualification uses the existing focused Firefox/WebKit suite.
+Cross-browser qualification includes the focused Firefox/WebKit suite plus
+practice and diagnostic-review tools. The initial WebKit pass exposed a loading
+race; practice checkboxes now remain disabled until media configuration finishes.
+All affected activity tests and the real WordStar recovery workflow pass after
+the fix. Full counts and reruns are recorded in the JSON report.
 
 From the sibling `dac-emulation` checkout:
 
@@ -87,6 +126,8 @@ make test-wasm
 make test-s600-workload S600_ROM=../dac/public/media/robotron/s600.bin
 python3 tools/compare_robotron_mame.py --media ../dac/public/media/robotron --output build/mame.json
 python3 tools/compare_robotron_historical.py --media ../dac/public/media/robotron --output build/historical.json
+python3 tools/compare_robotron_historical.py --suite wordstar --media ../dac/public/media/robotron --output build/wordstar.json
+python3 tools/compare_robotron_historical.py --suite pascal --media ../dac/public/media/robotron --output build/pascal.json
 python3 tools/compare_robotron_serial.py --media ../dac/public/media/robotron --output build/serial.json
 python3 tests/integration/robotron_applications.py ../dac/public/media/robotron/s550.bin ../dac/public/media/robotron/cas.bin ../dac/public/media/robotron/tosm10.img
 ```

@@ -49,24 +49,22 @@ No automatic cross-version remapping or overwrite occurs.
 
 ## Cable qualification
 
-`monitor-cable-paths.json` duplicates the canonical SCAD control points under a
-consistency check. DAC binds vertices to centerline sections and rotates their
-cross sections rigidly instead of stretching them by height. A smooth open pose
-avoids a tight bend found in the first centerline deformation. Returning to rest
-restores the exact original vertex array.
+`monitor-cable-paths.json` retains the canonical closed CAD control points.
+Inspection now unplugs the rear leads and carries them with the monitor. Keeping
+the original socket positions at full opening would require stretching: their
+separation exceeds the modelled cable lengths. A smooth rear-slack adjustment
+parks the plugs 18 units back while preserving each centreline's length within
+0.01 unit. This is an estimated disassembly sequence, not a measured slack model.
 
-Run `node scripts/audit-monitor-cables.mjs` to refresh the 164-pose report in
-`monitor-cable-audit.json` (41 positions × 2 cables × connected/parked plugs).
-The opening route travels behind the raised lid before descending to the plugs.
-Each cubic uses 48 intervals; sampled centers stay outside the lid bounding box
-expanded by the nominal cable radius. This is an illustrative inspection route,
-not a measured cable slack simulation.
-All sampled endpoint errors are below 1e-8 mm, minimum centerline bend radii exceed
-twice the nominal cable radius, and adjacent sampled directions differ by less
-than 30 degrees. These thresholds are geometry checks, not manufacturer bend
-specifications. The upper monitor cover leaves the captive ends fixed to the
-lower assembly. Full shell collision, physical slack, strain and hidden routing
-remain unverified.
+Run `node scripts/audit-monitor-cables.mjs` to refresh the 164-pose report
+(41 positions × 2 cables × seated/parked plug shapes). Each cubic has 64 sampling
+intervals. Entire segments clear the radius-expanded lid, fixed chassis panel
+and PSU envelopes. Endpoint error stays below 1e-8; minimum bend radius exceeds
+twice the nominal cable radius; adjacent turns remain below 30 degrees.
+These are geometry checks, not manufacturer limits. Tube cross sections rotate
+rigidly and closing restores the exact original mesh. Full monitor-shell,
+cable-to-cable and continuous-motion collisions, hidden routing and strain remain
+unverified. The separately opened upper monitor shell does not move captive ends.
 
 ## Keyboard and checks
 
@@ -87,8 +85,11 @@ once at the release boundary; superseded workflow cancellation remains enabled.
 
 The diagnostic panel now opens two checksummed reports locally. It displays
 build/model/firmware identities, hardware fields, disk identities and both event
-captures. Comparison shows metadata differences and the first 16 differing event
-positions. Events are compared by capture index, not aligned to equivalent guest
+captures. A bounded sequence alignment matches bus master, operation and mapped
+address, exposing inserted/deleted operations without shifting every later event.
+Values and controller context remain compared; clock-origin offset and relative
+timing drift are reported separately. The first 16 content differences are shown.
+Repeated operations can align ambiguously; this is not proof of equivalent guest
 execution. Attachments are not rendered, restored or uploaded. Malformed timeline
 lengths and oversized metadata are rejected; clearing a report releases it.
 
@@ -108,13 +109,9 @@ play at most 1.5 seconds of the owner's recordings, require enabled audio and do
 not operate the machine. The synthesized drive sounds have no recorded preview.
 Audio context state and resume failures are shown alongside a Resume audio button.
 
-The cable audit checks **entire line segments** between adjacent samples against
-the expanded lid box and records each path's length change from the closed,
-connected pose. Opening increases the modeled length: this remains illustrative
-stretching, not a physical slack solution. Checks do not certify the continuous
-curves between the polyline or continuous motion between poses. Cable animation
-now caches section bindings/rotations, uses numeric nearest-point comparisons and
-writes into the existing vertex buffer. The unchanged closed pose needs no bind.
+The cable audit checks **entire line segments**, constant length and endpoint
+positions. Neither its sampled polyline nor its 41 poses certifies continuous
+geometry/motion. The animation reuses section bindings and output buffers.
 
 CI placement estimates were refreshed from successful run **38916266552**.
 Serial, portable-state and electrical-control tests omit CAD loading while retaining

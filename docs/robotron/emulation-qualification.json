@@ -1,103 +1,88 @@
 {
   "schema": 1,
-  "date": "2026-10-16T17:11:15.215804+00:00",
+  "date": "2026-10-16T17:45:54.031559+00:00",
   "core": {
-    "version": "0.15.1",
-    "commit": "19280f6fed9ed38dceb9487c85a79bf4e16879d7",
-    "wasmSha256": "45759ce5ebedadcc246cc519a6db066786e87b6ecaf4959307db877f3c9bbd84",
-    "snapshotLayout": 13
+    "version": "0.16.0",
+    "commit": "5350310fa3a999070ab6e9f97d544d7c21240055",
+    "wasmSha256": "5b199c14f583e95206f88148d08141e350adcf134e58a6d5e244f34e74dbc47e",
+    "snapshotLayout": 14
   },
-  "museumBaseCommit": "ea856f9aa135a83473a5094e95c654e8954194ac",
+  "museumBaseCommit": "2a0da8783f0944002d764e87a77e16ed8983050e",
   "sourceSha256": {
-    "src/main.js": "aef6b5a108e888691655fd83c11987e13fd8f2b1e9d8d69f1213719fa286a941",
-    "tests/historical-screen.js": "21db75f9a6dd885164d21da6945732da54a7f3187d0252024255c697c68fcb60",
-    "tests/historical-media.spec.js": "a0c06f373572e437a6ce29286c05a2206fafe538c25d5f5bcff73e12a3d5c010",
-    "tests/historical-workflow.spec.js": "ade35ed1b9bfca7e9296761d1096bf8bb0224c1333e49758496240c28a2c5853",
-    "tests/drive-regression.spec.js": "e913b4e9f890f568ce52be749f5aa9911c067093c5daa3ee5cdfbda0834f0b41",
-    "tests/workbench.spec.js": "856eb802e851226d1476306b678a47af1cfd15837189c8858f080eeb0c9a8f6d",
-    "scripts/inventory-robotron.py": "14df29410b70202a4808109e6d9d920fbaeafe8c5acd3e8cd78e95db694c74e0"
+    "index.html": "8f7c64d41268b83a3cd8f24bc8dd85188aa178dd4d2ea84126131756054f3a2d",
+    "playwright.cross.config.js": "442b98c3cf7fd21eba01cdd09aad5894a602093b015a558328459cd0c27f40fe",
+    "scripts/audit-monitor-cables.mjs": "20568d0e109aa2da190de5f12a78ff2863c278f35b3f12ad9d41178e834b6ff3",
+    "src/archived-cores.json": "1b875dce17e00d5dc23bedb1e580288a6abc574d0cb78ba946df1ae5b8aafeef",
+    "src/diagnostic-viewer.js": "f3aa7f41b42236b03d5e52977092160ed3bf47a57cbd7f94cdcc58f5a1c70bc7",
+    "src/emulator.worker.js": "0618e7a88f079efda4021ac249e4d8c5517cc6f790c4e54f98e5dcfd5284a989",
+    "src/inspection.js": "af7ee952445b1a6d01973766c19473675a8fbfa27967b5b6f6564c36fdd3f294",
+    "src/main.js": "5ff3965fa05e8af332323b3beb865cafdf53642a08de02d78c1302df5367c58f",
+    "src/model-evidence.js": "b5d6ee23670e6f85713b92112e8d1379d9bef7415b08d80f34fa0fe41cfe45ca",
+    "src/monitor-cables.js": "ab4718c03732bd5309aad34894224202f9b5d4879e7a929782c94f0cf354d136",
+    "src/practice-guide.js": "133e8719c3ac966b33f3c57ea5c77b5ebca38190506ddfc111a40e1af9c43abe",
+    "src/robotron-activities.js": "4181bedb0c0ccc472983eed620652186a64e46b97d8c03df6488433d8a4baa6f",
+    "src/robotron-evidence.json": "0e09f4a1ff603f8a38bce9b52eea315670bb438d33a491ffa7ec028646df48fe",
+    "src/robotron-model.js": "a3caa1e945203eec40e4546780743651b4c37aa593b1f7899c0321c7d004fcb8",
+    "tests/assembly.spec.js": "331ec8aa71eaf83483089310421fba0f6284d82ff98c42ecf69208041c2bb2ad",
+    "tests/historical-workflow.spec.js": "b1008a47242e9095350c14cf89a786b5326278efe1bd08c0acf33234d737ce85",
+    "tests/robotron-activities.spec.js": "e51d1fa4ca9ff2d543f060589cfc0272bd7f2921c17f7ff290c84b2ab7f22a51",
+    "tests/robotron-refinements.spec.js": "98a20480e27af165c3d6a511e148681ab0c8b9390b02ede56cc2374307897d39",
+    "tests/robotron-review-tools.spec.js": "87504bc719bce07e1758993763958036ef1d228847d061d93fe242cedd4f206f",
+    "tests/workbench.spec.js": "be24320a187ea6169f96047de76a89976d161bb15a2b8eb8ace84ecda8a9a04f"
   },
   "results": [
     {
-      "check": "native devices, machines, runtime and Python verification",
+      "check": "native devices, runtime, machines and Python verification",
       "command": "make test",
       "passed": true
     },
     {
-      "check": "runtime AddressSanitizer/UndefinedBehaviorSanitizer",
+      "check": "runtime AddressSanitizer and UndefinedBehaviorSanitizer",
       "command": "make test-runtime-sanitize",
       "passed": true
     },
     {
-      "check": "WASM lifecycle, short-character receive and mid-byte restore",
-      "command": "make test-wasm; node tests/integration/browser_smoke.mjs",
+      "check": "WASM lifecycle, snapshots, short-word receive and clock fixtures",
+      "command": "make test-wasm",
       "passed": true
     },
     {
-      "check": "S600 mixed workload and standalone keyboard firmware",
+      "check": "S600 mixed DMA/printer/V24 snapshots and standalone keyboard",
       "command": "make test-s600-workload S600_ROM=../dac/public/media/robotron/s600.bin",
       "passed": true
     },
     {
-      "check": "historical native applications",
+      "check": "Chromium focused emulation and museum suite including eight optional historical checks",
       "passed": true,
-      "cases": [
-        "PIP two-drive copy and printer",
-        "WordStar create/save",
-        "Turbo Pascal compile/run"
-      ]
+      "tests": 69,
+      "output": "/tmp/dac-0160-chromium"
     },
     {
-      "check": "native/WASM historical parity",
-      "passed": true,
-      "bootPixelsSha256": "b29650103b6582b0c86eab8a03381f58347125d62790876fde47ec7068ec238a",
-      "fileOperationsDiskSha256": "7dde1f1bbbe1ebbcc31e22996dbde174e06e3b0159abc406889613e639eee0bc",
-      "midBootRestore": true
+      "check": "Firefox/WebKit expanded suite",
+      "tests": 94,
+      "initialPassed": 93,
+      "initialFailed": 1,
+      "resolved": true,
+      "note": "WebKit exposed a practice checkbox/media-configuration race. Checkboxes now stay disabled until configuration completes. All 10 affected Firefox/WebKit activity tests pass after the fix; the other 84 checks passed in the initial run."
     },
     {
-      "check": "historical browser/WASM regression",
-      "command": "npm run test:historical",
+      "check": "Firefox/WebKit activity suite after loading-race fix",
+      "command": "npx playwright test -c playwright.cross.config.js tests/robotron-activities.spec.js --workers=2",
+      "passed": true,
+      "tests": 10
+    },
+    {
+      "check": "Chromium practice and historical workflows after loading-race fix",
+      "command": "DAC_HISTORICAL_QUALIFICATION=1 npx playwright test tests/robotron-activities.spec.js tests/historical-workflow.spec.js --workers=1",
       "passed": true,
       "tests": 7
     },
     {
-      "check": "Chromium session, checkpoint, serial and workbench",
+      "check": "monitor lead lengths, bends, endpoints, lid/chassis/PSU clearance",
+      "command": "node scripts/audit-monitor-cables.mjs",
       "passed": true,
-      "tests": 31,
-      "command": "npx playwright test tests/serial.spec.js tests/sessions.spec.js tests/portable-sessions.spec.js tests/checkpoints.spec.js tests/workbench.spec.js --workers=1"
-    },
-    {
-      "check": "Firefox/WebKit focused cross-browser suite",
-      "command": "npm run test:cross",
-      "passedAfterIsolatedRerun": true,
-      "tests": 66,
-      "initial": {
-        "passed": 65,
-        "failed": 1
-      },
-      "failure": "WebKit browserContext.close ENOENT: concurrent Playwright runs shared and cleaned the same artifact directory.",
-      "resolution": "Affected replay test passed in isolated /tmp/dac-0151-webkit-replay output directory; no test assertions were relaxed."
-    },
-    {
-      "check": "newly archived 0.15.0 restore",
-      "passed": true,
-      "tests": 3,
-      "browsers": [
-        "Chromium",
-        "Firefox",
-        "WebKit"
-      ]
-    },
-    {
-      "check": "specimen inventory CLI",
-      "passed": true,
-      "cases": [
-        "unknown baseline",
-        "supplied hash",
-        "zero measurement",
-        "invalid size rejected",
-        "input overwrite rejected"
-      ]
+      "poses": 164,
+      "report": "monitor-cable-audit.json"
     },
     {
       "check": "production build",
@@ -105,34 +90,46 @@
       "passed": true
     },
     {
-      "check": "test discovery and whitespace",
+      "check": "pinned and archived 0.15.1 core checksums",
+      "passed": true
+    },
+    {
+      "check": "feature evidence table rendered and visually inspected in Chromium",
+      "passed": true
+    },
+    {
+      "check": "Independent MAME: mame",
       "passed": true,
-      "discoveredTests": 193,
-      "files": 40
+      "report": "mame-comparison.json"
+    },
+    {
+      "check": "Independent MAME: serial",
+      "passed": true,
+      "report": "serial-comparison.json"
+    },
+    {
+      "check": "Independent MAME: historical",
+      "passed": true,
+      "report": "historical-comparison.json"
+    },
+    {
+      "check": "Independent MAME: wordstar",
+      "passed": true,
+      "report": "wordstar-comparison.json"
+    },
+    {
+      "check": "Independent MAME: pascal",
+      "passed": true,
+      "report": "pascal-comparison.json"
     }
   ],
-  "independentReports": {
-    "mame-comparison.json": {
-      "sha256": "683882df26496f9badd5a57095cb5465cfb2a891b88b494d3cdf11e9e4c38bb5",
-      "passed": true
-    },
-    "historical-comparison.json": {
-      "sha256": "2c437a4405aa29fbd82b8a1a10b68a92f8fe84994779dd07559a81e9c42ac2d6",
-      "passed": true
-    },
-    "serial-comparison.json": {
-      "sha256": "dbac9e7c476c0028ccd5540835a2a5af2a41c41cb77fd39822a9b143d8125f62",
-      "passed": true
-    }
-  },
-  "specimenEvidence": {
-    "status": "deferred: owner dumps and measurements are planned, not yet available",
-    "inventory": "specimen-inventory.json"
-  },
-  "limits": [
-    "Focused browser suites, not every museum test or every retail Safari version.",
-    "Independent comparisons are not physical-hardware or exact timing qualification.",
-    "No physical timing route was changed without supporting evidence.",
-    "Changes are local; deployment and remote publication have not been performed."
+  "limitations": [
+    "Reference S550/CAS/S600/TOS-M media, not specimen dumps.",
+    "MAME stable observations do not certify hardware timing; application rasters are recorded but not qualified.",
+    "Interrupted writes and mixed peripheral snapshots are native regressions, not MAME differential cases.",
+    "Diagnostic alignment can be ambiguous for repeated operations; it does not establish equivalent guest execution.",
+    "Practice recognition uses the verified reference font and reference filesystem; manual checkmarks are visitor assertions.",
+    "Monitor leads disconnect for inspection. Their modelled lengths, slack and disassembly sequence are not specimen measurements; full shell/cable-to-cable and continuous-motion collision certification is absent.",
+    "SIO x1 half-clock sampling and synchronous modes remain outside this model."
   ]
 }
