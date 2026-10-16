@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Second implementation pass, 2026-10-16. Digital reference qualification now passes,
+Third implementation pass, 2026-10-16. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,8 +9,8 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 68-component schematic; native PCB; photo landmark review; generated detailed OpenSCAD packages; migrated museum DIP geometry; export and browser freshness checks | `9d1ca8a` |
-| `dac-emulation` | Corrected reference decoding, raw/display LED separation, memory-write serial clocks, independent TV80 qualification; core 0.17.0, snapshot layout 15 | `911cf46` |
+| `3d-models` | 70-component schematic with explicit BR1/BR2, reviewed reset and cable connections, guarded photo fitting, regenerated museum geometry | `93bd6ce` |
+| `dac-emulation` | Reviewed CAD pin, generated bridge isolation and external stimulus tests, passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `8052c32` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
 Full-resolution owner photos establish **05-330-4102-8 1c**, correcting the former
@@ -19,7 +19,60 @@ RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
 
-## What the second pass closes
+## What the third pass closes
+
+The independent drawing review found errors outside the earlier digital peripheral
+comparison. Corrections now carried through the native schematic, PCB pad nets,
+generated HDL and museum metadata are:
+
+- Reset circuit: V3.1 collector to +5V; V3.2 collector to V4.9 base; R5 to V3.2
+  base; V1.2 anode to C2 positive; C1 lower terminal to the reset output.
+- BR1/BR2: explicit two-terminal components separate oscillator/CPU clock and
+  reset-circuit/CPU RESET nets. Reference state is closed; physical locations and
+  specimen bridge construction remain unverified.
+- X1:A9 and R6.5: BUSRQ, separate from CLK and the WAIT/INT/NMI pullup net.
+- Cable filtering: L1.1 is clock to XT1:B2; L1.2 is ground to XT1:A3; L1.3 is
+  +5V to XT1:B4; L1.4 is data to XT1:A1. The previous clock/ground terminal
+  assignment and winding references were wrong.
+
+Generated `controller_service` wiring supports opening BR1/BR2 and injecting
+clock/reset at the CPU side. Thirteen HDL checks cover source isolation, external
+stimulus, floating reset, the clock pullup and conflicting drivers. The firmware
+HDL CPU now receives its reproducible clock/reset through these open bridges.
+This is a virtual electrical test, not a documented factory procedure or a
+qualification of the analog source circuits. The museum explains the distinction
+when either bridge is selected. Bridge endpoint metadata is checked against the
+schematic during synchronization.
+
+The [1985 Robotron service handbook](https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=91),
+printed pp. 89–92, independently supports WR-based serial synchronization and
+specifies an approximately 100 ms power-on reset and a 700 kHz ±10% clock. The
+emulator's 683 kHz setting is within that reference range. Oscillator gate pins,
+component references and capacitance differ from Zander, so the handbook is not
+silently merged into the reconstructed circuit. It strengthens the WR reference;
+physical continuity must still establish the specimen's wiring.
+
+Photo-fit application now rejects failing held-out landmarks and unknown component
+references before writing the PCB. Nine fast CAD tests cover these guards, reset
+and bridge topology, cable pin assignments and existing export checks. The KiCad
+integration test still checks curved copper/vias and deliberate pin/net mismatch.
+
+The rerun retains **131,072 bus transactions with zero differences**, **390 serial
+bits** and **11,971 LED state records** in agreement. CPU phase offsets remain
+unchanged; the production runtime was not changed in this pass.
+
+The reviewed controller image is unchanged. KiCad save rounding moved two pad
+coordinates by one nanometre; regenerated mesh deduplication removed one vertex
+without changing triangles or bounds. The strict structural baseline was updated
+after inspection.
+
+The inventory is now **70 components, 59 unplaced, 234 airwires and zero assigned
+copper segments**. The extra two unplaced components are the newly explicit
+bridges. ERC retains only the two documented isolated labels; other DRC violations
+remain zero. Those counts expose remaining work rather than claiming that an
+unrouted board has become complete.
+
+## What the second pass closed
 
 ### Reference digital comparison
 
@@ -79,6 +132,14 @@ reports. Browser metadata additionally binds the consumed SCAD sources; a partia
 export cannot silently bless stale controller meshes with new source hashes.
 
 ## Validation
+
+Third pass: nine fast CAD checks, the KiCad integration check, 13 bridge isolation
+checks, common/full bus audits and the complete TV80/S600 comparison pass. Seven
+focused Chromium/CI-selection checks and ten Firefox/WebKit controller checks
+pass. The production build and reviewed visual regression pass. Production C/WASM
+behavior is unchanged; earlier runtime validation below remains source-bound to
+core 0.17.0. CAD CI also passes for the new revision.
+
 
 - Native device/runtime tests, Python verification, AddressSanitizer and
   UndefinedBehaviorSanitizer pass.
@@ -145,13 +206,30 @@ npx playwright test tests/keyboard-controller.spec.js --workers=1
 These checks reject dirty source repositories, stale exports, inconsistent
 connectivity and reports whose implementation/CPU/header hashes have changed.
 
+## Completion criteria
+
+| Requirement | Current result |
+| --- | --- |
+| Schematic/PCB pin agreement and export freshness | Passing |
+| Reference digital bus and firmware comparison | Passing within documented scope |
+| Bridge isolation and external clock/reset stimulus | Passing digital tests |
+| KiCad DIP geometry propagated to OpenSCAD and museum | Implemented; discrete parts remain |
+| Both photo sides registered to numbered pads | Incomplete; A4/A8 and underside require review |
+| Visible copper reconciled with named nets | Incomplete; 294 artwork segments remain unassigned |
+| First data/clock path traced through actual copper | Incomplete |
+| Specimen ROM identity and timing | Awaiting planned dumps and measurements |
+
+The plan cannot be marked complete while physical copper remains unassigned.
+Passing reference tests and a synchronized model are substantial milestones, but
+are not evidence of historical trace accuracy.
+
 ## Remaining work against the plan
 
 | Phase | Remaining requirement |
 | --- | --- |
 | Identity/evidence | Resolve specimen clock wiring and ROM identity; identify remaining physical parts |
-| Schematic | Review analog circuitry and explicitly reconstruct BR1/BR2 jumper configuration |
-| PCB | Resolve A4/A8 placement/orientation, place 57 components, trace and assign actual copper, clear 233 airwires |
+| Schematic | Reset topology and BR1/BR2 are explicit; review physical discrete pin maps, specimen substitutions and bridge state |
+| PCB | Resolve A4/A8 placement/orientation, place 59 components, trace and assign actual copper, reconcile 234 airwires |
 | OpenSCAD | Migrate remaining discrete parts and qualify pad/lead interfaces and physical dimensions |
 | Co-simulation | Resolve CPU phase timing if cycle equivalence is required; qualify analog and contention boundaries |
 | Museum/sync | Extend verified net geometry and signal mappings as physical reconstruction progresses |
