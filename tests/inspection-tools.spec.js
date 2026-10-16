@@ -28,6 +28,8 @@ test('full exhibit clips, shares its cut and recovers graphics while the worker 
  // Includes full CAD load, real handle dragging and WebGL context restoration.
  // Software rendering in CI needs a larger total budget; no extra waits.
  test.setTimeout(process.env.CI?90000:60000);
+ // A desktop-sized viewport bounds software rasterization without changing CAD detail.
+ await page.setViewportSize({width:960,height:720});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/src/scene.js',async r=>{const response=await r.fetch(),source=await response.text();await r.fulfill({response,body:source.replace('sectionGizmo.size=.65;','sectionGizmo.size=.65;window.__cutProbe={gizmo:sectionGizmo,camera,controls,THREE};')});});
  await page.addInitScript(()=>{const Base=Worker;window.frames=0;window.Worker=class extends Base{constructor(...args){super(...args);this.addEventListener('message',({data})=>{if(data.type==='frame')window.frames++;});}};});
