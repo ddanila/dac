@@ -22,8 +22,25 @@ export function monitorLeadPath(name,offset=[0,0,0],parking=0){
 }
 const tangent=(p,i)=>new T.Vector3(...p[Math.min(p.length-1,i+1)]).sub(new T.Vector3(...p[Math.max(0,i-1)])).normalize();
 export function bindMonitorLead(name,vertices){
- const rest=monitorLeadPath(name),bindings=[];
- for(let i=0;i<vertices.length;i+=3){const v=new T.Vector3().fromArray(vertices,i);let best=0,d=Infinity;rest.forEach((p,n)=>{const next=v.distanceToSquared(new T.Vector3(...p));if(next<d){d=next;best=n;}});bindings.push({index:best,delta:v.sub(new T.Vector3(...rest[best])),tangent:tangent(rest,best)});}
- return (offset,parking)=>{if(offset.every(v=>v===0)&&!parking)return vertices.slice();const moved=monitorLeadPath(name,offset,parking),rotations=moved.map((_,i)=>(i===0||i===moved.length-1)?new T.Quaternion():new T.Quaternion().setFromUnitVectors(tangent(rest,i),tangent(moved,i))),out=new Float32Array(vertices.length);bindings.forEach((b,i)=>b.delta.clone().applyQuaternion(rotations[b.index]).add(new T.Vector3(...moved[b.index])).toArray(out,i*3));return out;};
+ const rest=monitorLeadPath(name),count=vertices.length/3,indices=new Uint16Array(count),deltas=new Float32Array(vertices.length),tangents=rest.map((_,i)=>tangent(rest,i));
+ for(let i=0;i<count;i++){const k=i*3;let best=0,d=Infinity;for(let n=0;n<rest.length;n++){const p=rest[n],x=vertices[k]-p[0],y=vertices[k+1]-p[1],z=vertices[k+2]-p[2],next=x*x+y*y+z*z;if(next<d){d=next;best=n;}}indices[i]=best;for(let a=0;a<3;a++)deltas[k+a]=vertices[k+a]-rest[best][a];}
+ const rotations=rest.map(()=>new T.Quaternion()),v=new T.Vector3(),direction=new T.Vector3();
+ return (offset,parking,out=new Float32Array(vertices.length))=>{
+  if(out.length!==vertices.length)throw Error('Wrong lead output size');
+  if(offset.every(v=>v===0)&&!parking){out.set(vertices);return out;}
+  const moved=monitorLeadPath(name,offset,parking);
+  for(let i=0;i<moved.length;i++){if(i===0||i===moved.length-1)rotations[i].identity();else{const a=moved[i-1],b=moved[i+1];direction.set(b[0]-a[0],b[1]-a[1],b[2]-a[2]).normalize();rotations[i].setFromUnitVectors(tangents[i],direction);}}
+  for(let i=0;i<count;i++){const n=indices[i],p=moved[n];v.fromArray(deltas,i*3).applyQuaternion(rotations[n]);out[i*3]=v.x+p[0];out[i*3+1]=v.y+p[1];out[i*3+2]=v.z+p[2];}return out;
+ };
+}
+// Slab intersection tests the entire piecewise-linear path, not just its samples.
+export function segmentIntersectsBox(a,b,min,max){
+ let lo=0,hi=1;
+ for(let k=0;k<3;k++){const d=b[k]-a[k];if(Math.abs(d)<1e-12){if(a[k]<min[k]||a[k]>max[k])return false;continue;}let x=(min[k]-a[k])/d,y=(max[k]-a[k])/d;if(x>y)[x,y]=[y,x];lo=Math.max(lo,x);hi=Math.min(hi,y);if(lo>hi)return false;}
+ return true;
+}
+export function leadLidClear(points,offset,radius){
+ const min=[-250-radius,-200+offset[1]-radius,36+offset[2]-radius],max=[250+radius,200+offset[1]+radius,130+offset[2]+radius];
+ return points.slice(1).every((p,i)=>!segmentIntersectsBox(points[i],p,min,max));
 }
 export function leadMetrics(points){let length=0,minRadius=Infinity,maxTurn=0;for(let i=1;i<points.length;i++){const a=new T.Vector3(...points[i-1]),b=new T.Vector3(...points[i]);length+=a.distanceTo(b);if(i+1<points.length){const c=new T.Vector3(...points[i+1]),u=b.clone().sub(a),v=c.clone().sub(b),cross=u.clone().cross(v).length();maxTurn=Math.max(maxTurn,u.angleTo(v));if(cross>1e-9)minRadius=Math.min(minRadius,u.length()*v.length()*c.distanceTo(a)/(2*cross));}}return {length,minRadius,maxTurnDegrees:maxTurn*180/Math.PI};}

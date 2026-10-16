@@ -72,7 +72,7 @@ remain unverified.
 
 The optional emulator target `make test-s600-workload S600_ROM=/path/to/S600.bin`
 compares full snapshots and bus traces at 18 matrix boundaries with DMA,
-printer and V24 running. Its 8.2-million-clock bound includes booting the keyboard,
+printer and V24 running. Its extended 23,809,600-clock bound includes booting the keyboard,
 not an OS. It also runs the existing standalone historical-ROM held-key/release
 qualification. Ordinary CI still uses original diagnostic ROMs only. See
 `dac-emulation/docs/s600-mixed-qualification.md` for the reference ROM hash and
@@ -82,3 +82,52 @@ Focused browser checks cover report exclusion/opt-in behavior and checkpoint
 importability, audio routing and seam continuity, relationships, explicit remap
 provenance, and cable rest/endpoint/bend checks. Full cross-browser checks run
 once at the release boundary; superseded workflow cancellation remains enabled.
+
+## Review tools and bounded qualification follow-up
+
+The diagnostic panel now opens two checksummed reports locally. It displays
+build/model/firmware identities, hardware fields, disk identities and both event
+captures. Comparison shows metadata differences and the first 16 differing event
+positions. Events are compared by capture index, not aligned to equivalent guest
+execution. Attachments are not rendered, restored or uploaded. Malformed timeline
+lengths and oversized metadata are rejected; clearing a report releases it.
+
+Remap previews show orange original endpoints, blue projected endpoints and white
+displacement arrows. Original placement comes from the saved displayed/assembled
+matrix; older records lacking matrices use the replacement placement explicitly.
+The proposed points follow the displayed assembly. Inspection pose changes can
+therefore contribute to the visible displacement. Projections over **2 local model
+units**, or missing/ambiguous original part matches, require a review checkbox
+before saving. That threshold is a review aid, not a fit tolerance or a new
+physical measurement. Originals remain unchanged. Preview geometry is reused
+until point placement changes and is disposed when cleared or switching machines.
+
+Sound controls now retain mute settings separately from the original levels;
+solo is temporary. Restore defaults clears both. Fan, keyboard and switch previews
+play at most 1.5 seconds of the owner's recordings, require enabled audio and do
+not operate the machine. The synthesized drive sounds have no recorded preview.
+Audio context state and resume failures are shown alongside a Resume audio button.
+
+The cable audit checks **entire line segments** between adjacent samples against
+the expanded lid box and records each path's length change from the closed,
+connected pose. Opening increases the modeled length: this remains illustrative
+stretching, not a physical slack solution. Checks do not certify the continuous
+curves between the polyline or continuous motion between poses. Cable animation
+now caches section bindings/rotations, uses numeric nearest-point comparisons and
+writes into the existing vertex buffer. The unchanged closed pose needs no bind.
+
+CI placement estimates were refreshed from successful run **38916266552**.
+Serial, portable-state and electrical-control tests omit CAD loading while retaining
+the real emulator and 2D screen. Full CAD checks still cover geometry, mechanisms,
+picking, graphics recovery and visual controls. New review-tool checks use small
+fixtures; no automatic historical-ROM or HDL jobs were added.
+
+The optional S600 workload adds Shift/Ctrl overlap, a snapshot with the keyboard
+receiver actively partway through a byte, held-A/REP repetition and clean stop,
+and reset while A is held followed by a fresh press. Production runtime reset
+clears matrix state; this qualifies that behavior, not physical reset wiring.
+Complete snapshots and bus hashes agree between batched and single-clock runs.
+The upper bound is **23,809,600 clocks per session** (including a bounded search
+for the mid-byte snapshot); no OS boots. The actual specimen EPROM is still
+unidentified. Ordinary native runtime tests and the existing standalone S600
+fixture remain separate checks.

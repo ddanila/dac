@@ -1,3 +1,4 @@
+import {createRemapPreview} from './measurement-remap-preview.js';
 import {remapCandidates,remapMeasurement} from './measurement-remap.js';
 import {relationshipsFor} from './component-relationships.js';
 import {partId,findPart} from './model-part-id.js';
@@ -84,6 +85,7 @@ export function createScene(
   const controls = new OrbitControls(camera, renderer.domElement);
   let evidenceView,evidenceEnabled=false;
   let section={axis:'off',position:0,reverse:false},sectionRoot,lastHit;
+  const remapPreview=createRemapPreview(scene);
   const measurement=createMeasurement(scene,value=>window.dispatchEvent(new CustomEvent('model-measurement',{detail:value})));
   function inspectionMode(mode){
     cancelGesture();evidenceEnabled=mode==='evidence';evidenceView?.set(evidenceEnabled);measurement.set(mode==='measure');
@@ -577,7 +579,7 @@ export function createScene(
     if (renderRequested || changed?.dirty) {
       if(sectionRoot!==robotron?.group)applySection();
       if(partOutline)partOutline.update();for(const h of relatedOutlines)h.update();
-      measurement.update();evidenceView?.refresh();
+      measurement.update();remapPreview.update();evidenceView?.refresh();
       renderer.render(scene, camera);
       drawLabels();
       if(robotron && interaction.onSoundPosition) {
@@ -611,9 +613,10 @@ export function createScene(
     measurementEndpoint(slot){inspectionMode('measure');measurement.endpoint(slot);},
     measurementOptions(value){measurement.options(value);renderRequested=true;},
     measurementRemapCandidates(record){if(!robotron||kind!==2)throw Error("Load the Robotron model first.");return remapCandidates(robotron.group,record);},
-    previewMeasurementRemap(record,ids){return remapMeasurement(robotron.group,robotron.identity,record,ids);},
+    previewMeasurementRemap(record,ids){const proposal=remapMeasurement(robotron.group,robotron.identity,record,ids);remapPreview.show(robotron.group,record,proposal.record);renderRequested=true;return proposal;},
+    clearMeasurementRemap(){remapPreview.clear();renderRequested=true;},
     restoreMeasurement(value){measurement.restore(value);inspectionMode('measure');},
-    clearMeasurement(){measurement.clear();renderRequested=true;},
+    clearMeasurement(){remapPreview.clear();measurement.clear();renderRequested=true;},
     measurementParts(){if(kind!==2)return [];return [...(robotron?.objects.values()||[])].filter(o=>o.isMesh&&!o.isInstancedMesh&&o.geometry).map(o=>o.name);},
     measureCentre(name,slot){if(kind!==2)return;const object=robotron?.objects.get(name);if(object){inspectionMode('measure');measurement.centre(object,slot);renderRequested=true;}},
     modelIdentity(){return kind===2?robotron?.identity:null;},
@@ -685,7 +688,7 @@ export function createScene(
     },
     setMachine: (value) => {
       clearRelated();partOutline?.removeFromParent();partOutline?.geometry.dispose();partOutline?.material.dispose();partOutline=null;selectedPart=null;
-      measurement.clear();inspectionMode('operate');sectionRoot=null;
+      remapPreview.clear();measurement.clear();inspectionMode('operate');sectionRoot=null;
       cancelGesture();
       robotron?.releaseKeys();
       robotron?.separate(false);

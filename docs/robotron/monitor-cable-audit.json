@@ -1,8 +1,11 @@
 {
-  "scope": "164 sampled centerline poses, two leads, connected/parked ends, canonical system-cover path. Monitor upper-shell movement leaves the captive lead ends unchanged. Nominal radius, not a manufacturer bend specification: minimum centerline radius must exceed twice the modeled cable radius and direction changes stay below 30 degrees per sample. Tube cross sections are rotated rigidly. Sampled centers also stay outside the lid bounding box expanded by cable radius. No whole-enclosure collision or real slack/strain certification.",
+  "scope": "164 sampled centerline poses, two leads, connected/parked ends, canonical system-cover path. Monitor upper-shell movement leaves the captive lead ends unchanged. Nominal radius, not a manufacturer bend specification: minimum centerline radius must exceed twice the modeled cable radius and direction changes stay below 30 degrees per sample. Tube cross sections are rotated rigidly. Every line segment between sampled centers also stays outside the lid bounding box expanded by cable radius. Length changes are disclosed as illustrative stretching, not physical slack. No continuous-pose or whole-enclosure collision or real slack/strain certification.",
   "allSamplesPass": true,
   "results": [
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 0,
+      "lengthChangePercent": 0,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0,
@@ -14,6 +17,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 8.59165467896861,
+      "lengthChangePercent": 2.335864928797086,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.025,
@@ -25,6 +31,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 16.39531504111318,
+      "lengthChangePercent": 4.457493094416714,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.05,
@@ -36,6 +45,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 24.914707422229526,
+      "lengthChangePercent": 6.773711636861637,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.075,
@@ -47,6 +59,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 34.67676497760948,
+      "lengthChangePercent": 9.427781048232351,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.1,
@@ -58,6 +73,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 46.059486933785706,
+      "lengthChangePercent": 12.522470255977886,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.125,
@@ -69,6 +87,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 59.180215098766666,
+      "lengthChangePercent": 16.089681684514765,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.15,
@@ -80,6 +101,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 73.87604188962194,
+      "lengthChangePercent": 20.085124667630136,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.175,
@@ -91,6 +115,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 89.80489475957546,
+      "lengthChangePercent": 24.41579788078584,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.2,
@@ -102,6 +129,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 106.56559773648672,
+      "lengthChangePercent": 28.972631195047004,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.225,
@@ -113,6 +143,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 123.7664012327798,
+      "lengthChangePercent": 33.64911728945141,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.25,
@@ -124,6 +157,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 141.04866638825382,
+      "lengthChangePercent": 38.34775085600553,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.275,
@@ -135,6 +171,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 158.09024276749847,
+      "lengthChangePercent": 42.980946914634025,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.3,
@@ -146,6 +185,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 174.60283997806278,
+      "lengthChangePercent": 47.4703262191733,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.325,
@@ -157,6 +199,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 190.3286420211041,
+      "lengthChangePercent": 51.74579478048139,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.35,
@@ -168,6 +213,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 205.0374385444211,
+      "lengthChangePercent": 55.74476392291359,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.375,
@@ -179,6 +227,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 218.52437174302565,
+      "lengthChangePercent": 59.41153772060437,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.4,
@@ -190,6 +241,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 230.60832665388898,
+      "lengthChangePercent": 62.696875357200284,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.425,
@@ -201,6 +255,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 241.13127062527224,
+      "lengthChangePercent": 65.55781154340669,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.45,
@@ -212,6 +269,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 249.95919970596447,
+      "lengthChangePercent": 67.95791381753257,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.475,
@@ -223,6 +283,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 256.98570135122054,
+      "lengthChangePercent": 69.86825115982192,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.5,
@@ -234,6 +297,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 271.60427506402823,
+      "lengthChangePercent": 73.84269088310019,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.525,
@@ -245,6 +311,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 287.13796068904173,
+      "lengthChangePercent": 78.06592759619214,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.55,
@@ -256,6 +325,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 303.3657997881154,
+      "lengthChangePercent": 82.4778879970772,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.575,
@@ -267,6 +339,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 320.1320608502898,
+      "lengthChangePercent": 87.03623242147053,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.6,
@@ -278,6 +353,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 337.32443441334317,
+      "lengthChangePercent": 91.71042661912833,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.625,
@@ -289,6 +367,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 354.86008267403736,
+      "lengthChangePercent": 96.47794897732373,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.65,
@@ -300,6 +381,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 372.6766186248375,
+      "lengthChangePercent": 101.32183796438933,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.675,
@@ -311,6 +395,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 390.72616222473766,
+      "lengthChangePercent": 106.22907614506326,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.7,
@@ -322,6 +409,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 408.971339924134,
+      "lengthChangePercent": 111.18950254721084,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.725,
@@ -333,6 +423,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 427.382534217527,
+      "lengthChangePercent": 116.19506488114398,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.75,
@@ -344,6 +437,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 445.93595382689193,
+      "lengthChangePercent": 121.23929486874566,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.775,
@@ -355,6 +451,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 464.6122537818046,
+      "lengthChangePercent": 126.31693307633853,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.8,
@@ -366,6 +465,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 483.39553131737387,
+      "lengthChangePercent": 131.42365592340545,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.825,
@@ -377,6 +479,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 502.27258342908806,
+      "lengthChangePercent": 136.55587382955173,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.85,
@@ -388,6 +493,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 521.2323497764307,
+      "lengthChangePercent": 141.71057975335424,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.875,
@@ -399,6 +507,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 540.2654889985848,
+      "lengthChangePercent": 146.88523400275886,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.9,
@@ -410,6 +521,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 559.3640524888597,
+      "lengthChangePercent": 152.07767554216824,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.925,
@@ -421,6 +535,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 578.5212303422506,
+      "lengthChangePercent": 157.2860529216739,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.95,
@@ -432,6 +549,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 597.7311514295059,
+      "lengthChangePercent": 162.50876992198818,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.975,
@@ -443,6 +563,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 616.9887245401947,
+      "lengthChangePercent": 167.74444236505286,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 1,
@@ -454,6 +577,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": -5.5372941204440735,
+      "lengthChangePercent": -1.5054575189155919,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0,
@@ -465,6 +591,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 3.330681033927533,
+      "lengthChangePercent": 0.9055323225694284,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.025,
@@ -476,6 +605,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 11.495231243279363,
+      "lengthChangePercent": 3.1252777855839255,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.05,
@@ -487,6 +619,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 20.00282909604988,
+      "lengthChangePercent": 5.438289678536502,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.075,
@@ -498,6 +633,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 29.248437310758163,
+      "lengthChangePercent": 7.951948895660424,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.1,
@@ -509,6 +647,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 39.631538984480244,
+      "lengthChangePercent": 10.77486531374594,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.125,
@@ -520,6 +661,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 51.477551067538,
+      "lengthChangePercent": 13.995511999960625,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.15,
@@ -531,6 +675,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 64.86733658586394,
+      "lengthChangePercent": 17.635873672425713,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.175,
@@ -542,6 +689,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 79.57463804083966,
+      "lengthChangePercent": 21.634436341619047,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.2,
@@ -553,6 +703,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 95.20401715698563,
+      "lengthChangePercent": 25.883689820770936,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.225,
@@ -564,6 +717,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 111.34308135288433,
+      "lengthChangePercent": 30.27151445379379,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.25,
@@ -575,6 +731,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 127.62530240162437,
+      "lengthChangePercent": 34.698260003027066,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.275,
@@ -586,6 +745,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 143.7381444766459,
+      "lengthChangePercent": 39.07895547003891,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.3,
@@ -597,6 +759,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 159.4155788595266,
+      "lengthChangePercent": 43.341274024127344,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.325,
@@ -608,6 +773,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 174.4293728176118,
+      "lengthChangePercent": 47.423164656990494,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.35,
@@ -619,6 +787,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 188.5820648982226,
+      "lengthChangePercent": 51.270942333633755,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.375,
@@ -630,6 +801,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 201.70156306240438,
+      "lengthChangePercent": 54.83781935444167,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.4,
@@ -641,6 +815,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 213.63708269989797,
+      "lengthChangePercent": 58.08280099883163,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.425,
@@ -652,6 +829,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 224.25653838075743,
+      "lengthChangePercent": 60.969976405049465,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.45,
@@ -663,6 +843,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 233.44591787375884,
+      "lengthChangePercent": 63.46834838078231,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.475,
@@ -674,6 +857,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 241.11148970244005,
+      "lengthChangePercent": 65.55243358472126,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.5,
@@ -685,6 +871,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 254.1977108875068,
+      "lengthChangePercent": 69.11026339269819,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.525,
@@ -696,6 +885,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 268.5988022420954,
+      "lengthChangePercent": 73.02557487675152,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.55,
@@ -707,6 +899,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 283.96973220623124,
+      "lengthChangePercent": 77.20456222759455,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.575,
@@ -718,6 +913,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 300.0729101571618,
+      "lengthChangePercent": 81.58263025095611,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.6,
@@ -729,6 +927,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 316.74162078348706,
+      "lengthChangePercent": 86.11445305053988,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.625,
@@ -740,6 +941,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 333.8561875236561,
+      "lengthChangePercent": 90.76749343841509,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.65,
@@ -751,6 +955,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 351.32872525405196,
+      "lengthChangePercent": 95.51785755644957,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.675,
@@ -762,6 +969,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 369.09331087850364,
+      "lengthChangePercent": 100.34762249525072,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.7,
@@ -773,6 +983,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 387.0995330558718,
+      "lengthChangePercent": 105.24308261973653,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.725,
@@ -784,6 +997,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 405.30816950574695,
+      "lengthChangePercent": 110.19357433218806,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.75,
@@ -795,6 +1011,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 423.6882274829919,
+      "lengthChangePercent": 115.19067144823016,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.775,
@@ -806,6 +1025,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 442.21487546947026,
+      "lengthChangePercent": 120.22762287339836,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.8,
@@ -817,6 +1039,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 460.86796964416953,
+      "lengthChangePercent": 125.29895198569221,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.825,
@@ -828,6 +1053,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 479.6309852797041,
+      "lengthChangePercent": 130.4001661079034,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.85,
@@ -839,6 +1067,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 498.4902290461165,
+      "lengthChangePercent": 135.52754235190372,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.875,
@@ -850,6 +1081,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 517.4342496339448,
+      "lengthChangePercent": 140.67796738118693,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.9,
@@ -861,6 +1095,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 536.4533906835838,
+      "lengthChangePercent": 145.8488158630803,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.925,
@@ -872,6 +1109,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 555.5394473734203,
+      "lengthChangePercent": 151.03785710329154,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.95,
@@ -883,6 +1123,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 574.6853995698391,
+      "lengthChangePercent": 156.2431824957931,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 0.975,
@@ -894,6 +1137,9 @@
       "clear": true
     },
     {
+      "restLength": 367.8147042257749,
+      "lengthChange": 593.8852022548355,
+      "lengthChangePercent": 161.46314854511422,
       "lidClear": true,
       "name": "monitor-power-lead",
       "fraction": 1,
@@ -905,6 +1151,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 0,
+      "lengthChangePercent": 0,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0,
@@ -916,6 +1165,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 1.0073019810652113,
+      "lengthChangePercent": 0.26316054405454736,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.025,
@@ -927,6 +1179,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 2.4976030788632215,
+      "lengthChangePercent": 0.6525059986191045,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.05,
@@ -938,6 +1193,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 6.139629201274374,
+      "lengthChangePercent": 1.6039958138392183,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.075,
@@ -949,6 +1207,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 12.424509800211808,
+      "lengthChangePercent": 3.245938973709934,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.1,
@@ -960,6 +1221,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 21.26267000245133,
+      "lengthChangePercent": 5.554933784583863,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.125,
@@ -971,6 +1235,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 32.27216838717368,
+      "lengthChangePercent": 8.431196950101878,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.15,
@@ -982,6 +1249,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 45.04233094301355,
+      "lengthChangePercent": 11.767438701861392,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.175,
@@ -993,6 +1263,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 59.244948720680895,
+      "lengthChangePercent": 15.47791350646496,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.2,
@@ -1004,6 +1277,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 74.64824216777129,
+      "lengthChangePercent": 19.502068288213305,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.225,
@@ -1015,6 +1291,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 91.0882304372858,
+      "lengthChangePercent": 23.797062578486358,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.25,
@@ -1026,6 +1305,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 108.42054701339543,
+      "lengthChangePercent": 28.32518020918064,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.275,
@@ -1037,6 +1319,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 126.46439776061271,
+      "lengthChangePercent": 33.039188191628305,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.3,
@@ -1048,6 +1333,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 144.95439216419135,
+      "lengthChangePercent": 37.869752489402956,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.325,
@@ -1059,6 +1347,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 163.51911093850487,
+      "lengthChangePercent": 42.71983874427327,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.35,
@@ -1070,6 +1361,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 181.69410860815736,
+      "lengthChangePercent": 47.46810923797166,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.375,
@@ -1081,6 +1375,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 198.95812039854087,
+      "lengthChangePercent": 51.97838204664524,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.4,
@@ -1092,6 +1389,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 214.77352937551842,
+      "lengthChangePercent": 56.11020319766225,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.425,
@@ -1103,6 +1403,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 228.61943573439515,
+      "lengthChangePercent": 59.7274861166109,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.45,
@@ -1114,6 +1417,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 240.01635772438368,
+      "lengthChangePercent": 62.70496481496605,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.475,
@@ -1125,6 +1431,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 248.54771251571805,
+      "lengthChangePercent": 64.9338058284978,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.5,
@@ -1136,6 +1445,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 259.5548664653899,
+      "lengthChangePercent": 67.80945650360582,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.525,
@@ -1147,6 +1459,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 271.87498336632706,
+      "lengthChangePercent": 71.02812253167981,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.55,
@@ -1158,6 +1473,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 285.26905621119494,
+      "lengthChangePercent": 74.5273626436016,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.575,
@@ -1169,6 +1487,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 299.54285915660313,
+      "lengthChangePercent": 78.25643477832406,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.6,
@@ -1180,6 +1501,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 314.5407518914125,
+      "lengthChangePercent": 82.17467745624516,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.625,
@@ -1191,6 +1515,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 330.13857811147005,
+      "lengthChangePercent": 86.24965448527664,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.65,
@@ -1202,6 +1529,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 346.2371891480066,
+      "lengthChangePercent": 90.45546299010797,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.675,
@@ -1213,6 +1543,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 362.75706291546345,
+      "lengthChangePercent": 94.77132759682608,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.7,
@@ -1224,6 +1557,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 379.63402638831957,
+      "lengthChangePercent": 99.18048291766526,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.725,
@@ -1235,6 +1571,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 396.8159268268574,
+      "lengthChangePercent": 103.66930389915002,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.75,
@@ -1246,6 +1585,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 414.26006468351005,
+      "lengthChangePercent": 108.22663516148381,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.775,
@@ -1257,6 +1599,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 431.9312181685311,
+      "lengthChangePercent": 112.8432749106401,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.8,
@@ -1268,6 +1613,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 449.80012026020944,
+      "lengthChangePercent": 117.5115770528942,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.825,
@@ -1279,6 +1627,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 467.8422795404089,
+      "lengthChangePercent": 122.22514313471125,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.85,
@@ -1290,6 +1641,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 486.03706209266994,
+      "lengthChangePercent": 126.97858248598085,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.875,
@@ -1301,6 +1655,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 504.3669720950192,
+      "lengthChangePercent": 131.76732427281632,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.9,
@@ -1312,6 +1669,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 522.8170842938437,
+      "lengthChangePercent": 136.58746922971952,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.925,
@@ -1323,6 +1683,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 541.374593210981,
+      "lengthChangePercent": 141.43567188863477,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.95,
@@ -1334,6 +1697,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 560.028452620204,
+      "lengthChangePercent": 146.30904639114198,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.975,
@@ -1345,6 +1711,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 578.7690852800374,
+      "lengthChangePercent": 151.20509065531868,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 1,
@@ -1356,6 +1725,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": -12.978281461111692,
+      "lengthChangePercent": -3.3906134152416527,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0,
@@ -1367,6 +1739,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": -13.482207436427984,
+      "lengthChangePercent": -3.5222655278357498,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.025,
@@ -1378,6 +1753,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": -11.07215428400525,
+      "lengthChangePercent": -2.8926321996839963,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.05,
@@ -1389,6 +1767,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": -6.151422934641744,
+      "lengthChangePercent": -1.6070769606529167,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.075,
@@ -1400,6 +1781,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 1.3443320405989994,
+      "lengthChangePercent": 0.35121061791209723,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.1,
@@ -1411,6 +1795,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 11.05309559134713,
+      "lengthChangePercent": 2.887653061329105,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.125,
@@ -1422,6 +1809,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 22.54775763495121,
+      "lengthChangePercent": 5.890666630228435,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.15,
@@ -1433,6 +1823,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 35.48040519305505,
+      "lengthChangePercent": 9.269358056862282,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.175,
@@ -1444,6 +1837,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 49.60821223978974,
+      "lengthChangePercent": 12.960288342519766,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.2,
@@ -1455,6 +1851,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 64.77712230227547,
+      "lengthChangePercent": 16.923209789906274,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.225,
@@ -1466,6 +1865,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 80.88732550287762,
+      "lengthChangePercent": 21.132046780990585,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.25,
@@ -1477,6 +1879,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 97.84606372554481,
+      "lengthChangePercent": 25.562565990767485,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.275,
@@ -1488,6 +1893,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 115.51376293485549,
+      "lengthChangePercent": 30.178303300444533,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.3,
@@ -1499,6 +1907,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 133.65801451508634,
+      "lengthChangePercent": 34.91854128971839,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.325,
@@ -1510,6 +1921,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 151.93413253264504,
+      "lengthChangePercent": 39.693229765581215,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.35,
@@ -1521,6 +1935,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 169.89985864572753,
+      "lengthChangePercent": 44.386827462325655,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.375,
@@ -1532,6 +1949,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 187.05283176748793,
+      "lengthChangePercent": 48.868091098978084,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.4,
@@ -1543,6 +1963,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 202.87185403735754,
+      "lengthChangePercent": 53.000856233171135,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.425,
@@ -1554,6 +1977,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 216.8503494594001,
+      "lengthChangePercent": 56.65277842679042,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.45,
@@ -1565,6 +1991,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 228.5210618307346,
+      "lengthChangePercent": 59.701785650916676,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.475,
@@ -1576,6 +2005,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 237.47708307781903,
+      "lengthChangePercent": 62.04157199925133,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.5,
@@ -1587,6 +2019,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 246.5281936220012,
+      "lengthChangePercent": 64.40620070035445,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.525,
@@ -1598,6 +2033,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 257.2399167894459,
+      "lengthChangePercent": 67.20466923262664,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.55,
@@ -1609,6 +2047,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 269.31807101964984,
+      "lengthChangePercent": 70.36012181600584,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.575,
@@ -1620,6 +2061,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 282.51424874129094,
+      "lengthChangePercent": 73.80766125695405,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.6,
@@ -1631,6 +2075,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 296.6256885600241,
+      "lengthChangePercent": 77.49431555715084,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.625,
@@ -1642,6 +2089,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 311.48960378225496,
+      "lengthChangePercent": 81.37755622399285,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.65,
@@ -1653,6 +2103,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 326.9760906277398,
+      "lengthChangePercent": 85.42344552070767,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.675,
@@ -1664,6 +2117,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 342.98146628594867,
+      "lengthChangePercent": 89.60489601438935,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.7,
@@ -1675,6 +2131,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 359.4226591303149,
+      "lengthChangePercent": 93.90020500331217,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.725,
@@ -1686,6 +2145,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 376.2327202792587,
+      "lengthChangePercent": 98.29188189931924,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.75,
@@ -1697,6 +2159,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 393.35732005102744,
+      "lengthChangePercent": 102.76573291655782,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.775,
@@ -1708,6 +2173,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 410.7520430177903,
+      "lengthChangePercent": 107.31015439656989,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.8,
@@ -1719,6 +2187,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 428.3803064090841,
+      "lengthChangePercent": 111.9155889851964,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.825,
@@ -1730,6 +2201,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 446.21175624603103,
+      "lengthChangePercent": 116.57410661802187,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.85,
@@ -1741,6 +2215,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 464.22102678015864,
+      "lengthChangePercent": 121.27908042019267,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.875,
@@ -1752,6 +2229,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 482.38677574562206,
+      "lengthChangePercent": 126.02493466328107,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.9,
@@ -1763,6 +2243,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 500.69092939374315,
+      "lengthChangePercent": 130.80694752838406,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.925,
@@ -1774,6 +2257,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 519.1180877275362,
+      "lengthChangePercent": 135.62109572192995,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.95,
@@ -1785,6 +2271,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 537.6550527207601,
+      "lengthChangePercent": 140.4639312215467,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 0.975,
@@ -1796,6 +2285,9 @@
       "clear": true
     },
     {
+      "restLength": 382.77089929424216,
+      "lengthChange": 556.2904515209825,
+      "lengthChangePercent": 145.33248283677727,
       "lidClear": true,
       "name": "monitor-signal-lead",
       "fraction": 1,

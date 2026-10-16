@@ -1,3 +1,4 @@
+import {audioStateChanged,audioStatus} from './audio-state.js';
 // Blend the recorded tail into its head, then loop at adjacent source samples.
 // The original WAV remains unchanged; no synthesized fan replaces it.
 export function seamlessFan(context,buffer){
@@ -17,6 +18,7 @@ export function createRobotronSound({
   fetchAsset = (url) => fetch(url),
   base = `${import.meta.env?.BASE_URL || '/'}audio/robotron/`,
 } = {}) {
+  let audioError='',previewVoice;
   let context, master, loading, enabled = false, powered = false, hidden = false;
   let epoch = 0, spatial = false, pans = {keyboard:0,case:0};
   const panners = {}, gains={}, levels={fan:1,power:1,keyboard:1};
@@ -40,7 +42,7 @@ export function createRobotronSound({
   async function unlock() {
     if (!enabled) return;
     if (!context) {
-      context = createContext(); master = context.createGain();
+      context = createContext();context.onstatechange=audioStateChanged; master = context.createGain();
       master.gain.value = .45; master.connect(context.destination);
       if(context.createStereoPanner) for(const group of ['keyboard','case']) {
         const panner = context.createStereoPanner();panner.pan.value=spatial?pans[group]:0;
@@ -48,21 +50,30 @@ export function createRobotronSound({
       }
     }
     for(const group of Object.keys(levels))if(!gains[group]){const g=context.createGain();g.gain.value=levels[group];g.connect(panners[group==='keyboard'?'keyboard':'case']||master);gains[group]=g;}
-    await context.resume();
+    audioStateChanged();
+    try{await context.resume();audioError='';}catch(e){audioError=e.message;audioStateChanged();throw e;}audioStateChanged();
     if (!loading) loading = Promise.all(names.map(async name => {
       const response = await fetchAsset(`${base}${name}.wav`);
       if (!response.ok) throw new Error(`Cannot load Robotron sound: ${name}`);
       const decoded=await context.decodeAudioData(await response.arrayBuffer());buffers.set(name,name==='fan'?seamlessFan(context,decoded):decoded);
-    })).catch(error => { loading = undefined; throw error; });
+    })).catch(error => { loading = undefined;audioError=error.message;audioStateChanged(); throw error; });
     await loading;
   }
   return {
     unlock,
+    status(){return audioStatus(enabled,context,audioError);},
+    async preview(group){
+      if(!enabled)throw Error('Enable sound before previewing.');
+      const name={fan:'fan',keyboard:'regular-1',power:'power-on'}[group];if(!name)throw Error('Unknown recorded sound group.');
+      const token=epoch;await unlock();if(token!==epoch||hidden)return;
+      if(previewVoice){try{previewVoice.stop();}catch{}previewVoice=null;}
+      previewVoice=play(name);if(previewVoice)previewVoice.stop((context.currentTime||0)+1.5);
+    },
     volume(group,value){if(!(group in levels)||!Number.isFinite(value)||value<0||value>1)throw Error("Invalid sound volume.");levels[group]=value;if(gains[group]){if(gains[group].gain.setTargetAtTime)gains[group].gain.setTargetAtTime(value,context.currentTime,.025);else gains[group].gain.value=value;}},
     spatial(value) {spatial=!!value;for(const group of Object.keys(panners))panners[group].pan.setTargetAtTime(spatial?pans[group]:0,context.currentTime,.05);},
     position(value) {pans=value;for(const group of Object.keys(panners))panners[group].pan.setTargetAtTime(spatial?pans[group]:0,context.currentTime,.05);},
     async enable(value) {
-      enabled = value; stop();
+      enabled = value; stop();audioStateChanged();
       const token = epoch;
       if (value) { await unlock(); if (token === epoch) steady(); }
     },

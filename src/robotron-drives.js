@@ -1,3 +1,4 @@
+import {audioStateChanged,audioStatus} from './audio-state.js';
 // Geometry is in millimetres. Track pitch uses the TEAC reference; motor/track
 // state comes from the controller. New cores supply authoritative rotational phase.
 // Archived cores retain the old illustrative animation. Reduced motion freezes rotors.
@@ -175,7 +176,7 @@ export function driveStepOffsets(previous, sample) {
   return ages.map((age) => (ages[0] - age) / rate);
 }
 export function createDriveSound() {
-  let volume=1,output;
+  let volume=1,output,audioError='';
   let context,
     gain,
     enabled = false,
@@ -192,13 +193,14 @@ export function createDriveSound() {
     clicks.clear();
   }
   return {
+    status(){return audioStatus(enabled,context,audioError);},
     volume(value){if(!Number.isFinite(value)||value<0||value>1)throw Error("Invalid drive volume.");volume=value;if(output)output.gain.setTargetAtTime(value,context.currentTime,.025);},
     async enable(value) {
-      enabled = value;
+      enabled = value;audioStateChanged();
       if (!value) cancelClicks();
       previous = [undefined, undefined];
       if (value && !context) {
-        context = new AudioContext();
+        context = new AudioContext();context.onstatechange=audioStateChanged;
         gain = context.createGain();
         gain.gain.value = 0;
         output=context.createGain();output.gain.value=volume;output.connect(context.destination);
@@ -213,7 +215,7 @@ export function createDriveSound() {
         }
       }
       if (context) {
-        if (value) await context.resume();
+        if (value) {audioStateChanged();try{await context.resume();audioError='';}catch(e){audioError=e.message;audioStateChanged();throw e;}audioStateChanged();}
         else gain.gain.setTargetAtTime(0, context.currentTime, 0.03);
       }
     },
