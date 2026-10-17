@@ -2,7 +2,9 @@
 
 The [plan](keyboard-controller-plan.md) remains incomplete. Reference digital
 comparisons and synchronized KiCad/OpenSCAD/museum exports are implemented;
-physical reconstruction and specimen fidelity remain partial. The
+physical reconstruction and specimen fidelity remain partial.
+[Mixed-signal reference-board development](keyboard-controller-simulation.md)
+continues with standard S600 firmware independently of specimen evidence. The
 [requirement audit and evidence guide](keyboard-controller-verification.md)
 identifies the remaining proof.
 
