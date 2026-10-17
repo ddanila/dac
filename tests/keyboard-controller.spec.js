@@ -406,3 +406,25 @@ test('CPU clock inspection distinguishes local projection from global registrati
  await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
  await expect(panel.locator('[data-photo-side="bottom"] [data-photo-pin="6"]')).toHaveAttribute('cy','2678');
 });
+
+test('transistor package reference distinguishes centre emitter from centre base without placing pads',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  window.packageHighlights=[];
+  installKeyboardControllerReview({keyboardControllerSelection(points){window.packageHighlights=points;}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('V4.1');
+ await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
+ for(const [ref,id,order,centre,source]of [['V4.1','sc308-l3-12','B–E–C','E','SC307'],['V4.9','sc308-l3-12','B–E–C','E','SC307'],['V3.1','sc236-l3-12','E–B–C','B','SC236'],['V3.2','sc236-l3-12','E–B–C','B','SC236']]){
+  await panel.getByLabel('Controller component',{exact:true}).selectOption(ref);
+  const detail=panel.locator(`[data-package-reference="${id}"]`);
+  await expect(detail).toContainText(`drawing order ${order}; centre terminal ${centre}`);
+  await expect(detail).toContainText('not an installed-board left-to-right pin order');
+  await expect(detail.getByRole('link',{name:'Reference package drawing'})).toHaveAttribute('href',`https://hjs.lima-city.de/DDR/index.php?pdf=${source}#page=1`);
+  await expect(panel.locator('[data-selection]')).toContainText('0 with estimated positions');
+  expect(await page.evaluate(()=>window.packageHighlights)).toEqual([]);
+ }
+});

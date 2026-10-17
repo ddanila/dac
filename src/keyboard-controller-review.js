@@ -122,6 +122,14 @@ export function installKeyboardControllerReview(scene){
    }
    if(kind==='component'&&data.componentEvidence?.[value]){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
+    const pkg=data.evidence.packageReferences?.find(p=>p.id===evidence.packageReference);
+    if(pkg){
+     const detail=document.createElement('p');detail.dataset.packageReference=pkg.id;
+     detail.textContent=`Reference package ${pkg.case}: drawing order ${pkg.terminalOrderInDrawing.join('–')}; centre terminal ${pkg.centreTerminal}. ${pkg.drawingView} ${pkg.scope} `;
+     const source=data.evidence.sources.find(s=>s.id===pkg.source);
+     if(source?.url){const link=document.createElement('a');link.href=source.url+'#page=1';link.textContent='Reference package drawing';link.target='_blank';link.rel='noopener';detail.append(link);}
+     pins.append(detail);
+    }
    }
    if(kind==='component'){
     const evidence=data.componentEvidence?.[value],alignment=data.photoRegistration?.components.find(c=>c.ref===value);
