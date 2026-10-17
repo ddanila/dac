@@ -195,7 +195,7 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
  await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
- expect(data.layout.unplaced).toHaveLength(33);
+ expect(data.layout.unplaced).toHaveLength(30);
  await panel.getByLabel('Controller component',{exact:true}).selectOption('C5.1');
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Nonpolar capacitor');
@@ -217,19 +217,15 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
   document.querySelector('#keyboard-controller-review').open=true;
  });
  const panel=page.locator('#keyboard-controller-review');
- await panel.getByLabel('Controller component',{exact:true}).selectOption('R4.2');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('BR2');
  await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
- const photo=panel.locator('[data-candidate-photo="R4.2"]');
+ const photo=panel.locator('[data-candidate-photo="BR2"]');
  await expect(photo.getByRole('img')).toBeVisible();
  await expect(photo.locator('circle')).toHaveCount(2);
  await expect(photo).toContainText('not numbered pins');
  await expect(panel.locator('[data-selection]')).toContainText('0 with estimated positions');
  expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
- await expect(photo.locator('circle').first()).toHaveAttribute('cx','1527');
- await panel.getByLabel('Controller component',{exact:true}).selectOption('BR2');
- await expect(panel.locator('[data-candidate-photo="R4.2"]')).toHaveCount(0);
- await expect(panel.locator('[data-candidate-photo="BR2"] circle')).toHaveCount(2);
- expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
+ await expect(photo.locator('circle').first()).toHaveAttribute('cx','1310');
  await panel.getByRole('button',{name:'Clear highlight',exact:true}).click();
  await expect(panel.locator('[data-candidate-photo]')).toHaveCount(0);
 });
@@ -269,10 +265,16 @@ test('numbered component photo observations remain distinct from native pad coor
  await expect(chip.locator('[data-photo-pin="4"]')).toHaveAttribute('cy','3670');
  expect(await page.evaluate(()=>window.photoReviewHighlights)).toEqual(controllerSelection(data,'component','A7').points);
  await panel.getByLabel('Controller component',{exact:true}).selectOption('R4.2');
- await expect(panel.locator('[data-placement-photo]')).toHaveCount(0);
- await expect(panel.locator('[data-candidate-photo="R4.2"] circle')).toHaveCount(2);
- await expect(panel.locator('[data-photo-pin]')).toHaveCount(0);
- expect(await page.evaluate(()=>window.photoReviewHighlights)).toEqual([]);
+ for(const ref of ['R4.2','R7','R8']){
+  await panel.getByLabel('Controller component',{exact:true}).selectOption(ref);
+  const reset=panel.locator(`[data-placement-photo="${ref}"][data-photo-side="top"]`);
+  await expect(reset.locator('[data-photo-pin]')).toHaveCount(2);
+  await expect(reset.locator('[data-photo-pin="1"]')).toHaveAttribute('cx','1687');
+  await expect(panel.locator('[data-photo-side="bottom"] [data-photo-pin]')).toHaveCount(2);
+  await expect(panel.locator('[data-candidate-photo]')).toHaveCount(0);
+  expect(await page.evaluate(()=>window.photoReviewHighlights)).toEqual(controllerSelection(data,'component',ref).points);
+  expect(controllerSelection(data,'component',ref).points).toHaveLength(2);
+ }
 });
 
 
