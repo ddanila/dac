@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "3dd89fa3bdc88d70270fe078b64889b179b7418a",
+  "revision": "227bddc43a95c78bc63bedd38af548c5af10540b",
   "dirty": false,
   "files": [
     {
@@ -1336,6 +1336,106 @@
       "sha256": "8002e2129090fedadad003786551d08020a9a54ce4adee961d4ab1441ac033f2"
     },
     {
+      "file": "photos/PXL_20261017_080342577.jpg",
+      "sha256": "aa18874b9fba8db44216f8531ad9caab9125839a07838616bf1237f02a6b15fa"
+    },
+    {
+      "file": "photos/PXL_20261017_080345436.jpg",
+      "sha256": "50578d303632c7a6175cfe4aac7d110662d2b4543f1b74dbf4fc18bbc9152ee7"
+    },
+    {
+      "file": "photos/PXL_20261017_080347973.jpg",
+      "sha256": "49fcb131dd12e00eb81fec610128390b9ef9d6c425031ed56967ecb6d18d67b1"
+    },
+    {
+      "file": "photos/PXL_20261017_080351042.jpg",
+      "sha256": "e41032fe1b669f0c5646e6d5f787cdadc43c840beddd171d29b3c6b050249730"
+    },
+    {
+      "file": "photos/PXL_20261017_080358998.jpg",
+      "sha256": "4cfa869e4d0d24bc3aaf06e751bda8a862d76fd85c4b36dd6a777b20ca0b42a0"
+    },
+    {
+      "file": "photos/PXL_20261017_080401625.jpg",
+      "sha256": "453ed0484dc3761b740089680619f202731d8e6547558e2e3df79084d2722144"
+    },
+    {
+      "file": "photos/PXL_20261017_080404036.jpg",
+      "sha256": "831c6f9289a5b8504f7a436968a394606f34725e6a5e341a816f19564a5c8100"
+    },
+    {
+      "file": "photos/PXL_20261017_080406304.jpg",
+      "sha256": "c899c7aba12b0f1085f5b71da44e524611aedf37e3e28567c602cb3b746e6fa2"
+    },
+    {
+      "file": "photos/PXL_20261017_080411074.jpg",
+      "sha256": "364c56674f14a3361849dbe29b722a00145bb39c6afd45a048099906ceb960ae"
+    },
+    {
+      "file": "photos/PXL_20261017_080415534.jpg",
+      "sha256": "602404556009fe24083bc919b7d495c4876b0e4d8a7546d70a6f9b71ea6f2f22"
+    },
+    {
+      "file": "photos/PXL_20261017_080425658.jpg",
+      "sha256": "b29b18514cb9106957612003977a77b438d983614bc84c49864593de51add1cf"
+    },
+    {
+      "file": "photos/PXL_20261017_080429077.jpg",
+      "sha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3"
+    },
+    {
+      "file": "photos/PXL_20261017_080431329.MP.jpg",
+      "sha256": "54d3cb6e3f5e2df6f53f06f78f1a45ca28d848315c96c0d4150416434db28536"
+    },
+    {
+      "file": "photos/PXL_20261017_080432863.jpg",
+      "sha256": "ebe0ff33b2d11770d6948d10dcf84f8a3a5416a8d12d41d337bbe0d05a704a0c"
+    },
+    {
+      "file": "photos/PXL_20261017_080434345.jpg",
+      "sha256": "8fb3cb9414003e6f1c260c1e893a484c6ee52ce3e8179cbfc0def01acc628006"
+    },
+    {
+      "file": "photos/PXL_20261017_080436438.jpg",
+      "sha256": "d3d6ee29e20d58e21156c561b141148f88b2e7b252162756b94c253f599618bb"
+    },
+    {
+      "file": "photos/PXL_20261017_080438171.MP.jpg",
+      "sha256": "d85723854530119266bdd1cc70cf4955327aabe9c10b8a528c51c14dab072c2f"
+    },
+    {
+      "file": "photos/PXL_20261017_080443226.MP.jpg",
+      "sha256": "c4cdfd7f8d2e9ca052b777d7d805b3ecb5cf7c31e06dee8f38ada0dd03b55166"
+    },
+    {
+      "file": "photos/PXL_20261017_080444909.jpg",
+      "sha256": "8d7043ab28cb3a59db6bbc1a188a52d53012ba3928a8c4fd5921c50e8b99ce63"
+    },
+    {
+      "file": "photos/PXL_20261017_080450163.jpg",
+      "sha256": "98d1133ba1c314ff7fbae3782d979e1ada17062db9e6c3f76672f7a2e3c00bdd"
+    },
+    {
+      "file": "photos/PXL_20261017_080502586.jpg",
+      "sha256": "fcbc9854efa8de2b1f7bd828d9fc3928f6d7f95ff95dd7f56daafae87e704acf"
+    },
+    {
+      "file": "photos/PXL_20261017_080511382.jpg",
+      "sha256": "322b586dea2c9e37d470252f96c79f8d5510af592013fcc7be1f009aa365fd12"
+    },
+    {
+      "file": "photos/PXL_20261017_080528765.jpg",
+      "sha256": "ce3746bd7dacfb08ffb48356448de095509e38c8406ffcc94e89ffc34064f6ed"
+    },
+    {
+      "file": "photos/PXL_20261017_080531967.jpg",
+      "sha256": "72893ddcbebd510ea4be4c2fa195ca6f138e734e4c8962529fe3dbf159e079e3"
+    },
+    {
+      "file": "photos/PXL_20261017_080541857.jpg",
+      "sha256": "83089746f85cc44ca278db65cbdafbd66a0534c4a8bfd8286dbec908f0d80a04"
+    },
+    {
       "file": "reference/robotrontechnik/monitor-board.jpeg",
       "sha256": "cdd00f4f69605d2511a00fa0bdc02ed954b42f8150712ac796c183ff2d01732a"
     },
@@ -1481,23 +1581,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "642ea8d2a3de232abb29c672052c176bb239861eeb1146d3b30cde9bed2a60a9"
+      "sha256": "f68f6c6d8be0567c5894e69a09ad141d18bf3db8d463ff4a5bb58ebc81ac0254"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "a65b7c2dcf8d072ce5d6f5d76a85aa68b2733f985fb88aea032cb62ad71b946f"
+      "sha256": "da19dd0868afca85dba2eef28917beda369192bf434f3356f5e23e9ec3f18b5b"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "fc812953ac34c14f2740dd672152b21bc12525d150780f8e411c3a563c3c74de"
+      "sha256": "436688414303d652396c702244f6191352967ffb938f5a6f53c66e1124f484ff"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "a200f45f09d5d933ab111da93d22efb942eeb6b3c782270c8f9e1324b79d00a5"
+      "sha256": "5f6857b905a1864e4dc273b8b1e32279c91081d2dfedf4b96c65c42e60c3c86b"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "f683962871ee5a1e5b53ce723b1295ba5aef5e3990a12fd2b876ee1bad9da600"
+      "sha256": "fe80bce3ce87a4059e1464770ac03216bb347a19175c9816f2974a6f94c5c9ea"
     }
   ],
   "inspection": {

@@ -107,6 +107,19 @@ export function installKeyboardControllerReview(scene){
     if(!review.refs.some(ref=>selection.refs.includes(ref)))continue;
     const note=document.createElement('p');note.dataset.routeReview=review.id;note.textContent=review.summary+' '+review.nextEvidence;pins.append(note);
    }
+   for(const specimen of data.evidence.comparisonSpecimens||[]){
+    const sources=data.evidence.sources.filter(s=>s.specimenId===specimen.id&&s.refs?.some(ref=>selection.refs.includes(ref)));
+    if(!sources.length)continue;
+    const group=document.createElement('details'),title=document.createElement('summary'),note=document.createElement('p'),list=document.createElement('ul');
+    group.dataset.comparisonSpecimen=specimen.id;title.textContent='Comparison photos — different specimen';
+    note.textContent=`Board marking: ${specimen.boardMarking}. ROM label: ${specimen.romLabel}; contents unread. ${specimen.scope}`;
+    for(const source of sources){
+     const item=document.createElement('li'),link=document.createElement('a');
+     link.href=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(source.path.split('/').pop())}`;
+     link.textContent=`${source.side}: ${source.use}`;link.target='_blank';link.rel='noopener';item.append(link);list.append(item);
+    }
+    group.append(title,note,list);pins.append(group);
+   }
    if(kind==='component'&&data.componentEvidence?.[value]){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
    }

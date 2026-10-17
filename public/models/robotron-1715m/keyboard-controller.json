@@ -16825,6 +16825,339 @@
         "path": "../reference/photos/PXL_20261012_123729356.jpg",
         "sha256": "2a1901880002a9f4faa0ad7d043f10f430f3883aa276b9fc902119d7b701f6ec",
         "use": "Specimen CPU/oscillator close-up; visible resistor leads and adjacent gate connections. Perspective view is supporting evidence, not the planar placement calibration."
+      },
+      {
+        "id": "comparison-photo-080342577",
+        "path": "../reference/photos/PXL_20261017_080342577.jpg",
+        "sha256": "aa18874b9fba8db44216f8531ad9caab9125839a07838616bf1237f02a6b15fa",
+        "specimenId": "comparison-20261017",
+        "side": "bottom",
+        "refs": [
+          "A5",
+          "A4",
+          "A6",
+          "A7",
+          "A8",
+          "BR1"
+        ],
+        "use": "ROM end and CPU underside; overlapping solder-joint and copper view. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080345436",
+        "path": "../reference/photos/PXL_20261017_080345436.jpg",
+        "sha256": "50578d303632c7a6175cfe4aac7d110662d2b4543f1b74dbf4fc18bbc9152ee7",
+        "specimenId": "comparison-20261017",
+        "side": "bottom",
+        "refs": [
+          "A5",
+          "A4",
+          "A2.2",
+          "A2.3"
+        ],
+        "use": "CPU and middle-board underside copper. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080347973",
+        "path": "../reference/photos/PXL_20261017_080347973.jpg",
+        "sha256": "49fcb131dd12e00eb81fec610128390b9ef9d6c425031ed56967ecb6d18d67b1",
+        "specimenId": "comparison-20261017",
+        "side": "bottom",
+        "refs": [
+          "A1",
+          "A2.1",
+          "BR2"
+        ],
+        "use": "Middle and cable-side underside copper. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080351042",
+        "path": "../reference/photos/PXL_20261017_080351042.jpg",
+        "sha256": "e41032fe1b669f0c5646e6d5f787cdadc43c840beddd171d29b3c6b050249730",
+        "specimenId": "comparison-20261017",
+        "side": "bottom",
+        "refs": [
+          "BR2",
+          "XT1"
+        ],
+        "use": "Cable-end underside and mounting bracket. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080358998",
+        "path": "../reference/photos/PXL_20261017_080358998.jpg",
+        "sha256": "4cfa869e4d0d24bc3aaf06e751bda8a862d76fd85c4b36dd6a777b20ca0b42a0",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A5",
+          "A4",
+          "A6",
+          "A7",
+          "A8",
+          "BR1"
+        ],
+        "use": "ROM end and CPU overview; EPROM label S642. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080401625",
+        "path": "../reference/photos/PXL_20261017_080401625.jpg",
+        "sha256": "453ed0484dc3761b740089680619f202731d8e6547558e2e3df79084d2722144",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A5",
+          "A4",
+          "A2.2",
+          "A2.3"
+        ],
+        "use": "CPU and middle-board component-side overview. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080404036",
+        "path": "../reference/photos/PXL_20261017_080404036.jpg",
+        "sha256": "831c6f9289a5b8504f7a436968a394606f34725e6a5e341a816f19564a5c8100",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A1",
+          "A2.1",
+          "BR2"
+        ],
+        "use": "Connector and cable-side component overview. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080406304",
+        "path": "../reference/photos/PXL_20261017_080406304.jpg",
+        "sha256": "c899c7aba12b0f1085f5b71da44e524611aedf37e3e28567c602cb3b746e6fa2",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "BR2",
+          "XT1"
+        ],
+        "use": "Cable end, discrete components, bracket and wire entry. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080411074",
+        "path": "../reference/photos/PXL_20261017_080411074.jpg",
+        "sha256": "364c56674f14a3361849dbe29b722a00145bb39c6afd45a048099906ceb960ae",
+        "specimenId": "comparison-20261017",
+        "side": "oblique",
+        "refs": [],
+        "use": "Keyboard connector mating face. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080415534",
+        "path": "../reference/photos/PXL_20261017_080415534.jpg",
+        "sha256": "602404556009fe24083bc919b7d495c4876b0e4d8a7546d70a6f9b71ea6f2f22",
+        "specimenId": "comparison-20261017",
+        "side": "oblique",
+        "refs": [],
+        "use": "Keyboard connector bent leads and solder attachments. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080425658",
+        "path": "../reference/photos/PXL_20261017_080425658.jpg",
+        "sha256": "b29b18514cb9106957612003977a77b438d983614bc84c49864593de51add1cf",
+        "specimenId": "comparison-20261017",
+        "side": "oblique",
+        "refs": [
+          "A8",
+          "BR1"
+        ],
+        "use": "ROM socket, retaining strap and ROM-end component heights. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080429077",
+        "path": "../reference/photos/PXL_20261017_080429077.jpg",
+        "sha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A5",
+          "A4"
+        ],
+        "use": "CPU marking UB880D and nearby copper terminals. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080431329.MP",
+        "path": "../reference/photos/PXL_20261017_080431329.MP.jpg",
+        "sha256": "54d3cb6e3f5e2df6f53f06f78f1a45ca28d848315c96c0d4150416434db28536",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A7",
+          "BR1",
+          "R10.3",
+          "C6"
+        ],
+        "use": "Bridge and oscillator end; board marking and D100D package. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080432863",
+        "path": "../reference/photos/PXL_20261017_080432863.jpg",
+        "sha256": "ebe0ff33b2d11770d6948d10dcf84f8a3a5416a8d12d41d337bbe0d05a704a0c",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A6",
+          "A7"
+        ],
+        "use": "K155TM2 and D100D package markings and surrounding leads. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080434345",
+        "path": "../reference/photos/PXL_20261017_080434345.jpg",
+        "sha256": "8fb3cb9414003e6f1c260c1e893a484c6ee52ce3e8179cbfc0def01acc628006",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A4",
+          "A5",
+          "R6.4",
+          "R6.5"
+        ],
+        "use": "DS8282D package and CPU-side terminals; raised resistor leads. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080436438",
+        "path": "../reference/photos/PXL_20261017_080436438.jpg",
+        "sha256": "d3d6ee29e20d58e21156c561b141148f88b2e7b252162756b94c253f599618bb",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A2.2",
+          "A4"
+        ],
+        "use": "Middle-board DL003D gate and surrounding copper. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080438171.MP",
+        "path": "../reference/photos/PXL_20261017_080438171.MP.jpg",
+        "sha256": "d85723854530119266bdd1cc70cf4955327aabe9c10b8a528c51c14dab072c2f",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A2.2",
+          "A2.3"
+        ],
+        "use": "Paired middle-board DL003D packages and traces. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080443226.MP",
+        "path": "../reference/photos/PXL_20261017_080443226.MP.jpg",
+        "sha256": "c4cdfd7f8d2e9ca052b777d7d805b3ecb5cf7c31e06dee8f38ada0dd03b55166",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A1",
+          "BR2"
+        ],
+        "use": "Cable-side logic and discrete region. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080444909",
+        "path": "../reference/photos/PXL_20261017_080444909.jpg",
+        "sha256": "8d7043ab28cb3a59db6bbc1a188a52d53012ba3928a8c4fd5921c50e8b99ce63",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "A2.1",
+          "BR2"
+        ],
+        "use": "Cable-side DL003D and adjacent resistors. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080450163",
+        "path": "../reference/photos/PXL_20261017_080450163.jpg",
+        "sha256": "98d1133ba1c314ff7fbae3782d979e1ada17062db9e6c3f76672f7a2e3c00bdd",
+        "specimenId": "comparison-20261017",
+        "side": "oblique",
+        "refs": [
+          "A1"
+        ],
+        "use": "White logic package marking and lead profile. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080502586",
+        "path": "../reference/photos/PXL_20261017_080502586.jpg",
+        "sha256": "fcbc9854efa8de2b1f7bd828d9fc3928f6d7f95ff95dd7f56daafae87e704acf",
+        "specimenId": "comparison-20261017",
+        "side": "top",
+        "refs": [
+          "BR1",
+          "R10.3",
+          "C6",
+          "A7"
+        ],
+        "use": "Bridge attachments, board marking 05-330-4102 / -8 B 1c. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080511382",
+        "path": "../reference/photos/PXL_20261017_080511382.jpg",
+        "sha256": "322b586dea2c9e37d470252f96c79f8d5510af592013fcc7be1f009aa365fd12",
+        "specimenId": "comparison-20261017",
+        "side": "oblique",
+        "refs": [
+          "XT1"
+        ],
+        "use": "Cable wires, mounting bracket and nearby component profiles. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080528765",
+        "path": "../reference/photos/PXL_20261017_080528765.jpg",
+        "sha256": "ce3746bd7dacfb08ffb48356448de095509e38c8406ffcc94e89ffc34064f6ed",
+        "specimenId": "comparison-20261017",
+        "side": "oblique",
+        "refs": [
+          "V4.1",
+          "V4.2",
+          "V4.3",
+          "V4.4",
+          "V4.5",
+          "V4.6",
+          "V4.7",
+          "V4.8",
+          "V4.9"
+        ],
+        "use": "Transistor bank, package faces and raised leads; individual reference mapping not established. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080531967",
+        "path": "../reference/photos/PXL_20261017_080531967.jpg",
+        "sha256": "72893ddcbebd510ea4be4c2fa195ca6f138e734e4c8962529fe3dbf159e079e3",
+        "specimenId": "comparison-20261017",
+        "side": "oblique",
+        "refs": [
+          "V4.1",
+          "V4.2",
+          "V4.3",
+          "V4.4",
+          "V4.5",
+          "V4.6",
+          "V4.7",
+          "V4.8",
+          "V4.9"
+        ],
+        "use": "Transistor bank markings and three-lead construction; individual reference mapping not established. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "comparison-photo-080541857",
+        "path": "../reference/photos/PXL_20261017_080541857.jpg",
+        "sha256": "83089746f85cc44ca278db65cbdafbd66a0534c4a8bfd8286dbec908f0d80a04",
+        "specimenId": "comparison-20261017",
+        "side": "oblique",
+        "refs": [
+          "V4.1",
+          "V4.2",
+          "V4.3",
+          "V4.4",
+          "V4.5",
+          "V4.6",
+          "V4.7",
+          "V4.8",
+          "V4.9"
+        ],
+        "use": "Transistor bank and lead entry views; individual reference mapping not established. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
       }
     ],
     "specimen": {
@@ -17189,6 +17522,46 @@
           "aeb73b1b-9de1-4959-b791-5df27b7d8bb8"
         ],
         "nextEvidence": "Re-read the exact solder/track junction and pin count from sharper photos or continuity measurements. Do not infer a via or renet to D6 from geometric proximity alone."
+      }
+    ],
+    "comparisonSpecimens": [
+      {
+        "id": "comparison-20261017",
+        "receivedDate": "2026-10-17",
+        "archive": "Photos-1-001 (13).zip",
+        "archiveSha256": "453e84ac72754d5dafb9a24eb01838d1b59ea968d7790b7bcddf2440fd2664d9",
+        "identity": "User explicitly identifies this as a different specimen, believed to be the same model.",
+        "boardMarking": "05-330-4102 and -8 B 1c (top)",
+        "romLabel": "S642",
+        "romContents": "Unread; label alone does not establish contents or compatibility.",
+        "scope": "Board markings and visible arrangement corroborate the family. No whole-board electrical identity, primary-specimen continuity, dimensions or timing is established. Photo coordinates belong to these individual images and must not reuse primary-specimen transforms.",
+        "sources": [
+          "comparison-photo-080342577",
+          "comparison-photo-080345436",
+          "comparison-photo-080347973",
+          "comparison-photo-080351042",
+          "comparison-photo-080358998",
+          "comparison-photo-080401625",
+          "comparison-photo-080404036",
+          "comparison-photo-080406304",
+          "comparison-photo-080411074",
+          "comparison-photo-080415534",
+          "comparison-photo-080425658",
+          "comparison-photo-080429077",
+          "comparison-photo-080431329.MP",
+          "comparison-photo-080432863",
+          "comparison-photo-080434345",
+          "comparison-photo-080436438",
+          "comparison-photo-080438171.MP",
+          "comparison-photo-080443226.MP",
+          "comparison-photo-080444909",
+          "comparison-photo-080450163",
+          "comparison-photo-080502586",
+          "comparison-photo-080511382",
+          "comparison-photo-080528765",
+          "comparison-photo-080531967",
+          "comparison-photo-080541857"
+        ]
       }
     ]
   },
@@ -18095,7 +18468,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "3dd89fa3bdc88d70270fe078b64889b179b7418a"
+      "revision": "227bddc43a95c78bc63bedd38af548c5af10540b"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -18107,7 +18480,7 @@
       "qualification": "0379be52d7be70342e03529b76b1a499fa080dd12346f644fb6de3ac28020fa1",
       "photoRegistration": "f8b63a2fffb38a250d0380a0c8cd04f4b51ac4d127f30aead37952f5ecdcd3f1",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
-      "evidence": "b1b215be4fb236d713abdbc01800d05a89003691a603b187ccaf865f8e1786b5",
+      "evidence": "0f4263c0908920b215d61dfe984029462b636f448acda4d7bad06c2c0c39f0cd",
       "componentEvidence": "9960dbf6aa38ccc48a30eaa81ee3cbc1c2406367ed9d3046a51aa88a3810507a"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
