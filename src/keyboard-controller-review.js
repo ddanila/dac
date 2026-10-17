@@ -85,7 +85,7 @@ export function installKeyboardControllerReview(scene){
    const bridges=data.evidence.serviceInterfaces?.bridges.filter(b=>selection.refs.includes(b.ref))||[];
    for(const bridge of bridges){
     const physical=bridge.physicalEvidence;
-    get('[data-selection]').textContent+=` ${bridge.ref}: ${bridge.role} Reference state: ${bridge.referenceState}. ${bridge.testUse} `+(physical?`Photo location candidate: ${physical.location}. Terminal order and continuity remain unverified.`:'Physical location unverified.');
+    get('[data-selection]').textContent+=` ${bridge.ref}: ${bridge.role} Reference state: ${bridge.referenceState}. ${bridge.testUse} `+(physical?.status==='photo-placed-reference-terminal-order'?`Photo-estimated placement: ${physical.location}. Terminal mapping is reference-derived with local photo support; end-to-end continuity remains unmeasured.`:physical?`Photo location candidate: ${physical.location}. Terminal order and continuity remain unverified.`:'Physical location unverified.');
     if(physical){
      const source=data.evidence.sources.find(s=>s.id===physical.source),note=document.createElement('p');note.textContent=physical.observation+' ';pins.append(note);
      if(source){const link=document.createElement('a');link.href=source.url+'#page=10';link.textContent='Factory bridge placement (drawing 8)';link.target='_blank';link.rel='noopener';note.append(link);}

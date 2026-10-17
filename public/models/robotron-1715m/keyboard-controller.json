@@ -2975,6 +2975,53 @@
         "type": "U556_2716"
       },
       {
+        "evidence": "Factory location + top lead ends; local underside link supports reference clock-side assignment; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/OSC_OUT",
+            "pin": "1",
+            "position": [
+              130.28935,
+              -10.392125
+            ],
+            "ref": "BR1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/CLK",
+            "pin": "2",
+            "position": [
+              130.740243,
+              -14.676546
+            ],
+            "ref": "BR1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          130.514796,
+          -12.534335
+        ],
+        "ref": "BR1",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "BRIDGE"
+      },
+      {
         "evidence": "photo-estimated-hole",
         "pads": [
           {
@@ -3184,6 +3231,53 @@
           3.677195
         ],
         "ref": "R10.2",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "560"
+      },
+      {
+        "evidence": "Factory location + top lead ends; local underside link supports reference clock-side assignment; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              126.26707,
+              -2.959734
+            ],
+            "ref": "R10.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/CLK",
+            "pin": "2",
+            "position": [
+              127.073787,
+              -15.181748
+            ],
+            "ref": "R10.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          126.670429,
+          -9.070741
+        ],
+        "ref": "R10.3",
         "rotation": 0.0,
         "side": "top",
         "type": "560"
@@ -5347,6 +5441,70 @@
       },
       {
         "evidence": {
+          "detail": "The underside photo shows a local straight connection between the R10.3 and BR1 joint pair. Native geometry is inferred between top-photo-placed pads; the global underside registration is not qualified. Width 0.35 mm is estimated. CLK follows the reference common net; continuation to the CPU and measured continuity remain unresolved.",
+          "geometrySha256": "e03bd5668a6cf1507253aa3a3be64192bbf0a87fcba8c23f078c1ccfc0bb231a",
+          "group": "br1-r103-local-clock",
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1558,
+                    3616
+                  ],
+                  [
+                    1559,
+                    3660
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            },
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1357,
+                    3893
+                  ],
+                  [
+                    1366,
+                    3940
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred"
+        },
+        "id": "5015c001-226a-4e3e-b7f3-48b31c2fb45e",
+        "net": "/CLK",
+        "points": [
+          [
+            127.073787,
+            -15.181748
+          ],
+          [
+            130.740243,
+            -14.676546
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.35
+      },
+      {
+        "evidence": {
           "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted.",
           "geometrySha256": "a7363c2517be2d871a03ad2f0fe14f3e54ff6a1fdacec9cf4cb10f67dc6fe443",
           "group": "a1-pin1-top-partial",
@@ -5700,53 +5858,6 @@
     ],
     "schema": 1,
     "unplaced": [
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/OSC_OUT",
-            "pin": "1",
-            "position": [
-              62.0,
-              -200.0
-            ],
-            "ref": "BR1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/CLK",
-            "pin": "2",
-            "position": [
-              64.54,
-              -200.0
-            ],
-            "ref": "BR1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          62.0,
-          -200.0
-        ],
-        "ref": "BR1",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "BRIDGE"
-      },
       {
         "evidence": "unplaced",
         "pads": [
@@ -6664,53 +6775,6 @@
         "rotation": 0.0,
         "side": "top",
         "type": "8x910"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              -106.0,
-              -150.0
-            ],
-            "ref": "R10.3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/CLK",
-            "pin": "2",
-            "position": [
-              -103.46,
-              -150.0
-            ],
-            "ref": "R10.3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -106.0,
-          -150.0
-        ],
-        "ref": "R10.3",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "560"
       },
       {
         "evidence": "unplaced",
@@ -13661,12 +13725,12 @@
   "qualification": {
     "components": 70,
     "drc": {
-      "unconnectedItems": 230,
+      "unconnectedItems": 229,
       "violations": {
         "track_dangling": 1
       }
     },
-    "electricalCopperSegments": 24,
+    "electricalCopperSegments": 25,
     "erc": [
       {
         "description": "Label connected to only one pin",
@@ -13691,8 +13755,8 @@
       "Digital reference circuit; discrete pin numbering, specimen substitutions and analog timing remain unqualified; reset topology and bridge boundaries reviewed against Zander."
     ],
     "padNetMismatches": [],
-    "placed": 35,
-    "unplaced": 39,
+    "placed": 37,
+    "unplaced": 37,
     "unresolvedPhotoSegments": 294
   },
   "photoRegistration": {
@@ -15000,6 +15064,55 @@
       {
         "checkPins": [],
         "independentValidation": false,
+        "maxResidualMm": 4.434238625752151e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              126.26707,
+              -2.959734
+            ],
+            "pcbPixel": [
+              1520.0000026738526,
+              3881.9999966000246
+            ],
+            "photoModel": [
+              126.26707026395026,
+              -2.9597342115866763
+            ],
+            "photoPixel": [
+              1520,
+              3882
+            ],
+            "pin": "1",
+            "residualMm": 3.382878343637498e-07
+          },
+          {
+            "pcbModel": [
+              127.073787,
+              -15.181748
+            ],
+            "pcbPixel": [
+              1357.0000036477209,
+              3892.999995662081
+            ],
+            "photoModel": [
+              127.07378733691618,
+              -15.181748288291875
+            ],
+            "photoPixel": [
+              1357,
+              3893
+            ],
+            "pin": "2",
+            "residualMm": 4.434238625752151e-07
+          }
+        ],
+        "ref": "R10.3",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
         "maxResidualMm": 5.671716718917992e-07,
         "pins": [
           {
@@ -15878,6 +15991,55 @@
         ],
         "ref": "R4.3",
         "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 5.261885349500468e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              130.28935,
+              -10.392125
+            ],
+            "pcbPixel": [
+              1423.0000031968202,
+              3934.0000061347755
+            ],
+            "photoModel": [
+              130.28934952079254,
+              -10.392125217335163
+            ],
+            "photoPixel": [
+              1423,
+              3934
+            ],
+            "pin": "1",
+            "residualMm": 5.261885349500468e-07
+          },
+          {
+            "pcbModel": [
+              130.740243,
+              -14.676546
+            ],
+            "pcbPixel": [
+              1365.9999955627616,
+              3940.000001804144
+            ],
+            "photoModel": [
+              130.74024286063013,
+              -14.676545661627033
+            ],
+            "photoPixel": [
+              1366,
+              3940
+            ],
+            "pin": "2",
+            "residualMm": 3.659511204546886e-07
+          }
+        ],
+        "ref": "BR1",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
       }
     ],
     "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
@@ -16512,7 +16674,7 @@
       {
         "id": "package-pinmap",
         "status": "unresolved",
-        "detail": "Reviewed DIP placements and twenty native resistor placements are recorded in component-evidence.json. R4.2/R7/R8 still have unnumbered photo endpoint candidates; their underside correspondence and ground-side terminal assignment remain unresolved. Transistor, diode, capacitor and remaining discrete package terminal mappings require review."
+        "detail": "Reviewed DIP placements and twenty-one native resistor placements and BR1 are recorded in component-evidence.json. R4.2/R7/R8 still have unnumbered photo endpoint candidates; their underside correspondence and ground-side terminal assignment remain unresolved. Transistor, diode, capacitor and remaining discrete package terminal mappings require review."
       },
       {
         "id": "clock-source-disagreement",
@@ -16539,7 +16701,7 @@
           "role": "Isolates the oscillator output from the CPU clock input.",
           "testUse": "Opening the bridge permits external clock injection on the CPU side; inferred electrical use, not a documented factory procedure.",
           "physicalEvidence": {
-            "status": "photo-location-candidate",
+            "status": "photo-placed-reference-terminal-order",
             "source": "robotron-factory-drawings",
             "locator": "PDF page 10, drawing 63-330-4103-2",
             "photoSource": "photo-top",
@@ -16555,7 +16717,11 @@
               ]
             ],
             "location": "Beyond A7 near the ROM end, beside C6/R10.3",
-            "observation": "A wire-like link is visible between two solder terminals at the factory-designated bridge location. Electrical continuity, construction and source/CPU terminal order are unverified. Endpoint array order is photographic, not schematic pin numbering."
+            "observation": "The original-top-photo left BR1 terminal and R10.3 left lead correspond to a locally connected underside joint pair. Their common reference net is CLK: left BR1 is pin 2 (CPU side), right is pin 1 (oscillator side). This is photo-supported reference orientation, not measured continuity or proof of the complete CPU/oscillator paths.",
+            "terminalMapping": {
+              "1": "right original-photo endpoint; reference OSC_OUT",
+              "2": "left original-photo endpoint; reference CLK, local R10.3 link"
+            }
           }
         },
         {
@@ -16903,10 +17069,40 @@
     },
     "R10.3": {
       "referenceType": "560",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top endpoints and local underside joint pattern",
+      "pinEvidence": "Original-photo left lead joins the left BR1 terminal through a visible local underside track. CLK is their only common reference net, assigning resistor pin 2 and BR1 pin 2 there. Right resistor lead is reference +5V, pin 1. No end-to-end continuity measurement.",
+      "note": "Photo-estimated native replacement of the legacy R10.3 body placement. Reference 560-ohm value, body, hole and pad dimensions are unmeasured. Left blue collar is appearance evidence. Local joint correspondence does not qualify the global underside transform.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1520,
+          3882
+        ],
+        "2": [
+          1357,
+          3893
+        ]
+      },
+      "pixelUncertainty": 8,
+      "supportingSources": [
+        "robotron-factory-drawings",
+        "photo-top",
+        "photo-bottom"
+      ],
+      "bottomPhotoSource": "photo-bottom",
+      "bottomPhotoPins": {
+        "1": [
+          1405,
+          3620
+        ],
+        "2": [
+          1558,
+          3616
+        ]
+      },
+      "bottomPixelUncertainty": 8,
+      "blueCollarPin": "2"
     },
     "R9.9": {
       "referenceType": "3k9",
@@ -17611,10 +17807,39 @@
     },
     "BR1": {
       "referenceType": "BRIDGE",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-terminal-order; physical numbering unresolved",
-      "note": "Factory placement drawing supports a photo location candidate in evidence.json serviceInterfaces. Native footprint remains unplaced until source/CPU terminal order and pad correspondence are reviewed; no electrical continuity claim.",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top endpoints and local underside joint pattern",
+      "pinEvidence": "Left original-top-photo terminal is pin 2, CPU CLK side, from its visible underside connection to R10.3. Right terminal is reference pin 1, OSC_OUT. Continuation to CPU/oscillator and closed-state continuity remain unmeasured.",
+      "note": "Photo-supported reference terminal orientation, not measured continuity or a factory opening procedure. Wire diameter, stand-off, bend shape, pads and holes are estimated; native bridge geometry is a nominal closed link. Global underside registration remains unqualified.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1423,
+          3934
+        ],
+        "2": [
+          1366,
+          3940
+        ]
+      },
+      "pixelUncertainty": 8,
+      "supportingSources": [
+        "robotron-factory-drawings",
+        "photo-top",
+        "photo-bottom"
+      ],
+      "bottomPhotoSource": "photo-bottom",
+      "bottomPhotoPins": {
+        "1": [
+          1499,
+          3664
+        ],
+        "2": [
+          1559,
+          3660
+        ]
+      },
+      "bottomPixelUncertainty": 8
     },
     "BR2": {
       "referenceType": "BRIDGE",
@@ -17627,23 +17852,23 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "ad55aee44caad1f2d47e92044c2084a5b3b97a00"
+      "revision": "4b5e067d3dbacd4907b800c74bf15359f43b1816"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "4187cba5b275fa5e21921b885099f79a04ea53ef14c187b7293aa10d3ba41641",
+      "layout": "4661ff5ad8e400f3b2720e7637f351125617f768b0b7e33d5b0717988ee74392",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "c011ce6fd026000916444fe4c32f4f371f8d6b6fe6878b9a754127d38b9e36c5",
-      "photoRegistration": "5237ccb76283f6667f2c8a2b3e5b14c15c19c07f359c1d6ec870b3b41405a4d7",
+      "qualification": "0379be52d7be70342e03529b76b1a499fa080dd12346f644fb6de3ac28020fa1",
+      "photoRegistration": "f8b63a2fffb38a250d0380a0c8cd04f4b51ac4d127f30aead37952f5ecdcd3f1",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
-      "evidence": "d5c63e161e380abb51fa68845bd4e63fa28934b7ac9f21bd5277fd18dcd57861",
-      "componentEvidence": "49c49154cf9e3cdf6bfae9c5604b28bca40fd6dc2731466cded20386453cd7f9"
+      "evidence": "d12e9b71173fa4382e72aae57883ff164334de33c10a0a1ae968119b71203993",
+      "componentEvidence": "9960dbf6aa38ccc48a30eaa81ee3cbc1c2406367ed9d3046a51aa88a3810507a"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "4b34126714d758c25350a2582b02fa3deea1a18013e0101940b2ee588079fbb9"
+    "geometryScadSha256": "960826016d8749afb7d508d792b5602375bf256e49e350dcd35c30556d3f6a1d"
   },
   "cosimulation": {
     "bus": {

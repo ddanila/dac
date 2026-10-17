@@ -6,7 +6,7 @@ test('controller net selection preserves physical pin identity and unplaced evid
  const s=controllerSelection(data,'net','/TA_DATEN');
  expect(s.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:4','L1.4:1','R10.2:2']);
  expect(s.points).toHaveLength(2);expect(s.unplaced.sort()).toEqual(['L1.4']);
- expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&['/WR_N','/+5V'].includes(r.net))).toBe(true);
+ expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&['/WR_N','/+5V','/CLK'].includes(r.net))).toBe(true);
  const model=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/model.json',import.meta.url)));
  expect(model.keyboardControllerSource['keyboard-controller/generated/controller.scad']).toBe(data.source.geometryScadSha256);
  expect(data.layout.unresolvedArtwork.every(r=>r.net===null)).toBe(true);
@@ -109,7 +109,8 @@ test('partial copper review distinguishes observed sections from inferred attach
  for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
  await expect(panel.locator('[data-route-id]').filter({hasText:'WR_N:'}).first()).toHaveAttribute('stroke','#ffe16a');
  await panel.getByLabel('Controller board side').selectOption('bottom');
- await expect(panel.locator('[data-route-id]')).toHaveCount(0);
+ await expect(panel.locator('[data-route-id]')).toHaveCount(1);
+ await expect(panel.locator('[data-route-id]')).toHaveAttribute('data-evidence-status','inferred');
 });
 
 test('local A4 photo fit retains extrapolation limits',async({page})=>{
@@ -194,7 +195,7 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
  await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
- expect(data.layout.unplaced).toHaveLength(39);
+ expect(data.layout.unplaced).toHaveLength(37);
 });
 
 test('candidate photo endpoints never become net-connected pads',async({page})=>{
@@ -231,7 +232,7 @@ test('supply selection retains disconnected islands on the same reference net',(
  expect(selection.routes.filter(r=>r.evidence.status==='observed')).toHaveLength(10);
  expect(selection.routes.filter(r=>r.evidence.status==='inferred')).toHaveLength(6);
  expect(selection.unplaced).toEqual([]);
- expect(data.qualification.drc.unconnectedItems).toBe(230);
+ expect(data.qualification.drc.unconnectedItems).toBe(229);
 });
 
 test('numbered component photo observations remain distinct from native pad coordinates',async({page})=>{
@@ -262,4 +263,28 @@ test('numbered component photo observations remain distinct from native pad coor
  await expect(panel.locator('[data-candidate-photo="R4.2"] circle')).toHaveCount(2);
  await expect(panel.locator('[data-photo-pin]')).toHaveCount(0);
  expect(await page.evaluate(()=>window.photoReviewHighlights)).toEqual([]);
+});
+
+
+test('BR1 photo placement preserves reference sides and inferred underside geometry',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('BR1');
+ await expect(panel.locator('[data-selection]')).toContainText('Photo-estimated placement:');
+ await expect(panel.locator('[data-selection]')).toContainText('end-to-end continuity remains unmeasured');
+ await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
+ await expect(panel.locator('[data-placement-photo="BR1"] [data-photo-pin]')).toHaveCount(2);
+ await expect(panel.locator('[data-pins]')).toContainText('OSC_OUT');
+ await expect(panel.locator('[data-pins]')).toContainText('CLK');
+ await panel.getByLabel('Controller board side').selectOption('bottom');
+ await expect(panel.locator('[data-route-id]')).toHaveCount(1);
+ await expect(panel.locator('[data-route-id]')).toHaveAttribute('data-evidence-status','inferred');
+ expect(data.layout.components.find(c=>c.ref==='BR1').pads.map(p=>p.net).sort()).toEqual(['/CLK','/OSC_OUT']);
+ expect(data.layout.unplaced.some(c=>c.ref==='BR1')).toBe(false);
+ expect(data.bottomRegistration.copperAssignmentQualified).toBe(false);
 });
