@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Sixteenth implementation pass, 2026-10-17. Digital reference qualification passes,
+Seventeenth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -18,6 +18,21 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the seventeenth pass adds
+
+Museum component inspection now displays original specimen-photo crops for the
+seven reset resistor candidates and BR1/BR2. The crop uses the recorded original
+pixel endpoints, with unnumbered circles at the observation uncertainty radius
+and a link to the full original photo. This makes the physical evidence directly
+reviewable alongside the reference circuit. Candidate endpoints never enter the
+pad positions or electrical highlights; the components remain unplaced.
+
+The reset underside comparison did not establish reliable physical terminal
+order, so no new net assignment was made. Thirteen controller browser tests pass,
+including selection changes, clearing, photo rendering and separation from
+net-connected pads. The production build passes, and the R3 crop was visually
+reviewed against its lead ends. CAD and HDL revisions remain unchanged.
 
 ## What the sixteenth pass adds
 
