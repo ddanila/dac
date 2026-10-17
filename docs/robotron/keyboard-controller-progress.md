@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Third implementation pass, 2026-10-16. Digital reference qualification passes,
+Fourth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic with explicit BR1/BR2, reviewed reset and cable connections, guarded photo fitting, regenerated museum geometry | `93bd6ce` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, eight photo-aligned DIP packages and regenerated museum geometry | `fd48d55` |
 | `dac-emulation` | Reviewed CAD pin, generated bridge isolation and external stimulus tests, passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `8052c32` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
@@ -19,7 +19,26 @@ RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
 
-## What the third pass closes
+## What the fourth pass closes
+
+A4's original top-photo annotation placed the two final-lead landmarks above the
+actual last leads. Re-reading all ten leads on each side corrected those points
+and added four held-out intermediate leads. The native 8282 footprint now follows
+that reviewed fit: center (54.806, -8.970) mm, rotation -0.109 degrees, maximum
+residual **0.554 mm**, including held-out points. The tolerance remains 1.25 mm.
+All eight annotated DIP packages now pass with independent check landmarks.
+The photo overlay was visually reviewed; this remains nominal photo alignment,
+not metrology, and does not qualify A8 or underside registration.
+
+DIP body, leads, pads, holes, solder and artwork-dependent model geometry are
+regenerated from the PCB. Schematic connectivity is unchanged, so the existing
+qualified HDL reference remains applicable. DRC still reports 234 airwires and
+zero other violations. Nine CAD tests, five controller browser tests, the production
+build and canonical metadata checks pass. Top and underside renders were reviewed;
+the controller visual baseline now records the corrected footprint. Unrelated
+drive and motherboard structural baselines still match.
+
+## What the third pass closed
 
 The independent drawing review found errors outside the earlier digital peripheral
 comparison. Corrections now carried through the native schematic, PCB pad nets,
@@ -214,7 +233,7 @@ connectivity and reports whose implementation/CPU/header hashes have changed.
 | Reference digital bus and firmware comparison | Passing within documented scope |
 | Bridge isolation and external clock/reset stimulus | Passing digital tests |
 | KiCad DIP geometry propagated to OpenSCAD and museum | Implemented; discrete parts remain |
-| Both photo sides registered to numbered pads | Incomplete; A4/A8 and underside require review |
+| Both photo sides registered to numbered pads | Incomplete; A8 and underside require review |
 | Visible copper reconciled with named nets | Incomplete; 294 artwork segments remain unassigned |
 | First data/clock path traced through actual copper | Incomplete |
 | Specimen ROM identity and timing | Awaiting planned dumps and measurements |
@@ -229,7 +248,7 @@ are not evidence of historical trace accuracy.
 | --- | --- |
 | Identity/evidence | Resolve specimen clock wiring and ROM identity; identify remaining physical parts |
 | Schematic | Reset topology and BR1/BR2 are explicit; review physical discrete pin maps, specimen substitutions and bridge state |
-| PCB | Resolve A4/A8 placement/orientation, place 59 components, trace and assign actual copper, reconcile 234 airwires |
+| PCB | Resolve A8 placement/orientation, place 59 components, trace and assign actual copper, reconcile 234 airwires |
 | OpenSCAD | Migrate remaining discrete parts and qualify pad/lead interfaces and physical dimensions |
 | Co-simulation | Resolve CPU phase timing if cycle equivalence is required; qualify analog and contention boundaries |
 | Museum/sync | Extend verified net geometry and signal mappings as physical reconstruction progresses |

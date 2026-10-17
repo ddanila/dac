@@ -32589,7 +32589,7 @@
       "name": "keyboard-controller-board",
       "file": "meshes/keyboard-controller-board.stl",
       "color": "#92977a",
-      "sha256": "4ab2b244f37ac2e5b3ea56ce7682f7363384ef8ade4c8e5c021b5c93b1abd307",
+      "sha256": "eb83d6292000b6f41e88cb353231595b27ca63701e9f76f2d329fb9e94f2ccc0",
       "section": "interior",
       "material": "controller-laminate"
     },
@@ -32597,7 +32597,7 @@
       "name": "keyboard-controller-chips",
       "file": "meshes/keyboard-controller-chips.stl",
       "color": "#272a2b",
-      "sha256": "0fc8fdd0b02f34327c3bf4d72588ee334e8c2a0193004339cde8dc9b0cc4e362",
+      "sha256": "bccfbec6507eaf3c5a35d622176c6ba4732be59b635e4d0b7ea385c7ba7d7c01",
       "section": "interior",
       "material": "ic-moulding"
     },
@@ -32637,7 +32637,7 @@
       "name": "keyboard-controller-metal",
       "file": "meshes/keyboard-controller-metal.stl",
       "color": "#b8bbb4",
-      "sha256": "83b7d2b614bbd66ba166244019ed2b9d5a3f5e8611f6fdc389b869fa6e559bb3",
+      "sha256": "5a5da1397f4f72bdeaec7b7d5099eb7e015d7dc610aa7c8a20a81322ef2fccd9",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32782,7 +32782,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "f55aa546cfa6e5d4541224450d23e403951bcb2526c860ae355e735a53ed4886",
+      "sha256": "b7f0a45256c4c0ff579322dd0e06c90d65ef97a9bd4b7d926e19c98af4f32181",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32955,7 +32955,7 @@
       "name": "keyboard-controller-solder",
       "file": "meshes/keyboard-controller-solder.stl",
       "color": "#b8bbb4",
-      "sha256": "3f927c9ea61ea3c2536f14c1d8c5d07c6836ab6740a18d586ab6cf27d76d35dc",
+      "sha256": "7a74ebb7c3a7f474fdbb51d7b7de36e6959f026e1dc77f03071c80d571d1e085",
       "section": "interior",
       "material": "solder"
     },
@@ -38336,7 +38336,7 @@
   "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m",
   "keyboardControllerSource": {
     "specimen-details.scad": "668a49eaf746d81f1b625f2a20a880c767c29af5704b5296e0dbadee34a75358",
-    "keyboard-controller/generated/controller.scad": "bd673cdaae648eefb6ea35e127372d1883f63f2e7d76606f2ab4e83873775e65",
+    "keyboard-controller/generated/controller.scad": "a57fcc462a5edd4cdda45bdf9cb66010ab27ce96dc6c959fac5bb257103a05be",
     "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
   }
 }
