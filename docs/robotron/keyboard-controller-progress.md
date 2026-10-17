@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Thirty-sixth implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirty-seventh implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, C5.1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `cc544c4` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `4ac9715` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,30 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirty-seventh pass implements
+
+C5.2, C5.3 and C5.4 now have native pad and body placements from the primary
+photograph, replacing three more generic discs. The factory drawing identifies
+their locations. For each capacitor, a visible rail supports one terminal while
+the other follows the reference decoupling circuit; those hidden continuations
+remain untraced. Comparison photos corroborate construction, not primary coordinates.
+C5.5 remains unplaced because the primary image obscures a lead entry beside the
+electrolytic capacitor. Unplaced schematic components decrease from 36 to **33**.
+
+The existing ceramic exporter now drives four bodies, eight pads, bent leads,
+holes, lands and solder joints. No previously placed component moved. Close-up
+review caught C5.4 intersecting A7 at the shared nominal height; its separate
+8.1 mm centre-height estimate clears the nominal DIP body without moving the
+photo-derived body centre or pads. Stand-off and tilt remain unmeasured.
+
+All twelve controller mesh receipts and source downloads were regenerated.
+Validation passes: 23 exporter tests, two native integration tests, four mesh
+contract tests, 20 browser tests and production build. Browser checks retain no
+pad highlight for unplaced C5.5. The three new component close-ups and board views
+were inspected; the changed controller baseline was reviewed and updated, with
+all three strict visual checks passing. Digital connectivity, 25 assigned copper
+sections and 229 airwires are unchanged. No firmware qualification rerun was needed.
 
 ## What the thirty-sixth pass implements
 
