@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Ninth implementation pass, 2026-10-17. Digital reference qualification passes,
+Tenth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance and the first partial A1:1 top route | `371b017` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance the first partial A1:1 top route and local A4 correspondence audit | `58655bb` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
@@ -18,6 +18,29 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the tenth pass establishes
+
+The underside investigation now distinguishes local correspondence from the
+failing board-wide fit. Four A4 corner pins define a local photo-to-photo map;
+four different interior pins check it, with residuals of 0.16–0.37 nominal mm.
+The projected upper terminal near A4 matches the top A1:1 route endpoint within
+0.22 nominal mm; the neighboring lower terminal provides a second pattern match.
+Both lie outside the anchor columns, so the report explicitly marks them as
+extrapolated candidates. A tentative terminal near A6 differs by more than 2 mm
+when projected with the same fit. This does not establish a safe calibration for
+the whole underside route, nor prove that the A6 candidate is the counterpart.
+
+Original pixel observations, the local matrix, held-out checks, candidate
+residuals and extrapolation flags are retained in the CAD evidence and generated
+report. The underside overlay marks local check pins and candidate terminals;
+selecting A4 in the museum exposes the fit and its limits. Local success does
+not override the failed global checks or qualify copper assignment. No geometry,
+via, connectivity or HDL change was made. Physical totals remain eight assigned
+top sections, one dangling endpoint, 234 airwires and 59 unplaced components.
+Thirteen export tests pass, including independent-check validation and a guard
+against treating this local fit as qualified copper evidence. All eight controller
+browser tests and the production build pass; CAD CI passes for `58655bb`.
 
 ## What the ninth pass establishes
 
