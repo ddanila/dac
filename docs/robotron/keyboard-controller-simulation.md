@@ -67,36 +67,29 @@ implementation.
 
 ## Runnable experiments
 
-`dac-emulation/verification/robotron-keyboard/analog/sense_probe.py` generates and
-solves the reference sensing front end in ngspice. It deliberately uses a labelled
-generic PNP model and does not yet couple the CPU, oscillator or reset. Its README
-contains commands; generated decks, sweeps and assumption reports stay in `build/`.
-The existing `qualify-keyboard-controller` target runs the standard S600 digital
-reference comparison. Neither experiment alone is full mixed-signal emulation.
+Commands and model assumptions live in the
+[analog harness README](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog).
+Generated decks, reports and failure traces stay in `build/`.
 
-`analog/build_bridge.py` builds a pinned ngspice/Icarus bridge with an initial-output
-snapshot fix. `analog/bridge_probe.py` exercises the existing 7406 HDL against an
-analog pullup/load using explicit sink-enable transport. Direct Z transport through
-`bidi_bridge` fails timestep refinement locally and remains a diagnostic, not the
-chosen interface. The probe qualifies transport and HDL delay; its output impedance
-is a nominal surrogate. It does not yet qualify shared buses or close the board's
-CPU/reset/oscillator feedback loop.
+| Entry point | Scope |
+| --- | --- |
+| `sense_probe.py` | DC sensing front end with common row stimulus. |
+| `matrix_probe.py` | Contact fixture, column scanning and electrical sensing, followed by generated HDL latch/bus checks. |
+| `reset_probe.py` | Electrical reset, power cycling, BR2 isolation and timestep checks. |
+| `oscillator_probe.py` | RC oscillator topology, BR1 isolation, timestep and capacitor sensitivity. |
+| `build_bridge.py` / `bridge_probe.py` | Reproducible ngspice–Icarus bridge and explicit sink-enable transport. |
+| `make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` | TV80/S600 driven by electrical clock/reset with BR1/BR2 closed; matrix and output loading retain digital boundaries. |
 
-`analog/reset_probe.py` now generates the reset network from the pinned schematic,
-including BR2 and its CPU-side load. It checks power-on assertion/release, power
-cycling, bridge isolation and timestep refinement. Semiconductor parameters and
-input loading remain nominal assumptions. Coupling this electrical reset and the
-oscillator to firmware execution is still required.
+Semiconductor, gate and load parameters remain explicit nominal assumptions, not
+specimen calibration. The matrix fixture is diode-free; its phantom-row conduction
+does not establish the specimen's key construction. Its HDL check passes static
+samples, so live matrix feedback and firmware scenarios remain required.
 
-`analog/oscillator_probe.py` generates A7 and its RC feedback, pullup and BR1 wiring.
-Its continuous LS-TTL macromodel is explicitly exploratory; it is not tuned to the
-emulator's clock or qualified as a DL000 device model. The probe checks oscillation,
-BR1 isolation, timestep refinement and timing-capacitor sensitivity. Full firmware
-coupling and analog model calibration remain open.
+Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
+the tested explicit sink-enable interface. The nominal reset model also fails to
+produce a useful pulse with a 10 ns supply ramp. These are retained qualification
+issues, not reasons to block implementation on missing specimen evidence.
 
-`make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` combines the electrical
-clock/reset sources with TV80 and S600, with BR1/BR2 closed. It checks boot and I/O
-progress; matrix sensing and output loads still use digital boundaries. The nominal
-reset model's failure with a 10 ns supply ramp remains a model-qualification issue.
-See the analog README for the explicit supply/receiver assumptions and retained
-traces. This target does not establish complete board or scenario qualification.
+The existing `qualify-keyboard-controller` target retains the independent standard
+S600 digital comparison. None of these partial checks alone establishes complete
+mixed-signal board qualification.
