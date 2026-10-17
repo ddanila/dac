@@ -15,7 +15,19 @@ files=[('browser/model.json','model.json',None),('LICENSE','LICENSE',None)]
 for patch in data['patches']:
     if patch.get('texture'):files.append(('browser/'+patch['texture'],patch['texture'],patch['textureSha256']))
 for part in data['parts']+data.get('keyMeshes',[])+data.get('specimenMeshes',[]):files.append(('browser/'+part['file'],part['file'],part['sha256']))
-for name in sorted({p['photo'] for p in data['patches']} | set(data.get('references', []))):files.append(('reference/photos/'+name,'photos/'+name,photos[name]['sha256']))
+photo_names={p['photo'] for p in data['patches']} | set(data.get('references', []))
+# Circuit-review evidence can reference photos absent from the general model views.
+controller=source/'keyboard-controller'
+subprocess.run(['python3',str(controller/'tools/export.py'),'--check'],check=True)
+for evidence in json.loads((controller/'evidence.json').read_text())['sources']:
+    if not evidence.get('path'):continue
+    path=(controller/evidence['path']).resolve()
+    if path.parent!=(source/'reference/photos').resolve():continue
+    name=path.name
+    if name not in photos or photos[name]['sha256']!=evidence['sha256']:
+        raise ValueError('Controller/photo inventory hash mismatch: '+name)
+    photo_names.add(name)
+for name in sorted(photo_names):files.append(('reference/photos/'+name,'photos/'+name,photos[name]['sha256']))
 for board in data.get('pcbReferences',[]):files.append((board['file'],board['file'],board['sha256']))
 for component in data.get('pcbComponents',{}).get('models',[]):
     for mesh in component['meshes'].values():files.append((mesh['file'],mesh['file'],mesh['sha256']))

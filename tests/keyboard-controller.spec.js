@@ -278,7 +278,7 @@ test('BR1 photo placement preserves reference sides and inferred underside geome
  await expect(panel.locator('[data-selection]')).toContainText('Photo-estimated placement:');
  await expect(panel.locator('[data-selection]')).toContainText('end-to-end continuity remains unmeasured');
  await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
- await expect(panel.locator('[data-placement-photo="BR1"] [data-photo-pin]')).toHaveCount(2);
+ await expect(panel.locator('[data-placement-photo="BR1"][data-photo-side="top"] [data-photo-pin]')).toHaveCount(2);
  await expect(panel.locator('[data-pins]')).toContainText('OSC_OUT');
  await expect(panel.locator('[data-pins]')).toContainText('CLK');
  await panel.getByLabel('Controller board side').selectOption('bottom');
@@ -287,4 +287,48 @@ test('BR1 photo placement preserves reference sides and inferred underside geome
  expect(data.layout.components.find(c=>c.ref==='BR1').pads.map(p=>p.net).sort()).toEqual(['/CLK','/OSC_OUT']);
  expect(data.layout.unplaced.some(c=>c.ref==='BR1')).toBe(false);
  expect(data.bottomRegistration.copperAssignmentQualified).toBe(false);
+});
+
+
+test('underside photo inspection uses direct observations without qualifying registration',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('BR1');
+ await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
+ const bottom=panel.locator('[data-photo-side="bottom"]');
+ await expect(bottom.locator('[data-photo-pin]')).toHaveCount(2);
+ await expect(bottom.locator('[data-photo-pin="2"]')).toHaveAttribute('cx','1559');
+ await expect(bottom.locator('[data-photo-pin="2"]')).toHaveAttribute('cy','3660');
+ await expect(bottom.locator('[data-photo-pin="2"]')).toHaveAttribute('r','8');
+ await expect(bottom.locator('figcaption')).toContainText('not projected pads');
+ await expect(bottom.locator('figcaption')).toContainText('registration and end-to-end continuity remain unqualified');
+ await expect(bottom.locator('image')).toHaveAttribute('href',/PXL_20261012_123648677.jpg$/);
+ await expect(bottom.getByRole('link')).toHaveAttribute('href',/PXL_20261012_123648677.jpg$/);
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R10.3');
+ await expect(bottom.locator('[data-photo-pin="2"]')).toHaveAttribute('cx','1558');
+ await expect(bottom.locator('[data-photo-pin="2"]')).toHaveAttribute('cy','3616');
+ await expect(panel.locator('[data-photo-side="top"] [data-photo-pin="2"]')).toHaveAttribute('cy','3893');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('BR2');
+ await expect(bottom).toHaveCount(0);
+ await expect(panel.locator('[data-candidate-photo="BR2"]')).toHaveCount(1);
+ await expect(panel.locator('[data-photo-pin]')).toHaveCount(0);
+ expect(data.bottomRegistration.copperAssignmentQualified).toBe(false);
+});
+
+
+test('all local controller evidence photos are shipped with pinned content',async({request})=>{
+ const {createHash}=await import('node:crypto');
+ const source=JSON.parse(await (await import('node:fs/promises')).readFile('public/models/robotron-1715m/source.json','utf8'));
+ for(const photo of data.evidence.sources.filter(s=>s.path?.startsWith('../reference/photos/'))){
+  const path='photos/'+photo.path.split('/').pop();
+  expect(source.files.find(f=>f.file===path)?.sha256).toBe(photo.sha256);
+  const response=await request.get('/models/robotron-1715m/'+path);
+  expect(response.ok()).toBe(true);
+  expect(createHash('sha256').update(await response.body()).digest('hex')).toBe(photo.sha256);
+ }
 });

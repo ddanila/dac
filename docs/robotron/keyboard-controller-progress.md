@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Twenty-eighth implementation pass, 2026-10-17. Digital reference qualification passes,
+Twenty-ninth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -18,6 +18,33 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the twenty-ninth pass fixes
+
+Component inspection now displays the recorded underside solder-joint observations
+for BR1 and R10.3 alongside their top-photo lead observations. Numbering remains
+reference-derived; these annotations use original photo pixels, not projected
+native pads. Their captions explicitly retain the unqualified underside alignment
+and unmeasured end-to-end continuity. Components without underside observations
+receive no fabricated underside overlay; BR2 remains an unnumbered candidate.
+
+The new browser check exposed a missing asset: the controller evidence referenced
+`PXL_20261012_123648677.jpg`, but general model sync did not include it because it
+was absent from the model's photo-reference list. Its existing supporting-photo
+link therefore could not load. Sync now includes all local controller evidence
+photos, first checks the controller export, compares each evidence hash with the
+photo inventory and verifies the copied bytes. The browser regression checks
+that every local evidence photo is served with its pinned SHA-256.
+
+All 18 controller browser tests and the build pass; the BR1 underside preview was
+visually inspected. Geometry, native placements, routing, CAD/core revisions and
+completion counts are unchanged. No 3D baseline update is required.
+
+Further review of the top photo and oblique CPU close-up
+`PXL_20261012_123729356.jpg` confirms raised, bent leads around R6.4/R6.5 and an
+obscured C6/R4.3 junction. Body-end estimates alone do not resolve hole positions
+or electrical terminal order. These remaining parts stay unplaced pending a
+stronger pad correspondence or continuity check; this review adds no net claims.
 
 ## What the twenty-eighth pass adds
 
