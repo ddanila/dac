@@ -103,15 +103,14 @@ test('partial copper review distinguishes observed sections from inferred attach
  await expect(panel.locator('[data-selection]')).toContainText('7 observed');
  await expect(panel.locator('[data-selection]')).toContainText('1 inferred');
  await expect(panel.locator('[data-pins]')).toContainText('not proof of continuity to CPU WR');
- await expect(panel.locator('[data-qualification]')).toContainText('2 track dangling');
+ await expect(panel.locator('[data-qualification]')).toContainText('1 track dangling');
  await expect(panel.locator('[data-route-id]')).toHaveCount(24);
  const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(7);
  for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
  await expect(panel.locator('[data-route-id]').filter({hasText:'WR_N:'}).first()).toHaveAttribute('stroke','#ffe16a');
  await panel.getByLabel('Controller board side').selectOption('bottom');
- await expect(panel.locator('[data-route-id]')).toHaveCount(6);
- await expect(panel.locator('[data-route-id][data-evidence-status="inferred"]')).toHaveCount(2);
- await expect(panel.locator('[data-route-id][data-evidence-status="observed"]')).toHaveCount(4);
+ await expect(panel.locator('[data-route-id]')).toHaveCount(1);
+ await expect(panel.locator('[data-route-id]')).toHaveAttribute('data-evidence-status','inferred');
 });
 
 test('local A4 photo fit retains extrapolation limits',async({page})=>{
@@ -283,9 +282,8 @@ test('BR1 photo placement preserves reference sides and inferred underside geome
  await expect(panel.locator('[data-pins]')).toContainText('OSC_OUT');
  await expect(panel.locator('[data-pins]')).toContainText('CLK');
  await panel.getByLabel('Controller board side').selectOption('bottom');
- await expect(panel.locator('[data-route-id]')).toHaveCount(6);
- await expect(panel.locator('[data-route-id][data-evidence-status="inferred"]')).toHaveCount(2);
- await expect(panel.locator('[data-route-id][data-evidence-status="observed"]')).toHaveCount(4);
+ await expect(panel.locator('[data-route-id]')).toHaveCount(1);
+ await expect(panel.locator('[data-route-id]')).toHaveAttribute('data-evidence-status','inferred');
  expect(data.layout.components.find(c=>c.ref==='BR1').pads.map(p=>p.net).sort()).toEqual(['/CLK','/OSC_OUT']);
  expect(data.layout.unplaced.some(c=>c.ref==='BR1')).toBe(false);
  expect(data.bottomRegistration.copperAssignmentQualified).toBe(false);
@@ -341,8 +339,8 @@ test('CPU clock inspection distinguishes local projection from global registrati
  expect(region.copperAssignmentQualified).toBe(true);expect(region.maxCheckResidualMm).toBeLessThan(.67);
  expect(data.bottomRegistration.copperAssignmentQualified).toBe(false);
  const selection=controllerSelection(data,'net','/CLK');
- expect(selection.routes).toHaveLength(6);
- expect(selection.routes.filter(r=>r.evidence.group==='cpu-clock-bottom-partial')).toHaveLength(5);
+ expect(selection.routes).toHaveLength(1);
+ expect(selection.routes.filter(r=>r.evidence.group==='cpu-clock-bottom-partial')).toHaveLength(0);
  await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
   document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
   const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
@@ -353,7 +351,9 @@ test('CPU clock inspection distinguishes local projection from global registrati
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A5');
  await expect(panel.locator('[data-selection]')).toContainText('6 independent pad checks; 0.66 mm maximum residual');
  await expect(panel.locator('[data-selection]')).toContainText('limited to the anchor hull');
- await expect(panel.locator('[data-pins]')).toContainText('round terminal continuation and connection to BR1 remain unresolved');
+ await expect(panel.locator('[data-route-review="cpu-clock-terminal-conflict"]')).toContainText('clock trace assignment withdrawn');
+ await expect(panel.locator('[data-route-review="cpu-clock-terminal-conflict"]')).toContainText('A4:13 D6');
+ await expect(panel.locator('[data-route-review="cpu-clock-terminal-conflict"]')).toContainText('No CLK or D6 route is assigned');
  await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
  await expect(panel.locator('[data-photo-side="bottom"] [data-photo-pin="6"]')).toHaveAttribute('cy','2678');
 });
