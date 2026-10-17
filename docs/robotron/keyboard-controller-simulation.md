@@ -26,7 +26,7 @@ describes tri-state conversion and timing limitations that need explicit review.
 | [ngspice `d_process`](https://ngspice.sourceforge.io/extras.html) | Alternative process/pipe coupling to the same analog solver; requires a custom adapter and independent time-ordering tests. Useful if the shared-library bridge is isolated as the failure source. |
 | [KiCad simulator](https://www.kicad.org/discover/spice/) | Familiar graphical inspection using ngspice; preserve native schematic ownership. |
 | [Qucs-S](https://qucs-s-help.readthedocs.io/en/latest/overview/choosing-a-sim-backend.html) | Alternative GUI for ngspice/Xyce; another frontend, not an independent solver. |
-| [Xyce](https://xyce.sandia.gov/files/xyce/AppNote-MixedSignal.pdf) | SPICE alternative with documented external/Icarus interfaces; validate current build compatibility before adopting the older integration examples. |
+| [Xyce](https://xyce.sandia.gov/files/xyce/AppNote-MixedSignal.pdf) | Independent SPICE solver with documented external/Icarus experiments. Its [FAQ](https://xyce.sandia.gov/documentation-tutorials/frequently-asked-questions/) describes an API rather than a maintained event-simulator link; budget adapter work and validate current build compatibility. |
 | [WRspice](https://www.wrcad.com/manual/wrsmanual/node73.html) | Built-in Verilog/SPICE integration; existing HDL compatibility would need testing. |
 | [GNUCAP](https://www.gnu.org/software/gnucap/gnucap-man-html/gnucap-man003.html) | Open mixed analog/digital alternative; integration effort is less directly aligned with our existing harness. |
 | [QSPICE](https://www.qorvo.com/design-hub/calculators-simulation/qspice) | Strong alternative with C++/Verilog support; official desktop requirements are Windows. |
