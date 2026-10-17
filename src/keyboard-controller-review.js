@@ -8,22 +8,34 @@ export function controllerSelection(data,kind,value){
  const nets=new Set(pins.map(p=>p.net).filter(Boolean));
  return {refs,pins,points:pins.filter(p=>p.position).map(p=>p.position),routes:data.layout.routes.filter(r=>nets.has(r.net)),unplaced:refs.filter(ref=>!placed.has(ref))};
 }
-// Candidate endpoints are photographic observations, never electrical pad positions.
-function candidatePhoto(data,ref,candidate){
+// Photo observations remain separate from the native pad positions used for highlights.
+function componentPhoto(data,ref,candidate){
+ const numbered=Boolean(candidate.photoPins),entries=numbered?Object.entries(candidate.photoPins):candidate.photoEndpoints?.map(point=>[null,point]);
  const source=data.evidence.sources.find(s=>s.id===candidate.photoSource);
- if(!source?.path||!candidate.photoEndpoints?.length)return null;
- const figure=document.createElement('figure');figure.dataset.candidatePhoto=ref;
- const caption=document.createElement('figcaption');caption.textContent=`${ref}: photo location candidate. Circles mark observed endpoints, not numbered pins. Terminal order and continuity remain unverified.`;figure.append(caption);
+ if(!source?.path||!entries?.length)return null;
+ const figure=document.createElement('figure');figure.dataset[numbered?'placementPhoto':'candidatePhoto']=ref;
+ const caption=document.createElement('figcaption');caption.textContent=numbered?`${ref}: photo-estimated numbered lead positions. Circles show the recorded pixel uncertainty. Raised leads can obscure hole centres; continuity is not measured.`:`${ref}: photo location candidate. Circles mark observed endpoints, not numbered pins. Terminal order and continuity remain unverified.`;figure.append(caption);
  const image=new Image();image.alt=`Original specimen photo around ${ref}`;
  const url=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(source.path.split('/').pop())}`;
  const link=document.createElement('a');link.href=url;link.textContent='Open original specimen photo';link.target='_blank';link.rel='noopener';figure.append(link);
+ for(const id of candidate.supportingSources||[]){
+  const supporting=data.evidence.sources.find(s=>s.id===id);
+  if(!supporting?.path||id===candidate.photoSource)continue;
+  const extra=document.createElement('a');extra.href=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(supporting.path.split('/').pop())}`;extra.textContent='Supporting close-up';extra.target='_blank';extra.rel='noopener';figure.append(' · ',extra);
+ }
  image.onload=()=>{
-  const points=candidate.photoEndpoints,xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),margin=65;
+  const points=entries.map(([,point])=>point),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),margin=65;
   const x=Math.max(0,Math.min(...xs)-margin),y=Math.max(0,Math.min(...ys)-margin);
   const w=Math.min(image.naturalWidth,Math.max(...xs)+margin)-x,h=Math.min(image.naturalHeight,Math.max(...ys)+margin)-y;
-  const svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox',`${x} ${y} ${w} ${h}`);svg.setAttribute('role','img');svg.setAttribute('aria-label',`${ref} original photo with unnumbered candidate endpoints`);svg.style.cssText='display:block;width:100%;max-width:560px;background:#14232d';
+  const svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox',`${x} ${y} ${w} ${h}`);svg.setAttribute('role','img');svg.setAttribute('aria-label',`${ref} original photo with ${numbered?'numbered lead positions':'unnumbered candidate endpoints'}`);svg.style.cssText='display:block;width:100%;max-width:560px;background:#14232d';
   const photo=document.createElementNS(svgNS,'image');photo.setAttribute('href',url);photo.setAttribute('width',image.naturalWidth);photo.setAttribute('height',image.naturalHeight);svg.append(photo);
-  for(const [px,py]of points){const circle=document.createElementNS(svgNS,'circle');for(const [key,value]of Object.entries({cx:px,cy:py,r:candidate.pixelUncertainty||candidate.photoPixelUncertainty||8,fill:'none',stroke:'#ffe16a','stroke-width':2}))circle.setAttribute(key,value);svg.append(circle);}
+  for(const [pin,[px,py]]of entries){
+   const circle=document.createElementNS(svgNS,'circle');for(const [key,value]of Object.entries({cx:px,cy:py,r:candidate.pixelUncertainty||candidate.photoPixelUncertainty||8,fill:'none',stroke:'#ffe16a','stroke-width':2}))circle.setAttribute(key,value);svg.append(circle);
+   if(numbered){
+    circle.dataset.photoPin=pin;const label=document.createElementNS(svgNS,'text');label.textContent=pin;
+    for(const [key,value]of Object.entries({x:px+12,y:py-10,fill:'#ffe16a',stroke:'#14232d','stroke-width':.6,'font-size':16,'paint-order':'stroke'}))label.setAttribute(key,value);svg.append(label);
+   }
+  }
   figure.prepend(svg);
  };
  image.onerror=()=>{caption.textContent+=' Photo preview could not load; use the original photo link to retry.';};image.src=url;
@@ -91,8 +103,10 @@ export function installKeyboardControllerReview(scene){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
    }
    if(kind==='component'){
-    const candidate=data.componentEvidence?.[value]?.placementCandidate||bridges.find(b=>b.ref===value)?.physicalEvidence;
-    if(candidate){const photo=candidatePhoto(data,value,candidate);if(photo)pins.append(photo);}
+    const evidence=data.componentEvidence?.[value],alignment=data.photoRegistration?.components.find(c=>c.ref===value);
+    const alignedPhoto=alignment?{photoSource:'photo-top',photoPins:Object.fromEntries([...alignment.pins,...alignment.checkPins].map(p=>[p.pin,p.photoPixel]))}:null;
+    const candidate=evidence?.photoPins?evidence:alignedPhoto||evidence?.placementCandidate||bridges.find(b=>b.ref===value)?.physicalEvidence;
+    if(candidate){const photo=componentPhoto(data,value,candidate);if(photo)pins.append(photo);}
    }
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);

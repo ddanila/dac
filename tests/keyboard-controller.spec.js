@@ -233,3 +233,33 @@ test('reset supply selection includes only assigned local copper',()=>{
  expect(selection.unplaced).toEqual([]);
  expect(data.qualification.drc.unconnectedItems).toBe(231);
 });
+
+test('numbered component photo observations remain distinct from native pad coordinates',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(points){window.photoReviewHighlights=points;}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R6.6');
+ await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
+ const photo=panel.locator('[data-placement-photo="R6.6"]');
+ await expect(photo.getByRole('img')).toBeVisible();
+ await expect(photo.locator('[data-photo-pin="1"]')).toHaveAttribute('cy','3550');
+ await expect(photo.locator('[data-photo-pin="2"]')).toHaveAttribute('cy','3385');
+ await expect(photo.locator('text')).toHaveText(['1','2']);
+ await expect(photo).toContainText('continuity is not measured');
+ await expect(photo.getByRole('link',{name:'Supporting close-up'})).toHaveAttribute('href',/PXL_20261012_123729356.jpg$/);
+ expect(await page.evaluate(()=>window.photoReviewHighlights)).toEqual(controllerSelection(data,'component','R6.6').points);
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('A7');
+ const chip=panel.locator('[data-placement-photo="A7"]');
+ await expect(chip.locator('[data-photo-pin]')).toHaveCount(5);
+ await expect(chip.locator('[data-photo-pin="4"]')).toHaveAttribute('cy','3670');
+ expect(await page.evaluate(()=>window.photoReviewHighlights)).toEqual(controllerSelection(data,'component','A7').points);
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R4.2');
+ await expect(panel.locator('[data-placement-photo]')).toHaveCount(0);
+ await expect(panel.locator('[data-candidate-photo="R4.2"] circle')).toHaveCount(2);
+ await expect(panel.locator('[data-photo-pin]')).toHaveCount(0);
+ expect(await page.evaluate(()=>window.photoReviewHighlights)).toEqual([]);
+});
