@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Twenty-seventh implementation pass, 2026-10-17. Digital reference qualification passes,
+Twenty-eighth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty resistor placements, photo evidence, partial A1:1 route and local reset/A4 supply copper | `ad55aee` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/clock copper | `4b5e067` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,31 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the twenty-eighth pass adds
+
+BR1 and R10.3 now use native KiCad pads observed in the top photo. A short visible
+underside connection joins their original-top left terminals, supporting the
+reference CLK-side assignments. BR1 pin 1 remains OSC_OUT; pin 2 is CLK on the CPU
+side. R10.3 pin 1 is +5V and pin 2 is CLK. End-to-end continuity to A7 and the CPU
+is unmeasured. The local bottom segment is explicitly inferred from native pad
+positions; it does not qualify the global underside registration.
+
+OpenSCAD consumes BR1's native pads for holes, lands, solder and a nominal closed
+wire shape; its dimensions and bend remain estimates. R10.3 replaces its legacy
+resistor body. The museum shows numbered BR1 photo observations and distinguishes
+this placement from BR2's still-unnumbered location candidate. The source record
+continues to describe service use as inferred, with no documented factory opening
+procedure. All twelve controller mesh consumers are rebuilt together.
+
+This brings the reconstruction to 21 native resistors and one bridge, 37 unplaced
+components and 25 assigned copper sections (17 observed, 8 inferred), with 229
+airwires. Previously placed components and all previous assigned routes are
+unchanged. Schematic connectivity and the existing digital qualification remain
+unchanged. All 21 export checks, native KiCad integration, four mesh-contract
+checks, model/download metadata, 16 browser tests and the build pass. The top
+close-up and underside were inspected; only the controller baseline was updated.
+All three strict visual checks and CAD CI pass.
 
 ## What the twenty-seventh pass fixes
 
@@ -747,9 +772,9 @@ connectivity and reports whose implementation/CPU/header hashes have changed.
 | Reference digital bus and firmware comparison | Passing within documented scope |
 | Bridge isolation and external clock/reset stimulus | Passing digital tests |
 | First-failure signals, clocks, stimulus and waveform | Implemented with fault-injection checks |
-| KiCad geometry propagated to OpenSCAD and museum | Nine DIPs and twenty resistors implemented; other discrete parts remain |
+| KiCad geometry propagated to OpenSCAD and museum | Nine DIPs, twenty-one resistors and BR1 implemented; other discrete parts remain |
 | Both photo sides registered to numbered pads | Incomplete; corrected underside checks and nominal calibration remain unresolved |
-| Visible copper reconciled with named nets | Partial A1:1 route and local reset/A4 supply connections assigned (17 observed sections, 7 inferred attachments); 294 artwork segments remain unassigned |
+| Visible copper reconciled with named nets | Partial A1:1 route, local reset/A4 supply connections and inferred BR1 clock link assigned (17 observed sections, 8 inferred sections); 294 artwork segments remain unassigned |
 | First data/clock path traced through actual copper | Incomplete |
 | Specimen ROM identity and timing | Awaiting planned dumps and measurements |
 
@@ -763,7 +788,7 @@ are not evidence of historical trace accuracy.
 | --- | --- |
 | Identity/evidence | Resolve specimen clock wiring and ROM identity; identify remaining physical parts |
 | Schematic | Reset topology and BR1/BR2 are explicit; review physical discrete pin maps, specimen substitutions and bridge state |
-| PCB | Resolve underside registration and A8 socket-to-hole alignment, place 39 components, trace and assign actual copper, reconcile 230 airwires |
+| PCB | Resolve underside registration and A8 socket-to-hole alignment, place 37 components, trace and assign actual copper, reconcile 229 airwires |
 | OpenSCAD | Migrate remaining discrete parts and qualify pad/lead interfaces and physical dimensions |
 | Co-simulation | Resolve CPU phase timing if cycle equivalence is required; qualify analog and contention boundaries |
 | Museum/sync | Extend verified net geometry and signal mappings as physical reconstruction progresses |

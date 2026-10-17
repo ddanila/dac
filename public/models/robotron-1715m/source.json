@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "ad55aee44caad1f2d47e92044c2084a5b3b97a00",
+  "revision": "4b5e067d3dbacd4907b800c74bf15359f43b1816",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "b56401619af1b34ae29aefc3bf181d956dc132e4e94b8b52bed94b95e143ab75"
+      "sha256": "1a4ff0c05190b587fbdce3d2132b69f2c35791f6d418819745dde297d4818e02"
     },
     {
       "file": "LICENSE",
@@ -461,7 +461,7 @@
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
-      "sha256": "9307358f6e25ad3eb534bae5f43d7d9e5552a276cd0fd4690728782fb066b52b"
+      "sha256": "890fe0c01ca2cbdd184d9e45fc28f6df96df9ab3f88297326e7959406d66ea73"
     },
     {
       "file": "meshes/keyboard-controller-chips.stl",
@@ -565,7 +565,7 @@
     },
     {
       "file": "meshes/keyboard-controller-traces.stl",
-      "sha256": "4b044abb669386acf10db7a85fa9705e129393318eff9d67047f60e1e1c6e32d"
+      "sha256": "a4ec9fd7e6e4751b769e1ceba6074f6e12e6a27858b9f9c6795fc3f7d7eed1cf"
     },
     {
       "file": "meshes/monitor-power-lead.stl",
@@ -657,7 +657,7 @@
     },
     {
       "file": "meshes/keyboard-controller-solder.stl",
-      "sha256": "0aa37d428e8f75d9551886ebbe365762a71b1f09d4e77a92cfde4e9b2643b84e"
+      "sha256": "8d15950b6510a0bb5d27820bf4411a63272c053a77a5b24e220ebe3338abad2c"
     },
     {
       "file": "meshes/drive-protect-tab-0.stl",
@@ -669,7 +669,7 @@
     },
     {
       "file": "meshes/keyboard-controller-leads.stl",
-      "sha256": "8d832dcbecef08911ecef276f26a3f8e1b07cbb3c8f33b4802f563ce0649f5a7"
+      "sha256": "59708dd46f2dcaecdf54f94dd44f3264c9f82586a7b59441d26441a02c243faa"
     },
     {
       "file": "meshes/keyboard-entry-choke.stl",
@@ -765,11 +765,11 @@
     },
     {
       "file": "meshes/keyboard-controller-resistors.stl",
-      "sha256": "b93a4a97686fe04b8ced308a1bd34da3450a63b31bc0a8c889663c6faed47b7d"
+      "sha256": "f185090294fcc1f55a01e1f7d2ea4fd53260831d77cca784f1f7d8bdcceb27da"
     },
     {
       "file": "meshes/keyboard-controller-resistor-bands.stl",
-      "sha256": "094b1cb25d348eee057cd1576993eb7dc7ea81237a43aad742d96fdd3078c6c4"
+      "sha256": "44207f9cf9a38b191cdba9568a780cac840767f81de0e83128497e0a6f258769"
     },
     {
       "file": "meshes/keyboard-entry-black.stl",
@@ -1477,23 +1477,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "fb017e3c2f6fb78115d1ea3eddef8323bec75863d0227654943465df7319c83a"
+      "sha256": "6ce76de1d2d70bdd3c3f68acc185b27e9ec6f4c47f7f124fb18fcc071e2cd0eb"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "9ed9f796f89793ac536652745210936b945aa4802533633660e34f39bd9becf3"
+      "sha256": "1853c4d648223593b1d87ae0e83216707cc9e7b838d5ef442d9a0a3b64818d02"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "cafcd1e5d9cc1071d5fb92bca980d7257e14576181de18f592aac4bd40966c25"
+      "sha256": "5621b4a5ecd66f36896329a2b8e347ca6c1a339ca243576446ba59026421fc0f"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "42e22b60fc6cd372b3d34479c36e7b147896120cde398af51fc5e986205e5e1b"
+      "sha256": "f0528ef34ac61b5a1f2385c5301b75afb9a1f224c47f0a2342ef3422d0075e37"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "61da9253c8989c845b44534f3e8c155262418e2a909cfb97f255d4b281f28749"
+      "sha256": "3b5d6017728f85f2ad7a879f7906854c7ec44f8b929a393a628198efb60f7124"
     }
   ],
   "inspection": {

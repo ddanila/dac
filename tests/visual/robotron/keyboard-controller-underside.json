@@ -1,8 +1,8 @@
 [
   {
     "name": "keyboard-controller-board",
-    "vertices": 17460,
-    "indices": 55632,
+    "vertices": 17588,
+    "indices": 56040,
     "bounds": [
       -40,
       -331.399994,
@@ -235,13 +235,13 @@
   },
   {
     "name": "keyboard-controller-leads",
-    "vertices": 19146,
-    "indices": 78216,
+    "vertices": 19498,
+    "indices": 79974,
     "bounds": [
       -16.95845,
-      -321.828796,
+      -323.819519,
       4.733704,
-      223.531479,
+      225.99025,
       -288.602692,
       9.766295
     ],
@@ -313,13 +313,13 @@
   },
   {
     "name": "keyboard-controller-resistor-bands",
-    "vertices": 6144,
-    "indices": 18432,
+    "vertices": 5952,
+    "indices": 17856,
     "bounds": [
       -17.789713,
       -321.08255,
       7.53,
-      224.310806,
+      222.994308,
       -288.647644,
       9.87
     ],
@@ -358,7 +358,7 @@
       -17.819927,
       -321.184662,
       7.55,
-      224.304382,
+      222.989166,
       -288.667358,
       9.85
     ],
@@ -508,8 +508,8 @@
   },
   {
     "name": "keyboard-controller-solder",
-    "vertices": 69832,
-    "indices": 210792,
+    "vertices": 70312,
+    "indices": 212232,
     "bounds": [
       -39.900002,
       -324.997864,
@@ -547,13 +547,13 @@
   },
   {
     "name": "keyboard-controller-traces",
-    "vertices": 44448,
-    "indices": 132948,
+    "vertices": 44861,
+    "indices": 134190,
     "bounds": [
       -25.264999,
       -330.398987,
       5.4,
-      225.143997,
+      226.59024,
       -285.399994,
       7.22
     ],
