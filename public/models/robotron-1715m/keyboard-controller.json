@@ -14783,6 +14783,12 @@
         "url": "https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf",
         "sha256": "e810e4722d889a7e357e192486da3a8004b1fd08aca1c0dcef4f3bbc5b66021d",
         "use": "Manufacturer service handbook, 1985, printed pp. 89\u201392 (PDF pages 91\u201394): WR serial synchronization, matrix sensing, LED latches, reset and nominal clock. Oscillator designators, pin usage and capacitor differ from Zander; not specimen-identical. PDF not redistributed."
+      },
+      {
+        "id": "robotron-factory-drawings",
+        "url": "https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf",
+        "sha256": "9d020e9dd41662f85b6a9a44e300cc9800ef20284c2a689e005f69a84f6e3fd3",
+        "use": "Manufacturer service drawings. PDF page 10 (printed drawing 8), 63-330-4103-2 / 1.93.304103.0/09: populated serial keyboard controller placement. PDF page 11 (printed drawing 9), 56-330-4103-7 / 1.93.304103.0/04: schematic. Unlike the unfinished Zander placement sheet, this supplies reference locations. Drawing revision is not proven specimen-identical; A2 physical-location labels differ from the reconstruction. PDF not redistributed."
       }
     ],
     "specimen": {
@@ -14823,7 +14829,7 @@
       }
     ],
     "serviceInterfaces": {
-      "scope": "Zander reference topology; physical bridge locations and specimen continuity unverified. Terminal numbers are reconstruction identifiers, not observed pad markings.",
+      "scope": "Zander reference topology. Factory placement drawing supports BR1/BR2 photo location candidates; their terminal order, continuity and construction remain unverified. Terminal numbers are reconstruction identifiers, not observed pad markings.",
       "bridges": [
         {
           "ref": "BR1",
@@ -14839,7 +14845,26 @@
           },
           "referenceState": "closed",
           "role": "Isolates the oscillator output from the CPU clock input.",
-          "testUse": "Opening the bridge permits external clock injection on the CPU side; inferred electrical use, not a documented factory procedure."
+          "testUse": "Opening the bridge permits external clock injection on the CPU side; inferred electrical use, not a documented factory procedure.",
+          "physicalEvidence": {
+            "status": "photo-location-candidate",
+            "source": "robotron-factory-drawings",
+            "locator": "PDF page 10, drawing 63-330-4103-2",
+            "photoSource": "photo-top",
+            "photoPixelUncertainty": 8,
+            "photoEndpoints": [
+              [
+                1366,
+                3940
+              ],
+              [
+                1423,
+                3934
+              ]
+            ],
+            "location": "Beyond A7 near the ROM end, beside C6/R10.3",
+            "observation": "A wire-like link is visible between two solder terminals at the factory-designated bridge location. Electrical continuity, construction and source/CPU terminal order are unverified. Endpoint array order is photographic, not schematic pin numbering."
+          }
         },
         {
           "ref": "BR2",
@@ -14855,7 +14880,26 @@
           },
           "referenceState": "closed",
           "role": "Isolates the reset circuit output from the CPU active-low RESET input.",
-          "testUse": "Opening the bridge permits controlled reset injection on the CPU side; inferred electrical use, not a documented factory procedure."
+          "testUse": "Opening the bridge permits controlled reset injection on the CPU side; inferred electrical use, not a documented factory procedure.",
+          "physicalEvidence": {
+            "status": "photo-location-candidate",
+            "source": "robotron-factory-drawings",
+            "locator": "PDF page 10, drawing 63-330-4103-2",
+            "photoSource": "photo-top",
+            "photoPixelUncertainty": 8,
+            "photoEndpoints": [
+              [
+                1310,
+                1320
+              ],
+              [
+                1317,
+                1370
+              ]
+            ],
+            "location": "Cable side of A1, beside R9.1",
+            "observation": "A wire-like link is visible between two solder terminals at the factory-designated bridge location. Electrical continuity, construction and source/CPU terminal order are unverified. Endpoint array order is photographic, not schematic pin numbering."
+          }
         }
       ],
       "referenceTiming": {
@@ -14866,12 +14910,41 @@
         "resetRiseTimeMsLessThan": 1,
         "scope": "Documented reference values, not measurements of this specimen. Existing 683 kHz emulator clock lies within this reference range."
       }
-    }
+    },
+    "referenceVariants": [
+      {
+        "source": "robotron-factory-drawings",
+        "locator": "PDF page 10, drawing 63-330-4103-2",
+        "scope": "Physical-location correspondence only, not proof of electrical pin mapping. Preserve existing stable KiCad/HDL references until nets are independently checked.",
+        "physicalLabelCandidates": [
+          {
+            "reconstructionRef": "A2.3",
+            "factoryRef": "A2.1",
+            "location": "Across from A1, cable side of X1"
+          },
+          {
+            "reconstructionRef": "A2.1",
+            "factoryRef": "A2.2",
+            "location": "ROM side of X1, same board edge as A1/A4"
+          },
+          {
+            "reconstructionRef": "A2.2",
+            "factoryRef": "A2.3",
+            "location": "ROM side of X1, same board edge as CPU"
+          }
+        ],
+        "packageLabels": {
+          "A6": "DL174",
+          "A7": "DL100"
+        },
+        "note": "Factory package markings and the Zander reconstruction values differ; do not replace chip models solely from these printed labels."
+      }
+    ]
   },
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "58655bb5960fc4bd7a5323163b076c4f70c51033"
+      "revision": "33b54651f167db3a2ad59464c5c6b4041a8a67c5"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -14883,7 +14956,7 @@
       "qualification": "e18412de9082a269facfa79cf75c8c3f971aadc30aa7575135b2c779d79bf93c",
       "photoRegistration": "242966e55da427665258d2e738ba0ba3c251cb659a60c0f4b5e3e28036390be0",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
-      "evidence": "6de34950ffd0807fbc602681e8c51b9d9e46995268c154f809ae948a88522cc1"
+      "evidence": "965e3fdbdcf138b22905ecbe3efd00b27c8a59998d0ff6d875e48a5c3fa2f4f8"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
     "geometryScadSha256": "fd85b2e300fb7591ccf756d723e2638b6a2e8fef639ed5ce63ea5074003415e2"

@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Eleventh implementation pass, 2026-10-17. Digital reference qualification passes,
+Twelfth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance the first partial A1:1 top route and local A4 correspondence audit | `58655bb` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance the first partial A1:1 top route, local A4 audit and recovered factory placement evidence | `33b5465` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,37 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the twelfth pass discovers
+
+A source search during the completion audit recovered the manufacturer
+[service drawing set](https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf).
+PDF page 10 (printed drawing 8) contains populated placement drawing
+63-330-4103-2, and page 11 contains factory schematic 56-330-4103-7. The PDF is
+hashed in `evidence.json` and linked, not redistributed. This usable drawing
+changes the next physical-reconstruction step: compare its reference locations
+and pin connections against the specimen before relying on photo-only inference.
+The previously rejected unfinished Zander placement sheet remains unusable.
+
+The drawing supports two visible wire-link candidates: BR1 beside C6/R10.3 at
+the ROM/oscillator end, and BR2 beside R9.1 on the cable side of A1. Original
+photo endpoints and their uncertainty are recorded without assigning schematic
+pin numbers to their order. Bridge inspection in the museum links the factory
+placement and states that terminal order and electrical continuity are unverified.
+The native footprints remain unplaced pending those checks.
+
+The three A2 package locations have different reference labels in the factory
+drawing and current reconstruction. The evidence records this discrepancy as
+physical-location candidates; it does not establish a historical circuit variant.
+It may instead identify a reconstruction placement error. Resolve the pin/net
+correspondence before renaming or moving packages. A6/A7 printed type labels
+also differ from current reference values and are retained for comparison.
+
+Thirteen export tests, model/download metadata checks, ten controller browser
+tests and the production build pass. CAD CI passes for `33b5465`. Geometry,
+connectivity and the existing HDL qualification are unchanged. The plan is still
+incomplete, but the newly recovered source provides substantive work toward the
+remaining placements rather than making specimen measurements the only next step.
 
 ## What the eleventh pass closes
 
