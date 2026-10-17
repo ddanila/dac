@@ -221,6 +221,9 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
  await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
  const photo=panel.locator('[data-candidate-photo="BR2"]');
  await expect(photo.getByRole('img')).toBeVisible();
+ await expect(panel.locator('[data-route-review="br2-terminal-order-review"]')).toContainText('no complete path');
+ await expect(panel.locator('[data-route-review="br2-terminal-order-review"]')).toContainText('closed bridge');
+ expect(data.evidence.routeReviews.find(r=>r.id==='br2-terminal-order-review').copperAssignmentQualified).toBe(false);
  await expect(photo.locator('circle')).toHaveCount(2);
  await expect(photo).toContainText('not numbered pins');
  await expect(panel.locator('[data-selection]')).toContainText('0 with estimated positions');

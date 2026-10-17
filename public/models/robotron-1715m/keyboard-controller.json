@@ -18101,6 +18101,96 @@
             "limitations": "CPU top lead feet and the package obscure true hole centres. The terminal is outside the CPU corner hull, so this is extrapolation. The fit supports further review of the candidate but does not establish a through-board connection or primary-specimen geometry. No physical dimensional tolerance is claimed."
           }
         }
+      },
+      {
+        "id": "br2-terminal-order-review",
+        "status": "unassigned-terminal-order",
+        "refs": [
+          "BR2",
+          "A5",
+          "V4.9"
+        ],
+        "summary": "BR2 remains unplaced. Separate-specimen close-ups show the bridge wire and a trace leaving the ROM-facing endpoint toward the long board-edge corridor. The two underside endpoint candidates are identifiable by their relation to the R9 resistor bank, but no complete path to CPU RESET or V4.9 collector has been established. CPU pin 26 has no visible underside trace at its solder joint in the reviewed close-up; this is not evidence of a disconnected pin.",
+        "specimenId": "comparison-20261017",
+        "endpointObservations": [
+          {
+            "source": "comparison-photo-080406304",
+            "side": "top",
+            "pixelEndpoints": [
+              [
+                1785,
+                810
+              ],
+              [
+                1785,
+                995
+              ]
+            ],
+            "endpointOrder": "ROM-facing, cable-facing; geometric names only, not electrical source/CPU sides",
+            "pixelUncertainty": 12,
+            "sha256": "c899c7aba12b0f1085f5b71da44e524611aedf37e3e28567c602cb3b746e6fa2"
+          },
+          {
+            "source": "comparison-photo-080351042",
+            "side": "bottom",
+            "pixelEndpoints": [
+              [
+                1020,
+                1110
+              ],
+              [
+                1020,
+                1283
+              ]
+            ],
+            "endpointOrder": "ROM-facing, cable-facing; provisional local correspondence from adjacent R9 bank, not a qualified registration",
+            "pixelUncertainty": 12,
+            "sha256": "e41032fe1b669f0c5646e6d5f787cdadc43c840beddd171d29b3c6b050249730"
+          }
+        ],
+        "partialTraceObservation": {
+          "source": "comparison-photo-080406304",
+          "side": "top",
+          "pixelPolyline": [
+            [
+              1785,
+              810
+            ],
+            [
+              2050,
+              555
+            ],
+            [
+              2050,
+              20
+            ]
+          ],
+          "pixelUncertainty": 15,
+          "detail": "Approximate centreline from the ROM-facing bridge end to the upper image boundary along the board-edge corridor. Stops at image boundary; no assigned net, width, native route or via. Overlapping 080404036 and 080401625 photos show neighboring parallel traces; their identity must be tracked without jumping between lanes or confusing opposite-side copper visible through the board.",
+          "sha256": "c899c7aba12b0f1085f5b71da44e524611aedf37e3e28567c602cb3b746e6fa2"
+        },
+        "cpuObservation": {
+          "source": "comparison-photo-080342577",
+          "ref": "A5",
+          "pin": "26",
+          "approximatePixel": [
+            1958,
+            2508
+          ],
+          "pixelUncertainty": 12,
+          "detail": "Sixth joint from pin 21 on the outer CPU row. No visible underside branch at this joint in the local crop; top-side attachment remains to be traced.",
+          "sha256": "aa18874b9fba8db44216f8531ad9caab9125839a07838616bf1237f02a6b15fa"
+        },
+        "reviewedSources": [
+          "comparison-photo-080406304",
+          "comparison-photo-080351042",
+          "comparison-photo-080404036",
+          "comparison-photo-080401625",
+          "comparison-photo-080342577",
+          "comparison-photo-080345436"
+        ],
+        "copperAssignmentQualified": false,
+        "nextEvidence": "Follow a continuous path from an individually identified bridge endpoint to A5:26 or V4.9:C, including any layer transition, then check correspondence on the primary specimen. A closed bridge connects both ends, so a continuity beep across it cannot determine terminal order. No bridge opening is requested or implied by this review."
       }
     ],
     "comparisonSpecimens": [
@@ -19133,7 +19223,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "b1d32cdce958ca1e0cc12ca4f5ac9a8d9c929460"
+      "revision": "bd02118e9f23fbf822ff80deb9dd0db53900c048"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -19145,7 +19235,7 @@
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
-      "evidence": "f4dd72e446da4c25907203db9714efa7dab8bbf9dce440d6f3247feb83f00545",
+      "evidence": "c8f5041fda3c99eed289c46787303faad59c00903d6957fcdf0b7443c86f58cd",
       "componentEvidence": "5e688c1d1c92322d57c445e809408b679b01d034288860f127a3f8a12704a491"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",

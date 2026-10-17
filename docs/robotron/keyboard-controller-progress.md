@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Thirty-eighth implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirty-ninth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-four resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `b1d32cd` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-four resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit, withdrawn clock-route review and unassigned BR2 trace review | `bd02118` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,31 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirty-ninth pass establishes
+
+The comparison photographs now have a recorded BR2 terminal-order review:
+unnumbered top/underside endpoints, a partial trace from the ROM-facing end into
+the board-edge corridor, and the CPU pin-26 underside observation. These are
+comparison-specimen pixel observations, not primary-board placement coordinates.
+No complete bridge-to-CPU or bridge-to-reset-transistor path was established.
+Parallel tracks and opposite-side copper visible through the board make a lane
+swap possible; the record preserves that limitation instead of assigning a net.
+
+BR2 remains unplaced. CPU pin 26's lack of a visible underside branch is not a
+disconnection claim: its top-side attachment remains to be traced. The museum
+exposes this review for BR2, A5 and V4.9 selections. A closed bridge cannot resolve
+source/CPU terminal order from a continuity beep across its two ends.
+
+There are still 30 unplaced schematic parts, 25 assigned copper sections,
+229 airwires and 294 unresolved artwork segments. Geometry and firmware are
+unchanged; this pass adds trace-review evidence and its museum presentation.
+
+Validation: all 24 exporter and 20 browser tests pass, including a check that
+BR2's review stays unqualified and its candidate endpoints never become native
+pad highlights. Source/archive metadata and both sync checks pass. Layout,
+connectivity and generated SCAD are byte-identical to the previous revision;
+no mesh, visual-baseline or firmware qualification rerun was required.
 
 ## What the thirty-eighth pass implements
 
