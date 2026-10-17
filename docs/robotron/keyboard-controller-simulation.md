@@ -93,3 +93,10 @@ Its continuous LS-TTL macromodel is explicitly exploratory; it is not tuned to t
 emulator's clock or qualified as a DL000 device model. The probe checks oscillation,
 BR1 isolation, timestep refinement and timing-capacitor sensitivity. Full firmware
 coupling and analog model calibration remain open.
+
+`make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` combines the electrical
+clock/reset sources with TV80 and S600, with BR1/BR2 closed. It checks boot and I/O
+progress; matrix sensing and output loads still use digital boundaries. The nominal
+reset model's failure with a 10 ns supply ramp remains a model-qualification issue.
+See the analog README for the explicit supply/receiver assumptions and retained
+traces. This target does not establish complete board or scenario qualification.
