@@ -82,7 +82,7 @@ Generated decks, reports and failure traces stay in `build/`.
 | `output_probe.py` | Serial/cable receiver voltages, LED currents, supply/return paths and load sensitivity. |
 | `serial_cosim.py` | Raw HDL-to-cable-to-receiver bit transport with explicit setup/hold stimulus; not CPU bus timing or S600 framing. |
 | `firmware_io_cosim.py` | S600-driven electrical matrix/cable feedback with external clock/reset through the BR service boundary; excludes the oscillator/reset generators. |
-| `make qualify-keyboard-board-scenario S600_ROM=/path/to/s600.bin` | Paired full-board contact runs; retained-input checks, reset/restart and serial timing agreement, and sampled receiver margins. Numerical budgets do not establish historical timing or device calibration. |
+| `make qualify-keyboard-board-scenario S600_ROM=/path/to/s600.bin` | Paired full-board contact runs; retained-input checks, absolute electrical clock phase with sample uncertainty, reset/restart and serial timing agreement, and sampled receiver margins. Numerical budgets do not establish historical timing or device calibration. |
 | `bus_timing_probe.py` / `firmware_drive_compare.py` | CPU data-drive setup/hold regression and S600 logical comparison; physical bus contention and pin delays remain unqualified. |
 | `resolved_bus_probe.py` | ROM pin mapping, shared CPU/ROM/latch bus resolution and deliberate contention. |
 | `build_bridge.py` / `bridge_probe.py` | Reproducible ngspice–Icarus bridge and explicit sink-enable transport. |
