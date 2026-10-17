@@ -4,8 +4,8 @@ Recorded 2026-10-16. Status: implementation in progress; physical reconstruction
 and specimen fidelity are not complete. Reference digital comparisons now pass;
 BR1/BR2 isolation tests and reset/cable transcription review are implemented;
 cycle timing and analog boundaries remain unqualified. See the
-[implementation record](keyboard-controller-progress.md) for commits, validation
-results and unresolved work. The [completion audit and specimen verification guide](keyboard-controller-verification.md)
+[status and workflow](keyboard-controller-progress.md) for authoritative artifacts
+and unresolved work. The [completion audit and specimen verification guide](keyboard-controller-verification.md)
 maps each requirement to its evidence and lists the remaining observations.
 
 Reconstruct the keyboard controller as a KiCad schematic and PCB, generate its
