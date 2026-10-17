@@ -93,8 +93,11 @@ assumptions, not specimen calibration. Electrical bus/pullup loading, calibrated
 and brownout behavior remain qualification gaps. CPU/ROM/latch contention is now
 represented at the digital resolution level. The matrix fixture is diode-free; its phantom-row conduction
 does not establish the specimen's key construction. The static mapping check and live bus-fixture test are separate from firmware
-qualification. Full boot and scenario results remain required before claiming
-complete firmware-driven feedback.
+qualification. The full-board harness accepts timed contact recipes while retaining electrical
+clock/reset and closed BR1/BR2. Full boot and scenario qualification remains
+pending: the old 1 ns bridge setting produced time-ordering diagnostics with
+electrical matrix feedback. The configurable 10 ns setting is under test; service
+fixture success does not qualify that oscillator-coupled boundary.
 
 The core's archived clock/reset baseline demonstrates standard S600 boot and idle
 scanning under electrical clock and power-on reset. Its digital matrix, direct ROM
