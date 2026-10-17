@@ -95,10 +95,19 @@ does not establish the specimen's key construction. The static mapping check and
 qualification. Full boot and scenario results remain required before claiming
 complete firmware-driven feedback.
 
+The core's archived clock/reset baseline demonstrates standard S600 boot and idle
+scanning under electrical clock and power-on reset. Its digital matrix, direct ROM
+input and older CPU drive boundary limit that evidence; the assembled full-board
+configuration and contact/transmit scenarios still require qualification.
+
 Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
 the tested explicit sink-enable interface. The nominal reset model also fails to
 produce a useful pulse with a 10 ns supply ramp. These are retained qualification
 issues, not reasons to block implementation on missing specimen evidence.
+The reset probe now exposes external source resistance and records supply current.
+The fast-ramp case recovers with an exploratory finite source resistance, so the
+ideal source is part of the model uncertainty; this does not characterize the
+specimen power supply.
 
 Device characterization already exposes a specific limit: the generic NPN model
 misses the published higher-current SC236D DC gain ranges. Fitting must preserve
