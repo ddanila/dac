@@ -4267,6 +4267,226 @@
     "routes": [
       {
         "evidence": {
+          "detail": "Visible top copper joining the right leads of R3 and R4.1. The common net is +5V in the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. This local connection does not establish its supply feed or hidden continuation.",
+          "geometrySha256": "7ac76dcf97e15589a20a2f314e859bc35573465191a28ef193fecd67dcbc3cbc",
+          "group": "reset-pair-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1704,
+                    751
+                  ],
+                  [
+                    1707,
+                    797
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "1240fe26-e0fc-412e-b233-fd3811e4d447",
+        "net": "/+5V",
+        "points": [
+          [
+            -111.830529,
+            21.113027
+          ],
+          [
+            -108.407154,
+            21.183361
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
+          "detail": "Visible top copper joining the right leads of R3 and R4.1. The common net is +5V in the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. This local connection does not establish its supply feed or hidden continuation.",
+          "geometrySha256": "fadf3ad3c630632d0fba6f676da91dcab84cb0310189b2359564aca154d8ab69",
+          "group": "reset-pair-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1688,
+                    752
+                  ],
+                  [
+                    1704,
+                    751
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "49b7261f-c582-42e0-ad01-ab98b4c6b8d8",
+        "net": "/+5V",
+        "points": [
+          [
+            -111.771955,
+            19.943397
+          ],
+          [
+            -111.830529,
+            21.113027
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
+          "detail": "Estimated attachment from photo-positioned resistor pad to visible shared copper; lead/solder obscures the precise hole and copper boundary. The common net is +5V in the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. This local connection does not establish its supply feed or hidden continuation.",
+          "geometrySha256": "734d2dc07f3d31214eea684115a36e3a0444b5d904863293ceb14186d4426d6d",
+          "group": "reset-pair-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1691,
+                    800
+                  ],
+                  [
+                    1680,
+                    800
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred"
+        },
+        "id": "a7355e9c-6829-41cd-bb03-a9135945c564",
+        "net": "/+5V",
+        "points": [
+          [
+            -108.199605,
+            20.006884
+          ],
+          [
+            -108.210332,
+            19.204648
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
+          "detail": "Estimated attachment from photo-positioned resistor pad to visible shared copper; lead/solder obscures the precise hole and copper boundary. The common net is +5V in the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. This local connection does not establish its supply feed or hidden continuation.",
+          "geometrySha256": "3d63bfcbb7741871b3213525e010753f6176d9802ef7035c577e4e44d65dbe35",
+          "group": "reset-pair-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1677,
+                    753
+                  ],
+                  [
+                    1688,
+                    752
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred"
+        },
+        "id": "d2cc32a8-8b8a-4bad-979a-943f32536263",
+        "net": "/+5V",
+        "points": [
+          [
+            -111.708451,
+            19.138192
+          ],
+          [
+            -111.771955,
+            19.943397
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
+          "detail": "Visible top copper joining the right leads of R3 and R4.1. The common net is +5V in the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. This local connection does not establish its supply feed or hidden continuation.",
+          "geometrySha256": "dae174afa0ac0124f64980c0b5d95d79e6e956acef6763e3b4ae9ecdfe7f27fd",
+          "group": "reset-pair-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1707,
+                    797
+                  ],
+                  [
+                    1691,
+                    800
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "faca42a7-4620-40bf-aaf2-58b2512a6dbc",
+        "net": "/+5V",
+        "points": [
+          [
+            -108.407154,
+            21.183361
+          ],
+          [
+            -108.199605,
+            20.006884
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
           "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted.",
           "geometrySha256": "a7363c2517be2d871a03ad2f0fe14f3e54ff6a1fdacec9cf4cb10f67dc6fe443",
           "group": "a1-pin1-top-partial",
@@ -12957,12 +13177,12 @@
   "qualification": {
     "components": 70,
     "drc": {
-      "unconnectedItems": 234,
+      "unconnectedItems": 233,
       "violations": {
         "track_dangling": 1
       }
     },
-    "electricalCopperSegments": 8,
+    "electricalCopperSegments": 13,
     "erc": [
       {
         "description": "Label connected to only one pin",
@@ -16405,23 +16625,23 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "b6ba8d5b82e5c7617b4d19f21f8dd67632e91933"
+      "revision": "1217ab20ee43dac049999261b4f38099eb302a04"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "fa48b5862a219d8b4defbdd0422e715195091b613723b04b78831060103d5105",
+      "layout": "af882e429ca9d52f13699112d0ea5516bf064f9180e98aeac4ae854a935f6795",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "ad899708c775e0224b79a3bfdc26156002c3af8d001919fa741a222229a0a38f",
+      "qualification": "e3e7ef42942a61e02e1503a4fdb47d087d766e2fe077bbc2541a15c9c8fe2a11",
       "photoRegistration": "b2e1a0505bd6586d72fb42d0ae310d22463f93a2bdf710c3d293215d60173e0f",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
       "evidence": "cc932e936696f36077cde4d3ef2ae932389e1e0d6510175845657a49d74c740d",
       "componentEvidence": "37722a04f881e75786ab0b45aed7b062d9f479658cb21e789daca172f0f85911"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "3843e1139f1746c7072e8ea3b5b7e632fbe969d53e7bdc75ade81a9a22975756"
+    "geometryScadSha256": "65ca356e1812e19e11c3c07b6aaf4d691feabcd9fcea5ab4b84cd61a35fd48b4"
   },
   "cosimulation": {
     "bus": {

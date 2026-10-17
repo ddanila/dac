@@ -6,7 +6,7 @@ test('controller net selection preserves physical pin identity and unplaced evid
  const s=controllerSelection(data,'net','/TA_DATEN');
  expect(s.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:4','L1.4:1','R10.2:2']);
  expect(s.points).toHaveLength(2);expect(s.unplaced.sort()).toEqual(['L1.4']);
- expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&r.net==='/WR_N')).toBe(true);
+ expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&['/WR_N','/+5V'].includes(r.net))).toBe(true);
  const model=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/model.json',import.meta.url)));
  expect(model.keyboardControllerSource['keyboard-controller/generated/controller.scad']).toBe(data.source.geometryScadSha256);
  expect(data.layout.unresolvedArtwork.every(r=>r.net===null)).toBe(true);
@@ -104,9 +104,10 @@ test('partial copper review distinguishes observed sections from inferred attach
  await expect(panel.locator('[data-selection]')).toContainText('1 inferred');
  await expect(panel.locator('[data-pins]')).toContainText('not proof of continuity to CPU WR');
  await expect(panel.locator('[data-qualification]')).toContainText('1 track dangling');
- await expect(panel.locator('[data-route-id]')).toHaveCount(8);
- await expect(panel.locator('[data-evidence-status="inferred"]')).toHaveAttribute('stroke-dasharray','.5 .3');
- await expect(panel.locator('[data-route-id]').first()).toHaveAttribute('stroke','#ffe16a');
+ await expect(panel.locator('[data-route-id]')).toHaveCount(13);
+ const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(3);
+ for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
+ await expect(panel.locator('[data-route-id]').filter({hasText:'WR_N:'}).first()).toHaveAttribute('stroke','#ffe16a');
  await panel.getByLabel('Controller board side').selectOption('bottom');
  await expect(panel.locator('[data-route-id]')).toHaveCount(0);
 });
@@ -220,4 +221,15 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
  expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
  await panel.getByRole('button',{name:'Clear highlight',exact:true}).click();
  await expect(panel.locator('[data-candidate-photo]')).toHaveCount(0);
+});
+
+
+test('reset supply selection includes only assigned local copper',()=>{
+ const selection=controllerSelection(data,'component','R3');
+ expect(selection.routes).toHaveLength(5);
+ expect(selection.routes.every(r=>r.net==='/+5V'&&r.side==='top')).toBe(true);
+ expect(selection.routes.filter(r=>r.evidence.status==='observed')).toHaveLength(3);
+ expect(selection.routes.filter(r=>r.evidence.status==='inferred')).toHaveLength(2);
+ expect(selection.unplaced).toEqual([]);
+ expect(data.qualification.drc.unconnectedItems).toBe(233);
 });
