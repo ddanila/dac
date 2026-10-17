@@ -104,8 +104,8 @@ test('partial copper review distinguishes observed sections from inferred attach
  await expect(panel.locator('[data-selection]')).toContainText('1 inferred');
  await expect(panel.locator('[data-pins]')).toContainText('not proof of continuity to CPU WR');
  await expect(panel.locator('[data-qualification]')).toContainText('1 track dangling');
- await expect(panel.locator('[data-route-id]')).toHaveCount(21);
- const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(5);
+ await expect(panel.locator('[data-route-id]')).toHaveCount(24);
+ const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(7);
  for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
  await expect(panel.locator('[data-route-id]').filter({hasText:'WR_N:'}).first()).toHaveAttribute('stroke','#ffe16a');
  await panel.getByLabel('Controller board side').selectOption('bottom');
@@ -194,7 +194,7 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
  await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
- expect(data.layout.unplaced).toHaveLength(41);
+ expect(data.layout.unplaced).toHaveLength(39);
 });
 
 test('candidate photo endpoints never become net-connected pads',async({page})=>{
@@ -224,14 +224,14 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
 });
 
 
-test('reset supply selection includes only assigned local copper',()=>{
+test('supply selection retains disconnected islands on the same reference net',()=>{
  const selection=controllerSelection(data,'component','R3');
- expect(selection.routes).toHaveLength(13);
+ expect(selection.routes).toHaveLength(16);
  expect(selection.routes.every(r=>r.net==='/+5V'&&r.side==='top')).toBe(true);
- expect(selection.routes.filter(r=>r.evidence.status==='observed')).toHaveLength(9);
- expect(selection.routes.filter(r=>r.evidence.status==='inferred')).toHaveLength(4);
+ expect(selection.routes.filter(r=>r.evidence.status==='observed')).toHaveLength(10);
+ expect(selection.routes.filter(r=>r.evidence.status==='inferred')).toHaveLength(6);
  expect(selection.unplaced).toEqual([]);
- expect(data.qualification.drc.unconnectedItems).toBe(231);
+ expect(data.qualification.drc.unconnectedItems).toBe(230);
 });
 
 test('numbered component photo observations remain distinct from native pad coordinates',async({page})=>{
