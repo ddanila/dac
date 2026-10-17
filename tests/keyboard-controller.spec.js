@@ -122,3 +122,45 @@ test('local A4 photo fit retains extrapolation limits',async({page})=>{
  expect(data.bottomRegistration.localRegions[0].copperAssignmentQualified).toBe(false);
  expect(data.layout.vias).toHaveLength(0);
 });
+
+test('3D route highlights preserve side, provenance and board attachment',async({page})=>{
+ await page.goto('/tests/model-harness.html');
+ const result=await page.evaluate(async()=>{
+  const T=await import('/tests/browser-three.js'),{loadRobotron}=await import('/src/robotron-model.js');
+  const model=await loadRobotron(new T.CanvasTexture(document.createElement('canvas')));
+  const board=model.objects.get('keyboard-controller-board'),before=board.geometry.attributes.position.array.slice();
+  const routes=[{id:'top-observed',side:'top',points:[[1,2],[4,6]],evidence:{status:'observed'}},{id:'bottom-inferred',side:'bottom',points:[[1,2],[4,6]],evidence:{status:'inferred'}}];
+  model.keyboardControllerSelection([[1,2]],routes);
+  const markers=board.children.filter(o=>o.name==='controller-route-highlight'),pad=board.children.find(o=>o.name==='controller-reference-pad-highlight');
+  const top=markers.find(m=>m.userData.evidenceStatus==='observed'),bottom=markers.find(m=>m.userData.evidenceStatus==='inferred');
+  const a=top.geometry.attributes.position,b=bottom.geometry.attributes.position,p=pad.geometry.attributes.position;
+  const delta=[a.getX(1)-a.getX(0),a.getY(1)-a.getY(0)],sideSeparation=a.getZ(0)-b.getZ(0);
+  const padAligned=[a.getX(0),a.getY(0),a.getZ(0)].every((v,i)=>v===[p.getX(0),p.getY(0),p.getZ(0)][i]);
+  let disposed=0;for(const m of markers){m.geometry.addEventListener('dispose',()=>disposed++);m.material.addEventListener('dispose',()=>disposed++);}
+  board.position.x+=12;const attached=markers.every(m=>m.parent===board);
+  const dashed=bottom.material.isLineDashedMaterial,ids=markers.flatMap(m=>m.userData.routeIds).sort();
+  model.keyboardControllerSelection([]);
+  return {delta,sideSeparation,padAligned,attached,dashed,ids,disposed,remaining:board.children.filter(o=>o.name==='controller-route-highlight').length,unchanged:before.every((v,i)=>v===board.geometry.attributes.position.array[i])};
+ });
+ expect(result).toEqual({delta:[3,4],sideSeparation:2,padAligned:true,attached:true,dashed:true,ids:['bottom-inferred','top-observed'],disposed:4,remaining:0,unchanged:true});
+});
+
+test('net selection forwards only assigned routes and clears them on close',async({page})=>{
+ expect(controllerSelection(data,'net','/WR_N').routes).toHaveLength(8);
+ expect(controllerSelection(data,'net','/TA_DATEN').routes).toHaveLength(0);
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(points,routes=[]){window.selectedRouteIds=routes.map(r=>r.id);}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/WR_N');
+ await expect.poll(()=>page.evaluate(()=>window.selectedRouteIds.length)).toBe(8);
+ await panel.evaluate(e=>e.open=false);
+ await expect.poll(()=>page.evaluate(()=>window.selectedRouteIds.length)).toBe(0);
+ await panel.evaluate(e=>e.open=true);
+ await expect.poll(()=>page.evaluate(()=>window.selectedRouteIds.length)).toBe(8);
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
+ await expect.poll(()=>page.evaluate(()=>window.selectedRouteIds.length)).toBe(0);
+});

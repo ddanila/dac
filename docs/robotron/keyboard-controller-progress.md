@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Tenth implementation pass, 2026-10-17. Digital reference qualification passes,
+Eleventh implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -11,13 +11,32 @@ discrete component identification and specimen measurements are still open.
 | --- | --- | --- |
 | `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance the first partial A1:1 top route and local A4 correspondence audit | `58655bb` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
-| `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
+| `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
 Full-resolution owner photos establish **05-330-4102-8 1c**, correcting the former
 model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the eleventh pass closes
+
+Selecting a controller component or net now highlights its assigned copper in the
+3D museum as well as the circuit drawing. The overlay uses exported native route
+coordinates and IDs: observed sections are gold, inferred sections dashed orange,
+and unresolved assigned sections dashed cyan. Top and underside sections retain
+their respective board heights. Highlights attach to the board through inspection
+movement, and closing or clearing selection disposes them. Unassigned artwork is
+excluded from net highlighting. These overlays identify evidence, not live
+current flow or measured continuity.
+
+The real-model browser tests verify route selection and exclusion, top/bottom
+coordinates, pad alignment, provenance styling, board attachment, geometry
+preservation and resource disposal. Ten controller tests pass in Chromium,
+Firefox and WebKit (30 cases), and the production build passes. The selected
+A1:1 route was also rendered and visually checked against its model trace.
+CAD, HDL and physical reconstruction status are unchanged. CPU WR/RD photo
+inspection still does not establish a continuous path to A1.
 
 ## What the tenth pass establishes
 

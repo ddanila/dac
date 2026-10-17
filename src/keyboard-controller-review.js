@@ -5,7 +5,8 @@ export function controllerSelection(data,kind,value){
  const refs=Object.keys(components).filter(ref=>kind==='component'?ref===value:Object.values(components[ref].pins).includes(value));
  const placed=new Map(data.layout.components.map(c=>[c.ref,c]));
  const pins=refs.flatMap(ref=>Object.entries(components[ref].pins).filter(([,net])=>kind==='component'||net===value).map(([pin,net])=>({ref,pin,net,position:placed.get(ref)?.pads.find(p=>p.pin===pin)?.position||null})));
- return {refs,pins,points:pins.filter(p=>p.position).map(p=>p.position),unplaced:refs.filter(ref=>!placed.has(ref))};
+ const nets=new Set(pins.map(p=>p.net).filter(Boolean));
+ return {refs,pins,points:pins.filter(p=>p.position).map(p=>p.position),routes:data.layout.routes.filter(r=>nets.has(r.net)),unplaced:refs.filter(ref=>!placed.has(ref))};
 }
 export function installKeyboardControllerReview(scene){
  const panel=document.createElement('details');panel.id='keyboard-controller-review';panel.dataset.robotron='';
@@ -61,7 +62,7 @@ export function installKeyboardControllerReview(scene){
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
   }else get('[data-selection]').textContent='Select a component or net to inspect its pins.';
-  scene?.keyboardControllerSelection(panel.open?(selection?.points||[]):[]);draw();
+  scene?.keyboardControllerSelection(panel.open?(selection?.points||[]):[],panel.open?(selection?.routes||[]):[]);draw();
  }
  async function load(){
   if(data||pending)return;pending=true;status.textContent='Loading controller reconstruction…';
@@ -83,7 +84,7 @@ export function installKeyboardControllerReview(scene){
    live();select('component','A1');get('[data-component]').value='A1';
   }catch(error){data=null;get('[data-tools]').hidden=true;status.textContent=`Controller review could not load: ${error.message}. Close and reopen to retry.`;}finally{pending=false;}
  }
- panel.addEventListener('toggle',()=>{if(panel.open){if(data)scene?.keyboardControllerSelection(selection?.points||[]);else load();}else scene?.keyboardControllerSelection([]);});
+ panel.addEventListener('toggle',()=>{if(panel.open){if(data)scene?.keyboardControllerSelection(selection?.points||[],selection?.routes||[]);else load();}else scene?.keyboardControllerSelection([]);});
  get('[data-component]').onchange=e=>select('component',e.target.value);get('[data-net]').onchange=e=>select('net',e.target.value);get('[data-side]').onchange=draw;
  get('[data-zoom]').oninput=draw;get('[data-view-controller]').onclick=()=>document.querySelector('[data-view="keyboard-inside"]')?.click();
  get('[data-clear]').onclick=()=>{get('[data-component]').value='';get('[data-net]').value='';select('component','');};

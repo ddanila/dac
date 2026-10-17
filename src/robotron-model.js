@@ -1043,13 +1043,30 @@ export async function loadRobotron(displayTexture, onProgress = () => {}, onDeta
   }
   const circuitOutlines=[];
   let controllerMarker;
-  function keyboardControllerSelection(points){
+  const controllerRouteMarkers=[];
+  function keyboardControllerSelection(points,routes=[]){
     if(controllerMarker){controllerMarker.removeFromParent();controllerMarker.geometry.dispose();controllerMarker.material.dispose();controllerMarker=null;}
+    for(const marker of controllerRouteMarkers){marker.removeFromParent();marker.geometry.dispose();marker.material.dispose();}
+    controllerRouteMarkers.length=0;
     const board=objects.get('keyboard-controller-board');
     if(board && points.length){
       const geometry=new THREE.BufferGeometry().setFromPoints(points.map(([x,y])=>new THREE.Vector3(x+data.keyboard.controllerX,y+data.keyboard.y+data.keyboard.controllerY,data.keyboard.controllerZ+1.8)));
       controllerMarker=new THREE.Points(geometry,new THREE.PointsMaterial({color:0xffe16a,size:7,sizeAttenuation:false,depthTest:false}));
       controllerMarker.name='controller-reference-pad-highlight';controllerMarker.raycast=()=>{};controllerMarker.renderOrder=105;board.add(controllerMarker);
+    }
+    if(board)for(const status of ['observed','inferred','unresolved']){
+      const selected=routes.filter(r=>r.evidence?.status===status);
+      if(!selected.length)continue;
+      const vertices=[];
+      for(const route of selected){
+        const z=data.keyboard.controllerZ+(route.side==='bottom'?-.2:1.8);
+        for(let i=1;i<route.points.length;i++)for(const [x,y]of [route.points[i-1],route.points[i]])vertices.push(new THREE.Vector3(x+data.keyboard.controllerX,y+data.keyboard.y+data.keyboard.controllerY,z));
+      }
+      const geometry=new THREE.BufferGeometry().setFromPoints(vertices);
+      const material=status==='observed'?new THREE.LineBasicMaterial({color:0xffe16a,depthTest:false}):new THREE.LineDashedMaterial({color:status==='inferred'?0xffa64d:0x50b5c8,dashSize:1,gapSize:.6,depthTest:false});
+      const marker=new THREE.LineSegments(geometry,material);marker.computeLineDistances();
+      marker.name='controller-route-highlight';marker.userData.evidenceStatus=status;marker.userData.routeIds=selected.map(r=>r.id);
+      marker.raycast=()=>{};marker.renderOrder=104;board.add(marker);controllerRouteMarkers.push(marker);
     }
     inspectionDirty=true;
   }
