@@ -17,6 +17,16 @@ The result must distinguish verified electrical connectivity, photo-supported
 physical routing, and tested digital behavior. Successful simulation does not
 prove historical copper placement or specimen timing.
 
+## Reference simulation and specimen fidelity
+
+Use standard S600 firmware to complete the reference-board circuit simulation.
+Missing specimen measurements, replacement ROM contents and physical pad mapping
+must not block electrical modeling from the published schematic. Implement the
+analog sections and couple them to the existing HDL as described in the
+[circuit simulation decision and workflow](keyboard-controller-simulation.md).
+Exact specimen agreement remains a separate qualification task; the physical
+reconstruction requirements below remain in scope.
+
 ## Existing foundation
 
 - The `3d-models` repository contains the canonical Robotron geometry under
