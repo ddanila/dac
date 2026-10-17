@@ -81,3 +81,9 @@ analog pullup/load using explicit sink-enable transport. Direct Z transport thro
 chosen interface. The probe qualifies transport and HDL delay; its output impedance
 is a nominal surrogate. It does not yet qualify shared buses or close the board's
 CPU/reset/oscillator feedback loop.
+
+`analog/reset_probe.py` now generates the reset network from the pinned schematic,
+including BR2 and its CPU-side load. It checks power-on assertion/release, power
+cycling, bridge isolation and timestep refinement. Semiconductor parameters and
+input loading remain nominal assumptions. Coupling this electrical reset and the
+oscillator to firmware execution is still required.
