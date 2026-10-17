@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Fortieth implementation pass, 2026-10-17. Digital reference qualification passes,
+Forty-first implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-four resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit, withdrawn clock-route review and unassigned BR2 trace review | `4e4cc8c` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-four resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit, withdrawn clock-route review and unassigned BR2 trace review | `445854f` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,35 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the forty-first pass establishes
+
+The SC308 and SC236 package conventions are now separately sourced and exposed
+in component inspection. The SC307–SC309 manufacturer sheet shows B–E–C, with
+a centre emitter; the SC236–SC239 device sheet shows E–B–C, with a centre base.
+These are orders in the source drawings, not installed-board left-to-right pin
+maps. Both use the L3/12 case and nominal 4.2 × 4.2 × 2.5 mm body dimensions.
+The source URLs, SHA-256 hashes, drawing views and dimensions are recorded in
+CAD `evidence.json.packageReferences`; PDFs are not redistributed.
+
+New comparison side views show 308/C and C36/D markings consistent with the
+reference families on that specimen. V4.1–V4.9 link to the SC308 package record;
+V3.1/V3.2 link to SC236. Primary device identity, outer-terminal orientation,
+board-entry locations and physical continuity remain unresolved. All eleven
+transistors remain unplaced; the total remains 30 unplaced schematic parts.
+
+Museum inspection shows the applicable package drawing and its qualification
+separately from physical placement. The legacy visual bodies still reuse generic
+TO-92 geometry, which is now explicitly documented as a remaining approximation.
+The next migration must distinguish reference body dimensions from measured
+stand-off and lead bends. No schematic, HDL, placement or copper was changed.
+
+Validation: 24 exporter tests and all 21 browser tests pass, including the
+centre-emitter/centre-base distinction, exact package source links, view
+qualification and absence of native pad highlights for both transistor families.
+Metadata/archive checks, source synchronization and production build pass.
+Layout, generated SCAD and connectivity are byte-identical to the previous
+revision; no mesh, visual-baseline or firmware qualification rerun was needed.
 
 ## What the fortieth pass establishes
 

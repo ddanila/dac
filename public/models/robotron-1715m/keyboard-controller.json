@@ -17506,6 +17506,22 @@
           "V4.9"
         ],
         "use": "Transistor bank and lead entry views; individual reference mapping not established. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      },
+      {
+        "id": "sc236-package-datasheet",
+        "url": "https://hjs.lima-city.de/DDR/index.php?pdf=SC236",
+        "sha256": "c5c52b6df912f167f14b70feb2963a08ce9fc933b3edad8bff8b4073eb43bb94",
+        "title": "SC236 / SC237 / SC238 / SC239",
+        "use": "PDF page 1 package drawing, L3/12 (TGL 11811). Reference terminal arrangement and nominal dimensions; not specimen placement or measured continuity. PDF not redistributed.",
+        "credit": "Scanned bilingual device data sheet, printed pages 13\u201314 on PDF page 1; issuing publication not identified in excerpt."
+      },
+      {
+        "id": "sc307-package-datasheet",
+        "url": "https://hjs.lima-city.de/DDR/index.php?pdf=SC307",
+        "sha256": "93414938485c6273f58339e867e557b2ebb333a6f02a57d1a8ef305246be694a",
+        "title": "Si-pnp-Transistoren SC307 bis SC309",
+        "use": "PDF page 1 package drawing, L3/12 (TGL 11811). Reference terminal arrangement and nominal dimensions; not specimen placement or measured continuity. PDF not redistributed.",
+        "credit": "Manufacturer communication from VEB Mikroelektronik Anna Seghers Neuhaus, identified on PDF page 1."
       }
     ],
     "specimen": {
@@ -18232,6 +18248,64 @@
           "comparison-photo-080541857"
         ]
       }
+    ],
+    "packageReferences": [
+      {
+        "id": "sc308-l3-12",
+        "types": [
+          "SC308C"
+        ],
+        "source": "sc307-package-datasheet",
+        "locator": "PDF page 1, Bild 1, end-view drawing",
+        "case": "L3/12, TGL 11811",
+        "polarity": "PNP",
+        "drawingView": "End view with the flat edge on the left and the rounded corners on the right; read the terminals from top to bottom. This is not an installed-board left-to-right pin order.",
+        "terminalOrderInDrawing": [
+          "B",
+          "E",
+          "C"
+        ],
+        "centreTerminal": "E",
+        "bodyDimensionsMm": {
+          "width": 4.2,
+          "height": 4.2,
+          "depth": 2.5
+        },
+        "outerLeadSpanMm": 2.5,
+        "leadSectionMm": [
+          0.4,
+          0.3
+        ],
+        "scope": "Reference package convention. Comparison photos show 308/C markings consistent with this family; primary specimen markings, individual body orientation, lead bends and PCB pad correspondence remain unqualified."
+      },
+      {
+        "id": "sc236-l3-12",
+        "types": [
+          "SC236D"
+        ],
+        "source": "sc236-package-datasheet",
+        "locator": "PDF page 1, dimensions drawing",
+        "case": "L3/12, TGL 11811",
+        "polarity": "NPN",
+        "drawingView": "Lead labels in the side drawing read E, B, C from top to bottom; the adjacent end view shows a flat left edge and rounded right corners. This is not an installed-board left-to-right pin order.",
+        "terminalOrderInDrawing": [
+          "E",
+          "B",
+          "C"
+        ],
+        "centreTerminal": "B",
+        "bodyDimensionsMm": {
+          "width": 4.2,
+          "height": 4.2,
+          "depth": 2.5
+        },
+        "outerLeadSpanMm": 2.5,
+        "leadSectionMm": [
+          0.4,
+          0.3
+        ],
+        "scope": "Reference package convention. Comparison photos show C36/D markings consistent with this family; primary specimen markings, individual body orientation, lead bends and PCB pad correspondence remain unqualified."
+      }
     ]
   },
   "componentEvidence": {
@@ -18775,79 +18849,90 @@
     "V4.3": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "V4.4": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "V4.8": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "V4.7": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "V4.1": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "V4.6": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "V4.2": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "V4.5": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "V3.1": {
       "referenceType": "SC236D",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: E-B-C with centre base for SC236. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc236-l3-12"
     },
     "V3.2": {
       "referenceType": "SC236D",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: E-B-C with centre base for SC236. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc236-l3-12"
     },
     "V4.9": {
       "referenceType": "SC308C",
       "placementEvidence": "unplaced",
-      "pinEvidence": "connector-label-or-semantic-terminal",
+      "pinEvidence": "Reference L3/12 drawing: B-E-C with centre emitter for SC308. Installed-board outer-terminal orientation and pad mapping remain unresolved; do not substitute a generic TO-92 pin order.",
       "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementAuthority": "controller.kicad_pcb",
+      "packageReference": "sc308-l3-12"
     },
     "R3": {
       "referenceType": "22k",
@@ -19269,7 +19354,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "4e4cc8c7b22a534c511003b7be04c7a0a7e1f35c"
+      "revision": "445854f9fa98cb73e279025596995fcb2abf4104"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -19281,8 +19366,8 @@
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
-      "evidence": "c8f5041fda3c99eed289c46787303faad59c00903d6957fcdf0b7443c86f58cd",
-      "componentEvidence": "0c5b5db64a41874e84dd5ef5f9a82bac0b622f76322dcd6935aff071fc7506a7"
+      "evidence": "e14a9b711b2460157fb272065ad6a2181d1940a42075d0c904182b49d8c36545",
+      "componentEvidence": "c3915f354c5030e79c759c5e68e3b5277d7f8bccd21cfda51c8ec64057ad2482"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
     "geometryScadSha256": "8ebeca0adddb9293eef5f613fbce57d769cabc079ef1358f3675791125cffe55"
