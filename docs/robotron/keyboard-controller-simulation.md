@@ -75,15 +75,17 @@ Generated decks, reports and failure traces stay in `build/`.
 | --- | --- |
 | `sense_probe.py` | DC sensing front end with common row stimulus. |
 | `matrix_probe.py` | Contact fixture, column scanning and electrical sensing, followed by generated HDL latch/bus checks. |
+| `matrix_cosim.py` | Live HDL column-drive / SPICE contact-sense / HDL latch feedback with a bus fixture. |
 | `reset_probe.py` | Electrical reset, power cycling, BR2 isolation and timestep checks. |
 | `oscillator_probe.py` | RC oscillator topology, BR1 isolation, timestep and capacitor sensitivity. |
 | `build_bridge.py` / `bridge_probe.py` | Reproducible ngspice–Icarus bridge and explicit sink-enable transport. |
-| `make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` | TV80/S600 driven by electrical clock/reset with BR1/BR2 closed; matrix and output loading retain digital boundaries. |
+| `make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` | TV80/S600 driven by electrical clock/reset with BR1/BR2 closed. `boot_cosim.py --electrical-matrix` also enables live electrical matrix feedback; output loading remains digital. |
 
 Semiconductor, gate and load parameters remain explicit nominal assumptions, not
 specimen calibration. The matrix fixture is diode-free; its phantom-row conduction
-does not establish the specimen's key construction. Its HDL check passes static
-samples, so live matrix feedback and firmware scenarios remain required.
+does not establish the specimen's key construction. The static mapping check and live bus-fixture test are separate from firmware
+qualification. Full boot and scenario results remain required before claiming
+complete firmware-driven feedback.
 
 Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
 the tested explicit sink-enable interface. The nominal reset model also fails to
