@@ -78,11 +78,14 @@ Generated decks, reports and failure traces stay in `build/`.
 | `matrix_cosim.py` | Live HDL column-drive / SPICE contact-sense / HDL latch feedback with a bus fixture. |
 | `reset_probe.py` | Electrical reset, power cycling, BR2 isolation and timestep checks. |
 | `oscillator_probe.py` | RC oscillator topology, BR1 isolation, timestep and capacitor sensitivity. |
+| `output_probe.py` | Serial/cable receiver voltages, LED currents, supply/return paths and load sensitivity. |
 | `build_bridge.py` / `bridge_probe.py` | Reproducible ngspice–Icarus bridge and explicit sink-enable transport. |
-| `make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` | TV80/S600 driven by electrical clock/reset with BR1/BR2 closed. `boot_cosim.py --electrical-matrix` also enables live electrical matrix feedback; output loading remains digital. |
+| `make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` | TV80/S600 driven by electrical clock/reset with BR1/BR2 closed. `boot_cosim.py --electrical-matrix --electrical-outputs` also enables electrical sensing, output loads and cable/supply paths. |
 
-Semiconductor, gate and load parameters remain explicit nominal assumptions, not
-specimen calibration. The matrix fixture is diode-free; its phantom-row conduction
+Each firmware mode emits an explicit component model/boundary inventory and rejects
+unclassified references. Semiconductor, gate and load parameters remain nominal
+assumptions, not specimen calibration. Digital bus/pullup loading, IC supply currents
+and brownout behavior remain qualification gaps. The matrix fixture is diode-free; its phantom-row conduction
 does not establish the specimen's key construction. The static mapping check and live bus-fixture test are separate from firmware
 qualification. Full boot and scenario results remain required before claiming
 complete firmware-driven feedback.
