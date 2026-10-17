@@ -32589,7 +32589,7 @@
       "name": "keyboard-controller-board",
       "file": "meshes/keyboard-controller-board.stl",
       "color": "#92977a",
-      "sha256": "73159fa3e5c32df4b462283ba38fe6c2643c2237e96f5dcad9e8fa2eb22e90b9",
+      "sha256": "b5c7e27da60cc8a202d81c199d712f48f7661c3526c31939347b4864d0dbfdf7",
       "section": "interior",
       "material": "controller-laminate"
     },
@@ -32782,7 +32782,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "4cd675849ce79ec863c76e1570e39727dec5891008e2bdcf62ca34d2a0e28753",
+      "sha256": "2217ecd6de296b757c9a48e932e611fec2a1b963d18c0fd405346a3fc3b85267",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32955,7 +32955,7 @@
       "name": "keyboard-controller-solder",
       "file": "meshes/keyboard-controller-solder.stl",
       "color": "#b8bbb4",
-      "sha256": "5edab5b3e6be10eb0198a0585bf97104c72dc151f93ed432dd41db6f6609a00f",
+      "sha256": "0ece58777a5e4e1d53696c99e78922b3f02d9983ac76a296f13a25887ce99e32",
       "section": "interior",
       "material": "solder"
     },
@@ -33174,7 +33174,7 @@
       "name": "keyboard-controller-resistors",
       "file": "meshes/keyboard-controller-resistors.stl",
       "color": "#9a9d95",
-      "sha256": "b8343efe68554e6f1606990d6e0849e61eb662cd71db8448066cdb1cf8cd05d3",
+      "sha256": "05ac6518fa7981a92b6f5c78b8cf3d0beb7f0bd287cc23912f4c21e35310a69b",
       "section": "interior",
       "material": "plastic"
     },
@@ -33182,7 +33182,7 @@
       "name": "keyboard-controller-resistor-bands",
       "file": "meshes/keyboard-controller-resistor-bands.stl",
       "color": "#3186ad",
-      "sha256": "a60edb58758d293d43ac1bfca1d5bcfef14529a034e38bd7f82d657799b7a39c",
+      "sha256": "ad8dec8bc4b23475780b765568b25a932d7a5adb4d93a09afb1b34b5145e446b",
       "section": "interior",
       "material": "plastic"
     },
@@ -38335,8 +38335,8 @@
   },
   "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m",
   "keyboardControllerSource": {
-    "specimen-details.scad": "668a49eaf746d81f1b625f2a20a880c767c29af5704b5296e0dbadee34a75358",
-    "keyboard-controller/generated/controller.scad": "0dcab6f7040e5a9faedd81f2636b23464cbcb496232ee3fe80a54cd387702a2e",
+    "specimen-details.scad": "741eec09417e7c2df9e47849db664b99d467e9204b7027288323aabd981c2434",
+    "keyboard-controller/generated/controller.scad": "adb4eb805599f51962eebed37bdaf477c0457ff2f6c1e147ee0faec3fd701590",
     "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
   }
 }

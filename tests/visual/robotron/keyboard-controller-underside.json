@@ -508,8 +508,8 @@
   },
   {
     "name": "keyboard-controller-solder",
-    "vertices": 66472,
-    "indices": 200712,
+    "vertices": 65512,
+    "indices": 197832,
     "bounds": [
       -39.900002,
       -324.997864,
@@ -547,8 +547,8 @@
   },
   {
     "name": "keyboard-controller-traces",
-    "vertices": 41000,
-    "indices": 122130,
+    "vertices": 41134,
+    "indices": 122544,
     "bounds": [
       -25.264999,
       -330.398987,

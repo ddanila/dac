@@ -3095,6 +3095,100 @@
         "type": "Photo estimated mounting hole"
       },
       {
+        "evidence": "Factory placement + photo-estimated lead ends; supply side photo-supported, signal net reference-derived; see component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              -45.139083,
+              0.145801
+            ],
+            "ref": "R10.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/TA_TAKT",
+            "pin": "2",
+            "position": [
+              -56.664606,
+              -0.068244
+            ],
+            "ref": "R10.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -50.901845,
+          0.038778
+        ],
+        "ref": "R10.1",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "560"
+      },
+      {
+        "evidence": "Factory placement + photo-estimated lead ends; supply side photo-supported, signal net reference-derived; see component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              -45.099912,
+              3.746098
+            ],
+            "ref": "R10.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/TA_DATEN",
+            "pin": "2",
+            "position": [
+              -56.77338,
+              3.608292
+            ],
+            "ref": "R10.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -50.936646,
+          3.677195
+        ],
+        "ref": "R10.2",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "560"
+      },
+      {
         "evidence": "inherited-photo-estimate",
         "pads": [
           {
@@ -5020,100 +5114,6 @@
         "rotation": 0.0,
         "side": "top",
         "type": "8x910"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              134.0,
-              -125.0
-            ],
-            "ref": "R10.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/TA_TAKT",
-            "pin": "2",
-            "position": [
-              136.54,
-              -125.0
-            ],
-            "ref": "R10.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          134.0,
-          -125.0
-        ],
-        "ref": "R10.1",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "560"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              -130.0,
-              -150.0
-            ],
-            "ref": "R10.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/TA_DATEN",
-            "pin": "2",
-            "position": [
-              -127.46,
-              -150.0
-            ],
-            "ref": "R10.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -130.0,
-          -150.0
-        ],
-        "ref": "R10.2",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "560"
       },
       {
         "evidence": "unplaced",
@@ -12987,8 +12987,8 @@
       "Digital reference circuit; discrete pin numbering, specimen substitutions and analog timing remain unqualified; reset topology and bridge boundaries reviewed against Zander."
     ],
     "padNetMismatches": [],
-    "placed": 15,
-    "unplaced": 59,
+    "placed": 17,
+    "unplaced": 57,
     "unresolvedPhotoSegments": 294
   },
   "photoRegistration": {
@@ -14194,6 +14194,106 @@
         "status": "photo-estimated"
       }
     ],
+    "discretes": [
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 3.4023423024224726e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              -45.139083,
+              0.145801
+            ],
+            "pcbPixel": [
+              1458.0000045631346,
+              1644.999999375322
+            ],
+            "photoModel": [
+              -45.13908295657243,
+              0.14580066254870325
+            ],
+            "photoPixel": [
+              1458,
+              1645
+            ],
+            "pin": "1",
+            "residualMm": 3.4023423024224726e-07
+          },
+          {
+            "pcbModel": [
+              -56.664606,
+              -0.068244
+            ],
+            "pcbPixel": [
+              1447.9999978526694,
+              1492.0000031286204
+            ],
+            "photoModel": [
+              -56.664606233466195,
+              -0.06824383173382528
+            ],
+            "photoPixel": [
+              1448,
+              1492
+            ],
+            "pin": "2",
+            "residualMm": 2.877845897412243e-07
+          }
+        ],
+        "ref": "R10.1",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 5.2342814106825e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              -45.099912,
+              3.746098
+            ],
+            "pcbPixel": [
+              1507.000006779625,
+              1645.0000023682803
+            ],
+            "photoModel": [
+              -45.09991218386819,
+              3.7460975099290783
+            ],
+            "photoPixel": [
+              1507,
+              1645
+            ],
+            "pin": "1",
+            "residualMm": 5.2342814106825e-07
+          },
+          {
+            "pcbModel": [
+              -56.77338,
+              3.608292
+            ],
+            "pcbPixel": [
+              1498.000006709447,
+              1490.0000012186883
+            ],
+            "photoModel": [
+              -56.77338009720512,
+              3.60829151174382
+            ],
+            "photoPixel": [
+              1498,
+              1490
+            ],
+            "pin": "2",
+            "residualMm": 4.978382588571283e-07
+          }
+        ],
+        "ref": "R10.2",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      }
+    ],
     "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
     "schema": 1,
     "scope": "Manual top-photo lead/pad landmarks. Nominal board envelope, not dimensional metrology or electrical continuity. Lead feet and A8 socket obscure hole centres. Replacement ROM identity and discrete references remain unresolved.",
@@ -15059,25 +15159,542 @@
       }
     ]
   },
+  "componentEvidence": {
+    "A5": {
+      "referenceType": "U880",
+      "placementEvidence": "photo-landmarks.json: A5",
+      "pinEvidence": "schematic-numbered",
+      "note": "Photo-estimated lead landmarks; see generated/photo-registration.json for residuals. Not dimensional metrology or electrical continuity.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "A8": {
+      "referenceType": "U556_2716",
+      "placementEvidence": "photo-landmarks.json: A8",
+      "pinEvidence": "schematic-numbered",
+      "note": "Visible package notch and pin-one dot establish orientation; socket/package leads support estimated fit, not PCB hole metrology. Replacement EPROM identity unread.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "A4": {
+      "referenceType": "I8282",
+      "placementEvidence": "photo-landmarks.json: A4",
+      "pinEvidence": "schematic-numbered",
+      "note": "Photo-estimated lead landmarks; see generated/photo-registration.json for residuals. Not dimensional metrology or electrical continuity.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "A1": {
+      "referenceType": "7406",
+      "placementEvidence": "photo-landmarks.json: A1",
+      "pinEvidence": "schematic-numbered",
+      "note": "Photo-estimated lead landmarks; see generated/photo-registration.json for residuals. Not dimensional metrology or electrical continuity.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "A6": {
+      "referenceType": "DL074",
+      "placementEvidence": "photo-landmarks.json: A6",
+      "pinEvidence": "schematic-numbered",
+      "note": "Photo-estimated lead landmarks; see generated/photo-registration.json for residuals. Not dimensional metrology or electrical continuity.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "A2.1": {
+      "referenceType": "DL003",
+      "placementEvidence": "photo-landmarks.json: A2.1",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference identity corrected using factory placement 63-330-4103-2 and all four gate assignments in factory schematic 56-330-4103-7. Photo lead positions remain estimated; continuity is not measured.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "A2.2": {
+      "referenceType": "DL003",
+      "placementEvidence": "photo-landmarks.json: A2.2",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference identity corrected using factory placement 63-330-4103-2 and all four gate assignments in factory schematic 56-330-4103-7. Photo lead positions remain estimated; continuity is not measured.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "A2.3": {
+      "referenceType": "DL003",
+      "placementEvidence": "photo-landmarks.json: A2.3",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference identity corrected using factory placement 63-330-4103-2 and all four gate assignments in factory schematic 56-330-4103-7. Photo lead positions remain estimated; continuity is not measured.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "A7": {
+      "referenceType": "DL000",
+      "placementEvidence": "photo-landmarks.json: A7",
+      "pinEvidence": "schematic-numbered",
+      "note": "Photo-estimated lead landmarks; see generated/photo-registration.json for residuals. Not dimensional metrology or electrical continuity.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "X1": {
+      "referenceType": "MATRIX_CONNECTOR",
+      "placementEvidence": "inherited-photo-estimate",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "XT1": {
+      "referenceType": "KEYBOARD_CABLE",
+      "placementEvidence": "inherited-photo-estimate",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R10.1": {
+      "referenceType": "560",
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends",
+      "pinEvidence": "Pin 1 assigned to shared supply-side lower lead; pin 2 signal assignment follows factory schematic. Hidden output continuity not verified.",
+      "note": "Nominal planar photo placement. Body shape, 0.85 mm hole and 1.7 mm pad diameters are estimates. Lower terminals share a visible supply trace toward A1:14 in the underside photo; upper signal paths are obscured by A1. Reference value 560 ohms is not a specimen measurement.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1458,
+          1645
+        ],
+        "2": [
+          1448,
+          1492
+        ]
+      },
+      "pixelUncertainty": 8
+    },
+    "R10.2": {
+      "referenceType": "560",
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends",
+      "pinEvidence": "Pin 1 assigned to shared supply-side lower lead; pin 2 signal assignment follows factory schematic. Hidden output continuity not verified.",
+      "note": "Nominal planar photo placement. Body shape, 0.85 mm hole and 1.7 mm pad diameters are estimates. Lower terminals share a visible supply trace toward A1:14 in the underside photo; upper signal paths are obscured by A1. Reference value 560 ohms is not a specimen measurement.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1507,
+          1645
+        ],
+        "2": [
+          1498,
+          1490
+        ]
+      },
+      "pixelUncertainty": 8
+    },
+    "R10.3": {
+      "referenceType": "560",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.9": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R6.3": {
+      "referenceType": "1k",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R6.4": {
+      "referenceType": "1k",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R6.5": {
+      "referenceType": "1k",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R6.6": {
+      "referenceType": "1k",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R11.1": {
+      "referenceType": "130",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R11.2": {
+      "referenceType": "130",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "L1.1": {
+      "referenceType": "CHOKE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "L1.2": {
+      "referenceType": "CHOKE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "L1.3": {
+      "referenceType": "CHOKE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "L1.4": {
+      "referenceType": "CHOKE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.3": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.5": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.6": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.7": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.8": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.4": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.2": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R9.1": {
+      "referenceType": "3k9",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R2": {
+      "referenceType": "8x4k7",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R1": {
+      "referenceType": "8x910",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.3": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.4": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.8": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.7": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.1": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.6": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.2": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.5": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic E/B/C pins only; physical package pin numbering unresolved",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V3.1": {
+      "referenceType": "SC236D",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V3.2": {
+      "referenceType": "SC236D",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V4.9": {
+      "referenceType": "SC308C",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R3": {
+      "referenceType": "22k",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R4.1": {
+      "referenceType": "220",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R5": {
+      "referenceType": "10k",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R6.1": {
+      "referenceType": "1k",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R7": {
+      "referenceType": "3k3",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R8": {
+      "referenceType": "47k",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R4.2": {
+      "referenceType": "220",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "R4.3": {
+      "referenceType": "220",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C1": {
+      "referenceType": "220p",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C2": {
+      "referenceType": "10u",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C4": {
+      "referenceType": "10u",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C6": {
+      "referenceType": "470p",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V1.1": {
+      "referenceType": "DIODE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic diode terminals; confirm footprint orientation before placement",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V1.2": {
+      "referenceType": "DIODE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic diode terminals; confirm footprint orientation before placement",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "V2": {
+      "referenceType": "DIODE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "connector-label-or-semantic-terminal",
+      "note": "Semantic diode terminals; confirm footprint orientation before placement",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C5.1": {
+      "referenceType": "47n",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C5.2": {
+      "referenceType": "47n",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C5.3": {
+      "referenceType": "47n",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C5.4": {
+      "referenceType": "47n",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C5.5": {
+      "referenceType": "47n",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C3.1": {
+      "referenceType": "47u",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "C3.2": {
+      "referenceType": "47u",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-numbered",
+      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "BR1": {
+      "referenceType": "BRIDGE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-terminal-order; physical numbering unresolved",
+      "note": "Factory placement drawing supports a photo location candidate in evidence.json serviceInterfaces. Native footprint remains unplaced until source/CPU terminal order and pad correspondence are reviewed; no electrical continuity claim.",
+      "placementAuthority": "controller.kicad_pcb"
+    },
+    "BR2": {
+      "referenceType": "BRIDGE",
+      "placementEvidence": "unplaced",
+      "pinEvidence": "schematic-terminal-order; physical numbering unresolved",
+      "note": "Factory placement drawing supports a photo location candidate in evidence.json serviceInterfaces. Native footprint remains unplaced until source/CPU terminal order and pad correspondence are reviewed; no electrical continuity claim.",
+      "placementAuthority": "controller.kicad_pcb"
+    }
+  },
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "5f507eaba0c09006c818522bb9b370ef1230a4c7"
+      "revision": "125ee6e613122ef8f2b19e2c27b4aa8d162f67d6"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "3142d325fb392c7a6cfe82877c6c20e71743a92e21e8b235e06e8b9c4d384a29",
+      "layout": "9f9f87dd97d62ab8f5f9c9b075ff9ceed9f86895738a450c04682a4c349e8359",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "e18412de9082a269facfa79cf75c8c3f971aadc30aa7575135b2c779d79bf93c",
-      "photoRegistration": "5d1b163782bb159a459c2652aba907b66a4fb59e80a2279472ade26d9fce28cb",
+      "qualification": "bfec846fb32c5ed6def6f0fa5a61ef253946d55a4013e81d5f7af634232c7fae",
+      "photoRegistration": "1cd848125951dbe635f39c7512ef4928edb55c31fe6caf376812b55929e10eb4",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
-      "evidence": "cc932e936696f36077cde4d3ef2ae932389e1e0d6510175845657a49d74c740d"
+      "evidence": "cc932e936696f36077cde4d3ef2ae932389e1e0d6510175845657a49d74c740d",
+      "componentEvidence": "cda3f91935c919e21b7a2effe66d050972659b55e20ec50b32c2203d8d987aba"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "0dcab6f7040e5a9faedd81f2636b23464cbcb496232ee3fe80a54cd387702a2e"
+    "geometryScadSha256": "adb4eb805599f51962eebed37bdaf477c0457ff2f6c1e147ee0faec3fd701590"
   },
   "cosimulation": {
     "bus": {

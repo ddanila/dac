@@ -66,6 +66,9 @@ export function installKeyboardControllerReview(scene){
    if(cross.length)get('[data-selection]').textContent+=' Direct photo-to-photo checks: '+cross.map(p=>`${p.ref}:${p.pin} ${p.residualPixels.toFixed(1)} pixels / ${p.nominalResidualMm.toFixed(2)} nominal mm`).join('; ')+'. Top leads and socket can obscure hole centres; this does not qualify copper.';
    const local=data.bottomRegistration?.localRegions?.filter(r=>r.checks.some(p=>selection.refs.includes(p.ref)))||[];
    for(const region of local)get('[data-selection]').textContent+=` Local ${region.id.toUpperCase()} photo correspondence: ${region.checks.length} independent checks, ${region.maxCheckResidualMm.toFixed(2)} nominal mm maximum residual. Terminal candidates lie outside the anchor bounds; copper assignment remains unqualified. Extending this fit toward the tentative A6 terminal gives ${region.extrapolationChecks[0].nominalResidualMm.toFixed(2)} nominal mm discrepancy.`;
+   if(kind==='component'&&data.componentEvidence?.[value]){
+    const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
+   }
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
   }else get('[data-selection]').textContent='Select a component or net to inspect its pins.';
