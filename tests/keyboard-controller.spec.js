@@ -69,7 +69,11 @@ test('bridge inspection distinguishes reset source and CPU injection side',async
  await panel.getByLabel('Controller component',{exact:true}).selectOption('BR2');
  await expect(panel.locator('[data-selection]')).toContainText('CPU active-low RESET');
  await expect(panel.locator('[data-selection]')).toContainText('inferred electrical use');
- await expect(panel.locator('[data-selection]')).toContainText('Physical location unverified');
+ await expect(panel.locator('[data-selection]')).toContainText('Photo location candidate: Cable side of A1');
+ await expect(panel.locator('[data-selection]')).toContainText('Terminal order and continuity remain unverified');
+ await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
+ await expect(panel.getByRole('link',{name:'Factory bridge placement (drawing 8)'})).toHaveAttribute('href',/PC-1715-Schaltplaene.pdf#page=10$/);
+ expect(data.layout.unplaced.some(c=>c.ref==='BR2')).toBe(true);
  await expect(panel.locator('[data-pins]')).toContainText('RESET_OUT');
  await expect(panel.locator('[data-pins]')).toContainText('RESET_N');
  await expect(panel.locator('[data-qualification]')).toContainText('13 digital checks; 0 mismatches');

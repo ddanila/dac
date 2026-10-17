@@ -159,6 +159,8 @@ Do not substitute autorouted geometry for missing historical evidence.
 
 ## References
 
+- [Manufacturer service drawings](https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf): PDF page 10 contains populated placement drawing 63-330-4103-2; page 11 contains schematic 56-330-4103-7. Recovered during implementation; compare revision and designator differences before applying locations.
+
 - [Zander keyboard schematic, drawing 56-330-4103-7](https://www.sax.de/~zander/pc1715/pc_tasts.pdf)
 - [Zander keyboard component placement](https://www.sax.de/~zander/pc1715/pc_tastb.pdf)
 - [Zander hardware index](https://www.sax.de/~zander/pc1715/pc_hw.html), whose separate

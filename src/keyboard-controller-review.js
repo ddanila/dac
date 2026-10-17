@@ -50,7 +50,14 @@ export function installKeyboardControllerReview(scene){
     for(const detail of new Set(routes.map(r=>r.evidence.detail))){const text=document.createElement('p');text.textContent=detail;pins.append(text);}
    }
    const bridges=data.evidence.serviceInterfaces?.bridges.filter(b=>selection.refs.includes(b.ref))||[];
-   for(const bridge of bridges)get('[data-selection]').textContent+=` ${bridge.ref}: ${bridge.role} Reference state: ${bridge.referenceState}. ${bridge.testUse} Physical location unverified.`;
+   for(const bridge of bridges){
+    const physical=bridge.physicalEvidence;
+    get('[data-selection]').textContent+=` ${bridge.ref}: ${bridge.role} Reference state: ${bridge.referenceState}. ${bridge.testUse} `+(physical?`Photo location candidate: ${physical.location}. Terminal order and continuity remain unverified.`:'Physical location unverified.');
+    if(physical){
+     const source=data.evidence.sources.find(s=>s.id===physical.source),note=document.createElement('p');note.textContent=physical.observation+' ';pins.append(note);
+     if(source){const link=document.createElement('a');link.href=source.url+'#page=10';link.textContent='Factory bridge placement (drawing 8)';link.target='_blank';link.rel='noopener';note.append(link);}
+    }
+   }
    const alignment=data.photoRegistration?.components.filter(c=>selection.refs.includes(c.ref))||[];
    if(alignment.length)get('[data-selection]').textContent+=' Photo alignment: '+alignment.map(c=>`${c.ref} ${c.maxResidualMm.toFixed(2)} mm maximum residual${c.maxResidualMm>data.photoRegistration.toleranceMm?' (outside tolerance)':''}`).join('; ')+'. Nominal board scale; not metrology.';
    const bottom=data.bottomRegistration?.pins.filter(p=>p.heldOut&&selection.refs.includes(p.ref))||[];
