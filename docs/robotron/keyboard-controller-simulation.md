@@ -104,9 +104,11 @@ configuration and contact/transmit scenarios still require qualification.
 The service qualifier requires firmware-generated traffic, independent cable
 receiver observations, ordinal bit agreement with the C emulator, timestep
 refinement and sampled data setup/hold against an explicit fixture budget.
-Archived reports retain its input and waveform provenance. Qualified BR service
-evidence covers single press and release/repress; it does not establish full-board
-startup, other scenarios, CPU cycle equivalence or historical receiver limits.
+Service coverage checks the CPU reset pin and restart at the first ROM byte after
+each release. Archived reports retain input and waveform provenance. Qualified BR service
+evidence covers single press, release/repress, modifier/ordinary and service reset;
+it does not establish full-board startup, other scenarios, CPU cycle equivalence
+or historical receiver limits.
 Additional contact/reset recipes live in the core's `analog/scenarios/`. One
 timeline generates SPICE sources and C stimuli, with explicit observation windows
 for release/repress, modifiers, repeat and service reset. Each recipe must pass
