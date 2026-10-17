@@ -98,15 +98,18 @@ does not establish the specimen's key construction. The static mapping check and
 qualification. Selectable Intel 8282 input-current stress fixtures now exercise
 the matrix and S600 service harness. Their source limits and acceptance reports
 live with the core; constant-current stress is not a calibrated latch input model. The full-board harness accepts timed contact recipes while retaining electrical
-clock/reset and closed BR1/BR2. Full boot and scenario qualification remains
-pending: the old 1 ns bridge setting produced time-ordering diagnostics with
-electrical matrix feedback. The configurable 10 ns setting is under test; service
-fixture success does not qualify that oscillator-coupled boundary.
+clock/reset and closed BR1/BR2. The archived full-board single-press runs boot S600 from electrical clock/reset
+and pass their individual matrix/cable observations with the 10 ns bridge setting.
+Their paired qualification rejects clock-phase convergence, so integrated execution
+is demonstrated while timing and the remaining scenarios remain unqualified. The
+old 1 ns bridge setting produced time-ordering diagnostics with electrical matrix
+feedback; bridge delay is a numerical setting, not calibrated device propagation.
 
 The core's archived clock/reset baseline demonstrates standard S600 boot and idle
 scanning under electrical clock and power-on reset. Its digital matrix, direct ROM
 input and older CPU drive boundary limit that evidence; the assembled full-board
-configuration and contact/transmit scenarios still require qualification.
+configuration is covered separately by the full-board single-press reports.
+Their failed phase gate remains distinct from this older baseline.
 
 The service qualifier requires firmware-generated traffic, independent cable
 receiver observations, ordinal bit agreement with the C emulator, timestep

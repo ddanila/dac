@@ -16,7 +16,7 @@ Paths below are relative to the CAD controller directory unless stated otherwise
 | Generate geometry and reuse component shapes | Exporter, generated SCAD, assembly wrapper | Remaining discrete migrations and measured mechanical fit |
 | Preserve orientation, lead alignment and repeatability | Asymmetric landmark tests, native integration test, mesh receipts and visual baselines | Estimated lead interfaces and actual specimen dimensions |
 | Generate structural HDL with reviewed chip behavior | Core `generated/controller.v`, chip models and source review | Qualified analog device parameters and unsupported device states |
-| Couple electrical circuits and HDL | Core analog harness, generated decks, interface and load checks | End-to-end firmware runs, model calibration, supply/brownout behavior and bus timing qualification |
+| Couple electrical circuits and HDL | Core analog harness, generated decks, interface and load checks | Full-board clock-phase convergence, remaining firmware scenarios, model calibration, supply/brownout behavior and bus timing qualification |
 | Compare transactions and firmware behavior | Core qualification reports, pinned TV80 model and S600 workload | Specimen ROM/timing; exact cycle equivalence remains false |
 | Retain diagnostics and replay | First-difference traces, stimulus, waveform and fault-injection tests | Instrumented specimen comparison |
 | Preserve IDs and expose evidence in the museum | Export sidecars, component/net inspector and browser tests | Legacy bodies do not all have native pad geometry |
