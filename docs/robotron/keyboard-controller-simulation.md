@@ -107,6 +107,11 @@ refinement and sampled data setup/hold against an explicit fixture budget.
 Archived reports retain its input and waveform provenance. That evidence covers
 the single-contact BR service fixture, not full-board startup, additional contact
 scenarios, CPU cycle equivalence or historical receiver thresholds/timing limits.
+Additional contact/reset recipes live in the core's `analog/scenarios/`. One
+timeline generates SPICE sources and C stimuli, with explicit observation windows
+for release/repress, modifiers, repeat and service reset. Each recipe must pass
+electrical execution, refinement and margin checks before extending the qualified
+scope; preparation alone does not count.
 
 Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
 the tested explicit sink-enable interface. The nominal reset model also fails to
