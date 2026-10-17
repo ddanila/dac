@@ -105,6 +105,10 @@ misses the published higher-current SC236D DC gain ranges. Fitting must preserve
 the distinction between DC and small-signal AC gain and the specified selection
 group. Published typical SC308 group-D data cannot qualify the board's group-C
 devices. Source conditions and comparisons belong in the executable device probe.
+An optional `sc236-dc` NPN profile now represents current-dependent gain and meets
+the selected DC limits. It has separate reset integration checks; full-device
+and firmware transient qualification remain open. The generic profile remains
+available as the baseline.
 
 The existing `qualify-keyboard-controller` target retains the independent standard
 S600 digital comparison. None of these partial checks alone establishes complete
