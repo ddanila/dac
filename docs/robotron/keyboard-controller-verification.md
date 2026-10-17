@@ -4,7 +4,7 @@ Audit date: 2026-10-17. Scope: the complete [keyboard controller plan](keyboard-
 including its physical data/clock milestone. **Not complete.** This is a requirement
 map and evidence collection guide, not a certificate of specimen fidelity.
 
-Reviewed sources: CAD `3dd89fa`, core `cdda844`, and the museum assets pinned to
+Reviewed sources: CAD `cc544c4`, core `cdda844`, and the museum assets pinned to
 those sources. The [progress record](keyboard-controller-progress.md) records
 intermediate changes and corrections. The withdrawn CPU CLK candidate remains
 withdrawn; a passing local geometric fit did not prove its electrical attachment.
@@ -20,19 +20,19 @@ to `dac-emulation/verification/robotron-keyboard/`. Museum paths are relative to
 | --- | --- | --- |
 | 1. Match markings, packages, connectors and revision | `CAD/keyboard-controller/evidence.json`, component evidence and factory drawing review | Partial: specimen marking is recorded; source variants and replacement ROM remain unresolved. |
 | 1. Inventory both photo sides and obscured areas | Evidence source hashes; full-resolution photos; failed global and local registration reports | Implemented as an evidence inventory; occluded joints still need new observations. |
-| 1. Record references, packages, pins and supporting evidence | Native schematic, `component-evidence.json`, photo landmarks | Partial: all 70 schematic references exist, but 37 components remain unplaced and discrete terminal maps are incomplete. |
+| 1. Record references, packages, pins and supporting evidence | Native schematic, `component-evidence.json`, photo landmarks | Partial: all 70 schematic references exist, but 36 components remain unplaced and discrete terminal maps are incomplete. |
 | 1. Track schematic/specimen and firmware differences | `referenceVariants`, gaps, ROM hash in `core/reports/full-audit.json` | Implemented ledger; differences remain unresolved rather than merged. |
 | 2. Transcribe components, connectors, rails and nets | Native schematic and generated connectivity | Implemented reference transcription; not specimen continuity proof. |
 | 2. Independently review inversions, clocks, connectors and supplies | Factory/Zander comparison, A2 gate review, reset/cable corrections and handbook review | Partial for specimen fidelity: WR/RD source disagreement and substitutions remain open. |
 | 2. Export normalized connectivity and comparison wiring | CAD exporter; `core/generate.py`; pinned HDL | Implemented; source/export and HDL freshness checks pass. |
 | 2. Classify unused pins and ERC exceptions | Generated connectivity and qualification report | Implemented: unused pins explicit; two isolated-label warnings individually identified as RD_N and SHIELD. |
 | 3. Register both sides in one coordinate system | Top landmarks, `bottom-landmarks.json`, generated registration reports | Partial: top fit and bounded CPU/A4 fit are useful; global underside fit fails and scale is nominal. |
-| 3. Place outline, footprints, mounting holes and connectors | Native PCB and generated layout | Partial: 37 placed records include four mounting holes; 37 schematic parts remain unplaced. Connector geometry is still estimated. |
+| 3. Place outline, footprints, mounting holes and connectors | Native PCB and generated layout | Partial: 38 placed records include four mounting holes; 36 schematic parts remain unplaced. Connector geometry is still estimated. |
 | 3. Trace visible copper and associate nets | Native tracks, `route-evidence.json`, unresolved artwork | Partial: 25 assigned sections, 294 unassigned artwork segments. No complete data/clock physical path. |
 | 3. Label observed, inferred and unresolved routing | Geometry-bound track evidence; withdrawn-route review | Implemented for current assignments: 17 observed and 8 inferred. Labels preserve uncertainty; they are not measurements. |
 | 3. Check connectivity, clearances and schematic agreement | Native integration test, DRC and pad-net checks | Partial: pad-net agreement passes; 229 airwires and one unfinished A1 endpoint remain. Not fabrication-ready. |
 | 4. Export outline, holes, pads, vias, copper, transforms and IDs | Native exporter and generated layout/SCAD; synthetic arc/via integration test | Implemented for represented geometry; no physical via is asserted in the current reconstruction. |
-| 4. Reuse detailed components positioned by footprint/reference | Nine DIPs, 21 resistors and BR1; native lead/pad consumers | Partial: remaining discretes and connector details still use estimates or placeholders. |
+| 4. Reuse detailed components positioned by footprint/reference | Nine DIPs, 21 resistors, BR1 and C5.1; native lead/pad consumers | Partial: remaining discretes and connector details still use estimates or placeholders. |
 | 4. Keep assembly and mechanics in OpenSCAD | `specimen-details.scad`, model assembly and inspection views | Implemented; dimensions and exact mechanical fit remain photo estimates. |
 | 4. Replace duplicate placements/artwork after review | Native migrations and remaining legacy component/artwork arrays | Partial: native migrations are synchronized, but remaining legacy geometry has not been fully replaced. |
 | 4. Detect mirror/rotation errors, align leads, regenerate deterministically and fit assembly | Asymmetric export checks, native pad consumers, twelve mesh receipts, visual baselines, repeated native export test | Partial overall: native output repeatability is now directly checked; remaining estimated lead interfaces and specimen dimensions are not qualified. Mesh freshness alone is not a physical-fit test. |
@@ -51,8 +51,8 @@ to `dac-emulation/verification/robotron-keyboard/`. Museum paths are relative to
 | First milestone: complete actual data/clock path through all representations | Schematic/HDL and partial PCB routes | **Incomplete:** logical path is tested; physical copper and connector correspondence are not complete. |
 | Completion: checked connectivity, reproducible geometry, routing evidence, digital comparisons and exact specimen fidelity | Artifacts above | **Incomplete:** consistency is substantially implemented; physical reconstruction, ROM identity, dimensions and timing remain open. |
 
-The current 37 unplaced references are BR2; C1, C2, C3.1, C3.2, C4,
-C5.1–C5.5, C6; L1.1–L1.4; R1, R2, R4.2, R6.4, R6.5, R7, R8;
+The current 36 unplaced references are BR2; C1, C2, C3.1, C3.2, C4,
+C5.2–C5.5, C6; L1.1–L1.4; R1, R2, R4.2, R6.4, R6.5, R7, R8;
 V1.1, V1.2, V2, V3.1, V3.2 and V4.1–V4.9. Some have plausible locations;
 that does not establish numbered pads or net attachments.
 

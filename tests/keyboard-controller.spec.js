@@ -195,7 +195,13 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
  await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
- expect(data.layout.unplaced).toHaveLength(37);
+ expect(data.layout.unplaced).toHaveLength(36);
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('C5.1');
+ await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
+ await expect(panel.locator('[data-pins]')).toContainText('Nonpolar capacitor');
+ await expect(panel.locator('[data-placement-photo="C5.1"] [data-photo-pin="1"]')).toHaveAttribute('cy','1617');
+ await expect(panel.locator('[data-placement-photo="C5.1"] [data-photo-pin="2"]')).toHaveAttribute('cy','1674');
+ expect(controllerSelection(data,'component','C5.1').unplaced).toEqual([]);
 });
 
 test('candidate photo endpoints never become net-connected pads',async({page})=>{

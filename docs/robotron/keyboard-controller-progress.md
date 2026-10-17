@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Thirty-fifth implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirty-sixth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `f52b539` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, C5.1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `cc544c4` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,30 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirty-sixth pass implements
+
+C5.1 now uses native KiCad placement instead of a generic disc placeholder. The
+factory drawing identifies it between A1 and A2.1; the primary museum photo
+supplies the two lead-entry coordinates and separate body centre. Visible supply
+and return rails support reference pin assignment. The new comparison close-ups
+corroborate its construction without supplying primary-specimen coordinates.
+
+The capacitor body is offset from its pads. Native footprint origin and pad
+positions are exported independently, and OpenSCAD uses them for the disc, bent
+leads, board holes, copper lands and solder joints. Disc/lead dimensions remain
+nominal. No previously placed component moved, and no new copper route was
+asserted. Unplaced schematic components decrease from 37 to **36**; the 25 assigned
+sections, 229 airwires and one dangling partial route remain unchanged.
+
+All twelve controller meshes and their source receipts were regenerated. Checks
+pass: 23 exporter tests, two native KiCad integration tests, four mesh-contract
+tests, metadata/download validation, 20 browser tests and the production build.
+The new export test preserves the body/pad offset; browser inspection checks both
+numbered photo endpoints and native placement. Top, underside and a close-up were
+visually reviewed; only the changed controller baseline was updated. Three strict
+visual checks pass after that review. Digital connectivity and firmware are
+unchanged, so firmware qualification was not rerun.
 
 ## What the thirty-fifth pass checks
 
