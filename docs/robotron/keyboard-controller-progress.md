@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Sixth implementation pass, 2026-10-17. Digital reference qualification passes,
+Seventh implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -10,7 +10,7 @@ discrete component identification and specimen measurements are still open.
 | Repository | Delivered | Revision |
 | --- | --- | --- |
 | `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations and direct photo-to-photo audit | `de3d206` |
-| `dac-emulation` | Reviewed CAD pin, generated bridge isolation and external stimulus tests, passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `8052c32` |
+| `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
 Full-resolution owner photos establish **05-330-4102-8 1c**, correcting the former
@@ -19,7 +19,27 @@ RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
 
-## What the sixth pass establishes
+## What the seventh pass closes
+
+Co-simulation failures now retain structured first-failure signals and automatic
+waveforms. Bus failures identify the first vector, signal, synthetic testbench
+nanoseconds and values; exact vectors are retained and replayed into VCD.
+Firmware failures identify serial/LED event indices, both CPU clocks, differing
+values and missing events. A bounded real-HDL replay captures the earliest data
+divergence with 32 clocks of context on each side. CPU phases are not aligned
+away. Coverage-only failures without a differing event explicitly retain only
+an initial waveform window; full stimulus logs and manual full-wave capture remain.
+
+`failure.json` records counterexamples and waveform hashes. A new run removes
+old reports before executing checks, preventing an aborted qualification from
+leaving a stale passing result. Four diagnostics tests include actual injected
+read, LED and serial faults, missing events and a bounded firmware waveform run.
+They run in ordinary core CI through `make test-keyboard-controller`. The final
+harness rerun passes 131,072 bus transactions, 390 serial bits and 11,971 LED
+state records with the existing documented phase offsets. Source hashes were
+verified against the final files before committing the reports.
+
+## What the sixth pass established
 
 The underside CPU rows were recounted against the original image. The earlier
 lower-corner observations at y3138 picked features below the twenty-pin rows;
@@ -281,6 +301,7 @@ connectivity and reports whose implementation/CPU/header hashes have changed.
 | Schematic/PCB pin agreement and export freshness | Passing |
 | Reference digital bus and firmware comparison | Passing within documented scope |
 | Bridge isolation and external clock/reset stimulus | Passing digital tests |
+| First-failure signals, clocks, stimulus and waveform | Implemented with fault-injection checks |
 | KiCad DIP geometry propagated to OpenSCAD and museum | Implemented; discrete parts remain |
 | Both photo sides registered to numbered pads | Incomplete; corrected underside checks and nominal calibration remain unresolved |
 | Visible copper reconciled with named nets | Incomplete; 294 artwork segments remain unassigned |
