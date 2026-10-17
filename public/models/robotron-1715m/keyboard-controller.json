@@ -14331,7 +14331,7 @@
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "8052c321dc9fd8019f8ba797e30be4f30c366214"
+      "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
       "layout": "d48cfbf865587975bd4fbac761f71f43585bf69e7323cfa817b9352706a4b780",
@@ -14341,7 +14341,7 @@
       "bottomRegistration": "a5416affcd15cdb217407483567bafa355c51c31cd5bf96a8a4b904f5dadfb22",
       "evidence": "60754d60709ccda477b356591723cfb9cf310adee5a2d2ab417cf520ef27aabe"
     },
-    "reportSha256": "7e87178cdca4e098959329578130aed8f883b7fba6d79d5d65aba1f9e71ecc08",
+    "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
     "geometryScadSha256": "00a572f5041503601ed2bb0a4394fac3d0bef7e2bf70a8115f213e9778b54ffa"
   },
   "cosimulation": {
@@ -14350,7 +14350,8 @@
       "vectors": 131072,
       "mismatches": 0,
       "equivalent": true,
-      "firstDifferences": []
+      "firstDifferences": [],
+      "firstFailureSignals": []
     },
     "firmware": {
       "romSha256": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
@@ -14583,7 +14584,8 @@
         ]
       ],
       "timing": "Cycles recorded; ordinal bit comparison allows CPU timing differences and is not cycle equivalence.",
-      "equivalent": true
+      "equivalent": true,
+      "firstFailureSignals": []
     },
     "service": {
       "checks": 13,
