@@ -3330,6 +3330,53 @@
         "type": "10k"
       },
       {
+        "evidence": "Factory placement + top-photo lead ends; visible supply strip continues beside C4 to right lead; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              -89.202723,
+              18.595905
+            ],
+            "ref": "R6.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/RESET_BASE",
+            "pin": "2",
+            "position": [
+              -88.97316,
+              7.175277
+            ],
+            "ref": "R6.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -89.087941,
+          12.885591
+        ],
+        "ref": "R6.1",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "1k"
+      },
+      {
         "evidence": "Factory placement + photo-estimated lead ends; terminal nets reference-derived, not continuity tested; component-evidence.json",
         "pads": [
           {
@@ -4402,6 +4449,50 @@
       },
       {
         "evidence": {
+          "detail": "Estimated attachment from visible copper to photo-positioned R6.1:1; solder obscures the precise pad boundary. Net +5V follows the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. Only this visible strip is assigned; hidden branches remain unresolved.",
+          "geometrySha256": "85bdee36d571a04e9eee3cec506176713a32c60542032f809655fec80fdedc23",
+          "group": "reset-r61-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1694,
+                    1055
+                  ],
+                  [
+                    1683,
+                    1055
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred"
+        },
+        "id": "36b621c7-9687-42af-8eb1-d4d680c032f4",
+        "net": "/+5V",
+        "points": [
+          [
+            -89.192578,
+            19.399643
+          ],
+          [
+            -89.202723,
+            18.595905
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
           "detail": "Visible top copper joining the right leads of R3 and R4.1. The common net is +5V in the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. This local connection does not establish its supply feed or hidden continuation.",
           "geometrySha256": "fadf3ad3c630632d0fba6f676da91dcab84cb0310189b2359564aca154d8ab69",
           "group": "reset-pair-supply-top",
@@ -4490,6 +4581,50 @@
       },
       {
         "evidence": {
+          "detail": "Visible top supply strip continues beside C4 from the reviewed R5 supply junction to the right lead of R6.1. Net +5V follows the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. Only this visible strip is assigned; hidden branches remain unresolved.",
+          "geometrySha256": "405d78b3da4b8fc3bea29ea109218dfa0fa75faed45bf88d0b1a8a95cefba82b",
+          "group": "reset-r61-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1713,
+                    920
+                  ],
+                  [
+                    1719,
+                    1015
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "937e14a8-174d-4ad0-91f3-3c2d3fbfa7fd",
+        "net": "/+5V",
+        "points": [
+          [
+            -99.244303,
+            21.2241
+          ],
+          [
+            -92.155018,
+            21.355366
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
           "detail": "Visible top supply strip continues from the R3/R4.1 junction to the right lead of R5. Net +5V follows the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. Further continuation behind C4 remains unresolved.",
           "geometrySha256": "03eee2e53af09149af198f5c21323346827b919a3bb25896a6e1e0a85789d043",
           "group": "reset-r5-supply-top",
@@ -4571,6 +4706,138 @@
           [
             -108.210332,
             19.204648
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
+          "detail": "Visible top supply strip continues beside C4 from the reviewed R5 supply junction to the right lead of R6.1. Net +5V follows the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. Only this visible strip is assigned; hidden branches remain unresolved.",
+          "geometrySha256": "af32e1354ea4f1cfc74b5c0b54b7f736e4e4e8ae8ca7809018272b8799c922da",
+          "group": "reset-r61-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1710,
+                    842
+                  ],
+                  [
+                    1713,
+                    920
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "b7de3b33-377c-42e6-898f-28876b5b0615",
+        "net": "/+5V",
+        "points": [
+          [
+            -105.055978,
+            21.256968
+          ],
+          [
+            -99.244303,
+            21.2241
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
+          "detail": "Visible top supply strip continues beside C4 from the reviewed R5 supply junction to the right lead of R6.1. Net +5V follows the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. Only this visible strip is assigned; hidden branches remain unresolved.",
+          "geometrySha256": "a1e320ce437782c8a926e5980c315cbd2c7c04c0e336c45c2992c065360455fc",
+          "group": "reset-r61-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1719,
+                    1015
+                  ],
+                  [
+                    1720,
+                    1053
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "ba013c47-d828-4e50-a612-517b0f26cdb6",
+        "net": "/+5V",
+        "points": [
+          [
+            -92.155018,
+            21.355366
+          ],
+          [
+            -89.317917,
+            21.305649
+          ]
+        ],
+        "side": "top",
+        "width": 1.0
+      },
+      {
+        "evidence": {
+          "detail": "Visible top supply strip continues beside C4 from the reviewed R5 supply junction to the right lead of R6.1. Net +5V follows the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. Only this visible strip is assigned; hidden branches remain unresolved.",
+          "geometrySha256": "883139215646976b0401415510663e3510b69c1b1530ec4ac4c3190f4a5f33db",
+          "group": "reset-r61-supply-top",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1720,
+                    1053
+                  ],
+                  [
+                    1694,
+                    1055
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "c41bb143-5a93-4a1d-8474-2612b00622fa",
+        "net": "/+5V",
+        "points": [
+          [
+            -89.317917,
+            21.305649
+          ],
+          [
+            -89.192578,
+            19.399643
           ]
         ],
         "side": "top",
@@ -6384,53 +6651,6 @@
         "rotation": 0.0,
         "side": "top",
         "type": "220"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              38.0,
-              -100.0
-            ],
-            "ref": "R6.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/RESET_BASE",
-            "pin": "2",
-            "position": [
-              40.54,
-              -100.0
-            ],
-            "ref": "R6.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          38.0,
-          -100.0
-        ],
-        "ref": "R6.1",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "1k"
       },
       {
         "evidence": "unplaced",
@@ -13309,12 +13529,12 @@
   "qualification": {
     "components": 70,
     "drc": {
-      "unconnectedItems": 232,
+      "unconnectedItems": 231,
       "violations": {
         "track_dangling": 1
       }
     },
-    "electricalCopperSegments": 16,
+    "electricalCopperSegments": 21,
     "erc": [
       {
         "description": "Label connected to only one pin",
@@ -13339,8 +13559,8 @@
       "Digital reference circuit; discrete pin numbering, specimen substitutions and analog timing remain unqualified; reset topology and bridge boundaries reviewed against Zander."
     ],
     "padNetMismatches": [],
-    "placed": 28,
-    "unplaced": 46,
+    "placed": 29,
+    "unplaced": 45,
     "unresolvedPhotoSegments": 294
   },
   "photoRegistration": {
@@ -15183,6 +15403,55 @@
         ],
         "ref": "R5",
         "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 4.627757345878294e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              -89.202723,
+              18.595905
+            ],
+            "pcbPixel": [
+              1682.9999991014888,
+              1055.0000050270307
+            ],
+            "photoModel": [
+              -89.20272337452246,
+              18.595905081997984
+            ],
+            "photoPixel": [
+              1683,
+              1055
+            ],
+            "pin": "1",
+            "residualMm": 3.833937150725012e-07
+          },
+          {
+            "pcbModel": [
+              -88.97316,
+              7.175277
+            ],
+            "pcbPixel": [
+              1527.0000032861567,
+              1059.9999948135314
+            ],
+            "photoModel": [
+              -88.97315961557754,
+              7.17527674235536
+            ],
+            "photoPixel": [
+              1527,
+              1060
+            ],
+            "pin": "2",
+            "residualMm": 4.627757345878294e-07
+          }
+        ],
+        "ref": "R6.1",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
       }
     ],
     "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
@@ -16565,31 +16834,23 @@
     },
     "R6.1": {
       "referenceType": "1k",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends",
+      "pinEvidence": "Pin 1 is the right lead, joined by visible top copper beside C4 to the R3/R4.1/R5 supply strip. Pin 2 RESET_BASE assignment follows the reference schematic; specimen continuity is not measured.",
+      "note": "The 1K0 body marking agrees with the reference value; resistance is not measured. Nominal planar photo placement with estimated body, pad and drill dimensions. Lead and solder obscure the precise hole centre. Blue collar at the left end is appearance evidence, not polarity.",
       "placementAuthority": "controller.kicad_pcb",
-      "placementCandidate": {
-        "status": "identity-and-lead-locations-reviewed-terminal-order-unresolved",
-        "source": "robotron-factory-drawings",
-        "locator": "PDF page 10, drawing 63-330-4103-2",
-        "photoSource": "photo-top",
-        "pixelUncertainty": 8,
-        "photoEndpoints": [
-          [
-            1527,
-            1060
-          ],
-          [
-            1683,
-            1055
-          ]
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1683,
+          1055
         ],
-        "endpointOrder": "left, right in the original upright photograph; not schematic pin numbers",
-        "blueCollarEndpoint": "left",
-        "legibleBodyMarking": "1K0",
-        "limitation": "Factory drawing supports designator order. Top photo supports lead positions and collar end. Physical-to-schematic terminal assignment and continuity remain unverified; these candidates do not place or connect native pads."
-      }
+        "2": [
+          1527,
+          1060
+        ]
+      },
+      "pixelUncertainty": 8,
+      "blueCollarPin": "2"
     },
     "R7": {
       "referenceType": "3k3",
@@ -16798,23 +17059,23 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "153fc5d6c21accfb0ab9c288106d9e564c61f3c7"
+      "revision": "a85c116ca782e99a69e133a1c060d68dd1942e7f"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "050bce1177ec8da392d9af79cdd0708cde73a066830b8c698b118576beb18685",
+      "layout": "521d0f48fe7745d77d6c8ad867b27eded4a0f8b7ff0a52628670619b5cb09d5a",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "577d82593d83b96be2c9add4b39c807a4f499a92c5eb38d6fff922a89fba5a20",
-      "photoRegistration": "746c7a90620f24262a9acffd98e3d01925c0e36d61856a4f67e1ad2f62fe1b70",
+      "qualification": "f0365e13cf423c512ec2e398aaa2b2c809ac3b8bb31822dda67751467585920b",
+      "photoRegistration": "9380f8e789e1965744946df5e700c8e515ac5ea97ee6a5ffbe013f453ec57b5f",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
       "evidence": "cc932e936696f36077cde4d3ef2ae932389e1e0d6510175845657a49d74c740d",
-      "componentEvidence": "3c3f1dff5258007d96f01903f19a622f277dd403915d1725d325daba66ea8783"
+      "componentEvidence": "62094982d9521e8aacee601f53831dda208f730a8bd4d4cf79682984ec2637ef"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "1f71c957858b7a0653a2f14046fd3ed2b4fd7006e3a79e6c57bb332ed1834412"
+    "geometryScadSha256": "041f98cdd067f676f0edd02d4915289b5d82a65354054a90c7f5e71acad48ca2"
   },
   "cosimulation": {
     "bus": {
