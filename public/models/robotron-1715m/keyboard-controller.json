@@ -1506,7 +1506,7 @@
             "pin": "17",
             "position": [
               78.49909,
-              4.136069
+              4.13607
             ],
             "ref": "A5",
             "size": [
@@ -1880,7 +1880,7 @@
             "pin": "37",
             "position": [
               45.509814,
-              19.442451
+              19.44245
             ],
             "ref": "A5",
             "size": [
@@ -2554,7 +2554,7 @@
         "type": "DL000"
       },
       {
-        "evidence": "inherited-photo-estimate",
+        "evidence": "photo-landmarks.json: A8; nominal envelope, not metrology",
         "pads": [
           {
             "drill": [
@@ -2564,8 +2564,8 @@
             "net": "/A7",
             "pin": "1",
             "position": [
-              100.03,
-              0.38
+              94.040028,
+              1.653313
             ],
             "ref": "A8",
             "size": [
@@ -2581,8 +2581,8 @@
             "net": "/D1",
             "pin": "10",
             "position": [
-              122.89,
-              0.38
+              116.896724,
+              2.041966
             ],
             "ref": "A8",
             "size": [
@@ -2598,8 +2598,8 @@
             "net": "/D2",
             "pin": "11",
             "position": [
-              125.43,
-              0.38
+              119.436357,
+              2.08515
             ],
             "ref": "A8",
             "size": [
@@ -2615,8 +2615,8 @@
             "net": "/GND",
             "pin": "12",
             "position": [
-              127.97,
-              0.38
+              121.97599,
+              2.128333
             ],
             "ref": "A8",
             "size": [
@@ -2632,8 +2632,8 @@
             "net": "/D3",
             "pin": "13",
             "position": [
-              127.97,
-              15.62
+              121.716888,
+              17.366131
             ],
             "ref": "A8",
             "size": [
@@ -2649,8 +2649,8 @@
             "net": "/D4",
             "pin": "14",
             "position": [
-              125.43,
-              15.62
+              119.177255,
+              17.322947
             ],
             "ref": "A8",
             "size": [
@@ -2666,8 +2666,8 @@
             "net": "/D5",
             "pin": "15",
             "position": [
-              122.89,
-              15.62
+              116.637622,
+              17.279763
             ],
             "ref": "A8",
             "size": [
@@ -2683,8 +2683,8 @@
             "net": "/D6",
             "pin": "16",
             "position": [
-              120.35,
-              15.62
+              114.097989,
+              17.23658
             ],
             "ref": "A8",
             "size": [
@@ -2700,8 +2700,8 @@
             "net": "/D7",
             "pin": "17",
             "position": [
-              117.81,
-              15.62
+              111.558356,
+              17.193396
             ],
             "ref": "A8",
             "size": [
@@ -2717,8 +2717,8 @@
             "net": "/GND",
             "pin": "18",
             "position": [
-              115.27,
-              15.62
+              109.018724,
+              17.150212
             ],
             "ref": "A8",
             "size": [
@@ -2734,8 +2734,8 @@
             "net": "/A10",
             "pin": "19",
             "position": [
-              112.73,
-              15.62
+              106.479091,
+              17.107029
             ],
             "ref": "A8",
             "size": [
@@ -2751,8 +2751,8 @@
             "net": "/A6",
             "pin": "2",
             "position": [
-              102.57,
-              0.38
+              96.579661,
+              1.696497
             ],
             "ref": "A8",
             "size": [
@@ -2768,8 +2768,8 @@
             "net": "/MREQ_N",
             "pin": "20",
             "position": [
-              110.19,
-              15.62
+              103.939458,
+              17.063845
             ],
             "ref": "A8",
             "size": [
@@ -2785,8 +2785,8 @@
             "net": "/+5V",
             "pin": "21",
             "position": [
-              107.65,
-              15.62
+              101.399825,
+              17.020662
             ],
             "ref": "A8",
             "size": [
@@ -2802,8 +2802,8 @@
             "net": "/A9",
             "pin": "22",
             "position": [
-              105.11,
-              15.62
+              98.860192,
+              16.977478
             ],
             "ref": "A8",
             "size": [
@@ -2819,8 +2819,8 @@
             "net": "/A8",
             "pin": "23",
             "position": [
-              102.57,
-              15.62
+              96.320559,
+              16.934294
             ],
             "ref": "A8",
             "size": [
@@ -2836,8 +2836,8 @@
             "net": "/+5V",
             "pin": "24",
             "position": [
-              100.03,
-              15.62
+              93.780926,
+              16.891111
             ],
             "ref": "A8",
             "size": [
@@ -2853,8 +2853,8 @@
             "net": "/A5",
             "pin": "3",
             "position": [
-              105.11,
-              0.38
+              99.119294,
+              1.739681
             ],
             "ref": "A8",
             "size": [
@@ -2870,8 +2870,8 @@
             "net": "/A4",
             "pin": "4",
             "position": [
-              107.65,
-              0.38
+              101.658927,
+              1.782864
             ],
             "ref": "A8",
             "size": [
@@ -2887,8 +2887,8 @@
             "net": "/A3",
             "pin": "5",
             "position": [
-              110.19,
-              0.38
+              104.19856,
+              1.826048
             ],
             "ref": "A8",
             "size": [
@@ -2904,8 +2904,8 @@
             "net": "/A2",
             "pin": "6",
             "position": [
-              112.73,
-              0.38
+              106.738192,
+              1.869232
             ],
             "ref": "A8",
             "size": [
@@ -2921,8 +2921,8 @@
             "net": "/A1",
             "pin": "7",
             "position": [
-              115.27,
-              0.38
+              109.277825,
+              1.912415
             ],
             "ref": "A8",
             "size": [
@@ -2938,8 +2938,8 @@
             "net": "/A0",
             "pin": "8",
             "position": [
-              117.81,
-              0.38
+              111.817458,
+              1.955599
             ],
             "ref": "A8",
             "size": [
@@ -2955,8 +2955,8 @@
             "net": "/D0",
             "pin": "9",
             "position": [
-              120.35,
-              0.38
+              114.357091,
+              1.998782
             ],
             "ref": "A8",
             "size": [
@@ -2966,11 +2966,11 @@
           }
         ],
         "position": [
-          114.0,
-          8.0
+          107.878458,
+          9.509722
         ],
         "ref": "A8",
-        "rotation": 0.0,
+        "rotation": 0.9741566612,
         "side": "top",
         "type": "U556_2716"
       },
@@ -13657,13 +13657,446 @@
         "rmsResidualMm": 0.43334134834304383,
         "rotationDeltaDegrees": -1.4620736503051962e-06,
         "status": "photo-estimated"
+      },
+      {
+        "checkPins": [
+          {
+            "heldOut": true,
+            "pcbModel": [
+              96.320559,
+              16.934294
+            ],
+            "pcbPixel": [
+              1769.2316573716644,
+              3495.081455595102
+            ],
+            "photoModel": [
+              96.23441660820063,
+              16.474385502940315
+            ],
+            "photoPixel": [
+              1763,
+              3494
+            ],
+            "pin": "23",
+            "residualMm": 0.4679063339308581
+          },
+          {
+            "heldOut": true,
+            "pcbModel": [
+              103.939458,
+              17.063845
+            ],
+            "pcbPixel": [
+              1775.3651547845716,
+              3593.4487882940352
+            ],
+            "photoModel": [
+              103.82407167824361,
+              16.446030683834003
+            ],
+            "photoPixel": [
+              1767,
+              3592
+            ],
+            "pin": "20",
+            "residualMm": 0.6284970425611628
+          },
+          {
+            "heldOut": true,
+            "pcbModel": [
+              111.558356,
+              17.193396
+            ],
+            "pcbPixel": [
+              1781.4899324782052,
+              3691.6762728887866
+            ],
+            "photoModel": [
+              111.26975235424693,
+              16.498780660644194
+            ],
+            "photoPixel": [
+              1772,
+              3688
+            ],
+            "pin": "17",
+            "residualMm": 0.7521851726871156
+          },
+          {
+            "heldOut": true,
+            "pcbModel": [
+              119.177255,
+              17.322947
+            ],
+            "pcbPixel": [
+              1787.606010182692,
+              3789.764233131453
+            ],
+            "photoModel": [
+              118.80354030548008,
+              16.548272818694798
+            ],
+            "photoPixel": [
+              1777,
+              3785
+            ],
+            "pin": "14",
+            "residualMm": 0.8601062492977246
+          }
+        ],
+        "fitMaxResidualMm": 1.1058027270871147,
+        "maxResidualMm": 1.1058027679148295,
+        "pins": [
+          {
+            "pcbModel": [
+              94.040028,
+              1.653313
+            ],
+            "pcbPixel": [
+              1562.592830848528,
+              3466.6753645265308
+            ],
+            "photoModel": [
+              94.68925941910906,
+              2.5484656830489523
+            ],
+            "photoPixel": [
+              1575,
+              3475
+            ],
+            "pin": "1",
+            "residualMm": 1.1058027679148295
+          },
+          {
+            "pcbModel": [
+              121.97599,
+              2.128333
+            ],
+            "pcbPixel": [
+              1585.5686021923314,
+              3826.6050416293306
+            ],
+            "photoModel": [
+              122.08593775469879,
+              2.454310990069433
+            ],
+            "photoPixel": [
+              1590,
+              3828
+            ],
+            "pin": "12",
+            "residualMm": 0.3440205789963932
+          },
+          {
+            "pcbModel": [
+              121.716888,
+              17.366131
+            ],
+            "pcbPixel": [
+              1789.6427769657785,
+              3822.429262959794
+            ],
+            "photoModel": [
+              120.98040128400756,
+              16.604075558986455
+            ],
+            "photoPixel": [
+              1779,
+              3813
+            ],
+            "pin": "13",
+            "residualMm": 1.059783552434967
+          },
+          {
+            "pcbModel": [
+              93.780926,
+              16.891111
+            ],
+            "pcbPixel": [
+              1767.1852263909175,
+              3462.2612185331864
+            ],
+            "photoModel": [
+              93.75823165453968,
+              16.432036965048898
+            ],
+            "photoPixel": [
+              1761,
+              3462
+            ],
+            "pin": "24",
+            "residualMm": 0.45963464064641213
+          }
+        ],
+        "proposedPosition": [
+          107.87845752808877,
+          9.509722299288434
+        ],
+        "ref": "A8",
+        "rmsResidualMm": 0.8178562069818488,
+        "rotationDeltaDegrees": -6.574805654143467e-07,
+        "status": "photo-estimated"
       }
     ],
     "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
     "schema": 1,
-    "scope": "Manual top-photo lead/pad landmarks. Nominal board envelope, not dimensional metrology or electrical continuity. Lead feet may obscure hole centres. ROM socket orientation and discrete references remain unresolved.",
+    "scope": "Manual top-photo lead/pad landmarks. Nominal board envelope, not dimensional metrology or electrical continuity. Lead feet and A8 socket obscure hole centres. Replacement ROM identity and discrete references remain unresolved.",
     "toleranceMm": 1.25,
     "withinPhotoTolerance": true
+  },
+  "bottomRegistration": {
+    "copperAssignmentQualified": false,
+    "maxCheckResidualMm": 1.6547156092152255,
+    "modelToPhoto": [
+      0.56798628251224,
+      -12.428135842751717,
+      1350.3482679128288,
+      13.227629596439757,
+      0.010908770148280657,
+      2061.701655102361,
+      0.00027506741458524655,
+      -1.7371481935679935e-05,
+      1
+    ],
+    "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+    "photoToModel": [
+      0.00028420502751475593,
+      0.07545380070177285,
+      -155.94700155724544,
+      -0.07701002238839788,
+      0.001195549341605304,
+      101.52548428775702,
+      -1.4159537549155071e-06,
+      -2.0734113415875902e-05,
+      1
+    ],
+    "pins": [
+      {
+        "heldOut": false,
+        "pcbModel": [
+          -57.08708,
+          -12.146847
+        ],
+        "pcbPixel": [
+          1492.0000000000002,
+          1327.0000000000005
+        ],
+        "photoModel": [
+          -57.08708,
+          -12.14684700000002
+        ],
+        "photoPixel": [
+          1492,
+          1327
+        ],
+        "pin": "1",
+        "ref": "A1",
+        "residualMm": 2.1316282072803006e-14
+      },
+      {
+        "heldOut": false,
+        "pcbModel": [
+          -57.336762,
+          -4.530939
+        ],
+        "pcbPixel": [
+          1396.0000000000005,
+          1324.0000000000002
+        ],
+        "photoModel": [
+          -57.336762000000014,
+          -4.5309389999999965
+        ],
+        "photoPixel": [
+          1396,
+          1324
+        ],
+        "pin": "14",
+        "ref": "A1",
+        "residualMm": 1.464821375527116e-14
+      },
+      {
+        "heldOut": false,
+        "pcbModel": [
+          121.97599,
+          2.128333
+        ],
+        "pcbPixel": [
+          1347.9999999999998,
+          3555.9999999999995
+        ],
+        "photoModel": [
+          121.97599000000002,
+          2.1283329999999805
+        ],
+        "photoPixel": [
+          1348,
+          3556
+        ],
+        "pin": "12",
+        "ref": "A8",
+        "residualMm": 3.449061096984636e-14
+      },
+      {
+        "heldOut": false,
+        "pcbModel": [
+          121.716888,
+          17.366131
+        ],
+        "pcbPixel": [
+          1165.0000000000002,
+          3554.0
+        ],
+        "photoModel": [
+          121.71688800000003,
+          17.36613099999999
+        ],
+        "photoPixel": [
+          1165,
+          3554
+        ],
+        "pin": "13",
+        "ref": "A8",
+        "residualMm": 3.03543989777123e-14
+      },
+      {
+        "heldOut": true,
+        "pcbModel": [
+          37.859172,
+          4.217817
+        ],
+        "pcbPixel": [
+          1305.9281341667295,
+          2536.307939036737
+        ],
+        "photoModel": [
+          36.94555294796583,
+          4.685124680115882
+        ],
+        "photoPixel": [
+          1300,
+          2525
+        ],
+        "pin": "1",
+        "ref": "A5",
+        "residualMm": 1.0261950302623304
+      },
+      {
+        "heldOut": true,
+        "pcbModel": [
+          37.88983,
+          19.457787
+        ],
+        "pcbPixel": [
+          1118.7632664709674,
+          2537.517598159912
+        ],
+        "photoModel": [
+          36.87974805971953,
+          19.742851253021243
+        ],
+        "photoPixel": [
+          1115,
+          2525
+        ],
+        "pin": "40",
+        "ref": "A5",
+        "residualMm": 1.0495366379652125
+      },
+      {
+        "heldOut": true,
+        "pcbModel": [
+          86.119074,
+          4.120733
+        ],
+        "pcbPixel": [
+          1316.94738708617,
+          3127.0464636727856
+        ],
+        "photoModel": [
+          87.02277105344163,
+          4.709115994410992
+        ],
+        "photoPixel": [
+          1310,
+          3138
+        ],
+        "pin": "20",
+        "ref": "A5",
+        "residualMm": 1.0783612161567824
+      },
+      {
+        "heldOut": true,
+        "pcbModel": [
+          86.149732,
+          19.360703
+        ],
+        "pcbPixel": [
+          1132.2134340173627,
+          3128.3883840704843
+        ],
+        "photoModel": [
+          86.94201442051028,
+          19.97211621397643
+        ],
+        "photoPixel": [
+          1125,
+          3138
+        ],
+        "pin": "21",
+        "ref": "A5",
+        "residualMm": 1.0007684807559685
+      },
+      {
+        "heldOut": true,
+        "pcbModel": [
+          -41.855264,
+          -11.647483
+        ],
+        "pcbPixel": [
+          1488.1637042669956,
+          1525.1794916604456
+        ],
+        "photoModel": [
+          -43.41066166305548,
+          -12.21212612370033
+        ],
+        "photoPixel": [
+          1495,
+          1505
+        ],
+        "pin": "7",
+        "ref": "A1",
+        "residualMm": 1.6547156092152255
+      },
+      {
+        "heldOut": true,
+        "pcbModel": [
+          -42.104946,
+          -4.031575
+        ],
+        "pcbPixel": [
+          1392.568984450706,
+          1522.2324748034202
+        ],
+        "photoModel": [
+          -43.432548077463615,
+          -4.643344797670513
+        ],
+        "photoPixel": [
+          1400,
+          1505
+        ],
+        "pin": "8",
+        "ref": "A1",
+        "residualMm": 1.4617761666642162
+      }
+    ],
+    "schema": 1,
+    "scope": "Underside solder-joint centers matched by DIP pin order, with horizontal reflection relative to top. Registration is relative to photo-estimated KiCad placements, not metrology. No copper assigned or artwork transformed by this review.",
+    "toleranceMm": 1.25,
+    "withinPhotoTolerance": false
   },
   "evidence": {
     "schema": 1,
@@ -13725,7 +14158,7 @@
       {
         "id": "dimensions",
         "status": "estimated",
-        "detail": "Nominal 270 by 46 by 1.6 mm envelope. Eight DIP placements fitted to numbered top-photo landmarks, each with held-out checks. A8 orientation and underside registration remain unqualified. See generated/photo-registration.json."
+        "detail": "Nominal 270 by 46 by 1.6 mm envelope. Nine DIP placements fitted to numbered top-photo landmarks with held-out checks; A8 socket obscures board hole centers. Independent underside review fails tolerance at two A1 check pads; no artwork warp or copper assignment promoted. See generated/photo-registration.json and bottom-registration.json."
       },
       {
         "id": "specimen-timing",
@@ -13792,21 +14225,22 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "fd48d550e1cd34eb95f3281e1665bc59f7832804"
+      "revision": "78feb5347cae72f821a177b777f1b0b8803682f4"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "8052c321dc9fd8019f8ba797e30be4f30c366214"
     },
     "files": {
-      "layout": "12ee14b4ab4a79bbe91e7564e6a1728302af81c9d6bf3186855afb29a7a17998",
+      "layout": "d48cfbf865587975bd4fbac761f71f43585bf69e7323cfa817b9352706a4b780",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "ffc87f365566b345d4438850a1f29fe8de8b785b9cca0bc712da39e30ffe6934",
-      "photoRegistration": "463a1948d2fd10eb6203f69a958b8f9adc51ec90e2e1e3a9be887efdf4ebaa6f",
-      "evidence": "54fce55c14b3cd6fb6d8ab917ecc5f74419e761e1b20385cc6906e170a779856"
+      "photoRegistration": "242966e55da427665258d2e738ba0ba3c251cb659a60c0f4b5e3e28036390be0",
+      "bottomRegistration": "87c7a3f96579868cf0e5d7769767f78903e5cea934fd614df6320fe58b7e3de8",
+      "evidence": "8076e5193e15004d631131ca57c15b440f56d35279a30c190d5000f59b3b3748"
     },
     "reportSha256": "7e87178cdca4e098959329578130aed8f883b7fba6d79d5d65aba1f9e71ecc08",
-    "geometryScadSha256": "a57fcc462a5edd4cdda45bdf9cb66010ab27ce96dc6c959fac5bb257103a05be"
+    "geometryScadSha256": "00a572f5041503601ed2bb0a4394fac3d0bef7e2bf70a8115f213e9778b54ffa"
   },
   "cosimulation": {
     "bus": {

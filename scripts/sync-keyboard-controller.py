@@ -9,7 +9,7 @@ def revision(repo):
 cadrev=revision(a.cad);emurev=revision(a.emulation);board=a.cad/'models/robotron-1715m/keyboard-controller';core=a.emulation/'verification/robotron-keyboard'
 subprocess.run(['python3',board/'tools/export.py','--check'],check=True)
 subprocess.run(['python3',core/'generate.py','--check'],check=True)
-paths={k:board/'generated'/v for k,v in [('layout','layout.json'),('connectivity','connectivity.json'),('qualification','qualification.json'),('photoRegistration','photo-registration.json')]};paths['evidence']=board/'evidence.json'
+paths={k:board/'generated'/v for k,v in [('layout','layout.json'),('connectivity','connectivity.json'),('qualification','qualification.json'),('photoRegistration','photo-registration.json'),('bottomRegistration','bottom-registration.json')]};paths['evidence']=board/'evidence.json'
 blob={k:json.loads(v.read_text()) for k,v in paths.items()};digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 if digest(paths['connectivity'])!=digest(core/'reference/connectivity.json'):raise SystemExit('CAD and HDL are pinned to different connectivity')
 report=json.loads((core/'reports/full-audit.json').read_text())

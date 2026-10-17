@@ -18,6 +18,8 @@ test('controller review selects nets, reports gaps and retries a failed load',as
  await page.goto('/');const panel=page.locator('#keyboard-controller-review');await panel.evaluate(e=>e.open=true);
  await expect(panel.locator('[data-status]')).toContainText('could not load');await panel.evaluate(e=>e.open=false);await panel.evaluate(e=>e.open=true);
  await expect(panel.locator('[data-status]')).toContainText('70 reference components');
+ await expect(panel.locator('[data-selection]')).toContainText('Underside independent checks');
+ await expect(panel.locator('[data-selection]')).toContainText('outside tolerance');
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
  await expect(panel.locator('[data-selection]')).toContainText('3 pins; 1 with estimated positions');
  await expect(panel.locator('[data-selection]')).toContainText('L1.4, R10.2');
@@ -71,4 +73,13 @@ test('bridge inspection distinguishes reset source and CPU injection side',async
  await expect(panel.locator('[data-pins]')).toContainText('RESET_N');
  await expect(panel.locator('[data-qualification]')).toContainText('13 digital checks; 0 mismatches');
  expect(data.cosimulation.service.mismatches).toBe(0);
+});
+
+
+test('underside evidence retains failing independent pad checks',()=>{
+ const r=data.bottomRegistration;
+ expect(r.withinPhotoTolerance).toBe(false);expect(r.copperAssignmentQualified).toBe(false);
+ expect(r.pins.filter(p=>p.heldOut)).toHaveLength(6);
+ expect(r.pins.filter(p=>p.heldOut&&p.residualMm>r.toleranceMm).map(p=>p.ref+':'+p.pin)).toEqual(['A1:7','A1:8']);
+ expect(data.photoRegistration.components.find(c=>c.ref==='A8').maxResidualMm).toBeLessThanOrEqual(data.photoRegistration.toleranceMm);
 });

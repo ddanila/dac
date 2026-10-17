@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "fd48d550e1cd34eb95f3281e1665bc59f7832804",
+  "revision": "78feb5347cae72f821a177b777f1b0b8803682f4",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "c8afac96d1c6c2b3a8bcb438da227075127f2c6cdcb2a65263344a6aba298476"
+      "sha256": "e36d652b248b2355c9a8daf719d5cbb18e165d63670cac8b66f3051cf5861eca"
     },
     {
       "file": "LICENSE",
@@ -461,19 +461,19 @@
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
-      "sha256": "eb83d6292000b6f41e88cb353231595b27ca63701e9f76f2d329fb9e94f2ccc0"
+      "sha256": "cd7a711026648a2e5406a15aae8d1c63c0f6b36e88f19e99cc942218a8ed9d54"
     },
     {
       "file": "meshes/keyboard-controller-chips.stl",
-      "sha256": "bccfbec6507eaf3c5a35d622176c6ba4732be59b635e4d0b7ea385c7ba7d7c01"
+      "sha256": "fbeb631c6135f050f36c05e35029171e9c509f7583f865a3511ac90d5d7205aa"
     },
     {
       "file": "meshes/keyboard-controller-ceramic.stl",
-      "sha256": "3143390ebd40420455065dd02009f0db1d0eb4828b1ab15b23f0c6b6c30d7e3b"
+      "sha256": "49e1ccc71c7d09eb78e84129ccf7ce04e2c55c9cc3ca132ac76dcb682f9f01d8"
     },
     {
       "file": "meshes/keyboard-controller-rom-cover.stl",
-      "sha256": "2cf2fab740671d86ed3dc67de274ad0493791aa041afab984d9668f548e3cb19"
+      "sha256": "be3a2cfea01fbc9c29003a586f6a721953130413c8443e21cdec6a9ffe090a6a"
     },
     {
       "file": "meshes/keyboard-controller-connectors.stl",
@@ -485,11 +485,11 @@
     },
     {
       "file": "meshes/keyboard-controller-metal.stl",
-      "sha256": "5a5da1397f4f72bdeaec7b7d5099eb7e015d7dc610aa7c8a20a81322ef2fccd9"
+      "sha256": "612d7eba935f9457d0726f2cfebb1cbbe1e2ee7b45cd2aed66740d86cd10cdd5"
     },
     {
       "file": "meshes/keyboard-controller-ink.stl",
-      "sha256": "1afd1731fba14b3e4b2edeece15a326ddf557f482d80d468f16858a5f94581a8"
+      "sha256": "750b9e8f06d378698980909c0b8456a92558c45e08c7d2a4f85ef991f04ed6b5"
     },
     {
       "file": "meshes/keyboard-insulators.stl",
@@ -565,7 +565,7 @@
     },
     {
       "file": "meshes/keyboard-controller-traces.stl",
-      "sha256": "b7f0a45256c4c0ff579322dd0e06c90d65ef97a9bd4b7d926e19c98af4f32181"
+      "sha256": "b60f758806f7e77cfdb986b9371be152cfee19cd16a87c536f4884ad6594a787"
     },
     {
       "file": "meshes/monitor-power-lead.stl",
@@ -657,7 +657,7 @@
     },
     {
       "file": "meshes/keyboard-controller-solder.stl",
-      "sha256": "7a74ebb7c3a7f474fdbb51d7b7de36e6959f026e1dc77f03071c80d571d1e085"
+      "sha256": "73d7fef5a91749f4c8c58e7e55f9346eca89b0343aef0f3c9bd751b617490c41"
     },
     {
       "file": "meshes/drive-protect-tab-0.stl",
@@ -829,7 +829,7 @@
     },
     {
       "file": "meshes/keyboard-controller-rom-ink.stl",
-      "sha256": "b3b5039870189afefa36773ac5623da14b0e1e397779f6ddb46bf13f99599569"
+      "sha256": "fa6b5ce4d95f7d2c071bec444d26779097a67dec85dd528c9891c35d7dab1f5c"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1477,23 +1477,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "292540bffcb7d9df8be0b421847d0f91186281eab52f5abe67cd537eeeb62c93"
+      "sha256": "2821726bc0ca52298dab95f9e42e8a11c3a90c96084a2b55a1090671532c24e5"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "44abe38a6d1ae4e93d9426079e3519c77169f4cd83317c72ffee0b6d67213e12"
+      "sha256": "fd962b01ce328d4196f76499ad703fb48eb605a525a3e9b6556abc7da97f50a2"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "d95395fc5789799bb535e37ca66b34cf966999dfbb4bdc6bf60c39aebafc95af"
+      "sha256": "737925f62fdd36d318b0c9dcc24174659b8f6313eb85ed615121eecbca78f3ae"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "ae4f0cbaae8875d5deb8c2897bcd63b254d66ab3f65fc9278375609c8c2bdacd"
+      "sha256": "423b53e8e864297b81c8d5b6d3f7c9c30a32d75d201e1be690ec4978389d3f94"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "036c08d119795b388f31940d29b7826e2719ef54d7fa5db2e70e970f9bc67040"
+      "sha256": "840152f89b9f17ee9b752cee91c09bd021a17dd6c4207ca28d8e9d67abc7cfb2"
     }
   ],
   "inspection": {
