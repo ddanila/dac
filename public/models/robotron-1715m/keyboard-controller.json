@@ -253,7 +253,7 @@
         "type": "7406"
       },
       {
-        "evidence": "photo-landmarks.json: A2.1; nominal envelope, not metrology",
+        "evidence": "photo-landmarks.json: A2.1; factory placement 63-330-4103-2; nominal envelope, not metrology",
         "pads": [
           {
             "drill": [
@@ -263,8 +263,8 @@
             "net": "/A3",
             "pin": "1",
             "position": [
-              16.335248,
-              -5.785879
+              -57.884662,
+              12.451299
             ],
             "ref": "A2.1",
             "size": [
@@ -280,8 +280,8 @@
             "net": "/A2",
             "pin": "10",
             "position": [
-              26.26046,
-              2.137515
+              -48.09383,
+              20.540156
             ],
             "ref": "A2.1",
             "size": [
@@ -297,512 +297,10 @@
             "net": "/COL5",
             "pin": "11",
             "position": [
-              23.721618,
-              2.060798
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A5",
-            "pin": "12",
-            "position": [
-              21.182777,
-              1.98408
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A5",
-            "pin": "13",
-            "position": [
-              18.643936,
-              1.907362
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "14",
-            "position": [
-              16.105095,
-              1.830645
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A3",
-            "pin": "2",
-            "position": [
-              18.874089,
-              -5.709161
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/COL3",
-            "pin": "3",
-            "position": [
-              21.41293,
-              -5.632443
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A11",
-            "pin": "4",
-            "position": [
-              23.951772,
-              -5.555726
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A11",
-            "pin": "5",
-            "position": [
-              26.490613,
-              -5.479008
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/COL11",
-            "pin": "6",
-            "position": [
-              29.029454,
-              -5.40229
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/GND",
-            "pin": "7",
-            "position": [
-              31.568295,
-              -5.325573
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/COL2",
-            "pin": "8",
-            "position": [
-              31.338142,
-              2.290951
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A2",
-            "pin": "9",
-            "position": [
-              28.799301,
-              2.214233
-            ],
-            "ref": "A2.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          23.836695,
-          -1.747464
-        ],
-        "ref": "A2.1",
-        "rotation": 1.73081465,
-        "side": "top",
-        "type": "DL003"
-      },
-      {
-        "evidence": "photo-landmarks.json: A2.2; nominal envelope, not metrology",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A7",
-            "pin": "1",
-            "position": [
-              15.297968,
-              10.685617
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A15",
-            "pin": "10",
-            "position": [
-              25.349461,
-              18.448187
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/COL12",
-            "pin": "11",
-            "position": [
-              22.809714,
-              18.412355
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A12",
-            "pin": "12",
-            "position": [
-              20.269967,
-              18.376523
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A12",
-            "pin": "13",
-            "position": [
-              17.73022,
-              18.340691
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "14",
-            "position": [
-              15.190472,
-              18.304859
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A7",
-            "pin": "2",
-            "position": [
-              17.837715,
-              10.721449
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/COL7",
-            "pin": "3",
-            "position": [
-              20.377463,
-              10.757281
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/IORQ_N",
-            "pin": "4",
-            "position": [
-              22.91721,
-              10.793113
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/IORQ_N",
-            "pin": "5",
-            "position": [
-              25.456957,
-              10.828945
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/IO_ACTIVE",
-            "pin": "6",
-            "position": [
-              27.996704,
-              10.864777
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/GND",
-            "pin": "7",
-            "position": [
-              30.536452,
-              10.900609
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/LATCH_OE_N",
-            "pin": "8",
-            "position": [
-              30.428956,
-              18.519851
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A15",
-            "pin": "9",
-            "position": [
-              27.889209,
-              18.484019
-            ],
-            "ref": "A2.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          22.863462,
-          14.602734
-        ],
-        "ref": "A2.2",
-        "rotation": 0.8083022764,
-        "side": "top",
-        "type": "DL003"
-      },
-      {
-        "evidence": "photo-landmarks.json: A2.3; nominal envelope, not metrology",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A10",
-            "pin": "1",
-            "position": [
-              -57.884662,
-              12.451299
-            ],
-            "ref": "A2.3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/A0",
-            "pin": "10",
-            "position": [
-              -48.09383,
-              20.540156
-            ],
-            "ref": "A2.3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/COL8",
-            "pin": "11",
-            "position": [
               -50.631026,
               20.420839
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -813,13 +311,13 @@
               0.85,
               0.85
             ],
-            "net": "/A8",
+            "net": "/A5",
             "pin": "12",
             "position": [
               -53.168222,
               20.301522
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -830,13 +328,13 @@
               0.85,
               0.85
             ],
-            "net": "/A8",
+            "net": "/A5",
             "pin": "13",
             "position": [
               -55.705418,
               20.182204
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -853,7 +351,7 @@
               -58.242614,
               20.062887
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -864,13 +362,13 @@
               0.85,
               0.85
             ],
-            "net": "/A10",
+            "net": "/A3",
             "pin": "2",
             "position": [
               -55.347466,
               12.570616
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -881,13 +379,13 @@
               0.85,
               0.85
             ],
-            "net": "/COL10",
+            "net": "/COL3",
             "pin": "3",
             "position": [
               -52.81027,
               12.689934
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -898,13 +396,13 @@
               0.85,
               0.85
             ],
-            "net": "/A9",
+            "net": "/A11",
             "pin": "4",
             "position": [
               -50.273074,
               12.809251
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -915,13 +413,13 @@
               0.85,
               0.85
             ],
-            "net": "/A9",
+            "net": "/A11",
             "pin": "5",
             "position": [
               -47.735878,
               12.928568
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -932,13 +430,13 @@
               0.85,
               0.85
             ],
-            "net": "/COL9",
+            "net": "/COL11",
             "pin": "6",
             "position": [
               -45.198682,
               13.047886
             ],
-            "ref": "A2.3",
+            "ref": "A2.1",
             "size": [
               1.7,
               1.7
@@ -955,6 +453,508 @@
               -42.661486,
               13.167203
             ],
+            "ref": "A2.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/COL2",
+            "pin": "8",
+            "position": [
+              -43.019438,
+              20.778791
+            ],
+            "ref": "A2.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A2",
+            "pin": "9",
+            "position": [
+              -45.556634,
+              20.659474
+            ],
+            "ref": "A2.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -50.45205,
+          16.615045
+        ],
+        "ref": "A2.1",
+        "rotation": 2.692479163,
+        "side": "top",
+        "type": "DL003"
+      },
+      {
+        "evidence": "photo-landmarks.json: A2.2; factory placement 63-330-4103-2; nominal envelope, not metrology",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A7",
+            "pin": "1",
+            "position": [
+              16.335248,
+              -5.785879
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A15",
+            "pin": "10",
+            "position": [
+              26.260459,
+              2.137516
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/COL12",
+            "pin": "11",
+            "position": [
+              23.721618,
+              2.060798
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A12",
+            "pin": "12",
+            "position": [
+              21.182777,
+              1.98408
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A12",
+            "pin": "13",
+            "position": [
+              18.643937,
+              1.907362
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "14",
+            "position": [
+              16.105095,
+              1.830645
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A7",
+            "pin": "2",
+            "position": [
+              18.874089,
+              -5.709161
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/COL7",
+            "pin": "3",
+            "position": [
+              21.412931,
+              -5.632444
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/IORQ_N",
+            "pin": "4",
+            "position": [
+              23.951772,
+              -5.555726
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/IORQ_N",
+            "pin": "5",
+            "position": [
+              26.490613,
+              -5.479008
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/IO_ACTIVE",
+            "pin": "6",
+            "position": [
+              29.029453,
+              -5.40229
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/GND",
+            "pin": "7",
+            "position": [
+              31.568295,
+              -5.325573
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/LATCH_OE_N",
+            "pin": "8",
+            "position": [
+              31.338142,
+              2.290951
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A15",
+            "pin": "9",
+            "position": [
+              28.799301,
+              2.214233
+            ],
+            "ref": "A2.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          23.836695,
+          -1.747464
+        ],
+        "ref": "A2.2",
+        "rotation": 1.73081465,
+        "side": "top",
+        "type": "DL003"
+      },
+      {
+        "evidence": "photo-landmarks.json: A2.3; factory placement 63-330-4103-2; nominal envelope, not metrology",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A10",
+            "pin": "1",
+            "position": [
+              15.297968,
+              10.685617
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A0",
+            "pin": "10",
+            "position": [
+              25.349461,
+              18.448187
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/COL8",
+            "pin": "11",
+            "position": [
+              22.809714,
+              18.412355
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A8",
+            "pin": "12",
+            "position": [
+              20.269967,
+              18.376523
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A8",
+            "pin": "13",
+            "position": [
+              17.73022,
+              18.340691
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "14",
+            "position": [
+              15.190472,
+              18.304859
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A10",
+            "pin": "2",
+            "position": [
+              17.837715,
+              10.721449
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/COL10",
+            "pin": "3",
+            "position": [
+              20.377463,
+              10.757281
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A9",
+            "pin": "4",
+            "position": [
+              22.91721,
+              10.793113
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/A9",
+            "pin": "5",
+            "position": [
+              25.456957,
+              10.828945
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/COL9",
+            "pin": "6",
+            "position": [
+              27.996704,
+              10.864777
+            ],
+            "ref": "A2.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/GND",
+            "pin": "7",
+            "position": [
+              30.536452,
+              10.900609
+            ],
             "ref": "A2.3",
             "size": [
               1.7,
@@ -969,8 +969,8 @@
             "net": "/COL0",
             "pin": "8",
             "position": [
-              -43.019438,
-              20.778791
+              30.428956,
+              18.519851
             ],
             "ref": "A2.3",
             "size": [
@@ -986,8 +986,8 @@
             "net": "/A0",
             "pin": "9",
             "position": [
-              -45.556634,
-              20.659474
+              27.889209,
+              18.484019
             ],
             "ref": "A2.3",
             "size": [
@@ -997,11 +997,11 @@
           }
         ],
         "position": [
-          -50.45205,
-          16.615045
+          22.863462,
+          14.602734
         ],
         "ref": "A2.3",
-        "rotation": 2.692479163,
+        "rotation": 0.8083022764,
         "side": "top",
         "type": "DL003"
       },
@@ -13136,6 +13136,123 @@
           {
             "heldOut": true,
             "pcbModel": [
+              -50.273074,
+              12.809251
+            ],
+            "pcbPixel": [
+              1627.2569831264793,
+              1575.0099966739674
+            ],
+            "photoModel": [
+              -50.26508656317325,
+              13.597536502531922
+            ],
+            "photoPixel": [
+              1638,
+              1575
+            ],
+            "pin": "4",
+            "residualMm": 0.78832596852385
+          }
+        ],
+        "fitMaxResidualMm": 0.894454235300032,
+        "maxResidualMm": 0.894454191193115,
+        "pins": [
+          {
+            "pcbModel": [
+              -57.884662,
+              12.451299
+            ],
+            "pcbPixel": [
+              1617.8182653193085,
+              1473.885568303334
+            ],
+            "photoModel": [
+              -57.79075744382086,
+              13.340810233471354
+            ],
+            "photoPixel": [
+              1630,
+              1475
+            ],
+            "pin": "1",
+            "residualMm": 0.894454191193115
+          },
+          {
+            "pcbModel": [
+              -42.661486,
+              13.167203
+            ],
+            "pcbPixel": [
+              1636.6822754104019,
+              1675.9905868250667
+            ],
+            "photoModel": [
+              -42.728750007368525,
+              13.854626614103493
+            ],
+            "photoPixel": [
+              1646,
+              1675
+            ],
+            "pin": "7",
+            "residualMm": 0.6907066467860149
+          },
+          {
+            "pcbModel": [
+              -43.019438,
+              20.778791
+            ],
+            "pcbPixel": [
+              1740.1168366475713,
+              1670.1515725331333
+            ],
+            "photoModel": [
+              -43.038877742938276,
+              20.036890459960905
+            ],
+            "photoPixel": [
+              1730,
+              1670
+            ],
+            "pin": "8",
+            "residualMm": 0.7421551825028273
+          },
+          {
+            "pcbModel": [
+              -58.242614,
+              20.062887
+            ],
+            "pcbPixel": [
+              1721.393756659248,
+              1467.9690872339772
+            ],
+            "photoModel": [
+              -58.249813887131324,
+              19.227852563014086
+            ],
+            "photoPixel": [
+              1710,
+              1468
+            ],
+            "pin": "14",
+            "residualMm": 0.8350654760718388
+          }
+        ],
+        "proposedPosition": [
+          -50.452049770314744,
+          16.61504496763746
+        ],
+        "ref": "A2.1",
+        "rmsResidualMm": 0.7945521751748279,
+        "rotationDeltaDegrees": 2.9689878329012265e-07,
+        "status": "photo-estimated"
+      },
+      {
+        "checkPins": [
+          {
+            "heldOut": true,
+            "pcbModel": [
               23.951772,
               -5.555726
             ],
@@ -13243,7 +13360,7 @@
           23.836695001940306,
           -1.7474640017923946
         ],
-        "ref": "A2.1",
+        "ref": "A2.2",
         "rmsResidualMm": 0.6754636178219535,
         "rotationDeltaDegrees": 8.600314830341948e-07,
         "status": "photo-estimated"
@@ -13360,126 +13477,9 @@
           22.86346187492518,
           14.602734241575018
         ],
-        "ref": "A2.2",
+        "ref": "A2.3",
         "rmsResidualMm": 0.7127661630094962,
         "rotationDeltaDegrees": -1.0312265211671782e-06,
-        "status": "photo-estimated"
-      },
-      {
-        "checkPins": [
-          {
-            "heldOut": true,
-            "pcbModel": [
-              -50.273074,
-              12.809251
-            ],
-            "pcbPixel": [
-              1627.2569831264793,
-              1575.0099966739674
-            ],
-            "photoModel": [
-              -50.26508656317325,
-              13.597536502531922
-            ],
-            "photoPixel": [
-              1638,
-              1575
-            ],
-            "pin": "4",
-            "residualMm": 0.78832596852385
-          }
-        ],
-        "fitMaxResidualMm": 0.894454235300032,
-        "maxResidualMm": 0.894454191193115,
-        "pins": [
-          {
-            "pcbModel": [
-              -57.884662,
-              12.451299
-            ],
-            "pcbPixel": [
-              1617.8182653193085,
-              1473.885568303334
-            ],
-            "photoModel": [
-              -57.79075744382086,
-              13.340810233471354
-            ],
-            "photoPixel": [
-              1630,
-              1475
-            ],
-            "pin": "1",
-            "residualMm": 0.894454191193115
-          },
-          {
-            "pcbModel": [
-              -42.661486,
-              13.167203
-            ],
-            "pcbPixel": [
-              1636.6822754104019,
-              1675.9905868250667
-            ],
-            "photoModel": [
-              -42.728750007368525,
-              13.854626614103493
-            ],
-            "photoPixel": [
-              1646,
-              1675
-            ],
-            "pin": "7",
-            "residualMm": 0.6907066467860149
-          },
-          {
-            "pcbModel": [
-              -43.019438,
-              20.778791
-            ],
-            "pcbPixel": [
-              1740.1168366475713,
-              1670.1515725331333
-            ],
-            "photoModel": [
-              -43.038877742938276,
-              20.036890459960905
-            ],
-            "photoPixel": [
-              1730,
-              1670
-            ],
-            "pin": "8",
-            "residualMm": 0.7421551825028273
-          },
-          {
-            "pcbModel": [
-              -58.242614,
-              20.062887
-            ],
-            "pcbPixel": [
-              1721.393756659248,
-              1467.9690872339772
-            ],
-            "photoModel": [
-              -58.249813887131324,
-              19.227852563014086
-            ],
-            "photoPixel": [
-              1710,
-              1468
-            ],
-            "pin": "14",
-            "residualMm": 0.8350654760718388
-          }
-        ],
-        "proposedPosition": [
-          -50.452049770314744,
-          16.61504496763746
-        ],
-        "ref": "A2.3",
-        "rmsResidualMm": 0.7945521751748279,
-        "rotationDeltaDegrees": 2.9689878329012265e-07,
         "status": "photo-estimated"
       },
       {
@@ -14788,7 +14788,7 @@
         "id": "robotron-factory-drawings",
         "url": "https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf",
         "sha256": "9d020e9dd41662f85b6a9a44e300cc9800ef20284c2a689e005f69a84f6e3fd3",
-        "use": "Manufacturer service drawings. PDF page 10 (printed drawing 8), 63-330-4103-2 / 1.93.304103.0/09: populated serial keyboard controller placement. PDF page 11 (printed drawing 9), 56-330-4103-7 / 1.93.304103.0/04: schematic. Unlike the unfinished Zander placement sheet, this supplies reference locations. Drawing revision is not proven specimen-identical; A2 physical-location labels differ from the reconstruction. PDF not redistributed."
+        "use": "Manufacturer service drawings. PDF page 10 (printed drawing 8), 63-330-4103-2 / 1.93.304103.0/09: populated serial keyboard controller placement. PDF page 11 (printed drawing 9), 56-330-4103-7 / 1.93.304103.0/04: schematic. Unlike the unfinished Zander placement sheet, this supplies reference locations. Drawing revision is not proven specimen-identical; A2 location labels exposed a reconstruction placement error, corrected after reviewing the factory gate assignments. PDF not redistributed."
       }
     ],
     "specimen": {
@@ -14915,8 +14915,14 @@
       {
         "source": "robotron-factory-drawings",
         "locator": "PDF page 10, drawing 63-330-4103-2",
-        "scope": "Physical-location correspondence only, not proof of electrical pin mapping. Preserve existing stable KiCad/HDL references until nets are independently checked.",
-        "physicalLabelCandidates": [
+        "scope": "Factory schematic gate pin assignments agree with the current electrical reference. Factory placement identifies the three photo locations; corrected PCB placements and photo landmarks retain stable schematic/HDL refs. This is a reconstruction correction, not evidence of a board variant.",
+        "packageLabels": {
+          "A6": "DL174",
+          "A7": "DL100"
+        },
+        "note": "A2 placements corrected after reviewing all 12 NAND gates. A6/A7 printed package labels remain a separate type comparison; chip models unchanged.",
+        "status": "reconstruction-placement-error-corrected",
+        "correctedPriorLocations": [
           {
             "reconstructionRef": "A2.3",
             "factoryRef": "A2.1",
@@ -14933,33 +14939,145 @@
             "location": "ROM side of X1, same board edge as CPU"
           }
         ],
-        "packageLabels": {
-          "A6": "DL174",
-          "A7": "DL100"
+        "schematicGateReview": {
+          "A2.1": [
+            {
+              "inputs": [
+                "1",
+                "2"
+              ],
+              "inputNet": "/A3",
+              "output": "3",
+              "outputNet": "/COL3"
+            },
+            {
+              "inputs": [
+                "4",
+                "5"
+              ],
+              "inputNet": "/A11",
+              "output": "6",
+              "outputNet": "/COL11"
+            },
+            {
+              "inputs": [
+                "9",
+                "10"
+              ],
+              "inputNet": "/A2",
+              "output": "8",
+              "outputNet": "/COL2"
+            },
+            {
+              "inputs": [
+                "12",
+                "13"
+              ],
+              "inputNet": "/A5",
+              "output": "11",
+              "outputNet": "/COL5"
+            }
+          ],
+          "A2.2": [
+            {
+              "inputs": [
+                "1",
+                "2"
+              ],
+              "inputNet": "/A7",
+              "output": "3",
+              "outputNet": "/COL7"
+            },
+            {
+              "inputs": [
+                "4",
+                "5"
+              ],
+              "inputNet": "/IORQ_N",
+              "output": "6",
+              "outputNet": "/IO_ACTIVE"
+            },
+            {
+              "inputs": [
+                "9",
+                "10"
+              ],
+              "inputNet": "/A15",
+              "output": "8",
+              "outputNet": "/LATCH_OE_N"
+            },
+            {
+              "inputs": [
+                "12",
+                "13"
+              ],
+              "inputNet": "/A12",
+              "output": "11",
+              "outputNet": "/COL12"
+            }
+          ],
+          "A2.3": [
+            {
+              "inputs": [
+                "1",
+                "2"
+              ],
+              "inputNet": "/A10",
+              "output": "3",
+              "outputNet": "/COL10"
+            },
+            {
+              "inputs": [
+                "4",
+                "5"
+              ],
+              "inputNet": "/A9",
+              "output": "6",
+              "outputNet": "/COL9"
+            },
+            {
+              "inputs": [
+                "9",
+                "10"
+              ],
+              "inputNet": "/A0",
+              "output": "8",
+              "outputNet": "/COL0"
+            },
+            {
+              "inputs": [
+                "12",
+                "13"
+              ],
+              "inputNet": "/A8",
+              "output": "11",
+              "outputNet": "/COL8"
+            }
+          ]
         },
-        "note": "Factory package markings and the Zander reconstruction values differ; do not replace chip models solely from these printed labels."
+        "schematicLocator": "PDF page 11, drawing 56-330-4103-7: address inverter bank and the two A2.2 enable gates beside A4."
       }
     ]
   },
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "33b54651f167db3a2ad59464c5c6b4041a8a67c5"
+      "revision": "5f507eaba0c09006c818522bb9b370ef1230a4c7"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "902458e454d842baa8d919a383e464f4c49824b94425119434b8442d353956b5",
+      "layout": "3142d325fb392c7a6cfe82877c6c20e71743a92e21e8b235e06e8b9c4d384a29",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "e18412de9082a269facfa79cf75c8c3f971aadc30aa7575135b2c779d79bf93c",
-      "photoRegistration": "242966e55da427665258d2e738ba0ba3c251cb659a60c0f4b5e3e28036390be0",
+      "photoRegistration": "5d1b163782bb159a459c2652aba907b66a4fb59e80a2279472ade26d9fce28cb",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
-      "evidence": "965e3fdbdcf138b22905ecbe3efd00b27c8a59998d0ff6d875e48a5c3fa2f4f8"
+      "evidence": "cc932e936696f36077cde4d3ef2ae932389e1e0d6510175845657a49d74c740d"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "fd85b2e300fb7591ccf756d723e2638b6a2e8fef639ed5ce63ea5074003415e2"
+    "geometryScadSha256": "0dcab6f7040e5a9faedd81f2636b23464cbcb496232ee3fe80a54cd387702a2e"
   },
   "cosimulation": {
     "bus": {
