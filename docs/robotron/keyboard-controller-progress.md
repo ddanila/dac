@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Eighth implementation pass, 2026-10-17. Digital reference qualification passes,
+Ninth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, direct photo-to-photo audit and enforced copper provenance | `f6e174d` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance and the first partial A1:1 top route | `371b017` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
@@ -18,6 +18,36 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the ninth pass establishes
+
+The first actual copper route is now native KiCad geometry: the top track leaving
+A1 pin 1, running around X1 and ending at a round terminal near A4 (original
+photo pixel 1241,2966). Seven segments follow visible copper. One short segment
+connects the fitted pad centre to the visible lead edge and is explicitly inferred.
+The estimated width is 0.35 mm; board scale remains nominal. Every segment has a
+UUID, geometry-bound evidence and original-photo pixel locators. Native geometry
+is exported into OpenSCAD, the museum mesh, review SVG and photo overlay.
+
+This is a partial route. `/WR_N` names the reference schematic connection at
+A1:1; the traced section does **not** establish continuity to the CPU WR pin or
+resolve the WR/RD source disagreement. The terminal's underside correspondence
+and continuation remain unresolved. No through-via or hidden route was invented.
+DRC retains one `track_dangling` finding, with 234 airwires still unresolved.
+There are now eight assigned copper segments; all 294 legacy artwork segments
+remain unassigned and 59 components remain unplaced.
+
+Museum inspection shows observed/inferred section counts and evidence details,
+highlights the assigned route with its net or component, draws the inferred
+attachment dashed, and reports the remaining DRC finding. The source-photo overlay
+was visually checked along the whole top section. Twelve export checks and the
+native KiCad integration test pass. Connectivity and HDL wiring are unchanged;
+reference co-simulation remains applicable, without claiming specimen continuity.
+All seven controller tests pass in Chromium, Firefox and WebKit (21 cases), and
+the production build passes. All 12 visual review views render; the three strict
+regression checks pass after reviewing and updating only the controller baseline.
+Its structural difference is limited to the added trace vertices/indices. CAD CI
+passes for `371b017`.
 
 ## What the eighth pass closes
 
@@ -328,7 +358,7 @@ connectivity and reports whose implementation/CPU/header hashes have changed.
 | First-failure signals, clocks, stimulus and waveform | Implemented with fault-injection checks |
 | KiCad DIP geometry propagated to OpenSCAD and museum | Implemented; discrete parts remain |
 | Both photo sides registered to numbered pads | Incomplete; corrected underside checks and nominal calibration remain unresolved |
-| Visible copper reconciled with named nets | Incomplete; 294 artwork segments remain unassigned |
+| Visible copper reconciled with named nets | First partial A1:1 top route assigned (7 observed sections, 1 inferred attachment); 294 artwork segments remain unassigned |
 | First data/clock path traced through actual copper | Incomplete |
 | Specimen ROM identity and timing | Awaiting planned dumps and measurements |
 

@@ -32782,7 +32782,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "b60f758806f7e77cfdb986b9371be152cfee19cd16a87c536f4884ad6594a787",
+      "sha256": "ed9af48264be678d1b418399f6f511b9e9ec9f06a64a80eb963830a9d5214eff",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -38336,7 +38336,7 @@
   "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m",
   "keyboardControllerSource": {
     "specimen-details.scad": "668a49eaf746d81f1b625f2a20a880c767c29af5704b5296e0dbadee34a75358",
-    "keyboard-controller/generated/controller.scad": "00a572f5041503601ed2bb0a4394fac3d0bef7e2bf70a8115f213e9778b54ffa",
+    "keyboard-controller/generated/controller.scad": "fd85b2e300fb7591ccf756d723e2638b6a2e8fef639ed5ce63ea5074003415e2",
     "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
   }
 }
