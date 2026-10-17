@@ -17538,12 +17538,12 @@
       {
         "id": "hidden-copper",
         "status": "unresolved",
-        "detail": "Native copper now includes the partial A1:1 top route and the visible R3/R4.1/R5/R6.1 supply tree and separate R6.3/R9.9 link, with pad attachments classified as inferred. See route-evidence.json and generated/qualification.json for current coverage and counts. The A1 terminal underside correspondence, CPU endpoint and WR/RD specimen disagreement remain unresolved. Unassigned legacy artwork is not electrical connectivity. The CPU-side CLK route candidate was withdrawn: its projected terminal appears to join A4:13 D6 on the top photo. Trace junction identity and through-board correspondence must be resolved before assigning a net. The local CPU/A4 geometric fit remains available, but does not prove electrical connectivity."
+        "detail": "Assigned native copper and its observation/inference status are recorded in route-evidence.json and generated/layout.json. The physical data/clock path, A1 terminal correspondence, CPU endpoint and specimen WR/RD disagreement remain unresolved. Unassigned artwork is not electrical connectivity. The CPU CLK candidate remains withdrawn: comparison photos weaken the earlier apparent D6 conflict but do not establish primary-specimen cross-side correspondence. See routeReviews for the conflicting and superseding observations."
       },
       {
         "id": "dimensions",
         "status": "estimated",
-        "detail": "Nominal 270 by 46 by 1.6 mm envelope. Nine DIP placements fitted to top-photo landmarks; A8 socket obscures board hole centers. Recounted underside CPU rows: six PCB-relative checks fail (1.41\u20131.70 mm). Direct photo-to-photo checks range 0.17\u20131.28 nominal mm, separating image correspondence from rigid placement/calibration discrepancy. No artwork warp or copper assignment promoted."
+        "detail": "Board envelope and placement scale remain nominal rather than measured. Top-photo landmarks and local underside fits support bounded geometry review; sockets and raised leads obscure some board entries. Global underside registration remains unqualified. generated/photo-registration.json and generated/bottom-registration.json retain current residuals, independent checks and extrapolation limits. A local fit does not authorize a global artwork warp or copper assignment."
       },
       {
         "id": "specimen-timing",
@@ -17553,7 +17553,7 @@
       {
         "id": "package-pinmap",
         "status": "unresolved",
-        "detail": "Reviewed DIP placements and twenty-one native resistor placements and BR1 are recorded in component-evidence.json. R4.2/R7/R8 still have unnumbered photo endpoint candidates; their underside correspondence and ground-side terminal assignment remain unresolved. Transistor, diode, capacitor and remaining discrete package terminal mappings require review. C5.1\u2013C5.4 now have primary-photo pad/body placements and reference supply-rail pin assignments. Hidden continuations remain untraced. C5.5 and other capacitors remain unplaced; a C5.5 lead entry is obscured by the adjacent electrolytic."
+        "detail": "Current native placements and unplaced references are authoritative in generated/layout.json; component-evidence.json records their pin-assignment basis. R4.2/R7/R8 are placed using the reviewed common underside strip and reference ground assignment. Transistor body axes are visual observations only, with electrical lead mapping unresolved. R6.4/R6.5 candidates identify visible lead ends rather than qualified holes. Remaining discrete and connector terminal maps require further evidence; C5.5 lead entry is obscured by the adjacent electrolytic."
       },
       {
         "id": "clock-source-disagreement",
@@ -19611,7 +19611,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "fd351b7d346742e9669fe67a1062e41a32f326dd"
+      "revision": "39e456d74517b9f08872c6e26886daae42d89749"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -19623,7 +19623,7 @@
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
-      "evidence": "3572d4ec655d4a973805217e474847dace22b6e16264ea81dde5cfd1e1ace889",
+      "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
       "componentEvidence": "3bc4ba6c64bd4a72a55ef6f0268d05526bbbdcb1554731bceafbfb36f0490d47"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
