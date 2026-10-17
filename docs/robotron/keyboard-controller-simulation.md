@@ -81,6 +81,7 @@ Generated decks, reports and failure traces stay in `build/`.
 | `oscillator_probe.py` | RC oscillator topology, BR1 isolation, timestep and capacitor sensitivity. |
 | `output_probe.py` | Serial/cable receiver voltages, LED currents, supply/return paths and load sensitivity. |
 | `serial_cosim.py` | Raw HDL-to-cable-to-receiver bit transport with explicit setup/hold stimulus; not CPU bus timing or S600 framing. |
+| `firmware_io_cosim.py` | S600-driven electrical matrix/cable feedback with external clock/reset through the BR service boundary; excludes the oscillator/reset generators. |
 | `bus_timing_probe.py` / `firmware_drive_compare.py` | CPU data-drive setup/hold regression and S600 logical comparison; physical bus contention and pin delays remain unqualified. |
 | `resolved_bus_probe.py` | ROM pin mapping, shared CPU/ROM/latch bus resolution and deliberate contention. |
 | `build_bridge.py` / `bridge_probe.py` | Reproducible ngspice–Icarus bridge and explicit sink-enable transport. |
@@ -99,6 +100,13 @@ The core's archived clock/reset baseline demonstrates standard S600 boot and idl
 scanning under electrical clock and power-on reset. Its digital matrix, direct ROM
 input and older CPU drive boundary limit that evidence; the assembled full-board
 configuration and contact/transmit scenarios still require qualification.
+The firmware harness now observes the cable receiver independently of transmit
+intent. An idle run cannot qualify transmission; the focused service fixture
+requires actual firmware-generated traffic. Matching bits alone does not verify
+S600 framing or receiver timing margins.
+The service fixture also compares received bits with the production C emulator's
+contact response, independently of the HDL transmit log. This is ordinal bit
+comparison, not CPU cycle equivalence.
 
 Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
 the tested explicit sink-enable interface. The nominal reset model also fails to
