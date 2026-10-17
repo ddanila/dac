@@ -110,7 +110,8 @@ receiver observations, ordinal bit agreement with the C emulator, timestep
 refinement and sampled data setup/hold against an explicit fixture budget.
 Service coverage checks the CPU reset pin and restart at the first ROM byte after
 each release. Archived reports retain input and waveform provenance. Qualified BR service
-evidence covers single press, release/repress, modifier/ordinary and service reset;
+evidence covers single press, release/repress, modifier and control sequences,
+and service reset;
 it does not establish full-board startup, other scenarios, CPU cycle equivalence
 or historical receiver limits.
 Additional contact/reset recipes live in the core's `analog/scenarios/`. One
