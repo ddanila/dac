@@ -106,3 +106,19 @@ test('partial copper review distinguishes observed sections from inferred attach
  await panel.getByLabel('Controller board side').selectOption('bottom');
  await expect(panel.locator('[data-route-id]')).toHaveCount(0);
 });
+
+test('local A4 photo fit retains extrapolation limits',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('A4');
+ await expect(panel.locator('[data-selection]')).toContainText('4 independent checks, 0.37 nominal mm');
+ await expect(panel.locator('[data-selection]')).toContainText('outside the anchor bounds');
+ await expect(panel.locator('[data-selection]')).toContainText('copper assignment remains unqualified');
+ expect(data.bottomRegistration.localRegions[0].copperAssignmentQualified).toBe(false);
+ expect(data.layout.vias).toHaveLength(0);
+});

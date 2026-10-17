@@ -14304,6 +14304,195 @@
       "scope": "Direct original-photo correspondence with the same four anchors; top lead/socket surfaces may differ from underside hole centers. Nominal mm uses the top board-envelope calibration, not metrology. No PCB edits or copper assignment.",
       "topPhotoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
     },
+    "localRegions": [
+      {
+        "anchors": [
+          {
+            "photoPixel": [
+              1514,
+              2578
+            ],
+            "pin": "1",
+            "ref": "A4"
+          },
+          {
+            "photoPixel": [
+              1424,
+              2581
+            ],
+            "pin": "20",
+            "ref": "A4"
+          },
+          {
+            "photoPixel": [
+              1519,
+              2857
+            ],
+            "pin": "10",
+            "ref": "A4"
+          },
+          {
+            "photoPixel": [
+              1426,
+              2859
+            ],
+            "pin": "11",
+            "ref": "A4"
+          }
+        ],
+        "bottomToTop": [
+          -3.483601082285597,
+          1.3600026497436297,
+          7235.460806541167,
+          2.2289716310323717,
+          6.693186176380932,
+          -9144.538874596725,
+          0.0006596473261311772,
+          0.0008061995302378473,
+          1
+        ],
+        "candidates": [
+          {
+            "bottomPixel": [
+              1619,
+              2715
+            ],
+            "detail": "Upper of two adjacent round terminals. This top endpoint belongs to the partial A1:1 route. Geometric correspondence candidate; through-board construction and continuity not assigned.",
+            "id": "a1-track-terminal",
+            "nominalResidualMm": 0.20729565216286716,
+            "outsideAnchorBounds": true,
+            "projectedTopPixel": [
+              1242.2281813020957,
+              2968.4656200959926
+            ],
+            "residualPixels": 2.754580143793201,
+            "topPixel": [
+              1241,
+              2966
+            ]
+          },
+          {
+            "bottomPixel": [
+              1620,
+              2745
+            ],
+            "detail": "Lower adjacent terminal used to distinguish the pair, not an independent calibration anchor.",
+            "id": "adjacent-terminal",
+            "nominalResidualMm": 0.13683293037952077,
+            "outsideAnchorBounds": true,
+            "projectedTopPixel": [
+              1243.7352026799606,
+              2998.6575456830737
+            ],
+            "residualPixels": 1.8132789835261596,
+            "topPixel": [
+              1243,
+              2997
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "bottomPixel": [
+              1516,
+              2702
+            ],
+            "nominalResidualMm": 0.3699108863572887,
+            "pin": "5",
+            "projectedTopPixel": [
+              1347.1856249025013,
+              2948.410999845649
+            ],
+            "ref": "A4",
+            "residualPixels": 4.7695782447441895,
+            "topPixel": [
+              1349,
+              2944
+            ]
+          },
+          {
+            "bottomPixel": [
+              1425,
+              2704
+            ],
+            "nominalResidualMm": 0.36643073993928954,
+            "pin": "16",
+            "projectedTopPixel": [
+              1443.8914526689837,
+              2944.232047428926
+            ],
+            "ref": "A4",
+            "residualPixels": 4.72823405594668,
+            "topPixel": [
+              1446,
+              2940
+            ]
+          },
+          {
+            "bottomPixel": [
+              1518,
+              2794
+            ],
+            "nominalResidualMm": 0.20930850220442115,
+            "pin": "8",
+            "projectedTopPixel": [
+              1351.053745777397,
+              3041.8922098341613
+            ],
+            "ref": "A4",
+            "residualPixels": 2.7144729793271702,
+            "topPixel": [
+              1353,
+              3040
+            ]
+          },
+          {
+            "bottomPixel": [
+              1426,
+              2796
+            ],
+            "nominalResidualMm": 0.16273694834245092,
+            "pin": "13",
+            "projectedTopPixel": [
+              1447.131242075628,
+              3039.036581470337
+            ],
+            "ref": "A4",
+            "residualPixels": 2.1369972682595177,
+            "topPixel": [
+              1449,
+              3038
+            ]
+          }
+        ],
+        "copperAssignmentQualified": false,
+        "extrapolationChecks": [
+          {
+            "bottomPixel": [
+              1610,
+              3085
+            ],
+            "detail": "Tentative counterpart near A6; tests the danger of extending the A4 fit along the board. Not a qualified correspondence.",
+            "id": "a6-nearby-terminal",
+            "nominalResidualMm": 2.593570439482443,
+            "outsideAnchorBounds": true,
+            "projectedTopPixel": [
+              1279.9009319528875,
+              3317.6657413677176
+            ],
+            "residualPixels": 33.28556754846591,
+            "topPixel": [
+              1272,
+              3350
+            ]
+          }
+        ],
+        "id": "a4",
+        "maxCheckResidualMm": 0.3699108863572887,
+        "scope": "Local A4 photo-to-photo correspondence only. Corner lead feet on top may differ from underside hole centers. Terminal candidates lie beyond the anchor columns; do not extrapolate this fit to A6 or use it as a whole-board copper calibration.",
+        "withinPhotoTolerance": true
+      }
+    ],
     "maxCheckResidualMm": 1.703479205175027,
     "modelToPhoto": [
       0.56798628251224,
@@ -14682,7 +14871,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "371b01761ffc8dff37981f632a31c4d3b002d158"
+      "revision": "58655bb5960fc4bd7a5323163b076c4f70c51033"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -14693,7 +14882,7 @@
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "e18412de9082a269facfa79cf75c8c3f971aadc30aa7575135b2c779d79bf93c",
       "photoRegistration": "242966e55da427665258d2e738ba0ba3c251cb659a60c0f4b5e3e28036390be0",
-      "bottomRegistration": "a5416affcd15cdb217407483567bafa355c51c31cd5bf96a8a4b904f5dadfb22",
+      "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
       "evidence": "6de34950ffd0807fbc602681e8c51b9d9e46995268c154f809ae948a88522cc1"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
