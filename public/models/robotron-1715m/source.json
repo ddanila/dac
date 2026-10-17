@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "5456c232d3c6a2bca61bc072d5b8cfdd8900c970",
+  "revision": "f52b539234b5a54addc6394daae876ade442dee6",
   "dirty": false,
   "files": [
     {
@@ -1581,23 +1581,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "c5b6bbeef11ed74236ab908bfd8dfa2a958320eef18e120d85ff3292b8cbb7f5"
+      "sha256": "b97a80bbb2c1e453a38bdcb5c862e7388c9dd0133079ba2c29bc5366b486bcb0"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "a03c1fa70d546a7d27da678e5b766e05434a0172be9f1e82960e4dd3dbe9bebf"
+      "sha256": "76492c6ca6df6670bb2108a59441037f05d11e15bbe277702c39ee89ea3169bf"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "a911dd20cda282655d6897b4c7261e8dd668f6e575b2007f3d8d242a943bb8de"
+      "sha256": "c5b3652ca76600cf6b7626ab22dbb51c3d6b960b99fc5acdcb71b1e014022de9"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "44194cd30532754c13ac934ebf6e388fecf402cb197c2c9cec78cdfd44d9947a"
+      "sha256": "2675b8cc4eb6b83e2961f50b7cccbff3cce78c586ad07f228fc7c489542b8c0a"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "4b3fc902c54c1b6061a20f37715049e62cc8e798b5d64eb2abb70f70fa7a2a79"
+      "sha256": "3c1d0ba4289d5f76d2f225c2ba5a9dd2ee409894fa053ac9988fc63eb236812d"
     }
   ],
   "inspection": {
