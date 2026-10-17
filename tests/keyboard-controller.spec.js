@@ -333,6 +333,31 @@ test('all local controller evidence photos are shipped with pinned content',asyn
  }
 });
 
+test('comparison specimen photos stay separate from primary placement and highlights',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(points){window.comparisonHighlights=points;}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('BR1');
+ await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
+ const comparison=panel.locator('[data-comparison-specimen="comparison-20261017"]');
+ await expect(comparison.locator('summary')).toHaveText('Comparison photos — different specimen');
+ await comparison.locator('summary').click();
+ await expect(comparison).toContainText('ROM label: S642; contents unread');
+ await expect(comparison).toContainText('must not reuse primary-specimen transforms');
+ const links=comparison.locator('a');expect(await links.count()).toBeGreaterThan(0);
+ for(const href of await links.evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href'))))expect(href).toMatch(/PXL_20261017_/);
+ await expect(comparison.locator('[data-photo-pin]')).toHaveCount(0);
+ await expect(panel.locator('[data-placement-photo="BR1"][data-photo-side="top"] image')).toHaveAttribute('href',/PXL_20261012_123622947.jpg$/);
+ expect(await page.evaluate(()=>window.comparisonHighlights)).toEqual(controllerSelection(data,'component','BR1').points);
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('V4.9');
+ await expect(comparison).toHaveCount(1);
+ expect(await page.evaluate(()=>window.comparisonHighlights)).toEqual([]);
+});
+
 
 test('CPU clock inspection distinguishes local projection from global registration',async({page})=>{
  const region=data.bottomRegistration.pcbRegions[0];

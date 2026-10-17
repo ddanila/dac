@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Thirty-second implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirty-third implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `3dd89fa` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `227bddc` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,38 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirty-third pass adds
+
+The user supplied 25 new photographs in `Photos-1-001 (13).zip` and explicitly
+identified the board as a different specimen. CAD now preserves all 25 images,
+original and metadata-stripped hashes, ZIP hash, per-image subjects and a separate
+`comparison-20261017` specimen record. Import verified identical decoded JPEG
+pixels after metadata and motion-video removal. The top board markings match
+`05-330-4102` / `-8 B 1c`; the visible EPROM label is **S642**, with contents unread.
+This label is not evidence that either board contains the S600 reference ROM.
+
+Four overlapping underside photographs and close-ups of the CPU/DS8282D region,
+BR1, connector leads, cable entry and transistor bank reopen physical review.
+CAD's controller README inventories the useful views and remaining interpretation
+work. Pin counting, photo registration and cross-specimen layout comparison must
+precede any transfer to the primary specimen's native geometry. The withdrawn
+CLK assignment remains withdrawn; no new net attachment has been asserted.
+
+Museum component/net inspection now provides a separate expandable comparison
+photo section for relevant regions. It labels the different specimen, unread ROM
+and coordinate limits, and links the full-resolution photos. Region reference
+lists aid discovery and do not identify every discrete component. Primary photo
+annotations, pad positions and highlights remain tied to their original evidence.
+All 25 comparison images are shipped and verified against pinned content hashes.
+
+Validation: 22 CAD exporter tests, metadata/download checks, 20 browser tests and
+the production build pass. The new browser check verifies that comparison photos
+remain separate from primary placement, including an unplaced transistor with no
+fabricated highlight. Existing photo delivery checks cover every added image.
+Geometry and connectivity are unchanged: 25 assigned sections, 229 airwires and
+37 unplaced schematic components. Firmware qualification was not rerun because
+no digital model, firmware or connectivity changed.
 
 ## What the thirty-second pass adds
 

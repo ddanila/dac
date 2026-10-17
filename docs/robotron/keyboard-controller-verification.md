@@ -56,6 +56,22 @@ C5.1–C5.5, C6; L1.1–L1.4; R1, R2, R4.2, R6.4, R6.5, R7, R8;
 V1.1, V1.2, V2, V3.1, V3.2 and V4.1–V4.9. Some have plausible locations;
 that does not establish numbered pads or net attachments.
 
+## New comparison evidence
+
+On 2026-10-17 the user supplied 25 photographs of a **different specimen** in
+`Photos-1-001 (13).zip`. CAD `227bddc` records them under
+`evidence.json:comparisonSpecimens` with separate provenance and per-image hashes.
+The matching visible board markings corroborate the family; the EPROM label
+reads S642, with contents unread. These photos provide clearer underside, CPU,
+bridge, connector and transistor views and reopen the physical review work below.
+They do not resolve the withdrawn CLK interpretation merely by being available.
+Each image needs its own pin-count and registration review before geometry is
+transferred, and the two specimens' routing must be compared explicitly.
+
+The requirement audit and numerical coverage above remain unchanged. The new
+photos have not supplied measurements, a ROM dump or verified whole-board
+continuity for either specimen.
+
 ## Next specimen evidence, in priority order
 
 These are observations to collect when the specimen is available. They do not
