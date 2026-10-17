@@ -5,7 +5,7 @@ const data=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/keyb
 test('controller net selection preserves physical pin identity and unplaced evidence',()=>{
  const s=controllerSelection(data,'net','/TA_DATEN');
  expect(s.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:4','L1.4:1','R10.2:2']);
- expect(s.points).toHaveLength(1);expect(s.unplaced.sort()).toEqual(['L1.4','R10.2']);
+ expect(s.points).toHaveLength(2);expect(s.unplaced.sort()).toEqual(['L1.4']);
  expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&r.net==='/WR_N')).toBe(true);
  const model=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/model.json',import.meta.url)));
  expect(model.keyboardControllerSource['keyboard-controller/generated/controller.scad']).toBe(data.source.geometryScadSha256);
@@ -22,8 +22,8 @@ test('controller review selects nets, reports gaps and retries a failed load',as
  await expect(panel.locator('[data-selection]')).toContainText('Direct photo-to-photo checks');
  await expect(panel.locator('[data-selection]')).toContainText('outside tolerance');
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
- await expect(panel.locator('[data-selection]')).toContainText('3 pins; 1 with estimated positions');
- await expect(panel.locator('[data-selection]')).toContainText('L1.4, R10.2');
+ await expect(panel.locator('[data-selection]')).toContainText('3 pins; 2 with estimated positions');
+ await expect(panel.locator('[data-selection]')).toContainText('Unplaced components: L1.4.');
  await expect(panel.locator('[data-qualification]')).toContainText('comparisons pass');
  await panel.getByLabel('Controller board side').selectOption('bottom');await expect(panel.locator('svg')).toHaveAttribute('aria-label',/bottom/);
  await panel.getByRole('button',{name:'Clear highlight'}).click();await expect(panel.locator('[data-selection]')).toContainText('Select a component');
@@ -179,4 +179,19 @@ test('A2 reference selection uses factory-corrected physical locations',()=>{
  expect(latch[0]).toBeGreaterThan(0);expect(latch[1]).toBeLessThan(0);
  expect(cpu[0]).toBeGreaterThan(0);expect(cpu[1]).toBeGreaterThan(0);
  expect(data.evidence.referenceVariants[0].status).toBe('reconstruction-placement-error-corrected');
+});
+
+test('output pull-up placement exposes reference-derived signal evidence',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R10.2');
+ await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
+ await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
+ await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
+ expect(data.layout.unplaced).toHaveLength(57);
 });
