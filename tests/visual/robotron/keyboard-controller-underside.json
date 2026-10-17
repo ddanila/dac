@@ -313,14 +313,14 @@
   },
   {
     "name": "keyboard-controller-resistor-bands",
-    "vertices": 7296,
-    "indices": 21888,
+    "vertices": 5376,
+    "indices": 16128,
     "bounds": [
       -17.975239,
       -319.363098,
       7.53,
       224.310806,
-      -288.488129,
+      -288.647644,
       9.87
     ],
     "transform": [
@@ -359,7 +359,7 @@
       -319.586487,
       7.55,
       224.304382,
-      -288.505676,
+      -288.667358,
       9.85
     ],
     "transform": [
@@ -508,8 +508,8 @@
   },
   {
     "name": "keyboard-controller-solder",
-    "vertices": 65512,
-    "indices": 197832,
+    "vertices": 61672,
+    "indices": 186312,
     "bounds": [
       -39.900002,
       -324.997864,
@@ -547,8 +547,8 @@
   },
   {
     "name": "keyboard-controller-traces",
-    "vertices": 41134,
-    "indices": 122544,
+    "vertices": 41784,
+    "indices": 124500,
     "bounds": [
       -25.264999,
       -330.398987,
