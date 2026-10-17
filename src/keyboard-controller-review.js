@@ -9,15 +9,15 @@ export function controllerSelection(data,kind,value){
  return {refs,pins,points:pins.filter(p=>p.position).map(p=>p.position),routes:data.layout.routes.filter(r=>nets.has(r.net)),unplaced:refs.filter(ref=>!placed.has(ref))};
 }
 // Photo observations remain separate from the native pad positions used for highlights.
-function componentPhoto(data,ref,candidate){
+function componentPhoto(data,ref,candidate,side='top'){
  const numbered=Boolean(candidate.photoPins),entries=numbered?Object.entries(candidate.photoPins):candidate.photoEndpoints?.map(point=>[null,point]);
  const source=data.evidence.sources.find(s=>s.id===candidate.photoSource);
  if(!source?.path||!entries?.length)return null;
- const figure=document.createElement('figure');figure.dataset[numbered?'placementPhoto':'candidatePhoto']=ref;
- const caption=document.createElement('figcaption');caption.textContent=numbered?`${ref}: photo-estimated numbered lead positions. Circles show the recorded pixel uncertainty. Raised leads can obscure hole centres; continuity is not measured.`:`${ref}: photo location candidate. Circles mark observed endpoints, not numbered pins. Terminal order and continuity remain unverified.`;figure.append(caption);
- const image=new Image();image.alt=`Original specimen photo around ${ref}`;
+ const figure=document.createElement('figure');figure.dataset[numbered?'placementPhoto':'candidatePhoto']=ref;figure.dataset.photoSide=side;
+ const caption=document.createElement('figcaption');caption.textContent=numbered?`${ref}: photo-estimated numbered lead positions. Circles show the recorded pixel uncertainty. Raised leads can obscure hole centres; continuity is not measured.`:`${ref}: photo location candidate. Circles mark observed endpoints, not numbered pins. Terminal order and continuity remain unverified.`;if(side==='bottom')caption.textContent=`${ref}: underside solder-joint observations with reference-derived pin numbers. Circles show the recorded pixel uncertainty. These are original photo coordinates, not projected pads; global underside registration and end-to-end continuity remain unqualified.`;figure.append(caption);
+ const image=new Image();image.alt=`Original ${side==='bottom'?'underside':'top'} specimen photo around ${ref}`;
  const url=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(source.path.split('/').pop())}`;
- const link=document.createElement('a');link.href=url;link.textContent='Open original specimen photo';link.target='_blank';link.rel='noopener';figure.append(link);
+ const link=document.createElement('a');link.href=url;link.textContent=side==='bottom'?'Open original underside photo':'Open original specimen photo';link.target='_blank';link.rel='noopener';figure.append(link);
  for(const id of candidate.supportingSources||[]){
   const supporting=data.evidence.sources.find(s=>s.id===id);
   if(!supporting?.path||id===candidate.photoSource)continue;
@@ -27,7 +27,7 @@ function componentPhoto(data,ref,candidate){
   const points=entries.map(([,point])=>point),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),margin=65;
   const x=Math.max(0,Math.min(...xs)-margin),y=Math.max(0,Math.min(...ys)-margin);
   const w=Math.min(image.naturalWidth,Math.max(...xs)+margin)-x,h=Math.min(image.naturalHeight,Math.max(...ys)+margin)-y;
-  const svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox',`${x} ${y} ${w} ${h}`);svg.setAttribute('role','img');svg.setAttribute('aria-label',`${ref} original photo with ${numbered?'numbered lead positions':'unnumbered candidate endpoints'}`);svg.style.cssText='display:block;width:100%;max-width:560px;background:#14232d';
+  const svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox',`${x} ${y} ${w} ${h}`);svg.setAttribute('role','img');svg.setAttribute('aria-label',`${ref} original ${side==='bottom'?'underside':'top'} photo with ${numbered?(side==='bottom'?'numbered solder joints':'numbered lead positions'):'unnumbered candidate endpoints'}`);svg.style.cssText='display:block;width:100%;max-width:560px;background:#14232d';
   const photo=document.createElementNS(svgNS,'image');photo.setAttribute('href',url);photo.setAttribute('width',image.naturalWidth);photo.setAttribute('height',image.naturalHeight);svg.append(photo);
   for(const [pin,[px,py]]of entries){
    const circle=document.createElementNS(svgNS,'circle');for(const [key,value]of Object.entries({cx:px,cy:py,r:candidate.pixelUncertainty||candidate.photoPixelUncertainty||8,fill:'none',stroke:'#ffe16a','stroke-width':2}))circle.setAttribute(key,value);svg.append(circle);
@@ -107,6 +107,10 @@ export function installKeyboardControllerReview(scene){
     const alignedPhoto=alignment?{photoSource:'photo-top',photoPins:Object.fromEntries([...alignment.pins,...alignment.checkPins].map(p=>[p.pin,p.photoPixel]))}:null;
     const candidate=evidence?.photoPins?evidence:alignedPhoto||evidence?.placementCandidate||bridges.find(b=>b.ref===value)?.physicalEvidence;
     if(candidate){const photo=componentPhoto(data,value,candidate);if(photo)pins.append(photo);}
+    if(evidence?.bottomPhotoPins){
+     const underside=componentPhoto(data,value,{photoSource:evidence.bottomPhotoSource,photoPins:evidence.bottomPhotoPins,pixelUncertainty:evidence.bottomPixelUncertainty},'bottom');
+     if(underside)pins.append(underside);
+    }
    }
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
