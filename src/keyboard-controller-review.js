@@ -8,6 +8,27 @@ export function controllerSelection(data,kind,value){
  const nets=new Set(pins.map(p=>p.net).filter(Boolean));
  return {refs,pins,points:pins.filter(p=>p.position).map(p=>p.position),routes:data.layout.routes.filter(r=>nets.has(r.net)),unplaced:refs.filter(ref=>!placed.has(ref))};
 }
+// Candidate endpoints are photographic observations, never electrical pad positions.
+function candidatePhoto(data,ref,candidate){
+ const source=data.evidence.sources.find(s=>s.id===candidate.photoSource);
+ if(!source?.path||!candidate.photoEndpoints?.length)return null;
+ const figure=document.createElement('figure');figure.dataset.candidatePhoto=ref;
+ const caption=document.createElement('figcaption');caption.textContent=`${ref}: photo location candidate. Circles mark observed endpoints, not numbered pins. Terminal order and continuity remain unverified.`;figure.append(caption);
+ const image=new Image();image.alt=`Original specimen photo around ${ref}`;
+ const url=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(source.path.split('/').pop())}`;
+ const link=document.createElement('a');link.href=url;link.textContent='Open original specimen photo';link.target='_blank';link.rel='noopener';figure.append(link);
+ image.onload=()=>{
+  const points=candidate.photoEndpoints,xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),margin=65;
+  const x=Math.max(0,Math.min(...xs)-margin),y=Math.max(0,Math.min(...ys)-margin);
+  const w=Math.min(image.naturalWidth,Math.max(...xs)+margin)-x,h=Math.min(image.naturalHeight,Math.max(...ys)+margin)-y;
+  const svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox',`${x} ${y} ${w} ${h}`);svg.setAttribute('role','img');svg.setAttribute('aria-label',`${ref} original photo with unnumbered candidate endpoints`);svg.style.cssText='display:block;width:100%;max-width:560px;background:#14232d';
+  const photo=document.createElementNS(svgNS,'image');photo.setAttribute('href',url);photo.setAttribute('width',image.naturalWidth);photo.setAttribute('height',image.naturalHeight);svg.append(photo);
+  for(const [px,py]of points){const circle=document.createElementNS(svgNS,'circle');for(const [key,value]of Object.entries({cx:px,cy:py,r:candidate.pixelUncertainty||candidate.photoPixelUncertainty||8,fill:'none',stroke:'#ffe16a','stroke-width':2}))circle.setAttribute(key,value);svg.append(circle);}
+  figure.prepend(svg);
+ };
+ image.onerror=()=>{caption.textContent+=' Photo preview could not load; use the original photo link to retry.';};image.src=url;
+ return figure;
+}
 export function installKeyboardControllerReview(scene){
  const panel=document.createElement('details');panel.id='keyboard-controller-review';panel.dataset.robotron='';
  panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
@@ -68,6 +89,10 @@ export function installKeyboardControllerReview(scene){
    for(const region of local)get('[data-selection]').textContent+=` Local ${region.id.toUpperCase()} photo correspondence: ${region.checks.length} independent checks, ${region.maxCheckResidualMm.toFixed(2)} nominal mm maximum residual. Terminal candidates lie outside the anchor bounds; copper assignment remains unqualified. Extending this fit toward the tentative A6 terminal gives ${region.extrapolationChecks[0].nominalResidualMm.toFixed(2)} nominal mm discrepancy.`;
    if(kind==='component'&&data.componentEvidence?.[value]){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
+   }
+   if(kind==='component'){
+    const candidate=data.componentEvidence?.[value]?.placementCandidate||bridges.find(b=>b.ref===value)?.physicalEvidence;
+    if(candidate){const photo=candidatePhoto(data,value,candidate);if(photo)pins.append(photo);}
    }
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);

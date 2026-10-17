@@ -195,3 +195,29 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
  expect(data.layout.unplaced).toHaveLength(49);
 });
+
+test('candidate photo endpoints never become net-connected pads',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  window.candidateHighlights=[];
+  installKeyboardControllerReview({keyboardControllerSelection(points){window.candidateHighlights=points;}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R3');
+ await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
+ const photo=panel.locator('[data-candidate-photo="R3"]');
+ await expect(photo.getByRole('img')).toBeVisible();
+ await expect(photo.locator('circle')).toHaveCount(2);
+ await expect(photo).toContainText('not numbered pins');
+ await expect(panel.locator('[data-selection]')).toContainText('0 with estimated positions');
+ expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
+ await expect(photo.locator('circle').first()).toHaveAttribute('cx','1513');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('BR2');
+ await expect(panel.locator('[data-candidate-photo="R3"]')).toHaveCount(0);
+ await expect(panel.locator('[data-candidate-photo="BR2"] circle')).toHaveCount(2);
+ expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
+ await panel.getByRole('button',{name:'Clear highlight',exact:true}).click();
+ await expect(panel.locator('[data-candidate-photo]')).toHaveCount(0);
+});
