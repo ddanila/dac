@@ -3069,6 +3069,147 @@
         "type": "47n"
       },
       {
+        "evidence": "Factory location; primary photo lead entries and body centre; reference rail assignment with untraced continuation; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              26.038147,
+              6.478417
+            ],
+            "ref": "C5.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/GND",
+            "pin": "2",
+            "position": [
+              30.62744,
+              6.867474
+            ],
+            "ref": "C5.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          28.044442,
+          8.905015
+        ],
+        "ref": "C5.2",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "47n"
+      },
+      {
+        "evidence": "Factory location; primary photo lead entries and body centre; reference rail assignment with untraced continuation; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              38.725085,
+              -5.123145
+            ],
+            "ref": "C5.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/GND",
+            "pin": "2",
+            "position": [
+              38.766306,
+              -9.796072
+            ],
+            "ref": "C5.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          34.197461,
+          -6.2519
+        ],
+        "ref": "C5.3",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "47n"
+      },
+      {
+        "evidence": "Factory location; primary photo lead entries and body centre; reference rail assignment with untraced continuation; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              96.790477,
+              -10.06416
+            ],
+            "ref": "C5.4",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/GND",
+            "pin": "2",
+            "position": [
+              96.842298,
+              -14.913753
+            ],
+            "ref": "C5.4",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          100.810583,
+          -12.11194
+        ],
+        "ref": "C5.4",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "47n"
+      },
+      {
         "evidence": "photo-estimated-hole",
         "pads": [
           {
@@ -6186,147 +6327,6 @@
         "rotation": 0.0,
         "side": "top",
         "type": "10u"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              -58.0,
-              -75.0
-            ],
-            "ref": "C5.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/GND",
-            "pin": "2",
-            "position": [
-              -55.46,
-              -75.0
-            ],
-            "ref": "C5.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -58.0,
-          -75.0
-        ],
-        "ref": "C5.2",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "47n"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              -34.0,
-              -75.0
-            ],
-            "ref": "C5.3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/GND",
-            "pin": "2",
-            "position": [
-              -31.46,
-              -75.0
-            ],
-            "ref": "C5.3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -34.0,
-          -75.0
-        ],
-        "ref": "C5.3",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "47n"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              -10.0,
-              -75.0
-            ],
-            "ref": "C5.4",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/GND",
-            "pin": "2",
-            "position": [
-              -7.46,
-              -75.0
-            ],
-            "ref": "C5.4",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -10.0,
-          -75.0
-        ],
-        "ref": "C5.4",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "47n"
       },
       {
         "evidence": "unplaced",
@@ -13755,8 +13755,8 @@
       "Digital reference circuit; discrete pin numbering, specimen substitutions and analog timing remain unqualified; reset topology and bridge boundaries reviewed against Zander."
     ],
     "padNetMismatches": [],
-    "placed": 38,
-    "unplaced": 36,
+    "placed": 41,
+    "unplaced": 33,
     "unresolvedPhotoSegments": 294
   },
   "photoRegistration": {
@@ -16044,6 +16044,153 @@
       {
         "checkPins": [],
         "independentValidation": false,
+        "maxResidualMm": 5.882533120054301e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              26.038147,
+              6.478417
+            ],
+            "pcbPixel": [
+              1587.0000017074667,
+              2581.999995796468
+            ],
+            "photoModel": [
+              26.0381473200307,
+              6.478416859537997
+            ],
+            "photoPixel": [
+              1587,
+              2582
+            ],
+            "pin": "1",
+            "residualMm": 3.4949853160571825e-07
+          },
+          {
+            "pcbModel": [
+              30.62744,
+              6.867474
+            ],
+            "pcbPixel": [
+              1594.9999944854148,
+              2641.999994264798
+            ],
+            "photoModel": [
+              30.627440441635716,
+              6.867474388586995
+            ],
+            "photoPixel": [
+              1595,
+              2642
+            ],
+            "pin": "2",
+            "residualMm": 5.882533120054301e-07
+          }
+        ],
+        "ref": "C5.2",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 4.0500607506760075e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              38.725085,
+              -5.123145
+            ],
+            "pcbPixel": [
+              1438.0000009603932,
+              2748.999994834999
+            ],
+            "photoModel": [
+              38.72508539508637,
+              -5.123145089088065
+            ],
+            "photoPixel": [
+              1438,
+              2749
+            ],
+            "pin": "1",
+            "residualMm": 4.0500607506760075e-07
+          },
+          {
+            "pcbModel": [
+              38.766306,
+              -9.796072
+            ],
+            "pcbPixel": [
+              1374.9999974512598,
+              2749.999995685916
+            ],
+            "photoModel": [
+              38.76630633194369,
+              -9.796071826175282
+            ],
+            "photoPixel": [
+              1375,
+              2750
+            ],
+            "pin": "2",
+            "residualMm": 3.747020749977738e-07
+          }
+        ],
+        "ref": "C5.3",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 4.876080408275329e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              96.790477,
+              -10.06416
+            ],
+            "pcbPixel": [
+              1407.0000064623955,
+              3503.000001027117
+            ],
+            "photoModel": [
+              96.79047691788504,
+              -10.06416047808638
+            ],
+            "photoPixel": [
+              1407,
+              3503
+            ],
+            "pin": "1",
+            "residualMm": 4.850870572028684e-07
+          },
+          {
+            "pcbModel": [
+              96.842298,
+              -14.913753
+            ],
+            "pcbPixel": [
+              1342.000003332573,
+              3503.99999471968
+            ],
+            "photoModel": [
+              96.8422984078026,
+              -14.913753267317487
+            ],
+            "photoPixel": [
+              1342,
+              3504
+            ],
+            "pin": "2",
+            "residualMm": 4.876080408275329e-07
+          }
+        ],
+        "ref": "C5.4",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
         "maxResidualMm": 5.261885349500468e-07,
         "pins": [
           {
@@ -16991,7 +17138,6 @@
         "sha256": "364c56674f14a3361849dbe29b722a00145bb39c6afd45a048099906ceb960ae",
         "specimenId": "comparison-20261017",
         "side": "oblique",
-        "refs": [],
         "use": "Keyboard connector mating face. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
       },
       {
@@ -17000,7 +17146,6 @@
         "sha256": "602404556009fe24083bc919b7d495c4876b0e4d8a7546d70a6f9b71ea6f2f22",
         "specimenId": "comparison-20261017",
         "side": "oblique",
-        "refs": [],
         "use": "Keyboard connector bent leads and solder attachments. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
       },
       {
@@ -17037,7 +17182,8 @@
           "A7",
           "BR1",
           "R10.3",
-          "C6"
+          "C6",
+          "C5.4"
         ],
         "use": "Bridge and oscillator end; board marking and D100D package. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
       },
@@ -17049,7 +17195,8 @@
         "side": "top",
         "refs": [
           "A6",
-          "A7"
+          "A7",
+          "C5.4"
         ],
         "use": "K155TM2 and D100D package markings and surrounding leads. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
       },
@@ -17075,7 +17222,9 @@
         "side": "top",
         "refs": [
           "A2.2",
-          "A4"
+          "A4",
+          "C5.2",
+          "C5.3"
         ],
         "use": "Middle-board DL003D gate and surrounding copper. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
       },
@@ -17087,7 +17236,8 @@
         "side": "top",
         "refs": [
           "A2.2",
-          "A2.3"
+          "A2.3",
+          "C5.2"
         ],
         "use": "Paired middle-board DL003D packages and traces. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
       },
@@ -17240,7 +17390,7 @@
       {
         "id": "package-pinmap",
         "status": "unresolved",
-        "detail": "Reviewed DIP placements and twenty-one native resistor placements and BR1 are recorded in component-evidence.json. R4.2/R7/R8 still have unnumbered photo endpoint candidates; their underside correspondence and ground-side terminal assignment remain unresolved. Transistor, diode, capacitor and remaining discrete package terminal mappings require review. C5.1 now has primary-photo pad/body placement and reference supply-rail pin assignment; the other capacitors remain unplaced."
+        "detail": "Reviewed DIP placements and twenty-one native resistor placements and BR1 are recorded in component-evidence.json. R4.2/R7/R8 still have unnumbered photo endpoint candidates; their underside correspondence and ground-side terminal assignment remain unresolved. Transistor, diode, capacitor and remaining discrete package terminal mappings require review. C5.1\u2013C5.4 now have primary-photo pad/body placements and reference supply-rail pin assignments. Hidden continuations remain untraced. C5.5 and other capacitors remain unplaced; a C5.5 lead entry is obscured by the adjacent electrolytic."
       },
       {
         "id": "clock-source-disagreement",
@@ -18679,24 +18829,72 @@
     },
     "C5.2": {
       "referenceType": "47n",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementEvidence": "Factory drawing 63-330-4103-2 identifies C5.2 between A2.2 and A2.3; primary photo-top lead entries and body centre.",
+      "pinEvidence": "Nonpolar capacitor. Lower photo lead is on the broad return rail at A2.3:7. Upper lead is assigned +5V from the reference decoupling circuit; its supply continuation is not independently traced. Pin numbers are reconstruction identifiers, not observed polarity. No measured continuity.",
+      "note": "Photo-estimated pad/body placement. Reference 47 nF is not measured. Hole 0.85 mm, pad 1.7 mm, disc diameter 5.2 mm, thickness 1.2 mm and centre height 4.4 mm are nominal.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1587,
+          2582
+        ],
+        "2": [
+          1595,
+          2642
+        ]
+      },
+      "photoBodyCentre": [
+        1621,
+        2608
+      ],
+      "pixelUncertainty": 8
     },
     "C5.3": {
       "referenceType": "47n",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementEvidence": "Factory drawing 63-330-4103-2 identifies C5.3 on the cable side of A4; primary photo-top lead entries and body centre.",
+      "pinEvidence": "Nonpolar capacitor. Right photo lead is on the broad supply rail near A4:20. Left lead is assigned GND from the reference decoupling circuit; its hidden continuation is not independently traced. Pin numbers are reconstruction identifiers, not observed polarity. No measured continuity.",
+      "note": "Photo-estimated pad/body placement. Reference 47 nF is not measured. Hole 0.85 mm, pad 1.7 mm, disc diameter 5.2 mm, thickness 1.2 mm and centre height 4.4 mm are nominal.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1438,
+          2749
+        ],
+        "2": [
+          1375,
+          2750
+        ]
+      },
+      "photoBodyCentre": [
+        1420,
+        2690
+      ],
+      "pixelUncertainty": 8
     },
     "C5.4": {
       "referenceType": "47n",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementEvidence": "Factory drawing 63-330-4103-2 identifies C5.4 between A6 and A7; primary photo-top lead entries and body centre.",
+      "pinEvidence": "Nonpolar capacitor. Left photo lead is on the return-side trace below A6:7. Right lead is assigned +5V from the reference decoupling circuit; the comparison close-up corroborates the two separate rail attachments. Pin numbers are reconstruction identifiers, not observed polarity. No measured continuity.",
+      "note": "Photo-estimated pad/body placement. Reference 47 nF is not measured. Hole 0.85 mm, pad 1.7 mm, disc diameter 5.2 mm, thickness 1.2 mm and centre height 8.1 mm are nominal. The disc overhangs A7 in the top photo. Stand-off is an estimated rendering clearance above the nominal DIP body, not a measured specimen height.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1407,
+          3503
+        ],
+        "2": [
+          1342,
+          3504
+        ]
+      },
+      "photoBodyCentre": [
+        1382,
+        3555
+      ],
+      "pixelUncertainty": 8
     },
     "C5.5": {
       "referenceType": "47n",
@@ -18766,23 +18964,23 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "cc544c4c1930ce110d5c690b0dda82121c59cc1b"
+      "revision": "4ac9715f357588faadc43454707ba4e6ab26f865"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "f32399c4ce177ac7604342d569dec7acf3f0797c25fe87dc03fc1741bbd7df2a",
+      "layout": "24d836a812bfb2379418070e9eb704ae03aee8e1ee40a16afb536e941f30a3bb",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "464b85d6939ea180140139aba0f7c1dcdccfdf1308a9ef565088a087eb38accd",
-      "photoRegistration": "575c2edc34a152ecb9743c6a9652d3f7a6686f58a663a889c30dae4acf632751",
+      "qualification": "710465598b8d6a04da1309047cec8d1fd92cecf20dd2dd17f92711595c7a85ca",
+      "photoRegistration": "d8cd0c0928f87a2ff7d5c59a43e6c3dcdad160c81ae5d55b9ab3a1f3319b8a25",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
-      "evidence": "d25544cabd4de64f47e26848e4ec7c1900f05c6b190ba782d16ece863b2c90e2",
-      "componentEvidence": "05b3065ef4ff57087febae5e7fecbb014cae574ba63f6970904b9330d779eadb"
+      "evidence": "f4dd72e446da4c25907203db9714efa7dab8bbf9dce440d6f3247feb83f00545",
+      "componentEvidence": "394f7c1f700a640706af4aca82c2479c5a8fac9dd576c297abfc6d25601ccfe0"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "a74b1def8cad13556bd674f4b18aca0976519e522aa3b1eeba13675d18c53b55"
+    "geometryScadSha256": "2badf5ab7f50de8318a3c012eec1f07bf824c1e5d4f6ae219a8d312d3dba4574"
   },
   "cosimulation": {
     "bus": {

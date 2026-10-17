@@ -1,8 +1,8 @@
 [
   {
     "name": "keyboard-controller-board",
-    "vertices": 17716,
-    "indices": 56448,
+    "vertices": 18100,
+    "indices": 57672,
     "bounds": [
       -40,
       -331.399994,
@@ -79,15 +79,15 @@
   },
   {
     "name": "keyboard-controller-ceramic",
-    "vertices": 624,
-    "indices": 1800,
+    "vertices": 720,
+    "indices": 2088,
     "bounds": [
       47.735077,
-      -315.600006,
+      -323.118195,
       6.6,
       218.979004,
       -291.881134,
-      12.5
+      16.200001
     ],
     "transform": [
       0.0025,
@@ -235,15 +235,15 @@
   },
   {
     "name": "keyboard-controller-leads",
-    "vertices": 19980,
-    "indices": 82002,
+    "vertices": 21385,
+    "indices": 87840,
     "bounds": [
       -16.95845,
       -323.819519,
       4.733704,
       225.99025,
       -288.602692,
-      9.766295
+      12.137764
     ],
     "transform": [
       0.0025,
@@ -508,8 +508,8 @@
   },
   {
     "name": "keyboard-controller-solder",
-    "vertices": 70792,
-    "indices": 213672,
+    "vertices": 72232,
+    "indices": 217992,
     "bounds": [
       -39.900002,
       -324.997864,
@@ -547,8 +547,8 @@
   },
   {
     "name": "keyboard-controller-traces",
-    "vertices": 45149,
-    "indices": 135054,
+    "vertices": 46013,
+    "indices": 137646,
     "bounds": [
       -25.264999,
       -330.398987,
