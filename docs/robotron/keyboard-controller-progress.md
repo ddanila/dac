@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Twenty-third implementation pass, 2026-10-17. Digital reference qualification passes,
+Twenty-fourth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -18,6 +18,26 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the twenty-fourth pass adds
+
+Museum component inspection now shows numbered original-photo observations for
+all sixteen native resistors and all nine reviewed DIP packages. The labels come
+from recorded photo pins, including held-out DIP observations; unobserved pins
+are not invented. Supporting close-up links are shown when declared in component
+evidence. Photo pixels remain separate from the native coordinates used for net
+highlights. Candidate endpoints remain unnumbered and do not become connected pads.
+
+The R6.4/R6.5 review exposed the importance of distinguishing raised lead bends
+from board holes. Their positions remain unassigned pending that review. The new
+inspection view makes the recorded points directly reviewable alongside the pin
+mapping notes and original image. It does not qualify exact hole centres or
+continuity. No CAD geometry, connectivity or reconstruction counts changed.
+
+Fifteen controller browser tests and the production build pass. The new test
+checks resistor pin numbering, the supporting source link, DIP held-out points,
+and switching back to an unplaced candidate without leaking electrical highlights.
+The numbered R6.6 crop was visually inspected.
 
 ## What the twenty-third pass adds
 
