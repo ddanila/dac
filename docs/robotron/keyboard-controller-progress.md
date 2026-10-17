@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Thirty-first implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirty-second implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `a8b6694` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `3dd89fa` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,28 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirty-second pass adds
+
+The [completion audit and specimen verification guide](keyboard-controller-verification.md)
+now maps the plan's requirements, invariants and first milestone to their actual
+artifacts and evidence limits. It identifies the remaining 37 unplaced references
+and provides a prioritized observation record for the clock conflict, BR1/BR2,
+WR/RD, cable filter, discrete pads, dimensions, ROM and timing. Closed bridges can
+make both ends measure connected to both networks; baseline continuity alone does
+not establish terminal order. No specimen bridge-opening procedure is assumed.
+
+The audit also found that native export repeatability was not directly exercised
+by the integration test. A new native check exports an isolated copy twice and
+compares every generated file byte-for-byte, including the source/output manifest.
+Both native integration tests pass. This demonstrates repeatability for unchanged
+inputs in the tested KiCad environment, not cross-version reproducibility or
+physical accuracy. No geometry, connectivity or qualification counts changed.
+
+CAD export and HDL freshness checks pass. The existing full audit still records
+131,072 bus transactions and 13 service checks without differences; firmware
+logical comparison passes while cycle equivalence remains explicitly false.
+No full firmware run was repeated for this documentation/test-only change.
 
 ## What the thirty-first pass corrects
 
