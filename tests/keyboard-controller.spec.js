@@ -168,3 +168,15 @@ test('net selection forwards only assigned routes and clears them on close',asyn
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
  await expect.poll(()=>page.evaluate(()=>window.selectedRouteIds.length)).toBe(0);
 });
+
+test('A2 reference selection uses factory-corrected physical locations',()=>{
+ const center=ref=>{
+  const points=controllerSelection(data,'component',ref).points;
+  return [0,1].map(axis=>points.reduce((sum,p)=>sum+p[axis],0)/points.length);
+ };
+ const cable=center('A2.1'),latch=center('A2.2'),cpu=center('A2.3');
+ expect(cable[0]).toBeLessThan(0);expect(cable[1]).toBeGreaterThan(0);
+ expect(latch[0]).toBeGreaterThan(0);expect(latch[1]).toBeLessThan(0);
+ expect(cpu[0]).toBeGreaterThan(0);expect(cpu[1]).toBeGreaterThan(0);
+ expect(data.evidence.referenceVariants[0].status).toBe('reconstruction-placement-error-corrected');
+});

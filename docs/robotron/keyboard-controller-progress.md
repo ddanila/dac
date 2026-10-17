@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Twelfth implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirteenth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance the first partial A1:1 top route, local A4 audit and recovered factory placement evidence | `33b5465` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance the first partial A1:1 top route, local A4 audit and factory-corrected A2 package identities | `5f507ea` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,27 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirteenth pass corrects
+
+The factory schematic's twelve A2 NAND gates agree with the reconstructed
+netlist, resolving the location-label discrepancy as a reconstruction placement
+error. A2.1 belongs across from A1 on the cable side of X1; A2.2 belongs beyond
+X1 on the A4 edge; A2.3 belongs beyond X1 on the CPU edge. The native footprint
+poses and their photo-landmark records now follow those identities. Stable
+component references, pin numbers, schematic nets and HDL wiring are unchanged.
+Only the three A2 placed records changed; no unrelated package was moved.
+
+`evidence.json` retains the previous location labels and the independently read
+factory gate pin/net assignments. Fourteen export tests check their consistency
+and correct board regions; all photo-fit checks and the native KiCad integration
+test pass. The controller meshes and museum sidecar are regenerated together, so
+selecting A2 components or their nets now marks the correct physical locations.
+This is a reference-placement correction supported by the factory drawing, not
+a claim that specimen copper continuity has been measured. The existing digital
+qualification still applies to the unchanged connectivity. All eleven controller
+browser tests, the production build and CAD CI pass. All twelve review views
+render and the three strict visual regression checks pass without baseline changes.
 
 ## What the twelfth pass discovers
 
