@@ -100,17 +100,13 @@ The core's archived clock/reset baseline demonstrates standard S600 boot and idl
 scanning under electrical clock and power-on reset. Its digital matrix, direct ROM
 input and older CPU drive boundary limit that evidence; the assembled full-board
 configuration and contact/transmit scenarios still require qualification.
-The firmware harness now observes the cable receiver independently of transmit
-intent. An idle run cannot qualify transmission; the focused service fixture
-requires actual firmware-generated traffic. Matching bits alone does not verify
-S600 framing or receiver timing margins.
-The service fixture also compares received bits with the production C emulator's
-contact response, independently of the HDL transmit log. This is ordinal bit
-comparison, not CPU cycle equivalence.
-Its qualification target requires matching electrical/HDL inputs and timestep
-refinement as well as bit agreement. Archived service reports in the core retain
-that evidence for the single-contact fixture; full-board startup, additional
-contact scenarios and receiver setup/hold margins remain separate requirements.
+
+The service qualifier requires firmware-generated traffic, independent cable
+receiver observations, ordinal bit agreement with the C emulator, timestep
+refinement and sampled data setup/hold against an explicit fixture budget.
+Archived reports retain its input and waveform provenance. That evidence covers
+the single-contact BR service fixture, not full-board startup, additional contact
+scenarios, CPU cycle equivalence or historical receiver thresholds/timing limits.
 
 Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
 the tested explicit sink-enable interface. The nominal reset model also fails to
