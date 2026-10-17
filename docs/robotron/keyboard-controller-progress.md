@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Twenty-sixth implementation pass, 2026-10-17. Digital reference qualification passes,
+Twenty-seventh implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty resistor placements, photo evidence, partial A1:1 route and local reset/A4 supply copper | `a7ec84a` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty resistor placements, photo evidence, partial A1:1 route and local reset/A4 supply copper | `ad55aee` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,30 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the twenty-seventh pass fixes
+
+The BR1/R10.3 review exposed a geometry synchronization defect. Migrating resistors
+removed legacy solder joints, but the underside generator did not add joints for
+native resistor pads. The export freshness guard also omitted the separate lead,
+resistor-body and resistor-band meshes, allowing stale meshes to retain a new
+common source stamp. Earlier passing metadata checks did not cover this omission.
+
+The solder generator now uses all 40 native resistor pads. All twelve affected
+mesh consumers have per-mesh export receipts binding source and mesh hashes.
+Partial rebuilds update only their own receipts; metadata validation rejects
+stale or missing receipts and altered meshes. Four regression tests cover these
+failure modes and run in CAD CI. The full affected mesh set is regenerated,
+including the previously omitted lead mesh. No KiCad placements, connectivity,
+routing or completion counts changed. Twenty controller export checks, four new
+mesh-contract tests, model/download metadata, fifteen browser tests and the build
+pass. Enlarged lead and underside views were inspected; only the controller
+visual baseline was updated. All three strict visual checks and CAD CI pass.
+
+The local underside joint pair near R10.3 and BR1 appears connected in the photo
+(approximately [1558,3616] to [1559,3660] in original underside pixels). This is
+useful for the next bridge-side review, but global registration remains unqualified
+and neither native placement nor a bridge terminal assignment was promoted here.
 
 ## What the twenty-sixth pass adds
 

@@ -235,14 +235,14 @@
   },
   {
     "name": "keyboard-controller-leads",
-    "vertices": 15578,
-    "indices": 63450,
+    "vertices": 19146,
+    "indices": 78216,
     "bounds": [
-      -17.2005,
+      -16.95845,
       -321.828796,
       4.733704,
       223.531479,
-      -287.487915,
+      -288.602692,
       9.766295
     ],
     "transform": [
@@ -508,8 +508,8 @@
   },
   {
     "name": "keyboard-controller-solder",
-    "vertices": 60232,
-    "indices": 181992,
+    "vertices": 69832,
+    "indices": 210792,
     "bounds": [
       -39.900002,
       -324.997864,
