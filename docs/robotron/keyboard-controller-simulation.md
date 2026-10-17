@@ -117,10 +117,11 @@ receiver observations, ordinal bit agreement with the C emulator, timestep
 refinement and sampled data setup/hold against an explicit fixture budget.
 Service coverage checks the CPU reset pin and restart at the first ROM byte after
 each release. Archived reports retain input and waveform provenance. Single-press,
-modifier and release/repress have qualified BR service runs, separate from full-board
-startup and historical timing. Modifier and release/repress were rechecked with a
+modifier, control and release/repress have qualified BR service runs, separate from
+full-board startup and historical timing. Modifier, control and release/repress
+were rechecked with a
 diagnostic-only engine correction that preserves their functional event sequences
-and timestamps. Control, service-reset and indicator qualification remains pending
+and timestamps. Service-reset and indicator qualification remains pending
 review of previously ignored ngspice time-order diagnostics. The core's
 `analog/reports/solver-diagnostic-audit.json` pins the affected logs and preserves
 the original observations. Equal printed times do not establish backward execution;
