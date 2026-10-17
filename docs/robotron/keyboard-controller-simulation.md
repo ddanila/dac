@@ -107,6 +107,10 @@ S600 framing or receiver timing margins.
 The service fixture also compares received bits with the production C emulator's
 contact response, independently of the HDL transmit log. This is ordinal bit
 comparison, not CPU cycle equivalence.
+Its qualification target requires matching electrical/HDL inputs and timestep
+refinement as well as bit agreement. Archived service reports in the core retain
+that evidence for the single-contact fixture; full-board startup, additional
+contact scenarios and receiver setup/hold margins remain separate requirements.
 
 Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
 the tested explicit sink-enable interface. The nominal reset model also fails to
