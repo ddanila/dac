@@ -194,7 +194,7 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
  await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
- expect(data.layout.unplaced).toHaveLength(45);
+ expect(data.layout.unplaced).toHaveLength(43);
 });
 
 test('candidate photo endpoints never become net-connected pads',async({page})=>{

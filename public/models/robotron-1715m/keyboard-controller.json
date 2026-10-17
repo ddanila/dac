@@ -3283,6 +3283,53 @@
         "type": "220"
       },
       {
+        "evidence": "Factory placement + top-photo lead ends; close-up supports adjacent gate pin orientation; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/OSC1",
+            "pin": "1",
+            "position": [
+              106.825444,
+              -3.880598
+            ],
+            "ref": "R4.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/OSC_RC",
+            "pin": "2",
+            "position": [
+              120.654541,
+              -4.650604
+            ],
+            "ref": "R4.3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          113.739993,
+          -4.265601
+        ],
+        "ref": "R4.3",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "220"
+      },
+      {
         "evidence": "Factory placement + top-photo lead ends; visible supply strip extends from R3/R4.1 to right lead; component-evidence.json",
         "pads": [
           {
@@ -3372,6 +3419,53 @@
           12.885591
         ],
         "ref": "R6.1",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "1k"
+      },
+      {
+        "evidence": "Factory placement + top-photo lead ends; close-up supports adjacent gate pin orientation; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              100.467883,
+              -3.371648
+            ],
+            "ref": "R6.6",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/FF_PULLUP",
+            "pin": "2",
+            "position": [
+              87.696874,
+              -2.724327
+            ],
+            "ref": "R6.6",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          94.082379,
+          -3.047988
+        ],
+        "ref": "R6.6",
         "rotation": 0.0,
         "side": "top",
         "type": "1k"
@@ -6613,53 +6707,6 @@
               0.85,
               0.85
             ],
-            "net": "/OSC1",
-            "pin": "1",
-            "position": [
-              -10.0,
-              -100.0
-            ],
-            "ref": "R4.3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/OSC_RC",
-            "pin": "2",
-            "position": [
-              -7.46,
-              -100.0
-            ],
-            "ref": "R4.3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -10.0,
-          -100.0
-        ],
-        "ref": "R4.3",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "220"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
             "net": "/+5V",
             "pin": "1",
             "position": [
@@ -6789,53 +6836,6 @@
           -100.0
         ],
         "ref": "R6.5",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "1k"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              134.0,
-              -100.0
-            ],
-            "ref": "R6.6",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/FF_PULLUP",
-            "pin": "2",
-            "position": [
-              136.54,
-              -100.0
-            ],
-            "ref": "R6.6",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          134.0,
-          -100.0
-        ],
-        "ref": "R6.6",
         "rotation": 0.0,
         "side": "top",
         "type": "1k"
@@ -13559,8 +13559,8 @@
       "Digital reference circuit; discrete pin numbering, specimen substitutions and analog timing remain unqualified; reset topology and bridge boundaries reviewed against Zander."
     ],
     "padNetMismatches": [],
-    "placed": 29,
-    "unplaced": 45,
+    "placed": 31,
+    "unplaced": 43,
     "unresolvedPhotoSegments": 294
   },
   "photoRegistration": {
@@ -14868,6 +14868,55 @@
       {
         "checkPins": [],
         "independentValidation": false,
+        "maxResidualMm": 5.288925157415605e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              100.467883,
+              -3.371648
+            ],
+            "pcbPixel": [
+              1498.9999995780422,
+              3549.999995194273
+            ],
+            "photoModel": [
+              100.4678833725934,
+              -3.3716479852591528
+            ],
+            "photoPixel": [
+              1499,
+              3550
+            ],
+            "pin": "1",
+            "residualMm": 3.72884885774954e-07
+          },
+          {
+            "pcbModel": [
+              87.696874,
+              -2.724327
+            ],
+            "pcbPixel": [
+              1500.000006265492,
+              3385.000003468162
+            ],
+            "photoModel": [
+              87.69687372924768,
+              -2.724327454335207
+            ],
+            "photoPixel": [
+              1500,
+              3385
+            ],
+            "pin": "2",
+            "residualMm": 5.288925157415605e-07
+          }
+        ],
+        "ref": "R6.6",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
         "maxResidualMm": 4.487174490370758e-07,
         "pins": [
           {
@@ -15451,6 +15500,55 @@
           }
         ],
         "ref": "R6.1",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 3.424550875500997e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              106.825444,
+              -3.880598
+            ],
+            "pcbPixel": [
+              1495.9999954225327,
+              3631.9999994314066
+            ],
+            "photoModel": [
+              106.82544404579164,
+              -3.8805976606202526
+            ],
+            "photoPixel": [
+              1496,
+              3632
+            ],
+            "pin": "1",
+            "residualMm": 3.424550875500997e-07
+          },
+          {
+            "pcbModel": [
+              120.654541,
+              -4.650604
+            ],
+            "pcbPixel": [
+              1493.9999966200926,
+              3809.999999143729
+            ],
+            "photoModel": [
+              120.6545410677164,
+              -4.650603750594866
+            ],
+            "photoPixel": [
+              1494,
+              3810
+            ],
+            "pin": "2",
+            "residualMm": 2.584345797734192e-07
+          }
+        ],
+        "ref": "R4.3",
         "scope": "Direct photo placement, not a held-out fit check or measured continuity."
       }
     ],
@@ -16049,6 +16147,12 @@
         "url": "https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf",
         "sha256": "9d020e9dd41662f85b6a9a44e300cc9800ef20284c2a689e005f69a84f6e3fd3",
         "use": "Manufacturer service drawings. PDF page 10 (printed drawing 8), 63-330-4103-2 / 1.93.304103.0/09: populated serial keyboard controller placement. PDF page 11 (printed drawing 9), 56-330-4103-7 / 1.93.304103.0/04: schematic. Unlike the unfinished Zander placement sheet, this supplies reference locations. Drawing revision is not proven specimen-identical; A2 location labels exposed a reconstruction placement error, corrected after reviewing the factory gate assignments. PDF not redistributed."
+      },
+      {
+        "id": "photo-cpu-oscillator-closeup",
+        "path": "../reference/photos/PXL_20261012_123729356.jpg",
+        "sha256": "2a1901880002a9f4faa0ad7d043f10f430f3883aa276b9fc902119d7b701f6ec",
+        "use": "Specimen CPU/oscillator close-up; visible resistor leads and adjacent gate connections. Perspective view is supporting evidence, not the planar placement calibration."
       }
     ],
     "specimen": {
@@ -16080,7 +16184,7 @@
       {
         "id": "package-pinmap",
         "status": "unresolved",
-        "detail": "Reviewed DIP placements and fourteen native resistor placements are recorded in component-evidence.json. R4.2/R7/R8 still have unnumbered photo endpoint candidates; their underside correspondence and ground-side terminal assignment remain unresolved. Transistor, diode, capacitor and remaining discrete package terminal mappings require review."
+        "detail": "Reviewed DIP placements and sixteen native resistor placements are recorded in component-evidence.json. R4.2/R7/R8 still have unnumbered photo endpoint candidates; their underside correspondence and ground-side terminal assignment remain unresolved. Transistor, diode, capacitor and remaining discrete package terminal mappings require review."
       },
       {
         "id": "clock-source-disagreement",
@@ -16506,10 +16610,28 @@
     },
     "R6.6": {
       "referenceType": "1k",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends; photo-cpu-oscillator-closeup",
+      "pinEvidence": "Upper lead follows visible top trace to A6:10 (FF_PULLUP), assigned pin 2. Lower lead joins the supply land beside A7:14, assigned pin 1. No specimen continuity measurement.",
+      "note": "Body was absent from the legacy geometry. Lead-end estimates use nominal planar registration; hole centres, body, pad and drill dimensions remain estimates. The upper blue collar is observed appearance, not polarity. Reference resistance is not measured on the specimen.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1499,
+          3550
+        ],
+        "2": [
+          1500,
+          3385
+        ]
+      },
+      "pixelUncertainty": 8,
+      "blueCollarPin": "2",
+      "supportingSources": [
+        "robotron-factory-drawings",
+        "photo-top",
+        "photo-cpu-oscillator-closeup"
+      ]
     },
     "R11.1": {
       "referenceType": "130",
@@ -16970,10 +17092,28 @@
     },
     "R4.3": {
       "referenceType": "220",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends; photo-cpu-oscillator-closeup",
+      "pinEvidence": "Upper lead follows visible top trace toward A7:11 (OSC1), assigned pin 1. Lower OSC_RC terminal assignment follows the reference schematic; capacitor and leads obscure its continuation. No specimen continuity measurement.",
+      "note": "Body was absent from the legacy geometry. Lead-end estimates use nominal planar registration; hole centres, body, pad and drill dimensions remain estimates. The upper blue collar is observed appearance, not polarity. Reference resistance is not measured on the specimen.",
+      "placementAuthority": "controller.kicad_pcb",
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1496,
+          3632
+        ],
+        "2": [
+          1494,
+          3810
+        ]
+      },
+      "pixelUncertainty": 8,
+      "blueCollarPin": "1",
+      "supportingSources": [
+        "robotron-factory-drawings",
+        "photo-top",
+        "photo-cpu-oscillator-closeup"
+      ]
     },
     "C1": {
       "referenceType": "220p",
@@ -17091,23 +17231,23 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "e9026a201392e965598a9a8983cce0db9c9db2f5"
+      "revision": "a1fb4df040621121d773682b8103c228aaedd48d"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "521d0f48fe7745d77d6c8ad867b27eded4a0f8b7ff0a52628670619b5cb09d5a",
+      "layout": "796cd7d93684f756ef237c586538eee57905c31ff041e2acf74586733228f0ad",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "f0365e13cf423c512ec2e398aaa2b2c809ac3b8bb31822dda67751467585920b",
-      "photoRegistration": "9380f8e789e1965744946df5e700c8e515ac5ea97ee6a5ffbe013f453ec57b5f",
+      "qualification": "2fecc800d3ac1951ad6c7871932888f6e5d9e789acfb71624cf603897ef666d9",
+      "photoRegistration": "b007366dabaf9574cbc7df73c788929028a13a2de8312580691fec3797cc4b30",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
-      "evidence": "0b485bd17e474e5aa796658d3574356a648736bf376421022d98b73c0d23109c",
-      "componentEvidence": "62094982d9521e8aacee601f53831dda208f730a8bd4d4cf79682984ec2637ef"
+      "evidence": "ab79d93910d206c85aeddf1947108e40493ae7c9db9ac5d811a4b3a106e6d02c",
+      "componentEvidence": "02854449e8ea0182c63aa126778034fa197e869becd746b1e0d0084b5ff912aa"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "041f98cdd067f676f0edd02d4915289b5d82a65354054a90c7f5e71acad48ca2"
+    "geometryScadSha256": "b2cd9d86d54d897018e2e02a5f2ae219aaffc1fc369f07f1a1657753352a7a0d"
   },
   "cosimulation": {
     "bus": {
