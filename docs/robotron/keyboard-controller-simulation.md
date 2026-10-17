@@ -83,7 +83,7 @@ Generated decks, reports and failure traces stay in `build/`.
 | `serial_cosim.py` | Raw HDL-to-cable-to-receiver bit transport with explicit setup/hold stimulus; not CPU bus timing or S600 framing. |
 | `firmware_io_cosim.py` | S600-driven electrical matrix/cable feedback with external clock/reset through the BR service boundary; excludes the oscillator/reset generators. |
 | `make qualify-keyboard-board-scenario S600_ROM=/path/to/s600.bin` | Paired full-board contact runs; retained-input checks, absolute electrical clock phase with sample uncertainty, reset/restart and serial timing agreement, and sampled receiver margins. Numerical budgets do not establish historical timing or device calibration. |
-| `firmware_io_cosim.py --require-led-activity` | Captures firmware-driven SI/SO and Caps intent voltages and diode currents; requires settled on/off load response from both indicators. Qualification remains pending. |
+| `firmware_io_cosim.py --require-led-activity` | Captures firmware-driven SI/SO and Caps intent voltages and diode currents; requires settled on/off load response and ordinal C LED-state agreement for both indicators. |
 | `bus_timing_probe.py` / `firmware_drive_compare.py` | CPU data-drive setup/hold regression and S600 logical comparison; physical bus contention and pin delays remain unqualified. |
 | `resolved_bus_probe.py` | ROM pin mapping, shared CPU/ROM/latch bus resolution and deliberate contention. |
 | `build_bridge.py` / `bridge_probe.py` | Reproducible ngspice–Icarus bridge and explicit sink-enable transport. |
@@ -112,7 +112,7 @@ refinement and sampled data setup/hold against an explicit fixture budget.
 Service coverage checks the CPU reset pin and restart at the first ROM byte after
 each release. Archived reports retain input and waveform provenance. Qualified BR service
 evidence covers single press, release/repress, modifier and control sequences,
-and service reset;
+service reset and indicator sequences;
 it does not establish full-board startup, other scenarios, CPU cycle equivalence
 or historical receiver limits.
 Additional contact/reset recipes live in the core's `analog/scenarios/`. One
