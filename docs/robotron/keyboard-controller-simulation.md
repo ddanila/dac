@@ -23,6 +23,7 @@ describes tri-state conversion and timing limitations that need explicit review.
 | Tool | Role and assessment for this board |
 | --- | --- |
 | [ngspice/XSPICE](https://ngspice.sourceforge.io/xspice.html) | Preferred analog solver and mixed-signal scheduler; existing HDL can be coupled rather than rewritten. |
+| [ngspice `d_process`](https://ngspice.sourceforge.io/extras.html) | Alternative process/pipe coupling to the same analog solver; requires a custom adapter and independent time-ordering tests. Useful if the shared-library bridge is isolated as the failure source. |
 | [KiCad simulator](https://www.kicad.org/discover/spice/) | Familiar graphical inspection using ngspice; preserve native schematic ownership. |
 | [Qucs-S](https://qucs-s-help.readthedocs.io/en/latest/overview/choosing-a-sim-backend.html) | Alternative GUI for ngspice/Xyce; another frontend, not an independent solver. |
 | [Xyce](https://xyce.sandia.gov/files/xyce/AppNote-MixedSignal.pdf) | SPICE alternative with documented external/Icarus interfaces; validate current build compatibility before adopting the older integration examples. |
