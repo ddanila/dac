@@ -21,7 +21,7 @@ function componentPhoto(data,ref,candidate,side='top'){
  for(const id of candidate.supportingSources||[]){
   const supporting=data.evidence.sources.find(s=>s.id===id);
   if(!supporting?.path||id===candidate.photoSource)continue;
-  const extra=document.createElement('a');extra.href=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(supporting.path.split('/').pop())}`;extra.textContent='Supporting close-up';extra.target='_blank';extra.rel='noopener';figure.append(' · ',extra);
+  const extra=document.createElement('a');extra.href=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(supporting.path.split('/').pop())}`;extra.textContent=supporting.specimenId?'Comparison close-up — different specimen':'Supporting close-up';extra.target='_blank';extra.rel='noopener';figure.append(' · ',extra);
  }
  image.onload=()=>{
   const points=entries.map(([,point])=>point),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),margin=65;

@@ -55,6 +55,9 @@ The current 30 unplaced references are BR2; C1, C2, C3.1, C3.2, C4,
 C5.5, C6; L1.1–L1.4; R1, R2, R6.4, R6.5;
 V1.1, V1.2, V2, V3.1, V3.2 and V4.1–V4.9. Some have plausible locations;
 that does not establish numbered pads or net attachments.
+R6.4 and R6.5 have factory identities and unnumbered primary-photo lead-end
+candidates. Raised bends obscure their hole centres; comparison close-ups do
+not establish primary terminal numbering. They remain unplaced.
 
 The comparison-specimen `br2-terminal-order-review` records both endpoint
 candidates and a partial edge-corridor trace. It does not establish which end

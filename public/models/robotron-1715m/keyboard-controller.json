@@ -18441,15 +18441,61 @@
       "referenceType": "1k",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Factory placement identifies R6.4 nearer A4. Primary-photo visible lead endpoints are unnumbered candidates; raised bends obscure the board-entry locations. Native footprint remains unplaced.",
+      "placementAuthority": "controller.kicad_pcb",
+      "placementCandidate": {
+        "status": "factory-identity-visible-lead-ends-hole-centres-and-terminal-order-unresolved",
+        "source": "robotron-factory-drawings",
+        "locator": "PDF page 10, drawing 63-330-4103-2",
+        "photoSource": "photo-top",
+        "pixelUncertainty": 12,
+        "photoEndpoints": [
+          [
+            1328,
+            3170
+          ],
+          [
+            1485,
+            3165
+          ]
+        ],
+        "endpointOrder": "left, right visible lead ends in the primary top photo; not schematic pin numbers or qualified hole centres",
+        "blueCollarEndpoint": "right",
+        "limitation": "Raised lead bends overlap apparent pads and nearby tracks. Comparison close-up 080434345 corroborates bent construction and different body-to-hole offsets, but comes from another specimen. Factory identities do not resolve terminal order. No native placement or electrical continuity claim.",
+        "supportingSources": [
+          "comparison-photo-080434345"
+        ]
+      }
     },
     "R6.5": {
       "referenceType": "1k",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Factory placement identifies R6.5 nearer A6. Primary-photo visible lead endpoints are unnumbered candidates; raised bends obscure the board-entry locations. Native footprint remains unplaced.",
+      "placementAuthority": "controller.kicad_pcb",
+      "placementCandidate": {
+        "status": "factory-identity-visible-lead-ends-hole-centres-and-terminal-order-unresolved",
+        "source": "robotron-factory-drawings",
+        "locator": "PDF page 10, drawing 63-330-4103-2",
+        "photoSource": "photo-top",
+        "pixelUncertainty": 12,
+        "photoEndpoints": [
+          [
+            1335,
+            3217
+          ],
+          [
+            1485,
+            3210
+          ]
+        ],
+        "endpointOrder": "left, right visible lead ends in the primary top photo; not schematic pin numbers or qualified hole centres",
+        "blueCollarEndpoint": "left",
+        "limitation": "Raised lead bends overlap apparent pads and nearby tracks. Comparison close-up 080434345 corroborates bent construction and different body-to-hole offsets, but comes from another specimen. Factory identities do not resolve terminal order. No native placement or electrical continuity claim.",
+        "supportingSources": [
+          "comparison-photo-080434345"
+        ]
+      }
     },
     "R6.6": {
       "referenceType": "1k",
@@ -19223,7 +19269,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "bd02118e9f23fbf822ff80deb9dd0db53900c048"
+      "revision": "4e4cc8c7b22a534c511003b7be04c7a0a7e1f35c"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -19236,7 +19282,7 @@
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
       "evidence": "c8f5041fda3c99eed289c46787303faad59c00903d6957fcdf0b7443c86f58cd",
-      "componentEvidence": "5e688c1d1c92322d57c445e809408b679b01d034288860f127a3f8a12704a491"
+      "componentEvidence": "0c5b5db64a41874e84dd5ef5f9a82bac0b622f76322dcd6935aff071fc7506a7"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
     "geometryScadSha256": "8ebeca0adddb9293eef5f613fbce57d769cabc079ef1358f3675791125cffe55"
