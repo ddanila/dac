@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Forty-first implementation pass, 2026-10-17. Digital reference qualification passes,
+Forty-second implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-four resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit, withdrawn clock-route review and unassigned BR2 trace review | `445854f` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-four resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit, withdrawn clock-route review and unassigned BR2 trace review | `ad7be20` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,35 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the forty-second pass implements
+
+Controller transistor visuals now use the L3/12 reference body and flat lead
+section instead of generic TO-92 imports. The common shape is exported from
+`evidence.json.packageReferences`; SC308 and SC236 retain their distinct terminal
+conventions. Shape export rejects family dimensions that diverge instead of
+silently applying one body to both. The flat front and rounded rear corners
+preserve a defined relationship to the lead plane.
+
+The nine legacy visual positions and rotations remain unchanged and unassigned
+to native components. Their body stand-off and trimmed tail length retain the
+existing 2.5 mm estimates. The 2.5 mm reference outer-lead span now drives the
+leads, visual board apertures, lands and solder together. The source drawing's
+untrimmed lead length is not treated as mounting height.
+
+This improves the package shape but does not complete transistor placement:
+eleven schematic transistors remain unplaced, and nine legacy bodies are not a
+complete component inventory. There are still 30 unplaced schematic components,
+25 assigned copper sections and 229 airwires. Native layout and connectivity
+are unchanged. The detailed standalone OpenSCAD review inherits the new shapes.
+
+Validation: 24 exporter, two native KiCad integration, four mesh-contract and
+21 browser tests pass; production build and metadata/archive checks pass. An
+isolated rendered body was checked against the reference bounds, including its
+asymmetric flat-face offset. All twelve controller mesh receipts and source
+archives were refreshed. The transistor close-up and board view were inspected;
+only the changed controller visual baseline was updated, and all three strict
+visual checks pass. Firmware is unchanged.
 
 ## What the forty-first pass establishes
 
