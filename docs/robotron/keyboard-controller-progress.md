@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Seventh implementation pass, 2026-10-17. Digital reference qualification passes,
+Eighth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations and direct photo-to-photo audit | `de3d206` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, direct photo-to-photo audit and enforced copper provenance | `f6e174d` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
@@ -18,6 +18,30 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the eighth pass closes
+
+Native copper now requires a per-UUID record in `route-evidence.json`, with
+observed/inferred/unresolved status, a review explanation, pinned source citations
+and locators. Geometry hashes bind the review to the exact track/arc/via shape,
+width, side and net; edits invalidate prior review. Export rejects missing or
+orphaned records and stale citations. Observed tracks require their side's photo;
+observed through-vias require both sides. Records survive in exported layout and
+therefore the museum sidecar. These checks enforce provenance, not the correctness
+of a human reading of a photograph or measured electrical continuity.
+
+The ledger remains empty: A1's top-photo crop shows a track leaving pin 1 but does
+not establish the entire path, and pins 2/4 do not reveal unambiguous output routes.
+No uncertain artwork was promoted to electrical copper. Physical totals remain
+294 unassigned segments, 59 unplaced components and 234 airwires.
+
+Validation: 11 export tests pass, including moved/renetted/stale-source rejection.
+The native KiCad integration test rejects unreviewed synthetic copper, accepts
+explicitly documented synthetic arc/via geometry, and still rejects pad/net
+mismatches. Download sources and model metadata pass validation. Geometry and
+connectivity are unchanged, so the existing HDL qualification remains applicable.
+All six controller browser tests and the museum production build pass; CAD CI
+also passes for `f6e174d`.
 
 ## What the seventh pass closes
 
