@@ -81,13 +81,15 @@ Generated decks, reports and failure traces stay in `build/`.
 | `output_probe.py` | Serial/cable receiver voltages, LED currents, supply/return paths and load sensitivity. |
 | `serial_cosim.py` | Raw HDL-to-cable-to-receiver bit transport with explicit setup/hold stimulus; not CPU bus timing or S600 framing. |
 | `bus_timing_probe.py` / `firmware_drive_compare.py` | CPU data-drive setup/hold regression and S600 logical comparison; physical bus contention and pin delays remain unqualified. |
+| `resolved_bus_probe.py` | ROM pin mapping, shared CPU/ROM/latch bus resolution and deliberate contention. |
 | `build_bridge.py` / `bridge_probe.py` | Reproducible ngspice–Icarus bridge and explicit sink-enable transport. |
 | `make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` | TV80/S600 driven by electrical clock/reset with BR1/BR2 closed. `boot_cosim.py --electrical-matrix --electrical-outputs` also enables electrical sensing, output loads and cable/supply paths. |
 
 Each firmware mode emits an explicit component model/boundary inventory and rejects
 unclassified references. Semiconductor, gate and load parameters remain nominal
-assumptions, not specimen calibration. Digital bus/pullup loading, IC supply currents
-and brownout behavior remain qualification gaps. The matrix fixture is diode-free; its phantom-row conduction
+assumptions, not specimen calibration. Electrical bus/pullup loading, calibrated pin timing, IC supply currents
+and brownout behavior remain qualification gaps. CPU/ROM/latch contention is now
+represented at the digital resolution level. The matrix fixture is diode-free; its phantom-row conduction
 does not establish the specimen's key construction. The static mapping check and live bus-fixture test are separate from firmware
 qualification. Full boot and scenario results remain required before claiming
 complete firmware-driven feedback.
