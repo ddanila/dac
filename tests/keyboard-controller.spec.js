@@ -193,7 +193,7 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
  await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
- expect(data.layout.unplaced).toHaveLength(49);
+ expect(data.layout.unplaced).toHaveLength(47);
 });
 
 test('candidate photo endpoints never become net-connected pads',async({page})=>{
@@ -205,17 +205,17 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
   document.querySelector('#keyboard-controller-review').open=true;
  });
  const panel=page.locator('#keyboard-controller-review');
- await panel.getByLabel('Controller component',{exact:true}).selectOption('R3');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R5');
  await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
- const photo=panel.locator('[data-candidate-photo="R3"]');
+ const photo=panel.locator('[data-candidate-photo="R5"]');
  await expect(photo.getByRole('img')).toBeVisible();
  await expect(photo.locator('circle')).toHaveCount(2);
  await expect(photo).toContainText('not numbered pins');
  await expect(panel.locator('[data-selection]')).toContainText('0 with estimated positions');
  expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
- await expect(photo.locator('circle').first()).toHaveAttribute('cx','1513');
+ await expect(photo.locator('circle').first()).toHaveAttribute('cx','1523');
  await panel.getByLabel('Controller component',{exact:true}).selectOption('BR2');
- await expect(panel.locator('[data-candidate-photo="R3"]')).toHaveCount(0);
+ await expect(panel.locator('[data-candidate-photo="R5"]')).toHaveCount(0);
  await expect(panel.locator('[data-candidate-photo="BR2"] circle')).toHaveCount(2);
  expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
  await panel.getByRole('button',{name:'Clear highlight',exact:true}).click();

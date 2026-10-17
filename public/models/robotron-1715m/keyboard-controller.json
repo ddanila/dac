@@ -3189,6 +3189,100 @@
         "type": "560"
       },
       {
+        "evidence": "Factory placement + top-photo lead ends; shared right-side connection supports supply orientation; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              -111.708451,
+              19.138192
+            ],
+            "ref": "R3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/RESET_BIAS_LOW",
+            "pin": "2",
+            "position": [
+              -111.572545,
+              7.162209
+            ],
+            "ref": "R3",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -111.640498,
+          13.150201
+        ],
+        "ref": "R3",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "22k"
+      },
+      {
+        "evidence": "Factory placement + top-photo lead ends; shared right-side connection supports supply orientation; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/+5V",
+            "pin": "1",
+            "position": [
+              -108.210332,
+              19.204648
+            ],
+            "ref": "R4.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/RESET_DIODE_TOP",
+            "pin": "2",
+            "position": [
+              -108.146083,
+              7.30104
+            ],
+            "ref": "R4.1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -108.178207,
+          13.252844
+        ],
+        "ref": "R4.1",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "220"
+      },
+      {
         "evidence": "Factory placement + photo-estimated lead ends; terminal nets reference-derived, not continuity tested; component-evidence.json",
         "pads": [
           {
@@ -5797,100 +5891,6 @@
         "rotation": 0.0,
         "side": "top",
         "type": "8x4k7"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              -82.0,
-              -100.0
-            ],
-            "ref": "R3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/RESET_BIAS_LOW",
-            "pin": "2",
-            "position": [
-              -79.46,
-              -100.0
-            ],
-            "ref": "R3",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -82.0,
-          -100.0
-        ],
-        "ref": "R3",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "22k"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/+5V",
-            "pin": "1",
-            "position": [
-              -58.0,
-              -100.0
-            ],
-            "ref": "R4.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/RESET_DIODE_TOP",
-            "pin": "2",
-            "position": [
-              -55.46,
-              -100.0
-            ],
-            "ref": "R4.1",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -58.0,
-          -100.0
-        ],
-        "ref": "R4.1",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "220"
       },
       {
         "evidence": "unplaced",
@@ -12987,8 +12987,8 @@
       "Digital reference circuit; discrete pin numbering, specimen substitutions and analog timing remain unqualified; reset topology and bridge boundaries reviewed against Zander."
     ],
     "padNetMismatches": [],
-    "placed": 25,
-    "unplaced": 49,
+    "placed": 27,
+    "unplaced": 47,
     "unresolvedPhotoSegments": 294
   },
   "photoRegistration": {
@@ -14684,6 +14684,104 @@
         ],
         "ref": "R9.1",
         "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 3.0071491267252275e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              -111.708451,
+              19.138192
+            ],
+            "pcbPixel": [
+              1677.0000017684963,
+              753.0000023182263
+            ],
+            "photoModel": [
+              -111.70845117407966,
+              19.13819187857278
+            ],
+            "photoPixel": [
+              1677,
+              753
+            ],
+            "pin": "1",
+            "residualMm": 2.1224584223999084e-07
+          },
+          {
+            "pcbModel": [
+              -111.572545,
+              7.162209
+            ],
+            "pcbPixel": [
+              1512.99999589984,
+              756.9999994576797
+            ],
+            "photoModel": [
+              -111.57254495562425,
+              7.162209297422681
+            ],
+            "photoPixel": [
+              1513,
+              757
+            ],
+            "pin": "2",
+            "residualMm": 3.0071491267252275e-07
+          }
+        ],
+        "ref": "R3",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 4.3984614603393416e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              -108.210332,
+              19.204648
+            ],
+            "pcbPixel": [
+              1679.9999987884637,
+              799.999994177485
+            ],
+            "photoModel": [
+              -108.21033156567793,
+              19.204648069490858
+            ],
+            "photoPixel": [
+              1680,
+              800
+            ],
+            "pin": "1",
+            "residualMm": 4.3984614603393416e-07
+          },
+          {
+            "pcbModel": [
+              -108.146083,
+              7.30104
+            ],
+            "pcbPixel": [
+              1516.9999954659659,
+              803.0000014854705
+            ],
+            "photoModel": [
+              -108.14608310613701,
+              7.301040335942296
+            ],
+            "photoPixel": [
+              1517,
+              803
+            ],
+            "pin": "2",
+            "residualMm": 3.523099350831679e-07
+          }
+        ],
+        "ref": "R4.1",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
       }
     ],
     "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
@@ -16006,59 +16104,43 @@
     },
     "R3": {
       "referenceType": "22k",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends",
+      "pinEvidence": "Pin 1 is the right lead in the original top photo. The two right leads join through visible top copper; +5V is their only common net in the reference schematic. Pin 2 reset-node assignments follow the reference schematic; specimen continuity is not measured.",
+      "note": "Factory placement and visible shared connection support identity and orientation. Native geometry uses nominal planar photo registration; body, pad and drill dimensions remain estimated. Reference value is not a specimen measurement. The R3 body marking reads 22K; R4.1 marking is unreadable. Blue collars do not indicate electrical polarity.",
       "placementAuthority": "controller.kicad_pcb",
-      "placementCandidate": {
-        "status": "identity-and-lead-locations-reviewed-terminal-order-unresolved",
-        "source": "robotron-factory-drawings",
-        "locator": "PDF page 10, drawing 63-330-4103-2",
-        "photoSource": "photo-top",
-        "pixelUncertainty": 8,
-        "photoEndpoints": [
-          [
-            1513,
-            757
-          ],
-          [
-            1677,
-            753
-          ]
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1677,
+          753
         ],
-        "endpointOrder": "left, right in the original upright photograph; not schematic pin numbers",
-        "blueCollarEndpoint": "left",
-        "legibleBodyMarking": "22K",
-        "limitation": "Factory drawing supports designator order. Top photo supports lead positions and collar end. Physical-to-schematic terminal assignment and continuity remain unverified; these candidates do not place or connect native pads."
-      }
+        "2": [
+          1513,
+          757
+        ]
+      },
+      "pixelUncertainty": 8,
+      "blueCollarPin": "2"
     },
     "R4.1": {
       "referenceType": "220",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends",
+      "pinEvidence": "Pin 1 is the right lead in the original top photo. The two right leads join through visible top copper; +5V is their only common net in the reference schematic. Pin 2 reset-node assignments follow the reference schematic; specimen continuity is not measured.",
+      "note": "Factory placement and visible shared connection support identity and orientation. Native geometry uses nominal planar photo registration; body, pad and drill dimensions remain estimated. Reference value is not a specimen measurement. The R3 body marking reads 22K; R4.1 marking is unreadable. Blue collars do not indicate electrical polarity.",
       "placementAuthority": "controller.kicad_pcb",
-      "placementCandidate": {
-        "status": "identity-and-lead-locations-reviewed-terminal-order-unresolved",
-        "source": "robotron-factory-drawings",
-        "locator": "PDF page 10, drawing 63-330-4103-2",
-        "photoSource": "photo-top",
-        "pixelUncertainty": 8,
-        "photoEndpoints": [
-          [
-            1517,
-            803
-          ],
-          [
-            1680,
-            800
-          ]
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1680,
+          800
         ],
-        "endpointOrder": "left, right in the original upright photograph; not schematic pin numbers",
-        "blueCollarEndpoint": "right",
-        "legibleBodyMarking": null,
-        "limitation": "Factory drawing supports designator order. Top photo supports lead positions and collar end. Physical-to-schematic terminal assignment and continuity remain unverified; these candidates do not place or connect native pads."
-      }
+        "2": [
+          1517,
+          803
+        ]
+      },
+      "pixelUncertainty": 8,
+      "blueCollarPin": "1"
     },
     "R5": {
       "referenceType": "10k",
@@ -16323,23 +16405,23 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "76ea3f69c925d7d19a960d88b2e298f3810bf17e"
+      "revision": "b6ba8d5b82e5c7617b4d19f21f8dd67632e91933"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "ce8b57ac021e6b0d71b0d48634ba5883cb22608c456d521f0c9103457ae4bca7",
+      "layout": "fa48b5862a219d8b4defbdd0422e715195091b613723b04b78831060103d5105",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "aa05da7e12fe5fb316a4c7abb712631649af23ec81333b6064ed2609e0e6e49f",
-      "photoRegistration": "0623e63d5e7c78b905dd858c04929bf385e0c97432752065e479767f111ab849",
+      "qualification": "ad899708c775e0224b79a3bfdc26156002c3af8d001919fa741a222229a0a38f",
+      "photoRegistration": "b2e1a0505bd6586d72fb42d0ae310d22463f93a2bdf710c3d293215d60173e0f",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
       "evidence": "cc932e936696f36077cde4d3ef2ae932389e1e0d6510175845657a49d74c740d",
-      "componentEvidence": "99b1953ef8e3efa157d3532e242bec56e495baa30ea27d2818b08654895c808b"
+      "componentEvidence": "37722a04f881e75786ab0b45aed7b062d9f479658cb21e789daca172f0f85911"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "a6bef14455fe202f65f6589e096f229b458113d22e5b2dcbcec365ea42cd7a63"
+    "geometryScadSha256": "3843e1139f1746c7072e8ea3b5b7e632fbe969d53e7bdc75ade81a9a22975756"
   },
   "cosimulation": {
     "bus": {
