@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Fourth implementation pass, 2026-10-17. Digital reference qualification passes,
+Fifth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, eight photo-aligned DIP packages and regenerated museum geometry | `fd48d55` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, underside registration audit and regenerated museum geometry | `78feb53` |
 | `dac-emulation` | Reviewed CAD pin, generated bridge isolation and external stimulus tests, passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `8052c32` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
@@ -19,7 +19,33 @@ RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
 
-## What the fourth pass closes
+## What the fifth pass closes
+
+A8 orientation is now supported by the visible package notch and pin-one dot above
+the blue tape. Four corner-lead landmarks and four held-out right-side leads fit
+within 1.11 mm of the nominal PCB plane. The footprint moved about 6 mm toward
+the CPU, and the generated ROM body, socket, cover, ink, pads and holes follow it.
+All nine DIP packages now have top-photo landmark checks. A8's socket still hides
+bare PCB hole centres; the replacement EPROM identity remains unread.
+
+The new underside audit uses four numbered A1/A8 anchor pads and six independent
+A1/CPU check pads, preserving the reflection into the top-view coordinate frame.
+CPU corner checks are approximately 1.0–1.1 mm; A1:7 and A1:8 exceed the 1.25 mm
+tolerance at approximately 1.66 and 1.46 mm. The report and original-photo SVG
+retain these failures. The museum exposes them for selected components. This is
+relative registration to estimated PCB placement, not metrology, and no copper or
+existing artwork was reassigned or transformed. Further cross-side registration
+work is required before tracing can be promoted as electrical copper.
+
+`bottom-landmarks.json` is the observation record;
+`generated/bottom-registration.json` and `.svg` are derived outputs. Freshness
+checks now include the underside photo and the registration code. A regression
+check rejects reusing an anchor as a held-out check. Ten fast CAD checks and the
+KiCad arc/via/net-mismatch integration test pass. Six Chromium and twelve
+Firefox/WebKit controller checks pass, as do the production build and reviewed
+visual regression. CAD CI is green. Connectivity is unchanged.
+
+## What the fourth pass closed
 
 A4's original top-photo annotation placed the two final-lead landmarks above the
 actual last leads. Re-reading all ten leads on each side corrected those points
@@ -233,7 +259,7 @@ connectivity and reports whose implementation/CPU/header hashes have changed.
 | Reference digital bus and firmware comparison | Passing within documented scope |
 | Bridge isolation and external clock/reset stimulus | Passing digital tests |
 | KiCad DIP geometry propagated to OpenSCAD and museum | Implemented; discrete parts remain |
-| Both photo sides registered to numbered pads | Incomplete; A8 and underside require review |
+| Both photo sides registered to numbered pads | Incomplete; underside fails two independent pad checks |
 | Visible copper reconciled with named nets | Incomplete; 294 artwork segments remain unassigned |
 | First data/clock path traced through actual copper | Incomplete |
 | Specimen ROM identity and timing | Awaiting planned dumps and measurements |
@@ -248,7 +274,7 @@ are not evidence of historical trace accuracy.
 | --- | --- |
 | Identity/evidence | Resolve specimen clock wiring and ROM identity; identify remaining physical parts |
 | Schematic | Reset topology and BR1/BR2 are explicit; review physical discrete pin maps, specimen substitutions and bridge state |
-| PCB | Resolve A8 placement/orientation, place 59 components, trace and assign actual copper, reconcile 234 airwires |
+| PCB | Resolve underside registration and A8 socket-to-hole alignment, place 59 components, trace and assign actual copper, reconcile 234 airwires |
 | OpenSCAD | Migrate remaining discrete parts and qualify pad/lead interfaces and physical dimensions |
 | Co-simulation | Resolve CPU phase timing if cycle equivalence is required; qualify analog and contention boundaries |
 | Museum/sync | Extend verified net geometry and signal mappings as physical reconstruction progresses |
