@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Fifth implementation pass, 2026-10-17. Digital reference qualification passes,
+Sixth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, underside registration audit and regenerated museum geometry | `78feb53` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations and direct photo-to-photo audit | `de3d206` |
 | `dac-emulation` | Reviewed CAD pin, generated bridge isolation and external stimulus tests, passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `8052c32` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals and accurate qualification status | This change |
 
@@ -19,7 +19,30 @@ RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
 
-## What the fifth pass closes
+## What the sixth pass establishes
+
+The underside CPU rows were recounted against the original image. The earlier
+lower-corner observations at y3138 picked features below the twenty-pin rows;
+corrected corners are recorded in `bottom-landmarks.json`, with superseded points
+preserved in its review history. Fitting anchors and the 1.25 mm tolerance are
+unchanged. All six checks now show 1.41–1.70 mm PCB-relative residuals. This corrects
+the previous report rather than preserving its more favourable numbers.
+
+A separate direct photo-to-photo comparison uses the same four anchors but targets
+the original top-photo observations, bypassing rigid PCB footprint placement.
+A1 checks differ by 0.17/0.41 nominal mm; CPU checks span 0.89–1.28 mm. The report
+retains pixel residuals as well as nominal mm and hashes both original photographs.
+The museum presents both comparisons separately. The larger PCB-relative errors
+show that nominal calibration and package fitting contribute to the discrepancy;
+this is not solely an underside image-registration problem. Top lead/socket
+surfaces can obscure board-hole centres, so neither comparison qualifies exact
+physical routing. Measured dimensions and additional shared pads are still needed.
+
+Ten fast CAD checks, canonical export/download metadata checks, six browser
+checks and the production build pass. No geometry, electrical connectivity or
+copper assignments changed in this pass.
+
+## What the fifth pass established
 
 A8 orientation is now supported by the visible package notch and pin-one dot above
 the blue tape. Four corner-lead landmarks and four held-out right-side leads fit
@@ -259,7 +282,7 @@ connectivity and reports whose implementation/CPU/header hashes have changed.
 | Reference digital bus and firmware comparison | Passing within documented scope |
 | Bridge isolation and external clock/reset stimulus | Passing digital tests |
 | KiCad DIP geometry propagated to OpenSCAD and museum | Implemented; discrete parts remain |
-| Both photo sides registered to numbered pads | Incomplete; underside fails two independent pad checks |
+| Both photo sides registered to numbered pads | Incomplete; corrected underside checks and nominal calibration remain unresolved |
 | Visible copper reconciled with named nets | Incomplete; 294 artwork segments remain unassigned |
 | First data/clock path traced through actual copper | Incomplete |
 | Specimen ROM identity and timing | Awaiting planned dumps and measurements |
