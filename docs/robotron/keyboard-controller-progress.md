@@ -24,7 +24,9 @@ workload qualifies logical behavior, not the specimen's firmware or exact timing
 Remaining work includes discrete placement and lead mapping, complete physical
 data/clock routing, BR2 terminal order, connector correspondence, measured board
 scale, underside registration and specimen timing. The withdrawn CPU CLK route
-remains unassigned. Analog stages and exact CPU cycle equivalence are unqualified.
+remains unassigned. Electrical subcircuit and interface checks are implemented;
+full-board firmware qualification, device-model accuracy and exact CPU cycle
+equivalence remain open.
 
 ## Authoritative status
 
@@ -34,7 +36,9 @@ In the CAD controller directory, `generated/layout.json` records placed/unplaced
 parts and copper; `generated/qualification.json` records ERC/DRC findings;
 `component-evidence.json`, `route-evidence.json` and `evidence.json` retain physical
 claims and their sources. Core qualification reports live under
-`verification/robotron-keyboard/reports/` in `dac-emulation`.
+`verification/robotron-keyboard/reports/` in `dac-emulation`. Mixed-signal run
+inputs, assumption reports and traces live under `build/keyboard-controller-analog/`;
+the [simulation guide](keyboard-controller-simulation.md) maps their entry points.
 
 These artifacts carry inventories and test results. Git history carries the
 change log; documentation should retain decisions, limitations and workflow.
