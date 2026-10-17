@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Twenty-first implementation pass, 2026-10-17. Digital reference qualification passes,
+Twenty-second implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and fourteen resistor placements, photo evidence, partial A1:1 route and local reset supply copper | `a85c116` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and fourteen resistor placements, photo evidence, partial A1:1 route and local reset supply copper | `e9026a2` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,26 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the twenty-second pass adds
+
+The canonical evidence ledger now reflects recovered factory placement and the
+reviewed reset supply tree, replacing stale descriptions from the first copper
+pass. Coverage totals are referenced through generated qualification rather than
+copied into the gap ledger. Discrete-terminal uncertainty explicitly separates
+the fourteen placed resistors from the three remaining reset candidates.
+
+A scoped source audit records the manufacturer's contents page, keyboard sheets
+(PDF pages 9–12), and review of a contact sheet of all 50 pages. No keyboard
+solder-side copper drawing was identified in that source. This does not imply
+that no such drawing exists elsewhere. R4.2/R7/R8 underside correspondence
+remains ambiguous among nearby joints; no terminal assignment was promoted from
+the unreliable global-photo extrapolation.
+
+No geometry or connectivity changes were made. The counts remain 45 unplaced
+components, 21 assigned copper segments and 231 airwires. Eighteen export checks
+pass; model/download metadata and cross-repository synchronization checks pass.
+The existing digital and visual qualification scopes are unchanged.
 
 ## What the twenty-first pass adds
 

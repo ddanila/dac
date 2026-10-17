@@ -16059,13 +16059,13 @@
     "gaps": [
       {
         "id": "placement-sheet",
-        "status": "unusable",
-        "detail": "Published placement PDF has unplaced components and a KC87 printer-module template title."
+        "status": "partially-resolved",
+        "detail": "Zander placement download remains unusable, but manufacturer PDF page 10, drawing 63-330-4103-2, provides populated reference placement. It supports reviewed DIP/discrete identities and BR location candidates; it does not establish specimen terminal continuity or solder-side copper."
       },
       {
         "id": "hidden-copper",
         "status": "unresolved",
-        "detail": "A1:1 has a photo-supported partial top track to a terminal near A4, with an inferred pad attachment. Terminal underside correspondence and CPU endpoint remain unresolved. 294 legacy artwork segments remain unassigned; the WR/RD specimen disagreement is not resolved."
+        "detail": "Native copper now includes the partial A1:1 top route and the visible R3/R4.1/R5/R6.1 supply tree, with pad attachments classified as inferred. See route-evidence.json and generated/qualification.json for current coverage and counts. The A1 terminal underside correspondence, CPU endpoint and WR/RD specimen disagreement remain unresolved. Unassigned legacy artwork is not electrical connectivity."
       },
       {
         "id": "dimensions",
@@ -16080,7 +16080,7 @@
       {
         "id": "package-pinmap",
         "status": "unresolved",
-        "detail": "Specimen substitutions and discrete package orientations require verification."
+        "detail": "Reviewed DIP placements and fourteen native resistor placements are recorded in component-evidence.json. R4.2/R7/R8 still have unnumbered photo endpoint candidates; their underside correspondence and ground-side terminal assignment remain unresolved. Transistor, diode, capacitor and remaining discrete package terminal mappings require review."
       },
       {
         "id": "clock-source-disagreement",
@@ -16316,6 +16316,38 @@
           ]
         },
         "schematicLocator": "PDF page 11, drawing 56-330-4103-7: address inverter bank and the two A2.2 enable gates beside A4."
+      }
+    ],
+    "sourceReviews": [
+      {
+        "source": "robotron-factory-drawings",
+        "reviewDate": "2026-10-17",
+        "method": "Reviewed contents on PDF page 2, keyboard sheets and a contact sheet of all 50 PDF pages.",
+        "keyboardDrawings": [
+          {
+            "pdfPage": 9,
+            "drawing": "7",
+            "role": "keyboard layout"
+          },
+          {
+            "pdfPage": 10,
+            "drawing": "8",
+            "identifier": "63-330-4103-2",
+            "role": "populated controller placement"
+          },
+          {
+            "pdfPage": 11,
+            "drawing": "9",
+            "identifier": "56-330-4103-7",
+            "role": "controller schematic"
+          },
+          {
+            "pdfPage": 12,
+            "role": "handwritten key matrix supplement"
+          }
+        ],
+        "finding": "No keyboard solder-side copper drawing identified in this 50-page source. The contents list keyboard layout, populated placement and schematic. This is a scoped search result, not proof that no copper drawing exists elsewhere.",
+        "remainingUse": "Placement identities and schematic connectivity can be reviewed against these sheets; precise specimen routing still needs photo or continuity evidence."
       }
     ]
   },
@@ -17059,7 +17091,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "a85c116ca782e99a69e133a1c060d68dd1942e7f"
+      "revision": "e9026a201392e965598a9a8983cce0db9c9db2f5"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -17071,7 +17103,7 @@
       "qualification": "f0365e13cf423c512ec2e398aaa2b2c809ac3b8bb31822dda67751467585920b",
       "photoRegistration": "9380f8e789e1965744946df5e700c8e515ac5ea97ee6a5ffbe013f453ec57b5f",
       "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
-      "evidence": "cc932e936696f36077cde4d3ef2ae932389e1e0d6510175845657a49d74c740d",
+      "evidence": "0b485bd17e474e5aa796658d3574356a648736bf376421022d98b73c0d23109c",
       "componentEvidence": "62094982d9521e8aacee601f53831dda208f730a8bd4d4cf79682984ec2637ef"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
