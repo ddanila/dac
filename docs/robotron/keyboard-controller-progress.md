@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Thirty-fourth implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirty-fifth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `5456c23` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `f52b539` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,22 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirty-fifth pass checks
+
+The comparison terminal review now includes a reproducible direct bottom-to-top
+homography using four CPU corner pins, plus four independent intermediate-pin
+checks. Original image coordinates, matrix and residuals are retained in
+`evidence.json:routeReviews[0].comparisonReview.correspondenceFit`. The maximum
+held-out residual is 47.07 pixels. The proposed top terminal is 65.20 pixels from
+its projection and lies outside the CPU corner hull. Top lead feet obscure the
+hole centres; this extrapolation remains unqualified for copper assignment.
+
+The fit is useful review evidence, not a through-board continuity result or a
+reason to restore the primary CLK route. The current pin map, native geometry,
+37 unplaced components and 229 airwires remain unchanged. CAD's 22 exporter tests
+and metadata/source-archive checks pass; museum synchronization verifies source
+hashes and unchanged HDL connectivity. No digital or browser behavior changed.
 
 ## What the thirty-fourth pass records
 
