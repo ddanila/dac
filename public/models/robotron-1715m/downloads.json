@@ -2,25 +2,25 @@
   {
     "name": "motherboard",
     "file": "downloads/motherboard.zip",
-    "sha256": "7ae0dea05377eeb290c4aad0b13f52e66b41ddaeb28bbe974048574735620ff0",
-    "bytes": 11004530
+    "sha256": "3264799e90d316e7242076135156db9aa6f05e939cbd10be2ef59f12e4ea6b44",
+    "bytes": 11005514
   },
   {
     "name": "display-controller",
     "file": "downloads/display-controller.zip",
-    "sha256": "f3fab6337b95412b1aba12a63b38075865a4a106bb4222ec6b01da96871bf5ff",
-    "bytes": 5920360
+    "sha256": "345b3c0be2222b78df617f9a44c433fe68a305f052a7cf035d62853501d6040d",
+    "bytes": 5921344
   },
   {
     "name": "drive-0",
     "file": "downloads/drive-0.zip",
-    "sha256": "6d42b7d1fc472cbf5efc03010dafe41da2caa53871a3cf07ea47c325251a2788",
-    "bytes": 1808811
+    "sha256": "b63167fa45a1511820d30c2d553e39c125482a17789d2d31ecc4b6dd9705d486",
+    "bytes": 1809795
   },
   {
     "name": "drive-1",
     "file": "downloads/drive-1.zip",
-    "sha256": "abc791efb0cd5485c3121554ab1dd738ee569cf3fa619d592b6cabf331e8f55f",
-    "bytes": 1809729
+    "sha256": "e5af626aae0435b11b8169b8697b6e8c2aa373bcfc95ff0c036f4adcc0534b5d",
+    "bytes": 1810713
   }
 ]

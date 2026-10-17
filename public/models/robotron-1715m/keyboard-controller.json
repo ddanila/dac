@@ -18276,7 +18276,9 @@
           0.4,
           0.3
         ],
-        "scope": "Reference package convention. Comparison photos show 308/C markings consistent with this family; primary specimen markings, individual body orientation, lead bends and PCB pad correspondence remain unqualified."
+        "scope": "Reference package convention. Comparison photos show 308/C markings consistent with this family; primary specimen markings, individual body orientation, lead bends and PCB pad correspondence remain unqualified.",
+        "flatFaceToLeadPlaneMm": 1,
+        "backCornerRadiusMm": 1
       },
       {
         "id": "sc236-l3-12",
@@ -18304,7 +18306,9 @@
           0.4,
           0.3
         ],
-        "scope": "Reference package convention. Comparison photos show C36/D markings consistent with this family; primary specimen markings, individual body orientation, lead bends and PCB pad correspondence remain unqualified."
+        "scope": "Reference package convention. Comparison photos show C36/D markings consistent with this family; primary specimen markings, individual body orientation, lead bends and PCB pad correspondence remain unqualified.",
+        "flatFaceToLeadPlaneMm": 1,
+        "backCornerRadiusMm": 1
       }
     ]
   },
@@ -19354,7 +19358,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "445854f9fa98cb73e279025596995fcb2abf4104"
+      "revision": "ad7be20c2274bc8f85f886fbdb815ed91847fb1f"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -19366,11 +19370,11 @@
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
-      "evidence": "e14a9b711b2460157fb272065ad6a2181d1940a42075d0c904182b49d8c36545",
+      "evidence": "3572d4ec655d4a973805217e474847dace22b6e16264ea81dde5cfd1e1ace889",
       "componentEvidence": "c3915f354c5030e79c759c5e68e3b5277d7f8bccd21cfda51c8ec64057ad2482"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "8ebeca0adddb9293eef5f613fbce57d769cabc079ef1358f3675791125cffe55"
+    "geometryScadSha256": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9"
   },
   "cosimulation": {
     "bus": {
