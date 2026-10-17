@@ -1,8 +1,8 @@
 [
   {
     "name": "keyboard-controller-board",
-    "vertices": 16564,
-    "indices": 52776,
+    "vertices": 16692,
+    "indices": 53184,
     "bounds": [
       -40,
       -331.399994,
@@ -313,8 +313,8 @@
   },
   {
     "name": "keyboard-controller-resistor-bands",
-    "vertices": 4800,
-    "indices": 14400,
+    "vertices": 4992,
+    "indices": 14976,
     "bounds": [
       -17.789713,
       -319.363098,
@@ -352,8 +352,8 @@
   },
   {
     "name": "keyboard-controller-resistors",
-    "vertices": 1824,
-    "indices": 5244,
+    "vertices": 1920,
+    "indices": 5520,
     "bounds": [
       -17.819927,
       -319.586487,
@@ -547,8 +547,8 @@
   },
   {
     "name": "keyboard-controller-traces",
-    "vertices": 42127,
-    "indices": 125850,
+    "vertices": 42532,
+    "indices": 127188,
     "bounds": [
       -25.264999,
       -330.398987,

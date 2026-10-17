@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "153fc5d6c21accfb0ab9c288106d9e564c61f3c7",
+  "revision": "a85c116ca782e99a69e133a1c060d68dd1942e7f",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "2a092bea9bc3ec2d93287cf74758c67682f2f6515aad27a94fea89a35297cd0b"
+      "sha256": "730ec066fabbfb2e53e2c552f88656065fb6af7cb66af972dc8320a1fd8eaef2"
     },
     {
       "file": "LICENSE",
@@ -461,7 +461,7 @@
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
-      "sha256": "186e2b6957e6ddcd086d784fc3e381af958e8837f4c5c5a6d7b9639aa074bf02"
+      "sha256": "cad34f82228bbe93f9e3c787eb134a0773b6f28df2375757a6e74e84d1493102"
     },
     {
       "file": "meshes/keyboard-controller-chips.stl",
@@ -565,7 +565,7 @@
     },
     {
       "file": "meshes/keyboard-controller-traces.stl",
-      "sha256": "d5203a567834ef93158db17e2a6a7165acdfda0b50f288dd56c20c001efd150c"
+      "sha256": "8a24f39d16de2725897eef56b12961f9a08ab3487c63f4b1eda87cb74da10e36"
     },
     {
       "file": "meshes/monitor-power-lead.stl",
@@ -765,11 +765,11 @@
     },
     {
       "file": "meshes/keyboard-controller-resistors.stl",
-      "sha256": "e33bdf2b2e3ae3d085a3bca6bc46b4ccdc47024f5f89d79a03df65cc9e659735"
+      "sha256": "744430f2bb038394fa8dcec6edc7f750794006dcd8296dc9b215b7bff42f6357"
     },
     {
       "file": "meshes/keyboard-controller-resistor-bands.stl",
-      "sha256": "c00e9a8c9f47eeb753bc23eca215d2a09b64ea418d1527130d5636a7a23ed84e"
+      "sha256": "a6cdaafafb6c0571072704b5789eafb35a95c03a9d571c008edbd0431e5fd610"
     },
     {
       "file": "meshes/keyboard-entry-black.stl",
@@ -1477,23 +1477,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "5dbc6e28c71a7905ecc5445e72888a84e6b46c74e0a891089cf3e9a0e6d52f7d"
+      "sha256": "33d330481d255b908958ce02395254cfbf5d5d24ecf825ce407cf992e7ec9f13"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "ffe33f219ccfdd83b0ce34414f8286b1b67920d6c4ac195dc687ca57d88cac67"
+      "sha256": "0ab9ae296995c978621aaa80c2e6be164986e262cb3603f11b100c0b6371510c"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "8f2a4f920145bf8afaeedeaa7bc894c83a89f02837ce5242402955803af3b27d"
+      "sha256": "5ac2322909169cc3b74c14098a7ec8955738e7414a31d296dccc414f48424692"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "176fa735040716cc4223f440b83015869c0dff5eac73afd288c8424c0a507acd"
+      "sha256": "f5c8056f4d202271332032f8263071986ede39791e0b57deab04d9bb13fa97dc"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "b4da4a1476d807a064ec4cc9e01fb368e14d561debf0b5697a30547d9ee7d030"
+      "sha256": "b55d65e16264ff10f30fa5406a389636695c9dfb2648382ea3a7bbcc859beab9"
     }
   ],
   "inspection": {
