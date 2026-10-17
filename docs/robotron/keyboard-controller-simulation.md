@@ -117,14 +117,14 @@ receiver observations, ordinal bit agreement with the C emulator, timestep
 refinement and sampled data setup/hold against an explicit fixture budget.
 Service coverage checks the CPU reset pin and restart at the first ROM byte after
 each release. Archived reports retain input and waveform provenance. Single-press,
-modifier, control, release/repress and service-reset have qualified BR service
-runs, separate from full-board startup and historical timing. Rechecked scenarios
+modifier, control, release/repress, service-reset and indicators have qualified
+BR service runs, separate from full-board startup and historical timing. Rechecked scenarios
 preserve functional event sequences and timestamps under the diagnostic-only
-engine correction. Indicator qualification remains pending
-review of previously ignored ngspice time-order diagnostics. The core's
-`analog/reports/solver-diagnostic-audit.json` pins the affected logs and preserves
-the original observations. Equal printed times do not establish backward execution;
-unresolved messages now reject qualification.
+engine correction. Indicator qualification includes electrical on/off currents,
+C LED-state agreement and paired intent-edge timing. Repeat remains unqualified
+because of failed timing refinement and unresolved earlier solver diagnostics.
+The core's `analog/reports/solver-diagnostic-audit.json` preserves the original
+reassessment; unresolved messages reject qualification.
 Additional contact/reset recipes live in the core's `analog/scenarios/`. One
 timeline generates SPICE sources and C stimuli, with explicit observation windows
 for release/repress, modifiers, repeat and service reset. Each recipe must pass
