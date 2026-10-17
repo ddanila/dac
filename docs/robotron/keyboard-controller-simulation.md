@@ -14,8 +14,8 @@ and retain OpenSCAD as the geometry consumer. Do not hand-maintain a second circ
 
 The [ngspice manual, section 10.3](https://ngspice.sourceforge.io/docs/ngspice-manual.pdf)
 documents `d_cosim` with Icarus and Verilator. Icarus needs `libvvp` built with
-`--enable-libvvp`; its ordinary executable alone is insufficient. The local ngspice
-package includes the bridge libraries, but the installed Icarus lacks `libvvp`.
+`--enable-libvvp`; its ordinary executable alone is insufficient. Build the shared runtime and bridge using the analog harness README; packaged
+bridges need not expose the required registration symbols correctly.
 Qualify time synchronization, X/Z states, bidirectional buses and feedback before
 calling the coupled simulation complete. [Verilator's language guide](https://verilator.org/guide/latest/languages.html)
 describes tri-state conversion and timing limitations that need explicit review.
@@ -65,7 +65,7 @@ traces. An exploratory BJT model is useful progress but cannot establish absolut
 SC308/SC236 accuracy. Measurements improve calibration rather than gate software
 implementation.
 
-## Current runnable experiment
+## Runnable experiments
 
 `dac-emulation/verification/robotron-keyboard/analog/sense_probe.py` generates and
 solves the reference sensing front end in ngspice. It deliberately uses a labelled
@@ -73,3 +73,11 @@ generic PNP model and does not yet couple the CPU, oscillator or reset. Its READ
 contains commands; generated decks, sweeps and assumption reports stay in `build/`.
 The existing `qualify-keyboard-controller` target runs the standard S600 digital
 reference comparison. Neither experiment alone is full mixed-signal emulation.
+
+`analog/build_bridge.py` builds a pinned ngspice/Icarus bridge with an initial-output
+snapshot fix. `analog/bridge_probe.py` exercises the existing 7406 HDL against an
+analog pullup/load using explicit sink-enable transport. Direct Z transport through
+`bidi_bridge` fails timestep refinement locally and remains a diagnostic, not the
+chosen interface. The probe qualifies transport and HDL delay; its output impedance
+is a nominal surrogate. It does not yet qualify shared buses or close the board's
+CPU/reset/oscillator feedback loop.
