@@ -77,6 +77,7 @@ Generated decks, reports and failure traces stay in `build/`.
 | `matrix_probe.py` | Contact fixture, column scanning and electrical sensing, followed by generated HDL latch/bus checks. |
 | `matrix_cosim.py` | Live HDL column-drive / SPICE contact-sense / HDL latch feedback with a bus fixture. |
 | `reset_probe.py` | Electrical reset, power cycling, BR2 isolation and timestep checks. |
+| `device_probe.py` | Generic NPN characterization against source-pinned SC236D DC gain limits; reports model qualification separately from successful execution. |
 | `oscillator_probe.py` | RC oscillator topology, BR1 isolation, timestep and capacitor sensitivity. |
 | `output_probe.py` | Serial/cable receiver voltages, LED currents, supply/return paths and load sensitivity. |
 | `serial_cosim.py` | Raw HDL-to-cable-to-receiver bit transport with explicit setup/hold stimulus; not CPU bus timing or S600 framing. |
@@ -98,6 +99,12 @@ Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
 the tested explicit sink-enable interface. The nominal reset model also fails to
 produce a useful pulse with a 10 ns supply ramp. These are retained qualification
 issues, not reasons to block implementation on missing specimen evidence.
+
+Device characterization already exposes a specific limit: the generic NPN model
+misses the published higher-current SC236D DC gain ranges. Fitting must preserve
+the distinction between DC and small-signal AC gain and the specified selection
+group. Published typical SC308 group-D data cannot qualify the board's group-C
+devices. Source conditions and comparisons belong in the executable device probe.
 
 The existing `qualify-keyboard-controller` target retains the independent standard
 S600 digital comparison. None of these partial checks alone establishes complete
