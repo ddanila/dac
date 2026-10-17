@@ -99,6 +99,10 @@ export function installKeyboardControllerReview(scene){
    if(cross.length)get('[data-selection]').textContent+=' Direct photo-to-photo checks: '+cross.map(p=>`${p.ref}:${p.pin} ${p.residualPixels.toFixed(1)} pixels / ${p.nominalResidualMm.toFixed(2)} nominal mm`).join('; ')+'. Top leads and socket can obscure hole centres; this does not qualify copper.';
    const local=data.bottomRegistration?.localRegions?.filter(r=>r.checks.some(p=>selection.refs.includes(p.ref)))||[];
    for(const region of local)get('[data-selection]').textContent+=` Local ${region.id.toUpperCase()} photo correspondence: ${region.checks.length} independent checks, ${region.maxCheckResidualMm.toFixed(2)} nominal mm maximum residual. Terminal candidates lie outside the anchor bounds; copper assignment remains unqualified. Extending this fit toward the tentative A6 terminal gives ${region.extrapolationChecks[0].nominalResidualMm.toFixed(2)} nominal mm discrepancy.`;
+   for(const region of data.bottomRegistration?.pcbRegions||[]){
+    if(![...region.anchors,...region.checks].some(p=>selection.refs.includes(p.ref)))continue;
+    get('[data-selection]').textContent+=` Local ${region.id.toUpperCase()} underside-to-PCB fit: ${region.checks.length} independent pad checks; ${region.maxCheckResidualMm.toFixed(2)} mm maximum residual. ${region.copperAssignmentQualified?'Reviewed projection is limited to the anchor hull.':'Projection is unqualified.'} Nominal geometry; global underside registration and hidden continuity remain unqualified.`;
+   }
    if(kind==='component'&&data.componentEvidence?.[value]){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
    }
@@ -107,8 +111,10 @@ export function installKeyboardControllerReview(scene){
     const alignedPhoto=alignment?{photoSource:'photo-top',photoPins:Object.fromEntries([...alignment.pins,...alignment.checkPins].map(p=>[p.pin,p.photoPixel]))}:null;
     const candidate=evidence?.photoPins?evidence:alignedPhoto||evidence?.placementCandidate||bridges.find(b=>b.ref===value)?.physicalEvidence;
     if(candidate){const photo=componentPhoto(data,value,candidate);if(photo)pins.append(photo);}
-    if(evidence?.bottomPhotoPins){
-     const underside=componentPhoto(data,value,{photoSource:evidence.bottomPhotoSource,photoPins:evidence.bottomPhotoPins,pixelUncertainty:evidence.bottomPixelUncertainty},'bottom');
+    const regionPins=(data.bottomRegistration?.pcbRegions||[]).flatMap(r=>[...r.anchors,...r.checks]).filter(p=>p.ref===value);
+    const bottomEvidence=evidence?.bottomPhotoPins?{photoSource:evidence.bottomPhotoSource,photoPins:evidence.bottomPhotoPins,pixelUncertainty:evidence.bottomPixelUncertainty}:regionPins.length?{photoSource:'photo-bottom',photoPins:Object.fromEntries(regionPins.map(p=>[p.pin,p.photoPixel])),pixelUncertainty:8}:null;
+    if(bottomEvidence){
+     const underside=componentPhoto(data,value,bottomEvidence,'bottom');
      if(underside)pins.append(underside);
     }
    }

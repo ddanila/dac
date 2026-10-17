@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Twenty-ninth implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirtieth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/clock copper | `4b5e067` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/clock copper including A5:6 | `966ff11` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,33 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirtieth pass adds
+
+The first data/clock milestone now includes a partial underside CLK route from
+CPU A5 pin 6. Four observed sections reach a nearby round terminal; one inferred
+attachment reconciles the native pad with its observed solder joint. The terminal
+continuation, through-board construction and connection to BR1 remain unresolved.
+No via or complete clock path is claimed.
+
+A new local CPU/A4 projection uses four anchors spanning both packages and six
+independent pad checks, including CPU pin 6. Maximum residual is 0.661 mm within
+the existing 1.25 mm photo tolerance. The reviewed scope is limited to the convex
+anchor hull and nominal photo-estimated PCB geometry. The separate global
+underside fit still fails; the earlier A4 photo-to-photo extrapolation remains
+unqualified. Export rejects stale landmark hashes, failed local checks, route
+pixels outside the hull and observed geometry that differs from the projection.
+
+The museum shows this limited local result, the CPU underside observations and
+the unresolved terminal in the route evidence. Net highlighting still includes
+both disconnected CLK islands; it does not imply a traced connection between them.
+Totals are now 30 assigned sections (21 observed, 9 inferred), 37 unplaced parts,
+229 airwires and two dangling route endpoints. Previously placed components,
+previous routes and schematic connectivity are unchanged. All 22 export checks,
+native KiCad integration, four mesh-contract checks, model/download metadata,
+19 browser tests and the build pass. The CPU-clock underside close-up was reviewed;
+only the controller trace mesh changed. The controller baseline was updated and
+all three strict visual checks pass. CAD CI also passes.
 
 ## What the twenty-ninth pass fixes
 
@@ -801,7 +828,7 @@ connectivity and reports whose implementation/CPU/header hashes have changed.
 | First-failure signals, clocks, stimulus and waveform | Implemented with fault-injection checks |
 | KiCad geometry propagated to OpenSCAD and museum | Nine DIPs, twenty-one resistors and BR1 implemented; other discrete parts remain |
 | Both photo sides registered to numbered pads | Incomplete; corrected underside checks and nominal calibration remain unresolved |
-| Visible copper reconciled with named nets | Partial A1:1 route, local reset/A4 supply connections and inferred BR1 clock link assigned (17 observed sections, 8 inferred sections); 294 artwork segments remain unassigned |
+| Visible copper reconciled with named nets | Partial A1:1 and A5:6 routes, local reset/A4 supply connections and inferred BR1 clock link assigned (21 observed sections, 9 inferred sections); 294 artwork segments remain unassigned |
 | First data/clock path traced through actual copper | Incomplete |
 | Specimen ROM identity and timing | Awaiting planned dumps and measurements |
 
