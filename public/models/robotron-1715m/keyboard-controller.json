@@ -17163,7 +17163,7 @@
     "specimen": {
       "boardMarking": "05-330-4102-8 1c L (underside); 05-330-4102 and -8 B 1c (top)",
       "revision": "Photo marking matches the board family/revision in kbdbabel; component substitutions and electrical identity still require verification.",
-      "rom": "Replacement EPROM, unread; S600 is reference firmware"
+      "rom": "User confirms the museum keyboard has a replacement keyboard ROM (2026-10-17). Contents unread; original ROM may be located later. S600 remains reference firmware. A replaceable ROM or differing label is not evidence of a PCB revision."
     },
     "gaps": [
       {
@@ -17471,7 +17471,7 @@
           "A5",
           "A4"
         ],
-        "summary": "CPU-side clock trace assignment withdrawn: the projected round terminal appears to connect to A4:13 D6 on the top photo, conflicting with the tentative CLK origin at A5:6. Local geometric fit checks do not prove a solder joint or through-board connection. No CLK or D6 route is assigned from this observation.",
+        "summary": "CPU-side clock trace assignment withdrawn: the projected round terminal appears to connect to A4:13 D6 on the top photo, conflicting with the tentative CLK origin at A5:6. Local geometric fit checks do not prove a solder joint or through-board connection. No CLK or D6 route is assigned from this observation. New separate-specimen photos show an apparent CPU pin-6 trace and a likely matching top terminal whose narrow trace passes between A4 leads 12 and 13; this weakens the apparent D6 conflict, but terminal correspondence remains provisional.",
         "bottomObservation": {
           "source": "photo-bottom",
           "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
@@ -17521,7 +17521,92 @@
           "9881ac20-a9e3-4925-9c99-2af0becf7d38",
           "aeb73b1b-9de1-4959-b791-5df27b7d8bb8"
         ],
-        "nextEvidence": "Re-read the exact solder/track junction and pin count from sharper photos or continuity measurements. Do not infer a via or renet to D6 from geometric proximity alone."
+        "nextEvidence": "Use the recorded comparison CPU pin count and terminal pixels to check both-side correspondence and the primary image before restoring any route. Hidden continuation, primary-specimen end-to-end clock continuity and measurements remain open.",
+        "comparisonReview": {
+          "date": "2026-10-17",
+          "specimenId": "comparison-20261017",
+          "status": "new-observations-terminal-correspondence-provisional",
+          "bottom": {
+            "source": "comparison-photo-080342577",
+            "pixelUncertainty": 12,
+            "cpuPinNumbering": "Component-side CPU notch faces the middle of the board. Viewed from the underside, count inward-row pin 1 at the middle-facing end toward pin 20 at the ROM end; reverse the top-view handedness. All 20 joints are visible in this image.",
+            "cpuCornerPixels": {
+              "1": [
+                1433,
+                3693
+              ],
+              "20": [
+                1473,
+                2080
+              ],
+              "21": [
+                1963,
+                2093
+              ],
+              "40": [
+                1940,
+                3693
+              ]
+            },
+            "cpu6ToTerminalPolyline": [
+              [
+                1440,
+                3265
+              ],
+              [
+                1371,
+                3267
+              ],
+              [
+                1276,
+                3180
+              ],
+              [
+                1276,
+                2940
+              ],
+              [
+                1323,
+                2880
+              ]
+            ],
+            "observation": "A visible underside trace runs from the sixth CPU joint to the round terminal between the CPU and A4. This is a comparison-specimen observation, not primary-specimen geometry."
+          },
+          "top": {
+            "source": "comparison-photo-080429077",
+            "pixelUncertainty": 12,
+            "terminalCandidate": [
+              2050,
+              900
+            ],
+            "a4LeadCandidates": {
+              "12": [
+                1990,
+                560
+              ],
+              "13": [
+                2135,
+                565
+              ]
+            },
+            "visibleTracePolyline": [
+              [
+                2050,
+                900
+              ],
+              [
+                2060,
+                600
+              ],
+              [
+                2060,
+                500
+              ]
+            ],
+            "observation": "The likely matching terminal has a narrow trace running between A4 leads 12 and 13 toward the package underside. A distinct neighbouring trace comes from lead 13. The package obscures the continuation. Terminal correspondence remains provisional; no through-board or hidden connection is asserted."
+          },
+          "conclusion": "The sharper comparison photos weaken the prior apparent D6-conflict interpretation. They do not justify substituting a D6 route or restoring the primary CLK route without checking terminal correspondence and the primary image. Preserve the withdrawn geometry until that review is complete."
+        }
       }
     ],
     "comparisonSpecimens": [
@@ -18468,7 +18553,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "227bddc43a95c78bc63bedd38af548c5af10540b"
+      "revision": "5456c232d3c6a2bca61bc072d5b8cfdd8900c970"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -18480,7 +18565,7 @@
       "qualification": "0379be52d7be70342e03529b76b1a499fa080dd12346f644fb6de3ac28020fa1",
       "photoRegistration": "f8b63a2fffb38a250d0380a0c8cd04f4b51ac4d127f30aead37952f5ecdcd3f1",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
-      "evidence": "0f4263c0908920b215d61dfe984029462b636f448acda4d7bad06c2c0c39f0cd",
+      "evidence": "8192426e2267c84db70518c7cf2b400447c9a0ab5871ae4bedd354592a2d06fd",
       "componentEvidence": "9960dbf6aa38ccc48a30eaa81ee3cbc1c2406367ed9d3046a51aa88a3810507a"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",

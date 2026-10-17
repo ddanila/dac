@@ -64,9 +64,14 @@ On 2026-10-17 the user supplied 25 photographs of a **different specimen** in
 The matching visible board markings corroborate the family; the EPROM label
 reads S642, with contents unread. These photos provide clearer underside, CPU,
 bridge, connector and transistor views and reopen the physical review work below.
-They do not resolve the withdrawn CLK interpretation merely by being available.
+The numbered review in CAD `5456c23` shows an apparent CPU pin-6 trace and a likely
+top terminal whose trace passes between A4 leads 12 and 13. This weakens the earlier
+apparent D6 conflict; cross-side terminal identity remains provisional.
 Each image needs its own pin-count and registration review before geometry is
 transferred, and the two specimens' routing must be compared explicitly.
+
+The user confirms that the museum ROM was replaced; an original ROM may be found
+later. Firmware contents remain unread, independently of PCB reconstruction.
 
 The requirement audit and numerical coverage above remain unchanged. The new
 photos have not supplied measurements, a ROM dump or verified whole-board

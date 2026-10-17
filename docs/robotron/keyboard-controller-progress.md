@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Thirty-third implementation pass, 2026-10-17. Digital reference qualification passes,
+Thirty-fourth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `227bddc` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-one resistor placements, BR1, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit and withdrawn clock-route review | `5456c23` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,30 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the thirty-fourth pass records
+
+The user confirms that the museum keyboard has a replacement ROM and may locate
+the original later. This confirmation is recorded in the primary specimen ledger.
+Firmware identity remains independent of PCB reconstruction: a replacement ROM or
+different label is not evidence of a board revision. S600 stays reference firmware
+until actual ROM contents are available.
+
+The new underside photo `PXL_20261017_080342577.jpg` supports a numbered CPU pin-6
+to round-terminal trace observation. The comparison review records the pin-count
+basis, all four CPU corner coordinates, the observed trace and pixel uncertainty.
+In `PXL_20261017_080429077.jpg`, the likely corresponding top terminal has a narrow
+trace passing between A4 leads 12 and 13 toward the package underside, distinct
+from the neighbouring lead-13 trace. This weakens the earlier apparent D6-conflict
+interpretation. It does not yet prove the cross-side terminal match or the hidden
+continuation. Both sets of coordinates and the unresolved correspondence are in
+CAD `evidence.json:routeReviews[0].comparisonReview`.
+
+Museum inspection now includes that revised interpretation through its existing
+route-review note. The withdrawn primary CLK route remains absent pending the
+correspondence review; physical coverage and digital connectivity are unchanged.
+CAD exporter tests (22), metadata/archive checks and the focused museum checks for
+photo delivery, separate-specimen inspection and the withdrawn CPU clock pass.
 
 ## What the thirty-third pass adds
 
