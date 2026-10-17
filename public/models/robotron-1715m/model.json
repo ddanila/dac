@@ -32589,7 +32589,7 @@
       "name": "keyboard-controller-board",
       "file": "meshes/keyboard-controller-board.stl",
       "color": "#92977a",
-      "sha256": "80238c72761e7a8e6264f2077c923b876aba698bacb358936b092695a971b529",
+      "sha256": "2afef8570c61ef96d6f8b5886fe1fbafd5604a58c0cacd6f02b94230306666c6",
       "section": "interior",
       "material": "controller-laminate"
     },
@@ -32782,7 +32782,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "37a51afb797d8d38133067db81ac792eb792ecf8c53f1cbaa725628501258446",
+      "sha256": "210683bdc3d0587e0f5abcc9d360a8e44c89183c0011c5eee9f3fb0e163b7c8c",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -33174,7 +33174,7 @@
       "name": "keyboard-controller-resistors",
       "file": "meshes/keyboard-controller-resistors.stl",
       "color": "#9a9d95",
-      "sha256": "795a46e300d579463bc7142617f733f2c6ff3927a472f3ffde8e666d26c43bc8",
+      "sha256": "47a4fd30f48ccdea357c43469f6fff711c0461eaff8eb3d006e3fd3793245eca",
       "section": "interior",
       "material": "plastic"
     },
@@ -33182,7 +33182,7 @@
       "name": "keyboard-controller-resistor-bands",
       "file": "meshes/keyboard-controller-resistor-bands.stl",
       "color": "#3186ad",
-      "sha256": "91b891ac4a2c14104fcee961242449322aa313f0330ee28332d1247c12430950",
+      "sha256": "3aa32f2b8493e6a3d09b7d8be4c766e100e08d339e3d9c42c3d37cf282b376b1",
       "section": "interior",
       "material": "plastic"
     },
@@ -38336,7 +38336,7 @@
   "source": "https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m",
   "keyboardControllerSource": {
     "specimen-details.scad": "e9c93bed7dc74c94230d2f6036dcb71496e287aba0c9b1607968424a8477f1d7",
-    "keyboard-controller/generated/controller.scad": "b2cd9d86d54d897018e2e02a5f2ae219aaffc1fc369f07f1a1657753352a7a0d",
+    "keyboard-controller/generated/controller.scad": "d3be409ee75ed17384deebfabf7136f57e4e57971d01b02971fd6ebc7f7d6413",
     "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
   }
 }

@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Twenty-fourth implementation pass, 2026-10-17. Digital reference qualification passes,
+Twenty-fifth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and sixteen resistor placements, photo evidence, partial A1:1 route and local reset supply copper | `a1fb4df` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and eighteen resistor placements, photo evidence, partial A1:1 route and local reset supply copper | `f76ecf0` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,30 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the twenty-fifth pass adds
+
+R11.1 and R11.2, the LED series resistors beside X1, are now natively placed.
+Factory placement identifies the pair; the original top photo supplies their
+lead endpoints and lower blue collar ends. The inner leads align with adjacent
+X1 rows consistent with reference A5/A6, and are assigned connector-side pin 2.
+Outer leads are assigned flip-flop-side pin 1. Exact connector registration and
+end-to-end continuity remain unverified, so these are reference-derived mappings.
+
+Both bodies were missing from legacy geometry. Native geometry now supplies
+their bodies, leads, holes, lands and collars, with no legacy entry removed.
+Eighteen resistors are native and 41 components remain unplaced. Existing
+placements, copper and airwire counts are unchanged. The export test checks the
+opposite lead orientations and the distinct Caps and SI/SO nets. Nineteen export
+checks, native KiCad integration, model/download metadata, fifteen browser tests
+and the production build pass. The photo overlay and enlarged model region were
+reviewed, and only the controller visual baseline was updated. All three strict
+visual checks and CAD CI pass.
+
+Against the plan's exit criteria, digital qualification and synchronization remain
+implemented, while PCB reconstruction, complete geometry migration and the first
+physical data/clock path remain incomplete. Adding these parts does not resolve
+connector pin registration, hidden routing or specimen timing/ROM evidence.
 
 ## What the twenty-fourth pass adds
 
@@ -678,7 +702,7 @@ connectivity and reports whose implementation/CPU/header hashes have changed.
 | Reference digital bus and firmware comparison | Passing within documented scope |
 | Bridge isolation and external clock/reset stimulus | Passing digital tests |
 | First-failure signals, clocks, stimulus and waveform | Implemented with fault-injection checks |
-| KiCad geometry propagated to OpenSCAD and museum | Nine DIPs and sixteen resistors implemented; other discrete parts remain |
+| KiCad geometry propagated to OpenSCAD and museum | Nine DIPs and eighteen resistors implemented; other discrete parts remain |
 | Both photo sides registered to numbered pads | Incomplete; corrected underside checks and nominal calibration remain unresolved |
 | Visible copper reconciled with named nets | Partial A1:1 route and local reset supply connection assigned (16 observed sections, 5 inferred attachments); 294 artwork segments remain unassigned |
 | First data/clock path traced through actual copper | Incomplete |
@@ -694,7 +718,7 @@ are not evidence of historical trace accuracy.
 | --- | --- |
 | Identity/evidence | Resolve specimen clock wiring and ROM identity; identify remaining physical parts |
 | Schematic | Reset topology and BR1/BR2 are explicit; review physical discrete pin maps, specimen substitutions and bridge state |
-| PCB | Resolve underside registration and A8 socket-to-hole alignment, place 43 components, trace and assign actual copper, reconcile 231 airwires |
+| PCB | Resolve underside registration and A8 socket-to-hole alignment, place 41 components, trace and assign actual copper, reconcile 231 airwires |
 | OpenSCAD | Migrate remaining discrete parts and qualify pad/lead interfaces and physical dimensions |
 | Co-simulation | Resolve CPU phase timing if cycle equivalence is required; qualify analog and contention boundaries |
 | Museum/sync | Extend verified net geometry and signal mappings as physical reconstruction progresses |
