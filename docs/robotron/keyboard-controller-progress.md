@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Fifteenth implementation pass, 2026-10-17. Digital reference qualification passes,
+Sixteenth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance the first partial A1:1 top route, local A4 audit, corrected A2 identities and ten native resistor placements | `741b2ed` |
+| `3d-models` | 70-component schematic, reviewed reset/cable connections and bridges, nine photo-aligned DIP packages, corrected underside observations, enforced copper provenance the first partial A1:1 top route, local A4 audit, corrected A2 identities ten native resistor placements and seven reset resistor candidates | `76ea3f6` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,27 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the sixteenth pass adds
+
+The factory placement drawing and original top photo identify seven reset-side
+resistors: R3, R4.1, R5, R6.1, R4.2, R7 and R8. Their fourteen lead positions,
+observed blue collar ends and four readable value markings are now recorded in
+canonical component evidence. Pixel pairs use photographic left/right order,
+not schematic pin numbers. Physical terminal order remains unresolved.
+
+This review exposes a model omission: only six legacy resistor placements exist
+in that area. The eventual native migration must replace those six with all
+seven photographed components. No pad or net assignment was inferred from that
+legacy geometry. The reference supply-side and ground-side groups require
+separate continuity review before native placement; the underside registration
+limits still apply.
+
+All sixteen export tests, model/download metadata checks and twelve controller
+browser tests pass. Generated
+geometry and connectivity are unchanged, so the unplaced count remains 49 and
+existing HDL qualification still applies. Museum metadata and editable downloads
+include the observations; this is evidence progress, not completed PCB placement.
 
 ## What the fifteenth pass adds
 
