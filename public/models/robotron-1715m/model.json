@@ -401,7 +401,7 @@
       "rom": "A8 U556/U2716-compatible 2 KiB ROM; transplanted specimen ROM contents unverified",
       "matrix": "13 scan selections x 8 inputs; no RAM on controller",
       "leds": "A6A/A6B DL074 latches: address A14/A13 data, IORQ with A15 low clocks them",
-      "transistors": "Schematic: V4.1\u2013V4.8 SC308C input stages, V3.1/V3.2 SC236D and V4.9 SC308C reset stages. L3/12 reference bodies at nine legacy estimated visual positions; eleven schematic transistors still need native placement and individual lead mapping.",
+      "transistors": "Schematic: V4.1\u2013V4.8 SC308C input stages, V3.1/V3.2 SC236D and V4.9 SC308C reset stages. L3/12 reference bodies at eleven named body-only photo estimates; all eleven schematic transistors still need native placement and individual lead mapping.",
       "unresolved": "Exact controller-to-matrix mating depth and hidden lead bends; no invented joining cable. Visible connector/resistor tails share PCB holes and underside solder eyes.",
       "internalReview": "v44: installed end screws/visible straps, photo-projected matrix and controller underside artwork, irregular solder joints, shared end-hole/ring coordinates, clean braided shield termination and 1 mm pressed bottom-lid pockets. Exact hidden attachments, electrical continuity and optical properties remain unverified."
     },
@@ -811,7 +811,7 @@
       "title": "UB880D keyboard controller",
       "photo": "20261012_123622947",
       "evidence": "Owner photo",
-      "dimensions": "UB880D CPU and replacement EPROM follow the owner photo. The 56-330-4103-7 drawing describes a RAM-less U880, 2 KiB ROM, 13 \u00d7 8 matrix and address-clocked LED latches. L3/12 reference transistor bodies and flat leads use documented package dimensions; nine legacy visual positions, mounting heights and individual lead mappings remain unqualified. Placement and dimensions are photo-estimated; nominal package geometry is not a measurement of this specimen.",
+      "dimensions": "UB880D CPU and replacement EPROM follow the owner photo. The 56-330-4103-7 drawing describes a RAM-less U880, 2 KiB ROM, 13 \u00d7 8 matrix and address-clocked LED latches. L3/12 reference transistor bodies and flat leads use documented package dimensions; eleven named body-only photo positions, mounting heights and individual lead mappings remain unqualified. Placement and dimensions are photo-estimated; nominal package geometry is not a measurement of this specimen.",
       "source": "https://www.sax.de/~zander/pc1715/pc_tasts.pdf"
     },
     {
@@ -32589,7 +32589,7 @@
       "name": "keyboard-controller-board",
       "file": "meshes/keyboard-controller-board.stl",
       "color": "#92977a",
-      "sha256": "ececa9dea497f8e3ed53ba0be8f72fcc384c7bae91a87ed79611dc44c7c90e42",
+      "sha256": "e4adc9da586fc091e1beb2d9127fa1d166c97fb9c060eb448e7d2f86825648d2",
       "section": "interior",
       "material": "controller-laminate"
     },
@@ -32597,7 +32597,7 @@
       "name": "keyboard-controller-chips",
       "file": "meshes/keyboard-controller-chips.stl",
       "color": "#272a2b",
-      "sha256": "6f205d16b79a7c15c80055d4747ee5af579c43f10109ee04379ecf4fac9c76a5",
+      "sha256": "c10e7df616840961e5b3f5c5e2f996d27a2ccd394f489cbf7fb24883a1e50f57",
       "section": "interior",
       "material": "ic-moulding"
     },
@@ -32637,7 +32637,7 @@
       "name": "keyboard-controller-metal",
       "file": "meshes/keyboard-controller-metal.stl",
       "color": "#b8bbb4",
-      "sha256": "bf03366d542d39154445aca9bf73ae43bd0bfccf470ad4c7e36a6dbf2f0e312f",
+      "sha256": "dffc9210453206afb3f9fb0bd20d9e69d63afbc3e6b344581188037d663e1700",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32782,7 +32782,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "692867bf2f18a4fe02dcd5c539210fe686a3428813e3275d5424df33e44c30d8",
+      "sha256": "00a946fe14e731cc8f6e1b0c987fe8f99e0be7d3809b8174bc37cc29498e9657",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -32955,7 +32955,7 @@
       "name": "keyboard-controller-solder",
       "file": "meshes/keyboard-controller-solder.stl",
       "color": "#b8bbb4",
-      "sha256": "58f517752000f661a937799deafdbd12201ac586e33fd89c518699caa858ecd1",
+      "sha256": "bbd39ef915d5a3804ac0922802214bd6459b93bf37d435e5ba700e3efd1af32a",
       "section": "interior",
       "material": "solder"
     },
@@ -38338,103 +38338,103 @@
     "keyboard-controller-rom-cover": {
       "meshSha256": "be3a2cfea01fbc9c29003a586f6a721953130413c8443e21cdec6a9ffe090a6a",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-rom-ink": {
       "meshSha256": "fa6b5ce4d95f7d2c071bec444d26779097a67dec85dd528c9891c35d7dab1f5c",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-resistor-bands": {
       "meshSha256": "27299a4d73e3003f3ef4e6e0ba183a5fdd78a4f8e6a318577b3f719acd15700f",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-ink": {
       "meshSha256": "036ed411244095ff2416cdcf291bcb60aa43f86be4c51479c9c63fd4bf28ea9d",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-chips": {
-      "meshSha256": "6f205d16b79a7c15c80055d4747ee5af579c43f10109ee04379ecf4fac9c76a5",
+      "meshSha256": "c10e7df616840961e5b3f5c5e2f996d27a2ccd394f489cbf7fb24883a1e50f57",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-board": {
-      "meshSha256": "ececa9dea497f8e3ed53ba0be8f72fcc384c7bae91a87ed79611dc44c7c90e42",
+      "meshSha256": "e4adc9da586fc091e1beb2d9127fa1d166c97fb9c060eb448e7d2f86825648d2",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-ceramic": {
       "meshSha256": "c9bf19246806dfd703770e6ea5c750360f29de09ddd1c6adbc902cfe03a12480",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-traces": {
-      "meshSha256": "692867bf2f18a4fe02dcd5c539210fe686a3428813e3275d5424df33e44c30d8",
+      "meshSha256": "00a946fe14e731cc8f6e1b0c987fe8f99e0be7d3809b8174bc37cc29498e9657",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-resistors": {
       "meshSha256": "8032b2cf86ce58e5bd1980b3d22f2de6bbe6b7e1cf567166eae03bb70f002dd1",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-leads": {
       "meshSha256": "c5db087cb3ceefb86337bc6c6ff100a5718d77710e040b4e76c553b2ae06397a",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-solder": {
-      "meshSha256": "58f517752000f661a937799deafdbd12201ac586e33fd89c518699caa858ecd1",
+      "meshSha256": "bbd39ef915d5a3804ac0922802214bd6459b93bf37d435e5ba700e3efd1af32a",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-metal": {
-      "meshSha256": "bf03366d542d39154445aca9bf73ae43bd0bfccf470ad4c7e36a6dbf2f0e312f",
+      "meshSha256": "dffc9210453206afb3f9fb0bd20d9e69d63afbc3e6b344581188037d663e1700",
       "sources": {
-        "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-        "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+        "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+        "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     }
   },
   "keyboardControllerSource": {
-    "specimen-details.scad": "9563d7e9db51bb396551d8093241046f7237c2ad8714834ddcd2eec5b926b5d7",
-    "keyboard-controller/generated/controller.scad": "8d6198cc57c5f601a68293cca84d6e8dfe76860d0d125d12c460dec24ac1f1b9",
+    "specimen-details.scad": "f3c46862e1e6eff0b8cf6ea388a8da176082a13c68db0209e869148060559823",
+    "keyboard-controller/generated/controller.scad": "a1d81ac08adab9827e4f268c5263217be1c43f76482abe6cddccf1ba334da0e3",
     "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
   }
 }
