@@ -6,7 +6,7 @@ test('controller net selection preserves physical pin identity and unplaced evid
  const s=controllerSelection(data,'net','/TA_DATEN');
  expect(s.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:4','L1.4:1','R10.2:2']);
  expect(s.points).toHaveLength(1);expect(s.unplaced.sort()).toEqual(['L1.4','R10.2']);
- expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes).toEqual([]);
+ expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&r.net==='/WR_N')).toBe(true);
  const model=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/model.json',import.meta.url)));
  expect(model.keyboardControllerSource['keyboard-controller/generated/controller.scad']).toBe(data.source.geometryScadSha256);
  expect(data.layout.unresolvedArtwork.every(r=>r.net===null)).toBe(true);
@@ -85,4 +85,24 @@ test('underside evidence retains failing independent pad checks',()=>{
  expect(r.crossPhoto.checks).toHaveLength(6);
  expect(r.crossPhoto.checks.find(p=>p.ref==='A1'&&p.pin==='7').nominalResidualMm).toBeLessThan(.5);
  expect(data.photoRegistration.components.find(c=>c.ref==='A8').maxResidualMm).toBeLessThanOrEqual(data.photoRegistration.toleranceMm);
+});
+
+test('partial copper review distinguishes observed sections from inferred attachment',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/WR_N');
+ await expect(panel.locator('[data-selection]')).toContainText('7 observed');
+ await expect(panel.locator('[data-selection]')).toContainText('1 inferred');
+ await expect(panel.locator('[data-pins]')).toContainText('not proof of continuity to CPU WR');
+ await expect(panel.locator('[data-qualification]')).toContainText('1 track dangling');
+ await expect(panel.locator('[data-route-id]')).toHaveCount(8);
+ await expect(panel.locator('[data-evidence-status="inferred"]')).toHaveAttribute('stroke-dasharray','.5 .3');
+ await expect(panel.locator('[data-route-id]').first()).toHaveAttribute('stroke','#ffe16a');
+ await panel.getByLabel('Controller board side').selectOption('bottom');
+ await expect(panel.locator('[data-route-id]')).toHaveCount(0);
 });

@@ -24,7 +24,10 @@ export function installKeyboardControllerReview(scene){
   function add(tag,attrs){const e=document.createElementNS(svgNS,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);svg.append(e);return e;}
   add('polygon',{points:data.layout.outlinePolygon.map(([x,y])=>`${x},${-y}`).join(' '),fill:'#3c4540',stroke:'#b4bcaa','stroke-width':.3});
   for(const route of data.layout.unresolvedArtwork.filter(r=>r.side===side))add('polyline',{points:route.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#4694a1','stroke-width':route.width});
-  for(const route of data.layout.routes.filter(r=>r.side===side))add('polyline',{points:route.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:route.net===get('[data-net]').value?'#ffe16a':'#c29155','stroke-width':route.width});
+  for(const route of data.layout.routes.filter(r=>r.side===side)){
+   const line=add('polyline',{'data-route-id':route.id,'data-evidence-status':route.evidence.status,points:route.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:selection?.pins.some(p=>p.net===route.net)?'#ffe16a':'#c29155','stroke-width':route.width,'stroke-dasharray':route.evidence.status==='inferred'?'.5 .3':'none'});
+   const title=document.createElementNS(svgNS,'title');title.textContent=`${clean(route.net)}: ${route.evidence.status}. ${route.evidence.detail}`;line.append(title);
+  }
   const selected=new Set(selection?.pins.map(p=>p.ref+':'+p.pin)||[]);
   for(const c of data.layout.components)for(const p of c.pads){
    const active=selected.has(c.ref+':'+p.pin),dot=add('circle',{cx:p.position[0],cy:-p.position[1],r:active?1.4:.65,fill:active?'#ffe16a':'#c5c5b0'}),title=document.createElementNS(svgNS,'title');title.textContent=`${c.ref}:${p.pin||'mount'} ${clean(p.net)||'unconnected'}`;dot.append(title);
@@ -39,6 +42,12 @@ export function installKeyboardControllerReview(scene){
   if(selection){
    const placed=selection.points.length,total=selection.pins.length;
    get('[data-selection]').textContent=`${kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
+   const routes=data.layout.routes.filter(r=>selection.pins.some(p=>p.net===r.net));
+   if(routes.length){
+    const counts=Object.entries(routes.reduce((out,r)=>(out[r.evidence.status]=(out[r.evidence.status]||0)+1,out),{})).map(([state,n])=>`${n} ${state}`).join(', ');
+    get('[data-selection]').textContent+=` Assigned copper: ${counts} sections. Dashed sections are inferred. Net names follow the reference schematic; partial routing does not prove endpoint continuity.`;
+    for(const detail of new Set(routes.map(r=>r.evidence.detail))){const text=document.createElement('p');text.textContent=detail;pins.append(text);}
+   }
    const bridges=data.evidence.serviceInterfaces?.bridges.filter(b=>selection.refs.includes(b.ref))||[];
    for(const bridge of bridges)get('[data-selection]').textContent+=` ${bridge.ref}: ${bridge.role} Reference state: ${bridge.referenceState}. ${bridge.testUse} Physical location unverified.`;
    const alignment=data.photoRegistration?.components.filter(c=>selection.refs.includes(c.ref))||[];
@@ -64,6 +73,8 @@ export function installKeyboardControllerReview(scene){
    const q=data.qualification,f=data.cosimulation.firmware;
    const bus=data.cosimulation.bus;
    get('[data-qualification]').textContent=`PCB: ${q.drc.unconnectedItems} unresolved airwires; ${q.electricalCopperSegments} assigned copper segments. Reference co-simulation: ${bus.vectors.toLocaleString('en-US')} bus transactions, ${bus.mismatches} mismatches; ${f.cBits} C / ${f.hdlBits} HDL serial bits. Bus and LED transition comparisons ${data.cosimulation.equivalent?'pass':'do not pass'}. This is scoped logical agreement; CPU phase offsets and physical copper remain unqualified.`;
+   const violations=Object.entries(q.drc.violations).map(([type,n])=>`${n} ${type.replaceAll('_',' ')}`).join(', ');
+   if(violations)get('[data-qualification]').textContent+=` Remaining DRC findings: ${violations}. Partial routes may end at unresolved continuations.`;
    if(data.cosimulation.service)get('[data-qualification]').textContent+=` Bridge isolation: ${data.cosimulation.service.checks} digital checks; ${data.cosimulation.service.mismatches} mismatches, including external reset/clock injection and conflicting drivers. Analog timing is not simulated.`;
    get('[data-cad]').href=`${data.source.cad.repository}/tree/${data.source.cad.revision}/models/robotron-1715m/keyboard-controller`;
    get('[data-hdl]').href=`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/reports/full-audit.json`;
