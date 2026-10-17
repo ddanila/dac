@@ -27,6 +27,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
       - run: npm ci
+      - name: Check CI scope and shard coverage
+        run: npx playwright test tests/ci-shards.spec.js --workers=1
       - name: Check test imports before installing browsers
         run: npx playwright test --list
       - run: DAC_BASE=/dac/ npm run build
@@ -36,6 +38,7 @@ jobs:
   checks:
     name: ${{ matrix.label }}
     needs: build
+    if: needs.build.outputs.scope != 'docs'
     env:
       DAC_CI_SHARD: ${{ matrix.shard }}
       DAC_CI_SCOPE: ${{ needs.build.outputs.scope }}
@@ -93,7 +96,11 @@ jobs:
           path: test-results/
           retention-days: 3
   deploy:
-    if: github.event_name != 'pull_request'
+    if: >-
+      !cancelled() && github.event_name != 'pull_request' &&
+      needs.build.result == 'success' &&
+      (needs.checks.result == 'success' ||
+       (needs.build.outputs.scope == 'docs' && needs.checks.result == 'skipped'))
     needs: [build, checks]
     runs-on: ubuntu-latest
     timeout-minutes: 10

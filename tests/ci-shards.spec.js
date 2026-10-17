@@ -18,3 +18,16 @@ test('CI baseline ignores cancelled and failed pushes',async()=>{
  expect(successfulBaseline([run('c','cancelled'),run('b','failure'),run('a','success')],'main','d')).toBe('a');
  expect(successfulBaseline([run('a','success','pull_request'),run('b','success','push','other')],'main','c')).toBe(null);
 });
+
+test('documentation scope excludes runtime, workflow and mixed changes', async()=>{
+ const {scopeFor}=await import('../scripts/ci-scope.mjs');
+ expect(scopeFor(['docs/robotron/keyboard-controller-simulation.md'])).toBe('docs');
+ expect(scopeFor(['docs/robotron/keyboard-controller-simulation.md','docs/robotron/keyboard-controller-plan.md'])).toBe('docs');
+ expect(scopeFor([])).toBe('full');
+ expect(scopeFor(['docs/robotron/keyboard-controller-simulation.md','src/main.js'])).toBe('full');
+ expect(scopeFor(['docs/robotron/keyboard-controller-simulation.md','public/models/robotron-1715m/model.json'])).toBe('visual');
+ expect(scopeFor(['docs/robotron/audit.json'])).toBe('full');
+ expect(scopeFor(['.github/workflows/site.yml'])).not.toBe('docs');
+ expect(scopeFor(['scripts/ci-scope.mjs'])).not.toBe('docs');
+ expect(scopeFor(['tests/fixture.md'])).not.toBe('docs');
+});
