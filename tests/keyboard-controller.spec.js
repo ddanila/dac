@@ -229,6 +229,15 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
  await expect(panel.locator('[data-selection]')).toContainText('0 with estimated positions');
  expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
  await expect(photo.locator('circle').first()).toHaveAttribute('cx','1310');
+ for(const [ref,x] of [['R6.4','1328'],['R6.5','1335']]){
+  await panel.getByLabel('Controller component',{exact:true}).selectOption(ref);
+  const candidate=panel.locator(`[data-candidate-photo="${ref}"]`);
+  await expect(candidate.locator('circle')).toHaveCount(2);
+  await expect(candidate.locator('circle').first()).toHaveAttribute('cx',x);
+  await expect(candidate.getByRole('link',{name:'Comparison close-up — different specimen'})).toHaveAttribute('href',/PXL_20261017_080434345.jpg$/);
+  await expect(panel.locator('[data-photo-pin]')).toHaveCount(0);
+  expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
+ }
  await panel.getByRole('button',{name:'Clear highlight',exact:true}).click();
  await expect(panel.locator('[data-candidate-photo]')).toHaveCount(0);
 });

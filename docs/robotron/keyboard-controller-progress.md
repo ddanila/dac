@@ -1,6 +1,6 @@
 # Keyboard controller implementation record
 
-Thirty-ninth implementation pass, 2026-10-17. Digital reference qualification passes,
+Fortieth implementation pass, 2026-10-17. Digital reference qualification passes,
 and the museum consumes KiCad-derived DIP placement, pads, outline and artwork.
 The [plan](keyboard-controller-plan.md) remains incomplete: physical routing,
 discrete component identification and specimen measurements are still open.
@@ -9,7 +9,7 @@ discrete component identification and specimen measurements are still open.
 
 | Repository | Delivered | Revision |
 | --- | --- | --- |
-| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-four resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit, withdrawn clock-route review and unassigned BR2 trace review | `bd02118` |
+| `3d-models` | Reviewed 70-component schematic, nine DIP and twenty-four resistor placements, BR1, C5.1–C5.4, photo evidence and partial A1/reset/A4/BR1 copper; local CPU/A4 fit, withdrawn clock-route review and unassigned BR2 trace review | `4e4cc8c` |
 | `dac-emulation` | Reviewed CAD pin, bridge tests, automatic failure waveforms and passing bus/TV80 qualification; runtime stays core 0.17.0, snapshot layout 15 | `cdda844` |
 | `dac` | Compatible CAD/core pins, archived 0.16.0 snapshots, raw latch diagnostics, placement residuals, assigned-route 3D highlighting and accurate qualification status | This change |
 
@@ -18,6 +18,27 @@ model-derived board identifier. The kbdbabel drawing names this family but uses
 RD for the output clock where Zander uses WR, and names a different ROM type.
 The implemented electrical reference remains explicitly Zander's drawing. Neither
 successful co-simulation nor matching board markings resolves that disagreement.
+
+## What the fortieth pass establishes
+
+R6.4 and R6.5 now have primary-photo visible lead-end candidates, separately
+identified by factory order (R6.4 nearer A4, R6.5 nearer A6). Comparison close-up
+080434345 confirms raised bends and body-to-hole offsets. It does not supply
+primary coordinates. The endpoints remain unnumbered: apparent lead/trace
+crossings do not establish holes, terminal order or soldered continuity.
+
+Museum inspection exposes both candidates and their supporting comparison
+close-up. Supporting links now explicitly say “different specimen” when their
+source has comparison-specimen provenance. Neither resistor produces native pad
+highlights. Both remain among the 30 unplaced schematic components; geometry,
+assigned copper and electrical connectivity remain unchanged.
+
+Validation: 24 exporter tests, all 20 browser tests, metadata/archive checks,
+both repository sync checks and the production build pass. Browser coverage
+checks both resistor candidates, their observed endpoint coordinates, explicit
+comparison-specimen link labels and absence of numbered/native pad highlights.
+Layout, generated SCAD and connectivity are byte-identical to the previous
+revision; no mesh, visual-baseline or firmware rerun was needed.
 
 ## What the thirty-ninth pass establishes
 
