@@ -5441,6 +5441,102 @@
       },
       {
         "evidence": {
+          "detail": "Estimated attachment from native A5:6 to the observed underside solder joint. Local CPU/A4 nominal projection, inside its reviewed anchor hull; six independent checks, maximum residual below 0.67 mm. Width 0.35 mm is estimated. CLK follows CPU pin 6 in the reference schematic. The round terminal continuation and connection to BR1 remain unresolved; no through-via is asserted. Global underside registration remains unqualified.",
+          "geometrySha256": "d3bbb25ef1b37e960bd3a8203216431a8b80d5f812b117b78fda2d03afc9f1d7",
+          "group": "cpu-clock-bottom-partial",
+          "registration": {
+            "landmarksSha256": "44a49333a0dcf80b638fcbc7eaf67033341416941877097c9c5807e3445c0fcc",
+            "region": "cpu-a4"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1306,
+                    2678
+                  ],
+                  [
+                    1306,
+                    2678
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "inferred"
+        },
+        "id": "04825d48-75b4-4a99-9396-e3f68858242e",
+        "net": "/CLK",
+        "points": [
+          [
+            50.559146,
+            4.192269
+          ],
+          [
+            51.2009,
+            4.271718
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.35
+      },
+      {
+        "evidence": {
+          "detail": "Visible underside track from A5:6 to a nearby round terminal. Local CPU/A4 nominal projection, inside its reviewed anchor hull; six independent checks, maximum residual below 0.67 mm. Width 0.35 mm is estimated. CLK follows CPU pin 6 in the reference schematic. The round terminal continuation and connection to BR1 remain unresolved; no through-via is asserted. Global underside registration remains unqualified.",
+          "geometrySha256": "164b7922cea7b00a64bec9d92d9420e89f5e06c450f586c4078583cf55dcb47f",
+          "group": "cpu-clock-bottom-partial",
+          "registration": {
+            "landmarksSha256": "44a49333a0dcf80b638fcbc7eaf67033341416941877097c9c5807e3445c0fcc",
+            "region": "cpu-a4"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1306,
+                    2678
+                  ],
+                  [
+                    1328,
+                    2678
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "2fcce126-ddcf-452d-991c-4c3041e97ee0",
+        "net": "/CLK",
+        "points": [
+          [
+            51.2009,
+            4.271718
+          ],
+          [
+            51.23983,
+            2.488736
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.35
+      },
+      {
+        "evidence": {
           "detail": "The underside photo shows a local straight connection between the R10.3 and BR1 joint pair. Native geometry is inferred between top-photo-placed pads; the global underside registration is not qualified. Width 0.35 mm is estimated. CLK follows the reference common net; continuation to the CPU and measured continuity remain unresolved.",
           "geometrySha256": "e03bd5668a6cf1507253aa3a3be64192bbf0a87fcba8c23f078c1ccfc0bb231a",
           "group": "br1-r103-local-clock",
@@ -5498,6 +5594,150 @@
           [
             130.740243,
             -14.676546
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.35
+      },
+      {
+        "evidence": {
+          "detail": "Visible underside track from A5:6 to a nearby round terminal. Local CPU/A4 nominal projection, inside its reviewed anchor hull; six independent checks, maximum residual below 0.67 mm. Width 0.35 mm is estimated. CLK follows CPU pin 6 in the reference schematic. The round terminal continuation and connection to BR1 remain unresolved; no through-via is asserted. Global underside registration remains unqualified.",
+          "geometrySha256": "f1030d4100ed338a0f38b1c1ef1a88fda511b8f953c92f93213e99e6bc3cb154",
+          "group": "cpu-clock-bottom-partial",
+          "registration": {
+            "landmarksSha256": "44a49333a0dcf80b638fcbc7eaf67033341416941877097c9c5807e3445c0fcc",
+            "region": "cpu-a4"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1328,
+                    2678
+                  ],
+                  [
+                    1360,
+                    2706
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "85a7658e-8ffa-4085-ab42-8be8b820ffe5",
+        "net": "/CLK",
+        "points": [
+          [
+            51.23983,
+            2.488736
+          ],
+          [
+            53.585838,
+            -0.07279
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.35
+      },
+      {
+        "evidence": {
+          "detail": "Visible underside track from A5:6 to a nearby round terminal. Local CPU/A4 nominal projection, inside its reviewed anchor hull; six independent checks, maximum residual below 0.67 mm. Width 0.35 mm is estimated. CLK follows CPU pin 6 in the reference schematic. The round terminal continuation and connection to BR1 remain unresolved; no through-via is asserted. Global underside registration remains unqualified.",
+          "geometrySha256": "b634e1e573bd669e260562a0809a233b8dbc17627c60cf63252461fd8c45cb3f",
+          "group": "cpu-clock-bottom-partial",
+          "registration": {
+            "landmarksSha256": "44a49333a0dcf80b638fcbc7eaf67033341416941877097c9c5807e3445c0fcc",
+            "region": "cpu-a4"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1360,
+                    2706
+                  ],
+                  [
+                    1362,
+                    2798
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "9881ac20-a9e3-4925-9c99-2af0becf7d38",
+        "net": "/CLK",
+        "points": [
+          [
+            53.585838,
+            -0.07279
+          ],
+          [
+            61.1051,
+            -0.123975
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.35
+      },
+      {
+        "evidence": {
+          "detail": "Visible underside track from A5:6 to a nearby round terminal. Local CPU/A4 nominal projection, inside its reviewed anchor hull; six independent checks, maximum residual below 0.67 mm. Width 0.35 mm is estimated. CLK follows CPU pin 6 in the reference schematic. The round terminal continuation and connection to BR1 remain unresolved; no through-via is asserted. Global underside registration remains unqualified.",
+          "geometrySha256": "f32bb30b832ee5b014cdcfb86f54bc99724aec4243d79fe46bbb6f16f8918563",
+          "group": "cpu-clock-bottom-partial",
+          "registration": {
+            "landmarksSha256": "44a49333a0dcf80b638fcbc7eaf67033341416941877097c9c5807e3445c0fcc",
+            "region": "cpu-a4"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1362,
+                    2798
+                  ],
+                  [
+                    1354,
+                    2811
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "aeb73b1b-9de1-4959-b791-5df27b7d8bb8",
+        "net": "/CLK",
+        "points": [
+          [
+            61.1051,
+            -0.123975
+          ],
+          [
+            62.150939,
+            0.540128
           ]
         ],
         "side": "bottom",
@@ -13727,10 +13967,10 @@
     "drc": {
       "unconnectedItems": 229,
       "violations": {
-        "track_dangling": 1
+        "track_dangling": 2
       }
     },
-    "electricalCopperSegments": 25,
+    "electricalCopperSegments": 30,
     "erc": [
       {
         "description": "Label connected to only one pin",
@@ -16353,6 +16593,188 @@
       -1.7371481935679935e-05,
       1
     ],
+    "pcbRegions": [
+      {
+        "anchorHull": [
+          [
+            1116,
+            2519
+          ],
+          [
+            1514,
+            2578
+          ],
+          [
+            1519,
+            2857
+          ],
+          [
+            1125,
+            3112
+          ]
+        ],
+        "anchors": [
+          {
+            "photoPixel": [
+              1116,
+              2519
+            ],
+            "pin": "40",
+            "ref": "A5"
+          },
+          {
+            "photoPixel": [
+              1514,
+              2578
+            ],
+            "pin": "1",
+            "ref": "A4"
+          },
+          {
+            "photoPixel": [
+              1519,
+              2857
+            ],
+            "pin": "10",
+            "ref": "A4"
+          },
+          {
+            "photoPixel": [
+              1125,
+              3112
+            ],
+            "pin": "21",
+            "ref": "A5"
+          }
+        ],
+        "checks": [
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              37.859172,
+              4.217817
+            ],
+            "photoModel": [
+              38.187332260349585,
+              4.328166671675126
+            ],
+            "photoPixel": [
+              1303,
+              2519
+            ],
+            "pin": "1",
+            "ref": "A5",
+            "residualMm": 0.346216993389283
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              86.119074,
+              4.120733
+            ],
+            "photoModel": [
+              86.1615122993484,
+              4.2892163000303105
+            ],
+            "photoPixel": [
+              1312,
+              3107
+            ],
+            "pin": "20",
+            "ref": "A5",
+            "residualMm": 0.17374588237045582
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              43.383592,
+              -5.138428
+            ],
+            "photoModel": [
+              43.46490871729797,
+              -5.425002457520585
+            ],
+            "photoPixel": [
+              1424,
+              2581
+            ],
+            "pin": "20",
+            "ref": "A4",
+            "residualMm": 0.29788811358517814
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              66.24355,
+              -5.182088
+            ],
+            "photoModel": [
+              66.20880295954294,
+              -5.240950377023942
+            ],
+            "photoPixel": [
+              1426,
+              2859
+            ],
+            "pin": "11",
+            "ref": "A4",
+            "residualMm": 0.06835302662964814
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              50.559146,
+              4.192269
+            ],
+            "photoModel": [
+              51.2009001284816,
+              4.271717997159794
+            ],
+            "photoPixel": [
+              1306,
+              2678
+            ],
+            "pin": "6",
+            "ref": "A5",
+            "residualMm": 0.6466533109579479
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              70.879105,
+              4.151392
+            ],
+            "photoModel": [
+              71.5179816134099,
+              4.320911063176741
+            ],
+            "photoPixel": [
+              1309,
+              2927
+            ],
+            "pin": "14",
+            "ref": "A5",
+            "residualMm": 0.6609841450007934
+          }
+        ],
+        "copperAssignmentQualified": true,
+        "id": "cpu-a4",
+        "maxCheckResidualMm": 0.6609841450007934,
+        "photoToModel": [
+          0.0010793605058732362,
+          0.08227369450660345,
+          -170.42834421444337,
+          -0.08125144529442324,
+          0.0012081969962539035,
+          107.15967748795136,
+          -1.3543231394518928e-05,
+          7.402259194184552e-06,
+          1
+        ],
+        "scope": "Local nominal PCB projection spanning the CPU and A4, reviewed only inside the four-anchor convex hull. Independent checks include CPU CLK pin 6. This does not qualify the global underside fit, board dimensions or hidden continuity.",
+        "toleranceMm": 1.25
+      }
+    ],
     "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
     "photoToModel": [
       0.00028420502751475593,
@@ -16588,7 +17010,7 @@
       }
     ],
     "schema": 1,
-    "scope": "Underside solder-joint centers matched by DIP pin order, with horizontal reflection relative to top. Registration is relative to photo-estimated KiCad placements, not metrology. No copper assigned or artwork transformed by this review.",
+    "scope": "Underside solder-joint centers matched by DIP pin order, with horizontal reflection relative to top. Registration is relative to photo-estimated KiCad placements, not metrology. Global fit remains unqualified; separately reviewed PCB regions are limited to their anchor hulls.",
     "toleranceMm": 1.25,
     "withinPhotoTolerance": false
   },
@@ -16659,7 +17081,7 @@
       {
         "id": "hidden-copper",
         "status": "unresolved",
-        "detail": "Native copper now includes the partial A1:1 top route and the visible R3/R4.1/R5/R6.1 supply tree and separate R6.3/R9.9 link, with pad attachments classified as inferred. See route-evidence.json and generated/qualification.json for current coverage and counts. The A1 terminal underside correspondence, CPU endpoint and WR/RD specimen disagreement remain unresolved. Unassigned legacy artwork is not electrical connectivity."
+        "detail": "Native copper now includes the partial A1:1 top route and the visible R3/R4.1/R5/R6.1 supply tree and separate R6.3/R9.9 link, with pad attachments classified as inferred. See route-evidence.json and generated/qualification.json for current coverage and counts. The A1 terminal underside correspondence, CPU endpoint and WR/RD specimen disagreement remain unresolved. Unassigned legacy artwork is not electrical connectivity. A5:6 now has a partial bottom CLK route within a separately checked local CPU/A4 projection. Its round terminal continuation and link to the separate BR1/R10.3 island remain unresolved; global underside registration is still unqualified."
       },
       {
         "id": "dimensions",
@@ -17852,23 +18274,23 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "4b5e067d3dbacd4907b800c74bf15359f43b1816"
+      "revision": "966ff119d392ecd030792826c7bcf592e434756b"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "4661ff5ad8e400f3b2720e7637f351125617f768b0b7e33d5b0717988ee74392",
+      "layout": "676c4536e59d4ad5d0c5701108734eaab99190ae0cd7b89e6a334b978036e09a",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "0379be52d7be70342e03529b76b1a499fa080dd12346f644fb6de3ac28020fa1",
+      "qualification": "016da579d0d7a3dd0d79bc431e1c2a136bf9870de44d747dd17188665fe52339",
       "photoRegistration": "f8b63a2fffb38a250d0380a0c8cd04f4b51ac4d127f30aead37952f5ecdcd3f1",
-      "bottomRegistration": "f88edb7775adf91bdb290b2af44a88acd7f0c16d6449d34d85cb3f684e86ba31",
-      "evidence": "d12e9b71173fa4382e72aae57883ff164334de33c10a0a1ae968119b71203993",
+      "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
+      "evidence": "3e0c809fd65f4825c42c3392f8a658611a59748be6fa6d7484c9649f48c31d33",
       "componentEvidence": "9960dbf6aa38ccc48a30eaa81ee3cbc1c2406367ed9d3046a51aa88a3810507a"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "960826016d8749afb7d508d792b5602375bf256e49e350dcd35c30556d3f6a1d"
+    "geometryScadSha256": "5e967aa653a575a9ea06dd15730524c01196af8c26fb8a125ff07e51aba5ef80"
   },
   "cosimulation": {
     "bus": {
