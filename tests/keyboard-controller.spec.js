@@ -104,8 +104,8 @@ test('partial copper review distinguishes observed sections from inferred attach
  await expect(panel.locator('[data-selection]')).toContainText('1 inferred');
  await expect(panel.locator('[data-pins]')).toContainText('not proof of continuity to CPU WR');
  await expect(panel.locator('[data-qualification]')).toContainText('1 track dangling');
- await expect(panel.locator('[data-route-id]')).toHaveCount(13);
- const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(3);
+ await expect(panel.locator('[data-route-id]')).toHaveCount(16);
+ const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(4);
  for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
  await expect(panel.locator('[data-route-id]').filter({hasText:'WR_N:'}).first()).toHaveAttribute('stroke','#ffe16a');
  await panel.getByLabel('Controller board side').selectOption('bottom');
@@ -194,7 +194,7 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
  await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
- expect(data.layout.unplaced).toHaveLength(47);
+ expect(data.layout.unplaced).toHaveLength(46);
 });
 
 test('candidate photo endpoints never become net-connected pads',async({page})=>{
@@ -206,17 +206,17 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
   document.querySelector('#keyboard-controller-review').open=true;
  });
  const panel=page.locator('#keyboard-controller-review');
- await panel.getByLabel('Controller component',{exact:true}).selectOption('R5');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R6.1');
  await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
- const photo=panel.locator('[data-candidate-photo="R5"]');
+ const photo=panel.locator('[data-candidate-photo="R6.1"]');
  await expect(photo.getByRole('img')).toBeVisible();
  await expect(photo.locator('circle')).toHaveCount(2);
  await expect(photo).toContainText('not numbered pins');
  await expect(panel.locator('[data-selection]')).toContainText('0 with estimated positions');
  expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
- await expect(photo.locator('circle').first()).toHaveAttribute('cx','1523');
+ await expect(photo.locator('circle').first()).toHaveAttribute('cx','1527');
  await panel.getByLabel('Controller component',{exact:true}).selectOption('BR2');
- await expect(panel.locator('[data-candidate-photo="R5"]')).toHaveCount(0);
+ await expect(panel.locator('[data-candidate-photo="R6.1"]')).toHaveCount(0);
  await expect(panel.locator('[data-candidate-photo="BR2"] circle')).toHaveCount(2);
  expect(await page.evaluate(()=>window.candidateHighlights)).toEqual([]);
  await panel.getByRole('button',{name:'Clear highlight',exact:true}).click();
@@ -226,10 +226,10 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
 
 test('reset supply selection includes only assigned local copper',()=>{
  const selection=controllerSelection(data,'component','R3');
- expect(selection.routes).toHaveLength(5);
+ expect(selection.routes).toHaveLength(8);
  expect(selection.routes.every(r=>r.net==='/+5V'&&r.side==='top')).toBe(true);
- expect(selection.routes.filter(r=>r.evidence.status==='observed')).toHaveLength(3);
- expect(selection.routes.filter(r=>r.evidence.status==='inferred')).toHaveLength(2);
+ expect(selection.routes.filter(r=>r.evidence.status==='observed')).toHaveLength(5);
+ expect(selection.routes.filter(r=>r.evidence.status==='inferred')).toHaveLength(3);
  expect(selection.unplaced).toEqual([]);
- expect(data.qualification.drc.unconnectedItems).toBe(233);
+ expect(data.qualification.drc.unconnectedItems).toBe(232);
 });
