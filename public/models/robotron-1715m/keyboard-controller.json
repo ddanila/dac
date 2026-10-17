@@ -3659,6 +3659,53 @@
         "type": "220"
       },
       {
+        "evidence": "Factory designator; primary photo pads; underside common strip supports reference GND terminal; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/RESET_OUT",
+            "pin": "1",
+            "position": [
+              -85.763258,
+              18.73867
+            ],
+            "ref": "R4.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/GND",
+            "pin": "2",
+            "position": [
+              -85.311331,
+              7.01175
+            ],
+            "ref": "R4.2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -85.537295,
+          12.87521
+        ],
+        "ref": "R4.2",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "220"
+      },
+      {
         "evidence": "Factory placement + top-photo lead ends; close-up supports adjacent gate pin orientation; component-evidence.json",
         "pads": [
           {
@@ -3892,6 +3939,100 @@
         "rotation": 0.0,
         "side": "top",
         "type": "1k"
+      },
+      {
+        "evidence": "Factory designator; primary photo pads; underside common strip supports reference GND terminal; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/RESET_EMITTERS",
+            "pin": "1",
+            "position": [
+              -82.026106,
+              18.576046
+            ],
+            "ref": "R7",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/GND",
+            "pin": "2",
+            "position": [
+              -81.944318,
+              7.007847
+            ],
+            "ref": "R7",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -81.985212,
+          12.791946
+        ],
+        "ref": "R7",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "3k3"
+      },
+      {
+        "evidence": "Factory designator; primary photo pads; underside common strip supports reference GND terminal; component-evidence.json",
+        "pads": [
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/RESET_RC",
+            "pin": "1",
+            "position": [
+              -78.361053,
+              18.41656
+            ],
+            "ref": "R8",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": "/GND",
+            "pin": "2",
+            "position": [
+              -78.051119,
+              6.980555
+            ],
+            "ref": "R8",
+            "size": [
+              1.7,
+              1.7
+            ]
+          }
+        ],
+        "position": [
+          -78.206086,
+          12.698557
+        ],
+        "ref": "R8",
+        "rotation": 0.0,
+        "side": "top",
+        "type": "47k"
       },
       {
         "evidence": "Factory placement + photo-estimated lead ends; terminal nets reference-derived, not continuity tested; component-evidence.json",
@@ -6950,53 +7091,6 @@
               0.85,
               0.85
             ],
-            "net": "/RESET_OUT",
-            "pin": "1",
-            "position": [
-              -34.0,
-              -100.0
-            ],
-            "ref": "R4.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/GND",
-            "pin": "2",
-            "position": [
-              -31.46,
-              -100.0
-            ],
-            "ref": "R4.2",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -34.0,
-          -100.0
-        ],
-        "ref": "R4.2",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "220"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
             "net": "/+5V",
             "pin": "1",
             "position": [
@@ -7082,100 +7176,6 @@
         "rotation": 0.0,
         "side": "top",
         "type": "1k"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/RESET_EMITTERS",
-            "pin": "1",
-            "position": [
-              -130.0,
-              -125.0
-            ],
-            "ref": "R7",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/GND",
-            "pin": "2",
-            "position": [
-              -127.46,
-              -125.0
-            ],
-            "ref": "R7",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -130.0,
-          -125.0
-        ],
-        "ref": "R7",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "3k3"
-      },
-      {
-        "evidence": "unplaced",
-        "pads": [
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/RESET_RC",
-            "pin": "1",
-            "position": [
-              -106.0,
-              -125.0
-            ],
-            "ref": "R8",
-            "size": [
-              1.7,
-              1.7
-            ]
-          },
-          {
-            "drill": [
-              0.85,
-              0.85
-            ],
-            "net": "/GND",
-            "pin": "2",
-            "position": [
-              -103.46,
-              -125.0
-            ],
-            "ref": "R8",
-            "size": [
-              1.7,
-              1.7
-            ]
-          }
-        ],
-        "position": [
-          -106.0,
-          -125.0
-        ],
-        "ref": "R8",
-        "rotation": 0.0,
-        "side": "top",
-        "type": "47k"
       },
       {
         "evidence": "unplaced",
@@ -13755,8 +13755,8 @@
       "Digital reference circuit; discrete pin numbering, specimen substitutions and analog timing remain unqualified; reset topology and bridge boundaries reviewed against Zander."
     ],
     "padNetMismatches": [],
-    "placed": 41,
-    "unplaced": 33,
+    "placed": 44,
+    "unplaced": 30,
     "unresolvedPhotoSegments": 294
   },
   "photoRegistration": {
@@ -15941,6 +15941,153 @@
           }
         ],
         "ref": "R6.1",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 2.3570242142160466e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              -82.026106,
+              18.576046
+            ],
+            "pcbPixel": [
+              1686.9999976757877,
+              1151.0000014682216
+            ],
+            "photoModel": [
+              -82.02610610768217,
+              18.576046174722975
+            ],
+            "photoPixel": [
+              1687,
+              1151
+            ],
+            "pin": "1",
+            "residualMm": 2.0524026678186566e-07
+          },
+          {
+            "pcbModel": [
+              -81.944318,
+              7.007847
+            ],
+            "pcbPixel": [
+              1529.0000024730923,
+              1153.9999980604962
+            ],
+            "photoModel": [
+              -81.94431785714431,
+              7.007846812522307
+            ],
+            "photoPixel": [
+              1529,
+              1154
+            ],
+            "pin": "2",
+            "residualMm": 2.3570242142160466e-07
+          }
+        ],
+        "ref": "R7",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 4.881811984872365e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              -78.361053,
+              18.41656
+            ],
+            "pcbPixel": [
+              1687.0000040921516,
+              1200.0000052755674
+            ],
+            "photoModel": [
+              -78.36105339838792,
+              18.416559717851204
+            ],
+            "photoPixel": [
+              1687,
+              1200
+            ],
+            "pin": "1",
+            "residualMm": 4.881811984872365e-07
+          },
+          {
+            "pcbModel": [
+              -78.051119,
+              6.980555
+            ],
+            "pcbPixel": [
+              1531.0000020737107,
+              1206.0000035913747
+            ],
+            "photoModel": [
+              -78.05111927070952,
+              6.980554860171348
+            ],
+            "photoPixel": [
+              1531,
+              1206
+            ],
+            "pin": "2",
+            "residualMm": 3.0468950816668907e-07
+          }
+        ],
+        "ref": "R8",
+        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+      },
+      {
+        "checkPins": [],
+        "independentValidation": false,
+        "maxResidualMm": 5.20779760450154e-07,
+        "pins": [
+          {
+            "pcbModel": [
+              -85.763258,
+              18.73867
+            ],
+            "pcbPixel": [
+              1686.9999991692468,
+              1101.0000031695668
+            ],
+            "photoModel": [
+              -85.76325823605845,
+              18.73867007102715
+            ],
+            "photoPixel": [
+              1687,
+              1101
+            ],
+            "pin": "1",
+            "residualMm": 2.465125763806109e-07
+          },
+          {
+            "pcbModel": [
+              -85.311331,
+              7.01175
+            ],
+            "pcbPixel": [
+              1526.999995880597,
+              1109.000005547128
+            ],
+            "photoModel": [
+              -85.31133141093505,
+              7.011750319912389
+            ],
+            "photoPixel": [
+              1527,
+              1109
+            ],
+            "pin": "2",
+            "residualMm": 5.20779760450154e-07
+          }
+        ],
+        "ref": "R4.2",
         "scope": "Direct photo placement, not a held-out fit check or measured continuity."
       },
       {
@@ -18648,87 +18795,109 @@
     },
     "R7": {
       "referenceType": "3k3",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementEvidence": "Factory drawing 63-330-4103-2 designator order; primary photo-top lead entries; primary underside local strip corroborated by a different specimen.",
+      "pinEvidence": "Inner (left in photo-top) ends of R4.2, R7 and R8 share a visible underside strip. GND is their only common net in the reference schematic, supporting pin 2 at the inner end and pin 1 at the board-edge end. Assignment is reference-informed; no measured continuity or complete ground-route proof.",
+      "note": "Nominal photo registration; pad 1.7 mm and drill 0.85 mm are estimates. Reference resistance is not measured. Comparison photos corroborate local construction, not primary coordinates or ROM identity.",
       "placementAuthority": "controller.kicad_pcb",
-      "placementCandidate": {
-        "status": "identity-and-lead-locations-reviewed-terminal-order-unresolved",
-        "source": "robotron-factory-drawings",
-        "locator": "PDF page 10, drawing 63-330-4103-2",
-        "photoSource": "photo-top",
-        "pixelUncertainty": 8,
-        "photoEndpoints": [
-          [
-            1529,
-            1154
-          ],
-          [
-            1687,
-            1151
-          ]
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1687,
+          1151
         ],
-        "endpointOrder": "left, right in the original upright photograph; not schematic pin numbers",
-        "blueCollarEndpoint": "right",
-        "legibleBodyMarking": null,
-        "limitation": "Factory drawing supports designator order. Top photo supports lead positions and collar end. Physical-to-schematic terminal assignment and continuity remain unverified; these candidates do not place or connect native pads."
-      }
+        "2": [
+          1529,
+          1154
+        ]
+      },
+      "bottomPhotoSource": "photo-bottom",
+      "bottomPhotoPins": {
+        "1": [
+          1093,
+          1013
+        ],
+        "2": [
+          1245,
+          1013
+        ]
+      },
+      "pixelUncertainty": 8,
+      "blueCollarPin": "1",
+      "comparisonPhotoSources": [
+        "comparison-photo-080351042",
+        "comparison-photo-080406304"
+      ]
     },
     "R8": {
       "referenceType": "47k",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementEvidence": "Factory drawing 63-330-4103-2 designator order; primary photo-top lead entries; primary underside local strip corroborated by a different specimen.",
+      "pinEvidence": "Inner (left in photo-top) ends of R4.2, R7 and R8 share a visible underside strip. GND is their only common net in the reference schematic, supporting pin 2 at the inner end and pin 1 at the board-edge end. Assignment is reference-informed; no measured continuity or complete ground-route proof.",
+      "note": "Nominal photo registration; pad 1.7 mm and drill 0.85 mm are estimates. Reference resistance is not measured. Comparison photos corroborate local construction, not primary coordinates or ROM identity.",
       "placementAuthority": "controller.kicad_pcb",
-      "placementCandidate": {
-        "status": "identity-and-lead-locations-reviewed-terminal-order-unresolved",
-        "source": "robotron-factory-drawings",
-        "locator": "PDF page 10, drawing 63-330-4103-2",
-        "photoSource": "photo-top",
-        "pixelUncertainty": 8,
-        "photoEndpoints": [
-          [
-            1531,
-            1206
-          ],
-          [
-            1687,
-            1200
-          ]
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1687,
+          1200
         ],
-        "endpointOrder": "left, right in the original upright photograph; not schematic pin numbers",
-        "blueCollarEndpoint": "right",
-        "legibleBodyMarking": "47K",
-        "limitation": "Factory drawing supports designator order. Top photo supports lead positions and collar end. Physical-to-schematic terminal assignment and continuity remain unverified; these candidates do not place or connect native pads."
-      }
+        "2": [
+          1531,
+          1206
+        ]
+      },
+      "bottomPhotoSource": "photo-bottom",
+      "bottomPhotoPins": {
+        "1": [
+          1095,
+          1058
+        ],
+        "2": [
+          1245,
+          1057
+        ]
+      },
+      "pixelUncertainty": 8,
+      "blueCollarPin": "1",
+      "comparisonPhotoSources": [
+        "comparison-photo-080351042",
+        "comparison-photo-080406304"
+      ],
+      "legibleBodyMarking": "47K"
     },
     "R4.2": {
       "referenceType": "220",
-      "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
+      "placementEvidence": "Factory drawing 63-330-4103-2 designator order; primary photo-top lead entries; primary underside local strip corroborated by a different specimen.",
+      "pinEvidence": "Inner (left in photo-top) ends of R4.2, R7 and R8 share a visible underside strip. GND is their only common net in the reference schematic, supporting pin 2 at the inner end and pin 1 at the board-edge end. Assignment is reference-informed; no measured continuity or complete ground-route proof.",
+      "note": "Nominal photo registration; pad 1.7 mm and drill 0.85 mm are estimates. Reference resistance is not measured. Comparison photos corroborate local construction, not primary coordinates or ROM identity.",
       "placementAuthority": "controller.kicad_pcb",
-      "placementCandidate": {
-        "status": "identity-and-lead-locations-reviewed-terminal-order-unresolved",
-        "source": "robotron-factory-drawings",
-        "locator": "PDF page 10, drawing 63-330-4103-2",
-        "photoSource": "photo-top",
-        "pixelUncertainty": 8,
-        "photoEndpoints": [
-          [
-            1527,
-            1109
-          ],
-          [
-            1687,
-            1101
-          ]
+      "photoSource": "photo-top",
+      "photoPins": {
+        "1": [
+          1687,
+          1101
         ],
-        "endpointOrder": "left, right in the original upright photograph; not schematic pin numbers",
-        "blueCollarEndpoint": "left",
-        "legibleBodyMarking": null,
-        "limitation": "Factory drawing supports designator order. Top photo supports lead positions and collar end. Physical-to-schematic terminal assignment and continuity remain unverified; these candidates do not place or connect native pads."
-      }
+        "2": [
+          1527,
+          1109
+        ]
+      },
+      "bottomPhotoSource": "photo-bottom",
+      "bottomPhotoPins": {
+        "1": [
+          1090,
+          969
+        ],
+        "2": [
+          1243,
+          972
+        ]
+      },
+      "pixelUncertainty": 8,
+      "blueCollarPin": "2",
+      "comparisonPhotoSources": [
+        "comparison-photo-080351042",
+        "comparison-photo-080406304"
+      ]
     },
     "R4.3": {
       "referenceType": "220",
@@ -18964,23 +19133,23 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "4ac9715f357588faadc43454707ba4e6ab26f865"
+      "revision": "b1d32cdce958ca1e0cc12ca4f5ac9a8d9c929460"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cdda8441cd5928558968ce1e9162d4a0d0f24afb"
     },
     "files": {
-      "layout": "24d836a812bfb2379418070e9eb704ae03aee8e1ee40a16afb536e941f30a3bb",
+      "layout": "c013e975d698983f4817529a2ea365a2010d67399d4a2e514f5fa1011c7fbb1d",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "710465598b8d6a04da1309047cec8d1fd92cecf20dd2dd17f92711595c7a85ca",
-      "photoRegistration": "d8cd0c0928f87a2ff7d5c59a43e6c3dcdad160c81ae5d55b9ab3a1f3319b8a25",
+      "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
+      "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
       "evidence": "f4dd72e446da4c25907203db9714efa7dab8bbf9dce440d6f3247feb83f00545",
-      "componentEvidence": "394f7c1f700a640706af4aca82c2479c5a8fac9dd576c297abfc6d25601ccfe0"
+      "componentEvidence": "5e688c1d1c92322d57c445e809408b679b01d034288860f127a3f8a12704a491"
     },
     "reportSha256": "0c8d878ae60c02f56cbce8b8111f66bd3b6888a28cd5c6d98553c5c7e668f8e5",
-    "geometryScadSha256": "2badf5ab7f50de8318a3c012eec1f07bf824c1e5d4f6ae219a8d312d3dba4574"
+    "geometryScadSha256": "8ebeca0adddb9293eef5f613fbce57d769cabc079ef1358f3675791125cffe55"
   },
   "cosimulation": {
     "bus": {
