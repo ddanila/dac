@@ -87,3 +87,9 @@ including BR2 and its CPU-side load. It checks power-on assertion/release, power
 cycling, bridge isolation and timestep refinement. Semiconductor parameters and
 input loading remain nominal assumptions. Coupling this electrical reset and the
 oscillator to firmware execution is still required.
+
+`analog/oscillator_probe.py` generates A7 and its RC feedback, pullup and BR1 wiring.
+Its continuous LS-TTL macromodel is explicitly exploratory; it is not tuned to the
+emulator's clock or qualified as a DL000 device model. The probe checks oscillation,
+BR1 isolation, timestep refinement and timing-capacitor sensitivity. Full firmware
+coupling and analog model calibration remain open.
