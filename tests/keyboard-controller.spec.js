@@ -19,6 +19,7 @@ test('controller review selects nets, reports gaps and retries a failed load',as
  await expect(panel.locator('[data-status]')).toContainText('could not load');await panel.evaluate(e=>e.open=false);await panel.evaluate(e=>e.open=true);
  await expect(panel.locator('[data-status]')).toContainText('70 reference components');
  await expect(panel.locator('[data-selection]')).toContainText('Underside independent checks');
+ await expect(panel.locator('[data-selection]')).toContainText('Direct photo-to-photo checks');
  await expect(panel.locator('[data-selection]')).toContainText('outside tolerance');
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
  await expect(panel.locator('[data-selection]')).toContainText('3 pins; 1 with estimated positions');
@@ -80,6 +81,8 @@ test('underside evidence retains failing independent pad checks',()=>{
  const r=data.bottomRegistration;
  expect(r.withinPhotoTolerance).toBe(false);expect(r.copperAssignmentQualified).toBe(false);
  expect(r.pins.filter(p=>p.heldOut)).toHaveLength(6);
- expect(r.pins.filter(p=>p.heldOut&&p.residualMm>r.toleranceMm).map(p=>p.ref+':'+p.pin)).toEqual(['A1:7','A1:8']);
+ expect(r.pins.filter(p=>p.heldOut&&p.residualMm>r.toleranceMm).map(p=>p.ref+':'+p.pin)).toEqual(['A5:1','A5:40','A5:20','A5:21','A1:7','A1:8']);
+ expect(r.crossPhoto.checks).toHaveLength(6);
+ expect(r.crossPhoto.checks.find(p=>p.ref==='A1'&&p.pin==='7').nominalResidualMm).toBeLessThan(.5);
  expect(data.photoRegistration.components.find(c=>c.ref==='A8').maxResidualMm).toBeLessThanOrEqual(data.photoRegistration.toleranceMm);
 });

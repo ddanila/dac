@@ -45,6 +45,8 @@ export function installKeyboardControllerReview(scene){
    if(alignment.length)get('[data-selection]').textContent+=' Photo alignment: '+alignment.map(c=>`${c.ref} ${c.maxResidualMm.toFixed(2)} mm maximum residual${c.maxResidualMm>data.photoRegistration.toleranceMm?' (outside tolerance)':''}`).join('; ')+'. Nominal board scale; not metrology.';
    const bottom=data.bottomRegistration?.pins.filter(p=>p.heldOut&&selection.refs.includes(p.ref))||[];
    if(bottom.length)get('[data-selection]').textContent+=' Underside independent checks: '+bottom.map(p=>`${p.ref}:${p.pin} ${p.residualMm.toFixed(2)} mm${p.residualMm>data.bottomRegistration.toleranceMm?' (outside tolerance)':''}`).join('; ')+'. Registration remains unqualified for copper assignment.';
+   const cross=data.bottomRegistration?.crossPhoto?.checks.filter(p=>selection.refs.includes(p.ref))||[];
+   if(cross.length)get('[data-selection]').textContent+=' Direct photo-to-photo checks: '+cross.map(p=>`${p.ref}:${p.pin} ${p.residualPixels.toFixed(1)} pixels / ${p.nominalResidualMm.toFixed(2)} nominal mm`).join('; ')+'. Top leads and socket can obscure hole centres; this does not qualify copper.';
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
   }else get('[data-selection]').textContent='Select a component or net to inspect its pins.';
