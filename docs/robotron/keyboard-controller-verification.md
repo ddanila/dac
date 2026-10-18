@@ -40,9 +40,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   establishes rising RxC sampling. Corrected [single-press][rising-host],
   [reset][reset-spacing] and [modifier][modifier-spacing] pairs pass logical,
   sampled-stability and serial-edge refinement checks; reset also verifies CPU
-  restart. [Input stress and clock-width checks][loaded-host] retain their assumed
-  thresholds. [U856 source conditions][u856] do not identify Schmitt thresholds or
-  exact input I/V behavior. Remaining scenarios and device applicability are open.
+  restart. The [independent timing screen][receiver-timing] also passes for the
+  single-press pair and fine reset/modifier captures. It uses Zilog timing as a
+  diagnostic reference, not a guaranteed U856 limit. [Input stress and clock-width
+  checks][loaded-host] retain assumed thresholds; [U856 sources][u856] do not
+  identify Schmitt thresholds or exact input I/V behavior. Remaining scenarios,
+  refinement pairs and device applicability are open.
 - **Voltage convergence:** [further refinement][paired-host] does not consistently
   reduce absolute-time voltage differences. The [spacing control][spacing-pair]
   leaves single-press waveforms unchanged, although spacing is consequential to
@@ -52,9 +55,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   truncation rejection after a successful Newton solve, without a nearby pending
   breakpoint. [Analog-only replay][analog-replay] also fails near the transition
   when effective XSPICE controls are preserved; earlier replay completion used
-  a looser implicit default. [Tighter truncation controls][tight-truncation] and
-  [KLU][klu] also fail. This narrows the investigation without proving
-  an identical trajectory or cause; rejected trial states are not measurements.
+  a looser implicit default. [Exact arithmetic][arithmetic] leaves the final
+  truncation request essentially unchanged. The [inductor state audit][inductor]
+  reproduces the original failure and waveforms; its rejected trial voltage is
+  consistent in relative terms with the integration equation. This points to
+  testing numerical conditioning and reference-node sensitivity, without proving
+  either cause. Rejected trial states are not physical board predictions.
 - **Closed-board execution:** the [completed capture][board-host] reaches the
   scenario endpoint, but the producer waveform gate fails: reset release precedes
   the saved window. It also uses the legacy receiver observer. Capture from time
@@ -71,8 +77,9 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
-[klu]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-klu-strict/assessment.json
-[tight-truncation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-strict-trtol-point1/assessment.json
+[receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
+[arithmetic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/truncation-arithmetic/assessment.json
+[inductor]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-inductor-state-audit/assessment.json
 [analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-matched-trtol/assessment.json
 [modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json
 [truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-transition-audit/assessment.json

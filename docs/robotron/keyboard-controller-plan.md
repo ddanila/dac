@@ -31,20 +31,24 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Resolve numerical failures.** Investigate analog integration and device
-   response using matched effective solver controls. The transition audit and
-   analog-only replay narrow the investigation but do not establish its cause.
-   Preserve failed captures, absolute-time comparisons and acceptance budgets.
+2. **Resolve numerical failures.** Test reference-node sensitivity on the matched
+   analog-only replay, preserving branch voltages, device semantics and accuracy
+   controls. Exact arithmetic in the truncation recurrence does not remove the
+   rejection; the inductor audit directs attention to the solved trial state and
+   numerical conditioning. This is a hypothesis to test, not an established cause.
+   Preserve failed captures and absolute-time comparisons.
 3. **Constrain device dynamics.** Qualify oscillator startup and host-buffer
    switching/loading against independent device evidence. Keep primary,
-   comparison and reference devices separate; numerical convergence alone does
-   not establish applicability to the installed device.
+   comparison and reference devices separate. The independent receiver timing
+   screen supports sampled stability, but does not establish U856 switching
+   thresholds or loading. Numerical convergence alone does not qualify a device.
 4. **Qualify the coupled reference board.** Service checks establish selected
    logical and timing behavior, while voltage convergence remains open. A
    closed-board scenario now completes, but its legacy receiver observer and
    missing startup waveform prevent acceptance. Capture from time zero with
-   corrected rising-RxC sampling, then qualify the remaining scenarios,
-   oscillator phase, receiver levels/loading, bus timing and supply recovery.
+   corrected rising-RxC sampling, then qualify the remaining scenarios and their
+   refinement pairs, oscillator phase, receiver levels/loading, bus timing and
+   supply recovery.
 5. **Identify residual specimen dependencies.** Exhaust photographs, package
    drawings and published circuit constraints first. For each remaining ambiguity,
    state the alternatives and the observation that would distinguish them.
@@ -155,6 +159,8 @@ a reproducible stimulus plus waveform. Logical and clock-relative agreement is
 reported separately from unmeasured oscillator frequency or analog propagation.
 Full-board electrical acceptance also requires passing convergence and receiver/
 timing gates across the declared model assumptions and supported parameter ranges.
+Those ranges must be supported independently of the firmware comparison; an
+executable nominal model alone cannot complete this phase.
 
 ## 6. Integrate museum inspection and synchronization checks
 
@@ -179,17 +185,9 @@ an HDL/emulator comparison. Include the circuitry and boundary stimuli necessary
 to exercise that path. This remains an acceptance gate even though full-board
 simulation work has already progressed independently.
 
-## Completion and remaining physical evidence
-
-Completion requires the phase exit criteria above, including the physical
-data/clock milestone and qualified coupled reference-board scenarios. The audit
-must identify remaining unresolved routing and model limits explicitly.
-
-Exact specimen fidelity additionally requires confirming dimensions, revision,
-replacement-ROM contents and relevant measured behavior. These confirmations do
-not prevent completion of independently supported reference work. Do not substitute
-autorouted geometry for missing historical evidence or call a bounded reference
-model a calibrated specimen model.
+Completion requires all phase exit criteria and this physical milestone. Exact
+specimen fidelity additionally requires identified ROM contents, dimensions and
+measured behavior; reference qualification does not establish those claims.
 
 ## References
 
