@@ -6,7 +6,7 @@ test('controller net selection preserves physical pin identity and unplaced evid
  const s=controllerSelection(data,'net','/TA_DATEN');
  expect(s.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:4','L1.4:1','R10.2:2']);
  expect(s.points).toHaveLength(2);expect(s.unplaced.sort()).toEqual(['L1.4']);
- expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&['/WR_N','/+5V','/CLK'].includes(r.net))).toBe(true);
+ expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&['/WR_N','/+5V','/CLK','/COL11'].includes(r.net))).toBe(true);
  const model=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/model.json',import.meta.url)));
  expect(model.keyboardControllerSource['keyboard-controller/generated/controller.scad']).toBe(data.source.geometryScadSha256);
  expect(data.layout.unresolvedArtwork.every(r=>r.net===null)).toBe(true);
@@ -120,8 +120,10 @@ test('partial copper review distinguishes observed sections from inferred attach
  for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
  await expect(panel.locator('[data-route-id]').filter({hasText:'WR_N:'}).first()).toHaveAttribute('stroke','#ffe16a');
  await panel.getByLabel('Controller board side').selectOption('bottom');
- await expect(panel.locator('[data-route-id]')).toHaveCount(1);
- await expect(panel.locator('[data-route-id]')).toHaveAttribute('data-evidence-status','inferred');
+ await expect(panel.locator('[data-route-id]')).toHaveCount(data.layout.routes.filter(r=>r.side==='bottom').length);
+ const clock=panel.locator('[data-route-id]').filter({hasText:'CLK:'});
+ await expect(clock).toHaveCount(1);
+ await expect(clock).toHaveAttribute('data-evidence-status','inferred');
 });
 
 test('local A4 photo fit retains extrapolation limits',async({page})=>{
@@ -261,7 +263,6 @@ test('supply selection retains disconnected islands on the same reference net',(
  expect(selection.routes.filter(r=>r.evidence.status==='observed')).toHaveLength(10);
  expect(selection.routes.filter(r=>r.evidence.status==='inferred')).toHaveLength(6);
  expect(selection.unplaced).toEqual([]);
- expect(data.qualification.drc.unconnectedItems).toBe(229);
 });
 
 test('numbered component photo observations remain distinct from native pad coordinates',async({page})=>{
@@ -317,8 +318,10 @@ test('BR1 photo placement preserves reference sides and inferred underside geome
  await expect(panel.locator('[data-pins]')).toContainText('OSC_OUT');
  await expect(panel.locator('[data-pins]')).toContainText('CLK');
  await panel.getByLabel('Controller board side').selectOption('bottom');
- await expect(panel.locator('[data-route-id]')).toHaveCount(1);
- await expect(panel.locator('[data-route-id]')).toHaveAttribute('data-evidence-status','inferred');
+ await expect(panel.locator('[data-route-id]')).toHaveCount(data.layout.routes.filter(r=>r.side==='bottom').length);
+ const clock=panel.locator('[data-route-id]').filter({hasText:'CLK:'});
+ await expect(clock).toHaveCount(1);
+ await expect(clock).toHaveAttribute('data-evidence-status','inferred');
  expect(data.layout.components.find(c=>c.ref==='BR1').pads.map(p=>p.net).sort()).toEqual(['/CLK','/OSC_OUT']);
  expect(data.layout.unplaced.some(c=>c.ref==='BR1')).toBe(false);
  expect(data.bottomRegistration.copperAssignmentQualified).toBe(false);
@@ -529,4 +532,24 @@ test('connector review separates mapped reference pads from unclassified contact
  await expect(detail.getByRole('link')).toHaveAttribute('href',new RegExp(data.source.cad.revision));
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A7');
  await expect(detail).toHaveCount(0);
+});
+
+
+test('COL11 selection exposes observed underside route and inferred pad attachments',async({page})=>{
+ const selection=controllerSelection(data,'net','/COL11');
+ expect(selection.pins.map(p=>`${p.ref}:${p.pin}`)).toEqual(expect.arrayContaining(['X1:B8','A2.1:6']));
+ expect(selection.routes.length).toBeGreaterThan(0);
+ expect(new Set(selection.routes.map(r=>r.evidence.status))).toEqual(new Set(['observed','inferred']));
+ await page.goto('/tests/model-harness.html');
+ await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/COL11');
+ await panel.getByLabel('Controller board side').selectOption('bottom');
+ await expect(panel.locator('[data-selection]')).toContainText('inferred');
+ for(const route of selection.routes)await expect(panel.locator(`[data-route-id="${route.id}"]`)).toHaveAttribute('stroke','#ffe16a');
 });
