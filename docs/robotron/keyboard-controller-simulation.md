@@ -156,6 +156,12 @@ C LED-state agreement and paired intent-edge timing. Repeat remains unqualified
 because of failed timing refinement and unresolved earlier solver diagnostics.
 The core's `analog/reports/solver-diagnostic-audit.json` preserves the original
 reassessment; unresolved messages reject qualification.
+Released-read sensitivity checks include constant bytes, unknown bits and a
+repeatable changing-byte sequence. The retained digital workload preserves
+serial/LED values and cycle timing against its reference baseline; this does not
+qualify floating-bus voltage or arbitrary input sequences. Evidence is retained
+in the core's `analog/reports/floating-io/`.
+
 Additional contact/reset recipes live in the core's `analog/scenarios/`. One
 timeline generates SPICE sources and C stimuli, with explicit observation windows
 for release/repress, modifiers, repeat and service reset. Each recipe must pass

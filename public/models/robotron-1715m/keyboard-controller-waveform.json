@@ -5,7 +5,7 @@
   "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
   "source": {
     "repository": "https://github.com/ddanila/dac-emulation",
-    "revision": "0b1c0a669d23ac661176dc1678029dd1ef6f6f47",
+    "revision": "bd05452b25469c5e790ca347863fc17ffad8ddb0",
     "reportPath": "verification/robotron-keyboard/analog/reports/rom-read-envelope/electrical-bus/ownership-startup/ownership-assessment.json",
     "files": {
       "verification/robotron-keyboard/analog/reports/rom-read-envelope/electrical-bus/ownership-startup/ownership-assessment.json": "2ae6c8772bdc1b477fe4d2344ebdc191fdc49d3105075a5c5347202563b75a85",
