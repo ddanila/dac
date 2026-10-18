@@ -30,6 +30,8 @@ Open **Keyboard controller circuit review** and select a component or net to see
 its geometry and evidence. Cyan artwork has no net assignment. Both board sides
 use one top-view coordinate frame; source links identify pinned revisions.
 Photo rectangles locate component bodies or markings without assigning pads.
+Resistor-bank bodies and raised leads are visual geometry; hidden lead entries
+and numbered pads remain unresolved.
 Comparison-specimen previews are labelled separately from primary observations.
 
 **Recorded reference waveform** shows retained simulation samples, separate from

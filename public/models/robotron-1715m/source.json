@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "5a266456ce908f148565f215a69241b829da752f",
+  "revision": "f5539b99e169a016b75781d6613e34c8347b9702",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "65298a21de1c21fe9b9a6b52393d94fad53a59b33a8f0bb618a5f0dde2dbc60c"
+      "sha256": "8ad931ec75573888a02a84bfba9da10ab1680d1060f143ceaef2b37cfc3d6fe9"
     },
     {
       "file": "LICENSE",
@@ -669,7 +669,7 @@
     },
     {
       "file": "meshes/keyboard-controller-leads.stl",
-      "sha256": "ba723de6f6700824a6130af26e243c7b4800c5facfa6d2902fd9d4ac8d787e14"
+      "sha256": "21ab5b00070fcc717a00169c9951322052d5f2b55eaf3615e68552994eec59b2"
     },
     {
       "file": "meshes/keyboard-entry-choke.stl",
@@ -830,6 +830,10 @@
     {
       "file": "meshes/keyboard-controller-rom-ink.stl",
       "sha256": "fa6b5ce4d95f7d2c071bec444d26779097a67dec85dd528c9891c35d7dab1f5c"
+    },
+    {
+      "file": "meshes/keyboard-controller-networks.stl",
+      "sha256": "c8121492a5b136b4d2ceca9385191d1853d9e15f61d6c6dcd54dc4d48a9b5f12"
     },
     {
       "file": "meshes/keycap-0.stl",
@@ -1581,23 +1585,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "92a2877339cf2a64bd4d4fa3c420ed7f83997d8e4942f89d625979b5ccb71a3b"
+      "sha256": "67cdbf0c8b26f8f62755de75d4418fde5137bead71fcbf8fc0aa18c84b5e9270"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "c717521de497645bfdd744df9e023b67136448a79162bcc316bf3282b035475d"
+      "sha256": "cf9b7ca964da38f747d28383b144a3d02b953b5e86ca11bbdcb38ea7376e11aa"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "9af60dfec293f980b0e96256a07afff7acd14111999fd4b15c0ff4f68487ca76"
+      "sha256": "d96d13e5b1e4beac7b41afc9795ef3349f7861b84ffa8c0c47ace95e0e940a02"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "93e698865e1cfd7560aabb087ba2504702882d678c23929e9da2dddcf345177c"
+      "sha256": "cc0deae00d7210442fb85a786e27964df5f506370f7516a331970f84f9feaab6"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "3486d04ad83b47ed0e0627bd7200d463bc83867407fc9d716ed74e70d33af9fd"
+      "sha256": "fdd4fddf9ac88d4cc3045e692c960cd6656329a7f9af54cbb325e2a537c39ad5"
     }
   ],
   "inspection": {

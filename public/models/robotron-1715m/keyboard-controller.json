@@ -14081,6 +14081,146 @@
           "A8"
         ]
       }
+    ],
+    "visualNetworks": [
+      {
+        "axis": [
+          [
+            -94.932933,
+            -14.812121
+          ],
+          [
+            -70.50757,
+            -14.266858
+          ]
+        ],
+        "baseHeight": 2.3,
+        "centre": [
+          -82.7202515,
+          -14.539489499999998
+        ],
+        "height": 7.5,
+        "leadRadius": 0.22,
+        "length": 24.431448369282943,
+        "observedLeads": [
+          [
+            -92.07362,
+            -13.333767
+          ],
+          [
+            -89.754869,
+            -13.295396
+          ],
+          [
+            -87.362143,
+            -13.407034
+          ],
+          [
+            -84.817736,
+            -13.45242
+          ],
+          [
+            -82.346041,
+            -13.42103
+          ],
+          [
+            -80.099669,
+            -13.525792
+          ],
+          [
+            -77.549919,
+            -13.424561
+          ],
+          [
+            -75.224731,
+            -13.386157
+          ],
+          [
+            -72.900274,
+            -13.494477
+          ],
+          [
+            -70.423823,
+            -13.53645
+          ]
+        ],
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "ref": "R1",
+        "rotation": 1.2788379248939827,
+        "scope": "Body axis projected from primary photograph; height, thickness and lead curves are visual estimates, not catalog identity or hole locations. Visible leads stop above the board without pads, holes, numbers or nets.",
+        "status": "body-and-raised-leads-only",
+        "thickness": 1.8
+      },
+      {
+        "axis": [
+          [
+            -101.819856,
+            1.02311
+          ],
+          [
+            -78.263297,
+            1.861203
+          ]
+        ],
+        "baseHeight": 2.3,
+        "centre": [
+          -90.04157649999999,
+          1.4421564999999998
+        ],
+        "height": 7.5,
+        "leadRadius": 0.22,
+        "length": 23.57146308138573,
+        "observedLeads": [
+          [
+            -99.708567,
+            2.755859
+          ],
+          [
+            -97.245508,
+            2.790985
+          ],
+          [
+            -94.781293,
+            2.826128
+          ],
+          [
+            -92.241251,
+            2.85792
+          ],
+          [
+            -89.775611,
+            2.819937
+          ],
+          [
+            -87.533019,
+            2.792044
+          ],
+          [
+            -85.06423,
+            2.827219
+          ],
+          [
+            -82.818705,
+            2.872521
+          ],
+          [
+            -80.423442,
+            2.837879
+          ],
+          [
+            -77.951306,
+            2.873089
+          ]
+        ],
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "ref": "R2",
+        "rotation": 2.037604321545303,
+        "scope": "Body axis projected from primary photograph; height, thickness and lead curves are visual estimates, not catalog identity or hole locations. Visible leads stop above the board without pads, holes, numbers or nets.",
+        "status": "body-and-raised-leads-only",
+        "thickness": 1.8
+      }
     ]
   },
   "connectivity": {
@@ -22641,6 +22781,25 @@
           "status": "unconfirmed-no-legible-package-marking",
           "scope": "A nine-branch package with one branch unused by the board could explain ten leads and factory pin 10, but neither identity nor the unused board branch is proven. Do not replace the eight-branch reference model from this hypothesis."
         }
+      },
+      "visualNetworkCandidate": {
+        "status": "body-and-raised-leads-only",
+        "photoSource": "photo-top",
+        "photoBodyAxis": [
+          [
+            1435,
+            889
+          ],
+          [
+            1461,
+            1204
+          ]
+        ],
+        "bodyThicknessMm": 1.8,
+        "bodyHeightMm": 7.5,
+        "bodyBaseHeightMm": 2.3,
+        "leadRadiusMm": 0.22,
+        "scope": "Body axis projected from primary photograph; height, thickness and lead curves are visual estimates, not catalog identity or hole locations. Visible leads stop above the board without pads, holes, numbers or nets."
       }
     },
     "R1": {
@@ -22730,6 +22889,25 @@
         "comparisonSource": "comparison-photo-080450163",
         "comparisonFinding": "Separate-specimen oblique shows ten leads and code 3894. KWH catalog explicitly leaves terminal 10 unused; this resolves the comparison package lead-count question. Small end mark and primary installed numbering remain unqualified.",
         "packageReference": "kwh-3894"
+      },
+      "visualNetworkCandidate": {
+        "status": "body-and-raised-leads-only",
+        "photoSource": "photo-top",
+        "photoBodyAxis": [
+          [
+            1223,
+            984
+          ],
+          [
+            1246,
+            1310
+          ]
+        ],
+        "bodyThicknessMm": 1.8,
+        "bodyHeightMm": 7.5,
+        "bodyBaseHeightMm": 2.3,
+        "leadRadiusMm": 0.22,
+        "scope": "Body axis projected from primary photograph; height, thickness and lead curves are visual estimates, not catalog identity or hole locations. Visible leads stop above the board without pads, holes, numbers or nets."
       }
     },
     "V4.3": {
@@ -23493,14 +23671,14 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "5a266456ce908f148565f215a69241b829da752f"
+      "revision": "f5539b99e169a016b75781d6613e34c8347b9702"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "1f1c4f00647eee8b58a1f475b157d4179870896c"
     },
     "files": {
-      "layout": "f30869ecae3c52f6f9dc7f587aa0f65af70630ceadb392093d64d4dc62248616",
+      "layout": "fad37b43cccd139448dffcafee7cd30ba3a54470a962f9b569b676b50dbea783",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "d03876d2ae0885466ae5dc23512d8571c90ab4bc90682c02788575ba5d154dd8",
       "photoRegistration": "61a51daca9a51fd1765074ed674e54cdc825687e50daf3f161518cb25926a034",
@@ -23509,10 +23687,10 @@
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
-      "componentEvidence": "cc0ca09f77eae9c7868aadb4087fe54e77915a648dfbc95f1cc5e28289698428"
+      "componentEvidence": "14bf23fe45e92b69f0547d6cd2904c2538b9814b7021be290a4547bb2a71fcb4"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "86a20bd643612e73fd50861d30778dc3d1545babb0b504628459be862b4b1bf1"
+    "geometryScadSha256": "1e1e8898248c218485e0c2dc672cf55e7e35c75975253aa2f2700233907c4f56"
   },
   "cosimulation": {
     "bus": {
