@@ -13939,6 +13939,82 @@
       }
     ],
     "vias": [],
+    "visualAxials": [
+      {
+        "axis": [
+          [
+            71.195869,
+            -11.577044
+          ],
+          [
+            70.923178,
+            -5.912259
+          ]
+        ],
+        "blueCollarEnd": "right",
+        "centre": [
+          71.0595235,
+          -8.7446515
+        ],
+        "centreHeight": 3.2,
+        "diameter": 2.3,
+        "leadRadius": 0.25,
+        "length": 5.6713445916912875,
+        "observedLeads": [
+          [
+            71.021515,
+            -14.768237
+          ],
+          [
+            70.709824,
+            -3.077472
+          ]
+        ],
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "ref": "R6.4",
+        "rotation": 92.75597252846347,
+        "scope": "Body axis and unnumbered visible lead ends from primary photograph. Diameter, height and lead curve are nominal visual estimates. Hidden lead entries are unresolved: no generated holes, solder joints, numbered pads or nets.",
+        "status": "body-and-raised-leads-only"
+      },
+      {
+        "axis": [
+          [
+            75.360087,
+            -11.842066
+          ],
+          [
+            74.932431,
+            -6.093591
+          ]
+        ],
+        "blueCollarEnd": "left",
+        "centre": [
+          75.14625899999999,
+          -8.9678285
+        ],
+        "centreHeight": 6.6,
+        "diameter": 2.3,
+        "leadRadius": 0.25,
+        "length": 5.764360717370228,
+        "observedLeads": [
+          [
+            74.649689,
+            -14.414385
+          ],
+          [
+            74.178656,
+            -3.23342
+          ]
+        ],
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "ref": "R6.5",
+        "rotation": 94.25466390648039,
+        "scope": "Body axis and unnumbered visible lead ends from primary photograph. Diameter, height and lead curve are nominal visual estimates. Hidden lead entries are unresolved: no generated holes, solder joints, numbered pads or nets.",
+        "status": "body-and-raised-leads-only"
+      }
+    ],
     "visualBridges": [
       {
         "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
@@ -22374,6 +22450,24 @@
         "supportingSources": [
           "comparison-photo-080434345"
         ]
+      },
+      "visualAxialCandidate": {
+        "status": "body-and-raised-leads-only",
+        "photoSource": "photo-top",
+        "photoBodyAxis": [
+          [
+            1371,
+            3172
+          ],
+          [
+            1447,
+            3168
+          ]
+        ],
+        "bodyDiameterMm": 2.3,
+        "bodyCentreHeightMm": 3.2,
+        "leadRadiusMm": 0.25,
+        "scope": "Body axis and unnumbered visible lead ends from primary photograph. Diameter, height and lead curve are nominal visual estimates. Hidden lead entries are unresolved: no generated holes, solder joints, numbered pads or nets."
       }
     },
     "R6.5": {
@@ -22404,6 +22498,29 @@
         "supportingSources": [
           "comparison-photo-080434345"
         ]
+      },
+      "visualAxialCandidate": {
+        "status": "body-and-raised-leads-only",
+        "photoSource": "photo-top",
+        "photoBodyAxis": [
+          [
+            1370,
+            3226
+          ],
+          [
+            1447,
+            3220
+          ]
+        ],
+        "bodyDiameterMm": 2.3,
+        "bodyCentreHeightMm": 6.6,
+        "leadRadiusMm": 0.25,
+        "scope": "Body axis and unnumbered visible lead ends from primary photograph. Diameter, height and lead curve are nominal visual estimates. Hidden lead entries are unresolved: no generated holes, solder joints, numbered pads or nets.",
+        "heightEvidence": {
+          "photoSource": "photo-cpu-oscillator-closeup",
+          "finding": "Primary oblique view shows the resistor raised over the cable-side edge of A6. Centre height 6.6 mm is a nominal reconstruction giving clearance above the imported A6 package, not a measured height.",
+          "scope": "Do not move photo-derived in-plane body placement merely to clear A6; raised construction and hidden lead-entry uncertainty are separate."
+        }
       }
     },
     "R6.6": {
@@ -23671,14 +23788,14 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "f5539b99e169a016b75781d6613e34c8347b9702"
+      "revision": "c5d0538a09e08ffc5685dc77c22996240ba51037"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "1f1c4f00647eee8b58a1f475b157d4179870896c"
     },
     "files": {
-      "layout": "fad37b43cccd139448dffcafee7cd30ba3a54470a962f9b569b676b50dbea783",
+      "layout": "0ad21698ed2d84392fa8dabd9681b8c2072fcf61524994e31e5d24f22d6d931b",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "d03876d2ae0885466ae5dc23512d8571c90ab4bc90682c02788575ba5d154dd8",
       "photoRegistration": "61a51daca9a51fd1765074ed674e54cdc825687e50daf3f161518cb25926a034",
@@ -23687,10 +23804,10 @@
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
-      "componentEvidence": "14bf23fe45e92b69f0547d6cd2904c2538b9814b7021be290a4547bb2a71fcb4"
+      "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "1e1e8898248c218485e0c2dc672cf55e7e35c75975253aa2f2700233907c4f56"
+    "geometryScadSha256": "8d7c22d491ec1027213a63e69f369eaf40f5f43534173a9eb1eca2a72e6d29bf"
   },
   "cosimulation": {
     "bus": {
