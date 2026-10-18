@@ -59,6 +59,10 @@ export function installKeyboardControllerReview(scene){
   function add(tag,attrs){const e=document.createElementNS(svgNS,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);svg.append(e);return e;}
   add('polygon',{points:data.layout.outlinePolygon.map(([x,y])=>`${x},${-y}`).join(' '),fill:'#3c4540',stroke:'#b4bcaa','stroke-width':.3});
   for(const route of data.layout.unresolvedArtwork.filter(r=>r.side===side))add('polyline',{points:route.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#4694a1','stroke-width':route.width});
+  for(const bridge of (data.layout.visualBridges||[]).filter(b=>b.side===side)){
+   const line=add('polyline',{'data-visual-bridge':bridge.ref,points:bridge.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#4694a1','stroke-width':.5});
+   const title=document.createElementNS(svgNS,'title');title.textContent=`${bridge.ref}: observed wire; terminal identity and continuity unresolved`;line.append(title);
+  }
   for(const route of data.layout.routes.filter(r=>r.side===side)){
    const line=add('polyline',{'data-route-id':route.id,'data-evidence-status':route.evidence.status,points:route.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:selection?.pins.some(p=>p.net===route.net)?'#ffe16a':'#c29155','stroke-width':route.width,'stroke-dasharray':route.evidence.status==='inferred'?'.5 .3':'none'});
    const title=document.createElementNS(svgNS,'title');title.textContent=`${clean(route.net)}: ${route.evidence.status}. ${route.evidence.detail}`;line.append(title);
@@ -77,6 +81,7 @@ export function installKeyboardControllerReview(scene){
   if(selection){
    const placed=selection.points.length,total=selection.pins.length;
    get('[data-selection]').textContent=`${kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
+   if((data.layout.visualBridges||[]).some(b=>selection.refs.includes(b.ref)))get('[data-selection]').textContent+=' The cyan wire is a photo estimate only; its endpoints do not identify electrical pads.';
    const routes=data.layout.routes.filter(r=>selection.pins.some(p=>p.net===r.net));
    if(routes.length){
     const counts=Object.entries(routes.reduce((out,r)=>(out[r.evidence.status]=(out[r.evidence.status]||0)+1,out),{})).map(([state,n])=>`${n} ${state}`).join(', ');

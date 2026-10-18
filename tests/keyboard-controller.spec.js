@@ -74,6 +74,17 @@ test('bridge inspection distinguishes reset source and CPU injection side',async
  await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
  await expect(panel.getByRole('link',{name:'Factory bridge placement (drawing 8)'})).toHaveAttribute('href',/PC-1715-Schaltplaene.pdf#page=10$/);
  expect(data.layout.unplaced.some(c=>c.ref==='BR2')).toBe(true);
+ expect(controllerSelection(data,'component','BR2').points).toEqual([]);
+ const wire=panel.locator('[data-visual-bridge="BR2"]');
+ await expect(wire).toHaveAttribute('stroke','#4694a1');
+ await expect(panel.locator('[data-selection]')).toContainText('endpoints do not identify electrical pads');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/RESET_N');
+ await expect(wire).toHaveAttribute('stroke','#4694a1');
+ await panel.getByLabel('Controller board side').selectOption('bottom');
+ await expect(wire).toHaveCount(0);
+ await panel.getByLabel('Controller board side').selectOption('top');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('BR2');
+
  await expect(panel.locator('[data-pins]')).toContainText('RESET_OUT');
  await expect(panel.locator('[data-pins]')).toContainText('RESET_N');
  await expect(panel.locator('[data-qualification]')).toContainText('13 digital checks; 0 mismatches');

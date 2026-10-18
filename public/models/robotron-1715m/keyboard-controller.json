@@ -13023,7 +13023,28 @@
         "width": 0.35
       }
     ],
-    "vias": []
+    "vias": [],
+    "visualBridges": [
+      {
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "pixelUncertainty": 8,
+        "points": [
+          [
+            -69.701536,
+            -9.605272
+          ],
+          [
+            -65.942459,
+            -9.264913
+          ]
+        ],
+        "ref": "BR2",
+        "scope": "Geometric endpoint order only; no numbered pads, holes, nets or continuity claim. Height and diameter are illustrative.",
+        "side": "top",
+        "status": "unassigned-wire-photo-estimate"
+      }
+    ]
   },
   "connectivity": {
     "authority": "controller.kicad_sch",
@@ -19604,30 +19625,30 @@
       "referenceType": "BRIDGE",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-terminal-order; physical numbering unresolved",
-      "note": "Factory placement drawing supports a photo location candidate in evidence.json serviceInterfaces. Native footprint remains unplaced until source/CPU terminal order and pad correspondence are reviewed; no electrical continuity claim.",
+      "note": "Factory placement and primary-photo endpoints support an unassigned visual wire in generated layout/SCAD. Native footprint stays unplaced until source/CPU terminal order and pad correspondence are resolved; no electrical continuity claim.",
       "placementAuthority": "controller.kicad_pcb"
     }
   },
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "fe64473627d147a6acc289d33508ee3b56496761"
+      "revision": "2e66a4b5f906594377229022c70a1fe6583ff3de"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "bd05452b25469c5e790ca347863fc17ffad8ddb0"
+      "revision": "3672deb95984d0a15618a50dd87ed48f3488c2f9"
     },
     "files": {
-      "layout": "c013e975d698983f4817529a2ea365a2010d67399d4a2e514f5fa1011c7fbb1d",
+      "layout": "acafdadfd539614d38f84f47c1ceccc3835ff2e4efb0a61afc2be12432ad9fc4",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
       "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
-      "componentEvidence": "3bc4ba6c64bd4a72a55ef6f0268d05526bbbdcb1554731bceafbfb36f0490d47"
+      "componentEvidence": "e47f23cacc8bf2a029e04de63e687a107fbeed4332df9c8619272d9e962dec38"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "ce1a4b5a44305a7c689d9cddec0438a7b17695f8f31221261a5bcc3cb1fa4a6c"
+    "geometryScadSha256": "0eaf98e26aa710234a89aa0d8846ddad74e27ee329cc013e31fb694641d30529"
   },
   "cosimulation": {
     "bus": {
