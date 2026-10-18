@@ -58,15 +58,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   stability results retain their original scope. [U856 source conditions][u856]
   constrain loading and timing, but do not identify Schmitt thresholds or exact
   input I/V behavior. Device applicability remains open.
-- **Release coverage:** [modifier refinement][modifier-host] and [baseline reset][reset-host]
-  abort at scheduled release boundaries in the same host-input transistor.
-  Explicit-spacing [reset][reset-spacing] and [modifier][modifier-spacing]
-  diagnostics complete with packet coverage and sampled stability; reset also
-  verifies CPU restart. An
-  [invocation control][reset-control] reproduces the failure at default-equivalent
-  spacing, isolating spacing as a consequential numerical parameter. The exact
-  internal failure path, fixed-spacing convergence and remaining scenario
-  coverage still need proof; this is not evidence of a physical circuit fault.
+- **Release coverage:** fixed-spacing [reset][reset-spacing] and
+  [modifier][modifier-spacing] pairs pass packet coverage, sampled stability and
+  serial-edge refinement; reset also verifies CPU restart. The
+  [invocation control][reset-control] isolates spacing as consequential to the
+  earlier reset-release failure. These results do not establish full-waveform
+  convergence, remaining scenario coverage or calibrated device dynamics.
 - **Numerical agreement:** the [paired service review][paired-host] passes
   serial-edge refinement, but loaded absolute-time voltage differences do not
   decrease consistently with further refinement. [Retained transition windows][transitions]
@@ -75,6 +72,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   produces byte-identical single-press waveforms, separating these differences
   from the release-spacing remedy. Investigate transition integration and event
   scheduling before relying on smaller timesteps alone.
+- **Strict-tolerance failure:** the [solver audit][truncation-audit] identifies a
+  final inductor truncation rejection after a successful Newton solve. The
+  [driver-boundary replay][driver-boundary] preserves the original waveforms and
+  locates the failure on a rising driver edge. Rejected trial states are not
+  physical winding measurements. Isolate the response to that recorded stimulus
+  before changing circuit parameters; numerical controls alone have not resolved it.
 - **Closed-board execution:** the [execution assessment][board-host] retains a
   timed-out full scenario and a completed, unchanged-circuit startup diagnostic.
   This supports allowing more execution time, not declaring a hardware blocker.
@@ -91,11 +94,11 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
-[modifier-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-fine/assessment.json
-[modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak/assessment.json
-[reset-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-minbreak/assessment.json
+[modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json
+[truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-truncation-audit/assessment.json
+[driver-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-driver-boundary/assessment.json
+[reset-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-minbreak-fine/assessment.json
 [reset-control]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-default-spacing/assessment.json
-[reset-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset/assessment.json
 [rising-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-fine/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [loaded-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-load/assessment.json

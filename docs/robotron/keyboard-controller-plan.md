@@ -39,13 +39,12 @@ reconstruction requirements below remain in scope.
 3. **Qualify the coupled reference board.** The experimental host network is
    integrated into both service and closed-board fixtures. Loaded service checks
    support sampled input stress and nominal-threshold clock widths. The U856
-   manual identifies rising RxC as the sampling edge; the corrected single-press
-   service pair passes logical, sampled-stability and serial-edge refinement
-   checks. Explicit-breakpoint reset and modifier diagnostics complete; a reset
-   invocation control isolates spacing as a consequential numerical parameter. Qualify fixed-spacing
-   refinement and remaining release scenarios while preserving absolute phase.
-   Loaded voltage convergence and device applicability remain open.
-   Earlier falling-edge comparisons do not establish SIO receive behavior.
+   manual identifies rising RxC as the sampling edge. Loaded single-press, reset
+   and modifier pairs pass logical, sampled-stability and serial-edge refinement
+   checks under their declared assumptions. Complete remaining scenarios and
+   investigate the strict-tolerance driver transition using recorded stimulus and
+   solver diagnostics. Loaded voltage convergence and device applicability remain
+   open; preserve absolute phase and existing accuracy criteria.
    Obtain a completed closed-board capture with the existing circuit and adequate
    execution allowance, then review startup and the recorded receiver window
    separately. A timeout is incomplete evidence, not a demonstrated circuit fault.
