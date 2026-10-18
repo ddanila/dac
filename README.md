@@ -3,7 +3,7 @@
 Current behavior and evidence: [Robotron capability matrix](docs/robotron/capabilities.md).
 
 Inspection guides cover [controls and debugging](docs/robotron/inspection-workbench.md),
-[measurements and evidence](docs/robotron/inspection-015.md), and
+[measurements and evidence](docs/robotron/inspection-workbench.md#measurements), and
 [checkpoints and disk comparisons](docs/robotron/inspection-and-checkpoints.md).
 
 In progress: [keyboard controller reconstruction and circuit review](docs/robotron/keyboard-controller-progress.md),
@@ -46,7 +46,14 @@ The cores remain experimental. Robotron has timed FDC/DMA/SIO/CTC behavior and s
 
 ## Models and provenance
 
-Robotron uses a photo-based OpenSCAD reconstruction of Danila’s actual machine, maintained in [3d-models](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m). It combines documented overall dimensions, ruler-scaled key spacing, sculpted keycaps with transcribed legends, modeled drive slots/latches, a separate keyboard bottom plate and feet, one continuous cable, and separate physical power/reset switches. Consistent paint/plastic/rubber materials replace full-surface photo skins; the wordmark, drive markings and reference boards use localized photo crops. Owner overhead photos determine the staggered rows, key islands and spacers. Raised Shift bodies are 18 mm wide and CTRL/ET bodies 23 mm, as measured by Danila; these dimensions are independent of the base flanges. Opaque cap cavities follow the rounded bodies so they cannot pierce the sidewalls. The keys can be clicked or used through accessible buttons; unverified mappings are labeled as unavailable. Close-up views show the keyboard, drives, monitor and underside, with reference-photo links and evidence notes. Exterior parts can be separated for inspection. Small features and unseen surfaces remain estimates; interiors combine owner drive photographs with credited comparative references. Juku and VJUGA still use provisional geometry. See [asset notes](public/models/README.md) and [the exhibit brief](exhibits/robotron-1715m/README.md).
+Robotron uses a photo-based OpenSCAD reconstruction of Danila’s machine,
+maintained in [3d-models](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m).
+Close-up and separated assembly views expose the keyboard, drives, monitor and
+underside with source photographs and evidence notes. Documented dimensions,
+photo-supported geometry and estimates remain distinct; unseen surfaces and
+interior details are not fully verified. Juku and VJUGA use provisional geometry.
+See [asset notes](public/models/README.md) and
+[the exhibit brief](exhibits/robotron-1715m/README.md) for provenance and scope.
 
 The museum commits a small versioned WASM distribution in `public/emulator/` rather than depending on a moving download. `manifest.json` records its source commit, ABI/toolchain version and hashes. To intentionally update it, build/package a release in `dac-emulation`, then run:
 
@@ -75,8 +82,11 @@ the guest after a disk change, as its OS may cache directory data.
 exports a `.prn` file. The 64 KB capture limit is visible; export and clear when
 full. Try `PIP LST:=AUTOEXC.SUB`. Printer readiness is adjustable; see the [workbench guide](docs/robotron/inspection-workbench.md#printer-and-controller-limits).
 
-With the case open, each spindle and head follows its drive's motor/track state.
-Head travel uses nominal TEAC 96-tpi pitch (20.90 mm across 79 steps). Current-core spindle and fractional head poses follow emulated startup/coast, STEP and settling timing. READY depends on index observations; Read-ID/sector search follows physical order, and missed byte deadlines report overruns. Optional synthesized seek sounds follow individual timestamped STEP events; motor tone follows modeled speed. Snapshot/replay restores all mechanics. The movable upper head arm follows the core’s load progress; a translucent inserted disk exposes its shared spindle motion. Its jacket is omitted for inspection, and arm lift/pivot dimensions remain estimates. Older preserved cores retain their earlier behavior, and reduced motion freezes the rotor display. DSK import/export preserves supported track order, IDs and GAP3; unsupported geometries are rejected. See [timing scope and remaining approximations](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md).
+With the case open, spindle, head and load-arm motion follow the emulated drive
+state. Optional synthesized sounds follow drive events; reduced motion freezes
+rotor display. The translucent disk and estimated arm geometry aid inspection.
+See [drive timing and format limits](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md)
+for the core's behavior and remaining approximations.
 
 Additional validation: `npm run test:cross` runs the focused Firefox/WebKit suite
 (after `npx playwright install firefox webkit`). CI runs Firefox on Linux and WebKit on macOS. The core's optional application
@@ -133,7 +143,7 @@ headers. The map uses the documented TEAC side-specific radii and 96-TPI pitch;
 ID marks, data spans and gaps use the emulator’s reference MFM byte-clock layout, not recovered magnetic timing.
 
 Live inspection copies the current worker disk at serialized command boundaries
-every 1.5 seconds while the dialog is visible. Uncheck **Live updates** to freeze;
+periodically while the dialog is visible. Uncheck **Live updates** to freeze;
 **Refresh** takes another snapshot. Current sampled controller access is marked
 red. Closing the dialog stops polling. This does not pause the emulated computer
 or change its disk protection, save state, recording, or contents.
@@ -157,7 +167,7 @@ Ctrl-Z EOF marker or padding. Missing extents prevent a complete download rather
 than silently filling holes. **How this file is allocated** links directory entry
 numbers → extents → allocation blocks; click a block to inspect its sectors.
 
-Live snapshots highlight observed sector changes in pink for about 4.5 seconds,
+Live snapshots briefly highlight observed sector changes in pink,
 list changed directory entries and file names, and highlight affected allocation
 rows. These are differences between snapshots, not a history of every write:
 multiple writes (or a write followed by restoration) between samples may be missed.

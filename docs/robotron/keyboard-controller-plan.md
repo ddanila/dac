@@ -28,53 +28,31 @@ reconstruction requirements below remain in scope.
 
 ## Next work and acceptance
 
-1. **Resolve physical candidates from existing evidence.** Register original and
-   comparison photographs independently, follow overlapping trace segments, and
-   constrain candidate attachments with package drawings, placement references
-   and the schematic. Record alternatives and rejected correspondences in the
-   evidence ledger. Promote a route only when its complete attachment is supported.
-2. **Resolve electrical identity without losing supported geometry.** BR2's
-   observed wire is exported and displayed as unassigned geometry. Resolve its
-   source/CPU terminal correspondence before assigning numbered pads or nets.
-   Apply the same separation to remaining body and bridge observations; closed-link
-   continuity alone cannot determine terminal order. X1 photographs support
-   same-side leads and locally registered underside joints. Visible resistor
-   attachments constrain the far row to A1–A13; the underside COL11 trace
-   constrains the near row to B1–B13, conditional on reference component identity.
-   Native reference pads and assembly leads now share those joint positions;
-   retain the distinction between reference-derived identity and continuity. A8's absence from the schematic
-   does not establish that the physical contact is unconnected.
-3. **Resolve gate-model applicability before further fitting.** Retained current
-   balance, numerical-conductance and finite-perturbation checks leave the
-   branch-dependent solutions intact. Forced-output I/V exposes a discrepancy
-   with published typical behavior; gain-rolloff variants still fail to sustain
-   oscillation despite passing the retained isolated DC and switching checks.
-   Review device topology and output-current behavior against applicable source
-   conditions, then validate supported parameter ranges with independent checks.
-   These generic candidates remain diagnostic models. Do not tune to the
-   emulator's frequency or treat typical curves with incomplete conditions as
-   exact acceptance limits.
-4. **Qualify the coupled reference board.** Resolve numerical startup/clock-phase
-   convergence, receiver levels and bus timing before accepting full firmware
-   scenarios. Investigate startup uncertainty separately from steady-state
-   behavior; do not discard startup or realign traces to pass an existing gate.
-   Check supply recovery separately from initial power-on reset. Functional serial
-   agreement alone cannot qualify an unknown CPU input or reliable restart.
-5. **Request only residual specimen evidence.** After exhausting these constraints,
-   identify precisely which alternatives remain indistinguishable and what
-   observation would separate them. Actual dimensions, replacement-ROM identity
-   and measured specimen timing remain separate confirmations. Standard S600
-   permits reference-board work to continue meanwhile.
+1. **Finish supported physical paths.** Extend the data/clock reconstruction from
+   visible pull-up branches through the driver, cable and filter. Resolve conflicts
+   with estimated footprints from the photographs; preserve unsupported
+   continuations as unresolved. Use the established X1 row constraints while
+   keeping A8 and BR2 terminal identity separate from observed geometry.
+2. **Establish an applicable gate model.** Diagnose why candidates that pass
+   isolated device checks still settle without oscillating. Review topology,
+   output-current behavior and startup response against published conditions.
+   Validate independent conditions before expanding parameter searches; do not
+   tune to the emulator's frequency or use incompletely specified typical curves
+   as exact acceptance limits.
+3. **Qualify the coupled reference board.** Once device applicability is supported,
+   resolve clock-phase convergence, receiver levels and bus timing, then run the
+   remaining firmware scenarios. Assess supply recovery separately from initial
+   power-on reset. Preserve failing startup and absolute phase in acceptance checks.
+4. **Identify residual specimen dependencies.** Exhaust existing photographs,
+   package drawings and published circuit constraints first. For each remaining
+   ambiguity, state the alternatives and the observation that would distinguish
+   them. Standard S600 permits reference work to continue without the replacement ROM.
 
-The [analog guide's retained evidence](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence)
-records the device checks, oscillator failures and branch diagnostics. These
-findings narrow the next investigation; they do not establish a hardware blocker
-or qualify a replacement for the default gate model.
-
-This sequence does not guarantee recovery of every hidden route or exact device
-parameter. An unresolved claim becomes an external dependency only when the
-available evidence cannot distinguish the remaining alternatives. Preserve those
-limits without marking the entire implementation blocked.
+The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
+records the findings behind this sequence and links their evidence. Detailed
+measurements, candidate inventories and experiment results stay in source reports.
+An unresolved claim becomes an external dependency only when available evidence
+cannot distinguish the remaining alternatives; it does not block unrelated work.
 
 ## Ownership and synchronization contract
 

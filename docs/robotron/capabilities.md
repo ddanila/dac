@@ -75,11 +75,7 @@ investigation leads, not proof that either implementation matches hardware.
   `node scripts/pack-geometry-cache.mjs`, then profile `?geometryPacks`; add
   `geometryWorker` for worker decompression/bounds. Generated packs are experimental
   derived assets, not canonical models. Heap measurements omit GPU/worker memory.
-- **CI:** scope from a successful ancestral push, not the immediately previous push.
-  Missing evidence/PRs select full coverage. Fail-fast and cancellation of superseded
-  runs remain enabled. `scripts/update-ci-durations.mjs` refreshes duration estimates from successful
-  downloaded logs without a
-  new CI run. Ordinary CI does not install MAME or run Verilog/historical ROM boots.
+CI scope and maintenance are documented in the [root guide](../../README.md#model-review-and-ci).
 
 See [reference workflows](capability-history.md) for S600 mapping and preservation packaging.
 

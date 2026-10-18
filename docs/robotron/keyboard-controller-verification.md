@@ -23,7 +23,27 @@ Paths below are relative to the CAD controller directory unless stated otherwise
 | Connect runtime diagnostics | Latch samples, labelled display persistence and a pinned recorded bus waveform | Live frame samples are not full waveforms; recorded simulation does not establish specimen behavior |
 | Reject stale or mismatched exports | Source hashes, mesh receipts, sync checks and CI | Consistency checks cannot validate photo interpretations |
 | Separate fast checks and longer qualification | CAD native/export CI, core workflows and core qualification target | Longer firmware and mixed-signal qualification remain separate gates |
-| Complete the first physical data/clock milestone | Logical circuit and partial native copper | Actual copper and connector correspondence remain incomplete |
+| Complete the first physical data/clock milestone | Logical circuit and partial native copper | Driver/cable/filter copper continuations remain incomplete |
+
+## Current findings and their consequences
+
+- **Connector and copper:** locally registered X1 joints support native pad and
+  lead placement with reference-derived row order. The COL11 attachment is
+  reconstructed; A8 remains unclassified. Visible data/clock pull-up branches
+  end at solder eyes with unresolved continuations. Clearance conflicts with
+  estimated resistor pads require photo review, not rerouting observed copper
+  merely to satisfy DRC. See CAD `generated/connector-review.json`,
+  `route-evidence.json` and `generated/qualification.json`.
+- **Gate applicability:** output-current discrepancies motivate further device
+  review. Gain-rolloff and sink-resistance variants reduce forced-output current,
+  but candidates admitted by complete, model-matched DC and switching evidence
+  still fail to sustain oscillation. Isolated branch recovery does not establish
+  full oscillator startup or physical device hysteresis. See the core's
+  [retained analog evidence](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence).
+- **Completion:** digital agreement and synchronized geometry remain useful
+  foundations. Neither closes the physical data/clock milestone nor full-board
+  electrical acceptance. These gaps still have desk-work routes; missing specimen
+  ROM contents alone are not a blocker.
 
 ## Resolve at the desk first
 
@@ -38,7 +58,7 @@ not a second inventory here.
 | Withdrawn CPU track and BR1 attachments | Follow overlapping photos; independently check pin numbering and cross-side correspondence | Close-ups showing complete joints; distinguishable continuity readings |
 | BR2 source/CPU identity | Preserve the exported unassigned wire; constrain terminal correspondence with lead paths and package drawings | Visible joints or observations that distinguish the two ends; a closed bridge alone cannot do so |
 | Output-clock WR/RD discrepancy | Compare complete trace paths and keep published revisions separate | Distinguishable physical connection to the CPU pins |
-| X1 terminal order and cable/filter path | Use registered joints and both row constraints in `generated/connector-review.json` and `generated/connector-terminals.json`; classify A8 and resolve cable/winding attachments | Markings or complete trace/joint observations that distinguish remaining candidates |
+| X1 unclassified contact and cable/filter path | Use registered joints and both row constraints in `generated/connector-review.json` and `generated/connector-terminals.json`; classify A8 and resolve cable/winding attachments | Markings or complete trace/joint observations that distinguish remaining candidates |
 | Discrete pads and underside registration | Use independent landmarks and lead trajectories; body ends are not hole centres | Hidden lead-entry close-ups and measured dimensions |
 | Device models and full-board electrical behavior | Resolve output I/V and topology applicability, then validate device ranges and coupled behavior | Targeted captures only for behavior not constrained by published evidence |
 | Specimen ROM and timing | Continue reference qualification with standard S600; keep replacement-ROM identity separate | Repeated ROM reads and raw clock/reset/serial captures with setup details |

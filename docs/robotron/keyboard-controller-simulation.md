@@ -35,12 +35,10 @@ solver question. A broad tool survey is not an implementation dependency.
 | Closed-board mixed-signal simulation | Executable coupled oscillator, reset, matrix and output circuits | Passing full-board phase, voltage, bus and scenario qualification |
 | Supply-dip diagnostics | Modeled reset/clock response to an explicit supply waveform | Reliable firmware restart and specimen brownout behavior |
 
-The retained service repeat qualification passes within its recorded configuration.
-It does not close the full-board gates. Full-precision supply replay still exposes
-clock-phase sensitivity; released-bus reads can enter the receiver's unknown band
-even when serial output matches C. Reset recovery must be assessed in each valid
-supply interval, independently of initial power-on reset. Exact results and model
-assumptions live in the linked core reports rather than being copied here.
+Consult the core's retained reports for configuration-specific results. Functional
+serial agreement does not waive clock-phase, receiver-voltage or reset-recovery
+failures. The [requirement audit](keyboard-controller-verification.md) records
+which remaining findings affect plan completion.
 
 ## Model evidence and acceptance
 

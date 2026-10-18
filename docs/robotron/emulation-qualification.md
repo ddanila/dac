@@ -32,11 +32,8 @@ copied into temporary storage. Additional independent suites use the real S600 t
 document and create/compile/run a Turbo Pascal program. Full text screens and
 saved file bytes must match; application raster differences are recorded but do
 not affect pass/fail because their cursor is not the CCP prompt cursor.
-Native fault regressions interrupt writes at 1/128/255 bytes by motor loss,
-controller reset and drive-door opening. They preserve the written prefix,
-CRC-error metadata, remaining sectors and the other drive. Existing formatting
-interruption and mixed DMA/S600/printer/V.24 snapshot checks remain separate from
-MAME qualification.
+Native fault and mixed-device snapshot regressions remain separate from MAME
+qualification; their fixtures and reports define exact interruption coverage.
 
 The serial probe compares S600 input through the real keyboard CPU and SIO A,
 including 8N1, an intentionally mismatched 7E1 receiver, and FIFO overflow.
