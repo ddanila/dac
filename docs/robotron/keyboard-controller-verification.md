@@ -40,8 +40,10 @@ below are relative to the CAD controller directory unless stated otherwise.
   `route-evidence.json` and `generated/qualification.json`.
 - **Resistor-bank identity:** factory placement and photographs identify R1/R2
   bodies. The comparison marking belongs to R1, not A1; its meaning and terminal
-  order remain unresolved. Museum photo rectangles expose these observations
-  without creating numbered pads. See CAD `component-evidence.json`.
+  order remain unresolved. Visible lead rows do not match the reference symbols
+  as complete package maps, and factory/Zander R2 branch numbering differs.
+  Reconcile those identities before placing pads; museum body rectangles do not
+  establish terminals. See CAD `component-evidence.json` and `evidence.json`.
 - **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
   DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
   К555ЛА3 conditions. Selected DC passes, including a separate input-diode

@@ -20725,6 +20725,34 @@
           ]
         },
         "schematicLocator": "PDF page 11, drawing 56-330-4103-7: address inverter bank and the two A2.2 enable gates beside A4."
+      },
+      {
+        "source": "robotron-factory-drawings",
+        "locator": "PDF page 11, drawing 56-330-4103-7, R2 branch labels left to right",
+        "ref": "R2",
+        "factoryBranchLabels": [
+          "3",
+          "4",
+          "10",
+          "9",
+          "5",
+          "7",
+          "2",
+          "6"
+        ],
+        "comparisonSource": "schematic",
+        "comparisonBranchLabels": [
+          "3",
+          "4",
+          "8",
+          "9",
+          "5",
+          "7",
+          "2",
+          "6"
+        ],
+        "scope": "Third branch goes to V4.8 base in both drawings. This is a source numbering disagreement, not proven board revision or circuit-topology difference. Native reference connectivity remains the Zander transcription. Neither drawing supplies a complete ten-lead package map.",
+        "status": "physical-pinout-unresolved"
       }
     ],
     "sourceReviews": [
@@ -20770,6 +20798,17 @@
           "detail": "R1 lies between the sensing-transistor row and the long board edge; R2 lies on the other side of the sensing-transistor region. This identifies bodies, not numbered terminals."
         },
         "remainingUse": "Package appearance and lead construction. Reference terminal order, common terminal, resistance and primary board entries require separate evidence."
+      },
+      {
+        "date": "2026-10-18",
+        "sources": [
+          "photo-top",
+          "comparison-photo-080450163",
+          "robotron-factory-drawings",
+          "schematic"
+        ],
+        "finding": "Primary R1 and R2 each expose ten raised lead exits. Comparison R1 oblique independently shows ten. The native nine-terminal reference symbols cannot be used directly as complete physical package maps. Factory R2 third branch is labelled 10 versus 8 in Zander.",
+        "scope": "Lead observations and drawing labels only; no inferred common duplication, unused terminal, installed numbering or net reassignment. Photo pixels and interpretation limits are in component-evidence.json terminalReview."
       }
     ],
     "routeReviews": [
@@ -22444,7 +22483,7 @@
     "R2": {
       "referenceType": "8x4k7",
       "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
+      "pinEvidence": "Reference-schematic terminal identifiers only; not a complete physical package pinout. Primary photo shows ten lead exits; reference symbol has nine electrical terminals. Installed correspondence unresolved.",
       "note": "Inner upright bank on the opposite side of the sensing-transistor region; body identity follows factory placement and primary photo context. Native placement and numbered lead mapping remain unresolved; reference resistance is not a measured specimen value.",
       "placementAuthority": "controller.kicad_pcb",
       "bodyIdentification": {
@@ -22458,12 +22497,63 @@
         "identitySource": "robotron-factory-drawings",
         "identityLocator": "PDF page 10, drawing 63-330-4103-2",
         "scope": "Body-region locator only. Not pad centres, dimensional calibration or terminal numbering."
+      },
+      "terminalReview": {
+        "status": "physical-reference-correspondence-unresolved",
+        "photoSource": "photo-top",
+        "observedLeadPixels": [
+          [
+            1460,
+            917
+          ],
+          [
+            1462,
+            950
+          ],
+          [
+            1464,
+            983
+          ],
+          [
+            1466,
+            1017
+          ],
+          [
+            1467,
+            1050
+          ],
+          [
+            1468,
+            1080
+          ],
+          [
+            1470,
+            1113
+          ],
+          [
+            1472,
+            1143
+          ],
+          [
+            1473,
+            1175
+          ],
+          [
+            1475,
+            1208
+          ]
+        ],
+        "pixelUncertainty": 8,
+        "order": "Cable end toward CPU end in the original top photo; array indices are observations, not pin numbers.",
+        "scope": "Ten visible raised lead exits beside the body. Not hole centres or projected pad coordinates. Do not assign the additional lead to common, unused or duplicated functions without evidence.",
+        "nextEvidence": "Follow each lead to a registered joint and compare both sides; check package documentation for common or unused terminals.",
+        "drawingDiscrepancy": "Factory PDF page 11 labels the third branch from the left 10; Zander reference labels it 8. Both connect that branch to V4.8 base. Supply-terminal numbering is not shown there; current reference pin 1 does not establish physical common position."
       }
     },
     "R1": {
       "referenceType": "8x910",
       "placementEvidence": "unplaced",
-      "pinEvidence": "schematic-numbered",
+      "pinEvidence": "Reference-schematic terminal identifiers only; not a complete physical package pinout. Primary photo shows ten lead exits; reference symbol has nine electrical terminals. Installed correspondence unresolved.",
       "note": "Edge-side upright bank beside the sensing-transistor row; body identity follows factory placement and primary photo context. Native placement and numbered lead mapping remain unresolved; reference resistance is not a measured specimen value.",
       "placementAuthority": "controller.kicad_pcb",
       "bodyIdentification": {
@@ -22493,7 +22583,59 @@
           "readingRotationDegrees": 180,
           "scope": "Separate specimen. Marking meaning unresolved; no resistance value, date code or primary-board marking inferred."
         }
-      ]
+      ],
+      "terminalReview": {
+        "status": "physical-reference-correspondence-unresolved",
+        "photoSource": "photo-top",
+        "observedLeadPixels": [
+          [
+            1245,
+            1022
+          ],
+          [
+            1247,
+            1053
+          ],
+          [
+            1247,
+            1085
+          ],
+          [
+            1248,
+            1119
+          ],
+          [
+            1250,
+            1152
+          ],
+          [
+            1250,
+            1182
+          ],
+          [
+            1253,
+            1216
+          ],
+          [
+            1255,
+            1247
+          ],
+          [
+            1255,
+            1278
+          ],
+          [
+            1256,
+            1311
+          ]
+        ],
+        "pixelUncertainty": 8,
+        "order": "Cable end toward CPU end in the original top photo; array indices are observations, not pin numbers.",
+        "scope": "Ten visible raised lead exits beside the body. Not hole centres or projected pad coordinates. Do not assign the additional lead to common, unused or duplicated functions without evidence.",
+        "nextEvidence": "Follow each lead to a registered joint and compare both sides; check package documentation for common or unused terminals.",
+        "comparisonSource": "comparison-photo-080450163",
+        "comparisonFinding": "Separate-specimen oblique view independently shows ten leads. Small end mark is not yet accepted as pin-one evidence."
+      }
     },
     "V4.3": {
       "referenceType": "SC308C",
@@ -23256,7 +23398,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "561ff789d84fcab55f87bfb08ecb8383e160b8d1"
+      "revision": "5bbbb3a1917b9ff8d5eb9731f0dd22fc121ade0e"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -23271,8 +23413,8 @@
       "topRegistration": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
-      "evidence": "9bc01b0bc378669c9bb086379fab75062b989cad0e77b32015ef1c6257c35d25",
-      "componentEvidence": "52d320b07675f53e144a624912b43f338bd2cfa7c8b096fccd3f64a31ee11bee"
+      "evidence": "4c65e5c0cbff2e76c3bd47c81027135fd4221321d9e3dfd63d6be4504a3ccc00",
+      "componentEvidence": "387df72666adf9a28614b3f63253d5e134b558d16eecbe15a94735e81ad95e76"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "86a20bd643612e73fd50861d30778dc3d1545babb0b504628459be862b4b1bf1"
