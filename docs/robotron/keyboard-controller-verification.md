@@ -63,10 +63,11 @@ below are relative to the CAD controller directory unless stated otherwise.
 - **Transition failure:** the [solver audit][truncation-audit] identifies a final
   inductor truncation rejection after a successful Newton solve, with no nearby
   pending breakpoint in the logged transition window. The [boundary capture][driver-boundary] locates a rising driver edge, and an
-  [replay boundary control][analog-replay] completes after removing an artificial
-  capture-end breakpoint. The replay failure therefore does not independently
-  confirm the original mechanism. Prefix voltage differences also prevent assuming
-  an identical trajectory. Investigate the original coupled transition separately;
+  [matched-control replay][analog-replay] also fails near the transition after
+  preserving the effective XSPICE truncation setting. Earlier analog-only runs
+  implicitly used a looser default after removing HDL devices. Their breakpoint
+  sensitivity remains diagnostic, not a matched comparison. Prefix voltage
+  differences prevent assuming an identical trajectory or failure mechanism;
   rejected trial states are not physical measurements.
 - **Closed-board execution:** the [execution assessment][board-host] retains a
   timed-out scenario and completed startup diagnostic with the same circuit.
@@ -83,7 +84,7 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
-[analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-no-capture-knot/assessment.json
+[analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-matched-trtol/assessment.json
 [modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json
 [truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-transition-audit/assessment.json
 [driver-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-driver-boundary/assessment.json

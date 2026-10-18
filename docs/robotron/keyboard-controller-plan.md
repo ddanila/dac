@@ -33,12 +33,11 @@ reconstruction requirements below remain in scope.
    the netlist. Keep unsupported continuations and specimen differences explicit.
 2. **Isolate the analog transition failure.** The strict-tolerance solver audit
    identifies an inductor truncation rejection after a successful Newton solve.
-   Analog-only replay exposed an artificial capture-boundary breakpoint; removing
-   it lets the short diagnostic complete. Use that control to investigate the
-   original coupled failure. The logged coupled transition has no nearby pending
-   breakpoint; investigate analog integration and device response. Compare
-   absolute-time trajectories before attributing a common cause, since replay
-   interpolation changes the numerical problem.
+   Analog-only replay with matched effective truncation control also fails near
+   the transition. Preserve implicit solver settings when removing HDL devices;
+   earlier replay completion used a looser default. The logged coupled transition
+   has no nearby pending breakpoint. Investigate analog integration and device
+   response while retaining absolute-time trajectory differences.
    Preserve failed captures and existing accuracy criteria.
 3. **Constrain device dynamics.** Use independent device evidence for oscillator
    startup and host-buffer switching/loading. Keep primary, comparison and
