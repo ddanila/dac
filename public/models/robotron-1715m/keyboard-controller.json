@@ -20353,9 +20353,9 @@
         "specimenId": "comparison-20261017",
         "side": "oblique",
         "refs": [
-          "A1"
+          "R1"
         ],
-        "use": "White logic package marking and lead profile. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+        "use": "Oblique face and lead view of the edge-side upright resistor bank, identified as R1 by its position beside the sensing-transistor row in factory placement drawing 63-330-4103-2. Not an A1 logic-package close-up. Separate specimen; marking and geometry do not establish primary pin order or resistance."
       },
       {
         "id": "comparison-photo-080502586",
@@ -20757,6 +20757,19 @@
         ],
         "finding": "No keyboard solder-side copper drawing identified in this 50-page source. The contents list keyboard layout, populated placement and schematic. This is a scoped search result, not proof that no copper drawing exists elsewhere.",
         "remainingUse": "Placement identities and schematic connectivity can be reviewed against these sheets; precise specimen routing still needs photo or continuity evidence."
+      },
+      {
+        "source": "comparison-photo-080450163",
+        "reviewDate": "2026-10-18",
+        "method": "Read the face after rotating the comparison photograph 180 degrees; compare its board-edge and transistor-row context with factory placement PDF page 10 and the primary top photograph.",
+        "finding": "The upright white bank corresponds to R1, not A1. The visible face reads 3894 and V D beside a logo; the meaning of those markings is unresolved.",
+        "identityBasis": {
+          "source": "robotron-factory-drawings",
+          "pdfPage": 10,
+          "drawing": "63-330-4103-2",
+          "detail": "R1 lies between the sensing-transistor row and the long board edge; R2 lies on the other side of the sensing-transistor region. This identifies bodies, not numbered terminals."
+        },
+        "remainingUse": "Package appearance and lead construction. Reference terminal order, common terminal, resistance and primary board entries require separate evidence."
       }
     ],
     "routeReviews": [
@@ -22432,15 +22445,55 @@
       "referenceType": "8x4k7",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Inner upright bank on the opposite side of the sensing-transistor region; body identity follows factory placement and primary photo context. Native placement and numbered lead mapping remain unresolved; reference resistance is not a measured specimen value.",
+      "placementAuthority": "controller.kicad_pcb",
+      "bodyIdentification": {
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1420,
+          870,
+          1480,
+          1220
+        ],
+        "identitySource": "robotron-factory-drawings",
+        "identityLocator": "PDF page 10, drawing 63-330-4103-2",
+        "scope": "Body-region locator only. Not pad centres, dimensional calibration or terminal numbering."
+      }
     },
     "R1": {
       "referenceType": "8x910",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Edge-side upright bank beside the sensing-transistor row; body identity follows factory placement and primary photo context. Native placement and numbered lead mapping remain unresolved; reference resistance is not a measured specimen value.",
+      "placementAuthority": "controller.kicad_pcb",
+      "bodyIdentification": {
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1200,
+          960,
+          1260,
+          1340
+        ],
+        "identitySource": "robotron-factory-drawings",
+        "identityLocator": "PDF page 10, drawing 63-330-4103-2",
+        "scope": "Body-region locator only. Not pad centres, dimensional calibration or terminal numbering."
+      },
+      "specimenMarkings": [
+        {
+          "specimen": "comparison-20261017",
+          "photoSource": "comparison-photo-080450163",
+          "marking": "3894",
+          "additionalMarking": "V D and logo",
+          "pixelBox": [
+            1450,
+            1250,
+            3100,
+            1930
+          ],
+          "readingRotationDegrees": 180,
+          "scope": "Separate specimen. Marking meaning unresolved; no resistance value, date code or primary-board marking inferred."
+        }
+      ]
     },
     "V4.3": {
       "referenceType": "SC308C",
@@ -23203,11 +23256,11 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "bfc54418e557230ac86552b611d84483f4d7af3a"
+      "revision": "e8d68c983af50aa41ed2aa898d94d378b11f535c"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "115ff3972a3dc16afc402f63da119bdd4c31936e"
+      "revision": "efac36f9a46805d5f8dc647f4b3cc28a670276e5"
     },
     "files": {
       "layout": "f30869ecae3c52f6f9dc7f587aa0f65af70630ceadb392093d64d4dc62248616",
@@ -23218,8 +23271,8 @@
       "topRegistration": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
-      "evidence": "94ac6fec3ee0deef4b10885a4003a5685e121da4775f6645f2afd25379f16166",
-      "componentEvidence": "223726551e96c9eb893488f4a2da3fe801c502dd0c0c26c27f391ba4c30a90b0"
+      "evidence": "9bc01b0bc378669c9bb086379fab75062b989cad0e77b32015ef1c6257c35d25",
+      "componentEvidence": "52d320b07675f53e144a624912b43f338bd2cfa7c8b096fccd3f64a31ee11bee"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "86a20bd643612e73fd50861d30778dc3d1545babb0b504628459be862b4b1bf1"
