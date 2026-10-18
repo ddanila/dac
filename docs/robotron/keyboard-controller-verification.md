@@ -28,26 +28,14 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 ## Current findings and their consequences
 
-- **Connector and copper:** locally registered X1 joints support native pad and
-  lead placement with reference-derived row order. The COL11 attachment is
-  reconstructed; A8 remains unclassified. Visible data/clock pull-up branches
-  end at solder eyes with unresolved continuations. Registered underside joints
-  resolve the adjacent resistor-pad clearance conflicts; pad dimensions and
-  unobserved continuations remain estimates. A bounded local top fit supports the
-  visible branch beside A1, with a residual clearance failure against an estimated
-  supply pad. The under-package attachment and outer-row registration remain
-  unresolved. See CAD `generated/connector-review.json`,
-  `route-evidence.json` and `generated/qualification.json`.
-- **Resistor-bank identity:** factory placement identifies the R1/R2 bodies.
-  The KWH catalog resolves comparison R1's 3894 marking and documents its unused
-  terminal. Primary identity/orientation still needs corroboration; R2 package
-  identity and factory/Zander branch numbering remain unresolved. Museum body
-  rectangles and package references do not assign installed pads. See CAD
-  `component-evidence.json` and `evidence.json` for sources and terminal candidates.
-- **Visual geometry:** primary-photo observations place the unassigned resistor
-  banks and raised axial bodies/leads. Nominal assembly clearances pass; lead
-  heights and package dimensions remain estimates, and hidden holes are not
-  inferred. See CAD `generated/layout.json` and `../checks/assembly.json`.
+- **Physical reconstruction:** local photo registration supports placed joints
+  and visible copper, but the data/clock continuations, under-package attachment,
+  global underside fit and discrete terminal mapping remain unresolved. Package
+  evidence constrains resistor-bank candidates without proving primary-specimen
+  identity or orientation. Visual bodies and raised leads do not establish pads;
+  dimensions and lead heights remain estimates. See CAD `route-evidence.json`,
+  `component-evidence.json`, `generated/connector-review.json` and
+  `generated/qualification.json` for individual findings.
 - **Receiver and service coverage:** the [receive-edge review][receive-edge]
   establishes rising RxC sampling. Corrected [single-press][rising-host],
   [reset][reset-spacing] and [modifier][modifier-spacing] pairs pass logical,
@@ -60,19 +48,18 @@ below are relative to the CAD controller directory unless stated otherwise.
   leaves single-press waveforms unchanged, although spacing is consequential to
   the [reset-release failure][reset-control]. Serial-edge agreement alone cannot
   qualify the loaded voltage waveforms.
-- **Transition failure:** the [solver audit][truncation-audit] identifies a final
-  inductor truncation rejection after a successful Newton solve, with no nearby
-  pending breakpoint in the logged transition window. The [boundary capture][driver-boundary] locates a rising driver edge, and an
-  [matched-control replay][analog-replay] also fails near the transition after
-  preserving the effective XSPICE truncation setting. Earlier analog-only runs
-  implicitly used a looser default after removing HDL devices. Their breakpoint
-  sensitivity remains diagnostic, not a matched comparison. Prefix voltage
-  differences prevent assuming an identical trajectory or failure mechanism;
-  rejected trial states are not physical measurements.
-- **Closed-board execution:** the [execution assessment][board-host] retains a
-  timed-out scenario and completed startup diagnostic with the same circuit.
-  Full scenario completion remains unproven. Allow adequate execution time and
-  review startup separately from the recorded receiver window.
+- **Transition failure:** the [solver audit][truncation-audit] identifies inductor
+  truncation rejection after a successful Newton solve, without a nearby pending
+  breakpoint. [Analog-only replay][analog-replay] also fails near the transition
+  when effective XSPICE controls are preserved; earlier replay completion used
+  a looser implicit default. [Tighter truncation controls][tight-truncation] and
+  [KLU][klu] also fail. This narrows the investigation without proving
+  an identical trajectory or cause; rejected trial states are not measurements.
+- **Closed-board execution:** the [completed capture][board-host] reaches the
+  scenario endpoint, but the producer waveform gate fails: reset release precedes
+  the saved window. It also uses the legacy receiver observer. Capture from time
+  zero with corrected rising-RxC sampling; review startup and valid-supply behavior
+  explicitly. Completion and bounded host screens do not establish qualification.
 - **Host and cable applicability:** [load screening][host-loads] exercises explicit
   capacitance/leakage assumptions. [Filter checks][filter] verify generated winding
   hypotheses, while [D104 switching checks][host-switching] expose unqualified
@@ -84,10 +71,11 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
+[klu]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-klu-strict/assessment.json
+[tight-truncation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-strict-trtol-point1/assessment.json
 [analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-matched-trtol/assessment.json
 [modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json
 [truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-transition-audit/assessment.json
-[driver-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-driver-boundary/assessment.json
 [reset-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-minbreak-fine/assessment.json
 [reset-control]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-default-spacing/assessment.json
 [rising-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-fine/assessment.json
@@ -96,7 +84,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 [u856]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/u856_limits.json
 [spacing-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-minbreak-25ns/assessment.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
-[board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load/assessment.json
+[board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load-long/assessment.json
 [host-loads]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loads/assessment.json
 [filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json
 [host-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json

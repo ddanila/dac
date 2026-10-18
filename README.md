@@ -40,9 +40,15 @@ Disk writes are off by default. Enabling them changes only a session copy; **Exp
 
 ## What is qualified
 
-Robotron cold boot, keyboard, file creation, reading, text/binary copying, export/reboot and deletion pass bounded native checks. Native and WASM boot pixels and complete session disks after create/read/copy match exactly. VJUGA matches a bounded Juku boot framebuffer in both native decode modes. The viewer has automated power/reset/input/media recovery tests and inspected desktop/mobile layouts.
+The [capability matrix](docs/robotron/capabilities.md) owns Robotron behavior and
+remaining limits; the [qualification guide](docs/robotron/emulation-qualification.md)
+links reproducible checks and source-bound results. Reference-emulator agreement
+does not establish specimen timing, wiring or firmware identity.
 
-The cores remain experimental. Robotron has timed FDC/DMA/SIO/CTC behavior and scanline 8275 output with scheduled byte fetches, attributes and cursor. Independent MAME checks cover historical text/raster checkpoints and a two-drive file copy; exact specimen timing and wiring remain unverified. Juku accepts one key contact at a time; clock rollover is covered by focused native and WASM tests. No full hardware-fidelity claim is made. Focused session/media tests cover Chromium, Firefox and Playwright WebKit; this is not qualification of every retail Safari version. See [emulation validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md).
+Juku accepts one key contact at a time; VJUGA has a bounded boot profile. See
+[core validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md)
+for native/WASM comparisons. Browser checks cover Chromium, Firefox and Playwright
+WebKit, not every retail Safari version.
 
 ## Models and provenance
 
@@ -88,10 +94,9 @@ rotor display. The translucent disk and estimated arm geometry aid inspection.
 See [drive timing and format limits](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md)
 for the core's behavior and remaining approximations.
 
-Additional validation: `npm run test:cross` runs the focused Firefox/WebKit suite
-(after `npx playwright install firefox webkit`). CI runs Firefox on Linux and WebKit on macOS. The core's optional application
-regression covers WordStar editing, Turbo Pascal compilation/execution, drive-to-
-drive PIP copying and printer output using the bundled reference disk.
+Run `npm run test:cross` for focused Firefox/WebKit checks after
+`npx playwright install firefox webkit`. Workflow files own CI browser/platform
+selection; the qualification guide owns optional historical application checks.
 
 ## Model review and CI
 

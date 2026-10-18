@@ -3,7 +3,7 @@
 Status: incomplete. Digital reference comparisons and synchronized exports are
 implemented; physical reconstruction and full-board electrical qualification
 remain open. These are active desk-work tasks, not established hardware blockers.
-The [status guide](keyboard-controller-progress.md) points to authoritative
+The [workflow guide](keyboard-controller-progress.md) points to authoritative
 artifacts; the [requirement audit](keyboard-controller-verification.md) separates
 remaining proof from observations that may eventually need the specimen.
 
@@ -31,26 +31,20 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Isolate the analog transition failure.** The strict-tolerance solver audit
-   identifies an inductor truncation rejection after a successful Newton solve.
-   Analog-only replay with matched effective truncation control also fails near
-   the transition. Preserve implicit solver settings when removing HDL devices;
-   earlier replay completion used a looser default. The logged coupled transition
-   has no nearby pending breakpoint. Investigate analog integration and device
-   response while retaining absolute-time trajectory differences.
-   Preserve failed captures and existing accuracy criteria.
-3. **Constrain device dynamics.** Use independent device evidence for oscillator
-   startup and host-buffer switching/loading. Keep primary, comparison and
-   reference devices separate. Numerical convergence and selected DC passes do
-   not establish that a model applies to the installed device.
-4. **Qualify the coupled reference board.** Corrected rising-RxC service checks
-   for single press, reset and modifier pass logical, sampled-stability and
-   serial-edge refinement gates under their declared assumptions. Complete the
-   remaining scenarios, voltage convergence and device qualification. Obtain a
-   completed closed-board capture, reviewing startup and the recorded receiver
-   window separately; a timeout is incomplete evidence. Qualify oscillator phase,
-   receiver levels/loading, bus timing and supply recovery without discarding
-   startup or aligning away phase errors.
+2. **Resolve numerical failures.** Investigate analog integration and device
+   response using matched effective solver controls. The transition audit and
+   analog-only replay narrow the investigation but do not establish its cause.
+   Preserve failed captures, absolute-time comparisons and acceptance budgets.
+3. **Constrain device dynamics.** Qualify oscillator startup and host-buffer
+   switching/loading against independent device evidence. Keep primary,
+   comparison and reference devices separate; numerical convergence alone does
+   not establish applicability to the installed device.
+4. **Qualify the coupled reference board.** Service checks establish selected
+   logical and timing behavior, while voltage convergence remains open. A
+   closed-board scenario now completes, but its legacy receiver observer and
+   missing startup waveform prevent acceptance. Capture from time zero with
+   corrected rising-RxC sampling, then qualify the remaining scenarios,
+   oscillator phase, receiver levels/loading, bus timing and supply recovery.
 5. **Identify residual specimen dependencies.** Exhaust photographs, package
    drawings and published circuit constraints first. For each remaining ambiguity,
    state the alternatives and the observation that would distinguish them.
@@ -153,9 +147,8 @@ fits its existing assembly and inspection views.
 - Couple schematic-derived analog sections to HDL, qualify device models against
   published limits, and test timestep convergence, CPU input levels, bus timing
   and supply recovery independently of firmware output agreement.
-- After the peripheral comparison works, select and qualify an independent CPU
-  HDL model for full-board firmware execution. Record which shared components
-  limit the independence of each comparison.
+- Qualify the selected independent CPU HDL model for full-board firmware
+  execution. Record which shared components limit comparison independence.
 
 Exit criterion: failures identify the first differing signal and clock and retain
 a reproducible stimulus plus waveform. Logical and clock-relative agreement is
