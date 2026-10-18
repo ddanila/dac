@@ -5,7 +5,7 @@
 Under **Diagnose hardware → Download diagnostic report**, download a checksummed
 JSON envelope containing the DAC commit, emulator SHA-256, model identity,
 firmware identity, current hardware settings, current inspection view/selection/
-measurement and up to 512 already captured bus events. Capture events in the
+measurement and already captured bus events. Capture events in the
 existing timeline first; export does not silently start capturing or pause the
 machine. Mutable state is copied at one worker boundary before asynchronous
 hashing, including optional snapshots/disks.
@@ -26,7 +26,7 @@ through the drive gain. Loop smoothing is a playback effect; original owner reco
 
 Sound controls retain mute settings separately from the original levels;
 solo is temporary. Restore defaults clears both. Fan, keyboard and switch previews
-play at most 1.5 seconds of the owner's recordings, require enabled audio and do
+play short excerpts of the owner's recordings, require enabled audio and do
 not operate the machine. The synthesized drive sounds have no recorded preview.
 Audio context state and resume failures are shown alongside a Resume audio button.
 
@@ -47,6 +47,15 @@ the original and recording its identity, points and distance as provenance.
 A nearest surface may represent a different physical feature: inspect it before
 using the measurement. Old records without fingerprints are labelled accordingly.
 No automatic cross-version remapping or overwrite occurs.
+
+Remap previews show orange original endpoints, blue projected endpoints and white
+displacement arrows. Original placement comes from the saved displayed/assembled
+matrix; older records lacking matrices use the replacement placement explicitly.
+The proposed points follow the displayed assembly. Inspection pose changes can
+therefore contribute to the visible displacement. Projections over **2 local model
+units**, or missing/ambiguous original part matches, require a review checkbox
+before saving. That threshold is a review aid, not a fit tolerance or a new
+physical measurement. Originals remain unchanged.
 
 ## Cable qualification
 
@@ -73,15 +82,6 @@ timing drift are reported separately. The preview is bounded.
 Repeated operations can align ambiguously; this is not proof of equivalent guest
 execution. Attachments are not rendered, restored or uploaded. Malformed timeline
 lengths and oversized metadata are rejected; clearing a report releases it.
-
-Remap previews show orange original endpoints, blue projected endpoints and white
-displacement arrows. Original placement comes from the saved displayed/assembled
-matrix; older records lacking matrices use the replacement placement explicitly.
-The proposed points follow the displayed assembly. Inspection pose changes can
-therefore contribute to the visible displacement. Projections over **2 local model
-units**, or missing/ambiguous original part matches, require a review checkbox
-before saving. That threshold is a review aid, not a fit tolerance or a new
-physical measurement. Originals remain unchanged.
 
 ## Keyboard workload
 

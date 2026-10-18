@@ -28,36 +28,25 @@ reconstruction requirements below remain in scope.
 
 ## Next work and acceptance
 
-1. **Finish supported physical paths.** Extend the data/clock reconstruction from
-   visible pull-up branches through the driver, cable and filter. Resolve conflicts
-   with estimated footprints from the photographs; preserve unsupported
-   continuations as unresolved. Use the established X1 row constraints while
-   keeping A8 and BR2 terminal identity separate from observed geometry. Use the
-   KWH catalog identification for comparison R1 only; primary R1 and R2 still
-   need independent package and terminal correspondence. Photo-supported bank
-   and axial bodies can remain visual observations until hidden lead entries
-   are resolved. The passing nominal assembly audit does not close this path.
-2. **Constrain gate transition behavior.** Matched operating-state probes and
-   independent Xyce transfer replay direct attention to device applicability,
-   rather than an ngspice-only artifact. Seek independently specified transition
-   characteristics and review circuit assumptions before further parameter searches.
-   Keep primary К555ЛА3, comparison D100D and reference DL000 conditions separate;
-   a TI-only endpoint failure is not a universal device rejection. Selected DC
-   passes and input-diode sensitivity have not resolved oscillator startup.
-   Incompletely specified typical curves cannot supply exact fitting targets.
-3. **Qualify the coupled reference board.** Once device applicability is supported,
-   resolve clock-phase convergence, receiver levels and bus timing, then run the
-   remaining firmware scenarios. Review cable/filter assumptions, including the
-   uncoupled default and coupling hypotheses, before claiming complete output-path
-   behavior. Extend the sourced host passive network through the D104 input
-   buffers, constrain their loading and transient limits, then integrate it into
-   firmware qualification. Release intervals alone do not establish valid voltages.
-   Assess supply recovery separately from initial power-on reset. Preserve failing
-   startup and absolute phase in acceptance checks.
+1. **Finish supported physical paths.** Reconcile the driver/cable/filter copper
+   with registered photographs and the netlist. Resolve discrete terminal mapping
+   and estimated footprint conflicts independently of visual body placement.
+   Keep unsupported continuations and specimen differences explicit.
+2. **Constrain device dynamics.** Use independent device evidence to resolve
+   oscillator startup and host-buffer switching/loading. Preserve the separate
+   primary, comparison and reference device conditions. DC passes, converged
+   numerical results and generic clamp behavior do not establish applicability.
+3. **Qualify the coupled reference board.** The experimental host network is
+   integrated into the service firmware fixture; logical agreement and sampled
+   output stability pass for the retained single-press run. Next qualify its
+   device dynamics, receiver levels, loading and timestep convergence, then carry
+   the supported boundary into closed-board runs. Resolve oscillator phase and
+   bus timing, cover the remaining firmware scenarios and test supply recovery.
+   Preserve failing startup and absolute phase in acceptance checks.
 4. **Identify residual specimen dependencies.** Exhaust existing photographs,
-   package drawings and published circuit constraints first. For each remaining
-   ambiguity, state the alternatives and the observation that would distinguish
-   them. Standard S600 permits reference work to continue without the replacement ROM.
+   package drawings and published circuit constraints first. State the remaining
+   alternatives and the observation that would distinguish them. Standard S600
+   permits reference work to continue without the replacement ROM.
 
 The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 records the findings behind this sequence and links their evidence. Detailed
@@ -190,11 +179,9 @@ above, before expanding reconstruction and qualification to the entire controlle
 
 ## Completion and remaining physical evidence
 
-Completion requires the physical reconstruction, synchronization and behavioral
-requirements above, including the physical data/clock path and qualified coupled
-reference-board scenarios. Passing digital comparisons or a nominal analog run
-alone does not complete the plan. The audit must identify any remaining unresolved
-routing and model limits explicitly.
+Completion requires the phase exit criteria above, including the physical
+data/clock milestone and qualified coupled reference-board scenarios. The audit
+must identify remaining unresolved routing and model limits explicitly.
 
 Exact specimen fidelity additionally requires confirming dimensions, revision,
 replacement-ROM contents and relevant measured behavior. These confirmations do

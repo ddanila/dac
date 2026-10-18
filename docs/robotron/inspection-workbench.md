@@ -31,7 +31,7 @@ and never changes printed-and-verified status.
 
 Power on, then open Diagnose hardware / Z80 debugger. Pause keeps power/state;
 Next instruction boundary advances the CPU and peripherals to the next boundary,
-with a 100,000-clock limit. Mid-instruction pauses finish that instruction first.
+with a bounded clock limit. Mid-instruction pauses finish that instruction first.
 Changed registers and bytes are highlighted against the previous inspection.
 Run to address stops at an opcode-fetch boundary; fetch has already happened.
 Arming an execution breakpoint preserves the current pause/run state. Clearing
@@ -43,8 +43,9 @@ address. Mid-instruction PC may point into operands; it is not reconstructed.
 
 In the circuit panel select a trigger and Stop on trigger, then arm it. A paused
 machine must be resumed. The stop occurs after the clock containing the bus event,
-not before an instruction. Capture is bounded to 512 events. Recording/replay and
-debug stepping are deliberately separate; finish one before starting the other.
+not before an instruction. See the
+[capture workflow](inspection-and-checkpoints.md#triggered-event-capture) for limits.
+Recording/replay and debug stepping are separate; finish one before starting the other.
 Debugger pause/arm settings are host controls, not checkpoint guest state.
 
 ## Printer and controller limits

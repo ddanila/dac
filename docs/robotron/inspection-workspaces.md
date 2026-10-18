@@ -1,16 +1,13 @@
 # Portable inspection views and staged covers
 
-- Case cover, fascia, markings and the entire monitor lift first, then translate
-  rearward. The monitor upper shell separately lifts before moving forward.
-  Attachments and illustrative cable endpoints follow each frame. Reversing a
-  toggle reverses the route; reduced motion jumps directly to the final pose.
-- `3d-models/inspection-paths.json` is the source of both animation and sampled
-  collision checks. The audit samples case attachments against PSU/logic solids and the monitor
-  upper shell against tube/chassis/components. See its report for coverage. These are
-  museum inspection routes, not a physical disassembly instruction. Fasteners,
-  all-pairs collision coverage, continuous sweeps and real cable slack remain
-  outside the claim. Existing cable checks retain their explicit entry exceptions.
-- Save up to 20 named inspection views under **Section view → Saved inspection
+- Cover and monitor inspection routes follow canonical
+  `3d-models/inspection-paths.json`. Attachments follow their assembly; reversing
+  a toggle reverses the route, while reduced motion jumps to the final pose.
+  These are museum viewing aids, not physical disassembly instructions. See
+  [movement and evidence](inspection-workbench.md#evidence-and-movement) for
+  mechanical qualification limits and [cable review](diagnostics-and-model-review.md#cable-qualification)
+  for the modeled unplugging sequence.
+- Save named inspection views under **Section view → Saved inspection
   views**. Each includes camera, opened covers, isolation, cutaway settings,
   component selection and the current two-point measurement. Restore checks the
   model identity. Selection and new measurements survive page reloads.

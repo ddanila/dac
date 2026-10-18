@@ -49,3 +49,12 @@ published device constraints before classifying a gap as a hardware dependency.
 Session disk writes are opt-in and affect copies. Browser storage is not an
 independent backup: provide export, validate identity/integrity before restore,
 and preserve the running session if validation fails.
+
+## Documentation ownership
+
+Keep guides focused on use, design decisions, evidence limits and acceptance.
+Plans own scope and next steps; audits link remaining claims to their evidence.
+Inventories, constants, source hashes and numerical results belong in code or
+machine-readable manifests/reports. Link to their owner instead of copying them.
+Use git for implementation history; avoid pass counts, completion percentages
+and chronological progress entries in maintained guides.

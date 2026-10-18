@@ -34,9 +34,9 @@ The system boot ROM, CAS PROM and transplanted keyboard EPROM need dumps and
 hashes. Board revision/straps, drive suffix/jumpers, oscillator frequencies,
 monitor adjustments and physical timing need identification or measurements.
 Owner pictures establish appearance, not firmware contents or circuit continuity.
-Reference software tests do not identify unread specimen ROMs. Existing photos
-and published references should be exhausted before requesting new measurements. Model visual approval never
-changes a part's separate **printed and verified** classification.
+Reference software tests do not identify unread specimen ROMs. Exhaust existing
+photos and published references before requesting new measurements. Model visual
+approval never changes a part's separate **printed and verified** classification.
 
 ## Qualification strategy
 

@@ -53,16 +53,20 @@ below are relative to the CAD controller directory unless stated otherwise.
   undershoot differs materially. The default remains uncoupled; receiver protection,
   physical winding parameters and ferrite behavior remain unqualified. See the
   [filter assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json).
-- **Host receiver:** factory and redrawn motherboard schematics place chokes,
-  pull-ups and RC filters before D104 buffers, rather than connecting the cable
-  directly to SIO inputs. The implemented passive network passes an independent
-  impedance check and changes transient extrema. Original RFT D104D conditions
-  reject the passive-only host fixture with the generic 7406 candidate at doubled
-  cable load. An explicit 7404 buffer candidate passes selected DC checks and
-  brings sampled input extrema within static limits, but its clamp dynamics,
-  propagation and SIO loads remain unqualified. Firmware integration is open. See
-  the [host input review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver/assessment.json)
-  and [buffer candidate assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer/assessment.json).
+- **Host receiver:** sourced motherboard passives and an explicit generic 7404
+  candidate now participate in the S600 service firmware simulation. The retained
+  single-press run passes logical comparison and sampled output stability, with
+  external CPU clock/reset. This closes experimental service integration, not
+  full-board acceptance. The [firmware observation](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer/assessment.json)
+  identifies the run and locally retained waveform boundary.
+- **Receiver applicability:** the [RFT input review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver/assessment.json)
+  rejects a passive-only candidate at doubled cable load. Adding the
+  [buffer candidate](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer/assessment.json)
+  brings sampled fixture extrema within static limits. The
+  [manufacturer switching-fixture review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json)
+  converges numerically but cannot qualify generic storage/clamp dynamics from
+  incomplete fixture conditions. SIO loading, transient behavior and coupled
+  firmware convergence remain open; digital agreement cannot waive them.
 - **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
   DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
   К555ЛА3 conditions. Selected DC passes, including a separate input-diode
@@ -79,10 +83,6 @@ below are relative to the CAD controller directory unless stated otherwise.
   calibration. Published transfer conditions leave fixture choices unresolved.
   See the [independent transfer review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json)
   and its linked source/fixture assessment.
-- **Completion:** digital agreement and synchronized geometry remain useful
-  foundations. Neither closes the physical data/clock milestone nor full-board
-  electrical acceptance. These gaps still have desk-work routes; missing specimen
-  ROM contents alone are not a blocker.
 
 ## Resolve at the desk first
 
