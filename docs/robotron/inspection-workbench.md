@@ -4,7 +4,6 @@
 
 Power and machine identity stay visible. Choose Use computer, Inspect model or
 Diagnose hardware to narrow the secondary tools; All controls remains the default.
-The groups move existing controls without cloning their listeners or state.
 
 ## Cutaways
 
@@ -14,7 +13,6 @@ meshes with closed, unambiguous intersection loops, preserving nested holes.
 Open, tangent, duplicate-edge and oversized contours are skipped. These are visual
 section faces, not canonical CAD geometry; the cap count is reported explicitly.
 Transparency and assembly separation can remove caps or change the section.
-Caps are rebuilt on inspection changes, not on every emulator frame.
 
 ## Measurements
 
@@ -34,6 +32,10 @@ and never changes printed-and-verified status.
 Power on, then open Diagnose hardware / Z80 debugger. Pause keeps power/state;
 Next instruction boundary advances the CPU and peripherals to the next boundary,
 with a 100,000-clock limit. Mid-instruction pauses finish that instruction first.
+Changed registers and bytes are highlighted against the previous inspection.
+Run to address stops at an opcode-fetch boundary; fetch has already happened.
+Arming an execution breakpoint preserves the current pause/run state. Clearing
+breakpoints removes execution and bus stops.
 Registers, bounded disassembly and a 128-byte hex/ASCII memory window use mapped
 reads with no guest bus side effects. Each memory row shows read/write space and
 physical offset separately. At a boundary, disassembly starts at the fetch bus
@@ -54,8 +56,31 @@ This is a bounded virtual receiver, not an emulation of a particular printer.
 Readiness changes are recorded and survive snapshot/reset. See the
 [core wiring and API notes](https://github.com/ddanila/dac-emulation/blob/main/docs/debugger-printer.md).
 
-The mixed-size Read Track investigation did not establish enough evidence to
-invent unavailable gap/flux bytes. That limitation remains explicit. Expanded
-format tests cover reset, motor-off and door opening before and after a completed
-sector, preserving unrelated bytes and the other drive. See
+Read Track does not reconstruct unavailable gap/flux bytes. See
 [controller evidence](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md).
+
+## Measurement files and frames
+
+Measurements can use displayed or assembled positions; component deltas can use
+world, model or part-A axes. These choices do not turn model geometry into a
+specimen measurement. Vertex snapping selects a triangle corner, which need not
+be an engineering landmark. Hidden or clipped surfaces cannot be picked.
+
+Measurement JSON preserves model identity, part references, points and transforms.
+Import validates identity and parts, then restores points onto the current view;
+it does not restore an old view. Named measurements are browser-local and included
+in [collection backups](inspection-workspaces.md). Export a portable copy before
+clearing browser storage. For changed geometry, use the explicit
+[remapping workflow](diagnostics-and-model-review.md#relationships-and-measurements).
+
+## Evidence and movement
+
+Evidence colours distinguish owner dimensions, owner photographs, comparative
+sources and unmapped parts. The viewport legend explains them; selecting a surface
+opens its evidence. Evidence and measurement modes suppress machine-operation
+clicks. Neither colour nor visual approval establishes physical print verification.
+
+The [canonical mechanical review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/checks/mechanical-review.md)
+records photo and sampled motion checks. Inspection paths are visual aids, not
+physical disassembly instructions or continuous clearance certification. Hidden
+mounts, tolerances and actual cable slack remain unverified.

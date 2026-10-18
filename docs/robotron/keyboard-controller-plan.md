@@ -33,17 +33,19 @@ reconstruction requirements below remain in scope.
    constrain candidate attachments with package drawings, placement references
    and the schematic. Record alternatives and rejected correspondences in the
    evidence ledger. Promote a route only when its complete attachment is supported.
-2. **Separate visible geometry from electrical identity.** Represent observed BR2
-   geometry without guessing source/CPU terminal order. Body or bridge placement
-   can progress while numbered pads remain unresolved; use explicitly unassigned
-   geometry until a native electrical placement is justified. Closed-link
+2. **Resolve electrical identity without losing supported geometry.** BR2's
+   observed wire is exported and displayed as unassigned geometry. Resolve its
+   source/CPU terminal correspondence before assigning numbered pads or nets.
+   Apply the same separation to remaining body and bridge observations; closed-link
    continuity alone cannot determine terminal order.
-3. **Constrain electrical models from published device evidence.** Fit and check
-   DC and switching behavior under the documented supply, load and selection-group
-   conditions, distinguishing DC from AC gain. Use independent conditions for
-   validation where available. Retain supported parameter ranges and sensitivity
-   results rather than claiming a unique historical transistor model. Do not tune
-   the oscillator to the emulator's frequency.
+3. **Diagnose the gate model before extending its fit.** Candidates passing the
+   retained isolated DC and switching checks do not sustain the reference
+   oscillator. Bidirectional DC sweeps also expose branch-dependent solutions.
+   Check circuit equations, internal currents and solver behavior before treating
+   those branches as physical behavior or fitting further parameters. Then validate
+   supported parameter ranges under published supply, load and selection-group
+   conditions, including independent conditions where available. Isolated device
+   checks are necessary but insufficient; do not tune to the emulator's frequency.
 4. **Qualify the coupled reference board.** Resolve numerical startup/clock-phase
    convergence, receiver levels and bus timing before accepting full firmware
    scenarios. Investigate startup uncertainty separately from steady-state
@@ -55,6 +57,11 @@ reconstruction requirements below remain in scope.
    observation would separate them. Actual dimensions, replacement-ROM identity
    and measured specimen timing remain separate confirmations. Standard S600
    permits reference-board work to continue meanwhile.
+
+The [analog guide's retained evidence](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence)
+records the device checks, oscillator failures and branch diagnostics. These
+findings narrow the next investigation; they do not establish a hardware blocker
+or qualify a replacement for the default gate model.
 
 This sequence does not guarantee recovery of every hidden route or exact device
 parameter. An unresolved claim becomes an external dependency only when the

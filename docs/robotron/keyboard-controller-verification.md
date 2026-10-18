@@ -36,11 +36,11 @@ not a second inventory here.
 | Open question | Desk-work route | Residual observation if still ambiguous |
 | --- | --- | --- |
 | Withdrawn CPU track and BR1 attachments | Follow overlapping photos; independently check pin numbering and cross-side correspondence | Close-ups showing complete joints; distinguishable continuity readings |
-| BR2 placement and source/CPU identity | Register bridge geometry independently of terminal order; constrain reset-source lead candidates with package drawings | Visible joints or observations that distinguish the two ends; a closed bridge alone cannot do so |
+| BR2 source/CPU identity | Preserve the exported unassigned wire; constrain terminal correspondence with lead paths and package drawings | Visible joints or observations that distinguish the two ends; a closed bridge alone cannot do so |
 | Output-clock WR/RD discrepancy | Compare complete trace paths and keep published revisions separate | Distinguishable physical connection to the CPU pins |
 | Connector and cable/filter path | Reconcile placement, mating-face orientation, winding and trace evidence | Connector markings, wire and winding-terminal observations |
 | Discrete pads and underside registration | Use independent landmarks and lead trajectories; body ends are not hole centres | Hidden lead-entry close-ups and measured dimensions |
-| Device models and full-board electrical behavior | Datasheet-constrained fitting, parameter-range sensitivity, independent validation and paired solver checks | Targeted captures only for behavior not constrained by published evidence |
+| Device models and full-board electrical behavior | Diagnose branch-dependent gate solutions and oscillator failure, then validate device ranges and coupled behavior | Targeted captures only for behavior not constrained by published evidence |
 | Specimen ROM and timing | Continue reference qualification with standard S600; keep replacement-ROM identity separate | Repeated ROM reads and raw clock/reset/serial captures with setup details |
 
 Comparison photographs depict another specimen. Register and compare them before

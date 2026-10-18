@@ -15,6 +15,12 @@ Checkpoints are included in collection backup preview/selective restore. Custom
 firmware remains supplied separately. A checkpoint is distinct from the existing
 single quick-save slot and from input recordings.
 
+Individual `.daccheckpoint` files can be renamed, exported and imported. Import
+adds an entry without restoring it. Compatibility preview checks machine, firmware
+and core availability; custom firmware bytes are not embedded. Pending or damaged
+entries cannot be restored or exported but remain deletable. Restore revalidates
+the payload, and collection import is atomic.
+
 ## Graphics recovery, cuts and sharing
 
 A lost WebGL context displays a notice and suspends graphics submission while the
