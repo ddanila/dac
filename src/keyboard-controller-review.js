@@ -128,6 +128,11 @@ export function installKeyboardControllerReview(scene){
    }
    if(kind==='component'&&data.componentEvidence?.[value]){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
+    if(value==='X1'&&data.connectorReview){
+     const review=data.connectorReview,detail=document.createElement('p');detail.dataset.connectorReview='';
+     detail.textContent=`Connector geometry needs correction: both observed lead rows exit the same housing side. Projected lead-end separation is ${review.projectedRowSeparationMm.minimum.toFixed(1)}–${review.projectedRowSeparationMm.maximum.toFixed(1)} mm; inherited pad-row separation is ${review.inheritedPadRowSeparationMm.maximum.toFixed(1)} mm. These are model-based estimates; raised lead bends do not establish hole centres or terminal order. `;
+     const link=document.createElement('a');link.href=`${data.source.cad.repository}/blob/${data.source.cad.revision}/models/robotron-1715m/keyboard-controller/generated/connector-review.json`;link.textContent='Connector evidence review';link.target='_blank';link.rel='noopener';detail.append(link);pins.append(detail);
+    }
     const pkg=data.evidence.packageReferences?.find(p=>p.id===evidence.packageReference);
     if(pkg){
      const detail=document.createElement('p');detail.dataset.packageReference=pkg.id;

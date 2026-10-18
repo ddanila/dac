@@ -17138,6 +17138,132 @@
     "toleranceMm": 1.25,
     "withinPhotoTolerance": false
   },
+  "connectorReview": {
+    "inheritedPadRowSeparationMm": {
+      "maximum": 14.0,
+      "minimum": 14.0
+    },
+    "nextEvidence": "Resolve lead-to-hole positions and numbered terminal order before replacing the inherited native footprint. Both visible lead rows emerge from the same housing side.",
+    "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+    "photoSource": "photo-top",
+    "pixelUncertainty": 10,
+    "projectedLeadEndRowsMm": {
+      "housingFar": [
+        [
+          -26.495524849438922,
+          13.805622168054406
+        ],
+        [
+          -24.035334664254947,
+          13.992347151949886
+        ],
+        [
+          -21.690448772752106,
+          13.889840091317271
+        ],
+        [
+          -19.304834452686787,
+          13.969597624722299
+        ],
+        [
+          -17.03174230470267,
+          14.054352418016315
+        ],
+        [
+          -14.568995084472647,
+          14.057255604563682
+        ],
+        [
+          -12.294231594951107,
+          14.105249997349722
+        ],
+        [
+          -9.82961966355735,
+          14.071340726900287
+        ],
+        [
+          -7.364192046383312,
+          14.000580954066988
+        ],
+        [
+          -5.086662178240145,
+          14.011753730406966
+        ],
+        [
+          -2.656280387001824,
+          14.016306480590714
+        ],
+        [
+          -0.26276208270710105,
+          14.022517928794302
+        ],
+        [
+          2.1318434939211577,
+          14.02873219859143
+        ]
+      ],
+      "housingNear": [
+        [
+          -25.973279196214687,
+          9.367626575071037
+        ],
+        [
+          -23.5891604500699,
+          9.446354430956996
+        ],
+        [
+          -21.24254592696765,
+          9.453189168082993
+        ],
+        [
+          -18.971684949767134,
+          9.352946104097247
+        ],
+        [
+          -16.622281478814344,
+          9.433394355282623
+        ],
+        [
+          -14.235021036720525,
+          9.40173527174044
+        ],
+        [
+          -11.771911900387003,
+          9.256218717535194
+        ],
+        [
+          -9.495503433874491,
+          9.303205538657465
+        ],
+        [
+          -6.915268819841179,
+          9.263128559213303
+        ],
+        [
+          -4.713030625299872,
+          9.276627914122832
+        ],
+        [
+          -2.2826912377839244,
+          9.206356439631302
+        ],
+        [
+          0.18745083479222222,
+          9.208127512091318
+        ],
+        [
+          2.4686870528444453,
+          9.218274553704006
+        ]
+      ]
+    },
+    "projectedRowSeparationMm": {
+      "maximum": 4.877081321441057,
+      "minimum": 4.459202661227384
+    },
+    "qualifiedForPadPlacement": false,
+    "scope": "Unnumbered visible lead ends, not qualified hole centres. Projection uses the nominal board envelope; dimensions are estimates. Near/far rows are not assigned to A/B or schematic nets."
+  },
   "evidence": {
     "schema": 1,
     "sources": [
@@ -18401,8 +18527,132 @@
       "referenceType": "MATRIX_CONNECTOR",
       "placementEvidence": "inherited-photo-estimate",
       "pinEvidence": "connector-label-or-semantic-terminal",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Inherited footprint and schematic terminal names remain provisional. Physical review identifies a same-side lead arrangement inconsistent with the inherited visual geometry; see physicalReview and generated/connector-review.json. No measured continuity or numbered-pad placement is established.",
+      "placementAuthority": "controller.kicad_pcb",
+      "physicalReview": {
+        "status": "inherited-geometry-conflicts-with-visible-lead-arrangement",
+        "photoSource": "photo-top",
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "pixelUncertainty": 10,
+        "leadEndRowsPixels": {
+          "housingNear": [
+            [
+              1595.0,
+              1897.5
+            ],
+            [
+              1597.5,
+              1929.0
+            ],
+            [
+              1599.0,
+              1960.0
+            ],
+            [
+              1599.0,
+              1990.0
+            ],
+            [
+              1601.5,
+              2021.0
+            ],
+            [
+              1602.5,
+              2052.5
+            ],
+            [
+              1602.0,
+              2085.0
+            ],
+            [
+              1604.0,
+              2115.0
+            ],
+            [
+              1605.0,
+              2149.0
+            ],
+            [
+              1606.5,
+              2178.0
+            ],
+            [
+              1607.0,
+              2210.0
+            ],
+            [
+              1608.5,
+              2242.5
+            ],
+            [
+              1610.0,
+              2272.5
+            ]
+          ],
+          "housingFar": [
+            [
+              1655.0,
+              1890.0
+            ],
+            [
+              1659.0,
+              1922.5
+            ],
+            [
+              1659.0,
+              1953.5
+            ],
+            [
+              1661.5,
+              1985.0
+            ],
+            [
+              1664.0,
+              2015.0
+            ],
+            [
+              1665.5,
+              2047.5
+            ],
+            [
+              1667.5,
+              2077.5
+            ],
+            [
+              1668.5,
+              2110.0
+            ],
+            [
+              1669.0,
+              2142.5
+            ],
+            [
+              1670.5,
+              2172.5
+            ],
+            [
+              1672.0,
+              2204.5
+            ],
+            [
+              1673.5,
+              2236.0
+            ],
+            [
+              1675.0,
+              2267.5
+            ]
+          ]
+        },
+        "order": "Cable-facing end to ROM-facing end; geometric sequence only, not terminal numbers.",
+        "observation": "Both lead rows emerge from the same side of the connector housing. The near-row annotations may be elevated lead bends rather than hole centres. The inherited opposite-side lead model and pad-row separation are not supported by these observations.",
+        "comparisonSources": [
+          "comparison-photo-080411074",
+          "comparison-photo-080415534"
+        ],
+        "comparisonObservation": "Separate-specimen oblique views corroborate two stacked contact rows and bent tails exiting one housing side. Handwritten A/B and end markings are visible but do not independently establish primary-specimen terminal numbering.",
+        "limits": "No contact-to-net mapping or replacement native pad placement is inferred. Contact pitch, hole centres, A8 treatment and exact housing dimensions remain for review."
+      }
     },
     "XT1": {
       "referenceType": "KEYBOARD_CABLE",
@@ -19632,11 +19882,11 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "2e66a4b5f906594377229022c70a1fe6583ff3de"
+      "revision": "908885a24467b21296ef34721510389eac03888b"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "3672deb95984d0a15618a50dd87ed48f3488c2f9"
+      "revision": "43546b37efcfc99c2908b1017c0bf8eb1590ced6"
     },
     "files": {
       "layout": "acafdadfd539614d38f84f47c1ceccc3835ff2e4efb0a61afc2be12432ad9fc4",
@@ -19644,8 +19894,9 @@
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
+      "connectorReview": "c9eb3bd11a4457a1b104a145f864e48ec87c4efeb13ed2d674a443febf1d24cb",
       "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
-      "componentEvidence": "e47f23cacc8bf2a029e04de63e687a107fbeed4332df9c8619272d9e962dec38"
+      "componentEvidence": "062bf1abe2a9ccbb20fdbbe7ac0c63566577cc06710bc74f9e2f84932c4742a7"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "0eaf98e26aa710234a89aa0d8846ddad74e27ee329cc013e31fb694641d30529"
