@@ -53,17 +53,23 @@ below are relative to the CAD controller directory unless stated otherwise.
   input stress and a clock-width screen at an assumed threshold. The
   [receive-edge review][receive-edge] identifies a falling-edge observer error:
   U856 samples rising RxC. The [corrected service pair][rising-host] passes
-  logical, scenario, sampled-stability and serial-edge refinement checks. Its voltage bytes match the prior capture,
-  allowing source-bound voltage reviews to be reused; earlier falling-edge
-  stability results retain their original scope. [U856 source conditions][u856] constrain loading
-  and timing, but do not identify Schmitt thresholds or exact input I/V behavior.
-  The [modifier scenario][modifier-host] aborts at release in the host input
-  transistor, so the single-press result does not establish broader coverage.
-  Loaded voltage convergence and device applicability remain open.
+  logical, scenario, sampled-stability and serial-edge refinement checks. Matching
+  waveform hashes allow prior voltage reviews to be reused; earlier falling-edge
+  stability results retain their original scope. [U856 source conditions][u856]
+  constrain loading and timing, but do not identify Schmitt thresholds or exact
+  input I/V behavior. Device applicability remains open.
+- **Release coverage:** [modifier refinement][modifier-host] and [service reset][reset-host]
+  abort at scheduled release boundaries in the same host-input transistor.
+  Halving the modifier timestep reproduces the failure. Source review identifies
+  breakpoint spacing below floating-point time resolution as a hypothesis to
+  test, not a proven cause or physical circuit fault. Single-press success does
+  not establish these scenarios.
 - **Numerical agreement:** the [paired service review][paired-host] passes
-  serial-edge refinement but exposes substantial absolute-time voltage differences.
-  [Retained transition windows][transitions] associate selected maxima with small
-  edge shifts; they do not establish full-waveform convergence or physical timing.
+  serial-edge refinement, but loaded absolute-time voltage differences do not
+  decrease consistently with further refinement. [Retained transition windows][transitions]
+  associate selected maxima with small edge shifts; they do not establish
+  full-waveform convergence or physical timing. Investigate event scheduling
+  before relying on smaller timesteps alone.
 - **Closed-board execution:** the [execution assessment][board-host] retains a
   timed-out full scenario and a completed, unchanged-circuit startup diagnostic.
   This supports allowing more execution time, not declaring a hardware blocker.
@@ -80,13 +86,14 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
-[modifier-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier/assessment.json
+[modifier-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-fine/assessment.json
+[reset-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset/assessment.json
 [rising-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-fine/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [loaded-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-load/assessment.json
 [u856]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/u856_limits.json
-[paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer-fine/assessment.json
-[transitions]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-transition-windows/assessment.json
+[paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
+[transitions]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loaded-transition-windows/assessment.json
 [board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load/assessment.json
 [host-loads]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loads/assessment.json
 [filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json

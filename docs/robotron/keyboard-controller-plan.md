@@ -41,9 +41,10 @@ reconstruction requirements below remain in scope.
    support sampled input stress and nominal-threshold clock widths. The U856
    manual identifies rising RxC as the sampling edge; the corrected single-press
    service pair passes logical, sampled-stability and serial-edge refinement
-   checks. Resolve the modifier-release solver failure, investigate remaining
-   absolute-time voltage differences and complete scenario coverage. Earlier falling-edge comparisons
-   do not establish SIO receive behavior or full-waveform convergence.
+   checks. Investigate reset/modifier-release solver failures and event scheduling;
+   timestep refinement alone has not resolved either release coverage or loaded
+   voltage convergence. Complete scenario coverage while preserving absolute phase.
+   Earlier falling-edge comparisons do not establish SIO receive behavior.
    Obtain a completed closed-board capture with the existing circuit and adequate
    execution allowance, then review startup and the recorded receiver window
    separately. A timeout is incomplete evidence, not a demonstrated circuit fault.
