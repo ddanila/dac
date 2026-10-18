@@ -6,7 +6,8 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { visualTestPattern } from './ci-shards.mjs';
 export function scopeFor(files) {
-  if (files.length && files.every(file => /^docs\/.+\.md$/.test(file))) return 'docs';
+  if (files.length && files.every(file =>
+    ['README.md', 'MODEL-HISTORY.md'].includes(file) || /^docs\/.+\.md$/.test(file))) return 'docs';
 
   const visual = files.length && files.every(file =>
     ['tests/browser-three.js','tests/model-harness.html','scripts/review-robotron.mjs'].includes(file) ||

@@ -23,6 +23,9 @@ test('documentation scope excludes runtime, workflow and mixed changes', async()
  const {scopeFor}=await import('../scripts/ci-scope.mjs');
  expect(scopeFor(['docs/robotron/keyboard-controller-simulation.md'])).toBe('docs');
  expect(scopeFor(['docs/robotron/keyboard-controller-simulation.md','docs/robotron/keyboard-controller-plan.md'])).toBe('docs');
+ expect(scopeFor(['README.md','MODEL-HISTORY.md','docs/robotron/keyboard-controller-plan.md'])).toBe('docs');
+ expect(scopeFor(['README.md','src/main.js'])).toBe('full');
+ expect(scopeFor(['public/models/README.md'])).not.toBe('docs');
  expect(scopeFor([])).toBe('full');
  expect(scopeFor(['docs/robotron/keyboard-controller-simulation.md','src/main.js'])).toBe('full');
  expect(scopeFor(['docs/robotron/keyboard-controller-simulation.md','public/models/robotron-1715m/model.json'])).toBe('visual');
