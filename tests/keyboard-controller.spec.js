@@ -504,6 +504,10 @@ test('recorded waveform rejects mismatched connectivity and retries',async({page
 
 test('connector review exposes provisional geometry without assigning observed rows to nets',async({page})=>{
  expect(data.connectorReview.qualifiedForPadPlacement).toBe(false);
+ const selected=controllerSelection(data,'component','X1');
+ expect(selected.points).toEqual([]);
+ expect(selected.pins.every(p=>p.position===null)).toBe(true);
+ expect(selected.pins.length).toBeGreaterThan(0);
  expect(data.connectorTerminals.completeTerminalOrderResolved).toBe(false);
  expect(data.connectorTerminals.unresolvedRows).toEqual(['housingNear']);
  expect(data.connectorTerminals.referenceAbsentPins).toEqual(['A8']);
@@ -517,6 +521,8 @@ test('connector review exposes provisional geometry without assigning observed r
  await expect(detail).toContainText('both observed lead rows exit the same housing side');
  await expect(detail).toContainText('do not establish hole centres or terminal order');
  await expect(detail).toContainText('Near-row numbering remains unresolved');
+ await expect(panel.locator('[data-visual-connector="X1"]')).toHaveCount(Object.values(data.layout.visualConnectors.find(c=>c.ref==='X1').rows).flat().length);
+ await expect(panel.locator('[data-selection]')).toContainText('provisional native pad positions are omitted');
  await expect(detail.getByRole('link')).toHaveAttribute('href',new RegExp(data.source.cad.revision));
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A7');
  await expect(detail).toHaveCount(0);

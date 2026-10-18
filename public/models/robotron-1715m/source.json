@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "93cd161084c1d2f7aef53e19cf770f2fd7e0d2cf",
+  "revision": "11168c70cf05ffad90b77d96ad0d6d04f3119646",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "32d4534709766846ea7435333e86cf5178eca548fc4a06af229d3772bce870fb"
+      "sha256": "766310b37d8c5aacb9eb10727b1ebecb09d612f3d1e231d2e1d9e48208b66d52"
     },
     {
       "file": "LICENSE",
@@ -461,7 +461,7 @@
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
-      "sha256": "8a59ec18c7b308206f4c4485d38e0e087dcb0590abebdf14ef39f648adb32b96"
+      "sha256": "bd34e1e0c13cc381328efd26d775f69773357790a3d8e0c9a825d0e08e88da19"
     },
     {
       "file": "meshes/keyboard-controller-chips.stl",
@@ -477,7 +477,7 @@
     },
     {
       "file": "meshes/keyboard-controller-connectors.stl",
-      "sha256": "bcfb2149a182329c687ea240ce062d884547d60cba1df2abfe0c0c92b50b7583"
+      "sha256": "ad30549cb9a7f4a7c7cf4e02e2c8b4b777402ead359c02ff25fc93b9cd0b328e"
     },
     {
       "file": "meshes/keyboard-controller-caps.stl",
@@ -485,7 +485,7 @@
     },
     {
       "file": "meshes/keyboard-controller-metal.stl",
-      "sha256": "3b9fdbbc04fc00508aade20bda59c9748809bc6b0827288828e91bc402cb143d"
+      "sha256": "ae6105d9cbe6a6620a65a30d09853043abc672cf9936511438a8ccfef5dfb506"
     },
     {
       "file": "meshes/keyboard-controller-ink.stl",
@@ -657,7 +657,7 @@
     },
     {
       "file": "meshes/keyboard-controller-solder.stl",
-      "sha256": "a91991e5c138e28e2e92dcc5818e7658bee329fc050e1a0c815ad06a684250af"
+      "sha256": "8a019cc8e23d34414692a359879e06ee46c9a3ac3bf724fbefd139173fc1ef1f"
     },
     {
       "file": "meshes/drive-protect-tab-0.stl",
@@ -669,7 +669,7 @@
     },
     {
       "file": "meshes/keyboard-controller-leads.stl",
-      "sha256": "1d2acedffbcc9ddd9c342b371efb3e83d9bab444da711f0e7dda8cd1b6f7f0a0"
+      "sha256": "44a8465a43a48a04b403d2b9017401292275e4c2d250f97723d23ef945b99a4b"
     },
     {
       "file": "meshes/keyboard-entry-choke.stl",
@@ -1581,23 +1581,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "0e73c06405adaa3f4cd805309555def3cb43e7f6717cf7335d9bbc450cacc8f7"
+      "sha256": "b7421e7812b9af16cbea077625a4d6e63d04597e9bcdf4211636a44c4f41790f"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "a7ff6269b1642d51062d6c4c540abf23f4fc9fdb17c926d58efe6710c0cb2906"
+      "sha256": "fe456f9aa69bd84a4e399fd6030b3b87992b695668f428ff919765e66e07e3b7"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "83aa0f005adaadbfe601d39bd6ffde7e39f1fbd2e243b39cdcaf06f00d5c8dd1"
+      "sha256": "49210acbf6591563244d08fc91c9806bcd81a36de4c17ae4f57fc4a6500a58b3"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "486462016b71d9db4a60e48614aa16f4c9ebc26b409585fe92914a4c2605b60d"
+      "sha256": "d7b8ef71b7be156427f80317e64490c9c48651e20d7e6f9ac5b44ff6bc0560b3"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "8e9b16c55498ceab6447f0ced1821202aaa39a930b7198dc50e617874d188167"
+      "sha256": "04bf8d8774ba79dd3b0216561fb2c0e2ab26a2e6f16f6a1d116fbf59746d1046"
     }
   ],
   "inspection": {

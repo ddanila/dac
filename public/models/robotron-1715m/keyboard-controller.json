@@ -13044,6 +13044,125 @@
         "side": "top",
         "status": "unassigned-wire-photo-estimate"
       }
+    ],
+    "visualConnectors": [
+      {
+        "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+        "photoSource": "photo-bottom",
+        "ref": "X1",
+        "rows": {
+          "housingFar": [
+            [
+              -26.035373850588325,
+              14.89105264777622
+            ],
+            [
+              -23.64315112866342,
+              14.827379358886898
+            ],
+            [
+              -21.262052207589935,
+              14.764002149864499
+            ],
+            [
+              -18.888272471793893,
+              14.620251424051082
+            ],
+            [
+              -16.5241450088592,
+              14.450358992200476
+            ],
+            [
+              -14.173351123991191,
+              14.334726463297931
+            ],
+            [
+              -11.833333808275711,
+              14.219624019977124
+            ],
+            [
+              -9.504022983949001,
+              14.105127966431183
+            ],
+            [
+              -7.185337711053025,
+              13.991074636906529
+            ],
+            [
+              -4.8759043566922715,
+              13.851040000095507
+            ],
+            [
+              -2.5782504928196603,
+              13.73808122522332
+            ],
+            [
+              -0.2896850790227937,
+              13.599252346561824
+            ],
+            [
+              1.9872180736641394,
+              13.487452087070427
+            ]
+          ],
+          "housingNear": [
+            [
+              -25.550874975419063,
+              10.006375510236655
+            ],
+            [
+              -23.157874277398808,
+              9.954043821488977
+            ],
+            [
+              -21.040166767618352,
+              9.907732422435842
+            ],
+            [
+              -18.663157017855347,
+              9.748102469187975
+            ],
+            [
+              -16.3008145207217,
+              9.669779768018154
+            ],
+            [
+              -13.949368854645327,
+              9.591898691460042
+            ],
+            [
+              -11.610017241536557,
+              9.541110974787365
+            ],
+            [
+              -9.148486886337297,
+              9.407662283623768
+            ],
+            [
+              -6.825955946722449,
+              9.251012599750426
+            ],
+            [
+              -4.644474751409329,
+              9.150923141574431
+            ],
+            [
+              -2.3423721453328947,
+              8.995544877958464
+            ],
+            [
+              -0.05198938706782135,
+              8.867304608817884
+            ],
+            [
+              2.3528820700624085,
+              8.763341588153182
+            ]
+          ]
+        },
+        "scope": "Solder-joint locations only; no numbered contacts or net assignments. Housing dimensions, contact heights, lead section and hole diameters remain illustrative. Native electrical footprint remains provisional.",
+        "status": "unassigned-contact-geometry"
+      }
     ]
   },
   "connectivity": {
@@ -19249,7 +19368,7 @@
       "referenceType": "MATRIX_CONNECTOR",
       "placementEvidence": "inherited-photo-estimate",
       "pinEvidence": "connector-label-or-semantic-terminal",
-      "note": "Inherited footprint and schematic terminal names remain provisional. Physical review identifies a same-side lead arrangement inconsistent with the inherited visual geometry; see physicalReview and generated/connector-review.json. No measured continuity or numbered-pad placement is established.",
+      "note": "The native electrical footprint remains provisional. Museum geometry uses separately exported unnumbered solder-joint observations and same-side bent leads; this does not assign reference nets or resolve the near-row numbering. Housing dimensions and lead profiles remain estimates. See physicalReview and generated/connector-review.json.",
       "placementAuthority": "controller.kicad_pcb",
       "physicalReview": {
         "status": "inherited-geometry-conflicts-with-visible-lead-arrangement",
@@ -20773,14 +20892,14 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "93cd161084c1d2f7aef53e19cf770f2fd7e0d2cf"
+      "revision": "11168c70cf05ffad90b77d96ad0d6d04f3119646"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "43546b37efcfc99c2908b1017c0bf8eb1590ced6"
     },
     "files": {
-      "layout": "acafdadfd539614d38f84f47c1ceccc3835ff2e4efb0a61afc2be12432ad9fc4",
+      "layout": "ce4a9f28b75f1a3f76f185fc989ec51be5d3b1b334d57053e2761a89c33b3a2a",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
@@ -20788,10 +20907,10 @@
       "connectorReview": "1d1162e0d3c2ee655e563b9c035c9826a18e4c65865c6dc6eda32baf86b535fc",
       "connectorTerminals": "c241bc02993bbe443fcb5505f13b8c66266ca8ecae72f779152e22e6c4ddc423",
       "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
-      "componentEvidence": "8f08c101032dedb387cedb3b6e77f2df25e4e23dda129ed0d177ff09b130a9db"
+      "componentEvidence": "78864c01dd5eb9832e2a7c04a5e723b1ee0ee4164c209b0db9fe2a2a65f4e66a"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "0eaf98e26aa710234a89aa0d8846ddad74e27ee329cc013e31fb694641d30529"
+    "geometryScadSha256": "341cf9d240946d2254a21ec9260ab687bdcc52290b9ab9e58563f287dee711af"
   },
   "cosimulation": {
     "bus": {
