@@ -26,7 +26,7 @@ describes tri-state conversion and timing limitations that need explicit review.
 | [ngspice `d_process`](https://ngspice.sourceforge.io/extras.html) | Alternative process/pipe coupling to the same analog solver; requires a custom adapter and independent time-ordering tests. Useful if the shared-library bridge is isolated as the failure source. |
 | [KiCad simulator](https://www.kicad.org/discover/spice/) | Familiar graphical inspection using ngspice; preserve native schematic ownership. |
 | [Qucs-S](https://qucs-s-help.readthedocs.io/en/latest/overview/choosing-a-sim-backend.html) | Alternative GUI for ngspice/Xyce; another frontend, not an independent solver. |
-| [Xyce](https://xyce.sandia.gov/files/xyce/AppNote-MixedSignal.pdf) | Independent SPICE solver with documented external/Icarus experiments. A [September 2025 regression report](https://github.com/Xyce/Xyce/discussions/167) reports working Icarus examples; our board adapter and build compatibility still need validation. |
+| [Xyce](https://xyce.sandia.gov/files/xyce/AppNote-MixedSignal.pdf) | Independent SPICE solver, now exercised with our isolated oscillator adapter. Paired and cross-solver checks pass for an ideal supply ramp; recorded slow-supply startup fails refinement. Xyce/HDL board integration remains unvalidated. |
 | [WRspice](https://www.wrcad.com/manual/wrsmanual/node73.html) | Built-in Verilog/SPICE integration; existing HDL compatibility would need testing. |
 | [GNUCAP](https://www.gnu.org/software/gnucap/gnucap-man-html/gnucap-man003.html) | Open mixed analog/digital alternative; integration effort is less directly aligned with our existing harness. |
 | [QSPICE](https://www.qorvo.com/design-hub/calculators-simulation/qspice) | Strong alternative with C++/Verilog support; official desktop requirements are Windows. |
@@ -42,9 +42,10 @@ that every candidate has been installed and validated.
 Manufacturer models also need screening. [TI publishes SN74LS00 SPICE and IBIS
 references](https://www.ti.com/product/SN74LS00), but the supplied behavioral SPICE
 model switches near half the supply voltage and fails our 2 V TTL-high fixture.
-It is not a suitable default DL000 replacement. The IBIS pin-load and output-current
-curves remain candidates for local sensitivity studies; they do not establish DDR
-device calibration. Keep restricted vendor files outside the repository and retain
+It is not a suitable default DL000 replacement. The IBIS output-current curves have an analytical and SPICE DC load-line
+cross-check. The reviewed PDIP pin map contains input/output assignment errors,
+so it must not be imported unchanged. These checks do not establish switching,
+undervoltage behavior or DDR device calibration. Keep restricted vendor files outside the repository and retain
 source hashes and runnable fixtures in the [reference assessment](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog/reports/clock-output/ti-reference-review).
 
 ## Implementation order and acceptance
@@ -109,6 +110,19 @@ DC limits and explicit capacitance assumptions. Calibrated pin timing, whole-IC
 supply currents and brownout behavior remain gaps; full-board electrical-bus
 firmware execution and paired timing remain unqualified. See the core README for
 options and retained startup evidence.
+
+Optional ROM and latch timing envelopes use published Intel 2716 and 8282
+limits and propagate unknown values during unspecified intervals. The complete
+standard-ROM digital workload preserves C/HDL event agreement with both enabled;
+that does not qualify electrical bus timing or specimen parts. See the
+[combined timing comparison](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog/reports/latch-timing-envelope/cpu-profiles).
+
+Replaying the recorded slow supply into the oscillator alone fails phase
+refinement in both ngspice and Xyce, without HDL or live supply feedback. Source
+rounding can mask the failure, so retain full-precision waveforms when reproducing
+it. This narrows the investigation but does not identify a physical startup
+mechanism; the nominal gate model is unqualified below its operating supply. See
+the [independent-solver evidence](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-recorded-supply).
 
 The matrix fixture is diode-free; its phantom-row conduction
 does not establish the specimen's key construction. The static mapping check and live bus-fixture test are separate from firmware
