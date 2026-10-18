@@ -35,8 +35,10 @@ reconstruction requirements below remain in scope.
    identifies an inductor truncation rejection after a successful Newton solve.
    Analog-only replay exposed an artificial capture-boundary breakpoint; removing
    it lets the short diagnostic complete. Use that control to investigate the
-   original coupled failure. Compare absolute-time trajectories before attributing
-   a common cause; replay interpolation changes the numerical problem.
+   original coupled failure. The logged coupled transition has no nearby pending
+   breakpoint; investigate analog integration and device response. Compare
+   absolute-time trajectories before attributing a common cause, since replay
+   interpolation changes the numerical problem.
    Preserve failed captures and existing accuracy criteria.
 3. **Constrain device dynamics.** Use independent device evidence for oscillator
    startup and host-buffer switching/loading. Keep primary, comparison and

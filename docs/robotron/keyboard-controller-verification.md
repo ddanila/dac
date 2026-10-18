@@ -61,8 +61,8 @@ below are relative to the CAD controller directory unless stated otherwise.
   the [reset-release failure][reset-control]. Serial-edge agreement alone cannot
   qualify the loaded voltage waveforms.
 - **Transition failure:** the [solver audit][truncation-audit] identifies a final
-  inductor truncation rejection after a successful Newton solve. The
-  [boundary capture][driver-boundary] locates a rising driver edge, and an
+  inductor truncation rejection after a successful Newton solve, with no nearby
+  pending breakpoint in the logged transition window. The [boundary capture][driver-boundary] locates a rising driver edge, and an
   [replay boundary control][analog-replay] completes after removing an artificial
   capture-end breakpoint. The replay failure therefore does not independently
   confirm the original mechanism. Prefix voltage differences also prevent assuming
@@ -85,7 +85,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 [analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-no-capture-knot/assessment.json
 [modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json
-[truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-truncation-audit/assessment.json
+[truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-transition-audit/assessment.json
 [driver-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-driver-boundary/assessment.json
 [reset-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-minbreak-fine/assessment.json
 [reset-control]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-default-spacing/assessment.json
