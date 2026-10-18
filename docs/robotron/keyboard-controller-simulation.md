@@ -168,6 +168,12 @@ for release/repress, modifiers, repeat and service reset. Each recipe must pass
 electrical execution, refinement and margin checks before extending the qualified
 scope; preparation alone does not count.
 
+The [refined repeat qualification](https://github.com/ddanila/dac-emulation/blob/e9c2a7b8ab5bcbe272bbe62fb5e9974fe8dc1482/verification/robotron-keyboard/analog/reports/repeat/refined-strict-time/qualification/qualification.json)
+passes reference-firmware press/repeat/release coverage, timestep convergence and
+sampled receiver margins with the reviewed strict-time diagnostic correction.
+This qualifies the selected BR service fixture; full-board oscillator/reset,
+brownout, electrical CPU bus timing and specimen calibration remain open.
+
 Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
 the tested explicit sink-enable interface. The nominal reset model also fails to
 produce a useful pulse with a 10 ns supply ramp. These are retained qualification
