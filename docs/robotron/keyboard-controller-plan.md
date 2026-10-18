@@ -49,8 +49,9 @@ reconstruction requirements below remain in scope.
    resolve clock-phase convergence, receiver levels and bus timing, then run the
    remaining firmware scenarios. Review cable/filter assumptions, including the
    uncoupled default and coupling hypotheses, before claiming complete output-path
-   behavior. Constrain receiver protection and transient voltage limits; release
-   intervals alone do not establish valid cable voltages.
+   behavior. Extend the sourced host passive network through the D104 input
+   buffers, constrain their loading and transient limits, then integrate it into
+   firmware qualification. Release intervals alone do not establish valid voltages.
    Assess supply recovery separately from initial power-on reset. Preserve failing
    startup and absolute phase in acceptance checks.
 4. **Identify residual specimen dependencies.** Exhaust existing photographs,

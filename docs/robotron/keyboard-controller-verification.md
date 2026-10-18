@@ -53,6 +53,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   undershoot differs materially. The default remains uncoupled; receiver protection,
   physical winding parameters and ferrite behavior remain unqualified. See the
   [filter assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json).
+- **Host receiver:** factory and redrawn motherboard schematics place chokes,
+  pull-ups and RC filters before D104 buffers, rather than connecting the cable
+  directly to SIO inputs. The implemented passive network passes an independent
+  impedance check and changes transient extrema. Active buffer loading, clamps
+  and propagation remain unqualified; firmware integration is still open. See
+  the [host input review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver/assessment.json).
 - **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
   DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
   К555ЛА3 conditions. Selected DC passes, including a separate input-diode
