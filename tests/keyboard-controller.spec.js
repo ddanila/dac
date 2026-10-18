@@ -6,7 +6,7 @@ test('controller net selection preserves physical pin identity and unplaced evid
  const s=controllerSelection(data,'net','/TA_DATEN');
  expect(s.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:4','L1.4:1','R10.2:2']);
  expect(s.points).toHaveLength(2);expect(s.unplaced.sort()).toEqual(['L1.4']);
- expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&['/WR_N','/+5V','/CLK','/COL11'].includes(r.net))).toBe(true);
+ expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&['/WR_N','/+5V','/CLK','/COL11','/TA_DATEN','/TA_TAKT'].includes(r.net))).toBe(true);
  const model=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/model.json',import.meta.url)));
  expect(model.keyboardControllerSource['keyboard-controller/generated/controller.scad']).toBe(data.source.geometryScadSha256);
  expect(data.layout.unresolvedArtwork.every(r=>r.net===null)).toBe(true);
@@ -114,7 +114,7 @@ test('partial copper review distinguishes observed sections from inferred attach
  await expect(panel.locator('[data-selection]')).toContainText('7 observed');
  await expect(panel.locator('[data-selection]')).toContainText('1 inferred');
  await expect(panel.locator('[data-pins]')).toContainText('not proof of continuity to CPU WR');
- await expect(panel.locator('[data-qualification]')).toContainText('1 track dangling');
+ await expect(panel.locator('[data-qualification]')).toContainText('track dangling');
  await expect(panel.locator('[data-route-id]')).toHaveCount(24);
  const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(7);
  for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
@@ -166,7 +166,9 @@ test('3D route highlights preserve side, provenance and board attachment',async(
 
 test('net selection forwards only assigned routes and clears them on close',async({page})=>{
  expect(controllerSelection(data,'net','/WR_N').routes).toHaveLength(8);
- expect(controllerSelection(data,'net','/TA_DATEN').routes).toHaveLength(0);
+ const dataRoutes=controllerSelection(data,'net','/TA_DATEN').routes;
+ expect(dataRoutes.length).toBeGreaterThan(0);
+ expect(dataRoutes.every(r=>r.evidence.group==='r102-output-bottom-partial')).toBe(true);
  await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
   document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
   const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
@@ -181,7 +183,7 @@ test('net selection forwards only assigned routes and clears them on close',asyn
  await panel.evaluate(e=>e.open=true);
  await expect.poll(()=>page.evaluate(()=>window.selectedRouteIds.length)).toBe(8);
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
- await expect.poll(()=>page.evaluate(()=>window.selectedRouteIds.length)).toBe(0);
+ await expect.poll(()=>page.evaluate(()=>window.selectedRouteIds)).toEqual(dataRoutes.map(r=>r.id));
 });
 
 test('A2 reference selection uses factory-corrected physical locations',()=>{
@@ -207,7 +209,7 @@ test('output pull-up placement exposes reference-derived signal evidence',async(
  await panel.getByLabel('Controller component',{exact:true}).selectOption('R10.2');
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
  await expect(panel.locator('[data-pins]')).toContainText('Hidden output continuity not verified');
- await expect(panel.locator('[data-pins]')).toContainText('560 ohms is not a specimen measurement');
+ await expect(panel.locator('[data-pins]')).toContainText('reference resistance is not measured');
  expect(data.layout.unplaced).toHaveLength(30);
  await panel.getByLabel('Controller component',{exact:true}).selectOption('C5.1');
  await expect(panel.locator('[data-selection]')).toContainText('2 pins; 2 with estimated positions');
