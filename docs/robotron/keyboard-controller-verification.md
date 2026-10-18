@@ -50,8 +50,10 @@ below are relative to the CAD controller directory unless stated otherwise.
   inferred. See CAD `generated/layout.json` and `../checks/assembly.json`.
 - **Host integration:** the experimental receiver participates in service and
   closed-board fixtures. The [loaded service assessment][loaded-host] supports
-  logical comparison, sampled stability and input stress. Its clock-width screen
-  passes at an assumed threshold. [U856 source conditions][u856] constrain loading
+  input stress and a clock-width screen at an assumed threshold. The
+  [receive-edge review][receive-edge] identifies a falling-edge observer error:
+  U856 samples rising RxC. Logical behavior and data stability require new checks
+  with the corrected observer; earlier results retain their original scope. [U856 source conditions][u856] constrain loading
   and timing, but do not identify Schmitt thresholds or exact input I/V behavior.
   Loaded timestep convergence and device applicability remain open.
 - **Numerical agreement:** the [paired service review][paired-host] passes
@@ -74,6 +76,7 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
+[receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [loaded-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-load/assessment.json
 [u856]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/u856_limits.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer-fine/assessment.json

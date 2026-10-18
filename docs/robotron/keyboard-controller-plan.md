@@ -38,8 +38,10 @@ reconstruction requirements below remain in scope.
    numerical results and generic clamp behavior do not establish applicability.
 3. **Qualify the coupled reference board.** The experimental host network is
    integrated into both service and closed-board fixtures. Loaded service checks
-   support logical behavior, sampled input stress and nominal-threshold clock
-   widths; they do not qualify device dynamics or full-waveform convergence.
+   support sampled input stress and nominal-threshold clock widths. The U856
+   manual identifies rising RxC as the sampling edge; requalify logical behavior
+   and data stability with the corrected observer. Earlier falling-edge comparisons
+   do not establish SIO receive behavior or full-waveform convergence.
    Obtain a completed closed-board capture with the existing circuit and adequate
    execution allowance, then review startup and the recorded receiver window
    separately. A timeout is incomplete evidence, not a demonstrated circuit fault.
