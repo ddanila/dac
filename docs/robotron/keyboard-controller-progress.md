@@ -50,6 +50,13 @@ net for numbered pins, estimated pad positions, unplaced components and availabl
 photo-alignment residuals. Cyan lines have no net assignment. Both board sides use
 one top-view coordinate frame. Links identify exact pinned source revisions.
 
+Open **Recorded reference waveform** for the retained released-bus example. The
+sample slider shows recorded D0/supply voltages and the CPU input uncertainty
+band; driver states apply at the marked read. This is separate from live latch
+samples and specimen measurements. Refresh its pinned excerpt with
+`python3 scripts/sync-keyboard-waveform.py ../dac-emulation`; the importer checks
+source hashes, receiver limits and controller connectivity.
+
 From the canonical CAD controller directory:
 
 ```sh

@@ -428,3 +428,60 @@ test('transistor package reference distinguishes centre emitter from centre base
   expect(await page.evaluate(()=>window.packageHighlights)).toEqual([]);
  }
 });
+
+test('recorded waveform is pinned to the same connectivity and preserves raw samples',async()=>{
+ const {validateWaveform}=await import('../src/keyboard-controller-waveform.js');
+ const capture=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/keyboard-controller-waveform.json',import.meta.url)));
+ expect(validateWaveform(capture,data.source.files.connectivity)).toBe(capture);
+ expect(capture.source.revision).toMatch(/^[a-f0-9]{40}$/);
+ expect(capture.source.files).toHaveProperty(['verification/robotron-keyboard/analog/cpu_clock_limits.json']);
+ expect(capture.samples.every(row=>row[1]>.8&&row[1]<2)).toBe(true);
+ expect(()=>validateWaveform(capture,'different')).toThrow(/does not match/);
+ const invalid=structuredClone(capture);invalid.samples[1][0]=invalid.samples[0][0]-1;
+ expect(()=>validateWaveform(invalid,data.source.files.connectivity)).toThrow(/Invalid waveform/);
+});
+
+test('recorded waveform separates simulation from live state and highlights D0',async({page})=>{
+ await page.goto('/tests/model-harness.html');
+ await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review'),wave=panel.locator('[data-recorded-waveform]');
+ await wave.locator('summary').click();
+ await expect(wave).toContainText('Not live emulation or a specimen measurement');
+ await expect(wave).toContainText('Electrical qualification failed');
+ await expect(wave.locator('[data-waveform-drivers]')).toHaveText('Driver intent at that read: CPU released; ROM released; LATCH released.');
+ await expect(wave.locator('[data-waveform-sample]')).toContainText('Receiver level: unknown');
+ const slider=wave.getByRole('slider',{name:'Recorded waveform sample'});
+ await slider.fill('0');await slider.dispatchEvent('input');
+ await expect(wave.locator('[data-waveform-sample]')).toContainText('-97.110 ns');
+ await wave.getByRole('button',{name:'Highlight D0 connections'}).click();
+ await expect(panel.getByLabel('Controller net',{exact:true})).toHaveValue('/D0');
+ await expect(wave.getByRole('link',{name:'Open pinned simulation report'})).toHaveAttribute('href',/\/blob\/[a-f0-9]{40}\//);
+ await wave.screenshot({path:'/tmp/robotron-recorded-waveform.png'});
+});
+
+test('recorded waveform rejects mismatched connectivity and retries',async({page})=>{
+ const capture=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/keyboard-controller-waveform.json',import.meta.url)));
+ let bad=true;
+ await page.route('**/keyboard-controller-waveform.json',route=>{
+  if(bad){bad=false;return route.fulfill({json:{...capture,connectivitySha256:'wrong'}});}
+  return route.continue();
+ });
+ await page.goto('/tests/model-harness.html');
+ await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const wave=page.locator('[data-recorded-waveform]');
+ await wave.locator('summary').click();
+ await expect(wave.getByRole('status')).toContainText('does not match');
+ await expect(wave.locator('svg')).toHaveCount(0);
+ await wave.locator('summary').click();await wave.locator('summary').click();
+ await expect(wave.locator('svg')).toBeVisible();
+});

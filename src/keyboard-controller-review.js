@@ -1,3 +1,4 @@
+import {installControllerWaveform} from './keyboard-controller-waveform.js';
 const svgNS='http://www.w3.org/2000/svg';
 const clean=value=>(value||'').replace(/^\//,'');
 export function controllerSelection(data,kind,value){
@@ -165,6 +166,7 @@ export function installKeyboardControllerReview(scene){
    if(data.cosimulation.service)get('[data-qualification]').textContent+=` Bridge isolation: ${data.cosimulation.service.checks} digital checks; ${data.cosimulation.service.mismatches} mismatches, including external reset/clock injection and conflicting drivers. Analog timing is not simulated.`;
    get('[data-cad]').href=`${data.source.cad.repository}/tree/${data.source.cad.revision}/models/robotron-1715m/keyboard-controller`;
    get('[data-hdl]').href=`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/reports/full-audit.json`;
+   installControllerWaveform(get('[data-tools]'),data.source.files.connectivity,net=>{get('[data-net]').value=net;get('[data-component]').value='';select('net',net);});
    live();select('component','A1');get('[data-component]').value='A1';
   }catch(error){data=null;get('[data-tools]').hidden=true;status.textContent=`Controller review could not load: ${error.message}. Close and reopen to retry.`;}finally{pending=false;}
  }

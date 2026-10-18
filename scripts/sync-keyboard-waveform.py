@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+"""Pin a recorded reference simulation excerpt for museum inspection."""
+import argparse
+import hashlib
+import json
+import lzma
+from pathlib import Path
+import subprocess
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('emulation', type=Path)
+args = parser.parse_args()
+repo = args.emulation.resolve()
+if subprocess.check_output(['git', '-C', str(repo), 'status', '--porcelain'], text=True).strip():
+    raise SystemExit('Commit source changes before pinning a waveform')
+revision = subprocess.check_output(['git', '-C', str(repo), 'rev-parse', 'HEAD'], text=True).strip()
+root = Path(__file__).resolve().parents[1]
+analog = repo / 'verification/robotron-keyboard/analog'
+run = analog / 'reports/rom-read-envelope/electrical-bus/ownership-startup'
+sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+receipt = json.loads((run / 'retention.json').read_text())
+for name, digest in receipt['retainedFiles'].items():
+    if sha(run / name) != digest:
+        raise SystemExit('Retained source hash differs: ' + name)
+assessment = json.loads((run / 'ownership-assessment.json').read_text())
+prepared = json.loads((run / 'report.json').read_text())
+limits = json.loads((analog / 'cpu_clock_limits.json').read_text())
+if sha(analog / 'cpu_clock_limits.json') != prepared['sources']['cpu_clock_limits.json']:
+    raise SystemExit('Receiver limits differ from the captured run')
+controller = json.loads((root / 'public/models/robotron-1715m/keyboard-controller.json').read_text())
+if prepared['connectivitySha256'] != controller['source']['files']['connectivity']:
+    raise SystemExit('Waveform and museum connectivity differ')
+if not assessment['completed'] or assessment['qualified']:
+    raise SystemExit('Expected completed, unqualified diagnostic')
+failure = assessment['busFailure']
+if failure['signal'] != 'CPU_DI_UNKNOWN':
+    raise SystemExit('Expected unknown bus read')
+stamp = failure['readTimePs'] * 1e-12
+samples, digest = [], hashlib.sha256()
+with lzma.open(run / 'bus-trace.txt.xz', 'rb') as stream:
+    header = next(stream)
+    digest.update(header)
+    if header.decode().split() != ['time', *[f'v(n_D{i})' for i in range(8)], 'v(n_p5V)']:
+        raise SystemExit('Unexpected waveform columns')
+    for line in stream:
+        digest.update(line)
+        values = list(map(float, line.split()))
+        if stamp - 100e-9 <= values[0] <= stamp + 100e-9:
+            samples.append([values[0], values[1], values[-1]])
+if digest.hexdigest() != assessment['waveform']['sha256'] or not samples:
+    raise SystemExit('Waveform bytes differ or excerpt is empty')
+files = [run / 'ownership-assessment.json', run / 'report.json', run / 'bus-trace.txt.xz', analog / 'cpu_clock_limits.json']
+output = {'schema': 1, 'title': 'Released D0 at a CPU read', 'net': '/D0',
+          'connectivitySha256': prepared['connectivitySha256'],
+          'source': {'repository': 'https://github.com/ddanila/dac-emulation', 'revision': revision,
+                     'reportPath': str((run / 'ownership-assessment.json').relative_to(repo)),
+                     'files': {str(path.relative_to(repo)): sha(path) for path in files}},
+          'scope': 'Recorded reference simulation with standard S600 ROM and external clock/reset. Not live emulation or a specimen measurement. Electrical qualification failed.',
+          'readTimeSeconds': stamp, 'address': failure['address'], 'sampledHex': failure['sampledHex'],
+          'driversAtRead': failure['drivers'], 'columns': ['timeSeconds', 'd0Volts', 'supplyVolts'],
+          'lowMaximumVolts': limits['ordinaryInput']['lowMaximumVolts'],
+          'highMinimumVolts': limits['ordinaryInput']['highMinimumVolts'], 'samples': samples}
+target = root / 'public/models/robotron-1715m/keyboard-controller-waveform.json'
+target.write_text(json.dumps(output, indent=2) + '\n')
+print('Pinned recorded waveform:', revision)
