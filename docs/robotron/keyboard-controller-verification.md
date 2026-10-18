@@ -37,8 +37,10 @@ Paths below are relative to the CAD controller directory unless stated otherwise
   supply pad. The under-package attachment and outer-row registration remain
   unresolved. See CAD `generated/connector-review.json`,
   `route-evidence.json` and `generated/qualification.json`.
-- **Gate applicability:** output-current discrepancies motivate further device
-  review. Gain-rolloff and sink-resistance variants reduce forced-output current,
+- **Gate applicability:** primary A7 is marked К555ЛА3; the comparison board’s
+  D100D is a separate device. Selected К555ЛА3 passport DC checks constrain the
+  candidates but do not qualify their dynamics. Output-current discrepancies
+  still require device review. Gain-rolloff and sink-resistance variants reduce forced-output current,
   but candidates admitted by complete, model-matched DC and switching evidence
   still fail to sustain oscillation. Finite current disturbances also return the
   tested complete-oscillator candidates to nonoscillating plateaus. This narrows

@@ -21486,8 +21486,35 @@
       "referenceType": "DL000",
       "placementEvidence": "photo-landmarks.json: A7",
       "pinEvidence": "schematic-numbered",
-      "note": "Photo-estimated lead landmarks; see generated/photo-registration.json for residuals. Not dimensional metrology or electrical continuity.",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Reference schematic specifies DL000; primary photo reads \u041a555\u041b\u04103, while the comparison specimen reads D100D. Keep device identities and analog evidence separate despite shared NAND pin functions. Photo placement remains estimated; see generated/photo-registration.json.",
+      "placementAuthority": "controller.kicad_pcb",
+      "specimenMarkings": [
+        {
+          "specimen": "museum-primary",
+          "photoSource": "photo-top",
+          "marking": "\u041a555\u041b\u04103",
+          "additionalMarking": "8607",
+          "pixelBox": [
+            1315,
+            3542,
+            1472,
+            3790
+          ],
+          "scope": "Photographed installed device; not a claim of original factory population or measured parameters."
+        },
+        {
+          "specimen": "comparison-20261017",
+          "photoSource": "comparison-photo-080431329.MP",
+          "marking": "D100D",
+          "scope": "Separate specimen. Do not substitute its device characteristics for the primary board or DL000 schematic reference."
+        }
+      ],
+      "deviceReference": {
+        "url": "https://www.kontest.ru/datasheet/unkn0wn/k555la3.pdf",
+        "sha256": "34c4f456b0916f3156506d7d018a1b5e1742f22e2a5b063f06bea24bbbcb1814",
+        "locator": "Device passport page 1 pin functions; page 2 selected electrical limits. Detailed switching fixture is absent.",
+        "scope": "Primary device documentation; no measured specimen calibration or internal transistor parameters."
+      }
     },
     "X1": {
       "referenceType": "MATRIX_CONNECTOR",
@@ -23176,11 +23203,11 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "96abd9595faa40c4d156de97a607c57f558bd1e6"
+      "revision": "bfc54418e557230ac86552b611d84483f4d7af3a"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "93f5f835f33a60e4da682d359f69459883c61d45"
+      "revision": "115ff3972a3dc16afc402f63da119bdd4c31936e"
     },
     "files": {
       "layout": "f30869ecae3c52f6f9dc7f587aa0f65af70630ceadb392093d64d4dc62248616",
@@ -23192,7 +23219,7 @@
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "94ac6fec3ee0deef4b10885a4003a5685e121da4775f6645f2afd25379f16166",
-      "componentEvidence": "96b0bd75fadbce0974804474d1e4fff1ce238b53b0841fe8caa4be5792e3f081"
+      "componentEvidence": "223726551e96c9eb893488f4a2da3fe801c502dd0c0c26c27f391ba4c30a90b0"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "86a20bd643612e73fd50861d30778dc3d1545babb0b504628459be862b4b1bf1"
