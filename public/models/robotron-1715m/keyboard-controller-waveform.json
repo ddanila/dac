@@ -5,13 +5,14 @@
   "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
   "source": {
     "repository": "https://github.com/ddanila/dac-emulation",
-    "revision": "bd05452b25469c5e790ca347863fc17ffad8ddb0",
+    "revision": "05348b50a4e0e2094a554f857adc87647b420d75",
     "reportPath": "verification/robotron-keyboard/analog/reports/rom-read-envelope/electrical-bus/ownership-startup/ownership-assessment.json",
     "files": {
       "verification/robotron-keyboard/analog/reports/rom-read-envelope/electrical-bus/ownership-startup/ownership-assessment.json": "2ae6c8772bdc1b477fe4d2344ebdc191fdc49d3105075a5c5347202563b75a85",
       "verification/robotron-keyboard/analog/reports/rom-read-envelope/electrical-bus/ownership-startup/report.json": "20b19f6d17f34cf9e7105319e327111892530037aa040fb36624193a96cdb62e",
       "verification/robotron-keyboard/analog/reports/rom-read-envelope/electrical-bus/ownership-startup/bus-trace.txt.xz": "f24abf3471eaaf3807cb19e39c59ed63c2ac5b9986593b6383b5d9ff32e641d0",
-      "verification/robotron-keyboard/analog/cpu_clock_limits.json": "2c9bcde027d0aa4e756e46bfa95c9da7daae6dec70631b9b8d2586d61f6400b1"
+      "verification/robotron-keyboard/analog/cpu_clock_limits.json": "2c9bcde027d0aa4e756e46bfa95c9da7daae6dec70631b9b8d2586d61f6400b1",
+      "verification/robotron-keyboard/analog/reports/floating-io/static-analysis.json": "a1f41f382b72c272dae0724bddd807736332e95489fdfd022d92df0d6ab059af"
     }
   },
   "scope": "Recorded reference simulation with standard S600 ROM and external clock/reset. Not live emulation or a specimen measurement. Electrical qualification failed.",
@@ -480,5 +481,17 @@
       1.5720936000761316,
       4.928189561296707
     ]
-  ]
+  ],
+  "firmwareAnalysis": {
+    "reportPath": "verification/robotron-keyboard/analog/reports/floating-io/static-analysis.json",
+    "romSha256": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
+    "observableDependencyFound": false,
+    "qualified": false,
+    "assumptions": [
+      "Execution enters the identified read with otherwise equal architectural state.",
+      "Matching external inputs at the driven read; fixed read-only ROM mirrored by its low 11 address bits.",
+      "Documented instruction behavior; no asynchronous interrupts, reset divergence, electrical faults or metastability."
+    ],
+    "boundary": "Flag registers can remain different. This is not full internal-state equivalence, a CPU implementation proof, analog input model, timing qualification or waiver of CPU_DI_UNKNOWN."
+  }
 }

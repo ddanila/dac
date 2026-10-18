@@ -79,7 +79,23 @@ output = {'schema': 1, 'title': 'Released D0 at a CPU read', 'net': '/D0',
           'driversAtRead': failure['drivers'], 'columns': ['timeSeconds', 'd0Volts', 'supplyVolts'],
           'lowMaximumVolts': limits['ordinaryInput']['lowMaximumVolts'],
           'highMinimumVolts': limits['ordinaryInput']['highMinimumVolts'], 'samples': samples}
+analysis_path = analog / 'reports/floating-io/static-analysis.json'
+analysis_relative = str(analysis_path.relative_to(repo))
+# Older captures remain checkable at their original revision.
+if not args.check or analysis_relative in recorded['source']['files']:
+    analysis = document(analysis_path)
+    if analysis['romSha256'] != prepared['romSha256'] or analysis['observableDependencyFound'] is not False or analysis['qualified'] is not False:
+        raise SystemExit('Firmware analysis does not match the recorded reference ROM')
+    for name, digest in analysis['sources'].items():
+        if sha(repo / name) != digest:
+            raise SystemExit('Firmware analysis source differs: ' + name)
+    output['source']['files'][analysis_relative] = sha(analysis_path)
+    output['firmwareAnalysis'] = {
+        'reportPath': analysis_relative, 'romSha256': analysis['romSha256'],
+        'observableDependencyFound': False, 'qualified': False,
+        'assumptions': analysis['assumptions'], 'boundary': analysis['boundary']}
 serialized = json.dumps(output, indent=2) + '\n'
+
 if args.check:
     if not target.exists() or target.read_text() != serialized:
         raise SystemExit('Recorded waveform is stale; regenerate from the reviewed source revision')

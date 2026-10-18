@@ -13,6 +13,10 @@ export function validateWaveform(data,connectivity){
  if(data.readTimeSeconds<data.samples[0][0]||data.readTimeSeconds>data.samples.at(-1)[0])throw Error('Read is outside the excerpt');
  for(const name of ['cpu','rom','latch'])for(const key of ['lowEnableBits7To0','highEnableBits7To0'])
   if(!/^[01xz]{8}$/.test(data.driversAtRead?.[name]?.[key]))throw Error('Missing driver observation');
+ if(data.firmwareAnalysis){
+  const a=data.firmwareAnalysis;
+  if(a.reportPath!=='verification/robotron-keyboard/analog/reports/floating-io/static-analysis.json'||a.observableDependencyFound!==false||a.qualified!==false||!/^[a-f0-9]{64}$/.test(a.romSha256)||!/^[a-f0-9]{64}$/.test(data.source.files?.[a.reportPath]))throw Error('Invalid firmware analysis provenance');
+ }
  return data;
 }
 export function installControllerWaveform(parent,connectivity,selectNet){
@@ -33,6 +37,11 @@ export function installControllerWaveform(parent,connectivity,selectNet){
    owners.textContent='Driver intent at that read: '+['cpu','rom','latch'].map(name=>{
     const d=data.driversAtRead[name];return `${name.toUpperCase()} ${d.lowEnableBits7To0==='00000000'&&d.highEnableBits7To0==='00000000'?'released':`low ${d.lowEnableBits7To0}, high ${d.highEnableBits7To0}`}`;
    }).join('; ')+'.';content.append(owners);
+   if(data.firmwareAnalysis){
+    const explanation=document.createElement('p');explanation.dataset.waveformFirmware='';
+    explanation.textContent='Reference firmware analysis finds no control/data dependence on the released-read value under normal instruction behavior, matching external inputs, and no asynchronous interruptions or electrical faults. Internal flags may differ. Bus voltage and CPU timing remain unqualified. ';
+    const source=document.createElement('a');source.textContent='Read the firmware analysis and assumptions';source.href=`${data.source.repository}/blob/${data.source.revision}/${data.firmwareAnalysis.reportPath}`;source.target='_blank';source.rel='noopener';explanation.append(source);content.append(explanation);
+   }
    const svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 600 250');svg.setAttribute('role','img');svg.setAttribute('aria-label','Recorded D0 and supply voltages around the CPU read, with the receiver unknown band shaded');svg.style.cssText='display:block;width:100%;max-width:700px;background:#14232d';content.append(svg);
    const add=(tag,attrs,text)=>{const e=document.createElementNS(ns,tag);for(const [key,value]of Object.entries(attrs))e.setAttribute(key,value);if(text)e.textContent=text;svg.append(e);return e;};
    const start=data.samples[0][0],end=data.samples.at(-1)[0],x=t=>50+(t-start)/(end-start)*530,y=v=>210-v/5.5*185;

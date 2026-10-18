@@ -436,6 +436,9 @@ test('recorded waveform is pinned to the same connectivity and preserves raw sam
  expect(capture.source.revision).toMatch(/^[a-f0-9]{40}$/);
  expect(capture.source.files).toHaveProperty(['verification/robotron-keyboard/analog/cpu_clock_limits.json']);
  expect(capture.samples.every(row=>row[1]>.8&&row[1]<2)).toBe(true);
+ expect(capture.firmwareAnalysis.observableDependencyFound).toBe(false);
+ const unsupported=structuredClone(capture);unsupported.firmwareAnalysis.qualified=true;
+ expect(()=>validateWaveform(unsupported,data.source.files.connectivity)).toThrow(/firmware analysis/);
  expect(()=>validateWaveform(capture,'different')).toThrow(/does not match/);
  const invalid=structuredClone(capture);invalid.samples[1][0]=invalid.samples[0][0]-1;
  expect(()=>validateWaveform(invalid,data.source.files.connectivity)).toThrow(/Invalid waveform/);
@@ -453,6 +456,8 @@ test('recorded waveform separates simulation from live state and highlights D0',
  await wave.locator('summary').click();
  await expect(wave).toContainText('Not live emulation or a specimen measurement');
  await expect(wave).toContainText('Electrical qualification failed');
+ await expect(wave.locator('[data-waveform-firmware]')).toContainText('Internal flags may differ');
+ await expect(wave.getByRole('link',{name:'Read the firmware analysis and assumptions'})).toHaveAttribute('href',/\/blob\/[a-f0-9]{40}\/verification\/robotron-keyboard\/analog\/reports\/floating-io\/static-analysis.json$/);
  await expect(wave.locator('[data-waveform-drivers]')).toHaveText('Driver intent at that read: CPU released; ROM released; LATCH released.');
  await expect(wave.locator('[data-waveform-sample]')).toContainText('Receiver level: unknown');
  const slider=wave.getByRole('slider',{name:'Recorded waveform sample'});
