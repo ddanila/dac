@@ -32,7 +32,9 @@ Paths below are relative to the CAD controller directory unless stated otherwise
   reconstructed; A8 remains unclassified. Visible data/clock pull-up branches
   end at solder eyes with unresolved continuations. Registered underside joints
   resolve the adjacent resistor-pad clearance conflicts; pad dimensions and
-  unobserved continuations remain estimates. See CAD `generated/connector-review.json`,
+  unobserved continuations remain estimates. The top branch toward A1 remains a
+  photo observation: global projection conflicts with an estimated input pad, so
+  local board-plane registration must precede native routing. See CAD `generated/connector-review.json`,
   `route-evidence.json` and `generated/qualification.json`.
 - **Gate applicability:** output-current discrepancies motivate further device
   review. Gain-rolloff and sink-resistance variants reduce forced-output current,
