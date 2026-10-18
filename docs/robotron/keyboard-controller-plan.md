@@ -37,15 +37,22 @@ reconstruction requirements below remain in scope.
    observed wire is exported and displayed as unassigned geometry. Resolve its
    source/CPU terminal correspondence before assigning numbered pads or nets.
    Apply the same separation to remaining body and bridge observations; closed-link
-   continuity alone cannot determine terminal order.
-3. **Diagnose the gate model before extending its fit.** Candidates passing the
-   retained isolated DC and switching checks do not sustain the reference
-   oscillator. Bidirectional DC sweeps also expose branch-dependent solutions.
-   Check circuit equations, internal currents and solver behavior before treating
-   those branches as physical behavior or fitting further parameters. Then validate
-   supported parameter ranges under published supply, load and selection-group
-   conditions, including independent conditions where available. Isolated device
-   checks are necessary but insufficient; do not tune to the emulator's frequency.
+   continuity alone cannot determine terminal order. X1 photographs support
+   same-side leads and locally registered underside joints. Visible resistor
+   attachments constrain the far row to A1–A13 under the reference schematic;
+   near-row direction remains unresolved. Preserve anonymous geometry separately
+   from the provisional electrical footprint. A8's absence from the schematic
+   does not establish that the physical contact is unconnected.
+3. **Resolve gate-model applicability before further fitting.** Retained current
+   balance, numerical-conductance and finite-perturbation checks leave the
+   branch-dependent solutions intact. Forced-output I/V exposes a discrepancy
+   with published typical behavior; gain-rolloff variants still fail to sustain
+   oscillation despite passing the retained isolated DC and switching checks.
+   Review device topology and output-current behavior against applicable source
+   conditions, then validate supported parameter ranges with independent checks.
+   These generic candidates remain diagnostic models. Do not tune to the
+   emulator's frequency or treat typical curves with incomplete conditions as
+   exact acceptance limits.
 4. **Qualify the coupled reference board.** Resolve numerical startup/clock-phase
    convergence, receiver levels and bus timing before accepting full firmware
    scenarios. Investigate startup uncertainty separately from steady-state
@@ -77,7 +84,7 @@ limits without marking the entire implementation blocked.
 | Enclosure, brackets, shields and assembly transform | OpenSCAD | Museum assembly |
 | Chip behavior | Independently reviewed Verilog models | Board simulation |
 | Firmware and software behavior | Identified ROM and emulator implementation | Co-simulation |
-| Photo registration, evidence and unresolved claims | Evidence manifest | Layout review and museum inspection |
+| Photo registration, anonymous observed geometry and unresolved claims | Evidence manifest | Layout review and museum inspection |
 
 Use stable component references, physical pin numbers and named nets throughout.
 The normalized connectivity manifest and HDL interconnect are generated outputs.

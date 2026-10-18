@@ -22,9 +22,13 @@ checks still apply. Reports and attached checkpoints retain their own checksums.
 **Sound levels** offers independent fan, keyboard, power-switch and drive sliders,
 saved locally. The existing sound checkbox still enables/disables all playback.
 Gain changes are smoothed. Both synthesized drive motors and STEP clicks pass
-through the drive gain. Original owner WAV files are unchanged; an 80 ms
-in-memory tail/head blend joins the fan loop at adjacent source samples. This is
-playback smoothing, not new acoustic fidelity or a replacement fan recording.
+through the drive gain. Loop smoothing is a playback effect; original owner recordings remain unchanged.
+
+Sound controls retain mute settings separately from the original levels;
+solo is temporary. Restore defaults clears both. Fan, keyboard and switch previews
+play at most 1.5 seconds of the owner's recordings, require enabled audio and do
+not operate the machine. The synthesized drive sounds have no recorded preview.
+Audio context state and resume failures are shown alongside a Resume audio button.
 
 ## Relationships and measurements
 
@@ -65,7 +69,7 @@ build/model/firmware identities, hardware fields, disk identities and both event
 captures. A bounded sequence alignment matches bus master, operation and mapped
 address, exposing inserted/deleted operations without shifting every later event.
 Values and controller context remain compared; clock-origin offset and relative
-timing drift are reported separately. The first 16 content differences are shown.
+timing drift are reported separately. The preview is bounded.
 Repeated operations can align ambiguously; this is not proof of equivalent guest
 execution. Attachments are not rendered, restored or uploaded. Malformed timeline
 lengths and oversized metadata are rejected; clearing a report releases it.
@@ -77,14 +81,7 @@ The proposed points follow the displayed assembly. Inspection pose changes can
 therefore contribute to the visible displacement. Projections over **2 local model
 units**, or missing/ambiguous original part matches, require a review checkbox
 before saving. That threshold is a review aid, not a fit tolerance or a new
-physical measurement. Originals remain unchanged. Preview geometry is reused
-until point placement changes and is disposed when cleared or switching machines.
-
-Sound controls retain mute settings separately from the original levels;
-solo is temporary. Restore defaults clears both. Fan, keyboard and switch previews
-play at most 1.5 seconds of the owner's recordings, require enabled audio and do
-not operate the machine. The synthesized drive sounds have no recorded preview.
-Audio context state and resume failures are shown alongside a Resume audio button.
+physical measurement. Originals remain unchanged.
 
 ## Keyboard workload
 

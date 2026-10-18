@@ -14,28 +14,19 @@ source manifests for current versions. This matrix describes behavior and limits
 | Enclosures | Owner-referenced 1 mm sheet, bends, split monitor/keyboard/system shells | Local bend radii and hidden joins remain estimates | Canonical CAD/evidence and static intersections |
 | Boards | Owner-referenced packages, sockets, holes, supports and artwork | Artwork is not a verified netlist; some orientations/mounts unresolved | CAD hardware audit and calibration reports |
 | Sound | Owner power/fan/key recordings; synthesized drive activity | Unmeasured spatial/acoustic response and drive timbre | Audio manifest and playback tests |
-| Persistence | Checksummed named checkpoints with both disks; collection preview/selective restore; disk copies, portable states, preserved old cores, replay | Checkpoint firmware must match (including supplied custom ROMs); 20 named checkpoints; quick-save states/mounts keep or replace | Session/portable/replay checks |
+| Persistence | Checksummed named checkpoints with both disks; collection preview/selective restore; disk copies, portable states, preserved old cores, replay | Checkpoint firmware must match (including supplied custom ROMs); quick-save states/mounts keep or replace | Session/portable/replay checks |
 
 For keyboard circuit scope and source-bound results, see the
 [controller status and workflow](keyboard-controller-progress.md).
 
 ## Inspection and recovery
 
-[Inspection and checkpoint guide](inspection-014.md): execution targets,
-changed-state highlights, reproducible measurements, draggable sections, individual
-checkpoint files, mechanical audit and serial clock qualification.
-
-
-[Inspection workbench and debugger](inspection-workbench.md): grouped controls,
-cutaway presets/plane guide, shell caps, model-derived measurements, instruction
-stepping, mapped memory/disassembly and bus-event stops. Printer readiness is
-recorded and preserved in checkpoints.
-
-[Checkpoint and inspection guide](inspection-and-checkpoints.md): recover WebGL
-without restarting the emulator; section planes and shareable inspection links;
-explicit keyboard inspection mode; bounded triggered bus capture; persistent
-original/checkpoint disk comparisons. Optional caps close unambiguous shell contours; open/tangent/oversized contours are skipped. Event capture is
-emulated, and disk reports explicitly mark unsupported layouts or range limits.
+- [Workbench](inspection-workbench.md): debugger, cutaways, measurements and evidence.
+- [Checkpoints and recovery](inspection-and-checkpoints.md): portable states,
+  graphics recovery, triggered captures and disk comparisons.
+- [Inspection workspaces](inspection-workspaces.md): saved views and collection backups.
+- [Diagnostic and model review](diagnostics-and-model-review.md): reports,
+  measurement remapping, sound and mechanical review.
 
 ## Specimen inventory still requiring physical evidence
 
@@ -52,7 +43,8 @@ changes a part's separate **printed and verified** classification.
 Run focused native device tests for core changes, bounded historical-ROM tests for
 keyboard changes, geometry checks for affected interfaces, and browser interaction
 checks for changed controls. Larger native/WASM application and cross-browser
-checks belong at release boundaries. No full Verilog run is required.
+checks belong at release boundaries. Controller circuit changes additionally use
+the HDL and electrical gates in the [controller plan](keyboard-controller-plan.md).
 
 Independent comparison should use explicit input events and compare observable
 I/O, memory and screen checkpoints. Differences against another emulator are
@@ -67,7 +59,7 @@ investigation leads, not proof that either implementation matches hardware.
   CPU clocks. Reset/capture reset cancels the active transfer. CP/M padding remains
   in downloads; checksum XMODEM cannot infer original byte length or distinguish
   every arbitrarily delayed duplicate acknowledgement.
-- **Timeline:** opt-in, at most 512 actual bus events: I/O, interrupt acknowledgement,
+- **Timeline:** opt-in, bounded actual bus events: I/O, interrupt acknowledgement,
   DMA reads/writes, physical memory offsets and contemporaneous FDC context. Select
   a chip or the disk track; export JSON. Context is labelled separately from an
   assertion that a particular event accessed that disk sector. No pin-waveform or
@@ -91,16 +83,5 @@ investigation leads, not proof that either implementation matches hardware.
 
 See [reference workflows](capability-history.md) for S600 mapping and preservation packaging.
 
-See [Inspection evidence and checkpoint storage](inspection-015.md) for the
-current checkpoint metadata, named measurements, evidence mode and motion audit.
-
-Portable inspection views, staged covers and the expanded qualification are
-documented in [inspection workspaces](inspection-workspaces.md).
-
-[Diagnostic reports and model review](diagnostics-and-model-review.md) documents
-independent sound levels, mechanical relationships, explicit measurement remaps,
-monitor cable qualification and the optional S600 mixed-workload target.
-
-[Current qualification and specimen inventory](emulation-qualification.md) documents
-independent historical/application/serial comparisons, browser workflows,
-and the physical evidence still needed.
+See [emulation qualification](emulation-qualification.md) for independent
+comparisons, reproducible checks and specimen evidence collection.

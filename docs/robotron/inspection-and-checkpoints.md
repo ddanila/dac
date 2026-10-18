@@ -43,9 +43,7 @@ when the model is ready. A selectable link is provided if clipboard access fails
 Enable **Use keyboard to inspect the 3D view**, then focus the view: arrows orbit,
 +/− zoom, and Home returns to the overview. These events do not reach guest input.
 Screen focus still types into the machine. Buttons and selectors inside the view
-also keep their native keyboard semantics. All new functions have labeled HTML
-controls; coarse-pointer controls use at least 44-pixel heights. Existing native
-modal dialogs and their close buttons retain browser focus handling.
+also keep their native keyboard semantics.
 
 ## Triggered event capture
 
@@ -72,6 +70,5 @@ silently replace a comparison baseline; select a new one intentionally.
 compatible-layout sector/directory changes and added/deleted/modified TOS/M files.
 Byte ranges include unallocated space. File comparisons retain 128-byte CP/M
 record padding. Different geometries or unsupported filesystems fall back to byte
-comparison with an explanation. UI preview shows at most 16 ranges and 64 bytes
-per range. JSON export retains up to 4096 ranges and explicitly marks truncation;
+comparison with an explanation. Preview and export bound the listed byte ranges and explicitly mark truncation;
 the changed-byte count is never truncated. Neither image is modified.

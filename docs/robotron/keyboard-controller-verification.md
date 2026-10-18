@@ -10,7 +10,7 @@ Paths below are relative to the CAD controller directory unless stated otherwise
 | Identify board, parts and source variants | `evidence.json`, `component-evidence.json`, native schematic | Specimen substitutions, discrete terminal mapping and ROM contents |
 | Inventory photographs and occlusions | Source hashes, photo landmarks, comparison-specimen records | Hidden joints and independent cross-side correspondence |
 | Transcribe connectivity and review pins | Native schematic, `generated/connectivity.json`, qualification report | Specimen WR/RD disagreement; transcription is not continuity proof |
-| Register and place the board | Native PCB, generated layout and registration reports | Unplaced parts, connector geometry, measured scale and global underside fit |
+| Register and place the board | Native PCB, generated layout and registration reports | Unplaced parts, provisional connector footprint, measured scale and global underside fit |
 | Trace copper with evidence | Native tracks, `route-evidence.json`, unassigned artwork | Complete physical data/clock paths and unresolved attachments |
 | Check connectivity and clearances | Native pad-net checks, ERC/DRC report | Outstanding DRC findings; not fabrication-ready |
 | Generate geometry and reuse component shapes | Exporter, generated SCAD, assembly wrapper | Remaining discrete migrations and measured mechanical fit |
@@ -38,9 +38,9 @@ not a second inventory here.
 | Withdrawn CPU track and BR1 attachments | Follow overlapping photos; independently check pin numbering and cross-side correspondence | Close-ups showing complete joints; distinguishable continuity readings |
 | BR2 source/CPU identity | Preserve the exported unassigned wire; constrain terminal correspondence with lead paths and package drawings | Visible joints or observations that distinguish the two ends; a closed bridge alone cannot do so |
 | Output-clock WR/RD discrepancy | Compare complete trace paths and keep published revisions separate | Distinguishable physical connection to the CPU pins |
-| Connector and cable/filter path | Reconcile placement, mating-face orientation, winding and trace evidence | Connector markings, wire and winding-terminal observations |
+| X1 terminal order and cable/filter path | Use registered joints and far-row constraints in `generated/connector-review.json` and `generated/connector-terminals.json`; resolve near-row direction and cable/winding attachments | Markings or complete trace/joint observations that distinguish remaining candidates |
 | Discrete pads and underside registration | Use independent landmarks and lead trajectories; body ends are not hole centres | Hidden lead-entry close-ups and measured dimensions |
-| Device models and full-board electrical behavior | Diagnose branch-dependent gate solutions and oscillator failure, then validate device ranges and coupled behavior | Targeted captures only for behavior not constrained by published evidence |
+| Device models and full-board electrical behavior | Resolve output I/V and topology applicability, then validate device ranges and coupled behavior | Targeted captures only for behavior not constrained by published evidence |
 | Specimen ROM and timing | Continue reference qualification with standard S600; keep replacement-ROM identity separate | Repeated ROM reads and raw clock/reset/serial captures with setup details |
 
 Comparison photographs depict another specimen. Register and compare them before

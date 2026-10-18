@@ -13,10 +13,8 @@
 - Save up to 20 named inspection views under **Section view → Saved inspection
   views**. Each includes camera, opened covers, isolation, cutaway settings,
   component selection and the current two-point measurement. Restore checks the
-  model identity. Components use named ancestry rather than asynchronous mesh
-  insertion order, so selection and new measurements survive page reloads.
-- Named measurements migrate from localStorage into checksummed IndexedDB
-  records. They and saved inspection views are included in collection backups,
+  model identity. Selection and new measurements survive page reloads.
+- Named measurements and saved inspection views are included in collection backups,
   with the same preview/conflict/atomic-merge handling as existing records.
   The last unsaved view and unsaved measurements are not collection records.
   Individual measurement JSON export remains supported. Legacy measurement
