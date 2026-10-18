@@ -58,7 +58,9 @@ below are relative to the CAD controller directory unless stated otherwise.
   single-press run passes logical comparison and sampled output stability, with
   external CPU clock/reset. This closes experimental service integration, not
   full-board acceptance. The [firmware observation](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer/assessment.json)
-  identifies the run and locally retained waveform boundary.
+  identifies the run and locally retained waveform boundary. The
+  [paired numerical review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer-fine/assessment.json)
+  also passes serial-edge refinement and sampled input stress.
 - **Receiver applicability:** the [RFT input review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver/assessment.json)
   rejects a passive-only candidate at doubled cable load. Adding the
   [buffer candidate](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer/assessment.json)
@@ -66,7 +68,7 @@ below are relative to the CAD controller directory unless stated otherwise.
   [manufacturer switching-fixture review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json)
   converges numerically but cannot qualify generic storage/clamp dynamics from
   incomplete fixture conditions. SIO loading, transient behavior and coupled
-  firmware convergence remain open; digital agreement cannot waive them.
+  voltage convergence remain open; serial-edge agreement cannot waive them.
 - **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
   DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
   К555ЛА3 conditions. Selected DC passes, including a separate input-diode
