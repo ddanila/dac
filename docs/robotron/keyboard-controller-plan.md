@@ -32,11 +32,13 @@ reconstruction requirements below remain in scope.
    visible pull-up branches through the driver, cable and filter. Resolve conflicts
    with estimated footprints from the photographs; preserve unsupported
    continuations as unresolved. Use the established X1 row constraints while
-   keeping A8 and BR2 terminal identity separate from observed geometry. R1/R2
-   body identification supports photo review; numbered terminals still require
-   independent joint and lead correspondence.
+   keeping A8 and BR2 terminal identity separate from observed geometry. Use the
+   KWH catalog identification for comparison R1 only; primary R1 and R2 still
+   need independent package and terminal correspondence. Photo-supported bank
+   and axial bodies can remain visual observations until hidden lead entries
+   are resolved. The passing nominal assembly audit does not close this path.
 2. **Constrain gate transition behavior.** Matched operating-state probes and
-   independent Xyce transfer replay now direct attention to device applicability,
+   independent Xyce transfer replay direct attention to device applicability,
    rather than an ngspice-only artifact. Seek independently specified transition
    characteristics and review circuit assumptions before further parameter searches.
    Keep primary К555ЛА3, comparison D100D and reference DL000 conditions separate;
@@ -45,8 +47,10 @@ reconstruction requirements below remain in scope.
    Incompletely specified typical curves cannot supply exact fitting targets.
 3. **Qualify the coupled reference board.** Once device applicability is supported,
    resolve clock-phase convergence, receiver levels and bus timing, then run the
-   remaining firmware scenarios. Assess supply recovery separately from initial
-   power-on reset. Preserve failing startup and absolute phase in acceptance checks.
+   remaining firmware scenarios. Review cable/filter assumptions, including the
+   uncoupled winding surrogate, before claiming complete output-path behavior.
+   Assess supply recovery separately from initial power-on reset. Preserve failing
+   startup and absolute phase in acceptance checks.
 4. **Identify residual specimen dependencies.** Exhaust existing photographs,
    package drawings and published circuit constraints first. For each remaining
    ambiguity, state the alternatives and the observation that would distinguish
@@ -72,7 +76,9 @@ cannot distinguish the remaining alternatives; it does not block unrelated work.
 Use stable component references, physical pin numbers and named nets throughout.
 The normalized connectivity manifest and HDL interconnect are generated outputs.
 Do not round-trip edits through them or maintain separate hand-written trace
-geometry in OpenSCAD after migration.
+geometry in OpenSCAD after migration. Evidence-derived visual bodies and raised
+leads must remain separate from native numbered pads; they cannot create holes,
+solder joints or net assignments without supporting evidence.
 
 Define board units, origin, axes, top/bottom conventions and assembly transform
 explicitly. Generated assets record source revisions, content hashes and tool

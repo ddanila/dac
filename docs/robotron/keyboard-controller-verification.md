@@ -20,7 +20,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 | Couple electrical circuits and HDL | Core analog harness, generated decks, interface and load checks | Full-board clock-phase convergence, remaining firmware scenarios, model calibration, supply/brownout behavior and bus timing qualification |
 | Compare transactions and firmware behavior | Core qualification reports, pinned TV80 model and S600 workload | Specimen ROM/timing; exact cycle equivalence remains false |
 | Retain diagnostics and replay | First-difference traces, stimulus, waveform and fault-injection tests | Instrumented specimen comparison |
-| Preserve IDs and expose evidence in the museum | Export sidecars, component/net inspector and browser tests | Legacy bodies do not all have native pad geometry |
+| Preserve IDs and expose evidence in the museum | Export sidecars, component/net inspector and browser tests | Visual-only bodies do not establish native pads |
 | Connect runtime diagnostics | Latch samples, labelled display persistence and a pinned recorded bus waveform | Live frame samples are not full waveforms; recorded simulation does not establish specimen behavior |
 | Reject stale or mismatched exports | Source hashes, mesh receipts, sync checks and CI | Consistency checks cannot validate photo interpretations |
 | Separate fast checks and longer qualification | CAD native/export CI, core workflows and core qualification target | Longer firmware and mixed-signal qualification remain separate gates |
@@ -44,6 +44,15 @@ below are relative to the CAD controller directory unless stated otherwise.
   identity and factory/Zander branch numbering remain unresolved. Museum body
   rectangles and package references do not assign installed pads. See CAD
   `component-evidence.json` and `evidence.json` for sources and terminal candidates.
+- **Visual geometry:** primary-photo observations place the unassigned resistor
+  banks and raised axial bodies/leads. Nominal assembly clearances pass; lead
+  heights and package dimensions remain estimates, and hidden holes are not
+  inferred. See CAD `generated/layout.json` and `../checks/assembly.json`.
+- **Output filter:** the current electrical surrogate uses uncoupled series
+  windings. Shared-core coupling, winding orientation and ferrite losses remain
+  unqualified; review these assumptions alongside the physical cable path. See
+  core [output circuit](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/output_circuit.py)
+  and [probe assumptions](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/output_probe.py).
 - **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
   DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
   К555ЛА3 conditions. Selected DC passes, including a separate input-diode
