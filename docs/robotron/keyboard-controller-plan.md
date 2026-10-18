@@ -28,33 +28,31 @@ reconstruction requirements below remain in scope.
 
 ## Next work and acceptance
 
-1. **Finish supported physical paths.** Reconcile the driver/cable/filter copper
-   with registered photographs and the netlist. Resolve discrete terminal mapping
-   and estimated footprint conflicts independently of visual body placement.
-   Keep unsupported continuations and specimen differences explicit.
-2. **Constrain device dynamics.** Use independent device evidence to resolve
-   oscillator startup and host-buffer switching/loading. Preserve the separate
-   primary, comparison and reference device conditions. DC passes, converged
-   numerical results and generic clamp behavior do not establish applicability.
-3. **Qualify the coupled reference board.** The experimental host network is
-   integrated into both service and closed-board fixtures. Loaded service checks
-   support sampled input stress and nominal-threshold clock widths. The U856
-   manual identifies rising RxC as the sampling edge. Loaded single-press, reset
-   and modifier pairs pass logical, sampled-stability and serial-edge refinement
-   checks under their declared assumptions. Complete remaining scenarios and
-   investigate the strict-tolerance driver transition using recorded stimulus and
-   solver diagnostics. Loaded voltage convergence and device applicability remain
-   open; preserve absolute phase and existing accuracy criteria.
-   Obtain a completed closed-board capture with the existing circuit and adequate
-   execution allowance, then review startup and the recorded receiver window
-   separately. A timeout is incomplete evidence, not a demonstrated circuit fault.
-   Qualify receiver levels, loading, oscillator phase and bus timing; cover the
-   remaining firmware scenarios and supply recovery. Preserve failing startup
-   and absolute phase in acceptance checks.
-4. **Identify residual specimen dependencies.** Exhaust existing photographs,
-   package drawings and published circuit constraints first. State the remaining
-   alternatives and the observation that would distinguish them. Standard S600
-   permits reference work to continue without the replacement ROM.
+1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
+   discrete terminals and footprint conflicts against registered photographs and
+   the netlist. Keep unsupported continuations and specimen differences explicit.
+2. **Isolate the analog transition failure.** The strict-tolerance solver audit
+   identifies an inductor truncation rejection after a successful Newton solve.
+   A recorded-driver replay also fails with HDL feedback removed. Compare the
+   absolute-time prefixes and investigate analog transition integration; changed
+   stimulus interpolation and breakpoints prevent assuming an identical cause.
+   Preserve failed captures and existing accuracy criteria.
+3. **Constrain device dynamics.** Use independent device evidence for oscillator
+   startup and host-buffer switching/loading. Keep primary, comparison and
+   reference devices separate. Numerical convergence and selected DC passes do
+   not establish that a model applies to the installed device.
+4. **Qualify the coupled reference board.** Corrected rising-RxC service checks
+   for single press, reset and modifier pass logical, sampled-stability and
+   serial-edge refinement gates under their declared assumptions. Complete the
+   remaining scenarios, voltage convergence and device qualification. Obtain a
+   completed closed-board capture, reviewing startup and the recorded receiver
+   window separately; a timeout is incomplete evidence. Qualify oscillator phase,
+   receiver levels/loading, bus timing and supply recovery without discarding
+   startup or aligning away phase errors.
+5. **Identify residual specimen dependencies.** Exhaust photographs, package
+   drawings and published circuit constraints first. For each remaining ambiguity,
+   state the alternatives and the observation that would distinguish them.
+   Standard S600 permits reference work without the replacement ROM.
 
 The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 records the findings behind this sequence and links their evidence. Detailed
@@ -177,14 +175,14 @@ Exit criterion: a placement change updates the model through regeneration; a
 connection change updates HDL wiring and triggers the relevant checks. A release
 records compatible CAD, HDL, emulator and museum revisions and validation results.
 
-## First implementation milestone
+## Physical integration milestone
 
 This milestone remains open because physical continuations are unresolved.
 Complete the keyboard data/clock output path through all representations:
 connector pins, schematic nets, visible copper, generated OpenSCAD geometry and
 an HDL/emulator comparison. Include the circuitry and boundary stimuli necessary
-to exercise that path. This is the first integration checkpoint within the phases
-above, before expanding reconstruction and qualification to the entire controller.
+to exercise that path. This remains an acceptance gate even though full-board
+simulation work has already progressed independently.
 
 ## Completion and remaining physical evidence
 

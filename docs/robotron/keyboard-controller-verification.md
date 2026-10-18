@@ -48,41 +48,29 @@ below are relative to the CAD controller directory unless stated otherwise.
   banks and raised axial bodies/leads. Nominal assembly clearances pass; lead
   heights and package dimensions remain estimates, and hidden holes are not
   inferred. See CAD `generated/layout.json` and `../checks/assembly.json`.
-- **Host integration:** the experimental receiver participates in service and
-  closed-board fixtures. The [loaded service assessment][loaded-host] supports
-  input stress and a clock-width screen at an assumed threshold. The
-  [receive-edge review][receive-edge] identifies a falling-edge observer error:
-  U856 samples rising RxC. The [corrected service pair][rising-host] passes
-  logical, scenario, sampled-stability and serial-edge refinement checks. Matching
-  waveform hashes allow prior voltage reviews to be reused; earlier falling-edge
-  stability results retain their original scope. [U856 source conditions][u856]
-  constrain loading and timing, but do not identify Schmitt thresholds or exact
-  input I/V behavior. Device applicability remains open.
-- **Release coverage:** fixed-spacing [reset][reset-spacing] and
-  [modifier][modifier-spacing] pairs pass packet coverage, sampled stability and
-  serial-edge refinement; reset also verifies CPU restart. The
-  [invocation control][reset-control] isolates spacing as consequential to the
-  earlier reset-release failure. These results do not establish full-waveform
-  convergence, remaining scenario coverage or calibrated device dynamics.
-- **Numerical agreement:** the [paired service review][paired-host] passes
-  serial-edge refinement, but loaded absolute-time voltage differences do not
-  decrease consistently with further refinement. [Retained transition windows][transitions]
-  associate selected maxima with small edge shifts; they do not establish
-  full-waveform convergence or physical timing. The [fixed-spacing control][spacing-pair]
-  produces byte-identical single-press waveforms, separating these differences
-  from the release-spacing remedy. Investigate transition integration and event
-  scheduling before relying on smaller timesteps alone.
-- **Strict-tolerance failure:** the [solver audit][truncation-audit] identifies a
-  final inductor truncation rejection after a successful Newton solve. The
-  [driver-boundary replay][driver-boundary] preserves the original waveforms and
-  locates the failure on a rising driver edge. Rejected trial states are not
-  physical winding measurements. Isolate the response to that recorded stimulus
-  before changing circuit parameters; numerical controls alone have not resolved it.
+- **Receiver and service coverage:** the [receive-edge review][receive-edge]
+  establishes rising RxC sampling. Corrected [single-press][rising-host],
+  [reset][reset-spacing] and [modifier][modifier-spacing] pairs pass logical,
+  sampled-stability and serial-edge refinement checks; reset also verifies CPU
+  restart. [Input stress and clock-width checks][loaded-host] retain their assumed
+  thresholds. [U856 source conditions][u856] do not identify Schmitt thresholds or
+  exact input I/V behavior. Remaining scenarios and device applicability are open.
+- **Voltage convergence:** [further refinement][paired-host] does not consistently
+  reduce absolute-time voltage differences. The [spacing control][spacing-pair]
+  leaves single-press waveforms unchanged, although spacing is consequential to
+  the [reset-release failure][reset-control]. Serial-edge agreement alone cannot
+  qualify the loaded voltage waveforms.
+- **Transition failure:** the [solver audit][truncation-audit] identifies a final
+  inductor truncation rejection after a successful Newton solve. The
+  [boundary capture][driver-boundary] locates a rising driver edge, and an
+  [analog-only replay][analog-replay] also fails with HDL feedback removed.
+  This supports isolating analog transition integration. Changed interpolation
+  and breakpoints prevent attributing both failures to the same mechanism;
+  rejected trial states are not physical measurements.
 - **Closed-board execution:** the [execution assessment][board-host] retains a
-  timed-out full scenario and a completed, unchanged-circuit startup diagnostic.
-  This supports allowing more execution time, not declaring a hardware blocker.
-  Full scenario completion remains unproven. Receiver reviews cover only the
-  recorded window and cannot qualify startup outside it or erase firmware failures.
+  timed-out scenario and completed startup diagnostic with the same circuit.
+  Full scenario completion remains unproven. Allow adequate execution time and
+  review startup separately from the recorded receiver window.
 - **Host and cable applicability:** [load screening][host-loads] exercises explicit
   capacitance/leakage assumptions. [Filter checks][filter] verify generated winding
   hypotheses, while [D104 switching checks][host-switching] expose unqualified
@@ -94,6 +82,7 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
+[analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay/assessment.json
 [modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json
 [truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-truncation-audit/assessment.json
 [driver-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-driver-boundary/assessment.json
@@ -105,7 +94,6 @@ below are relative to the CAD controller directory unless stated otherwise.
 [u856]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/u856_limits.json
 [spacing-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-minbreak-25ns/assessment.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
-[transitions]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loaded-transition-windows/assessment.json
 [board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load/assessment.json
 [host-loads]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loads/assessment.json
 [filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json
@@ -144,30 +132,15 @@ paths can mislead a continuity buzzer. Virtual BR isolation tests establish no
 manufacturer procedure for opening physical links. Closed-link baseline evidence
 comes before any separately justified opening or injection procedure.
 
-## Observation record
+## Recording new evidence
 
-Use one record per reading or capture; leave unknown fields explicitly unknown.
-A negative or ambiguous observation is useful evidence and must not be silently
-turned into a positive continuity result.
+Retain board identity, orientation and pin-numbering basis, bridge/power/cable
+state, instrument settings, probe locations, original files and hashes, repeated
+readings and unresolved alternatives. Unknown fields remain unknown; ambiguous
+continuity does not establish a connection.
 
-```text
-Observation ID / date / operator:
-Board marking and package markings:
-Original photo or capture filenames and SHA-256:
-Board orientation and pin-numbering basis:
-Bridge state (BR1 / BR2), power and cable configuration:
-Instrument / mode / range / sample rate / probe arrangement:
-Probe A: reference and pin if established; otherwise annotated photo pixel:
-Probe B: reference and pin if established; otherwise annotated photo pixel:
-Raw reading / waveform / repeated result:
-Alternative paths or unresolved junctions:
-Conclusion supported by this observation:
-Claims explicitly still unresolved:
-```
-
-Import future evidence into the CAD source manifest and component/route review,
-then update electrical pads or nets only after resolving their identity.
-Observed unassigned geometry may be represented independently. Re-export, review
-both sides, run the relevant native and digital checks, and pin compatible museum
-assets. A new measurement can revise an earlier interpretation; preserve the
-superseded record and its reason, as with the withdrawn CLK candidate.
+Import observations into the CAD evidence manifest and component/route review.
+Resolve terminal identity before changing electrical pads or nets; unassigned
+visual geometry can remain separate. Regenerate, review both sides, run the
+relevant checks and pin compatible museum assets. Preserve superseded evidence
+and the reason for changing its interpretation.
