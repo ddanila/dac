@@ -58,12 +58,14 @@ below are relative to the CAD controller directory unless stated otherwise.
   stability results retain their original scope. [U856 source conditions][u856]
   constrain loading and timing, but do not identify Schmitt thresholds or exact
   input I/V behavior. Device applicability remains open.
-- **Release coverage:** [modifier refinement][modifier-host] and [service reset][reset-host]
+- **Release coverage:** [modifier refinement][modifier-host] and [baseline reset][reset-host]
   abort at scheduled release boundaries in the same host-input transistor.
-  Halving the modifier timestep reproduces the failure. Source review identifies
-  breakpoint spacing below floating-point time resolution as a hypothesis to
-  test, not a proven cause or physical circuit fault. Single-press success does
-  not establish these scenarios.
+  The [explicit-spacing reset diagnostic][reset-spacing] completes with verified
+  CPU restart, packets before/after reset and sampled stability. An
+  [invocation control][reset-control] reproduces the failure at default-equivalent
+  spacing, isolating spacing as a consequential numerical parameter. The exact
+  internal failure path, fixed-spacing convergence and remaining scenario
+  coverage still need proof; this is not evidence of a physical circuit fault.
 - **Numerical agreement:** the [paired service review][paired-host] passes
   serial-edge refinement, but loaded absolute-time voltage differences do not
   decrease consistently with further refinement. [Retained transition windows][transitions]
@@ -87,6 +89,8 @@ below are relative to the CAD controller directory unless stated otherwise.
   an ngspice-only explanation but not establishing physical device behavior.
 
 [modifier-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-fine/assessment.json
+[reset-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-minbreak/assessment.json
+[reset-control]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-default-spacing/assessment.json
 [reset-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset/assessment.json
 [rising-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-fine/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
