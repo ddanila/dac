@@ -8,7 +8,7 @@ or digital model; it does not mean every IC is simulated transistor by transisto
 
 ## Engine decision
 
-Use **ngspice/XSPICE plus Icarus Verilog** as the first integration candidate.
+Use **ngspice/XSPICE plus Icarus Verilog** for reference circuit co-simulation.
 Keep KiCad as the connectivity authority, generate the SPICE and HDL interconnect,
 and retain OpenSCAD as the geometry consumer. Do not hand-maintain a second circuit.
 
@@ -100,9 +100,17 @@ Generated decks, reports and failure traces stay in `build/`.
 
 Each firmware mode emits an explicit component model/boundary inventory and rejects
 unclassified references. Semiconductor, gate and load parameters remain nominal
-assumptions, not specimen calibration. Optional electrical CPU-control and latch/flip-flop pullups now feed receiver voltages back into HDL. Their fixtures do not qualify full-board firmware timing. Electrical data-bus loading, calibrated pin timing, IC supply currents
-and brownout behavior remain qualification gaps. CPU/ROM/latch contention is now
-represented at the digital resolution level. The matrix fixture is diode-free; its phantom-row conduction
+assumptions, not specimen calibration. Electrical CPU-control and latch/flip-flop
+pullups feed receiver voltages back into HDL. Both firmware harnesses also support
+experimental electrical data-bus and WR modes: CPU/ROM/latch drivers resolve in
+SPICE, voltage-derived data returns to the CPU, and transistor serial gates load
+D0 and WR. RESET makes WR inactive; BUSACK releases its driver. These use published
+DC limits and explicit capacitance assumptions. Calibrated pin timing, whole-IC
+supply currents and brownout behavior remain gaps; full-board electrical-bus
+firmware execution and paired timing remain unqualified. See the core README for
+options and retained startup evidence.
+
+The matrix fixture is diode-free; its phantom-row conduction
 does not establish the specimen's key construction. The static mapping check and live bus-fixture test are separate from firmware
 qualification. Selectable Intel 8282 input-current stress fixtures now exercise
 the matrix and S600 service harness. Their source limits and acceptance reports
@@ -126,7 +134,8 @@ refinement and sampled data setup/hold against an explicit fixture budget.
 Service coverage checks the CPU reset pin and restart at the first ROM byte after
 each release. Archived reports retain input and waveform provenance. Single-press,
 modifier, control, release/repress, service-reset and indicators have qualified
-BR service runs, separate from full-board startup and historical timing. Rechecked scenarios
+BR service runs with their recorded model boundaries. These do not qualify the
+new electrical data-bus/WR modes, full-board startup or historical timing. Rechecked scenarios
 preserve functional event sequences and timestamps under the diagnostic-only
 engine correction. Indicator qualification includes electrical on/off currents,
 C LED-state agreement and paired intent-edge timing. Repeat remains unqualified
