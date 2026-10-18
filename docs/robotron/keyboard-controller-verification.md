@@ -38,20 +38,26 @@ below are relative to the CAD controller directory unless stated otherwise.
   supply pad. The under-package attachment and outer-row registration remain
   unresolved. See CAD `generated/connector-review.json`,
   `route-evidence.json` and `generated/qualification.json`.
-- **Gate applicability:** primary A7 is marked К555ЛА3; comparison D100D and
-  reference DL000 remain separate identities. Selected passport DC checks do not
-  qualify dynamics. Candidates passing isolated checks still settle without
-  oscillating and return to plateaus after tested finite disturbances. See
-  [device applicability](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/k555la3-device-review/assessment.json)
-  and [complete-oscillator recovery](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-disturbance/assessment.json).
-- **Operating-state diagnosis:** at matching transient plateaus, the second gate
-  attenuates small signals, directing investigation toward its operating state and
-  device response. The default DC solve can select a different state; that result
-  is rejected for plateau comparison. Loaded closed-circuit ratios are not loop
-  gain, and the incomplete pole search establishes no stability conclusion. See
-  the [AC assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-ac/assessment.json)
-  for accepted and rejected evidence. These findings narrow desk work without
-  establishing physical device stability or ruling out every startup condition.
+- **Resistor-bank identity:** factory placement and photographs identify R1/R2
+  bodies. The comparison marking belongs to R1, not A1; its meaning and terminal
+  order remain unresolved. Museum photo rectangles expose these observations
+  without creating numbered pads. See CAD `component-evidence.json`.
+- **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
+  DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
+  К555ЛА3 conditions. Selected DC passes, including a separate input-diode
+  assumption, still do not produce a qualified oscillator. See the
+  [device-condition and diode review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/diode-role-review/assessment.json).
+- **Operating state:** matched transient/AC and internal-current captures explain
+  the second gate's attenuating response in the tested candidates. Finite recovery,
+  loaded ratios and the incomplete pole search do not prove general stability.
+  See the [internal-state assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-internal/assessment.json)
+  and its linked AC and disturbance evidence.
+- **Transition behavior:** Xyce reproduces the candidate transfer branches seen
+  in ngspice, including a narrow branch missed by the coarse sweep. This weakens
+  an ngspice-only explanation; it does not establish physical hysteresis or device
+  calibration. Published transfer conditions leave fixture choices unresolved.
+  See the [independent transfer review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json)
+  and its linked source/fixture assessment.
 - **Completion:** digital agreement and synchronized geometry remain useful
   foundations. Neither closes the physical data/clock milestone nor full-board
   electrical acceptance. These gaps still have desk-work routes; missing specimen
@@ -71,8 +77,8 @@ not a second inventory here.
 | BR2 source/CPU identity | Preserve the exported unassigned wire; constrain terminal correspondence with lead paths and package drawings | Visible joints or observations that distinguish the two ends; a closed bridge alone cannot do so |
 | Output-clock WR/RD discrepancy | Compare complete trace paths and keep published revisions separate | Distinguishable physical connection to the CPU pins |
 | X1 unclassified contact and cable/filter path | Use registered joints and both row constraints in `generated/connector-review.json` and `generated/connector-terminals.json`; classify A8 and resolve cable/winding attachments | Markings or complete trace/joint observations that distinguish remaining candidates |
-| Discrete pads and underside registration | Use independent landmarks and lead trajectories; body ends are not hole centres | Hidden lead-entry close-ups and measured dimensions |
-| Device models and full-board electrical behavior | Resolve second-gate operating state and response with matched DC/transient evidence; validate device applicability and coupled behavior | Targeted captures only for behavior not constrained by published evidence |
+| Discrete pads and underside registration | Resolve R1/R2 terminal correspondence and other discrete leads with independent landmarks; body ends are not hole centres | Hidden lead-entry close-ups and measured dimensions |
+| Device models and full-board electrical behavior | Constrain transition-region characteristics and circuit assumptions using independent device evidence; retain separate device condition sets before coupled qualification | Targeted captures only for behavior not constrained by published evidence |
 | Specimen ROM and timing | Continue reference qualification with standard S600; keep replacement-ROM identity separate | Repeated ROM reads and raw clock/reset/serial captures with setup details |
 
 Comparison photographs depict another specimen. Register and compare them before

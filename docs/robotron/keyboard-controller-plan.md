@@ -32,16 +32,17 @@ reconstruction requirements below remain in scope.
    visible pull-up branches through the driver, cable and filter. Resolve conflicts
    with estimated footprints from the photographs; preserve unsupported
    continuations as unresolved. Use the established X1 row constraints while
-   keeping A8 and BR2 terminal identity separate from observed geometry.
-2. **Establish an applicable gate model.** Investigate the second oscillator
-   gate's operating state and loaded small-signal response: isolated device passes
-   and finite disturbances have not produced sustained oscillation. Match AC
-   operating points to observed transient plateaus before interpreting them;
-   loaded response ratios and an incomplete pole search cannot prove stability.
-   Keep primary К555ЛА3, comparison D100D and reference DL000 applicability separate.
-   Validate against independent device conditions before expanding parameter
-   searches; neither emulator frequency nor incompletely specified typical curves
-   are exact fitting targets.
+   keeping A8 and BR2 terminal identity separate from observed geometry. R1/R2
+   body identification supports photo review; numbered terminals still require
+   independent joint and lead correspondence.
+2. **Constrain gate transition behavior.** Matched operating-state probes and
+   independent Xyce transfer replay now direct attention to device applicability,
+   rather than an ngspice-only artifact. Seek independently specified transition
+   characteristics and review circuit assumptions before further parameter searches.
+   Keep primary К555ЛА3, comparison D100D and reference DL000 conditions separate;
+   a TI-only endpoint failure is not a universal device rejection. Selected DC
+   passes and input-diode sensitivity have not resolved oscillator startup.
+   Incompletely specified typical curves cannot supply exact fitting targets.
 3. **Qualify the coupled reference board.** Once device applicability is supported,
    resolve clock-phase convergence, receiver levels and bus timing, then run the
    remaining firmware scenarios. Assess supply recovery separately from initial
