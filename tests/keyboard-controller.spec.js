@@ -508,8 +508,8 @@ test('connector review exposes provisional geometry without assigning observed r
  expect(selected.points).toEqual([]);
  expect(selected.pins.every(p=>p.position===null)).toBe(true);
  expect(selected.pins.length).toBeGreaterThan(0);
- expect(data.connectorTerminals.completeTerminalOrderResolved).toBe(false);
- expect(data.connectorTerminals.unresolvedRows).toEqual(['housingNear']);
+ expect(data.connectorTerminals.completeTerminalOrderResolved).toBe(true);
+ expect(data.connectorTerminals.unresolvedRows).toEqual([]);
  expect(data.connectorTerminals.referenceAbsentPins).toEqual(['A8']);
  expect(Object.keys(data.connectorReview.projectedLeadEndRowsMm).sort()).toEqual(['housingFar','housingNear']);
  expect(data.source.files.connectorReview).toMatch(/^[a-f0-9]{64}$/);
@@ -520,7 +520,9 @@ test('connector review exposes provisional geometry without assigning observed r
  const detail=panel.locator('[data-connector-review]');
  await expect(detail).toContainText('both observed lead rows exit the same housing side');
  await expect(detail).toContainText('do not establish hole centres or terminal order');
- await expect(detail).toContainText('Near-row numbering remains unresolved');
+ await expect(detail).toContainText('near row as B1–B13');
+ await expect(detail).toContainText('not measured continuity');
+ await expect(detail).toContainText('A8 remains electrically unclassified');
  await expect(panel.locator('[data-visual-connector="X1"]')).toHaveCount(Object.values(data.layout.visualConnectors.find(c=>c.ref==='X1').rows).flat().length);
  await expect(panel.locator('[data-selection]')).toContainText('provisional native pad positions are omitted');
  await expect(detail.getByRole('link')).toHaveAttribute('href',new RegExp(data.source.cad.revision));

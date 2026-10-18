@@ -17699,6 +17699,12 @@
             "matches": true,
             "observation": "x1-led-caps-attachment",
             "referenceNet": "/LED_CAPS"
+          },
+          {
+            "candidatePin": "B8",
+            "matches": true,
+            "observation": "x1-col11-underside-attachment",
+            "referenceNet": "/COL11"
           }
         ],
         "consistent": true,
@@ -17748,9 +17754,15 @@
             "matches": true,
             "observation": "x1-led-caps-attachment",
             "referenceNet": "/LED_CAPS"
+          },
+          {
+            "candidatePin": "B6",
+            "matches": false,
+            "observation": "x1-col11-underside-attachment",
+            "referenceNet": "/COL11"
           }
         ],
-        "consistent": true,
+        "consistent": false,
         "rows": {
           "housingFar": [
             "A1",
@@ -17797,6 +17809,12 @@
             "matches": false,
             "observation": "x1-led-caps-attachment",
             "referenceNet": "/LED_CAPS"
+          },
+          {
+            "candidatePin": "B8",
+            "matches": true,
+            "observation": "x1-col11-underside-attachment",
+            "referenceNet": "/COL11"
           }
         ],
         "consistent": false,
@@ -17846,6 +17864,12 @@
             "matches": false,
             "observation": "x1-led-caps-attachment",
             "referenceNet": "/LED_CAPS"
+          },
+          {
+            "candidatePin": "B6",
+            "matches": false,
+            "observation": "x1-col11-underside-attachment",
+            "referenceNet": "/COL11"
           }
         ],
         "consistent": false,
@@ -17895,6 +17919,12 @@
             "matches": false,
             "observation": "x1-led-caps-attachment",
             "referenceNet": "/LED_CAPS"
+          },
+          {
+            "candidatePin": "A8",
+            "matches": false,
+            "observation": "x1-col11-underside-attachment",
+            "referenceNet": "/COL11"
           }
         ],
         "consistent": false,
@@ -17944,6 +17974,12 @@
             "matches": false,
             "observation": "x1-led-caps-attachment",
             "referenceNet": "/LED_CAPS"
+          },
+          {
+            "candidatePin": "A6",
+            "matches": false,
+            "observation": "x1-col11-underside-attachment",
+            "referenceNet": "/COL11"
           }
         ],
         "consistent": false,
@@ -17993,6 +18029,12 @@
             "matches": false,
             "observation": "x1-led-caps-attachment",
             "referenceNet": "/LED_CAPS"
+          },
+          {
+            "candidatePin": "A8",
+            "matches": false,
+            "observation": "x1-col11-underside-attachment",
+            "referenceNet": "/COL11"
           }
         ],
         "consistent": false,
@@ -18042,6 +18084,12 @@
             "matches": false,
             "observation": "x1-led-caps-attachment",
             "referenceNet": "/LED_CAPS"
+          },
+          {
+            "candidatePin": "A6",
+            "matches": false,
+            "observation": "x1-col11-underside-attachment",
+            "referenceNet": "/COL11"
           }
         ],
         "consistent": false,
@@ -18079,7 +18127,7 @@
         }
       }
     ],
-    "completeTerminalOrderResolved": false,
+    "completeTerminalOrderResolved": true,
     "referenceAbsentPins": [
       "A8"
     ],
@@ -18098,12 +18146,25 @@
         "A11",
         "A12",
         "A13"
+      ],
+      "housingNear": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "B13"
       ]
     },
     "scope": "Conditional on photographed attachments and the reference schematic. Logical elimination is not a continuity measurement. Row directions are independent hypotheses.",
-    "unresolvedRows": [
-      "housingNear"
-    ]
+    "unresolvedRows": []
   },
   "evidence": {
     "schema": 1,
@@ -19368,7 +19429,7 @@
       "referenceType": "MATRIX_CONNECTOR",
       "placementEvidence": "inherited-photo-estimate",
       "pinEvidence": "connector-label-or-semantic-terminal",
-      "note": "The native electrical footprint remains provisional. Museum geometry uses separately exported unnumbered solder-joint observations and same-side bent leads; this does not assign reference nets or resolve the near-row numbering. Housing dimensions and lead profiles remain estimates. See physicalReview and generated/connector-review.json.",
+      "note": "The native electrical footprint remains provisional. Museum geometry uses separately exported unnumbered solder-joint observations and same-side bent leads. Reference-derived row numbering is constrained by photographed attachments; this is not measured continuity. Housing dimensions and lead profiles remain estimates. See physicalReview and generated/connector-terminals.json.",
       "placementAuthority": "controller.kicad_pcb",
       "physicalReview": {
         "status": "inherited-geometry-conflicts-with-visible-lead-arrangement",
@@ -19492,7 +19553,7 @@
           "comparison-photo-080415534"
         ],
         "comparisonObservation": "Separate-specimen oblique views corroborate two stacked contact rows and bent tails exiting one housing side. Handwritten A/B and end markings are visible but do not independently establish primary-specimen terminal numbering.",
-        "limits": "Local underside registration constrains solder-joint geometry. Far-row identity is constrained by the R11.1/R11.2 attachments and reference schematic. Near-row direction and the schematic-omitted A8 contact remain unresolved; dimensions are not metrology.",
+        "limits": "Local underside registration constrains solder-joint geometry. Far-row identity follows the R11.1/R11.2 attachments; near-row direction follows the eighth contact to A2.1:6 underside trace. Numbering is conditional on reference component identity and visible attachments, not measured continuity. The schematic-omitted A8 contact remains electrically unclassified; dimensions are not metrology.",
         "underside": {
           "photoSource": "photo-bottom",
           "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
@@ -19655,12 +19716,59 @@
             ],
             "pixelUncertainty": 8,
             "basis": "Visible short top-side trace between the resistor inner lead and sixth far-row contact. R11.2 identity follows the factory placement; the reference schematic connects its connector-side terminal to X1:A6."
+          },
+          {
+            "id": "x1-col11-underside-attachment",
+            "photoSource": "photo-bottom",
+            "row": "housingNear",
+            "indexFromCable": 7,
+            "referenceEndpoint": {
+              "ref": "A2.1",
+              "pin": "6"
+            },
+            "pixelPolyline": [
+              [
+                1233,
+                1925
+              ],
+              [
+                1198,
+                1892
+              ],
+              [
+                1195,
+                1552
+              ],
+              [
+                1210,
+                1537
+              ],
+              [
+                1212,
+                1526
+              ],
+              [
+                1212,
+                1493
+              ],
+              [
+                1194,
+                1477
+              ]
+            ],
+            "pixelUncertainty": 8,
+            "basis": "Visible underside trace from the eighth near-row solder joint, through the intermediate solder eye, to A2.1:6. A2.1 identity and orientation follow the factory placement and surrounding registered pins. The reference schematic connects this COL11 output to X1:B8; reversed row order would identify the observed joint as B6 (ROW0).",
+            "corroboratingSources": [
+              "comparison-photo-080347973"
+            ],
+            "comparisonScope": "The separate specimen makes the same trace easier to inspect; its geometry is not transferred to the primary board."
           }
         ],
         "terminalConstraintSources": [
           "photo-top",
           "robotron-factory-drawings",
-          "schematic"
+          "schematic",
+          "photo-bottom"
         ]
       }
     },
@@ -20892,7 +21000,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "11168c70cf05ffad90b77d96ad0d6d04f3119646"
+      "revision": "e4b450737b9aeddb4b5ae6dc72fd52f07e867026"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -20905,9 +21013,9 @@
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "2a843bc73af129a3b99858bff04497e4364260d9fa56b263b1c1525bb01f0e59",
       "connectorReview": "1d1162e0d3c2ee655e563b9c035c9826a18e4c65865c6dc6eda32baf86b535fc",
-      "connectorTerminals": "c241bc02993bbe443fcb5505f13b8c66266ca8ecae72f779152e22e6c4ddc423",
+      "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
-      "componentEvidence": "78864c01dd5eb9832e2a7c04a5e723b1ee0ee4164c209b0db9fe2a2a65f4e66a"
+      "componentEvidence": "01a23fdc0d27490e369f8dd3bd8a27722427c401edf168a68612ae1e8930b6ef"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "341cf9d240946d2254a21ec9260ab687bdcc52290b9ab9e58563f287dee711af"

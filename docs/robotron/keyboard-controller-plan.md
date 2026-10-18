@@ -39,9 +39,10 @@ reconstruction requirements below remain in scope.
    Apply the same separation to remaining body and bridge observations; closed-link
    continuity alone cannot determine terminal order. X1 photographs support
    same-side leads and locally registered underside joints. Visible resistor
-   attachments constrain the far row to A1–A13 under the reference schematic;
-   near-row direction remains unresolved. Preserve anonymous geometry separately
-   from the provisional electrical footprint. A8's absence from the schematic
+   attachments constrain the far row to A1–A13; the underside COL11 trace
+   constrains the near row to B1–B13, conditional on reference component identity.
+   Reconcile the provisional electrical footprint with these registered joints
+   and supported terminal identities before enabling numbered geometry highlights. A8's absence from the schematic
    does not establish that the physical contact is unconnected.
 3. **Resolve gate-model applicability before further fitting.** Retained current
    balance, numerical-conductance and finite-perturbation checks leave the
