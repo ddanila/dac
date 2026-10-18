@@ -504,6 +504,9 @@ test('recorded waveform rejects mismatched connectivity and retries',async({page
 
 test('connector review exposes provisional geometry without assigning observed rows to nets',async({page})=>{
  expect(data.connectorReview.qualifiedForPadPlacement).toBe(false);
+ expect(data.connectorTerminals.completeTerminalOrderResolved).toBe(false);
+ expect(data.connectorTerminals.unresolvedRows).toEqual(['housingNear']);
+ expect(data.connectorTerminals.referenceAbsentPins).toEqual(['A8']);
  expect(Object.keys(data.connectorReview.projectedLeadEndRowsMm).sort()).toEqual(['housingFar','housingNear']);
  expect(data.source.files.connectorReview).toMatch(/^[a-f0-9]{64}$/);
  await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No CAD required'}));
@@ -513,6 +516,7 @@ test('connector review exposes provisional geometry without assigning observed r
  const detail=panel.locator('[data-connector-review]');
  await expect(detail).toContainText('both observed lead rows exit the same housing side');
  await expect(detail).toContainText('do not establish hole centres or terminal order');
+ await expect(detail).toContainText('Near-row numbering remains unresolved');
  await expect(detail.getByRole('link')).toHaveAttribute('href',new RegExp(data.source.cad.revision));
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A7');
  await expect(detail).toHaveCount(0);

@@ -17565,6 +17565,427 @@
       }
     }
   },
+  "connectorTerminals": {
+    "candidates": [
+      {
+        "checks": [
+          {
+            "candidatePin": "A5",
+            "matches": true,
+            "observation": "x1-led-siso-attachment",
+            "referenceNet": "/LED_SISO"
+          },
+          {
+            "candidatePin": "A6",
+            "matches": true,
+            "observation": "x1-led-caps-attachment",
+            "referenceNet": "/LED_CAPS"
+          }
+        ],
+        "consistent": true,
+        "rows": {
+          "housingFar": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "A9",
+            "A10",
+            "A11",
+            "A12",
+            "A13"
+          ],
+          "housingNear": [
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "B6",
+            "B7",
+            "B8",
+            "B9",
+            "B10",
+            "B11",
+            "B12",
+            "B13"
+          ]
+        }
+      },
+      {
+        "checks": [
+          {
+            "candidatePin": "A5",
+            "matches": true,
+            "observation": "x1-led-siso-attachment",
+            "referenceNet": "/LED_SISO"
+          },
+          {
+            "candidatePin": "A6",
+            "matches": true,
+            "observation": "x1-led-caps-attachment",
+            "referenceNet": "/LED_CAPS"
+          }
+        ],
+        "consistent": true,
+        "rows": {
+          "housingFar": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "A9",
+            "A10",
+            "A11",
+            "A12",
+            "A13"
+          ],
+          "housingNear": [
+            "B13",
+            "B12",
+            "B11",
+            "B10",
+            "B9",
+            "B8",
+            "B7",
+            "B6",
+            "B5",
+            "B4",
+            "B3",
+            "B2",
+            "B1"
+          ]
+        }
+      },
+      {
+        "checks": [
+          {
+            "candidatePin": "A9",
+            "matches": false,
+            "observation": "x1-led-siso-attachment",
+            "referenceNet": "/LED_SISO"
+          },
+          {
+            "candidatePin": "A8",
+            "matches": false,
+            "observation": "x1-led-caps-attachment",
+            "referenceNet": "/LED_CAPS"
+          }
+        ],
+        "consistent": false,
+        "rows": {
+          "housingFar": [
+            "A13",
+            "A12",
+            "A11",
+            "A10",
+            "A9",
+            "A8",
+            "A7",
+            "A6",
+            "A5",
+            "A4",
+            "A3",
+            "A2",
+            "A1"
+          ],
+          "housingNear": [
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "B6",
+            "B7",
+            "B8",
+            "B9",
+            "B10",
+            "B11",
+            "B12",
+            "B13"
+          ]
+        }
+      },
+      {
+        "checks": [
+          {
+            "candidatePin": "A9",
+            "matches": false,
+            "observation": "x1-led-siso-attachment",
+            "referenceNet": "/LED_SISO"
+          },
+          {
+            "candidatePin": "A8",
+            "matches": false,
+            "observation": "x1-led-caps-attachment",
+            "referenceNet": "/LED_CAPS"
+          }
+        ],
+        "consistent": false,
+        "rows": {
+          "housingFar": [
+            "A13",
+            "A12",
+            "A11",
+            "A10",
+            "A9",
+            "A8",
+            "A7",
+            "A6",
+            "A5",
+            "A4",
+            "A3",
+            "A2",
+            "A1"
+          ],
+          "housingNear": [
+            "B13",
+            "B12",
+            "B11",
+            "B10",
+            "B9",
+            "B8",
+            "B7",
+            "B6",
+            "B5",
+            "B4",
+            "B3",
+            "B2",
+            "B1"
+          ]
+        }
+      },
+      {
+        "checks": [
+          {
+            "candidatePin": "B5",
+            "matches": false,
+            "observation": "x1-led-siso-attachment",
+            "referenceNet": "/LED_SISO"
+          },
+          {
+            "candidatePin": "B6",
+            "matches": false,
+            "observation": "x1-led-caps-attachment",
+            "referenceNet": "/LED_CAPS"
+          }
+        ],
+        "consistent": false,
+        "rows": {
+          "housingFar": [
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "B6",
+            "B7",
+            "B8",
+            "B9",
+            "B10",
+            "B11",
+            "B12",
+            "B13"
+          ],
+          "housingNear": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "A9",
+            "A10",
+            "A11",
+            "A12",
+            "A13"
+          ]
+        }
+      },
+      {
+        "checks": [
+          {
+            "candidatePin": "B5",
+            "matches": false,
+            "observation": "x1-led-siso-attachment",
+            "referenceNet": "/LED_SISO"
+          },
+          {
+            "candidatePin": "B6",
+            "matches": false,
+            "observation": "x1-led-caps-attachment",
+            "referenceNet": "/LED_CAPS"
+          }
+        ],
+        "consistent": false,
+        "rows": {
+          "housingFar": [
+            "B1",
+            "B2",
+            "B3",
+            "B4",
+            "B5",
+            "B6",
+            "B7",
+            "B8",
+            "B9",
+            "B10",
+            "B11",
+            "B12",
+            "B13"
+          ],
+          "housingNear": [
+            "A13",
+            "A12",
+            "A11",
+            "A10",
+            "A9",
+            "A8",
+            "A7",
+            "A6",
+            "A5",
+            "A4",
+            "A3",
+            "A2",
+            "A1"
+          ]
+        }
+      },
+      {
+        "checks": [
+          {
+            "candidatePin": "B9",
+            "matches": false,
+            "observation": "x1-led-siso-attachment",
+            "referenceNet": "/LED_SISO"
+          },
+          {
+            "candidatePin": "B8",
+            "matches": false,
+            "observation": "x1-led-caps-attachment",
+            "referenceNet": "/LED_CAPS"
+          }
+        ],
+        "consistent": false,
+        "rows": {
+          "housingFar": [
+            "B13",
+            "B12",
+            "B11",
+            "B10",
+            "B9",
+            "B8",
+            "B7",
+            "B6",
+            "B5",
+            "B4",
+            "B3",
+            "B2",
+            "B1"
+          ],
+          "housingNear": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "A9",
+            "A10",
+            "A11",
+            "A12",
+            "A13"
+          ]
+        }
+      },
+      {
+        "checks": [
+          {
+            "candidatePin": "B9",
+            "matches": false,
+            "observation": "x1-led-siso-attachment",
+            "referenceNet": "/LED_SISO"
+          },
+          {
+            "candidatePin": "B8",
+            "matches": false,
+            "observation": "x1-led-caps-attachment",
+            "referenceNet": "/LED_CAPS"
+          }
+        ],
+        "consistent": false,
+        "rows": {
+          "housingFar": [
+            "B13",
+            "B12",
+            "B11",
+            "B10",
+            "B9",
+            "B8",
+            "B7",
+            "B6",
+            "B5",
+            "B4",
+            "B3",
+            "B2",
+            "B1"
+          ],
+          "housingNear": [
+            "A13",
+            "A12",
+            "A11",
+            "A10",
+            "A9",
+            "A8",
+            "A7",
+            "A6",
+            "A5",
+            "A4",
+            "A3",
+            "A2",
+            "A1"
+          ]
+        }
+      }
+    ],
+    "completeTerminalOrderResolved": false,
+    "referenceAbsentPins": [
+      "A8"
+    ],
+    "resolvedRows": {
+      "housingFar": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7",
+        "A8",
+        "A9",
+        "A10",
+        "A11",
+        "A12",
+        "A13"
+      ]
+    },
+    "scope": "Conditional on photographed attachments and the reference schematic. Logical elimination is not a continuity measurement. Row directions are independent hypotheses.",
+    "unresolvedRows": [
+      "housingNear"
+    ]
+  },
   "evidence": {
     "schema": 1,
     "sources": [
@@ -18952,7 +19373,7 @@
           "comparison-photo-080415534"
         ],
         "comparisonObservation": "Separate-specimen oblique views corroborate two stacked contact rows and bent tails exiting one housing side. Handwritten A/B and end markings are visible but do not independently establish primary-specimen terminal numbering.",
-        "limits": "No contact-to-net mapping or replacement native pad placement is inferred. Contact pitch, hole centres, A8 treatment and exact housing dimensions remain for review.",
+        "limits": "Local underside registration constrains solder-joint geometry. Far-row identity is constrained by the R11.1/R11.2 attachments and reference schematic. Near-row direction and the schematic-omitted A8 contact remain unresolved; dimensions are not metrology.",
         "underside": {
           "photoSource": "photo-bottom",
           "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
@@ -19070,7 +19491,58 @@
           },
           "order": "Cable-facing end to ROM-facing end; near/far geometric correspondence across the board, not numbered pins.",
           "observation": "Two rows of solder joints are visible. All are inside the local surrounding-IC anchor hull. Top/bottom row correspondence uses side and longitudinal order; individual pin names and nets are not assigned."
-        }
+        },
+        "terminalConstraints": [
+          {
+            "id": "x1-led-siso-attachment",
+            "photoSource": "photo-top",
+            "row": "housingFar",
+            "indexFromCable": 4,
+            "referenceEndpoint": {
+              "ref": "R11.1",
+              "pin": "2"
+            },
+            "pixelPolyline": [
+              [
+                1721,
+                2013
+              ],
+              [
+                1664,
+                2015
+              ]
+            ],
+            "pixelUncertainty": 8,
+            "basis": "Visible short top-side trace between the resistor inner lead and fifth far-row contact. R11.1 identity follows the factory placement; the reference schematic connects its connector-side terminal to X1:A5."
+          },
+          {
+            "id": "x1-led-caps-attachment",
+            "photoSource": "photo-top",
+            "row": "housingFar",
+            "indexFromCable": 5,
+            "referenceEndpoint": {
+              "ref": "R11.2",
+              "pin": "2"
+            },
+            "pixelPolyline": [
+              [
+                1724,
+                2045
+              ],
+              [
+                1665.5,
+                2047.5
+              ]
+            ],
+            "pixelUncertainty": 8,
+            "basis": "Visible short top-side trace between the resistor inner lead and sixth far-row contact. R11.2 identity follows the factory placement; the reference schematic connects its connector-side terminal to X1:A6."
+          }
+        ],
+        "terminalConstraintSources": [
+          "photo-top",
+          "robotron-factory-drawings",
+          "schematic"
+        ]
       }
     },
     "XT1": {
@@ -20301,7 +20773,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "a0d7911f1152d04aeb0fca388be70ba1f962f105"
+      "revision": "93cd161084c1d2f7aef53e19cf770f2fd7e0d2cf"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -20314,8 +20786,9 @@
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "2a843bc73af129a3b99858bff04497e4364260d9fa56b263b1c1525bb01f0e59",
       "connectorReview": "1d1162e0d3c2ee655e563b9c035c9826a18e4c65865c6dc6eda32baf86b535fc",
+      "connectorTerminals": "c241bc02993bbe443fcb5505f13b8c66266ca8ecae72f779152e22e6c4ddc423",
       "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
-      "componentEvidence": "9a546a1e552845857c4d4de78a411be08bbc305fe6bb1684351f0cf71435f313"
+      "componentEvidence": "8f08c101032dedb387cedb3b6e77f2df25e4e23dda129ed0d177ff09b130a9db"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "0eaf98e26aa710234a89aa0d8846ddad74e27ee329cc013e31fb694641d30529"
