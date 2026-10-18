@@ -22,6 +22,11 @@ function componentPhoto(data,ref,candidate,side='top'){
  const image=new Image();image.alt=`Original ${source.specimenId?'comparison':'primary'} specimen photo around ${ref}`;
  const url=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(source.path.split('/').pop())}`;
  const link=document.createElement('a');link.href=url;link.textContent=source.specimenId?'Open original comparison photo':side==='bottom'?'Open original underside photo':'Open original specimen photo';link.target='_blank';link.rel='noopener';figure.append(link);
+ const pkg=data.evidence.packageReferences?.find(p=>p.id===candidate.packageReference);
+ const packageSource=pkg&&data.evidence.sources.find(s=>s.id===pkg.source);
+ if(packageSource?.url){
+  const reference=document.createElement('a');reference.href=packageSource.url;reference.textContent='Package identification source';reference.title=pkg.locator||'';reference.target='_blank';reference.rel='noopener';figure.append(' · ',reference);
+ }
  for(const id of candidate.supportingSources||[]){
   const supporting=data.evidence.sources.find(s=>s.id===id);
   if(!supporting?.path||id===candidate.photoSource)continue;

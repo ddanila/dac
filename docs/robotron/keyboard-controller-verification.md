@@ -38,12 +38,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   supply pad. The under-package attachment and outer-row registration remain
   unresolved. See CAD `generated/connector-review.json`,
   `route-evidence.json` and `generated/qualification.json`.
-- **Resistor-bank identity:** factory placement and photographs identify R1/R2
-  bodies. The comparison marking belongs to R1, not A1; its meaning and terminal
-  order remain unresolved. Visible lead rows do not match the reference symbols
-  as complete package maps, and factory/Zander R2 branch numbering differs.
-  Reconcile those identities before placing pads; museum body rectangles do not
-  establish terminals. See CAD `component-evidence.json` and `evidence.json`.
+- **Resistor-bank identity:** factory placement identifies the R1/R2 bodies.
+  The KWH catalog resolves comparison R1's 3894 marking and documents its unused
+  terminal. Primary identity/orientation still needs corroboration; R2 package
+  identity and factory/Zander branch numbering remain unresolved. Museum body
+  rectangles and package references do not assign installed pads. See CAD
+  `component-evidence.json` and `evidence.json` for sources and terminal candidates.
 - **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
   DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
   К555ЛА3 conditions. Selected DC passes, including a separate input-diode

@@ -20454,6 +20454,27 @@
         "title": "Si-pnp-Transistoren SC307 bis SC309",
         "use": "PDF page 1 package drawing, L3/12 (TGL 11811). Reference terminal arrangement and nominal dimensions; not specimen placement or measured continuity. PDF not redistributed.",
         "credit": "Manufacturer communication from VEB Mikroelektronik Anna Seghers Neuhaus, identified on PDF page 1."
+      },
+      {
+        "id": "kwh-network-standard-types",
+        "url": "https://www.ycdtotv.de/robotron/kwh_r-nw.pdf",
+        "sha256": "107e10d5de6cbb371addbbfdd53adf075642db9df7551f742fc461aa35f804b6",
+        "locator": "PDF page 3, Stromteiler table, code 3894 and footnote 1",
+        "use": "Manufacturer standard network types; 3894 value, topology and explicit unused pin 10. Original PDF linked, not redistributed."
+      },
+      {
+        "id": "kwh-network-catalog",
+        "url": "https://www.ycdtotv.de/robotron/kwh_r-nw2.pdf",
+        "sha256": "5e67e56213ebe0bcbd521c56379ec4714d5a40ab061b0d6ae379420f2e9789d7",
+        "locator": "PDF page 7 / printed page 18, Stromteiler",
+        "use": "Manufacturer detailed catalog; cross-check 3894 and identify 3845 as an unconfirmed R2 candidate. Original PDF linked, not redistributed."
+      },
+      {
+        "id": "kwh-network-technical",
+        "url": "https://www.ycdtotv.de/robotron/kwh_r-nw3.pdf",
+        "sha256": "07b0c6e0de87cc10aa309f5218355f0ec5f4aeda5c6e972eca075781208ecb81",
+        "locator": "PDF page 3 / printed page 8 marking convention; PDF page 4 / printed page 9 package forms",
+        "use": "Manufacturer code/date convention and B1 lead pitch/package dimensions. Original PDF linked, not redistributed."
       }
     ],
     "specimen": {
@@ -20809,6 +20830,17 @@
         ],
         "finding": "Primary R1 and R2 each expose ten raised lead exits. Comparison R1 oblique independently shows ten. The native nine-terminal reference symbols cannot be used directly as complete physical package maps. Factory R2 third branch is labelled 10 versus 8 in Zander.",
         "scope": "Lead observations and drawing labels only; no inferred common duplication, unused terminal, installed numbering or net reassignment. Photo pixels and interpretation limits are in component-evidence.json terminalReview."
+      },
+      {
+        "date": "2026-10-18",
+        "sources": [
+          "kwh-network-standard-types",
+          "kwh-network-catalog",
+          "kwh-network-technical",
+          "comparison-photo-080450163"
+        ],
+        "finding": "KWH 3894 is eight 910-ohm resistors with common terminal 1, branches 2 through 9 and unused terminal 10. This identifies the comparison R1 marking and explains its ten visible leads without an extra resistor. B1 nominal pitch is 2.5 mm, not 2.54 mm.",
+        "scope": "Package-reference identification only. Primary R1 and installed pin-one orientation require separate evidence. The catalog 3845 is nine 4.7-kOhm resistors and remains only a candidate for R2; no unseen marking inferred."
       }
     ],
     "routeReviews": [
@@ -21474,6 +21506,45 @@
         "scope": "Reference package convention. Comparison photos show C36/D markings consistent with this family; primary specimen markings, individual body orientation, lead bends and PCB pad correspondence remain unqualified.",
         "flatFaceToLeadPlaneMm": 1,
         "backCornerRadiusMm": 1
+      },
+      {
+        "id": "kwh-3894",
+        "types": [
+          "3894"
+        ],
+        "source": "kwh-network-standard-types",
+        "locator": "PDF page 3, Stromteiler: 0.910 kOhm row, figure 2, footnote 1",
+        "corroboratingSource": "kwh-network-catalog",
+        "corroboratingLocator": "PDF page 7 / printed page 18, 4538.8-9446.76 row",
+        "manufacturer": "VEB Keramische Werke Hermsdorf",
+        "productNumber": "4538.8-9446.76",
+        "case": "B1-11/3.0/10",
+        "resistanceOhms": 910,
+        "resistorCount": 8,
+        "tolerancePercent": 2,
+        "powerPerResistorMilliwatts": 25,
+        "temperatureCoefficientPpmPerK": 200,
+        "commonTerminal": "1",
+        "resistorTerminals": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "unusedTerminals": [
+          "10"
+        ],
+        "leadCount": 10,
+        "leadPitchMm": 2.5,
+        "packageSource": "kwh-network-technical",
+        "packageLocator": "PDF page 4 / printed page 9, Form B; B1 pitch and height-code table",
+        "bodyHeightMaximumMm": 11,
+        "bodyThicknessMaximumMm": 3,
+        "scope": "Catalog topology identifies the comparison R1 marked 3894. Nominal package dimensions are not specimen measurements. Primary R1 marking and installed terminal orientation remain unconfirmed; no native pads assigned."
       }
     ]
   },
@@ -22547,7 +22618,29 @@
         "order": "Cable end toward CPU end in the original top photo; array indices are observations, not pin numbers.",
         "scope": "Ten visible raised lead exits beside the body. Not hole centres or projected pad coordinates. Do not assign the additional lead to common, unused or duplicated functions without evidence.",
         "nextEvidence": "Follow each lead to a registered joint and compare both sides; check package documentation for common or unused terminals.",
-        "drawingDiscrepancy": "Factory PDF page 11 labels the third branch from the left 10; Zander reference labels it 8. Both connect that branch to V4.8 base. Supply-terminal numbering is not shown there; current reference pin 1 does not establish physical common position."
+        "drawingDiscrepancy": "Factory PDF page 11 labels the third branch from the left 10; Zander reference labels it 8. Both connect that branch to V4.8 base. Supply-terminal numbering is not shown there; current reference pin 1 does not establish physical common position.",
+        "packageCandidate": {
+          "source": "kwh-network-catalog",
+          "locator": "PDF page 7 / printed page 18, code 3845",
+          "code": "3845",
+          "resistanceOhms": 4700,
+          "resistorCount": 9,
+          "commonTerminal": "1",
+          "resistorTerminals": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "case": "B1-9/3.0/10",
+          "status": "unconfirmed-no-legible-package-marking",
+          "scope": "A nine-branch package with one branch unused by the board could explain ten leads and factory pin 10, but neither identity nor the unused board branch is proven. Do not replace the eight-branch reference model from this hypothesis."
+        }
       }
     },
     "R1": {
@@ -22581,7 +22674,8 @@
             1930
           ],
           "readingRotationDegrees": 180,
-          "scope": "Separate specimen. Marking meaning unresolved; no resistance value, date code or primary-board marking inferred."
+          "scope": "Separate specimen. KWH catalog identifies 3894 as eight 910-ohm resistors, common pin 1, branches 2\u20139, unused pin 10. Primary-board marking and installed pin orientation remain unconfirmed; V D date-code interpretation is not needed for pin mapping.",
+          "packageReference": "kwh-3894"
         }
       ],
       "terminalReview": {
@@ -22631,10 +22725,11 @@
         ],
         "pixelUncertainty": 8,
         "order": "Cable end toward CPU end in the original top photo; array indices are observations, not pin numbers.",
-        "scope": "Ten visible raised lead exits beside the body. Not hole centres or projected pad coordinates. Do not assign the additional lead to common, unused or duplicated functions without evidence.",
-        "nextEvidence": "Follow each lead to a registered joint and compare both sides; check package documentation for common or unused terminals.",
+        "scope": "Ten visible raised lead exits beside the primary body, not hole centres or projected pad coordinates. Comparison 3894 package pin 10 is documented unused; do not transfer that identity or orientation to the primary without corroboration.",
+        "nextEvidence": "Confirm primary package marking and match the catalog common/unused ends to registered joints and visible copper; use B1 2.5 mm pitch only if identity is supported.",
         "comparisonSource": "comparison-photo-080450163",
-        "comparisonFinding": "Separate-specimen oblique view independently shows ten leads. Small end mark is not yet accepted as pin-one evidence."
+        "comparisonFinding": "Separate-specimen oblique shows ten leads and code 3894. KWH catalog explicitly leaves terminal 10 unused; this resolves the comparison package lead-count question. Small end mark and primary installed numbering remain unqualified.",
+        "packageReference": "kwh-3894"
       }
     },
     "V4.3": {
@@ -23398,7 +23493,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "5bbbb3a1917b9ff8d5eb9731f0dd22fc121ade0e"
+      "revision": "5a266456ce908f148565f215a69241b829da752f"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -23413,8 +23508,8 @@
       "topRegistration": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
-      "evidence": "4c65e5c0cbff2e76c3bd47c81027135fd4221321d9e3dfd63d6be4504a3ccc00",
-      "componentEvidence": "387df72666adf9a28614b3f63253d5e134b558d16eecbe15a94735e81ad95e76"
+      "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
+      "componentEvidence": "cc0ca09f77eae9c7868aadb4087fe54e77915a648dfbc95f1cc5e28289698428"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "86a20bd643612e73fd50861d30778dc3d1545babb0b504628459be862b4b1bf1"

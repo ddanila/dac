@@ -593,8 +593,11 @@ test('body photo regions expose resistor evidence without placing electrical pin
  await expect(comparison.getByRole('img')).toBeVisible();
  await expect(comparison).toContainText('comparison photo — different specimen');
  await expect(comparison).toContainText('3894');
- await expect(comparison).toContainText('Marking meaning unresolved');
- await expect(comparison.getByRole('link')).toHaveAttribute('href',/PXL_20261017_080450163.jpg$/);
+ await expect(comparison).toContainText('unused pin 10');
+ await expect(comparison).toContainText('Primary-board marking and installed pin orientation remain unconfirmed');
+ await expect(comparison.getByRole('link',{name:'Package identification source'})).toHaveAttribute('href','https://www.ycdtotv.de/robotron/kwh_r-nw.pdf');
+ await expect(primary.getByRole('link',{name:'Package identification source'})).toHaveCount(0);
+ await expect(comparison.getByRole('link',{name:'Open original comparison photo'})).toHaveAttribute('href',/PXL_20261017_080450163.jpg$/);
  await expect(panel.locator('[data-body-photo] circle, [data-body-photo] [data-photo-pin]')).toHaveCount(0);
  expect(await page.evaluate(()=>window.bodyHighlights)).toEqual([]);
  await expect(panel.locator('table tbody tr')).toHaveCount(Object.keys(data.connectivity.components.R1.pins).length);
