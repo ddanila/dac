@@ -1,208 +1,62 @@
-# Reference-board circuit simulation
+# Keyboard controller circuit simulation
 
-Use standard S600 firmware and the published Zander circuit as the executable
-reference profile. Missing specimen ROM, dimensions and continuity measurements
-must not block this work. Keep specimen reconstruction and later calibration
-separate. A complete board model means every component has an explicit electrical
-or digital model; it does not mean every IC is simulated transistor by transistor.
+Use ngspice/XSPICE coupled to Icarus Verilog for the reference controller. KiCad
+owns connectivity; generated decks and HDL consume it. OpenSCAD displays physical
+geometry and evidence. Standard S600 firmware permits reference qualification
+without the museum's replacement-ROM dump or timing measurements.
 
-## Engine decision
+The [plan](keyboard-controller-plan.md) owns scope and next steps. The
+[requirement audit](keyboard-controller-verification.md) owns remaining proof.
+The core's [analog operating guide](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md)
+owns build instructions, commands, runtime constraints and retained report links.
 
-Use **ngspice/XSPICE plus Icarus Verilog** for reference circuit co-simulation.
-Keep KiCad as the connectivity authority, generate the SPICE and HDL interconnect,
-and retain OpenSCAD as the geometry consumer. Do not hand-maintain a second circuit.
+## Tool decision
 
-The [ngspice manual, section 10.3](https://ngspice.sourceforge.io/docs/ngspice-manual.pdf)
-documents `d_cosim` with Icarus and Verilator. Icarus needs `libvvp` built with
-`--enable-libvvp`; its ordinary executable alone is insufficient. Build the shared runtime and bridge using the analog harness README; packaged
-bridges need not expose the required registration symbols correctly.
-Qualify time synchronization, X/Z states, bidirectional buses and feedback before
-calling the coupled simulation complete. [Verilator's language guide](https://verilator.org/guide/latest/languages.html)
-describes tri-state conversion and timing limitations that need explicit review.
+[ngspice](https://ngspice.sourceforge.io/docs.html) provides electrical simulation
+and XSPICE's HDL interface; [Icarus](https://github.com/steveicarus/iverilog) runs
+the generated board wiring and independently maintained chip/CPU models. This
+keeps the circuit tied to the native schematic and makes automated comparisons
+and failure capture possible.
 
-| Tool | Role and assessment for this board |
-| --- | --- |
-| [ngspice/XSPICE](https://ngspice.sourceforge.io/xspice.html) | Preferred analog solver and mixed-signal scheduler; existing HDL can be coupled rather than rewritten. |
-| [ngspice `d_process`](https://ngspice.sourceforge.io/extras.html) | Alternative process/pipe coupling to the same analog solver; requires a custom adapter and independent time-ordering tests. Useful if the shared-library bridge is isolated as the failure source. |
-| [KiCad simulator](https://www.kicad.org/discover/spice/) | Familiar graphical inspection using ngspice; preserve native schematic ownership. |
-| [Qucs-S](https://qucs-s-help.readthedocs.io/en/latest/overview/choosing-a-sim-backend.html) | Alternative GUI for ngspice/Xyce; another frontend, not an independent solver. |
-| [Xyce](https://xyce.sandia.gov/files/xyce/AppNote-MixedSignal.pdf) | Independent SPICE solver, now exercised with our isolated oscillator adapter. Paired and cross-solver checks pass for an ideal supply ramp; recorded slow-supply startup fails refinement. Xyce/HDL board integration remains unvalidated. |
-| [WRspice](https://www.wrcad.com/manual/wrsmanual/node73.html) | Built-in Verilog/SPICE integration; existing HDL compatibility would need testing. |
-| [GNUCAP](https://www.gnu.org/software/gnucap/gnucap-man-html/gnucap-man003.html) | Open mixed analog/digital alternative; integration effort is less directly aligned with our existing harness. |
-| [QSPICE](https://www.qorvo.com/design-hub/calculators-simulation/qspice) | Strong alternative with C++/Verilog support; official desktop requirements are Windows. |
-| [LTspice](https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html) | Useful independent analog subcircuit check; not the selected existing-HDL integration route. |
-| [TINA](https://www.tina.com/blog/mixed-mode-simulation-in-tina-and-tinacloud-spice-hdl-mcu-co-simulation/) / [Proteus](https://www.labcenter.com/simulation/) | Commercial mixed-mode environments. Confirm CPU/HDL support and automation before purchase; generic MCU support does not establish Z80 compatibility. |
-| [Cadence AMS](https://support1.cadence.com/public/docs/content/20466887.html), [Synopsys AMS](https://www.synopsys.com/implementation-and-signoff/custom-design-platform/multiphysics-ams.html), [Questa ADMS](https://static.sw.cdn.siemens.com/siemens-disw-assets/public/1EHxPDT6WcqjXRx8aGYiYM/en-US/Siemens%20SW%20Questa%20ADMS%20FS%2080836%20C1.pdf) | Commercial alternatives if suitable licences already exist; not required to start this board. |
-| [SystemC AMS](https://www.accellera.org/images/downloads/standards/systemc/Accellera_SystemC_AMS_Users_Guide_January_2020.pdf) | System-level continuous/discrete modeling; its electrical linear networks do not replace nonlinear transistor SPICE models. |
-| [MAME netlist](https://github.com/mamedev/mame/tree/master/src/lib/netlist) / [CircuitJS](https://www.falstad.com/circuit/) | Candidates for interactive museum circuit presentation. Evaluate separately from the reference qualification backend. |
+[Xyce](https://xyce.sandia.gov/documentation-tutorials/) is useful as an independent
+solver for isolated electrical circuits and recorded-supply replay. Agreement
+between solvers is evidence about a numerical result, not device calibration.
+KiCad's simulator and [Qucs-S](https://ra3xdh.github.io/) provide useful inspection
+interfaces; changing the interface does not supply missing device characteristics.
+Other simulators remain options if they answer a specific unresolved modeling or
+solver question. A broad tool survey is not an implementation dependency.
 
-This is a survey of relevant tool families, not an exhaustive catalogue or a claim
-that every candidate has been installed and validated.
+## Qualification boundaries
 
-Manufacturer models also need screening. [TI publishes SN74LS00 SPICE and IBIS
-references](https://www.ti.com/product/SN74LS00), but the supplied behavioral SPICE
-model switches near half the supply voltage and fails our 2 V TTL-high fixture.
-It is not a suitable default DL000 replacement. The IBIS output-current curves have an analytical and SPICE DC load-line
-cross-check. The reviewed PDIP pin map contains input/output assignment errors,
-so it must not be imported unchanged. These checks do not establish switching,
-undervoltage behavior or DDR device calibration. Keep restricted vendor files outside the repository and retain
-source hashes and runnable fixtures in the [reference assessment](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog/reports/clock-output/ti-reference-review).
+| Layer | What it establishes | What remains separate |
+| --- | --- | --- |
+| C/HDL digital comparisons | Reference transactions and firmware-visible behavior within declared digital boundaries | Exact CPU cycles, physical routing and analog validity |
+| Virtual BR service simulation | Firmware and electrical interfaces with externally supplied CPU clock/reset | Onboard oscillator/reset startup and closed-board behavior |
+| Closed-board mixed-signal simulation | Executable coupled oscillator, reset, matrix and output circuits | Passing full-board phase, voltage, bus and scenario qualification |
+| Supply-dip diagnostics | Modeled reset/clock response to an explicit supply waveform | Reliable firmware restart and specimen brownout behavior |
 
-## Implementation order and acceptance
+The retained service repeat qualification passes within its recorded configuration.
+It does not close the full-board gates. Full-precision supply replay still exposes
+clock-phase sensitivity; released-bus reads can enter the receiver's unknown band
+even when serial output matches C. Reset recovery must be assessed in each valid
+supply interval, independently of initial power-on reset. Exact results and model
+assumptions live in the linked core reports rather than being copied here.
 
-1. Generate analog passive/transistor wiring from the existing normalized KiCad
-   connectivity. Assign each component to a model or an explicit remaining gap.
-   Preserve pin/net IDs; physical package pad placement is a separate question.
-2. Model reset, oscillator, row sensing, open-collector outputs, supply decoupling,
-   LEDs and cable/filter loading. Obtain source-backed device parameters where
-   available; expose nominal surrogates and sensitivity ranges where unavailable.
-   Do not tune nominal models merely to reproduce the emulator's chosen clock.
-3. Couple voltage/current domains to digital pins with specified thresholds,
-   hysteresis, input loads and output impedance. Model release/high impedance and
-   contention. Verify time ordering and timestep convergence in both directions.
-4. Run TV80 with standard S600 using the simulated oscillator and power-on reset;
-   close BR1/BR2 normally. Exercise contacts, modifiers, repeat, release, brownout
-   and reset, and retain serial, LED and internal-node traces. Virtual isolation
-   remains an additional service test, not the normal source of clock/reset.
-5. Compare the reference waveform behavior with the production emulator. Report
-   logical differences, CPU phase differences and analog-model uncertainty
-   separately. Keep fast digital/analog smoke checks in CI and longer firmware,
-   corner and convergence sweeps in a separate qualification target.
+## Model evidence and acceptance
 
-Acceptance requires a reproducible full-board run with no silent component
-omissions, explicit model provenance, stable timestep results and retained failure
-traces. An exploratory BJT model is useful progress but cannot establish absolute
-SC308/SC236 accuracy. Measurements improve calibration rather than gate software
-implementation.
+Published DC and switching limits can constrain useful models without specimen
+measurements. Preserve test conditions, selection groups, input/output loading
+and the distinction between DC and AC gain. Fit against device evidence, validate
+against independent conditions where possible, and test supported parameter
+ranges. Matching the emulator's oscillator frequency is not model validation.
 
-## Runnable experiments
+A vendor model is not automatically applicable to the installed device. Review
+pin roles, logic family, load conditions and redistribution terms; keep restricted
+vendor inputs local. Nominal fixtures and conservative timing envelopes must
+remain labelled as such.
 
-Commands and model assumptions live in the
-[analog harness README](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog).
-Generated decks, reports and failure traces stay in `build/`.
-
-| Entry point | Scope |
-| --- | --- |
-| `sense_probe.py` | DC sensing front end with common row stimulus. |
-| `matrix_probe.py` | Contact fixture, column scanning and electrical sensing, followed by generated HDL latch/bus checks. |
-| `matrix_cosim.py` | Live HDL column-drive / SPICE contact-sense / HDL latch feedback with a bus fixture. |
-| `reset_probe.py` | Electrical reset, power cycling, BR2 isolation and timestep checks. |
-| `device_probe.py` | Generic NPN characterization against source-pinned SC236D DC gain limits; reports model qualification separately from successful execution. |
-| `oscillator_probe.py` | RC oscillator topology, BR1 isolation, timestep and capacitor sensitivity. |
-| `output_probe.py` | Serial/cable receiver voltages, LED currents, supply/return paths and load sensitivity. |
-| `serial_cosim.py` | Raw HDL-to-cable-to-receiver bit transport with explicit setup/hold stimulus; not CPU bus timing or S600 framing. |
-| `firmware_io_cosim.py` | S600-driven electrical matrix/cable feedback with external clock/reset through the BR service boundary; excludes the oscillator/reset generators. |
-| `make qualify-keyboard-board-scenario S600_ROM=/path/to/s600.bin` | Paired full-board contact runs; retained-input checks, absolute electrical clock phase with sample uncertainty, reset/restart and serial timing agreement, and sampled receiver margins. Numerical budgets do not establish historical timing or device calibration. |
-| `firmware_io_cosim.py --require-led-activity` | Captures firmware-driven SI/SO and Caps intent voltages and diode currents; requires settled on/off load response and ordinal C LED-state agreement for both indicators. |
-| `bus_timing_probe.py` / `firmware_drive_compare.py` | CPU data-drive setup/hold regression and S600 logical comparison; physical bus contention and pin delays remain unqualified. |
-| `resolved_bus_probe.py` | ROM pin mapping, shared CPU/ROM/latch bus resolution and deliberate contention. |
-| `build_bridge.py` / `bridge_probe.py` | Reproducible ngspice–Icarus bridge and explicit sink-enable transport. |
-| `make test-keyboard-coupled-boot S600_ROM=/path/to/s600.bin` | TV80/S600 driven by electrical clock/reset with BR1/BR2 closed. `boot_cosim.py --electrical-matrix --electrical-outputs` also enables electrical sensing, output loads and cable/supply paths. |
-
-Each firmware mode emits an explicit component model/boundary inventory and rejects
-unclassified references. Semiconductor, gate and load parameters remain nominal
-assumptions, not specimen calibration. Electrical CPU-control and latch/flip-flop
-pullups feed receiver voltages back into HDL. Both firmware harnesses also support
-experimental electrical data-bus and WR modes: CPU/ROM/latch drivers resolve in
-SPICE, voltage-derived data returns to the CPU, and transistor serial gates load
-D0 and WR. RESET makes WR inactive; BUSACK releases its driver. These use published
-DC limits and explicit capacitance assumptions. Calibrated pin timing, whole-IC
-supply currents and brownout behavior remain gaps; full-board electrical-bus
-firmware execution and paired timing remain unqualified. See the core README for
-options and retained startup evidence.
-
-Optional ROM and latch timing envelopes use published Intel 2716 and 8282
-limits and propagate unknown values during unspecified intervals. The complete
-standard-ROM digital workload preserves C/HDL event agreement with both enabled;
-that does not qualify electrical bus timing or specimen parts. See the
-[combined timing comparison](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog/reports/latch-timing-envelope/cpu-profiles).
-
-Replaying the recorded slow supply into the oscillator alone fails phase
-refinement in both ngspice and Xyce, without HDL or live supply feedback. Source
-rounding can mask the failure, so retain full-precision waveforms when reproducing
-it. This narrows the investigation but does not identify a physical startup
-mechanism; the nominal gate model is unqualified below its operating supply. See
-the [independent-solver evidence](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-recorded-supply).
-
-The matrix fixture is diode-free; its phantom-row conduction
-does not establish the specimen's key construction. The static mapping check and live bus-fixture test are separate from firmware
-qualification. Selectable Intel 8282 input-current stress fixtures now exercise
-the matrix and S600 service harness. Their source limits and acceptance reports
-live with the core; constant-current stress is not a calibrated latch input model. The full-board harness accepts timed contact recipes while retaining electrical
-clock/reset and closed BR1/BR2. The archived full-board single-press runs boot S600 from electrical clock/reset
-and pass their individual matrix/cable observations with the 10 ns bridge setting.
-Their paired qualification rejects clock-phase convergence, so integrated execution
-is demonstrated while timing and the remaining scenarios remain unqualified. The
-old 1 ns bridge setting produced time-ordering diagnostics with electrical matrix
-feedback; bridge delay is a numerical setting, not calibrated device propagation.
-
-The core's archived clock/reset baseline demonstrates standard S600 boot and idle
-scanning under electrical clock and power-on reset. Its digital matrix, direct ROM
-input and older CPU drive boundary limit that evidence; the assembled full-board
-configuration is covered separately by the full-board single-press reports.
-Their failed phase gate remains distinct from this older baseline.
-
-The service qualifier requires firmware-generated traffic, independent cable
-receiver observations, ordinal bit agreement with the C emulator, timestep
-refinement and sampled data setup/hold against an explicit fixture budget.
-Service coverage checks the CPU reset pin and restart at the first ROM byte after
-each release. Archived reports retain input and waveform provenance. Single-press,
-modifier, control, release/repress, repeat, service-reset and indicators have qualified
-BR service runs with their recorded model boundaries. These do not qualify the
-new electrical data-bus/WR modes, full-board startup or historical timing. Rechecked scenarios
-preserve functional event sequences and timestamps under the diagnostic-only
-engine correction. Indicator qualification includes electrical on/off currents,
-C LED-state agreement and paired intent-edge timing. The refined repeat result
-is linked below. The core's `analog/reports/solver-diagnostic-audit.json` preserves
-earlier failed runs; their diagnostics are not waived by newer passing evidence.
-Released-read sensitivity checks include constant bytes, unknown bits and a
-repeatable changing-byte sequence. The retained digital workload preserves
-serial/LED values and cycle timing against its reference baseline; this does not
-qualify floating-bus voltage or arbitrary input sequences. Evidence is retained
-in the core's `analog/reports/floating-io/`.
-
-Additional contact/reset recipes live in the core's `analog/scenarios/`. One
-timeline generates SPICE sources and C stimuli, with explicit observation windows
-for release/repress, modifiers, repeat and service reset. Each recipe must pass
-electrical execution, refinement and margin checks before extending the qualified
-scope; preparation alone does not count.
-
-The [refined repeat qualification](https://github.com/ddanila/dac-emulation/blob/e9c2a7b8ab5bcbe272bbe62fb5e9974fe8dc1482/verification/robotron-keyboard/analog/reports/repeat/refined-strict-time/qualification/qualification.json)
-passes reference-firmware press/repeat/release coverage, timestep convergence and
-sampled receiver margins with the reviewed strict-time diagnostic correction.
-This qualifies the selected BR service fixture; full-board oscillator/reset,
-brownout, electrical CPU bus timing and specimen calibration remain open.
-
-Direct Z transport through `bidi_bridge` fails timestep refinement locally; use
-the tested explicit sink-enable interface. The nominal reset model also fails to
-produce a useful pulse with a 10 ns supply ramp. These are retained qualification
-issues, not reasons to block implementation on missing specimen evidence.
-The reset probe now exposes external source resistance and records supply current.
-The fast-ramp case recovers with an exploratory finite source resistance, so the
-ideal source is part of the model uncertainty; this does not characterize the
-specimen power supply.
-
-For power-dip diagnostics, both `boot_cosim.py` and `reset_probe.py` accept
-`--supply-stimulus`; the reset probe also needs the matching `--stop-seconds`.
-Use the core's `analog/supply-stimuli/brownout.json` example and
-`--reset-load reference-capacitance` to select the sourced U880 input-capacitance
-limit. See the [input format and model boundaries](https://github.com/ddanila/dac-emulation/blob/f92b19349c909ab0fc45a3fe9794efb308477444/verification/robotron-keyboard/analog/README.md).
-The [retained reset diagnostic](https://github.com/ddanila/dac-emulation/blob/b81d0f611d2eacbf47bbe38cff832ef4ebc31006/verification/robotron-keyboard/analog/reports/reset-brownout/report.json)
-uses the earlier illustrative input load and shows no sampled low reset at valid
-supply during recovery. Neither load choice qualifies firmware restart. Full-board
-clock inspection separates reset-cycle evidence across supply interruptions;
-custom-supply runs remain excluded from normal-boot paired qualification.
-
-Device characterization already exposes a specific limit: the generic NPN model
-misses the published higher-current SC236D DC gain ranges. Fitting must preserve
-the distinction between DC and small-signal AC gain and the specified selection
-group. Published typical SC308 group-D data cannot qualify the board's group-C
-devices. Source conditions and comparisons belong in the executable device probe.
-An optional `sc236-dc` NPN profile now represents current-dependent gain and meets
-the selected DC limits. It has separate reset integration checks; full-device
-and firmware transient qualification remain open. The generic profile remains
-available as the baseline.
-
-The existing `qualify-keyboard-controller` target retains the independent standard
-S600 digital comparison. None of these partial checks alone establishes complete
-mixed-signal board qualification.
+Qualify numerical convergence, device applicability, firmware behavior and exact
+specimen agreement separately. Preserve full source precision and runtime hashes;
+reject solver diagnostics, incomplete captures and invalid receiver levels even
+when firmware output agrees. Investigating startup uncertainty must not silently
+change acceptance budgets, align away phase errors or discard failing startup.

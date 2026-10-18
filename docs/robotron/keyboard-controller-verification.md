@@ -25,42 +25,35 @@ Paths below are relative to the CAD controller directory unless stated otherwise
 | Separate fast checks and longer qualification | CAD native/export CI, core workflows and core qualification target | Longer firmware and mixed-signal qualification remain separate gates |
 | Complete the first physical data/clock milestone | Logical circuit and partial native copper | Actual copper and connector correspondence remain incomplete |
 
-Transistor package drawings distinguish SC308's centre emitter from SC236's centre
-base. Named body-only photo observations do not establish installed orientation or
-numbered pads. R6.4/R6.5 candidates identify raised lead ends, not hidden holes.
-BR2 endpoint candidates and the withdrawn CPU CLK route remain in the evidence
-review ledger without electrical promotion.
+## Resolve at the desk first
 
-Comparison photos depict a different specimen. They clarify construction but
-require independent registration and routing comparison. The museum ROM is a
-replacement; its unread contents are a separate question from PCB reconstruction.
+Physical uncertainty and model qualification are open investigations. Follow the
+[plan's next-work sequence](keyboard-controller-plan.md#next-work-and-acceptance)
+before treating either as a specimen dependency. Exact photo locators, pin-map
+candidates and superseded interpretations belong in the CAD evidence manifests,
+not a second inventory here.
 
-## Next specimen evidence, in priority order
+| Open question | Desk-work route | Residual observation if still ambiguous |
+| --- | --- | --- |
+| Withdrawn CPU track and BR1 attachments | Follow overlapping photos; independently check pin numbering and cross-side correspondence | Close-ups showing complete joints; distinguishable continuity readings |
+| BR2 placement and source/CPU identity | Register bridge geometry independently of terminal order; constrain reset-source lead candidates with package drawings | Visible joints or observations that distinguish the two ends; a closed bridge alone cannot do so |
+| Output-clock WR/RD discrepancy | Compare complete trace paths and keep published revisions separate | Distinguishable physical connection to the CPU pins |
+| Connector and cable/filter path | Reconcile placement, mating-face orientation, winding and trace evidence | Connector markings, wire and winding-terminal observations |
+| Discrete pads and underside registration | Use independent landmarks and lead trajectories; body ends are not hole centres | Hidden lead-entry close-ups and measured dimensions |
+| Device models and full-board electrical behavior | Datasheet-constrained fitting, parameter-range sensitivity, independent validation and paired solver checks | Targeted captures only for behavior not constrained by published evidence |
+| Specimen ROM and timing | Continue reference qualification with standard S600; keep replacement-ROM identity separate | Repeated ROM reads and raw clock/reset/serial captures with setup details |
 
-These are observations to collect when the specimen is available. They do not
-require opening BR1/BR2. Record the actual board marking, component-side pin-one
-orientation and unmodified bridge state before comparing against the reference.
-Use an unpowered, disconnected board for resistance/continuity observations.
-Record readings and probe locations rather than treating a continuity buzzer as
-proof of a direct copper path through populated circuitry.
+Comparison photographs depict another specimen. Register and compare them before
+transferring geometry. Named body observations can support a visual model without
+establishing electrical pads; do not restore a withdrawn net assignment merely
+because nearby traces align.
 
-| Priority | Question and target | Evidence to retain | What it would resolve |
-| --- | --- | --- | --- |
-| 1 | Re-read the withdrawn CPU track's apparent origin near bottom pixel (1306,2678) and terminal (1354,2811), with adjacent numbered CPU pins visible | Sharp perpendicular underside close-up; matching top view around (1527,3048); original uncropped images and pin-count annotation | Whether the apparent A5:6 attachment and cross-side terminal match are real. The apparent top path to A4:13 D6 must be checked independently. Do not assign CLK or D6 merely from proximity. |
-| 2 | BR1, R10.3, A5:6 and A7:8 | Both bridge ends and lead/hole correspondence; baseline resistance observations with bridge state recorded | Clock network continuity and the proposed source/CPU-side orientation. A closed bridge can make both ends read connected to both sides; this alone cannot establish terminal order. |
-| 3 | BR2, A5:26 and the reset-source region | Both bridge ends, solder joints and traces; close-up of V4.9 and its package markings | Reset bridge placement and source/CPU-side identity. V4.9:C is a reference endpoint, not yet a physically numbered transistor lead. |
-| 4 | A1:1 output-clock input, CPU WR pin 22 and RD pin 21 | Trace-following photos and distinguishable resistance observations | WR/RD disagreement between published references and the specimen. Paths through ICs must not be mistaken for direct traces. |
-| 5 | XT1 and L1 cable/filter connections | Connector mating face, pin marks, wire colours, both board sides and winding-terminal identification | Actual keyboard data/clock path through the cable filter; schematic pin names alone do not qualify the physical connector. |
-| 6 | Remaining discrete pads, especially R6.4/R6.5 and C6/R4.3 | Oblique and perpendicular close-ups showing where bent leads enter the board, with nearby known DIP pads | Numbered pad assignment without substituting raised body ends for holes. Include transistor and network markings for package pin-map review. |
-| 7 | Board dimensions and underside registration | Board width/length/thickness, hole centres, at least two independent known distances, perpendicular full-board images | Nominal scale, socket-to-hole offsets and a defensible global registration. Keep validation landmarks separate from fit anchors. |
-| 8 | Specimen EPROM | Package marking, board orientation, read method/settings and repeated dump hashes; preserve original binary separately | Specimen firmware identity. The reference S600 hash is not evidence that the replacement EPROM contains S600. |
-| 9 | Clock, reset and serial timing | Raw instrument captures, sample rate/timebase, probe points, supply/setup, trigger, bridge state, startup and key stimulus | Measured clock frequency, reset timing and serial behavior; comparison with the reference must retain board-revision differences. |
-
-The generated service model supports opening the *virtual* bridges and injecting
-clock/reset on their CPU sides. That behavior is covered by the digital service tests. It is not a
-manufacturer procedure for opening the specimen links. Do not choose a physical
-opening or injection procedure until terminal identity, construction and drive
-conditions have been established. Closed-link baseline observations come first.
+For eventual specimen observations, record board marking, pin-one orientation and
+unmodified bridge state first. Use an unpowered, disconnected board for resistance
+or continuity checks, retaining readings and probe locations: populated-circuit
+paths can mislead a continuity buzzer. Virtual BR isolation tests establish no
+manufacturer procedure for opening physical links. Closed-link baseline evidence
+comes before any separately justified opening or injection procedure.
 
 ## Observation record
 
@@ -84,7 +77,8 @@ Claims explicitly still unresolved:
 ```
 
 Import future evidence into the CAD source manifest and component/route review,
-then update native geometry only after resolving its identity. Re-export, review
+then update electrical pads or nets only after resolving their identity.
+Observed unassigned geometry may be represented independently. Re-export, review
 both sides, run the relevant native and digital checks, and pin compatible museum
 assets. A new measurement can revise an earlier interpretation; preserve the
 superseded record and its reason, as with the withdrawn CLK candidate.

@@ -1,110 +1,51 @@
 # Technical direction
 
-The initial direction below is retained as research history. Implemented decisions: native C cores in dac-emulation, a shared pinned Z80, Emscripten/WASM worker execution, Three.js viewing, and checked-in versioned runtime artifacts. The root README and emulator validation report describe current behavior; physical fidelity and detailed assets remain unfinished.
+DAC uses native C cores from `dac-emulation`, pinned WebAssembly builds executed
+in a worker, and a Three.js museum viewer. Editable model masters and evidence
+live in `3d-models`. See the [root guide](../README.md) for operation and the
+[capability matrix](robotron/capabilities.md) for current fidelity limits.
 
-## A reusable exhibit
+## Exhibit boundary
 
-Each exhibit should describe its physical components, camera views, interactive controls, display surfaces, historical notes, and emulator requirements. The museum viewer should not need to understand each machine’s internals.
+Each exhibit describes physical components, camera views, interactive controls,
+display surfaces, historical notes and emulator requirements. A machine adapter
+connects power/reset, key contacts, media and cleanup to the core, and returns
+video and available device state to the viewer.
 
-The intended connection is:
+Keep cold boot distinct from pause/resume, release held keys on focus loss, and
+keep execution independent of camera movement and asset loading. Drive activity
+from core events when available; label visual motion and estimated behavior.
+Inspection controls do not change machine state unless explicitly presented as
+hardware controls or electrical experiments.
 
-```text
-3D power control / keyboard → machine adapter → emulator
-3D monitor surface         ← live video      ← emulator
-status lights              ← available events/state
-```
+## Sources and reproducibility
 
-The adapter should cover startup, power-off, reset where supported, key press/release, display output, media loading, and cleanup. Model cold boot separately from pause/resume. Release held keys when focus is lost. Only drive activity indicators from real emulator events when those events are available; mark approximations explicitly.
+Commit versioned runtime artifacts with source/toolchain identities and hashes.
+Preserve compatible older runtimes before updating the core; see
+[maintenance](../MODEL-HISTORY.md). Keep canonical CAD separate from derived
+browser geometry and caches. Optimizations must preserve the detailed inspection
+experience, source provenance and stale-export checks.
 
-A browser 3D renderer with glTF/GLB assets is a reasonable starting point. Keep the emulator execution lifecycle independent of camera movement and asset loading. Investigate worker execution where supported by the selected engine; it is not an assumption that every emulator can run in a worker unchanged.
+The Robotron media manifest records reference firmware, disk identity and conversion
+provenance. Reference S550/S600/TOS-M behavior does not identify the museum's ROMs
+or exact hardware revision. Owner photographs and comparison specimens remain
+separate evidence. Imported media, models and photographs retain their own notices;
+DAC's MIT licence does not relicense them.
 
-Use optimized browser models and textures for the default view, loading finer detail and interiors as needed. Preserve editable masters and reference photographs separately. Decide between Git LFS, release assets, and external object storage after measuring actual asset sizes and delivery requirements.
+## Qualification
 
-## Robotron emulation research
+Use reproducible native/browser comparisons and independent implementations for
+observable behavior, retaining input identities and first differences. MAME and
+FPGA references provide comparison evidence, not an automatic accuracy ranking.
+The [qualification guide](robotron/emulation-qualification.md) records reproduction
+entry points and boundaries. Actual specimen calibration is a separate claim.
 
-Initial source inspection: 2026-10-09. This section predates the working native/browser prototype; current boot evidence is in dac-emulation/docs/z80-browser-validation.md.
+For the keyboard controller, native KiCad owns electrical connectivity and migrated
+PCB geometry; OpenSCAD owns surrounding mechanics; generated HDL and electrical
+simulation test behavior. Follow the [controller plan](robotron/keyboard-controller-plan.md)
+for ownership, evidence promotion and acceptance. Exhaust existing photos and
+published device constraints before classifying a gap as a hardware dependency.
 
-[MAME’s Robotron driver](https://github.com/mamedev/mame/blob/master/src/mame/robotron/rt1715.cpp) includes separate PC-1715 and PC-1715W configurations. At inspection, `rt1715w` is flagged with imperfect graphics; the base `rt1715` and Latin/Cyrillic `rt1715lc` configurations are marked not working. Driver availability is a starting point, not validation of Danila’s machine. Confirm which configuration matches the 1715M exhibit before selecting it.
-
-[MAME’s build documentation](https://docs.mamedev.org/initialsetup/compilingmame.html#emscripten-javascript-and-html) describes Emscripten browser builds and selecting a subset of drivers. [Emularity](https://github.com/db48x/emularity) provides a browser emulator loader. These are candidates for reuse; integration, video transfer, input fidelity, build size, and browser behavior require a practical spike.
-
-First prove boot and keyboard behavior with a pinned native emulator build. Then test an equivalent browser build before investing in a finished 3D scene. Record the upstream revision, build recipe, firmware and media hashes, browser versions, results, and known limitations so the exhibit can be reproduced years later.
-
-## Decisions to make after the spike
-
-### Alternative implementations investigated
-
-- [robotron-1715m-fpga](https://github.com/usovmv/robotron-1715m-fpga): MIT-licensed project with separately licensed dependencies, an FPGA implementation, and Python development simulators. The author explicitly models their modified FPGA design and uses MAME as a reference. Useful for research and comparison, but not evidence of greater original-hardware accuracy or a ready browser engine.
-- [EMU / Bashkiria-2M](https://bashkiria-2m.narod.ru/index/fajly/0-11): the author's downloads list Robotron 1715 support and disk images for 1715/1715W. Public source and an open-source license were not verified, nor was accuracy relative to MAME.
-- [JKCEMU](https://github.com/lipro-cpm4l/jkcemu) and [Emu80](https://emu80.org/): their published supported-system lists do not establish 1715M support. Treat them as possible component references, not ready replacements.
-
-No alternative has yet been validated as more accurate for the original 1715M. Compare boot, memory banking, keyboard, display attributes, and disk behavior against the physical exhibit before claiming fidelity.
-
-### Open choices
-
-- Emulator choice and whether DAC needs maintained upstream patches.
-- Adapter API and how to expose live video without excessive copying.
-- Model tooling, detail budgets, and browser/device support targets.
-- Emulator binary and large-asset storage and delivery.
-- Firmware/media sources and distribution permissions.
-- Original DAC content is MIT-licensed; preserve upstream licenses and notices for imported components and media.
-- Visitor disk persistence, reset behavior, and export of modified media.
-
-The first acceptance test is a repeatable cold boot into an interactive system from the 3D power control, with readable live video and reliable input while the model remains inspectable. Start with a simple model and improve its physical fidelity after that path works.
-
-
-### Robotron reference and firmware provenance
-
-The model’s shared CRT profile now supplies convex glass and an inset live raster; keyboard legends use physical dimensions rather than stretching with wide caps. The canonical model documents the estimated dimensions and external evidence. The museum’s optional interior gallery shows [Oldcrap’s PC 1715](https://oldcrap.org/2017/12/26/robotron-1715/), explicitly another specimen with unverified M/W applicability. The gallery loads images from the original host and attributes them. The modeled motherboard/controller also use two unmodified, locally stored photo references, with source URLs, hashes and an explicit notice excluding them from MIT. Those earlier PC 1715 boards remain visibly marked as unverified for the owner’s M/W. Danila’s future interior photographs should replace these references.
-
-The Robotron default now bundles S550, the 287 CAS PROM and the original TOS/M 1.0 disk decoded from `A92V010A.TD0` in the pinned FPGA reference release. SHA-256 identities and conversions are recorded in `src/robotron-media.json`; every browser load checks them before configuring the core. The alternative archived raw disk is not used because its PIP is damaged. This historical reference configuration is not yet matched to the physical specimen. The original DAC diagnostic remains available, alongside local file loading. Disk writes remain opt-in and affect only the session copy.
-
-Historical media is excluded from DAC’s MIT licence and has its own source/rights notice. The [Zander archive](https://www.sax.de/~zander/pc1715/pc_bin.html) documents S550 and the CAS PROM for PC1715W. Public download availability and age do not establish a redistribution licence; none has been established here. Bundling does not relicense the binaries or represent a legal determination of their status.
-
-
-The reference interior now includes dimensioned TEAC FD-55FV bodies (146 × 203 × 41.3 mm), mechanisms, mounting bracket, logic boards, photo-aligned raised packages/leads, PSU shield, fan, ribbons and wiring. The open-case control moves the lid and monitor up/back together without hiding them. Camera presets preserve this state, and the separate-parts control independently lifts drives and keyboard parts while hiding disconnected cables. The open-case Drives preset gives a close view of the mechanisms. The shielded PSU circuitry remains unmodeled. The monitor now contains a reference CRT funnel and neck, yoke, windings, support frame, vertical photo-backed board, neck board, shielding and cables; its exact board revision remains unverified. Component and wiring positions beyond the documented drive envelope are estimates, not an electrically validated assembly. Five further owner photos supplied 2026-10-10 document the running CRT/front panel and correct the power label to POWER. They contain no exposed PCBs, so the comparative board photo credits remain in place.
-
-
-The application embeds a SHA-256-derived model revision at build time and requests the manifest and owner textures with that revision in their URLs. STL meshes and comparative PCB photos use their individual content hashes. This prevents GitHub Pages’ ten-minute cache from combining new application code with an older exterior-only manifest or older geometry. The manifest is additionally revalidated, and an integration test simulates the stale unversioned manifest. Opening the case and lifting assemblies are separate controls; camera selection does not close either one, and credits remain visible while the case is open.
-
-
-The monitor shell exports as separate lower and upper meshes. Its opening control is independent of the system-unit lid and assembly lift. The upper shell rises while the CRT, frame and board remain installed; opening the system unit translates the complete monitor together with its cover. Robotrontechnik’s K7222.25 interior and board photos supply provisional evidence and visible attribution, with a separate photographic notice. This addresses the previously empty monitor and does not claim the specimen’s exact unseen board revision.
-
-Owner drive photos now identify the K5601 plate (044713), Ratan assembly sticker and two different TEAC sensor boards. The model uses distinct PCB outlines and small photo labels with source quadrilaterals in canonical `drive-labels.json`; it does not project whole mechanisms as textures. Drive labels move with the lifted drive assembly and remain hidden inside the closed case. The Drive labels view opens the case and lifts the drives for rear inspection. The cable-obscured country line is typeset; all other label print is photographic.
-
-The power-controlled fan rotor turns around its X-axis spindle at an illustrative speed; the frame remains fixed. Reduced-motion preferences pause it, and its hidden movement does not schedule draws. Host keyboard input holds modeled caps down until key-up and releases them on blur/reset/power changes. Completed 3D key clicks use the same byte adapter as host typing, with a browser regression entering DIR into the historical TOS/M disk. Unverified specimen key encodings remain explicitly unmapped.
-
-The reference Robotron now optionally runs the S600 keyboard EPROM on its own Z80 at nominal 683 kHz. Matrix switches produce clocked serial output into a bounded SIO receive model. The historical preset includes S600; custom media can supply a different 2 KB keyboard image or omit it to keep the character adapter. The 3D key positions use reference matrix wiring; owner legends are preserved even where S600's shifted mapping differs. Caps/SI-SO indicators report firmware state. Physical host keys use press/release contacts; completed 3D clicks queue emulated contact presses, with Shift/Ctrl convenience latches.
-
-Floppy seek completion, rotational waits and 250 kbit/s transfer pacing now increase boot time. The UI reports motor, track, transfer and write-protect state. It does not claim measured specimen drive timing. Internals still combine owner evidence and comparative references.
-
-Writable disk copies can persist in IndexedDB, keyed by machine, firmware and original disk SHA-256 identities. They save periodically during activity and before power-off/media replacement. The preference is explicit and can be disabled; storage errors are shown without stopping emulation. Export remains the portable backup. Discard deletes the saved copy; reloading original media then starts fresh. Browser storage can be evicted and closing a tab during a write can lose the latest unsaved changes.
-
-Robotron Save state captures the whole core and disk. Restore replaces the running session only after format, integrity, firmware and bounds checks. States are local to this browser, media/write-mode identity and exact emulator WASM build. An update may make an older state unavailable, while saved disks remain reusable. There is no cross-version state conversion; the 0.3.0 wrapper below adds validated same-build file import. Juku disks may also be retained; the 0.3.0 extension below adds snapshots for all three cores.
-
-
-### 0.3.0 session and peripheral extension
-
-Both Robotron units now have media/protection and per-drive status. The museum
-requires power-off for insertion/ejection. B persistence is keyed independently
-by its original image; reinserting the same original after reload recovers it.
-Changing B write protection preserves its current bytes. Whole-machine state
-includes both media identities and write modes. Snapshot files carry a bounded
-length-prefixed identity/SHA-256 header around the core CRC-protected payload.
-Mismatches and corruption report an error without stopping the current session.
-Juku and VJUGA now participate in the same save/restore controls. Older saved states
-are retained and identified as incompatible where detected; disk copies remain
-reusable across builds. Snapshots are not a stable cross-version archive format.
-
-The core implements fixed-geometry format, reset response queues, multi-track
-head switching, 8275 character-attribute decoding and a CTC-clocked SIO-A printer
-capture. TX interrupts, full serial handshakes, raster/display DMA scheduling,
-spin-up/head-load timing and richer disk formats remain incomplete. This release
-does not turn these approximations into claims of specimen accuracy.
-
-OpenSCAD exports separate clamp/head meshes. Model motion follows motor/cylinder
-state, with approximate 35 mm travel and 300 RPM presentation. Optional audio is
-synthesized, never represented as an owner recording. Native application checks
-exercise WordStar save, Turbo Pascal compile/run, two-drive PIP and printing.
-Focused browser checks cover snapshot export/import, corruption rejection and
-B media controls in Chromium, Firefox and Playwright WebKit on macOS.
+Session disk writes are opt-in and affect copies. Browser storage is not an
+independent backup: provide export, validate identity/integrity before restore,
+and preserve the running session if validation fails.

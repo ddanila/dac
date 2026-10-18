@@ -1,178 +1,48 @@
 # Robotron 1715M
 
-Current implementation and remaining evidence: [capability matrix](../../docs/robotron/capabilities.md). Dated notes below retain development history.
+An interactive exhibit of Danila's museum specimen, combining photo-referenced
+OpenSCAD geometry with a functional M/W reference emulator. See the
+[root guide](../../README.md) for use, the
+[capability matrix](../../docs/robotron/capabilities.md) for current limits, and
+[canonical CAD](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m)
+for source photographs, geometry and physical verification status.
 
-First planned exhibit in Danila’s Archive of Computing.
+## Reference versus specimen
 
-## Status
+Bundled S550, CAS and S600 firmware and TOS/M media form a reproducible reference
+configuration. Their identities live in `src/robotron-media.json`; they are not
+dumps of the museum machine. Local media controls accept replacement firmware
+and disks without uploading them.
 
-Interactive exhibit with a photo-referenced OpenSCAD exterior of Danila’s machine and the DAC Robotron functional core. The supplied diagnostic ROM runs without external files; original S550/287/TOS-M media has been booted locally with keyboard and disk access. The exterior uses the original manual’s nominal dimensions and owner photographs as references. Full-surface photo skins have been replaced by modeled details, consistent materials and transcribed key legends. Small features and unseen surfaces remain estimates; exact physical-variant identification and hardware-fidelity validation remain pending. See the root README for loading media and known compatibility limits.
+The owner confirms that the keyboard EPROM came from another board and works;
+its contents remain unidentified. Keep its appearance and specimen legends
+independent of the reference S600 mapping. Keyboard circuit reconstruction follows
+the [KiCad/OpenSCAD/emulation plan](../../docs/robotron/keyboard-controller-plan.md).
 
-## Reference capture
+Owner photos establish visible construction and markings. Comparative CRT or
+board sources remain attributed separately and do not establish this specimen's
+hidden circuitry. Dimensions, hidden mounts, cable slack and device timing retain
+the confidence recorded in the canonical evidence. Visual approval never implies
+printed-and-verified status.
 
-- Photograph the computer, monitor, and keyboard from all sides, including undersides.
-- Measure the main dimensions and positions of controls, connectors, vents, and labels.
-- Record the exact model markings, keyboard layout, monitor type, and any modifications.
-- Capture close-ups of key legends, indicator lights and surface finishes; reconstruct clean condition.
-- Record the observed startup sequence and identify available firmware and boot disks.
-- Document internal components later, when accessible, distinguishing observed details from reconstructed ones.
+## Interaction boundaries
 
-## First playable exhibit
+Power, reset, key contacts, drive levers and media controls affect the emulator.
+Opening a drive lever can interrupt an active write; removing a disk retains its
+session image for reinsertion or export. Preserved older cores expose only their
+supported controls.
 
-- Rotate and zoom around the computer and its peripherals.
-- Inspect the rear and underside of the keyboard and case.
-- Activate the physical power control to start a cold boot.
-- Display live emulator output on the modeled monitor.
-- Type using the visitor’s keyboard, click the modeled keys, or use accessible keyboard buttons. 89 positions are wired; eight unverified mappings are explicitly unavailable.
-- Power off and restart predictably.
-- Provide a focused screen view and accessible controls alongside the 3D interaction.
+Assembly separation, cutaways, mechanical demonstrations and the released-clamp
+inspection override are visual tools. Inspection paths are not physical disassembly
+instructions. The diskette and its handwritten label are modeled specimens;
+the emulated image is selected separately. The owner's white sleeve is non-original
+packaging.
 
-## Later detail
+## Evidence collection
 
-Exterior parts can already be separated and inspected with evidence annotations and close-up views. October 12 owner photographs now establish rear sockets, rectangular system feet, monitor underside and the separate keyboard controller with a socketed UB880D. Local dimensions, hidden routing, system board revisions and CRT electronics remain provisional. Reference firmware feedback and two-drive media interactions are now implemented.
-
-## Unresolved
-
-Exact system hardware revision, unphotographed internals and more precise local dimensions. The functional core targets the M/W architecture; historical firmware is supplied locally by the visitor. See the [technical direction](../../docs/technical-direction.md).
-
-### Reference configuration versus the physical specimen
-
-| Item | Emulated reference | Physical specimen evidence still needed |
-| --- | --- | --- |
-| Main board | 1715W/1715M profile, 256 KB, 3.9936 MHz, supplied CAS decoding | Board revision, switches and ROM dump |
-| Boot ROM | S550, hash pinned in `src/robotron-media.json` | Owner ROM label and dump |
-| Keyboard | S600/U880 K7658 reference, nominal 683 kHz, 13×8 matrix | Owner photos confirm UB880D and replacement EPROM; ROM dump still needed |
-| Disk | TOS/M 1.0, 80×2×5×1024 raw geometry | Owner disk image and OS revision |
-| Drives | Two independent drives; timed functional controller | Drive suffix/jumpers and measured behavior; photographed K5601/Ratan labels establish appearance only |
-
-Stock firmware is a usable reference configuration, not a confirmed dump of this entity. The existing local ROM/PROM/disk upload controls now also accept an optional keyboard ROM. Owner models/photos and comparative reference credits remain separate from emulation qualification.
-
-## October 12 owner-photo update
-
-Both new ZIPs (175 photographs) were reviewed. The canonical [CAD model and evidence inventory](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m) retain 28 complementary MIT owner reference photos and hashes for every original. The browser adds clean controller components, rectangular feet, a hollow monitor stand with brackets and underside controls, and rear connectors. Opening the keyboard separates the controller as one assembly. The corner paint-loss decal was removed.
-
-Danila confirms the keyboard EPROM came from another board and works; its blue window cover is represented, but its firmware contents are unknown. The S600 emulated reference has not been relabeled as the specimen ROM. Existing comparative motherboard/CRT references retain their credits.
-
-### Keycap close-ups and exposed keyboard boards
-
-The next owner ZIP contains three side views. Black caps now have a square flange, taller rounded body and shallow dish. Clear function caps contain separate silver inlays and black legends; transparent plastic uses an inexpensive alpha approximation to keep software WebGL responsive. Case and keyboard feet now share identical geometry, per owner confirmation. Open keyboard separates the switch plate and turns the broad PCB over to reveal the photographed solder face; the narrow controller lifts out independently. Closing the view restores all positions.
-
-
-### October 12 rendering and keyboard review
-
-The monitor's mid-height joint uses an inset dark lip following the shell outline.
-Paint, plastic, rubber and plated metal have distinct finishes. Tighter cached
-shadow maps and a grazing rear light reveal socket lips and small recesses;
-software rendering retains one smaller PCF shadow map and its existing resolution cap.
-The second shadow map and softer filtering are reserved for hardware renderers;
-they made the hosted software renderer exceed interaction-test deadlines.
-Rear outline lettering is mipmapped from the canonical CAD text/coordinates.
-The main Rear view fits the visible assembly, while Rear sockets fits the panel.
-View controls occupy their own row below the canvas, including on mobile.
-
-Compared against owner images 125021771 (monitor joint and paint), 125413618
-(rear engraving, nameplate and sockets), 125300878 (power panel), 133005363
-(painted keyboard underside), and 123006039 (keyboard margins). Photographic
-lighting and wear are not reproduced. Finish parameters and local dimensions
-are visually estimated, not calibrated.
-
-The keyboard pitch/offset now leave approximately 16 mm of black deck at the
-left key flange and 11 mm at the right, following the overhead photograph.
-The owner's measured 18 mm and 23 mm raised wide-key bodies are unchanged.
-Both amber lamps follow the S600 firmware LED bits; the inactive byte adapter
-cannot clear them during navigation. Without S600 only the adapter's Caps state
-is available; SI/SO is not invented.
-
-Inside keyboard opens and isolates the assembly. Caps/deck, switch plate and
-controller separate into rows so the broad switch PCB remains visible from
-above. The PCB underside buses, pads and screws and the narrow controller's
-metal traces follow owner photographs 123907435 and 123622947. Trace shapes and
-hidden details remain illustrative, not an electrical netlist; no whole-board
-photograph is used as a skin. Closing the keyboard restores every part.
-
-Emulator 0.7.1 corrects the S600 indicator latch from the [keyboard schematic](https://www.sax.de/~zander/pc1715/pc_tasts.pdf):
-A6's D flip-flops capture address bits 13/14 on low-A15 I/O cycles.
-Repeated reads set the same state rather than toggling it. Native tests run the
-stock S600 firmware through each lamp and both together, including stability
-between presses; browser checks cover both modeled lamps and navigation.
-The 0.7.0 runtime remains archived for existing snapshots.
-
-### Monitor cabinet and captive leads
-
-Owner side and underside photos correct the earlier guessed rear taper: the
-cabinet now keeps parallel walls and its full width/height behind the front.
-Two modeled leads leave the underside boot beside the stand and connect to the
-rear DISPLAY power and signal sockets. Their different gray colors, diameters,
-RFT power shell and locking signal backshell follow owner close-ups. Dimensions
-and slack remain estimates; wear is omitted. Opening the case keeps the captive
-ends with the lifted monitor, parks the rear plugs when disconnection is enabled,
-and restores the original geometry when closed. Exploded cable extension is
-illustrative. Source photos and evidence are retained in the canonical CAD repo.
-
-### Accepted keyboard exterior synchronized (October 13)
-
-Browser model v22 imports CAD commit `9a6eb6501eeff001f93cc675171494e49817924c`,
-including the accepted exterior reviewed at `cf7e113`. The light base uses 1 mm
-sheet, rises from 15 to 29 mm, then stays level behind the black overlay. The
-closed pencil trough, separate 1 mm bottom plate, two-sided cable rubber and
-lid tabs are included. The black overlay has an 8 mm uniform skirt, 1 mm sheet,
-5 mm outer bends and a 1 mm gap. The exporter now evaluates the shared SCAD
-keyboard height/tilt so browser keys, lamps and mechanisms match the case.
-The black panel uses painted metal and the cable guide uses rubber materials.
-Internal construction remains provisional. The prior audio deployment had not
-included these CAD-only review changes; this sync publishes their actual meshes.
-
-Physical print status is supplied by the canonical `model-status.json` registry
-and included in browser `model.json` as `modelVerification`. All Robotron records
-currently remain unverified; the accepted exterior is a separate visual-review
-milestone. See the [collection catalogue](https://github.com/ddanila/3d-models/blob/main/MODEL-STATUS.md).
-
-Modifier keycaps are spring-return controls. Physical host/pointer presses drive
-key travel; logical click-to-type Shift/Ctrl selection no longer holds a cap down.
-The historical profile runs S600 keyboard firmware and feeds matrix switches;
-its controller behavior remains separate from the model's visual key travel.
-
-### Diskettes and drive levers
-
-Model v24 follows the owner's diskette photographs: rounded head window, offset
-index aperture, edge notches, reverse folds, hub reinforcement and handwritten
-corner label. Only the small label uses a photo projection. Geometry dimensions
-are photo estimates using the nominal 133.35 mm jacket for scale, not measured
-or print-verified parts. Six source photos are preserved in canonical 3d-models.
-
-The normal loaded state closes the lever even while powered off; an empty drive
-leaves it open. “Release clamps” shows the photographed inserted-but-open state,
-lifting the upper head without removing the diskette. This inspection override
-is visual; it does not change emulator media or controller state. The jacket and
-label remain stationary while the magnetic disc follows spindle telemetry.
-
-The owner's separate white storage envelope is not original packaging. Its CAD
-reference is included in the standalone diskette preview, not inside the drive;
-both envelope photos are preserved with the source references.
-
-### Working levers, media handling and inspection (0.8.0 / model v25)
-
-Click either modeled lever or its accessible button to operate that drive. An
-open lever clears READY and head loading in the emulator, interrupts an active
-transfer with Not Ready, and suppresses disk index pulses. Closing requires
-fresh qualifying index pulses. The two drives are independent.
-
-Remove/Insert controls require an open lever. Removal retains the session image
-and its writes for reinsertion/export; it is not deletion. A short sliding
-animation follows insertion state, with immediate transitions under reduced
-motion. The released disk stops following the spindle. Opening a lever during
-a write can leave a partial sector, as with interrupting real media access.
-
-Lever and insertion states survive power/reset and snapshots and are included
-in deterministic recordings (opcodes 9/10). The previous 0.7.1 core is archived
-for its snapshots; physical lever controls are disabled on preserved old cores.
-The “Show released drive clamps” checkbox remains a visual inspection override.
-
-“Inspect diskette and sleeve” provides both sides of each owner specimen. The
-white sleeve is non-original packaging. The emulated image is selected separately
-from the depicted physical diskette and its handwritten label. Drive-front CAD
-now includes the asymmetric lever, metal rim, direction arrow and open slot.
-
-Small precomputed label textures replace about 12.1 MB of startup photo downloads
-with 681 KB of crops. Full photographs load when their inspection view is opened.
-The museum ring matches the owner-revised 174/167 × 5 mm standalone insert.
+Retain original photographs and hashes, board/package markings, revision and
+modification details, dimensions with measurement methods, and raw timing captures
+with setup information. Keep ROM reads separate from reference binaries. Resolve
+what existing evidence can establish before requesting new observations; the
+[verification guide](../../docs/robotron/keyboard-controller-verification.md)
+identifies the controller's remaining questions.

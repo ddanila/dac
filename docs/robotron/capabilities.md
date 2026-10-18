@@ -1,8 +1,7 @@
 # Robotron capability and evidence matrix
 
-Current baseline: DAC Emulation 0.17.0, scanline output, snapshot layout 15;
-canonical model v48. This matrix describes present behavior. Dated development
-sections elsewhere are history, not cumulative lists of current limitations.
+Use the [pinned emulator manifest](../../public/emulator/manifest.json) and model
+source manifests for current versions. This matrix describes behavior and limits.
 
 | Subsystem | Implemented and checked | Remaining boundary | Evidence/check |
 |---|---|---|---|
@@ -17,13 +16,12 @@ sections elsewhere are history, not cumulative lists of current limitations.
 | Sound | Owner power/fan/key recordings; synthesized drive activity | Unmeasured spatial/acoustic response and drive timbre | Audio manifest and playback tests |
 | Persistence | Checksummed named checkpoints with both disks; collection preview/selective restore; disk copies, portable states, preserved old cores, replay | Checkpoint firmware must match (including supplied custom ROMs); 20 named checkpoints; quick-save states/mounts keep or replace | Session/portable/replay checks |
 
-Keyboard controller 0.17.0 closes reference bus/LED logical discrepancies and
-separates raw latch diagnostics from display persistence. See the
-[controller implementation record](keyboard-controller-progress.md) for scope.
+For keyboard circuit scope and source-bound results, see the
+[controller status and workflow](keyboard-controller-progress.md).
 
 ## Inspection and recovery
 
-[0.14.0 inspection and checkpoint guide](inspection-014.md): execution targets,
+[Inspection and checkpoint guide](inspection-014.md): execution targets,
 changed-state highlights, reproducible measurements, draggable sections, individual
 checkpoint files, mechanical audit and serial clock qualification.
 
@@ -45,7 +43,8 @@ The system boot ROM, CAS PROM and transplanted keyboard EPROM need dumps and
 hashes. Board revision/straps, drive suffix/jumpers, oscillator frequencies,
 monitor adjustments and physical timing need identification or measurements.
 Owner pictures establish appearance, not firmware contents or circuit continuity.
-No software-only test can resolve these identities. Model visual approval never
+Reference software tests do not identify unread specimen ROMs. Existing photos
+and published references should be exhausted before requesting new measurements. Model visual approval never
 changes a part's separate **printed and verified** classification.
 
 ## Qualification strategy
@@ -76,24 +75,23 @@ investigation leads, not proof that either implementation matches hardware.
 - **Photo review:** manual overlays plus planar perspective fitting and independent
   holdout landmarks. Training and holdout RMS are separate. Export includes raw
   points, viewport and projection. Lens distortion and depth remain unresolved;
-  pixel residuals do not establish millimetres. The three rendered regressions pass;
-  no CAD dimensions or printed-and-verified classifications changed.
+  pixel residuals do not establish millimetres or physical print verification.
 - **Loading:** current default retains the exact geometry cache and STL fallback.
-  Cache pipeline identity is now checked. `loading-experiments.json` compares three
-  cold runs with 11 transport packs, worker decoding and a throttled mobile viewport.
+  Cache pipeline identity is checked. `loading-experiments.json` records comparisons
+  of transport packs, worker decoding and a throttled mobile viewport.
   Measurements do not justify changing defaults. Reproduce optional packs with
   `node scripts/pack-geometry-cache.mjs`, then profile `?geometryPacks`; add
   `geometryWorker` for worker decompression/bounds. Generated packs are experimental
   derived assets, not canonical models. Heap measurements omit GPU/worker memory.
 - **CI:** scope from a successful ancestral push, not the immediately previous push.
   Missing evidence/PRs select full coverage. Fail-fast and cancellation of superseded
-  runs remain enabled. File-duration estimates come from successful run 38891503217;
-  `scripts/update-ci-durations.mjs` refreshes them from downloaded logs without a
+  runs remain enabled. `scripts/update-ci-durations.mjs` refreshes duration estimates from successful
+  downloaded logs without a
   new CI run. Ordinary CI does not install MAME or run Verilog/historical ROM boots.
 
-See [historical qualification notes](capability-history.md) for prior releases.
+See [reference workflows](capability-history.md) for S600 mapping and preservation packaging.
 
-See [0.15 inspection and bounded diagnostic changes](inspection-015.md) for the
+See [Inspection evidence and checkpoint storage](inspection-015.md) for the
 current checkpoint metadata, named measurements, evidence mode and motion audit.
 
 Portable inspection views, staged covers and the expanded qualification are
@@ -104,5 +102,5 @@ independent sound levels, mechanical relationships, explicit measurement remaps,
 monitor cable qualification and the optional S600 mixed-workload target.
 
 [Current qualification and specimen inventory](emulation-qualification.md) documents
-0.16.0, independent historical/application/serial comparisons, stronger browser workflows,
+independent historical/application/serial comparisons, browser workflows,
 and the physical evidence still needed.

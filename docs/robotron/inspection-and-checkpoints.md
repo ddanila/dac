@@ -1,8 +1,5 @@
 # Checkpoints and inspection tools
 
-Implemented with DAC Emulation 0.12.0 and canonical model v48. These tools do not
-change the specimen geometry or its separate printed-and-verified classification.
-
 ## Named checkpoints
 
 Open **Named checkpoints**, enter a name, and save the running machine. CPU/device
@@ -29,8 +26,8 @@ context, the notice remains; save/export machine state before reloading.
 **Section view, sharing and navigation** provides X/Y/Z cuts, a position slider and
 a reverse-side option. Combine a cut with **Isolate assembly**. Cuts apply to model
 materials, including shadows; hit testing and label occlusion ignore cut-away
-surfaces. They are inspection cuts, not physically modeled cut faces: no artificial
-cap geometry is generated. The canonical OpenSCAD model remains unchanged.
+surfaces. Optional [cutaway caps](inspection-workbench.md#cutaways) close supported
+contours for display; they do not change canonical OpenSCAD geometry.
 
 **Copy inspection link** includes camera/target, selected component and assembly,
 cover controls, labels and section settings in the URL fragment. It includes no
@@ -72,14 +69,3 @@ record padding. Different geometries or unsupported filesystems fall back to byt
 comparison with an explanation. UI preview shows at most 16 ranges and 64 bytes
 per range. JSON export retains up to 4096 ranges and explicitly marks truncation;
 the changed-byte count is never truncated. Neither image is modified.
-
-## Verification
-
-Focused browser checks cover nested-disk corruption, collection round trips,
-exact display restoration, both disks after replacement, persistent comparisons,
-actual WebGL context loss/restoration, continued worker activity during graphics
-loss, scoped navigation, view-link encoding and triggered capture through WASM.
-Native runtime tests cover pre-trigger rollover, exact trigger placement, capture
-bounds, master filtering and cancellation. Full native/device and WASM smoke
-checks pass without Verilog simulation. Release CI covers the existing exhibit,
-sessions, keyboard and cross-browser behavior.

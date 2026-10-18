@@ -1,4 +1,4 @@
-# Inspection workbench (core 0.13.0, model v48)
+# Inspection workbench
 
 ## Controls
 
@@ -27,7 +27,7 @@ instance IDs and the **Model-derived estimate** classification.
 
 The evidence panel lists owner-provided dimensions separately from the documented
 TEAC track pitch. Picking geometry does not establish a new physical measurement
-and never changes printed-and-verified status. Canonical v48 remains unchanged.
+and never changes printed-and-verified status.
 
 ## Debugger
 
@@ -51,7 +51,7 @@ Ready/Busy/Offline/Paper out control printer CTS. The latter three share the sam
 guest-visible not-ready signal. WR3 Auto Enables holds waiting output; a started
 frame completes. Software ignoring CTS can lose output, reported by the museum.
 This is a bounded virtual receiver, not an emulation of a particular printer.
-Readiness changes are recorded (opcode 19) and survive snapshot/reset. See the
+Readiness changes are recorded and survive snapshot/reset. See the
 [core wiring and API notes](https://github.com/ddanila/dac-emulation/blob/main/docs/debugger-printer.md).
 
 The mixed-size Read Track investigation did not establish enough evidence to
@@ -59,14 +59,3 @@ invent unavailable gap/flux bytes. That limitation remains explicit. Expanded
 format tests cover reset, motor-off and door opening before and after a completed
 sector, preserving unrelated bytes and the other drive. See
 [controller evidence](https://github.com/ddanila/dac-emulation/blob/main/machines/robotron1715m/DRIVE-FIDELITY.md).
-
-## Verification and CI
-
-Native and WASM core checks; targeted browser checks for grouping, solid/hollow
-caps, measurements, real-worker stepping/breakpoints and printer readiness
-record/replay (including native replay). Release CI retains full required coverage.
-Shard estimates use successful run 38873331518: the same previous files balance
-at approximately 740 seconds each rather than the observed 9.9/14.8 minute split.
-These are planning estimates, not promised completion times. New tests use the
-existing fallback estimate until an actual successful run supplies durations.
-Core 0.12.0 is archived by WASM hash for old recordings and layout-11 checkpoints.

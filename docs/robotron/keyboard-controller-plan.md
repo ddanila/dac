@@ -1,12 +1,11 @@
 # Robotron keyboard controller reconstruction and synchronization plan
 
-Recorded 2026-10-16. Status: implementation in progress; physical reconstruction
-and specimen fidelity are not complete. Reference digital comparisons now pass;
-BR1/BR2 isolation tests and reset/cable transcription review are implemented;
-cycle timing and analog boundaries remain unqualified. See the
-[status and workflow](keyboard-controller-progress.md) for authoritative artifacts
-and unresolved work. The [completion audit and specimen verification guide](keyboard-controller-verification.md)
-maps each requirement to its evidence and lists the remaining observations.
+Status: incomplete. Digital reference comparisons and synchronized exports are
+implemented; physical reconstruction and full-board electrical qualification
+remain open. These are active desk-work tasks, not established hardware blockers.
+The [status guide](keyboard-controller-progress.md) points to authoritative
+artifacts; the [requirement audit](keyboard-controller-verification.md) separates
+remaining proof from observations that may eventually need the specimen.
 
 Reconstruct the keyboard controller as a KiCad schematic and PCB, generate its
 OpenSCAD geometry, and qualify its digital behavior against the emulator using
@@ -27,23 +26,40 @@ analog sections and couple them to the existing HDL as described in the
 Exact specimen agreement remains a separate qualification task; the physical
 reconstruction requirements below remain in scope.
 
-## Existing foundation
+## Next work and acceptance
 
-- The `3d-models` repository contains the canonical Robotron geometry under
-  `models/robotron-1715m/`. `keyboard-artwork.json` and
-  `tools/configure-keyboard-artwork.py` provide photo-registered artwork;
-  `specimen-details.scad` includes controller geometry and procedural pin fanouts.
-  These are visual reconstructions without a continuity claim.
-- `controller-package-data.scad` and `tools/configure-keyboard-components.py`
-  already reuse pinned KiCad package geometry. Preserve useful component shapes.
-- `dac-emulation/machines/robotron1715m/keyboard.c` implements keyboard behavior
-  derived from Zander's schematic. Existing S600 tests cover firmware-driven
-  matrix input, serial output, modifiers, repeat and mixed-peripheral snapshots.
-- Juku's `8080-cosim/sync/` contains normalized KiCad, board and HDL netlist
-  readers and provenance reporting. Reuse suitable mechanisms without adopting
-  a second manually maintained connectivity source.
-- The reference S600 ROM is available, but the specimen replacement EPROM has
-  not been identified or dumped. Specimen timing measurements remain planned.
+1. **Resolve physical candidates from existing evidence.** Register original and
+   comparison photographs independently, follow overlapping trace segments, and
+   constrain candidate attachments with package drawings, placement references
+   and the schematic. Record alternatives and rejected correspondences in the
+   evidence ledger. Promote a route only when its complete attachment is supported.
+2. **Separate visible geometry from electrical identity.** Represent observed BR2
+   geometry without guessing source/CPU terminal order. Body or bridge placement
+   can progress while numbered pads remain unresolved; use explicitly unassigned
+   geometry until a native electrical placement is justified. Closed-link
+   continuity alone cannot determine terminal order.
+3. **Constrain electrical models from published device evidence.** Fit and check
+   DC and switching behavior under the documented supply, load and selection-group
+   conditions, distinguishing DC from AC gain. Use independent conditions for
+   validation where available. Retain supported parameter ranges and sensitivity
+   results rather than claiming a unique historical transistor model. Do not tune
+   the oscillator to the emulator's frequency.
+4. **Qualify the coupled reference board.** Resolve numerical startup/clock-phase
+   convergence, receiver levels and bus timing before accepting full firmware
+   scenarios. Investigate startup uncertainty separately from steady-state
+   behavior; do not discard startup or realign traces to pass an existing gate.
+   Check supply recovery separately from initial power-on reset. Functional serial
+   agreement alone cannot qualify an unknown CPU input or reliable restart.
+5. **Request only residual specimen evidence.** After exhausting these constraints,
+   identify precisely which alternatives remain indistinguishable and what
+   observation would separate them. Actual dimensions, replacement-ROM identity
+   and measured specimen timing remain separate confirmations. Standard S600
+   permits reference-board work to continue meanwhile.
+
+This sequence does not guarantee recovery of every hidden route or exact device
+parameter. An unresolved claim becomes an external dependency only when the
+available evidence cannot distinguish the remaining alternatives. Preserve those
+limits without marking the entire implementation blocked.
 
 ## Ownership and synchronization contract
 
@@ -65,7 +81,7 @@ Define board units, origin, axes, top/bottom conventions and assembly transform
 explicitly. Generated assets record source revisions, content hashes and tool
 versions. Evidence identifiers must survive geometry export in a sidecar manifest.
 
-Proposed ownership: keep the KiCad reconstruction, evidence and geometry exporter
+Repository ownership: keep the KiCad reconstruction, evidence and geometry exporter
 with the canonical board in `3d-models`; keep the board HDL and emulator comparison
 harness in `dac-emulation`; consume pinned model assets and inspection metadata
 in `dac`. Cross-repository consumers use explicit revisions, not moving checkouts.
@@ -100,6 +116,7 @@ files is a consistency check, not an independent validation of the transcription
 - Place the outline, footprints, mounting holes and connectors.
 - Trace visible copper and associate routes with schematic nets.
 - Label routes as observed, inferred or unresolved, with source-photo references.
+- Keep body/bridge observations independent of unproven numbered-pad assignments.
 - Check board connectivity, clearances and agreement with the schematic.
 
 Deliverables: editable KiCad board, photo overlays and connectivity report.
@@ -130,6 +147,9 @@ fits its existing assembly and inspection views.
   logic and the C emulator. Compare input data, LED latch outputs and keyboard
   data/clock edges at defined sampling points.
 - Run firmware-driven cases for ordinary keys, modifiers, repeat, release and reset.
+- Couple schematic-derived analog sections to HDL, qualify device models against
+  published limits, and test timestep convergence, CPU input levels, bus timing
+  and supply recovery independently of firmware output agreement.
 - After the peripheral comparison works, select and qualify an independent CPU
   HDL model for full-board firmware execution. Record which shared components
   limit the independence of each comparison.
@@ -137,6 +157,8 @@ fits its existing assembly and inspection views.
 Exit criterion: failures identify the first differing signal and clock and retain
 a reproducible stimulus plus waveform. Logical and clock-relative agreement is
 reported separately from unmeasured oscillator frequency or analog propagation.
+Full-board electrical acceptance also requires passing convergence and receiver/
+timing gates across the declared model assumptions and supported parameter ranges.
 
 ## 6. Integrate museum inspection and synchronization checks
 
@@ -162,15 +184,21 @@ above, before expanding reconstruction and qualification to the entire controlle
 
 ## Completion and remaining physical evidence
 
-The software milestone is complete when the controller has checked connectivity,
-reproducible geometry, explicit routing evidence and passing digital comparisons.
-Exact specimen fidelity additionally requires resolving hidden copper, confirming
-the board revision, identifying its ROM and obtaining relevant measurements.
-Do not substitute autorouted geometry for missing historical evidence.
+Completion requires the physical reconstruction, synchronization and behavioral
+requirements above, including the physical data/clock path and qualified coupled
+reference-board scenarios. Passing digital comparisons or a nominal analog run
+alone does not complete the plan. The audit must identify any remaining unresolved
+routing and model limits explicitly.
+
+Exact specimen fidelity additionally requires confirming dimensions, revision,
+replacement-ROM contents and relevant measured behavior. These confirmations do
+not prevent completion of independently supported reference work. Do not substitute
+autorouted geometry for missing historical evidence or call a bounded reference
+model a calibrated specimen model.
 
 ## References
 
-- [Manufacturer service drawings](https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf): PDF page 10 contains populated placement drawing 63-330-4103-2; page 11 contains schematic 56-330-4103-7. Recovered during implementation; compare revision and designator differences before applying locations.
+- [Manufacturer service drawings](https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf): PDF page 10 contains populated placement drawing 63-330-4103-2; page 11 contains schematic 56-330-4103-7. Compare revision and designator differences before applying locations.
 
 - [Zander keyboard schematic, drawing 56-330-4103-7](https://www.sax.de/~zander/pc1715/pc_tasts.pdf)
 - [Zander keyboard component placement](https://www.sax.de/~zander/pc1715/pc_tastb.pdf)

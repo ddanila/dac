@@ -1,7 +1,4 @@
-# Inspection, checkpoints and qualification — 0.14.0
-
-Canonical CAD remains v48. This release improves inspection and diagnostic tools;
-it does not promote visual approval into physical print verification.
+# Inspection, measurements and checkpoint files
 
 ## Debugger
 
@@ -41,22 +38,8 @@ restore. Custom ROM checkpoints work when the exact same firmware files are
 supplied; firmware bytes are not embedded. Damaged entries stay listed so they
 can be deleted, without hiding healthy entries. The 20-checkpoint bound remains.
 
-## Evidence and CI
+## Evidence
 
-[Mechanical review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/checks/mechanical-review.md)
-links annotated owner photos, current-model overlays, 54 assembly checks, three
-cover checks and the 138-package interface check. Geometry remains unchanged;
-hidden mounts and physical tolerances retain their uncertainty.
-
-The long keyboard test file is split into input, gesture and physical-keycap
-files, preserving all tests and isolated browser contexts. CI estimates now use
-successful run 38883094600; split-file durations are explicitly provisional until
-the next measured run. Fail-fast and cancellation of superseded runs remain.
-No full Verilog run or historical-ROM boot is added to ordinary CI.
-
-[Serial timing investigation](https://github.com/ddanila/dac-emulation/blob/main/docs/debugger-printer.md#execution-targets-and-independent-clock-fixtures-0140)
-adds independently callable RX/TX clock fixtures. The museum still uses its CTC
-route. Native tests cover independent clocks and all four divisors; snapshot
-continuation remains covered. TX x1 half-stop capture rounding, a browser external
-clock generator and synchronous SIO modes remain limitations, not fidelity claims.
-Snapshot layout stays 12; the previous 0.13.0 core is preserved by hash.
+[Canonical mechanical review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/checks/mechanical-review.md)
+contains photo overlays and assembly/interface checks. Hidden mounts and physical
+tolerances retain their uncertainty; visual approval is not physical print verification.
