@@ -16897,6 +16897,150 @@
         ],
         "scope": "Local nominal PCB projection spanning the CPU and A4, reviewed only inside the four-anchor convex hull. Independent checks include CPU CLK pin 6. This does not qualify the global underside fit, board dimensions or hidden continuity.",
         "toleranceMm": 1.25
+      },
+      {
+        "anchorHull": [
+          [
+            1104,
+            1507
+          ],
+          [
+            1495,
+            1505
+          ],
+          [
+            1420,
+            2252
+          ],
+          [
+            1112,
+            2254
+          ]
+        ],
+        "anchors": [
+          {
+            "photoPixel": [
+              1104,
+              1507
+            ],
+            "pin": "8",
+            "ref": "A2.1"
+          },
+          {
+            "photoPixel": [
+              1495,
+              1505
+            ],
+            "pin": "7",
+            "ref": "A1"
+          },
+          {
+            "photoPixel": [
+              1420,
+              2252
+            ],
+            "pin": "1",
+            "ref": "A2.2"
+          },
+          {
+            "photoPixel": [
+              1112,
+              2254
+            ],
+            "pin": "14",
+            "ref": "A2.3"
+          }
+        ],
+        "checks": [
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -42.661486,
+              13.167203
+            ],
+            "photoModel": [
+              -42.714927722535094,
+              13.355208344190563
+            ],
+            "photoPixel": [
+              1194,
+              1507
+            ],
+            "pin": "7",
+            "ref": "A2.1",
+            "residualMm": 0.19545338869339238
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              -42.104946,
+              -4.031575
+            ],
+            "photoModel": [
+              -42.179926052565555,
+              -3.7257059961930836
+            ],
+            "photoPixel": [
+              1400,
+              1505
+            ],
+            "pin": "8",
+            "ref": "A1",
+            "residualMm": 0.31492515900221313
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              16.105095,
+              1.830645
+            ],
+            "photoModel": [
+              15.952147338755838,
+              1.359419178115273
+            ],
+            "photoPixel": [
+              1329,
+              2252
+            ],
+            "pin": "14",
+            "ref": "A2.2",
+            "residualMm": 0.4954258393453002
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              15.297968,
+              10.685617
+            ],
+            "photoModel": [
+              15.579308436458778,
+              11.056896330273597
+            ],
+            "photoPixel": [
+              1205,
+              2254
+            ],
+            "pin": "1",
+            "ref": "A2.3",
+            "residualMm": 0.4658334276060771
+          }
+        ],
+        "copperAssignmentQualified": false,
+        "id": "matrix-connector",
+        "maxCheckResidualMm": 0.4954258393453002,
+        "photoToModel": [
+          0.004605892253866429,
+          0.08780067776238547,
+          -185.16507786225745,
+          -0.09184792191979228,
+          -0.0010909804149429685,
+          126.11493846000666,
+          -1.988169125113542e-05,
+          8.775779741645097e-05,
+          1
+        ],
+        "scope": "Local underside projection between the surrounding A1/A2 packages; connector observations lie inside the anchor hull. DIP joints provide independent checks. Nominal geometry only; no X1 terminal mapping or copper assignment.",
+        "toleranceMm": 1.25
       }
     ],
     "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
@@ -17262,7 +17406,164 @@
       "minimum": 4.459202661227384
     },
     "qualifiedForPadPlacement": false,
-    "scope": "Unnumbered visible lead ends, not qualified hole centres. Projection uses the nominal board envelope; dimensions are estimates. Near/far rows are not assigned to A/B or schematic nets."
+    "scope": "Unnumbered visible lead ends, not qualified hole centres. Projection uses the nominal board envelope; dimensions are estimates. Near/far rows are not assigned to A/B or schematic nets.",
+    "underside": {
+      "allJointsInsideAnchorHull": true,
+      "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+      "photoSource": "photo-bottom",
+      "pixelUncertainty": 8,
+      "projectedJointRowsMm": {
+        "housingFar": [
+          [
+            -26.035373850588325,
+            14.89105264777622
+          ],
+          [
+            -23.64315112866342,
+            14.827379358886898
+          ],
+          [
+            -21.262052207589935,
+            14.764002149864499
+          ],
+          [
+            -18.888272471793893,
+            14.620251424051082
+          ],
+          [
+            -16.5241450088592,
+            14.450358992200476
+          ],
+          [
+            -14.173351123991191,
+            14.334726463297931
+          ],
+          [
+            -11.833333808275711,
+            14.219624019977124
+          ],
+          [
+            -9.504022983949001,
+            14.105127966431183
+          ],
+          [
+            -7.185337711053025,
+            13.991074636906529
+          ],
+          [
+            -4.8759043566922715,
+            13.851040000095507
+          ],
+          [
+            -2.5782504928196603,
+            13.73808122522332
+          ],
+          [
+            -0.2896850790227937,
+            13.599252346561824
+          ],
+          [
+            1.9872180736641394,
+            13.487452087070427
+          ]
+        ],
+        "housingNear": [
+          [
+            -25.550874975419063,
+            10.006375510236655
+          ],
+          [
+            -23.157874277398808,
+            9.954043821488977
+          ],
+          [
+            -21.040166767618352,
+            9.907732422435842
+          ],
+          [
+            -18.663157017855347,
+            9.748102469187975
+          ],
+          [
+            -16.3008145207217,
+            9.669779768018154
+          ],
+          [
+            -13.949368854645327,
+            9.591898691460042
+          ],
+          [
+            -11.610017241536557,
+            9.541110974787365
+          ],
+          [
+            -9.148486886337297,
+            9.407662283623768
+          ],
+          [
+            -6.825955946722449,
+            9.251012599750426
+          ],
+          [
+            -4.644474751409329,
+            9.150923141574431
+          ],
+          [
+            -2.3423721453328947,
+            8.995544877958464
+          ],
+          [
+            -0.05198938706782135,
+            8.867304608817884
+          ],
+          [
+            2.3528820700624085,
+            8.763341588153182
+          ]
+        ]
+      },
+      "projectedRowSeparationMm": {
+        "maximum": 4.908646442558478,
+        "minimum": 4.683839728576428
+      },
+      "registrationCheckResidualMm": 0.4954258393453002,
+      "registrationRegion": "matrix-connector",
+      "registrationWithinTolerance": true,
+      "scope": "Solder-joint geometry from local nominal registration, not metrology. Top lead ends can be raised bends; cross-side residuals do not prove electrical identity.",
+      "terminalMappingQualified": false,
+      "topLeadEndToJointResidualsMm": {
+        "housingFar": [
+          1.1789394675098173,
+          0.9225436099237623,
+          0.9734900727004219,
+          0.7725763719570976,
+          0.6437982770594218,
+          0.4832434385609115,
+          0.4748770228324932,
+          0.3273450401748897,
+          0.1791067930939364,
+          0.26504294454716115,
+          0.28896013065876613,
+          0.42412097429060663,
+          0.5602683922127931
+        ],
+        "housingNear": [
+          0.7657842567728643,
+          0.6661503433880482,
+          0.49756094522842903,
+          0.5013362520718807,
+          0.3990226415875224,
+          0.3431607426903251,
+          0.32767892639982127,
+          0.3623971520770949,
+          0.0901309368553795,
+          0.143183789886779,
+          0.21909661170545147,
+          0.4165235542440781,
+          0.46944094110123746
+        ]
+      }
+    }
   },
   "evidence": {
     "schema": 1,
@@ -18651,7 +18952,125 @@
           "comparison-photo-080415534"
         ],
         "comparisonObservation": "Separate-specimen oblique views corroborate two stacked contact rows and bent tails exiting one housing side. Handwritten A/B and end markings are visible but do not independently establish primary-specimen terminal numbering.",
-        "limits": "No contact-to-net mapping or replacement native pad placement is inferred. Contact pitch, hole centres, A8 treatment and exact housing dimensions remain for review."
+        "limits": "No contact-to-net mapping or replacement native pad placement is inferred. Contact pitch, hole centres, A8 treatment and exact housing dimensions remain for review.",
+        "underside": {
+          "photoSource": "photo-bottom",
+          "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "pixelUncertainty": 8,
+          "registrationRegion": "matrix-connector",
+          "jointRowsPixels": {
+            "housingFar": [
+              [
+                1170.0,
+                1713.333
+              ],
+              [
+                1170.0,
+                1743.333
+              ],
+              [
+                1170.0,
+                1773.333
+              ],
+              [
+                1171.0,
+                1803.333
+              ],
+              [
+                1172.333,
+                1833.333
+              ],
+              [
+                1173.0,
+                1863.333
+              ],
+              [
+                1173.667,
+                1893.333
+              ],
+              [
+                1174.333,
+                1923.333
+              ],
+              [
+                1175.0,
+                1953.333
+              ],
+              [
+                1176.0,
+                1983.333
+              ],
+              [
+                1176.667,
+                2013.333
+              ],
+              [
+                1177.667,
+                2043.333
+              ],
+              [
+                1178.333,
+                2073.333
+              ]
+            ],
+            "housingNear": [
+              [
+                1230.0,
+                1716.667
+              ],
+              [
+                1230.0,
+                1746.667
+              ],
+              [
+                1230.0,
+                1773.333
+              ],
+              [
+                1231.333,
+                1803.333
+              ],
+              [
+                1231.667,
+                1833.333
+              ],
+              [
+                1232.0,
+                1863.333
+              ],
+              [
+                1232.0,
+                1893.333
+              ],
+              [
+                1233.0,
+                1925.0
+              ],
+              [
+                1234.333,
+                1955.0
+              ],
+              [
+                1235.0,
+                1983.333
+              ],
+              [
+                1236.333,
+                2013.333
+              ],
+              [
+                1237.333,
+                2043.333
+              ],
+              [
+                1238.0,
+                2075.0
+              ]
+            ]
+          },
+          "order": "Cable-facing end to ROM-facing end; near/far geometric correspondence across the board, not numbered pins.",
+          "observation": "Two rows of solder joints are visible. All are inside the local surrounding-IC anchor hull. Top/bottom row correspondence uses side and longitudinal order; individual pin names and nets are not assigned."
+        }
       }
     },
     "XT1": {
@@ -19882,7 +20301,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "908885a24467b21296ef34721510389eac03888b"
+      "revision": "a0d7911f1152d04aeb0fca388be70ba1f962f105"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -19893,10 +20312,10 @@
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
-      "bottomRegistration": "7a21028fac1397c17b55724550453024d005fc56c5ccda54a2911e5719220449",
-      "connectorReview": "c9eb3bd11a4457a1b104a145f864e48ec87c4efeb13ed2d674a443febf1d24cb",
+      "bottomRegistration": "2a843bc73af129a3b99858bff04497e4364260d9fa56b263b1c1525bb01f0e59",
+      "connectorReview": "1d1162e0d3c2ee655e563b9c035c9826a18e4c65865c6dc6eda32baf86b535fc",
       "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
-      "componentEvidence": "062bf1abe2a9ccbb20fdbbe7ac0c63566577cc06710bc74f9e2f84932c4742a7"
+      "componentEvidence": "9a546a1e552845857c4d4de78a411be08bbc305fe6bb1684351f0cf71435f313"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "0eaf98e26aa710234a89aa0d8846ddad74e27ee329cc013e31fb694641d30529"
