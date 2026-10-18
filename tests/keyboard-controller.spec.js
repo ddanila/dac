@@ -115,8 +115,8 @@ test('partial copper review distinguishes observed sections from inferred attach
  await expect(panel.locator('[data-selection]')).toContainText('1 inferred');
  await expect(panel.locator('[data-pins]')).toContainText('not proof of continuity to CPU WR');
  await expect(panel.locator('[data-qualification]')).toContainText('track dangling');
- await expect(panel.locator('[data-route-id]')).toHaveCount(24);
- const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(7);
+ await expect(panel.locator('[data-route-id]')).toHaveCount(data.layout.routes.filter(r=>r.side==='top').length);
+ const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(data.layout.routes.filter(r=>r.side==='top'&&r.evidence.status==='inferred').length);
  for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
  await expect(panel.locator('[data-route-id]').filter({hasText:'WR_N:'}).first()).toHaveAttribute('stroke','#ffe16a');
  await panel.getByLabel('Controller board side').selectOption('bottom');
@@ -554,4 +554,23 @@ test('COL11 selection exposes observed underside route and inferred pad attachme
  await panel.getByLabel('Controller board side').selectOption('bottom');
  await expect(panel.locator('[data-selection]')).toContainText('inferred');
  for(const route of selection.routes)await expect(panel.locator(`[data-route-id="${route.id}"]`)).toHaveAttribute('stroke','#ffe16a');
+});
+
+test('clock branch review retains top registration and hidden-connection limits',async({page})=>{
+ const selection=controllerSelection(data,'net','/TA_TAKT');
+ expect(new Set(selection.routes.map(r=>r.side))).toEqual(new Set(['top','bottom']));
+ expect(data.topRegistration.pcbRegions[0].copperAssignmentQualified).toBe(true);
+ await page.goto('/tests/model-harness.html');
+ await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_TAKT');
+ await expect(panel.locator('[data-selection]')).toContainText('does not establish under-package connections');
+ await expect(panel.locator('[data-route-review="r101-top-package-entry"]')).toContainText('bounded local fit');
+ await expect(panel.locator('[data-route-review="r101-top-package-entry"]')).not.toContainText('undefined');
+ for(const route of selection.routes.filter(r=>r.side==='top'))await expect(panel.locator(`[data-route-id="${route.id}"]`)).toHaveAttribute('stroke','#ffe16a');
 });

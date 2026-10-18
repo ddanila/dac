@@ -6298,7 +6298,7 @@
       },
       {
         "evidence": {
-          "detail": "The underside photo shows a local straight connection between the R10.3 and BR1 joint pair. Native geometry is inferred between top-photo-placed pads; the global underside registration is not qualified. Width 0.35 mm is estimated. CLK follows the reference common net; continuation to the CPU and measured continuity remain unresolved.",
+          "detail": "The underside photo shows a local straight connection between the R10.3 and BR1 joint pair. Native geometry is inferred between top-photo-placed pads; the global underside registration is not qualified. Width 0.35 mm is estimated. The local projection removes the prior A1:13 short but leaves a small A1:14 clearance failure with estimated pad dimensions; do not move observed copper or change pad sizes to conceal it. CLK follows the reference common net; continuation to the CPU and measured continuity remain unresolved.",
           "geometrySha256": "e03bd5668a6cf1507253aa3a3be64192bbf0a87fcba8c23f078c1ccfc0bb231a",
           "group": "br1-r103-local-clock",
           "sources": [
@@ -6947,6 +6947,153 @@
           [
             -30.425354,
             -8.104423
+          ]
+        ],
+        "side": "top",
+        "width": 0.35
+      },
+      {
+        "evidence": {
+          "detail": "Inferred attachment from native resistor pad; photo locator is within the lead-end uncertainty, not an exact hole measurement. The trace is clipped at the inner-row registration boundary before the package hides its continuation; no A1 pin attachment or under-package route is asserted. Width 0.35 mm is estimated. The local projection removes the prior A1:13 short but leaves a small A1:14 clearance failure with estimated pad dimensions; do not move observed copper or change pad sizes to conceal it.",
+          "geometrySha256": "c48f7a59f8a6e10588954d022c0b1f276358e4e993dc955e11402cf620dd04d1",
+          "group": "r101-output-top-local",
+          "registration": {
+            "landmarksSha256": "8922cc3fabfb3410ea6c76bae22f955a551aadd681ad7178ae7b709eae038610",
+            "region": "a1-output-inner",
+            "side": "top"
+          },
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1448,
+                    1495
+                  ],
+                  [
+                    1445,
+                    1501
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred"
+        },
+        "id": "972fa540-a1fb-44d7-8a87-f27f933573f6",
+        "net": "/TA_TAKT",
+        "points": [
+          [
+            -56.664606,
+            -0.068244
+          ],
+          [
+            -56.376732,
+            -0.355762
+          ]
+        ],
+        "side": "top",
+        "width": 0.35
+      },
+      {
+        "evidence": {
+          "detail": "Visible top branch within the qualified local anchor hull. The trace is clipped at the inner-row registration boundary before the package hides its continuation; no A1 pin attachment or under-package route is asserted. Width 0.35 mm is estimated. The local projection removes the prior A1:13 short but leaves a small A1:14 clearance failure with estimated pad dimensions; do not move observed copper or change pad sizes to conceal it.",
+          "geometrySha256": "50dcdea61a61bb220495974d50b436de7342b6ceafeeeeb0700b8e0f6d77516b",
+          "group": "r101-output-top-local",
+          "registration": {
+            "landmarksSha256": "8922cc3fabfb3410ea6c76bae22f955a551aadd681ad7178ae7b709eae038610",
+            "region": "a1-output-inner",
+            "side": "top"
+          },
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1445,
+                    1501
+                  ],
+                  [
+                    1436,
+                    1510
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "5fff7738-a179-4a73-b774-2bb1ac614436",
+        "net": "/TA_TAKT",
+        "points": [
+          [
+            -56.376732,
+            -0.355762
+          ],
+          [
+            -55.750775,
+            -1.054204
+          ]
+        ],
+        "side": "top",
+        "width": 0.35
+      },
+      {
+        "evidence": {
+          "detail": "Visible top branch within the qualified local anchor hull. The trace is clipped at the inner-row registration boundary before the package hides its continuation; no A1 pin attachment or under-package route is asserted. Width 0.35 mm is estimated. The local projection removes the prior A1:13 short but leaves a small A1:14 clearance failure with estimated pad dimensions; do not move observed copper or change pad sizes to conceal it.",
+          "geometrySha256": "c997f5bad16ed3433a68cd84f042ddec7eda31702cbc00e988533c4f26068cdc",
+          "group": "r101-output-top-local",
+          "registration": {
+            "landmarksSha256": "8922cc3fabfb3410ea6c76bae22f955a551aadd681ad7178ae7b709eae038610",
+            "region": "a1-output-inner",
+            "side": "top"
+          },
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1436,
+                    1510
+                  ],
+                  [
+                    1392,
+                    1510
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed"
+        },
+        "id": "9d0484b0-c3e2-4f88-94be-13af10d77ac2",
+        "net": "/TA_TAKT",
+        "points": [
+          [
+            -55.750775,
+            -1.054204
+          ],
+          [
+            -56.129534,
+            -4.401621
           ]
         ],
         "side": "top",
@@ -14638,10 +14785,11 @@
     "drc": {
       "unconnectedItems": 228,
       "violations": {
-        "track_dangling": 3
+        "clearance": 1,
+        "track_dangling": 4
       }
     },
-    "electricalCopperSegments": 41,
+    "electricalCopperSegments": 44,
     "erc": [
       {
         "description": "Label connected to only one pin",
@@ -18876,6 +19024,232 @@
     "toleranceMm": 1.25,
     "withinPhotoTolerance": false
   },
+  "topRegistration": {
+    "copperAssignmentQualified": false,
+    "pcbRegions": [
+      {
+        "anchorHull": [
+          [
+            1390,
+            1495
+          ],
+          [
+            1401,
+            1694
+          ],
+          [
+            1507,
+            1645
+          ],
+          [
+            1498,
+            1490
+          ]
+        ],
+        "anchors": [
+          {
+            "photoPixel": [
+              1390,
+              1495
+            ],
+            "pin": "14",
+            "ref": "A1"
+          },
+          {
+            "photoPixel": [
+              1401,
+              1694
+            ],
+            "pin": "8",
+            "ref": "A1"
+          },
+          {
+            "photoPixel": [
+              1507,
+              1645
+            ],
+            "pin": "1",
+            "ref": "R10.2"
+          },
+          {
+            "photoPixel": [
+              1498,
+              1490
+            ],
+            "pin": "2",
+            "ref": "R10.2"
+          }
+        ],
+        "checks": [
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -54.798126,
+              -4.447712
+            ],
+            "photoModel": [
+              -54.712747454214,
+              -4.431485047878489
+            ],
+            "photoPixel": [
+              1392,
+              1528
+            ],
+            "pin": "13",
+            "ref": "A1",
+            "residualMm": 0.08690690453402362
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              -49.720854,
+              -4.281257
+            ],
+            "photoModel": [
+              -49.59031629432969,
+              -4.312505056569873
+            ],
+            "photoPixel": [
+              1395,
+              1594
+            ],
+            "pin": "11",
+            "ref": "A1",
+            "residualMm": 0.13422568174929644
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              -44.643582,
+              -4.114802
+            ],
+            "photoModel": [
+              -44.54365452211767,
+              -4.198656425011369
+            ],
+            "photoPixel": [
+              1398,
+              1661
+            ],
+            "pin": "9",
+            "ref": "A1",
+            "residualMm": 0.13044947462489545
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              -56.664606,
+              -0.068244
+            ],
+            "photoModel": [
+              -57.05533524137192,
+              -0.10760168874306368
+            ],
+            "photoPixel": [
+              1448,
+              1492
+            ],
+            "pin": "2",
+            "ref": "R10.1",
+            "residualMm": 0.3927064650935524
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -45.139083,
+              0.145801
+            ],
+            "photoModel": [
+              -45.379543306213534,
+              0.23715912553205337
+            ],
+            "photoPixel": [
+              1458,
+              1645
+            ],
+            "pin": "1",
+            "ref": "R10.1",
+            "residualMm": 0.25723037527678855
+          }
+        ],
+        "copperAssignmentQualified": true,
+        "extrapolationChecks": [
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              -57.08708,
+              -12.146847
+            ],
+            "photoModel": [
+              -58.31091973508356,
+              -12.857647291403385
+            ],
+            "photoPixel": [
+              1285,
+              1495
+            ],
+            "pin": "1",
+            "ref": "A1",
+            "residualMm": 1.4152811563179
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              -49.471172,
+              -11.897165
+            ],
+            "photoModel": [
+              -50.63776008014254,
+              -12.283699950269302
+            ],
+            "photoPixel": [
+              1292,
+              1590
+            ],
+            "pin": "4",
+            "ref": "A1",
+            "residualMm": 1.2289576951670658
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              -41.855264,
+              -11.647483
+            ],
+            "photoModel": [
+              -42.92316746149391,
+              -11.657990588109254
+            ],
+            "photoPixel": [
+              1300,
+              1690
+            ],
+            "pin": "7",
+            "ref": "A1",
+            "residualMm": 1.0679551547132278
+          }
+        ],
+        "id": "a1-output-inner",
+        "maxCheckResidualMm": 0.3927064650935524,
+        "photoToModel": [
+          -0.015981337798053174,
+          0.20481488398921438,
+          -459.1313763778717,
+          0.23247149954999038,
+          -0.008045965723273776,
+          -324.94737061521516,
+          0.0007600977548839422,
+          0.000667675045012139,
+          1
+        ],
+        "scope": "Only the convex hull between A1 inner-row lead entries and R10.2; no extrapolation under A1 or to the outer row. Hole-entry pixels are photo estimates, not measured hole centres.",
+        "toleranceMm": 1.25
+      }
+    ],
+    "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+    "schema": 1,
+    "scope": "Local top board-plane registration; A1 inner-row lead entry observations differ from raised lead knees in photo-landmarks.json. No global registration or dimensional metrology claim. Tolerance follows the existing underside registration review budget."
+  },
   "connectorReview": {
     "nativePadRowSeparationMm": {
       "maximum": 4.908646318011718,
@@ -20939,7 +21313,13 @@
           ]
         },
         "copperAssignmentQualified": false,
-        "nextEvidence": "Reconcile board-plane copper with A1 hole positions using local cross-side registration and independently held-out joints. Raised lead surfaces are not hole centres. Trace the hidden continuation independently before assigning an A1 endpoint."
+        "nextEvidence": "Resolve the hidden continuation independently before assigning an A1 endpoint. The local fit does not extend to the outer row; retain the estimated-pad clearance failure.",
+        "localRegistration": {
+          "source": "top-copper-landmarks.json",
+          "nativeGroup": "r101-output-top-local",
+          "scope": "Board-level inner-row lead-entry observations, independent nearby checks and explicit failed outer-row extrapolation. Only the visible segment inside the local hull is assigned. The rejected global projection is retained; no hidden A1 pin attachment is promoted."
+        },
+        "summary": "The global top projection was rejected. A bounded local fit supports the visible R10.1 branch beside A1; the under-package attachment remains unresolved."
       }
     ],
     "comparisonSpecimens": [
@@ -21467,7 +21847,7 @@
       "referenceType": "560",
       "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends",
       "pinEvidence": "Pin 1 assigned to shared supply-side lower lead; pin 2 signal assignment follows factory schematic. Hidden output continuity not verified.",
-      "note": "Underside branch to a separate solder eye is native copper. A visible top branch toward the A1 package gap remains a photo observation: global projection conflicts with estimated A1 pads, so no native top copper is assigned. Hidden A1 attachment and cable continuation remain unresolved; dimensions and reference resistance are unmeasured.",
+      "note": "Underside branch ends at a separate solder eye. The visible top branch is locally registered only up to the A1 inner-row boundary; the original global projection remains rejected. Hidden A1 attachment and cable continuation remain unresolved; dimensions and reference resistance are unmeasured.",
       "placementAuthority": "controller.kicad_pcb",
       "photoSource": "photo-top",
       "photoPins": {
@@ -21531,8 +21911,9 @@
         ],
         "pixelUncertainty": 8,
         "scope": "Visible copper toward A1 package edge; obscured continuation is not assigned to a pin.",
-        "status": "projection-rejected-pending-local-registration",
-        "review": "evidence.json:routeReviews:r101-top-package-entry"
+        "status": "partial-local-registration",
+        "review": "evidence.json:routeReviews:r101-top-package-entry",
+        "nativeGroup": "r101-output-top-local"
       }
     },
     "R10.2": {
@@ -22795,25 +23176,26 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "305b927fc1acf1b235d37d41af0e473e0012dd47"
+      "revision": "96abd9595faa40c4d156de97a607c57f558bd1e6"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "93f5f835f33a60e4da682d359f69459883c61d45"
     },
     "files": {
-      "layout": "0b604fb133e34b6da2dfc54160316d34253aa24d116bb797065348aabcb04274",
+      "layout": "f30869ecae3c52f6f9dc7f587aa0f65af70630ceadb392093d64d4dc62248616",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "462ea88eb7be442d58a144530fa56e4dcad524f28f1af47d866d6862ff2f498f",
+      "qualification": "d03876d2ae0885466ae5dc23512d8571c90ab4bc90682c02788575ba5d154dd8",
       "photoRegistration": "61a51daca9a51fd1765074ed674e54cdc825687e50daf3f161518cb25926a034",
       "bottomRegistration": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
+      "topRegistration": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
-      "evidence": "a4accb199c660dd2a69ddb19b38b01f6c769ef0af8c95d1a38e63d688305bccd",
-      "componentEvidence": "72b96ef67bac3d9a314ee3046569572372393264ad3d34d6d28081c429f6cc74"
+      "evidence": "94ac6fec3ee0deef4b10885a4003a5685e121da4775f6645f2afd25379f16166",
+      "componentEvidence": "96b0bd75fadbce0974804474d1e4fff1ce238b53b0841fe8caa4be5792e3f081"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "3706e822b61c9336f869051b9d533123a4bdc9063a6b634b8625d760679235de"
+    "geometryScadSha256": "86a20bd643612e73fd50861d30778dc3d1545babb0b504628459be862b4b1bf1"
   },
   "cosimulation": {
     "bus": {

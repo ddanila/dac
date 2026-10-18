@@ -117,6 +117,10 @@ export function installKeyboardControllerReview(scene){
     if(![...region.anchors,...region.checks].some(p=>selection.refs.includes(p.ref)))continue;
     get('[data-selection]').textContent+=` Local ${region.id.toUpperCase()} underside-to-PCB fit: ${region.checks.length} independent pad checks; ${region.maxCheckResidualMm.toFixed(2)} mm maximum residual. ${region.copperAssignmentQualified?'Reviewed projection is limited to the anchor hull.':'Projection is unqualified.'} Nominal geometry; global underside registration and hidden continuity remain unqualified.`;
    }
+   for(const region of data.topRegistration?.pcbRegions||[]){
+    if(![...region.anchors,...region.checks].some(p=>selection.refs.includes(p.ref)))continue;
+    get('[data-selection]').textContent+=` Local top-side photo fit: ${region.maxCheckResidualMm.toFixed(2)} mm maximum check residual. ${region.copperAssignmentQualified?'Visible copper is limited to the anchor hull.':'Projection is unqualified.'} This fit does not establish under-package connections or apply to the outer row.`;
+   }
    for(const review of data.evidence.routeReviews||[]){
     if(!review.refs.some(ref=>selection.refs.includes(ref)))continue;
     const note=document.createElement('p');note.dataset.routeReview=review.id;note.textContent=review.summary+' '+review.nextEvidence;pins.append(note);
