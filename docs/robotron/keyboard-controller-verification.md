@@ -37,8 +37,10 @@ Paths below are relative to the CAD controller directory unless stated otherwise
 - **Gate applicability:** output-current discrepancies motivate further device
   review. Gain-rolloff and sink-resistance variants reduce forced-output current,
   but candidates admitted by complete, model-matched DC and switching evidence
-  still fail to sustain oscillation. Isolated branch recovery does not establish
-  full oscillator startup or physical device hysteresis. See the core's
+  still fail to sustain oscillation. Finite current disturbances also return the
+  tested complete-oscillator candidates to nonoscillating plateaus. This narrows
+  the startup investigation without ruling out every startup condition or proving
+  physical device stability. See the core's
   [retained analog evidence](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence).
 - **Completion:** digital agreement and synchronized geometry remain useful
   foundations. Neither closes the physical data/clock milestone nor full-board
