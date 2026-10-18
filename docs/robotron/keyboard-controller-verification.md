@@ -20,7 +20,7 @@ Paths below are relative to the CAD controller directory unless stated otherwise
 | Compare transactions and firmware behavior | Core qualification reports, pinned TV80 model and S600 workload | Specimen ROM/timing; exact cycle equivalence remains false |
 | Retain diagnostics and replay | First-difference traces, stimulus, waveform and fault-injection tests | Instrumented specimen comparison |
 | Preserve IDs and expose evidence in the museum | Export sidecars, component/net inspector and browser tests | Legacy bodies do not all have native pad geometry |
-| Connect runtime diagnostics | Latch samples and separately labelled display persistence | Frame samples are not full waveforms |
+| Connect runtime diagnostics | Latch samples, labelled display persistence and a pinned recorded bus waveform | Live frame samples are not full waveforms; recorded simulation does not establish specimen behavior |
 | Reject stale or mismatched exports | Source hashes, mesh receipts, sync checks and CI | Consistency checks cannot validate photo interpretations |
 | Separate fast checks and longer qualification | CAD native/export CI, core workflows and core qualification target | Longer firmware and mixed-signal qualification remain separate gates |
 | Complete the first physical data/clock milestone | Logical circuit and partial native copper | Actual copper and connector correspondence remain incomplete |

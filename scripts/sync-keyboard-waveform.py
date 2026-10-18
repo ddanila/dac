@@ -9,6 +9,7 @@ import subprocess
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('emulation', type=Path)
+parser.add_argument('--check', action='store_true', help='Reject a stale excerpt without writing it')
 args = parser.parse_args()
 repo = args.emulation.resolve()
 if subprocess.check_output(['git', '-C', str(repo), 'status', '--porcelain'], text=True).strip():
@@ -61,5 +62,11 @@ output = {'schema': 1, 'title': 'Released D0 at a CPU read', 'net': '/D0',
           'lowMaximumVolts': limits['ordinaryInput']['lowMaximumVolts'],
           'highMinimumVolts': limits['ordinaryInput']['highMinimumVolts'], 'samples': samples}
 target = root / 'public/models/robotron-1715m/keyboard-controller-waveform.json'
-target.write_text(json.dumps(output, indent=2) + '\n')
-print('Pinned recorded waveform:', revision)
+serialized = json.dumps(output, indent=2) + '\n'
+if args.check:
+    if not target.exists() or target.read_text() != serialized:
+        raise SystemExit('Recorded waveform is stale; regenerate from the reviewed source revision')
+    print('Recorded waveform matches source:', revision)
+else:
+    target.write_text(serialized)
+    print('Pinned recorded waveform:', revision)
