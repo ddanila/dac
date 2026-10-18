@@ -33,12 +33,15 @@ reconstruction requirements below remain in scope.
    with estimated footprints from the photographs; preserve unsupported
    continuations as unresolved. Use the established X1 row constraints while
    keeping A8 and BR2 terminal identity separate from observed geometry.
-2. **Establish an applicable gate model.** Diagnose why candidates that pass
-   isolated device checks still settle without oscillating. Review topology,
-   output-current behavior and startup response against published conditions.
-   Validate independent conditions before expanding parameter searches; do not
-   tune to the emulator's frequency or use incompletely specified typical curves
-   as exact acceptance limits.
+2. **Establish an applicable gate model.** Investigate the second oscillator
+   gate's operating state and loaded small-signal response: isolated device passes
+   and finite disturbances have not produced sustained oscillation. Match AC
+   operating points to observed transient plateaus before interpreting them;
+   loaded response ratios and an incomplete pole search cannot prove stability.
+   Keep primary К555ЛА3, comparison D100D and reference DL000 applicability separate.
+   Validate against independent device conditions before expanding parameter
+   searches; neither emulator frequency nor incompletely specified typical curves
+   are exact fitting targets.
 3. **Qualify the coupled reference board.** Once device applicability is supported,
    resolve clock-phase convergence, receiver levels and bus timing, then run the
    remaining firmware scenarios. Assess supply recovery separately from initial

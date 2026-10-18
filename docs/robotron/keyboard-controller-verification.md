@@ -3,7 +3,8 @@
 The [plan](keyboard-controller-plan.md) is **not complete**. This maps requirements
 to current artifacts and missing proof. Compatible source revisions are pinned in
 the museum manifests linked by the [status guide](keyboard-controller-progress.md).
-Paths below are relative to the CAD controller directory unless stated otherwise.
+The linked investigations may be newer than the museum's pinned assets. Paths
+below are relative to the CAD controller directory unless stated otherwise.
 
 | Requirement | Evidence | Remaining proof |
 | --- | --- | --- |
@@ -37,16 +38,20 @@ Paths below are relative to the CAD controller directory unless stated otherwise
   supply pad. The under-package attachment and outer-row registration remain
   unresolved. See CAD `generated/connector-review.json`,
   `route-evidence.json` and `generated/qualification.json`.
-- **Gate applicability:** primary A7 is marked К555ЛА3; the comparison board’s
-  D100D is a separate device. Selected К555ЛА3 passport DC checks constrain the
-  candidates but do not qualify their dynamics. Output-current discrepancies
-  still require device review. Gain-rolloff and sink-resistance variants reduce forced-output current,
-  but candidates admitted by complete, model-matched DC and switching evidence
-  still fail to sustain oscillation. Finite current disturbances also return the
-  tested complete-oscillator candidates to nonoscillating plateaus. This narrows
-  the startup investigation without ruling out every startup condition or proving
-  physical device stability. See the core's
-  [retained analog evidence](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence).
+- **Gate applicability:** primary A7 is marked К555ЛА3; comparison D100D and
+  reference DL000 remain separate identities. Selected passport DC checks do not
+  qualify dynamics. Candidates passing isolated checks still settle without
+  oscillating and return to plateaus after tested finite disturbances. See
+  [device applicability](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/k555la3-device-review/assessment.json)
+  and [complete-oscillator recovery](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-disturbance/assessment.json).
+- **Operating-state diagnosis:** at matching transient plateaus, the second gate
+  attenuates small signals, directing investigation toward its operating state and
+  device response. The default DC solve can select a different state; that result
+  is rejected for plateau comparison. Loaded closed-circuit ratios are not loop
+  gain, and the incomplete pole search establishes no stability conclusion. See
+  the [AC assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-ac/assessment.json)
+  for accepted and rejected evidence. These findings narrow desk work without
+  establishing physical device stability or ruling out every startup condition.
 - **Completion:** digital agreement and synchronized geometry remain useful
   foundations. Neither closes the physical data/clock milestone nor full-board
   electrical acceptance. These gaps still have desk-work routes; missing specimen
@@ -67,7 +72,7 @@ not a second inventory here.
 | Output-clock WR/RD discrepancy | Compare complete trace paths and keep published revisions separate | Distinguishable physical connection to the CPU pins |
 | X1 unclassified contact and cable/filter path | Use registered joints and both row constraints in `generated/connector-review.json` and `generated/connector-terminals.json`; classify A8 and resolve cable/winding attachments | Markings or complete trace/joint observations that distinguish remaining candidates |
 | Discrete pads and underside registration | Use independent landmarks and lead trajectories; body ends are not hole centres | Hidden lead-entry close-ups and measured dimensions |
-| Device models and full-board electrical behavior | Resolve output I/V and topology applicability, then validate device ranges and coupled behavior | Targeted captures only for behavior not constrained by published evidence |
+| Device models and full-board electrical behavior | Resolve second-gate operating state and response with matched DC/transient evidence; validate device applicability and coupled behavior | Targeted captures only for behavior not constrained by published evidence |
 | Specimen ROM and timing | Continue reference qualification with standard S600; keep replacement-ROM identity separate | Repeated ROM reads and raw clock/reset/serial captures with setup details |
 
 Comparison photographs depict another specimen. Register and compare them before
