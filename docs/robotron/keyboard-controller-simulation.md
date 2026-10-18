@@ -39,6 +39,14 @@ describes tri-state conversion and timing limitations that need explicit review.
 This is a survey of relevant tool families, not an exhaustive catalogue or a claim
 that every candidate has been installed and validated.
 
+Manufacturer models also need screening. [TI publishes SN74LS00 SPICE and IBIS
+references](https://www.ti.com/product/SN74LS00), but the supplied behavioral SPICE
+model switches near half the supply voltage and fails our 2 V TTL-high fixture.
+It is not a suitable default DL000 replacement. The IBIS pin-load and output-current
+curves remain candidates for local sensitivity studies; they do not establish DDR
+device calibration. Keep restricted vendor files outside the repository and retain
+source hashes and runnable fixtures in the [reference assessment](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-keyboard/analog/reports/clock-output/ti-reference-review).
+
 ## Implementation order and acceptance
 
 1. Generate analog passive/transistor wiring from the existing normalized KiCad
