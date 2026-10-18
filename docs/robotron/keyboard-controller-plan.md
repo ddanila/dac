@@ -48,7 +48,9 @@ reconstruction requirements below remain in scope.
 3. **Qualify the coupled reference board.** Once device applicability is supported,
    resolve clock-phase convergence, receiver levels and bus timing, then run the
    remaining firmware scenarios. Review cable/filter assumptions, including the
-   uncoupled winding surrogate, before claiming complete output-path behavior.
+   uncoupled default and coupling hypotheses, before claiming complete output-path
+   behavior. Constrain receiver protection and transient voltage limits; release
+   intervals alone do not establish valid cable voltages.
    Assess supply recovery separately from initial power-on reset. Preserve failing
    startup and absolute phase in acceptance checks.
 4. **Identify residual specimen dependencies.** Exhaust existing photographs,

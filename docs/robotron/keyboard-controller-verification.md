@@ -48,11 +48,11 @@ below are relative to the CAD controller directory unless stated otherwise.
   banks and raised axial bodies/leads. Nominal assembly clearances pass; lead
   heights and package dimensions remain estimates, and hidden holes are not
   inferred. See CAD `generated/layout.json` and `../checks/assembly.json`.
-- **Output filter:** the current electrical surrogate uses uncoupled series
-  windings. Shared-core coupling, winding orientation and ferrite losses remain
-  unqualified; review these assumptions alongside the physical cable path. See
-  core [output circuit](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/output_circuit.py)
-  and [probe assumptions](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/output_probe.py).
+- **Output filter:** explicit coupling and dot-polarity hypotheses pass analytical
+  winding checks. Nominal cable release intervals are similar while transient
+  undershoot differs materially. The default remains uncoupled; receiver protection,
+  physical winding parameters and ferrite behavior remain unqualified. See the
+  [filter assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json).
 - **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
   DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
   К555ЛА3 conditions. Selected DC passes, including a separate input-diode
