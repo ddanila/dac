@@ -1506,7 +1506,7 @@
             "pin": "17",
             "position": [
               78.49909,
-              4.136073
+              4.136074
             ],
             "ref": "A5",
             "size": [
@@ -1880,7 +1880,7 @@
             "pin": "37",
             "position": [
               45.509814,
-              19.442447
+              19.442446
             ],
             "ref": "A5",
             "size": [
@@ -4129,7 +4129,7 @@
         "type": "3k9"
       },
       {
-        "evidence": "Factory placement + photo-estimated lead ends; terminal nets reference-derived, not continuity tested; component-evidence.json",
+        "evidence": "component-evidence.json: registered underside pad 1; top-estimated pad 2; reference-derived terminal identity",
         "pads": [
           {
             "drill": [
@@ -4139,8 +4139,8 @@
             "net": "/ROW0",
             "pin": "1",
             "position": [
-              -61.235864,
-              1.312999
+              -62.427316,
+              1.852653
             ],
             "ref": "R9.3",
             "size": [
@@ -4176,7 +4176,7 @@
         "type": "3k9"
       },
       {
-        "evidence": "Factory placement + photo-estimated lead ends; terminal nets reference-derived, not continuity tested; component-evidence.json",
+        "evidence": "component-evidence.json: registered underside pad 1; top-estimated pad 2; reference-derived terminal identity",
         "pads": [
           {
             "drill": [
@@ -4186,8 +4186,8 @@
             "net": "/ROW5",
             "pin": "1",
             "position": [
-              -61.346393,
-              4.767473
+              -62.546565,
+              5.584378
             ],
             "ref": "R9.4",
             "size": [
@@ -5770,7 +5770,7 @@
       },
       {
         "evidence": {
-          "detail": "Estimated native pad attachment. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Native clearance conflicts with estimated R9 pads remain unresolved; photo routing must not be displaced to conceal them.",
+          "detail": "Estimated native pad attachment. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates.",
           "geometrySha256": "f186dbf4ed34ed88380a50ceac59febe3d0f771b914b87607a5c9c0fc902b726",
           "group": "r101-output-bottom-partial",
           "registration": {
@@ -5818,7 +5818,7 @@
       },
       {
         "evidence": {
-          "detail": "Visible underside signal branch from R10.1:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Native clearance conflicts with estimated R9 pads remain unresolved; photo routing must not be displaced to conceal them.",
+          "detail": "Visible underside signal branch from R10.1:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates.",
           "geometrySha256": "6145c776496268a44586e366c41c4c4ed7fe13f4a92eb2b48e9d8f86a623eb1e",
           "group": "r101-output-bottom-partial",
           "registration": {
@@ -5866,7 +5866,7 @@
       },
       {
         "evidence": {
-          "detail": "Visible underside signal branch from R10.1:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Native clearance conflicts with estimated R9 pads remain unresolved; photo routing must not be displaced to conceal them.",
+          "detail": "Visible underside signal branch from R10.1:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates.",
           "geometrySha256": "9fc616139bfab2928f7e2eb05b42268fd4ead82eae30c2787690015221e3da59",
           "group": "r101-output-bottom-partial",
           "registration": {
@@ -6362,7 +6362,7 @@
       },
       {
         "evidence": {
-          "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Native clearance conflicts with estimated R9 pads remain unresolved; photo routing must not be displaced to conceal them.",
+          "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates.",
           "geometrySha256": "6b997b296d7eae39733a6a05ed79c803b7738efc1d5a32fdc6373f73d8f22402",
           "group": "r102-output-bottom-partial",
           "registration": {
@@ -6410,7 +6410,7 @@
       },
       {
         "evidence": {
-          "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Native clearance conflicts with estimated R9 pads remain unresolved; photo routing must not be displaced to conceal them.",
+          "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates.",
           "geometrySha256": "10e0af72d89a5b2bd1cd5d2c4178454a80742e079db28853fa26454a072347c0",
           "group": "r102-output-bottom-partial",
           "registration": {
@@ -6458,7 +6458,7 @@
       },
       {
         "evidence": {
-          "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Native clearance conflicts with estimated R9 pads remain unresolved; photo routing must not be displaced to conceal them.",
+          "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates.",
           "geometrySha256": "6e380529dc701bc8c31aade3e4627c91bca96d2db0949a4450c90573be817acb",
           "group": "r102-output-bottom-partial",
           "registration": {
@@ -6506,7 +6506,7 @@
       },
       {
         "evidence": {
-          "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Native clearance conflicts with estimated R9 pads remain unresolved; photo routing must not be displaced to conceal them.",
+          "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates.",
           "geometrySha256": "3ce2583d5b09a91291f47ada16c3a3f4031b13199505d882b7b94c16a84f905e",
           "group": "r102-output-bottom-partial",
           "registration": {
@@ -6554,7 +6554,7 @@
       },
       {
         "evidence": {
-          "detail": "Estimated native pad attachment. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Native clearance conflicts with estimated R9 pads remain unresolved; photo routing must not be displaced to conceal them.",
+          "detail": "Estimated native pad attachment. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates.",
           "geometrySha256": "df2845eb28945242eac8447f710fb88db8f9849b1e30e33ae50c9d5ec0e669d4",
           "group": "r102-output-bottom-partial",
           "registration": {
@@ -14638,7 +14638,6 @@
     "drc": {
       "unconnectedItems": 228,
       "violations": {
-        "clearance": 2,
         "track_dangling": 3
       }
     },
@@ -16270,16 +16269,16 @@
       {
         "checkPins": [],
         "independentValidation": false,
-        "maxResidualMm": 4.487174490370758e-07,
+        "maxResidualMm": 1.3079694735792546,
         "pins": [
           {
             "pcbModel": [
-              -61.235864,
-              1.312999
+              -62.427316,
+              1.852653
             ],
             "pcbPixel": [
-              1463.999994056029,
-              1430.9999983877801
+              1470.6205417962615,
+              1415.0634612560023
             ],
             "photoModel": [
               -61.235863873863636,
@@ -16290,7 +16289,7 @@
               1431
             ],
             "pin": "1",
-            "residualMm": 4.487174490370758e-07
+            "residualMm": 1.3079694735792546
           },
           {
             "pcbModel": [
@@ -16314,7 +16313,7 @@
           }
         ],
         "ref": "R9.3",
-        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+        "scope": "Top lead observations compared with underside pad placement; residuals are cross-side disagreement, not measured continuity."
       },
       {
         "checkPins": [],
@@ -16515,16 +16514,16 @@
       {
         "checkPins": [],
         "independentValidation": false,
-        "maxResidualMm": 4.862209605468064e-07,
+        "maxResidualMm": 1.451808519064643,
         "pins": [
           {
             "pcbModel": [
-              -61.346393,
-              4.767473
+              -62.546565,
+              5.584378
             ],
             "pcbPixel": [
-              1511.0000019694205,
-              1428.9999938886308
+              1521.4013649452318,
+              1412.9020414394615
             ],
             "photoModel": [
               -61.346392542631335,
@@ -16535,7 +16534,7 @@
               1429
             ],
             "pin": "1",
-            "residualMm": 4.862209605468064e-07
+            "residualMm": 1.451808519064643
           },
           {
             "pcbModel": [
@@ -16559,7 +16558,7 @@
           }
         ],
         "ref": "R9.4",
-        "scope": "Direct photo placement, not a held-out fit check or measured continuity."
+        "scope": "Top lead observations compared with underside pad placement; residuals are cross-side disagreement, not measured continuity."
       },
       {
         "checkPins": [],
@@ -17607,6 +17606,44 @@
       0.00027506741458524655,
       -1.7371481935679935e-05,
       1
+    ],
+    "padPlacements": [
+      {
+        "pcbModel": [
+          -62.427316,
+          1.852653
+        ],
+        "photoModel": [
+          -62.42731618576022,
+          1.8526533715637534
+        ],
+        "photoPixel": [
+          1321,
+          1267
+        ],
+        "pin": "1",
+        "ref": "R9.3",
+        "region": "output-pullups",
+        "residualMm": 4.154112211370193e-07
+      },
+      {
+        "pcbModel": [
+          -62.546565,
+          5.584378
+        ],
+        "photoModel": [
+          -62.54656466839196,
+          5.584377971394612
+        ],
+        "photoPixel": [
+          1275,
+          1267
+        ],
+        "pin": "1",
+        "ref": "R9.4",
+        "region": "output-pullups",
+        "residualMm": 3.3283954391820816e-07
+      }
     ],
     "pcbRegions": [
       {
@@ -21603,7 +21640,7 @@
       "referenceType": "3k9",
       "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends",
       "pinEvidence": "Reference-derived: pin 1 matrix-facing lower lead, pin 2 transistor-facing upper lead. Hidden row/base continuity not verified.",
-      "note": "Factory placement establishes the R9.1\u2013R9.8 order across the sensing bank. Nominal planar photo placement; body, hole and pad dimensions estimated. Reference value 3k9 is not a specimen measurement. Blue collar end observed in the top photo; it does not identify electrical polarity.",
+      "note": "Matrix-facing pad 1 follows a locally registered underside solder joint; photoPins retain the superseded top-side lead estimate for comparison. Transistor-facing pad 2, body, hole and pad dimensions remain estimated. Reference resistance is not measured; blue collar is appearance evidence, not polarity.",
       "placementAuthority": "controller.kicad_pcb",
       "photoSource": "photo-top",
       "photoPins": {
@@ -21617,7 +21654,19 @@
         ]
       },
       "pixelUncertainty": 8,
-      "blueCollarPin": "2"
+      "blueCollarPin": "2",
+      "bottomPadPlacement": {
+        "region": "output-pullups",
+        "photoSource": "photo-bottom",
+        "pins": {
+          "1": [
+            1321,
+            1267
+          ]
+        },
+        "pixelUncertainty": 5,
+        "identityBasis": "Factory resistor-bank order, mirrored across the original top and underside photographs. Matrix-facing row is below the output branches; only pad 1 is reassigned geometrically. Reference net identity is not continuity-tested."
+      }
     },
     "R9.5": {
       "referenceType": "3k9",
@@ -21703,7 +21752,7 @@
       "referenceType": "3k9",
       "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top original lead ends",
       "pinEvidence": "Reference-derived: pin 1 matrix-facing lower lead, pin 2 transistor-facing upper lead. Hidden row/base continuity not verified.",
-      "note": "Factory placement establishes the R9.1\u2013R9.8 order across the sensing bank. Nominal planar photo placement; body, hole and pad dimensions estimated. Reference value 3k9 is not a specimen measurement. Blue collar end observed in the top photo; it does not identify electrical polarity.",
+      "note": "Matrix-facing pad 1 follows a locally registered underside solder joint; photoPins retain the superseded top-side lead estimate for comparison. Transistor-facing pad 2, body, hole and pad dimensions remain estimated. Reference resistance is not measured; blue collar is appearance evidence, not polarity.",
       "placementAuthority": "controller.kicad_pcb",
       "photoSource": "photo-top",
       "photoPins": {
@@ -21717,7 +21766,19 @@
         ]
       },
       "pixelUncertainty": 8,
-      "blueCollarPin": "2"
+      "blueCollarPin": "2",
+      "bottomPadPlacement": {
+        "region": "output-pullups",
+        "photoSource": "photo-bottom",
+        "pins": {
+          "1": [
+            1275,
+            1267
+          ]
+        },
+        "pixelUncertainty": 5,
+        "identityBasis": "Factory resistor-bank order, mirrored across the original top and underside photographs. Matrix-facing row is below the output branches; only pad 1 is reassigned geometrically. Reference net identity is not continuity-tested."
+      }
     },
     "R9.2": {
       "referenceType": "3k9",
@@ -22534,25 +22595,25 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "2f1ec36d72fc4d07e783efbb33bf731ba5d12e8a"
+      "revision": "d222ff5c3a84d6762a0afaa6bc74cbfda58f4e4a"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "43546b37efcfc99c2908b1017c0bf8eb1590ced6"
+      "revision": "93f5f835f33a60e4da682d359f69459883c61d45"
     },
     "files": {
-      "layout": "8d174d4a84cdcee97fefab8bf112e4bfa2104dd0a6743c0419e0088d5e0aecde",
+      "layout": "0b604fb133e34b6da2dfc54160316d34253aa24d116bb797065348aabcb04274",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "8f888d53c9709bee1ce01f5476c01db95bbd327d59f1389881233117488636cc",
-      "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
-      "bottomRegistration": "02cee61e8c548b75ddaa088e1318c361e0ccb53bf7973363851822e6a5ac5e0d",
+      "qualification": "462ea88eb7be442d58a144530fa56e4dcad524f28f1af47d866d6862ff2f498f",
+      "photoRegistration": "61a51daca9a51fd1765074ed674e54cdc825687e50daf3f161518cb25926a034",
+      "bottomRegistration": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
-      "componentEvidence": "543900b4781bda291e2e02e4007e476fba8ab904b875c5f23979a75061b380fd"
+      "componentEvidence": "4f708f55e00f6f206a24c61c872d8749030b04686c745363602f30f3ebee1e60"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "4db1a4da39473cce44500226483a224f61578601f72b9854a8747465361be6b4"
+    "geometryScadSha256": "3706e822b61c9336f869051b9d533123a4bdc9063a6b634b8625d760679235de"
   },
   "cosimulation": {
     "bus": {

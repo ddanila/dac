@@ -30,9 +30,9 @@ Paths below are relative to the CAD controller directory unless stated otherwise
 - **Connector and copper:** locally registered X1 joints support native pad and
   lead placement with reference-derived row order. The COL11 attachment is
   reconstructed; A8 remains unclassified. Visible data/clock pull-up branches
-  end at solder eyes with unresolved continuations. Clearance conflicts with
-  estimated resistor pads require photo review, not rerouting observed copper
-  merely to satisfy DRC. See CAD `generated/connector-review.json`,
+  end at solder eyes with unresolved continuations. Registered underside joints
+  resolve the adjacent resistor-pad clearance conflicts; pad dimensions and
+  unobserved continuations remain estimates. See CAD `generated/connector-review.json`,
   `route-evidence.json` and `generated/qualification.json`.
 - **Gate applicability:** output-current discrepancies motivate further device
   review. Gain-rolloff and sink-resistance variants reduce forced-output current,
