@@ -574,3 +574,36 @@ test('clock branch review retains top registration and hidden-connection limits'
  await expect(panel.locator('[data-route-review="r101-top-package-entry"]')).not.toContainText('undefined');
  for(const route of selection.routes.filter(r=>r.side==='top'))await expect(panel.locator(`[data-route-id="${route.id}"]`)).toHaveAttribute('stroke','#ffe16a');
 });
+
+test('body photo regions expose resistor evidence without placing electrical pins',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(points){window.bodyHighlights=points;}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R1');
+ await panel.locator('summary').filter({hasText:'Connected pins and evidence'}).click();
+ const primary=panel.locator('[data-body-photo="R1"][data-photo-specimen="museum-primary"]');
+ const comparison=panel.locator('[data-body-photo="R1"][data-photo-specimen="comparison-20261017"]');
+ await expect(primary.getByRole('img')).toBeVisible();
+ await expect(primary.locator('rect')).toHaveAttribute('x','1200');
+ await expect(primary).toContainText('not numbered pins or hole centres');
+ await expect(comparison.getByRole('img')).toBeVisible();
+ await expect(comparison).toContainText('comparison photo — different specimen');
+ await expect(comparison).toContainText('3894');
+ await expect(comparison).toContainText('Marking meaning unresolved');
+ await expect(comparison.getByRole('link')).toHaveAttribute('href',/PXL_20261017_080450163.jpg$/);
+ await expect(panel.locator('[data-body-photo] circle, [data-body-photo] [data-photo-pin]')).toHaveCount(0);
+ expect(await page.evaluate(()=>window.bodyHighlights)).toEqual([]);
+ await expect(panel.locator('table tbody tr')).toHaveCount(Object.keys(data.connectivity.components.R1.pins).length);
+ for(const cell of await panel.locator('table tbody tr td:last-child').allTextContents())expect(cell).toBe('Unplaced');
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('R2');
+ await expect(panel.locator('[data-body-photo="R1"]')).toHaveCount(0);
+ await expect(panel.locator('[data-body-photo="R2"] rect')).toBeVisible();
+ expect(await page.evaluate(()=>window.bodyHighlights)).toEqual([]);
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('A1');
+ await expect(panel.locator('[data-body-photo]')).toHaveCount(0);
+ await expect(panel.locator('a[href$="PXL_20261017_080450163.jpg"]')).toHaveCount(0);
+});

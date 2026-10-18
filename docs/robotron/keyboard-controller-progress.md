@@ -29,6 +29,8 @@ Use museum manifests when reviewing a specific pinned version.
 Open **Keyboard controller circuit review** and select a component or net to see
 its geometry and evidence. Cyan artwork has no net assignment. Both board sides
 use one top-view coordinate frame; source links identify pinned revisions.
+Photo rectangles locate component bodies or markings without assigning pads.
+Comparison-specimen previews are labelled separately from primary observations.
 
 **Recorded reference waveform** shows retained simulation samples, separate from
 live latch samples and specimen measurements. Driver states apply at the marked
