@@ -57,11 +57,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   pull-ups and RC filters before D104 buffers, rather than connecting the cable
   directly to SIO inputs. The implemented passive network passes an independent
   impedance check and changes transient extrema. Original RFT D104D conditions
-  reject the generic 7406 candidate at doubled cable load: its negative input
-  pulses exceed amplitude and duration limits despite the fixture pass. Active
-  buffer loading, clamps and propagation remain unqualified; firmware integration
-  is still open. See
-  the [host input review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver/assessment.json).
+  reject the passive-only host fixture with the generic 7406 candidate at doubled
+  cable load. An explicit 7404 buffer candidate passes selected DC checks and
+  brings sampled input extrema within static limits, but its clamp dynamics,
+  propagation and SIO loads remain unqualified. Firmware integration is open. See
+  the [host input review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver/assessment.json)
+  and [buffer candidate assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer/assessment.json).
 - **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
   DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
   К555ЛА3 conditions. Selected DC passes, including a separate input-diode
