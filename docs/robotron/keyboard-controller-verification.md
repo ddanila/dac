@@ -63,9 +63,10 @@ below are relative to the CAD controller directory unless stated otherwise.
 - **Transition failure:** the [solver audit][truncation-audit] identifies a final
   inductor truncation rejection after a successful Newton solve. The
   [boundary capture][driver-boundary] locates a rising driver edge, and an
-  [analog-only replay][analog-replay] also fails with HDL feedback removed.
-  This supports isolating analog transition integration. Changed interpolation
-  and breakpoints prevent attributing both failures to the same mechanism;
+  [replay boundary control][analog-replay] completes after removing an artificial
+  capture-end breakpoint. The replay failure therefore does not independently
+  confirm the original mechanism. Prefix voltage differences also prevent assuming
+  an identical trajectory. Investigate the original coupled transition separately;
   rejected trial states are not physical measurements.
 - **Closed-board execution:** the [execution assessment][board-host] retains a
   timed-out scenario and completed startup diagnostic with the same circuit.
@@ -82,7 +83,7 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
-[analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay/assessment.json
+[analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-no-capture-knot/assessment.json
 [modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json
 [truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-truncation-audit/assessment.json
 [driver-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-driver-boundary/assessment.json
