@@ -147,15 +147,14 @@ receiver observations, ordinal bit agreement with the C emulator, timestep
 refinement and sampled data setup/hold against an explicit fixture budget.
 Service coverage checks the CPU reset pin and restart at the first ROM byte after
 each release. Archived reports retain input and waveform provenance. Single-press,
-modifier, control, release/repress, service-reset and indicators have qualified
+modifier, control, release/repress, repeat, service-reset and indicators have qualified
 BR service runs with their recorded model boundaries. These do not qualify the
 new electrical data-bus/WR modes, full-board startup or historical timing. Rechecked scenarios
 preserve functional event sequences and timestamps under the diagnostic-only
 engine correction. Indicator qualification includes electrical on/off currents,
-C LED-state agreement and paired intent-edge timing. Repeat remains unqualified
-because of failed timing refinement and unresolved earlier solver diagnostics.
-The core's `analog/reports/solver-diagnostic-audit.json` preserves the original
-reassessment; unresolved messages reject qualification.
+C LED-state agreement and paired intent-edge timing. The refined repeat result
+is linked below. The core's `analog/reports/solver-diagnostic-audit.json` preserves
+earlier failed runs; their diagnostics are not waived by newer passing evidence.
 Released-read sensitivity checks include constant bytes, unknown bits and a
 repeatable changing-byte sequence. The retained digital workload preserves
 serial/LED values and cycle timing against its reference baseline; this does not
@@ -182,6 +181,17 @@ The reset probe now exposes external source resistance and records supply curren
 The fast-ramp case recovers with an exploratory finite source resistance, so the
 ideal source is part of the model uncertainty; this does not characterize the
 specimen power supply.
+
+For power-dip diagnostics, both `boot_cosim.py` and `reset_probe.py` accept
+`--supply-stimulus`; the reset probe also needs the matching `--stop-seconds`.
+Use the core's `analog/supply-stimuli/brownout.json` example and
+`--reset-load reference-capacitance` to select the sourced U880 input-capacitance
+limit. See the [input format and model boundaries](https://github.com/ddanila/dac-emulation/blob/f92b19349c909ab0fc45a3fe9794efb308477444/verification/robotron-keyboard/analog/README.md).
+The [retained reset diagnostic](https://github.com/ddanila/dac-emulation/blob/b81d0f611d2eacbf47bbe38cff832ef4ebc31006/verification/robotron-keyboard/analog/reports/reset-brownout/report.json)
+uses the earlier illustrative input load and shows no sampled low reset at valid
+supply during recovery. Neither load choice qualifies firmware restart. Full-board
+clock inspection separates reset-cycle evidence across supply interruptions;
+custom-supply runs remain excluded from normal-boot paired qualification.
 
 Device characterization already exposes a specific limit: the generic NPN model
 misses the published higher-current SC236D DC gain ranges. Fitting must preserve
