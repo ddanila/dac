@@ -60,7 +60,9 @@ below are relative to the CAD controller directory unless stated otherwise.
   full-board acceptance. The [firmware observation](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer/assessment.json)
   identifies the run and locally retained waveform boundary. The
   [paired numerical review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer-fine/assessment.json)
-  also passes serial-edge refinement and sampled input stress.
+  also passes serial-edge refinement and sampled input stress. Its absolute-time
+  voltage comparison exposes substantial transition differences; full waveform
+  convergence remains unproven.
 - **Receiver applicability:** the [RFT input review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver/assessment.json)
   rejects a passive-only candidate at doubled cable load. Adding the
   [buffer candidate](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer/assessment.json)
