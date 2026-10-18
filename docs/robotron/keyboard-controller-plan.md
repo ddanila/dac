@@ -41,8 +41,8 @@ reconstruction requirements below remain in scope.
    same-side leads and locally registered underside joints. Visible resistor
    attachments constrain the far row to A1–A13; the underside COL11 trace
    constrains the near row to B1–B13, conditional on reference component identity.
-   Reconcile the provisional electrical footprint with these registered joints
-   and supported terminal identities before enabling numbered geometry highlights. A8's absence from the schematic
+   Native reference pads and assembly leads now share those joint positions;
+   retain the distinction between reference-derived identity and continuity. A8's absence from the schematic
    does not establish that the physical contact is unconnected.
 3. **Resolve gate-model applicability before further fitting.** Retained current
    balance, numerical-conductance and finite-perturbation checks leave the

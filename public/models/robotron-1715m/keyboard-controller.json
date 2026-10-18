@@ -1506,7 +1506,7 @@
             "pin": "17",
             "position": [
               78.49909,
-              4.13607
+              4.136071
             ],
             "ref": "A5",
             "size": [
@@ -1880,7 +1880,7 @@
             "pin": "37",
             "position": [
               45.509814,
-              19.44245
+              19.442449
             ],
             "ref": "A5",
             "size": [
@@ -4458,7 +4458,7 @@
         "type": "3k9"
       },
       {
-        "evidence": "inherited-photo-estimate",
+        "evidence": "photo-placed-reference-terminal-order",
         "pads": [
           {
             "drill": [
@@ -4468,8 +4468,8 @@
             "net": "/ROW3",
             "pin": "A1",
             "position": [
-              -25.24,
-              10.0
+              -26.035374,
+              14.891053
             ],
             "ref": "X1",
             "size": [
@@ -4485,8 +4485,8 @@
             "net": "/COL9",
             "pin": "A10",
             "position": [
-              -2.38,
-              10.0
+              -4.875904,
+              13.85104
             ],
             "ref": "X1",
             "size": [
@@ -4502,8 +4502,8 @@
             "net": "/COL0",
             "pin": "A11",
             "position": [
-              0.16,
-              10.0
+              -2.57825,
+              13.738081
             ],
             "ref": "X1",
             "size": [
@@ -4519,8 +4519,8 @@
             "net": "/COL10",
             "pin": "A12",
             "position": [
-              2.7,
-              10.0
+              -0.289685,
+              13.599252
             ],
             "ref": "X1",
             "size": [
@@ -4536,8 +4536,8 @@
             "net": "/COL1",
             "pin": "A13",
             "position": [
-              5.24,
-              10.0
+              1.987218,
+              13.487452
             ],
             "ref": "X1",
             "size": [
@@ -4553,8 +4553,8 @@
             "net": "/COL5",
             "pin": "A2",
             "position": [
-              -22.7,
-              10.0
+              -23.643151,
+              14.827379
             ],
             "ref": "X1",
             "size": [
@@ -4570,8 +4570,8 @@
             "net": "/COL8",
             "pin": "A3",
             "position": [
-              -20.16,
-              10.0
+              -21.262052,
+              14.764002
             ],
             "ref": "X1",
             "size": [
@@ -4587,8 +4587,8 @@
             "net": "/ROW4",
             "pin": "A4",
             "position": [
-              -17.62,
-              10.0
+              -18.888272,
+              14.620251
             ],
             "ref": "X1",
             "size": [
@@ -4604,8 +4604,8 @@
             "net": "/LED_SISO",
             "pin": "A5",
             "position": [
-              -15.08,
-              10.0
+              -16.524145,
+              14.450359
             ],
             "ref": "X1",
             "size": [
@@ -4621,8 +4621,8 @@
             "net": "/LED_CAPS",
             "pin": "A6",
             "position": [
-              -12.54,
-              10.0
+              -14.173351,
+              14.334726
             ],
             "ref": "X1",
             "size": [
@@ -4638,8 +4638,8 @@
             "net": "/+5V",
             "pin": "A7",
             "position": [
-              -10.0,
-              10.0
+              -11.833334,
+              14.219624
             ],
             "ref": "X1",
             "size": [
@@ -4655,8 +4655,8 @@
             "net": "/BUSRQ_N",
             "pin": "A9",
             "position": [
-              -4.92,
-              10.0
+              -7.185338,
+              13.991075
             ],
             "ref": "X1",
             "size": [
@@ -4672,8 +4672,8 @@
             "net": "/COL4",
             "pin": "B1",
             "position": [
-              -25.24,
-              -4.0
+              -25.550875,
+              10.006376
             ],
             "ref": "X1",
             "size": [
@@ -4689,8 +4689,8 @@
             "net": "/COL2",
             "pin": "B10",
             "position": [
-              -2.38,
-              -4.0
+              -4.644475,
+              9.150923
             ],
             "ref": "X1",
             "size": [
@@ -4706,8 +4706,8 @@
             "net": "/ROW6",
             "pin": "B11",
             "position": [
-              0.16,
-              -4.0
+              -2.342372,
+              8.995545
             ],
             "ref": "X1",
             "size": [
@@ -4723,8 +4723,8 @@
             "net": "/COL7",
             "pin": "B12",
             "position": [
-              2.7,
-              -4.0
+              -0.051989,
+              8.867305
             ],
             "ref": "X1",
             "size": [
@@ -4740,8 +4740,8 @@
             "net": "/ROW7",
             "pin": "B13",
             "position": [
-              5.24,
-              -4.0
+              2.352882,
+              8.763342
             ],
             "ref": "X1",
             "size": [
@@ -4757,8 +4757,8 @@
             "net": "/ROW1",
             "pin": "B2",
             "position": [
-              -22.7,
-              -4.0
+              -23.157874,
+              9.954044
             ],
             "ref": "X1",
             "size": [
@@ -4774,8 +4774,8 @@
             "net": "/COL6",
             "pin": "B3",
             "position": [
-              -20.16,
-              -4.0
+              -21.040167,
+              9.907732
             ],
             "ref": "X1",
             "size": [
@@ -4791,8 +4791,8 @@
             "net": "/COL12",
             "pin": "B4",
             "position": [
-              -17.62,
-              -4.0
+              -18.663157,
+              9.748102
             ],
             "ref": "X1",
             "size": [
@@ -4808,8 +4808,8 @@
             "net": "/ROW5",
             "pin": "B5",
             "position": [
-              -15.08,
-              -4.0
+              -16.300815,
+              9.66978
             ],
             "ref": "X1",
             "size": [
@@ -4825,8 +4825,8 @@
             "net": "/ROW0",
             "pin": "B6",
             "position": [
-              -12.54,
-              -4.0
+              -13.949369,
+              9.591899
             ],
             "ref": "X1",
             "size": [
@@ -4842,8 +4842,8 @@
             "net": "/ROW2",
             "pin": "B7",
             "position": [
-              -10.0,
-              -4.0
+              -11.610017,
+              9.541111
             ],
             "ref": "X1",
             "size": [
@@ -4859,8 +4859,8 @@
             "net": "/COL11",
             "pin": "B8",
             "position": [
-              -7.46,
-              -4.0
+              -9.148487,
+              9.407662
             ],
             "ref": "X1",
             "size": [
@@ -4876,8 +4876,8 @@
             "net": "/COL3",
             "pin": "B9",
             "position": [
-              -4.92,
-              -4.0
+              -6.825956,
+              9.251013
             ],
             "ref": "X1",
             "size": [
@@ -13160,8 +13160,11 @@
             ]
           ]
         },
-        "scope": "Solder-joint locations only; no numbered contacts or net assignments. Housing dimensions, contact heights, lead section and hole diameters remain illustrative. Native electrical footprint remains provisional.",
-        "status": "unassigned-contact-geometry"
+        "scope": "Observed joint rows are retained independently of native reference pads. Only contacts absent from the reference schematic remain unassigned. Housing dimensions, contact heights, lead section and hole diameters remain illustrative.",
+        "status": "photo-placed-reference-terminal-order",
+        "unclassifiedContacts": [
+          "A8"
+        ]
       }
     ]
   },
@@ -17402,11 +17405,45 @@
     "withinPhotoTolerance": false
   },
   "connectorReview": {
-    "inheritedPadRowSeparationMm": {
-      "maximum": 14.0,
-      "minimum": 14.0
+    "nativePadRowSeparationMm": {
+      "maximum": 4.908646318011718,
+      "minimum": 4.683839704095133
     },
-    "nextEvidence": "Resolve lead-to-hole positions and numbered terminal order before replacing the inherited native footprint. Both visible lead rows emerge from the same housing side.",
+    "nativePlacement": {
+      "padResidualsMm": {
+        "A1": 3.826035015744144e-07,
+        "A10": 3.5669228406150886e-07,
+        "A11": 5.418456991991395e-07,
+        "A12": 3.5545702999649536e-07,
+        "A13": 1.1405114972695532e-07,
+        "A2": 3.812533021670014e-07,
+        "A3": 2.560331016499597e-07,
+        "A4": 6.343569954523133e-07,
+        "A5": 1.1803304672232033e-08,
+        "A6": 4.796027405670787e-07,
+        "A7": 1.927622597196305e-07,
+        "A9": 4.640336447463647e-07,
+        "B1": 4.903798080906481e-07,
+        "B10": 2.8607803290356206e-07,
+        "B11": 1.8977825681939373e-07,
+        "B12": 5.503134981343177e-07,
+        "B13": 4.1776374009944873e-07,
+        "B2": 3.2987313306414386e-07,
+        "B3": 4.821340805582469e-07,
+        "B4": 4.695276028087657e-07,
+        "B5": 5.324690265821153e-07,
+        "B6": 3.410643443322688e-07,
+        "B7": 2.428488949453798e-07,
+        "B8": 3.055513896186968e-07,
+        "B9": 4.037799138189007e-07
+      },
+      "scope": "Native reference pads match locally registered joints. Numbering is reference-derived; dimensions, hole diameters and continuity are not measured. Unclassified contacts remain visual geometry only.",
+      "status": "photo-placed-reference-terminal-order",
+      "unclassifiedContacts": [
+        "A8"
+      ]
+    },
+    "nextEvidence": "Reconcile native pad geometry against the independent underside observations and terminal constraints. Actual dimensions and continuity remain unmeasured.",
     "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
     "photoSource": "photo-top",
     "pixelUncertainty": 10,
@@ -19427,12 +19464,12 @@
     },
     "X1": {
       "referenceType": "MATRIX_CONNECTOR",
-      "placementEvidence": "inherited-photo-estimate",
+      "placementEvidence": "photo-placed-reference-terminal-order",
       "pinEvidence": "connector-label-or-semantic-terminal",
-      "note": "The native electrical footprint remains provisional. Museum geometry uses separately exported unnumbered solder-joint observations and same-side bent leads. Reference-derived row numbering is constrained by photographed attachments; this is not measured continuity. Housing dimensions and lead profiles remain estimates. See physicalReview and generated/connector-terminals.json.",
+      "note": "Native reference pads follow locally registered underside joints with row numbering constrained by photographed attachments. This is not measured continuity or metrology. The schematic-omitted A8 contact remains unclassified visual geometry; no electrical pad or net is invented for it. Housing dimensions and lead profiles remain estimates. See generated/connector-review.json and generated/connector-terminals.json.",
       "placementAuthority": "controller.kicad_pcb",
       "physicalReview": {
-        "status": "inherited-geometry-conflicts-with-visible-lead-arrangement",
+        "status": "registered-joints-reference-terminal-order",
         "photoSource": "photo-top",
         "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
         "pixelUncertainty": 10,
@@ -21000,25 +21037,25 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "e4b450737b9aeddb4b5ae6dc72fd52f07e867026"
+      "revision": "91f31d780f69e235f43771d0401288a35507c8d6"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "43546b37efcfc99c2908b1017c0bf8eb1590ced6"
     },
     "files": {
-      "layout": "ce4a9f28b75f1a3f76f185fc989ec51be5d3b1b334d57053e2761a89c33b3a2a",
+      "layout": "9dedec0d28532518f3671d38b1bc194717efcd3f13abf3e21983cc6a7918adcd",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "1cdbcc68cf6e0293225d71672bfc20152985c3b3cd31f0cb67874c06183cc57f",
       "photoRegistration": "099a56a6947ed1cf56e20240eaee1ee0c3e73ea59cca05c2ca3c61b71ab2e84c",
       "bottomRegistration": "2a843bc73af129a3b99858bff04497e4364260d9fa56b263b1c1525bb01f0e59",
-      "connectorReview": "1d1162e0d3c2ee655e563b9c035c9826a18e4c65865c6dc6eda32baf86b535fc",
+      "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "1e89ef76421c024c77e82edc65fa09cbfb77a350d75fa8d9ce8133b45cc6e3f3",
-      "componentEvidence": "01a23fdc0d27490e369f8dd3bd8a27722427c401edf168a68612ae1e8930b6ef"
+      "componentEvidence": "48b56cb1720b2f17ac737a3ba6c830261ef837e3e29fc8f5620b055a47d4aa3e"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "341cf9d240946d2254a21ec9260ab687bdcc52290b9ab9e58563f287dee711af"
+    "geometryScadSha256": "67aed86ede1ff5867b91cc630fce135dfb08ece235d8652e89e5242a72898adc"
   },
   "cosimulation": {
     "bus": {

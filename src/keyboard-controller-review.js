@@ -5,7 +5,7 @@ export function controllerSelection(data,kind,value){
  const components=data.connectivity.components;
  const refs=Object.keys(components).filter(ref=>kind==='component'?ref===value:Object.values(components[ref].pins).includes(value));
  const placed=new Map(data.layout.components.map(c=>[c.ref,c]));
- const anonymous=new Set((data.layout.visualConnectors||[]).map(c=>c.ref));
+ const anonymous=new Set((data.layout.visualConnectors||[]).filter(c=>c.status!=='photo-placed-reference-terminal-order').map(c=>c.ref));
  const pins=refs.flatMap(ref=>Object.entries(components[ref].pins).filter(([,net])=>kind==='component'||net===value).map(([pin,net])=>({ref,pin,net,position:anonymous.has(ref)?null:placed.get(ref)?.pads.find(p=>p.pin===pin)?.position||null})));
  const nets=new Set(pins.map(p=>p.net).filter(Boolean));
  return {refs,pins,points:pins.filter(p=>p.position).map(p=>p.position),routes:data.layout.routes.filter(r=>nets.has(r.net)),unplaced:refs.filter(ref=>!placed.has(ref))};
@@ -69,8 +69,9 @@ export function installKeyboardControllerReview(scene){
    const title=document.createElementNS(svgNS,'title');title.textContent=`${clean(route.net)}: ${route.evidence.status}. ${route.evidence.detail}`;line.append(title);
   }
   const selected=new Set(selection?.pins.map(p=>p.ref+':'+p.pin)||[]);
-  const anonymous=new Set((data.layout.visualConnectors||[]).map(c=>c.ref));
-  for(const connector of data.layout.visualConnectors||[])for(const row of Object.values(connector.rows))for(const [x,y] of row){
+  const anonymous=new Set((data.layout.visualConnectors||[]).filter(c=>c.status!=='photo-placed-reference-terminal-order').map(c=>c.ref));
+  for(const connector of data.layout.visualConnectors||[])for(const [name,row] of Object.entries(connector.rows))for(const [index,[x,y]] of row.entries()){
+   if(connector.status==='photo-placed-reference-terminal-order'&&!connector.unclassifiedContacts.includes(data.connectorTerminals.resolvedRows[name][index]))continue;
    const dot=add('circle',{'data-visual-connector':connector.ref,cx:x,cy:-y,r:.65,fill:'#4694a1'}),title=document.createElementNS(svgNS,'title');
    title.textContent=`${connector.ref}: observed solder joint; no electrical pin assignment`;dot.append(title);
   }
@@ -88,7 +89,7 @@ export function installKeyboardControllerReview(scene){
    const placed=selection.points.length,total=selection.pins.length;
    get('[data-selection]').textContent=`${kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
    if((data.layout.visualBridges||[]).some(b=>selection.refs.includes(b.ref)))get('[data-selection]').textContent+=' The cyan wire is a photo estimate only; its endpoints do not identify electrical pads.';
-   if((data.layout.visualConnectors||[]).some(c=>selection.refs.includes(c.ref)))get('[data-selection]').textContent+=' Cyan connector joints have no numbered pin assignments; provisional native pad positions are omitted from highlighting.';
+   if((data.layout.visualConnectors||[]).some(c=>selection.refs.includes(c.ref)))get('[data-selection]').textContent+=' Cyan connector joints remain electrically unclassified; highlighted reference pads use photo-estimated positions and reference-derived numbering.';
    const routes=data.layout.routes.filter(r=>selection.pins.some(p=>p.net===r.net));
    if(routes.length){
     const counts=Object.entries(routes.reduce((out,r)=>(out[r.evidence.status]=(out[r.evidence.status]||0)+1,out),{})).map(([state,n])=>`${n} ${state}`).join(', ');
@@ -137,7 +138,7 @@ export function installKeyboardControllerReview(scene){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
     if(value==='X1'&&data.connectorReview){
      const review=data.connectorReview,detail=document.createElement('p');detail.dataset.connectorReview='';
-     detail.textContent=`Visual connector joints follow underside observations; both observed lead rows exit the same housing side. The native electrical footprint remains provisional. Projected lead-end separation is ${review.projectedRowSeparationMm.minimum.toFixed(1)}–${review.projectedRowSeparationMm.maximum.toFixed(1)} mm; inherited pad-row separation is ${review.inheritedPadRowSeparationMm.maximum.toFixed(1)} mm. These are model-based estimates; raised lead bends do not establish hole centres or terminal order. `;
+     detail.textContent=`Visual connector joints follow underside observations; both observed lead rows exit the same housing side. Native reference pads follow the registered underside joints. Projected lead-end separation is ${review.projectedRowSeparationMm.minimum.toFixed(1)}–${review.projectedRowSeparationMm.maximum.toFixed(1)} mm; native pad-row separation is ${review.nativePadRowSeparationMm.maximum.toFixed(1)} mm. These are model-based estimates; raised lead bends do not establish hole centres or terminal order. `;
      const far=data.connectorTerminals?.resolvedRows.housingFar,near=data.connectorTerminals?.resolvedRows.housingNear;
      if(far)detail.textContent+=`Visible resistor attachments and the reference schematic support the far row as ${far[0]}–${far.at(-1)}. `;
      if(near)detail.textContent+=`The underside trace from the eighth near-row joint to A2.1:6 supports the near row as ${near[0]}–${near.at(-1)}, from cable toward ROM. This is reference-derived numbering, not measured continuity. A8 remains electrically unclassified. `;
