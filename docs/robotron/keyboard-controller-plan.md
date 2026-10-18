@@ -41,8 +41,8 @@ reconstruction requirements below remain in scope.
    support sampled input stress and nominal-threshold clock widths. The U856
    manual identifies rising RxC as the sampling edge; the corrected single-press
    service pair passes logical, sampled-stability and serial-edge refinement
-   checks. An explicit-breakpoint reset diagnostic completes; an invocation control
-   isolates spacing as a consequential numerical parameter. Qualify fixed-spacing
+   checks. Explicit-breakpoint reset and modifier diagnostics complete; a reset
+   invocation control isolates spacing as a consequential numerical parameter. Qualify fixed-spacing
    refinement and remaining release scenarios while preserving absolute phase.
    Loaded voltage convergence and device applicability remain open.
    Earlier falling-edge comparisons do not establish SIO receive behavior.

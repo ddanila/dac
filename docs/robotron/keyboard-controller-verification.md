@@ -60,8 +60,9 @@ below are relative to the CAD controller directory unless stated otherwise.
   input I/V behavior. Device applicability remains open.
 - **Release coverage:** [modifier refinement][modifier-host] and [baseline reset][reset-host]
   abort at scheduled release boundaries in the same host-input transistor.
-  The [explicit-spacing reset diagnostic][reset-spacing] completes with verified
-  CPU restart, packets before/after reset and sampled stability. An
+  Explicit-spacing [reset][reset-spacing] and [modifier][modifier-spacing]
+  diagnostics complete with packet coverage and sampled stability; reset also
+  verifies CPU restart. An
   [invocation control][reset-control] reproduces the failure at default-equivalent
   spacing, isolating spacing as a consequential numerical parameter. The exact
   internal failure path, fixed-spacing convergence and remaining scenario
@@ -70,8 +71,10 @@ below are relative to the CAD controller directory unless stated otherwise.
   serial-edge refinement, but loaded absolute-time voltage differences do not
   decrease consistently with further refinement. [Retained transition windows][transitions]
   associate selected maxima with small edge shifts; they do not establish
-  full-waveform convergence or physical timing. Investigate event scheduling
-  before relying on smaller timesteps alone.
+  full-waveform convergence or physical timing. The [fixed-spacing control][spacing-pair]
+  produces byte-identical single-press waveforms, separating these differences
+  from the release-spacing remedy. Investigate transition integration and event
+  scheduling before relying on smaller timesteps alone.
 - **Closed-board execution:** the [execution assessment][board-host] retains a
   timed-out full scenario and a completed, unchanged-circuit startup diagnostic.
   This supports allowing more execution time, not declaring a hardware blocker.
@@ -89,6 +92,7 @@ below are relative to the CAD controller directory unless stated otherwise.
   an ngspice-only explanation but not establishing physical device behavior.
 
 [modifier-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-fine/assessment.json
+[modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak/assessment.json
 [reset-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-minbreak/assessment.json
 [reset-control]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-default-spacing/assessment.json
 [reset-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset/assessment.json
@@ -96,6 +100,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [loaded-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-load/assessment.json
 [u856]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/u856_limits.json
+[spacing-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-minbreak-25ns/assessment.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
 [transitions]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loaded-transition-windows/assessment.json
 [board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load/assessment.json
