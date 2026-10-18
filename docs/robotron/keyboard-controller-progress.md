@@ -56,7 +56,8 @@ band; driver states apply at the marked read. This is separate from live latch
 samples and specimen measurements. Refresh its pinned excerpt with
 `python3 scripts/sync-keyboard-waveform.py ../dac-emulation`; the importer checks
 source hashes, receiver limits and controller connectivity. Add `--check` to
-verify the excerpt without changing it.
+verify the excerpt against its recorded commit without changing it. The core
+checkout may have advanced; unrelated commits do not invalidate a capture.
 
 From the canonical CAD controller directory:
 
