@@ -57,7 +57,9 @@ below are relative to the CAD controller directory unless stated otherwise.
   allowing source-bound voltage reviews to be reused; earlier falling-edge
   stability results retain their original scope. [U856 source conditions][u856] constrain loading
   and timing, but do not identify Schmitt thresholds or exact input I/V behavior.
-  Loaded timestep convergence and device applicability remain open.
+  The [modifier scenario][modifier-host] aborts at release in the host input
+  transistor, so the single-press result does not establish broader coverage.
+  Loaded voltage convergence and device applicability remain open.
 - **Numerical agreement:** the [paired service review][paired-host] passes
   serial-edge refinement but exposes substantial absolute-time voltage differences.
   [Retained transition windows][transitions] associate selected maxima with small
@@ -78,6 +80,7 @@ below are relative to the CAD controller directory unless stated otherwise.
   startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
   an ngspice-only explanation but not establishing physical device behavior.
 
+[modifier-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier/assessment.json
 [rising-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-fine/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [loaded-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-load/assessment.json
