@@ -48,45 +48,43 @@ below are relative to the CAD controller directory unless stated otherwise.
   banks and raised axial bodies/leads. Nominal assembly clearances pass; lead
   heights and package dimensions remain estimates, and hidden holes are not
   inferred. See CAD `generated/layout.json` and `../checks/assembly.json`.
-- **Output filter:** explicit coupling and dot-polarity hypotheses pass analytical
-  winding checks. Nominal cable release intervals are similar while transient
-  undershoot differs materially. The default remains uncoupled; receiver protection,
-  physical winding parameters and ferrite behavior remain unqualified. See the
-  [filter assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json).
-- **Host receiver:** sourced motherboard passives and an explicit generic 7404
-  candidate now participate in the S600 service firmware simulation. The retained
-  single-press run passes logical comparison and sampled output stability, with
-  external CPU clock/reset. This closes experimental service integration, not
-  full-board acceptance. The [firmware observation](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer/assessment.json)
-  identifies the run and locally retained waveform boundary. The
-  [paired numerical review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer-fine/assessment.json)
-  also passes serial-edge refinement and sampled input stress. Its absolute-time
-  voltage comparison exposes substantial transition differences; full waveform
-  convergence remains unproven.
-- **Receiver applicability:** the [RFT input review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver/assessment.json)
-  rejects a passive-only candidate at doubled cable load. Adding the
-  [buffer candidate](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer/assessment.json)
-  brings sampled fixture extrema within static limits. The
-  [manufacturer switching-fixture review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json)
-  converges numerically but cannot qualify generic storage/clamp dynamics from
-  incomplete fixture conditions. SIO loading, transient behavior and coupled
-  voltage convergence remain open; serial-edge agreement cannot waive them.
-- **Device conditions:** primary A7 is К555ЛА3; comparison D100D and reference
-  DL000 remain separate. Some TI endpoint failures do not apply to the reviewed
-  К555ЛА3 conditions. Selected DC passes, including a separate input-diode
-  assumption, still do not produce a qualified oscillator. See the
-  [device-condition and diode review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/diode-role-review/assessment.json).
-- **Operating state:** matched transient/AC and internal-current captures explain
-  the second gate's attenuating response in the tested candidates. Finite recovery,
-  loaded ratios and the incomplete pole search do not prove general stability.
-  See the [internal-state assessment](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-internal/assessment.json)
-  and its linked AC and disturbance evidence.
-- **Transition behavior:** Xyce reproduces the candidate transfer branches seen
-  in ngspice, including a narrow branch missed by the coarse sweep. This weakens
-  an ngspice-only explanation; it does not establish physical hysteresis or device
-  calibration. Published transfer conditions leave fixture choices unresolved.
-  See the [independent transfer review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json)
-  and its linked source/fixture assessment.
+- **Host integration:** the experimental receiver participates in service and
+  closed-board fixtures. The [loaded service assessment][loaded-host] supports
+  logical comparison, sampled stability and input stress. Its clock-width screen
+  passes at an assumed threshold. [U856 source conditions][u856] constrain loading
+  and timing, but do not identify Schmitt thresholds or exact input I/V behavior.
+  Loaded timestep convergence and device applicability remain open.
+- **Numerical agreement:** the [paired service review][paired-host] passes
+  serial-edge refinement but exposes substantial absolute-time voltage differences.
+  [Retained transition windows][transitions] associate selected maxima with small
+  edge shifts; they do not establish full-waveform convergence or physical timing.
+- **Closed-board execution:** the [execution assessment][board-host] retains a
+  timed-out full scenario and a completed, unchanged-circuit startup diagnostic.
+  This supports allowing more execution time, not declaring a hardware blocker.
+  Full scenario completion remains unproven. Receiver reviews cover only the
+  recorded window and cannot qualify startup outside it or erase firmware failures.
+- **Host and cable applicability:** [load screening][host-loads] exercises explicit
+  capacitance/leakage assumptions. [Filter checks][filter] verify generated winding
+  hypotheses, while [D104 switching checks][host-switching] expose unqualified
+  device dynamics. Nominal passes do not identify physical winding parameters,
+  clamp behavior or installed-device loading.
+- **Oscillator applicability:** primary К555ЛА3, comparison D100D and reference
+  DL000 require separate conditions. [Device reviews][device-review] and
+  [internal-state captures][internal-state] constrain candidates without qualifying
+  startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
+  an ngspice-only explanation but not establishing physical device behavior.
+
+[loaded-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-load/assessment.json
+[u856]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/u856_limits.json
+[paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-buffer-fine/assessment.json
+[transitions]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-transition-windows/assessment.json
+[board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load/assessment.json
+[host-loads]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loads/assessment.json
+[filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json
+[host-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json
+[device-review]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/diode-role-review/assessment.json
+[internal-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-internal/assessment.json
+[xyce]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json
 
 ## Resolve at the desk first
 

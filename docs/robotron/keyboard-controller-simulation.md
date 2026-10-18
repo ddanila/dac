@@ -32,7 +32,7 @@ solver question. A broad tool survey is not an implementation dependency.
 | --- | --- | --- |
 | C/HDL digital comparisons | Reference transactions and firmware-visible behavior within declared digital boundaries | Exact CPU cycles, physical routing and analog validity |
 | Virtual BR service simulation | Firmware and electrical interfaces with externally supplied CPU clock/reset, including the experimental host-buffer path | Host device/loading qualification, onboard oscillator/reset startup and closed-board behavior |
-| Closed-board mixed-signal simulation | Executable coupled oscillator, reset, matrix and output circuits | Passing full-board phase, voltage, bus and scenario qualification |
+| Closed-board mixed-signal simulation | Executable coupled oscillator, reset, matrix and output circuits, including the experimental host receiver | Completed captures and passing full-board phase, voltage, bus and scenario qualification |
 | Supply-dip diagnostics | Modeled reset/clock response to an explicit supply waveform | Reliable firmware restart and specimen brownout behavior |
 
 Consult the core's retained reports for configuration-specific results. Functional

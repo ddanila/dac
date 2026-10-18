@@ -52,10 +52,9 @@ Remap previews show orange original endpoints, blue projected endpoints and whit
 displacement arrows. Original placement comes from the saved displayed/assembled
 matrix; older records lacking matrices use the replacement placement explicitly.
 The proposed points follow the displayed assembly. Inspection pose changes can
-therefore contribute to the visible displacement. Projections over **2 local model
-units**, or missing/ambiguous original part matches, require a review checkbox
-before saving. That threshold is a review aid, not a fit tolerance or a new
-physical measurement. Originals remain unchanged.
+therefore contribute to the visible displacement. Large projection displacements or missing/ambiguous original part matches require
+an explicit review before saving. The displacement threshold is a review aid,
+not a fit tolerance or a new physical measurement. Originals remain unchanged.
 
 ## Cable qualification
 

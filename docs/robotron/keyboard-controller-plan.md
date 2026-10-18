@@ -37,12 +37,15 @@ reconstruction requirements below remain in scope.
    primary, comparison and reference device conditions. DC passes, converged
    numerical results and generic clamp behavior do not establish applicability.
 3. **Qualify the coupled reference board.** The experimental host network is
-   integrated into the service firmware fixture; logical agreement and sampled
-   output stability pass for the retained single-press run. Next qualify its
-   device dynamics, receiver levels, loading and timestep convergence, then carry
-   the supported boundary into closed-board runs. Resolve oscillator phase and
-   bus timing, cover the remaining firmware scenarios and test supply recovery.
-   Preserve failing startup and absolute phase in acceptance checks.
+   integrated into both service and closed-board fixtures. Loaded service checks
+   support logical behavior, sampled input stress and nominal-threshold clock
+   widths; they do not qualify device dynamics or full-waveform convergence.
+   Obtain a completed closed-board capture with the existing circuit and adequate
+   execution allowance, then review startup and the recorded receiver window
+   separately. A timeout is incomplete evidence, not a demonstrated circuit fault.
+   Qualify receiver levels, loading, oscillator phase and bus timing; cover the
+   remaining firmware scenarios and supply recovery. Preserve failing startup
+   and absolute phase in acceptance checks.
 4. **Identify residual specimen dependencies.** Exhaust existing photographs,
    package drawings and published circuit constraints first. State the remaining
    alternatives and the observation that would distinguish them. Standard S600
@@ -171,6 +174,7 @@ records compatible CAD, HDL, emulator and museum revisions and validation result
 
 ## First implementation milestone
 
+This milestone remains open because physical continuations are unresolved.
 Complete the keyboard data/clock output path through all representations:
 connector pins, schematic nets, visible copper, generated OpenSCAD geometry and
 an HDL/emulator comparison. Include the circuitry and boundary stimuli necessary

@@ -80,7 +80,7 @@ python3 tools/compare_robotron_serial.py --media ../dac/public/media/robotron --
 python3 tests/integration/robotron_applications.py ../dac/public/media/robotron/s550.bin ../dac/public/media/robotron/cas.bin ../dac/public/media/robotron/tosm10.img
 ```
 
-Use the pinned Emscripten 6.0.12 environment for WASM. MAME and historical-media
+Use the Emscripten environment pinned by the core build workflow for WASM. MAME and historical-media
 checks are optional local qualification, not normal native CI dependencies.
 
 ## Specimen evidence and timing
