@@ -38,9 +38,10 @@ below are relative to the CAD controller directory unless stated otherwise.
   `generated/qualification.json` for individual findings.
 - **Receiver and service coverage:** [rising RxC][receive-edge] is the reference
   sampling edge. Retained service pairs support logical and serial-edge agreement,
-  including [release/repress][release-pair]. The core's [evidence index][analog-guide]
-  owns scenario coverage and refinement status. The [independent timing
-  screen][receiver-timing] uses Zilog conditions as a diagnostic reference;
+  including [release/repress][release-pair] and indicator intent timing. The core's
+  [evidence index][analog-guide] owns scenario coverage and refinement status.
+  The [independent timing screen][receiver-timing] uses Zilog conditions as a
+  diagnostic reference;
   it does not establish U856 thresholds, loading or device applicability.
 - **Voltage convergence:** [single-press refinement][paired-host] and
   [release/repress comparison][release-pair] retain material absolute-time voltage
@@ -48,9 +49,11 @@ below are relative to the CAD controller directory unless stated otherwise.
   phase alignment or discarded transition peaks cannot resolve this gate.
 - **Numerical convergence:** [higher-precision replay][mpfr] completes with Gear
   at the coarse step but fails timestep refinement. Increasing linear precision
-  leaves the recorded trajectories unchanged. Accurate linear solves therefore
-  do not resolve integration/state-history sensitivity or qualify device behavior.
-  Require completed refinement pairs before adopting a numerical remedy.
+  leaves the recorded trajectories unchanged. [Higher-precision integration][integration],
+  alone and combined with linear solving, also fails. Accurate final local
+  arithmetic does not establish an accurate accumulated trajectory. Locate where
+  accepted/rejected state histories diverge before choosing another intervention;
+  require completed refinement pairs before adopting a numerical remedy.
 - **Closed-board execution:** the [completed capture][board-host] reaches the
   scenario endpoint, but the producer waveform gate fails: reset release precedes
   the saved window. It also uses the legacy receiver observer. Capture from time
@@ -62,8 +65,11 @@ below are relative to the CAD controller directory unless stated otherwise.
   dynamics unqualified. The [reference 7406 fixture][driver-switching] shows that
   the generic driver meets published maximum delays while switching much faster
   than typical values. Constrain its charge storage and capacitance independently;
-  typical delays do not uniquely determine those parameters. Nominal passes do
-  not identify winding parameters, clamp behavior or installed-device loading.
+  typical delays do not uniquely determine those parameters. The [public vendor
+  candidate][vendor-driver] fails SN7406 DC admission despite its shared device
+  header. Common-core photo evidence supports investigating coupling, but the
+  [matched firmware comparison][firmware-filter] fails with both tested winding
+  hypotheses. Neither identifies physical parameters or a unique failure cause.
 - **Oscillator applicability:** primary К555ЛА3, comparison D100D and reference
   DL000 require separate conditions. [Device reviews][device-review] and
   [internal-state captures][internal-state] constrain candidates without qualifying
@@ -83,6 +89,9 @@ below are relative to the CAD controller directory unless stated otherwise.
 [xyce]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json
 [release-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-release-repress-minbreak-fine/assessment.json
 [analog-guide]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence
+[integration]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-mpfr-integration/assessment.json
+[vendor-driver]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-driver-vendor-review/assessment.json
+[firmware-filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-filter-strict/assessment.json
 [mpfr]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-mpfr-transient/assessment.json
 
 ## Resolve at the desk first

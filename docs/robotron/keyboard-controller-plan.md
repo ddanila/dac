@@ -31,26 +31,20 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Establish numerical convergence.** Gear with higher-precision linear solving
-   completes the coarse recorded-stimulus replay, but timestep refinement fails.
-   Further linear precision alone has not changed the result. Investigate
-   integration and state-history sensitivity alongside independently constrained
-   device dynamics. Preserve circuit physics, tolerance budgets and absolute-time
-   comparisons; require successful refinement before coupled-board qualification.
+2. **Establish numerical convergence.** Locate the onset of trajectory divergence
+   in accepted and rejected state history. Higher-precision integration and linear
+   solving have not resolved it. Investigate accumulated state, nonlinear evaluation
+   and stamping sensitivity while preserving circuit physics and tolerance budgets.
+   Require completed refinement pairs and absolute-time voltage convergence.
 3. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
-   host-buffer switching/loading against independent device evidence. The reference
-   7406 fixture shows that maximum-delay compliance alone cannot validate the
-   generic driver's dynamics. Keep primary, comparison and reference devices
-   separate; do not tune parameters merely to remove a solver failure. Receiver
-   timing screens do not establish U856 switching thresholds or loading.
-4. **Qualify the coupled reference board.** Service checks establish selected
-   logical and timing behavior, including release/repress, while material
-   absolute-time voltage differences remain. The retained closed-board capture
-   completes, but its legacy receiver observer and missing startup waveform
-   prevent acceptance. Capture from time zero with corrected rising-RxC sampling,
-   then qualify the remaining scenarios and their
-   refinement pairs, oscillator phase, receiver levels/loading, bus timing and
-   supply recovery.
+   host-buffer switching/loading against independent device evidence. Admit vendor
+   models against the intended device's conditions before board use. Keep primary,
+   comparison and reference devices separate; filter hypotheses need independently
+   supported parameters. Do not tune parameters merely to remove a solver failure.
+4. **Qualify the coupled reference board.** Review a time-zero capture with rising
+   RxC sampling, then complete scenario/refinement coverage, oscillator phase,
+   receiver levels/loading, bus timing and supply recovery. Logical agreement and
+   receiver timing screens cannot substitute for these electrical gates.
 5. **Identify residual specimen dependencies.** Exhaust photographs, package
    drawings and published circuit constraints first. For each remaining ambiguity,
    state the alternatives and the observation that would distinguish them.
