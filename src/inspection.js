@@ -118,6 +118,8 @@ Object.assign(inspections, {
     evidence: "Your specimen · dimensions estimated",
     text: "The cover, grommets, fan straps and cushions follow Danila’s photographs. The unseen power-supply electronics are not reconstructed. Fan motion indicates museum power state; its speed is illustrative.",
     photo: "20261013_150303351",
+    reference: `${import.meta.env.BASE_URL}docs/robotron-psu/`,
+    referenceLabel: "PSU documents · Deutsch / English / Русский ↗",
   },
   "component-keyboard": {
     title: "Keyboard electronics",
@@ -236,7 +238,7 @@ export function showSpecimenDetail(name = currentInspection) {
   }
   drawing.hidden = !(entry.photo && entry.reference);
   drawing.href = entry.reference || "#";
-  drawing.textContent = entry.sheet ? `Download W/M drawings · ${entry.sheet} ↗` : "Open original drawing / source ↗";
+  drawing.textContent = entry.referenceLabel || (entry.sheet ? `Download W/M drawings · ${entry.sheet} ↗` : "Open original drawing / source ↗");
   let choices = document.getElementById("detail-views");
   if (!choices) { choices = document.createElement("div"); choices.id = "detail-views"; choices.className = "secondary-controls"; photo.before(choices); }
   choices.replaceChildren();

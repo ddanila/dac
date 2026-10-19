@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stromversorgung des PC 1715 · DAC</title>
+<meta name="description" content="Lesehilfe zum vollständigen deutschen Servicehandbuch, Stromlaufplan und zu beiden Bestückungsplänen. Dies ist unser eigener technischer Leitfaden in Deutsch, Englisch und Russisch, keine vollständige Übersetzung des historischen Handbuchs.">
+<link rel="stylesheet" href="guide.css">
+<link rel="alternate" hreflang="en" href="en.html">
+<link rel="alternate" hreflang="de" href="de.html">
+<link rel="alternate" hreflang="ru" href="ru.html">
+</head>
+<body>
+<a class="skip" href="#main">Zur Dokumentation</a>
+<header>
+<a href="../../../">← Zurück zum Museum</a>
+<nav aria-label="Language">
+<a href="de.html" lang="de" hreflang="de" aria-current="page">Deutsch</a>
+<a href="en.html" lang="en" hreflang="en">English</a>
+<a href="ru.html" lang="ru" hreflang="ru">Русский</a>
+</nav>
+<p class="eyebrow">DAC / ROBOTRON / 56-330-2770-5</p>
+<h1>Stromversorgung des PC 1715</h1>
+<p class="subtitle">Deutsche Originale · Technischer Museumsleitfaden</p>
+<p class="status">An Quellen geprüft • 19. Oktober 2026 • nicht am Netzteil erprobt</p>
+</header>
+<nav class="contents">
+<a href="#originals">Deutsche Originalunterlagen öffnen</a>
+<a href="#rails">Spannungszweige und Anschlussnamen</a>
+<a href="#transistors">Transistoren im Referenzplan</a>
+<a href="#substitutes">Sowjetische und moderne Ersatzkandidaten</a>
+<a href="#sources">Quellen und Urheber</a>
+</nav>
+<main id="main">
+<p>Lesehilfe zum vollständigen deutschen Servicehandbuch, Stromlaufplan und zu beiden Bestückungsplänen. Dies ist unser eigener technischer Leitfaden in Deutsch, Englisch und Russisch, keine vollständige Übersetzung des historischen Handbuchs.</p>
+<section id="scope">
+<h2>Für welches Netzteil gilt die Dokumentation?</h2>
+<p>Elektrische Referenz ist der Stromlaufplan <b>56-330-2770-5</b> des PC 1715. Das Museumsgerät ist ein W/M-Exemplar; seine verdeckte Netzteilelektronik und genaue Revision sind diesem Plan noch nicht zugeordnet. Vor Anwendung der Bauteilbezeichnungen Leiterplattennummern, Bestückung und Verdrahtung vergleichen. Ein ähnliches Gehäuse beweist keine Schaltungsgleichheit.</p>
+</section>
+<section id="originals">
+<h2>Deutsche Originalunterlagen öffnen</h2>
+<p>Die vollständigen Dokumente öffnen sich bei den jeweiligen Archivbetreibern. Die Seitenangaben gelten für die im Quellenverzeichnis bezeichneten Scans. Urheber- und Archivnachweise bleiben bestehen; die Dokumente fallen nicht unter die MIT-Lizenz des Museums.</p>
+<ul>
+<li>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=95">Vollständiges Servicehandbuch · Stromversorgung</a>
+</li>
+<li>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf#page=20">Vollständige Plansammlung · Netzteilschaltung</a>
+</li>
+<li>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf#page=18">Bestückungsplan der Leistungsplatine</a>
+</li>
+<li>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf#page=19">Bestückungsplan der Steuerplatine</a>
+</li>
+<li>
+<a href="https://xepb.org/robotron/docs/pc_manu.pdf">Bedienungsanleitung 1715 / 1715W</a>
+</li>
+<li>
+<a href="https://xepb.org/robotron/docs/1715w.zip">W/M-Archiv · Vergleichsunterlagen</a>
+</li>
+</ul>
+<div class="table-wrap" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Thema</th>
+<th scope="col">Gedruckte Seite</th>
+<th scope="col">PDF-Seite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Übersicht, Aufbau, Netzeingang</td>
+<td>93</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=95">95</a>
+</td>
+</tr>
+<tr>
+<td>Anlauf und 5P-Wandler</td>
+<td>94</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=96">96</a>
+</td>
+</tr>
+<tr>
+<td>Regelung und Schutz der 5P</td>
+<td>95</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=97">97</a>
+</td>
+</tr>
+<tr>
+<td>Negative Spannungen und 12PM-Wandler</td>
+<td>96</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=98">98</a>
+</td>
+</tr>
+<tr>
+<td>12PM-Regelung und 12P-Schaltung</td>
+<td>97</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=99">99</a>
+</td>
+</tr>
+<tr>
+<td>Schaltfolge und Überspannungsschutz</td>
+<td>98</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=100">100</a>
+</td>
+</tr>
+<tr>
+<td>Original-Blockschaltbild</td>
+<td>99</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=101">101</a>
+</td>
+</tr>
+<tr>
+<td>Prüf- und Einstellvorschrift, Beginn</td>
+<td>100</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=102">102</a>
+</td>
+</tr>
+<tr>
+<td>Prüf- und Einstellvorschrift, Fortsetzung</td>
+<td>101</td>
+<td>
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=103">103</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="rails">
+<h2>Spannungszweige und Anschlussnamen</h2>
+<p>Netzbezeichnungen in allen Sprachen unverändert lassen. „P“ kennzeichnet positive, „N“ negative Spannungen. 12PM versorgt den Bildschirm; 12P ist der gesondert geschaltete Ausgang. Der primärseitige Rückleiter ist nicht die sekundärseitige 0 V.</p>
+<div class="table-wrap" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Netz</th>
+<th scope="col">Funktion laut Referenz</th>
+<th scope="col">Anschluss / Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5P</td>
+<td>Logikversorgung</td>
+<td>XNT 5, 6 · +5 V</td>
+</tr>
+<tr>
+<td>12PM</td>
+<td>Bildschirmversorgung vor V18</td>
+<td>X MONU 2 / X6 3 · +12 V</td>
+</tr>
+<tr>
+<td>12P</td>
+<td>Geschaltete Laufwerkversorgung nach V18 und F3</td>
+<td>XNT 3, 4 · +12 V</td>
+</tr>
+<tr>
+<td>5N</td>
+<td>Negative Versorgung</td>
+<td>XNT 1 · −5 V</td>
+</tr>
+<tr>
+<td>12N</td>
+<td>Negative Versorgung</td>
+<td>XNT 2 · −12 V</td>
+</tr>
+<tr>
+<td>0 V</td>
+<td>Sekundärseitiger Rückleiter</td>
+<td>XNT 7, 8, 9; X MONU 1 / X6 2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dies sind Anschlussnummern des Stromlaufplans, keine Ansicht der Steckseite. Orientierung durch Nachverfolgung am spannungsfreien Gerät prüfen. Der dritte Bildschirmkontakt ist als Schutzleiter/Schirm gezeichnet; er ist kein beliebig austauschbarer Last-Rückleiter. Anschlussnamen können in anderen Baugruppen erneut vorkommen.</p>
+<p>
+<a href="#source-drawings">[drawings]</a>
+</p>
+</section>
+<section id="operation">
+<h2>Die Schaltung lesen</h2>
+<p>Leistungspfade und Rückkopplung getrennt verfolgen. V5 und V15 sind primärseitige Schalttransistoren; V18 ist ein sekundärseitiger PNP-Serienschalter. Die Eignung eines modernen Transistors für V18 sagt daher nichts über V5 aus. Die 5P-Stufe ist ein Durchflusswandler, die 12PM-Stufe ein Sperrwandler. Die negativen Ausgänge hängen von der Belastung der 5P ab. Die Verzögerung der 12P gehört zum realen Netzteil, nicht zur Einschaltanimation des Emulators.</p>
+<p>
+<a href="#source-manual">[manual]</a> · <a href="#source-drawings">[drawings]</a>
+</p>
+</section>
+<section id="checks">
+<h2>Referenzwerte richtig einordnen</h2>
+<p>Die folgenden Angaben sind Referenzprüfwerte, keine Aufforderung zum Einstellen eines unbekannten oder defekten Geräts. Vollständige Lastbedingungen und Reihenfolge stehen in der Originalvorschrift. Messungen und Reparaturen auf der Netzseite verlangen geeignete Isolation, Tastköpfe und Fachkenntnisse; C3 kann nach dem Abziehen gefährlich geladen bleiben. Die Masse eines geerdeten Oszilloskops darf nicht an den primärseitigen Rückleiter angeschlossen werden.</p>
+<div class="table-wrap" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Prüfpunkt</th>
+<th scope="col">Dokumentierter Wert / Bedingung</th>
+<th scope="col">Fundstelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Netzeingang</td>
+<td>220 V; 47–63 Hz; 187–242 V</td>
+<td>§1.9.3 · 93 / PDF 95</td>
+</tr>
+<tr>
+<td>5P-Einstellung</td>
+<td>5.10 V ±50 mV; R130; I(5P)=5 A; R(5N)=10 Ω; R(12N)=56 Ω</td>
+<td>§1.9.9.1 · 100 / PDF 102</td>
+</tr>
+<tr>
+<td>Gültigkeit negativer Spannungen</td>
+<td>I(5P) ≥1.5 A</td>
+<td>§1.9.7 · 96 / PDF 98</td>
+</tr>
+<tr>
+<td>12PM-Einstellung</td>
+<td>12.2 V ±100 mV; R160; I(5P)=5 A; I(12P)=3 A; X6 / DISPLAY</td>
+<td>§1.9.9.4 · 100 / PDF 102</td>
+</tr>
+<tr>
+<td>12P-Schaltfolge</td>
+<td>2.0–4.5 s; 5P, 5N, 12N, 12PM → 12P</td>
+<td>§1.9.9.7 · 101 / PDF 103</td>
+</tr>
+<tr>
+<td>12P-Abschaltschwelle bei Netzausfall</td>
+<td>UEP 195 V → 12P OFF; UEP 200 V → 12P ON; R120</td>
+<td>§1.9.9.6 · 101 / PDF 103</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Etwa 12 V an DISPLAY beweisen nicht, dass 12P vorhanden ist. Fehlende 12P beweisen umgekehrt keinen Defekt von V18: F3, Treiber, Unterspannungserkennung und Verzögerung sind getrennte Fehlerhypothesen. F3 oder V18 nicht überbrücken, um das Symptom zu beseitigen. Eine unbelastete negative Ausgangsspannung reicht nicht zur Diagnose eines Reglerfehlers.</p>
+<p>
+<a href="#source-manual">[manual]</a>
+</p>
+</section>
+<section id="transistors">
+<h2>Transistoren im Referenzplan</h2>
+<div class="table-wrap" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Position</th>
+<th scope="col">Typ im Plan</th>
+<th scope="col">Aufgabe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V5, V15</td>
+<td>SU169</td>
+<td>Primärseitige Leistungsschalter</td>
+</tr>
+<tr>
+<td>V18</td>
+<td>КТ818А / KT818A</td>
+<td>Serienschalter für 12P</td>
+</tr>
+<tr>
+<td>V19</td>
+<td>SD336B</td>
+<td>Ansteuerung von V18</td>
+</tr>
+<tr>
+<td>V101, V102</td>
+<td>SF358</td>
+<td>Anlaufkaskade</td>
+</tr>
+<tr>
+<td>V106</td>
+<td>SD335B</td>
+<td>Hilfsspannungsregler</td>
+</tr>
+<tr>
+<td>V107, V125</td>
+<td>SC236D</td>
+<td>Hilfsspannungsregelung / 12P-Steuerung</td>
+</tr>
+<tr>
+<td>V110, V119</td>
+<td>SF127C</td>
+<td>Treiber der Impulsübertrager</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Die Liste erfasst die diskreten Transistorsymbole dieses Plans, nicht alle Halbleiter. U101–U105 sind Optokoppler; außerdem gibt es Dioden und Regler-/Steuerschaltkreise. Bestückungspläne können in Einzelheiten vom Stromlaufplan abweichen: Revisionen abgleichen, statt sie stillschweigend zu einer Stückliste zusammenzuführen.</p>
+<p>
+<a href="#source-drawings">[drawings]</a>
+</p>
+</section>
+<section id="substitutes">
+<h2>Sowjetische und moderne Ersatzkandidaten</h2>
+<p>Keiner der folgenden Ersatztypen wurde in diesem Museumsnetzteil erprobt. „Kandidat“ bedeutet: in der identifizierten Schaltung näher prüfen; es bedeutet weder bestätigte Reparatur noch Anschlussgleichheit. V18 ist der am besten belegte Ausgangspunkt, denn bereits der Referenzplan nennt den sowjetischen КТ818А.</p>
+<div class="table-wrap" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Position / Kandidat</th>
+<th scope="col">Beleg</th>
+<th scope="col">Bewertung und offene Prüfungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Position / Kandidat">V18 · КТ818Б (KT818B)</td>
+<td data-label="Beleg">Gleiche sowjetische Typenfamilie. INTEGRAL: 10 A, 60 W bei Gehäuse ≤25 °C; h21э ≥20 für Б gegenüber ≥15 für А am angegebenen Prüfpunkt. <a href="#source-kt818">[kt818]</a>
+</td>
+<td data-label="Bewertung und offene Prüfungen">Gut begründeter Familienkandidat; Datenblatt des konkreten Herstellers/Gehäuses, Echtheit und Zustand prüfen. Sättigung bei verfügbarem Basisstrom, Montage und Abschaltzeit nachweisen. Kyrillisch Б wird B, kyrillisch В wird V transliteriert; Gruppen nicht verwechseln.</td>
+</tr>
+<tr>
+<td data-label="Position / Kandidat">V18 · ST TIP36C</td>
+<td data-label="Beleg">PNP; |VCEO| 100 V, |IC| 25 A, 125 W bei Gehäuse 25 °C; TO-247. ST führt den Typ als aktiv. <a href="#source-tip36">[tip36]</a> <a href="#source-tip36-status">[tip36-status]</a>
+</td>
+<td data-label="Bewertung und offene Prüfungen">Moderner Kandidat mit notwendiger Montage-/Verdrahtungsprüfung. INTEGRAL КТ818: 1=E, 2=C, 3=B; TIP36C: 1=B, 2=C, 3=E. Nicht positionsgleich einsetzen. Grenzwerte beweisen weder ausreichende Verstärkung noch sicheren Arbeitsbereich oder kleinen Spannungsabfall bei 3–5 A mit diesem Treiber.</td>
+</tr>
+<tr>
+<td data-label="Position / Kandidat">V5 / V15 · onsemi FJL6920</td>
+<td data-label="Beleg">NPN; VCEO 800 V, IC 20 A, 200 W bei Gehäuse 25 °C; TO-264. Verstärkung bei 11 A nur 5.5–8.5; Sättigung mit 2.75 A Basisstrom spezifiziert. <a href="#source-fjl">[fjl]</a>
+</td>
+<td data-label="Bewertung und offene Prüfungen">Nur Vergleichsbeispiel; NICHT als SU169-Ersatz freigegeben. Höhere Grenzwerte beweisen keine Verträglichkeit mit Tr101/Tr102. Speicherzeit, negativer Basisstrom, sicherer Arbeitsbereich und Montage erfordern schaltungsbezogene Prüfung. Für diese Primärschalter ist hier kein sowjetischer oder moderner Ersatz qualifiziert.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Für SF358, SD335B, SD336B, SC236D und SF127C bleibt der Ersatz in dieser Ausgabe offen, bis originale Herstellerdaten und tatsächliche Schaltungsbelastungen verglichen sind. Ein Treffer in einer Vergleichsliste genügt nicht. Verstärkungsgruppen beibehalten. MOSFETs und Darlingtontransistoren sind in dieser Schaltung kein direkter Ersatz für gewöhnliche Bipolartransistoren.</p>
+</section>
+<section id="qualification">
+<h2>Wann wäre ein Ersatz verifiziert?</h2>
+<p>Baugruppenstand, Beschriftung des entfernten Bauteils, Hersteller und Los des Ersatzteils, Anschlusszuordnung und Isolation dokumentieren. Ein-/Ausschaltfolge, Sättigungsspannung, Verlustleistung und Temperatur über vorgeschriebenen Last- und Netzbereich prüfen. Anlauf, Lastsprünge und Schutzfunktionen mit geeigneter Ausrüstung kontrollieren. Bei Primärschaltern Kollektor-/Basisverläufe und Reserven im sicheren Arbeitsbereich erfassen. Messergebnisse beifügen, bevor „Kandidat“ zu „am Gerät erprobt“ wird. Für diese Veröffentlichung wurden solche Messungen nicht durchgeführt.</p>
+</section>
+<section id="glossary">
+<h2>Übersetzungsglossar</h2>
+<div class="table-wrap" tabindex="0">
+<table>
+<thead>
+<tr>
+<th scope="col">Deutsch</th>
+<th scope="col">English</th>
+<th scope="col">Русский</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stromversorgung / Netzteil</td>
+<td>power supply / PSU</td>
+<td>блок питания / БП</td>
+</tr>
+<tr>
+<td>Durchflusswandler</td>
+<td>forward converter</td>
+<td>прямоходовой преобразователь</td>
+</tr>
+<tr>
+<td>Sperrwandler</td>
+<td>flyback converter</td>
+<td>обратноходовой преобразователь</td>
+</tr>
+<tr>
+<td>Freilaufdiode</td>
+<td>freewheel diode</td>
+<td>диод свободного хода</td>
+</tr>
+<tr>
+<td>Anlaufschaltung</td>
+<td>startup circuit</td>
+<td>цепь запуска</td>
+</tr>
+<tr>
+<td>Langsamanlauf</td>
+<td>soft start</td>
+<td>плавный пуск</td>
+</tr>
+<tr>
+<td>Aussetzerbetrieb</td>
+<td>intermittent operation</td>
+<td>прерывистый режим</td>
+</tr>
+<tr>
+<td>Schmelzsicherung</td>
+<td>fuse</td>
+<td>плавкий предохранитель</td>
+</tr>
+<tr>
+<td>Uss</td>
+<td>peak-to-peak voltage</td>
+<td>напряжение от пика до пика</td>
+</tr>
+<tr>
+<td>B / C / E</td>
+<td>base / collector / emitter</td>
+<td>база / коллектор / эмиттер</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="review">
+<h2>Prüfung und offene Fragen</h2>
+<p>Stromlaufplan, beide Bestückungspläne und Einstellseiten wurden als Bilder geprüft; OCR diente nur zur Orientierung. Die Zahlentabellen sind in allen drei Ausgaben identisch. Gedruckte und PDF-Seitenzahlen werden unterschieden. §1.9.8.1 nennt V12 als Leistungsschalter; der Stromlaufplan zeigt dafür V15 und V12 als Gleichrichterdiode. Diesen Widerspruch anhand des Plans auflösen. Übersetzungs- und Quellenprüfung erfolgten in einem redaktionellen Durchgang; eine unabhängige menschliche Fachprüfung und Hardwarevalidierung stehen aus.</p>
+</section>
+<section id="sources">
+<h2>Quellen und Urheber</h2>
+<p>Originalentwicklung: Robotron. Archivbetreiber und Halbleiterhersteller sind unten genannt. Museumskommentare und Übersetzungen: DAC / Danila, KI-unterstützt, 2026-10-19. Verlinkte Dokumente behalten ihre eigenen Rechte. Prüfsummen und Abrufnachweise stehen im maschinenlesbaren Register.</p>
+<ol>
+<li id="source-manual">
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=95">Robotron · 1715 Servicehandbuch</a>
+<br>VEB Robotron Büromaschinenwerk Sömmerda; archive: tiffe.de<br>
+<small>§1.9; 93–101 → PDF 95–103</small>
+</li>
+<li id="source-drawings">
+<a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf#page=20">Robotron · Schaltpläne</a>
+<br>Robotron; archive: tiffe.de<br>
+<small>56-330-2770-5; PDF 18–20</small>
+</li>
+<li id="source-user">
+<a href="https://xepb.org/robotron/docs/pc_manu.pdf">Robotron · Bedienungsanleitung 1715 / 1715W</a>
+<br>Robotron; digitisation: Ulrich Zander; mirror: XEPb.org<br>
+<small>1715 / 1715W</small>
+</li>
+<li id="source-archive">
+<a href="https://xepb.org/robotron/docs.html">Robotron 1715 unofficial support</a>
+<br>XEPb.org / DtZ; links credit Ulrich Zander and Jens Müller<br>
+<small>1715W archive: https://xepb.org/robotron/docs/1715w.zip</small>
+</li>
+<li id="source-kt818">
+<a href="https://arbatex.ru/upload/iblock/731/731be24e9da6870ddfa9e7ea8ce684d8.pdf">КТ818 · January 2011, rev. 1.0</a>
+<br>ОАО «ИНТЕГРАЛ», Minsk; mirror: Arbatex<br>
+<small>PDF 1–3; аАО.336.188 ТУ / 02</small>
+</li>
+<li id="source-tip36">
+<a href="https://www.st.com/resource/en/datasheet/tip35c.pdf">TIP35C / TIP36C · September 2008, rev. 5</a>
+<br>STMicroelectronics<br>
+<small>PDF 1–3, 7; TIP36C is the PNP member</small>
+</li>
+<li id="source-tip36-status">
+<a href="https://www.st.com/en/power-transistors/tip36c.html">TIP36C · product status</a>
+<br>STMicroelectronics<br>
+<small>Active; checked 2026-10-19</small>
+</li>
+<li id="source-fjl">
+<a href="https://www.onsemi.com/download/data-sheet/pdf/fjl6920-d.pdf">FJL6920 · January 2025, rev. 2</a>
+<br>onsemi<br>
+<small>PDF 1–2; comparison only</small>
+</li>
+</ol>
+<a href="sources.json">Quellenregister (JSON)</a>
+</section>
+</main>
+<footer>Für Papier oder PDF die Druckfunktion des Browsers verwenden.<br>DAC · 2026</footer>
+</body>
+</html>

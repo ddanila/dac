@@ -1,0 +1,80 @@
+{
+  "checked_on": "2026-10-19",
+  "scope": "PC 1715 drawing 56-330-2770-5; match to museum W/M specimen unverified",
+  "publication": "Originals linked at source hosts, not mirrored; guide is original commentary, not a complete manual translation. No bench-qualified substitutes.",
+  "sources": [
+    {
+      "id": "manual",
+      "title": "Robotron · 1715 Servicehandbuch",
+      "url": "https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf#page=95",
+      "credit": "VEB Robotron Büromaschinenwerk Sömmerda; archive: tiffe.de",
+      "locator": "§1.9; 93–101 → PDF 95–103",
+      "sha256": "e810e4722d889a7e357e192486da3a8004b1fd08aca1c0dcef4f3bbc5b66021d",
+      "bytes": 15312406,
+      "pdf_pages": 210,
+      "review": "PSU chapter OCR navigation; schematic and service check pages visually checked"
+    },
+    {
+      "id": "drawings",
+      "title": "Robotron · Schaltpläne",
+      "url": "https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf#page=20",
+      "credit": "Robotron; archive: tiffe.de",
+      "locator": "56-330-2770-5; PDF 18–20",
+      "sha256": "9d020e9dd41662f85b6a9a44e300cc9800ef20284c2a689e005f69a84f6e3fd3",
+      "bytes": 31837204,
+      "pdf_pages": 50,
+      "review": "PDF pages 18,19,20 visually inspected; schematic rotated for reading",
+      "drawings": {
+        "18": "63-330-2760-4",
+        "19": "63-330-2767-8",
+        "20": "56-330-2770-5"
+      }
+    },
+    {
+      "id": "user",
+      "title": "Robotron · Bedienungsanleitung 1715 / 1715W",
+      "url": "https://xepb.org/robotron/docs/pc_manu.pdf",
+      "credit": "Robotron; digitisation: Ulrich Zander; mirror: XEPb.org",
+      "locator": "1715 / 1715W"
+    },
+    {
+      "id": "archive",
+      "title": "Robotron 1715 unofficial support",
+      "url": "https://xepb.org/robotron/docs.html",
+      "credit": "XEPb.org / DtZ; links credit Ulrich Zander and Jens Müller",
+      "locator": "1715W archive: https://xepb.org/robotron/docs/1715w.zip"
+    },
+    {
+      "id": "kt818",
+      "title": "КТ818 · January 2011, rev. 1.0",
+      "url": "https://arbatex.ru/upload/iblock/731/731be24e9da6870ddfa9e7ea8ce684d8.pdf",
+      "credit": "ОАО «ИНТЕГРАЛ», Minsk; mirror: Arbatex",
+      "locator": "PDF 1–3; аАО.336.188 ТУ / 02",
+      "sha256": "7beb2b0e39ae4bb56d0323d71c219d95713c8649bbedecfe946f4462a2437ac0",
+      "review": "INTEGRAL manufacturer datasheet at third-party mirror; modern continuation of Soviet family, not proof of every historical lot"
+    },
+    {
+      "id": "tip36",
+      "title": "TIP35C / TIP36C · September 2008, rev. 5",
+      "url": "https://www.st.com/resource/en/datasheet/tip35c.pdf",
+      "credit": "STMicroelectronics",
+      "locator": "PDF 1–3, 7; TIP36C is the PNP member"
+    },
+    {
+      "id": "tip36-status",
+      "title": "TIP36C · product status",
+      "url": "https://www.st.com/en/power-transistors/tip36c.html",
+      "credit": "STMicroelectronics",
+      "locator": "Active; checked 2026-10-19"
+    },
+    {
+      "id": "fjl",
+      "title": "FJL6920 · January 2025, rev. 2",
+      "url": "https://www.onsemi.com/download/data-sheet/pdf/fjl6920-d.pdf",
+      "credit": "onsemi",
+      "locator": "PDF 1–2; comparison only",
+      "sha256": "e72447dabc976d3244f45e01c1ba7bd10eb254eb8f19ea5c44ccc505a6974398",
+      "review": "Manufacturer data; comparison only, replacement not qualified"
+    }
+  ]
+}

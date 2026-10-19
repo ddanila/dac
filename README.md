@@ -2,6 +2,11 @@
 
 Current behavior and evidence: [Robotron capability matrix](docs/robotron/capabilities.md).
 
+[PSU documentation in German, English and Russian](https://ddanila.github.io/dac/docs/robotron-psu/)
+links the original service manual, circuit and board layouts, with source-checked
+museum commentary and explicitly unqualified transistor replacement candidates.
+See the [scope and verification record](docs/robotron/psu-documentation.md).
+
 Inspection guides cover [controls and debugging](docs/robotron/inspection-workbench.md),
 [measurements and evidence](docs/robotron/inspection-workbench.md#measurements), and
 [checkpoints and disk comparisons](docs/robotron/inspection-and-checkpoints.md).
