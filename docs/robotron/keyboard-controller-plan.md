@@ -31,18 +31,18 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Resolve numerical failures.** Higher-precision transient solving corrects the
-   audited linear equations but still ends in flux-history truncation rejection
-   after Newton convergence. Exact arithmetic on the final logged history leaves
-   that rejection unchanged. Compare precision and integration methods, then
-   isolate state-history and stamping sensitivity before changing the model. Preserve branch physics, tolerance budgets and absolute-time waveform
-   comparisons. A numerical remedy must subsequently pass the coupled-board gates;
-   it does not qualify device dynamics.
-3. **Constrain device dynamics.** Qualify oscillator startup and host-buffer
-   switching/loading against independent device evidence. Keep primary,
-   comparison and reference devices separate. The independent receiver timing
-   screen supports sampled stability, but does not establish U856 switching
-   thresholds or loading. Numerical convergence alone does not qualify a device.
+2. **Establish numerical convergence.** Gear with higher-precision linear solving
+   completes the coarse recorded-stimulus replay, but timestep refinement fails.
+   Further linear precision alone has not changed the result. Investigate
+   integration and state-history sensitivity alongside independently constrained
+   device dynamics. Preserve circuit physics, tolerance budgets and absolute-time
+   comparisons; require successful refinement before coupled-board qualification.
+3. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
+   host-buffer switching/loading against independent device evidence. The reference
+   7406 fixture shows that maximum-delay compliance alone cannot validate the
+   generic driver's dynamics. Keep primary, comparison and reference devices
+   separate; do not tune parameters merely to remove a solver failure. Receiver
+   timing screens do not establish U856 switching thresholds or loading.
 4. **Qualify the coupled reference board.** Service checks establish selected
    logical and timing behavior, including release/repress, while material
    absolute-time voltage differences remain. The retained closed-board capture
@@ -57,8 +57,10 @@ reconstruction requirements below remain in scope.
    Standard S600 permits reference work without the replacement ROM.
 
 The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
-records the findings behind this sequence and links their evidence. Detailed
-measurements, candidate inventories and experiment results stay in source reports.
+records the findings behind these tasks and links their evidence. Physical
+reconstruction, device research and numerical diagnosis can proceed independently;
+the ordering is not a dependency chain. Detailed measurements, candidate
+inventories and experiment results stay in source reports.
 An unresolved claim becomes an external dependency only when available evidence
 cannot distinguish the remaining alternatives; it does not block unrelated work.
 

@@ -46,16 +46,11 @@ below are relative to the CAD controller directory unless stated otherwise.
   [release/repress comparison][release-pair] retain material absolute-time voltage
   differences despite timing agreement. Qualify voltage convergence independently;
   phase alignment or discarded transition peaks cannot resolve this gate.
-- **Transition failure:** [state audits][state-audit] distinguish truncation
-  rejection from Newton failure. [Exact residuals and independent solves][linear-system]
-  establish linear-solve error in selected stamped systems. [Fresh ordering and
-  equation scaling][scaling] do not resolve the transient failure.
-  [Higher-precision transient replay][mpfr] corrects the audited linear solves
-  but still fails: the final Newton trial converges, then flux-history truncation
-  rejects the step. Exact arithmetic on that history gives the same proposal.
-  Compare precision and integration methods, then isolate state-history and
-  stamping sensitivity. Accurate stamped equations do not establish accurate
-  history or physical device behavior.
+- **Numerical convergence:** [higher-precision replay][mpfr] completes with Gear
+  at the coarse step but fails timestep refinement. Increasing linear precision
+  leaves the recorded trajectories unchanged. Accurate linear solves therefore
+  do not resolve integration/state-history sensitivity or qualify device behavior.
+  Require completed refinement pairs before adopting a numerical remedy.
 - **Closed-board execution:** the [completed capture][board-host] reaches the
   scenario endpoint, but the producer waveform gate fails: reset release precedes
   the saved window. It also uses the legacy receiver observer. Capture from time
@@ -63,9 +58,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   explicitly. Completion and bounded host screens do not establish qualification.
 - **Host and cable applicability:** [load screening][host-loads] exercises explicit
   capacitance/leakage assumptions. [Filter checks][filter] verify generated winding
-  hypotheses, while [D104 switching checks][host-switching] expose unqualified
-  device dynamics. Nominal passes do not identify physical winding parameters,
-  clamp behavior or installed-device loading.
+  hypotheses, while [D104 switching checks][host-switching] leave buffer
+  dynamics unqualified. The [reference 7406 fixture][driver-switching] shows that
+  the generic driver meets published maximum delays while switching much faster
+  than typical values. Constrain its charge storage and capacitance independently;
+  typical delays do not uniquely determine those parameters. Nominal passes do
+  not identify winding parameters, clamp behavior or installed-device loading.
 - **Oscillator applicability:** primary К555ЛА3, comparison D100D and reference
   DL000 require separate conditions. [Device reviews][device-review] and
   [internal-state captures][internal-state] constrain candidates without qualifying
@@ -73,12 +71,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   an ngspice-only explanation but not establishing physical device behavior.
 
 [receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
-[linear-system]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-linear-state-audit/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
 [board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load-long/assessment.json
 [host-loads]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loads/assessment.json
 [filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json
+[driver-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-driver-switching/assessment.json
 [host-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json
 [device-review]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/diode-role-review/assessment.json
 [internal-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-internal/assessment.json
@@ -86,13 +84,11 @@ below are relative to the CAD controller directory unless stated otherwise.
 [release-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-release-repress-minbreak-fine/assessment.json
 [analog-guide]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence
 [mpfr]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-mpfr-transient/assessment.json
-[scaling]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-sparse-scaling-transient/assessment.json
-[state-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-reference-state-audit/assessment.json
 
 ## Resolve at the desk first
 
 Physical uncertainty and model qualification are open investigations. Follow the
-[plan's next-work sequence](keyboard-controller-plan.md#next-work-and-acceptance)
+[plan's next-work priorities](keyboard-controller-plan.md#next-work-and-acceptance)
 before treating either as a specimen dependency. Exact photo locators, pin-map
 candidates and superseded interpretations belong in the CAD evidence manifests,
 not a second inventory here.
