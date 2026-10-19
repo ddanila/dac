@@ -124,10 +124,28 @@ baselines detect visible changes and missing components; they do not measure the
 specimen. Inspect intentional changes before using `--update`; never update
 baselines automatically in CI.
 
-CI scope and sharding are defined by `scripts/ci-scope.mjs`, `scripts/ci-shards.mjs`
-and workflow files. Unknown changes or unavailable comparison bases select full
-coverage. Deployment requires the selected build/browser checks. Use successful
-run logs to refresh duration data rather than copying counts or timings here.
+CI selection lives in `scripts/ci-scope.mjs`; Playwright and the Actions matrix
+consume the same selected file list. `scripts/ci-shards.mjs` balances larger
+Chromium runs by recorded duration. Each selected file runs exactly once per
+applicable browser:
+
+- Prose-only documentation changes run the build, import and CI-policy checks.
+- PSU reference HTML/CSS/source-register changes run focused Chromium checks of
+  all three languages, local links, mobile layout and print visibility.
+- Test-only changes run the changed test files, including Firefox/WebKit when
+  those files belong to the existing cross-browser suite.
+- Model/inspection changes run the visual group and its cross-browser tests.
+  Mixed reference/model changes also retain the documentation checks.
+- Shared runtime, dependency, test-helper, configuration and CI changes run the
+  full suite. Unknown paths, deleted tests and unavailable comparison bases also
+  select full coverage. New tests automatically join full runs.
+
+Pushes compare against the latest successful ancestor push, so failed or
+cancelled pushes cannot hide untested changes. Pull requests and manual runs use
+full coverage. Native replay is built only when selected tests use it. Deployment
+requires the build and every selected browser job to pass. The selection and
+shard regression tests run on every build; use successful run logs to refresh
+duration data rather than copying counts or timings here.
 
 ## Disk contents explorer
 

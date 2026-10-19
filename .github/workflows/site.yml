@@ -14,6 +14,9 @@ jobs:
   build:
     outputs:
       scope: ${{ steps.scope.outputs.scope }}
+      test_files: ${{ steps.scope.outputs.test_files }}
+      matrix: ${{ steps.scope.outputs.matrix }}
+      native: ${{ steps.scope.outputs.native }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -41,16 +44,11 @@ jobs:
     if: needs.build.outputs.scope != 'docs'
     env:
       DAC_CI_SHARD: ${{ matrix.shard }}
-      DAC_CI_SCOPE: ${{ needs.build.outputs.scope }}
+      DAC_CI_TEST_FILES: ${{ needs.build.outputs.test_files }}
     strategy:
       # All browsers share one fail-fast group: a failure cancels sibling jobs.
       fail-fast: true
-      matrix:
-        include:
-          - {label: chromium-1, browser: chromium, os: ubuntu-latest, shard: "1"}
-          - {label: chromium-2, browser: chromium, os: ubuntu-latest, shard: "2"}
-          - {label: firefox, browser: firefox, os: ubuntu-latest, shard: ""}
-          - {label: webkit, browser: webkit, os: macos-latest, shard: ""}
+      matrix: ${{ fromJSON(needs.build.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: ${{ matrix.browser != 'chromium' && 10 || needs.build.outputs.scope == 'full' && 20 || 15 }}
     steps:
@@ -65,29 +63,23 @@ jobs:
         run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
       - run: npx playwright install --with-deps ${{ matrix.browser }}
       - id: core
-        if: matrix.browser == 'chromium' && needs.build.outputs.scope == 'full'
+        if: matrix.browser == 'chromium' && needs.build.outputs.native == 'true'
         run: node -e "const fs=require('fs');fs.appendFileSync(process.env.GITHUB_OUTPUT,'ref='+require('./public/emulator/manifest.json').commit+'\n')"
       - uses: actions/checkout@v7
-        if: matrix.browser == 'chromium' && needs.build.outputs.scope == 'full'
+        if: matrix.browser == 'chromium' && needs.build.outputs.native == 'true'
         with:
           repository: ddanila/dac-emulation
           ref: ${{ steps.core.outputs.ref }}
           path: emulation-reference
       - run: make -C emulation-reference build/dac-replay
-        if: matrix.browser == 'chromium' && needs.build.outputs.scope == 'full'
-      - name: Model and interaction checks
-        if: matrix.browser == 'chromium' && needs.build.outputs.scope == 'visual'
-        run: npx playwright test tests/assembly.spec.js tests/cable-geometry.spec.js tests/crt.spec.js tests/drive-levers.spec.js tests/drive-motion.spec.js tests/exhibit-improvements.spec.js tests/exploration.spec.js tests/fan.spec.js tests/inspection.spec.js tests/interior.spec.js tests/keyboard*.spec.js tests/museum.spec.js tests/pcb-components.spec.js tests/sessions.spec.js --reporter=line
-      - name: Full Chromium checks
-        if: matrix.browser == 'chromium' && needs.build.outputs.scope == 'full'
+        if: matrix.browser == 'chromium' && needs.build.outputs.native == 'true'
+      - name: Selected Chromium checks
+        if: matrix.browser == 'chromium'
         run: npm test -- --reporter=line
         env:
-          DAC_NATIVE_REPLAY: emulation-reference/build/dac-replay
-      - name: Cross-browser model checks
-        if: matrix.browser != 'chromium' && needs.build.outputs.scope == 'visual'
-        run: npm run test:cross -- --project=${{ matrix.browser }} tests/assembly.spec.js
-      - name: Full cross-browser checks
-        if: matrix.browser != 'chromium' && needs.build.outputs.scope == 'full'
+          DAC_NATIVE_REPLAY: ${{ needs.build.outputs.native == 'true' && 'emulation-reference/build/dac-replay' || '' }}
+      - name: Selected cross-browser checks
+        if: matrix.browser != 'chromium'
         run: npm run test:cross -- --project=${{ matrix.browser }}
       - uses: actions/upload-artifact@v7
         if: failure()

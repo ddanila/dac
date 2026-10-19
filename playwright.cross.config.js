@@ -1,15 +1,8 @@
+import { crossBrowserFiles } from './scripts/ci-scope.mjs';
 import base from "./playwright.config.js";
 export default {
   ...base,
-  testMatch: [
-    "portable-sessions.spec.js",
-    "checkpoints.spec.js",
-    "workbench.spec.js",
-    "assembly.spec.js",
-    "robotron-review-tools.spec.js",
-    "robotron-activities.spec.js",
-    "keyboard-controller.spec.js",
-  ],
+  testMatch: crossBrowserFiles.filter(f => !process.env.DAC_CI_TEST_FILES || JSON.parse(process.env.DAC_CI_TEST_FILES).includes('tests/' + f)),
   workers: 1,
   timeout: 60000,
   use: {
