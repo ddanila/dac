@@ -31,21 +31,25 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Resolve numerical failures.** Test algebraically equivalent equation scaling
-   or higher-precision linear solving before the failing transition. Exact residuals
-   and independent solves establish errors in selected stamped systems; correcting
-   isolated snapshots does not repair prior state histories. Preserve branch
-   physics, unscaled convergence criteria and absolute-time waveform comparisons.
+2. **Resolve numerical failures.** Exact residuals and independent solves establish
+   linear-solve errors; fresh ordering and equation scaling have not resolved the
+   transient failure. Validate higher-precision solving on the recorded systems,
+   then test it during transient evolution before the failing transition, with a
+   disabled control that reproduces the baseline. Snapshot corrections do not
+   repair prior state history. Preserve branch physics, convergence criteria and
+   absolute-time waveform comparisons. A numerical remedy must subsequently pass
+   the coupled-board gates; it does not qualify device dynamics.
 3. **Constrain device dynamics.** Qualify oscillator startup and host-buffer
    switching/loading against independent device evidence. Keep primary,
    comparison and reference devices separate. The independent receiver timing
    screen supports sampled stability, but does not establish U856 switching
    thresholds or loading. Numerical convergence alone does not qualify a device.
 4. **Qualify the coupled reference board.** Service checks establish selected
-   logical and timing behavior, while voltage convergence remains open. A
-   closed-board scenario now completes, but its legacy receiver observer and
-   missing startup waveform prevent acceptance. Capture from time zero with
-   corrected rising-RxC sampling, then qualify the remaining scenarios and their
+   logical and timing behavior, including release/repress, while material
+   absolute-time voltage differences remain. The retained closed-board capture
+   completes, but its legacy receiver observer and missing startup waveform
+   prevent acceptance. Capture from time zero with corrected rising-RxC sampling,
+   then qualify the remaining scenarios and their
    refinement pairs, oscillator phase, receiver levels/loading, bus timing and
    supply recovery.
 5. **Identify residual specimen dependencies.** Exhaust photographs, package

@@ -4,8 +4,8 @@
 
 Open **Named checkpoints**, enter a name, and save the running machine. CPU/device
 state and both disk images are copied synchronously at one worker boundary before
-checksumming or storage. Twenty checkpoints may be retained; export a collection
-backup before deleting older ones. Each state and each nested disk has a checksum.
+checksumming or storage. Export a collection backup before deleting older
+checkpoints. Each state and each nested disk has a checksum.
 
 Restoration requires the same machine and firmware. It builds and validates a
 candidate machine with matching disks before replacing the running session. A
@@ -50,9 +50,9 @@ also keep their native keyboard semantics.
 **Explore the circuits** can capture immediately or wait for an I/O read/write,
 memory write, DMA access or interrupt acknowledge. Ports match their low byte;
 memory addresses are 16-bit bus addresses, with mapped RAM offsets retained in
-the event row. Choose an event/master filter and 0–128 pre-trigger events. The
+the event row. Choose an event/master filter and pre-trigger history. The
 triggering event is always included, even if it does not match the display filter.
-A total of 512 events is retained, then instrumentation stops. **Stop capture**
+Capture stops when its bounded buffer fills. **Stop capture**
 retains partial data; **Show captured events** reports progress and trigger index.
 Exports contain settings, status, trigger index and cycle-stamped rows. Preserved
 cores without the new API report that limitation instead of silently arming.

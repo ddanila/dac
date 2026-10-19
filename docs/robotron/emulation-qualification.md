@@ -111,10 +111,9 @@ clock frequency, motor command to READY/index, STEP to settling, and serial cloc
 frequency/duty cycle. DACK/bus contention and IRQ routing require identified board
 signals; photographs alone cannot establish connectivity.
 
-Evidence JSON accepts `specimen`, `identification` and a `measurements` array.
-Each measurement includes `property`, `value`, `unit`, `method`, and `source`.
-For example, use a measured value with a raw capture filename as its source;
-do not substitute a reference datasheet limit for an observation of this machine.
+The [inventory tool](../../scripts/inventory-robotron.py) owns the evidence
+format and validation. Link measurements to raw captures; do not substitute a
+reference datasheet limit for an observation of this machine.
 
 Display local DACK, DMA half-clock arbitration, serial half-stop completion and
 mechanical trajectories retain the boundaries in the capability matrix. Independent

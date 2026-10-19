@@ -36,36 +36,23 @@ below are relative to the CAD controller directory unless stated otherwise.
   dimensions and lead heights remain estimates. See CAD `route-evidence.json`,
   `component-evidence.json`, `generated/connector-review.json` and
   `generated/qualification.json` for individual findings.
-- **Receiver and service coverage:** the [receive-edge review][receive-edge]
-  establishes rising RxC sampling. Corrected [single-press][rising-host],
-  [reset][reset-spacing] and [modifier][modifier-spacing] pairs pass logical,
-  sampled-stability and serial-edge refinement checks; reset also verifies CPU
-  restart. The [independent timing screen][receiver-timing] also passes for the
-  single-press pair and fine reset/modifier captures. It uses Zilog timing as a
-  diagnostic reference, not a guaranteed U856 limit. [Input stress and clock-width
-  checks][loaded-host] retain assumed thresholds; [U856 sources][u856] do not
-  identify Schmitt thresholds or exact input I/V behavior. Remaining scenarios,
-  refinement pairs and device applicability are open.
-- **Voltage convergence:** [further refinement][paired-host] does not consistently
-  reduce absolute-time voltage differences. The [spacing control][spacing-pair]
-  leaves single-press waveforms unchanged, although spacing is consequential to
-  the [reset-release failure][reset-control]. Serial-edge agreement alone cannot
-  qualify the loaded voltage waveforms.
-- **Transition failure:** the [solver audit][truncation-audit] identifies inductor
-  truncation rejection after a successful Newton solve, without a nearby pending
-  breakpoint. [Analog-only replay][analog-replay] also fails near the transition
-  when effective XSPICE controls are preserved; earlier replay completion used
-  a looser implicit default. [Exact arithmetic][arithmetic] leaves the final
-  truncation request essentially unchanged. The [inductor state audit][inductor]
-  reproduces the original failure and waveforms; its rejected trial voltage is
-  consistent in relative terms with the integration equation. The [reference-node
-  comparison][reference-node] reproduces the baseline waveforms exactly but fails
-  earlier when host ground becomes the numerical reference. The [linear-system
-  review][linear-system] finds large individual equation residuals hidden by small
-  aggregate error; independent higher-precision solves agree with each other but
-  differ from the recorded solutions. Test a full-run numerical remedy while
-  preserving device equations and acceptance criteria. Snapshot corrections do
-  not repair prior state history or establish physical behavior.
+- **Receiver and service coverage:** [rising RxC][receive-edge] is the reference
+  sampling edge. Retained service pairs support logical and serial-edge agreement,
+  including [release/repress][release-pair]. The core's [evidence index][analog-guide]
+  owns scenario coverage and refinement status. The [independent timing
+  screen][receiver-timing] uses Zilog conditions as a diagnostic reference;
+  it does not establish U856 thresholds, loading or device applicability.
+- **Voltage convergence:** [single-press refinement][paired-host] and
+  [release/repress comparison][release-pair] retain material absolute-time voltage
+  differences despite timing agreement. Qualify voltage convergence independently;
+  phase alignment or discarded transition peaks cannot resolve this gate.
+- **Transition failure:** [state audits][state-audit] distinguish truncation
+  rejection from Newton failure. [Exact residuals and independent solves][linear-system]
+  establish linear-solve error in selected stamped systems. [Fresh ordering and
+  equation scaling][scaling] do not resolve the transient failure. Validate
+  higher-precision solving on those systems, then during transient evolution
+  with baseline controls and unchanged acceptance criteria. Frozen-system
+  accuracy does not repair prior history or establish physical behavior.
 - **Closed-board execution:** the [completed capture][board-host] reaches the
   scenario endpoint, but the producer waveform gate fails: reset release precedes
   the saved window. It also uses the legacy receiver observer. Capture from time
@@ -83,20 +70,8 @@ below are relative to the CAD controller directory unless stated otherwise.
   an ngspice-only explanation but not establishing physical device behavior.
 
 [receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
-[arithmetic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/truncation-arithmetic/assessment.json
 [linear-system]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-linear-state-audit/assessment.json
-[reference-node]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-reference-node-review/assessment.json
-[inductor]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-inductor-state-audit/assessment.json
-[analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-matched-trtol/assessment.json
-[modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json
-[truncation-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-transition-audit/assessment.json
-[reset-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-minbreak-fine/assessment.json
-[reset-control]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-reset-default-spacing/assessment.json
-[rising-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-fine/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
-[loaded-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-load/assessment.json
-[u856]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/u856_limits.json
-[spacing-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-minbreak-25ns/assessment.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
 [board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load-long/assessment.json
 [host-loads]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loads/assessment.json
@@ -105,6 +80,10 @@ below are relative to the CAD controller directory unless stated otherwise.
 [device-review]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/diode-role-review/assessment.json
 [internal-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-internal/assessment.json
 [xyce]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json
+[release-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-release-repress-minbreak-fine/assessment.json
+[analog-guide]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence
+[scaling]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-sparse-scaling-transient/assessment.json
+[state-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-reference-state-audit/assessment.json
 
 ## Resolve at the desk first
 
