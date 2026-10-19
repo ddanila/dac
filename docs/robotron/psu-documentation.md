@@ -22,19 +22,14 @@ serial number, repair history or identification as evidence about this specimen.
 
 Owner photographs of PSU002 are preserved with hashes and observations in the
 [CAD source register](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/reference/owner-20261019-psu002.json).
-The guide includes selected previews. The owner reports PSU002 is otherwise
-identical to PSU001, with one BU126 missing. Its schematic position remains
-unassigned; this observation does not revise the historical transistor table.
-PSU001 comparison photographs visibly confirm the BU126 marking and the matching
-heatsink position left empty on PSU002. They do not establish factory population
-or qualify BU126 as a replacement for the historical drawing’s transistor.
-The connector-board marking, rail labels and comparison provenance are recorded
-in `sources.json`.
+The guide includes selected previews, a component-side locator and a connector
+solder-side orientation drawing. Placement drawing 63-330-2760-4 correlates the
+BU126 in PSU001 and the empty position in PSU002 with V15. The circuit specifies
+SU169 there. This is a layout identification, not a continuity test or replacement
+qualification. The connector mating-face pin 1 remains unassigned.
 
-Use the photographs to correlate placement and visible copper with the original
-schematic and placement drawings before assigning designators or transferring
-geometry. Hidden connections, circuit identity with the installed museum supply,
-and electrical condition remain unverified.
+Keep observations and comparison evidence in `sources.json` and the CAD registers.
+The SVG locators show orientation and selected positions, not production geometry.
 
 The source register holds scan revisions, checksums and page locators. Preserve
 the distinction between schematic and placement drawings, and the service

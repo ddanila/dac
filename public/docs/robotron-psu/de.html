@@ -29,6 +29,7 @@
 <a href="#rails">Spannungszweige und Anschlussnamen</a>
 <a href="#transistors">Transistoren im Referenzplan</a>
 <a href="#substitutes">Sowjetische und moderne Ersatzkandidaten</a>
+<a href="#board-guide">Bauteilorientierung und Exemplarvergleich</a>
 <a href="#psu002">Fotos von PSU002</a>
 <a href="#sources">Quellen und Urheber</a>
 </nav>
@@ -36,12 +37,11 @@
 <p>Lesehilfe zum vollständigen deutschen Servicehandbuch, Stromlaufplan und zu beiden Bestückungsplänen. Dies ist unser eigener technischer Leitfaden in Deutsch, Englisch und Russisch, keine vollständige Übersetzung des historischen Handbuchs.</p>
 <section id="scope">
 <h2>Für welches Netzteil gilt die Dokumentation?</h2>
-<p>Elektrische Referenz ist der Stromlaufplan <b>56-330-2770-5</b> des PC 1715. Das Museumsgerät ist ein W/M-Exemplar; seine verdeckte Netzteilelektronik und genaue Revision sind diesem Plan noch nicht zugeordnet. Vor Anwendung der Bauteilbezeichnungen Leiterplattennummern, Bestückung und Verdrahtung vergleichen. Ein ähnliches Gehäuse beweist keine Schaltungsgleichheit.</p>
+<p>Referenzschaltung: <b>56-330-2770-5</b>. Die folgenden Zuordnungen für PSU001/PSU002 beruhen auf Fotos und Bestückungsplan 63-330-2760-4, nicht auf Durchgangsmessungen. Das eingebaute W/M-Museumsnetzteil ist noch nicht zugeordnet; werkseitige Bestückung und Eignung von Ersatztypen bleiben ungeprüft.</p>
 </section>
 <section id="psu002">
 <h2>Fotos von PSU002</h2>
-<p>Die Eigentümerfotos zeigen die separate Baugruppe PSU002. Laut Eigentümer ist sie ansonsten mit PSU001 identisch; ein Transistor BU126 fehlt. Dem fehlenden Bauteil ist noch kein Schaltplan-Bezeichner zugeordnet. Die Transistorliste der historischen Zeichnung bleibt unverändert.</p>
-<p>Auf der Anschlussplatine sind 105-330-2757-7 sowie 5N, 12N, 12P, 5P und 0V erkennbar. Die Aufnahmen helfen beim Abgleich der Bauteilanordnung und sichtbaren Leiterbahnen mit den Zeichnungen. Die Schaltungsidentität mit dem eingebauten Museumsnetzteil ist damit noch nicht belegt.</p>
+<p>PSU002 ist eine separate Baugruppe, laut Eigentümer ansonsten identisch mit PSU001. Der Einbauplatz V15 ist leer; siehe den Vergleich unten.</p>
 <div class="photo-grid">
 <figure><a href="photos/PXL_20261019_085745986.webp"><img src="photos/PXL_20261019_085745986.webp" width="1600" height="1205" loading="lazy" alt="Bestückungsseite · Kennzeichnung PSU002"></a><figcaption>Bestückungsseite · Kennzeichnung PSU002</figcaption></figure>
 <figure><a href="photos/PXL_20261019_085748827.webp"><img src="photos/PXL_20261019_085748827.webp" width="1600" height="1205" loading="lazy" alt="Bestückungsseite · gegenüberliegendes Ende"></a><figcaption>Bestückungsseite · gegenüberliegendes Ende</figcaption></figure>
@@ -52,12 +52,19 @@
 </section>
 <section id="psu001">
 <h2>PSU001: der eingebaute BU126</h2>
-<p>Die Nahaufnahme von PSU001 zeigt deutlich BU126 und die Kennzeichnung 04 87. Der senkrechte Kühlkörper entspricht im Bild der leeren Position in PSU002 neben dem magnetischen Bauteil, der Kondensatorgruppe und dem Widerstandspaar. Dies stützt die Identifizierung des fehlenden Bauteils durch den Eigentümer. Ein Schaltplan-Bezeichner und die werkseitige Bestückung sind damit noch nicht belegt.</p>
+<p>Der Transistor in PSU001 trägt BU126 / 04 87. Kühlkörper und umgebende Bauteile entsprechen V15 im Bestückungsplan.</p>
 <div class="photo-grid">
 <figure><a href="photos/PXL_20261019_091009588.webp"><img src="photos/PXL_20261019_091009588.webp" width="1600" height="1205" loading="lazy" alt="PSU001 · BU126-Kennzeichnung und Kühlkörper"></a><figcaption>PSU001 · BU126-Kennzeichnung und Kühlkörper</figcaption></figure>
 <figure><a href="photos/PXL_20261019_091015286.webp"><img src="photos/PXL_20261019_091015286.webp" width="1600" height="1205" loading="lazy" alt="PSU001 · Inventarkennzeichnung und Baugruppe"></a><figcaption>PSU001 · Inventarkennzeichnung und Baugruppe</figcaption></figure>
 </div>
 <p><a href="https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/reference/owner-20261019-psu001.json">PSU001: Originalfotos und Herkunft</a> · Danila · 2026-10-19</p>
+</section>
+<section id="board-guide">
+<h2>Bauteilorientierung und Exemplarvergleich</h2>
+<figure class="locator"><img src="board-locator.svg" width="900" height="470" alt="Orientierung der Leistungsplatine: C3, X2, X3, V5, V15, Tr1, Tr2, Tr3, F3 und X6"><figcaption>Bestückungsseite; vereinfachte, nicht maßstäbliche Positionen. C3 liegt oben links, X2/X3 am oberen Rand. Bezeichnungen nach Bestückungsplan 63-330-2760-4 (PDF 18).</figcaption></figure>
+<p>F3 ist die Sicherung im geschalteten 12P-Pfad; X6 führt zum Monitorausgang. R120, R130 und R160 liegen auf der separaten Steuerplatine: siehe <a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf#page=19">Bestückungsplan (PDF 19)</a> und <a href="#checks">Referenzprüfungen</a>.</p>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Position</th><th scope="col">Referenzzeichnung</th><th scope="col">Fotografierte Exemplare</th></tr></thead><tbody><tr><td>V15</td><td>SU169; Primärschalter für Tr3 / 12PM</td><td><a href="#psu001">PSU001: BU126</a>; <a href="#psu002">PSU002: leer</a>. Zuordnung anhand von R9/R10, Tr3, V11–V14 und C13–C15.</td></tr><tr><td>XNT-Potentialgruppen</td><td>5N; 12N; 12P ×2; 5P ×2; 0V ×3</td><td><a href="photos/PXL_20261019_085940666.MP.webp">Anschlussplatine 105-330-2757-7</a>: Beschriftung und Lötbrücken entsprechen diesen Gruppen.</td></tr></tbody></table></div>
+<p><a href="#source-drawings">[drawings]</a> · <a href="sources.json">JSON</a></p>
 </section>
 <section id="originals">
 <h2>Deutsche Originalunterlagen öffnen</h2>
@@ -209,6 +216,9 @@
 <p>
 <a href="#source-drawings">[drawings]</a>
 </p>
+<h3 id="connector-view">Orientierung des Anschlusses</h3>
+<p>Lötseite mit aufrecht lesbarer Beschriftung 105-330-2757-7: Die Gruppen sind unten von links nach rechts dargestellt, entsprechend dem <a href="photos/PXL_20261019_085940666.MP.webp">beschrifteten Anschlussfoto</a>. Die Steckseite wird nicht nummeriert; deren Kontakt 1 muss noch sicher diesen Lötstellen zugeordnet werden.</p>
+<figure class="locator"><img src="connector-solder-view.svg" width="900" height="240" alt="Lötstellen von links: 5N, 12N, 12P, 12P, 5P, 5P, 0V, 0V, 0V"></figure>
 </section>
 <section id="operation">
 <h2>Die Schaltung lesen</h2>

@@ -29,6 +29,7 @@
 <a href="#rails">Rails and connector names</a>
 <a href="#transistors">Transistors in the reference drawing</a>
 <a href="#substitutes">Soviet and modern replacement candidates</a>
+<a href="#board-guide">Board locator and specimen comparison</a>
 <a href="#psu002">PSU002 photographs</a>
 <a href="#sources">Sources and credits</a>
 </nav>
@@ -36,12 +37,11 @@
 <p>A reading companion to the complete German service manual, schematic and both board layouts. This is our own technical guide, translated between German, English and Russian; it is not a complete translation of the historical manual.</p>
 <section id="scope">
 <h2>Which power supply does this cover?</h2>
-<p>The electrical reference is drawing <b>56-330-2770-5</b> for the PC 1715. The museum machine is a W/M specimen; its enclosed PSU electronics and exact revision have not been matched to this drawing. Compare board numbers, component population and wiring before applying a reference designator. A similar enclosure does not establish circuit identity.</p>
+<p>Reference circuit: <b>56-330-2770-5</b>. PSU001/PSU002 identifications below use photographs and placement drawing 63-330-2760-4. They are layout correlations, not continuity tests. The installed museum W/M supply has not been matched; factory population and replacement suitability remain unverified.</p>
 </section>
 <section id="psu002">
 <h2>PSU002 photographs</h2>
-<p>Owner photographs show the separate PSU002 assembly. The owner reports that it is otherwise identical to PSU001 and that one BU126 transistor is missing. The missing part has not yet been assigned a reference designator; this does not change the transistor list in the historical drawing.</p>
-<p>The connector board is visibly marked 105-330-2757-7, with 5N, 12N, 12P, 5P and 0V labels. These views support comparison of component placement and visible copper with the drawings. They do not yet establish circuit identity with the installed museum supply.</p>
+<p>PSU002 is a separate assembly, reported by the owner as otherwise identical to PSU001. Its V15 mounting position is empty; see the comparison below.</p>
 <div class="photo-grid">
 <figure><a href="photos/PXL_20261019_085745986.webp"><img src="photos/PXL_20261019_085745986.webp" width="1600" height="1205" loading="lazy" alt="Component side · PSU002 label"></a><figcaption>Component side · PSU002 label</figcaption></figure>
 <figure><a href="photos/PXL_20261019_085748827.webp"><img src="photos/PXL_20261019_085748827.webp" width="1600" height="1205" loading="lazy" alt="Component side · opposite end"></a><figcaption>Component side · opposite end</figcaption></figure>
@@ -52,12 +52,19 @@
 </section>
 <section id="psu001">
 <h2>PSU001: the fitted BU126</h2>
-<p>The PSU001 close-up clearly shows BU126 and the marking 04 87. Its vertical heatsink corresponds visually to the empty position in PSU002, beside the magnetic component, capacitor group and resistor pair. This supports the owner’s identification of the missing part. It does not yet assign a schematic designator or establish whether this was the factory-fitted transistor.</p>
+<p>The PSU001 transistor is marked BU126 / 04 87. Its heatsink and surrounding parts match V15 in the placement drawing.</p>
 <div class="photo-grid">
 <figure><a href="photos/PXL_20261019_091009588.webp"><img src="photos/PXL_20261019_091009588.webp" width="1600" height="1205" loading="lazy" alt="PSU001 · BU126 marking and heatsink"></a><figcaption>PSU001 · BU126 marking and heatsink</figcaption></figure>
 <figure><a href="photos/PXL_20261019_091015286.webp"><img src="photos/PXL_20261019_091015286.webp" width="1600" height="1205" loading="lazy" alt="PSU001 · inventory label and surrounding assembly"></a><figcaption>PSU001 · inventory label and surrounding assembly</figcaption></figure>
 </div>
 <p><a href="https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/reference/owner-20261019-psu001.json">PSU001 originals and provenance</a> · Danila · 2026-10-19</p>
+</section>
+<section id="board-guide">
+<h2>Board locator and specimen comparison</h2>
+<figure class="locator"><img src="board-locator.svg" width="900" height="470" alt="Power board locator: C3, X2, X3, V5, V15, Tr1, Tr2, Tr3, F3 and X6"><figcaption>Component-side locator; simplified positions, not to scale. Orient with C3 at the upper left and X2/X3 along the top. Designators follow placement drawing 63-330-2760-4 (PDF 18).</figcaption></figure>
+<p>F3 is the fuse in the switched 12P path; X6 serves the monitor output. R120, R130 and R160 are on the separate control board: use its <a href="https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf#page=19">placement drawing (PDF 19)</a> and the <a href="#checks">reference checks</a>.</p>
+<div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Position</th><th scope="col">Reference drawing</th><th scope="col">Photographed specimens</th></tr></thead><tbody><tr><td>V15</td><td>SU169; primary switch for Tr3 / 12PM</td><td><a href="#psu001">PSU001: BU126</a>; <a href="#psu002">PSU002: empty</a>. Position matched by R9/R10, Tr3, V11–V14 and C13–C15.</td></tr><tr><td>XNT rail groups</td><td>5N; 12N; 12P ×2; 5P ×2; 0V ×3</td><td><a href="photos/PXL_20261019_085940666.MP.webp">Connector PCB 105-330-2757-7</a>: labels and solder bridges agree with these groups.</td></tr></tbody></table></div>
+<p><a href="#source-drawings">[drawings]</a> · <a href="sources.json">JSON</a></p>
 </section>
 <section id="originals">
 <h2>Read the German originals</h2>
@@ -209,6 +216,9 @@
 <p>
 <a href="#source-drawings">[drawings]</a>
 </p>
+<h3 id="connector-view">Connector orientation</h3>
+<p>Solder side, with the 105-330-2757-7 printing upright: left to right, the pad groups are shown below. This drawing follows the <a href="photos/PXL_20261019_085940666.MP.webp">labelled connector photo</a>. It does not number the mating face: pin 1 there still requires a confirmed correspondence to these pads.</p>
+<figure class="locator"><img src="connector-solder-view.svg" width="900" height="240" alt="Solder-side pad order: 5N, 12N, 12P, 12P, 5P, 5P, 0V, 0V, 0V"></figure>
 </section>
 <section id="operation">
 <h2>How to read the circuit</h2>

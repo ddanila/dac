@@ -98,7 +98,7 @@
     ],
     "limits": [
       "PSU002 is a separate specimen; owner comparison does not transfer PSU001 repair history or identify the installed museum supply.",
-      "Missing BU126 has no assigned schematic designator. Reference drawing transistor types remain unchanged pending trace and placement correlation.",
+      "V15 is identified by placement correlation; full pin-to-net continuity is not verified. The fitted BU126 differs from SU169 in the reference drawing.",
       "Photographs support placement, markings and visible copper inspection; hidden connections and electrical condition are not established."
     ],
     "previews": [
@@ -157,7 +157,7 @@
         }
       ],
       "limits": [
-        "Photo comparison establishes the populated and empty mounting positions, not a schematic designator or electrical equivalence.",
+        "The populated and empty positions correlate with V15 in placement drawing 63-330-2760-4; no complete pin-to-net verification.",
         "The fitted BU126 does not establish factory population, repair history or qualification as a replacement for the reference drawing transistor."
       ],
       "previews": [
@@ -178,6 +178,45 @@
           "height": 1205
         }
       ]
+    },
+    "layout_correlation": {
+      "reference": "V15",
+      "status": "placement-correlated; not continuity-tested",
+      "fitted_PSU001": "BU126",
+      "PSU002": "unpopulated",
+      "reference_type": "SU169",
+      "reference_role": "Primary switch for the Tr3 / 12PM flyback section",
+      "placement_drawing": {
+        "number": "63-330-2760-4",
+        "pdf_page": 18
+      },
+      "schematic": {
+        "number": "56-330-2770-5",
+        "pdf_page": 20
+      },
+      "photos": [
+        "PXL_20261019_091009588.jpg",
+        "PXL_20261019_091012624.jpg",
+        "PXL_20261019_085748827.jpg"
+      ],
+      "basis": "Vertical heatsink between R9/R10 and Tr3, next to the V11–V14 rectifier bank and C13–C15 group. The same landmarks locate the absent part in PSU002.",
+      "remaining": "No complete pin-to-net trace or continuity measurement; factory population and BU126 replacement qualification remain unknown."
+    },
+    "connector_orientation": {
+      "photo": "PXL_20261019_085940666.MP.jpg",
+      "view": "Solder side with 105-330-2757-7 text upright",
+      "pad_rails_left_to_right": [
+        "5N",
+        "12N",
+        "12P",
+        "12P",
+        "5P",
+        "5P",
+        "0V",
+        "0V",
+        "0V"
+      ],
+      "limit": "Solder pad groups only; mating-face pin 1 is not established by these photographs."
     }
   }
 }
