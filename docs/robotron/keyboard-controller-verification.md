@@ -58,9 +58,10 @@ below are relative to the CAD controller directory unless stated otherwise.
   a looser implicit default. [Exact arithmetic][arithmetic] leaves the final
   truncation request essentially unchanged. The [inductor state audit][inductor]
   reproduces the original failure and waveforms; its rejected trial voltage is
-  consistent in relative terms with the integration equation. This points to
-  testing numerical conditioning and reference-node sensitivity, without proving
-  either cause. Rejected trial states are not physical board predictions.
+  consistent in relative terms with the integration equation. The [reference-node
+  comparison][reference-node] reproduces the baseline waveforms exactly but fails
+  earlier when host ground becomes the numerical reference. Investigate solved
+  states and conditioning; this sensitivity is not a remedy or physical prediction.
 - **Closed-board execution:** the [completed capture][board-host] reaches the
   scenario endpoint, but the producer waveform gate fails: reset release precedes
   the saved window. It also uses the legacy receiver observer. Capture from time
@@ -79,6 +80,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 [receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
 [arithmetic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/truncation-arithmetic/assessment.json
+[reference-node]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-reference-node-review/assessment.json
 [inductor]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-inductor-state-audit/assessment.json
 [analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-matched-trtol/assessment.json
 [modifier-spacing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-modifier-minbreak-fine/assessment.json

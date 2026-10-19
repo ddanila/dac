@@ -31,12 +31,12 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Resolve numerical failures.** Test reference-node sensitivity on the matched
-   analog-only replay, preserving branch voltages, device semantics and accuracy
-   controls. Exact arithmetic in the truncation recurrence does not remove the
-   rejection; the inductor audit directs attention to the solved trial state and
-   numerical conditioning. This is a hypothesis to test, not an established cause.
-   Preserve failed captures and absolute-time comparisons.
+2. **Resolve numerical failures.** Compare solved states and common-mode voltages
+   at the original and shifted-reference failures. Changing numerical ground
+   moves the failure earlier; exact arithmetic in the truncation recurrence does
+   not remove rejection. Investigate conditioning and device transitions with
+   branch physics, accuracy controls and absolute-time comparisons preserved.
+   These findings narrow the investigation without establishing a remedy.
 3. **Constrain device dynamics.** Qualify oscillator startup and host-buffer
    switching/loading against independent device evidence. Keep primary,
    comparison and reference devices separate. The independent receiver timing
