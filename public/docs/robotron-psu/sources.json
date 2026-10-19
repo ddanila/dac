@@ -177,7 +177,17 @@
           "width": 1600,
           "height": 1205
         }
-      ]
+      ],
+      "completeness": {
+        "observation": "Additional vertically mounted PCB absent",
+        "evidence": "owner report",
+        "reported_on": "2026-10-19",
+        "board_identification": "Exact assembly/revision not established"
+      },
+      "disposition": {
+        "owner_intent": "Retain for parts or possible custom PSU installation reusing enclosure and contacts",
+        "status": "Not the current restoration focus; custom conversion is an option, not an implemented design"
+      }
     },
     "layout_correlation": {
       "reference": "V15",
@@ -223,6 +233,37 @@
       "pcb_serial_stamp": "none observed",
       "evidence": "owner report",
       "reported_on": "2026-10-19"
+    },
+    "completeness": {
+      "observation": "Additional vertically mounted PCB absent",
+      "evidence": "owner report",
+      "reported_on": "2026-10-19",
+      "board_identification": "Exact assembly/revision not established"
+    },
+    "disposition": {
+      "owner_intent": "Retain for parts or possible custom PSU installation reusing enclosure and contacts",
+      "status": "Not the current restoration focus; custom conversion is an option, not an implemented design"
     }
-  }
+  },
+  "additional_specimens": [
+    {
+      "id": "psu003",
+      "owner": "Danila",
+      "date": "2026-10-19",
+      "specimen": "PSU003",
+      "identification": {
+        "metal_shield_serial_number": "010438",
+        "evidence": "owner report",
+        "reported_on": "2026-10-19"
+      },
+      "disposition": {
+        "owner_intent": "Concentrate restoration work on PSU003"
+      },
+      "limits": [
+        "Shield serial number is not a PCB serial number.",
+        "Assembly completeness, electrical condition and schematic revision match have not been established."
+      ],
+      "source_register": "https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/reference/owner-20261019-psu003.json"
+    }
+  ]
 }
