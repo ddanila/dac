@@ -217,6 +217,12 @@
         "0V"
       ],
       "limit": "Solder pad groups only; mating-face pin 1 is not established by these photographs."
+    },
+    "identification": {
+      "shield_number": "043024",
+      "pcb_serial_stamp": "none observed",
+      "evidence": "owner report",
+      "reported_on": "2026-10-19"
     }
   }
 }
