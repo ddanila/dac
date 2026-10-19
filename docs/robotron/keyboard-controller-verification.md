@@ -58,8 +58,9 @@ below are relative to the CAD controller directory unless stated otherwise.
   reset activity, first fetch, rising-RxC bit transport and scenario-window checks.
   CPU clock high-level and timing screens fail within the declared valid-supply
   range; later supply-valid intervals do not all include fresh reset evidence.
-  Resolve these electrical failures before acceptance. Host reviews and completed
-  refinement remain required; producer success does not establish qualification.
+  Host input-voltage, nominal-threshold clock-width and sampled-stability screens
+  complete, without qualifying device applicability. Resolve the CPU-clock and
+  supply-recovery failures and complete refinement before acceptance.
 - **Host and cable applicability:** [load screening][host-loads] exercises explicit
   capacitance/leakage assumptions. [Filter checks][filter] verify generated winding
   hypotheses, while [D104 switching checks][host-switching] leave buffer

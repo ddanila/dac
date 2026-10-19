@@ -42,8 +42,8 @@ reconstruction requirements below remain in scope.
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
 4. **Qualify the coupled reference board.** Resolve the CPU clock high-level and
-   timing failures exposed by the startup-inclusive capture. Complete host reviews,
-   scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
+   timing failures exposed by the startup-inclusive capture. Complete host device
+   qualification, scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
    timing and supply recovery. Logical agreement and receiver timing screens
    cannot substitute for these electrical gates.
 5. **Identify residual specimen dependencies.** Exhaust photographs, package
