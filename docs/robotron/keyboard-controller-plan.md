@@ -31,12 +31,11 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Resolve numerical failures.** Compare solved states and common-mode voltages
-   at the original and shifted-reference failures. Changing numerical ground
-   moves the failure earlier; exact arithmetic in the truncation recurrence does
-   not remove rejection. Investigate conditioning and device transitions with
-   branch physics, accuracy controls and absolute-time comparisons preserved.
-   These findings narrow the investigation without establishing a remedy.
+2. **Resolve numerical failures.** Test algebraically equivalent equation scaling
+   or higher-precision linear solving before the failing transition. Exact residuals
+   and independent solves establish errors in selected stamped systems; correcting
+   isolated snapshots does not repair prior state histories. Preserve branch
+   physics, unscaled convergence criteria and absolute-time waveform comparisons.
 3. **Constrain device dynamics.** Qualify oscillator startup and host-buffer
    switching/loading against independent device evidence. Keep primary,
    comparison and reference devices separate. The independent receiver timing

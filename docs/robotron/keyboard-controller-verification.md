@@ -60,8 +60,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   reproduces the original failure and waveforms; its rejected trial voltage is
   consistent in relative terms with the integration equation. The [reference-node
   comparison][reference-node] reproduces the baseline waveforms exactly but fails
-  earlier when host ground becomes the numerical reference. Investigate solved
-  states and conditioning; this sensitivity is not a remedy or physical prediction.
+  earlier when host ground becomes the numerical reference. The [linear-system
+  review][linear-system] finds large individual equation residuals hidden by small
+  aggregate error; independent higher-precision solves agree with each other but
+  differ from the recorded solutions. Test a full-run numerical remedy while
+  preserving device equations and acceptance criteria. Snapshot corrections do
+  not repair prior state history or establish physical behavior.
 - **Closed-board execution:** the [completed capture][board-host] reaches the
   scenario endpoint, but the producer waveform gate fails: reset release precedes
   the saved window. It also uses the legacy receiver observer. Capture from time
@@ -80,6 +84,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 [receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
 [arithmetic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/truncation-arithmetic/assessment.json
+[linear-system]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-linear-state-audit/assessment.json
 [reference-node]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-reference-node-review/assessment.json
 [inductor]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-inductor-state-audit/assessment.json
 [analog-replay]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-analog-driver-replay-matched-trtol/assessment.json
