@@ -76,5 +76,64 @@
       "sha256": "e72447dabc976d3244f45e01c1ba7bd10eb254eb8f19ea5c44ccc505a6974398",
       "review": "Manufacturer data; comparison only, replacement not qualified"
     }
-  ]
+  ],
+  "specimen_evidence": {
+    "id": "psu002",
+    "owner": "Danila",
+    "specimen": "PSU002",
+    "source_register": "https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/reference/owner-20261019-psu002.json",
+    "owner_observations": [
+      "PSU002 is otherwise identical to PSU001.",
+      "One transistor, BU126, is missing."
+    ],
+    "visible_observations": [
+      {
+        "photo": "PXL_20261019_085745986.jpg",
+        "observation": "PSU002 inventory label on component side."
+      },
+      {
+        "photo": "PXL_20261019_085940666.MP.jpg",
+        "observation": "Connector board marked 105-330-2757-7; rail labels 5N, 12N, 12P, 5P and 0V."
+      }
+    ],
+    "limits": [
+      "PSU002 is a separate specimen; owner comparison does not transfer PSU001 repair history or identify the installed museum supply.",
+      "Missing BU126 has no assigned schematic designator. Reference drawing transistor types remain unchanged pending trace and placement correlation.",
+      "Photographs support placement, markings and visible copper inspection; hidden connections and electrical condition are not established."
+    ],
+    "previews": [
+      {
+        "file": "photos/PXL_20261019_085745986.webp",
+        "sha256": "e039d0e420c0206d80412f257fd7ead6d32a9cba630445e89723781419a3022b",
+        "original": "PXL_20261019_085745986.jpg",
+        "original_sha256": "1a3fe0aeed830e4462bb31ba623633248ae6d5d00417c9f1f423bc22f91f5ea1",
+        "width": 1600,
+        "height": 1205
+      },
+      {
+        "file": "photos/PXL_20261019_085748827.webp",
+        "sha256": "c8c3db03f254564f2cb8cde3809dee2f1ea3b9fbc713723dcbca0acafa2c959c",
+        "original": "PXL_20261019_085748827.jpg",
+        "original_sha256": "f0b6822b76a2ed1c501a3631ab72b267485c8eed50c44b6c57dc8675b673c42d",
+        "width": 1600,
+        "height": 1205
+      },
+      {
+        "file": "photos/PXL_20261019_085903438.webp",
+        "sha256": "57e5f62a0a858248f2f02be3fb52d58f03df50603fc89f63299b5212762d5314",
+        "original": "PXL_20261019_085903438.jpg",
+        "original_sha256": "29017b761210b36d2002aba54769c0e49a852319d0c30d0262346d30cf8e5cca",
+        "width": 1600,
+        "height": 1205
+      },
+      {
+        "file": "photos/PXL_20261019_085940666.MP.webp",
+        "sha256": "1044a2fb096ceb43854440aedd136082f783d2992a7153b136996eef5fd55a3b",
+        "original": "PXL_20261019_085940666.MP.jpg",
+        "original_sha256": "492b00c3debe720bdae94b38fe823ce56e72a561e8647d5db4054da62daf8a29",
+        "width": 1205,
+        "height": 1600
+      }
+    ]
+  }
 }

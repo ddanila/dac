@@ -18,31 +18,23 @@ The circuit reference is PC 1715 drawing 56-330-2770-5. Matching it to the museu
 W/M specimen remains unverified. Do not import the private inventory's PSU001
 serial number, repair history or identification as evidence about this specimen.
 
-## Source review, 2026-10-19
+## Specimen evidence
 
-- Retrieved the service scan from tiffe.de and recorded its SHA-256 and size.
-  The PSU chapter is printed pp.93–101, PDF pp.95–103. OCR was used for navigation,
-  not as authority for component labels or values. Visually inspected the service
-  check pages, including the continuation on printed p.101.
-- Inspected the original schematic on PDF p.20, rotating it and enlarging the
-  startup/driver sections. Verified the discrete-transistor list and the separate
-  12PM/12P paths. Visually inspected PDF pp.18–19 for the two placement drawings.
-  Their differences from the schematic must not be silently merged into a BOM.
-- Documented the V12/V15 discrepancy in §1.9.8.1. The circuit identifies V15 as
-  the switch; V12 belongs to the secondary rectifier group.
-- Used INTEGRAL's manufacturer KT818 specification (2011, mirrored by Arbatex),
-  ST's TIP35C/TIP36C Rev.5 datasheet and current product page, and onsemi's FJL6920
-  Rev.2 datasheet. The Soviet-family candidate is КТ818Б; TIP36C is a modern
-  candidate requiring rewiring/mounting review. FJL6920 is a comparison illustrating
-  why voltage/current ratings alone do not establish an SU169 replacement.
-- The source register distinguishes manufacturer authorship from archive hosting,
-  records exact locators and checksums where files were retrieved, and retains
-  Ulrich Zander / XEPb.org / Jens Müller credits for the linked supporting archive.
+Owner photographs of PSU002 are preserved with hashes and observations in the
+[CAD source register](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/reference/owner-20261019-psu002.json).
+The guide includes selected previews. The owner reports PSU002 is otherwise
+identical to PSU001, with one BU126 missing. Its schematic position remains
+unassigned; this observation does not revise the historical transistor table.
+The connector-board marking and rail labels are recorded in `sources.json`.
 
-The three pages use the same numerical tables, connector net names, source IDs and
-section IDs. Review was one AI-assisted editorial pass, not independent human
-technical review. No physical measurement, insulation test, PSU repair or
-substitution trial was performed. No component is described as bench-qualified.
+Use the photographs to correlate placement and visible copper with the original
+schematic and placement drawings before assigning designators or transferring
+geometry. Hidden connections, circuit identity with the installed museum supply,
+and electrical condition remain unverified.
+
+The source register holds scan revisions, checksums and page locators. Preserve
+the distinction between schematic and placement drawings, and the service
+text's V12/V15 discrepancy. No replacement candidate is bench-qualified.
 
 ## Maintaining the guide
 
@@ -56,17 +48,3 @@ For publication, build with `DAC_BASE=/dac/ npm run build`, check all three page
 at the `/dac/` prefix as well as both museum entry points, and check mobile table
 scrolling, print layout and internal links. The existing Pages workflow publishes
 successful main-branch builds; a pushed commit alone does not prove deployment.
-
-## Publication checks, 2026-10-19
-
-- Production build with `/dac/` base: passed (existing large-bundle advisory).
-- Existing `ci-shards.spec.js` and `inspection.spec.js`: 8 passed.
-- Browser smoke check against the production preview: all three language pages
-  returned HTTP 200 with JavaScript disabled; language navigation, local links,
-  fragment targets and numerical-table parity passed.
-- Both the museum page link and the PSU detail-card link resolved under `/dac/`.
-- Desktop, mobile replacement cards and print-media styling were visually
-  reviewed. Mobile pages had no document-level horizontal overflow.
-
-These checks establish publication behaviour, not electrical correctness or
-replacement qualification. See the source and hardware-review limits above.
