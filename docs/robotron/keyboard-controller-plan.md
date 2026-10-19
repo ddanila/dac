@@ -41,10 +41,11 @@ reconstruction requirements below remain in scope.
    models against the intended device's conditions before board use. Keep primary,
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
-4. **Qualify the coupled reference board.** Review a time-zero capture with rising
-   RxC sampling, then complete scenario/refinement coverage, oscillator phase,
-   receiver levels/loading, bus timing and supply recovery. Logical agreement and
-   receiver timing screens cannot substitute for these electrical gates.
+4. **Qualify the coupled reference board.** Resolve the CPU clock high-level and
+   timing failures exposed by the startup-inclusive capture. Complete host reviews,
+   scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
+   timing and supply recovery. Logical agreement and receiver timing screens
+   cannot substitute for these electrical gates.
 5. **Identify residual specimen dependencies.** Exhaust photographs, package
    drawings and published circuit constraints first. For each remaining ambiguity,
    state the alternatives and the observation that would distinguish them.

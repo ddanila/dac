@@ -54,11 +54,12 @@ below are relative to the CAD controller directory unless stated otherwise.
   arithmetic does not establish an accurate accumulated trajectory. Locate where
   accepted/rejected state histories diverge before choosing another intervention;
   require completed refinement pairs before adopting a numerical remedy.
-- **Closed-board execution:** the [completed capture][board-host] reaches the
-  scenario endpoint, but the producer waveform gate fails: reset release precedes
-  the saved window. It also uses the legacy receiver observer. Capture from time
-  zero with corrected rising-RxC sampling; review startup and valid-supply behavior
-  explicitly. Completion and bounded host screens do not establish qualification.
+- **Closed-board execution:** the [startup-inclusive capture][board-host] passes
+  reset activity, first fetch, rising-RxC bit transport and scenario-window checks.
+  CPU clock high-level and timing screens fail within the declared valid-supply
+  range; later supply-valid intervals do not all include fresh reset evidence.
+  Resolve these electrical failures before acceptance. Host reviews and completed
+  refinement remain required; producer success does not establish qualification.
 - **Host and cable applicability:** [load screening][host-loads] exercises explicit
   capacitance/leakage assumptions. [Filter checks][filter] verify generated winding
   hypotheses, while [D104 switching checks][host-switching] leave buffer
@@ -79,7 +80,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 [receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
-[board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-load-long/assessment.json
+[board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-rising-full-startup/assessment.json
 [host-loads]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loads/assessment.json
 [filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json
 [driver-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-driver-switching/assessment.json
