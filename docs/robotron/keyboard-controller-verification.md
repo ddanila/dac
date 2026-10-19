@@ -49,10 +49,13 @@ below are relative to the CAD controller directory unless stated otherwise.
 - **Transition failure:** [state audits][state-audit] distinguish truncation
   rejection from Newton failure. [Exact residuals and independent solves][linear-system]
   establish linear-solve error in selected stamped systems. [Fresh ordering and
-  equation scaling][scaling] do not resolve the transient failure. Validate
-  higher-precision solving on those systems, then during transient evolution
-  with baseline controls and unchanged acceptance criteria. Frozen-system
-  accuracy does not repair prior history or establish physical behavior.
+  equation scaling][scaling] do not resolve the transient failure.
+  [Higher-precision transient replay][mpfr] corrects the audited linear solves
+  but still fails: the final Newton trial converges, then flux-history truncation
+  rejects the step. Exact arithmetic on that history gives the same proposal.
+  Compare precision and integration methods, then isolate state-history and
+  stamping sensitivity. Accurate stamped equations do not establish accurate
+  history or physical device behavior.
 - **Closed-board execution:** the [completed capture][board-host] reaches the
   scenario endpoint, but the producer waveform gate fails: reset release precedes
   the saved window. It also uses the legacy receiver observer. Capture from time
@@ -82,6 +85,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 [xyce]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json
 [release-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-release-repress-minbreak-fine/assessment.json
 [analog-guide]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence
+[mpfr]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-mpfr-transient/assessment.json
 [scaling]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-sparse-scaling-transient/assessment.json
 [state-audit]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-reference-state-audit/assessment.json
 

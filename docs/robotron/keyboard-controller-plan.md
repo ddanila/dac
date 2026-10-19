@@ -31,14 +31,13 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Resolve numerical failures.** Exact residuals and independent solves establish
-   linear-solve errors; fresh ordering and equation scaling have not resolved the
-   transient failure. Validate higher-precision solving on the recorded systems,
-   then test it during transient evolution before the failing transition, with a
-   disabled control that reproduces the baseline. Snapshot corrections do not
-   repair prior state history. Preserve branch physics, convergence criteria and
-   absolute-time waveform comparisons. A numerical remedy must subsequently pass
-   the coupled-board gates; it does not qualify device dynamics.
+2. **Resolve numerical failures.** Higher-precision transient solving corrects the
+   audited linear equations but still ends in flux-history truncation rejection
+   after Newton convergence. Exact arithmetic on the final logged history leaves
+   that rejection unchanged. Compare precision and integration methods, then
+   isolate state-history and stamping sensitivity before changing the model. Preserve branch physics, tolerance budgets and absolute-time waveform
+   comparisons. A numerical remedy must subsequently pass the coupled-board gates;
+   it does not qualify device dynamics.
 3. **Constrain device dynamics.** Qualify oscillator startup and host-buffer
    switching/loading against independent device evidence. Keep primary,
    comparison and reference devices separate. The independent receiver timing
