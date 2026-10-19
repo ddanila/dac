@@ -134,6 +134,50 @@
         "width": 1205,
         "height": 1600
       }
-    ]
+    ],
+    "comparison": {
+      "specimen": "PSU001",
+      "owner": "Danila",
+      "source_register": "https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/reference/owner-20261019-psu001.json",
+      "visible_observations": [
+        {
+          "photo": "PXL_20261019_091009588.jpg",
+          "observation": "Transistor marked BU126 and 04 87 on a vertical plate heatsink."
+        },
+        {
+          "photo": "PXL_20261019_091015286.jpg",
+          "observation": "PSU001 inventory label and surrounding assembly visible."
+        },
+        {
+          "photos": [
+            "PXL_20261019_091012624.jpg",
+            "PXL_20261019_085748827.jpg"
+          ],
+          "observation": "BU126 heatsink position in PSU001 corresponds visually to the empty heatsink position in PSU002, using the adjacent magnetic component, capacitor group and resistor pair as landmarks."
+        }
+      ],
+      "limits": [
+        "Photo comparison establishes the populated and empty mounting positions, not a schematic designator or electrical equivalence.",
+        "The fitted BU126 does not establish factory population, repair history or qualification as a replacement for the reference drawing transistor."
+      ],
+      "previews": [
+        {
+          "file": "photos/PXL_20261019_091009588.webp",
+          "sha256": "cda9f8d5c9bad2288a3fcb27826b52bfd1a837db138060f41e88a106a2fc39d7",
+          "original": "PXL_20261019_091009588.jpg",
+          "original_sha256": "a37cac14ea1a55fb8f93ce093ac79b5892b0a942078fbdeeaaef46f343855a6a",
+          "width": 1600,
+          "height": 1205
+        },
+        {
+          "file": "photos/PXL_20261019_091015286.webp",
+          "sha256": "31d34d39c343c3b029f72eec38bb818baaecb995a2a91884a834b922662839b9",
+          "original": "PXL_20261019_091015286.jpg",
+          "original_sha256": "c7fe307fc7ccbbb981ee4d44467d5f47dcab554470001f48ce9e180f1b3f2971",
+          "width": 1600,
+          "height": 1205
+        }
+      ]
+    }
   }
 }

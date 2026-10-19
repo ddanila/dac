@@ -25,7 +25,11 @@ Owner photographs of PSU002 are preserved with hashes and observations in the
 The guide includes selected previews. The owner reports PSU002 is otherwise
 identical to PSU001, with one BU126 missing. Its schematic position remains
 unassigned; this observation does not revise the historical transistor table.
-The connector-board marking and rail labels are recorded in `sources.json`.
+PSU001 comparison photographs visibly confirm the BU126 marking and the matching
+heatsink position left empty on PSU002. They do not establish factory population
+or qualify BU126 as a replacement for the historical drawing’s transistor.
+The connector-board marking, rail labels and comparison provenance are recorded
+in `sources.json`.
 
 Use the photographs to correlate placement and visible copper with the original
 schematic and placement drawings before assigning designators or transferring
