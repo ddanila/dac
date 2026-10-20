@@ -20,16 +20,14 @@ serial number, repair history or identification as evidence about this specimen.
 
 ## Specimen evidence
 
-Owner photographs of PSU002 are preserved with hashes and observations in the
-[CAD source register](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/reference/owner-20261019-psu002.json).
-The guide includes selected previews, a component-side locator and a connector
-solder-side orientation drawing. Placement drawing 63-330-2760-4 correlates the
-BU126 in PSU001 and the empty position in PSU002 with V15. The circuit specifies
-SU169 there. This is a layout identification, not a continuity test or replacement
-qualification. The connector mating-face pin 1 remains unassigned.
+The guide's [specimen table](../../public/docs/robotron-psu/en.html#specimens)
+owns the PSU001/PSU002/PSU003 summary. `sources.json` links canonical CAD registers
+for original photographs, identification, owner reports and layout correlations.
+Keep shield identifiers separate from PCB serial numbers, and observed population
+separate from the reference drawing's part list.
 
-Keep observations and comparison evidence in `sources.json` and the CAD registers.
 The SVG locators show orientation and selected positions, not production geometry.
+Placement correlation does not establish continuity or replacement suitability.
 
 The source register holds scan revisions, checksums and page locators. Preserve
 the distinction between schematic and placement drawings, and the service

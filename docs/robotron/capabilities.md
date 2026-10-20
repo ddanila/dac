@@ -5,7 +5,7 @@ source manifests for current versions. This matrix describes behavior and limits
 
 | Subsystem | Implemented and checked | Remaining boundary | Evidence/check |
 |---|---|---|---|
-| CPU/memory | Shared Z80; 256 KiB; CAS-PROM read/write banking | No specimen bus trace comparison | Native machine/device, historical MAME and WASM parity tests |
+| CPU/memory | Z80 execution and CAS-PROM read/write banking | No specimen bus trace comparison | Native machine/device, historical MAME and WASM parity tests |
 | Display | Scheduled byte fetches, burst gaps, FIFO, scanline-sampled glyphs/cursor/intensity | Ideal local DACK, no dot-level contention or verified CPU IRQ wiring | `robotron_devices_test.c`; historical MAME monochrome raster comparison |
 | DMA | Addressing, search, WAIT, terminal count, interrupts, timed read/write phases, auto-restart and byte/burst/continuous ownership | Half-clock BUSRQ/BUSAK edges, pulse output and exhaustive silicon qualification absent | Native device tests; implementation in `robotron.c` |
 | Keyboard | Unpatched S600 CPU, matrix, serial packets, Caps/SI/SO LED latches | Specimen replacement EPROM and legend differences not identified | S600 ROM tests; owner keyboard photos |
@@ -52,13 +52,11 @@ investigation leads, not proof that either implementation matches hardware.
 
 ## Current museum tools and evidence
 
-- **Transfers:** DACRX and DACTX provide both directions through real guest SIO
-  software. `transfer-qualification.json` records a binary TOS/M round trip,
-  bad-checksum retry and duplicate-block handling. Browser protocol tests cover
-  number wrap, repeated EOT and record padding. Deadlines advance with emulated
-  CPU clocks. Reset/capture reset cancels the active transfer. CP/M padding remains
-  in downloads; checksum XMODEM cannot infer original byte length or distinguish
-  every arbitrarily delayed duplicate acknowledgement.
+- **Transfers:** DACRX and DACTX provide both directions through guest SIO
+  software. Follow the [guest instructions](../../public/examples/robotron-v24/README.txt);
+  [qualification](transfer-qualification.json) owns tested scenarios.
+  CP/M padding remains in downloads; checksum XMODEM cannot infer original byte
+  length or distinguish every arbitrarily delayed duplicate acknowledgement.
 - **Timeline:** opt-in, bounded actual bus events: I/O, interrupt acknowledgement,
   DMA reads/writes, physical memory offsets and contemporaneous FDC context. Select
   a chip or the disk track; export JSON. Context is labelled separately from an
@@ -68,10 +66,9 @@ investigation leads, not proof that either implementation matches hardware.
   holdout landmarks. Training and holdout RMS are separate. Export includes raw
   points, viewport and projection. Lens distortion and depth remain unresolved;
   pixel residuals do not establish millimetres or physical print verification.
-- **Loading:** current default retains the exact geometry cache and STL fallback.
-  Cache pipeline identity is checked. `loading-experiments.json` records comparisons
-  of transport packs, worker decoding and a throttled mobile viewport.
-  Measurements do not justify changing defaults. Reproduce optional packs with
+- **Loading:** the exact geometry cache retains an STL fallback.
+  [Loading experiments](loading-experiments.json) do not justify changing defaults.
+  Reproduce optional packs with
   `node scripts/pack-geometry-cache.mjs`, then profile `?geometryPacks`; add
   `geometryWorker` for worker decompression/bounds. Generated packs are experimental
   derived assets, not canonical models. Heap measurements omit GPU/worker memory.

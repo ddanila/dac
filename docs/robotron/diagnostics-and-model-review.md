@@ -3,12 +3,10 @@
 ## Diagnostic export
 
 Under **Diagnose hardware → Download diagnostic report**, download a checksummed
-JSON envelope containing the DAC commit, emulator SHA-256, model identity,
-firmware identity, current hardware settings, current inspection view/selection/
-measurement and already captured bus events. Capture events in the
-existing timeline first; export does not silently start capturing or pause the
-machine. Mutable state is copied at one worker boundary before asynchronous
-hashing, including optional snapshots/disks.
+JSON report of runtime/model identity, hardware and inspection settings, and
+already captured bus events. Capture events in the timeline first; exporting does
+not start capture or pause the machine. Optional state attachments share one
+worker snapshot boundary.
 
 Memory and disk contents are excluded by default. Bus events themselves may
 contain program bytes. Two explicit controls add a production-format checkpoint
@@ -24,8 +22,8 @@ saved locally. The existing sound checkbox still enables/disables all playback.
 Gain changes are smoothed. Both synthesized drive motors and STEP clicks pass
 through the drive gain. Loop smoothing is a playback effect; original owner recordings remain unchanged.
 
-Sound controls retain mute settings separately from the original levels;
-solo is temporary. Restore defaults clears both. Fan, keyboard and switch previews
+Mute settings are retained; solo is temporary. Restore defaults clears both.
+Fan, keyboard and switch previews
 play short excerpts of the owner's recordings, require enabled audio and do
 not operate the machine. The synthesized drive sounds have no recorded preview.
 Audio context state and resume failures are shown alongside a Resume audio button.
@@ -73,11 +71,9 @@ the original mesh; the separately opened upper shell does not move captive ends.
 ## Comparing diagnostic reports
 
 The diagnostic panel opens two checksummed reports locally. It displays
-build/model/firmware identities, hardware fields, disk identities and both event
-captures. A bounded sequence alignment matches bus master, operation and mapped
-address, exposing inserted/deleted operations without shifting every later event.
-Values and controller context remain compared; clock-origin offset and relative
-timing drift are reported separately. The preview is bounded.
+identities, hardware settings and captured events side by side. Event alignment
+exposes inserted/deleted operations; clock-origin offset and relative timing drift
+are reported separately. The preview is bounded.
 Repeated operations can align ambiguously; this is not proof of equivalent guest
 execution. Attachments are not rendered, restored or uploaded. Malformed timeline
 lengths and oversized metadata are rejected; clearing a report releases it.

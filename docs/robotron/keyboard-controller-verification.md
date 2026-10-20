@@ -28,79 +28,34 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 ## Current findings and their consequences
 
-- **Physical reconstruction:** local photo registration supports placed joints
-  and visible copper, but the data/clock continuations, under-package attachment,
-  global underside fit and discrete terminal mapping remain unresolved. Package
-  evidence constrains resistor-bank candidates without proving primary-specimen
-  identity or orientation. Visual bodies and raised leads do not establish pads;
-  dimensions and lead heights remain estimates. See CAD `route-evidence.json`,
-  `component-evidence.json`, `generated/connector-review.json` and
-  `generated/qualification.json` for individual findings.
-- **Receiver and service coverage:** [rising RxC][receive-edge] is the reference
-  sampling edge. Retained service pairs support logical and serial-edge agreement,
-  including [release/repress][release-pair] and indicator intent timing. The core's
-  [evidence index][analog-guide] owns scenario coverage and refinement status.
-  The [independent timing screen][receiver-timing] uses Zilog conditions as a
-  diagnostic reference;
-  it does not establish U856 thresholds, loading or device applicability.
-  The local `firmware-host-rising-repeat-minbreak` capture has completed and
-  passes its functional checks, but remains unqualified. Host-voltage/timing
-  review, matched refinement and publication of the reviewed evidence remain open.
-- **Voltage convergence:** [single-press refinement][paired-host] and
-  [release/repress comparison][release-pair] retain material absolute-time voltage
-  differences despite timing agreement. Qualify voltage convergence independently;
-  phase alignment or discarded transition peaks cannot resolve this gate.
-- **Numerical convergence:** [higher-precision replay][mpfr] completes with Gear
-  at the coarse step but fails timestep refinement. Increasing linear precision
-  leaves the recorded trajectories unchanged. [Higher-precision integration][integration],
-  alone and combined with linear solving, also fails. Accurate final local
-  arithmetic does not establish an accurate accumulated trajectory. Locate where
-  accepted/rejected state histories diverge before choosing another intervention;
-  require completed refinement pairs before adopting a numerical remedy.
-  The local `host-capacitor-stamp-audit` control reproduces the source deck,
-  waveforms and failure diagnostic. Its capacitor analysis and retained assessment
-  are pending; reproduction alone does not identify a remedy. These local capture
-  names refer to the core's `build/keyboard-controller-analog/` directory, not
-  published qualification reports.
-- **Closed-board execution:** the [startup-inclusive capture][board-host] passes
-  reset activity, first fetch, rising-RxC bit transport and scenario-window checks.
-  CPU clock high-level and timing screens fail within the declared valid-supply
-  range; later supply-valid intervals do not all include fresh reset evidence.
-  Host input-voltage, nominal-threshold clock-width and sampled-stability screens
-  complete, without qualifying device applicability. Resolve the CPU-clock and
-  supply-recovery failures and complete refinement before acceptance.
-- **Host and cable applicability:** [load screening][host-loads] exercises explicit
-  capacitance/leakage assumptions. [Filter checks][filter] verify generated winding
-  hypotheses, while [D104 switching checks][host-switching] leave buffer
-  dynamics unqualified. The [reference 7406 fixture][driver-switching] shows that
-  the generic driver meets published maximum delays while switching much faster
-  than typical values. Constrain its charge storage and capacitance independently;
-  typical delays do not uniquely determine those parameters. The [public vendor
-  candidate][vendor-driver] fails SN7406 DC admission despite its shared device
-  header. Common-core photo evidence supports investigating coupling, but the
-  [matched firmware comparison][firmware-filter] fails with both tested winding
-  hypotheses. Neither identifies physical parameters or a unique failure cause.
-- **Oscillator applicability:** primary К555ЛА3, comparison D100D and reference
-  DL000 require separate conditions. [Device reviews][device-review] and
-  [internal-state captures][internal-state] constrain candidates without qualifying
-  startup. [Independent solver replay][xyce] reproduces transfer branches, weakening
-  an ngspice-only explanation but not establishing physical device behavior.
+The requirement table owns physical and integration gaps. Electrical conclusions
+below are scoped to the inputs in the linked reports; the core's
+[evidence index](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence)
+owns scenario coverage and experiment details.
+
+| Finding | Consequence | Evidence |
+| --- | --- | --- |
+| Reference reception uses rising RxC; service comparisons support logical agreement | Service fixtures do not qualify onboard clock/reset or U856 device conditions | [Receive edge][receive-edge], [receiver timing][receiver-timing] |
+| Refinement retains absolute-time voltage differences despite serial agreement | Do not align away phase errors or discard transition peaks to claim convergence | [Single press][paired-host], [release/repress][release-pair] |
+| Higher-precision local arithmetic has not resolved trajectory failure | Investigate accumulated state and stamping; a remedy requires completed refinement | [Linear solve][mpfr], [integration][integration] |
+| Startup-inclusive execution exposes CPU clock-level/timing failures and incomplete reset recovery | Functional firmware output cannot close full-board electrical qualification | [Startup assessment][board-host] |
+| Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
+| Oscillator candidates remain unqualified | Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions | [Device review][device-review], [independent solver][xyce] |
+
+Review and publication of the pending repeat and capacitor captures are tasks in
+the [plan](keyboard-controller-plan.md#next-work-and-acceptance), not accepted
+qualification evidence.
 
 [receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
 [board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-rising-full-startup/assessment.json
-[host-loads]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-loads/assessment.json
-[filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/filter-coupling/assessment.json
 [driver-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-driver-switching/assessment.json
 [host-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json
 [device-review]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/diode-role-review/assessment.json
-[internal-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/oscillator-internal/assessment.json
 [xyce]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json
 [release-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-release-repress-minbreak-fine/assessment.json
-[analog-guide]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence
 [integration]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-mpfr-integration/assessment.json
-[vendor-driver]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-driver-vendor-review/assessment.json
 [firmware-filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-filter-strict/assessment.json
 [mpfr]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-mpfr-transient/assessment.json
 

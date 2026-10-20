@@ -23,11 +23,9 @@ the payload, and collection import is atomic.
 
 ## Graphics recovery, cuts and sharing
 
-A lost WebGL context displays a notice and suspends graphics submission while the
-emulator worker continues. Three.js restores geometry/textures; DAC regenerates
-its reflected-light environment, refreshes shadows and resumes rendering. The
-same recovery applies to component close-ups. If the browser cannot restore its
-context, the notice remains; save/export machine state before reloading.
+A lost WebGL context displays a notice while the emulator continues. Rendering
+and component close-ups resume when graphics recover. If the notice remains,
+save/export machine state before reloading.
 
 **Section view, sharing and navigation** provides X/Y/Z cuts, a position slider and
 a reverse-side option. Combine a cut with **Isolate assembly**. Cuts apply to model

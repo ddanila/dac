@@ -14,35 +14,18 @@ during loading can be lost.
 
 ## Independent reference scope
 
-The original diagnostic MAME probe remains available. The historical probe
-boots the unmodified S550 ROM and TOS/M disk in DAC and MAME 0.289 `rt1715w`,
-drives the same S600 switch coordinates, and compares these checkpoints:
+Independent probes compare the reference firmware/media against MAME using the
+same S600 switch inputs. They cover guest commands and printer bytes, application
+save/reopen workflows, and serial receive/error behavior. Exact scenarios, MAME
+version, source revisions and comparisons belong in the reports below and the
+[comparison tools](https://github.com/ddanila/dac-emulation/tree/main/tools).
 
-1. Boot to `A>`.
-2. `DIR`.
-3. `TYPE AUTOEXC.SUB`.
-4. `PIP B:=A:PIP.COM`.
-5. `DIR B:`.
-6. `PIP LST:=AUTOEXC.SUB`, including exact captured printer bytes.
-
-Text and monochrome pixels are compared. Colour and only the final blinking
-cursor cell are excluded. The PIP.COM copy on each B disk must equal
-the original, using an independent CP/M directory reader. Original media are
-copied into temporary storage. Additional independent suites use the real S600 to create/save/reopen a WordStar
-document and create/compile/run a Turbo Pascal program. Full text screens and
-saved file bytes must match; application raster differences are recorded but do
-not affect pass/fail because their cursor is not the CCP prompt cursor.
-Native fault and mixed-device snapshot regressions remain separate from MAME
-qualification; their fixtures and reports define exact interruption coverage.
-
-The serial probe compares S600 input through the real keyboard CPU and SIO A,
-including 8N1, an intentionally mismatched 7E1 receiver, and FIFO overflow.
-It compares full data
-registers and parity status, rather than masking away a discrepancy. Neither
-probe establishes clock equality, arbitrary external line-error behavior or
-physical-specimen accuracy. Source behavior and Lua observation interfaces are
-documented in [MAME's driver](https://github.com/mamedev/mame/blob/mame0289/src/mame/robotron/rt1715.cpp)
-and [Lua device reference](https://docs.mamedev.org/luascript/ref-devices.html).
+Command checks compare text and monochrome raster, excluding colour and the final
+blinking prompt cursor. Application checks compare text and saved file bytes;
+application raster differences are diagnostic rather than pass/fail. Serial checks
+retain complete data and parity status. These comparisons do not establish clock
+equality, arbitrary external line-error behavior or specimen accuracy. Original
+media are copied into temporary storage for tests.
 
 Reports: [historical commands and printer](historical-comparison.json),
 [WordStar](wordstar-comparison.json), [Turbo Pascal](pascal-comparison.json),
@@ -59,12 +42,10 @@ npm run test:cross
 npm run build
 ```
 
-`test:historical` explicitly enables the longer S600 workflow and S600 mid-write
-variant. Ordinary CI retains its existing historical `DIR` check and adapter
-mid-write test, but does not add the longer boot workflows, MAME or HDL.
-Cross-browser qualification covers focused Firefox/WebKit workflows, including
-practice and diagnostic-review tools. Retained JSON identifies tested builds,
-coverage and failures; passing an older report does not qualify later changes.
+`test:historical` enables longer guest workflows. MAME, HDL and extended circuit
+qualification remain separate from ordinary browser CI. The
+[root guide](../../README.md#model-review-and-ci) links the CI policy; retained
+JSON reports qualify only their recorded inputs and builds.
 
 From the sibling `dac-emulation` checkout:
 

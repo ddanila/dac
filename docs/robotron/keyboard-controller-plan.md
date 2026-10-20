@@ -35,10 +35,10 @@ reconstruction requirements below remain in scope.
    terminals, supporting photo landmarks, native copper and any unresolved span;
    regenerate KiCad checks, OpenSCAD geometry and museum inspection together.
    Then close remaining placement, underside-registration and DRC gaps.
-2. **Close pending capture reviews.** Review the completed held-key/repeat/release
+2. **Close pending capture reviews.** Review the held-key/repeat/release
    service capture for host voltage and receiver timing, then obtain a matched
    timestep-refinement pair. Preserve its source revision and model assumptions
-   when constructing the pair. Analyze the completed capacitor-stamp audit and
+   when constructing the pair. Analyze the capacitor-stamp audit and
    retain its assessment and reproducibility evidence before extending that
    experiment. Functional success and identical diagnostic replay are not
    electrical qualification.
