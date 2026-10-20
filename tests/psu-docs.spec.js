@@ -22,6 +22,16 @@ for (const lang of ['de', 'en', 'ru']) {
         expect(await target.text(), href).toContain(`id="${decodeURIComponent(url.hash.slice(1))}"`);
       }
     }
+    // HTTP 200 alone can be an HTML fallback. Decode every photo and SVG in
+    // the browser, including lazy images, before accepting asset-only changes.
+    const images = page.locator('img');
+    expect(await images.count()).toBeGreaterThan(0);
+    for (const img of await images.all()) {
+      await img.scrollIntoViewIfNeeded();
+      await expect.poll(() => img.evaluate(el =>
+        el.complete && el.naturalWidth > 0 && el.naturalHeight > 0),
+      {message: `Image failed to decode: ${await img.getAttribute('src')}`}).toBe(true);
+    }
     for (const width of [390, 1280]) {
       await page.setViewportSize({width, height: 900});
       expect(await page.locator('body').evaluate(el => el.scrollWidth)).toBeLessThanOrEqual(width);

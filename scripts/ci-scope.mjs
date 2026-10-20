@@ -1,9 +1,9 @@
 import { validatedBaseline } from './ci-baseline.mjs';
 import { execFileSync } from 'node:child_process';
-import { appendFileSync, readdirSync } from 'node:fs';
+import { appendFileSync, readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { visualTestPattern } from './ci-shards.mjs';
+import { assignFiles, visualTestPattern } from './ci-shards.mjs';
 
 export const crossBrowserFiles = [
   'portable-sessions.spec.js', 'checkpoints.spec.js', 'workbench.spec.js',
@@ -11,7 +11,9 @@ export const crossBrowserFiles = [
   'robotron-activities.spec.js', 'keyboard-controller.spec.js',
 ];
 const prose = file => ['README.md', 'MODEL-HISTORY.md'].includes(file) || /^docs\/.+\.md$/.test(file);
-const reference = file => /^public\/docs\/robotron-psu\/[^/]+\.(html|css|json)$/.test(file);
+const reference = file => /^public\/docs\/robotron-psu\/(?:[^/]+\.(html|css|json|svg)|photos\/[^/]+\.(webp|png|jpe?g))$/.test(file);
+const nativeTests = new Set(['tests/workbench.spec.js', 'tests/serial.spec.js']);
+const durations = JSON.parse(readFileSync(new URL('../tests/ci-durations.json', import.meta.url))).seconds;
 export function scopeFor(files) {
   if (!files.length) return 'full';
   if (files.every(prose)) return 'docs';
@@ -28,7 +30,7 @@ export function scopeFor(files) {
   return visual ? 'visual' : 'full';
 }
 
-export function planFor(files, allTests, forceFull = false) {
+export function planFor(files, allTests, forceFull = false, seconds = durations) {
   let scope = forceFull ? 'full' : scopeFor(files);
   // Deleted/renamed tests must not produce an empty, apparently successful run.
   if (scope === 'tests' && files.some(f => f.endsWith('.spec.js') && !allTests.includes(f))) scope = 'full';
@@ -41,15 +43,19 @@ export function planFor(files, allTests, forceFull = false) {
   const matrix = [];
   if (selected.length) {
     const sharded = ['full', 'visual'].includes(scope);
+    // Use the same assignment and duration inputs as playwright.config.js.
+    const bins = sharded ? assignFiles(selected, seconds) : [{files: selected}];
     for (const shard of sharded ? ['1', '2'] : ['']) {
-      matrix.push({label: shard ? `chromium-${shard}` : 'chromium', browser: 'chromium', os: 'ubuntu-latest', shard});
+      const assigned = bins[shard ? Number(shard)-1 : 0].files;
+      matrix.push({label: shard ? `chromium-${shard}` : 'chromium', browser: 'chromium', os: 'ubuntu-latest', shard,
+        native: assigned.some(file => nativeTests.has(file))});
     }
     if (cross.length) {
-      matrix.push({label: 'firefox', browser: 'firefox', os: 'ubuntu-latest', shard: ''});
-      matrix.push({label: 'webkit', browser: 'webkit', os: 'macos-latest', shard: ''});
+      matrix.push({label: 'firefox', browser: 'firefox', os: 'ubuntu-latest', shard: '', native: false});
+      matrix.push({label: 'webkit', browser: 'webkit', os: 'macos-latest', shard: '', native: false});
     }
   }
-  return {scope, test_files: selected, native: selected.some(f => ['tests/workbench.spec.js', 'tests/serial.spec.js'].includes(f)), matrix: {include: matrix}};
+  return {scope, test_files: selected, matrix: {include: matrix}};
 }
 
 if (process.env.GITHUB_OUTPUT && process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

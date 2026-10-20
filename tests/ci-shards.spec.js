@@ -51,10 +51,10 @@ test('scoped plans retain all selected tests and all applicable browser checks',
  expect(visual.test_files.filter(f=>crossBrowserFiles.includes(f.slice(6)))).toEqual(expect.arrayContaining(['tests/assembly.spec.js','tests/robotron-review-tools.spec.js','tests/keyboard-controller.spec.js']));
  const reference = planFor(['public/docs/robotron-psu/en.html','README.md'],files);
  expect(reference.scope).toBe('reference');
- expect(reference.native).toBe(false);
- expect(full.native).toBe(true);
- expect(planFor(['tests/serial.spec.js'],files).native).toBe(true);
- expect(planFor(['tests/crt.spec.js'],files).native).toBe(false);
+ expect(reference.matrix.include.every(m=>!m.native)).toBe(true);
+ expect(full.matrix.include.some(m=>m.native)).toBe(true);
+ expect(planFor(['tests/serial.spec.js'],files).matrix.include[0].native).toBe(true);
+ expect(planFor(['tests/crt.spec.js'],files).matrix.include[0].native).toBe(false);
  expect(reference.test_files).toEqual(['tests/psu-docs.spec.js']);
  expect(reference.matrix.include.map(m=>m.browser)).toEqual(['chromium']);
  const testOnly = planFor(['tests/crt.spec.js','README.md'],files);
@@ -66,6 +66,51 @@ test('scoped plans retain all selected tests and all applicable browser checks',
  expect(planFor(['tests/deleted.spec.js'],files).scope).toBe('full');
  expect(planFor(['README.md'],files,true).scope).toBe('full');
  expect(planFor(['README.md'],files).matrix.include).toEqual([]);
+});
+
+test('PSU image changes retain reference checks without narrowing unrelated assets', async () => {
+ const {planFor,scopeFor} = await import('../scripts/ci-scope.mjs');
+ const files = ['tests/psu-docs.spec.js','tests/museum.spec.js'];
+ for (const asset of ['board-locator.svg','connector-solder-view.svg','photos/board.webp','photos/board.png','photos/board.jpg','photos/board.jpeg']) {
+   const path = `public/docs/robotron-psu/${asset}`;
+   const plan = planFor([path,'README.md'],files);
+   expect(plan.scope,path).toBe('reference');
+   expect(plan.test_files,path).toEqual(['tests/psu-docs.spec.js']);
+   expect(scopeFor([path,'src/main.js'])).toBe('full');
+   expect(planFor([path,'src/inspection.js'],files).test_files).toEqual(files);
+ }
+ for (const path of ['public/docs/other/board.svg','public/docs/robotron-psu/runtime.js','public/docs/robotron-psu/photos/script.js','public/docs/robotron-psu/unknown.bin']) {
+   expect(scopeFor([path]),path).toBe('full');
+ }
+});
+
+test('native replay follows shard assignment and remains Chromium-only', async () => {
+ const {planFor} = await import('../scripts/ci-scope.mjs');
+ const files = ['tests/workbench.spec.js','tests/serial.spec.js','tests/museum.spec.js'];
+ // Heavy browser-only work puts both replay consumers in the other shard.
+ const together = planFor(['src/main.js'],files,false,{'tests/museum.spec.js':100});
+ expect(together.matrix.include.map(m=>[m.label,m.native])).toEqual([
+   ['chromium-1',false],['chromium-2',true],['firefox',false],['webkit',false],
+ ]);
+ // Rebalancing must move the requirement with the tests, not pin a shard ID.
+ const split = planFor(['src/main.js'],files,false,{'tests/workbench.spec.js':100,'tests/serial.spec.js':90});
+ expect(split.matrix.include.filter(m=>m.browser==='chromium').every(m=>m.native)).toBe(true);
+ const single = planFor(['tests/workbench.spec.js'],files);
+ expect(single.matrix.include.map(m=>m.native)).toEqual([true,false,false]);
+});
+
+test('actual CI assignments cover every native replay consumer', async () => {
+ const {planFor} = await import('../scripts/ci-scope.mjs');
+ const root = new URL('./',import.meta.url);
+ const files = readdirSync(root,{recursive:true}).filter(f=>f.endsWith('.spec.js')).map(f=>'tests/'+f);
+ const seconds = JSON.parse(readFileSync(new URL('ci-durations.json',root))).seconds;
+ const plan = planFor(['src/main.js'],files);
+ const bins = assignFiles(plan.test_files,seconds);
+ for (const job of plan.matrix.include.filter(m=>m.browser==='chromium')) {
+   const consumers = bins[Number(job.shard)-1].files.filter(f=>
+     f !== 'tests/ci-shards.spec.js' && readFileSync(new URL('../'+f,import.meta.url),'utf8').includes('DAC_NATIVE_REPLAY'));
+   expect(job.native,job.label).toBe(consumers.length>0);
+ }
 });
 
 test('shared changes and unknown paths always require full coverage', async () => {

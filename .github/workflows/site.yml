@@ -16,7 +16,6 @@ jobs:
       scope: ${{ steps.scope.outputs.scope }}
       test_files: ${{ steps.scope.outputs.test_files }}
       matrix: ${{ steps.scope.outputs.matrix }}
-      native: ${{ steps.scope.outputs.native }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -61,23 +60,24 @@ jobs:
       - name: Use Ubuntu main mirror for browser dependencies
         if: runner.os == 'Linux'
         run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
-      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - name: Install selected browser
+        run: npx playwright install --with-deps ${{ matrix.browser }} ${{ matrix.browser == 'chromium' && '--only-shell' || '' }}
       - id: core
-        if: matrix.browser == 'chromium' && needs.build.outputs.native == 'true'
+        if: matrix.native
         run: node -e "const fs=require('fs');fs.appendFileSync(process.env.GITHUB_OUTPUT,'ref='+require('./public/emulator/manifest.json').commit+'\n')"
       - uses: actions/checkout@v7
-        if: matrix.browser == 'chromium' && needs.build.outputs.native == 'true'
+        if: matrix.native
         with:
           repository: ddanila/dac-emulation
           ref: ${{ steps.core.outputs.ref }}
           path: emulation-reference
       - run: make -C emulation-reference build/dac-replay
-        if: matrix.browser == 'chromium' && needs.build.outputs.native == 'true'
+        if: matrix.native
       - name: Selected Chromium checks
         if: matrix.browser == 'chromium'
         run: npm test -- --reporter=line
         env:
-          DAC_NATIVE_REPLAY: ${{ needs.build.outputs.native == 'true' && 'emulation-reference/build/dac-replay' || '' }}
+          DAC_NATIVE_REPLAY: ${{ matrix.native && 'emulation-reference/build/dac-replay' || '' }}
       - name: Selected cross-browser checks
         if: matrix.browser != 'chromium'
         run: npm run test:cross -- --project=${{ matrix.browser }}
