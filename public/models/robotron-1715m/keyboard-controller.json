@@ -26794,7 +26794,7 @@
     "schema": 1,
     "scope": "Physical route review, not new connectivity evidence. X1 serves the matrix/LEDs; XT1 is the host cable. Reference endpoints are targets for tracing, not observed attachments.",
     "inputSha256": {
-      "connection-review.json": "9fec4a245a2353d6dab54add89a36de8aa8642e631c68a8dfadb6abb42b04fd4",
+      "connection-review.json": "a88573493f66768abb3f11f274125f3aa13745939689757aa3f62cac1742a99d",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "route-evidence.json": "ab650188f8d3e826352205bd4596b83fe113c31da04714c8d82d5cd1fb4ab15a",
@@ -26805,9 +26805,13 @@
       "generated/bottom-registration.json": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
       "bottom-landmarks.json": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
-      "tools/connection_review.py": "1f524607ed7309992c374880045080a7248f802bae64d3a8602fcda80447a59a",
+      "clock-continuation.json": "f5a49cda24fd97720d176460e761e090033aa7dc04ea1ecaea192f8c090760ef",
+      "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
+      "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
+      "tools/connection_review.py": "651fa82c27f1d941c52b410c1f6f3468b477a637212975f67cb8959411ae6067",
       "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068",
-      "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8"
+      "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
+      "tools/clock_continuation.py": "02ecdef255850e140876f8a1d788623b225f5597bbbbc4757a114a40e115bdd3"
     },
     "cases": [
       {
@@ -26855,12 +26859,12 @@
           "comparison-photo-080406304",
           "comparison-photo-080511382"
         ],
-        "finding": "The local top branch stops at the A1 package boundary. The underside branch stops at a solder eye. Neither stop proves a layer transition or an A1/filter attachment. Cross-side search fits localize the underside stop beneath R9.5; this is an occluded search region, not an identified top-side joint.",
+        "finding": "The R10.1 branch reaches a solder eye beneath R9.5. A local resistor-bank fit supports a downstream eye correspondence beside R9.7, and an observed outer underside lane continues from there toward an eye near R4.1. Resistor bodies hide the intervening top spans; the new observations remain electrically unassigned. A1, winding and host-cable attachments are not closed.",
         "alternatives": [
           "Reference path reaches A1:2 and L1.1:1 through hidden copper.",
           "The apparent top/bottom stop correspondence is wrong; the visible branch requires a different continuation. This is a geometric alternative, not a replacement net assignment."
         ],
-        "nextDeskWork": "Register comparison close-ups around R9.5 using surrounding joints and held-out checks. Follow the exposed lane on both sides of the body and match any downstream eye independently before continuing toward L1/XT1.",
+        "nextDeskWork": "Resolve the hidden bank spans and the upper-eye continuation near R4.1 before assigning the outer lane to clock. Independently match that continuation to a filter joint; do not extend the local filter fit outside its boundary.",
         "decisiveObservation": "An uninterrupted path, including any confirmed layer transition, from R10.1:2 to A1:2 and the identified L1.1 input. Separately identify both winding ends and the cable-side connection to XT1:B2.",
         "doNotInfer": "The former A1:13 conflict came from a rejected projection. It is not a measured short, and the surviving local segment does not identify the hidden A1 pin.",
         "referenceNets": [
@@ -27228,6 +27232,565 @@
           "searchRadiusPixels": 30,
           "radiusBasis": "Maximum held-out residual + fit spread + explicit search padding; heuristic search margin, not a confidence bound.",
           "copperAssignmentQualified": false
+        },
+        "continuation": {
+          "scope": "Candidate clock continuation across the resistor bank and along the outer underside lane. New copper observations are electrically unassigned. Hidden resistor-body spans and cross-side continuity are not observed; this does not close A1\u2013L1.1\u2013XT1.",
+          "bankRegistration": {
+            "anchors": [
+              {
+                "terminal": "R9.1:2",
+                "bottomPixel": [
+                  1409,
+                  1121
+                ],
+                "topPixel": [
+                  1363,
+                  1272
+                ]
+              },
+              {
+                "terminal": "R9.8:2",
+                "bottomPixel": [
+                  1095,
+                  1117
+                ],
+                "topPixel": [
+                  1692,
+                  1260
+                ]
+              },
+              {
+                "terminal": "R9.8:1",
+                "bottomPixel": [
+                  1097,
+                  1267
+                ],
+                "topPixel": [
+                  1699,
+                  1422
+                ]
+              },
+              {
+                "terminal": "R9.1:1",
+                "bottomPixel": [
+                  1411,
+                  1269
+                ],
+                "topPixel": [
+                  1372,
+                  1432
+                ]
+              }
+            ],
+            "checks": [
+              {
+                "terminal": "R9.3:2",
+                "bottomPixel": [
+                  1319,
+                  1121
+                ],
+                "topPixel": [
+                  1458,
+                  1269
+                ],
+                "residualPixels": 0.9599055254
+              },
+              {
+                "terminal": "R9.3:1",
+                "bottomPixel": [
+                  1321,
+                  1269
+                ],
+                "topPixel": [
+                  1464,
+                  1431
+                ],
+                "residualPixels": 2.247588121
+              },
+              {
+                "terminal": "R9.5:2",
+                "bottomPixel": [
+                  1231,
+                  1120
+                ],
+                "topPixel": [
+                  1549,
+                  1266
+                ],
+                "residualPixels": 0.9045989841
+              },
+              {
+                "terminal": "R9.5:1",
+                "bottomPixel": [
+                  1233,
+                  1269
+                ],
+                "topPixel": [
+                  1558,
+                  1427
+                ],
+                "residualPixels": 0.6977462456
+              },
+              {
+                "terminal": "R9.7:2",
+                "bottomPixel": [
+                  1140,
+                  1118
+                ],
+                "topPixel": [
+                  1647,
+                  1264
+                ],
+                "residualPixels": 2.752536597
+              },
+              {
+                "terminal": "R9.7:1",
+                "bottomPixel": [
+                  1142,
+                  1268
+                ],
+                "topPixel": [
+                  1650,
+                  1425
+                ],
+                "residualPixels": 2.380331605
+              }
+            ],
+            "bottomToTop": [
+              -1.103285089,
+              0.1408629588,
+              2819.254466,
+              0.01881981345,
+              1.193340361,
+              -36.59988665,
+              -5.237381265e-06,
+              4.561183387e-05,
+              1
+            ],
+            "bottomAnchorHull": [
+              [
+                1409,
+                1121
+              ],
+              [
+                1095,
+                1117
+              ],
+              [
+                1097,
+                1267
+              ],
+              [
+                1411,
+                1269
+              ]
+            ],
+            "maxCheckResidualPixels": 2.752536597,
+            "copperAssignmentQualified": false,
+            "scope": "Local primary underside-to-top fit using the outer R9 resistor lead pairs, checked against intermediate resistors. Lead/solder centres are photo estimates. This local fit does not extend to the filter.",
+            "observationAllowancePixels": 8,
+            "photoAlignmentAccepted": true
+          },
+          "clockStop": {
+            "bottomPixel": [
+              1245,
+              1205
+            ],
+            "projectedTopPixel": [
+              1540.766992,
+              1358.974837
+            ],
+            "insideAnchorHull": true
+          },
+          "bankReturn": {
+            "bottomPixel": [
+              1126,
+              1206
+            ],
+            "topPixel": [
+              1667,
+              1357
+            ],
+            "scope": "Visible top eye beside the lower end of the R9.7 body; independently compared with the resistor-bank fit.",
+            "projectedTopPixel": [
+              1665.063928,
+              1357.111181
+            ],
+            "insideAnchorHull": true,
+            "residualPixels": 1.939261723,
+            "geometricCorrespondenceAccepted": true
+          },
+          "upperRegistration": {
+            "anchors": [
+              {
+                "terminal": "R3:1",
+                "bottomPixel": [
+                  1086,
+                  647
+                ],
+                "topPixel": [
+                  1677,
+                  753
+                ]
+              },
+              {
+                "terminal": "R3:2",
+                "bottomPixel": [
+                  1238,
+                  643
+                ],
+                "topPixel": [
+                  1513,
+                  757
+                ]
+              },
+              {
+                "terminal": "R5:2",
+                "bottomPixel": [
+                  1242,
+                  741
+                ],
+                "topPixel": [
+                  1523,
+                  852
+                ]
+              },
+              {
+                "terminal": "R5:1",
+                "bottomPixel": [
+                  1089,
+                  737
+                ],
+                "topPixel": [
+                  1681,
+                  847
+                ]
+              }
+            ],
+            "checks": [
+              {
+                "terminal": "R4.1:1",
+                "bottomPixel": [
+                  1086,
+                  691
+                ],
+                "topPixel": [
+                  1680,
+                  800
+                ],
+                "residualPixels": 0.6758753303
+              },
+              {
+                "terminal": "R4.1:2",
+                "bottomPixel": [
+                  1240,
+                  694
+                ],
+                "topPixel": [
+                  1517,
+                  803
+                ],
+                "residualPixels": 4.63865147
+              }
+            ],
+            "bottomToTop": [
+              -1.918764614,
+              5.175524221,
+              9129.271204,
+              2.712916207,
+              8.819792165,
+              -3985.533591,
+              0.003134664038,
+              0.002772428773,
+              1
+            ],
+            "bottomAnchorHull": [
+              [
+                1086,
+                647
+              ],
+              [
+                1238,
+                643
+              ],
+              [
+                1242,
+                741
+              ],
+              [
+                1089,
+                737
+              ]
+            ],
+            "maxCheckResidualPixels": 4.63865147,
+            "copperAssignmentQualified": false
+          },
+          "upperStop": {
+            "bottomPixel": [
+              1115,
+              708
+            ],
+            "projectedTopPixel": [
+              1649.747655,
+              818.1722374
+            ],
+            "insideAnchorHull": true,
+            "scope": "Outer-lane solder eye near the upper reset resistors. Top location remains a search region; no component terminal is assigned."
+          },
+          "figures": [
+            {
+              "source": {
+                "id": "photo-top",
+                "path": "../reference/photos/PXL_20261012_123622947.jpg",
+                "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+                "use": "Specimen placement and visible copper; approximate planar registration",
+                "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+                "specimen": "primary museum specimen"
+              },
+              "segments": [
+                {
+                  "id": "bank-lane-r95-r96",
+                  "points": [
+                    [
+                      1565,
+                      1362
+                    ],
+                    [
+                      1585,
+                      1361
+                    ]
+                  ],
+                  "status": "observed",
+                  "group": "unassigned-clock-continuation",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Candidate clock continuation across the resistor bank and along the outer underside lane. New copper observations are electrically unassigned. Hidden resistor-body spans and cross-side continuity are not observed; this does not close A1\u2013L1.1\u2013XT1."
+                },
+                {
+                  "id": "bank-lane-r96-r97",
+                  "points": [
+                    [
+                      1612,
+                      1360
+                    ],
+                    [
+                      1630,
+                      1360
+                    ]
+                  ],
+                  "status": "observed",
+                  "group": "unassigned-clock-continuation",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Candidate clock continuation across the resistor bank and along the outer underside lane. New copper observations are electrically unassigned. Hidden resistor-body spans and cross-side continuity are not observed; this does not close A1\u2013L1.1\u2013XT1."
+                },
+                {
+                  "id": "bank-lane-return-eye",
+                  "points": [
+                    [
+                      1658,
+                      1358
+                    ],
+                    [
+                      1667,
+                      1357
+                    ]
+                  ],
+                  "status": "observed",
+                  "group": "unassigned-clock-continuation",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Candidate clock continuation across the resistor bank and along the outer underside lane. New copper observations are electrically unassigned. Hidden resistor-body spans and cross-side continuity are not observed; this does not close A1\u2013L1.1\u2013XT1."
+                }
+              ],
+              "markers": [
+                {
+                  "point": [
+                    1540.766992,
+                    1358.974837
+                  ],
+                  "radius": 8,
+                  "kind": "search",
+                  "label": "R10.1 stop projected beneath R9.5; hidden top entry"
+                },
+                {
+                  "point": [
+                    1667,
+                    1357
+                  ],
+                  "label": "Anonymous bank return eye; geometric correspondence, no net assignment"
+                }
+              ]
+            },
+            {
+              "source": {
+                "id": "photo-bottom",
+                "path": "../reference/photos/PXL_20261012_123648677.jpg",
+                "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+                "use": "Specimen placement and visible copper; approximate planar registration",
+                "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+                "specimen": "primary museum specimen"
+              },
+              "segments": [
+                {
+                  "id": "outer-lane-to-upper-eye",
+                  "points": [
+                    [
+                      1126,
+                      1206
+                    ],
+                    [
+                      1093,
+                      1206
+                    ],
+                    [
+                      1049,
+                      1163
+                    ],
+                    [
+                      1043,
+                      714
+                    ],
+                    [
+                      1106,
+                      716
+                    ],
+                    [
+                      1115,
+                      708
+                    ]
+                  ],
+                  "status": "observed",
+                  "scope": "Visible outermost lane, separate from the neighbouring inner lane. Pixel centreline and bends are estimates; endpoints are anonymous eyes, not numbered pads.",
+                  "group": "unassigned-clock-continuation",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Candidate clock continuation across the resistor bank and along the outer underside lane. New copper observations are electrically unassigned. Hidden resistor-body spans and cross-side continuity are not observed; this does not close A1\u2013L1.1\u2013XT1."
+                }
+              ],
+              "markers": [
+                {
+                  "point": [
+                    1126,
+                    1206
+                  ],
+                  "label": "Bank return eye; unassigned outer lane begins here"
+                },
+                {
+                  "point": [
+                    1115,
+                    708
+                  ],
+                  "label": "Upper eye; top continuation to filter unresolved"
+                }
+              ]
+            },
+            {
+              "source": {
+                "id": "photo-top",
+                "path": "../reference/photos/PXL_20261012_123622947.jpg",
+                "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+                "use": "Specimen placement and visible copper; approximate planar registration",
+                "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+                "specimen": "primary museum specimen"
+              },
+              "segments": [],
+              "markers": [
+                {
+                  "point": [
+                    1649.747655,
+                    818.1722374
+                  ],
+                  "radius": 13,
+                  "kind": "search",
+                  "label": "Upper-eye search near R4.1; not an identified top joint"
+                }
+              ]
+            }
+          ],
+          "openJoins": [
+            {
+              "id": "clock-stop-to-bank-lane",
+              "scope": "The R10.1 underside stop projects beneath R9.5. Its top entry and the span to the first exposed lane fragment remain obscured."
+            },
+            {
+              "id": "under-r96",
+              "scope": "R9.6 hides the continuation between the first and second exposed top spans."
+            },
+            {
+              "id": "under-r97",
+              "scope": "R9.7 hides the continuation from the second exposed span toward the return eye."
+            },
+            {
+              "id": "return-eye-transition",
+              "scope": "The independent local fit supports geometric correspondence at the return eye; it does not measure or prove cross-side electrical continuity."
+            },
+            {
+              "id": "upper-eye-to-filter",
+              "scope": "The outer underside lane ends at an eye near R4.1. Its top continuation and connection to a filter joint remain unresolved."
+            }
+          ],
+          "assignedReferenceTerminals": {},
+          "electricalPathComplete": false,
+          "newNativeRoutes": [],
+          "comparisonScope": "Different specimen: exposed copper corroborates the bank lane arrangement and separates the outer return lane from its neighbour. No coordinates, net assignments or winding identities are transferred.",
+          "comparisonSources": [
+            {
+              "id": "comparison-photo-080443226.MP",
+              "path": "../reference/photos/PXL_20261017_080443226.MP.jpg",
+              "sha256": "c4cdfd7f8d2e9ca052b777d7d805b3ecb5cf7c31e06dee8f38ada0dd03b55166",
+              "specimenId": "comparison-20261017",
+              "side": "top",
+              "refs": [
+                "A1",
+                "BR2",
+                "C5.1"
+              ],
+              "use": "Cable-side logic and discrete region. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+              "href": "../../reference/photos/PXL_20261017_080443226.MP.jpg",
+              "specimen": "comparison-20261017"
+            },
+            {
+              "id": "comparison-photo-080351042",
+              "path": "../reference/photos/PXL_20261017_080351042.jpg",
+              "sha256": "e41032fe1b669f0c5646e6d5f787cdadc43c840beddd171d29b3c6b050249730",
+              "specimenId": "comparison-20261017",
+              "side": "bottom",
+              "refs": [
+                "BR2",
+                "XT1"
+              ],
+              "use": "Cable-end underside and mounting bracket. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+              "href": "../../reference/photos/PXL_20261017_080351042.jpg",
+              "specimen": "comparison-20261017"
+            },
+            {
+              "id": "comparison-photo-080406304",
+              "path": "../reference/photos/PXL_20261017_080406304.jpg",
+              "sha256": "c899c7aba12b0f1085f5b71da44e524611aedf37e3e28567c602cb3b746e6fa2",
+              "specimenId": "comparison-20261017",
+              "side": "top",
+              "refs": [
+                "BR2",
+                "XT1"
+              ],
+              "use": "Cable end, discrete components, bracket and wire entry. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+              "href": "../../reference/photos/PXL_20261017_080406304.jpg",
+              "specimen": "comparison-20261017"
+            }
+          ]
         },
         "figures": [
           {
@@ -29654,7 +30217,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "8954c8dc47bee455cffc67173b517d241cf5e252"
+      "revision": "3febece482b8e5cea14ca83091d357cbed9501eb"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -29672,7 +30235,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "cableCopper": "552cfa30783a00dc6c614cde7f8fb4dcd4196b6da0a3da14d8ac722ae79b1ff7",
-      "connectionReview": "d29ff6b17633fe63f8df5642db87173b9a4ca894b47a99c7d90b9f6495148f6a",
+      "connectionReview": "e09ddc89daf14834093f60862285e0d0ba79aea72379ed9fcc2341b88e24e78a",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",

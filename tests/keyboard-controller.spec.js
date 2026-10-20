@@ -632,7 +632,7 @@ test('serial inspection exposes occlusions and distinguishes cable placeholders'
  await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-clock');
  await expect(panel.locator('[data-connection-case="host-clock"]')).toContainText('R9.5');
  await expect(panel.locator('[data-connection-case="host-data"]')).toHaveCount(0);
- await expect(panel.locator('[data-search-region]')).toHaveCount(1);
+ await expect(panel.locator('[data-connection-case="host-clock"] > figure [data-search-region]')).toHaveCount(1);
  await expect(panel.locator('[data-output-assembly]')).toContainText('no winding pairing');
  await expect(panel.locator('[data-selection]')).toContainText('reference placeholders');
  await expect(panel.locator('[data-output-core]')).toHaveCount(1);
@@ -745,4 +745,29 @@ test('local filter correspondence links photo features without assigning electri
  await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-data');
  await expect(panel.locator('[data-filter-registration]')).toHaveCount(0);
  await expect(panel.locator('[data-connection-case="host-data"]')).toBeVisible();
+});
+
+test('clock continuation shows new observations without extending native clock routing',async({page})=>{
+ const c=data.connectionReview.cases.find(c=>c.id==='host-clock').continuation;
+ expect(c.electricalPathComplete).toBe(false);
+ expect(c.newNativeRoutes).toEqual([]);
+ expect(c.assignedReferenceTerminals).toEqual({});
+ expect(c.bankReturn.geometricCorrespondenceAccepted).toBe(true);
+ expect(c.figures.flatMap(f=>f.segments).every(s=>s.net===null)).toBe(true);
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-clock');
+ await panel.getByText('Candidate clock continuation — unassigned copper',{exact:true}).click();
+ const continuation=panel.locator('[data-clock-continuation]');
+ await expect(continuation.locator('[data-observed-span="outer-lane-to-upper-eye"]')).toBeVisible();
+ await expect(continuation.locator('[data-clock-gap="under-r96"]')).toContainText('hides');
+ await expect(continuation.locator('[data-clock-gap="upper-eye-to-filter"]')).toContainText('remain unresolved');
+ await expect(continuation).toContainText('Different specimen');
+ await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-data');
+ await expect(panel.locator('[data-clock-continuation]')).toHaveCount(0);
 });

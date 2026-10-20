@@ -15,6 +15,7 @@ photographs, published device evidence and standard S600 firmware.
 | What is observed, inferred or unresolved? | CAD `evidence.json`, `component-evidence.json`, `route-evidence.json` |
 | Which X1 geometry and terminal assignments are supported? | CAD `generated/connector-review.json` and `generated/connector-terminals.json` |
 | Which output/connector spans should be reviewed next? | CAD `review/connection-review.html`, generated from `connection-review.json` and canonical evidence |
+| Where does the candidate clock continuation stop? | CAD `clock-continuation.json`, generated host-clock connection review; hidden bank joins and upper-eye/filter attachment remain open. |
 | Which filter joints correspond across the primary photos? | CAD `filter-registration.json` and generated `filterRegistration`; DAC “Filter joint correspondence”. Bounded photo matching, not electrical assignment. |
 | Can supply rails identify a filter winding? | CAD `supply-review.json` and `generated/cable-copper.json` → `supplyReview`; DAC “Supply → filter evidence” |
 | Which cable-end joints share recorded underside copper? | CAD `generated/cable-copper.json`, generated from anonymous observations in `cable-copper.json` |

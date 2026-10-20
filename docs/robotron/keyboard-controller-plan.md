@@ -44,7 +44,9 @@ reconstruction requirements below remain in scope.
    joint correspondence before assigning a filter terminal. The local
    `filter-registration.json` review matches anonymous joints inside the filter
    boundary; extend it with independent nearby landmarks before following paths
-   beyond that boundary. Joint correspondence alone does not pair windings.
+   beyond that boundary. Joint correspondence alone does not pair windings. For the clock
+   path, resolve the hidden resistor-bank joins and upper-eye continuation in
+   `clock-continuation.json` before assigning its outer lane to the clock net.
 2. **Close pending capture reviews.** Review the held-key/repeat/release
    service capture for host voltage and receiver timing, then obtain a matched
    timestep-refinement pair. Preserve its source revision and model assumptions

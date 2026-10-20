@@ -31,7 +31,7 @@ function connectionPhoto(fig){
  svg.style.cssText='display:block;width:100%;max-width:560px;max-height:340px;background:#14232d';
  const add=(tag,attrs)=>{const node=document.createElementNS(svgNS,tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,value);svg.append(node);return node;};
  add('image',{href:url,width:3072,height:4080});
- for(const segment of fig.segments)add('polyline',{points:segment.points.map(p=>p.join(',')).join(' '),fill:'none',stroke:segment.status==='inferred'?'#ffcf5b':'#37f3d4','stroke-width':3,'stroke-dasharray':segment.status==='inferred'?'7 5':'none'});
+ for(const segment of fig.segments)add('polyline',{...(segment.id?{'data-observed-span':segment.id}:{}),points:segment.points.map(p=>p.join(',')).join(' '),fill:'none',stroke:segment.status==='inferred'?'#ffcf5b':'#37f3d4','stroke-width':3,'stroke-dasharray':segment.status==='inferred'?'7 5':'none'});
  const labels=document.createElement('ul');
  for(const marker of fig.markers){
   add('circle',{...(marker.kind==='search'?{'data-search-region':''}:{}),cx:marker.point[0],cy:marker.point[1],r:marker.radius||9,fill:'none',stroke:marker.kind==='search'?'#ffcf5b':'#ff79ad','stroke-width':3,'stroke-dasharray':marker.kind==='search'?'5 4':'none'});
@@ -251,6 +251,15 @@ export function installKeyboardControllerReview(scene){
     const chain=document.createElement('p');chain.textContent='Reference connections: '+review.referenceNets.map(n=>n.terminals.join(' ↔ ')).join(review.seriesComponents.length?' · winding · ':' · ')+'. Highlighted fragments do not prove a complete path.';
     section.append(heading,finding,chain);
     for(const fig of review.figures)section.append(connectionPhoto(fig));
+    if(review.continuation){
+     const c=review.continuation,details=document.createElement('details');details.dataset.clockContinuation='';
+     const summary=document.createElement('summary');summary.textContent='Candidate clock continuation — unassigned copper';details.append(summary);
+     const note=document.createElement('p');note.textContent=c.scope+` Bank fit: ${c.bankRegistration.maxCheckResidualPixels.toFixed(1)} px maximum held-out residual; return eye: ${c.bankReturn.residualPixels.toFixed(1)} px correspondence residual. Neither establishes hidden electrical continuity.`;details.append(note);
+     for(const fig of c.figures)details.append(connectionPhoto(fig));
+     const gaps=document.createElement('ul');for(const gap of c.openJoins){const li=document.createElement('li');li.dataset.clockGap=gap.id;li.textContent=gap.scope;gaps.append(li);}details.append(gaps);
+     const comparison=document.createElement('p');comparison.textContent=c.comparisonScope;details.append(comparison);
+     section.append(details);
+    }
     if(review.crossSideSearch){const note=document.createElement('p');note.textContent=review.crossSideSearch.scope;section.append(note);}
     const next=document.createElement('p');next.textContent='Unresolved: '+review.decisiveObservation;section.append(next);pathReview.append(section);
    }
