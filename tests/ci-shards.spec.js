@@ -143,3 +143,19 @@ test('timing refresh accepts complete successful evidence and preserves skipped 
  }
  expect(()=>refreshDurations(previous,[reports[0]],run)).toThrow();
 });
+
+test('runtime photo selection keeps full names and inspection IDs without fetching unused originals', async () => {
+ const {runtimePhotos,verifyPhotos} = await import('../scripts/ci-photos.mjs');
+ const base = 'public/models/robotron-1715m/photos/';
+ const files = ['PXL_20261017_080431329.MP.jpg','PXL_20261009_133022597.jpg','PXL_20250212_094043026.jpg','PXL_20261017_080541857.jpg'].map(f=>base+f);
+ const psu = 'public/docs/robotron-psu/photos/board.webp';
+ expect(runtimePhotos([...files,psu], 'PXL_20261017_080431329.MP.jpg 133022597 20250212_094043026')).toEqual([...files.slice(0,3),psu]);
+ const {mkdtempSync,writeFileSync,rmSync} = await import('node:fs');
+ const {tmpdir} = await import('node:os'); const {join} = await import('node:path');
+ const dir = mkdtempSync(join(tmpdir(),'dac-photo-test-')), file=join(dir,'photo.jpg');
+ try {
+   writeFileSync(file,'version https://git-lfs.github.com/spec/v1\noid sha256:abc\nsize 123\n');
+   expect(()=>verifyPhotos([file])).toThrow('LFS pointer');
+   writeFileSync(file,Buffer.from([255,216,255,224])); expect(()=>verifyPhotos([file])).not.toThrow();
+ } finally {rmSync(dir,{recursive:true,force:true});}
+});

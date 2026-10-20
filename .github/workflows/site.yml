@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
+        with:
+          lfs: false
       - uses: actions/setup-node@v7.1.0
         with:
           node-version: "24"
@@ -28,6 +30,8 @@ jobs:
         run: node scripts/ci-scope.mjs
         env:
           GH_TOKEN: ${{ github.token }}
+      - name: Fetch and verify deployment photos
+        run: node scripts/ci-photos.mjs --all
       - run: npm ci
       - name: Check CI scope and shard coverage
         run: npx playwright test tests/ci-shards.spec.js --workers=1
@@ -58,10 +62,14 @@ jobs:
     timeout-minutes: ${{ matrix.browser != 'chromium' && 10 || needs.build.outputs.scope == 'full' && 20 || 15 }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          lfs: false
       - uses: actions/setup-node@v7.1.0
         with:
           node-version: "24"
           cache: npm
+      - name: Fetch and verify runtime photos
+        run: node scripts/ci-photos.mjs
       - run: npm ci
       - name: Use Ubuntu main mirror for browser dependencies
         if: runner.os == 'Linux'

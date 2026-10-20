@@ -22,6 +22,12 @@ A working browser prototype: rotate a computer, inspect its underside, click its
 
 ## Try locally
 
+Photo originals are stored in Git LFS. Install Git LFS, then run `git lfs pull`
+for the complete local exhibit. For a lightweight clone, use
+`GIT_LFS_SKIP_SMUDGE=1 git clone <repo-url>` and then
+`node scripts/ci-photos.mjs` to fetch runtime/test references only. Deployment
+fetches the complete archive; thumbnails and visual test baselines remain in Git.
+
 ```sh
 npm ci
 npm run dev
