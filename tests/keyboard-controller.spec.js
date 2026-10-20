@@ -715,3 +715,34 @@ test('supply review exposes extrapolation without electrical highlights',async({
  await expect(panel.locator('[data-supply-review]')).toHaveCount(0);
  await expect(panel.locator('[data-copper-graph]')).toHaveCount(1);
 });
+
+test('local filter correspondence links photo features without assigning electrical pins',async({page})=>{
+ const fit=data.cableCopper.filterRegistration;
+ expect(fit.photoAlignmentAccepted).toBe(true);
+ expect(fit.copperAssignmentQualified).toBe(false);
+ expect(fit.assignedReferenceTerminals).toEqual({});
+ expect(fit.checks.every(c=>c.insideAnchorHull&&c.residualPixels<=fit.tolerancePixels)).toBe(true);
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  window.filterHighlights=[];installKeyboardControllerReview({keyboardControllerSelection(points){window.filterHighlights.push(points);}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller signal path',{exact:true}).selectOption('filter-registration');
+ await expect(panel.locator('[data-filter-registration]')).toContainText('Local photo correspondence accepted');
+ await panel.getByLabel('Matched filter joint',{exact:true}).selectOption('CF2');
+ await expect(panel.locator('[data-filter-match]')).toContainText('held-out residual');
+ for(const side of ['top','bottom'])await expect(panel.locator(`[data-filter-photo="${side}"] [data-matched-joint="CF2"]`)).toHaveAttribute('stroke','#ffe16a');
+ await expect(panel.locator('[data-filter-photo="top"] [data-bounded-span="cf2-stub"]')).toHaveAttribute('stroke-dasharray','2 2');
+ await expect(panel.locator('[data-bounded-span="cf2-cable-land"]')).toHaveCount(0);
+ expect(await page.evaluate(()=>window.filterHighlights.at(-1))).toEqual([]);
+ const widths=await panel.locator('[data-filter-photo] image').evaluateAll(async nodes=>Promise.all(nodes.map(async n=>{const image=new Image();image.src=n.getAttribute('href');await image.decode();return image.naturalWidth;})));
+ expect(widths).toEqual([3072,3072]);
+ await panel.getByRole('button',{name:'Hide joint overlay'}).first().click();
+ await expect(panel.locator('[data-filter-overlay="top"]')).toBeHidden();
+ await expect(panel.locator('[data-filter-overlay="bottom"]')).toBeVisible();
+ await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-data');
+ await expect(panel.locator('[data-filter-registration]')).toHaveCount(0);
+ await expect(panel.locator('[data-connection-case="host-data"]')).toBeVisible();
+});

@@ -24742,16 +24742,551 @@
         ]
       }
     ],
+    "filterRegistration": {
+      "acceptance": "Held-out joint residuals must fit the canonical top jointPixelUncertainty and lie inside the anchor hull. This is a visual correspondence allowance, not a statistical confidence interval or PCB dimensional tolerance.",
+      "anchors": [
+        {
+          "bottomPixel": [
+            1503,
+            603
+          ],
+          "node": "CF1",
+          "topPixel": [
+            1214,
+            701
+          ]
+        },
+        {
+          "bottomPixel": [
+            1416,
+            610
+          ],
+          "node": "CF4",
+          "topPixel": [
+            1320,
+            696
+          ]
+        },
+        {
+          "bottomPixel": [
+            1418,
+            698
+          ],
+          "node": "LF4",
+          "topPixel": [
+            1325,
+            792
+          ]
+        },
+        {
+          "bottomPixel": [
+            1505,
+            699
+          ],
+          "node": "LF1",
+          "topPixel": [
+            1230,
+            793
+          ]
+        }
+      ],
+      "assignedReferenceTerminals": {},
+      "bottomAnchorHull": [
+        [
+          1503,
+          603
+        ],
+        [
+          1416,
+          610
+        ],
+        [
+          1418,
+          698
+        ],
+        [
+          1505,
+          699
+        ]
+      ],
+      "bottomToTop": [
+        -0.3834848355,
+        -0.8458256232,
+        457.2983058,
+        -0.6077630596,
+        -0.9787445603,
+        1140.382571,
+        -0.0007662037077,
+        -0.0006079771202,
+        1
+      ],
+      "boundedUndersideSpans": [
+        {
+          "bottomPixels": [
+            [
+              1503,
+              603
+            ],
+            [
+              1502,
+              639
+            ]
+          ],
+          "ends": [
+            "CF1",
+            "E1"
+          ],
+          "id": "cf1-stub",
+          "net": null,
+          "projectedTopPixels": [
+            [
+              1214.0,
+              701.0
+            ],
+            [
+              1222.205242,
+              737.7512334
+            ]
+          ],
+          "status": "projected-underside-observation"
+        },
+        {
+          "bottomPixels": [
+            [
+              1473,
+              610
+            ],
+            [
+              1475,
+              641
+            ]
+          ],
+          "ends": [
+            "CF2",
+            "E2"
+          ],
+          "id": "cf2-stub",
+          "net": null,
+          "projectedTopPixels": [
+            [
+              1248.345004,
+              704.5000921
+            ],
+            [
+              1251.320148,
+              737.5839656
+            ]
+          ],
+          "status": "projected-underside-observation"
+        },
+        {
+          "bottomPixels": [
+            [
+              1444,
+              610
+            ],
+            [
+              1445,
+              640
+            ]
+          ],
+          "ends": [
+            "CF3",
+            "E3"
+          ],
+          "id": "cf3-stub",
+          "net": null,
+          "projectedTopPixels": [
+            [
+              1283.162304,
+              700.3698811
+            ],
+            [
+              1285.925096,
+              733.9387399
+            ]
+          ],
+          "status": "projected-underside-observation"
+        },
+        {
+          "bottomPixels": [
+            [
+              1416,
+              610
+            ],
+            [
+              1417,
+              639
+            ]
+          ],
+          "ends": [
+            "CF4",
+            "E4"
+          ],
+          "id": "cf4-stub",
+          "net": null,
+          "projectedTopPixels": [
+            [
+              1320.0,
+              696.0
+            ],
+            [
+              1321.323628,
+              730.1341061
+            ]
+          ],
+          "status": "projected-underside-observation"
+        }
+      ],
+      "checks": [
+        {
+          "bottomPixel": [
+            1473,
+            610
+          ],
+          "insideAnchorHull": true,
+          "node": "CF2",
+          "projectedTopPixel": [
+            1248.345004,
+            704.5000921
+          ],
+          "residualPixels": 8.343283215,
+          "topPixel": [
+            1252,
+            697
+          ]
+        },
+        {
+          "bottomPixel": [
+            1444,
+            610
+          ],
+          "insideAnchorHull": true,
+          "node": "CF3",
+          "projectedTopPixel": [
+            1283.162304,
+            700.3698811
+          ],
+          "residualPixels": 7.595543187,
+          "topPixel": [
+            1285,
+            693
+          ]
+        },
+        {
+          "bottomPixel": [
+            1478,
+            698
+          ],
+          "insideAnchorHull": true,
+          "node": "LF2",
+          "projectedTopPixel": [
+            1256.927191,
+            792.1001826
+          ],
+          "residualPixels": 3.612680416,
+          "topPixel": [
+            1260,
+            794
+          ]
+        },
+        {
+          "bottomPixel": [
+            1449,
+            698
+          ],
+          "insideAnchorHull": true,
+          "node": "LF3",
+          "projectedTopPixel": [
+            1288.367209,
+            792.0539124
+          ],
+          "residualPixels": 6.912392399,
+          "topPixel": [
+            1295,
+            794
+          ]
+        }
+      ],
+      "copperAssignmentQualified": false,
+      "correspondences": [
+        {
+          "bottomPixel": [
+            1503,
+            603
+          ],
+          "node": "CF1",
+          "role": "anchor",
+          "topPixel": [
+            1214,
+            701
+          ]
+        },
+        {
+          "bottomPixel": [
+            1473,
+            610
+          ],
+          "node": "CF2",
+          "role": "held-out",
+          "topPixel": [
+            1252,
+            697
+          ]
+        },
+        {
+          "bottomPixel": [
+            1444,
+            610
+          ],
+          "node": "CF3",
+          "role": "held-out",
+          "topPixel": [
+            1285,
+            693
+          ]
+        },
+        {
+          "bottomPixel": [
+            1416,
+            610
+          ],
+          "node": "CF4",
+          "role": "anchor",
+          "topPixel": [
+            1320,
+            696
+          ]
+        },
+        {
+          "bottomPixel": [
+            1505,
+            699
+          ],
+          "node": "LF1",
+          "role": "anchor",
+          "topPixel": [
+            1230,
+            793
+          ]
+        },
+        {
+          "bottomPixel": [
+            1478,
+            698
+          ],
+          "node": "LF2",
+          "role": "held-out",
+          "topPixel": [
+            1260,
+            794
+          ]
+        },
+        {
+          "bottomPixel": [
+            1449,
+            698
+          ],
+          "node": "LF3",
+          "role": "held-out",
+          "topPixel": [
+            1295,
+            794
+          ]
+        },
+        {
+          "bottomPixel": [
+            1418,
+            698
+          ],
+          "node": "LF4",
+          "role": "anchor",
+          "topPixel": [
+            1325,
+            792
+          ]
+        }
+      ],
+      "excludedSpans": [
+        {
+          "id": "cf1-solder-boundary",
+          "reason": "outside-anchor-hull"
+        },
+        {
+          "id": "cf2-cable-land",
+          "reason": "outside-anchor-hull"
+        },
+        {
+          "id": "cf3-cable-land",
+          "reason": "outside-anchor-hull"
+        },
+        {
+          "id": "lf1-driver-joint",
+          "reason": "outside-anchor-hull"
+        },
+        {
+          "id": "lf2-bend-stop",
+          "reason": "outside-anchor-hull"
+        },
+        {
+          "id": "lf4-driver-joint",
+          "reason": "outside-anchor-hull"
+        },
+        {
+          "id": "driver-side-span",
+          "reason": "outside-anchor-hull"
+        },
+        {
+          "id": "neighbour-stepped-span",
+          "reason": "outside-anchor-hull"
+        }
+      ],
+      "extrapolationChecks": [
+        {
+          "bottomPixel": [
+            1086,
+            647
+          ],
+          "insideAnchorHull": false,
+          "projectedTopPixel": [
+            2246.15872,
+            678.1553789
+          ],
+          "residualPixels": 574.0586783,
+          "terminal": "R3:1",
+          "topPixel": [
+            1677,
+            753
+          ]
+        },
+        {
+          "bottomPixel": [
+            1238,
+            643
+          ],
+          "insideAnchorHull": false,
+          "projectedTopPixel": [
+            1653.429139,
+            710.9523701
+          ],
+          "residualPixels": 147.7860867,
+          "terminal": "R3:2",
+          "topPixel": [
+            1513,
+            757
+          ]
+        },
+        {
+          "bottomPixel": [
+            1086,
+            691
+          ],
+          "insideAnchorHull": false,
+          "projectedTopPixel": [
+            2155.477533,
+            776.9757599
+          ],
+          "residualPixels": 476.0346623,
+          "terminal": "R4.1:1",
+          "topPixel": [
+            1680,
+            800
+          ]
+        },
+        {
+          "bottomPixel": [
+            1240,
+            694
+          ],
+          "insideAnchorHull": false,
+          "projectedTopPixel": [
+            1626.825677,
+            786.2090561
+          ],
+          "residualPixels": 111.1018233,
+          "terminal": "R4.1:2",
+          "topPixel": [
+            1517,
+            803
+          ]
+        },
+        {
+          "bottomPixel": [
+            1089,
+            737
+          ],
+          "insideAnchorHull": false,
+          "projectedTopPixel": [
+            2066.342916,
+            859.5669115
+          ],
+          "residualPixels": 385.5477798,
+          "terminal": "R5:1",
+          "topPixel": [
+            1681,
+            847
+          ]
+        },
+        {
+          "bottomPixel": [
+            1242,
+            741
+          ],
+          "insideAnchorHull": false,
+          "projectedTopPixel": [
+            1605.791485,
+            844.7610394
+          ],
+          "residualPixels": 83.10735553,
+          "terminal": "R5:2",
+          "topPixel": [
+            1523,
+            852
+          ]
+        }
+      ],
+      "limits": "The fit is bounded by the outer filter joints. Projected underside stubs remain underside observations, not top copper. Supply rails, nearby discrete joints, cable lands and hidden winding paths outside the hull remain unresolved. Comparison-specimen photos corroborate the two-row layout only; they provide no primary-specimen electrical assignment.",
+      "maxCheckResidualPixels": 8.343283215,
+      "photoAlignmentAccepted": true,
+      "scope": "Primary-specimen filter joint-array correspondence. Cable-facing and logic-facing rows are distinguished by the cable and driver positions; the component-side left-to-right order reverses on the underside. Top observations are lead/solder entry estimates, not measured hole centres. This matches anonymous photo features, not L1 pin numbers or winding continuity.",
+      "tolerancePixels": 10,
+      "topAnchorHull": [
+        [
+          1214,
+          701
+        ],
+        [
+          1320,
+          696
+        ],
+        [
+          1325,
+          792
+        ],
+        [
+          1230,
+          793
+        ]
+      ],
+      "topSource": {
+        "id": "photo-top",
+        "path": "../reference/photos/PXL_20261012_123622947.jpg",
+        "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "use": "Specimen placement and visible copper; approximate planar registration"
+      }
+    },
     "inputSha256": {
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
       "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
+      "filter-registration.json": "28791731941aaf96faecd845871a0e151cfde5a56e9ef76212d54c90a4cbbf4a",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
+      "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
       "route-evidence.json": "ab650188f8d3e826352205bd4596b83fe113c31da04714c8d82d5cd1fb4ab15a",
-      "supply-review.json": "f98f67c9d4e8d736619c6fbaa27a6119fdfa19d318c17a62a3050b06832315b2",
+      "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
       "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
-      "tools/cable_copper.py": "11d074c3fa5981984b4fc7a6f0e3b4cd3b50b31e522751662888ff1dc3c3017c",
+      "tools/cable_copper.py": "62e5c65aca23a41064612fd9ed7b732627e63e74949337563fb75031f56fa0c4",
       "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068"
     },
     "nodes": {
@@ -25293,18 +25828,6 @@
             },
             {
               "bottomPixel": [
-                1089,
-                737
-              ],
-              "net": "/+5V",
-              "terminal": "R5:1",
-              "topPixel": [
-                1681,
-                847
-              ]
-            },
-            {
-              "bottomPixel": [
                 1242,
                 741
               ],
@@ -25313,6 +25836,18 @@
               "topPixel": [
                 1523,
                 852
+              ]
+            },
+            {
+              "bottomPixel": [
+                1089,
+                737
+              ],
+              "net": "/+5V",
+              "terminal": "R5:1",
+              "topPixel": [
+                1681,
+                847
               ]
             }
           ],
@@ -25351,7 +25886,7 @@
                 1240,
                 694
               ],
-              "insideAnchorHull": false,
+              "insideAnchorHull": true,
               "net": "/RESET_DIODE_TOP",
               "projectedTopPixel": [
                 1518.388273,
@@ -25564,18 +26099,6 @@
             },
             {
               "bottomPixel": [
-                1090,
-                969
-              ],
-              "net": "/RESET_OUT",
-              "terminal": "R4.2:1",
-              "topPixel": [
-                1687,
-                1101
-              ]
-            },
-            {
-              "bottomPixel": [
                 1243,
                 972
               ],
@@ -25584,6 +26107,18 @@
               "topPixel": [
                 1527,
                 1109
+              ]
+            },
+            {
+              "bottomPixel": [
+                1090,
+                969
+              ],
+              "net": "/RESET_OUT",
+              "terminal": "R4.2:1",
+              "topPixel": [
+                1687,
+                1101
               ]
             }
           ],
@@ -25640,7 +26175,7 @@
                 1089,
                 737
               ],
-              "insideAnchorHull": false,
+              "insideAnchorHull": true,
               "net": "/+5V",
               "projectedTopPixel": [
                 1677.82417,
@@ -29119,7 +29654,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "9ec9d8a5afee929a70a0f2102eb5adf7a2f9c282"
+      "revision": "8954c8dc47bee455cffc67173b517d241cf5e252"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -29136,7 +29671,7 @@
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
-      "cableCopper": "ce5d7952ac2b1afd605b1c229a0baa3dcbb2514f37565c66526f8cb52ce3ab82",
+      "cableCopper": "552cfa30783a00dc6c614cde7f8fb4dcd4196b6da0a3da14d8ac722ae79b1ff7",
       "connectionReview": "d29ff6b17633fe63f8df5642db87173b9a4ca894b47a99c7d90b9f6495148f6a",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },

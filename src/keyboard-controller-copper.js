@@ -72,7 +72,7 @@ export function renderSupplyReview(target,data){
    add('path',{'data-filter-prediction':fit.id,d:`M${x-4} ${y-4}l8 8m-8 0l8 -8`,stroke:color,'stroke-width':1.5});
    add('text',{x:x+4,y:y+(i===0?-6:12),fill:color,'font-size':8},name);
   }
-  const note=document.createElement('p');note.textContent=`${i===0?'Pink':'Cyan'}: ${fit.id}. Maximum held-out residual ${Math.max(...fit.checks.map(c=>c.residualPixels)).toFixed(1)} px inside the bank; ${Math.max(...fit.extrapolationChecks.map(c=>c.residualPixels)).toFixed(1)} px at the lower checks. Filter predictions lie outside the anchor hull.`;target.append(note);
+  const note=document.createElement('p');note.textContent=`${i===0?'Pink':'Cyan'}: ${fit.id}. Maximum held-out residual ${Math.max(...fit.checks.map(c=>c.residualPixels)).toFixed(1)} px at the intermediate resistor checks; ${Math.max(...fit.extrapolationChecks.map(c=>c.residualPixels)).toFixed(1)} px at the lower checks. Filter predictions lie outside the anchor hull.`;target.append(note);
  }
  const disagreement=document.createElement('p');disagreement.textContent=`The fits disagree by up to ${review.maxFilterFitDisagreementPixels.toFixed(1)} px at the filter. They share anchors and are sensitivity checks, not independent measurements.`;target.append(disagreement);
  const bottom=figure(data.cableCopper.source,'1180 920 130 190','Primary underside: reference-informed ground terminals. No continuation to the filter is asserted.');

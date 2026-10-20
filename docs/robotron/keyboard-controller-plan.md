@@ -41,7 +41,10 @@ reconstruction requirements below remain in scope.
    must not become an electrically assigned native route. Review supply feeds with
    `supply-review.json` and its generated fit checks: a fit that agrees inside the
    resistor bank can fail outside it. Require a visible continuation and bounded
-   joint correspondence before assigning a filter terminal.
+   joint correspondence before assigning a filter terminal. The local
+   `filter-registration.json` review matches anonymous joints inside the filter
+   boundary; extend it with independent nearby landmarks before following paths
+   beyond that boundary. Joint correspondence alone does not pair windings.
 2. **Close pending capture reviews.** Review the held-key/repeat/release
    service capture for host voltage and receiver timing, then obtain a matched
    timestep-refinement pair. Preserve its source revision and model assumptions
