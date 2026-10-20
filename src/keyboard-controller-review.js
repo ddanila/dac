@@ -1,3 +1,4 @@
+import {copperGroup,renderCopperGraph} from './keyboard-controller-copper.js';
 import {installControllerWaveform} from './keyboard-controller-waveform.js';
 const svgNS='http://www.w3.org/2000/svg';
 const clean=value=>(value||'').replace(/^\//,'');
@@ -86,9 +87,9 @@ function componentPhoto(data,ref,candidate,side='top'){
 }
 export function installKeyboardControllerReview(scene){
  const panel=document.createElement('details');panel.id='keyboard-controller-review';panel.dataset.robotron='';
- panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Signal path <select aria-label="Controller signal path" data-path><option value="">Select…</option><option value="host-clock">Clock → filter → cable</option><option value="host-data">Data → filter → cable</option></select></label> <label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><div data-path-review></div><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
+ panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Underside copper group <select aria-label="Controller copper group" data-copper><option value="">Select…</option></select></label><label><input type="checkbox" data-copper-projection> Show approximate copper projection</label> <label>Signal path <select aria-label="Controller signal path" data-path><option value="">Select…</option><option value="host-clock">Clock → filter → cable</option><option value="host-data">Data → filter → cable</option></select></label> <label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><div data-path-review></div><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
  document.getElementById('evidence-controls').after(panel);
- let data=null,pending=false,selection=null,leds=null,latches=null;
+ let data=null,pending=false,selection=null,leds=null,latches=null,selectedCopper=null;
  const get=selector=>panel.querySelector(selector),status=get('[data-status]');
  function live(){
   if(!data)return;
@@ -126,14 +127,25 @@ export function installKeyboardControllerReview(scene){
   for(const c of data.layout.components.filter(c=>!anonymous.has(c.ref)&&c.ref!=='XT1'))for(const p of c.pads){
    const active=selected.has(c.ref+':'+p.pin),dot=add('circle',{cx:p.position[0],cy:-p.position[1],r:active?1.4:.65,fill:active?'#ffe16a':'#c5c5b0'}),title=document.createElementNS(svgNS,'title');title.textContent=`${c.ref}:${p.pin||'mount'} ${clean(p.net)||'unconnected'}`;dot.append(title);
   }
+  if(side==='bottom'&&selectedCopper&&get('[data-copper-projection]').checked){
+   for(const edge of selectedCopper.edges){
+    const line=add('polyline',{'data-copper-projection-edge':edge.id,points:edge.modelPoints.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#ffe16a','stroke-width':.3,'stroke-dasharray':'.6 .4'});
+    const title=document.createElementNS(svgNS,'title');title.textContent='Illustrative photo projection only; not native electrical copper';line.append(title);
+   }
+  }
   // Both sides use one top-view coordinate convention to preserve net identity.
   get('[data-drawing]').replaceChildren(svg);
  }
  function select(kind,value){
-  selection=value?controllerSelection(data,kind,value):null;
-  for(const [control,type]of [['[data-net]','net'],['[data-component]','component'],['[data-path]','path']])if(kind!==type)get(control).value='';
+  selectedCopper=kind==='copper'?copperGroup(data,value):null;
+  selection=value&&kind!=='copper'?controllerSelection(data,kind,value):null;
+  for(const [control,type]of [['[data-net]','net'],['[data-component]','component'],['[data-path]','path'],['[data-copper]','copper']])if(kind!==type)get(control).value='';
   const pathReview=get('[data-path-review]');pathReview.replaceChildren();
   const pins=get('[data-pins]');pins.replaceChildren();
+  if(selectedCopper){
+   get('[data-selection]').textContent='Anonymous connected group: '+selectedCopper.nodes.join(', ')+'. Same-face observations only; no filter winding or XT1 identity is assigned. The optional dashed board projection is illustrative and is not used for 3D electrical highlights.';
+   renderCopperGraph(pathReview,data,value);get('[data-side]').value='bottom';scene?.keyboardControllerSelection([]);draw();return;
+  }
   if(selection){
    const placed=selection.points.length,total=selection.pins.length;
    get('[data-selection]').textContent=`${kind==='path'?'Signal path '+value:kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
@@ -258,6 +270,7 @@ export function installKeyboardControllerReview(scene){
    for(const [selector,values]of [['[data-component]',Object.keys(data.connectivity.components).sort()],['[data-net]',[...new Set(Object.values(data.connectivity.components).flatMap(c=>Object.values(c.pins)).filter(Boolean))].sort()]]){
     const target=get(selector);target.replaceChildren(new Option('Select…',''));for(const v of values)target.add(new Option(clean(v),v));
    }
+   for(const group of data.cableCopper?.connectedGroups||[])get('[data-copper]').add(new Option(group.join(' · '),group[0]));
    get('[data-tools]').hidden=false;status.textContent=`${Object.keys(data.connectivity.components).length} reference components. Reconstruction is incomplete.`;
    const q=data.qualification,f=data.cosimulation.firmware;
    const bus=data.cosimulation.bus;
@@ -272,9 +285,10 @@ export function installKeyboardControllerReview(scene){
   }catch(error){data=null;get('[data-tools]').hidden=true;status.textContent=`Controller review could not load: ${error.message}. Close and reopen to retry.`;}finally{pending=false;}
  }
  panel.addEventListener('toggle',()=>{if(panel.open){if(data)scene?.keyboardControllerSelection(selection?.points||[],selection?.routes||[]);else load();}else scene?.keyboardControllerSelection([]);});
+ get('[data-copper]').onchange=e=>select('copper',e.target.value);get('[data-copper-projection]').onchange=draw;
  get('[data-path]').onchange=e=>select('path',e.target.value);
  get('[data-component]').onchange=e=>select('component',e.target.value);get('[data-net]').onchange=e=>select('net',e.target.value);get('[data-side]').onchange=draw;
  get('[data-zoom]').oninput=draw;get('[data-view-controller]').onclick=()=>document.querySelector('[data-view="keyboard-inside"]')?.click();
- get('[data-clear]').onclick=()=>{get('[data-component]').value='';get('[data-net]').value='';get('[data-path]').value='';select('component','');};
+ get('[data-clear]').onclick=()=>{get('[data-component]').value='';get('[data-net]').value='';get('[data-path]').value='';get('[data-copper]').value='';select('component','');};
  return {message(message){if(message.type==='configured'){leds=null;latches=null;}if(message.keyboardLeds!==undefined)leds=message.keyboardLeds;if(message.keyboardLatches!==undefined)latches=message.keyboardLatches;if(panel.open)live();}};
 }

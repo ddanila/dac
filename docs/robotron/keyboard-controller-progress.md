@@ -15,6 +15,7 @@ photographs, published device evidence and standard S600 firmware.
 | What is observed, inferred or unresolved? | CAD `evidence.json`, `component-evidence.json`, `route-evidence.json` |
 | Which X1 geometry and terminal assignments are supported? | CAD `generated/connector-review.json` and `generated/connector-terminals.json` |
 | Which output/connector spans should be reviewed next? | CAD `review/connection-review.html`, generated from `connection-review.json` and canonical evidence |
+| Which cable-end joints share recorded underside copper? | CAD `generated/cable-copper.json`, generated from anonymous observations in `cable-copper.json` |
 | What native checks remain? | CAD `generated/qualification.json` |
 | What digital behavior is qualified? | Core `verification/robotron-keyboard/reports/` |
 | What electrical assumptions and failures were retained? | Core `verification/robotron-keyboard/analog/reports/`; individual run reports and traces under `build/keyboard-controller-analog/` |
@@ -38,6 +39,9 @@ Signal-path inspection spans the reference driver, filter and cable nets while
 showing supported copper fragments and unresolved photo regions. Filter and cable
 body/wire observations come from CAD `output-assembly.json`; they do not assign
 winding terminals. XT1's inherited coordinates are excluded from physical highlights.
+**Underside copper group** inspects anonymous same-face spans directly on the photo.
+Its optional board projection is illustrative; unresolved winding pairings and
+terminal identities remain separate from the schematic nets.
 
 **Recorded reference waveform** shows retained simulation samples, separate from
 live latch samples and specimen measurements. Driver states apply at the marked

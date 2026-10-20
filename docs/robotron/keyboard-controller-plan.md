@@ -36,6 +36,9 @@ reconstruction requirements below remain in scope.
    terminals, supporting photo landmarks, native copper and any unresolved span;
    regenerate KiCad checks, OpenSCAD geometry and museum inspection together.
    Then close remaining placement, underside-registration and DRC gaps.
+   Use the anonymous cable-end graph to constrain terminal identity from complete
+   local paths. A winding-pairing hypothesis or approximate cross-side projection
+   must not become an electrically assigned native route.
 2. **Close pending capture reviews.** Review the held-key/repeat/release
    service capture for host voltage and receiver timing, then obtain a matched
    timestep-refinement pair. Preserve its source revision and model assumptions

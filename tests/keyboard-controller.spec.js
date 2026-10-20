@@ -649,3 +649,44 @@ test('serial inspection exposes occlusions and distinguishes cable placeholders'
  await expect(panel.locator('[data-path-review]')).toBeEmpty();
  await expect(panel.getByLabel('Controller signal path',{exact:true})).toHaveValue('');
 });
+
+test('anonymous copper groups preserve open winding identities',async()=>{
+ const {copperGroup}=await import('../src/keyboard-controller-copper.js');
+ const group=copperGroup(data,'CF2');expect(group.nodes).toEqual(['CF2','CL1','E2']);
+ expect(group.edges.map(e=>e.id).sort()).toEqual(['cf2-cable-land','cf2-stub']);
+ expect(copperGroup(data,'LF3').edges).toEqual([]);
+ expect(copperGroup(data,'missing')).toBeNull();
+ expect(data.cableCopper.assignedReferenceTerminals).toEqual({});
+ expect(data.cableCopper.projection.copperAssignmentQualified).toBe(false);
+ expect(data.cableCopper.comparison.electricalIdentityTransferred).toBe(false);
+});
+
+test('copper graph inspection keeps photo observations separate from electrical highlights',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  window.copperHighlights=[];installKeyboardControllerReview({keyboardControllerSelection(points){window.copperHighlights.push(points);}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller copper group',{exact:true}).selectOption('CF2');
+ await expect(panel.locator('[data-selection]')).toContainText('no filter winding or XT1 identity');
+ await expect(panel.getByLabel('Controller board side')).toHaveValue('bottom');
+ await expect(panel.locator('[data-copper-node="CF2"]')).toHaveAttribute('stroke','#ffe16a');
+ await expect(panel.locator('[data-copper-edge="cf2-cable-land"]')).toHaveAttribute('stroke','#ffe16a');
+ await expect(panel.locator('[data-copper-edge="lf1-driver-joint"]')).toHaveAttribute('stroke','#5bd8e0');
+ await expect(panel.locator('[data-copper-projection-edge]')).toHaveCount(0);
+ await panel.getByLabel('Show approximate copper projection').check();
+ await expect(panel.locator('[data-copper-projection-edge]')).toHaveCount(2);
+ expect(await page.evaluate(()=>window.copperHighlights.at(-1))).toEqual([]);
+ await panel.getByRole('button',{name:'Hide copper overlay'}).click();
+ await expect(panel.locator('[data-copper-overlay]')).toBeHidden();
+ await panel.getByRole('button',{name:'Show copper overlay'}).click();
+ await expect(panel.locator('[data-copper-overlay]')).toBeVisible();
+ await panel.getByLabel('Controller copper group',{exact:true}).selectOption('LF3');
+ await expect(panel.locator('[data-copper-gap="no-readable-departure"]')).toBeVisible();
+ await expect(panel.locator('[data-copper-projection-edge]')).toHaveCount(0);
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
+ await expect(panel.getByLabel('Controller copper group',{exact:true})).toHaveValue('');
+ await expect(panel.locator('[data-copper-graph]')).toHaveCount(0);
+});

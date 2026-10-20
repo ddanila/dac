@@ -24079,6 +24079,1383 @@
       "placementAuthority": "controller.kicad_pcb"
     }
   },
+  "cableCopper": {
+    "assignedReferenceTerminals": {},
+    "comparison": {
+      "anchors": [
+        {
+          "node": "CF1",
+          "pixel": [
+            817,
+            2870
+          ]
+        },
+        {
+          "node": "CF4",
+          "pixel": [
+            1072,
+            2870
+          ]
+        },
+        {
+          "node": "LF4",
+          "pixel": [
+            1076,
+            2610
+          ]
+        },
+        {
+          "node": "LF1",
+          "pixel": [
+            819,
+            2610
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "node": "CF2",
+          "pixel": [
+            905,
+            2870
+          ],
+          "projectedPrimaryPixel": [
+            1471.242907,
+            605.5551684
+          ],
+          "residualPixels": 4.779529681
+        },
+        {
+          "node": "CF3",
+          "pixel": [
+            985,
+            2870
+          ],
+          "projectedPrimaryPixel": [
+            1444.004632,
+            607.7467538
+          ],
+          "residualPixels": 2.253251006
+        },
+        {
+          "node": "LF2",
+          "pixel": [
+            909,
+            2610
+          ],
+          "projectedPrimaryPixel": [
+            1472.79191,
+            698.6297921
+          ],
+          "residualPixels": 5.246030986
+        },
+        {
+          "node": "LF3",
+          "pixel": [
+            989,
+            2610
+          ],
+          "projectedPrimaryPixel": [
+            1445.783657,
+            698.3193524
+          ],
+          "residualPixels": 3.232158038
+        }
+      ],
+      "comparisonToPrimary": [
+        0.2020289761,
+        -0.07898595145,
+        1915.773519,
+        0.3022097829,
+        -0.4861679599,
+        1892.273786,
+        0.0004399106721,
+        -4.382576037e-05,
+        1
+      ],
+      "electricalIdentityTransferred": false,
+      "maxCheckResidualPixels": 5.246030986,
+      "scope": "Different specimen. Same-face joint-row correspondence is a geometric hypothesis; this fit does not transfer nets or reworked solder connections. Cable lands lie beyond the four filter-row anchors and remain extrapolated.",
+      "source": {
+        "id": "comparison-photo-080351042",
+        "path": "../reference/photos/PXL_20261017_080351042.jpg",
+        "refs": [
+          "BR2",
+          "XT1"
+        ],
+        "sha256": "e41032fe1b669f0c5646e6d5f787cdadc43c840beddd171d29b3c6b050249730",
+        "side": "bottom",
+        "specimenId": "comparison-20261017",
+        "use": "Cable-end underside and mounting bracket. Separate specimen; comparison evidence only, not primary-specimen placement or continuity."
+      }
+    },
+    "connectedGroups": [
+      [
+        "CF1",
+        "E1",
+        "S1"
+      ],
+      [
+        "CF2",
+        "CL1",
+        "E2"
+      ],
+      [
+        "CF3",
+        "CL2",
+        "E3"
+      ],
+      [
+        "CF4",
+        "E4"
+      ],
+      [
+        "D1",
+        "D5",
+        "LF1"
+      ],
+      [
+        "D2",
+        "LF2"
+      ],
+      [
+        "D4",
+        "LF4"
+      ],
+      [
+        "LF3"
+      ],
+      [
+        "N1",
+        "N2"
+      ]
+    ],
+    "edges": [
+      {
+        "ends": [
+          "CF1",
+          "E1"
+        ],
+        "id": "cf1-stub",
+        "modelPoints": [
+          [
+            -115.0952669,
+            -15.46375207
+          ],
+          [
+            -112.1443299,
+            -15.25466407
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1503,
+            603
+          ],
+          [
+            1502,
+            639
+          ]
+        ],
+        "status": "observed",
+        "via": []
+      },
+      {
+        "ends": [
+          "CF2",
+          "E2"
+        ],
+        "id": "cf2-stub",
+        "modelPoints": [
+          [
+            -114.5232557,
+            -12.99501852
+          ],
+          [
+            -111.985025,
+            -13.0494548
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1473,
+            610
+          ],
+          [
+            1475,
+            641
+          ]
+        ],
+        "status": "observed",
+        "via": []
+      },
+      {
+        "ends": [
+          "CF3",
+          "E3"
+        ],
+        "id": "cf3-stub",
+        "modelPoints": [
+          [
+            -114.5253258,
+            -10.63781905
+          ],
+          [
+            -112.0717628,
+            -10.61576579
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1444,
+            610
+          ],
+          [
+            1445,
+            640
+          ]
+        ],
+        "status": "observed",
+        "via": []
+      },
+      {
+        "ends": [
+          "CF4",
+          "E4"
+        ],
+        "id": "cf4-stub",
+        "modelPoints": [
+          [
+            -114.5273201,
+            -8.366781184
+          ],
+          [
+            -112.1579882,
+            -8.349413332
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1416,
+            610
+          ],
+          [
+            1417,
+            639
+          ]
+        ],
+        "status": "observed",
+        "via": []
+      },
+      {
+        "ends": [
+          "CF1",
+          "S1"
+        ],
+        "id": "cf1-solder-boundary",
+        "modelPoints": [
+          [
+            -115.0952669,
+            -15.46375207
+          ],
+          [
+            -116.1620146,
+            -15.26512416
+          ],
+          [
+            -117.1470038,
+            -15.14447683
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1503,
+            603
+          ],
+          [
+            1500,
+            590
+          ],
+          [
+            1498,
+            578
+          ]
+        ],
+        "status": "observed",
+        "via": [
+          [
+            1500,
+            590
+          ]
+        ]
+      },
+      {
+        "ends": [
+          "CF2",
+          "CL1"
+        ],
+        "id": "cf2-cable-land",
+        "modelPoints": [
+          [
+            -114.5232557,
+            -12.99501852
+          ],
+          [
+            -115.8347642,
+            -11.58672059
+          ],
+          [
+            -117.6365408,
+            -9.631666376
+          ],
+          [
+            -118.373494,
+            -9.256599768
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1473,
+            610
+          ],
+          [
+            1455,
+            594
+          ],
+          [
+            1430,
+            572
+          ],
+          [
+            1425,
+            563
+          ]
+        ],
+        "status": "observed",
+        "via": [
+          [
+            1455,
+            594
+          ],
+          [
+            1430,
+            572
+          ]
+        ]
+      },
+      {
+        "ends": [
+          "CF3",
+          "CL2"
+        ],
+        "id": "cf3-cable-land",
+        "modelPoints": [
+          [
+            -114.5253258,
+            -10.63781905
+          ],
+          [
+            -115.6712505,
+            -10.68602034
+          ],
+          [
+            -117.7178655,
+            -8.661409918
+          ],
+          [
+            -118.1231177,
+            -3.419009303
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1444,
+            610
+          ],
+          [
+            1444,
+            596
+          ],
+          [
+            1418,
+            571
+          ],
+          [
+            1353,
+            566
+          ]
+        ],
+        "status": "observed",
+        "via": [
+          [
+            1444,
+            596
+          ],
+          [
+            1418,
+            571
+          ]
+        ]
+      },
+      {
+        "ends": [
+          "LF1",
+          "D1"
+        ],
+        "id": "lf1-driver-joint",
+        "modelPoints": [
+          [
+            -107.2344015,
+            -15.28673996
+          ],
+          [
+            -102.6628483,
+            -15.08891395
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1505,
+            699
+          ],
+          [
+            1505,
+            755
+          ]
+        ],
+        "status": "observed",
+        "via": []
+      },
+      {
+        "ends": [
+          "LF2",
+          "D2"
+        ],
+        "id": "lf2-bend-stop",
+        "modelPoints": [
+          [
+            -107.3253782,
+            -13.09435283
+          ],
+          [
+            -105.1221083,
+            -13.00019172
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1478,
+            698
+          ],
+          [
+            1478,
+            725
+          ]
+        ],
+        "status": "observed",
+        "via": []
+      },
+      {
+        "ends": [
+          "LF4",
+          "D4"
+        ],
+        "id": "lf4-driver-joint",
+        "modelPoints": [
+          [
+            -107.3458642,
+            -8.230462039
+          ],
+          [
+            -105.147544,
+            -8.139123693
+          ],
+          [
+            -103.5061483,
+            -10.49828143
+          ],
+          [
+            -102.5295549,
+            -10.45712544
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1418,
+            698
+          ],
+          [
+            1418,
+            725
+          ],
+          [
+            1448,
+            745
+          ],
+          [
+            1448,
+            757
+          ]
+        ],
+        "status": "observed",
+        "via": [
+          [
+            1418,
+            725
+          ],
+          [
+            1448,
+            745
+          ]
+        ]
+      },
+      {
+        "ends": [
+          "D1",
+          "D5"
+        ],
+        "id": "driver-side-span",
+        "modelPoints": [
+          [
+            -102.6628483,
+            -15.08891395
+          ],
+          [
+            -100.2179978,
+            -14.9831173
+          ],
+          [
+            -99.00648673,
+            -13.7124384
+          ],
+          [
+            -97.86787625,
+            -13.6635064
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1505,
+            755
+          ],
+          [
+            1505,
+            785
+          ],
+          [
+            1490,
+            800
+          ],
+          [
+            1490,
+            814
+          ]
+        ],
+        "status": "observed",
+        "via": [
+          [
+            1505,
+            785
+          ],
+          [
+            1490,
+            800
+          ]
+        ]
+      },
+      {
+        "ends": [
+          "N1",
+          "N2"
+        ],
+        "id": "neighbour-stepped-span",
+        "modelPoints": [
+          [
+            -114.6948979,
+            -3.280960445
+          ],
+          [
+            -113.3904146,
+            -3.228431016
+          ],
+          [
+            -112.4899375,
+            -5.451434968
+          ],
+          [
+            -103.9445895,
+            -5.102619583
+          ],
+          [
+            -103.957661,
+            -2.848589316
+          ]
+        ],
+        "net": null,
+        "photoPixels": [
+          [
+            1353,
+            608
+          ],
+          [
+            1353,
+            624
+          ],
+          [
+            1381,
+            635
+          ],
+          [
+            1381,
+            740
+          ],
+          [
+            1353,
+            740
+          ]
+        ],
+        "status": "observed",
+        "via": [
+          [
+            1353,
+            624
+          ],
+          [
+            1381,
+            635
+          ],
+          [
+            1381,
+            740
+          ]
+        ]
+      }
+    ],
+    "inputSha256": {
+      "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
+      "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
+      "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
+      "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
+      "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
+      "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
+      "tools/cable_copper.py": "aecd5d7a7c711b9ff8cb1b56ccb997ee3618ad659419097f3b7127d0cf2081be",
+      "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068"
+    },
+    "nodes": {
+      "CF1": {
+        "insideAnchorHull": false,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -115.0952669,
+          -15.46375207
+        ],
+        "net": null,
+        "pixel": [
+          1503,
+          603
+        ]
+      },
+      "CF2": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -114.5232557,
+          -12.99501852
+        ],
+        "net": null,
+        "pixel": [
+          1473,
+          610
+        ]
+      },
+      "CF3": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -114.5253258,
+          -10.63781905
+        ],
+        "net": null,
+        "pixel": [
+          1444,
+          610
+        ]
+      },
+      "CF4": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -114.5273201,
+          -8.366781184
+        ],
+        "net": null,
+        "pixel": [
+          1416,
+          610
+        ]
+      },
+      "CL1": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -118.373494,
+          -9.256599768
+        ],
+        "net": null,
+        "pixel": [
+          1425,
+          563
+        ],
+        "scope": "Cable-region land, not an XT1 terminal assignment."
+      },
+      "CL2": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -118.1231177,
+          -3.419009303
+        ],
+        "net": null,
+        "pixel": [
+          1353,
+          566
+        ],
+        "scope": "Cable-region land, not an XT1 terminal assignment."
+      },
+      "D1": {
+        "insideAnchorHull": false,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -102.6628483,
+          -15.08891395
+        ],
+        "net": null,
+        "pixel": [
+          1505,
+          755
+        ]
+      },
+      "D2": {
+        "insideAnchorHull": true,
+        "kind": "trace-stop",
+        "modelPosition": [
+          -105.1221083,
+          -13.00019172
+        ],
+        "net": null,
+        "pixel": [
+          1478,
+          725
+        ],
+        "scope": "Stop before the ambiguous bend and neighbouring joint."
+      },
+      "D4": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -102.5295549,
+          -10.45712544
+        ],
+        "net": null,
+        "pixel": [
+          1448,
+          757
+        ]
+      },
+      "D5": {
+        "insideAnchorHull": true,
+        "kind": "trace-stop",
+        "modelPosition": [
+          -97.86787625,
+          -13.6635064
+        ],
+        "net": null,
+        "pixel": [
+          1490,
+          814
+        ],
+        "scope": "The lane continues beyond the review region; no solder joint or layer transition is identified at this stop."
+      },
+      "E1": {
+        "insideAnchorHull": false,
+        "kind": "copper-end",
+        "modelPosition": [
+          -112.1443299,
+          -15.25466407
+        ],
+        "net": null,
+        "pixel": [
+          1502,
+          639
+        ],
+        "scope": "Rounded end below the solder joint; no separate hole is established."
+      },
+      "E2": {
+        "insideAnchorHull": true,
+        "kind": "copper-end",
+        "modelPosition": [
+          -111.985025,
+          -13.0494548
+        ],
+        "net": null,
+        "pixel": [
+          1475,
+          641
+        ]
+      },
+      "E3": {
+        "insideAnchorHull": true,
+        "kind": "copper-end",
+        "modelPosition": [
+          -112.0717628,
+          -10.61576579
+        ],
+        "net": null,
+        "pixel": [
+          1445,
+          640
+        ]
+      },
+      "E4": {
+        "insideAnchorHull": true,
+        "kind": "copper-end",
+        "modelPosition": [
+          -112.1579882,
+          -8.349413332
+        ],
+        "net": null,
+        "pixel": [
+          1417,
+          639
+        ]
+      },
+      "LF1": {
+        "insideAnchorHull": false,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -107.2344015,
+          -15.28673996
+        ],
+        "net": null,
+        "pixel": [
+          1505,
+          699
+        ]
+      },
+      "LF2": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -107.3253782,
+          -13.09435283
+        ],
+        "net": null,
+        "pixel": [
+          1478,
+          698
+        ]
+      },
+      "LF3": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -107.3352913,
+          -10.74073287
+        ],
+        "net": null,
+        "pixel": [
+          1449,
+          698
+        ]
+      },
+      "LF4": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -107.3458642,
+          -8.230462039
+        ],
+        "net": null,
+        "pixel": [
+          1418,
+          698
+        ]
+      },
+      "N1": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -114.6948979,
+          -3.280960445
+        ],
+        "net": null,
+        "pixel": [
+          1353,
+          608
+        ]
+      },
+      "N2": {
+        "insideAnchorHull": true,
+        "kind": "solder-joint",
+        "modelPosition": [
+          -103.957661,
+          -2.848589316
+        ],
+        "net": null,
+        "pixel": [
+          1353,
+          740
+        ]
+      },
+      "S1": {
+        "insideAnchorHull": false,
+        "kind": "occlusion-boundary",
+        "modelPosition": [
+          -117.1470038,
+          -15.14447683
+        ],
+        "net": null,
+        "pixel": [
+          1498,
+          578
+        ],
+        "scope": "Track enters a reworked solder region. The extent and cable attachment remain unclassified."
+      }
+    },
+    "projection": {
+      "anchors": [
+        {
+          "bottomPixel": [
+            1076,
+            414
+          ],
+          "id": "bare-mount-hole",
+          "topPixel": [
+            1654,
+            501
+          ]
+        },
+        {
+          "bottomPixel": [
+            1491,
+            410
+          ],
+          "id": "mounting-axis",
+          "topPixel": [
+            1195,
+            500
+          ]
+        },
+        {
+          "bottomPixel": [
+            1492,
+            1327
+          ],
+          "terminal": "A1:1",
+          "topPixel": [
+            1285,
+            1495
+          ]
+        },
+        {
+          "bottomPixel": [
+            1090,
+            969
+          ],
+          "terminal": "R4.2:1",
+          "topPixel": [
+            1687,
+            1101
+          ]
+        }
+      ],
+      "bottomToTop": [
+        -1.117504447,
+        0.1299371103,
+        2761.792785,
+        -0.00866640926,
+        1.083158095,
+        49.52465118,
+        -3.325463015e-05,
+        2.677649092e-05,
+        1
+      ],
+      "checks": [
+        {
+          "bottomPixel": [
+            1086,
+            647
+          ],
+          "projectedTopPixel": [
+            1663.509848,
+            755.1047409
+          ],
+          "residualPixels": 13.65335664,
+          "terminal": "R3:1",
+          "topPixel": [
+            1677,
+            753
+          ]
+        },
+        {
+          "bottomPixel": [
+            1238,
+            643
+          ],
+          "projectedTopPixel": [
+            1497.745772,
+            753.3095224
+          ],
+          "residualPixels": 15.69430145,
+          "terminal": "R3:2",
+          "topPixel": [
+            1513,
+            757
+          ]
+        },
+        {
+          "bottomPixel": [
+            1086,
+            691
+          ],
+          "projectedTopPixel": [
+            1667.334551,
+            802.7125257
+          ],
+          "residualPixels": 12.95265983,
+          "terminal": "R4.1:1",
+          "topPixel": [
+            1680,
+            800
+          ]
+        },
+        {
+          "bottomPixel": [
+            1240,
+            694
+          ],
+          "projectedTopPixel": [
+            1500.248541,
+            808.8119221
+          ],
+          "residualPixels": 17.73104072,
+          "terminal": "R4.1:2",
+          "topPixel": [
+            1517,
+            803
+          ]
+        },
+        {
+          "bottomPixel": [
+            1089,
+            737
+          ],
+          "projectedTopPixel": [
+            1668.084151,
+            852.422384
+          ],
+          "residualPixels": 14.00790515,
+          "terminal": "R5:1",
+          "topPixel": [
+            1681,
+            847
+          ]
+        },
+        {
+          "bottomPixel": [
+            1242,
+            741
+          ],
+          "projectedTopPixel": [
+            1502.378002,
+            859.8339035
+          ],
+          "residualPixels": 22.05984716,
+          "terminal": "R5:2",
+          "topPixel": [
+            1523,
+            852
+          ]
+        },
+        {
+          "bottomPixel": [
+            1243,
+            972
+          ],
+          "projectedTopPixel": [
+            1522.338742,
+            1108.552533
+          ],
+          "residualPixels": 4.682686518,
+          "terminal": "R4.2:2",
+          "topPixel": [
+            1527,
+            1109
+          ]
+        }
+      ],
+      "copperAssignmentQualified": false,
+      "maxCheckResidualPixels": 22.05984716,
+      "scope": "Nominal bottom-to-top search fit, then existing top-photo board projection. Mounting-axis observation and raised top leads can bias the fit. Not qualified for numbered pads, native electrical routes or layer transitions; projected artwork remains illustrative.",
+      "topToModel": [
+        0.0006638350153,
+        0.07510278093,
+        -169.3005022,
+        0.07291561845,
+        -0.003377124003,
+        -100.6109343,
+        2.868314984e-06,
+        -7.262910238e-06,
+        1
+      ]
+    },
+    "referenceRoles": {
+      "L1.1": {
+        "1": "/TA_TAKT",
+        "2": "/CABLE_TAKT"
+      },
+      "L1.2": {
+        "1": "/GND",
+        "2": "/CABLE_GND"
+      },
+      "L1.3": {
+        "1": "/+5V",
+        "2": "/CABLE_5V"
+      },
+      "L1.4": {
+        "1": "/TA_DATEN",
+        "2": "/CABLE_DATEN"
+      },
+      "XT1": {
+        "A1": "/CABLE_DATEN",
+        "A3": "/CABLE_GND",
+        "A5": "/SHIELD",
+        "B2": "/CABLE_TAKT",
+        "B4": "/CABLE_5V"
+      }
+    },
+    "regionPixels": [
+      1300,
+      520,
+      1520,
+      820
+    ],
+    "schema": 1,
+    "scope": "Anonymous cable-end underside copper graph. An edge records a visible same-face span, not a winding, top-side transition or measured continuity. Geometric joint IDs are not L1/XT1 pin numbers. Absence of an edge means no continuation recorded, not an open circuit.",
+    "source": {
+      "id": "photo-bottom",
+      "path": "../reference/photos/PXL_20261012_123648677.jpg",
+      "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+      "use": "Specimen placement and visible copper; approximate planar registration"
+    },
+    "unresolved": [
+      {
+        "alternatives": "All one-to-one row pairings remain possible; row adjacency is not winding continuity.",
+        "id": "winding-pairing",
+        "needed": "Trace individual insulated conductors through the core or obtain a joint-to-joint resistance map.",
+        "nodes": [
+          "CF1",
+          "CF2",
+          "CF3",
+          "CF4",
+          "LF1",
+          "LF2",
+          "LF3",
+          "LF4"
+        ],
+        "question": "Which cable-facing joint pairs with which logic-facing joint through a winding?"
+      },
+      {
+        "id": "no-readable-departure",
+        "needed": "A separately registered top-side attachment; underside appearance cannot establish disconnection.",
+        "nodes": [
+          "CF4",
+          "LF3"
+        ],
+        "question": "Where do these joints continue beyond the visible stub or isolated pad?"
+      },
+      {
+        "id": "cable-terminal-identity",
+        "needed": "Follow identifiable cable conductors to labelled connector terminals; colour alone is insufficient.",
+        "nodes": [
+          "S1",
+          "CL1",
+          "CL2"
+        ],
+        "question": "Which XT1 terminals reach these lands?"
+      },
+      {
+        "id": "logic-side-identity",
+        "needed": "Independently matched top joints and complete copper paths to known pins; proximity does not assign a net.",
+        "nodes": [
+          "D1",
+          "D2",
+          "D4",
+          "D5",
+          "N1",
+          "N2"
+        ],
+        "question": "Which driver, rail or layer-transition terminals correspond to these features?"
+      }
+    ],
+    "windingPairingCandidates": [
+      {
+        "CF1": "LF1",
+        "CF2": "LF2",
+        "CF3": "LF3",
+        "CF4": "LF4"
+      },
+      {
+        "CF1": "LF1",
+        "CF2": "LF2",
+        "CF3": "LF4",
+        "CF4": "LF3"
+      },
+      {
+        "CF1": "LF1",
+        "CF2": "LF3",
+        "CF3": "LF2",
+        "CF4": "LF4"
+      },
+      {
+        "CF1": "LF1",
+        "CF2": "LF3",
+        "CF3": "LF4",
+        "CF4": "LF2"
+      },
+      {
+        "CF1": "LF1",
+        "CF2": "LF4",
+        "CF3": "LF2",
+        "CF4": "LF3"
+      },
+      {
+        "CF1": "LF1",
+        "CF2": "LF4",
+        "CF3": "LF3",
+        "CF4": "LF2"
+      },
+      {
+        "CF1": "LF2",
+        "CF2": "LF1",
+        "CF3": "LF3",
+        "CF4": "LF4"
+      },
+      {
+        "CF1": "LF2",
+        "CF2": "LF1",
+        "CF3": "LF4",
+        "CF4": "LF3"
+      },
+      {
+        "CF1": "LF2",
+        "CF2": "LF3",
+        "CF3": "LF1",
+        "CF4": "LF4"
+      },
+      {
+        "CF1": "LF2",
+        "CF2": "LF3",
+        "CF3": "LF4",
+        "CF4": "LF1"
+      },
+      {
+        "CF1": "LF2",
+        "CF2": "LF4",
+        "CF3": "LF1",
+        "CF4": "LF3"
+      },
+      {
+        "CF1": "LF2",
+        "CF2": "LF4",
+        "CF3": "LF3",
+        "CF4": "LF1"
+      },
+      {
+        "CF1": "LF3",
+        "CF2": "LF1",
+        "CF3": "LF2",
+        "CF4": "LF4"
+      },
+      {
+        "CF1": "LF3",
+        "CF2": "LF1",
+        "CF3": "LF4",
+        "CF4": "LF2"
+      },
+      {
+        "CF1": "LF3",
+        "CF2": "LF2",
+        "CF3": "LF1",
+        "CF4": "LF4"
+      },
+      {
+        "CF1": "LF3",
+        "CF2": "LF2",
+        "CF3": "LF4",
+        "CF4": "LF1"
+      },
+      {
+        "CF1": "LF3",
+        "CF2": "LF4",
+        "CF3": "LF1",
+        "CF4": "LF2"
+      },
+      {
+        "CF1": "LF3",
+        "CF2": "LF4",
+        "CF3": "LF2",
+        "CF4": "LF1"
+      },
+      {
+        "CF1": "LF4",
+        "CF2": "LF1",
+        "CF3": "LF2",
+        "CF4": "LF3"
+      },
+      {
+        "CF1": "LF4",
+        "CF2": "LF1",
+        "CF3": "LF3",
+        "CF4": "LF2"
+      },
+      {
+        "CF1": "LF4",
+        "CF2": "LF2",
+        "CF3": "LF1",
+        "CF4": "LF3"
+      },
+      {
+        "CF1": "LF4",
+        "CF2": "LF2",
+        "CF3": "LF3",
+        "CF4": "LF1"
+      },
+      {
+        "CF1": "LF4",
+        "CF2": "LF3",
+        "CF3": "LF1",
+        "CF4": "LF2"
+      },
+      {
+        "CF1": "LF4",
+        "CF2": "LF3",
+        "CF3": "LF2",
+        "CF4": "LF1"
+      }
+    ]
+  },
   "connectionReview": {
     "schema": 1,
     "scope": "Physical route review, not new connectivity evidence. X1 serves the matrix/LEDs; XT1 is the host cable. Reference endpoints are targets for tracing, not observed attachments.",
@@ -26943,7 +28320,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "0d0afdc120f1f7e8e3756f54ebc7b994e5bafa6a"
+      "revision": "00a42193f963545c350b6bc46ec7808906bce190"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -26960,6 +28337,7 @@
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
+      "cableCopper": "315d012a2f581205b80fb8db56c1634dfbf561548f6b0691df2ceff1f0144f98",
       "connectionReview": "d29ff6b17633fe63f8df5642db87173b9a4ca894b47a99c7d90b9f6495148f6a",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
