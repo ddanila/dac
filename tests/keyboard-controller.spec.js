@@ -766,7 +766,10 @@ test('clock continuation shows new observations without extending native clock r
  const continuation=panel.locator('[data-clock-continuation]');
  await expect(continuation.locator('[data-observed-span="outer-lane-to-upper-eye"]')).toBeVisible();
  await expect(continuation.locator('[data-clock-gap="under-r96"]')).toContainText('hides');
- await expect(continuation.locator('[data-clock-gap="upper-eye-to-filter"]')).toContainText('remain unresolved');
+ await expect(continuation.locator('[data-clock-gap="upper-eye-to-filter"]')).toContainText('No supported attachment');
+ await expect(continuation.locator('[data-upper-corridor]')).toContainText('fit rejected');
+ await expect(continuation.locator('[data-observed-span="upper-corridor-middle"]')).toBeVisible();
+ await expect(continuation.locator('[data-clock-gap="under-capacitor"]')).toContainText('obscures part of the surrounding routing');
  await expect(continuation).toContainText('Different specimen');
  await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-data');
  await expect(panel.locator('[data-clock-continuation]')).toHaveCount(0);

@@ -26794,7 +26794,7 @@
     "schema": 1,
     "scope": "Physical route review, not new connectivity evidence. X1 serves the matrix/LEDs; XT1 is the host cable. Reference endpoints are targets for tracing, not observed attachments.",
     "inputSha256": {
-      "connection-review.json": "a88573493f66768abb3f11f274125f3aa13745939689757aa3f62cac1742a99d",
+      "connection-review.json": "75048eb0d8f2ed7069bb75829c62055cc7928a66fce4e96707165f910edba0e7",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "route-evidence.json": "ab650188f8d3e826352205bd4596b83fe113c31da04714c8d82d5cd1fb4ab15a",
@@ -26805,13 +26805,14 @@
       "generated/bottom-registration.json": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
       "bottom-landmarks.json": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
-      "clock-continuation.json": "f5a49cda24fd97720d176460e761e090033aa7dc04ea1ecaea192f8c090760ef",
+      "clock-continuation.json": "df0e412e549ceb866b1e89b2099e121be7b76a2acdc3e0edcd32c936e8098f07",
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
       "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
-      "tools/connection_review.py": "651fa82c27f1d941c52b410c1f6f3468b477a637212975f67cb8959411ae6067",
+      "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
+      "tools/connection_review.py": "82fbc3203fb81b2ba7377ffd2789b8a94759cf10ffd5685d393b4d37669d0a88",
       "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068",
       "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
-      "tools/clock_continuation.py": "02ecdef255850e140876f8a1d788623b225f5597bbbbc4757a114a40e115bdd3"
+      "tools/clock_continuation.py": "7dfa75008966aaf544f0000b5ca5c75af2334a79ae5bc1b88211f8c01084880d"
     },
     "cases": [
       {
@@ -26864,7 +26865,7 @@
           "Reference path reaches A1:2 and L1.1:1 through hidden copper.",
           "The apparent top/bottom stop correspondence is wrong; the visible branch requires a different continuation. This is a geometric alternative, not a replacement net assignment."
         ],
-        "nextDeskWork": "Resolve the hidden bank spans and the upper-eye continuation near R4.1 before assigning the outer lane to clock. Independently match that continuation to a filter joint; do not extend the local filter fit outside its boundary.",
+        "nextDeskWork": "Resolve the hidden bank spans and the upper-eye continuation near R4.1 before assigning the outer lane to clock. The exposed bent corridor stops before the capacitor-side copper; resolve both its upper-eye join and its hidden capacitor-side continuation. The wider mixed fit fails held-out checks and must not assign an LF joint.",
         "decisiveObservation": "An uninterrupted path, including any confirmed layer transition, from R10.1:2 to A1:2 and the identified L1.1 input. Separately identify both winding ends and the cable-side connection to XT1:B2.",
         "doNotInfer": "The former A1:13 conflict came from a rejected projection. It is not a measured short, and the surviving local segment does not identify the hidden A1 pin.",
         "referenceNets": [
@@ -27677,7 +27678,7 @@
                     3072,
                     4080
                   ],
-                  "detail": "Candidate clock continuation across the resistor bank and along the outer underside lane. New copper observations are electrically unassigned. Hidden resistor-body spans and cross-side continuity are not observed; this does not close A1\u2013L1.1\u2013XT1."
+                  "detail": "Visible outermost lane, separate from the neighbouring inner lane. Pixel centreline and bends are estimates; endpoints are anonymous eyes, not numbered pads."
                 }
               ],
               "markers": [
@@ -27706,7 +27707,38 @@
                 "href": "../../reference/photos/PXL_20261012_123622947.jpg",
                 "specimen": "primary museum specimen"
               },
-              "segments": [],
+              "segments": [
+                {
+                  "id": "upper-corridor-middle",
+                  "points": [
+                    [
+                      1540,
+                      839
+                    ],
+                    [
+                      1493,
+                      839
+                    ],
+                    [
+                      1457,
+                      810
+                    ],
+                    [
+                      1440,
+                      810
+                    ]
+                  ],
+                  "status": "observed",
+                  "scope": "Exposed top track between the resistor area and the capacitor-side copper. Stop before the wider copper near the capacitor; no component attachment or hidden continuation is asserted.",
+                  "group": "unassigned-clock-continuation",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Exposed top track between the resistor area and the capacitor-side copper. Stop before the wider copper near the capacitor; no component attachment or hidden continuation is asserted."
+                }
+              ],
               "markers": [
                 {
                   "point": [
@@ -27715,11 +27747,268 @@
                   ],
                   "radius": 13,
                   "kind": "search",
-                  "label": "Upper-eye search near R4.1; not an identified top joint"
+                  "label": "Upper-eye search near R4.1; no observed join to the corridor"
+                },
+                {
+                  "point": [
+                    1440,
+                    810
+                  ],
+                  "label": "Recorded corridor stop before capacitor-side copper; not a capacitor pin or LF assignment"
                 }
               ]
             }
           ],
+          "upperCorridor": {
+            "scope": "Primary top observation across the upper corridor. Both ends are review stops, not holes or measured breaks. Neither the upper eye nor a filter terminal is joined to this span.",
+            "registration": {
+              "anchors": [
+                {
+                  "terminal": "CF1",
+                  "bottomPixel": [
+                    1503,
+                    603
+                  ],
+                  "topPixel": [
+                    1214,
+                    701
+                  ]
+                },
+                {
+                  "terminal": "R3:1",
+                  "bottomPixel": [
+                    1086,
+                    647
+                  ],
+                  "topPixel": [
+                    1677,
+                    753
+                  ]
+                },
+                {
+                  "terminal": "R5:1",
+                  "bottomPixel": [
+                    1089,
+                    737
+                  ],
+                  "topPixel": [
+                    1681,
+                    847
+                  ]
+                },
+                {
+                  "terminal": "LF1",
+                  "bottomPixel": [
+                    1505,
+                    699
+                  ],
+                  "topPixel": [
+                    1230,
+                    793
+                  ]
+                }
+              ],
+              "checks": [
+                {
+                  "terminal": "CF2",
+                  "bottomPixel": [
+                    1473,
+                    610
+                  ],
+                  "topPixel": [
+                    1252,
+                    697
+                  ],
+                  "residualPixels": 13.18088206,
+                  "insideAnchorHull": true,
+                  "allowancePixels": 10
+                },
+                {
+                  "terminal": "CF3",
+                  "bottomPixel": [
+                    1444,
+                    610
+                  ],
+                  "topPixel": [
+                    1285,
+                    693
+                  ],
+                  "residualPixels": 18.91425109,
+                  "insideAnchorHull": true,
+                  "allowancePixels": 10
+                },
+                {
+                  "terminal": "LF2",
+                  "bottomPixel": [
+                    1478,
+                    698
+                  ],
+                  "topPixel": [
+                    1260,
+                    794
+                  ],
+                  "residualPixels": 4.100305363,
+                  "insideAnchorHull": true,
+                  "allowancePixels": 10
+                },
+                {
+                  "terminal": "LF3",
+                  "bottomPixel": [
+                    1449,
+                    698
+                  ],
+                  "topPixel": [
+                    1295,
+                    794
+                  ],
+                  "residualPixels": 10.38950582,
+                  "insideAnchorHull": true,
+                  "allowancePixels": 10
+                },
+                {
+                  "terminal": "LF4",
+                  "bottomPixel": [
+                    1418,
+                    698
+                  ],
+                  "topPixel": [
+                    1325,
+                    792
+                  ],
+                  "residualPixels": 9.815211483,
+                  "insideAnchorHull": true,
+                  "allowancePixels": 10
+                },
+                {
+                  "terminal": "R3:2",
+                  "bottomPixel": [
+                    1238,
+                    643
+                  ],
+                  "topPixel": [
+                    1513,
+                    757
+                  ],
+                  "residualPixels": 18.3984699,
+                  "insideAnchorHull": true,
+                  "allowancePixels": 8
+                },
+                {
+                  "terminal": "R4.1:2",
+                  "bottomPixel": [
+                    1240,
+                    694
+                  ],
+                  "topPixel": [
+                    1517,
+                    803
+                  ],
+                  "residualPixels": 15.10781606,
+                  "insideAnchorHull": true,
+                  "allowancePixels": 8
+                }
+              ],
+              "bottomToTop": [
+                -1.438101866,
+                1.042793318,
+                4126.596895,
+                0.3635928405,
+                2.463477293,
+                -534.1414873,
+                0.0005466390847,
+                0.0005225294837,
+                1
+              ],
+              "bottomAnchorHull": [
+                [
+                  1503,
+                  603
+                ],
+                [
+                  1086,
+                  647
+                ],
+                [
+                  1089,
+                  737
+                ],
+                [
+                  1505,
+                  699
+                ]
+              ],
+              "maxCheckResidualPixels": 18.91425109,
+              "copperAssignmentQualified": false,
+              "scope": "Trial fit spanning the filter and upper resistor bank. Evaluate held-out points against their canonical observation allowances; keep points outside the anchor hull separate. A failed fit cannot identify a capacitor lead, join copper or extend the accepted filter-only region.",
+              "extrapolationChecks": [
+                {
+                  "terminal": "CF4",
+                  "bottomPixel": [
+                    1416,
+                    610
+                  ],
+                  "topPixel": [
+                    1320,
+                    696
+                  ],
+                  "residualPixels": 21.50776289,
+                  "insideAnchorHull": false,
+                  "allowancePixels": 10
+                },
+                {
+                  "terminal": "R4.1:1",
+                  "bottomPixel": [
+                    1086,
+                    691
+                  ],
+                  "topPixel": [
+                    1680,
+                    800
+                  ],
+                  "residualPixels": 0.850587925,
+                  "insideAnchorHull": false,
+                  "allowancePixels": 8
+                },
+                {
+                  "terminal": "R5:2",
+                  "bottomPixel": [
+                    1242,
+                    741
+                  ],
+                  "topPixel": [
+                    1523,
+                    852
+                  ],
+                  "residualPixels": 18.29047393,
+                  "insideAnchorHull": false,
+                  "allowancePixels": 8
+                }
+              ],
+              "photoAlignmentAccepted": false
+            },
+            "unmatchedTopFeatures": [
+              {
+                "id": "capacitor-near-filter-left-lead",
+                "topPixel": [
+                  1375,
+                  868
+                ],
+                "kind": "lead-end",
+                "scope": "Visible lead/solder feature beside the capacitor. No independent underside match or numbered capacitor terminal; excluded from fit anchors."
+              },
+              {
+                "id": "capacitor-near-filter-right-lead",
+                "topPixel": [
+                  1425,
+                  856
+                ],
+                "kind": "lead-end",
+                "scope": "Visible lead/solder feature beside the capacitor. Raised lead and solder obscure the board-plane entry; no independent underside match, so excluded from fit anchors."
+              }
+            ],
+            "comparisonScope": "The sharper comparison top photo exposes the corresponding bent lane and capacitor occlusion. It supports which visible corridor to inspect, not primary-specimen continuity or an L1 winding assignment. The oblique cable-end view also leaves the capacitor-side continuation obscured.",
+            "assignedFilterTerminals": {}
+          },
           "openJoins": [
             {
               "id": "clock-stop-to-bank-lane",
@@ -27739,7 +28028,15 @@
             },
             {
               "id": "upper-eye-to-filter",
-              "scope": "The outer underside lane ends at an eye near R4.1. Its top continuation and connection to a filter joint remain unresolved."
+              "scope": "No supported attachment from the upper corridor to an LF joint is established. The wider mixed filter/resistor fit fails held-out checks; the accepted filter-only correspondence remains bounded."
+            },
+            {
+              "id": "upper-eye-to-corridor",
+              "scope": "The connection between the upper eye near R4.1 and the exposed bent corridor is obscured; keep these observations disconnected."
+            },
+            {
+              "id": "under-capacitor",
+              "scope": "The capacitor obscures part of the surrounding routing. The recorded span stops before nearby copper; its continuation toward the filter and the underside matches of nearby lead ends remain unresolved."
             }
           ],
           "assignedReferenceTerminals": {},
@@ -27788,6 +28085,19 @@
               ],
               "use": "Cable end, discrete components, bracket and wire entry. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
               "href": "../../reference/photos/PXL_20261017_080406304.jpg",
+              "specimen": "comparison-20261017"
+            },
+            {
+              "id": "comparison-photo-080511382",
+              "path": "../reference/photos/PXL_20261017_080511382.jpg",
+              "sha256": "322b586dea2c9e37d470252f96c79f8d5510af592013fcc7be1f009aa365fd12",
+              "specimenId": "comparison-20261017",
+              "side": "oblique",
+              "refs": [
+                "XT1"
+              ],
+              "use": "Cable wires, mounting bracket and nearby component profiles. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+              "href": "../../reference/photos/PXL_20261017_080511382.jpg",
               "specimen": "comparison-20261017"
             }
           ]
@@ -30217,7 +30527,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "3febece482b8e5cea14ca83091d357cbed9501eb"
+      "revision": "baaa4a8c980747a6aa6df3996d7aa11cdeaf5726"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -30235,7 +30545,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "cableCopper": "552cfa30783a00dc6c614cde7f8fb4dcd4196b6da0a3da14d8ac722ae79b1ff7",
-      "connectionReview": "e09ddc89daf14834093f60862285e0d0ba79aea72379ed9fcc2341b88e24e78a",
+      "connectionReview": "701f806b0066ca85be5792e112bb8e100f07087a29fcd660cd751d4dd43b66a2",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",

@@ -255,6 +255,8 @@ export function installKeyboardControllerReview(scene){
      const c=review.continuation,details=document.createElement('details');details.dataset.clockContinuation='';
      const summary=document.createElement('summary');summary.textContent='Candidate clock continuation — unassigned copper';details.append(summary);
      const note=document.createElement('p');note.textContent=c.scope+` Bank fit: ${c.bankRegistration.maxCheckResidualPixels.toFixed(1)} px maximum held-out residual; return eye: ${c.bankReturn.residualPixels.toFixed(1)} px correspondence residual. Neither establishes hidden electrical continuity.`;details.append(note);
+     const corridor=document.createElement('p');corridor.dataset.upperCorridor='';const fit=c.upperCorridor.registration;
+     corridor.textContent=c.upperCorridor.scope+` Wider filter/resistor fit ${fit.photoAlignmentAccepted?'accepted':'rejected'}: ${fit.maxCheckResidualPixels.toFixed(1)} px maximum held-out residual. Unmatched capacitor lead ends are excluded from its anchors.`;details.append(corridor);
      for(const fig of c.figures)details.append(connectionPhoto(fig));
      const gaps=document.createElement('ul');for(const gap of c.openJoins){const li=document.createElement('li');li.dataset.clockGap=gap.id;li.textContent=gap.scope;gaps.append(li);}details.append(gaps);
      const comparison=document.createElement('p');comparison.textContent=c.comparisonScope;details.append(comparison);
