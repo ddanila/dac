@@ -845,6 +845,10 @@ test('bus review separates partial fan-out from connected CPU-ROM lanes',async({
  expect(regions.find(r=>r.id==='cpu-rom').copperAssignmentQualified).toBe(false);
  expect(regions.find(r=>r.id==='cpu-rom-data').copperAssignmentQualified).toBe(true);
  expect(regions.find(r=>r.id==='cpu-rom-bus').copperAssignmentQualified).toBe(true);
+ expect(data.topRegistration.pcbRegions.find(r=>r.id==='cpu-latch-data').copperAssignmentQualified).toBe(true);
+ for(const [net,pins] of [['/D5',['A4:14','A5:9']],['/D6',['A4:13','A5:10']],['/D7',['A4:12','A5:13']]]){
+  expect(data.routingAudit.nets.find(n=>n.net===net).islands.some(g=>g.terminals.length===2&&pins.every(p=>g.terminals.includes(p)))).toBe(true);
+ }
  const d1=data.routingAudit.nets.find(n=>n.net==='/D1');
  expect(d1.islands.some(g=>['A5:15','A8:10'].every(p=>g.terminals.includes(p)))).toBe(true);
  await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
@@ -858,6 +862,7 @@ test('bus review separates partial fan-out from connected CPU-ROM lanes',async({
  const section=panel.locator('[data-routing-net="/D5"]');
  await section.locator(':scope > summary').click();
  await expect(section).toContainText('Review target: A5:9 ↔ A8:15');
+ await expect(section).toContainText('Recorded local path: A4:14 ↔ A5:9');
  await expect(section).toContainText('Eye-to-CPU continuity remains unresolved');
  await expect(section.locator('[data-bus-cross-side]')).toContainText('projection and search margin lie beneath A5');
  await expect(section.locator('[data-photo-occluder="A5"]')).toBeVisible();

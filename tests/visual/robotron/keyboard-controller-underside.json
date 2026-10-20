@@ -586,8 +586,8 @@
   },
   {
     "name": "keyboard-controller-traces",
-    "vertices": 50392,
-    "indices": 152880,
+    "vertices": 51026,
+    "indices": 154986,
     "bounds": [
       -24.087,
       -330.398987,

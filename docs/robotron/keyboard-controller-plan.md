@@ -37,7 +37,8 @@ reconstruction requirements below remain in scope.
    CPU/ROM paths. Its generated search overlay locates the remaining eyes under
    the CPU body; installed-CPU photographs do not expose these joins. Closing
    them requires evidence of the covered copper or independent continuity,
-   not a projected eye-to-pin match. Retain the
+   not a projected eye-to-pin match. Evaluate exposed latch branches separately
+   from those covered ROM continuations. Retain the
    data/clock path through the L1 filter windings to host cable XT1 as the physical
    integration milestone.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
