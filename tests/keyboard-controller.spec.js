@@ -6,7 +6,7 @@ test('controller net selection preserves physical pin identity and unplaced evid
  const s=controllerSelection(data,'net','/TA_DATEN');
  expect(s.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:4','L1.4:1','R10.2:2']);
  expect(s.points).toHaveLength(2);expect(s.unplaced.sort()).toEqual(['L1.4']);
- expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&['/WR_N','/+5V','/CLK','/COL11','/TA_DATEN','/TA_TAKT'].includes(r.net))).toBe(true);
+ expect(data.cosimulation.equivalent).toBe(true);expect(data.cosimulation.bus.mismatches).toBe(0);expect(data.layout.routes.every(r=>r.evidence&&data.routingAudit.nets.some(n=>n.net===r.net))).toBe(true);
  const model=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/model.json',import.meta.url)));
  expect(model.keyboardControllerSource['keyboard-controller/generated/controller.scad']).toBe(data.source.geometryScadSha256);
  expect(data.layout.unresolvedArtwork.every(r=>r.net===null)).toBe(true);
@@ -260,10 +260,14 @@ test('candidate photo endpoints never become net-connected pads',async({page})=>
 
 test('supply selection retains disconnected islands on the same reference net',()=>{
  const selection=controllerSelection(data,'component','R3');
- expect(selection.routes).toHaveLength(16);
+ expect(selection.routes.map(r=>r.id).sort()).toEqual(data.layout.routes.filter(r=>r.net==='/+5V').map(r=>r.id).sort());
  expect(selection.routes.every(r=>r.net==='/+5V'&&r.side==='top')).toBe(true);
- expect(selection.routes.filter(r=>r.evidence.status==='observed')).toHaveLength(10);
- expect(selection.routes.filter(r=>r.evidence.status==='inferred')).toHaveLength(6);
+ expect(selection.routes.some(r=>r.evidence.status==='observed')).toBe(true);
+ expect(selection.routes.some(r=>r.evidence.status==='inferred')).toBe(true);
+ const supply=data.routingAudit.nets.find(n=>n.net==='/+5V');
+ expect(supply.padGroups).toBeGreaterThan(1);
+ expect(supply.islands.some(g=>g.terminals.includes('R3:1')&&g.terminals.includes('R6.1:1'))).toBe(true);
+ expect(supply.islands.some(g=>g.terminals.includes('R3:1')&&g.terminals.includes('R10.1:1'))).toBe(false);
  expect(selection.unplaced).toEqual([]);
 });
 
@@ -806,4 +810,27 @@ test('data and strobe tracing expose unresolved joins without assigning native r
  }
  await page.setViewportSize({width:390,height:844});
  expect(await panel.evaluate(e=>e.scrollWidth<=e.clientWidth+2)).toBe(true);
+});
+
+test('native routing audit counts disconnected pad groups and exposes supported rail paths',async({page})=>{
+ const audit=data.routingAudit;
+ expect(audit.summary.remainingPadGroupLinks).toBe(audit.nets.reduce((n,r)=>n+Math.max(0,r.padGroups-1),0));
+ expect(audit.summary.drcUnconnectedItems).toBe(data.qualification.drc.unconnectedItems);
+ const ground=audit.nets.find(n=>n.net==='/GND');
+ expect(ground.islands.some(g=>['R4.2:2','R7:2','R8:2'].every(p=>g.terminals.includes(p)))).toBe(true);
+ expect(ground.nativePadsConnected).toBe(false);
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');await panel.getByLabel('Controller net',{exact:true}).selectOption('/GND');
+ const details=panel.locator('[data-routing-audit]');await details.locator(':scope > summary').click();
+ await expect(details).toContainText('Includes off-board placeholder pads');
+ const net=details.locator('[data-routing-net="/GND"]');await net.locator(':scope > summary').click();
+ await expect(net).toContainText('R4.2:2 ↔ R7:2 ↔ R8:2');
+ await expect(net).toContainText('Recorded local path: R4.2:2 ↔ R7:2');
+ await expect(net.locator('svg').first()).toBeVisible();
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/COL11');
+ await expect(panel.locator('[data-routing-net="/COL11"] > summary')).toContainText('1 terminal groups, 0 links remaining');
 });

@@ -167,6 +167,28 @@ export function installKeyboardControllerReview(scene){
     get('[data-selection]').textContent+=` Assigned copper: ${counts} sections. Dashed sections are inferred. Net names follow the reference schematic; partial routing does not prove endpoint continuity.`;
     for(const detail of new Set(routes.map(r=>r.evidence.detail))){const text=document.createElement('p');text.textContent=detail;pins.append(text);}
    }
+   if(data.routingAudit){
+    const audit=document.createElement('details');audit.dataset.routingAudit='';
+    const heading=document.createElement('summary');heading.textContent='Native routing audit';audit.append(heading);
+    const total=data.routingAudit.summary,note=document.createElement('p');
+    note.textContent=`Board: ${total.fullyConnectedMultiTerminalNets}/${total.multiTerminalNets} multi-pin nets connected; ${total.remainingPadGroupLinks} pad-group links remain; ${total.floatingCopperGroups} floating copper groups. Includes off-board placeholder pads. This measures native connectivity, not historical or fabrication qualification.`;audit.append(note);
+    const selectedNets=new Set(selection.pins.map(p=>p.net));
+    for(const net of data.routingAudit.nets.filter(n=>selectedNets.has(n.net))){
+     const section=document.createElement('details');section.dataset.routingNet=net.net;
+     const title=document.createElement('summary');title.textContent=`${clean(net.net)}: ${net.padGroups} terminal groups, ${net.remainingPadGroupLinks} links remaining`;section.append(title);
+     const groups=document.createElement('ul');for(const island of net.islands){const li=document.createElement('li');li.textContent=island.terminals.length?island.terminals.join(' ↔ '):'Floating copper';if(island.unplacedTerminals.length)li.textContent+=' · placeholder pads: '+island.unplacedTerminals.join(', ');groups.append(li);}section.append(groups);
+     const paths=new Map();for(const route of routes.filter(r=>r.net===net.net&&r.evidence.terminals)){
+      const record=route.evidence;for(const observation of record.sources){
+       const key=record.group+':'+observation.id;
+       if(!paths.has(key))paths.set(key,{source:data.evidence.sources.find(s=>s.id===observation.id),segments:[],markers:[],terminals:record.terminals});
+       paths.get(key).segments.push({id:route.id,status:record.status,points:observation.locator.pixelSegment});
+      }
+     }
+     for(const fig of paths.values()){const label=document.createElement('p');label.textContent='Recorded local path: '+fig.terminals.join(' ↔ ');section.append(label,connectionPhoto(fig));}
+     audit.append(section);
+    }
+    pathReview.append(audit);
+   }
    const bridges=data.evidence.serviceInterfaces?.bridges.filter(b=>selection.refs.includes(b.ref))||[];
    for(const bridge of bridges){
     const physical=bridge.physicalEvidence;

@@ -31,7 +31,10 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-   Prioritize the data/clock path through the L1 filter windings to host cable XT1.
+   Use `generated/routing-audit.json` to prioritize complete visible paths and
+   track remaining pad-group links separately from floating copper. Retain the
+   data/clock path through the L1 filter windings to host cable XT1 as the physical
+   integration milestone.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
    terminals, supporting photo landmarks, native copper and any unresolved span;
    regenerate KiCad checks, OpenSCAD geometry and museum inspection together.
