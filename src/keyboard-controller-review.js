@@ -20,7 +20,7 @@ function connectionCases(data,kind,value){
   c.sameNetSets.flat().some(t=>t.startsWith(value+':')));
 }
 function connectionPhoto(fig){
- const figure=document.createElement('figure');figure.dataset.connectionPhoto=fig.source.id;
+ const figure=document.createElement('figure');figure.dataset.connectionPhoto=fig.source.id;figure.dataset.photoSpecimen=fig.source.specimenId||'museum-primary';
  const url=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(fig.source.path.split('/').pop())}`;
  const points=[...fig.segments.flatMap(s=>s.points),...fig.markers.map(m=>m.point)];
  if(!points.length)return figure;
@@ -37,7 +37,7 @@ function connectionPhoto(fig){
   add('circle',{...(marker.kind==='search'?{'data-search-region':''}:{}),cx:marker.point[0],cy:marker.point[1],r:marker.radius||9,fill:'none',stroke:marker.kind==='search'?'#ffcf5b':'#ff79ad','stroke-width':3,'stroke-dasharray':marker.kind==='search'?'5 4':'none'});
   const label=document.createElement('li');label.textContent=marker.label;labels.append(label);
  }
- const caption=document.createElement('figcaption');caption.textContent='Primary specimen: teal observed copper; dashed amber inferred copper or projected search region; pink recorded span ends. Search circles are not identified joints.';
+ const caption=document.createElement('figcaption');caption.textContent=(fig.source.specimenId?'Comparison specimen ('+fig.source.specimenId+'): ':'Primary specimen: ')+'teal observed copper; dashed amber inferred copper or projected search region; pink recorded span ends. Search circles are not identified joints.';
  const link=document.createElement('a');link.href=url;link.textContent='Open original photograph';link.target='_blank';link.rel='noopener';
  figure.append(svg,caption,labels,link);return figure;
 }
@@ -88,7 +88,7 @@ function componentPhoto(data,ref,candidate,side='top'){
 }
 export function installKeyboardControllerReview(scene){
  const panel=document.createElement('details');panel.id='keyboard-controller-review';panel.dataset.robotron='';
- panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Underside copper group <select aria-label="Controller copper group" data-copper><option value="">Select…</option></select></label><label><input type="checkbox" data-copper-projection> Show approximate copper projection</label> <label>Signal path <select aria-label="Controller signal path" data-path><option value="">Select…</option><option value="host-clock">Clock → filter → cable</option><option value="host-data">Data → filter → cable</option><option value="supplies">Supply → filter evidence</option><option value="filter-registration">Filter joint correspondence</option></select></label> <label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><div data-path-review></div><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
+ panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Underside copper group <select aria-label="Controller copper group" data-copper><option value="">Select…</option></select></label><label><input type="checkbox" data-copper-projection> Show approximate copper projection</label> <label>Signal path <select aria-label="Controller signal path" data-path><option value="">Select…</option><option value="host-clock">Clock → filter → cable</option><option value="host-data">Data → filter → cable</option><option value="clock-strobe">A1 strobe → CPU WR/RD review</option><option value="supplies">Supply → filter evidence</option><option value="filter-registration">Filter joint correspondence</option></select></label> <label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><div data-path-review></div><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
  document.getElementById('evidence-controls').after(panel);
  let data=null,pending=false,selection=null,leds=null,latches=null,selectedCopper=null;
  const get=selector=>panel.querySelector(selector),status=get('[data-status]');
@@ -262,6 +262,15 @@ export function installKeyboardControllerReview(scene){
      const comparison=document.createElement('p');comparison.textContent=c.comparisonScope;details.append(comparison);
      section.append(details);
     }
+    if(review.traceReview){
+     const t=review.traceReview,details=document.createElement('details');details.dataset.pathTracing=review.id;
+     const summary=document.createElement('summary');summary.textContent='Local path tracing — unresolved joins';details.append(summary);
+     const note=document.createElement('p');note.textContent=t.scope;details.append(note);
+     const fits=document.createElement('p');fits.textContent=t.registrations.map(r=>`${r.id}: ${r.maxCheckResidualPixels.toFixed(1)} px maximum held-out residual; photo alignment ${r.photoAlignmentAccepted?'accepted':'rejected'}.`).join(' ')+' These checks do not establish hidden continuity.';details.append(fits);
+     for(const fig of t.figures)details.append(connectionPhoto(fig));
+     const gaps=document.createElement('ul');for(const gap of t.openJoins){const li=document.createElement('li');li.dataset.pathGap=gap.id;li.textContent=gap.scope;gaps.append(li);}details.append(gaps);
+     const comparison=document.createElement('p');comparison.textContent=t.comparisonScope;details.append(comparison);section.append(details);
+    }
     if(review.crossSideSearch){const note=document.createElement('p');note.textContent=review.crossSideSearch.scope;section.append(note);}
     const next=document.createElement('p');next.textContent='Unresolved: '+review.decisiveObservation;section.append(next);pathReview.append(section);
    }
@@ -275,7 +284,7 @@ export function installKeyboardControllerReview(scene){
     }
     const gaps=document.createElement('ul');for(const gap of assembly.unresolved){const item=document.createElement('li');item.textContent=gap;gaps.append(item);}section.append(gaps);pathReview.append(section);
    }
-   if(kind==='path')get('[data-selection]').textContent=selectionSummary+' Highlighted copper is partial; dashed sections are inferred. The filter winding separates the two reference nets. Component-level registration details are available through component selection.';
+   if(kind==='path')get('[data-selection]').textContent=selectionSummary+' Highlighted copper is partial; dashed sections are inferred.'+(data.connectionReview.cases.find(c=>c.id===value)?.seriesComponents.length?' The filter winding separates the two reference nets.':'')+' Component-level registration details are available through component selection.';
    if(selection.refs.includes('XT1'))get('[data-selection]').textContent+=' XT1 native coordinates are inherited reference placeholders, not registered solder joints; they are excluded from physical highlights.';
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.ref==='XT1'?'Reference placeholder':p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);

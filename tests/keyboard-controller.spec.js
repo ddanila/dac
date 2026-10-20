@@ -774,3 +774,28 @@ test('clock continuation shows new observations without extending native clock r
  await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-data');
  await expect(panel.locator('[data-clock-continuation]')).toHaveCount(0);
 });
+
+test('data and strobe tracing expose unresolved joins without assigning native routes',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ for(const [id,span,gap]of [['host-data','data-above-r42','under-r7'],['clock-strobe','strobe-a4-a6-lane','under-a6-cpu']]){
+  const review=data.connectionReview.cases.find(c=>c.id===id).traceReview;
+  expect(review.electricalPathComplete).toBe(false);
+  expect(review.newNativeRoutes).toEqual([]);
+  expect(review.assignedReferenceTerminals).toEqual({});
+  await panel.getByLabel('Controller signal path',{exact:true}).selectOption(id);
+  const trace=panel.locator(`[data-path-tracing="${id}"]`);await trace.locator('summary').click();
+  await expect(trace.locator(`[data-observed-span="${span}"]`)).toBeVisible();
+  await expect(trace.locator(`[data-path-gap="${gap}"]`)).toBeVisible();
+  await expect(trace).toContainText('do not establish hidden continuity');
+  if(id==='host-data'){await expect(trace).toContainText('Comparison specimen only');await expect(trace.locator('[data-photo-specimen="comparison-20261017"] figcaption')).toContainText('Comparison specimen');}
+  else await expect(trace).toContainText('outside anchor hull');
+ }
+ await page.setViewportSize({width:390,height:844});
+ expect(await panel.evaluate(e=>e.scrollWidth<=e.clientWidth+2)).toBe(true);
+});

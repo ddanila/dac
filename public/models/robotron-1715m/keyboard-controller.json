@@ -26794,7 +26794,7 @@
     "schema": 1,
     "scope": "Physical route review, not new connectivity evidence. X1 serves the matrix/LEDs; XT1 is the host cable. Reference endpoints are targets for tracing, not observed attachments.",
     "inputSha256": {
-      "connection-review.json": "75048eb0d8f2ed7069bb75829c62055cc7928a66fce4e96707165f910edba0e7",
+      "connection-review.json": "cf963a96ece5c1b9175f297da185c3602d087ea10fc7368208b2b02f93ac2f8e",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "route-evidence.json": "ab650188f8d3e826352205bd4596b83fe113c31da04714c8d82d5cd1fb4ab15a",
@@ -26809,10 +26809,12 @@
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
       "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
       "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
-      "tools/connection_review.py": "82fbc3203fb81b2ba7377ffd2789b8a94759cf10ffd5685d393b4d37669d0a88",
+      "path-tracing.json": "a796e12fdc972f3f9b2ef8eb80078ffa1c49b15f5a19a3fdb8f452eb5de3705f",
+      "tools/connection_review.py": "eca8c5a9e1cfdf8a4b3f2339f8d6d988606196aec7ac2da3ed8e27f785765f87",
       "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068",
       "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
-      "tools/clock_continuation.py": "7dfa75008966aaf544f0000b5ca5c75af2334a79ae5bc1b88211f8c01084880d"
+      "tools/clock_continuation.py": "7dfa75008966aaf544f0000b5ca5c75af2334a79ae5bc1b88211f8c01084880d",
+      "tools/path_tracing.py": "91683958ae4eba86db5e818f97977b8f1c7473535779fb5eb8c89dbd97a36b67"
     },
     "cases": [
       {
@@ -28387,12 +28389,12 @@
           "comparison-photo-080406304",
           "comparison-photo-080511382"
         ],
-        "finding": "The native underside branch reaches a solder eye toward the cable end. Its unseen continuation to A1 and the filter remains unassigned. Cross-side search fits localize the underside stop beneath R7; this is an occluded search region, not an identified top-side joint.",
+        "finding": "The R10.2 underside branch stops beneath R7. A local R4.2/R8 fit checked against R7 narrows the search; exposed top spans lie between R7/R4.2 and R4.2/R6.1. Bodies still hide the joins, so the spans remain unassigned.",
         "alternatives": [
           "The solder eye continues to the reference A1:4/L1.4:1 network.",
           "A nearby top-side eye or winding lead is being mistaken for the counterpart; preserve the open span until independently matched."
         ],
-        "nextDeskWork": "Register comparison close-ups around R7 using surrounding joints and held-out checks. Follow the exposed lane on both sides of the body and match any downstream eye independently before continuing toward L1/XT1.",
+        "nextDeskWork": "Resolve the R7 layer transition and hidden joins under R4.2 and R6.1 in path-tracing.json. The registered comparison corridor confirms visibility limits, not primary continuity; continue toward L1 only from a supported downstream eye.",
         "decisiveObservation": "Identify the actual winding input and output joints, then establish the R10.2:2\u2013A1:4\u2013L1.4:1 and L1.4:2\u2013XT1:A1 spans independently.",
         "doNotInfer": "Cable wire colour and spatial proximity do not establish a terminal number or which ferrite winding is L1.4.",
         "referenceNets": [
@@ -28761,6 +28763,382 @@
           "radiusBasis": "Maximum held-out residual + fit spread + explicit search padding; heuristic search margin, not a confidence bound.",
           "copperAssignmentQualified": false
         },
+        "traceReview": {
+          "scope": "Local R7 search and exposed copper only. Resistor bodies hide the layer transition and intervening joins; no filter or A1 attachment is assigned.",
+          "registrations": [
+            {
+              "id": "r7-local",
+              "anchors": [
+                {
+                  "terminal": "R4.2:1",
+                  "bottomPixel": [
+                    1090,
+                    969
+                  ],
+                  "topPixel": [
+                    1687,
+                    1101
+                  ]
+                },
+                {
+                  "terminal": "R4.2:2",
+                  "bottomPixel": [
+                    1243,
+                    972
+                  ],
+                  "topPixel": [
+                    1527,
+                    1109
+                  ]
+                },
+                {
+                  "terminal": "R8:2",
+                  "bottomPixel": [
+                    1245,
+                    1057
+                  ],
+                  "topPixel": [
+                    1531,
+                    1206
+                  ]
+                },
+                {
+                  "terminal": "R8:1",
+                  "bottomPixel": [
+                    1095,
+                    1058
+                  ],
+                  "topPixel": [
+                    1687,
+                    1200
+                  ]
+                }
+              ],
+              "checks": [
+                {
+                  "terminal": "R7:1",
+                  "bottomPixel": [
+                    1093,
+                    1013
+                  ],
+                  "topPixel": [
+                    1687,
+                    1151
+                  ],
+                  "residualPixels": 1.02435086,
+                  "insideAnchorHull": true
+                },
+                {
+                  "terminal": "R7:2",
+                  "bottomPixel": [
+                    1245,
+                    1013
+                  ],
+                  "topPixel": [
+                    1529,
+                    1154
+                  ],
+                  "residualPixels": 2.317918804,
+                  "insideAnchorHull": false
+                }
+              ],
+              "bottomToTop": [
+                -1.185997722,
+                0.1796163345,
+                2635.335741,
+                -0.1503330706,
+                1.088849273,
+                98.5889335,
+                -0.0001601828007,
+                7.59742851e-05,
+                1
+              ],
+              "bottomAnchorHull": [
+                [
+                  1090,
+                  969
+                ],
+                [
+                  1243,
+                  972
+                ],
+                [
+                  1245,
+                  1057
+                ],
+                [
+                  1095,
+                  1058
+                ]
+              ],
+              "maxCheckResidualPixels": 2.317918804,
+              "copperAssignmentQualified": false,
+              "observationAllowancePixels": 8,
+              "photoAlignmentAccepted": true
+            },
+            {
+              "id": "comparison-r7",
+              "anchors": [
+                {
+                  "terminal": "R4.2:1",
+                  "bottomPixel": [
+                    1687,
+                    1101
+                  ],
+                  "topPixel": [
+                    666,
+                    1538
+                  ]
+                },
+                {
+                  "terminal": "R4.2:2",
+                  "bottomPixel": [
+                    1527,
+                    1109
+                  ],
+                  "topPixel": [
+                    1084,
+                    1534
+                  ]
+                },
+                {
+                  "terminal": "R8:2",
+                  "bottomPixel": [
+                    1531,
+                    1206
+                  ],
+                  "topPixel": [
+                    1078,
+                    1245
+                  ]
+                },
+                {
+                  "terminal": "R8:1",
+                  "bottomPixel": [
+                    1687,
+                    1200
+                  ],
+                  "topPixel": [
+                    659,
+                    1234
+                  ]
+                }
+              ],
+              "checks": [
+                {
+                  "terminal": "R7:1",
+                  "bottomPixel": [
+                    1687,
+                    1151
+                  ],
+                  "topPixel": [
+                    661,
+                    1387
+                  ],
+                  "residualPixels": 1.578204227,
+                  "insideAnchorHull": true
+                },
+                {
+                  "terminal": "R7:2",
+                  "bottomPixel": [
+                    1529,
+                    1154
+                  ],
+                  "topPixel": [
+                    1074,
+                    1393
+                  ],
+                  "residualPixels": 11.20316788,
+                  "insideAnchorHull": true
+                }
+              ],
+              "bottomToTop": [
+                -1.708921464,
+                -0.1507773911,
+                3449.235107,
+                -0.2730838907,
+                -2.048313507,
+                3640.253001,
+                -0.0001292675113,
+                -0.0001643112205,
+                1
+              ],
+              "bottomAnchorHull": [
+                [
+                  1687,
+                  1101
+                ],
+                [
+                  1527,
+                  1109
+                ],
+                [
+                  1531,
+                  1206
+                ],
+                [
+                  1687,
+                  1200
+                ]
+              ],
+              "maxCheckResidualPixels": 11.20316788,
+              "copperAssignmentQualified": false,
+              "observationAllowancePixels": 20,
+              "photoAlignmentAccepted": true,
+              "coordinateScope": "bottomPixel denotes primary TOP coordinates; topPixel denotes comparison TOP coordinates. No layer transition."
+            }
+          ],
+          "stop": {
+            "bottomPixel": [
+              1163,
+              1013
+            ],
+            "projectedTopPixel": [
+              1614.484356,
+              1152.791305
+            ],
+            "insideAnchorHull": true,
+            "layerTransitionQualified": false
+          },
+          "figures": [
+            {
+              "source": {
+                "id": "photo-top",
+                "path": "../reference/photos/PXL_20261012_123622947.jpg",
+                "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+                "use": "Specimen placement and visible copper; approximate planar registration",
+                "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+                "specimen": "primary museum specimen"
+              },
+              "segments": [
+                {
+                  "id": "data-between-r7-r42",
+                  "points": [
+                    [
+                      1606,
+                      1127
+                    ],
+                    [
+                      1606,
+                      1115
+                    ]
+                  ],
+                  "status": "observed",
+                  "scope": "Short exposed track between R7 and R4.2; both ends stop at body occlusion. No resistor pin attachment.",
+                  "group": "data-between-r7-r42",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Short exposed track between R7 and R4.2; both ends stop at body occlusion. No resistor pin attachment."
+                },
+                {
+                  "id": "data-above-r42",
+                  "points": [
+                    [
+                      1614,
+                      1084
+                    ],
+                    [
+                      1645,
+                      1053
+                    ]
+                  ],
+                  "status": "observed",
+                  "scope": "Exposed diagonal between R4.2 and R6.1. Hidden joins at either end remain unresolved.",
+                  "group": "data-above-r42",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Exposed diagonal between R4.2 and R6.1. Hidden joins at either end remain unresolved."
+                }
+              ],
+              "markers": [
+                {
+                  "point": [
+                    1614.484356,
+                    1152.791305
+                  ],
+                  "radius": 11,
+                  "kind": "search",
+                  "label": "R10.2 stop projected beneath R7; no identified top joint"
+                }
+              ]
+            },
+            {
+              "source": {
+                "id": "comparison-photo-080406304",
+                "path": "../reference/photos/PXL_20261017_080406304.jpg",
+                "sha256": "c899c7aba12b0f1085f5b71da44e524611aedf37e3e28567c602cb3b746e6fa2",
+                "specimenId": "comparison-20261017",
+                "side": "top",
+                "refs": [
+                  "BR2",
+                  "XT1"
+                ],
+                "use": "Cable end, discrete components, bracket and wire entry. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+                "href": "../../reference/photos/PXL_20261017_080406304.jpg",
+                "specimen": "comparison-20261017"
+              },
+              "segments": [
+                {
+                  "id": "comparison-r7-r42",
+                  "points": [
+                    [
+                      898,
+                      1434
+                    ],
+                    [
+                      899,
+                      1497
+                    ]
+                  ],
+                  "status": "observed",
+                  "scope": "Exposed comparison-specimen track; both ends obscured by resistor bodies. No primary copper or net assignment.",
+                  "group": "comparison-r7-r42",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Exposed comparison-specimen track; both ends obscured by resistor bodies. No primary copper or net assignment."
+                }
+              ],
+              "markers": [
+                {
+                  "point": [
+                    857.9627701,
+                    1392.438765
+                  ],
+                  "radius": 20,
+                  "kind": "search",
+                  "label": "Comparison location of primary search; not a matched hole"
+                }
+              ]
+            }
+          ],
+          "comparisonScope": "Comparison specimen only. Lead observations, not hole centres. The local fit locates the same resistor corridor; it cannot transfer continuity to the primary board. The visible vertical span still disappears beneath R7 and R4.2.",
+          "openJoins": [
+            {
+              "id": "under-r7",
+              "scope": "R10.2 underside stop projects beneath R7. The partly visible feature below the body is not a confirmed matching hole."
+            },
+            {
+              "id": "under-r42",
+              "scope": "R4.2 hides the join between the two recorded top spans."
+            },
+            {
+              "id": "beyond-r61",
+              "scope": "The diagonal disappears at R6.1; onward routing to the filter and A1 remains unproven."
+            }
+          ],
+          "assignedReferenceTerminals": {},
+          "electricalPathComplete": false,
+          "newNativeRoutes": []
+        },
         "figures": [
           {
             "source": {
@@ -29006,13 +29384,13 @@
           "comparison-photo-080401625",
           "comparison-photo-080429077"
         ],
-        "finding": "The reference circuit and manufacturer service description support WR. A published comparison uses RD. The observed A1:1 track stops at a terminal near A4 and does not yet establish either CPU attachment.",
+        "finding": "The reference supports WR, while a published comparison uses RD. An observed underside lane links terminal candidates near A4 and A6; the corresponding top track enters beneath A6. Local A6 registration supports a candidate outside the anchor hull. Neither CPU attachment is established.",
         "alternatives": [
           "A1:1 connects to A5:22 (WR), as in the reference.",
           "A1:1 connects to A5:21 (RD), as in the published comparison.",
           "The terminal correspondence is still wrong or incomplete; neither candidate is established."
         ],
-        "nextDeskWork": "Follow the far end of the existing top route through an independently matched underside joint, then trace toward the two adjacent CPU candidates without using the reference net name to choose the lane.",
+        "nextDeskWork": "Resolve the A4 and A6 layer transitions and the route beneath A6 toward the counted CPU WR/RD joints. Keep the A6 body entry separate from its adjacent numbered lead; do not extend the A4 fit to A6.",
         "decisiveObservation": "A complete photographed route or distinguishable unpowered resistance readings from A1:1 to A5:21 and A5:22, with probe locations recorded.",
         "doNotInfer": "A successful S600 simulation of the WR reference does not determine the specimen's physical attachment.",
         "referenceNets": [
@@ -29025,6 +29403,368 @@
           }
         ],
         "series": {},
+        "traceReview": {
+          "scope": "Observed underside lane and top entry beside A6. The A4 and A6 terminal correspondences are extrapolated candidates, not qualified layer transitions. WR and RD remain unresolved.",
+          "registrations": [
+            {
+              "id": "a6-local",
+              "anchors": [
+                {
+                  "terminal": "A6:1",
+                  "bottomPixel": [
+                    1550,
+                    3008
+                  ],
+                  "topPixel": [
+                    1335,
+                    3270
+                  ]
+                },
+                {
+                  "terminal": "A6:14",
+                  "bottomPixel": [
+                    1463,
+                    3011
+                  ],
+                  "topPixel": [
+                    1428,
+                    3265
+                  ]
+                },
+                {
+                  "terminal": "A6:8",
+                  "bottomPixel": [
+                    1463,
+                    3199
+                  ],
+                  "topPixel": [
+                    1435,
+                    3445
+                  ]
+                },
+                {
+                  "terminal": "A6:7",
+                  "bottomPixel": [
+                    1552,
+                    3196
+                  ],
+                  "topPixel": [
+                    1345,
+                    3452
+                  ]
+                }
+              ],
+              "checks": [
+                {
+                  "terminal": "A6:4",
+                  "bottomPixel": [
+                    1550,
+                    3102
+                  ],
+                  "topPixel": [
+                    1340,
+                    3365
+                  ],
+                  "residualPixels": 2.00702605,
+                  "insideAnchorHull": true
+                },
+                {
+                  "terminal": "A6:11",
+                  "bottomPixel": [
+                    1463,
+                    3105
+                  ],
+                  "topPixel": [
+                    1432,
+                    3356
+                  ],
+                  "residualPixels": 1.494169962,
+                  "insideAnchorHull": true
+                }
+              ],
+              "bottomToTop": [
+                -4.220563016,
+                1.579848671,
+                6297.559344,
+                -1.094435935,
+                6.759092852,
+                -7593.223006,
+                -0.0004311186439,
+                0.001012272822,
+                1
+              ],
+              "bottomAnchorHull": [
+                [
+                  1550,
+                  3008
+                ],
+                [
+                  1463,
+                  3011
+                ],
+                [
+                  1463,
+                  3199
+                ],
+                [
+                  1552,
+                  3196
+                ]
+              ],
+              "maxCheckResidualPixels": 2.00702605,
+              "copperAssignmentQualified": false,
+              "observationAllowancePixels": 8,
+              "photoAlignmentAccepted": true,
+              "scope": "Independent local A6 lead/joint fit. The terminal lies outside the pin-column hull; a small residual does not qualify its layer transition. Top lead feet are not bare hole centres."
+            }
+          ],
+          "a4Candidate": {
+            "bottomPixel": [
+              1619,
+              2715
+            ],
+            "detail": "Upper of two adjacent round terminals. This top endpoint belongs to the partial A1:1 route. Geometric correspondence candidate; through-board construction and continuity not assigned.",
+            "id": "a1-track-terminal",
+            "nominalResidualMm": 0.2072956522,
+            "outsideAnchorBounds": true,
+            "projectedTopPixel": [
+              1242.228181,
+              2968.46562
+            ],
+            "residualPixels": 2.754580144,
+            "topPixel": [
+              1241,
+              2966
+            ]
+          },
+          "a6Candidate": {
+            "bottomPixel": [
+              1610,
+              3085
+            ],
+            "projectedTopPixel": [
+              1276.346324,
+              3352.971466
+            ],
+            "insideAnchorHull": false,
+            "layerTransitionQualified": false,
+            "topPixel": [
+              1272,
+              3350
+            ],
+            "residualPixels": 5.264992529
+          },
+          "figures": [
+            {
+              "source": {
+                "id": "photo-bottom",
+                "path": "../reference/photos/PXL_20261012_123648677.jpg",
+                "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+                "use": "Specimen placement and visible copper; approximate planar registration",
+                "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+                "specimen": "primary museum specimen"
+              },
+              "segments": [
+                {
+                  "id": "strobe-a4-a6-lane",
+                  "points": [
+                    [
+                      1619,
+                      2715
+                    ],
+                    [
+                      1588,
+                      2745
+                    ],
+                    [
+                      1588,
+                      2824
+                    ],
+                    [
+                      1606,
+                      2842
+                    ],
+                    [
+                      1610,
+                      3085
+                    ]
+                  ],
+                  "status": "observed",
+                  "scope": "Visible primary underside lane between two anonymous terminal candidates. No A1, A6 or CPU pin identity is assigned.",
+                  "group": "strobe-a4-a6-lane",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Visible primary underside lane between two anonymous terminal candidates. No A1, A6 or CPU pin identity is assigned."
+                }
+              ],
+              "markers": [
+                {
+                  "point": [
+                    1619,
+                    2715
+                  ],
+                  "label": "A4-side terminal candidate; unresolved layer transition"
+                },
+                {
+                  "point": [
+                    1610,
+                    3085
+                  ],
+                  "label": "A6-side terminal candidate; unresolved layer transition"
+                }
+              ]
+            },
+            {
+              "source": {
+                "id": "photo-top",
+                "path": "../reference/photos/PXL_20261012_123622947.jpg",
+                "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+                "use": "Specimen placement and visible copper; approximate planar registration",
+                "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+                "specimen": "primary museum specimen"
+              },
+              "segments": [
+                {
+                  "id": "strobe-a6-body-entry",
+                  "points": [
+                    [
+                      1272,
+                      3350
+                    ],
+                    [
+                      1325,
+                      3347
+                    ]
+                  ],
+                  "status": "observed",
+                  "scope": "Visible top track from the eye toward the A6 body. Stop before the obscured entry; proximity to A6:4 does not establish attachment to that pin.",
+                  "group": "strobe-a6-body-entry",
+                  "net": null,
+                  "imageSize": [
+                    3072,
+                    4080
+                  ],
+                  "detail": "Visible top track from the eye toward the A6 body. Stop before the obscured entry; proximity to A6:4 does not establish attachment to that pin."
+                }
+              ],
+              "markers": [
+                {
+                  "point": [
+                    1276.346324,
+                    3352.971466
+                  ],
+                  "radius": 8,
+                  "kind": "search",
+                  "label": "A6 local extrapolation; candidate eye outside anchor hull"
+                },
+                {
+                  "point": [
+                    1325,
+                    3347
+                  ],
+                  "label": "Stop before A6 body; not a pin assignment"
+                }
+              ]
+            },
+            {
+              "source": {
+                "id": "photo-bottom",
+                "path": "../reference/photos/PXL_20261012_123648677.jpg",
+                "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+                "use": "Specimen placement and visible copper; approximate planar registration",
+                "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+                "specimen": "primary museum specimen"
+              },
+              "segments": [],
+              "markers": [
+                {
+                  "point": [
+                    1125,
+                    3112
+                  ],
+                  "label": "A5:21 RD, identified by counted DIP row; no complete route to A1 established"
+                },
+                {
+                  "point": [
+                    1125,
+                    3081
+                  ],
+                  "label": "A5:22 WR, adjacent counted joint; no complete route to A1 established"
+                }
+              ]
+            }
+          ],
+          "comparisonSources": [
+            {
+              "id": "comparison-photo-080342577",
+              "path": "../reference/photos/PXL_20261017_080342577.jpg",
+              "sha256": "aa18874b9fba8db44216f8531ad9caab9125839a07838616bf1237f02a6b15fa",
+              "specimenId": "comparison-20261017",
+              "side": "bottom",
+              "refs": [
+                "A5",
+                "A4",
+                "A6",
+                "A7",
+                "A8",
+                "BR1"
+              ],
+              "use": "ROM end and CPU underside; overlapping solder-joint and copper view. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+              "href": "../../reference/photos/PXL_20261017_080342577.jpg",
+              "specimen": "comparison-20261017"
+            },
+            {
+              "id": "comparison-photo-080432863",
+              "path": "../reference/photos/PXL_20261017_080432863.jpg",
+              "sha256": "ebe0ff33b2d11770d6948d10dcf84f8a3a5416a8d12d41d337bbe0d05a704a0c",
+              "specimenId": "comparison-20261017",
+              "side": "top",
+              "refs": [
+                "A6",
+                "A7",
+                "C5.4"
+              ],
+              "use": "K155TM2 and D100D package markings and surrounding leads. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+              "href": "../../reference/photos/PXL_20261017_080432863.jpg",
+              "specimen": "comparison-20261017"
+            },
+            {
+              "id": "comparison-photo-080429077",
+              "path": "../reference/photos/PXL_20261017_080429077.jpg",
+              "sha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3",
+              "specimenId": "comparison-20261017",
+              "side": "top",
+              "refs": [
+                "A5",
+                "A4"
+              ],
+              "use": "CPU marking UB880D and nearby copper terminals. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+              "href": "../../reference/photos/PXL_20261017_080429077.jpg",
+              "specimen": "comparison-20261017"
+            }
+          ],
+          "comparisonScope": "The comparison underside corroborates the long outer lane; the oblique A6/CPU views still obscure the under-package route. Neither specimen supplies a visible complete path to WR or RD.",
+          "openJoins": [
+            {
+              "id": "a4-transition",
+              "scope": "Match the A1 track end across the board outside the A4 anchor hull; the two adjacent terminals must remain distinct."
+            },
+            {
+              "id": "a6-transition",
+              "scope": "Match the underside lane end to the top eye outside the A6 pin-column hull. The local fit supports a candidate, not confirmed through-board continuity."
+            },
+            {
+              "id": "under-a6-cpu",
+              "scope": "The top track enters beneath A6. No exposed chain connects it to either counted CPU WR/RD joint; do not infer A6:4 or choose the reference net."
+            }
+          ],
+          "assignedReferenceTerminals": {},
+          "electricalPathComplete": false,
+          "newNativeRoutes": []
+        },
         "figures": [
           {
             "source": {
@@ -30527,7 +31267,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "baaa4a8c980747a6aa6df3996d7aa11cdeaf5726"
+      "revision": "8b94c8f7bfee801d95420a9213122a86be20ff1e"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -30545,7 +31285,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "cableCopper": "552cfa30783a00dc6c614cde7f8fb4dcd4196b6da0a3da14d8ac722ae79b1ff7",
-      "connectionReview": "701f806b0066ca85be5792e112bb8e100f07087a29fcd660cd751d4dd43b66a2",
+      "connectionReview": "badc1096238462521594c7b2fd567dbaadcd0eddd2ca3cbde2e2180601b95b67",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
