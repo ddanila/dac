@@ -1506,7 +1506,7 @@
             "pin": "17",
             "position": [
               78.49909,
-              4.136075
+              4.136077
             ],
             "ref": "A5",
             "size": [
@@ -1880,7 +1880,7 @@
             "pin": "37",
             "position": [
               45.509814,
-              19.442445
+              19.442443
             ],
             "ref": "A5",
             "size": [
@@ -5110,6 +5110,54 @@
       },
       {
         "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible upper supply rail between A2.2 and A2.3. Further supply distribution is not established by this local bridge. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "35ed54f643dc94fe96cfef5351d42dcb306f135a70e553588a894d2fcaf1e34a",
+          "group": "a22-a23-supply",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1518,
+                    2452
+                  ],
+                  [
+                    1545,
+                    2425
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A2.2:14",
+            "A2.3:14"
+          ]
+        },
+        "id": "17d246fc-3cba-4d2c-82ce-601efe4d459c",
+        "net": "/+5V",
+        "points": [
+          [
+            16.105095,
+            1.830645
+          ],
+          [
+            14.034354,
+            3.905651
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
           "detail": "Observed exposed copper centreline. Visible supply land between the lower R6.6 lead and A7 pin 14. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
           "geometrySha256": "7149f5c303413b228d6c0e6a671a6c4d0a879330956f4d45488aff417fe90e89",
           "group": "ff-pullup-supply-a7",
@@ -5294,6 +5342,54 @@
       },
       {
         "evidence": {
+          "detail": "Observed exposed copper centreline. Visible upper supply rail between A2.2 and A2.3. Further supply distribution is not established by this local bridge. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "d1ffa97f9c890fd0de6a36c6590cb743b8b506846b2ec7458b0f45184ef8e58e",
+          "group": "a22-a23-supply",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1724,
+                    2418
+                  ],
+                  [
+                    1736,
+                    2433
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A2.2:14",
+            "A2.3:14"
+          ]
+        },
+        "id": "35669248-8a76-4bea-9827-d9b99ed2d3c8",
+        "net": "/+5V",
+        "points": [
+          [
+            13.614241,
+            17.146033
+          ],
+          [
+            14.76436,
+            17.982254
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
           "detail": "Estimated attachment from visible copper to photo-positioned R6.1:1; solder obscures the precise pad boundary. Net +5V follows the reference schematic. Nominal planar projection and 1.0 mm width are estimates, not metrology or measured continuity. Only this visible strip is assigned; hidden branches remain unresolved.",
           "geometrySha256": "85bdee36d571a04e9eee3cec506176713a32c60542032f809655fec80fdedc23",
           "group": "reset-r61-supply-top",
@@ -5335,6 +5431,54 @@
         ],
         "side": "top",
         "width": 1.0
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible upper supply rail between A1 and A2.1. Component lead attachments use the existing nominal placement; the broader upstream feed remains unresolved. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "bfee57329ad00170a732dbbdc61ca768f198025603a6b028ad38d29687069ced",
+          "group": "a1-a21-supply",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1407,
+                    1461
+                  ],
+                  [
+                    1708,
+                    1450
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A1:14",
+            "A2.1:14"
+          ]
+        },
+        "id": "3dd1ebd8-54dc-4805-8838-0bb9409c04bb",
+        "net": "/+5V",
+        "points": [
+          [
+            -59.029465,
+            -2.972181
+          ],
+          [
+            -59.603334,
+            19.139911
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
       },
       {
         "evidence": {
@@ -5430,6 +5574,102 @@
       },
       {
         "evidence": {
+          "detail": "Observed exposed copper centreline. Visible upper supply rail between A2.2 and A2.3. Further supply distribution is not established by this local bridge. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "4ea02c4c7d8f508d7d3a4805a1019724ba1250891e65bd2edc7b6be09966a86d",
+          "group": "a22-a23-supply",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1545,
+                    2425
+                  ],
+                  [
+                    1724,
+                    2418
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A2.2:14",
+            "A2.3:14"
+          ]
+        },
+        "id": "5319d130-c5d1-44e8-b154-26cc1f34f2b3",
+        "net": "/+5V",
+        "points": [
+          [
+            14.034354,
+            3.905651
+          ],
+          [
+            13.614241,
+            17.146033
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible upper supply rail between A1 and A2.1. Component lead attachments use the existing nominal placement; the broader upstream feed remains unresolved. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "46e7b456d88819860f8587ee8881a59e8f42ceae00c3517c5fdf636e1a63f38b",
+          "group": "a1-a21-supply",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1725,
+                    1450
+                  ],
+                  [
+                    1705,
+                    1484
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A1:14",
+            "A2.1:14"
+          ]
+        },
+        "id": "6193e2e5-142f-4e03-bddf-6964a616f311",
+        "net": "/+5V",
+        "points": [
+          [
+            -59.589063,
+            20.385498
+          ],
+          [
+            -58.242614,
+            20.062887
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
           "detail": "Estimated native pad-to-visible-copper attachment. Visible supply land between the lower R6.6 lead and A7 pin 14. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
           "geometrySha256": "ce23ac333c3ad072ddf7b784b482dda9f86464c24b334b009215a681818625b0",
           "group": "ff-pullup-supply-a7",
@@ -5471,6 +5711,54 @@
           [
             101.836397,
             -7.928173
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible upper supply rail between A1 and A2.1. Component lead attachments use the existing nominal placement; the broader upstream feed remains unresolved. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "448b08e6c9c62c33d463c657cf8bc909f13349869391dfa20e6020d72a29691d",
+          "group": "a1-a21-supply",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1708,
+                    1450
+                  ],
+                  [
+                    1725,
+                    1450
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A1:14",
+            "A2.1:14"
+          ]
+        },
+        "id": "7c3fa656-9988-4222-b001-4a85fe26483f",
+        "net": "/+5V",
+        "points": [
+          [
+            -59.603334,
+            19.139911
+          ],
+          [
+            -59.589063,
+            20.385498
           ]
         ],
         "side": "top",
@@ -5970,6 +6258,54 @@
       },
       {
         "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible upper supply rail between A1 and A2.1. Component lead attachments use the existing nominal placement; the broader upstream feed remains unresolved. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "8def9f608976b73b09bd92088fd3d63e5f887be81d702e81358c248b7ced9892",
+          "group": "a1-a21-supply",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1387,
+                    1484
+                  ],
+                  [
+                    1407,
+                    1461
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A1:14",
+            "A2.1:14"
+          ]
+        },
+        "id": "cee2c2d4-f972-48f8-b08b-03a5f0bac13d",
+        "net": "/+5V",
+        "points": [
+          [
+            -57.336762,
+            -4.530939
+          ],
+          [
+            -59.029465,
+            -2.972181
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
           "detail": "Estimated native pad-to-visible-copper attachment. Visible supply island from the R10.2 lower lead toward the upper C5.1 lead. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
           "geometrySha256": "b2f270670685d67d636b11b5e9303219f81e3753e54020609ac1a5a38c837f72",
           "group": "c51-supply-link",
@@ -6298,6 +6634,54 @@
       },
       {
         "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible upper supply rail between A2.2 and A2.3. Further supply distribution is not established by this local bridge. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "ebea1f0196527fb7dd8ab16032332eb80d1cf467f392b6f37ba9a15f83806f76",
+          "group": "a22-a23-supply",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1736,
+                    2433
+                  ],
+                  [
+                    1741,
+                    2450
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A2.2:14",
+            "A2.3:14"
+          ]
+        },
+        "id": "fdd480ce-1450-4d86-9ee6-115c28edc3b5",
+        "net": "/+5V",
+        "points": [
+          [
+            14.76436,
+            17.982254
+          ],
+          [
+            15.190472,
+            18.304859
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
           "detail": "Estimated native pad-to-visible-copper attachment. Visible short track from the upper R6.6 lead to A6 pin 10; reference FF_PULLUP identity. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
           "geometrySha256": "b51a54db407133b4a6cddffe33c5c582db1f5eafbd39d93a8df9b49a26fbba68",
           "group": "ff-pullup-a6",
@@ -6586,6 +6970,198 @@
       },
       {
         "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible ground branch from the C5.1 return island toward A2.1 pin 7. This joins the existing A1 ground island; it does not establish the return to the cable. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "05aa7a9c73b21a3a5447495280f34a6f9ea8dabb9f82c83c72d3429e7a4df0bd",
+          "group": "c51-ground-a21",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1550,
+                    1674
+                  ],
+                  [
+                    1560,
+                    1684
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "C5.1:2",
+            "A2.1:7"
+          ]
+        },
+        "id": "17ac4dd1-49ba-4a35-8eb0-2ac7d03f9813",
+        "net": "/GND",
+        "points": [
+          [
+            -42.880204,
+            6.807469
+          ],
+          [
+            -42.118515,
+            7.508592
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible lower ground rail from A2.2 to the C5.2 return island already linked to A2.3. The connection beyond this local island remains unresolved. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "369478314d0c2d21fb2386eaa702e4b027cc4d619a4db3ada09f529a7d829199",
+          "group": "a22-ground-c52",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1462,
+                    2691
+                  ],
+                  [
+                    1552,
+                    2687
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A2.2:7",
+            "C5.2:2"
+          ]
+        },
+        "id": "2d7d1068-5310-41ce-a512-a306b5e1fcac",
+        "net": "/GND",
+        "points": [
+          [
+            34.298119,
+            -3.144411
+          ],
+          [
+            34.043771,
+            3.532994
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible lower ground rail from A2.2 to the C5.2 return island already linked to A2.3. The connection beyond this local island remains unresolved. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "9b0a42c72b7b30c6e825a7c8ec3485770cc081688f922f470668855390c25d54",
+          "group": "a22-ground-c52",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1552,
+                    2687
+                  ],
+                  [
+                    1584,
+                    2654
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A2.2:7",
+            "C5.2:2"
+          ]
+        },
+        "id": "2e59a003-2860-4689-81f5-ef196682e9ad",
+        "net": "/GND",
+        "points": [
+          [
+            34.043771,
+            3.532994
+          ],
+          [
+            31.538428,
+            6.013105
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible ground branch from the C5.1 return island toward A2.1 pin 7. This joins the existing A1 ground island; it does not establish the return to the cable. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "8cf10cc9ce282c278a912ecf5090897c8a764f24ca1c2e0a0095213585dbb154",
+          "group": "c51-ground-a21",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1560,
+                    1684
+                  ],
+                  [
+                    1620,
+                    1684
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "C5.1:2",
+            "A2.1:7"
+          ]
+        },
+        "id": "3f796c43-881b-4237-85a4-428cd76ea505",
+        "net": "/GND",
+        "points": [
+          [
+            -42.118515,
+            7.508592
+          ],
+          [
+            -42.071076,
+            11.91566
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
           "detail": "Observed exposed copper centreline. Visible return rail from C5.2 toward A2.3 ground; final lead attachment is estimated. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
           "geometrySha256": "4fffe1d8558c6ccc0fca2e53c9a40764d8e0fcae6d09ecc335d4fe41bcd62529",
           "group": "c52-ground-a23",
@@ -6627,6 +7203,102 @@
           [
             31.265237,
             10.169189
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible lower ground rail from A2.2 to the C5.2 return island already linked to A2.3. The connection beyond this local island remains unresolved. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "1854fb906afbcaa60b480fc0a1e99631df4239a66b3c10e143537fe752b06a73",
+          "group": "a22-ground-c52",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1584,
+                    2654
+                  ],
+                  [
+                    1595,
+                    2642
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A2.2:7",
+            "C5.2:2"
+          ]
+        },
+        "id": "92cf1811-8f6f-420e-b84d-85edfb4c0449",
+        "net": "/GND",
+        "points": [
+          [
+            31.538428,
+            6.013105
+          ],
+          [
+            30.62744,
+            6.867474
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible ground branch from the C5.1 return island toward A2.1 pin 7. This joins the existing A1 ground island; it does not establish the return to the cable. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "cb542b6cda9184dc39008969a47616a91fca03dd40db95370581749b6c139f5f",
+          "group": "c51-ground-a21",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1620,
+                    1684
+                  ],
+                  [
+                    1628,
+                    1686
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "C5.1:2",
+            "A2.1:7"
+          ]
+        },
+        "id": "ba15f6a0-dfdf-46c7-a6ae-2fc834f9f531",
+        "net": "/GND",
+        "points": [
+          [
+            -42.071076,
+            11.91566
+          ],
+          [
+            -42.661486,
+            13.167203
           ]
         ],
         "side": "top",
@@ -6819,6 +7491,54 @@
           [
             -41.978025,
             6.546814
+          ]
+        ],
+        "side": "top",
+        "width": 0.6
+      },
+      {
+        "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible lower ground rail from A2.2 to the C5.2 return island already linked to A2.3. The connection beyond this local island remains unresolved. Nominal photo projection and track width; not measured dimensions or specimen continuity. Surrounding rail feeds remain incomplete.",
+          "geometrySha256": "5d74b57c019aaa33b10c876ebffe0fd406c762985ecb98388264c654080072a9",
+          "group": "a22-ground-c52",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1431,
+                    2656
+                  ],
+                  [
+                    1462,
+                    2691
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A2.2:7",
+            "C5.2:2"
+          ]
+        },
+        "id": "fae6566e-9019-4964-b5bc-31a239e4b837",
+        "net": "/GND",
+        "points": [
+          [
+            31.568295,
+            -5.325573
+          ],
+          [
+            34.298119,
+            -3.144411
           ]
         ],
         "side": "top",
@@ -16661,13 +17381,13 @@
   "qualification": {
     "components": 70,
     "drc": {
-      "unconnectedItems": 220,
+      "unconnectedItems": 216,
       "violations": {
         "clearance": 1,
         "track_dangling": 4
       }
     },
-    "electricalCopperSegments": 72,
+    "electricalCopperSegments": 87,
     "erc": [
       {
         "description": "Label connected to only one pin",
@@ -25450,41 +26170,45 @@
   "routingAudit": {
     "nets": [
       {
-        "drcUnconnectedItems": 35,
+        "drcUnconnectedItems": 33,
         "floatingCopperGroups": 0,
         "islands": [
           {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
-            "terminals": [
-              "A1:14"
+            "copperIds": [
+              "3dd1ebd8-54dc-4805-8838-0bb9409c04bb",
+              "6193e2e5-142f-4e03-bddf-6964a616f311",
+              "7c3fa656-9988-4222-b001-4a85fe26483f",
+              "cee2c2d4-f972-48f8-b08b-03a5f0bac13d"
             ],
-            "unplacedTerminals": []
-          },
-          {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
+            "evidenceGroups": [
+              "a1-a21-supply"
+            ],
+            "evidenceStatuses": [
+              "inferred",
+              "observed"
+            ],
             "terminals": [
+              "A1:14",
               "A2.1:14"
             ],
             "unplacedTerminals": []
           },
           {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
-            "terminals": [
-              "A2.2:14"
+            "copperIds": [
+              "17d246fc-3cba-4d2c-82ce-601efe4d459c",
+              "35669248-8a76-4bea-9827-d9b99ed2d3c8",
+              "5319d130-c5d1-44e8-b154-26cc1f34f2b3",
+              "fdd480ce-1450-4d86-9ee6-115c28edc3b5"
             ],
-            "unplacedTerminals": []
-          },
-          {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
+            "evidenceGroups": [
+              "a22-a23-supply"
+            ],
+            "evidenceStatuses": [
+              "inferred",
+              "observed"
+            ],
             "terminals": [
+              "A2.2:14",
               "A2.3:14"
             ],
             "unplacedTerminals": []
@@ -25879,8 +26603,8 @@
         "multiTerminal": true,
         "nativePadsConnected": false,
         "net": "/+5V",
-        "padGroups": 36,
-        "remainingPadGroupLinks": 35,
+        "padGroups": 34,
+        "remainingPadGroupLinks": 33,
         "terminals": [
           "A1:14",
           "A2.1:14",
@@ -28239,19 +28963,23 @@
         ]
       },
       {
-        "drcUnconnectedItems": 18,
+        "drcUnconnectedItems": 16,
         "floatingCopperGroups": 0,
         "islands": [
           {
             "copperIds": [
               "09a1154e-f345-4040-bffb-50f178c0c8d5",
+              "17ac4dd1-49ba-4a35-8eb0-2ac7d03f9813",
+              "3f796c43-881b-4237-85a4-428cd76ea505",
+              "ba15f6a0-dfdf-46c7-a6ae-2fc834f9f531",
               "c651cd4b-821e-436e-856d-4b8ec9ef022c",
               "cfb584cc-1fb1-48bd-9ef9-71ed78f637ce",
               "d133bff2-f1aa-4c1a-aad6-11f89a68e6d6",
               "e437b7ee-ad43-4c1f-9582-63adcfd1059e"
             ],
             "evidenceGroups": [
-              "c51-ground-a1"
+              "c51-ground-a1",
+              "c51-ground-a21"
             ],
             "evidenceStatuses": [
               "inferred",
@@ -28259,25 +28987,8 @@
             ],
             "terminals": [
               "A1:7",
+              "A2.1:7",
               "C5.1:2"
-            ],
-            "unplacedTerminals": []
-          },
-          {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
-            "terminals": [
-              "A2.1:7"
-            ],
-            "unplacedTerminals": []
-          },
-          {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
-            "terminals": [
-              "A2.2:7"
             ],
             "unplacedTerminals": []
           },
@@ -28285,9 +28996,14 @@
             "copperIds": [
               "117435a4-b304-44b8-87ae-181c1020e8f5",
               "1570fcd8-faf5-4a86-8df3-97a28b9dbb50",
-              "669dac59-f9b2-48d4-98a2-0149b3d28031"
+              "2d7d1068-5310-41ce-a512-a306b5e1fcac",
+              "2e59a003-2860-4689-81f5-ef196682e9ad",
+              "669dac59-f9b2-48d4-98a2-0149b3d28031",
+              "92cf1811-8f6f-420e-b84d-85edfb4c0449",
+              "fae6566e-9019-4964-b5bc-31a239e4b837"
             ],
             "evidenceGroups": [
+              "a22-ground-c52",
               "c52-ground-a23"
             ],
             "evidenceStatuses": [
@@ -28295,6 +29011,7 @@
               "observed"
             ],
             "terminals": [
+              "A2.2:7",
               "A2.3:7",
               "C5.2:2"
             ],
@@ -28467,8 +29184,8 @@
         "multiTerminal": true,
         "nativePadsConnected": false,
         "net": "/GND",
-        "padGroups": 19,
-        "remainingPadGroupLinks": 18,
+        "padGroups": 17,
+        "remainingPadGroupLinks": 16,
         "terminals": [
           "A1:7",
           "A2.1:7",
@@ -30310,13 +31027,13 @@
     "scope": "Native KiCad same-net connectivity, including off-board placeholder pads. Connected does not mean historically verified or fabrication-ready. DRC gaps may include floating copper; pad-group links count only disconnected terminal groups. Cross-net clearance/short findings remain in qualification.json.",
     "summary": {
       "assignedPins": 330,
-      "drcUnconnectedItems": 220,
+      "drcUnconnectedItems": 216,
       "floatingCopperGroups": 0,
       "fullyConnectedMultiTerminalNets": 1,
       "minimumLinks": 234,
       "multiTerminalNets": 94,
       "nets": 96,
-      "remainingPadGroupLinks": 220
+      "remainingPadGroupLinks": 216
     }
   },
   "cableCopper": {
@@ -31523,7 +32240,7 @@
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
-      "route-evidence.json": "056b657404493680004ab8acbbb18b4e7598b9f74c2e82d0037981974035a860",
+      "route-evidence.json": "7eab7583ed68f7ca333c94781a434b34bb17c2b77f3670e72c4e1c28d5edbf8b",
       "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
       "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
       "tools/cable_copper.py": "62e5c65aca23a41064612fd9ed7b732627e63e74949337563fb75031f56fa0c4",
@@ -33037,9 +33754,9 @@
       "connection-review.json": "255e7c4f7f793814bfb86194c22708292152a503b4e4b822642ec178f11a201e",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
-      "route-evidence.json": "056b657404493680004ab8acbbb18b4e7598b9f74c2e82d0037981974035a860",
+      "route-evidence.json": "7eab7583ed68f7ca333c94781a434b34bb17c2b77f3670e72c4e1c28d5edbf8b",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "generated/layout.json": "8425fcbd51371f836d28cfe068bfd666116cc18d79b3ee5c7f4aa0df71a9ff7f",
+      "generated/layout.json": "90e82e0ef8a6ebcc97e0d8320ac5bba5096fe3182479a6740705b30c4d277095",
       "generated/connector-terminals.json": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "generated/top-registration.json": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
       "generated/bottom-registration.json": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
@@ -37829,16 +38546,16 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "86204774d2a8d20fc47b9e40407273648caf350b"
+      "revision": "66429de7cf5677807ed2c26a36685ab6db2e6fe7"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "1f1c4f00647eee8b58a1f475b157d4179870896c"
     },
     "files": {
-      "layout": "8425fcbd51371f836d28cfe068bfd666116cc18d79b3ee5c7f4aa0df71a9ff7f",
+      "layout": "90e82e0ef8a6ebcc97e0d8320ac5bba5096fe3182479a6740705b30c4d277095",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "b0a1f3696e1bd84266eece3e1f850247ce3963ad017cbe7cb7f2ad582062a878",
+      "qualification": "0ffe717bf624a4fba46f8c90356e01579d0a31d57fb34a07db4af08f19c4ef55",
       "photoRegistration": "61a51daca9a51fd1765074ed674e54cdc825687e50daf3f161518cb25926a034",
       "bottomRegistration": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
       "topRegistration": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
@@ -37846,13 +38563,13 @@
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
-      "routingAudit": "7e4eb04671371ff7e008af7df9bfebdb4a217804d9d3635c9e8fbd16682cfb9b",
-      "cableCopper": "687b50645a4ce91d3ffe251255666f1510ca8fd0996454262f3e704012a18f63",
-      "connectionReview": "30d8687ed647966ee371bd0f499f9bd6f883696d7c471f9313cb31f07fe4daba",
+      "routingAudit": "63e46069cea42c73fdb5e6d51204a97bace0ec65f02284e65edf00365a6b843c",
+      "cableCopper": "90c2e3646cb9c5ce53f9271bbc6907011497e625fc5cc72eeea657bf8884344a",
+      "connectionReview": "d472eaa2cb823f2d89cff310c7407aef8343a08f2d55c9fce0c42fe088c8f2f1",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "b19455de8e91edb3874628f64fab3813b9716d371a3072eba276a5445ee033de"
+    "geometryScadSha256": "52da08af7aad65d4d8f411fdb5b47040e53d922f6b6890cee5b549c336a89cb2"
   },
   "cosimulation": {
     "bus": {

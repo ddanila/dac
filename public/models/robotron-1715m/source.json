@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "86204774d2a8d20fc47b9e40407273648caf350b",
+  "revision": "66429de7cf5677807ed2c26a36685ab6db2e6fe7",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "a7757490574587bb40d136b95d6b8f67ef434257fc8654da693bf4a68eda94ec"
+      "sha256": "9931e3671de3c20187e2d3ab78438bb7fc6f74e59d3bfb8d1eb92d2ea8af7bc0"
     },
     {
       "file": "LICENSE",
@@ -461,7 +461,7 @@
     },
     {
       "file": "meshes/keyboard-controller-board.stl",
-      "sha256": "a2a9f65ac13e185761d0d70aba71031e2baaf5a6c50714ffcec4ae982bc39589"
+      "sha256": "baefe5ac636caccbe2adcf6b00ee38c479401871c06381bfb74640897584283c"
     },
     {
       "file": "meshes/keyboard-controller-chips.stl",
@@ -565,7 +565,7 @@
     },
     {
       "file": "meshes/keyboard-controller-traces.stl",
-      "sha256": "88c5e3f195faf3b8f1277ab4908fc2fc8696c791558f2c69e95b899f81693368"
+      "sha256": "8a90f924453f2327513e2876dd30b7c2818557fdb412479257a8431550cd51d2"
     },
     {
       "file": "meshes/monitor-power-lead.stl",
@@ -657,7 +657,7 @@
     },
     {
       "file": "meshes/keyboard-controller-solder.stl",
-      "sha256": "a90dcdf0efd26fa0d7f7d8f31e2df2551fe8913f751dbc28316b31f303c9bbae"
+      "sha256": "3489d5b66a3bf58702f6ae7b7a645d6a9ca8304fbc7d57c52754fcca00161487"
     },
     {
       "file": "meshes/drive-protect-tab-0.stl",
@@ -1585,23 +1585,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "df63f1b3b15e9dffded42234d1c89ed02b61b6cd9f02a927cfcb4fd8c612840a"
+      "sha256": "06ef885f85666665b8537431e4dca38ec4a771eea4d6d9821f05fee1d1092455"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "91fc95ae036c06744059a7c6cdf90ff0128efdee068a62a66cb7a9cfb9ad0909"
+      "sha256": "085b7125907c3c89b1052a769df8e218a5f39f966f521f8b644247b739fa52ce"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "b8df31a7f18c5c83498208e54c7fac7266043cf5b104b7db07e24ad69282c1cb"
+      "sha256": "c3e3ee0c59b51c7ea4ce7d5f60d71a91af8fffe6cb25b8ebc40a331068e5aa7e"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "3bfa4e79a8d3b0c383a0505ec2f5e0cd88194b044cbd268849b0413e9f235934"
+      "sha256": "974f7d39c39556af9fe6e4c141766a7575109fc3ae95df2504cefefd7bc72a7e"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "7cca11cdf4a054420c507dcda448089fc34560115239475a68bb9b236546483a"
+      "sha256": "696f3eeca334c5780e08a0ca9aa2e31d49a2591c59c934b31cbef3de41f1afff"
     }
   ],
   "inspection": {
