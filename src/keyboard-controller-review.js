@@ -3,12 +3,41 @@ const svgNS='http://www.w3.org/2000/svg';
 const clean=value=>(value||'').replace(/^\//,'');
 export function controllerSelection(data,kind,value){
  const components=data.connectivity.components;
- const refs=Object.keys(components).filter(ref=>kind==='component'?ref===value:Object.values(components[ref].pins).includes(value));
+ const path=kind==='path'?data.connectionReview?.cases.find(c=>c.id===value):null;
+ const terminals=new Set(path?.sameNetSets.flat()||[]);
+ const refs=Object.keys(components).filter(ref=>kind==='component'?ref===value:kind==='path'?[...terminals].some(t=>t.startsWith(ref+':')):Object.values(components[ref].pins).includes(value));
  const placed=new Map(data.layout.components.map(c=>[c.ref,c]));
  const anonymous=new Set((data.layout.visualConnectors||[]).filter(c=>c.status!=='photo-placed-reference-terminal-order').map(c=>c.ref));
- const pins=refs.flatMap(ref=>Object.entries(components[ref].pins).filter(([,net])=>kind==='component'||net===value).map(([pin,net])=>({ref,pin,net,position:anonymous.has(ref)?null:placed.get(ref)?.pads.find(p=>p.pin===pin)?.position||null})));
+ const pins=refs.flatMap(ref=>Object.entries(components[ref].pins).filter(([pin,net])=>kind==='component'||(kind==='path'?terminals.has(ref+':'+pin):net===value)).map(([pin,net])=>({ref,pin,net,position:anonymous.has(ref)||ref==='XT1'?null:placed.get(ref)?.pads.find(p=>p.pin===pin)?.position||null})));
  const nets=new Set(pins.map(p=>p.net).filter(Boolean));
  return {refs,pins,points:pins.filter(p=>p.position).map(p=>p.position),routes:data.layout.routes.filter(r=>nets.has(r.net)),unplaced:refs.filter(ref=>!placed.has(ref))};
+}
+function connectionCases(data,kind,value){
+ return (data.connectionReview?.cases||[]).filter(c=>kind==='path'?c.id===value:
+  kind==='net'?c.referenceNets.some(n=>n.net===value):
+  c.sameNetSets.flat().some(t=>t.startsWith(value+':')));
+}
+function connectionPhoto(fig){
+ const figure=document.createElement('figure');figure.dataset.connectionPhoto=fig.source.id;
+ const url=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(fig.source.path.split('/').pop())}`;
+ const points=[...fig.segments.flatMap(s=>s.points),...fig.markers.map(m=>m.point)];
+ if(!points.length)return figure;
+ const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),x=Math.max(0,Math.min(...xs)-90),y=Math.max(0,Math.min(...ys)-90);
+ const svg=document.createElementNS(svgNS,'svg');
+ svg.setAttribute('viewBox',`${x} ${y} ${Math.max(...xs)-x+90} ${Math.max(...ys)-y+90}`);
+ svg.setAttribute('role','img');svg.setAttribute('aria-label',`Connection evidence: ${fig.source.id}`);
+ svg.style.cssText='display:block;width:100%;max-width:560px;max-height:340px;background:#14232d';
+ const add=(tag,attrs)=>{const node=document.createElementNS(svgNS,tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,value);svg.append(node);return node;};
+ add('image',{href:url,width:3072,height:4080});
+ for(const segment of fig.segments)add('polyline',{points:segment.points.map(p=>p.join(',')).join(' '),fill:'none',stroke:segment.status==='inferred'?'#ffcf5b':'#37f3d4','stroke-width':3,'stroke-dasharray':segment.status==='inferred'?'7 5':'none'});
+ const labels=document.createElement('ul');
+ for(const marker of fig.markers){
+  add('circle',{...(marker.kind==='search'?{'data-search-region':''}:{}),cx:marker.point[0],cy:marker.point[1],r:marker.radius||9,fill:'none',stroke:marker.kind==='search'?'#ffcf5b':'#ff79ad','stroke-width':3,'stroke-dasharray':marker.kind==='search'?'5 4':'none'});
+  const label=document.createElement('li');label.textContent=marker.label;labels.append(label);
+ }
+ const caption=document.createElement('figcaption');caption.textContent='Primary specimen: teal observed copper; dashed amber inferred copper or projected search region; pink recorded span ends. Search circles are not identified joints.';
+ const link=document.createElement('a');link.href=url;link.textContent='Open original photograph';link.target='_blank';link.rel='noopener';
+ figure.append(svg,caption,labels,link);return figure;
 }
 // Photo observations remain separate from the native pad positions used for highlights.
 function componentPhoto(data,ref,candidate,side='top'){
@@ -57,7 +86,7 @@ function componentPhoto(data,ref,candidate,side='top'){
 }
 export function installKeyboardControllerReview(scene){
  const panel=document.createElement('details');panel.id='keyboard-controller-review';panel.dataset.robotron='';
- panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
+ panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Signal path <select aria-label="Controller signal path" data-path><option value="">Select…</option><option value="host-clock">Clock → filter → cable</option><option value="host-data">Data → filter → cable</option></select></label> <label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><div data-path-review></div><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
  document.getElementById('evidence-controls').after(panel);
  let data=null,pending=false,selection=null,leds=null,latches=null;
  const get=selector=>panel.querySelector(selector),status=get('[data-status]');
@@ -71,6 +100,13 @@ export function installKeyboardControllerReview(scene){
   const side=get('[data-side]').value,svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox','-140 -28 280 56');svg.setAttribute('role','img');svg.setAttribute('aria-label',`Controller ${side} reference pad map; cyan artwork has no assigned nets`);svg.style.cssText=`width:${Number(get('[data-zoom]').value)*100}%;max-width:none;min-height:140px;background:#14232d;margin-top:8px`;
   function add(tag,attrs){const e=document.createElementNS(svgNS,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);svg.append(e);return e;}
   add('polygon',{points:data.layout.outlinePolygon.map(([x,y])=>`${x},${-y}`).join(' '),fill:'#3c4540',stroke:'#b4bcaa','stroke-width':.3});
+  const assembly=data.layout.visualOutputAssembly;
+  if(side==='top'&&assembly){
+   const core=add('polygon',{'data-output-core':'',points:assembly.filter.bodyPolygon.map(([x,y])=>`${x},${-y}`).join(' '),fill:'#292d29',stroke:'#4694a1','stroke-width':.3});
+   const title=document.createElementNS(svgNS,'title');title.textContent=assembly.filter.scope;core.append(title);
+   for(const arc of [...assembly.filter.raisedWireArcs,...assembly.cable.raisedWireArcs.map(w=>w.points)])
+    add('polyline',{'data-output-wire':'',points:arc.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#4694a1','stroke-width':.5});
+  }
   for(const route of data.layout.unresolvedArtwork.filter(r=>r.side===side))add('polyline',{points:route.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#4694a1','stroke-width':route.width});
   for(const bridge of (data.layout.visualBridges||[]).filter(b=>b.side===side)){
    const line=add('polyline',{'data-visual-bridge':bridge.ref,points:bridge.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#4694a1','stroke-width':.5});
@@ -87,7 +123,7 @@ export function installKeyboardControllerReview(scene){
    const dot=add('circle',{'data-visual-connector':connector.ref,cx:x,cy:-y,r:.65,fill:'#4694a1'}),title=document.createElementNS(svgNS,'title');
    title.textContent=`${connector.ref}: observed solder joint; no electrical pin assignment`;dot.append(title);
   }
-  for(const c of data.layout.components.filter(c=>!anonymous.has(c.ref)))for(const p of c.pads){
+  for(const c of data.layout.components.filter(c=>!anonymous.has(c.ref)&&c.ref!=='XT1'))for(const p of c.pads){
    const active=selected.has(c.ref+':'+p.pin),dot=add('circle',{cx:p.position[0],cy:-p.position[1],r:active?1.4:.65,fill:active?'#ffe16a':'#c5c5b0'}),title=document.createElementNS(svgNS,'title');title.textContent=`${c.ref}:${p.pin||'mount'} ${clean(p.net)||'unconnected'}`;dot.append(title);
   }
   // Both sides use one top-view coordinate convention to preserve net identity.
@@ -95,11 +131,13 @@ export function installKeyboardControllerReview(scene){
  }
  function select(kind,value){
   selection=value?controllerSelection(data,kind,value):null;
-  if(kind==='component')get('[data-net]').value='';else get('[data-component]').value='';
+  for(const [control,type]of [['[data-net]','net'],['[data-component]','component'],['[data-path]','path']])if(kind!==type)get(control).value='';
+  const pathReview=get('[data-path-review]');pathReview.replaceChildren();
   const pins=get('[data-pins]');pins.replaceChildren();
   if(selection){
    const placed=selection.points.length,total=selection.pins.length;
-   get('[data-selection]').textContent=`${kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
+   get('[data-selection]').textContent=`${kind==='path'?'Signal path '+value:kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
+   const selectionSummary=get('[data-selection]').textContent;
    if((data.layout.visualBridges||[]).some(b=>selection.refs.includes(b.ref)))get('[data-selection]').textContent+=' The cyan wire is a photo estimate only; its endpoints do not identify electrical pads.';
    if((data.layout.visualConnectors||[]).some(c=>selection.refs.includes(c.ref)))get('[data-selection]').textContent+=' Cyan connector joints remain electrically unclassified; highlighted reference pads use photo-estimated positions and reference-derived numbering.';
    const routes=data.layout.routes.filter(r=>selection.pins.some(p=>p.net===r.net));
@@ -185,8 +223,30 @@ export function installKeyboardControllerReview(scene){
      if(underside)pins.append(underside);
     }
    }
+   for(const review of connectionCases(data,kind,value)){
+    const section=document.createElement('details');section.dataset.connectionCase=review.id;section.open=kind!=='component';
+    const heading=document.createElement('summary');heading.textContent=review.title;
+    const finding=document.createElement('p');finding.textContent=review.finding;
+    const chain=document.createElement('p');chain.textContent='Reference connections: '+review.referenceNets.map(n=>n.terminals.join(' ↔ ')).join(review.seriesComponents.length?' · winding · ':' · ')+'. Highlighted fragments do not prove a complete path.';
+    section.append(heading,finding,chain);
+    for(const fig of review.figures)section.append(connectionPhoto(fig));
+    if(review.crossSideSearch){const note=document.createElement('p');note.textContent=review.crossSideSearch.scope;section.append(note);}
+    const next=document.createElement('p');next.textContent='Unresolved: '+review.decisiveObservation;section.append(next);pathReview.append(section);
+   }
+   if(selection.refs.some(ref=>data.outputAssembly?.refs.includes(ref))){
+    const assembly=data.outputAssembly,section=document.createElement('details');section.dataset.outputAssembly='';
+    const heading=document.createElement('summary');heading.textContent='Filter and cable: observed assembly';
+    const note=document.createElement('p');note.textContent=assembly.scope+' '+assembly.cable.scope;
+    section.append(heading,note);
+    for(const [ref,body]of [['L1 filter',assembly.filter],['XT1 cable',assembly.cable]]){
+     const photo=componentPhoto(data,ref,{photoSource:assembly.photoSource,...(body.jointRowsPixels?{photoEndpoints:Object.values(body.jointRowsPixels).flat(),photoPixelUncertainty:body.jointPixelUncertainty}:{pixelBox:body.pixelBox}),scope:body.scope,supportingSources:assembly.supportingSources});if(photo)section.append(photo);
+    }
+    const gaps=document.createElement('ul');for(const gap of assembly.unresolved){const item=document.createElement('li');item.textContent=gap;gaps.append(item);}section.append(gaps);pathReview.append(section);
+   }
+   if(kind==='path')get('[data-selection]').textContent=selectionSummary+' Highlighted copper is partial; dashed sections are inferred. The filter winding separates the two reference nets. Component-level registration details are available through component selection.';
+   if(selection.refs.includes('XT1'))get('[data-selection]').textContent+=' XT1 native coordinates are inherited reference placeholders, not registered solder joints; they are excluded from physical highlights.';
    const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
-   for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
+   for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.ref==='XT1'?'Reference placeholder':p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
   }else get('[data-selection]').textContent='Select a component or net to inspect its pins.';
   scene?.keyboardControllerSelection(panel.open?(selection?.points||[]):[],panel.open?(selection?.routes||[]):[]);draw();
  }
@@ -212,8 +272,9 @@ export function installKeyboardControllerReview(scene){
   }catch(error){data=null;get('[data-tools]').hidden=true;status.textContent=`Controller review could not load: ${error.message}. Close and reopen to retry.`;}finally{pending=false;}
  }
  panel.addEventListener('toggle',()=>{if(panel.open){if(data)scene?.keyboardControllerSelection(selection?.points||[],selection?.routes||[]);else load();}else scene?.keyboardControllerSelection([]);});
+ get('[data-path]').onchange=e=>select('path',e.target.value);
  get('[data-component]').onchange=e=>select('component',e.target.value);get('[data-net]').onchange=e=>select('net',e.target.value);get('[data-side]').onchange=draw;
  get('[data-zoom]').oninput=draw;get('[data-view-controller]').onclick=()=>document.querySelector('[data-view="keyboard-inside"]')?.click();
- get('[data-clear]').onclick=()=>{get('[data-component]').value='';get('[data-net]').value='';select('component','');};
+ get('[data-clear]').onclick=()=>{get('[data-component]').value='';get('[data-net]').value='';get('[data-path]').value='';select('component','');};
  return {message(message){if(message.type==='configured'){leds=null;latches=null;}if(message.keyboardLeds!==undefined)leds=message.keyboardLeds;if(message.keyboardLatches!==undefined)latches=message.keyboardLatches;if(panel.open)live();}};
 }

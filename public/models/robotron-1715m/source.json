@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "98407964f67806e5ab2fa5f0e5392221689f8a0f",
+  "revision": "0d0afdc120f1f7e8e3756f54ebc7b994e5bafa6a",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "4452d057a214e802e5696d3f5c60930cb500e29b33486bb7bbb8da40db41606a"
+      "sha256": "2f8e3e6a633d4fe767460115f9370f8849770bd89afc690aab284fd6c97f5ac7"
     },
     {
       "file": "LICENSE",
@@ -649,7 +649,7 @@
     },
     {
       "file": "meshes/keyboard-entry-wires.stl",
-      "sha256": "cd59f4aef7d352f90f1b9638314f0e7b1c54eacb489649d6e0af9e815314a81a"
+      "sha256": "f36ad0a1901493a86d40cd101a0f18771ff6249e91588d90eab00e5671e83b91"
     },
     {
       "file": "meshes/keyboard-contact-routes.stl",
@@ -673,7 +673,7 @@
     },
     {
       "file": "meshes/keyboard-entry-choke.stl",
-      "sha256": "d687a4528eccc4a55cdd613d13f1ad8b5947c08e9e489ba2ffcc591548b99ee5"
+      "sha256": "168970e398a448b016b2b702df9c424fd0943d7712abddd733b4fe5c77d62ddf"
     },
     {
       "file": "meshes/monitor-mount-pads.stl",
@@ -773,15 +773,15 @@
     },
     {
       "file": "meshes/keyboard-entry-black.stl",
-      "sha256": "60e6879b17b5abec9069af6b7e60b1d5b669fcbbccfbad2b0604633142400f73"
+      "sha256": "fe3bdff444380970aeb210e8de7d2d42f3eadf01e98c82172471119ba30b5a1d"
     },
     {
       "file": "meshes/keyboard-entry-pink.stl",
-      "sha256": "fa4482e1fbf3bbbf0b981c2105696c8669c6f42bda226a41583dcdc845c8bfdc"
+      "sha256": "494175cbae8168a28f5cdb3be09a23993e0cf74a6b03bd6c66c150aa725a5795"
     },
     {
       "file": "meshes/keyboard-entry-blue.stl",
-      "sha256": "593a936f1b648fe5c101b69c89c7f47943d974a8bc394b026ead2c99945b7594"
+      "sha256": "5bf5ced8a6e0bb2b93d65696fb75fca466d9320c490e1ebfb0c542ddb1b12e9b"
     },
     {
       "file": "meshes/logic-silkscreen-motherboard.stl",
@@ -1585,23 +1585,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "0367c9af43daa6551dc46247938968c4a3d1bc09a4d748293fa029cdf74b62cb"
+      "sha256": "b765959bf9a8941716685a874b934a4186a5560385c033a7e087fb10348cc9bb"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "b8b53516141b100ddbf48184b310067622a2d55523444b29be27fdb7e53779f5"
+      "sha256": "2861c16d59741b81499a07a4d53fd574c0c71d0876543032e17d06fbb0182edd"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "d6a6cdcad5ac74178387a1ac0ee2e49fe11f4e842c069611e75553616ece2b40"
+      "sha256": "1fa697663e04de323694dc9b91991cb0c2dbd71e1fc05284625527899f17c4f7"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "e16bd2f7157b514fe0feef47d979e08734c5c56e9609cc6bd7ca6c9bfc0d53cf"
+      "sha256": "e18993700ca7f78f4b621aec6336bd60f052582e4ffbbf08f0180521adf4ac4e"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "d3d2c4c0868d0ee4a2ab6eceb53a6b99b017ef114dd4889a026c2162eea21b89"
+      "sha256": "93c1c4cb04fbfe8f77f7e516d524d8873e918124b67348d44f3b06aafe50c744"
     }
   ],
   "inspection": {

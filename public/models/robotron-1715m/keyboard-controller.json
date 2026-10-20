@@ -14297,7 +14297,301 @@
         "status": "body-and-raised-leads-only",
         "thickness": 1.8
       }
-    ]
+    ],
+    "visualOutputAssembly": {
+      "cable": {
+        "raisedWireArcs": [
+          {
+            "colour": "white",
+            "points": [
+              [
+                -124.004637,
+                -4.759575
+              ],
+              [
+                -122.893015,
+                -4.956721
+              ],
+              [
+                -121.094461,
+                -3.871005
+              ],
+              [
+                -118.91087,
+                -1.853226
+              ]
+            ]
+          },
+          {
+            "colour": "black",
+            "points": [
+              [
+                -120.424838,
+                -14.568517
+              ],
+              [
+                -126.358506,
+                -13.705716
+              ],
+              [
+                -128.196343,
+                -12.37809
+              ],
+              [
+                -128.467311,
+                -10.539971
+              ],
+              [
+                -127.618201,
+                -8.243132
+              ],
+              [
+                -125.369368,
+                -6.740977
+              ],
+              [
+                -122.986593,
+                -6.339821
+              ]
+            ]
+          },
+          {
+            "colour": "pink",
+            "points": [
+              [
+                -120.519424,
+                -5.284995
+              ],
+              [
+                -120.847913,
+                -7.534134
+              ],
+              [
+                -122.439241,
+                -9.724877
+              ],
+              [
+                -123.066972,
+                -12.106429
+              ],
+              [
+                -122.414741,
+                -13.30596
+              ],
+              [
+                -121.374655,
+                -13.354644
+              ],
+              [
+                -120.532029,
+                -11.567116
+              ],
+              [
+                -119.972505,
+                -8.74352
+              ],
+              [
+                -118.989335,
+                -7.547007
+              ]
+            ]
+          },
+          {
+            "colour": "blue",
+            "points": [
+              [
+                -123.09847,
+                -3.706056
+              ],
+              [
+                -123.069984,
+                -1.663275
+              ],
+              [
+                -122.076371,
+                0.335293
+              ],
+              [
+                -120.886244,
+                0.427176
+              ],
+              [
+                -119.561392,
+                -0.509188
+              ]
+            ]
+          }
+        ],
+        "scope": "Visible coloured arcs stop at occlusion boundaries; colours do not identify XT1 terminals. Shield braid is visible near the clamp but its electrical attachment is unresolved.",
+        "wireHeight": 6,
+        "wireRadius": 0.65
+      },
+      "filter": {
+        "baseHeight": 3,
+        "bodyPolygon": [
+          [
+            -114.312327,
+            -13.758343
+          ],
+          [
+            -113.826211,
+            -5.373727
+          ],
+          [
+            -111.37095,
+            -5.486651
+          ],
+          [
+            -111.782021,
+            -13.876799
+          ]
+        ],
+        "height": 4,
+        "jointRows": {
+          "cableFacing": [
+            [
+              -116.034275,
+              -14.482041
+            ],
+            [
+              -116.293824,
+              -11.691635
+            ],
+            [
+              -116.558299,
+              -9.267198
+            ],
+            [
+              -116.300267,
+              -6.721324
+            ]
+          ],
+          "logicFacing": [
+            [
+              -109.171091,
+              -13.633205
+            ],
+            [
+              -109.067248,
+              -11.443325
+            ],
+            [
+              -109.032994,
+              -8.884879
+            ],
+            [
+              -109.152552,
+              -6.68547
+            ]
+          ]
+        },
+        "raisedWireArcs": [
+          [
+            [
+              -115.363818,
+              -14.440355
+            ],
+            [
+              -114.267724,
+              -15.954509
+            ],
+            [
+              -112.337648,
+              -16.411066
+            ],
+            [
+              -110.913274,
+              -15.74644
+            ],
+            [
+              -110.443906,
+              -14.085757
+            ]
+          ],
+          [
+            [
+              -115.19711,
+              -13.131954
+            ],
+            [
+              -113.951219,
+              -14.579723
+            ],
+            [
+              -111.946688,
+              -15.039482
+            ],
+            [
+              -110.671212,
+              -14.36774
+            ],
+            [
+              -110.280252,
+              -12.996087
+            ]
+          ],
+          [
+            [
+              -115.103805,
+              -11.747116
+            ],
+            [
+              -113.63473,
+              -13.205007
+            ],
+            [
+              -111.852514,
+              -13.580915
+            ],
+            [
+              -110.950332,
+              -12.96478
+            ]
+          ],
+          [
+            [
+              -113.692312,
+              -6.476188
+            ],
+            [
+              -112.781763,
+              -5.202495
+            ],
+            [
+              -111.143748,
+              -5.204697
+            ],
+            [
+              -110.264351,
+              -6.268649
+            ],
+            [
+              -110.359414,
+              -7.799712
+            ]
+          ]
+        ],
+        "scope": "Visible dark core envelope only; obscured core opening, underside and winding topology are not reconstructed.",
+        "wireHeight": 7.5,
+        "wireRadius": 0.4
+      },
+      "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+      "photoSource": "photo-top",
+      "refs": [
+        "L1.1",
+        "L1.2",
+        "L1.3",
+        "L1.4",
+        "XT1"
+      ],
+      "scope": "Primary specimen body and raised-wire observations. Board-plane projection of elevated objects is approximate. Heights and diameters are illustrative. Joint order is geometric only: no winding pairing, electrical terminal, hidden hole or continuity is assigned.",
+      "status": "visual-observations-only",
+      "unresolved": [
+        "Pair the filter's cable-facing and logic-facing joints independently before assigning L1.1\u2013L1.4.",
+        "Match cable conductor attachment joints to XT1 terminal labels; inherited native XT1 pad positions are reference placeholders, not photo-registered solder joints.",
+        "Trace logic-facing clock/data copper back toward the stops localized beneath R9.5 and R7."
+      ]
+    }
   },
   "connectivity": {
     "authority": "controller.kicad_sch",
@@ -23785,17 +24079,2878 @@
       "placementAuthority": "controller.kicad_pcb"
     }
   },
+  "connectionReview": {
+    "schema": 1,
+    "scope": "Physical route review, not new connectivity evidence. X1 serves the matrix/LEDs; XT1 is the host cable. Reference endpoints are targets for tracing, not observed attachments.",
+    "inputSha256": {
+      "connection-review.json": "9fec4a245a2353d6dab54add89a36de8aa8642e631c68a8dfadb6abb42b04fd4",
+      "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
+      "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
+      "route-evidence.json": "ab650188f8d3e826352205bd4596b83fe113c31da04714c8d82d5cd1fb4ab15a",
+      "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
+      "generated/layout.json": "82c7ab6859b8e9f67a5b3fe936e951c68f757c998ce86652f0b064fc5ab629a3",
+      "generated/connector-terminals.json": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
+      "generated/top-registration.json": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
+      "generated/bottom-registration.json": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
+      "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
+      "bottom-landmarks.json": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+      "tools/connection_review.py": "1f524607ed7309992c374880045080a7248f802bae64d3a8602fcda80447a59a",
+      "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068",
+      "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8"
+    },
+    "cases": [
+      {
+        "id": "host-clock",
+        "crossSideStop": {
+          "ref": "R10.1",
+          "bottomPixel": [
+            1245,
+            1205
+          ],
+          "occludingBody": "R9.5",
+          "searchPaddingPixels": 8,
+          "observation": "The projected location falls beneath the resistor body in the primary top photo. The top counterpart and outgoing copper cannot be identified directly there."
+        },
+        "title": "Serial clock: driver to filter to host cable",
+        "sameNetSets": [
+          [
+            "A1:2",
+            "R10.1:2",
+            "L1.1:1"
+          ],
+          [
+            "L1.1:2",
+            "XT1:B2"
+          ]
+        ],
+        "seriesComponents": [
+          "L1.1"
+        ],
+        "routeGroups": [
+          "r101-output-top-local",
+          "r101-output-bottom-partial"
+        ],
+        "reviews": [
+          {
+            "id": "r101-top-package-entry",
+            "status": "projection-rejected-pending-local-registration",
+            "summary": "The global top projection was rejected. A bounded local fit supports the visible R10.1 branch beside A1; the under-package attachment remains unresolved.",
+            "nextEvidence": "Resolve the hidden continuation independently before assigning an A1 endpoint. The local fit does not extend to the outer row; retain the estimated-pad clearance failure."
+          }
+        ],
+        "supportingSources": [
+          "comparison-photo-080443226.MP",
+          "comparison-photo-080347973",
+          "comparison-photo-080406304",
+          "comparison-photo-080511382"
+        ],
+        "finding": "The local top branch stops at the A1 package boundary. The underside branch stops at a solder eye. Neither stop proves a layer transition or an A1/filter attachment. Cross-side search fits localize the underside stop beneath R9.5; this is an occluded search region, not an identified top-side joint.",
+        "alternatives": [
+          "Reference path reaches A1:2 and L1.1:1 through hidden copper.",
+          "The apparent top/bottom stop correspondence is wrong; the visible branch requires a different continuation. This is a geometric alternative, not a replacement net assignment."
+        ],
+        "nextDeskWork": "Register comparison close-ups around R9.5 using surrounding joints and held-out checks. Follow the exposed lane on both sides of the body and match any downstream eye independently before continuing toward L1/XT1.",
+        "decisiveObservation": "An uninterrupted path, including any confirmed layer transition, from R10.1:2 to A1:2 and the identified L1.1 input. Separately identify both winding ends and the cable-side connection to XT1:B2.",
+        "doNotInfer": "The former A1:13 conflict came from a rejected projection. It is not a measured short, and the surviving local segment does not identify the hidden A1 pin.",
+        "referenceNets": [
+          {
+            "net": "/TA_TAKT",
+            "terminals": [
+              "A1:2",
+              "R10.1:2",
+              "L1.1:1"
+            ]
+          },
+          {
+            "net": "/CABLE_TAKT",
+            "terminals": [
+              "L1.1:2",
+              "XT1:B2"
+            ]
+          }
+        ],
+        "candidateEndpoints": [],
+        "series": {
+          "L1.1": {
+            "pins": {
+              "1": "/TA_TAKT",
+              "2": "/CABLE_TAKT"
+            },
+            "type": "CHOKE"
+          }
+        },
+        "crossSideSearch": {
+          "scope": "Search localization only. Fits share R4.2 anchors; agreement is a sensitivity check, not independent evidence. Top DIP landmarks are lead observations, not verified hole centres. No copper or via assignment is qualified.",
+          "fits": [
+            {
+              "anchors": [
+                {
+                  "terminal": "R4.2:1",
+                  "bottomPixel": [
+                    1090,
+                    969
+                  ],
+                  "topPixel": [
+                    1687,
+                    1101
+                  ]
+                },
+                {
+                  "terminal": "R4.2:2",
+                  "bottomPixel": [
+                    1243,
+                    972
+                  ],
+                  "topPixel": [
+                    1527,
+                    1109
+                  ]
+                },
+                {
+                  "terminal": "R10.2:2",
+                  "bottomPixel": [
+                    1297,
+                    1325
+                  ],
+                  "topPixel": [
+                    1498,
+                    1490
+                  ]
+                },
+                {
+                  "terminal": "R10.1:2",
+                  "bottomPixel": [
+                    1342,
+                    1325
+                  ],
+                  "topPixel": [
+                    1448,
+                    1492
+                  ]
+                }
+              ],
+              "checks": [
+                {
+                  "terminal": "R7:1",
+                  "bottomPixel": [
+                    1093,
+                    1013
+                  ],
+                  "topPixel": [
+                    1687,
+                    1151
+                  ],
+                  "residualPixels": 5.259668553
+                },
+                {
+                  "terminal": "R7:2",
+                  "bottomPixel": [
+                    1245,
+                    1013
+                  ],
+                  "topPixel": [
+                    1529,
+                    1154
+                  ],
+                  "residualPixels": 3.002095315
+                },
+                {
+                  "terminal": "R8:1",
+                  "bottomPixel": [
+                    1095,
+                    1058
+                  ],
+                  "topPixel": [
+                    1687,
+                    1200
+                  ],
+                  "residualPixels": 8.596629448
+                },
+                {
+                  "terminal": "R8:2",
+                  "bottomPixel": [
+                    1245,
+                    1057
+                  ],
+                  "topPixel": [
+                    1531,
+                    1206
+                  ],
+                  "residualPixels": 9.335856675
+                },
+                {
+                  "terminal": "A1:14",
+                  "bottomPixel": [
+                    1396,
+                    1324
+                  ],
+                  "topPixel": [
+                    1389,
+                    1482
+                  ],
+                  "residualPixels": 11.33795536
+                },
+                {
+                  "terminal": "A2.1:1",
+                  "bottomPixel": [
+                    1190,
+                    1327
+                  ],
+                  "topPixel": [
+                    1630,
+                    1475
+                  ],
+                  "residualPixels": 18.32835327
+                },
+                {
+                  "terminal": "A1:1",
+                  "bottomPixel": [
+                    1492,
+                    1327
+                  ],
+                  "topPixel": [
+                    1285,
+                    1495
+                  ],
+                  "residualPixels": 7.441040925
+                },
+                {
+                  "terminal": "A2.1:14",
+                  "bottomPixel": [
+                    1098,
+                    1325
+                  ],
+                  "topPixel": [
+                    1710,
+                    1468
+                  ],
+                  "residualPixels": 15.28750954
+                }
+              ],
+              "bottomToTop": [
+                -0.9322271589,
+                -0.1147296445,
+                2576.028672,
+                0.004010881835,
+                0.736236284,
+                227.7098895,
+                -2.147091755e-05,
+                -0.0001216065484,
+                1
+              ],
+              "projectedTopPixel": [
+                1544.823928,
+                1354.570832
+              ],
+              "insideAnchorHull": true,
+              "maxCheckResidualPixels": 18.32835327
+            },
+            {
+              "anchors": [
+                {
+                  "terminal": "R4.2:1",
+                  "bottomPixel": [
+                    1090,
+                    969
+                  ],
+                  "topPixel": [
+                    1687,
+                    1101
+                  ]
+                },
+                {
+                  "terminal": "R4.2:2",
+                  "bottomPixel": [
+                    1243,
+                    972
+                  ],
+                  "topPixel": [
+                    1527,
+                    1109
+                  ]
+                },
+                {
+                  "terminal": "A1:1",
+                  "bottomPixel": [
+                    1492,
+                    1327
+                  ],
+                  "topPixel": [
+                    1285,
+                    1495
+                  ]
+                },
+                {
+                  "terminal": "A2.1:14",
+                  "bottomPixel": [
+                    1098,
+                    1325
+                  ],
+                  "topPixel": [
+                    1710,
+                    1468
+                  ]
+                }
+              ],
+              "checks": [
+                {
+                  "terminal": "R7:1",
+                  "bottomPixel": [
+                    1093,
+                    1013
+                  ],
+                  "topPixel": [
+                    1687,
+                    1151
+                  ],
+                  "residualPixels": 5.093889029
+                },
+                {
+                  "terminal": "R7:2",
+                  "bottomPixel": [
+                    1245,
+                    1013
+                  ],
+                  "topPixel": [
+                    1529,
+                    1154
+                  ],
+                  "residualPixels": 2.711744926
+                },
+                {
+                  "terminal": "R8:1",
+                  "bottomPixel": [
+                    1095,
+                    1058
+                  ],
+                  "topPixel": [
+                    1687,
+                    1200
+                  ],
+                  "residualPixels": 8.361188952
+                },
+                {
+                  "terminal": "R8:2",
+                  "bottomPixel": [
+                    1245,
+                    1057
+                  ],
+                  "topPixel": [
+                    1531,
+                    1206
+                  ],
+                  "residualPixels": 9.127763706
+                },
+                {
+                  "terminal": "A1:14",
+                  "bottomPixel": [
+                    1396,
+                    1324
+                  ],
+                  "topPixel": [
+                    1389,
+                    1482
+                  ],
+                  "residualPixels": 4.031710619
+                },
+                {
+                  "terminal": "A2.1:1",
+                  "bottomPixel": [
+                    1190,
+                    1327
+                  ],
+                  "topPixel": [
+                    1630,
+                    1475
+                  ],
+                  "residualPixels": 16.73116247
+                },
+                {
+                  "terminal": "R10.1:2",
+                  "bottomPixel": [
+                    1342,
+                    1325
+                  ],
+                  "topPixel": [
+                    1448,
+                    1492
+                  ],
+                  "residualPixels": 8.99915806
+                },
+                {
+                  "terminal": "R10.2:2",
+                  "bottomPixel": [
+                    1297,
+                    1325
+                  ],
+                  "topPixel": [
+                    1498,
+                    1490
+                  ],
+                  "residualPixels": 9.667221527
+                }
+              ],
+              "bottomToTop": [
+                -1.045658304,
+                0.03036775182,
+                2622.342649,
+                -0.04869985414,
+                0.8812418854,
+                185.9487814,
+                -7.003556776e-05,
+                -2.827121994e-05,
+                1
+              ],
+              "projectedTopPixel": [
+                1544.362272,
+                1351.042884
+              ],
+              "insideAnchorHull": true,
+              "maxCheckResidualPixels": 16.73116247
+            }
+          ],
+          "centerTopPixel": [
+            1544.5931,
+            1352.806858
+          ],
+          "fitSpreadPixels": 3.558025586,
+          "searchRadiusPixels": 30,
+          "radiusBasis": "Maximum held-out residual + fit spread + explicit search padding; heuristic search margin, not a confidence bound.",
+          "copperAssignmentQualified": false
+        },
+        "figures": [
+          {
+            "source": {
+              "id": "photo-bottom",
+              "path": "../reference/photos/PXL_20261012_123648677.jpg",
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [
+              {
+                "uuid": "01e7c786-12a0-4bf7-9e08-6eb814deef93",
+                "group": "r101-output-bottom-partial",
+                "status": "inferred",
+                "points": [
+                  [
+                    1342,
+                    1325
+                  ],
+                  [
+                    1342,
+                    1325
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Estimated native pad attachment. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates."
+              },
+              {
+                "uuid": "3a55b456-6926-40e2-a586-99bffde5877c",
+                "group": "r101-output-bottom-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1342,
+                    1325
+                  ],
+                  [
+                    1344,
+                    1205
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside signal branch from R10.1:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates."
+              },
+              {
+                "uuid": "1c269ce3-7f65-4437-b409-e2d78c371c60",
+                "group": "r101-output-bottom-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1344,
+                    1205
+                  ],
+                  [
+                    1245,
+                    1205
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside signal branch from R10.1:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates."
+              }
+            ],
+            "markers": [
+              {
+                "point": [
+                  1342,
+                  1325
+                ],
+                "label": "Recorded span end: r101-output-bottom-partial"
+              },
+              {
+                "point": [
+                  1245,
+                  1205
+                ],
+                "label": "Recorded span end: r101-output-bottom-partial"
+              }
+            ]
+          },
+          {
+            "source": {
+              "id": "photo-top",
+              "path": "../reference/photos/PXL_20261012_123622947.jpg",
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [
+              {
+                "uuid": "972fa540-a1fb-44d7-8a87-f27f933573f6",
+                "group": "r101-output-top-local",
+                "status": "inferred",
+                "points": [
+                  [
+                    1448,
+                    1495
+                  ],
+                  [
+                    1445,
+                    1501
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Inferred attachment from native resistor pad; photo locator is within the lead-end uncertainty, not an exact hole measurement. The trace is clipped at the inner-row registration boundary before the package hides its continuation; no A1 pin attachment or under-package route is asserted. Width 0.35 mm is estimated. The local projection removes the prior A1:13 short but leaves a small A1:14 clearance failure with estimated pad dimensions; do not move observed copper or change pad sizes to conceal it."
+              },
+              {
+                "uuid": "5fff7738-a179-4a73-b774-2bb1ac614436",
+                "group": "r101-output-top-local",
+                "status": "observed",
+                "points": [
+                  [
+                    1445,
+                    1501
+                  ],
+                  [
+                    1436,
+                    1510
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top branch within the qualified local anchor hull. The trace is clipped at the inner-row registration boundary before the package hides its continuation; no A1 pin attachment or under-package route is asserted. Width 0.35 mm is estimated. The local projection removes the prior A1:13 short but leaves a small A1:14 clearance failure with estimated pad dimensions; do not move observed copper or change pad sizes to conceal it."
+              },
+              {
+                "uuid": "9d0484b0-c3e2-4f88-94be-13af10d77ac2",
+                "group": "r101-output-top-local",
+                "status": "observed",
+                "points": [
+                  [
+                    1436,
+                    1510
+                  ],
+                  [
+                    1392,
+                    1510
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top branch within the qualified local anchor hull. The trace is clipped at the inner-row registration boundary before the package hides its continuation; no A1 pin attachment or under-package route is asserted. Width 0.35 mm is estimated. The local projection removes the prior A1:13 short but leaves a small A1:14 clearance failure with estimated pad dimensions; do not move observed copper or change pad sizes to conceal it."
+              }
+            ],
+            "markers": [
+              {
+                "point": [
+                  1448,
+                  1495
+                ],
+                "label": "Recorded span end: r101-output-top-local"
+              },
+              {
+                "point": [
+                  1392,
+                  1510
+                ],
+                "label": "Recorded span end: r101-output-top-local"
+              },
+              {
+                "point": [
+                  1544.5931,
+                  1352.806858
+                ],
+                "radius": 30,
+                "kind": "search",
+                "label": "Projected search region beneath R9.5; not an observed joint"
+              }
+            ]
+          }
+        ],
+        "supportingPhotos": [
+          {
+            "id": "comparison-photo-080443226.MP",
+            "path": "../reference/photos/PXL_20261017_080443226.MP.jpg",
+            "sha256": "c4cdfd7f8d2e9ca052b777d7d805b3ecb5cf7c31e06dee8f38ada0dd03b55166",
+            "specimenId": "comparison-20261017",
+            "side": "top",
+            "refs": [
+              "A1",
+              "BR2",
+              "C5.1"
+            ],
+            "use": "Cable-side logic and discrete region. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080443226.MP.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080347973",
+            "path": "../reference/photos/PXL_20261017_080347973.jpg",
+            "sha256": "49fcb131dd12e00eb81fec610128390b9ef9d6c425031ed56967ecb6d18d67b1",
+            "specimenId": "comparison-20261017",
+            "side": "bottom",
+            "refs": [
+              "A1",
+              "A2.1",
+              "BR2"
+            ],
+            "use": "Middle and cable-side underside copper. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080347973.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080406304",
+            "path": "../reference/photos/PXL_20261017_080406304.jpg",
+            "sha256": "c899c7aba12b0f1085f5b71da44e524611aedf37e3e28567c602cb3b746e6fa2",
+            "specimenId": "comparison-20261017",
+            "side": "top",
+            "refs": [
+              "BR2",
+              "XT1"
+            ],
+            "use": "Cable end, discrete components, bracket and wire entry. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080406304.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080511382",
+            "path": "../reference/photos/PXL_20261017_080511382.jpg",
+            "sha256": "322b586dea2c9e37d470252f96c79f8d5510af592013fcc7be1f009aa365fd12",
+            "specimenId": "comparison-20261017",
+            "side": "oblique",
+            "refs": [
+              "XT1"
+            ],
+            "use": "Cable wires, mounting bracket and nearby component profiles. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080511382.jpg",
+            "specimen": "comparison-20261017"
+          }
+        ]
+      },
+      {
+        "id": "host-data",
+        "crossSideStop": {
+          "ref": "R10.2",
+          "bottomPixel": [
+            1163,
+            1013
+          ],
+          "occludingBody": "R7",
+          "searchPaddingPixels": 8,
+          "observation": "The projected location falls beneath the resistor body in the primary top photo. The top counterpart and outgoing copper cannot be identified directly there."
+        },
+        "title": "Serial data: driver to filter to host cable",
+        "sameNetSets": [
+          [
+            "A1:4",
+            "R10.2:2",
+            "L1.4:1"
+          ],
+          [
+            "L1.4:2",
+            "XT1:A1"
+          ]
+        ],
+        "seriesComponents": [
+          "L1.4"
+        ],
+        "routeGroups": [
+          "r102-output-bottom-partial"
+        ],
+        "reviews": [],
+        "supportingSources": [
+          "photo-top",
+          "comparison-photo-080443226.MP",
+          "comparison-photo-080347973",
+          "comparison-photo-080406304",
+          "comparison-photo-080511382"
+        ],
+        "finding": "The native underside branch reaches a solder eye toward the cable end. Its unseen continuation to A1 and the filter remains unassigned. Cross-side search fits localize the underside stop beneath R7; this is an occluded search region, not an identified top-side joint.",
+        "alternatives": [
+          "The solder eye continues to the reference A1:4/L1.4:1 network.",
+          "A nearby top-side eye or winding lead is being mistaken for the counterpart; preserve the open span until independently matched."
+        ],
+        "nextDeskWork": "Register comparison close-ups around R7 using surrounding joints and held-out checks. Follow the exposed lane on both sides of the body and match any downstream eye independently before continuing toward L1/XT1.",
+        "decisiveObservation": "Identify the actual winding input and output joints, then establish the R10.2:2\u2013A1:4\u2013L1.4:1 and L1.4:2\u2013XT1:A1 spans independently.",
+        "doNotInfer": "Cable wire colour and spatial proximity do not establish a terminal number or which ferrite winding is L1.4.",
+        "referenceNets": [
+          {
+            "net": "/TA_DATEN",
+            "terminals": [
+              "A1:4",
+              "R10.2:2",
+              "L1.4:1"
+            ]
+          },
+          {
+            "net": "/CABLE_DATEN",
+            "terminals": [
+              "L1.4:2",
+              "XT1:A1"
+            ]
+          }
+        ],
+        "candidateEndpoints": [],
+        "series": {
+          "L1.4": {
+            "pins": {
+              "1": "/TA_DATEN",
+              "2": "/CABLE_DATEN"
+            },
+            "type": "CHOKE"
+          }
+        },
+        "crossSideSearch": {
+          "scope": "Search localization only. Fits share R4.2 anchors; agreement is a sensitivity check, not independent evidence. Top DIP landmarks are lead observations, not verified hole centres. No copper or via assignment is qualified.",
+          "fits": [
+            {
+              "anchors": [
+                {
+                  "terminal": "R4.2:1",
+                  "bottomPixel": [
+                    1090,
+                    969
+                  ],
+                  "topPixel": [
+                    1687,
+                    1101
+                  ]
+                },
+                {
+                  "terminal": "R4.2:2",
+                  "bottomPixel": [
+                    1243,
+                    972
+                  ],
+                  "topPixel": [
+                    1527,
+                    1109
+                  ]
+                },
+                {
+                  "terminal": "R10.2:2",
+                  "bottomPixel": [
+                    1297,
+                    1325
+                  ],
+                  "topPixel": [
+                    1498,
+                    1490
+                  ]
+                },
+                {
+                  "terminal": "R10.1:2",
+                  "bottomPixel": [
+                    1342,
+                    1325
+                  ],
+                  "topPixel": [
+                    1448,
+                    1492
+                  ]
+                }
+              ],
+              "checks": [
+                {
+                  "terminal": "R7:1",
+                  "bottomPixel": [
+                    1093,
+                    1013
+                  ],
+                  "topPixel": [
+                    1687,
+                    1151
+                  ],
+                  "residualPixels": 5.259668553
+                },
+                {
+                  "terminal": "R7:2",
+                  "bottomPixel": [
+                    1245,
+                    1013
+                  ],
+                  "topPixel": [
+                    1529,
+                    1154
+                  ],
+                  "residualPixels": 3.002095315
+                },
+                {
+                  "terminal": "R8:1",
+                  "bottomPixel": [
+                    1095,
+                    1058
+                  ],
+                  "topPixel": [
+                    1687,
+                    1200
+                  ],
+                  "residualPixels": 8.596629448
+                },
+                {
+                  "terminal": "R8:2",
+                  "bottomPixel": [
+                    1245,
+                    1057
+                  ],
+                  "topPixel": [
+                    1531,
+                    1206
+                  ],
+                  "residualPixels": 9.335856675
+                },
+                {
+                  "terminal": "A1:14",
+                  "bottomPixel": [
+                    1396,
+                    1324
+                  ],
+                  "topPixel": [
+                    1389,
+                    1482
+                  ],
+                  "residualPixels": 11.33795536
+                },
+                {
+                  "terminal": "A2.1:1",
+                  "bottomPixel": [
+                    1190,
+                    1327
+                  ],
+                  "topPixel": [
+                    1630,
+                    1475
+                  ],
+                  "residualPixels": 18.32835327
+                },
+                {
+                  "terminal": "A1:1",
+                  "bottomPixel": [
+                    1492,
+                    1327
+                  ],
+                  "topPixel": [
+                    1285,
+                    1495
+                  ],
+                  "residualPixels": 7.441040925
+                },
+                {
+                  "terminal": "A2.1:14",
+                  "bottomPixel": [
+                    1098,
+                    1325
+                  ],
+                  "topPixel": [
+                    1710,
+                    1468
+                  ],
+                  "residualPixels": 15.28750954
+                }
+              ],
+              "bottomToTop": [
+                -0.9322271589,
+                -0.1147296445,
+                2576.028672,
+                0.004010881835,
+                0.736236284,
+                227.7098895,
+                -2.147091755e-05,
+                -0.0001216065484,
+                1
+              ],
+              "projectedTopPixel": [
+                1614.885783,
+                1148.313922
+              ],
+              "insideAnchorHull": true,
+              "maxCheckResidualPixels": 18.32835327
+            },
+            {
+              "anchors": [
+                {
+                  "terminal": "R4.2:1",
+                  "bottomPixel": [
+                    1090,
+                    969
+                  ],
+                  "topPixel": [
+                    1687,
+                    1101
+                  ]
+                },
+                {
+                  "terminal": "R4.2:2",
+                  "bottomPixel": [
+                    1243,
+                    972
+                  ],
+                  "topPixel": [
+                    1527,
+                    1109
+                  ]
+                },
+                {
+                  "terminal": "A1:1",
+                  "bottomPixel": [
+                    1492,
+                    1327
+                  ],
+                  "topPixel": [
+                    1285,
+                    1495
+                  ]
+                },
+                {
+                  "terminal": "A2.1:14",
+                  "bottomPixel": [
+                    1098,
+                    1325
+                  ],
+                  "topPixel": [
+                    1710,
+                    1468
+                  ]
+                }
+              ],
+              "checks": [
+                {
+                  "terminal": "R7:1",
+                  "bottomPixel": [
+                    1093,
+                    1013
+                  ],
+                  "topPixel": [
+                    1687,
+                    1151
+                  ],
+                  "residualPixels": 5.093889029
+                },
+                {
+                  "terminal": "R7:2",
+                  "bottomPixel": [
+                    1245,
+                    1013
+                  ],
+                  "topPixel": [
+                    1529,
+                    1154
+                  ],
+                  "residualPixels": 2.711744926
+                },
+                {
+                  "terminal": "R8:1",
+                  "bottomPixel": [
+                    1095,
+                    1058
+                  ],
+                  "topPixel": [
+                    1687,
+                    1200
+                  ],
+                  "residualPixels": 8.361188952
+                },
+                {
+                  "terminal": "R8:2",
+                  "bottomPixel": [
+                    1245,
+                    1057
+                  ],
+                  "topPixel": [
+                    1531,
+                    1206
+                  ],
+                  "residualPixels": 9.127763706
+                },
+                {
+                  "terminal": "A1:14",
+                  "bottomPixel": [
+                    1396,
+                    1324
+                  ],
+                  "topPixel": [
+                    1389,
+                    1482
+                  ],
+                  "residualPixels": 4.031710619
+                },
+                {
+                  "terminal": "A2.1:1",
+                  "bottomPixel": [
+                    1190,
+                    1327
+                  ],
+                  "topPixel": [
+                    1630,
+                    1475
+                  ],
+                  "residualPixels": 16.73116247
+                },
+                {
+                  "terminal": "R10.1:2",
+                  "bottomPixel": [
+                    1342,
+                    1325
+                  ],
+                  "topPixel": [
+                    1448,
+                    1492
+                  ],
+                  "residualPixels": 8.99915806
+                },
+                {
+                  "terminal": "R10.2:2",
+                  "bottomPixel": [
+                    1297,
+                    1325
+                  ],
+                  "topPixel": [
+                    1498,
+                    1490
+                  ],
+                  "residualPixels": 9.667221527
+                }
+              ],
+              "bottomToTop": [
+                -1.045658304,
+                0.03036775182,
+                2622.342649,
+                -0.04869985414,
+                0.8812418854,
+                185.9487814,
+                -7.003556776e-05,
+                -2.827121994e-05,
+                1
+              ],
+              "projectedTopPixel": [
+                1614.775374,
+                1148.440863
+              ],
+              "insideAnchorHull": true,
+              "maxCheckResidualPixels": 16.73116247
+            }
+          ],
+          "centerTopPixel": [
+            1614.830578,
+            1148.377392
+          ],
+          "fitSpreadPixels": 0.1682383928,
+          "searchRadiusPixels": 27,
+          "radiusBasis": "Maximum held-out residual + fit spread + explicit search padding; heuristic search margin, not a confidence bound.",
+          "copperAssignmentQualified": false
+        },
+        "figures": [
+          {
+            "source": {
+              "id": "photo-bottom",
+              "path": "../reference/photos/PXL_20261012_123648677.jpg",
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [
+              {
+                "uuid": "e4f04027-f60b-47ed-8a77-ea623b17e734",
+                "group": "r102-output-bottom-partial",
+                "status": "inferred",
+                "points": [
+                  [
+                    1297,
+                    1325
+                  ],
+                  [
+                    1297,
+                    1325
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Estimated native pad attachment. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates."
+              },
+              {
+                "uuid": "5c17decc-0cf0-492e-8fec-1433f71ff7f0",
+                "group": "r102-output-bottom-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1297,
+                    1325
+                  ],
+                  [
+                    1300,
+                    1236
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates."
+              },
+              {
+                "uuid": "76315e54-3742-414f-9183-6c6e8b0663e4",
+                "group": "r102-output-bottom-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1300,
+                    1236
+                  ],
+                  [
+                    1214,
+                    1233
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates."
+              },
+              {
+                "uuid": "21f7cb41-586c-431c-942e-8f66b2f16d86",
+                "group": "r102-output-bottom-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1214,
+                    1233
+                  ],
+                  [
+                    1162,
+                    1185
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates."
+              },
+              {
+                "uuid": "bd742c84-fca4-4ad3-ba4d-ad94d2261cf8",
+                "group": "r102-output-bottom-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1162,
+                    1185
+                  ],
+                  [
+                    1163,
+                    1013
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside signal branch from R10.2:2 to a separate solder eye. Reference-net assignment; width estimated at 0.35 mm. No top-side continuation, via, complete A1/cable path or measured continuity is asserted. Adjacent R9.3/R9.4 matrix-facing pads use registered underside joints; pad dimensions and track widths remain estimates."
+              }
+            ],
+            "markers": [
+              {
+                "point": [
+                  1297,
+                  1325
+                ],
+                "label": "Recorded span end: r102-output-bottom-partial"
+              },
+              {
+                "point": [
+                  1163,
+                  1013
+                ],
+                "label": "Recorded span end: r102-output-bottom-partial"
+              }
+            ]
+          },
+          {
+            "source": {
+              "id": "photo-top",
+              "path": "../reference/photos/PXL_20261012_123622947.jpg",
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [],
+            "markers": [
+              {
+                "point": [
+                  1614.830578,
+                  1148.377392
+                ],
+                "radius": 27,
+                "kind": "search",
+                "label": "Projected search region beneath R7; not an observed joint"
+              }
+            ]
+          }
+        ],
+        "supportingPhotos": [
+          {
+            "id": "photo-top",
+            "path": "../reference/photos/PXL_20261012_123622947.jpg",
+            "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+            "use": "Specimen placement and visible copper; approximate planar registration",
+            "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+            "specimen": "primary museum specimen"
+          },
+          {
+            "id": "comparison-photo-080443226.MP",
+            "path": "../reference/photos/PXL_20261017_080443226.MP.jpg",
+            "sha256": "c4cdfd7f8d2e9ca052b777d7d805b3ecb5cf7c31e06dee8f38ada0dd03b55166",
+            "specimenId": "comparison-20261017",
+            "side": "top",
+            "refs": [
+              "A1",
+              "BR2",
+              "C5.1"
+            ],
+            "use": "Cable-side logic and discrete region. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080443226.MP.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080347973",
+            "path": "../reference/photos/PXL_20261017_080347973.jpg",
+            "sha256": "49fcb131dd12e00eb81fec610128390b9ef9d6c425031ed56967ecb6d18d67b1",
+            "specimenId": "comparison-20261017",
+            "side": "bottom",
+            "refs": [
+              "A1",
+              "A2.1",
+              "BR2"
+            ],
+            "use": "Middle and cable-side underside copper. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080347973.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080406304",
+            "path": "../reference/photos/PXL_20261017_080406304.jpg",
+            "sha256": "c899c7aba12b0f1085f5b71da44e524611aedf37e3e28567c602cb3b746e6fa2",
+            "specimenId": "comparison-20261017",
+            "side": "top",
+            "refs": [
+              "BR2",
+              "XT1"
+            ],
+            "use": "Cable end, discrete components, bracket and wire entry. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080406304.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080511382",
+            "path": "../reference/photos/PXL_20261017_080511382.jpg",
+            "sha256": "322b586dea2c9e37d470252f96c79f8d5510af592013fcc7be1f009aa365fd12",
+            "specimenId": "comparison-20261017",
+            "side": "oblique",
+            "refs": [
+              "XT1"
+            ],
+            "use": "Cable wires, mounting bracket and nearby component profiles. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080511382.jpg",
+            "specimen": "comparison-20261017"
+          }
+        ]
+      },
+      {
+        "id": "clock-strobe",
+        "title": "Clock strobe input: distinguish CPU WR from RD",
+        "sameNetSets": [
+          [
+            "A1:1",
+            "A5:22"
+          ]
+        ],
+        "candidateEndpoints": [
+          {
+            "terminal": "A5:21",
+            "net": "/RD_N"
+          }
+        ],
+        "seriesComponents": [],
+        "routeGroups": [
+          "a1-pin1-top-partial"
+        ],
+        "reviews": [],
+        "supportingSources": [
+          "photo-bottom",
+          "comparison-photo-080401625",
+          "comparison-photo-080429077"
+        ],
+        "finding": "The reference circuit and manufacturer service description support WR. A published comparison uses RD. The observed A1:1 track stops at a terminal near A4 and does not yet establish either CPU attachment.",
+        "alternatives": [
+          "A1:1 connects to A5:22 (WR), as in the reference.",
+          "A1:1 connects to A5:21 (RD), as in the published comparison.",
+          "The terminal correspondence is still wrong or incomplete; neither candidate is established."
+        ],
+        "nextDeskWork": "Follow the far end of the existing top route through an independently matched underside joint, then trace toward the two adjacent CPU candidates without using the reference net name to choose the lane.",
+        "decisiveObservation": "A complete photographed route or distinguishable unpowered resistance readings from A1:1 to A5:21 and A5:22, with probe locations recorded.",
+        "doNotInfer": "A successful S600 simulation of the WR reference does not determine the specimen's physical attachment.",
+        "referenceNets": [
+          {
+            "net": "/WR_N",
+            "terminals": [
+              "A1:1",
+              "A5:22"
+            ]
+          }
+        ],
+        "series": {},
+        "figures": [
+          {
+            "source": {
+              "id": "photo-top",
+              "path": "../reference/photos/PXL_20261012_123622947.jpg",
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [
+              {
+                "uuid": "ec10f645-b9c0-4759-902b-49d63ff81d7d",
+                "group": "a1-pin1-top-partial",
+                "status": "inferred",
+                "points": [
+                  [
+                    1285,
+                    1495
+                  ],
+                  [
+                    1276,
+                    1504
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Estimated connection from fitted A1:1 pad to the visible lead/track edge; hole centre is obscured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted."
+              },
+              {
+                "uuid": "c74b9d8e-d470-4ae3-9205-e556c173103f",
+                "group": "a1-pin1-top-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1276,
+                    1504
+                  ],
+                  [
+                    1248,
+                    1531
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted."
+              },
+              {
+                "uuid": "1abaa137-7ea6-4ab5-b28b-e7da28f1a974",
+                "group": "a1-pin1-top-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1248,
+                    1531
+                  ],
+                  [
+                    1258,
+                    1755
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted."
+              },
+              {
+                "uuid": "f86a0269-51ef-4b9d-bb52-e8d6162773cb",
+                "group": "a1-pin1-top-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1258,
+                    1755
+                  ],
+                  [
+                    1355,
+                    1841
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted."
+              },
+              {
+                "uuid": "532bfdd8-dbf4-4011-b7f5-b6ee02046215",
+                "group": "a1-pin1-top-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1355,
+                    1841
+                  ],
+                  [
+                    1371,
+                    2247
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted."
+              },
+              {
+                "uuid": "0f8df276-6669-4080-a18a-7f1122ab625b",
+                "group": "a1-pin1-top-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1371,
+                    2247
+                  ],
+                  [
+                    1338,
+                    2281
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted."
+              },
+              {
+                "uuid": "7fb987f5-c37e-4e47-9251-f09894e62e58",
+                "group": "a1-pin1-top-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1338,
+                    2281
+                  ],
+                  [
+                    1215,
+                    2285
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted."
+              },
+              {
+                "uuid": "36162e07-131c-45f3-b6a9-3ba40dfcd8f1",
+                "group": "a1-pin1-top-partial",
+                "status": "observed",
+                "points": [
+                  [
+                    1215,
+                    2285
+                  ],
+                  [
+                    1241,
+                    2966
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible top track from A1:1 around X1 to a round terminal near A4. Nominal planar photo projection; 0.35 mm width estimated, not measured. Net /WR_N is the schematic assignment at A1:1, not proof of continuity to CPU WR. The terminal underside match and continuation remain unresolved; no via is asserted."
+              }
+            ],
+            "markers": [
+              {
+                "point": [
+                  1285,
+                  1495
+                ],
+                "label": "Recorded span end: a1-pin1-top-partial"
+              },
+              {
+                "point": [
+                  1241,
+                  2966
+                ],
+                "label": "Recorded span end: a1-pin1-top-partial"
+              }
+            ]
+          }
+        ],
+        "supportingPhotos": [
+          {
+            "id": "photo-bottom",
+            "path": "../reference/photos/PXL_20261012_123648677.jpg",
+            "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+            "use": "Specimen placement and visible copper; approximate planar registration",
+            "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+            "specimen": "primary museum specimen"
+          },
+          {
+            "id": "comparison-photo-080401625",
+            "path": "../reference/photos/PXL_20261017_080401625.jpg",
+            "sha256": "453ed0484dc3761b740089680619f202731d8e6547558e2e3df79084d2722144",
+            "specimenId": "comparison-20261017",
+            "side": "top",
+            "refs": [
+              "A5",
+              "A4",
+              "A2.2",
+              "A2.3"
+            ],
+            "use": "CPU and middle-board component-side overview. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080401625.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080429077",
+            "path": "../reference/photos/PXL_20261017_080429077.jpg",
+            "sha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3",
+            "specimenId": "comparison-20261017",
+            "side": "top",
+            "refs": [
+              "A5",
+              "A4"
+            ],
+            "use": "CPU marking UB880D and nearby copper terminals. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080429077.jpg",
+            "specimen": "comparison-20261017"
+          }
+        ]
+      },
+      {
+        "id": "x1-order",
+        "title": "X1 matrix connector: retain the constrained row order",
+        "sameNetSets": [
+          [
+            "X1:B8",
+            "A2.1:6"
+          ],
+          [
+            "X1:A5",
+            "R11.1:2"
+          ],
+          [
+            "X1:A6",
+            "R11.2:2"
+          ]
+        ],
+        "seriesComponents": [],
+        "routeGroups": [
+          "x1-b8-col11-bottom"
+        ],
+        "reviews": [],
+        "connectorConstraints": true,
+        "supportingSources": [
+          "comparison-photo-080415534",
+          "comparison-photo-080347973"
+        ],
+        "finding": "The LED attachments constrain the far row, and the COL11 attachment constrains the near row independently. Their combined result already resolves the reference row order conditionally; it is not an open whole-connector reversal problem.",
+        "alternatives": [
+          "Retain the sole row mapping consistent with all recorded attachments.",
+          "Reopen that mapping only if a specific attachment or component identity is disproved."
+        ],
+        "nextDeskWork": "Use these independently constrained contacts as registration checks while resolving the remaining contact and neighbouring output routes.",
+        "decisiveObservation": "Independently confirm the three recorded endpoints; preserve the intermediate COL11 solder eye without inventing a top-side branch.",
+        "doNotInfer": "X1 is not the serial host connector. Its row ordering does not identify XT1 cable terminals.",
+        "referenceNets": [
+          {
+            "net": "/COL11",
+            "terminals": [
+              "X1:B8",
+              "A2.1:6"
+            ]
+          },
+          {
+            "net": "/LED_SISO",
+            "terminals": [
+              "X1:A5",
+              "R11.1:2"
+            ]
+          },
+          {
+            "net": "/LED_CAPS",
+            "terminals": [
+              "X1:A6",
+              "R11.2:2"
+            ]
+          }
+        ],
+        "candidateEndpoints": [],
+        "series": {},
+        "terminalOrder": {
+          "candidates": [
+            {
+              "checks": [
+                {
+                  "candidatePin": "A5",
+                  "matches": true,
+                  "observation": "x1-led-siso-attachment",
+                  "referenceNet": "/LED_SISO"
+                },
+                {
+                  "candidatePin": "A6",
+                  "matches": true,
+                  "observation": "x1-led-caps-attachment",
+                  "referenceNet": "/LED_CAPS"
+                },
+                {
+                  "candidatePin": "B8",
+                  "matches": true,
+                  "observation": "x1-col11-underside-attachment",
+                  "referenceNet": "/COL11"
+                }
+              ],
+              "consistent": true,
+              "rows": {
+                "housingFar": [
+                  "A1",
+                  "A2",
+                  "A3",
+                  "A4",
+                  "A5",
+                  "A6",
+                  "A7",
+                  "A8",
+                  "A9",
+                  "A10",
+                  "A11",
+                  "A12",
+                  "A13"
+                ],
+                "housingNear": [
+                  "B1",
+                  "B2",
+                  "B3",
+                  "B4",
+                  "B5",
+                  "B6",
+                  "B7",
+                  "B8",
+                  "B9",
+                  "B10",
+                  "B11",
+                  "B12",
+                  "B13"
+                ]
+              }
+            },
+            {
+              "checks": [
+                {
+                  "candidatePin": "A5",
+                  "matches": true,
+                  "observation": "x1-led-siso-attachment",
+                  "referenceNet": "/LED_SISO"
+                },
+                {
+                  "candidatePin": "A6",
+                  "matches": true,
+                  "observation": "x1-led-caps-attachment",
+                  "referenceNet": "/LED_CAPS"
+                },
+                {
+                  "candidatePin": "B6",
+                  "matches": false,
+                  "observation": "x1-col11-underside-attachment",
+                  "referenceNet": "/COL11"
+                }
+              ],
+              "consistent": false,
+              "rows": {
+                "housingFar": [
+                  "A1",
+                  "A2",
+                  "A3",
+                  "A4",
+                  "A5",
+                  "A6",
+                  "A7",
+                  "A8",
+                  "A9",
+                  "A10",
+                  "A11",
+                  "A12",
+                  "A13"
+                ],
+                "housingNear": [
+                  "B13",
+                  "B12",
+                  "B11",
+                  "B10",
+                  "B9",
+                  "B8",
+                  "B7",
+                  "B6",
+                  "B5",
+                  "B4",
+                  "B3",
+                  "B2",
+                  "B1"
+                ]
+              }
+            },
+            {
+              "checks": [
+                {
+                  "candidatePin": "A9",
+                  "matches": false,
+                  "observation": "x1-led-siso-attachment",
+                  "referenceNet": "/LED_SISO"
+                },
+                {
+                  "candidatePin": "A8",
+                  "matches": false,
+                  "observation": "x1-led-caps-attachment",
+                  "referenceNet": "/LED_CAPS"
+                },
+                {
+                  "candidatePin": "B8",
+                  "matches": true,
+                  "observation": "x1-col11-underside-attachment",
+                  "referenceNet": "/COL11"
+                }
+              ],
+              "consistent": false,
+              "rows": {
+                "housingFar": [
+                  "A13",
+                  "A12",
+                  "A11",
+                  "A10",
+                  "A9",
+                  "A8",
+                  "A7",
+                  "A6",
+                  "A5",
+                  "A4",
+                  "A3",
+                  "A2",
+                  "A1"
+                ],
+                "housingNear": [
+                  "B1",
+                  "B2",
+                  "B3",
+                  "B4",
+                  "B5",
+                  "B6",
+                  "B7",
+                  "B8",
+                  "B9",
+                  "B10",
+                  "B11",
+                  "B12",
+                  "B13"
+                ]
+              }
+            },
+            {
+              "checks": [
+                {
+                  "candidatePin": "A9",
+                  "matches": false,
+                  "observation": "x1-led-siso-attachment",
+                  "referenceNet": "/LED_SISO"
+                },
+                {
+                  "candidatePin": "A8",
+                  "matches": false,
+                  "observation": "x1-led-caps-attachment",
+                  "referenceNet": "/LED_CAPS"
+                },
+                {
+                  "candidatePin": "B6",
+                  "matches": false,
+                  "observation": "x1-col11-underside-attachment",
+                  "referenceNet": "/COL11"
+                }
+              ],
+              "consistent": false,
+              "rows": {
+                "housingFar": [
+                  "A13",
+                  "A12",
+                  "A11",
+                  "A10",
+                  "A9",
+                  "A8",
+                  "A7",
+                  "A6",
+                  "A5",
+                  "A4",
+                  "A3",
+                  "A2",
+                  "A1"
+                ],
+                "housingNear": [
+                  "B13",
+                  "B12",
+                  "B11",
+                  "B10",
+                  "B9",
+                  "B8",
+                  "B7",
+                  "B6",
+                  "B5",
+                  "B4",
+                  "B3",
+                  "B2",
+                  "B1"
+                ]
+              }
+            },
+            {
+              "checks": [
+                {
+                  "candidatePin": "B5",
+                  "matches": false,
+                  "observation": "x1-led-siso-attachment",
+                  "referenceNet": "/LED_SISO"
+                },
+                {
+                  "candidatePin": "B6",
+                  "matches": false,
+                  "observation": "x1-led-caps-attachment",
+                  "referenceNet": "/LED_CAPS"
+                },
+                {
+                  "candidatePin": "A8",
+                  "matches": false,
+                  "observation": "x1-col11-underside-attachment",
+                  "referenceNet": "/COL11"
+                }
+              ],
+              "consistent": false,
+              "rows": {
+                "housingFar": [
+                  "B1",
+                  "B2",
+                  "B3",
+                  "B4",
+                  "B5",
+                  "B6",
+                  "B7",
+                  "B8",
+                  "B9",
+                  "B10",
+                  "B11",
+                  "B12",
+                  "B13"
+                ],
+                "housingNear": [
+                  "A1",
+                  "A2",
+                  "A3",
+                  "A4",
+                  "A5",
+                  "A6",
+                  "A7",
+                  "A8",
+                  "A9",
+                  "A10",
+                  "A11",
+                  "A12",
+                  "A13"
+                ]
+              }
+            },
+            {
+              "checks": [
+                {
+                  "candidatePin": "B5",
+                  "matches": false,
+                  "observation": "x1-led-siso-attachment",
+                  "referenceNet": "/LED_SISO"
+                },
+                {
+                  "candidatePin": "B6",
+                  "matches": false,
+                  "observation": "x1-led-caps-attachment",
+                  "referenceNet": "/LED_CAPS"
+                },
+                {
+                  "candidatePin": "A6",
+                  "matches": false,
+                  "observation": "x1-col11-underside-attachment",
+                  "referenceNet": "/COL11"
+                }
+              ],
+              "consistent": false,
+              "rows": {
+                "housingFar": [
+                  "B1",
+                  "B2",
+                  "B3",
+                  "B4",
+                  "B5",
+                  "B6",
+                  "B7",
+                  "B8",
+                  "B9",
+                  "B10",
+                  "B11",
+                  "B12",
+                  "B13"
+                ],
+                "housingNear": [
+                  "A13",
+                  "A12",
+                  "A11",
+                  "A10",
+                  "A9",
+                  "A8",
+                  "A7",
+                  "A6",
+                  "A5",
+                  "A4",
+                  "A3",
+                  "A2",
+                  "A1"
+                ]
+              }
+            },
+            {
+              "checks": [
+                {
+                  "candidatePin": "B9",
+                  "matches": false,
+                  "observation": "x1-led-siso-attachment",
+                  "referenceNet": "/LED_SISO"
+                },
+                {
+                  "candidatePin": "B8",
+                  "matches": false,
+                  "observation": "x1-led-caps-attachment",
+                  "referenceNet": "/LED_CAPS"
+                },
+                {
+                  "candidatePin": "A8",
+                  "matches": false,
+                  "observation": "x1-col11-underside-attachment",
+                  "referenceNet": "/COL11"
+                }
+              ],
+              "consistent": false,
+              "rows": {
+                "housingFar": [
+                  "B13",
+                  "B12",
+                  "B11",
+                  "B10",
+                  "B9",
+                  "B8",
+                  "B7",
+                  "B6",
+                  "B5",
+                  "B4",
+                  "B3",
+                  "B2",
+                  "B1"
+                ],
+                "housingNear": [
+                  "A1",
+                  "A2",
+                  "A3",
+                  "A4",
+                  "A5",
+                  "A6",
+                  "A7",
+                  "A8",
+                  "A9",
+                  "A10",
+                  "A11",
+                  "A12",
+                  "A13"
+                ]
+              }
+            },
+            {
+              "checks": [
+                {
+                  "candidatePin": "B9",
+                  "matches": false,
+                  "observation": "x1-led-siso-attachment",
+                  "referenceNet": "/LED_SISO"
+                },
+                {
+                  "candidatePin": "B8",
+                  "matches": false,
+                  "observation": "x1-led-caps-attachment",
+                  "referenceNet": "/LED_CAPS"
+                },
+                {
+                  "candidatePin": "A6",
+                  "matches": false,
+                  "observation": "x1-col11-underside-attachment",
+                  "referenceNet": "/COL11"
+                }
+              ],
+              "consistent": false,
+              "rows": {
+                "housingFar": [
+                  "B13",
+                  "B12",
+                  "B11",
+                  "B10",
+                  "B9",
+                  "B8",
+                  "B7",
+                  "B6",
+                  "B5",
+                  "B4",
+                  "B3",
+                  "B2",
+                  "B1"
+                ],
+                "housingNear": [
+                  "A13",
+                  "A12",
+                  "A11",
+                  "A10",
+                  "A9",
+                  "A8",
+                  "A7",
+                  "A6",
+                  "A5",
+                  "A4",
+                  "A3",
+                  "A2",
+                  "A1"
+                ]
+              }
+            }
+          ],
+          "completeTerminalOrderResolved": true,
+          "referenceAbsentPins": [
+            "A8"
+          ],
+          "resolvedRows": {
+            "housingFar": [
+              "A1",
+              "A2",
+              "A3",
+              "A4",
+              "A5",
+              "A6",
+              "A7",
+              "A8",
+              "A9",
+              "A10",
+              "A11",
+              "A12",
+              "A13"
+            ],
+            "housingNear": [
+              "B1",
+              "B2",
+              "B3",
+              "B4",
+              "B5",
+              "B6",
+              "B7",
+              "B8",
+              "B9",
+              "B10",
+              "B11",
+              "B12",
+              "B13"
+            ]
+          },
+          "scope": "Conditional on photographed attachments and the reference schematic. Logical elimination is not a continuity measurement. Row directions are independent hypotheses.",
+          "unresolvedRows": []
+        },
+        "figures": [
+          {
+            "source": {
+              "id": "photo-bottom",
+              "path": "../reference/photos/PXL_20261012_123648677.jpg",
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [
+              {
+                "uuid": "aec6e549-e6ca-47b9-abb8-e21a60071713",
+                "group": "x1-b8-col11-bottom",
+                "status": "inferred",
+                "points": [
+                  [
+                    1233,
+                    1925
+                  ],
+                  [
+                    1233,
+                    1925
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Estimated attachment between registered photo joint and native reference pad. Width is an illustrative 0.35 mm; reference numbering and photo continuity are not measured continuity. The intermediate solder eye does not establish an unseen top-side continuation."
+              },
+              {
+                "uuid": "93ac8d07-5a1b-49aa-a302-1645e9ee4d67",
+                "group": "x1-b8-col11-bottom",
+                "status": "observed",
+                "points": [
+                  [
+                    1233,
+                    1925
+                  ],
+                  [
+                    1198,
+                    1892
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside COL11 trace between X1:B8 and A2.1:6, projected inside the qualified local anchor hull. Width is an illustrative 0.35 mm; reference numbering and photo continuity are not measured continuity. The intermediate solder eye does not establish an unseen top-side continuation."
+              },
+              {
+                "uuid": "386c4fbe-1f57-49ea-a48f-33ee32e52463",
+                "group": "x1-b8-col11-bottom",
+                "status": "observed",
+                "points": [
+                  [
+                    1198,
+                    1892
+                  ],
+                  [
+                    1195,
+                    1552
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside COL11 trace between X1:B8 and A2.1:6, projected inside the qualified local anchor hull. Width is an illustrative 0.35 mm; reference numbering and photo continuity are not measured continuity. The intermediate solder eye does not establish an unseen top-side continuation."
+              },
+              {
+                "uuid": "c8676d4e-0ec7-4f8b-8311-3ffeb9fb96cb",
+                "group": "x1-b8-col11-bottom",
+                "status": "observed",
+                "points": [
+                  [
+                    1195,
+                    1552
+                  ],
+                  [
+                    1210,
+                    1537
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside COL11 trace between X1:B8 and A2.1:6, projected inside the qualified local anchor hull. Width is an illustrative 0.35 mm; reference numbering and photo continuity are not measured continuity. The intermediate solder eye does not establish an unseen top-side continuation."
+              },
+              {
+                "uuid": "43ab43a6-6b86-460e-9484-bf8e57b355a3",
+                "group": "x1-b8-col11-bottom",
+                "status": "observed",
+                "points": [
+                  [
+                    1210,
+                    1537
+                  ],
+                  [
+                    1212,
+                    1526
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside COL11 trace between X1:B8 and A2.1:6, projected inside the qualified local anchor hull. Width is an illustrative 0.35 mm; reference numbering and photo continuity are not measured continuity. The intermediate solder eye does not establish an unseen top-side continuation."
+              },
+              {
+                "uuid": "29273a1f-ce06-4b43-b079-5d458e4c4641",
+                "group": "x1-b8-col11-bottom",
+                "status": "observed",
+                "points": [
+                  [
+                    1212,
+                    1526
+                  ],
+                  [
+                    1212,
+                    1493
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside COL11 trace between X1:B8 and A2.1:6, projected inside the qualified local anchor hull. Width is an illustrative 0.35 mm; reference numbering and photo continuity are not measured continuity. The intermediate solder eye does not establish an unseen top-side continuation."
+              },
+              {
+                "uuid": "f81ba08c-6324-4c7c-8355-1405c8745354",
+                "group": "x1-b8-col11-bottom",
+                "status": "observed",
+                "points": [
+                  [
+                    1212,
+                    1493
+                  ],
+                  [
+                    1194,
+                    1477
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside COL11 trace between X1:B8 and A2.1:6, projected inside the qualified local anchor hull. Width is an illustrative 0.35 mm; reference numbering and photo continuity are not measured continuity. The intermediate solder eye does not establish an unseen top-side continuation."
+              },
+              {
+                "uuid": "c2716302-f12c-44e3-bbc8-d3f90c6e00cb",
+                "group": "x1-b8-col11-bottom",
+                "status": "inferred",
+                "points": [
+                  [
+                    1194,
+                    1477
+                  ],
+                  [
+                    1194,
+                    1477
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Estimated attachment between registered photo joint and native reference pad. Width is an illustrative 0.35 mm; reference numbering and photo continuity are not measured continuity. The intermediate solder eye does not establish an unseen top-side continuation."
+              },
+              {
+                "group": "x1-col11-underside-attachment",
+                "status": "constraint",
+                "points": [
+                  [
+                    1233,
+                    1925
+                  ],
+                  [
+                    1198,
+                    1892
+                  ],
+                  [
+                    1195,
+                    1552
+                  ],
+                  [
+                    1210,
+                    1537
+                  ],
+                  [
+                    1212,
+                    1526
+                  ],
+                  [
+                    1212,
+                    1493
+                  ],
+                  [
+                    1194,
+                    1477
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible underside trace from the eighth near-row solder joint, through the intermediate solder eye, to A2.1:6. A2.1 identity and orientation follow the factory placement and surrounding registered pins. The reference schematic connects this COL11 output to X1:B8; reversed row order would identify the observed joint as B6 (ROW0)."
+              }
+            ],
+            "markers": [
+              {
+                "point": [
+                  1233,
+                  1925
+                ],
+                "label": "Recorded span end: x1-b8-col11-bottom"
+              },
+              {
+                "point": [
+                  1194,
+                  1477
+                ],
+                "label": "Recorded span end: x1-b8-col11-bottom"
+              }
+            ]
+          },
+          {
+            "source": {
+              "id": "photo-top",
+              "path": "../reference/photos/PXL_20261012_123622947.jpg",
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [
+              {
+                "group": "x1-led-siso-attachment",
+                "status": "constraint",
+                "points": [
+                  [
+                    1721,
+                    2013
+                  ],
+                  [
+                    1664,
+                    2015
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible short top-side trace between the resistor inner lead and fifth far-row contact. R11.1 identity follows the factory placement; the reference schematic connects its connector-side terminal to X1:A5."
+              },
+              {
+                "group": "x1-led-caps-attachment",
+                "status": "constraint",
+                "points": [
+                  [
+                    1724,
+                    2045
+                  ],
+                  [
+                    1665.5,
+                    2047.5
+                  ]
+                ],
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "detail": "Visible short top-side trace between the resistor inner lead and sixth far-row contact. R11.2 identity follows the factory placement; the reference schematic connects its connector-side terminal to X1:A6."
+              }
+            ],
+            "markers": []
+          }
+        ],
+        "supportingPhotos": [
+          {
+            "id": "comparison-photo-080415534",
+            "path": "../reference/photos/PXL_20261017_080415534.jpg",
+            "sha256": "602404556009fe24083bc919b7d495c4876b0e4d8a7546d70a6f9b71ea6f2f22",
+            "specimenId": "comparison-20261017",
+            "side": "oblique",
+            "use": "Keyboard connector bent leads and solder attachments. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080415534.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080347973",
+            "path": "../reference/photos/PXL_20261017_080347973.jpg",
+            "sha256": "49fcb131dd12e00eb81fec610128390b9ef9d6c425031ed56967ecb6d18d67b1",
+            "specimenId": "comparison-20261017",
+            "side": "bottom",
+            "refs": [
+              "A1",
+              "A2.1",
+              "BR2"
+            ],
+            "use": "Middle and cable-side underside copper. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080347973.jpg",
+            "specimen": "comparison-20261017"
+          }
+        ]
+      },
+      {
+        "id": "x1-a8",
+        "title": "X1 A8: classify the schematic-omitted contact",
+        "sameNetSets": [],
+        "seriesComponents": [],
+        "routeGroups": [],
+        "reviews": [],
+        "connectorContact": "A8",
+        "supportingSources": [
+          "comparison-photo-080411074",
+          "comparison-photo-080415534",
+          "comparison-photo-080347973"
+        ],
+        "finding": "A physical contact position exists in the constrained row order, but no X1:A8 pin occurs in the reference netlist. It remains visual geometry only.",
+        "alternatives": [
+          "Unused contact with no electrical connection.",
+          "Specimen-specific connection omitted from the reference.",
+          "Apparent attachment is opposite-side copper or an obscured neighbouring lead."
+        ],
+        "nextDeskWork": "Inspect the marked far-row eighth lead and underside joint in the primary photos, then compare the mating-face and bent-lead views without equating their coordinates with the primary specimen.",
+        "decisiveObservation": "A visible complete attachment or a recorded contact-to-pad resistance map that distinguishes an unused contact from a connected one. An obscured trace is not evidence of disconnection.",
+        "doNotInfer": "Do not create a numbered native pad or assign a net simply to fill the missing schematic position.",
+        "referenceNets": [],
+        "candidateEndpoints": [],
+        "series": {},
+        "figures": [
+          {
+            "source": {
+              "id": "photo-top",
+              "path": "../reference/photos/PXL_20261012_123622947.jpg",
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [],
+            "markers": [
+              {
+                "point": [
+                  1668.5,
+                  2110.0
+                ],
+                "label": "X1:A8 \u2014 unclassified; top marker is a lead observation, not a hole centre"
+              }
+            ]
+          },
+          {
+            "source": {
+              "id": "photo-bottom",
+              "path": "../reference/photos/PXL_20261012_123648677.jpg",
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+              "use": "Specimen placement and visible copper; approximate planar registration",
+              "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+              "specimen": "primary museum specimen"
+            },
+            "segments": [],
+            "markers": [
+              {
+                "point": [
+                  1174.333,
+                  1923.333
+                ],
+                "label": "X1:A8 \u2014 unclassified; top marker is a lead observation, not a hole centre"
+              }
+            ]
+          }
+        ],
+        "supportingPhotos": [
+          {
+            "id": "comparison-photo-080411074",
+            "path": "../reference/photos/PXL_20261017_080411074.jpg",
+            "sha256": "364c56674f14a3361849dbe29b722a00145bb39c6afd45a048099906ceb960ae",
+            "specimenId": "comparison-20261017",
+            "side": "oblique",
+            "use": "Keyboard connector mating face. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080411074.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080415534",
+            "path": "../reference/photos/PXL_20261017_080415534.jpg",
+            "sha256": "602404556009fe24083bc919b7d495c4876b0e4d8a7546d70a6f9b71ea6f2f22",
+            "specimenId": "comparison-20261017",
+            "side": "oblique",
+            "use": "Keyboard connector bent leads and solder attachments. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080415534.jpg",
+            "specimen": "comparison-20261017"
+          },
+          {
+            "id": "comparison-photo-080347973",
+            "path": "../reference/photos/PXL_20261017_080347973.jpg",
+            "sha256": "49fcb131dd12e00eb81fec610128390b9ef9d6c425031ed56967ecb6d18d67b1",
+            "specimenId": "comparison-20261017",
+            "side": "bottom",
+            "refs": [
+              "A1",
+              "A2.1",
+              "BR2"
+            ],
+            "use": "Middle and cable-side underside copper. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+            "href": "../../reference/photos/PXL_20261017_080347973.jpg",
+            "specimen": "comparison-20261017"
+          }
+        ]
+      }
+    ]
+  },
+  "outputAssembly": {
+    "schema": 1,
+    "photoSource": "photo-top",
+    "refs": [
+      "L1.1",
+      "L1.2",
+      "L1.3",
+      "L1.4",
+      "XT1"
+    ],
+    "status": "visual-observations-only",
+    "scope": "Primary specimen body and raised-wire observations. Board-plane projection of elevated objects is approximate. Heights and diameters are illustrative. Joint order is geometric only: no winding pairing, electrical terminal, hidden hole or continuity is assigned.",
+    "filter": {
+      "bodyPolygonPixels": [
+        [
+          1225,
+          724
+        ],
+        [
+          1340,
+          729
+        ],
+        [
+          1340,
+          762
+        ],
+        [
+          1225,
+          758
+        ]
+      ],
+      "bodyBaseHeightMm": 3,
+      "bodyHeightMm": 4,
+      "scope": "Visible dark core envelope only; obscured core opening, underside and winding topology are not reconstructed.",
+      "jointRowsPixels": {
+        "cableFacing": [
+          [
+            1214,
+            701
+          ],
+          [
+            1252,
+            697
+          ],
+          [
+            1285,
+            693
+          ],
+          [
+            1320,
+            696
+          ]
+        ],
+        "logicFacing": [
+          [
+            1230,
+            793
+          ],
+          [
+            1260,
+            794
+          ],
+          [
+            1295,
+            794
+          ],
+          [
+            1325,
+            792
+          ]
+        ]
+      },
+      "jointPixelUncertainty": 10,
+      "raisedWireArcsPixels": [
+        [
+          [
+            1215,
+            710
+          ],
+          [
+            1195,
+            725
+          ],
+          [
+            1190,
+            751
+          ],
+          [
+            1200,
+            770
+          ],
+          [
+            1223,
+            776
+          ]
+        ],
+        [
+          [
+            1233,
+            712
+          ],
+          [
+            1214,
+            729
+          ],
+          [
+            1209,
+            756
+          ],
+          [
+            1219,
+            773
+          ],
+          [
+            1238,
+            778
+          ]
+        ],
+        [
+          [
+            1252,
+            713
+          ],
+          [
+            1233,
+            733
+          ],
+          [
+            1229,
+            757
+          ],
+          [
+            1238,
+            769
+          ]
+        ],
+        [
+          [
+            1325,
+            731
+          ],
+          [
+            1343,
+            743
+          ],
+          [
+            1344,
+            765
+          ],
+          [
+            1330,
+            777
+          ],
+          [
+            1309,
+            776
+          ]
+        ]
+      ],
+      "wireHeightMm": 7.5,
+      "wireRadiusMm": 0.4,
+      "pixelBox": [
+        1175,
+        690,
+        1355,
+        810
+      ]
+    },
+    "cable": {
+      "pixelBox": [
+        1190,
+        535,
+        1480,
+        685
+      ],
+      "scope": "Visible coloured arcs stop at occlusion boundaries; colours do not identify XT1 terminals. Shield braid is visible near the clamp but its electrical attachment is unresolved.",
+      "wireHeightMm": 6,
+      "wireRadiusMm": 0.65,
+      "raisedWireArcs": [
+        {
+          "colour": "white",
+          "points": [
+            [
+              1342,
+              592
+            ],
+            [
+              1340,
+              607
+            ],
+            [
+              1356,
+              631
+            ],
+            [
+              1385,
+              660
+            ]
+          ]
+        },
+        {
+          "colour": "black",
+          "points": [
+            [
+              1210,
+              642
+            ],
+            [
+              1218,
+              562
+            ],
+            [
+              1235,
+              537
+            ],
+            [
+              1260,
+              533
+            ],
+            [
+              1292,
+              544
+            ],
+            [
+              1314,
+              574
+            ],
+            [
+              1321,
+              606
+            ]
+          ]
+        },
+        {
+          "colour": "pink",
+          "points": [
+            [
+              1337,
+              639
+            ],
+            [
+              1306,
+              635
+            ],
+            [
+              1275,
+              614
+            ],
+            [
+              1242,
+              606
+            ],
+            [
+              1226,
+              615
+            ],
+            [
+              1226,
+              629
+            ],
+            [
+              1251,
+              640
+            ],
+            [
+              1290,
+              647
+            ],
+            [
+              1307,
+              660
+            ]
+          ]
+        },
+        {
+          "colour": "blue",
+          "points": [
+            [
+              1357,
+              604
+            ],
+            [
+              1385,
+              604
+            ],
+            [
+              1413,
+              617
+            ],
+            [
+              1415,
+              633
+            ],
+            [
+              1403,
+              651
+            ]
+          ]
+        }
+      ]
+    },
+    "supportingSources": [
+      "comparison-photo-080406304",
+      "comparison-photo-080511382"
+    ],
+    "unresolved": [
+      "Pair the filter's cable-facing and logic-facing joints independently before assigning L1.1\u2013L1.4.",
+      "Match cable conductor attachment joints to XT1 terminal labels; inherited native XT1 pad positions are reference placeholders, not photo-registered solder joints.",
+      "Trace logic-facing clock/data copper back toward the stops localized beneath R9.5 and R7."
+    ]
+  },
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "98407964f67806e5ab2fa5f0e5392221689f8a0f"
+      "revision": "0d0afdc120f1f7e8e3756f54ebc7b994e5bafa6a"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "1f1c4f00647eee8b58a1f475b157d4179870896c"
     },
     "files": {
-      "layout": "0ad21698ed2d84392fa8dabd9681b8c2072fcf61524994e31e5d24f22d6d931b",
+      "layout": "82c7ab6859b8e9f67a5b3fe936e951c68f757c998ce86652f0b064fc5ab629a3",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "d03876d2ae0885466ae5dc23512d8571c90ab4bc90682c02788575ba5d154dd8",
       "photoRegistration": "61a51daca9a51fd1765074ed674e54cdc825687e50daf3f161518cb25926a034",
@@ -23804,10 +26959,12 @@
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
-      "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8"
+      "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
+      "connectionReview": "d29ff6b17633fe63f8df5642db87173b9a4ca894b47a99c7d90b9f6495148f6a",
+      "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "8d7c22d491ec1027213a63e69f369eaf40f5f43534173a9eb1eca2a72e6d29bf"
+    "geometryScadSha256": "cd4d508021b4cc505abe22dcdafeca15541cf5bf779b8e77524b5bbd96066a65"
   },
   "cosimulation": {
     "bus": {

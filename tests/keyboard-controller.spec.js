@@ -25,7 +25,7 @@ test('controller review selects nets, reports gaps and retries a failed load',as
  await expect(panel.locator('[data-selection]')).toContainText('3 pins; 2 with estimated positions');
  await expect(panel.locator('[data-selection]')).toContainText('Unplaced components: L1.4.');
  await expect(panel.locator('[data-qualification]')).toContainText('comparisons pass');
- await panel.getByLabel('Controller board side').selectOption('bottom');await expect(panel.locator('svg')).toHaveAttribute('aria-label',/bottom/);
+ await panel.getByLabel('Controller board side').selectOption('bottom');await expect(panel.locator('[data-drawing] svg')).toHaveAttribute('aria-label',/bottom/);
  await panel.getByRole('button',{name:'Clear highlight'}).click();await expect(panel.locator('[data-selection]')).toContainText('Select a component');
  expect(errors).toEqual([]);
 });
@@ -609,4 +609,43 @@ test('body photo regions expose resistor evidence without placing electrical pin
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A1');
  await expect(panel.locator('[data-body-photo]')).toHaveCount(0);
  await expect(panel.locator('a[href$="PXL_20261017_080450163.jpg"]')).toHaveCount(0);
+});
+
+test('serial path includes both sides of the filter without assigning visual joints',()=>{
+ const selected=controllerSelection(data,'path','host-clock');
+ expect(selected.pins.map(p=>`${p.ref}:${p.pin}`).sort()).toEqual(['A1:2','L1.1:1','L1.1:2','R10.1:2','XT1:B2']);
+ expect(selected.pins.find(p=>p.ref==='XT1').position).toBeNull();
+ expect(selected.routes.every(r=>r.net==='/TA_TAKT'||r.net==='/CABLE_TAKT')).toBe(true);
+ expect(data.layout.visualOutputAssembly.status).toBe('visual-observations-only');
+ expect(data.layout.visualOutputAssembly).not.toHaveProperty('pads');
+ expect(data.connectionReview.cases.find(c=>c.id==='host-clock').crossSideSearch.copperAssignmentQualified).toBe(false);
+});
+
+test('serial inspection exposes occlusions and distinguishes cable placeholders',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  window.pathHighlights=[];installKeyboardControllerReview({keyboardControllerSelection(points,routes){window.pathHighlights.push({points,routes});}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-clock');
+ await expect(panel.locator('[data-connection-case="host-clock"]')).toContainText('R9.5');
+ await expect(panel.locator('[data-connection-case="host-data"]')).toHaveCount(0);
+ await expect(panel.locator('[data-search-region]')).toHaveCount(1);
+ await expect(panel.locator('[data-output-assembly]')).toContainText('no winding pairing');
+ await expect(panel.locator('[data-selection]')).toContainText('reference placeholders');
+ await expect(panel.locator('[data-output-core]')).toHaveCount(1);
+ await panel.getByLabel('Controller board side').selectOption('bottom');
+ await expect(panel.locator('[data-output-core]')).toHaveCount(0);
+ await panel.getByLabel('Controller signal path',{exact:true}).selectOption('host-data');
+ await expect(panel.locator('[data-connection-case="host-data"]')).toContainText('R7');
+ await expect(panel.locator('[data-connection-case="host-clock"]')).toHaveCount(0);
+ const images=await panel.locator('[data-connection-photo] image').evaluateAll(async nodes=>Promise.all(nodes.map(async node=>{const image=new Image();image.src=node.getAttribute('href');await image.decode();return image.naturalWidth;})));
+ expect(images.every(width=>width===3072)).toBe(true);
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('XT1');
+ expect(await page.evaluate(()=>window.pathHighlights.at(-1).points)).toEqual([]);
+ await panel.getByRole('button',{name:'Clear highlight'}).click();
+ await expect(panel.locator('[data-path-review]')).toBeEmpty();
+ await expect(panel.getByLabel('Controller signal path',{exact:true})).toHaveValue('');
 });

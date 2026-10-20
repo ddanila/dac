@@ -34,6 +34,10 @@ Photo rectangles locate component bodies or markings without assigning pads.
 Unplaced resistor bodies and raised leads are visual geometry; hidden lead entries
 and numbered pads remain unresolved.
 Comparison-specimen previews are labelled separately from primary observations.
+Signal-path inspection spans the reference driver, filter and cable nets while
+showing supported copper fragments and unresolved photo regions. Filter and cable
+body/wire observations come from CAD `output-assembly.json`; they do not assign
+winding terminals. XT1's inherited coordinates are excluded from physical highlights.
 
 **Recorded reference waveform** shows retained simulation samples, separate from
 live latch samples and specimen measurements. Driver states apply at the marked
