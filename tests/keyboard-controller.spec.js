@@ -835,6 +835,33 @@ test('native routing audit counts disconnected pad groups and exposes supported 
  await expect(panel.locator('[data-routing-net="/COL11"] > summary')).toContainText('1 terminal groups, 0 links remaining');
 });
 
+test('completed latch net stays distinct from unresolved eye candidates',async({page})=>{
+ const d3=data.routingAudit.nets.find(n=>n.net==='/D3');
+ expect(d3.remainingPadGroupLinks).toBe(0);
+ expect(d3.islands[0].terminals.sort()).toEqual(['A4:16','A5:8','A8:13']);
+ for(const path of data.busReview.latchPaths){
+  expect(path.nativeCopper).toBe(false);
+  expect(path.continuityEstablished).toBe(false);
+  expect(data.layout.routes.some(r=>r.evidence.group===path.id)).toBe(false);
+ }
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/D3');
+ await panel.locator('[data-routing-audit] > summary').click();
+ await expect(panel.locator('[data-routing-net="/D3"] > summary')).toContainText('0 links remaining');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/D0');
+ await panel.locator('[data-routing-audit] > summary').click();
+ const section=panel.locator('[data-routing-net="/D0"]');
+ await section.locator(':scope > summary').click();
+ await expect(section).toContainText('Review target: A4:19 ↔ A5:14');
+ await expect(section).toContainText('not a verified through-board match');
+ await expect(section.locator('[data-search-region]')).toHaveCount(1);
+});
+
 test('bus review separates partial fan-out from connected CPU-ROM lanes',async({page})=>{
  const candidate=data.busReview.paths.find(p=>p.id==='cpu-rom-d5');
  expect(candidate.nativeCopper).toBe(false);

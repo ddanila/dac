@@ -186,9 +186,13 @@ export function installKeyboardControllerReview(scene){
       }
      }
      for(const fig of paths.values()){const label=document.createElement('p');label.textContent='Recorded local path: '+fig.terminals.join(' ↔ ');section.append(label,connectionPhoto(fig));}
-     for(const candidate of (data.busReview?.paths||[]).filter(p=>p.referenceNet===net.net)){
+     for(const candidate of [...(data.busReview?.paths||[]),...(data.busReview?.latchPaths||[])].filter(p=>p.referenceNet===net.net)){
       const note=document.createElement('p');note.textContent='Review target: '+candidate.terminals.join(' ↔ ')+'. '+candidate.reason;
       section.append(note,connectionPhoto({source:data.evidence.sources.find(s=>s.id===candidate.source),segments:candidate.segments,markers:[]}));
+      if(candidate.reverseReview){
+       const reverse=candidate.reverseReview;
+       section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason}]}));
+      }
       if(candidate.crossSideSearch){
        const cross=data.busReview.crossSide,search=candidate.crossSideSearch;
        const detail=document.createElement('p');detail.dataset.busCrossSide=candidate.id;
