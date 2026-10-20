@@ -31,7 +31,8 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-   Prioritize the data/clock path through X1. For each connection, record both
+   Prioritize the data/clock path through the L1 filter windings to host cable XT1.
+   X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
    terminals, supporting photo landmarks, native copper and any unresolved span;
    regenerate KiCad checks, OpenSCAD geometry and museum inspection together.
    Then close remaining placement, underside-registration and DRC gaps.
@@ -191,7 +192,7 @@ records compatible CAD, HDL, emulator and museum revisions and validation result
 
 This milestone remains open because physical continuations are unresolved.
 Complete the keyboard data/clock output path through all representations:
-connector pins, schematic nets, visible copper, generated OpenSCAD geometry and
+XT1 cable terminals, L1 filter windings, schematic nets, visible copper, generated OpenSCAD geometry and
 an HDL/emulator comparison. Include the circuitry and boundary stimuli necessary
 to exercise that path. This remains an acceptance gate even though full-board
 simulation work has already progressed independently.

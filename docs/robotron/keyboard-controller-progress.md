@@ -14,6 +14,7 @@ photographs, published device evidence and standard S600 firmware.
 | Which parts and routes are placed? | CAD `generated/layout.json` |
 | What is observed, inferred or unresolved? | CAD `evidence.json`, `component-evidence.json`, `route-evidence.json` |
 | Which X1 geometry and terminal assignments are supported? | CAD `generated/connector-review.json` and `generated/connector-terminals.json` |
+| Which output/connector spans should be reviewed next? | CAD `review/connection-review.html`, generated from `connection-review.json` and canonical evidence |
 | What native checks remain? | CAD `generated/qualification.json` |
 | What digital behavior is qualified? | Core `verification/robotron-keyboard/reports/` |
 | What electrical assumptions and failures were retained? | Core `verification/robotron-keyboard/analog/reports/`; individual run reports and traces under `build/keyboard-controller-analog/` |
