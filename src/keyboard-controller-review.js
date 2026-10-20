@@ -185,6 +185,10 @@ export function installKeyboardControllerReview(scene){
       }
      }
      for(const fig of paths.values()){const label=document.createElement('p');label.textContent='Recorded local path: '+fig.terminals.join(' ↔ ');section.append(label,connectionPhoto(fig));}
+     for(const candidate of (data.busReview?.paths||[]).filter(p=>p.referenceNet===net.net)){
+      const note=document.createElement('p');note.textContent='Deferred photo path: '+candidate.terminals.join(' ↔ ')+'. '+candidate.reason;
+      section.append(note,connectionPhoto({source:data.evidence.sources.find(s=>s.id===candidate.source),segments:candidate.segments,markers:[]}));
+     }
      audit.append(section);
     }
     pathReview.append(audit);

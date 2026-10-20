@@ -1506,7 +1506,7 @@
             "pin": "17",
             "position": [
               78.49909,
-              4.136077
+              4.136078
             ],
             "ref": "A5",
             "size": [
@@ -1880,7 +1880,7 @@
             "pin": "37",
             "position": [
               45.509814,
-              19.442443
+              19.442442
             ],
             "ref": "A5",
             "size": [
@@ -7550,7 +7550,7 @@
           "geometrySha256": "0331db440c906637bc62b148a56c43b7fd3cc8598990047d2b47032fb68ef726",
           "group": "discrete-ground-r42-r7",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -7602,7 +7602,7 @@
           "geometrySha256": "32f76cba6263b675575d0258069194fee851a0e234bf9033cd34ded0d7f1f499",
           "group": "discrete-ground-r42-r7",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -7654,7 +7654,7 @@
           "geometrySha256": "51ca48f65bd4c4e4a82aa62178924c9075b5823fdedf1a7fb6adc90da72cdb3c",
           "group": "discrete-ground-r42-r7",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -7706,7 +7706,7 @@
           "geometrySha256": "ae81b6bab7ee2b8f5350038d0ab989bcd644c5cf7f48ff31e37aba5407ad4de1",
           "group": "discrete-ground-r7-r8",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -7758,7 +7758,7 @@
           "geometrySha256": "d0b85f87a4b07409a860119e8a3dba08df2e1171f53b08efaadfe6522dffdcee",
           "group": "discrete-ground-r7-r8",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -7810,7 +7810,7 @@
           "geometrySha256": "82c07f1749216daf8175a961324d03fe028f280070af5917ca9917ad8d61ace3",
           "group": "discrete-ground-r7-r8",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8009,7 +8009,7 @@
           "geometrySha256": "f186dbf4ed34ed88380a50ceac59febe3d0f771b914b87607a5c9c0fc902b726",
           "group": "r101-output-bottom-partial",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8057,7 +8057,7 @@
           "geometrySha256": "6145c776496268a44586e366c41c4c4ed7fe13f4a92eb2b48e9d8f86a623eb1e",
           "group": "r101-output-bottom-partial",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8105,7 +8105,7 @@
           "geometrySha256": "9fc616139bfab2928f7e2eb05b42268fd4ead82eae30c2787690015221e3da59",
           "group": "r101-output-bottom-partial",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8153,7 +8153,7 @@
           "geometrySha256": "67b61efaebcb81d2961c2a6cc3cfae6d576c9473cc07741bf03f92a8183e8f44",
           "group": "x1-b8-col11-bottom",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "matrix-col11"
           },
           "sources": [
@@ -8201,7 +8201,7 @@
           "geometrySha256": "c991966aed6ae96f4802dfa2b468bed756c8cbfaa62ea569954d0a0bf8802ffd",
           "group": "x1-b8-col11-bottom",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "matrix-col11"
           },
           "sources": [
@@ -8249,7 +8249,7 @@
           "geometrySha256": "53e809bd655428cd254d85211eac76286dc1911c83a12eeb6a3ee5a9648a688f",
           "group": "x1-b8-col11-bottom",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "matrix-col11"
           },
           "sources": [
@@ -8297,7 +8297,7 @@
           "geometrySha256": "4a939fd2e35e05fb64e4b477693fab0b17e820fbd0858a47ab927ca9772245ce",
           "group": "x1-b8-col11-bottom",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "matrix-col11"
           },
           "sources": [
@@ -8345,7 +8345,7 @@
           "geometrySha256": "a5709f1f05569202e18acb392e8dd82c0ef84b327fe7be2eeb90c0fb1b4bc965",
           "group": "x1-b8-col11-bottom",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "matrix-col11"
           },
           "sources": [
@@ -8393,7 +8393,7 @@
           "geometrySha256": "9475f631cbb40c1678587d74b8f1548571de484eca9213971ea75daa6ac9fc0b",
           "group": "x1-b8-col11-bottom",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "matrix-col11"
           },
           "sources": [
@@ -8441,7 +8441,7 @@
           "geometrySha256": "1a9f26e98331293a9a2ff4f8e700b2a07b0afdaf44827420e8778ae2c1ff2530",
           "group": "x1-b8-col11-bottom",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "matrix-col11"
           },
           "sources": [
@@ -8489,7 +8489,7 @@
           "geometrySha256": "4bf4728c9140321d470f76049ba2bf538be98d8cc688f35e43ed86e728efc637",
           "group": "x1-b8-col11-bottom",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "matrix-col11"
           },
           "sources": [
@@ -8601,7 +8601,7 @@
           "geometrySha256": "6b997b296d7eae39733a6a05ed79c803b7738efc1d5a32fdc6373f73d8f22402",
           "group": "r102-output-bottom-partial",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8649,7 +8649,7 @@
           "geometrySha256": "10e0af72d89a5b2bd1cd5d2c4178454a80742e079db28853fa26454a072347c0",
           "group": "r102-output-bottom-partial",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8697,7 +8697,7 @@
           "geometrySha256": "6e380529dc701bc8c31aade3e4627c91bca96d2db0949a4450c90573be817acb",
           "group": "r102-output-bottom-partial",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8745,7 +8745,7 @@
           "geometrySha256": "3ce2583d5b09a91291f47ada16c3a3f4031b13199505d882b7b94c16a84f905e",
           "group": "r102-output-bottom-partial",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8793,7 +8793,7 @@
           "geometrySha256": "df2845eb28945242eac8447f710fb88db8f9849b1e30e33ae50c9d5ec0e669d4",
           "group": "r102-output-bottom-partial",
           "registration": {
-            "landmarksSha256": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
             "region": "output-pullups"
           },
           "sources": [
@@ -8834,6 +8834,734 @@
         ],
         "side": "bottom",
         "width": 0.35
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D2 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "873b10ad25c25e2b3515e99b65638cc05ce557bba7dabf7176a3d46fb1e563e6",
+          "group": "cpu-rom-d2",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1295,
+                    3465
+                  ],
+                  [
+                    1320,
+                    3493
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:12",
+            "A8:11"
+          ]
+        },
+        "id": "07a2883c-888c-4379-b01b-58a50886712a",
+        "net": "/D2",
+        "points": [
+          [
+            114.492773,
+            6.353681
+          ],
+          [
+            116.801145,
+            4.33468
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D2 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "5532ba09e79b911046ac53ea38f264cee43ee459628c2ed316d321a6d67e8eb4",
+          "group": "cpu-rom-d2",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1295,
+                    2875
+                  ],
+                  [
+                    1285,
+                    2888
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:12",
+            "A8:11"
+          ]
+        },
+        "id": "2585e4f9-bfbb-460b-b8fc-f81a816a4e84",
+        "net": "/D2",
+        "points": [
+          [
+            67.032295,
+            5.302225
+          ],
+          [
+            68.034857,
+            6.140249
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D2 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "389a2aad83dafddcd0044c76dcdb63f2a4e292a5d8ce9cbfdb0e248565b90950",
+          "group": "cpu-rom-d2",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1286,
+                    3200
+                  ],
+                  [
+                    1295,
+                    3465
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:12",
+            "A8:11"
+          ]
+        },
+        "id": "3db1fa0e-75e2-45b8-9f06-8ca9f2bc6b21",
+        "net": "/D2",
+        "points": [
+          [
+            92.973329,
+            6.617324
+          ],
+          [
+            114.492773,
+            6.353681
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible CPU-to-ROM D2 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "d361c0242c3770150f03268943c4896c3485c1298d0d12e28c326dde4ff9e377",
+          "group": "cpu-rom-d2",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1308,
+                    2865
+                  ],
+                  [
+                    1295,
+                    2875
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A5:12",
+            "A8:11"
+          ]
+        },
+        "id": "928cb60e-7434-4c11-b384-c57edb4f759c",
+        "net": "/D2",
+        "points": [
+          [
+            65.799115,
+            4.161611
+          ],
+          [
+            67.032295,
+            5.302225
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D2 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "3f09a51993bbc647b2473c33a3b839679f7b66562be7541cce5df67046fa28e8",
+          "group": "cpu-rom-d2",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1282,
+                    3000
+                  ],
+                  [
+                    1286,
+                    3200
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:12",
+            "A8:11"
+          ]
+        },
+        "id": "94f8f7fe-e5ee-4b3a-a468-39e48b8dc1e8",
+        "net": "/D2",
+        "points": [
+          [
+            76.931353,
+            6.585412
+          ],
+          [
+            92.973329,
+            6.617324
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D2 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "22aec6ec991525f42b57fa4a5b90abf680f57ab4cd7c021040bac0afcdc39e30",
+          "group": "cpu-rom-d2",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1285,
+                    2888
+                  ],
+                  [
+                    1282,
+                    3000
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:12",
+            "A8:11"
+          ]
+        },
+        "id": "b22322c0-46ff-4479-b65c-c9424637dd34",
+        "net": "/D2",
+        "points": [
+          [
+            68.034857,
+            6.140249
+          ],
+          [
+            76.931353,
+            6.585412
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible CPU-to-ROM D2 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "2a7231c9808337f4d73e3ea03f6584a507b827654188ce689eb6fedc087c30da",
+          "group": "cpu-rom-d2",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1320,
+                    3493
+                  ],
+                  [
+                    1346,
+                    3523
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A5:12",
+            "A8:11"
+          ]
+        },
+        "id": "dd734d4b-83aa-4daa-ad71-ab9ef9bdc771",
+        "net": "/D2",
+        "points": [
+          [
+            116.801145,
+            4.33468
+          ],
+          [
+            119.436357,
+            2.08515
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D0 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "f73fe5307a7b7c7957bf5f537bdbdf47e8ad7545163c2dcc8dd1e958f483c9e6",
+          "group": "cpu-rom-d0",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1318,
+                    3193
+                  ],
+                  [
+                    1325,
+                    3330
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:14",
+            "A8:9"
+          ]
+        },
+        "id": "1c142604-be30-4685-8471-90ca74755d05",
+        "net": "/D0",
+        "points": [
+          [
+            92.464293,
+            3.976386
+          ],
+          [
+            103.537269,
+            3.638275
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible CPU-to-ROM D0 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "04903954786603bc1d7a152321c42d2bc7997e13fd87b0ca31a0c702f08c11fa",
+          "group": "cpu-rom-d0",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1328,
+                    3432
+                  ],
+                  [
+                    1345,
+                    3458
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A5:14",
+            "A8:9"
+          ]
+        },
+        "id": "1d31a971-5abd-4371-9ff6-f85add9f8487",
+        "net": "/D0",
+        "points": [
+          [
+            111.828658,
+            3.567501
+          ],
+          [
+            114.357091,
+            1.998782
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Estimated native pad-to-visible-copper attachment. Visible CPU-to-ROM D0 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "a48ed78c8c3fa0030e10e0d5265d97f61d5766f431dd6277dc0293f81ab930b6",
+          "group": "cpu-rom-d0",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1309,
+                    2927
+                  ],
+                  [
+                    1322,
+                    2940
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A5:14",
+            "A8:9"
+          ]
+        },
+        "id": "4ae80736-6846-4761-b714-dc19f1d46ab0",
+        "net": "/D0",
+        "points": [
+          [
+            70.879105,
+            4.151392
+          ],
+          [
+            72.255734,
+            3.215508
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D0 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "7cd0fc2c2bd4722c48073ba373fff99189f97e37c790250e2d88b74975767e78",
+          "group": "cpu-rom-d0",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1322,
+                    2940
+                  ],
+                  [
+                    1343,
+                    2960
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:14",
+            "A8:9"
+          ]
+        },
+        "id": "8f67332b-9c70-46cd-a586-4cfd803fe5ee",
+        "net": "/D0",
+        "points": [
+          [
+            72.255734,
+            3.215508
+          ],
+          [
+            73.89556,
+            1.540085
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D0 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "d105757a0f3550e2dd5435ac75d4fe736d540b724eb855db6c3a372e56510af8",
+          "group": "cpu-rom-d0",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1343,
+                    2960
+                  ],
+                  [
+                    1340,
+                    3172
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:14",
+            "A8:9"
+          ]
+        },
+        "id": "95786381-f160-4c16-ae28-2cc5f7d5f9f5",
+        "net": "/D0",
+        "points": [
+          [
+            73.89556,
+            1.540085
+          ],
+          [
+            90.814814,
+            2.138143
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D0 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "94276d1027580cf4717e352ce2dd2cb4f8d27e6a1ce609dbb18a56507da2442f",
+          "group": "cpu-rom-d0",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1325,
+                    3330
+                  ],
+                  [
+                    1328,
+                    3432
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:14",
+            "A8:9"
+          ]
+        },
+        "id": "b1f2a105-8fd5-420f-931c-d8e1c081b732",
+        "net": "/D0",
+        "points": [
+          [
+            103.537269,
+            3.638275
+          ],
+          [
+            111.828658,
+            3.567501
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D0 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
+          "geometrySha256": "8c469b2c5d88d5ea4dd4d702a34f2e0b8fca5916c4d2c5fef46357041c3dce10",
+          "group": "cpu-rom-d0",
+          "registration": {
+            "landmarksSha256": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
+            "region": "cpu-rom-data"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1340,
+                    3172
+                  ],
+                  [
+                    1318,
+                    3193
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A5:14",
+            "A8:9"
+          ]
+        },
+        "id": "d1a455de-a7e5-4a79-b9f0-d0697b38f814",
+        "net": "/D0",
+        "points": [
+          [
+            90.814814,
+            2.138143
+          ],
+          [
+            92.464293,
+            3.976386
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
       },
       {
         "evidence": {
@@ -17381,13 +18109,13 @@
   "qualification": {
     "components": 70,
     "drc": {
-      "unconnectedItems": 216,
+      "unconnectedItems": 214,
       "violations": {
         "clearance": 1,
         "track_dangling": 4
       }
     },
-    "electricalCopperSegments": 87,
+    "electricalCopperSegments": 101,
     "erc": [
       {
         "description": "Label connected to only one pin",
@@ -21380,6 +22108,420 @@
           1
         ],
         "scope": "Local underside fit for the R10 signal branches; limited to the resistor/A1/A2.1 anchor hull. Far-end solder eyes do not establish top-side continuations or winding identity.",
+        "toleranceMm": 1.25
+      },
+      {
+        "anchorHull": [
+          [
+            1116,
+            2519
+          ],
+          [
+            1303,
+            2519
+          ],
+          [
+            1348,
+            3556
+          ],
+          [
+            1165,
+            3554
+          ]
+        ],
+        "anchors": [
+          {
+            "photoPixel": [
+              1116,
+              2519
+            ],
+            "pin": "40",
+            "ref": "A5"
+          },
+          {
+            "photoPixel": [
+              1303,
+              2519
+            ],
+            "pin": "1",
+            "ref": "A5"
+          },
+          {
+            "photoPixel": [
+              1348,
+              3556
+            ],
+            "pin": "12",
+            "ref": "A8"
+          },
+          {
+            "photoPixel": [
+              1165,
+              3554
+            ],
+            "pin": "13",
+            "ref": "A8"
+          }
+        ],
+        "checks": [
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              86.119074,
+              4.120733
+            ],
+            "photoModel": [
+              85.10650215173564,
+              4.408534449875885
+            ],
+            "photoPixel": [
+              1312,
+              3107
+            ],
+            "pin": "20",
+            "ref": "A5",
+            "residualMm": 1.0526782141035118
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              86.149732,
+              19.360703
+            ],
+            "photoModel": [
+              85.47289705994879,
+              19.841677354199174
+            ],
+            "photoPixel": [
+              1125,
+              3112
+            ],
+            "pin": "21",
+            "ref": "A5",
+            "residualMm": 0.8303263608193068
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              50.559146,
+              4.192269
+            ],
+            "photoModel": [
+              50.523516024636486,
+              4.222565687534178
+            ],
+            "photoPixel": [
+              1306,
+              2678
+            ],
+            "pin": "6",
+            "ref": "A5",
+            "residualMm": 0.04676948171562511
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              70.879105,
+              4.151392
+            ],
+            "photoModel": [
+              70.52215227419552,
+              4.3698184567906635
+            ],
+            "photoPixel": [
+              1309,
+              2927
+            ],
+            "pin": "14",
+            "ref": "A5",
+            "residualMm": 0.41847982685592944
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              94.040028,
+              1.653313
+            ],
+            "photoModel": [
+              93.01717001466758,
+              2.493768268084719
+            ],
+            "photoPixel": [
+              1337,
+              3204
+            ],
+            "pin": "1",
+            "ref": "A8",
+            "residualMm": 1.3238593262917546
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              93.780926,
+              16.891111
+            ],
+            "photoModel": [
+              93.5367094345544,
+              17.884471591250943
+            ],
+            "photoPixel": [
+              1151,
+              3211
+            ],
+            "pin": "24",
+            "ref": "A8",
+            "residualMm": 1.0229403673178947
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              106.738192,
+              1.869232
+            ],
+            "photoModel": [
+              105.96330965005222,
+              2.3252074654553243
+            ],
+            "photoPixel": [
+              1342,
+              3362
+            ],
+            "pin": "6",
+            "ref": "A8",
+            "residualMm": 0.8990863592324063
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              106.479091,
+              17.107029
+            ],
+            "photoModel": [
+              106.55106989574891,
+              17.3543214671065
+            ],
+            "photoPixel": [
+              1161,
+              3370
+            ],
+            "pin": "19",
+            "ref": "A8",
+            "residualMm": 0.257554898460217
+          }
+        ],
+        "copperAssignmentQualified": false,
+        "id": "cpu-rom",
+        "maxCheckResidualMm": 1.3238593262917546,
+        "photoToModel": [
+          -0.00043708598523819147,
+          0.07409846741775836,
+          -150.4077137001644,
+          -0.07694443055916368,
+          0.0013989935454339943,
+          100.70921174077637,
+          -7.458203439870719e-06,
+          -1.902594778899316e-05,
+          1
+        ],
+        "scope": "Rejected full CPU/ROM fit: the independent ROM pin 1 check exceeds the existing 1.25 mm tolerance. Retained as a limit on extending the narrower data-bus region; not qualified for copper.",
+        "toleranceMm": 1.25
+      },
+      {
+        "anchorHull": [
+          [
+            1122,
+            2834
+          ],
+          [
+            1519,
+            2857
+          ],
+          [
+            1348,
+            3556
+          ],
+          [
+            1165,
+            3554
+          ]
+        ],
+        "anchors": [
+          {
+            "photoPixel": [
+              1122,
+              2834
+            ],
+            "pin": "30",
+            "ref": "A5"
+          },
+          {
+            "photoPixel": [
+              1519,
+              2857
+            ],
+            "pin": "10",
+            "ref": "A4"
+          },
+          {
+            "photoPixel": [
+              1348,
+              3556
+            ],
+            "pin": "12",
+            "ref": "A8"
+          },
+          {
+            "photoPixel": [
+              1165,
+              3554
+            ],
+            "pin": "13",
+            "ref": "A8"
+          }
+        ],
+        "checks": [
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              86.119074,
+              4.120733
+            ],
+            "photoModel": [
+              85.5486580692255,
+              4.318917377721349
+            ],
+            "photoPixel": [
+              1312,
+              3107
+            ],
+            "pin": "20",
+            "ref": "A5",
+            "residualMm": 0.603863711158519
+          },
+          {
+            "insideAnchorHull": false,
+            "pcbModel": [
+              86.149732,
+              19.360703
+            ],
+            "photoModel": [
+              85.5758979282168,
+              19.75786162284178
+            ],
+            "photoPixel": [
+              1125,
+              3112
+            ],
+            "pin": "21",
+            "ref": "A5",
+            "residualMm": 0.6978685503996155
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              70.879105,
+              4.151392
+            ],
+            "photoModel": [
+              71.19095589710045,
+              4.252144150279769
+            ],
+            "photoPixel": [
+              1309,
+              2927
+            ],
+            "pin": "14",
+            "ref": "A5",
+            "residualMm": 0.32772240968288435
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              94.040028,
+              1.653313
+            ],
+            "photoModel": [
+              93.38155523091159,
+              2.4376746970123464
+            ],
+            "photoPixel": [
+              1337,
+              3204
+            ],
+            "pin": "1",
+            "ref": "A8",
+            "residualMm": 1.0241140851345902
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              93.780926,
+              16.891111
+            ],
+            "photoModel": [
+              93.63437722536825,
+              17.8075780057322
+            ],
+            "photoPixel": [
+              1151,
+              3211
+            ],
+            "pin": "24",
+            "ref": "A8",
+            "residualMm": 0.9281100774917871
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              106.738192,
+              1.869232
+            ],
+            "photoModel": [
+              106.15240450684966,
+              2.294376538076509
+            ],
+            "photoPixel": [
+              1342,
+              3362
+            ],
+            "pin": "6",
+            "ref": "A8",
+            "residualMm": 0.7238058202222758
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              106.479091,
+              17.107029
+            ],
+            "photoModel": [
+              106.59493718114418,
+              17.310720131769163
+            ],
+            "photoPixel": [
+              1161,
+              3370
+            ],
+            "pin": "19",
+            "ref": "A8",
+            "residualMm": 0.23432971396536936
+          }
+        ],
+        "copperAssignmentQualified": true,
+        "id": "cpu-rom-data",
+        "maxCheckResidualMm": 1.0241140851345902,
+        "photoToModel": [
+          0.005344787455134242,
+          0.07554727421952082,
+          -158.67131336120156,
+          -0.07932327826970864,
+          0.0015738909515682058,
+          103.37566412761369,
+          3.980582147885969e-05,
+          -2.614761719219404e-05,
+          1
+        ],
+        "scope": "CPU/A4-to-ROM data-bus region, bounded by CPU A5:30, A4:10 and ROM A8:12/13. Independent CPU and ROM joint checks qualify only nominal geometry inside this hull, not metrology or hidden continuity.",
         "toleranceMm": 1.25
       }
     ],
@@ -28536,7 +29678,7 @@
         ]
       },
       {
-        "drcUnconnectedItems": 3,
+        "drcUnconnectedItems": 2,
         "floatingCopperGroups": 0,
         "islands": [
           {
@@ -28558,19 +29700,24 @@
             "unplacedTerminals": []
           },
           {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
-            "terminals": [
-              "A5:14"
+            "copperIds": [
+              "1c142604-be30-4685-8471-90ca74755d05",
+              "1d31a971-5abd-4371-9ff6-f85add9f8487",
+              "4ae80736-6846-4761-b714-dc19f1d46ab0",
+              "8f67332b-9c70-46cd-a586-4cfd803fe5ee",
+              "95786381-f160-4c16-ae28-2cc5f7d5f9f5",
+              "b1f2a105-8fd5-420f-931c-d8e1c081b732",
+              "d1a455de-a7e5-4a79-b9f0-d0697b38f814"
             ],
-            "unplacedTerminals": []
-          },
-          {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
+            "evidenceGroups": [
+              "cpu-rom-d0"
+            ],
+            "evidenceStatuses": [
+              "inferred",
+              "observed"
+            ],
             "terminals": [
+              "A5:14",
               "A8:9"
             ],
             "unplacedTerminals": []
@@ -28580,8 +29727,8 @@
         "multiTerminal": true,
         "nativePadsConnected": false,
         "net": "/D0",
-        "padGroups": 4,
-        "remainingPadGroupLinks": 3,
+        "padGroups": 3,
+        "remainingPadGroupLinks": 2,
         "terminals": [
           "A1:3",
           "A4:19",
@@ -28634,7 +29781,7 @@
         ]
       },
       {
-        "drcUnconnectedItems": 2,
+        "drcUnconnectedItems": 1,
         "floatingCopperGroups": 0,
         "islands": [
           {
@@ -28647,19 +29794,24 @@
             "unplacedTerminals": []
           },
           {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
-            "terminals": [
-              "A5:12"
+            "copperIds": [
+              "07a2883c-888c-4379-b01b-58a50886712a",
+              "2585e4f9-bfbb-460b-b8fc-f81a816a4e84",
+              "3db1fa0e-75e2-45b8-9f06-8ca9f2bc6b21",
+              "928cb60e-7434-4c11-b384-c57edb4f759c",
+              "94f8f7fe-e5ee-4b3a-a468-39e48b8dc1e8",
+              "b22322c0-46ff-4479-b65c-c9424637dd34",
+              "dd734d4b-83aa-4daa-ad71-ab9ef9bdc771"
             ],
-            "unplacedTerminals": []
-          },
-          {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
+            "evidenceGroups": [
+              "cpu-rom-d2"
+            ],
+            "evidenceStatuses": [
+              "inferred",
+              "observed"
+            ],
             "terminals": [
+              "A5:12",
               "A8:11"
             ],
             "unplacedTerminals": []
@@ -28669,8 +29821,8 @@
         "multiTerminal": true,
         "nativePadsConnected": false,
         "net": "/D2",
-        "padGroups": 3,
-        "remainingPadGroupLinks": 2,
+        "padGroups": 2,
+        "remainingPadGroupLinks": 1,
         "terminals": [
           "A4:17",
           "A5:12",
@@ -31027,14 +32179,133 @@
     "scope": "Native KiCad same-net connectivity, including off-board placeholder pads. Connected does not mean historically verified or fabrication-ready. DRC gaps may include floating copper; pad-group links count only disconnected terminal groups. Cross-net clearance/short findings remain in qualification.json.",
     "summary": {
       "assignedPins": 330,
-      "drcUnconnectedItems": 216,
+      "drcUnconnectedItems": 214,
       "floatingCopperGroups": 0,
       "fullyConnectedMultiTerminalNets": 1,
       "minimumLinks": 234,
       "multiTerminalNets": 94,
       "nets": 96,
-      "remainingPadGroupLinks": 216
+      "remainingPadGroupLinks": 214
     }
+  },
+  "busReview": {
+    "schema": 1,
+    "scope": "Photo paths deferred from native copper. Reference net identity is a review target, not an assigned electrical route. Resolve footprint/registration conflicts before promotion.",
+    "paths": [
+      {
+        "id": "cpu-rom-d1",
+        "referenceNet": "/D1",
+        "terminals": [
+          "A5:15",
+          "A8:10"
+        ],
+        "source": "photo-bottom",
+        "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+        "registration": "cpu-rom-data",
+        "nativeCopper": false,
+        "reason": "The projected D1 lane shorts nominal CPU pad 16 (CPU_PULLUP); solder-mask proximity also reaches pads 17\u201320. Reconcile CPU hole positions with this local fit before assigning native copper. Do not displace the observed lane to hide the conflict.",
+        "segments": [
+          {
+            "id": "d1-0",
+            "status": "inferred",
+            "points": [
+              [
+                1309,
+                2958
+              ],
+              [
+                1322,
+                2977
+              ]
+            ]
+          },
+          {
+            "id": "d1-1",
+            "status": "observed",
+            "points": [
+              [
+                1322,
+                2977
+              ],
+              [
+                1326,
+                3138
+              ]
+            ]
+          },
+          {
+            "id": "d1-2",
+            "status": "observed",
+            "points": [
+              [
+                1326,
+                3138
+              ],
+              [
+                1305,
+                3163
+              ]
+            ]
+          },
+          {
+            "id": "d1-3",
+            "status": "observed",
+            "points": [
+              [
+                1305,
+                3163
+              ],
+              [
+                1308,
+                3300
+              ]
+            ]
+          },
+          {
+            "id": "d1-4",
+            "status": "observed",
+            "points": [
+              [
+                1308,
+                3300
+              ],
+              [
+                1311,
+                3450
+              ]
+            ]
+          },
+          {
+            "id": "d1-5",
+            "status": "observed",
+            "points": [
+              [
+                1311,
+                3450
+              ],
+              [
+                1330,
+                3470
+              ]
+            ]
+          },
+          {
+            "id": "d1-6",
+            "status": "inferred",
+            "points": [
+              [
+                1330,
+                3470
+              ],
+              [
+                1346,
+                3490
+              ]
+            ]
+          }
+        ]
+      }
+    ]
   },
   "cableCopper": {
     "assignedReferenceTerminals": {},
@@ -32240,7 +33511,7 @@
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
-      "route-evidence.json": "7eab7583ed68f7ca333c94781a434b34bb17c2b77f3670e72c4e1c28d5edbf8b",
+      "route-evidence.json": "01062efedd42c4a0091aaaf688938f84644b734732985381d8c131cb8fa5b948",
       "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
       "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
       "tools/cable_copper.py": "62e5c65aca23a41064612fd9ed7b732627e63e74949337563fb75031f56fa0c4",
@@ -33754,14 +35025,14 @@
       "connection-review.json": "255e7c4f7f793814bfb86194c22708292152a503b4e4b822642ec178f11a201e",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
-      "route-evidence.json": "7eab7583ed68f7ca333c94781a434b34bb17c2b77f3670e72c4e1c28d5edbf8b",
+      "route-evidence.json": "01062efedd42c4a0091aaaf688938f84644b734732985381d8c131cb8fa5b948",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "generated/layout.json": "90e82e0ef8a6ebcc97e0d8320ac5bba5096fe3182479a6740705b30c4d277095",
+      "generated/layout.json": "0e0e8224eccd1a3c28aeaa14ced641a77fc61c55c63d2a6abc9c06787b270d56",
       "generated/connector-terminals.json": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "generated/top-registration.json": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
-      "generated/bottom-registration.json": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
+      "generated/bottom-registration.json": "00116dcb112e1e9b72c3560a7ffd1a31fe46f613da9524447d42ea0814a4b42f",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
-      "bottom-landmarks.json": "fabe454100b42d29164a3e18f576f8b3f0e5ca360d2a7b3a8321184e4ab61d04",
+      "bottom-landmarks.json": "4a9a6ced3651e80c9575aba77257bc64054b37a9fc0681aff28ef00ffc5758fa",
       "clock-continuation.json": "df0e412e549ceb866b1e89b2099e121be7b76a2acdc3e0edcd32c936e8098f07",
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
       "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
@@ -38546,30 +39817,31 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "66429de7cf5677807ed2c26a36685ab6db2e6fe7"
+      "revision": "e3b0c61b3f8438710985681c1bfe7a1ded01ddc5"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "1f1c4f00647eee8b58a1f475b157d4179870896c"
     },
     "files": {
-      "layout": "90e82e0ef8a6ebcc97e0d8320ac5bba5096fe3182479a6740705b30c4d277095",
+      "layout": "0e0e8224eccd1a3c28aeaa14ced641a77fc61c55c63d2a6abc9c06787b270d56",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "0ffe717bf624a4fba46f8c90356e01579d0a31d57fb34a07db4af08f19c4ef55",
+      "qualification": "abac54482f502e9fcf570123191861e06b9f640cc917585fb6f67327a48da3dd",
       "photoRegistration": "61a51daca9a51fd1765074ed674e54cdc825687e50daf3f161518cb25926a034",
-      "bottomRegistration": "fe7e23ac9c7e96b0a75d08c5fedbf95ca1534dea364f82c47f221de3018a4c64",
+      "bottomRegistration": "00116dcb112e1e9b72c3560a7ffd1a31fe46f613da9524447d42ea0814a4b42f",
       "topRegistration": "7130e191a623ec6a9e8808b09b20c631dd1bc01edd11c974fb93423130cc4783",
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
-      "routingAudit": "63e46069cea42c73fdb5e6d51204a97bace0ec65f02284e65edf00365a6b843c",
-      "cableCopper": "90c2e3646cb9c5ce53f9271bbc6907011497e625fc5cc72eeea657bf8884344a",
-      "connectionReview": "d472eaa2cb823f2d89cff310c7407aef8343a08f2d55c9fce0c42fe088c8f2f1",
+      "routingAudit": "9bcbe6b4b6596fcaa42b135d755704a1feacf7b19c84d5e95071bc69f46aee4d",
+      "busReview": "b3263de1d0a9c349c2422b1a3de6f8f5695f4f6b985bf872b56aaeec1b7e28d0",
+      "cableCopper": "6b9b86e32b0fdd7b391614cce93d0bfa048ffc0f845a0fa76084a9bdf95a5588",
+      "connectionReview": "39f7fae22797a452b867d84e09cdbbfef16cbbadefaf205f2304478f2a823ba2",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "52da08af7aad65d4d8f411fdb5b47040e53d922f6b6890cee5b549c336a89cb2"
+    "geometryScadSha256": "ec3555f13c5f09c80d4fe84ccb115d69937132464237763a5a362585dced532b"
   },
   "cosimulation": {
     "bus": {

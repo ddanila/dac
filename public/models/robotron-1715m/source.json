@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "66429de7cf5677807ed2c26a36685ab6db2e6fe7",
+  "revision": "e3b0c61b3f8438710985681c1bfe7a1ded01ddc5",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "9931e3671de3c20187e2d3ab78438bb7fc6f74e59d3bfb8d1eb92d2ea8af7bc0"
+      "sha256": "1a3195a670f0a597ad24ce82efba44db94f9ece51fc9bb6861f35384f0bad1d3"
     },
     {
       "file": "LICENSE",
@@ -565,7 +565,7 @@
     },
     {
       "file": "meshes/keyboard-controller-traces.stl",
-      "sha256": "8a90f924453f2327513e2876dd30b7c2818557fdb412479257a8431550cd51d2"
+      "sha256": "70ef89fb38062e9f7197537bb842a168ab74bd134b018deea3433d68ae17deb8"
     },
     {
       "file": "meshes/monitor-power-lead.stl",
@@ -657,7 +657,7 @@
     },
     {
       "file": "meshes/keyboard-controller-solder.stl",
-      "sha256": "3489d5b66a3bf58702f6ae7b7a645d6a9ca8304fbc7d57c52754fcca00161487"
+      "sha256": "6fc4142e8f2239f936e34f51daa70b4f9c3f18a634ee6141b10657bbd63cf0fd"
     },
     {
       "file": "meshes/drive-protect-tab-0.stl",
@@ -1585,23 +1585,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "06ef885f85666665b8537431e4dca38ec4a771eea4d6d9821f05fee1d1092455"
+      "sha256": "373faf87615a6b128b68bb7501a06463d1bf9dfc0bb01c924037a40bded3243c"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "085b7125907c3c89b1052a769df8e218a5f39f966f521f8b644247b739fa52ce"
+      "sha256": "3c9eb6485d4eed17cc57a8de73da6f47e0c3b8b0763c0c81200abaf3102fefe2"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "c3e3ee0c59b51c7ea4ce7d5f60d71a91af8fffe6cb25b8ebc40a331068e5aa7e"
+      "sha256": "6722e5959f0654e0be53b6dd93e376e9f0c7849796d537584d83dd760f4b7ffd"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "974f7d39c39556af9fe6e4c141766a7575109fc3ae95df2504cefefd7bc72a7e"
+      "sha256": "59c077070e4e41376205cc6cf0f0fd2cee86fc47f1b6bd83061c21f0c283ad49"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "696f3eeca334c5780e08a0ca9aa2e31d49a2591c59c934b31cbef3de41f1afff"
+      "sha256": "e01264f790e65dba1035adccdd080a71ef2cc6c994e40accc1ffabaa11cbc635"
     }
   ],
   "inspection": {
