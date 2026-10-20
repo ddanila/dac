@@ -31,22 +31,33 @@ reconstruction requirements below remain in scope.
 1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
    discrete terminals and footprint conflicts against registered photographs and
    the netlist. Keep unsupported continuations and specimen differences explicit.
-2. **Establish numerical convergence.** Locate the onset of trajectory divergence
+   Prioritize the data/clock path through X1. For each connection, record both
+   terminals, supporting photo landmarks, native copper and any unresolved span;
+   regenerate KiCad checks, OpenSCAD geometry and museum inspection together.
+   Then close remaining placement, underside-registration and DRC gaps.
+2. **Close pending capture reviews.** Review the completed held-key/repeat/release
+   service capture for host voltage and receiver timing, then obtain a matched
+   timestep-refinement pair. Preserve its source revision and model assumptions
+   when constructing the pair. Analyze the completed capacitor-stamp audit and
+   retain its assessment and reproducibility evidence before extending that
+   experiment. Functional success and identical diagnostic replay are not
+   electrical qualification.
+3. **Establish numerical convergence.** Locate the onset of trajectory divergence
    in accepted and rejected state history. Higher-precision integration and linear
    solving have not resolved it. Investigate accumulated state, nonlinear evaluation
    and stamping sensitivity while preserving circuit physics and tolerance budgets.
    Require completed refinement pairs and absolute-time voltage convergence.
-3. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
+4. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
    host-buffer switching/loading against independent device evidence. Admit vendor
    models against the intended device's conditions before board use. Keep primary,
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
-4. **Qualify the coupled reference board.** Resolve the CPU clock high-level and
+5. **Qualify the coupled reference board.** Resolve the CPU clock high-level and
    timing failures exposed by the startup-inclusive capture. Complete host device
    qualification, scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
    timing and supply recovery. Logical agreement and receiver timing screens
    cannot substitute for these electrical gates.
-5. **Identify residual specimen dependencies.** Exhaust photographs, package
+6. **Identify residual specimen dependencies.** Exhaust photographs, package
    drawings and published circuit constraints first. For each remaining ambiguity,
    state the alternatives and the observation that would distinguish them.
    Standard S600 permits reference work without the replacement ROM.
@@ -54,7 +65,8 @@ reconstruction requirements below remain in scope.
 The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 records the findings behind these tasks and links their evidence. Physical
 reconstruction, device research and numerical diagnosis can proceed independently;
-the ordering is not a dependency chain. Detailed measurements, candidate
+physical reconstruction is the immediate priority and does not wait for a solver
+remedy. The ordering is not a dependency chain. Detailed measurements, candidate
 inventories and experiment results stay in source reports.
 An unresolved claim becomes an external dependency only when available evidence
 cannot distinguish the remaining alternatives; it does not block unrelated work.
@@ -187,6 +199,9 @@ simulation work has already progressed independently.
 Completion requires all phase exit criteria and this physical milestone. Exact
 specimen fidelity additionally requires identified ROM contents, dimensions and
 measured behavior; reference qualification does not establish those claims.
+Report physical-path completion, full-board electrical qualification and
+fabrication readiness separately. A reconstructed visible path does not establish
+that the remaining PCB is routed, dimensionally verified or ready to manufacture.
 
 ## References
 

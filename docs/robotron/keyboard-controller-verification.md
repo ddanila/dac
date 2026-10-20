@@ -43,6 +43,9 @@ below are relative to the CAD controller directory unless stated otherwise.
   The [independent timing screen][receiver-timing] uses Zilog conditions as a
   diagnostic reference;
   it does not establish U856 thresholds, loading or device applicability.
+  The local `firmware-host-rising-repeat-minbreak` capture has completed and
+  passes its functional checks, but remains unqualified. Host-voltage/timing
+  review, matched refinement and publication of the reviewed evidence remain open.
 - **Voltage convergence:** [single-press refinement][paired-host] and
   [release/repress comparison][release-pair] retain material absolute-time voltage
   differences despite timing agreement. Qualify voltage convergence independently;
@@ -54,6 +57,11 @@ below are relative to the CAD controller directory unless stated otherwise.
   arithmetic does not establish an accurate accumulated trajectory. Locate where
   accepted/rejected state histories diverge before choosing another intervention;
   require completed refinement pairs before adopting a numerical remedy.
+  The local `host-capacitor-stamp-audit` control reproduces the source deck,
+  waveforms and failure diagnostic. Its capacitor analysis and retained assessment
+  are pending; reproduction alone does not identify a remedy. These local capture
+  names refer to the core's `build/keyboard-controller-analog/` directory, not
+  published qualification reports.
 - **Closed-board execution:** the [startup-inclusive capture][board-host] passes
   reset activity, first fetch, rising-RxC bit transport and scenario-window checks.
   CPU clock high-level and timing screens fail within the declared valid-supply
