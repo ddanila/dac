@@ -34,7 +34,10 @@ reconstruction requirements below remain in scope.
    Use `generated/routing-audit.json` to prioritize complete visible paths and
    track remaining pad-group links separately from floating copper. Resolve the
    cross-side bus continuations in `bus-review.json` before promoting complete
-   CPU/ROM paths. Retain the
+   CPU/ROM paths. Its generated search overlay locates the remaining eyes under
+   the CPU body; installed-CPU photographs do not expose these joins. Closing
+   them requires evidence of the covered copper or independent continuity,
+   not a projected eye-to-pin match. Retain the
    data/clock path through the L1 filter windings to host cable XT1 as the physical
    integration milestone.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both

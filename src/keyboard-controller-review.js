@@ -22,7 +22,7 @@ function connectionCases(data,kind,value){
 function connectionPhoto(fig){
  const figure=document.createElement('figure');figure.dataset.connectionPhoto=fig.source.id;figure.dataset.photoSpecimen=fig.source.specimenId||'museum-primary';
  const url=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(fig.source.path.split('/').pop())}`;
- const points=[...fig.segments.flatMap(s=>s.points),...fig.markers.map(m=>m.point)];
+ const points=[...fig.segments.flatMap(s=>s.points),...fig.markers.map(m=>m.point),...(fig.regions||[]).flatMap(r=>r.polygon)];
  if(!points.length)return figure;
  const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),x=Math.max(0,Math.min(...xs)-90),y=Math.max(0,Math.min(...ys)-90);
  const svg=document.createElementNS(svgNS,'svg');
@@ -31,13 +31,14 @@ function connectionPhoto(fig){
  svg.style.cssText='display:block;width:100%;max-width:560px;max-height:340px;background:#14232d';
  const add=(tag,attrs)=>{const node=document.createElementNS(svgNS,tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,value);svg.append(node);return node;};
  const [imageWidth,imageHeight]=fig.imageSize||[3072,4080];add('image',{href:url,width:imageWidth,height:imageHeight});
+ for(const region of fig.regions||[])add('polygon',{'data-photo-occluder':region.ref,points:region.polygon.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#ffffff','stroke-width':2,'stroke-dasharray':'8 6'});
  for(const segment of fig.segments)add('polyline',{...(segment.id?{'data-observed-span':segment.id}:{}),points:segment.points.map(p=>p.join(',')).join(' '),fill:'none',stroke:segment.status==='inferred'?'#ffcf5b':'#37f3d4','stroke-width':3,'stroke-dasharray':segment.status==='inferred'?'7 5':'none'});
  const labels=document.createElement('ul');
  for(const marker of fig.markers){
   add('circle',{...(marker.kind==='search'?{'data-search-region':''}:{}),cx:marker.point[0],cy:marker.point[1],r:marker.radius||9,fill:'none',stroke:marker.kind==='search'?'#ffcf5b':'#ff79ad','stroke-width':3,'stroke-dasharray':marker.kind==='search'?'5 4':'none'});
   const label=document.createElement('li');label.textContent=marker.label;labels.append(label);
  }
- const caption=document.createElement('figcaption');caption.textContent=(fig.source.specimenId?'Comparison specimen ('+fig.source.specimenId+'): ':'Primary specimen: ')+'teal observed copper; dashed amber inferred copper or projected search region; pink recorded features or span ends. Search circles are not identified joints.';
+ const caption=document.createElement('figcaption');caption.textContent=(fig.source.specimenId?'Comparison specimen ('+fig.source.specimenId+'): ':'Primary specimen: ')+(fig.regions?.length?'white outline marks the component body; dashed amber circles are projected search regions, not observed joints or vias.':'teal observed copper; dashed amber inferred copper or projected search region; pink recorded features or span ends. Search circles are not identified joints.');
  const link=document.createElement('a');link.href=url;link.textContent='Open original photograph';link.target='_blank';link.rel='noopener';
  figure.append(svg,caption,labels,link);return figure;
 }
@@ -188,6 +189,14 @@ export function installKeyboardControllerReview(scene){
      for(const candidate of (data.busReview?.paths||[]).filter(p=>p.referenceNet===net.net)){
       const note=document.createElement('p');note.textContent='Review target: '+candidate.terminals.join(' ↔ ')+'. '+candidate.reason;
       section.append(note,connectionPhoto({source:data.evidence.sources.find(s=>s.id===candidate.source),segments:candidate.segments,markers:[]}));
+      if(candidate.crossSideSearch){
+       const cross=data.busReview.crossSide,search=candidate.crossSideSearch;
+       const detail=document.createElement('p');detail.dataset.busCrossSide=candidate.id;
+       detail.textContent=`Cross-side search: ${search.insideCpuBodyWithSearchMargin?'the eye projection and search margin lie beneath A5':'the search region needs review'}. ${cross.scope} Independent check: ${cross.checks.map(c=>c.terminal+' '+c.residualPixels.toFixed(1)+' px').join(', ')}.`;
+       section.append(detail,connectionPhoto({source:data.evidence.sources.find(s=>s.id===cross.source),segments:[],regions:[cross.occluder],markers:[{kind:'search',point:search.point,radius:search.radiusPixels,label:clean(candidate.referenceNet)+' underside eye projected beneath CPU; continuity unresolved.'}]}));
+       const comparison=componentPhoto(data,'A5',{photoSource:cross.comparison.source,pixelBox:cross.comparison.pixelBox,scope:cross.comparison.observation});
+       if(comparison)section.append(comparison);
+      }
      }
      audit.append(section);
     }

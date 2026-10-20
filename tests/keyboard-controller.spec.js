@@ -858,6 +858,13 @@ test('bus review separates partial fan-out from connected CPU-ROM lanes',async({
  const section=panel.locator('[data-routing-net="/D5"]');
  await section.locator(':scope > summary').click();
  await expect(section).toContainText('Review target: A5:9 ↔ A8:15');
- await expect(section).toContainText('eye-to-CPU continuation is unresolved');
- await expect(section.locator('svg')).toBeVisible();
+ await expect(section).toContainText('Eye-to-CPU continuity remains unresolved');
+ await expect(section.locator('[data-bus-cross-side]')).toContainText('projection and search margin lie beneath A5');
+ await expect(section.locator('[data-photo-occluder="A5"]')).toBeVisible();
+ await expect(section.locator('[data-search-region]')).toHaveCount(1);
+ await expect(section.locator('[data-photo-specimen="comparison-20261017"]')).toHaveCount(1);
+ for(const path of data.busReview.paths){
+  expect(path.crossSideSearch.continuityEstablished).toBe(false);
+  expect(path.crossSideSearch.insideCpuBodyWithSearchMargin).toBe(true);
+ }
 });

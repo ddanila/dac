@@ -33530,20 +33530,78 @@
     }
   },
   "busReview": {
-    "schema": 1,
-    "scope": "Partial photo paths with unresolved cross-side continuations. Reference nets and terminal pairs are review targets, not complete paths or native copper assignments.",
+    "crossSide": {
+      "anchorTerminals": [
+        "A5:1",
+        "A5:20",
+        "A5:21",
+        "A5:40"
+      ],
+      "checkTerminals": [
+        "A5:14"
+      ],
+      "checks": [
+        {
+          "residualPixels": 2.527,
+          "terminal": "A5:14"
+        }
+      ],
+      "comparison": {
+        "electricalIdentityTransferred": false,
+        "imageSize": [
+          4080,
+          3072
+        ],
+        "observation": "The CPU body also covers the inter-row board area on this different specimen. This view cannot identify the underside solder eyes or transfer electrical continuity.",
+        "pixelBox": [
+          500,
+          1060,
+          3600,
+          1950
+        ],
+        "source": "comparison-photo-080429077",
+        "sourceSha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3"
+      },
+      "copperAssignmentQualified": false,
+      "occluder": {
+        "polygon": [
+          [
+            1590,
+            2730
+          ],
+          [
+            1756,
+            2720
+          ],
+          [
+            1782,
+            3378
+          ],
+          [
+            1610,
+            3388
+          ]
+        ],
+        "ref": "A5"
+      },
+      "scope": "Local underside-to-top search using corresponding CPU corner leads. Raised top leads are not board-hole centres; this fit locates an occluded area only and never qualifies copper or a via.",
+      "source": "photo-top",
+      "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+    },
     "paths": [
       {
+        "crossSideSearch": {
+          "continuityEstablished": false,
+          "insideCpuBodyWithSearchMargin": true,
+          "point": [
+            1636.284,
+            2941.752
+          ],
+          "radiusPixels": 19,
+          "status": "projected-search-only"
+        },
         "id": "cpu-rom-d5",
-        "referenceNet": "/D5",
-        "terminals": [
-          "A5:9",
-          "A8:15"
-        ],
-        "source": "photo-bottom",
-        "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
         "nativeCopper": false,
-        "reason": "Only the ROM-side fan-out to a solder eye is recorded here. The eye-to-CPU continuation is unresolved; identify the same joint on the component side before claiming the complete path. No native route or via is assigned by this review.",
         "observedEnds": [
           {
             "kind": "unassigned-eye",
@@ -33553,17 +33611,18 @@
             ]
           },
           {
-            "terminal": "A8:15",
             "point": [
               1165,
               3492
-            ]
+            ],
+            "terminal": "A8:15"
           }
         ],
+        "reason": "The ROM-side trace reaches a solder eye whose local cross-side search projection falls beneath the CPU body. Both component-side specimens retain the CPU over this area. Eye-to-CPU continuity remains unresolved; a projected location is not an observed joint or a native via.",
+        "referenceNet": "/D5",
         "segments": [
           {
             "id": "d5-0",
-            "status": "inferred",
             "points": [
               [
                 1252,
@@ -33573,11 +33632,11 @@
                 1240,
                 2720
               ]
-            ]
+            ],
+            "status": "inferred"
           },
           {
             "id": "d5-1",
-            "status": "observed",
             "points": [
               [
                 1240,
@@ -33587,11 +33646,11 @@
                 1242,
                 3100
               ]
-            ]
+            ],
+            "status": "observed"
           },
           {
             "id": "d5-2",
-            "status": "observed",
             "points": [
               [
                 1242,
@@ -33601,11 +33660,11 @@
                 1249,
                 3396
               ]
-            ]
+            ],
+            "status": "observed"
           },
           {
             "id": "d5-3",
-            "status": "observed",
             "points": [
               [
                 1249,
@@ -33615,11 +33674,11 @@
                 1166,
                 3483
               ]
-            ]
+            ],
+            "status": "observed"
           },
           {
             "id": "d5-4",
-            "status": "inferred",
             "points": [
               [
                 1166,
@@ -33629,21 +33688,30 @@
                 1165,
                 3492
               ]
-            ]
+            ],
+            "status": "inferred"
           }
-        ]
-      },
-      {
-        "id": "cpu-rom-d6",
-        "referenceNet": "/D6",
-        "terminals": [
-          "A5:10",
-          "A8:16"
         ],
         "source": "photo-bottom",
         "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+        "terminals": [
+          "A5:9",
+          "A8:15"
+        ]
+      },
+      {
+        "crossSideSearch": {
+          "continuityEstablished": false,
+          "insideCpuBodyWithSearchMargin": true,
+          "point": [
+            1635.547,
+            2910.624
+          ],
+          "radiusPixels": 19,
+          "status": "projected-search-only"
+        },
+        "id": "cpu-rom-d6",
         "nativeCopper": false,
-        "reason": "Only the ROM-side fan-out to a solder eye is recorded here. The eye-to-CPU continuation is unresolved; identify the same joint on the component side before claiming the complete path. No native route or via is assigned by this review.",
         "observedEnds": [
           {
             "kind": "unassigned-eye",
@@ -33653,17 +33721,18 @@
             ]
           },
           {
-            "terminal": "A8:16",
             "point": [
               1165,
               3461
-            ]
+            ],
+            "terminal": "A8:16"
           }
         ],
+        "reason": "The ROM-side trace reaches a solder eye whose local cross-side search projection falls beneath the CPU body. Both component-side specimens retain the CPU over this area. Eye-to-CPU continuity remains unresolved; a projected location is not an observed joint or a native via.",
+        "referenceNet": "/D6",
         "segments": [
           {
             "id": "d6-0",
-            "status": "inferred",
             "points": [
               [
                 1251,
@@ -33673,11 +33742,11 @@
                 1226,
                 2702
               ]
-            ]
+            ],
+            "status": "inferred"
           },
           {
             "id": "d6-1",
-            "status": "observed",
             "points": [
               [
                 1226,
@@ -33687,11 +33756,11 @@
                 1228,
                 3100
               ]
-            ]
+            ],
+            "status": "observed"
           },
           {
             "id": "d6-2",
-            "status": "observed",
             "points": [
               [
                 1228,
@@ -33701,11 +33770,11 @@
                 1234,
                 3378
               ]
-            ]
+            ],
+            "status": "observed"
           },
           {
             "id": "d6-3",
-            "status": "observed",
             "points": [
               [
                 1234,
@@ -33715,11 +33784,11 @@
                 1166,
                 3450
               ]
-            ]
+            ],
+            "status": "observed"
           },
           {
             "id": "d6-4",
-            "status": "inferred",
             "points": [
               [
                 1166,
@@ -33729,21 +33798,30 @@
                 1165,
                 3461
               ]
-            ]
+            ],
+            "status": "inferred"
           }
-        ]
-      },
-      {
-        "id": "cpu-rom-d7",
-        "referenceNet": "/D7",
-        "terminals": [
-          "A5:13",
-          "A8:17"
         ],
         "source": "photo-bottom",
         "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+        "terminals": [
+          "A5:10",
+          "A8:16"
+        ]
+      },
+      {
+        "crossSideSearch": {
+          "continuityEstablished": false,
+          "insideCpuBodyWithSearchMargin": true,
+          "point": [
+            1689.583,
+            3134.723
+          ],
+          "radiusPixels": 19,
+          "status": "projected-search-only"
+        },
+        "id": "cpu-rom-d7",
         "nativeCopper": false,
-        "reason": "Only the ROM-side fan-out to a solder eye is recorded here. The eye-to-CPU continuation is unresolved; identify the same joint on the component side before claiming the complete path. No native route or via is assigned by this review.",
         "observedEnds": [
           {
             "kind": "unassigned-eye",
@@ -33753,17 +33831,18 @@
             ]
           },
           {
-            "terminal": "A8:17",
             "point": [
               1165,
               3430
-            ]
+            ],
+            "terminal": "A8:17"
           }
         ],
+        "reason": "The ROM-side trace reaches a solder eye whose local cross-side search projection falls beneath the CPU body. Both component-side specimens retain the CPU over this area. Eye-to-CPU continuity remains unresolved; a projected location is not an observed joint or a native via.",
+        "referenceNet": "/D7",
         "segments": [
           {
             "id": "d7-0",
-            "status": "inferred",
             "points": [
               [
                 1209,
@@ -33773,11 +33852,11 @@
                 1208,
                 3100
               ]
-            ]
+            ],
+            "status": "inferred"
           },
           {
             "id": "d7-1",
-            "status": "observed",
             "points": [
               [
                 1208,
@@ -33787,11 +33866,11 @@
                 1216,
                 3364
               ]
-            ]
+            ],
+            "status": "observed"
           },
           {
             "id": "d7-2",
-            "status": "observed",
             "points": [
               [
                 1216,
@@ -33801,11 +33880,11 @@
                 1165,
                 3418
               ]
-            ]
+            ],
+            "status": "observed"
           },
           {
             "id": "d7-3",
-            "status": "inferred",
             "points": [
               [
                 1165,
@@ -33815,11 +33894,20 @@
                 1165,
                 3430
               ]
-            ]
+            ],
+            "status": "inferred"
           }
+        ],
+        "source": "photo-bottom",
+        "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+        "terminals": [
+          "A5:13",
+          "A8:17"
         ]
       }
-    ]
+    ],
+    "schema": 1,
+    "scope": "Partial photo paths with unresolved cross-side continuations. Reference nets and terminal pairs are review targets, not complete paths or native copper assignments."
   },
   "cableCopper": {
     "assignedReferenceTerminals": {},
@@ -41331,7 +41419,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "fc2dba53cbc455667f9640c102e6316d1fcb780e"
+      "revision": "7f0708a086e2790acdd224eb664e17bfb5591ace"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -41349,7 +41437,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "routingAudit": "7f44cd7eb66a7446cb389ecd15817421c981749bc028a0a59e2b563f568258f2",
-      "busReview": "b71edd349989b752d6b7d2de577209d32bd6978b364b4cf34e8ba3860c7d1d1f",
+      "busReview": "71fb8158df10bf159fefe50cfb75b09cd0d8d95a7261c8ac53fe5c085ec6701e",
       "cableCopper": "251a347028c66b123802c26bafbd2b96555d26ddf721407359ec7c5e522ae94e",
       "connectionReview": "fcb137e23fa71f32155c8265f849a943a3268fbb909da65593d5cdc301ab540a",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
