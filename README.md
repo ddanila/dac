@@ -139,7 +139,10 @@ platform configuration in [the Pages workflow](.github/workflows/site.yml) and
 Playwright configs. [Baseline validation](scripts/ci-baseline.mjs) prevents failed
 or cancelled pushes from hiding untested changes; unknown scope falls back to
 full coverage. Deployment requires the build and selected checks to pass.
-Keep test inventories and duration estimates in their source files.
+Keep test inventories and duration estimates in their source files. Refresh timings
+from a successful full main-branch run with
+`node scripts/refresh-ci-durations.mjs RUN_ID` (requires authenticated `gh`).
+Review the resulting JSON diff before committing; this changes placement, not coverage.
 
 ## Disk contents explorer
 

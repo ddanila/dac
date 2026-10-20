@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { appendFileSync, readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { assignFiles, visualTestPattern } from './ci-shards.mjs';
+import { assignFiles, nativeTests, visualTestPattern } from './ci-shards.mjs';
 
 export const crossBrowserFiles = [
   'portable-sessions.spec.js', 'checkpoints.spec.js', 'workbench.spec.js',
@@ -12,7 +12,6 @@ export const crossBrowserFiles = [
 ];
 const prose = file => ['README.md', 'MODEL-HISTORY.md'].includes(file) || /^docs\/.+\.md$/.test(file);
 const reference = file => /^public\/docs\/robotron-psu\/(?:[^/]+\.(html|css|json|svg)|photos\/[^/]+\.(webp|png|jpe?g))$/.test(file);
-const nativeTests = new Set(['tests/workbench.spec.js', 'tests/serial.spec.js']);
 const durations = JSON.parse(readFileSync(new URL('../tests/ci-durations.json', import.meta.url))).seconds;
 export function scopeFor(files) {
   if (!files.length) return 'full';
@@ -41,7 +40,7 @@ export function planFor(files, allTests, forceFull = false, seconds = durations)
   if (scope !== 'docs' && !selected.length) throw Error('CI plan selected no tests');
   const cross = selected.filter(file => crossBrowserFiles.includes(file.slice(6)));
   const matrix = [];
-  if (selected.length) {
+  if (selected.length && scope !== 'reference') {
     const sharded = ['full', 'visual'].includes(scope);
     // Use the same assignment and duration inputs as playwright.config.js.
     const bins = sharded ? assignFiles(selected, seconds) : [{files: selected}];

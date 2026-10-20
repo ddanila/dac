@@ -56,7 +56,7 @@ test('scoped plans retain all selected tests and all applicable browser checks',
  expect(planFor(['tests/serial.spec.js'],files).matrix.include[0].native).toBe(true);
  expect(planFor(['tests/crt.spec.js'],files).matrix.include[0].native).toBe(false);
  expect(reference.test_files).toEqual(['tests/psu-docs.spec.js']);
- expect(reference.matrix.include.map(m=>m.browser)).toEqual(['chromium']);
+ expect(reference.matrix.include).toEqual([]);
  const testOnly = planFor(['tests/crt.spec.js','README.md'],files);
  expect(testOnly.scope).toBe('tests');
  expect(testOnly.test_files).toEqual(['tests/crt.spec.js']);
@@ -94,7 +94,7 @@ test('native replay follows shard assignment and remains Chromium-only', async (
  ]);
  // Rebalancing must move the requirement with the tests, not pin a shard ID.
  const split = planFor(['src/main.js'],files,false,{'tests/workbench.spec.js':100,'tests/serial.spec.js':90});
- expect(split.matrix.include.filter(m=>m.browser==='chromium').every(m=>m.native)).toBe(true);
+ expect(split.matrix.include.filter(m=>m.browser==='chromium').map(m=>m.native)).toEqual([true,false]);
  const single = planFor(['tests/workbench.spec.js'],files);
  expect(single.matrix.include.map(m=>m.native)).toEqual([true,false,false]);
 });
@@ -120,4 +120,26 @@ test('shared changes and unknown paths always require full coverage', async () =
    expect(scopeFor(['public/docs/robotron-psu/en.html',file]),file).toBe('full');
  }
  expect(scopeFor(['public/docs/robotron-psu/guide.css','src/inspection.js'])).toBe('visual');
+});
+
+test('timing refresh accepts complete successful evidence and preserves skipped estimates', async () => {
+ const {refreshDurations} = await import('../scripts/refresh-ci-durations.mjs');
+ const run = {id:123,run_attempt:1,head_sha:'abc',head_branch:'main',event:'push',conclusion:'success',path:'.github/workflows/site.yml'};
+ const selected = ['tests/a.spec.js','tests/b.spec.js'];
+ const report = (shard,tests) => ({version:1,status:'passed',scope:'full',workers:1,platform:'linux',run:'123',attempt:'1',sha:'abc',shard,selected,tests});
+ const reports = [report('1',[{file:selected[0],outcome:'expected',milliseconds:1200},{file:selected[0],outcome:'expected',milliseconds:3400}]),
+   report('2',[{file:selected[1],outcome:'skipped',milliseconds:0}])];
+ const previous = {seconds:{[selected[1]]:17}};
+ expect(refreshDurations(previous,reports,run).seconds).toEqual({[selected[0]]:4.6,[selected[1]]:17});
+ for (const patch of [{conclusion:'failure'},{conclusion:'cancelled'},{event:'pull_request'},{head_branch:'other'},{path:'other.yml'}]) {
+   expect(()=>refreshDurations(previous,reports,{...run,...patch})).toThrow();
+ }
+ for (const patch of [{status:'failed'},{scope:'tests'},{workers:2},{platform:'darwin'},{sha:'other'},{attempt:'2'},{run:'124'},{shard:'2'},{selected:[]},{tests:[]}]) {
+   expect(()=>refreshDurations(previous,[{...reports[0],...patch},reports[1]],run)).toThrow();
+ }
+ for (const patch of [{outcome:'flaky'},{outcome:'unexpected'},{milliseconds:-1},{milliseconds:NaN},{file:selected[1]}]) {
+   const bad = structuredClone(reports); Object.assign(bad[0].tests[0],patch);
+   expect(()=>refreshDurations(previous,bad,run)).toThrow();
+ }
+ expect(()=>refreshDurations(previous,[reports[0]],run)).toThrow();
 });

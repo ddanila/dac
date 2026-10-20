@@ -1,4 +1,5 @@
 import {test, expect} from '@playwright/test';
+import {withoutCAD} from './without-cad.js';
 import {printerPages} from '../src/robotron-activities.js';
 test('paper preserves carriage return, overprint, tabs, backspace and page breaks', () => {
   const bytes = new TextEncoder().encode('abc\rZ\r\nA\tB\bC\fnext\x1b');
@@ -6,6 +7,7 @@ test('paper preserves carriage return, overprint, tabs, backspace and page break
 });
 test('practice sessions leave persistence preference intact', async ({page}) => {
   await page.addInitScript(() => localStorage.setItem('dac-remember-disk','true'));
+  await withoutCAD(page);
   await page.goto('/?activity=wordstar');
   await expect(page.locator('#remember-disk')).not.toBeChecked();
   await expect(page.locator('#remember-disk')).toBeDisabled();
@@ -33,7 +35,8 @@ test('CRT persistence keeps source pixels intact and resets after a long pause',
   expect(result.original).toBe(16);expect(result.afterPause).toBe(16);
 });
 test('display values and practice progress are visible and resettable',async({page})=>{
- await page.goto('/?activity=wordstar');
+ await withoutCAD(page);
+  await page.goto('/?activity=wordstar');
  const activity=page.locator('#activity-instructions');
  await expect(activity.getByRole('status')).toContainText('0 of 6');
  await activity.locator('input').first().check();

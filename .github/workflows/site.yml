@@ -33,6 +33,12 @@ jobs:
         run: npx playwright test tests/ci-shards.spec.js --workers=1
       - name: Check test imports before installing browsers
         run: npx playwright test --list
+      - name: Install browser for PSU references
+        if: steps.scope.outputs.scope == 'reference'
+        run: npx playwright install --with-deps chromium --only-shell
+      - name: Check PSU references
+        if: steps.scope.outputs.scope == 'reference'
+        run: npx playwright test tests/psu-docs.spec.js --workers=1
       - run: DAC_BASE=/dac/ npm run build
       - uses: actions/upload-pages-artifact@v5.0.0
         with:
@@ -40,7 +46,7 @@ jobs:
   checks:
     name: ${{ matrix.label }}
     needs: build
-    if: needs.build.outputs.scope != 'docs'
+    if: needs.build.outputs.scope != 'docs' && needs.build.outputs.scope != 'reference'
     env:
       DAC_CI_SHARD: ${{ matrix.shard }}
       DAC_CI_TEST_FILES: ${{ needs.build.outputs.test_files }}
@@ -75,9 +81,17 @@ jobs:
         if: matrix.native
       - name: Selected Chromium checks
         if: matrix.browser == 'chromium'
-        run: npm test -- --reporter=line
+        run: npm test -- --reporter=line,./scripts/ci-timing-reporter.mjs
         env:
+          DAC_CI_SCOPE: ${{ needs.build.outputs.scope }}
           DAC_NATIVE_REPLAY: ${{ matrix.native && 'emulation-reference/build/dac-replay' || '' }}
+      - uses: actions/upload-artifact@v7
+        if: always() && matrix.browser == 'chromium'
+        with:
+          name: timings-${{ matrix.label }}
+          path: test-results/ci-timings.json
+          if-no-files-found: error
+          retention-days: 30
       - name: Selected cross-browser checks
         if: matrix.browser != 'chromium'
         run: npm run test:cross -- --project=${{ matrix.browser }}
@@ -92,7 +106,7 @@ jobs:
       !cancelled() && github.event_name != 'pull_request' &&
       needs.build.result == 'success' &&
       (needs.checks.result == 'success' ||
-       (needs.build.outputs.scope == 'docs' && needs.checks.result == 'skipped'))
+       (contains(fromJSON('["docs","reference"]'), needs.build.outputs.scope) && needs.checks.result == 'skipped'))
     needs: [build, checks]
     runs-on: ubuntu-latest
     timeout-minutes: 10
