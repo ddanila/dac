@@ -835,8 +835,8 @@ test('native routing audit counts disconnected pad groups and exposes supported 
  await expect(panel.locator('[data-routing-net="/COL11"] > summary')).toContainText('1 terminal groups, 0 links remaining');
 });
 
-test('bus review retains placement conflicts without electrically highlighting the deferred lane',async({page})=>{
- const candidate=data.busReview.paths.find(p=>p.id==='cpu-rom-d1');
+test('bus review separates partial fan-out from connected CPU-ROM lanes',async({page})=>{
+ const candidate=data.busReview.paths.find(p=>p.id==='cpu-rom-d5');
  expect(candidate.nativeCopper).toBe(false);
  expect(candidate.sourceSha256).toBe(data.evidence.sources.find(s=>s.id===candidate.source).sha256);
  expect(data.layout.routes.some(r=>r.evidence.group===candidate.id)).toBe(false);
@@ -844,17 +844,20 @@ test('bus review retains placement conflicts without electrically highlighting t
  const regions=data.bottomRegistration.pcbRegions;
  expect(regions.find(r=>r.id==='cpu-rom').copperAssignmentQualified).toBe(false);
  expect(regions.find(r=>r.id==='cpu-rom-data').copperAssignmentQualified).toBe(true);
+ expect(regions.find(r=>r.id==='cpu-rom-bus').copperAssignmentQualified).toBe(true);
+ const d1=data.routingAudit.nets.find(n=>n.net==='/D1');
+ expect(d1.islands.some(g=>['A5:15','A8:10'].every(p=>g.terminals.includes(p)))).toBe(true);
  await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
   document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
   const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
   installKeyboardControllerReview({keyboardControllerSelection(){}});document.querySelector('#keyboard-controller-review').open=true;
  });
  const panel=page.locator('#keyboard-controller-review');
- await panel.getByLabel('Controller net',{exact:true}).selectOption('/D1');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/D5');
  await panel.locator('[data-routing-audit] > summary').click();
- const section=panel.locator('[data-routing-net="/D1"]');
+ const section=panel.locator('[data-routing-net="/D5"]');
  await section.locator(':scope > summary').click();
- await expect(section).toContainText('Deferred photo path: A5:15 ↔ A8:10');
- await expect(section).toContainText('Reconcile CPU hole positions');
+ await expect(section).toContainText('Review target: A5:9 ↔ A8:15');
+ await expect(section).toContainText('eye-to-CPU continuation is unresolved');
  await expect(section.locator('svg')).toBeVisible();
 });

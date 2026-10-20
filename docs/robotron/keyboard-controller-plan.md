@@ -33,8 +33,8 @@ reconstruction requirements below remain in scope.
    the netlist. Keep unsupported continuations and specimen differences explicit.
    Use `generated/routing-audit.json` to prioritize complete visible paths and
    track remaining pad-group links separately from floating copper. Resolve the
-   CPU/ROM placement conflicts in `bus-review.json` before promoting deferred
-   bus lanes. Retain the
+   cross-side bus continuations in `bus-review.json` before promoting complete
+   CPU/ROM paths. Retain the
    data/clock path through the L1 filter windings to host cable XT1 as the physical
    integration milestone.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
