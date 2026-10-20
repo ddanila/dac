@@ -690,3 +690,28 @@ test('copper graph inspection keeps photo observations separate from electrical 
  await expect(panel.getByLabel('Controller copper group',{exact:true})).toHaveValue('');
  await expect(panel.locator('[data-copper-graph]')).toHaveCount(0);
 });
+
+test('supply review exposes extrapolation without electrical highlights',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  window.supplyHighlights=[];installKeyboardControllerReview({keyboardControllerSelection(points){window.supplyHighlights.push(points);}});
+  document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/+5V');
+ await panel.getByLabel('Controller signal path',{exact:true}).selectOption('supplies');
+ await expect(panel.getByLabel('Controller net',{exact:true})).toHaveValue('');
+ await expect(panel.locator('[data-supply-review]')).toContainText('alternatives remain unconstrained');
+ await expect(panel.locator('[data-filter-prediction="upper-resistors"]')).toHaveCount(8);
+ await expect(panel.locator('[data-filter-prediction="extended-resistors"]')).toHaveCount(8);
+ await expect(panel.locator('[data-supply-gap="ground-feed"]')).toContainText('not interchangeable with logic ground');
+ expect(await page.evaluate(()=>window.supplyHighlights.at(-1))).toEqual([]);
+ const widths=await panel.locator('[data-path-review] image').evaluateAll(async nodes=>Promise.all(nodes.map(async n=>{const image=new Image();image.src=n.getAttribute('href');await image.decode();return image.naturalWidth;})));
+ expect(widths).toEqual([3072,3072]);
+ await panel.getByRole('button',{name:'Hide review overlay'}).first().click();
+ await expect(panel.locator('[data-filter-prediction]').first()).toBeHidden();
+ await panel.getByLabel('Controller copper group',{exact:true}).selectOption('CF2');
+ await expect(panel.locator('[data-supply-review]')).toHaveCount(0);
+ await expect(panel.locator('[data-copper-graph]')).toHaveCount(1);
+});

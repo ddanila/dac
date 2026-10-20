@@ -41,3 +41,42 @@ export function renderCopperGraph(target,data,id){
  const comparison=document.createElement('a');comparison.href=photoURL(graph.comparison.source);comparison.textContent='Comparison underside — different specimen';comparison.target='_blank';comparison.rel='noopener';details.append(comparison);
  const source=document.createElement('a');source.href=`${data.source.cad.repository}/blob/${data.source.cad.revision}/models/robotron-1715m/keyboard-controller/generated/cable-copper.json`;source.textContent='Machine-readable graph and fit checks';source.target='_blank';source.rel='noopener';details.append(' · ',source);target.append(details);
 }
+
+export function renderSupplyReview(target,data){
+ const review=data.cableCopper.supplyReview;
+ target.replaceChildren();
+ const intro=document.createElement('p');intro.dataset.supplyReview='';intro.textContent=review.conclusion;target.append(intro);
+ const photoURL=source=>`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(source.path.split('/').pop())}`;
+ function figure(source,box,label){
+  const figure=document.createElement('figure'),svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('viewBox',box);svg.setAttribute('role','img');svg.setAttribute('aria-label',label);
+  svg.style.cssText='display:block;width:100%;max-width:560px;max-height:520px;background:#14232d';
+  function add(tag,attrs){const element=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))element.setAttribute(k,v);svg.append(element);return element;}
+  add('image',{href:photoURL(source),width:3072,height:4080});
+  const overlay=document.createElementNS(NS,'g');svg.append(overlay);
+  const caption=document.createElement('figcaption');caption.textContent=label;
+  const toggle=document.createElement('button');toggle.type='button';toggle.textContent='Hide review overlay';toggle.setAttribute('aria-pressed','false');toggle.onclick=()=>{const hide=overlay.style.display!=='none';overlay.style.display=hide?'none':'';toggle.setAttribute('aria-pressed',String(hide));toggle.textContent=hide?'Show review overlay':'Hide review overlay';};
+  const link=document.createElement('a');link.href=photoURL(source);link.textContent='Original photo';link.target='_blank';link.rel='noopener';
+  figure.append(svg,caption,toggle,' ',link);target.append(figure);
+  return(tag,attrs,text)=>{const element=add(tag,attrs);if(text)element.textContent=text;overlay.append(element);return element;};
+ }
+ const add=figure(review.topSource,'1150 630 600 610','Primary top: yellow supply-strip observations; dashed attachments are inferred. Filter crosses are search predictions, not identified pads.');
+ for(const span of review.supplySpans)add('polyline',{'data-supply-span':span.routeId,points:span.photoPixels.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#ffe16a','stroke-width':3,'stroke-dasharray':span.status==='inferred'?'5 4':''});
+ for(const [i,fit]of review.fits.entries()){
+  const color=i===0?'#ff99d8':'#5bd8e0';
+  const center=fit.anchors.reduce((p,a)=>[p[0]+a.topPixel[0]/fit.anchors.length,p[1]+a.topPixel[1]/fit.anchors.length],[0,0]);
+  const hull=fit.anchors.map(a=>a.topPixel).sort((a,b)=>Math.atan2(a[1]-center[1],a[0]-center[0])-Math.atan2(b[1]-center[1],b[0]-center[0]));
+  add('polygon',{points:hull.map(p=>p.join(',')).join(' '),fill:'none',stroke:color,'stroke-width':1,'stroke-dasharray':'5 4'});
+  for(const [name,prediction]of Object.entries(fit.filterPredictions)){
+   const [x,y]=prediction.topPixel;
+   add('path',{'data-filter-prediction':fit.id,d:`M${x-4} ${y-4}l8 8m-8 0l8 -8`,stroke:color,'stroke-width':1.5});
+   add('text',{x:x+4,y:y+(i===0?-6:12),fill:color,'font-size':8},name);
+  }
+  const note=document.createElement('p');note.textContent=`${i===0?'Pink':'Cyan'}: ${fit.id}. Maximum held-out residual ${Math.max(...fit.checks.map(c=>c.residualPixels)).toFixed(1)} px inside the bank; ${Math.max(...fit.extrapolationChecks.map(c=>c.residualPixels)).toFixed(1)} px at the lower checks. Filter predictions lie outside the anchor hull.`;target.append(note);
+ }
+ const disagreement=document.createElement('p');disagreement.textContent=`The fits disagree by up to ${review.maxFilterFitDisagreementPixels.toFixed(1)} px at the filter. They share anchors and are sensitivity checks, not independent measurements.`;target.append(disagreement);
+ const bottom=figure(data.cableCopper.source,'1180 920 130 190','Primary underside: reference-informed ground terminals. No continuation to the filter is asserted.');
+ for(const t of review.groundTerminals){const [x,y]=t.bottomPixel;bottom('circle',{cx:x,cy:y,r:5,fill:'none',stroke:'#ffe16a','stroke-width':1});bottom('text',{x:x+7,y:y+2,fill:'#ffe16a','font-size':5},t.terminal);}
+ for(const gap of review.gaps){const p=document.createElement('p');p.dataset.supplyGap=gap.id;p.textContent=gap.text;target.append(p);}
+ const link=document.createElement('a');link.href=`${data.source.cad.repository}/blob/${data.source.cad.revision}/models/robotron-1715m/keyboard-controller/generated/cable-copper.json`;link.textContent='Machine-readable supply review and fit checks';link.target='_blank';link.rel='noopener';target.append(link);
+}

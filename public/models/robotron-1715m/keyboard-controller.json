@@ -24748,8 +24748,10 @@
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
+      "route-evidence.json": "ab650188f8d3e826352205bd4596b83fe113c31da04714c8d82d5cd1fb4ab15a",
+      "supply-review.json": "f98f67c9d4e8d736619c6fbaa27a6119fdfa19d318c17a62a3050b06832315b2",
       "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
-      "tools/cable_copper.py": "aecd5d7a7c711b9ff8cb1b56ccb997ee3618ad659419097f3b7127d0cf2081be",
+      "tools/cable_copper.py": "11d074c3fa5981984b4fc7a6f0e3b4cd3b50b31e522751662888ff1dc3c3017c",
       "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068"
     },
     "nodes": {
@@ -25258,6 +25260,803 @@
       "path": "../reference/photos/PXL_20261012_123648677.jpg",
       "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
       "use": "Specimen placement and visible copper; approximate planar registration"
+    },
+    "supplyReview": {
+      "assignedFilterTerminals": {},
+      "conclusion": "Neither supply continuity nor cross-side registration identifies a filter terminal. Winding alternatives remain unconstrained.",
+      "fits": [
+        {
+          "anchors": [
+            {
+              "bottomPixel": [
+                1086,
+                647
+              ],
+              "net": "/+5V",
+              "terminal": "R3:1",
+              "topPixel": [
+                1677,
+                753
+              ]
+            },
+            {
+              "bottomPixel": [
+                1238,
+                643
+              ],
+              "net": "/RESET_BIAS_LOW",
+              "terminal": "R3:2",
+              "topPixel": [
+                1513,
+                757
+              ]
+            },
+            {
+              "bottomPixel": [
+                1089,
+                737
+              ],
+              "net": "/+5V",
+              "terminal": "R5:1",
+              "topPixel": [
+                1681,
+                847
+              ]
+            },
+            {
+              "bottomPixel": [
+                1242,
+                741
+              ],
+              "net": "/RESET_BIAS",
+              "terminal": "R5:2",
+              "topPixel": [
+                1523,
+                852
+              ]
+            }
+          ],
+          "bottomToTop": [
+            -1.918764614,
+            5.175524221,
+            9129.271204,
+            2.712916207,
+            8.819792165,
+            -3985.533591,
+            0.003134664038,
+            0.002772428773,
+            1
+          ],
+          "checks": [
+            {
+              "bottomPixel": [
+                1086,
+                691
+              ],
+              "insideAnchorHull": false,
+              "net": "/+5V",
+              "projectedTopPixel": [
+                1680.663151,
+                799.8694704
+              ],
+              "residualPixels": 0.6758753303,
+              "terminal": "R4.1:1",
+              "topPixel": [
+                1680,
+                800
+              ]
+            },
+            {
+              "bottomPixel": [
+                1240,
+                694
+              ],
+              "insideAnchorHull": false,
+              "net": "/RESET_DIODE_TOP",
+              "projectedTopPixel": [
+                1518.388273,
+                807.426035
+              ],
+              "residualPixels": 4.63865147,
+              "terminal": "R4.1:2",
+              "topPixel": [
+                1517,
+                803
+              ]
+            }
+          ],
+          "copperAssignmentQualified": false,
+          "extrapolationChecks": [
+            {
+              "bottomPixel": [
+                1090,
+                969
+              ],
+              "insideAnchorHull": false,
+              "net": "/RESET_OUT",
+              "projectedTopPixel": [
+                1696.810815,
+                1058.375447
+              ],
+              "residualPixels": 43.73905158,
+              "terminal": "R4.2:1",
+              "topPixel": [
+                1687,
+                1101
+              ]
+            },
+            {
+              "bottomPixel": [
+                1243,
+                972
+              ],
+              "insideAnchorHull": false,
+              "net": "/GND",
+              "projectedTopPixel": [
+                1551.121652,
+                1048.512968
+              ],
+              "residualPixels": 65.11939102,
+              "terminal": "R4.2:2",
+              "topPixel": [
+                1527,
+                1109
+              ]
+            },
+            {
+              "bottomPixel": [
+                1093,
+                1013
+              ],
+              "insideAnchorHull": false,
+              "net": "/RESET_EMITTERS",
+              "projectedTopPixel": [
+                1696.675541,
+                1093.919454
+              ],
+              "residualPixels": 57.89477328,
+              "terminal": "R7:1",
+              "topPixel": [
+                1687,
+                1151
+              ]
+            },
+            {
+              "bottomPixel": [
+                1245,
+                1013
+              ],
+              "insideAnchorHull": false,
+              "net": "/GND",
+              "projectedTopPixel": [
+                1554.016057,
+                1079.802793
+              ],
+              "residualPixels": 78.30088568,
+              "terminal": "R7:2",
+              "topPixel": [
+                1529,
+                1154
+              ]
+            },
+            {
+              "bottomPixel": [
+                1095,
+                1058
+              ],
+              "insideAnchorHull": false,
+              "net": "/RESET_RC",
+              "projectedTopPixel": [
+                1697.591681,
+                1129.080021
+              ],
+              "residualPixels": 71.7065347,
+              "terminal": "R8:1",
+              "topPixel": [
+                1687,
+                1200
+              ]
+            },
+            {
+              "bottomPixel": [
+                1245,
+                1057
+              ],
+              "insideAnchorHull": false,
+              "net": "/GND",
+              "projectedTopPixel": [
+                1558.886856,
+                1112.529126
+              ],
+              "residualPixels": 97.54220123,
+              "terminal": "R8:2",
+              "topPixel": [
+                1531,
+                1206
+              ]
+            }
+          ],
+          "filterPredictions": {
+            "CF1": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1268.588324,
+                732.7896789
+              ]
+            },
+            "CF2": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1294.375967,
+                737.5842458
+              ]
+            },
+            "CF3": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1318.387948,
+                735.9737069
+              ]
+            },
+            "CF4": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1342.152926,
+                734.3797351
+              ]
+            },
+            "LF1": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1287.844929,
+                818.0211094
+              ]
+            },
+            "LF2": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1308.880283,
+                816.6249169
+              ]
+            },
+            "LF3": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1332.234791,
+                816.0312425
+              ]
+            },
+            "LF4": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1357.836183,
+                815.380452
+              ]
+            }
+          },
+          "id": "upper-resistors"
+        },
+        {
+          "anchors": [
+            {
+              "bottomPixel": [
+                1086,
+                647
+              ],
+              "net": "/+5V",
+              "terminal": "R3:1",
+              "topPixel": [
+                1677,
+                753
+              ]
+            },
+            {
+              "bottomPixel": [
+                1238,
+                643
+              ],
+              "net": "/RESET_BIAS_LOW",
+              "terminal": "R3:2",
+              "topPixel": [
+                1513,
+                757
+              ]
+            },
+            {
+              "bottomPixel": [
+                1090,
+                969
+              ],
+              "net": "/RESET_OUT",
+              "terminal": "R4.2:1",
+              "topPixel": [
+                1687,
+                1101
+              ]
+            },
+            {
+              "bottomPixel": [
+                1243,
+                972
+              ],
+              "net": "/GND",
+              "terminal": "R4.2:2",
+              "topPixel": [
+                1527,
+                1109
+              ]
+            }
+          ],
+          "bottomToTop": [
+            -1.125666211,
+            0.2302774384,
+            3001.829699,
+            0.1205272586,
+            1.359083871,
+            -144.3616028,
+            7.478978348e-05,
+            0.0001061150985,
+            1
+          ],
+          "checks": [
+            {
+              "bottomPixel": [
+                1086,
+                691
+              ],
+              "insideAnchorHull": false,
+              "net": "/+5V",
+              "projectedTopPixel": [
+                1678.994017,
+                801.7497463
+              ],
+              "residualPixels": 2.01831972,
+              "terminal": "R4.1:1",
+              "topPixel": [
+                1680,
+                800
+              ]
+            },
+            {
+              "bottomPixel": [
+                1240,
+                694
+              ],
+              "insideAnchorHull": false,
+              "net": "/RESET_DIODE_TOP",
+              "projectedTopPixel": [
+                1513.924519,
+                813.023024
+              ],
+              "residualPixels": 10.48425452,
+              "terminal": "R4.1:2",
+              "topPixel": [
+                1517,
+                803
+              ]
+            },
+            {
+              "bottomPixel": [
+                1089,
+                737
+              ],
+              "insideAnchorHull": false,
+              "net": "/+5V",
+              "projectedTopPixel": [
+                1677.82417,
+                852.4424794
+              ],
+              "residualPixels": 6.301307484,
+              "terminal": "R5:1",
+              "topPixel": [
+                1681,
+                847
+              ]
+            },
+            {
+              "bottomPixel": [
+                1242,
+                741
+              ],
+              "insideAnchorHull": false,
+              "net": "/RESET_BIAS",
+              "projectedTopPixel": [
+                1514.602863,
+                864.1886002
+              ],
+              "residualPixels": 14.80114478,
+              "terminal": "R5:2",
+              "topPixel": [
+                1523,
+                852
+              ]
+            }
+          ],
+          "copperAssignmentQualified": false,
+          "extrapolationChecks": [
+            {
+              "bottomPixel": [
+                1093,
+                1013
+              ],
+              "insideAnchorHull": false,
+              "net": "/RESET_EMITTERS",
+              "projectedTopPixel": [
+                1685.738678,
+                1147.057658
+              ],
+              "residualPixels": 4.139201682,
+              "terminal": "R7:1",
+              "topPixel": [
+                1687,
+                1151
+              ]
+            },
+            {
+              "bottomPixel": [
+                1245,
+                1013
+              ],
+              "insideAnchorHull": false,
+              "net": "/GND",
+              "projectedTopPixel": [
+                1527.264938,
+                1151.455712
+              ],
+              "residualPixels": 3.079584738,
+              "terminal": "R7:2",
+              "topPixel": [
+                1529,
+                1154
+              ]
+            },
+            {
+              "bottomPixel": [
+                1095,
+                1058
+              ],
+              "insideAnchorHull": false,
+              "net": "/RESET_RC",
+              "projectedTopPixel": [
+                1685.578981,
+                1193.743724
+              ],
+              "residualPixels": 6.415628207,
+              "terminal": "R8:1",
+              "topPixel": [
+                1687,
+                1200
+              ]
+            },
+            {
+              "bottomPixel": [
+                1245,
+                1057
+              ],
+              "insideAnchorHull": false,
+              "net": "/GND",
+              "projectedTopPixel": [
+                1529.755079,
+                1196.610039
+              ],
+              "residualPixels": 9.472127055,
+              "terminal": "R8:2",
+              "topPixel": [
+                1531,
+                1206
+              ]
+            }
+          ],
+          "filterPredictions": {
+            "CF1": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1231.566689,
+                727.9165472
+              ]
+            },
+            "CF2": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1263.254929,
+                733.8662593
+              ]
+            },
+            "CF3": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1293.427517,
+                732.2430292
+              ]
+            },
+            "CF4": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1322.66576,
+                730.6700651
+              ]
+            },
+            "LF1": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1237.570612,
+                831.7216109
+              ]
+            },
+            "LF2": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1265.253273,
+                829.3195109
+              ]
+            },
+            "LF3": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1295.181701,
+                827.8846997
+              ]
+            },
+            "LF4": {
+              "insideAnchorHull": false,
+              "topPixel": [
+                1327.295809,
+                826.3451039
+              ]
+            }
+          },
+          "id": "extended-resistors"
+        }
+      ],
+      "gaps": [
+        {
+          "id": "supply-feed",
+          "text": "The recorded +5 V strip joins the board-edge resistor leads. A continuous photo-resolved path from that strip to a particular filter joint is not established. Do not merge the large cable-side copper area with this strip across isolation boundaries or obscured sections."
+        },
+        {
+          "id": "ground-feed",
+          "text": "The inner R4.2/R7/R8 leads share an underside strip; /GND is their common reference net. Its continuation to the filter is not established. The cable shield and large top copper areas are not interchangeable with logic ground without a visible connection."
+        },
+        {
+          "id": "registration",
+          "text": "Both resistor fits extrapolate laterally toward the filter and share R3 anchors. Small residuals within the resistor bank do not qualify filter registration. Raised top leads, winding arcs and underside solder joints must not be equated by nearest distance."
+        },
+        {
+          "id": "winding-identity",
+          "text": "An underside joint without a recorded departure is not evidence of a power or ground winding. Preserve every winding pairing until a same-specimen terminal connection or winding path constrains it."
+        }
+      ],
+      "groundTerminals": [
+        {
+          "bottomPixel": [
+            1243,
+            972
+          ],
+          "net": "/GND",
+          "terminal": "R4.2:2",
+          "topPixel": [
+            1527,
+            1109
+          ]
+        },
+        {
+          "bottomPixel": [
+            1245,
+            1013
+          ],
+          "net": "/GND",
+          "terminal": "R7:2",
+          "topPixel": [
+            1529,
+            1154
+          ]
+        },
+        {
+          "bottomPixel": [
+            1245,
+            1057
+          ],
+          "net": "/GND",
+          "terminal": "R8:2",
+          "topPixel": [
+            1531,
+            1206
+          ]
+        }
+      ],
+      "maxFilterFitDisagreementPixels": 52.1076836,
+      "rejectedWindingPairings": [],
+      "scope": "Supply-to-filter review. Reference net labels do not establish a hidden copper continuation or winding identity. Photo fits locate search regions only.",
+      "supplySpans": [
+        {
+          "photoPixels": [
+            [
+              1677,
+              753
+            ],
+            [
+              1688,
+              752
+            ]
+          ],
+          "routeId": "d2cc32a8-8b8a-4bad-979a-943f32536263",
+          "status": "inferred"
+        },
+        {
+          "photoPixels": [
+            [
+              1688,
+              752
+            ],
+            [
+              1704,
+              751
+            ]
+          ],
+          "routeId": "49b7261f-c582-42e0-ad01-ab98b4c6b8d8",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1704,
+              751
+            ],
+            [
+              1707,
+              797
+            ]
+          ],
+          "routeId": "1240fe26-e0fc-412e-b233-fd3811e4d447",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1707,
+              797
+            ],
+            [
+              1691,
+              800
+            ]
+          ],
+          "routeId": "faca42a7-4620-40bf-aaf2-58b2512a6dbc",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1691,
+              800
+            ],
+            [
+              1680,
+              800
+            ]
+          ],
+          "routeId": "a7355e9c-6829-41cd-bb03-a9135945c564",
+          "status": "inferred"
+        },
+        {
+          "photoPixels": [
+            [
+              1707,
+              797
+            ],
+            [
+              1710,
+              842
+            ]
+          ],
+          "routeId": "9aa496ee-1c04-4d03-9092-6868659fd264",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1710,
+              842
+            ],
+            [
+              1691,
+              847
+            ]
+          ],
+          "routeId": "836c74eb-7a4d-4dad-b3bc-fe45528bfcd3",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1691,
+              847
+            ],
+            [
+              1681,
+              847
+            ]
+          ],
+          "routeId": "1c4c573b-a236-4679-b93f-75699423fd0a",
+          "status": "inferred"
+        },
+        {
+          "photoPixels": [
+            [
+              1710,
+              842
+            ],
+            [
+              1713,
+              920
+            ]
+          ],
+          "routeId": "b7de3b33-377c-42e6-898f-28876b5b0615",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1713,
+              920
+            ],
+            [
+              1719,
+              1015
+            ]
+          ],
+          "routeId": "937e14a8-174d-4ad0-91f3-3c2d3fbfa7fd",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1719,
+              1015
+            ],
+            [
+              1720,
+              1053
+            ]
+          ],
+          "routeId": "ba013c47-d828-4e50-a612-517b0f26cdb6",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1720,
+              1053
+            ],
+            [
+              1694,
+              1055
+            ]
+          ],
+          "routeId": "c41bb143-5a93-4a1d-8474-2612b00622fa",
+          "status": "observed"
+        },
+        {
+          "photoPixels": [
+            [
+              1694,
+              1055
+            ],
+            [
+              1683,
+              1055
+            ]
+          ],
+          "routeId": "36b621c7-9687-42af-8eb1-d4d680c032f4",
+          "status": "inferred"
+        }
+      ],
+      "topSource": {
+        "id": "photo-top",
+        "path": "../reference/photos/PXL_20261012_123622947.jpg",
+        "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "use": "Specimen placement and visible copper; approximate planar registration"
+      }
     },
     "unresolved": [
       {
@@ -28320,7 +29119,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "00a42193f963545c350b6bc46ec7808906bce190"
+      "revision": "9ec9d8a5afee929a70a0f2102eb5adf7a2f9c282"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -28337,7 +29136,7 @@
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
-      "cableCopper": "315d012a2f581205b80fb8db56c1634dfbf561548f6b0691df2ceff1f0144f98",
+      "cableCopper": "ce5d7952ac2b1afd605b1c229a0baa3dcbb2514f37565c66526f8cb52ce3ab82",
       "connectionReview": "d29ff6b17633fe63f8df5642db87173b9a4ca894b47a99c7d90b9f6495148f6a",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
