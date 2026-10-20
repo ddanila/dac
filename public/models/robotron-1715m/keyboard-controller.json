@@ -26794,7 +26794,7 @@
     "schema": 1,
     "scope": "Physical route review, not new connectivity evidence. X1 serves the matrix/LEDs; XT1 is the host cable. Reference endpoints are targets for tracing, not observed attachments.",
     "inputSha256": {
-      "connection-review.json": "cf963a96ece5c1b9175f297da185c3602d087ea10fc7368208b2b02f93ac2f8e",
+      "connection-review.json": "255e7c4f7f793814bfb86194c22708292152a503b4e4b822642ec178f11a201e",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "route-evidence.json": "ab650188f8d3e826352205bd4596b83fe113c31da04714c8d82d5cd1fb4ab15a",
@@ -26809,12 +26809,12 @@
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
       "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
       "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
-      "path-tracing.json": "a796e12fdc972f3f9b2ef8eb80078ffa1c49b15f5a19a3fdb8f452eb5de3705f",
-      "tools/connection_review.py": "eca8c5a9e1cfdf8a4b3f2339f8d6d988606196aec7ac2da3ed8e27f785765f87",
+      "path-tracing.json": "be65c270e8f5f21c7abd4a79f1300149b7c13977678823a0f1f8b589becca245",
+      "tools/connection_review.py": "4ad9b30eaf4e4f8b61a4d1c6eba1050b262108b50b2e5b58b429b5e0f60f3551",
       "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068",
       "tools/bottom_registration.py": "cc7cad09ee54bc63359ff8c4331c598b984a877cd942435d0ba5521a03edfad8",
       "tools/clock_continuation.py": "7dfa75008966aaf544f0000b5ca5c75af2334a79ae5bc1b88211f8c01084880d",
-      "tools/path_tracing.py": "91683958ae4eba86db5e818f97977b8f1c7473535779fb5eb8c89dbd97a36b67"
+      "tools/path_tracing.py": "a620cf0988f58ee39b39e5942e04c5581775f888573a5c05fe863ec1cb39783f"
     },
     "cases": [
       {
@@ -29010,6 +29010,10 @@
                 "href": "../../reference/photos/PXL_20261012_123622947.jpg",
                 "specimen": "primary museum specimen"
               },
+              "imageSize": [
+                3072,
+                4080
+              ],
               "segments": [
                 {
                   "id": "data-between-r7-r42",
@@ -29083,6 +29087,10 @@
                 "href": "../../reference/photos/PXL_20261017_080406304.jpg",
                 "specimen": "comparison-20261017"
               },
+              "imageSize": [
+                3072,
+                4080
+              ],
               "segments": [
                 {
                   "id": "comparison-r7-r42",
@@ -29390,7 +29398,7 @@
           "A1:1 connects to A5:21 (RD), as in the published comparison.",
           "The terminal correspondence is still wrong or incomplete; neither candidate is established."
         ],
-        "nextDeskWork": "Resolve the A4 and A6 layer transitions and the route beneath A6 toward the counted CPU WR/RD joints. Keep the A6 body entry separate from its adjacent numbered lead; do not extend the A4 fit to A6.",
+        "nextDeskWork": "Reverse inspection of both CPU candidates stops at covered pin exits. Resolve the A4/A6 layer transitions and the hidden A5/A6 route; the separate land beyond the CPU row is not either CPU joint. Neither WR nor RD is excluded by the current photos.",
         "decisiveObservation": "A complete photographed route or distinguishable unpowered resistance readings from A1:1 to A5:21 and A5:22, with probe locations recorded.",
         "doNotInfer": "A successful S600 simulation of the WR reference does not determine the specimen's physical attachment.",
         "referenceNets": [
@@ -29564,6 +29572,10 @@
                 "href": "../../reference/photos/PXL_20261012_123648677.jpg",
                 "specimen": "primary museum specimen"
               },
+              "imageSize": [
+                3072,
+                4080
+              ],
               "segments": [
                 {
                   "id": "strobe-a4-a6-lane",
@@ -29626,6 +29638,10 @@
                 "href": "../../reference/photos/PXL_20261012_123622947.jpg",
                 "specimen": "primary museum specimen"
               },
+              "imageSize": [
+                3072,
+                4080
+              ],
               "segments": [
                 {
                   "id": "strobe-a6-body-entry",
@@ -29668,35 +29684,341 @@
                   "label": "Stop before A6 body; not a pin assignment"
                 }
               ]
-            },
-            {
-              "source": {
-                "id": "photo-bottom",
-                "path": "../reference/photos/PXL_20261012_123648677.jpg",
-                "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
-                "use": "Specimen placement and visible copper; approximate planar registration",
-                "href": "../../reference/photos/PXL_20261012_123648677.jpg",
-                "specimen": "primary museum specimen"
-              },
-              "segments": [],
-              "markers": [
-                {
-                  "point": [
-                    1125,
-                    3112
-                  ],
-                  "label": "A5:21 RD, identified by counted DIP row; no complete route to A1 established"
-                },
-                {
-                  "point": [
-                    1125,
-                    3081
-                  ],
-                  "label": "A5:22 WR, adjacent counted joint; no complete route to A1 established"
-                }
-              ]
             }
           ],
+          "cpuReverse": {
+            "scope": "Reverse review of both counted CPU candidates. Lead and solder coverage prevents following an outgoing track from either pin. No visible chain reaches the A6-side candidate; neither WR nor RD is excluded.",
+            "candidates": [
+              {
+                "terminal": "A5:21",
+                "signal": "RD",
+                "topPixel": [
+                  1785,
+                  3355
+                ],
+                "bottomPixel": [
+                  1125,
+                  3112
+                ],
+                "comparisonTopPixel": [
+                  620,
+                  1890
+                ],
+                "comparisonBottomPixel": [
+                  1964,
+                  2092
+                ],
+                "stopReason": "Package/lead coverage on top and solder coverage underneath. No exposed outgoing copper assigned.",
+                "observedPathToA6": false,
+                "excluded": false
+              },
+              {
+                "terminal": "A5:22",
+                "signal": "WR",
+                "topPixel": [
+                  1784,
+                  3324
+                ],
+                "bottomPixel": [
+                  1125,
+                  3081
+                ],
+                "comparisonTopPixel": [
+                  776,
+                  1895
+                ],
+                "comparisonBottomPixel": [
+                  1961,
+                  2177
+                ],
+                "stopReason": "Package/lead coverage on top and solder coverage underneath. No exposed outgoing copper assigned.",
+                "observedPathToA6": false,
+                "excluded": false
+              }
+            ],
+            "pinEvidence": "Counted from the ROM-facing end of the twenty-position CPU rows. Primary bottom A5:21 and A5:22 reuse cpuCandidates; top A5:21 reuses photo-landmarks.json. Top markers are lead observations, not visible hole centres. Comparison numbering is independently counted and is not transferred by a board-wide projection.",
+            "primary": {
+              "topSource": "photo-top",
+              "bottomSource": "photo-bottom",
+              "imageSize": [
+                3072,
+                4080
+              ],
+              "neighbourLand": [
+                1125,
+                3148
+              ],
+              "span": {
+                "id": "cpu-end-land-lane",
+                "points": [
+                  [
+                    1125,
+                    3148
+                  ],
+                  [
+                    1141,
+                    3130
+                  ],
+                  [
+                    1138,
+                    3015
+                  ]
+                ],
+                "status": "observed",
+                "scope": "Anonymous underside lane from the separate round land beyond the CPU row. The upper end is a review stop, not a hole or break. No RD/WR assignment or layer transition."
+              }
+            },
+            "comparison": {
+              "topSource": "comparison-photo-080429077",
+              "bottomSource": "comparison-photo-080342577",
+              "topImageSize": [
+                4080,
+                3072
+              ],
+              "bottomImageSize": [
+                3072,
+                4080
+              ],
+              "neighbourLand": [
+                1965,
+                2009
+              ],
+              "span": {
+                "id": "comparison-cpu-end-land-lane",
+                "points": [
+                  [
+                    1965,
+                    2009
+                  ],
+                  [
+                    1913,
+                    2055
+                  ],
+                  [
+                    1913,
+                    2240
+                  ]
+                ],
+                "status": "observed",
+                "scope": "Different specimen: separate land and adjacent underside lane beside the first CPU joints. Lower end is a review stop; no transfer of primary net identity."
+              }
+            },
+            "excludedShortcut": "The round land beyond the CPU row is a separate feature, not an extra CPU pin or either counted RD/WR joint. Its visible lane must not be attached to those pins by proximity. This does not exclude an unseen electrical connection elsewhere.",
+            "nextEvidence": "Resolve the outgoing copper beneath A5 at pins 21 and 22 and connect it across the obscured A5/A6 region. Current photos establish distinct pin locations and neighbouring copper, not which candidate reaches A1.",
+            "figures": [
+              {
+                "source": {
+                  "id": "photo-bottom",
+                  "path": "../reference/photos/PXL_20261012_123648677.jpg",
+                  "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+                  "use": "Specimen placement and visible copper; approximate planar registration",
+                  "href": "../../reference/photos/PXL_20261012_123648677.jpg",
+                  "specimen": "primary museum specimen"
+                },
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "segments": [
+                  {
+                    "id": "cpu-end-land-lane",
+                    "points": [
+                      [
+                        1125,
+                        3148
+                      ],
+                      [
+                        1141,
+                        3130
+                      ],
+                      [
+                        1138,
+                        3015
+                      ]
+                    ],
+                    "status": "observed",
+                    "scope": "Anonymous underside lane from the separate round land beyond the CPU row. The upper end is a review stop, not a hole or break. No RD/WR assignment or layer transition.",
+                    "group": "cpu-end-land-lane",
+                    "net": null,
+                    "imageSize": [
+                      3072,
+                      4080
+                    ],
+                    "detail": "Anonymous underside lane from the separate round land beyond the CPU row. The upper end is a review stop, not a hole or break. No RD/WR assignment or layer transition."
+                  }
+                ],
+                "markers": [
+                  {
+                    "point": [
+                      1125,
+                      3112
+                    ],
+                    "label": "A5:21 RD; covered exit, not a complete route"
+                  },
+                  {
+                    "point": [
+                      1125,
+                      3081
+                    ],
+                    "label": "A5:22 WR; covered exit, not a complete route"
+                  },
+                  {
+                    "point": [
+                      1125,
+                      3148
+                    ],
+                    "label": "Separate round land beyond the CPU row; not RD or WR pin"
+                  }
+                ]
+              },
+              {
+                "source": {
+                  "id": "photo-top",
+                  "path": "../reference/photos/PXL_20261012_123622947.jpg",
+                  "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+                  "use": "Specimen placement and visible copper; approximate planar registration",
+                  "href": "../../reference/photos/PXL_20261012_123622947.jpg",
+                  "specimen": "primary museum specimen"
+                },
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "segments": [],
+                "markers": [
+                  {
+                    "point": [
+                      1785,
+                      3355
+                    ],
+                    "label": "A5:21 RD; covered exit, not a complete route"
+                  },
+                  {
+                    "point": [
+                      1784,
+                      3324
+                    ],
+                    "label": "A5:22 WR; covered exit, not a complete route"
+                  }
+                ]
+              },
+              {
+                "source": {
+                  "id": "comparison-photo-080342577",
+                  "path": "../reference/photos/PXL_20261017_080342577.jpg",
+                  "sha256": "aa18874b9fba8db44216f8531ad9caab9125839a07838616bf1237f02a6b15fa",
+                  "specimenId": "comparison-20261017",
+                  "side": "bottom",
+                  "refs": [
+                    "A5",
+                    "A4",
+                    "A6",
+                    "A7",
+                    "A8",
+                    "BR1"
+                  ],
+                  "use": "ROM end and CPU underside; overlapping solder-joint and copper view. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+                  "href": "../../reference/photos/PXL_20261017_080342577.jpg",
+                  "specimen": "comparison-20261017"
+                },
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "segments": [
+                  {
+                    "id": "comparison-cpu-end-land-lane",
+                    "points": [
+                      [
+                        1965,
+                        2009
+                      ],
+                      [
+                        1913,
+                        2055
+                      ],
+                      [
+                        1913,
+                        2240
+                      ]
+                    ],
+                    "status": "observed",
+                    "scope": "Different specimen: separate land and adjacent underside lane beside the first CPU joints. Lower end is a review stop; no transfer of primary net identity.",
+                    "group": "comparison-cpu-end-land-lane",
+                    "net": null,
+                    "imageSize": [
+                      3072,
+                      4080
+                    ],
+                    "detail": "Different specimen: separate land and adjacent underside lane beside the first CPU joints. Lower end is a review stop; no transfer of primary net identity."
+                  }
+                ],
+                "markers": [
+                  {
+                    "point": [
+                      1964,
+                      2092
+                    ],
+                    "label": "A5:21 RD; covered exit, not a complete route"
+                  },
+                  {
+                    "point": [
+                      1961,
+                      2177
+                    ],
+                    "label": "A5:22 WR; covered exit, not a complete route"
+                  },
+                  {
+                    "point": [
+                      1965,
+                      2009
+                    ],
+                    "label": "Separate round land beyond the CPU row; not RD or WR pin"
+                  }
+                ]
+              },
+              {
+                "source": {
+                  "id": "comparison-photo-080429077",
+                  "path": "../reference/photos/PXL_20261017_080429077.jpg",
+                  "sha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3",
+                  "specimenId": "comparison-20261017",
+                  "side": "top",
+                  "refs": [
+                    "A5",
+                    "A4"
+                  ],
+                  "use": "CPU marking UB880D and nearby copper terminals. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
+                  "href": "../../reference/photos/PXL_20261017_080429077.jpg",
+                  "specimen": "comparison-20261017"
+                },
+                "imageSize": [
+                  4080,
+                  3072
+                ],
+                "segments": [],
+                "markers": [
+                  {
+                    "point": [
+                      620,
+                      1890
+                    ],
+                    "label": "A5:21 RD; covered exit, not a complete route"
+                  },
+                  {
+                    "point": [
+                      776,
+                      1895
+                    ],
+                    "label": "A5:22 WR; covered exit, not a complete route"
+                  }
+                ]
+              }
+            ],
+            "assignedReferenceTerminals": {},
+            "newNativeRoutes": [],
+            "electricalPathComplete": false
+          },
           "comparisonSources": [
             {
               "id": "comparison-photo-080342577",
@@ -31267,7 +31589,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "8b94c8f7bfee801d95420a9213122a86be20ff1e"
+      "revision": "e98032631e676a3be2e96f96487b999475072111"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -31285,7 +31607,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "cableCopper": "552cfa30783a00dc6c614cde7f8fb4dcd4196b6da0a3da14d8ac722ae79b1ff7",
-      "connectionReview": "badc1096238462521594c7b2fd567dbaadcd0eddd2ca3cbde2e2180601b95b67",
+      "connectionReview": "c9b9b837ade7ba606f6e06d353a8c994a562236ea1215705fa6def7b76dde3fd",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",

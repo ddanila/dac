@@ -51,8 +51,9 @@ reconstruction requirements below remain in scope.
    the wider filter/resistor fit does not qualify an LF attachment.
    For data, resolve the R7 transition and joins hidden by R4.2/R6.1 in
    `path-tracing.json`. For the strobe, resolve the A4/A6 terminal transitions
-   and under-A6 route before selecting CPU WR or RD; the local terminal
-   matches remain outside their registration hulls.
+   and hidden A5/A6 route before selecting CPU WR or RD. Reverse tracing
+   stops at the covered CPU pin exits; neither candidate is excluded.
+   The A4/A6 terminal matches remain outside their registration hulls.
 2. **Close pending capture reviews.** Review the held-key/repeat/release
    service capture for host voltage and receiver timing, then obtain a matched
    timestep-refinement pair. Preserve its source revision and model assumptions

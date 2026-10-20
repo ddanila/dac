@@ -789,12 +789,20 @@ test('data and strobe tracing expose unresolved joins without assigning native r
   expect(review.newNativeRoutes).toEqual([]);
   expect(review.assignedReferenceTerminals).toEqual({});
   await panel.getByLabel('Controller signal path',{exact:true}).selectOption(id);
-  const trace=panel.locator(`[data-path-tracing="${id}"]`);await trace.locator('summary').click();
+  const trace=panel.locator(`[data-path-tracing="${id}"]`);await trace.locator(':scope > summary').click();
   await expect(trace.locator(`[data-observed-span="${span}"]`)).toBeVisible();
   await expect(trace.locator(`[data-path-gap="${gap}"]`)).toBeVisible();
   await expect(trace).toContainText('do not establish hidden continuity');
   if(id==='host-data'){await expect(trace).toContainText('Comparison specimen only');await expect(trace.locator('[data-photo-specimen="comparison-20261017"] figcaption')).toContainText('Comparison specimen');}
-  else await expect(trace).toContainText('outside anchor hull');
+  else {
+   await expect(trace).toContainText('outside anchor hull');
+   const reverse=trace.locator('[data-cpu-reverse]');await reverse.locator('summary').click();
+   await expect(reverse).toContainText('neither WR nor RD is excluded');
+   await expect(reverse.locator('[data-observed-span="cpu-end-land-lane"]')).toBeVisible();
+   const image=reverse.locator('[data-connection-photo="comparison-photo-080429077"] image');
+   await expect(image).toHaveAttribute('width','4080');await expect(image).toHaveAttribute('height','3072');
+   expect(review.cpuReverse.candidates.every(c=>!c.excluded&&!c.observedPathToA6)).toBe(true);
+  }
  }
  await page.setViewportSize({width:390,height:844});
  expect(await panel.evaluate(e=>e.scrollWidth<=e.clientWidth+2)).toBe(true);

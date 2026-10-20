@@ -30,14 +30,14 @@ function connectionPhoto(fig){
  svg.setAttribute('role','img');svg.setAttribute('aria-label',`Connection evidence: ${fig.source.id}`);
  svg.style.cssText='display:block;width:100%;max-width:560px;max-height:340px;background:#14232d';
  const add=(tag,attrs)=>{const node=document.createElementNS(svgNS,tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,value);svg.append(node);return node;};
- add('image',{href:url,width:3072,height:4080});
+ const [imageWidth,imageHeight]=fig.imageSize||[3072,4080];add('image',{href:url,width:imageWidth,height:imageHeight});
  for(const segment of fig.segments)add('polyline',{...(segment.id?{'data-observed-span':segment.id}:{}),points:segment.points.map(p=>p.join(',')).join(' '),fill:'none',stroke:segment.status==='inferred'?'#ffcf5b':'#37f3d4','stroke-width':3,'stroke-dasharray':segment.status==='inferred'?'7 5':'none'});
  const labels=document.createElement('ul');
  for(const marker of fig.markers){
   add('circle',{...(marker.kind==='search'?{'data-search-region':''}:{}),cx:marker.point[0],cy:marker.point[1],r:marker.radius||9,fill:'none',stroke:marker.kind==='search'?'#ffcf5b':'#ff79ad','stroke-width':3,'stroke-dasharray':marker.kind==='search'?'5 4':'none'});
   const label=document.createElement('li');label.textContent=marker.label;labels.append(label);
  }
- const caption=document.createElement('figcaption');caption.textContent=(fig.source.specimenId?'Comparison specimen ('+fig.source.specimenId+'): ':'Primary specimen: ')+'teal observed copper; dashed amber inferred copper or projected search region; pink recorded span ends. Search circles are not identified joints.';
+ const caption=document.createElement('figcaption');caption.textContent=(fig.source.specimenId?'Comparison specimen ('+fig.source.specimenId+'): ':'Primary specimen: ')+'teal observed copper; dashed amber inferred copper or projected search region; pink recorded features or span ends. Search circles are not identified joints.';
  const link=document.createElement('a');link.href=url;link.textContent='Open original photograph';link.target='_blank';link.rel='noopener';
  figure.append(svg,caption,labels,link);return figure;
 }
@@ -269,6 +269,14 @@ export function installKeyboardControllerReview(scene){
      const fits=document.createElement('p');fits.textContent=t.registrations.map(r=>`${r.id}: ${r.maxCheckResidualPixels.toFixed(1)} px maximum held-out residual; photo alignment ${r.photoAlignmentAccepted?'accepted':'rejected'}.`).join(' ')+' These checks do not establish hidden continuity.';details.append(fits);
      for(const fig of t.figures)details.append(connectionPhoto(fig));
      const gaps=document.createElement('ul');for(const gap of t.openJoins){const li=document.createElement('li');li.dataset.pathGap=gap.id;li.textContent=gap.scope;gaps.append(li);}details.append(gaps);
+     if(t.cpuReverse){
+      const r=t.cpuReverse,reverse=document.createElement('details');reverse.dataset.cpuReverse='';
+      const heading=document.createElement('summary');heading.textContent='Reverse trace: CPU RD and WR';reverse.append(heading);
+      for(const text of [r.scope,r.pinEvidence]){const p=document.createElement('p');p.textContent=text;reverse.append(p);}
+      for(const fig of r.figures)reverse.append(connectionPhoto(fig));
+      for(const text of [r.excludedShortcut,r.nextEvidence]){const p=document.createElement('p');p.textContent=text;reverse.append(p);}
+      details.append(reverse);
+     }
      const comparison=document.createElement('p');comparison.textContent=t.comparisonScope;details.append(comparison);section.append(details);
     }
     if(review.crossSideSearch){const note=document.createElement('p');note.textContent=review.crossSideSearch.scope;section.append(note);}
