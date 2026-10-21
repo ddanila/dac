@@ -36382,9 +36382,37 @@
     "latchPaths": [
       {
         "continuityEstablished": false,
+        "hypothesisStatus": "attachment-disfavored",
         "id": "latch-review-d1",
         "nativeCopper": false,
-        "reason": "The latch-side candidate reaches an unassigned underside joint, not CPU pin 15. CPU-side tracing follows the existing ROM branch; the top lead entry is obscured. A complete latch-to-CPU continuation is unresolved.",
+        "reason": "The nearby eye is not a demonstrated attachment to A4 pin 18: its exposed top trace runs toward the CPU edge. Its underside endpoint projects near R6.4, whose reference nets differ from D1. These observations disfavor this starting-eye hypothesis without identifying the hidden resistor entry.",
+        "referenceConstraints": {
+          "compatibleWithTarget": false,
+          "physicalIdentityEstablished": false,
+          "reason": "If the unassigned endpoint belongs to R6.4, it cannot be a direct D1 copper join in the reference circuit. Physical terminal identity is still unresolved; this is a conditional constraint, not a net assignment.",
+          "terminals": [
+            {
+              "net": "/+5V",
+              "terminal": "R6.4:1"
+            },
+            {
+              "net": "/CPU_PULLUP",
+              "terminal": "R6.4:2"
+            },
+            {
+              "net": "/CPU_PULLUP",
+              "terminal": "A5:16"
+            },
+            {
+              "net": "/CPU_PULLUP",
+              "terminal": "A5:17"
+            },
+            {
+              "net": "/CPU_PULLUP",
+              "terminal": "A5:24"
+            }
+          ]
+        },
         "referenceNet": "/D1",
         "reverseReview": {
           "alternativeScope": "Nearby underside features checked against the same top endpoint with unchanged local fits. Ranking is positional only; a pad is not an interchangeable via and no candidate establishes continuity.",
@@ -36574,11 +36602,13 @@
         "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
         "terminalReview": {
           "continuityEstablished": false,
+          "landmarkRouteGroup": "cpu-rom-d1",
           "nativeCopper": false,
           "point": [
             1309,
             2958
           ],
+          "projectionRegion": "latch-eyes",
           "reason": "CPU pin 15 has a visible underside exit toward the already reconstructed ROM branch. The candidate latch path ends at [1408,2923], spatially separate from this pad and exit. No exposed underside bridge between them is identified; this does not exclude a top-side continuation.",
           "segments": [
             {
@@ -36613,22 +36643,261 @@
           "source": "photo-bottom",
           "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
           "terminal": "A5:15",
+          "topProjection": {
+            "continuityEstablished": false,
+            "endpointSeparationMm": null,
+            "insideFitHull": false,
+            "point": [
+              1565.534433309,
+              3191.732609917
+            ]
+          },
           "topReview": {
             "imageSize": [
               3072,
               4080
             ],
-            "observation": "CPU pin 15 is the raised lead near [1596,3202]. Neighboring board tracks enter beneath the raised lead/body edge; the visible lead knee does not establish which entry belongs to pin 15. No top-side terminal attachment is assigned.",
+            "observation": "CPU pin 15 is the raised lead near [1596,3202]. Its board-plane search projection lies below the validated eye hull. A nearby exposed track turns toward the resistor area; the covered entry and upstream continuation are unresolved. The recorded top spans are anonymous exposed copper only; neither end is attached to a numbered pad.",
             "pixelBox": [
               1430,
               3130,
               1620,
               3240
             ],
+            "segments": [
+              {
+                "id": "d1-cpu-top-lane-0",
+                "points": [
+                  [
+                    1558,
+                    3190
+                  ],
+                  [
+                    1542,
+                    3190
+                  ]
+                ],
+                "status": "observed"
+              },
+              {
+                "id": "d1-cpu-top-lane-1",
+                "points": [
+                  [
+                    1542,
+                    3190
+                  ],
+                  [
+                    1518,
+                    3204
+                  ]
+                ],
+                "status": "observed"
+              },
+              {
+                "id": "d1-cpu-top-lane-2",
+                "points": [
+                  [
+                    1518,
+                    3204
+                  ],
+                  [
+                    1498,
+                    3188
+                  ]
+                ],
+                "status": "observed"
+              },
+              {
+                "id": "d1-cpu-top-lane-3",
+                "points": [
+                  [
+                    1498,
+                    3188
+                  ],
+                  [
+                    1465,
+                    3188
+                  ]
+                ],
+                "status": "observed"
+              }
+            ],
             "source": "photo-top",
             "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
           }
         },
+        "terminals": [
+          "A4:18",
+          "A5:15"
+        ]
+      },
+      {
+        "continuityEstablished": false,
+        "hypothesisStatus": "alternative-attachment-unresolved",
+        "id": "latch-review-d1-inner-eye",
+        "nativeCopper": false,
+        "reason": "The neighboring inner eye has an exposed track toward the A4 pin-18 lead area. The lead-to-track attachment remains inferred. Its underside lane runs upward beyond this local review, not into the neighboring lower eye. No complete path to CPU pin 15 is established.",
+        "referenceNet": "/D1",
+        "reverseReview": {
+          "alternatives": [],
+          "continuityEstablished": false,
+          "endKind": "trace-exit",
+          "point": [
+            1345,
+            2662
+          ],
+          "positionCheck": {
+            "continuityEstablished": false,
+            "residualMm": 0.480905453,
+            "toleranceMm": 1.25,
+            "withinFitBudget": true
+          },
+          "radiusPixels": 18,
+          "reason": "The visible lane leaves the eye upward, bends toward [1364,2566], and continues beyond the local registration area. It does not establish a CPU pin-15 attachment.",
+          "registrationRegions": {
+            "bottom": "cpu-a4",
+            "top": "latch-eyes"
+          },
+          "segments": [
+            {
+              "id": "d1-inner-bottom-0",
+              "points": [
+                [
+                  1345,
+                  2662
+                ],
+                [
+                  1334,
+                  2650
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "d1-inner-bottom-1",
+              "points": [
+                [
+                  1334,
+                  2650
+                ],
+                [
+                  1333,
+                  2600
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "d1-inner-bottom-2",
+              "points": [
+                [
+                  1333,
+                  2600
+                ],
+                [
+                  1364,
+                  2566
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "d1-inner-bottom-3",
+              "points": [
+                [
+                  1364,
+                  2566
+                ],
+                [
+                  1364,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "status": "candidate-correspondence-only",
+          "unassignedEnd": [
+            1364,
+            2500
+          ]
+        },
+        "segments": [
+          {
+            "id": "d1-inner-top-0",
+            "points": [
+              [
+                1442,
+                2876
+              ],
+              [
+                1446,
+                2890
+              ]
+            ],
+            "status": "inferred"
+          },
+          {
+            "id": "d1-inner-top-1",
+            "points": [
+              [
+                1446,
+                2890
+              ],
+              [
+                1455,
+                2890
+              ]
+            ],
+            "status": "inferred"
+          },
+          {
+            "id": "d1-inner-top-2",
+            "points": [
+              [
+                1455,
+                2890
+              ],
+              [
+                1465,
+                2900
+              ]
+            ],
+            "status": "observed"
+          },
+          {
+            "id": "d1-inner-top-3",
+            "points": [
+              [
+                1465,
+                2900
+              ],
+              [
+                1508,
+                2898
+              ]
+            ],
+            "status": "observed"
+          },
+          {
+            "id": "d1-inner-top-4",
+            "points": [
+              [
+                1508,
+                2898
+              ],
+              [
+                1517,
+                2887
+              ]
+            ],
+            "status": "observed"
+          }
+        ],
+        "source": "photo-top",
+        "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
         "terminals": [
           "A4:18",
           "A5:15"
@@ -36700,6 +36969,73 @@
         ],
         "source": "photo-top",
         "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "terminalReview": {
+          "continuityEstablished": false,
+          "nativeCopper": false,
+          "point": [
+            1307,
+            2706
+          ],
+          "projectionRegion": "latch-eyes",
+          "reason": "CPU pin 7 has an underside exit into the reconstructed ROM branch. The top fan-out endpoint is offset from the board-plane pin-7 projection; joining it to the nearest visible raised lead would not establish D4 continuity.",
+          "segments": [
+            {
+              "id": "d4-cpu-exit-0",
+              "points": [
+                [
+                  1307,
+                  2706
+                ],
+                [
+                  1297,
+                  2719
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "d4-cpu-exit-1",
+              "points": [
+                [
+                  1297,
+                  2719
+                ],
+                [
+                  1251,
+                  2758
+                ]
+              ],
+              "status": "observed"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminal": "A5:7",
+          "topProjection": {
+            "continuityEstablished": false,
+            "endpointSeparationMm": 4.198966335,
+            "insideFitHull": true,
+            "point": [
+              1562.543986935,
+              2931.128510672
+            ]
+          },
+          "topReview": {
+            "imageSize": [
+              3072,
+              4080
+            ],
+            "observation": "The D4 fan-out disappears beneath the CPU lead/body edge. The board-plane target for pin 7 is above that exit. The intervening covered continuation remains unresolved.",
+            "pixelBox": [
+              1490,
+              2900,
+              1625,
+              3010
+            ],
+            "source": "photo-top",
+            "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+          }
+        },
         "terminals": [
           "A4:15",
           "A5:7"
@@ -44537,7 +44873,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "ac90086435259de7b69b9dc85c490ffb6eac635e"
+      "revision": "884f79b41b7fe08ac93038ea17733fb6ac204b7a"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -44555,7 +44891,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
-      "busReview": "c32da0065982a73bf89c4ba6f278c7421f5259f47a2cd74d1704908dd08b665f",
+      "busReview": "c99ecc12d69dea8c55288329af6b530fe9f4072f61abfbf28b0376efa3733b05",
       "cableCopper": "3ace669670dff47f0b3b518f75b59c0a0086d590e6bbd03df012156b0fe4717d",
       "connectionReview": "b49f485d9d959c14e4db473a10a8ec40fa792672fc65c7c1f43a9f04fc3f3b8c",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"

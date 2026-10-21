@@ -208,6 +208,10 @@ export function installKeyboardControllerReview(scene){
      for(const candidate of [...(data.busReview?.paths||[]),...(data.busReview?.latchPaths||[])].filter(p=>p.referenceNet===net.net)){
       const note=document.createElement('p');note.textContent='Review target: '+candidate.terminals.join(' ↔ ')+'. '+candidate.reason;
       section.append(note,connectionPhoto({source:data.evidence.sources.find(s=>s.id===candidate.source),segments:candidate.segments,markers:[]}));
+      if(candidate.referenceConstraints){
+       const constraint=candidate.referenceConstraints,note=document.createElement('p');note.dataset.busReferenceConstraint=candidate.id;
+       note.textContent='Reference constraint: '+constraint.terminals.map(t=>`${t.terminal} ${t.net}`).join('; ')+'. '+constraint.reason;section.append(note);
+      }
       if(candidate.reverseReview){
        const reverse=candidate.reverseReview;
        if(reverse.positionCheck){const note=document.createElement('p');note.dataset.eyePositionCheck=candidate.id;note.textContent=`Candidate position check: ${reverse.positionCheck.residualMm.toFixed(2)} mm disagreement, ${reverse.positionCheck.withinFitBudget?'within':'outside'} the ${reverse.positionCheck.toleranceMm.toFixed(2)} mm fit budget. This does not establish through-board identity or continuity.`;section.append(note);}
@@ -218,7 +222,7 @@ export function installKeyboardControllerReview(scene){
         const body=table.createTBody();for(const alternative of reverse.alternatives){const row=body.insertRow();for(const value of [alternative.terminal||alternative.id,alternative.point.join(', '),alternative.positionCheck.residualMm.toFixed(2)+' mm',alternative.positionCheck.withinFitBudget?'Within; unresolved':'Outside'])row.insertCell().textContent=value;}
         section.append(table);
        }
-       section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:reverse.segments||[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason},...(reverse.unassignedEnd?[{point:reverse.unassignedEnd,label:'Unassigned continuation joint; CPU attachment unresolved.'}]:[])]}));
+       section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:reverse.segments||[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason},...(reverse.unassignedEnd?[{point:reverse.unassignedEnd,label:reverse.endKind==='trace-exit'?'Trace continues beyond this local review; no terminal assigned.':'Unassigned continuation joint; CPU attachment unresolved.'}]:[])]}));
        if(reverse.continuationProjection){
         const projection=reverse.continuationProjection,note=document.createElement('p');note.dataset.eyeContinuation=candidate.id;note.textContent=projection.reason;section.append(note);
         section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id==='photo-top'),segments:[],markers:[{point:projection.point,label:'Extrapolated search point; no joint or terminal assigned.'}]}));
@@ -228,6 +232,12 @@ export function installKeyboardControllerReview(scene){
        const terminal=candidate.terminalReview,note=document.createElement('p');note.dataset.busTerminalReview=candidate.id;note.textContent=terminal.reason;section.append(note);
        section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===terminal.source),segments:terminal.segments,markers:[{point:terminal.point,label:terminal.terminal},...(candidate.reverseReview?.unassignedEnd?[{point:candidate.reverseReview.unassignedEnd,label:'Separate latch-side candidate endpoint; no joining span identified.'}]:[])]}));
        const top=terminal.topReview,photo=componentPhoto(data,'A5',{photoSource:top.source,pixelBox:top.pixelBox,scope:top.observation});if(photo)section.append(photo);
+       if(top.segments?.length)section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===top.source),segments:top.segments,markers:[{point:top.segments[0].points[0],label:'CPU-side exposed track end; pin attachment unresolved.'},{point:top.segments.at(-1).points.at(-1),label:'Track approaches resistor occlusion; continuation unresolved.'}]}));
+       if(terminal.topProjection){
+        const projection=terminal.topProjection,note=document.createElement('p');note.dataset.busTerminalProjection=candidate.id;
+        note.textContent=`${terminal.terminal} board-plane search: `+(projection.insideFitHull?`${projection.endpointSeparationMm.toFixed(2)} mm from the visible candidate endpoint inside the local fit.`:'outside the validated eye-fit hull; no bounded separation is reported.')+' Projection does not establish an attachment or a covered continuation.';section.append(note);
+        section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id==='photo-top'),segments:candidate.segments,markers:[{point:projection.point,label:terminal.terminal+' projected board-plane location; attachment unresolved.'}]}));
+       }
       }
       if(candidate.crossSideSearch){
        const cross=data.busReview.crossSide,search=candidate.crossSideSearch;

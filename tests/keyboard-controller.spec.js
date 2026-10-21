@@ -876,8 +876,11 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  await section.locator(':scope > summary').click();
  await expect(section).toContainText('Review target: A4:18 ↔ A5:15');
  await expect(section).toContainText('Neither through-board identity');
- await expect(section.locator('[data-eye-position-check]')).toContainText('within the 1.25 mm fit budget');
- await expect(section.locator('[data-search-region]')).toHaveCount(1);
+ await expect(section.locator('[data-eye-position-check="latch-review-d1"]')).toContainText('within the 1.25 mm fit budget');
+ await expect(section.locator('[data-search-region]')).toHaveCount(2);
+ await expect(section.locator('[data-bus-reference-constraint]')).toContainText('R6.4:2 /CPU_PULLUP');
+ await expect(section.locator('[data-bus-terminal-projection]')).toContainText('outside the validated eye-fit hull');
+ await expect(section).toContainText('Trace continues beyond this local review');
  await expect(section.locator('[data-bus-terminal-review]')).toContainText('CPU pin 15');
  await expect(section.locator('[data-bus-terminal-review]')).toContainText('does not exclude a top-side continuation');
  await expect(section.locator('[data-eye-alternatives] tbody tr')).toHaveCount(5);
@@ -895,6 +898,11 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  await expect(fit).toContainText('Different specimen');
  expect(data.routingAudit.nets.find(n=>n.net==='/D2').islands[0].terminals.sort()).toEqual(['A4:17','A5:12','A8:11']);
  expect(data.busReview.latchPaths.some(p=>p.referenceNet==='/D2')).toBe(false);
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/D4');
+ await panel.locator('[data-routing-audit] > summary').click();
+ const d4=panel.locator('[data-routing-net="/D4"]');await d4.locator(':scope > summary').click();
+ await expect(d4.locator('[data-bus-terminal-projection]')).toContainText('4.20 mm');
+ await expect(d4.locator('[data-bus-terminal-projection]')).toContainText('does not establish an attachment');
 });
 
 test('bus review separates partial fan-out from connected CPU-ROM lanes',async({page})=>{
