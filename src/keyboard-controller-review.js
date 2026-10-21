@@ -203,11 +203,19 @@ export function installKeyboardControllerReview(scene){
       const note=document.createElement('p');note.textContent=`${region.checks.length} held-out eyes: ${region.maxCheckResidualMm.toFixed(2)} mm maximum residual against the unchanged ${region.toleranceMm.toFixed(2)} mm budget. Selected eye: ${eyeTarget.residualMm.toFixed(2)} mm disagreement. ${eyeReview.scope}`;review.append(note);
       for(const side of ['top','bottom'])review.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id==='photo-'+side),segments:[],regions:[{ref:'Bounded eye fit',kind:'registration',polygon:side==='top'?region.anchorHull:region.bottomHull}],markers:[...region.anchors.map(p=>({point:side==='top'?p.photoPixel:p.bottomPixel,label:'Anchor: '+p.id})),...region.checks.map(p=>({point:side==='top'?p.photoPixel:p.bottomPixel,label:`Held out: ${p.id}, ${p.residualMm.toFixed(2)} mm`})),{point:eyeTarget[side],label:'Selected eye; independent of fit anchors.'}]}));
       for(const c of eyeReview.comparisons){const photo=componentPhoto(data,'A5',{photoSource:c.source,pixelBox:c.pixelBox,scope:c.observation});if(photo)review.append(photo);}
+      for(const trial of data.busReview.registrationTrials||[]){
+       const detail=document.createElement('details');detail.dataset.registrationTrial=trial.id;
+       const title=document.createElement('summary');title.textContent='Unqualified wider alignment';detail.append(title);
+       const note=document.createElement('p');note.textContent=trial.reason+` Maximum held-out disagreement: ${trial.maxCheckResidualPixels.toFixed(1)} underside pixels. All anchors within the underside fit: ${trial.anchorsInsideBottomFitHull?'yes':'no'}.`;detail.append(note);
+       for(const side of ['top','bottom'])detail.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===(side==='top'?trial.source:trial.bottomSource)),segments:[],markers:[...trial.anchors.map(p=>({point:side==='top'?p.photoPixel:p.bottomPixel,label:'Trial anchor: '+p.id})),...trial.checks.map(p=>({point:side==='top'?p.photoPixel:p.bottomPixel,label:`Held out: ${p.id}, ${p.residualPixels.toFixed(1)} px`}))]}));
+       review.append(detail);
+      }
       section.append(review);
      }
      for(const candidate of [...(data.busReview?.paths||[]),...(data.busReview?.latchPaths||[])].filter(p=>p.referenceNet===net.net)){
       const note=document.createElement('p');note.textContent='Review target: '+candidate.terminals.join(' ↔ ')+'. '+candidate.reason;
       section.append(note,connectionPhoto({source:data.evidence.sources.find(s=>s.id===candidate.source),segments:candidate.segments,markers:[]}));
+      for(const c of candidate.comparisons||[]){const photo=componentPhoto(data,'A5',{photoSource:c.source,pixelBox:c.pixelBox,scope:c.observation});if(photo)section.append(photo);}
       if(candidate.referenceConstraints){
        const constraint=candidate.referenceConstraints,note=document.createElement('p');note.dataset.busReferenceConstraint=candidate.id;
        note.textContent='Reference constraint: '+constraint.terminals.map(t=>`${t.terminal} ${t.net}`).join('; ')+'. '+constraint.reason;section.append(note);
@@ -222,7 +230,7 @@ export function installKeyboardControllerReview(scene){
         const body=table.createTBody();for(const alternative of reverse.alternatives){const row=body.insertRow();for(const value of [alternative.terminal||alternative.id,alternative.point.join(', '),alternative.positionCheck.residualMm.toFixed(2)+' mm',alternative.positionCheck.withinFitBudget?'Within; unresolved':'Outside'])row.insertCell().textContent=value;}
         section.append(table);
        }
-       section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:reverse.segments||[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason},...(reverse.unassignedEnd?[{point:reverse.unassignedEnd,label:reverse.endKind==='trace-exit'?'Trace continues beyond this local review; no terminal assigned.':'Unassigned continuation joint; CPU attachment unresolved.'}]:[])]}));
+       section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:reverse.segments||[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason},...(reverse.unassignedEnd?[{point:reverse.unassignedEnd,label:reverse.endKind==='trace-exit'?'Trace continues beyond this local review; no terminal assigned.':reverse.endKind==='candidate-pad'?'Candidate pad attachment; terminal identity remains inferred.':'Unassigned continuation joint; CPU attachment unresolved.'}]:[])]}));
        if(reverse.continuationProjection){
         const projection=reverse.continuationProjection,note=document.createElement('p');note.dataset.eyeContinuation=candidate.id;note.textContent=projection.reason;section.append(note);
         section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id==='photo-top'),segments:[],markers:[{point:projection.point,label:'Extrapolated search point; no joint or terminal assigned.'}]}));

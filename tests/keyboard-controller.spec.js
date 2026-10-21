@@ -878,9 +878,11 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  await expect(section).toContainText('Neither through-board identity');
  await expect(section.locator('[data-eye-position-check="latch-review-d1"]')).toContainText('within the 1.25 mm fit budget');
  await expect(section.locator('[data-search-region]')).toHaveCount(2);
- await expect(section.locator('[data-bus-reference-constraint]')).toContainText('R6.4:2 /CPU_PULLUP');
+ await expect(section.locator('[data-bus-reference-constraint="latch-review-d1"]')).toContainText('R6.4:2 /CPU_PULLUP');
  await expect(section.locator('[data-bus-terminal-projection]')).toContainText('outside the validated eye-fit hull');
- await expect(section).toContainText('Trace continues beyond this local review');
+ await expect(section).toContainText('Candidate pad attachment; terminal identity remains inferred');
+ await expect(section).toContainText('A2.2:2 /A7');
+ await expect(section.locator('[data-registration-trial]')).toHaveCount(1);
  await expect(section.locator('[data-bus-terminal-review]')).toContainText('CPU pin 15');
  await expect(section.locator('[data-bus-terminal-review]')).toContainText('does not exclude a top-side continuation');
  await expect(section.locator('[data-eye-alternatives] tbody tr')).toHaveCount(5);

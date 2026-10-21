@@ -36733,15 +36733,26 @@
       },
       {
         "continuityEstablished": false,
-        "hypothesisStatus": "alternative-attachment-unresolved",
+        "hypothesisStatus": "attachment-disfavored",
         "id": "latch-review-d1-inner-eye",
         "nativeCopper": false,
-        "reason": "The neighboring inner eye has an exposed track toward the A4 pin-18 lead area. The lead-to-track attachment remains inferred. Its underside lane runs upward beyond this local review, not into the neighboring lower eye. No complete path to CPU pin 15 is established.",
+        "reason": "The neighboring eye leads upward toward A2.2 pin 2, whose reference net is A7. Its A4 pin-18 attachment and solder-covered far endpoint remain inferred. If that endpoint identity is correct, this is not a direct D1 branch.",
+        "referenceConstraints": {
+          "compatibleWithTarget": false,
+          "physicalIdentityEstablished": false,
+          "reason": "The traced endpoint is near A2.2 pin 2 (A7). This condition disfavors D1 identity without assigning the anonymous lane to A7 or claiming measured continuity.",
+          "terminals": [
+            {
+              "net": "/A7",
+              "terminal": "A2.2:2"
+            }
+          ]
+        },
         "referenceNet": "/D1",
         "reverseReview": {
           "alternatives": [],
           "continuityEstablished": false,
-          "endKind": "trace-exit",
+          "endKind": "candidate-pad",
           "point": [
             1345,
             2662
@@ -36753,7 +36764,7 @@
             "withinFitBudget": true
           },
           "radiusPixels": 18,
-          "reason": "The visible lane leaves the eye upward, bends toward [1364,2566], and continues beyond the local registration area. It does not establish a CPU pin-15 attachment.",
+          "reason": "The lane continues upward to the A2.2 pin-2 solder-joint area. The final attachment is inferred; this does not establish a CPU pin-15 connection.",
           "registrationRegions": {
             "bottom": "cpu-a4",
             "top": "latch-eyes"
@@ -36814,14 +36825,56 @@
                 ]
               ],
               "status": "observed"
+            },
+            {
+              "id": "d1-inner-upstream-0",
+              "points": [
+                [
+                  1364,
+                  2500
+                ],
+                [
+                  1363,
+                  2310
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "d1-inner-upstream-1",
+              "points": [
+                [
+                  1363,
+                  2310
+                ],
+                [
+                  1386,
+                  2286
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "d1-inner-upstream-2",
+              "points": [
+                [
+                  1386,
+                  2286
+                ],
+                [
+                  1420,
+                  2284
+                ]
+              ],
+              "status": "inferred"
             }
           ],
           "source": "photo-bottom",
           "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
           "status": "candidate-correspondence-only",
           "unassignedEnd": [
-            1364,
-            2500
+            1420,
+            2284
           ]
         },
         "segments": [
@@ -36904,6 +36957,20 @@
         ]
       },
       {
+        "comparisons": [
+          {
+            "electricalIdentityTransferred": false,
+            "observation": "The separate specimen shows distinct fan-out lanes and bends between latch and CPU. They disappear at the CPU body edge; the covered turn needed to identify the pin-7 attachment is not exposed. Artwork similarity does not establish continuity on the primary specimen.",
+            "pixelBox": [
+              1900,
+              480,
+              2750,
+              1160
+            ],
+            "source": "comparison-photo-080429077",
+            "sourceSha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3"
+          }
+        ],
         "continuityEstablished": false,
         "id": "latch-review-d4",
         "nativeCopper": false,
@@ -37358,6 +37425,178 @@
           "A5:13",
           "A8:17"
         ]
+      }
+    ],
+    "registrationTrials": [
+      {
+        "anchors": [
+          {
+            "bottomPixel": [
+              1365,
+              2618
+            ],
+            "id": "upper-solder-eye",
+            "observation": "Solder-obscured upper eye; correspondence also retained by the existing D0 underside path. Centre remains photo-estimated.",
+            "photoPixel": [
+              1501,
+              2847
+            ]
+          },
+          {
+            "bottomPixel": [
+              1089,
+              2776
+            ],
+            "id": "cpu-outer-eye",
+            "observation": "Single circular eye outside the CPU outer row beside the long edge track.",
+            "photoPixel": [
+              1785,
+              2985
+            ]
+          },
+          {
+            "bottomPixel": [
+              1608,
+              3087
+            ],
+            "id": "lower-outer-candidate",
+            "photoPixel": [
+              1268,
+              3351
+            ]
+          },
+          {
+            "bottomPixel": [
+              1610,
+              2718
+            ],
+            "id": "outer-upper-eye",
+            "observation": "Upper of the two exposed eyes outside the latch outer row.",
+            "photoPixel": [
+              1237,
+              2966
+            ]
+          }
+        ],
+        "anchorsInsideBottomFitHull": false,
+        "bottomRegion": "cpu-a4",
+        "bottomSource": "photo-bottom",
+        "bottomSourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+        "checks": [
+          {
+            "bottomPixel": [
+              1345,
+              2662
+            ],
+            "id": "upper-inner-eye",
+            "insideBottomFitHull": true,
+            "observation": "Small inner eye between the upper solder eye and the D2 target eye.",
+            "photoPixel": [
+              1517,
+              2887
+            ],
+            "projectedBottomPixel": [
+              1352.284213882,
+              2658.237872324
+            ],
+            "residualPixels": 8.198376457
+          },
+          {
+            "bottomPixel": [
+              1345,
+              2818
+            ],
+            "id": "middle-inner-eye",
+            "insideBottomFitHull": true,
+            "observation": "Exposed eye below the straight latch fan-out; separate from the adjacent D2 underside lane.",
+            "photoPixel": [
+              1528,
+              3049
+            ],
+            "projectedBottomPixel": [
+              1351.769842197,
+              2819.867669961
+            ],
+            "residualPixels": 7.022745507
+          },
+          {
+            "bottomPixel": [
+              1360,
+              2861
+            ],
+            "id": "lower-pair-upper",
+            "insideBottomFitHull": true,
+            "observation": "Upper of the two vertically separated corridor eyes.",
+            "photoPixel": [
+              1510,
+              3098
+            ],
+            "projectedBottomPixel": [
+              1371.977743869,
+              2867.08798076
+            ],
+            "residualPixels": 13.436139993
+          },
+          {
+            "bottomPixel": [
+              1358,
+              2908
+            ],
+            "id": "lower-pair-lower",
+            "insideBottomFitHull": true,
+            "observation": "Lower of the two vertically separated corridor eyes.",
+            "photoPixel": [
+              1512,
+              3144
+            ],
+            "projectedBottomPixel": [
+              1372.933921053,
+              2913.172306476
+            ],
+            "residualPixels": 15.804263738
+          },
+          {
+            "bottomPixel": [
+              1342,
+              2939
+            ],
+            "id": "lower-inner-eye",
+            "insideBottomFitHull": true,
+            "observation": "Lowest exposed circular eye in the latch/CPU corridor, below the pair of inner eyes.",
+            "photoPixel": [
+              1530,
+              3175
+            ],
+            "projectedBottomPixel": [
+              1357.661049026,
+              2946.147458216
+            ],
+            "residualPixels": 17.214953254
+          },
+          {
+            "bottomPixel": [
+              1525,
+              2885
+            ],
+            "id": "latch-lower-outer-eye",
+            "insideBottomFitHull": false,
+            "photoPixel": [
+              1340,
+              3137
+            ],
+            "projectedBottomPixel": [
+              1530.920668887,
+              2889.069429286
+            ],
+            "residualPixels": 7.184328415
+          }
+        ],
+        "copperAssignmentQualified": false,
+        "id": "cpu15-r64-extension",
+        "maxCheckResidualPixels": 17.214953254,
+        "reason": "Candidate wider eye correspondence around CPU15 and R6.4. Lower held-out eyes disagree and the proposed domain extends beyond the qualified underside region. Keep the existing latch-eyes fit; this trial supplies no native geometry or bounded CPU15 attachment.",
+        "source": "photo-top",
+        "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
       }
     ],
     "schema": 1,
@@ -44873,7 +45112,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "884f79b41b7fe08ac93038ea17733fb6ac204b7a"
+      "revision": "56842b52435b97a57bef56da01978ee784b98502"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -44891,7 +45130,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
-      "busReview": "c99ecc12d69dea8c55288329af6b530fe9f4072f61abfbf28b0376efa3733b05",
+      "busReview": "c5643ca6e7216d0b16a80c1db06fa4cb2d02d1802996ff690172ebdd0ea44e3a",
       "cableCopper": "3ace669670dff47f0b3b518f75b59c0a0086d590e6bbd03df012156b0fe4717d",
       "connectionReview": "b49f485d9d959c14e4db473a10a8ec40fa792672fc65c7c1f43a9f04fc3f3b8c",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"

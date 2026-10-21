@@ -49,7 +49,9 @@ reconstruction requirements below remain in scope.
    are valid only inside both source hulls. Keep extrapolated resistor-lead
    searches unassigned until the hole entry and continuation are supported.
    Use schematic net conflicts to test candidate attachments conditionally;
-   proximity to a resistor does not establish its physical terminal identity. Retain the
+   proximity to a pad does not establish its physical terminal identity. Preserve
+   wider-fit trials with independent check residuals and source-domain limits;
+   an unqualified trial must not change native copper. Retain the
    data/clock path through the L1 filter windings to host cable XT1 as the physical
    integration milestone.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
