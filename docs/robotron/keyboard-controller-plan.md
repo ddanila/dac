@@ -39,7 +39,10 @@ reconstruction requirements below remain in scope.
    them requires evidence of the covered copper or independent continuity,
    not a projected eye-to-pin match. Evaluate exposed latch branches separately
    from those covered ROM continuations; `bus-review.json` retains unresolved
-   latch spans and candidate reverse-side eyes without assigning vias. Retain the
+   latch spans and candidate reverse-side eyes. Promote a cross-side joint only
+   with a bounded fit on both sides and a supported continuation; positional
+   agreement alone is insufficient. Keep inferred attachments and unmeasured
+   via dimensions explicit. Retain the
    data/clock path through the L1 filter windings to host cable XT1 as the physical
    integration milestone.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both

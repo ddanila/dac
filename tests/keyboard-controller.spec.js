@@ -116,7 +116,7 @@ test('partial copper review distinguishes observed sections from inferred attach
  await expect(panel.locator('[data-pins]')).toContainText('not proof of continuity to CPU WR');
  await expect(panel.locator('[data-qualification]')).toContainText('track dangling');
  await expect(panel.locator('[data-route-id]')).toHaveCount(data.layout.routes.filter(r=>r.side==='top').length);
- const inferred=panel.locator('[data-evidence-status="inferred"]');await expect(inferred).toHaveCount(data.layout.routes.filter(r=>r.side==='top'&&r.evidence.status==='inferred').length);
+ const inferred=panel.locator('[data-route-id][data-evidence-status="inferred"]');await expect(inferred).toHaveCount(data.layout.routes.filter(r=>r.side==='top'&&r.evidence.status==='inferred').length);
  for(const section of await inferred.all())await expect(section).toHaveAttribute('stroke-dasharray','.5 .3');
  await expect(panel.locator('[data-route-id]').filter({hasText:'WR_N:'}).first()).toHaveAttribute('stroke','#ffe16a');
  await panel.getByLabel('Controller board side').selectOption('bottom');
@@ -139,7 +139,7 @@ test('local A4 photo fit retains extrapolation limits',async({page})=>{
  await expect(panel.locator('[data-selection]')).toContainText('outside the anchor bounds');
  await expect(panel.locator('[data-selection]')).toContainText('copper assignment remains unqualified');
  expect(data.bottomRegistration.localRegions[0].copperAssignmentQualified).toBe(false);
- expect(data.layout.vias).toHaveLength(0);
+ expect(data.layout.vias.every(v=>v.evidence.crossSideRegistration?.bottom.region!=='a4')).toBe(true);
 });
 
 test('3D route highlights preserve side, provenance and board attachment',async({page})=>{
@@ -839,6 +839,13 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  const d3=data.routingAudit.nets.find(n=>n.net==='/D3');
  expect(d3.remainingPadGroupLinks).toBe(0);
  expect(d3.islands[0].terminals.sort()).toEqual(['A4:16','A5:8','A8:13']);
+ const d0=data.routingAudit.nets.find(n=>n.net==='/D0');
+ expect(d0.remainingPadGroupLinks).toBe(1);
+ expect(d0.islands.some(g=>g.terminals.length===3&&['A4:19','A5:14','A8:9'].every(p=>g.terminals.includes(p)))).toBe(true);
+ expect(d0.islands.some(g=>g.terminals.length===1&&g.terminals[0]==='A1:3')).toBe(true);
+ const via=data.layout.vias.find(v=>v.evidence.group==='cpu-latch-d0');
+ expect(via.evidence.status).toBe('inferred');
+ expect(data.layout.viaRegistration.find(r=>r.viaId===via.id).checks.top.residualMm).toBeLessThan(1.25);
  for(const path of data.busReview.latchPaths){
   expect(path.nativeCopper).toBe(false);
   expect(path.continuityEstablished).toBe(false);
@@ -855,10 +862,21 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  await expect(panel.locator('[data-routing-net="/D3"] > summary')).toContainText('0 links remaining');
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/D0');
  await panel.locator('[data-routing-audit] > summary').click();
- const section=panel.locator('[data-routing-net="/D0"]');
+ await panel.locator('[data-routing-net="/D0"] > summary').click();
+ await expect(panel.locator('[data-via-review]')).toContainText('Inferred through connection');
+ await expect(panel.locator('[data-via-review]')).toContainText('not measured');
+ const ring=panel.locator(`[data-via-id="${via.id}"]`);
+ await expect(ring).toHaveAttribute('data-evidence-status','inferred');
+ await expect(ring).toHaveAttribute('cx',String(via.position[0]));
+ await panel.locator('[data-side]').selectOption('bottom');
+ await expect(ring).toHaveAttribute('cy',String(-via.position[1]));
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/D1');
+ await panel.locator('[data-routing-audit] > summary').click();
+ const section=panel.locator('[data-routing-net="/D1"]');
  await section.locator(':scope > summary').click();
- await expect(section).toContainText('Review target: A4:19 ↔ A5:14');
- await expect(section).toContainText('not a verified through-board match');
+ await expect(section).toContainText('Review target: A4:18 ↔ A5:15');
+ await expect(section).toContainText('Neither through-board identity');
+ await expect(section.locator('[data-eye-position-check]')).toContainText('within the 1.25 mm fit budget');
  await expect(section.locator('[data-search-region]')).toHaveCount(1);
 });
 

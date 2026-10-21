@@ -120,6 +120,10 @@ export function installKeyboardControllerReview(scene){
    const title=document.createElementNS(svgNS,'title');title.textContent=`${clean(route.net)}: ${route.evidence.status}. ${route.evidence.detail}`;line.append(title);
   }
   const selected=new Set(selection?.pins.map(p=>p.ref+':'+p.pin)||[]);
+  for(const via of data.layout.vias){
+   const ring=add('circle',{'data-via-id':via.id,'data-evidence-status':via.evidence.status,cx:via.position[0],cy:-via.position[1],r:(via.diameter+via.drill)/4,fill:'none',stroke:selection?.pins.some(p=>p.net===via.net)?'#ffe16a':'#c29155','stroke-width':(via.diameter-via.drill)/2,'stroke-dasharray':via.evidence.status==='inferred'?'.3 .2':'none'});
+   const title=document.createElementNS(svgNS,'title');title.textContent=`${clean(via.net)} through connection: ${via.evidence.status}. ${via.evidence.detail}`;ring.append(title);
+  }
   const anonymous=new Set((data.layout.visualConnectors||[]).filter(c=>c.status!=='photo-placed-reference-terminal-order').map(c=>c.ref));
   for(const connector of data.layout.visualConnectors||[])for(const [name,row] of Object.entries(connector.rows))for(const [index,[x,y]] of row.entries()){
    if(connector.status==='photo-placed-reference-terminal-order'&&!connector.unclassifiedContacts.includes(data.connectorTerminals.resolvedRows[name][index]))continue;
@@ -186,12 +190,19 @@ export function installKeyboardControllerReview(scene){
       }
      }
      for(const fig of paths.values()){const label=document.createElement('p');label.textContent='Recorded local path: '+fig.terminals.join(' ↔ ');section.append(label,connectionPhoto(fig));}
+     for(const via of data.layout.vias.filter(v=>v.net===net.net)){
+      const review=data.layout.viaRegistration?.find(r=>r.viaId===via.id);
+      if(!review)continue;
+      const note=document.createElement('p');note.dataset.viaReview=via.id;
+      note.textContent=`Inferred through connection: ${review.checks.top.residualMm.toFixed(2)} mm top-photo residual; placement follows the ${review.positionFrom} photo. ${review.scope} Specimen continuity remains unmeasured.`;section.append(note);
+     }
      for(const candidate of [...(data.busReview?.paths||[]),...(data.busReview?.latchPaths||[])].filter(p=>p.referenceNet===net.net)){
       const note=document.createElement('p');note.textContent='Review target: '+candidate.terminals.join(' ↔ ')+'. '+candidate.reason;
       section.append(note,connectionPhoto({source:data.evidence.sources.find(s=>s.id===candidate.source),segments:candidate.segments,markers:[]}));
       if(candidate.reverseReview){
        const reverse=candidate.reverseReview;
-       section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason}]}));
+       if(reverse.positionCheck){const note=document.createElement('p');note.dataset.eyePositionCheck=candidate.id;note.textContent=`Candidate position check: ${reverse.positionCheck.residualMm.toFixed(2)} mm disagreement, ${reverse.positionCheck.withinFitBudget?'within':'outside'} the ${reverse.positionCheck.toleranceMm.toFixed(2)} mm fit budget. This does not establish through-board identity or continuity.`;section.append(note);}
+       section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:reverse.segments||[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason},...(reverse.unassignedEnd?[{point:reverse.unassignedEnd,label:'Unassigned continuation joint; CPU attachment unresolved.'}]:[])]}));
       }
       if(candidate.crossSideSearch){
        const cross=data.busReview.crossSide,search=candidate.crossSideSearch;
