@@ -229,6 +229,15 @@ export function installKeyboardControllerReview(scene){
       }
       section.append(review);
      }
+     const sense=data.busReview?.senseReview, sensePath=sense?.paths.find(p=>p.referenceNet===net.net);
+     if(sensePath){
+      const review=document.createElement('details');review.dataset.senseReview=net.net;
+      const title=document.createElement('summary');title.textContent='SENSE corridor and resistor-bank mapping';review.append(title);
+      for(const text of [sense.scope,sense.orientationFinding,sense.electricalScope,sensePath.reason,`Reference targets: ${sensePath.terminals.join(' ↔ ')}; collector ${sensePath.collectorTarget}; matrix input ${sensePath.matrixInput.ref} (${sensePath.matrixInput.nets.join(' ↔ ')}). Bank observation ${sensePath.bankObservationIndex} is an inferred ${sensePath.bankPinCandidate.terminal} candidate.`]){const p=document.createElement('p');p.textContent=text;review.append(p);}
+      for(const indices of [[0,1],[2],[3],[4,5]])review.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===sense.source),segments:indices.map(i=>sensePath.segments[i]),markers:indices.includes(0)?[{point:sensePath.segments[0].points[0],label:'Bank joint candidate; terminal correspondence inferred.'}]:indices.includes(5)?[{point:sensePath.segments.at(-1).points.at(-1),label:sensePath.latchTerminal+' estimated underside joint.'}]:[]}));
+      for(const p of sense.photos){const photo=componentPhoto(data,'R1 / sensing transistors',{photoSource:p.source,pixelBox:p.pixelBox,scope:p.observation});if(photo)review.append(photo);}
+      section.append(review);
+     }
      for(const candidate of [...(data.busReview?.paths||[]),...(data.busReview?.latchPaths||[])].filter(p=>p.referenceNet===net.net)){
       const note=document.createElement('p');note.textContent='Review target: '+candidate.terminals.join(' ↔ ')+'. '+candidate.reason;
       section.append(note,connectionPhoto({source:data.evidence.sources.find(s=>s.id===candidate.source),segments:candidate.segments,markers:[]}));

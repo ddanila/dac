@@ -55,6 +55,9 @@ reconstruction requirements below remain in scope.
    an unqualified trial must not change native copper. Retain the
    data/clock path through the L1 filter windings to host cable XT1 as the physical
    integration milestone.
+   Use `sense-review.json` to resolve the SENSE corridor, R1 orientation and
+   collector branches. Qualify corridor registration and bank placement before
+   promoting photo paths to native copper; logical row agreement is insufficient.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
    terminals, supporting photo landmarks, native copper and any unresolved span;
    regenerate KiCad checks, OpenSCAD geometry and museum inspection together.

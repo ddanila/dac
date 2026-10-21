@@ -951,3 +951,22 @@ test('bus review separates partial fan-out from connected CPU-ROM lanes',async({
   expect(path.crossSideSearch.insideCpuBodyWithSearchMargin).toBe(true);
  }
 });
+
+test('sense corridor review keeps bank candidates separate from native copper',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ for(let row=0;row<8;row++){
+  await panel.getByLabel('Controller net',{exact:true}).selectOption('/SENSE'+row);
+  await panel.locator('[data-routing-audit] > summary').click();
+  await panel.locator(`[data-routing-net="/SENSE${row}"] > summary`).click();
+  const review=panel.locator('[data-sense-review]');await review.locator(':scope > summary').click();
+  await expect(review).toContainText(`A4:${row+1} ↔ R1:${9-row}`);
+  await expect(review).toContainText('collector branch is unresolved');
+  await expect(review.locator('[data-observed-span]')).toHaveCount(6);
+  expect(data.layout.routes.some(r=>r.net==='/SENSE'+row)).toBe(false);
+ }
+});

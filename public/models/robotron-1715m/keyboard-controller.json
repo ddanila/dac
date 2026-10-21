@@ -38313,7 +38313,1002 @@
       }
     ],
     "schema": 1,
-    "scope": "Partial photo paths with unresolved cross-side continuations. Reference nets and terminal pairs are review targets, not complete paths or native copper assignments."
+    "scope": "Partial photo paths with unresolved cross-side continuations. Reference nets and terminal pairs are review targets, not complete paths or native copper assignments.",
+    "senseReview": {
+      "bankJointCandidates": [
+        [
+          1505,
+          885
+        ],
+        [
+          1506,
+          916
+        ],
+        [
+          1507,
+          947
+        ],
+        [
+          1508,
+          977
+        ],
+        [
+          1509,
+          1006
+        ],
+        [
+          1509,
+          1036
+        ],
+        [
+          1510,
+          1066
+        ],
+        [
+          1511,
+          1096
+        ],
+        [
+          1511,
+          1126
+        ],
+        [
+          1512,
+          1156
+        ]
+      ],
+      "bankOrder": "Cable end toward CPU end; zero-based observation indices are not package pin numbers.",
+      "commonReferenceNet": "/GND",
+      "electricalScope": "Reference digital sensing drives the latch high for an active row; R1 loads collectors toward ground. HDL agreement does not identify specimen terminals or qualify SC308 devices.",
+      "orientationFinding": "The eight lane candidates associate A4 pins 1\u20138 with bank observations 8\u20131. This is consistent with reference R1 branches 9\u20132 if observation zero is physical pin 1. Common and unused end identities remain unverified on the primary specimen.",
+      "paths": [
+        {
+          "bankObservationIndex": 8,
+          "bankPinCandidate": {
+            "observationIndex": 8,
+            "status": "inferred",
+            "terminal": "R1:9"
+          },
+          "collectorAttachmentEstablished": false,
+          "collectorTarget": "V4.3:C",
+          "continuityEstablished": false,
+          "id": "sense-0",
+          "latchTerminal": "A4:1",
+          "matrixInput": {
+            "nets": [
+              "/ROW0",
+              "/BASE0"
+            ],
+            "ref": "R9.3"
+          },
+          "nativeCopper": false,
+          "qualifiedWholePathRegions": [],
+          "reason": "Underside lane-order candidate. R1 branch and solder attachments remain inferred; the collector branch is unresolved. No qualified local fit covers this whole corridor, and R1 has no native placement.",
+          "referenceNet": "/SENSE0",
+          "segments": [
+            {
+              "id": "sense-0-0",
+              "points": [
+                [
+                  1511,
+                  1126
+                ],
+                [
+                  1518,
+                  1172
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "sense-0-1",
+              "points": [
+                [
+                  1518,
+                  1172
+                ],
+                [
+                  1518,
+                  1400
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-0-2",
+              "points": [
+                [
+                  1518,
+                  1400
+                ],
+                [
+                  1531,
+                  2000
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-0-3",
+              "points": [
+                [
+                  1531,
+                  2000
+                ],
+                [
+                  1543,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-0-4",
+              "points": [
+                [
+                  1543,
+                  2500
+                ],
+                [
+                  1545,
+                  2544
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-0-5",
+              "points": [
+                [
+                  1545,
+                  2544
+                ],
+                [
+                  1514,
+                  2578
+                ]
+              ],
+              "status": "inferred"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminals": [
+            "A4:1",
+            "R1:9"
+          ]
+        },
+        {
+          "bankObservationIndex": 7,
+          "bankPinCandidate": {
+            "observationIndex": 7,
+            "status": "inferred",
+            "terminal": "R1:8"
+          },
+          "collectorAttachmentEstablished": false,
+          "collectorTarget": "V4.4:C",
+          "continuityEstablished": false,
+          "id": "sense-1",
+          "latchTerminal": "A4:2",
+          "matrixInput": {
+            "nets": [
+              "/ROW1",
+              "/BASE1"
+            ],
+            "ref": "R9.5"
+          },
+          "nativeCopper": false,
+          "qualifiedWholePathRegions": [],
+          "reason": "Underside lane-order candidate. R1 branch and solder attachments remain inferred; the collector branch is unresolved. No qualified local fit covers this whole corridor, and R1 has no native placement.",
+          "referenceNet": "/SENSE1",
+          "segments": [
+            {
+              "id": "sense-1-0",
+              "points": [
+                [
+                  1511,
+                  1096
+                ],
+                [
+                  1528,
+                  1111
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "sense-1-1",
+              "points": [
+                [
+                  1528,
+                  1111
+                ],
+                [
+                  1532,
+                  1400
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-1-2",
+              "points": [
+                [
+                  1532,
+                  1400
+                ],
+                [
+                  1545,
+                  2000
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-1-3",
+              "points": [
+                [
+                  1545,
+                  2000
+                ],
+                [
+                  1556,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-1-4",
+              "points": [
+                [
+                  1556,
+                  2500
+                ],
+                [
+                  1558,
+                  2561
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-1-5",
+              "points": [
+                [
+                  1558,
+                  2561
+                ],
+                [
+                  1514,
+                  2610
+                ]
+              ],
+              "status": "inferred"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminals": [
+            "A4:2",
+            "R1:8"
+          ]
+        },
+        {
+          "bankObservationIndex": 6,
+          "bankPinCandidate": {
+            "observationIndex": 6,
+            "status": "inferred",
+            "terminal": "R1:7"
+          },
+          "collectorAttachmentEstablished": false,
+          "collectorTarget": "V4.8:C",
+          "continuityEstablished": false,
+          "id": "sense-2",
+          "latchTerminal": "A4:3",
+          "matrixInput": {
+            "nets": [
+              "/ROW2",
+              "/BASE2"
+            ],
+            "ref": "R9.6"
+          },
+          "nativeCopper": false,
+          "qualifiedWholePathRegions": [],
+          "reason": "Underside lane-order candidate. R1 branch and solder attachments remain inferred; the collector branch is unresolved. No qualified local fit covers this whole corridor, and R1 has no native placement.",
+          "referenceNet": "/SENSE2",
+          "segments": [
+            {
+              "id": "sense-2-0",
+              "points": [
+                [
+                  1510,
+                  1066
+                ],
+                [
+                  1541,
+                  1094
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "sense-2-1",
+              "points": [
+                [
+                  1541,
+                  1094
+                ],
+                [
+                  1545,
+                  1400
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-2-2",
+              "points": [
+                [
+                  1545,
+                  1400
+                ],
+                [
+                  1560,
+                  2000
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-2-3",
+              "points": [
+                [
+                  1560,
+                  2000
+                ],
+                [
+                  1570,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-2-4",
+              "points": [
+                [
+                  1570,
+                  2500
+                ],
+                [
+                  1572,
+                  2578
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-2-5",
+              "points": [
+                [
+                  1572,
+                  2578
+                ],
+                [
+                  1515,
+                  2641
+                ]
+              ],
+              "status": "inferred"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminals": [
+            "A4:3",
+            "R1:7"
+          ]
+        },
+        {
+          "bankObservationIndex": 5,
+          "bankPinCandidate": {
+            "observationIndex": 5,
+            "status": "inferred",
+            "terminal": "R1:6"
+          },
+          "collectorAttachmentEstablished": false,
+          "collectorTarget": "V4.7:C",
+          "continuityEstablished": false,
+          "id": "sense-3",
+          "latchTerminal": "A4:4",
+          "matrixInput": {
+            "nets": [
+              "/ROW3",
+              "/BASE3"
+            ],
+            "ref": "R9.7"
+          },
+          "nativeCopper": false,
+          "qualifiedWholePathRegions": [],
+          "reason": "Underside lane-order candidate. R1 branch and solder attachments remain inferred; the collector branch is unresolved. No qualified local fit covers this whole corridor, and R1 has no native placement.",
+          "referenceNet": "/SENSE3",
+          "segments": [
+            {
+              "id": "sense-3-0",
+              "points": [
+                [
+                  1509,
+                  1036
+                ],
+                [
+                  1554,
+                  1075
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "sense-3-1",
+              "points": [
+                [
+                  1554,
+                  1075
+                ],
+                [
+                  1558,
+                  1400
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-3-2",
+              "points": [
+                [
+                  1558,
+                  1400
+                ],
+                [
+                  1575,
+                  2000
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-3-3",
+              "points": [
+                [
+                  1575,
+                  2000
+                ],
+                [
+                  1584,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-3-4",
+              "points": [
+                [
+                  1584,
+                  2500
+                ],
+                [
+                  1586,
+                  2595
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-3-5",
+              "points": [
+                [
+                  1586,
+                  2595
+                ],
+                [
+                  1515,
+                  2672
+                ]
+              ],
+              "status": "inferred"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminals": [
+            "A4:4",
+            "R1:6"
+          ]
+        },
+        {
+          "bankObservationIndex": 4,
+          "bankPinCandidate": {
+            "observationIndex": 4,
+            "status": "inferred",
+            "terminal": "R1:5"
+          },
+          "collectorAttachmentEstablished": false,
+          "collectorTarget": "V4.1:C",
+          "continuityEstablished": false,
+          "id": "sense-4",
+          "latchTerminal": "A4:5",
+          "matrixInput": {
+            "nets": [
+              "/ROW4",
+              "/BASE4"
+            ],
+            "ref": "R9.8"
+          },
+          "nativeCopper": false,
+          "qualifiedWholePathRegions": [],
+          "reason": "Underside lane-order candidate. R1 branch and solder attachments remain inferred; the collector branch is unresolved. No qualified local fit covers this whole corridor, and R1 has no native placement.",
+          "referenceNet": "/SENSE4",
+          "segments": [
+            {
+              "id": "sense-4-0",
+              "points": [
+                [
+                  1509,
+                  1006
+                ],
+                [
+                  1567,
+                  1061
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "sense-4-1",
+              "points": [
+                [
+                  1567,
+                  1061
+                ],
+                [
+                  1571,
+                  1400
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-4-2",
+              "points": [
+                [
+                  1571,
+                  1400
+                ],
+                [
+                  1590,
+                  2000
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-4-3",
+              "points": [
+                [
+                  1590,
+                  2000
+                ],
+                [
+                  1598,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-4-4",
+              "points": [
+                [
+                  1598,
+                  2500
+                ],
+                [
+                  1600,
+                  2612
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-4-5",
+              "points": [
+                [
+                  1600,
+                  2612
+                ],
+                [
+                  1516,
+                  2703
+                ]
+              ],
+              "status": "inferred"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminals": [
+            "A4:5",
+            "R1:5"
+          ]
+        },
+        {
+          "bankObservationIndex": 3,
+          "bankPinCandidate": {
+            "observationIndex": 3,
+            "status": "inferred",
+            "terminal": "R1:4"
+          },
+          "collectorAttachmentEstablished": false,
+          "collectorTarget": "V4.6:C",
+          "continuityEstablished": false,
+          "id": "sense-5",
+          "latchTerminal": "A4:6",
+          "matrixInput": {
+            "nets": [
+              "/ROW5",
+              "/BASE5"
+            ],
+            "ref": "R9.4"
+          },
+          "nativeCopper": false,
+          "qualifiedWholePathRegions": [],
+          "reason": "Underside lane-order candidate. R1 branch and solder attachments remain inferred; the collector branch is unresolved. No qualified local fit covers this whole corridor, and R1 has no native placement.",
+          "referenceNet": "/SENSE5",
+          "segments": [
+            {
+              "id": "sense-5-0",
+              "points": [
+                [
+                  1508,
+                  977
+                ],
+                [
+                  1580,
+                  1048
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "sense-5-1",
+              "points": [
+                [
+                  1580,
+                  1048
+                ],
+                [
+                  1585,
+                  1400
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-5-2",
+              "points": [
+                [
+                  1585,
+                  1400
+                ],
+                [
+                  1604,
+                  2000
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-5-3",
+              "points": [
+                [
+                  1604,
+                  2000
+                ],
+                [
+                  1612,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-5-4",
+              "points": [
+                [
+                  1612,
+                  2500
+                ],
+                [
+                  1614,
+                  2629
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-5-5",
+              "points": [
+                [
+                  1614,
+                  2629
+                ],
+                [
+                  1517,
+                  2734
+                ]
+              ],
+              "status": "inferred"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminals": [
+            "A4:6",
+            "R1:4"
+          ]
+        },
+        {
+          "bankObservationIndex": 2,
+          "bankPinCandidate": {
+            "observationIndex": 2,
+            "status": "inferred",
+            "terminal": "R1:3"
+          },
+          "collectorAttachmentEstablished": false,
+          "collectorTarget": "V4.2:C",
+          "continuityEstablished": false,
+          "id": "sense-6",
+          "latchTerminal": "A4:7",
+          "matrixInput": {
+            "nets": [
+              "/ROW6",
+              "/BASE6"
+            ],
+            "ref": "R9.2"
+          },
+          "nativeCopper": false,
+          "qualifiedWholePathRegions": [],
+          "reason": "Underside lane-order candidate. R1 branch and solder attachments remain inferred; the collector branch is unresolved. No qualified local fit covers this whole corridor, and R1 has no native placement.",
+          "referenceNet": "/SENSE6",
+          "segments": [
+            {
+              "id": "sense-6-0",
+              "points": [
+                [
+                  1507,
+                  947
+                ],
+                [
+                  1593,
+                  1031
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "sense-6-1",
+              "points": [
+                [
+                  1593,
+                  1031
+                ],
+                [
+                  1598,
+                  1400
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-6-2",
+              "points": [
+                [
+                  1598,
+                  1400
+                ],
+                [
+                  1618,
+                  2000
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-6-3",
+              "points": [
+                [
+                  1618,
+                  2000
+                ],
+                [
+                  1627,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-6-4",
+              "points": [
+                [
+                  1627,
+                  2500
+                ],
+                [
+                  1629,
+                  2646
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-6-5",
+              "points": [
+                [
+                  1629,
+                  2646
+                ],
+                [
+                  1517,
+                  2765
+                ]
+              ],
+              "status": "inferred"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminals": [
+            "A4:7",
+            "R1:3"
+          ]
+        },
+        {
+          "bankObservationIndex": 1,
+          "bankPinCandidate": {
+            "observationIndex": 1,
+            "status": "inferred",
+            "terminal": "R1:2"
+          },
+          "collectorAttachmentEstablished": false,
+          "collectorTarget": "V4.5:C",
+          "continuityEstablished": false,
+          "id": "sense-7",
+          "latchTerminal": "A4:8",
+          "matrixInput": {
+            "nets": [
+              "/ROW7",
+              "/BASE7"
+            ],
+            "ref": "R9.1"
+          },
+          "nativeCopper": false,
+          "qualifiedWholePathRegions": [],
+          "reason": "Underside lane-order candidate. R1 branch and solder attachments remain inferred; the collector branch is unresolved. No qualified local fit covers this whole corridor, and R1 has no native placement.",
+          "referenceNet": "/SENSE7",
+          "segments": [
+            {
+              "id": "sense-7-0",
+              "points": [
+                [
+                  1506,
+                  916
+                ],
+                [
+                  1607,
+                  1018
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "sense-7-1",
+              "points": [
+                [
+                  1607,
+                  1018
+                ],
+                [
+                  1612,
+                  1400
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-7-2",
+              "points": [
+                [
+                  1612,
+                  1400
+                ],
+                [
+                  1632,
+                  2000
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-7-3",
+              "points": [
+                [
+                  1632,
+                  2000
+                ],
+                [
+                  1641,
+                  2500
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-7-4",
+              "points": [
+                [
+                  1641,
+                  2500
+                ],
+                [
+                  1643,
+                  2663
+                ]
+              ],
+              "status": "observed"
+            },
+            {
+              "id": "sense-7-5",
+              "points": [
+                [
+                  1643,
+                  2663
+                ],
+                [
+                  1518,
+                  2796
+                ]
+              ],
+              "status": "inferred"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminals": [
+            "A4:8",
+            "R1:2"
+          ]
+        }
+      ],
+      "photos": [
+        {
+          "observation": "Primary R1 and sensing-transistor area. Raised bodies and leads obscure the numbered collector attachments. Bank branch mapping does not establish B/E/C orientation.",
+          "pixelBox": [
+            1190,
+            910,
+            1420,
+            1340
+          ],
+          "source": "photo-top",
+          "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+        }
+      ],
+      "schema": 1,
+      "scope": "Ordered underside corridor candidates from A4 toward the R1 bank. Copper centreline samples are photo estimates; solder attachments and bank correspondence remain inferred. No collector branch, measured continuity or native routing is established.",
+      "source": "photo-bottom",
+      "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+    }
   },
   "cableCopper": {
     "assignedReferenceTerminals": {},
@@ -45825,7 +46820,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "ccfd6bb02f759c2046d7150cbd7b96ca4c9fe525"
+      "revision": "2227dad285dd94c73c91c1796c424cb9b921cb95"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -45843,7 +46838,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
-      "busReview": "751758a1378fe4489af0aab2f3835c099d1f967c61901fccd2c94728f6c64f61",
+      "busReview": "6ca39ca3677fb916f1d1367d2dcf18fe2c0fe60438004dbe038dca06c68c6c59",
       "cableCopper": "3ace669670dff47f0b3b518f75b59c0a0086d590e6bbd03df012156b0fe4717d",
       "connectionReview": "b49f485d9d959c14e4db473a10a8ec40fa792672fc65c7c1f43a9f04fc3f3b8c",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
