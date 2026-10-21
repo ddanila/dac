@@ -28,61 +28,10 @@ reconstruction requirements below remain in scope.
 
 ## Next work and acceptance
 
-1. **Finish supported physical paths.** Reconcile driver/cable/filter copper,
-   discrete terminals and footprint conflicts against registered photographs and
-   the netlist. Keep unsupported continuations and specimen differences explicit.
-   Use `generated/routing-audit.json` to prioritize complete visible paths and
-   track remaining pad-group links separately from floating copper. Resolve the
-   cross-side bus continuations in `bus-review.json` before promoting complete
-   CPU/ROM paths. Its generated search overlay locates the ROM-side eyes under
-   the CPU body; installed-CPU photographs do not expose these joins. Closing
-   them requires evidence of the covered copper or independent continuity,
-   not a projected eye-to-pin match. Evaluate exposed latch branches separately
-   from those covered ROM continuations; `bus-review.json` retains unresolved
-   latch spans and candidate reverse-side eyes. Promote a cross-side joint only
-   with a bounded fit on both sides and a supported continuation; positional
-   agreement alone is insufficient. Keep inferred attachments and unmeasured
-   via dimensions explicit. Audit package numbering and raised-lead versus
-   board-entry correspondence before assigning neighboring tracks. Compare nearby eyes under the same fit and trace
-   from both terminals before choosing a joint; retain rejected matches in the
-   machine-readable review rather than relaxing registration tolerances. Use
-   held-out board-plane eyes to check raised-lead bias; composed registrations
-   are valid only inside both source hulls. Keep extrapolated resistor-lead
-   searches unassigned until the hole entry and continuation are supported.
-   Use schematic net conflicts to test candidate attachments conditionally;
-   proximity to a pad does not establish its physical terminal identity. Preserve
-   wider-fit trials with independent check residuals and source-domain limits;
-   an unqualified trial must not change native copper. Retain the
-   data/clock path through the L1 filter windings to host cable XT1 as the physical
-   integration milestone.
-   Use `sense-review.json` to resolve the SENSE corridor, R1 orientation and
-   collector branches. Qualify corridor registration and bank placement before
-   promoting photo paths to native copper; logical row agreement is insufficient.
-   Reconcile the edge-fit/native-pad disagreement retained in that review before
-   using the enclosing board fit. The comparison specimen's orientation mark
-   supports R1 numbering but does not expose the primary common-to-ground join.
-   X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
-   terminals, supporting photo landmarks, native copper and any unresolved span;
-   regenerate KiCad checks, OpenSCAD geometry and museum inspection together.
-   Then close remaining placement, underside-registration and DRC gaps.
-   Use the anonymous cable-end graph to constrain terminal identity from complete
-   local paths. A winding-pairing hypothesis or approximate cross-side projection
-   must not become an electrically assigned native route. Review supply feeds with
-   `supply-review.json` and its generated fit checks: a fit that agrees inside the
-   resistor bank can fail outside it. Require a visible continuation and bounded
-   joint correspondence before assigning a filter terminal. The local
-   `filter-registration.json` review matches anonymous joints inside the filter
-   boundary; extend it with independent nearby landmarks before following paths
-   beyond that boundary. Joint correspondence alone does not pair windings. For the clock
-   path, resolve the hidden resistor-bank joins and upper-eye continuation in
-   `clock-continuation.json` before assigning its outer lane to the clock net.
-   Keep the exposed upper corridor disconnected across its capacitor occlusion;
-   the wider filter/resistor fit does not qualify an LF attachment.
-   For data, resolve the R7 transition and joins hidden by R4.2/R6.1 in
-   `path-tracing.json`. For the strobe, resolve the A4/A6 terminal transitions
-   and hidden A5/A6 route before selecting CPU WR or RD. Reverse tracing
-   stops at the covered CPU pin exits; neither candidate is excluded.
-   The A4/A6 terminal matches remain outside their registration hulls.
+1. **Resolve geometry, then finish supported physical paths.** Follow the
+   [physical reconstruction sequence](#physical-reconstruction-sequence) below.
+   Prioritize independently checked placement and complete visible paths;
+   preserve unresolved identities and hidden spans in the CAD evidence.
 2. **Close pending capture reviews.** Review the held-key/repeat/release
    service capture for host voltage and receiver timing, then obtain a matched
    timestep-refinement pair. Preserve its source revision and model assumptions
@@ -118,6 +67,40 @@ remedy. The ordering is not a dependency chain. Detailed measurements, candidate
 inventories and experiment results stay in source reports.
 An unresolved claim becomes an external dependency only when available evidence
 cannot distinguish the remaining alternatives; it does not block unrelated work.
+
+## Physical reconstruction sequence
+
+Work in this order where the steps depend on geometry. Independent trace and
+component research can proceed alongside calibration. The immediate target is a
+qualified SENSE corridor and R1 placement; the serial data/clock path remains the
+board's physical integration milestone.
+
+| Step | Work | Acceptance |
+| --- | --- | --- |
+| 1. Diagnose registration disagreement | Compare the enclosing edge fit in `sense-review.json` with board-plane joints and known package pin pitches. Check scale, perspective, handedness and raised-lead bias independently; neither the nominal envelope nor existing placement is assumed correct. | Retain a reproducible comparison with held-out checks, residuals and validity boundaries that distinguishes calibration error from placement error. Do not widen tolerances to obtain a pass. |
+| 2. Reconcile native placement | Correct only placements or registrations supported by step 1. Recheck existing routes and cross-side joins affected by those changes. | Qualified fits cover the intended geometry; independent checks meet the existing budget. Regenerated native connectivity and DRC show no unexplained regressions. |
+| 3. Place R1 and route the SENSE corridor | Resolve primary bank orientation and numbered hole entries, replace the placeholder with the supported physical package, then promote complete A4–R1 paths individually. Use the corrected detour and comparison evidence in `sense-review.json`. | Native pads represent the physical package, including its unused lead; each promoted route has supported endpoints and bounded registration throughout. Common-to-ground and collector branches remain separate acceptance items. |
+| 4. Complete the row front ends | Trace R1's common connection and sensing-transistor collector branches. Establish transistor terminal orientation from package evidence and visible lead entries. | Every assigned terminal has evidence beyond schematic expectation or proximity. Reference HDL/analog behavior remains consistent with schematic connectivity; simulation does not establish physical joins. |
+| 5. Close the remaining physical paths | Prioritize complete visible connections using `generated/routing-audit.json` and the tracing sources below. Continue through placement and DRC gaps. | Record both endpoints and unresolved spans; count connected pad groups separately from floating copper. Finish the data/clock path through L1 to XT1 for the integration milestone. |
+
+For every native change, regenerate KiCad checks, OpenSCAD geometry and museum
+inspection together. Keep inferred solder attachments and unmeasured via
+geometry explicit. Photo-only evidence changes must not create native copper.
+
+Use these existing tracing authorities rather than maintaining a second candidate
+inventory in this plan:
+
+| Area | CAD evidence and acceptance boundary |
+| --- | --- |
+| SENSE and R1 | `sense-review.json`: comparison orientation supports a hypothesis, not primary marking identity or the hidden common-to-ground join. |
+| CPU/ROM and latch bus | `bus-review.json`: check package numbering and board entries, compare candidate eyes, and trace from both ends. Covered CPU/ROM joins need visible continuation or independent continuity; positional agreement alone is insufficient. |
+| Data and strobe | `path-tracing.json`: resolve the hidden resistor and CPU/latch terminal transitions before selecting attachments or WR/RD. |
+| Supply, filter and clock | `supply-review.json`, `filter-registration.json`, `clock-continuation.json` and the anonymous cable-end graph: extend fits with independent landmarks; cross-side correspondence does not identify winding pairs or bridge occlusions. |
+| Matrix connector | `generated/connector-review.json` and `generated/connector-terminals.json`: resolve remaining contacts independently of the host cable. |
+
+Keep rejected fits and conditional net conflicts in machine-readable evidence.
+Composed registrations are valid only inside both source domains; a nearby
+projected point must not become an assigned terminal outside those bounds.
 
 ## Ownership and synchronization contract
 

@@ -14,6 +14,8 @@ photographs, published device evidence and standard S600 firmware.
 | Which parts and routes are placed? | CAD `generated/layout.json` |
 | What is observed, inferred or unresolved? | CAD `evidence.json`, `component-evidence.json`, `route-evidence.json` |
 | Which X1 geometry and terminal assignments are supported? | CAD `generated/connector-review.json` and `generated/connector-terminals.json` |
+| What is the next physical improvement sequence? | [Plan: physical reconstruction](keyboard-controller-plan.md#physical-reconstruction-sequence) |
+| What constrains SENSE routing and R1 placement? | CAD `sense-review.json`, generated `bus-review.json` → `senseReview`; DAC “SENSE corridor and resistor-bank mapping” |
 | Which output/connector spans should be reviewed next? | CAD `review/connection-review.html`, generated from `connection-review.json` and canonical evidence |
 | Where does the candidate clock continuation stop? | CAD `clock-continuation.json`, generated host-clock connection review; hidden bank joins and upper-eye/filter attachment remain open. |
 | Which filter joints correspond across the primary photos? | CAD `filter-registration.json` and generated `filterRegistration`; DAC “Filter joint correspondence”. Bounded photo matching, not electrical assignment. |
