@@ -872,6 +872,12 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  await expect(ring).toHaveAttribute('cy',String(-via.position[1]));
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/D1');
  await panel.locator('[data-routing-audit] > summary').click();
+ const attachment=panel.locator('[data-latch-attachment-review]');
+ await attachment.locator(':scope > summary').click();
+ await expect(attachment.locator('tbody tr')).toHaveCount(20);
+ await expect(attachment.locator('[data-latch-audit-pin="A4:18"]')).toContainText('No native latch join');
+ await expect(attachment.locator('[data-latch-audit-pin="A4:17"]')).toContainText('inferred attachment');
+ await expect(attachment).toContainText('opposite row is outside its crop');
  const section=panel.locator('[data-routing-net="/D1"]');
  await section.locator(':scope > summary').click();
  await expect(section).toContainText('Review target: A4:18 ↔ A5:15');

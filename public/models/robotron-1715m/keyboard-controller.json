@@ -36379,8 +36379,721 @@
       ],
       "toleranceMm": 1.25
     },
+    "latchAttachmentReview": {
+      "continuityEstablished": false,
+      "photos": [
+        {
+          "observation": "Primary raised leads and exposed fan-out; numbered board entries can be hidden by the leads.",
+          "pixelBox": [
+            1305,
+            2780,
+            1605,
+            3140
+          ],
+          "source": "photo-top",
+          "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+        },
+        {
+          "observation": "Primary solder-joint rows, viewed from the opposite face. Pin numbers follow the package orientation.",
+          "pixelBox": [
+            1390,
+            2550,
+            1550,
+            2890
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+        },
+        {
+          "observation": "Different specimen: ten inner-row leads in reverse horizontal order. Distinct bends and eyes corroborate lane separation, not electrical identity.",
+          "pixelBox": [
+            1750,
+            430,
+            3250,
+            1170
+          ],
+          "source": "comparison-photo-080429077",
+          "sourceSha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3"
+        }
+      ],
+      "pixelUncertainty": 6,
+      "projectionRegion": "latch-eyes",
+      "ref": "A4",
+      "rows": [
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1343.50291658,
+              2815.817184904
+            ]
+          },
+          "bottomJoint": [
+            1514,
+            2578
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1341,
+            2817
+          ],
+          "referenceNet": "/SENSE0",
+          "terminal": "A4:1",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1343.371204651,
+              2848.061895167
+            ]
+          },
+          "bottomJoint": [
+            1514,
+            2610
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1343,
+            2849
+          ],
+          "referenceNet": "/SENSE1",
+          "terminal": "A4:2",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1342.161976811,
+              2879.582480181
+            ]
+          },
+          "bottomJoint": [
+            1515,
+            2641
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1345,
+            2881
+          ],
+          "referenceNet": "/SENSE2",
+          "terminal": "A4:3",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1342.028868783,
+              2911.258160498
+            ]
+          },
+          "bottomJoint": [
+            1515,
+            2672
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1347,
+            2912
+          ],
+          "referenceNet": "/SENSE3",
+          "terminal": "A4:4",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1340.80632262,
+              2943.226943162
+            ]
+          },
+          "bottomJoint": [
+            1516,
+            2703
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1349,
+            2944
+          ],
+          "referenceNet": "/SENSE4",
+          "terminal": "A4:5",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1339.574986738,
+              2975.425571222
+            ]
+          },
+          "bottomJoint": [
+            1517,
+            2734
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1350,
+            2976
+          ],
+          "referenceNet": "/SENSE5",
+          "terminal": "A4:6",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1339.431451949,
+              3007.773570233
+            ]
+          },
+          "bottomJoint": [
+            1517,
+            2765
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1351,
+            3008
+          ],
+          "referenceNet": "/SENSE6",
+          "terminal": "A4:7",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1338.186379743,
+              3040.434918633
+            ]
+          },
+          "bottomJoint": [
+            1518,
+            2796
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1353,
+            3040
+          ],
+          "referenceNet": "/SENSE7",
+          "terminal": "A4:8",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1338.03695329,
+              3073.241680665
+            ]
+          },
+          "bottomJoint": [
+            1518,
+            2827
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1354,
+            3072
+          ],
+          "referenceNet": "/LATCH_OE_N",
+          "terminal": "A4:9",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1336.782873422,
+              3105.306236506
+            ]
+          },
+          "bottomJoint": [
+            1519,
+            2857
+          ],
+          "comparisonLead": null,
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1354,
+            3104
+          ],
+          "referenceNet": "/GND",
+          "terminal": "A4:10",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1438.685687372,
+              3099.617559893
+            ]
+          },
+          "bottomJoint": [
+            1426,
+            2860
+          ],
+          "comparisonLead": [
+            1840,
+            500
+          ],
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1450,
+            3102
+          ],
+          "referenceNet": "/IO_ACTIVE",
+          "terminal": "A4:11",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1439.564256374,
+              3066.890485078
+            ]
+          },
+          "bottomJoint": [
+            1425,
+            2829
+          ],
+          "comparisonLead": [
+            1980,
+            500
+          ],
+          "nativeJoins": [
+            {
+              "attachmentRoutes": [
+                {
+                  "id": "31fe8340-b3a5-4e3a-a9c9-ac7df926743d",
+                  "status": "inferred",
+                  "terminal": "A5:13"
+                },
+                {
+                  "id": "405fa200-88ab-401b-a9ea-26c2b208456f",
+                  "status": "inferred",
+                  "terminal": "A4:12"
+                }
+              ],
+              "group": "cpu-latch-d7",
+              "terminals": [
+                "A4:12",
+                "A5:13"
+              ]
+            }
+          ],
+          "observation": "The lower diagonal lane approaches the CPU edge beside separate round eyes. No attachment to those neighboring eyes is established.",
+          "primaryLead": [
+            1450,
+            3071
+          ],
+          "referenceNet": "/D7",
+          "terminal": "A4:12",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1440.449818834,
+              3036.481375237
+            ]
+          },
+          "bottomJoint": [
+            1424,
+            2800
+          ],
+          "comparisonLead": [
+            2125,
+            500
+          ],
+          "nativeJoins": [
+            {
+              "attachmentRoutes": [
+                {
+                  "id": "d8ef09a7-24da-4cc4-b01d-61bb563aae5e",
+                  "status": "inferred",
+                  "terminal": "A5:10"
+                },
+                {
+                  "id": "ddfcc1ee-dd44-44db-81bd-7ca5d1466dab",
+                  "status": "inferred",
+                  "terminal": "A4:13"
+                }
+              ],
+              "group": "cpu-latch-d6",
+              "terminals": [
+                "A4:13",
+                "A5:10"
+              ]
+            }
+          ],
+          "observation": "The short rise from the latch and subsequent CPU-directed bend remain distinguishable; hidden lead entries remain inferred.",
+          "primaryLead": [
+            1449,
+            3038
+          ],
+          "referenceNet": "/D6",
+          "terminal": "A4:13",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1440.238030329,
+              3003.252366624
+            ]
+          },
+          "bottomJoint": [
+            1424,
+            2768
+          ],
+          "comparisonLead": [
+            2270,
+            500
+          ],
+          "nativeJoins": [
+            {
+              "attachmentRoutes": [
+                {
+                  "id": "b026ccf5-ac6f-4109-a875-01e927eb65b2",
+                  "status": "inferred",
+                  "terminal": "A5:9"
+                },
+                {
+                  "id": "e4a3daa0-1608-43ca-8a06-622e27aed30b",
+                  "status": "inferred",
+                  "terminal": "A4:14"
+                }
+              ],
+              "group": "cpu-latch-d5",
+              "terminals": [
+                "A4:14",
+                "A5:9"
+              ]
+            }
+          ],
+          "observation": "The nearly straight CPU-directed lane is distinct from the bent lane above it. Preserve the inferred end attachments.",
+          "primaryLead": [
+            1448,
+            3006
+          ],
+          "referenceNet": "/D5",
+          "terminal": "A4:14",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1441.115260425,
+              2973.264381524
+            ]
+          },
+          "bottomJoint": [
+            1423,
+            2739
+          ],
+          "comparisonLead": [
+            2415,
+            500
+          ],
+          "nativeJoins": [],
+          "observation": "The exposed lane reaches the CPU edge below the projected pin-7 entry. No covered return toward pin 7 is visible.",
+          "primaryLead": [
+            1447,
+            2972
+          ],
+          "referenceNet": "/D4",
+          "terminal": "A4:15",
+          "unresolvedCandidates": [
+            "latch-review-d4"
+          ]
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1441.966437024,
+              2940.412901075
+            ]
+          },
+          "bottomJoint": [
+            1422,
+            2707
+          ],
+          "comparisonLead": [
+            2560,
+            505
+          ],
+          "nativeJoins": [
+            {
+              "attachmentRoutes": [
+                {
+                  "id": "6c84eb95-17f9-49bd-b2bb-1d014ef4ba3d",
+                  "status": "inferred",
+                  "terminal": "A5:8"
+                },
+                {
+                  "id": "bdf55836-8594-4e7f-bf3d-c67227287ed8",
+                  "status": "inferred",
+                  "terminal": "A4:16"
+                }
+              ],
+              "group": "cpu-latch-d3",
+              "terminals": [
+                "A4:16",
+                "A5:8"
+              ]
+            }
+          ],
+          "observation": "The exposed diagonal CPU-directed lane is distinguishable from the eye-directed lane above it. Its numbered pad attachments remain inferred.",
+          "primaryLead": [
+            1446,
+            2940
+          ],
+          "referenceNet": "/D3",
+          "terminal": "A4:16",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1441.764921455,
+              2909.896468598
+            ]
+          },
+          "bottomJoint": [
+            1422,
+            2677
+          ],
+          "comparisonLead": [
+            2705,
+            505
+          ],
+          "nativeJoins": [
+            {
+              "attachmentRoutes": [
+                {
+                  "id": "1190ebbd-e075-4420-98f8-b85807b7a186",
+                  "status": "inferred",
+                  "terminal": "A4:17"
+                },
+                {
+                  "id": "841fdcf3-fad2-49ab-9d76-b4257ac06e1e",
+                  "status": "inferred",
+                  "terminal": "A5:12"
+                }
+              ],
+              "group": "cpu-latch-d2",
+              "terminals": [
+                "A4:17",
+                "A5:12"
+              ]
+            }
+          ],
+          "observation": "The lane bends to the lower inner eye. Keep the eye-to-CPU underside path distinct from the adjacent upward lane; pad and via attachments remain inferred.",
+          "primaryLead": [
+            1444,
+            2908
+          ],
+          "referenceNet": "/D2",
+          "terminal": "A4:17",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": true,
+            "point": [
+              1442.607860371,
+              2877.501797276
+            ]
+          },
+          "bottomJoint": [
+            1421,
+            2645
+          ],
+          "comparisonLead": [
+            2850,
+            505
+          ],
+          "nativeJoins": [],
+          "observation": "Both nearby-eye hypotheses are disfavored by their traced continuations. Neither establishes the hidden A4 attachment; do not choose an eye by distance.",
+          "primaryLead": [
+            1442,
+            2876
+          ],
+          "referenceNet": "/D1",
+          "terminal": "A4:18",
+          "unresolvedCandidates": [
+            "latch-review-d1",
+            "latch-review-d1-inner-eye"
+          ]
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1443.458370264,
+              2847.340660664
+            ]
+          },
+          "bottomJoint": [
+            1420,
+            2615
+          ],
+          "comparisonLead": [
+            2995,
+            510
+          ],
+          "nativeJoins": [
+            {
+              "attachmentRoutes": [
+                {
+                  "id": "4ce3b0fc-7334-4ddd-9479-cef18e1b4331",
+                  "status": "inferred",
+                  "terminal": "A4:19"
+                },
+                {
+                  "id": "e15b0681-a59a-4036-859e-8aaa20a86564",
+                  "status": "inferred",
+                  "terminal": "A5:14"
+                }
+              ],
+              "group": "cpu-latch-d0",
+              "terminals": [
+                "A4:19",
+                "A5:14"
+              ]
+            }
+          ],
+          "observation": "The solder-obscured upper eye remains an inferred attachment. The comparison exposes a separate eye-directed lane, but cannot prove continuity on the primary specimen.",
+          "primaryLead": [
+            1441,
+            2844
+          ],
+          "referenceNet": "/D0",
+          "terminal": "A4:19",
+          "unresolvedCandidates": []
+        },
+        {
+          "attachmentStatus": "inferred",
+          "boardEntrySearch": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1443.220130462,
+              2812.476178747
+            ]
+          },
+          "bottomJoint": [
+            1420,
+            2580
+          ],
+          "comparisonLead": [
+            3140,
+            510
+          ],
+          "nativeJoins": [],
+          "observation": "Package-end or outer-row joint used to check numbering. No new copper attachment is assigned.",
+          "primaryLead": [
+            1439,
+            2812
+          ],
+          "referenceNet": "/+5V",
+          "terminal": "A4:20",
+          "unresolvedCandidates": []
+        }
+      ],
+      "scope": "Lead and solder-joint centres are photo estimates with reference-derived numbering. Top markers identify raised leads, not hole centres. The comparison frame covers only pins 11\u201320; the opposite row is outside its crop. Board-entry projections are searches and are bounded separately. This audit does not upgrade inferred native attachments or transfer continuity between specimens."
+    },
     "latchPaths": [
       {
+        "comparisons": [
+          {
+            "electricalIdentityTransferred": false,
+            "observation": "CPU-side lanes remain separated around the resistor leads and round eyes. The resistor/lead area obscures the continuation needed to identify a complete D1 path; proximity to an eye is insufficient.",
+            "pixelBox": [
+              850,
+              520,
+              1870,
+              1170
+            ],
+            "source": "comparison-photo-080429077",
+            "sourceSha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3"
+          }
+        ],
         "continuityEstablished": false,
         "hypothesisStatus": "attachment-disfavored",
         "id": "latch-review-d1",
@@ -36657,7 +37370,7 @@
               3072,
               4080
             ],
-            "observation": "CPU pin 15 is the raised lead near [1596,3202]. Its board-plane search projection lies below the validated eye hull. A nearby exposed track turns toward the resistor area; the covered entry and upstream continuation are unresolved. The recorded top spans are anonymous exposed copper only; neither end is attached to a numbered pad.",
+            "observation": "Reverse tracing from CPU pin 15 reaches the exposed zigzag beside R6.4, then loses the continuation under the resistor/lead area. The pin-to-track entry itself remains covered; the board-plane projection lies outside the qualified eye hull. The adjacent round eye is not an established branch.",
             "pixelBox": [
               1430,
               3130,
@@ -37092,7 +37805,7 @@
               3072,
               4080
             ],
-            "observation": "The D4 fan-out disappears beneath the CPU lead/body edge. The board-plane target for pin 7 is above that exit. The intervening covered continuation remains unresolved.",
+            "observation": "Reverse search from the underside CPU pin-7 joint projects above the latch-side lane endpoint. Nearby exposed eye-directed copper belongs to a separate review path; no visible branch establishes that it joins pin 7. The covered interval remains unassigned.",
             "pixelBox": [
               1490,
               2900,
@@ -45112,7 +45825,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "56842b52435b97a57bef56da01978ee784b98502"
+      "revision": "ccfd6bb02f759c2046d7150cbd7b96ca4c9fe525"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -45130,7 +45843,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
-      "busReview": "c5643ca6e7216d0b16a80c1db06fa4cb2d02d1802996ff690172ebdd0ea44e3a",
+      "busReview": "751758a1378fe4489af0aab2f3835c099d1f967c61901fccd2c94728f6c64f61",
       "cableCopper": "3ace669670dff47f0b3b518f75b59c0a0086d590e6bbd03df012156b0fe4717d",
       "connectionReview": "b49f485d9d959c14e4db473a10a8ec40fa792672fc65c7c1f43a9f04fc3f3b8c",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"

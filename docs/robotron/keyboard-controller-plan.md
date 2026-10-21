@@ -42,7 +42,8 @@ reconstruction requirements below remain in scope.
    latch spans and candidate reverse-side eyes. Promote a cross-side joint only
    with a bounded fit on both sides and a supported continuation; positional
    agreement alone is insufficient. Keep inferred attachments and unmeasured
-   via dimensions explicit. Compare nearby eyes under the same fit and trace
+   via dimensions explicit. Audit package numbering and raised-lead versus
+   board-entry correspondence before assigning neighboring tracks. Compare nearby eyes under the same fit and trace
    from both terminals before choosing a joint; retain rejected matches in the
    machine-readable review rather than relaxing registration tolerances. Use
    held-out board-plane eyes to check raised-lead bias; composed registrations

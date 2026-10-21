@@ -177,6 +177,23 @@ export function installKeyboardControllerReview(scene){
     const heading=document.createElement('summary');heading.textContent='Native routing audit';audit.append(heading);
     const total=data.routingAudit.summary,note=document.createElement('p');
     note.textContent=`Board: ${total.fullyConnectedMultiTerminalNets}/${total.multiTerminalNets} multi-pin nets connected; ${total.remainingPadGroupLinks} pad-group links remain; ${total.floatingCopperGroups} floating copper groups. Includes off-board placeholder pads. This measures native connectivity, not historical or fabrication qualification.`;audit.append(note);
+    const attachment=data.busReview?.latchAttachmentReview;
+    if(attachment&&selection.refs.includes(attachment.ref)){
+     const review=document.createElement('details');review.dataset.latchAttachmentReview='';
+     const title=document.createElement('summary');title.textContent='Latch lead and board-entry audit';review.append(title);
+     const note=document.createElement('p');note.textContent=attachment.scope;review.append(note);
+     const table=document.createElement('table'),header=table.createTHead().insertRow();
+     for(const label of ['Pin / reference net','Native latch join','Photo assessment']){const th=document.createElement('th');th.textContent=label;header.append(th);}
+     const body=table.createTBody();for(const row of attachment.rows){const tr=body.insertRow();tr.dataset.latchAuditPin=row.terminal;
+      tr.insertCell().textContent=row.terminal+' '+row.referenceNet;
+      tr.insertCell().textContent=row.nativeJoins.map(g=>g.terminals.join(' ↔ ')+'; inferred attachment').join('; ')||'No native latch join';
+      tr.insertCell().textContent=row.observation+(row.boardEntrySearch.insideFitHull?' Board-entry search is within the eye-fit domain.':' Board-entry search is outside the eye-fit domain.');
+     }review.append(table);
+     for(const photo of attachment.photos){
+      const key=photo.source==='photo-top'?'primaryLead':photo.source==='photo-bottom'?'bottomJoint':'comparisonLead';
+      review.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===photo.source),segments:[],markers:attachment.rows.filter(r=>r[key]).map(r=>({point:r[key],label:r.terminal+' '+(key==='bottomJoint'?'estimated solder-joint centre':'raised lead; hole entry not established')}))}));
+     }audit.append(review);
+    }
     const selectedNets=new Set(selection.pins.map(p=>p.net));
     for(const net of data.routingAudit.nets.filter(n=>selectedNets.has(n.net))){
      const section=document.createElement('details');section.dataset.routingNet=net.net;
