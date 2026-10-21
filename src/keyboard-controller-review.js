@@ -234,6 +234,14 @@ export function installKeyboardControllerReview(scene){
       const review=document.createElement('details');review.dataset.senseReview=net.net;
       const title=document.createElement('summary');title.textContent='SENSE corridor and resistor-bank mapping';review.append(title);
       for(const text of [sense.scope,sense.orientationFinding,sense.electricalScope,sensePath.reason,`Reference targets: ${sensePath.terminals.join(' ↔ ')}; collector ${sensePath.collectorTarget}; matrix input ${sensePath.matrixInput.ref} (${sensePath.matrixInput.nets.join(' ↔ ')}). Bank observation ${sensePath.bankObservationIndex} is an inferred ${sensePath.bankPinCandidate.terminal} candidate.`]){const p=document.createElement('p');p.textContent=text;review.append(p);}
+      if(sensePath.bankFanoutFinding){const p=document.createElement('p');p.textContent=sensePath.bankFanoutFinding;review.append(p);}
+      if(sense.envelopeTrial){
+       const fit=sense.envelopeTrial,p=document.createElement('p');p.dataset.senseEnvelopeTrial=net.net;
+       p.textContent=`Full-board edge fit: ${fit.boundedPaths.includes(sensePath.id)?'encloses this path':'does not enclose this path'}; maximum independent pad disagreement ${fit.maxCheckResidualMm.toFixed(2)} mm against a ${fit.toleranceMm.toFixed(2)} mm limit. ${fit.withinPhotoTolerance?'Within':'Outside'} the fit budget; diagnostic only, no copper assignment.`;review.append(p);
+       const checks=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Independent pad checks';checks.append(summary);
+       const table=document.createElement('table'),head=table.createTHead().insertRow();for(const label of ['Terminal','Disagreement (mm)']){const th=document.createElement('th');th.textContent=label;head.append(th);}
+       const body=table.createTBody();for(const c of fit.checks){const row=body.insertRow();row.insertCell().textContent=`${c.ref}:${c.pin}`;row.insertCell().textContent=c.residualMm.toFixed(2);}checks.append(table);review.append(checks);
+      }
       for(const indices of [[0,1],[2],[3],[4,5]])review.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===sense.source),segments:indices.map(i=>sensePath.segments[i]),markers:indices.includes(0)?[{point:sensePath.segments[0].points[0],label:'Bank joint candidate; terminal correspondence inferred.'}]:indices.includes(5)?[{point:sensePath.segments.at(-1).points.at(-1),label:sensePath.latchTerminal+' estimated underside joint.'}]:[]}));
       for(const p of sense.photos){const photo=componentPhoto(data,'R1 / sensing transistors',{photoSource:p.source,pixelBox:p.pixelBox,scope:p.observation});if(photo)review.append(photo);}
       section.append(review);
@@ -413,7 +421,7 @@ export function installKeyboardControllerReview(scene){
    }
    if(kind==='path')get('[data-selection]').textContent=selectionSummary+' Highlighted copper is partial; dashed sections are inferred.'+(data.connectionReview.cases.find(c=>c.id===value)?.seriesComponents.length?' The filter winding separates the two reference nets.':'')+' Component-level registration details are available through component selection.';
    if(selection.refs.includes('XT1'))get('[data-selection]').textContent+=' XT1 native coordinates are inherited reference placeholders, not registered solder joints; they are excluded from physical highlights.';
-   const table=document.createElement('table');table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
+   const table=document.createElement('table');table.dataset.connectedPins='';table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
    for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.ref==='XT1'?'Reference placeholder':p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
   }else get('[data-selection]').textContent='Select a component or net to inspect its pins.';
   scene?.keyboardControllerSelection(panel.open?(selection?.points||[]):[],panel.open?(selection?.routes||[]):[]);draw();

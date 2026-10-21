@@ -38315,6 +38315,59 @@
     "schema": 1,
     "scope": "Partial photo paths with unresolved cross-side continuations. Reference nets and terminal pairs are review targets, not complete paths or native copper assignments.",
     "senseReview": {
+      "bankEndReview": {
+        "commonGroundAttachmentEstablished": false,
+        "comparisonJointOrder": "Cable end toward CPU end; observation indices correspond by visible fanout order, not measured continuity.",
+        "comparisonJoints": [
+          [
+            834,
+            2054
+          ],
+          [
+            835,
+            1965
+          ],
+          [
+            837,
+            1880
+          ],
+          [
+            839,
+            1793
+          ],
+          [
+            841,
+            1707
+          ],
+          [
+            843,
+            1619
+          ],
+          [
+            844,
+            1534
+          ],
+          [
+            846,
+            1448
+          ],
+          [
+            848,
+            1360
+          ],
+          [
+            849,
+            1276
+          ]
+        ],
+        "comparisonMarkSource": "comparison-photo-080450163",
+        "comparisonUndersideSource": "comparison-photo-080351042",
+        "finding": "Both end joints lack a visible underside departure. Absence of an underside trace cannot distinguish a top-side common connection from an unused terminal. The cable-end 1 marking supports the orientation hypothesis on the comparison specimen only.",
+        "primaryCommonObservationIndex": 0,
+        "primaryMarkingIdentified": false,
+        "primaryUnusedObservationIndex": 9,
+        "status": "inferred"
+      },
       "bankJointCandidates": [
         [
           1505,
@@ -38360,9 +38413,910 @@
       "bankOrder": "Cable end toward CPU end; zero-based observation indices are not package pin numbers.",
       "commonReferenceNet": "/GND",
       "electricalScope": "Reference digital sensing drives the latch high for an active row; R1 loads collectors toward ground. HDL agreement does not identify specimen terminals or qualify SC308 devices.",
-      "orientationFinding": "The eight lane candidates associate A4 pins 1\u20138 with bank observations 8\u20131. This is consistent with reference R1 branches 9\u20132 if observation zero is physical pin 1. Common and unused end identities remain unverified on the primary specimen.",
+      "envelopeTrial": {
+        "anchorHull": [
+          [
+            1022,
+            355
+          ],
+          [
+            1613,
+            366
+          ],
+          [
+            1685,
+            3720
+          ],
+          [
+            1070,
+            3740
+          ]
+        ],
+        "boundedPaths": [
+          "sense-0",
+          "sense-1",
+          "sense-2",
+          "sense-3",
+          "sense-4",
+          "sense-5",
+          "sense-6",
+          "sense-7"
+        ],
+        "checks": [
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              37.88983,
+              19.457787
+            ],
+            "photoModel": [
+              40.21078041505968,
+              18.23719245292494
+            ],
+            "photoPixel": [
+              1116,
+              2519
+            ],
+            "pin": "40",
+            "ref": "A5",
+            "residualMm": 2.622339009
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              43.369038,
+              -12.758414
+            ],
+            "photoModel": [
+              45.33404070742738,
+              -11.8215029067904
+            ],
+            "photoPixel": [
+              1514,
+              2578
+            ],
+            "pin": "1",
+            "ref": "A4",
+            "residualMm": 2.176933172
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              66.228996,
+              -12.802074
+            ],
+            "photoModel": [
+              67.3737399593541,
+              -11.783662925879074
+            ],
+            "photoPixel": [
+              1519,
+              2857
+            ],
+            "pin": "10",
+            "ref": "A4",
+            "residualMm": 1.532187929
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              86.149732,
+              19.360703
+            ],
+            "photoModel": [
+              86.67024919589997,
+              18.226719510951185
+            ],
+            "photoPixel": [
+              1125,
+              3112
+            ],
+            "pin": "21",
+            "ref": "A5",
+            "residualMm": 1.24774064
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              37.859172,
+              4.217817
+            ],
+            "photoModel": [
+              40.41908780976647,
+              4.117307548041785
+            ],
+            "photoPixel": [
+              1303,
+              2519
+            ],
+            "pin": "1",
+            "ref": "A5",
+            "residualMm": 2.561888191
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              86.119074,
+              4.120733
+            ],
+            "photoModel": [
+              86.61647441862836,
+              4.200478629917504
+            ],
+            "photoPixel": [
+              1312,
+              3107
+            ],
+            "pin": "20",
+            "ref": "A5",
+            "residualMm": 0.503752461
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              43.383592,
+              -5.138428
+            ],
+            "photoModel": [
+              45.46414874156524,
+              -4.973583244381953
+            ],
+            "photoPixel": [
+              1424,
+              2581
+            ],
+            "pin": "20",
+            "ref": "A4",
+            "residualMm": 2.087076939
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              66.24355,
+              -5.182088
+            ],
+            "photoModel": [
+              67.38979013784291,
+              -4.733047901262163
+            ],
+            "photoPixel": [
+              1426,
+              2859
+            ],
+            "pin": "11",
+            "ref": "A4",
+            "residualMm": 1.231057864
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              50.559146,
+              4.192269
+            ],
+            "photoModel": [
+              52.97638690928952,
+              4.097113712383697
+            ],
+            "photoPixel": [
+              1306,
+              2678
+            ],
+            "pin": "6",
+            "ref": "A5",
+            "residualMm": 2.41911309
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              70.879105,
+              4.151392
+            ],
+            "photoModel": [
+              72.54316930252318,
+              4.19359507746395
+            ],
+            "photoPixel": [
+              1309,
+              2927
+            ],
+            "pin": "14",
+            "ref": "A5",
+            "residualMm": 1.664599382
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -43.019438,
+              20.778791
+            ],
+            "photoModel": [
+              -40.6233591345926,
+              17.999355171304273
+            ],
+            "photoPixel": [
+              1104,
+              1507
+            ],
+            "pin": "8",
+            "ref": "A2.1",
+            "residualMm": 3.669667213
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -41.855264,
+              -11.647483
+            ],
+            "photoModel": [
+              -40.82486588998594,
+              -11.987124856392464
+            ],
+            "photoPixel": [
+              1495,
+              1505
+            ],
+            "pin": "7",
+            "ref": "A1",
+            "residualMm": 1.084931729
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              16.335248,
+              -5.785879
+            ],
+            "photoModel": [
+              19.322309483317525,
+              -5.135845786048108
+            ],
+            "photoPixel": [
+              1420,
+              2252
+            ],
+            "pin": "1",
+            "ref": "A2.2",
+            "residualMm": 3.056972274
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              15.190472,
+              18.304859
+            ],
+            "photoModel": [
+              19.23435001949127,
+              18.24026503766415
+            ],
+            "photoPixel": [
+              1112,
+              2254
+            ],
+            "pin": "14",
+            "ref": "A2.3",
+            "residualMm": 4.044393875
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -42.661486,
+              13.167203
+            ],
+            "photoModel": [
+              -40.63225203662648,
+              11.129275992845377
+            ],
+            "photoPixel": [
+              1194,
+              1507
+            ],
+            "pin": "7",
+            "ref": "A2.1",
+            "residualMm": 2.875923672
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -42.104946,
+              -4.031575
+            ],
+            "photoModel": [
+              -40.81515831385167,
+              -4.669182399405996
+            ],
+            "photoPixel": [
+              1400,
+              1505
+            ],
+            "pin": "8",
+            "ref": "A1",
+            "residualMm": 1.438782635
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              16.105095,
+              1.830645
+            ],
+            "photoModel": [
+              19.249165862550342,
+              1.7926116433259174
+            ],
+            "photoPixel": [
+              1329,
+              2252
+            ],
+            "pin": "14",
+            "ref": "A2.2",
+            "residualMm": 3.144300896
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              15.297968,
+              10.685617
+            ],
+            "photoModel": [
+              19.308837324649637,
+              11.205538328052553
+            ],
+            "photoPixel": [
+              1205,
+              2254
+            ],
+            "pin": "1",
+            "ref": "A2.3",
+            "residualMm": 4.044427144
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -45.556634,
+              20.659474
+            ],
+            "photoModel": [
+              -43.13095988344924,
+              18.040203550523326
+            ],
+            "photoPixel": [
+              1103,
+              1476
+            ],
+            "pin": "9",
+            "ref": "A2.1",
+            "residualMm": 3.569940141
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -44.3939,
+              -11.73071
+            ],
+            "photoModel": [
+              -43.26626465074037,
+              -12.032812781883573
+            ],
+            "photoPixel": [
+              1495,
+              1475
+            ],
+            "pin": "6",
+            "ref": "A1",
+            "residualMm": 1.167402061
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -45.198682,
+              13.047886
+            ],
+            "photoModel": [
+              -43.06237883494398,
+              11.092403724331074
+            ],
+            "photoPixel": [
+              1194,
+              1477
+            ],
+            "pin": "6",
+            "ref": "A2.1",
+            "residualMm": 2.89615299
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -58.242614,
+              20.062887
+            ],
+            "photoModel": [
+              -55.37187225924686,
+              18.24946357953071
+            ],
+            "photoPixel": [
+              1098,
+              1325
+            ],
+            "pin": "14",
+            "ref": "A2.1",
+            "residualMm": 3.395535693
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -57.08708,
+              -12.146847
+            ],
+            "photoModel": [
+              -55.33630360026908,
+              -12.026764196262468
+            ],
+            "photoPixel": [
+              1492,
+              1327
+            ],
+            "pin": "1",
+            "ref": "A1",
+            "residualMm": 1.754889706
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -57.884662,
+              12.451299
+            ],
+            "photoModel": [
+              -55.23892096750753,
+              11.214062164243959
+            ],
+            "photoPixel": [
+              1190,
+              1327
+            ],
+            "pin": "1",
+            "ref": "A2.1",
+            "residualMm": 2.920736311
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -85.763258,
+              18.73867
+            ],
+            "photoModel": [
+              -84.40919291545185,
+              18.455212135940194
+            ],
+            "photoPixel": [
+              1090,
+              969
+            ],
+            "pin": "1",
+            "ref": "R4.2",
+            "residualMm": 1.383416284
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -85.311331,
+              7.01175
+            ],
+            "photoModel": [
+              -84.28032344483529,
+              6.693756918118846
+            ],
+            "photoPixel": [
+              1243,
+              972
+            ],
+            "pin": "2",
+            "ref": "R4.2",
+            "residualMm": 1.078932889
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -54.548444,
+              -12.06362
+            ],
+            "photoModel": [
+              -52.885984729947005,
+              -11.980996207084587
+            ],
+            "photoPixel": [
+              1492,
+              1357
+            ],
+            "pin": "2",
+            "ref": "A1",
+            "residualMm": 1.664511194
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -55.705418,
+              20.182204
+            ],
+            "photoModel": [
+              -52.774361713422415,
+              18.13324134274328
+            ],
+            "photoPixel": [
+              1100,
+              1357
+            ],
+            "pin": "13",
+            "ref": "A2.1",
+            "residualMm": 3.576218523
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -82.026106,
+              18.576046
+            ],
+            "photoModel": [
+              -80.80816945509879,
+              18.27546432012669
+            ],
+            "photoPixel": [
+              1093,
+              1013
+            ],
+            "pin": "1",
+            "ref": "R7",
+            "residualMm": 1.254479483
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -81.944318,
+              7.007847
+            ],
+            "photoModel": [
+              -80.9164933907602,
+              6.592677613025521
+            ],
+            "photoPixel": [
+              1245,
+              1013
+            ],
+            "pin": "2",
+            "ref": "R7",
+            "residualMm": 1.108507577
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -78.361053,
+              18.41656
+            ],
+            "photoModel": [
+              -77.12834799686526,
+              18.173688660928008
+            ],
+            "photoPixel": [
+              1095,
+              1058
+            ],
+            "pin": "1",
+            "ref": "R8",
+            "residualMm": 1.256402846
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -78.051119,
+              6.980555
+            ],
+            "photoModel": [
+              -77.30871783327345,
+              6.649574592370409
+            ],
+            "photoPixel": [
+              1245,
+              1057
+            ],
+            "pin": "2",
+            "ref": "R8",
+            "residualMm": 0.812839174
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -57.336762,
+              -4.530939
+            ],
+            "photoModel": [
+              -55.550023596555455,
+              -4.620062286064667
+            ],
+            "photoPixel": [
+              1396,
+              1324
+            ],
+            "pin": "14",
+            "ref": "A1",
+            "residualMm": 1.788959777
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -56.664606,
+              -0.068244
+            ],
+            "photoModel": [
+              -55.45086837582987,
+              -0.4593570262714443
+            ],
+            "photoPixel": [
+              1342,
+              1325
+            ],
+            "pin": "2",
+            "ref": "R10.1",
+            "residualMm": 1.275197404
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              -56.77338,
+              3.608292
+            ],
+            "photoModel": [
+              -55.43625531893818,
+              3.0014847431047795
+            ],
+            "photoPixel": [
+              1297,
+              1325
+            ],
+            "pin": "2",
+            "ref": "R10.2",
+            "residualMm": 1.468372385
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              121.97599,
+              2.128333
+            ],
+            "photoModel": [
+              121.52508025295934,
+              2.0840191538143356
+            ],
+            "photoPixel": [
+              1348,
+              3556
+            ],
+            "pin": "12",
+            "ref": "A8",
+            "residualMm": 0.45308202
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              121.716888,
+              17.366131
+            ],
+            "photoModel": [
+              120.95043795842986,
+              15.741814199932199
+            ],
+            "photoPixel": [
+              1165,
+              3554
+            ],
+            "pin": "13",
+            "ref": "A8",
+            "residualMm": 1.796065348
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              94.040028,
+              1.653313
+            ],
+            "photoModel": [
+              94.21998517435149,
+              2.4475132560175767
+            ],
+            "photoPixel": [
+              1337,
+              3204
+            ],
+            "pin": "1",
+            "ref": "A8",
+            "residualMm": 0.814333243
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              93.780926,
+              16.891111
+            ],
+            "photoModel": [
+              94.40929149753619,
+              16.394950430831276
+            ],
+            "photoPixel": [
+              1151,
+              3211
+            ],
+            "pin": "24",
+            "ref": "A8",
+            "residualMm": 0.800636315
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              106.738192,
+              1.869232
+            ],
+            "photoModel": [
+              106.50417256452383,
+              2.279295587286415
+            ],
+            "photoPixel": [
+              1342,
+              3362
+            ],
+            "pin": "6",
+            "ref": "A8",
+            "residualMm": 0.472141125
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              106.479091,
+              17.107029
+            ],
+            "photoModel": [
+              106.7460063484219,
+              15.829675966488898
+            ],
+            "photoPixel": [
+              1161,
+              3370
+            ],
+            "pin": "19",
+            "ref": "A8",
+            "residualMm": 1.304942365
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              63.289778,
+              19.40669
+            ],
+            "photoModel": [
+              64.97381257617619,
+              18.140151858787092
+            ],
+            "photoPixel": [
+              1122,
+              2834
+            ],
+            "pin": "30",
+            "ref": "A5",
+            "residualMm": 2.107152419
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              50.589804,
+              19.432238
+            ],
+            "photoModel": [
+              52.733440434514414,
+              18.19026616379304
+            ],
+            "photoPixel": [
+              1119,
+              2678
+            ],
+            "pin": "35",
+            "ref": "A5",
+            "residualMm": 2.477432382
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              50.989024,
+              -12.772967
+            ],
+            "photoModel": [
+              52.69616153005286,
+              -11.758156301178653
+            ],
+            "photoPixel": [
+              1515,
+              2671
+            ],
+            "pin": "4",
+            "ref": "A4",
+            "residualMm": 1.985990761
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              53.099141,
+              4.187159
+            ],
+            "photoModel": [
+              55.18341865186183,
+              4.057928455092842
+            ],
+            "photoPixel": [
+              1307,
+              2706
+            ],
+            "pin": "7",
+            "ref": "A5",
+            "residualMm": 2.088280121
+          },
+          {
+            "insideAnchorHull": true,
+            "pcbModel": [
+              55.639136,
+              4.18205
+            ],
+            "photoModel": [
+              57.62371219919214,
+              4.0981895920088105
+            ],
+            "photoPixel": [
+              1307,
+              2737
+            ],
+            "pin": "8",
+            "ref": "A5",
+            "residualMm": 1.986347215
+          }
+        ],
+        "copperAssignmentQualified": false,
+        "maxCheckResidualMm": 4.044427144,
+        "modelCornerIndices": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "photoCorners": [
+          [
+            1022,
+            355
+          ],
+          [
+            1613,
+            366
+          ],
+          [
+            1685,
+            3720
+          ],
+          [
+            1070,
+            3740
+          ]
+        ],
+        "photoToModel": [
+          0.0005170759027195994,
+          0.08051847013319688,
+          -162.61543309992518,
+          -0.0766530737124259,
+          0.0013675009107508374,
+          100.59892122553384,
+          -1.5162345398760233e-05,
+          1.2412591021968715e-05,
+          1
+        ],
+        "scope": "Nominal full-board underside fit from visible edge intersections. Independent native pad checks test compatibility with existing placements; no pad was used to tune the edge anchors. Board dimensions come from the existing nominal photo envelope, not specimen metrology. This diagnostic cannot assign copper.",
+        "toleranceMm": 1.25,
+        "withinPhotoTolerance": false
+      },
+      "orientationFinding": "The comparison specimen has a visible 1 mark at the cable-facing end of its 3894 network. Its underside has eight fanout joints between two end joints without visible underside exits, matching the primary artwork. This supports, but does not prove, primary observation zero as pin 1 and observation nine as unused pin 10; the common-to-ground connection remains hidden.",
       "paths": [
         {
+          "bankFanoutFinding": "The innermost lane passes left of the CPU-end joint before returning to the corridor. The comparison underside corroborates this detour; the solder attachment remains inferred.",
           "bankObservationIndex": 8,
           "bankPinCandidate": {
             "observationIndex": 8,
@@ -38394,8 +39348,8 @@
                   1126
                 ],
                 [
-                  1518,
-                  1172
+                  1501,
+                  1134
                 ]
               ],
               "status": "inferred"
@@ -38404,8 +39358,20 @@
               "id": "sense-0-1",
               "points": [
                 [
-                  1518,
-                  1172
+                  1501,
+                  1134
+                ],
+                [
+                  1483,
+                  1152
+                ],
+                [
+                  1484,
+                  1192
+                ],
+                [
+                  1515,
+                  1222
                 ],
                 [
                   1518,
@@ -39302,6 +40268,28 @@
           ],
           "source": "photo-top",
           "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+        },
+        {
+          "observation": "Different specimen: 3894 marking and cable-end 1 orientation mark. This does not identify the primary specimen network.",
+          "pixelBox": [
+            1400,
+            1200,
+            3200,
+            2050
+          ],
+          "source": "comparison-photo-080450163",
+          "sourceSha256": "98d1133ba1c314ff7fbae3782d979e1ada17062db9e6c3f76672f7a2e3c00bdd"
+        },
+        {
+          "observation": "Different specimen underside: ten bank joints, eight fanouts, and the innermost lane detouring around the CPU-end joint. No visible underside departure at either end joint.",
+          "pixelBox": [
+            650,
+            1150,
+            1200,
+            2200
+          ],
+          "source": "comparison-photo-080351042",
+          "sourceSha256": "e41032fe1b669f0c5646e6d5f787cdadc43c840beddd171d29b3c6b050249730"
         }
       ],
       "schema": 1,
@@ -46820,7 +47808,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "2227dad285dd94c73c91c1796c424cb9b921cb95"
+      "revision": "f1dad8b8b51be3a41e577ae1498682a26bd18ab6"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -46838,7 +47826,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
-      "busReview": "6ca39ca3677fb916f1d1367d2dcf18fe2c0fe60438004dbe038dca06c68c6c59",
+      "busReview": "461b9dd7eb7d456bfefaf351a3fbd195a174b521f58032b9af762daf09585e8d",
       "cableCopper": "3ace669670dff47f0b3b518f75b59c0a0086d590e6bbd03df012156b0fe4717d",
       "connectionReview": "b49f485d9d959c14e4db473a10a8ec40fa792672fc65c7c1f43a9f04fc3f3b8c",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"

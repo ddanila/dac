@@ -604,8 +604,8 @@ test('body photo regions expose resistor evidence without placing electrical pin
  await expect(comparison.getByRole('link',{name:'Open original comparison photo'})).toHaveAttribute('href',/PXL_20261017_080450163.jpg$/);
  await expect(panel.locator('[data-body-photo] circle, [data-body-photo] [data-photo-pin]')).toHaveCount(0);
  expect(await page.evaluate(()=>window.bodyHighlights)).toEqual([]);
- await expect(panel.locator('table tbody tr')).toHaveCount(Object.keys(data.connectivity.components.R1.pins).length);
- for(const cell of await panel.locator('table tbody tr td:last-child').allTextContents())expect(cell).toBe('Unplaced');
+ await expect(panel.locator('[data-connected-pins] tbody tr')).toHaveCount(Object.keys(data.connectivity.components.R1.pins).length);
+ for(const cell of await panel.locator('[data-connected-pins] tbody tr td:last-child').allTextContents())expect(cell).toBe('Unplaced');
  await panel.getByLabel('Controller component',{exact:true}).selectOption('R2');
  await expect(panel.locator('[data-body-photo="R1"]')).toHaveCount(0);
  await expect(panel.locator('[data-body-photo="R2"] rect')).toBeVisible();
@@ -966,6 +966,9 @@ test('sense corridor review keeps bank candidates separate from native copper',a
   const review=panel.locator('[data-sense-review]');await review.locator(':scope > summary').click();
   await expect(review).toContainText(`A4:${row+1} ↔ R1:${9-row}`);
   await expect(review).toContainText('collector branch is unresolved');
+  await expect(review.locator('[data-sense-envelope-trial]')).toContainText('Outside the fit budget');
+  await expect(review).toContainText('cable-facing end');
+  if(row===0)await expect(review).toContainText('passes left of the CPU-end joint');
   await expect(review.locator('[data-observed-span]')).toHaveCount(6);
   expect(data.layout.routes.some(r=>r.net==='/SENSE'+row)).toBe(false);
  }

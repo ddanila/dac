@@ -58,6 +58,9 @@ reconstruction requirements below remain in scope.
    Use `sense-review.json` to resolve the SENSE corridor, R1 orientation and
    collector branches. Qualify corridor registration and bank placement before
    promoting photo paths to native copper; logical row agreement is insufficient.
+   Reconcile the edge-fit/native-pad disagreement retained in that review before
+   using the enclosing board fit. The comparison specimen's orientation mark
+   supports R1 numbering but does not expose the primary common-to-ground join.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
    terminals, supporting photo landmarks, native copper and any unresolved span;
    regenerate KiCad checks, OpenSCAD geometry and museum inspection together.
