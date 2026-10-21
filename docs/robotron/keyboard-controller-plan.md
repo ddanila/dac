@@ -37,10 +37,11 @@ reconstruction requirements below remain in scope.
    pair using the verified producer revision and identical model assumptions.
    Functional success and sampled timing screens are not electrical qualification.
 3. **Establish numerical convergence.** The retained capacitor-stamp assessment
-   identifies material assembly loss in the final frozen system; it does not
-   establish the initiating cause. Locate the first affected accepted/rejected
-   state and preserve small assembly contributions through the high-precision
-   solve. Require an identical diagnostic control, completed refinement pairs and
+   identifies material assembly loss before the rejected voltage excursion,
+   including a bounded saved state. Local capacitor corrections still lack
+   completed refinement. Investigate remaining stamp additions and stored
+   histories; frozen-equation sensitivity does not establish a transient remedy.
+   Require an identical disabled control, completed refinement pairs and
    absolute-time voltage convergence without changing circuit physics or budgets.
 4. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
    host-buffer switching/loading against independent device evidence. Admit vendor
