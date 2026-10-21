@@ -202,7 +202,19 @@ export function installKeyboardControllerReview(scene){
       if(candidate.reverseReview){
        const reverse=candidate.reverseReview;
        if(reverse.positionCheck){const note=document.createElement('p');note.dataset.eyePositionCheck=candidate.id;note.textContent=`Candidate position check: ${reverse.positionCheck.residualMm.toFixed(2)} mm disagreement, ${reverse.positionCheck.withinFitBudget?'within':'outside'} the ${reverse.positionCheck.toleranceMm.toFixed(2)} mm fit budget. This does not establish through-board identity or continuity.`;section.append(note);}
+       if(reverse.alternatives?.length){
+        const note=document.createElement('p');note.textContent=reverse.alternativeScope;section.append(note);
+        const table=document.createElement('table');table.dataset.eyeAlternatives=candidate.id;
+        const header=table.createTHead().insertRow();for(const label of ['Feature','Photo point','Disagreement','Fit budget']){const th=document.createElement('th');th.textContent=label;header.append(th);}
+        const body=table.createTBody();for(const alternative of reverse.alternatives){const row=body.insertRow();for(const value of [alternative.terminal||alternative.id,alternative.point.join(', '),alternative.positionCheck.residualMm.toFixed(2)+' mm',alternative.positionCheck.withinFitBudget?'Within; unresolved':'Outside'])row.insertCell().textContent=value;}
+        section.append(table);
+       }
        section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:reverse.segments||[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason},...(reverse.unassignedEnd?[{point:reverse.unassignedEnd,label:'Unassigned continuation joint; CPU attachment unresolved.'}]:[])]}));
+      }
+      if(candidate.terminalReview){
+       const terminal=candidate.terminalReview,note=document.createElement('p');note.dataset.busTerminalReview=candidate.id;note.textContent=terminal.reason;section.append(note);
+       section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===terminal.source),segments:terminal.segments,markers:[{point:terminal.point,label:terminal.terminal},...(candidate.reverseReview?.unassignedEnd?[{point:candidate.reverseReview.unassignedEnd,label:'Separate latch-side candidate endpoint; no joining span identified.'}]:[])]}));
+       const top=terminal.topReview,photo=componentPhoto(data,'A5',{photoSource:top.source,pixelBox:top.pixelBox,scope:top.observation});if(photo)section.append(photo);
       }
       if(candidate.crossSideSearch){
        const cross=data.busReview.crossSide,search=candidate.crossSideSearch;

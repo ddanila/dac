@@ -878,6 +878,16 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  await expect(section).toContainText('Neither through-board identity');
  await expect(section.locator('[data-eye-position-check]')).toContainText('within the 1.25 mm fit budget');
  await expect(section.locator('[data-search-region]')).toHaveCount(1);
+ await expect(section.locator('[data-bus-terminal-review]')).toContainText('CPU pin 15');
+ await expect(section.locator('[data-bus-terminal-review]')).toContainText('does not exclude a top-side continuation');
+ await expect(section.locator('[data-eye-alternatives] tbody tr')).toHaveCount(4);
+ await panel.getByLabel('Controller net',{exact:true}).selectOption('/D2');
+ await panel.locator('[data-routing-audit] > summary').click();
+ const d2=panel.locator('[data-routing-net="/D2"]');await d2.locator(':scope > summary').click();
+ await expect(d2.locator('[data-eye-position-check]')).toContainText('outside the 1.25 mm fit budget');
+ await expect(d2.locator('[data-eye-alternatives] tbody tr').first()).toContainText('lower-eye');
+ await expect(d2.locator('[data-eye-alternatives] tbody tr').first()).toContainText('1.53 mm');
+ await expect(d2.locator('[data-eye-alternatives]')).not.toContainText('Within; unresolved');
 });
 
 test('bus review separates partial fan-out from connected CPU-ROM lanes',async({page})=>{

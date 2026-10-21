@@ -35631,9 +35631,69 @@
         "continuityEstablished": false,
         "id": "latch-review-d1",
         "nativeCopper": false,
-        "reason": "Top lead/eye attachment and the complete eye-to-CPU path remain unresolved. Reverse-side spans are recorded as candidate geometry only; positional agreement alone cannot establish continuity.",
+        "reason": "The latch-side candidate reaches an unassigned underside joint, not CPU pin 15. CPU-side tracing follows the existing ROM branch; the top lead entry is obscured. A complete latch-to-CPU continuation is unresolved.",
         "referenceNet": "/D1",
         "reverseReview": {
+          "alternativeScope": "Nearby underside features checked against the same top endpoint with unchanged local fits. Ranking is positional only; a pad is not an interchangeable via and no candidate establishes continuity.",
+          "alternatives": [
+            {
+              "id": "middle-eye",
+              "kind": "eye",
+              "point": [
+                1390,
+                2645
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 0.887915486,
+                "toleranceMm": 1.25,
+                "withinFitBudget": true
+              }
+            },
+            {
+              "id": "upper-eye",
+              "kind": "eye",
+              "point": [
+                1365,
+                2618
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 3.120191125,
+                "toleranceMm": 1.25,
+                "withinFitBudget": false
+              }
+            },
+            {
+              "id": "lower-eye",
+              "kind": "eye",
+              "point": [
+                1335,
+                2708
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 7.678518257,
+                "toleranceMm": 1.25,
+                "withinFitBudget": false
+              }
+            },
+            {
+              "id": "cpu-pin-7",
+              "kind": "pad",
+              "point": [
+                1307,
+                2706
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 9.233221862,
+                "toleranceMm": 1.25,
+                "withinFitBudget": false
+              },
+              "terminal": "A5:7"
+            }
+          ],
           "continuityEstablished": false,
           "point": [
             1390,
@@ -35735,6 +35795,63 @@
         ],
         "source": "photo-top",
         "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "terminalReview": {
+          "continuityEstablished": false,
+          "nativeCopper": false,
+          "point": [
+            1309,
+            2958
+          ],
+          "reason": "CPU pin 15 has a visible underside exit toward the already reconstructed ROM branch. The candidate latch path ends at [1408,2923], spatially separate from this pad and exit. No exposed underside bridge between them is identified; this does not exclude a top-side continuation.",
+          "segments": [
+            {
+              "id": "d1-cpu-exit-0",
+              "points": [
+                [
+                  1309,
+                  2958
+                ],
+                [
+                  1327,
+                  2977
+                ]
+              ],
+              "status": "inferred"
+            },
+            {
+              "id": "d1-cpu-exit-1",
+              "points": [
+                [
+                  1327,
+                  2977
+                ],
+                [
+                  1330,
+                  3138
+                ]
+              ],
+              "status": "observed"
+            }
+          ],
+          "source": "photo-bottom",
+          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
+          "terminal": "A5:15",
+          "topReview": {
+            "imageSize": [
+              3072,
+              4080
+            ],
+            "observation": "CPU pin 15 is the raised lead near [1596,3202]. Neighboring board tracks enter beneath the raised lead/body edge; the visible lead knee does not establish which entry belongs to pin 15. No top-side terminal attachment is assigned.",
+            "pixelBox": [
+              1430,
+              3130,
+              1620,
+              3240
+            ],
+            "source": "photo-top",
+            "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+          }
+        },
         "terminals": [
           "A4:18",
           "A5:15"
@@ -35744,9 +35861,69 @@
         "continuityEstablished": false,
         "id": "latch-review-d2",
         "nativeCopper": false,
-        "reason": "Top lead/eye attachment and the complete eye-to-CPU path remain unresolved. Reverse-side spans are recorded as candidate geometry only; positional agreement alone cannot establish continuity.",
+        "reason": "The closest reviewed underside eye still disagrees with the top endpoint beyond the local fit budget. Neighboring eyes and CPU pin 7 do not provide a better match. Eye identity and its continuation to CPU pin 12 remain unresolved.",
         "referenceNet": "/D2",
         "reverseReview": {
+          "alternativeScope": "Nearby underside features checked against the same top endpoint with unchanged local fits. Ranking is positional only; a pad is not an interchangeable via and no candidate establishes continuity.",
+          "alternatives": [
+            {
+              "id": "lower-eye",
+              "kind": "eye",
+              "point": [
+                1335,
+                2708
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 1.529928258,
+                "toleranceMm": 1.25,
+                "withinFitBudget": false
+              }
+            },
+            {
+              "id": "cpu-pin-7",
+              "kind": "pad",
+              "point": [
+                1307,
+                2706
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 3.539786895,
+                "toleranceMm": 1.25,
+                "withinFitBudget": false
+              },
+              "terminal": "A5:7"
+            },
+            {
+              "id": "middle-eye",
+              "kind": "eye",
+              "point": [
+                1390,
+                2645
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 5.290461969,
+                "toleranceMm": 1.25,
+                "withinFitBudget": false
+              }
+            },
+            {
+              "id": "upper-eye",
+              "kind": "eye",
+              "point": [
+                1365,
+                2618
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 6.493495166,
+                "toleranceMm": 1.25,
+                "withinFitBudget": false
+              }
+            }
+          ],
           "continuityEstablished": false,
           "point": [
             1335,
@@ -43770,7 +43947,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "425cc4abb37d58ec9979818be2559b6d990e6e1b"
+      "revision": "37ddb01955c390ce696bf92d5f602335b710cbba"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -43788,7 +43965,7 @@
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
       "routingAudit": "bcf08fd837e7eb725bf612f7fcfa9ff7f59692b3f6f3a68dacc74e3c082d6c52",
-      "busReview": "ec7d123b34f8e4dfdce14575735abde184ace51e2a25e2bb4963dda594d611de",
+      "busReview": "bd2e6231da2f489043dfc570d7bfd9501a73410dc1c6aa79901e408eafd56e5a",
       "cableCopper": "a361526c51fe1a5a75e5df2d3475d75612b5271c1d70562926a93482c0c29308",
       "connectionReview": "c06969c8ac270aab9b860296f17f04302464825d80bcc68052bc87b79572ec0a",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"

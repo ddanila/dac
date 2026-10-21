@@ -42,7 +42,9 @@ reconstruction requirements below remain in scope.
    latch spans and candidate reverse-side eyes. Promote a cross-side joint only
    with a bounded fit on both sides and a supported continuation; positional
    agreement alone is insufficient. Keep inferred attachments and unmeasured
-   via dimensions explicit. Retain the
+   via dimensions explicit. Compare nearby eyes under the same fit and trace
+   from both terminals before choosing a joint; retain rejected matches in the
+   machine-readable review rather than relaxing registration tolerances. Retain the
    data/clock path through the L1 filter windings to host cable XT1 as the physical
    integration milestone.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both
