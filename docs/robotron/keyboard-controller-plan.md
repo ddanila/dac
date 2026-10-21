@@ -44,7 +44,10 @@ reconstruction requirements below remain in scope.
    agreement alone is insufficient. Keep inferred attachments and unmeasured
    via dimensions explicit. Compare nearby eyes under the same fit and trace
    from both terminals before choosing a joint; retain rejected matches in the
-   machine-readable review rather than relaxing registration tolerances. Retain the
+   machine-readable review rather than relaxing registration tolerances. Use
+   held-out board-plane eyes to check raised-lead bias; composed registrations
+   are valid only inside both source hulls. Keep extrapolated resistor-lead
+   searches unassigned until the hole entry and continuation are supported. Retain the
    data/clock path through the L1 filter windings to host cable XT1 as the physical
    integration milestone.
    X1 serves the key matrix and LEDs; review its remaining contacts separately. For each connection, record both

@@ -32782,7 +32782,7 @@
       "name": "keyboard-controller-traces",
       "file": "meshes/keyboard-controller-traces.stl",
       "color": "#b8beb7",
-      "sha256": "ac871db8f65568f5e0bc390792cb51a2716150f89f17d28fee24b75e3199a0b8",
+      "sha256": "8453b7fd7b40b880bfeb45f7da9cf6da470c88e7ed10d40fc1acaaa23f673625",
       "section": "interior",
       "material": "tinned-lead"
     },
@@ -38347,7 +38347,7 @@
       "meshSha256": "be3a2cfea01fbc9c29003a586f6a721953130413c8443e21cdec6a9ffe090a6a",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38355,7 +38355,7 @@
       "meshSha256": "fa6b5ce4d95f7d2c071bec444d26779097a67dec85dd528c9891c35d7dab1f5c",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38363,7 +38363,7 @@
       "meshSha256": "6e8b00e2feb8f1b781e11f6047e32f67b7debfd9a6011d77bd103f9073486063",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38371,7 +38371,7 @@
       "meshSha256": "036ed411244095ff2416cdcf291bcb60aa43f86be4c51479c9c63fd4bf28ea9d",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38379,7 +38379,7 @@
       "meshSha256": "5be094714626ca84553cecd66f5a1daba457e07ee036c6ad01de3b8eaaf6a242",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38387,7 +38387,7 @@
       "meshSha256": "baefe5ac636caccbe2adcf6b00ee38c479401871c06381bfb74640897584283c",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38395,15 +38395,15 @@
       "meshSha256": "c9bf19246806dfd703770e6ea5c750360f29de09ddd1c6adbc902cfe03a12480",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
     "keyboard-controller-traces": {
-      "meshSha256": "ac871db8f65568f5e0bc390792cb51a2716150f89f17d28fee24b75e3199a0b8",
+      "meshSha256": "8453b7fd7b40b880bfeb45f7da9cf6da470c88e7ed10d40fc1acaaa23f673625",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38411,7 +38411,7 @@
       "meshSha256": "c6b953b7ce24eae7517dd372f4374b4a7b7674a1c4b2b1f0cc3a83cb7e5ef5f9",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38419,7 +38419,7 @@
       "meshSha256": "ea7ee5f5a5ebfd8dcedb342448e6cb134e151b6bc0defaef88ac69bf4c4aa78a",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38427,7 +38427,7 @@
       "meshSha256": "6fc4142e8f2239f936e34f51daa70b4f9c3f18a634ee6141b10657bbd63cf0fd",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38435,7 +38435,7 @@
       "meshSha256": "ae6105d9cbe6a6620a65a30d09853043abc672cf9936511438a8ccfef5dfb506",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38443,7 +38443,7 @@
       "meshSha256": "a2dcd1b1395c5c06398a2a538af87c120865f24bfade23c2c7b84bc6078279b2",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38451,7 +38451,7 @@
       "meshSha256": "c8121492a5b136b4d2ceca9385191d1853d9e15f61d6c6dcd54dc4d48a9b5f12",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38459,7 +38459,7 @@
       "meshSha256": "494175cbae8168a28f5cdb3be09a23993e0cf74a6b03bd6c66c150aa725a5795",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38467,7 +38467,7 @@
       "meshSha256": "168970e398a448b016b2b702df9c424fd0943d7712abddd733b4fe5c77d62ddf",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38475,7 +38475,7 @@
       "meshSha256": "f36ad0a1901493a86d40cd101a0f18771ff6249e91588d90eab00e5671e83b91",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38483,7 +38483,7 @@
       "meshSha256": "fe3bdff444380970aeb210e8de7d2d42f3eadf01e98c82172471119ba30b5a1d",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     },
@@ -38491,14 +38491,14 @@
       "meshSha256": "5bf5ced8a6e0bb2b93d65696fb75fca466d9320c490e1ebfb0c542ddb1b12e9b",
       "sources": {
         "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-        "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+        "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
         "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
       }
     }
   },
   "keyboardControllerSource": {
     "specimen-details.scad": "95d22abf122d58e1108344f81435c554c0f685785023ed5ee2088a4d9911af5d",
-    "keyboard-controller/generated/controller.scad": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3",
+    "keyboard-controller/generated/controller.scad": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da",
     "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037"
   }
 }

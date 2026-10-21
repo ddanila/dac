@@ -880,14 +880,21 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  await expect(section.locator('[data-search-region]')).toHaveCount(1);
  await expect(section.locator('[data-bus-terminal-review]')).toContainText('CPU pin 15');
  await expect(section.locator('[data-bus-terminal-review]')).toContainText('does not exclude a top-side continuation');
- await expect(section.locator('[data-eye-alternatives] tbody tr')).toHaveCount(4);
+ await expect(section.locator('[data-eye-alternatives] tbody tr')).toHaveCount(5);
+ await expect(section.locator('[data-eye-continuation]')).toContainText('outside this local fit hull');
+ await expect(section.locator('[data-eye-continuation]')).toContainText('R6.4');
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/D2');
  await panel.locator('[data-routing-audit] > summary').click();
  const d2=panel.locator('[data-routing-net="/D2"]');await d2.locator(':scope > summary').click();
- await expect(d2.locator('[data-eye-position-check]')).toContainText('outside the 1.25 mm fit budget');
- await expect(d2.locator('[data-eye-alternatives] tbody tr').first()).toContainText('lower-eye');
- await expect(d2.locator('[data-eye-alternatives] tbody tr').first()).toContainText('1.53 mm');
- await expect(d2.locator('[data-eye-alternatives]')).not.toContainText('Within; unresolved');
+ await expect(d2.locator(':scope > summary')).toContainText('0 links remaining');
+ await expect(d2).toContainText('A4:17 ↔ A5:12 ↔ A8:11');
+ await expect(d2.locator('[data-via-review]')).toContainText('Inferred through connection');
+ const fit=d2.locator('[data-eye-registration]');await fit.locator(':scope > summary').click();
+ await expect(fit).toContainText('held-out eyes');await expect(fit).toContainText('unchanged 1.25 mm budget');
+ await expect(fit).toContainText('0.14 mm disagreement');
+ await expect(fit).toContainText('Different specimen');
+ expect(data.routingAudit.nets.find(n=>n.net==='/D2').islands[0].terminals.sort()).toEqual(['A4:17','A5:12','A8:11']);
+ expect(data.busReview.latchPaths.some(p=>p.referenceNet==='/D2')).toBe(false);
 });
 
 test('bus review separates partial fan-out from connected CPU-ROM lanes',async({page})=>{

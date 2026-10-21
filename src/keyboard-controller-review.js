@@ -31,14 +31,14 @@ function connectionPhoto(fig){
  svg.style.cssText='display:block;width:100%;max-width:560px;max-height:340px;background:#14232d';
  const add=(tag,attrs)=>{const node=document.createElementNS(svgNS,tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,value);svg.append(node);return node;};
  const [imageWidth,imageHeight]=fig.imageSize||[3072,4080];add('image',{href:url,width:imageWidth,height:imageHeight});
- for(const region of fig.regions||[])add('polygon',{'data-photo-occluder':region.ref,points:region.polygon.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#ffffff','stroke-width':2,'stroke-dasharray':'8 6'});
+ for(const region of fig.regions||[])add('polygon',{[region.kind==='registration'?'data-photo-fit-hull':'data-photo-occluder']:region.ref,points:region.polygon.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#ffffff','stroke-width':2,'stroke-dasharray':'8 6'});
  for(const segment of fig.segments)add('polyline',{...(segment.id?{'data-observed-span':segment.id}:{}),points:segment.points.map(p=>p.join(',')).join(' '),fill:'none',stroke:segment.status==='inferred'?'#ffcf5b':'#37f3d4','stroke-width':3,'stroke-dasharray':segment.status==='inferred'?'7 5':'none'});
  const labels=document.createElement('ul');
  for(const marker of fig.markers){
   add('circle',{...(marker.kind==='search'?{'data-search-region':''}:{}),cx:marker.point[0],cy:marker.point[1],r:marker.radius||9,fill:'none',stroke:marker.kind==='search'?'#ffcf5b':'#ff79ad','stroke-width':3,'stroke-dasharray':marker.kind==='search'?'5 4':'none'});
   const label=document.createElement('li');label.textContent=marker.label;labels.append(label);
  }
- const caption=document.createElement('figcaption');caption.textContent=(fig.source.specimenId?'Comparison specimen ('+fig.source.specimenId+'): ':'Primary specimen: ')+(fig.regions?.length?'white outline marks the component body; dashed amber circles are projected search regions, not observed joints or vias.':'teal observed copper; dashed amber inferred copper or projected search region; pink recorded features or span ends. Search circles are not identified joints.');
+ const caption=document.createElement('figcaption');caption.textContent=(fig.source.specimenId?'Comparison specimen ('+fig.source.specimenId+'): ':'Primary specimen: ')+(fig.regions?.some(r=>r.kind==='registration')?'white outline bounds the composed registration; pink markers identify anchors, held-out eyes and the selected target. No electrical identity follows from the fit.':fig.regions?.length?'white outline marks the component body; dashed amber circles are projected search regions, not observed joints or vias.':'teal observed copper; dashed amber inferred copper or projected search region; pink recorded features or span ends. Search circles are not identified joints.');
  const link=document.createElement('a');link.href=url;link.textContent='Open original photograph';link.target='_blank';link.rel='noopener';
  figure.append(svg,caption,labels,link);return figure;
 }
@@ -196,6 +196,15 @@ export function installKeyboardControllerReview(scene){
       const note=document.createElement('p');note.dataset.viaReview=via.id;
       note.textContent=`Inferred through connection: ${review.checks.top.residualMm.toFixed(2)} mm top-photo residual; placement follows the ${review.positionFrom} photo. ${review.scope} Specimen continuity remains unmeasured.`;section.append(note);
      }
+     const eyeReview=data.busReview?.eyeReview,eyeTarget=eyeReview?.targets.find(t=>t.referenceNet===net.net);
+     if(eyeTarget){
+      const region=data.topRegistration.pcbRegions.find(r=>r.id===eyeReview.region),review=document.createElement('details');review.dataset.eyeRegistration=net.net;
+      const summary=document.createElement('summary');summary.textContent='Board-plane eye registration';review.append(summary);
+      const note=document.createElement('p');note.textContent=`${region.checks.length} held-out eyes: ${region.maxCheckResidualMm.toFixed(2)} mm maximum residual against the unchanged ${region.toleranceMm.toFixed(2)} mm budget. Selected eye: ${eyeTarget.residualMm.toFixed(2)} mm disagreement. ${eyeReview.scope}`;review.append(note);
+      for(const side of ['top','bottom'])review.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id==='photo-'+side),segments:[],regions:[{ref:'Bounded eye fit',kind:'registration',polygon:side==='top'?region.anchorHull:region.bottomHull}],markers:[...region.anchors.map(p=>({point:side==='top'?p.photoPixel:p.bottomPixel,label:'Anchor: '+p.id})),...region.checks.map(p=>({point:side==='top'?p.photoPixel:p.bottomPixel,label:`Held out: ${p.id}, ${p.residualMm.toFixed(2)} mm`})),{point:eyeTarget[side],label:'Selected eye; independent of fit anchors.'}]}));
+      for(const c of eyeReview.comparisons){const photo=componentPhoto(data,'A5',{photoSource:c.source,pixelBox:c.pixelBox,scope:c.observation});if(photo)review.append(photo);}
+      section.append(review);
+     }
      for(const candidate of [...(data.busReview?.paths||[]),...(data.busReview?.latchPaths||[])].filter(p=>p.referenceNet===net.net)){
       const note=document.createElement('p');note.textContent='Review target: '+candidate.terminals.join(' ↔ ')+'. '+candidate.reason;
       section.append(note,connectionPhoto({source:data.evidence.sources.find(s=>s.id===candidate.source),segments:candidate.segments,markers:[]}));
@@ -210,6 +219,10 @@ export function installKeyboardControllerReview(scene){
         section.append(table);
        }
        section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===reverse.source),segments:reverse.segments||[],markers:[{kind:'search',point:reverse.point,radius:reverse.radiusPixels,label:reverse.reason},...(reverse.unassignedEnd?[{point:reverse.unassignedEnd,label:'Unassigned continuation joint; CPU attachment unresolved.'}]:[])]}));
+       if(reverse.continuationProjection){
+        const projection=reverse.continuationProjection,note=document.createElement('p');note.dataset.eyeContinuation=candidate.id;note.textContent=projection.reason;section.append(note);
+        section.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id==='photo-top'),segments:[],markers:[{point:projection.point,label:'Extrapolated search point; no joint or terminal assigned.'}]}));
+       }
       }
       if(candidate.terminalReview){
        const terminal=candidate.terminalReview,note=document.createElement('p');note.dataset.busTerminalReview=candidate.id;note.textContent=terminal.reason;section.append(note);

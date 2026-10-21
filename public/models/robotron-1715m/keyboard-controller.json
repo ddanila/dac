@@ -7862,7 +7862,7 @@
           "geometrySha256": "50dcdea61a61bb220495974d50b436de7342b6ceafeeeeb0700b8e0f6d77516b",
           "group": "r101-output-top-local",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "a1-output-inner",
             "side": "top"
           },
@@ -7911,7 +7911,7 @@
           "geometrySha256": "c48f7a59f8a6e10588954d022c0b1f276358e4e993dc955e11402cf620dd04d1",
           "group": "r101-output-top-local",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "a1-output-inner",
             "side": "top"
           },
@@ -7960,7 +7960,7 @@
           "geometrySha256": "c997f5bad16ed3433a68cd84f042ddec7eda31702cbc00e988533c4f26068cdc",
           "group": "r101-output-top-local",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "a1-output-inner",
             "side": "top"
           },
@@ -9205,7 +9205,7 @@
           "geometrySha256": "149b6743dc205b76fdde4648e35435f2c06ea99b12e9d2df65ed30cbfac9a260",
           "group": "cpu-latch-d3",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-upper",
             "side": "top"
           },
@@ -9258,7 +9258,7 @@
           "geometrySha256": "ed2cd4c462b4428b2bd8e792050b3d03917ae6d4a71f86692e3dbcb84a46c22b",
           "group": "cpu-latch-d3",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-upper",
             "side": "top"
           },
@@ -9311,7 +9311,7 @@
           "geometrySha256": "d981e3bcd84232579d2efce3d416a24be30785b1ed70bb95ec99126f13d7732c",
           "group": "cpu-latch-d3",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-upper",
             "side": "top"
           },
@@ -9364,7 +9364,7 @@
           "geometrySha256": "7bbe2c8ba3044512c38f1d6071532e99383bd532fd57ae80d8696ff2812979f7",
           "group": "cpu-latch-d3",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-upper",
             "side": "top"
           },
@@ -9417,7 +9417,7 @@
           "geometrySha256": "0b81e013ef966c6c3bfbdd179acf33575ab095cab11618f4b07f60f91fb727af",
           "group": "cpu-latch-d3",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-upper",
             "side": "top"
           },
@@ -9834,7 +9834,7 @@
           "geometrySha256": "2c2b158a2a8eb2b15d76ef81c8d1e040e62f6de216034e05cfd03a9274a2db2f",
           "group": "cpu-latch-d5",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -9887,7 +9887,7 @@
           "geometrySha256": "797934b26ffea91e76bab9fa837b3c002ec20499cc9eecbefac7695dba3974c1",
           "group": "cpu-latch-d5",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -9940,7 +9940,7 @@
           "geometrySha256": "69053e8eab0fab838ed2138525077e85d7c09950957a231c8abea3a17a857b0f",
           "group": "cpu-latch-d5",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -9993,7 +9993,7 @@
           "geometrySha256": "440db2ae729f9a4e0874e3408cdcf518941439eb09683f7992385a4de7a3003b",
           "group": "cpu-latch-d5",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10046,7 +10046,7 @@
           "geometrySha256": "8f9923155450167ff74c07b7ea1d45de57992115e05cccb0b81d469a39caa3df",
           "group": "cpu-latch-d6",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10099,7 +10099,7 @@
           "geometrySha256": "8a64bc07dd47e99296de1953d5a2de8e98c855ded3d39f1adfbeffaf11a72c75",
           "group": "cpu-latch-d6",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10152,7 +10152,7 @@
           "geometrySha256": "1225f7b80d4407b786a2db68edb5fb3d809cdba4ec93fd5edee8a5e2f91cf28e",
           "group": "cpu-latch-d6",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10205,7 +10205,7 @@
           "geometrySha256": "72afd65a7c92482bdfcec14f1698335a8df9907d332b5a724e84983b13f26a0b",
           "group": "cpu-latch-d6",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10258,7 +10258,7 @@
           "geometrySha256": "ed5338b4787a2056a2c0814f9544d389eff015aee67d321e5a2c9c42ddd94478",
           "group": "cpu-latch-d6",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10300,6 +10300,165 @@
           [
             60.323244,
             1.286476
+          ]
+        ],
+        "side": "top",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Solder-obscured top attachment or nominal endpoint attachment. D2 latch branch through a locally matched solder eye; reference-derived pin identity. Nominal dimensions; specimen continuity remains unmeasured.",
+          "geometrySha256": "08603b3f8db5564d38e8c0b242fe76dc0ae833c3fc5eba5bd6d2e63d29f5dce0",
+          "group": "cpu-latch-d2",
+          "registration": {
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
+            "region": "latch-eyes",
+            "side": "top"
+          },
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1508,
+                    2915
+                  ],
+                  [
+                    1532,
+                    2936
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A4:17",
+            "A5:12"
+          ]
+        },
+        "id": "0c7a9401-b937-4055-85d5-dbe68cf47bd7",
+        "net": "/D2",
+        "points": [
+          [
+            51.977307,
+            -0.028635
+          ],
+          [
+            53.704232,
+            1.95695
+          ]
+        ],
+        "side": "top",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Solder-obscured top attachment or nominal endpoint attachment. D2 latch branch through a locally matched solder eye; reference-derived pin identity. Nominal dimensions; specimen continuity remains unmeasured.",
+          "geometrySha256": "ea6fffd26ab47f347e494dd1c1abfefd5d00d0eec8792ca46151fb6e1943e16e",
+          "group": "cpu-latch-d2",
+          "registration": {
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
+            "region": "latch-eyes",
+            "side": "top"
+          },
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1444,
+                    2908
+                  ],
+                  [
+                    1464,
+                    2918
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A4:17",
+            "A5:12"
+          ]
+        },
+        "id": "1190ebbd-e075-4420-98f8-b85807b7a186",
+        "net": "/D2",
+        "points": [
+          [
+            51.003578,
+            -5.152981
+          ],
+          [
+            52.059044,
+            -3.429209
+          ]
+        ],
+        "side": "top",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Exposed copper centreline. D2 latch branch through a locally matched solder eye; reference-derived pin identity. Nominal dimensions; specimen continuity remains unmeasured.",
+          "geometrySha256": "7c783f7abd78f94f5e89565c7ec5a2057b3590667ec01afcc7780a7288fcd4e7",
+          "group": "cpu-latch-d2",
+          "registration": {
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
+            "region": "latch-eyes",
+            "side": "top"
+          },
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1464,
+                    2918
+                  ],
+                  [
+                    1508,
+                    2915
+                  ]
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A4:17",
+            "A5:12"
+          ]
+        },
+        "id": "c599a6d2-0f47-42cd-98bb-1b89e8b87906",
+        "net": "/D2",
+        "points": [
+          [
+            52.059044,
+            -3.429209
+          ],
+          [
+            51.977307,
+            -0.028635
           ]
         ],
         "side": "top",
@@ -10411,6 +10570,112 @@
       },
       {
         "evidence": {
+          "detail": "Exposed copper centreline. D2 latch branch through a locally matched solder eye; reference-derived pin identity. Nominal dimensions; specimen continuity remains unmeasured.",
+          "geometrySha256": "51d9857f45e78e8ac78aa3d05164c6d7b745c0afd18c290d0c00b247cc167a66",
+          "group": "cpu-latch-d2",
+          "registration": {
+            "landmarksSha256": "39dce4bedefe03e0883ae47830ce46efd48f48248fcb97db4721d0de828e37d5",
+            "region": "cpu-a4",
+            "side": "bottom"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1323,
+                    2719
+                  ],
+                  [
+                    1326,
+                    2833
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A4:17",
+            "A5:12"
+          ]
+        },
+        "id": "26e6ac4a-ecaf-4799-96b2-8b131e994a28",
+        "net": "/D2",
+        "points": [
+          [
+            54.581253,
+            2.942603
+          ],
+          [
+            63.891805,
+            2.834545
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Exposed copper centreline. D2 latch branch through a locally matched solder eye; reference-derived pin identity. Nominal dimensions; specimen continuity remains unmeasured.",
+          "geometrySha256": "81a1fc26f3be37d63fa13648dc7d74ccda453b69b2738208811c08202e6b9a79",
+          "group": "cpu-latch-d2",
+          "registration": {
+            "landmarksSha256": "39dce4bedefe03e0883ae47830ce46efd48f48248fcb97db4721d0de828e37d5",
+            "region": "cpu-a4",
+            "side": "bottom"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1326,
+                    2833
+                  ],
+                  [
+                    1314,
+                    2849
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "observed",
+          "terminals": [
+            "A4:17",
+            "A5:12"
+          ]
+        },
+        "id": "2a47b464-de54-4195-801f-9b4319c05b6a",
+        "net": "/D2",
+        "points": [
+          [
+            63.891805,
+            2.834545
+          ],
+          [
+            65.173061,
+            3.824836
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
           "detail": "Observed exposed copper centreline. Visible CPU-to-ROM D2 lane. Pin order and topology cross-checked against the comparison specimen underside; primary specimen supplies all geometry. Other branches of this bus net remain incomplete. Nominal photo projection and track width; not measured dimensions or specimen continuity. No hidden branch or additional bus connection is implied.",
           "geometrySha256": "389a2aad83dafddcd0044c76dcdb63f2a4e292a5d8ce9cbfdb0e248565b90950",
           "group": "cpu-rom-d2",
@@ -10456,6 +10721,112 @@
           [
             114.492773,
             6.353681
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Solder-obscured top attachment or nominal endpoint attachment. D2 latch branch through a locally matched solder eye; reference-derived pin identity. Nominal dimensions; specimen continuity remains unmeasured.",
+          "geometrySha256": "bc97c8f9611a745fc025ccda3ddbafe2638d58e430a4c7591e125a1cbb22a9cf",
+          "group": "cpu-latch-d2",
+          "registration": {
+            "landmarksSha256": "39dce4bedefe03e0883ae47830ce46efd48f48248fcb97db4721d0de828e37d5",
+            "region": "cpu-a4",
+            "side": "bottom"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1335,
+                    2708
+                  ],
+                  [
+                    1323,
+                    2719
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A4:17",
+            "A5:12"
+          ]
+        },
+        "id": "6be9f4dd-961a-4b8f-8a5e-6a6cfe2f6725",
+        "net": "/D2",
+        "points": [
+          [
+            53.704232,
+            1.95695
+          ],
+          [
+            54.581253,
+            2.942603
+          ]
+        ],
+        "side": "bottom",
+        "width": 0.25
+      },
+      {
+        "evidence": {
+          "detail": "Solder-obscured top attachment or nominal endpoint attachment. D2 latch branch through a locally matched solder eye; reference-derived pin identity. Nominal dimensions; specimen continuity remains unmeasured.",
+          "geometrySha256": "bb2ef000b02a691bd87b483783ed9d3ed3e2450c9087d1f99089954ced7d9928",
+          "group": "cpu-latch-d2",
+          "registration": {
+            "landmarksSha256": "39dce4bedefe03e0883ae47830ce46efd48f48248fcb97db4721d0de828e37d5",
+            "region": "cpu-a4",
+            "side": "bottom"
+          },
+          "sources": [
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelSegment": [
+                  [
+                    1314,
+                    2849
+                  ],
+                  [
+                    1308,
+                    2865
+                  ]
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "inferred",
+          "terminals": [
+            "A4:17",
+            "A5:12"
+          ]
+        },
+        "id": "841fdcf3-fad2-49ab-9d76-b4257ac06e1e",
+        "net": "/D2",
+        "points": [
+          [
+            65.173061,
+            3.824836
+          ],
+          [
+            65.799115,
+            4.161611
           ]
         ],
         "side": "bottom",
@@ -10675,7 +11046,7 @@
           "geometrySha256": "00e4507421cae46f4bcb97a6300ff231eada9f48eee3bebae0893a17a2899331",
           "group": "cpu-latch-d7",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10728,7 +11099,7 @@
           "geometrySha256": "67d19d7d1bde4e1f10d110789d2a241ac0fced0518a7340a2bc2f20cc3b9b0d1",
           "group": "cpu-latch-d7",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10781,7 +11152,7 @@
           "geometrySha256": "c5f76d249d3a33d01e53f6c02f140c0a55ca95436994e5a99eeee5d0bda2a006",
           "group": "cpu-latch-d7",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10834,7 +11205,7 @@
           "geometrySha256": "652756835e445ce5013ef2ad94b58f711ee6861c140aecfc554a0397c22280c0",
           "group": "cpu-latch-d7",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10887,7 +11258,7 @@
           "geometrySha256": "46c3b1fff6380b492d65de5c0e2396aa41b496886c564cbc8585904af91ce9f0",
           "group": "cpu-latch-d7",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10940,7 +11311,7 @@
           "geometrySha256": "ea937bf0ac17c5b2e1823042bf100cadcbf8f1c33cc9cf6149701c23b17779f8",
           "group": "cpu-latch-d7",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-data",
             "side": "top"
           },
@@ -10993,7 +11364,7 @@
           "geometrySha256": "66f9f3dc97ebf0498cc3f2862f89838097024a6454e082d1127a67dcb353866f",
           "group": "cpu-latch-d0",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-upper",
             "side": "top"
           },
@@ -11046,7 +11417,7 @@
           "geometrySha256": "98a8fe2640d7661286e2b6fceae755e3884e6142f6a3db94b07dbb95b685ef93",
           "group": "cpu-latch-d0",
           "registration": {
-            "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+            "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
             "region": "cpu-latch-upper",
             "side": "top"
           },
@@ -19335,6 +19706,21 @@
         "checks": {
           "bottom": {
             "region": "cpu-a4",
+            "residualMm": 4.03e-07
+          },
+          "top": {
+            "region": "latch-eyes",
+            "residualMm": 0.135466931
+          }
+        },
+        "positionFrom": "bottom",
+        "scope": "Bounded nominal photo correspondence; plating, drill and diameter are not measured.",
+        "viaId": "e0f7a72d-1b1e-427b-b797-e92afaed519f"
+      },
+      {
+        "checks": {
+          "bottom": {
+            "region": "cpu-a4",
             "residualMm": 5.2e-07
           },
           "top": {
@@ -19359,7 +19745,64 @@
             },
             "positionFrom": "bottom",
             "top": {
-              "landmarksSha256": "6794646e18601deb52ca06af271427f481fb8939c636b45965cd0d9c8381f96d",
+              "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
+              "region": "latch-eyes"
+            }
+          },
+          "detail": "Nominal through connection at the matched D2 solder eye. The lead attachment is inferred; the underside trace runs to A5:12. Placement follows the underside fit, checked against the held-out eye fit on the top. Diameter 1.2 mm and drill 0.6 mm are illustrative, not measured; plating and continuity remain unmeasured.",
+          "geometrySha256": "d5510a8145d3632c8338f4458bb5a9c13ded4f7e3857c8712a41d7e72ac7c726",
+          "group": "cpu-latch-d2",
+          "sources": [
+            {
+              "id": "photo-top",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelPoint": [
+                  1532,
+                  2936
+                ]
+              },
+              "sha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
+            },
+            {
+              "id": "photo-bottom",
+              "locator": {
+                "imageSize": [
+                  3072,
+                  4080
+                ],
+                "pixelPoint": [
+                  1335,
+                  2708
+                ]
+              },
+              "sha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b"
+            }
+          ],
+          "status": "inferred"
+        },
+        "id": "e0f7a72d-1b1e-427b-b797-e92afaed519f",
+        "net": "/D2",
+        "position": [
+          53.704232,
+          1.95695
+        ]
+      },
+      {
+        "diameter": 1.2,
+        "drill": 0.6,
+        "evidence": {
+          "crossSideRegistration": {
+            "bottom": {
+              "landmarksSha256": "39dce4bedefe03e0883ae47830ce46efd48f48248fcb97db4721d0de828e37d5",
+              "region": "cpu-a4"
+            },
+            "positionFrom": "bottom",
+            "top": {
+              "landmarksSha256": "8b662ed3f29647c6286004298f5c5e76286acc131791496fa568e8ac04814c55",
               "region": "cpu-latch-upper"
             }
           },
@@ -20760,13 +21203,13 @@
   "qualification": {
     "components": 70,
     "drc": {
-      "unconnectedItems": 206,
+      "unconnectedItems": 205,
       "violations": {
         "clearance": 1,
         "track_dangling": 4
       }
     },
-    "electricalCopperSegments": 150,
+    "electricalCopperSegments": 157,
     "erc": [
       {
         "description": "Label connected to only one pin",
@@ -26339,6 +26782,241 @@
         ],
         "scope": "Local top lead correspondence for exposed A4/CPU copper. Raised leads obscure hole entries; pad attachments are inferred. No assignment of hidden paths or anonymous solder eyes.",
         "toleranceMm": 1.25
+      },
+      {
+        "anchorHull": [
+          [
+            1500.9999999999995,
+            2846.9999999999995
+          ],
+          [
+            1753.9405270661734,
+            2969.9077208983517
+          ],
+          [
+            1754.876955614258,
+            3007.4446213070237
+          ],
+          [
+            1529.9999999999998,
+            3175.000000000001
+          ],
+          [
+            1338.3386467981986,
+            3038.2859289447906
+          ],
+          [
+            1341.1059813998922,
+            2919.0734402023213
+          ]
+        ],
+        "anchors": [
+          {
+            "bottomPixel": [
+              1365,
+              2618
+            ],
+            "id": "upper-solder-eye",
+            "observation": "Solder-obscured upper eye; correspondence also retained by the existing D0 underside path. Centre remains photo-estimated.",
+            "photoPixel": [
+              1501,
+              2847
+            ]
+          },
+          {
+            "bottomPixel": [
+              1089,
+              2776
+            ],
+            "id": "cpu-outer-eye",
+            "observation": "Single circular eye outside the CPU outer row beside the long edge track.",
+            "photoPixel": [
+              1785,
+              2985
+            ]
+          },
+          {
+            "bottomPixel": [
+              1342,
+              2939
+            ],
+            "id": "lower-inner-eye",
+            "observation": "Lowest exposed circular eye in the latch/CPU corridor, below the pair of inner eyes.",
+            "photoPixel": [
+              1530,
+              3175
+            ]
+          },
+          {
+            "bottomPixel": [
+              1610,
+              2718
+            ],
+            "id": "outer-upper-eye",
+            "observation": "Upper of the two exposed eyes outside the latch outer row.",
+            "photoPixel": [
+              1237,
+              2966
+            ]
+          }
+        ],
+        "bottomHull": [
+          [
+            1365,
+            2618
+          ],
+          [
+            1119.6343449027804,
+            2758.462947483191
+          ],
+          [
+            1120.205638050107,
+            2796.1048181903852
+          ],
+          [
+            1342,
+            2939
+          ],
+          [
+            1517.8704745838659,
+            2793.9724817797223
+          ],
+          [
+            1515.8200574754992,
+            2679.559207132857
+          ]
+        ],
+        "bottomRegion": "cpu-a4",
+        "bottomToTop": [
+          -0.8427193637239733,
+          -0.10311490606356742,
+          2454.493084758037,
+          -0.19926294564095418,
+          0.47191916552491786,
+          998.1633490756026,
+          -8.459461510047198e-05,
+          -7.467665425285032e-05,
+          1
+        ],
+        "checks": [
+          {
+            "bottomPixel": [
+              1345,
+              2662
+            ],
+            "id": "upper-inner-eye",
+            "observation": "Small inner eye between the upper solder eye and the D2 target eye.",
+            "photoPixel": [
+              1517,
+              2887
+            ],
+            "projectedBottomPixel": [
+              1350.152571827,
+              2659.059087365
+            ],
+            "residualMm": 0.480905453,
+            "withinTolerance": true
+          },
+          {
+            "bottomPixel": [
+              1345,
+              2818
+            ],
+            "id": "middle-inner-eye",
+            "observation": "Exposed eye below the straight latch fan-out; separate from the adjacent D2 underside lane.",
+            "photoPixel": [
+              1528,
+              3049
+            ],
+            "projectedBottomPixel": [
+              1342.01914818,
+              2818.871290793
+            ],
+            "residualMm": 0.251189889,
+            "withinTolerance": true
+          },
+          {
+            "bottomPixel": [
+              1360,
+              2861
+            ],
+            "id": "lower-pair-upper",
+            "observation": "Upper of the two vertically separated corridor eyes.",
+            "photoPixel": [
+              1510,
+              3098
+            ],
+            "projectedBottomPixel": [
+              1359.65119673,
+              2864.39446803
+            ],
+            "residualMm": 0.278039598,
+            "withinTolerance": true
+          },
+          {
+            "bottomPixel": [
+              1358,
+              2908
+            ],
+            "id": "lower-pair-lower",
+            "observation": "Lower of the two vertically separated corridor eyes.",
+            "photoPixel": [
+              1512,
+              3144
+            ],
+            "projectedBottomPixel": [
+              1358.37384743,
+              2908.196154765
+            ],
+            "residualMm": 0.034393569,
+            "withinTolerance": true
+          }
+        ],
+        "copperAssignmentQualified": true,
+        "eyeAnchorHull": [
+          [
+            1501,
+            2847
+          ],
+          [
+            1785,
+            2985
+          ],
+          [
+            1530,
+            3175
+          ],
+          [
+            1237,
+            2966
+          ]
+        ],
+        "id": "latch-eyes",
+        "maxCheckResidualMm": 0.480905453,
+        "photoToModel": [
+          -0.0017487258226745405,
+          0.10813683638687817,
+          -248.11168787442168,
+          0.09632112778411266,
+          0.00015470095960303413,
+          -145.73873120897696,
+          -0.00012106552455638683,
+          0.00014508334421972866,
+          1.0
+        ],
+        "scope": "Direct correspondence of board-plane solder eyes, independent of raised lead knees. Anonymous eye identity follows the local artwork constellation; no net identity or measured continuity follows from the fit. Native use is restricted to the intersection of the eye hull and the qualified underside region.",
+        "toleranceMm": 1.25,
+        "topToBottom": [
+          -1.3065597040635264,
+          0.19170324581809897,
+          3015.590604572956,
+          -0.27453864467567957,
+          1.518455488350393,
+          -841.8134108188036,
+          -0.0001310295427185281,
+          0.00012961023779538584,
+          1
+        ]
       }
     ],
     "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
@@ -33143,29 +33821,29 @@
         ]
       },
       {
-        "drcUnconnectedItems": 1,
+        "drcUnconnectedItems": 0,
         "floatingCopperGroups": 0,
         "islands": [
           {
-            "copperIds": [],
-            "evidenceGroups": [],
-            "evidenceStatuses": [],
-            "terminals": [
-              "A4:17"
-            ],
-            "unplacedTerminals": []
-          },
-          {
             "copperIds": [
               "07a2883c-888c-4379-b01b-58a50886712a",
+              "0c7a9401-b937-4055-85d5-dbe68cf47bd7",
+              "1190ebbd-e075-4420-98f8-b85807b7a186",
               "2585e4f9-bfbb-460b-b8fc-f81a816a4e84",
+              "26e6ac4a-ecaf-4799-96b2-8b131e994a28",
+              "2a47b464-de54-4195-801f-9b4319c05b6a",
               "3db1fa0e-75e2-45b8-9f06-8ca9f2bc6b21",
+              "6be9f4dd-961a-4b8f-8a5e-6a6cfe2f6725",
+              "841fdcf3-fad2-49ab-9d76-b4257ac06e1e",
               "928cb60e-7434-4c11-b384-c57edb4f759c",
               "94f8f7fe-e5ee-4b3a-a468-39e48b8dc1e8",
               "b22322c0-46ff-4479-b65c-c9424637dd34",
-              "dd734d4b-83aa-4daa-ad71-ab9ef9bdc771"
+              "c599a6d2-0f47-42cd-98bb-1b89e8b87906",
+              "dd734d4b-83aa-4daa-ad71-ab9ef9bdc771",
+              "e0f7a72d-1b1e-427b-b797-e92afaed519f"
             ],
             "evidenceGroups": [
+              "cpu-latch-d2",
               "cpu-rom-d2"
             ],
             "evidenceStatuses": [
@@ -33173,6 +33851,7 @@
               "observed"
             ],
             "terminals": [
+              "A4:17",
               "A5:12",
               "A8:11"
             ],
@@ -33181,10 +33860,10 @@
         ],
         "minimumLinks": 2,
         "multiTerminal": true,
-        "nativePadsConnected": false,
+        "nativePadsConnected": true,
         "net": "/D2",
-        "padGroups": 2,
-        "remainingPadGroupLinks": 1,
+        "padGroups": 1,
+        "remainingPadGroupLinks": 0,
         "terminals": [
           "A4:17",
           "A5:12",
@@ -35558,13 +36237,13 @@
     "scope": "Native KiCad same-net connectivity, including off-board placeholder pads. Connected does not mean historically verified or fabrication-ready. DRC gaps may include floating copper; pad-group links count only disconnected terminal groups. Cross-net clearance/short findings remain in qualification.json.",
     "summary": {
       "assignedPins": 330,
-      "drcUnconnectedItems": 206,
+      "drcUnconnectedItems": 205,
       "floatingCopperGroups": 0,
-      "fullyConnectedMultiTerminalNets": 2,
+      "fullyConnectedMultiTerminalNets": 3,
       "minimumLinks": 234,
       "multiTerminalNets": 94,
       "nets": 96,
-      "remainingPadGroupLinks": 206
+      "remainingPadGroupLinks": 205
     }
   },
   "busReview": {
@@ -35626,6 +36305,80 @@
       "source": "photo-top",
       "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240"
     },
+    "eyeReview": {
+      "comparisons": [
+        {
+          "electricalIdentityTransferred": false,
+          "imageSize": [
+            4080,
+            3072
+          ],
+          "observation": "Different specimen: the exposed eye constellation and top trace departures corroborate artwork identification, not primary-specimen continuity.",
+          "pixelBox": [
+            1400,
+            500,
+            3500,
+            1400
+          ],
+          "source": "comparison-photo-080429077",
+          "sourceSha256": "e8ece4b1f9686881f5447617c32616400c81c37a5461e1756bd691313a1d29b3"
+        },
+        {
+          "electricalIdentityTransferred": false,
+          "imageSize": [
+            3072,
+            4080
+          ],
+          "observation": "Different specimen: the eye beside the CPU row has a lane toward the CPU, separate from the neighboring eye-to-eye lane. The primary underside path is traced independently; comparison geometry is not copied into native copper.",
+          "pixelBox": [
+            1250,
+            2730,
+            1470,
+            3230
+          ],
+          "source": "comparison-photo-080342577",
+          "sourceSha256": "aa18874b9fba8db44216f8531ad9caab9125839a07838616bf1237f02a6b15fa"
+        }
+      ],
+      "maxCheckResidualMm": 0.480905453,
+      "region": "latch-eyes",
+      "scope": "Held-out board-plane eye checks qualify local correspondence independently of raised-lead fits. Fit agreement does not establish plating, measured dimensions or specimen continuity.",
+      "targets": [
+        {
+          "bottom": [
+            1390,
+            2645
+          ],
+          "continuityEstablished": false,
+          "id": "d1-eye",
+          "insideFitHull": true,
+          "referenceNet": "/D1",
+          "residualMm": 0.462770022,
+          "top": [
+            1470,
+            2873
+          ],
+          "withinFitBudget": true
+        },
+        {
+          "bottom": [
+            1335,
+            2708
+          ],
+          "continuityEstablished": false,
+          "id": "d2-eye",
+          "insideFitHull": true,
+          "referenceNet": "/D2",
+          "residualMm": 0.135466641,
+          "top": [
+            1532,
+            2936
+          ],
+          "withinFitBudget": true
+        }
+      ],
+      "toleranceMm": 1.25
+    },
     "latchPaths": [
       {
         "continuityEstablished": false,
@@ -35645,7 +36398,7 @@
               ],
               "positionCheck": {
                 "continuityEstablished": false,
-                "residualMm": 0.887915486,
+                "residualMm": 0.462770022,
                 "toleranceMm": 1.25,
                 "withinFitBudget": true
               }
@@ -35659,7 +36412,21 @@
               ],
               "positionCheck": {
                 "continuityEstablished": false,
-                "residualMm": 3.120191125,
+                "residualMm": 3.146932844,
+                "toleranceMm": 1.25,
+                "withinFitBudget": false
+              }
+            },
+            {
+              "id": "upper-inner-eye",
+              "kind": "eye",
+              "point": [
+                1345,
+                2662
+              ],
+              "positionCheck": {
+                "continuityEstablished": false,
+                "residualMm": 4.358391357,
                 "toleranceMm": 1.25,
                 "withinFitBudget": false
               }
@@ -35673,7 +36440,7 @@
               ],
               "positionCheck": {
                 "continuityEstablished": false,
-                "residualMm": 7.678518257,
+                "residualMm": 7.231900178,
                 "toleranceMm": 1.25,
                 "withinFitBudget": false
               }
@@ -35687,13 +36454,23 @@
               ],
               "positionCheck": {
                 "continuityEstablished": false,
-                "residualMm": 9.233221862,
+                "residualMm": 8.811672689,
                 "toleranceMm": 1.25,
                 "withinFitBudget": false
               },
               "terminal": "A5:7"
             }
           ],
+          "continuationProjection": {
+            "continuityEstablished": false,
+            "insideFitHull": false,
+            "point": [
+              1458.683095562,
+              3164.784603178
+            ],
+            "reason": "The projected endpoint falls near the raised R6.4 right lead, outside this local fit hull. The lead bend hides the board entry; neither a resistor terminal nor a CPU continuation is identified.",
+            "region": "latch-eyes"
+          },
           "continuityEstablished": false,
           "point": [
             1390,
@@ -35701,7 +36478,7 @@
           ],
           "positionCheck": {
             "continuityEstablished": false,
-            "residualMm": 0.887915486,
+            "residualMm": 0.462770022,
             "toleranceMm": 1.25,
             "withinFitBudget": true
           },
@@ -35709,7 +36486,7 @@
           "reason": "Candidate reverse-side path stops at another unassigned joint. Neither through-board identity nor continuation to the CPU is established; no native via or route is assigned.",
           "registrationRegions": {
             "bottom": "cpu-a4",
-            "top": "cpu-latch-upper"
+            "top": "latch-eyes"
           },
           "segments": [
             {
@@ -35855,193 +36632,6 @@
         "terminals": [
           "A4:18",
           "A5:15"
-        ]
-      },
-      {
-        "continuityEstablished": false,
-        "id": "latch-review-d2",
-        "nativeCopper": false,
-        "reason": "The closest reviewed underside eye still disagrees with the top endpoint beyond the local fit budget. Neighboring eyes and CPU pin 7 do not provide a better match. Eye identity and its continuation to CPU pin 12 remain unresolved.",
-        "referenceNet": "/D2",
-        "reverseReview": {
-          "alternativeScope": "Nearby underside features checked against the same top endpoint with unchanged local fits. Ranking is positional only; a pad is not an interchangeable via and no candidate establishes continuity.",
-          "alternatives": [
-            {
-              "id": "lower-eye",
-              "kind": "eye",
-              "point": [
-                1335,
-                2708
-              ],
-              "positionCheck": {
-                "continuityEstablished": false,
-                "residualMm": 1.529928258,
-                "toleranceMm": 1.25,
-                "withinFitBudget": false
-              }
-            },
-            {
-              "id": "cpu-pin-7",
-              "kind": "pad",
-              "point": [
-                1307,
-                2706
-              ],
-              "positionCheck": {
-                "continuityEstablished": false,
-                "residualMm": 3.539786895,
-                "toleranceMm": 1.25,
-                "withinFitBudget": false
-              },
-              "terminal": "A5:7"
-            },
-            {
-              "id": "middle-eye",
-              "kind": "eye",
-              "point": [
-                1390,
-                2645
-              ],
-              "positionCheck": {
-                "continuityEstablished": false,
-                "residualMm": 5.290461969,
-                "toleranceMm": 1.25,
-                "withinFitBudget": false
-              }
-            },
-            {
-              "id": "upper-eye",
-              "kind": "eye",
-              "point": [
-                1365,
-                2618
-              ],
-              "positionCheck": {
-                "continuityEstablished": false,
-                "residualMm": 6.493495166,
-                "toleranceMm": 1.25,
-                "withinFitBudget": false
-              }
-            }
-          ],
-          "continuityEstablished": false,
-          "point": [
-            1335,
-            2708
-          ],
-          "positionCheck": {
-            "continuityEstablished": false,
-            "residualMm": 1.529928258,
-            "toleranceMm": 1.25,
-            "withinFitBudget": false
-          },
-          "radiusPixels": 18,
-          "reason": "Candidate reverse-side path stops at another unassigned joint. Neither through-board identity nor continuation to the CPU is established; no native via or route is assigned.",
-          "registrationRegions": {
-            "bottom": "cpu-a4",
-            "top": "cpu-latch-upper"
-          },
-          "segments": [
-            {
-              "id": "latch-review-d2-reverse-0",
-              "points": [
-                [
-                  1335,
-                  2708
-                ],
-                [
-                  1348,
-                  2721
-                ]
-              ],
-              "status": "inferred"
-            },
-            {
-              "id": "latch-review-d2-reverse-1",
-              "points": [
-                [
-                  1348,
-                  2721
-                ],
-                [
-                  1349,
-                  2803
-                ]
-              ],
-              "status": "observed"
-            },
-            {
-              "id": "latch-review-d2-reverse-2",
-              "points": [
-                [
-                  1349,
-                  2803
-                ],
-                [
-                  1345,
-                  2818
-                ]
-              ],
-              "status": "inferred"
-            }
-          ],
-          "source": "photo-bottom",
-          "sourceSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
-          "status": "candidate-correspondence-only",
-          "unassignedEnd": [
-            1345,
-            2818
-          ]
-        },
-        "segments": [
-          {
-            "id": "d2-latch-0",
-            "points": [
-              [
-                1444,
-                2908
-              ],
-              [
-                1464,
-                2918
-              ]
-            ],
-            "status": "inferred"
-          },
-          {
-            "id": "d2-latch-1",
-            "points": [
-              [
-                1464,
-                2918
-              ],
-              [
-                1508,
-                2915
-              ]
-            ],
-            "status": "observed"
-          },
-          {
-            "id": "d2-latch-2",
-            "points": [
-              [
-                1508,
-                2915
-              ],
-              [
-                1532,
-                2936
-              ]
-            ],
-            "status": "inferred"
-          }
-        ],
-        "source": "photo-top",
-        "sourceSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
-        "terminals": [
-          "A4:17",
-          "A5:12"
         ]
       },
       {
@@ -37641,7 +38231,7 @@
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
-      "route-evidence.json": "fb2704b3a56b1e846514519f68dbdde65b814bf09eb2daffa85fcf3ff4510dbc",
+      "route-evidence.json": "a49814299331085833530a5aec32b461dc6fe9f87cf4a24e2f90331db06670c4",
       "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
       "tools/bottom_registration.py": "302f3acf3da0fee2d4da8682a3675399d39ff89cd8bcb103e979152baa20efd3",
       "tools/cable_copper.py": "62e5c65aca23a41064612fd9ed7b732627e63e74949337563fb75031f56fa0c4",
@@ -39155,11 +39745,11 @@
       "connection-review.json": "255e7c4f7f793814bfb86194c22708292152a503b4e4b822642ec178f11a201e",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "component-evidence.json": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
-      "route-evidence.json": "fb2704b3a56b1e846514519f68dbdde65b814bf09eb2daffa85fcf3ff4510dbc",
+      "route-evidence.json": "a49814299331085833530a5aec32b461dc6fe9f87cf4a24e2f90331db06670c4",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "generated/layout.json": "1329bae3fd9d2bc6f8f8d25b5f3e2815f392a1e443935b771a58ad23714c66ca",
+      "generated/layout.json": "1a65cac4945f6f9885e1f1be796df27fe2288c5816ae64a6912cf41d640dce74",
       "generated/connector-terminals.json": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
-      "generated/top-registration.json": "6eec26ec932202e5523d0bffe14875adc68dbd4c681972566339e8fd3edaf356",
+      "generated/top-registration.json": "4e4292fba36e4bca4f056c89c415b01b455cc6f217280f0ee42bd3422c4ce1e0",
       "generated/bottom-registration.json": "beed56ec6f5ffdb416050da5ed966938bdab915d4c1f151a2cf1c41f7f934502",
       "photo-landmarks.json": "f76f424013b762666e16ba3c28ddb322c8b65d6d88dd47584add2e1c427270b6",
       "bottom-landmarks.json": "39dce4bedefe03e0883ae47830ce46efd48f48248fcb97db4721d0de828e37d5",
@@ -43947,31 +44537,31 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "37ddb01955c390ce696bf92d5f602335b710cbba"
+      "revision": "ac90086435259de7b69b9dc85c490ffb6eac635e"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "1f1c4f00647eee8b58a1f475b157d4179870896c"
     },
     "files": {
-      "layout": "1329bae3fd9d2bc6f8f8d25b5f3e2815f392a1e443935b771a58ad23714c66ca",
+      "layout": "1a65cac4945f6f9885e1f1be796df27fe2288c5816ae64a6912cf41d640dce74",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "qualification": "4d5b46fdf2e602e80458ab5982810d4894584d2e1fc9830bbc915bd5e3ef1519",
+      "qualification": "f04bd84205619845ed4529d639ebae43df2e894c4ec5668120234df3262af19f",
       "photoRegistration": "61a51daca9a51fd1765074ed674e54cdc825687e50daf3f161518cb25926a034",
       "bottomRegistration": "beed56ec6f5ffdb416050da5ed966938bdab915d4c1f151a2cf1c41f7f934502",
-      "topRegistration": "6eec26ec932202e5523d0bffe14875adc68dbd4c681972566339e8fd3edaf356",
+      "topRegistration": "4e4292fba36e4bca4f056c89c415b01b455cc6f217280f0ee42bd3422c4ce1e0",
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "componentEvidence": "a72ba37c6e404cd699d6d6010aa4c448c22cc5ac7459562af68685c76b256ff8",
-      "routingAudit": "bcf08fd837e7eb725bf612f7fcfa9ff7f59692b3f6f3a68dacc74e3c082d6c52",
-      "busReview": "bd2e6231da2f489043dfc570d7bfd9501a73410dc1c6aa79901e408eafd56e5a",
-      "cableCopper": "a361526c51fe1a5a75e5df2d3475d75612b5271c1d70562926a93482c0c29308",
-      "connectionReview": "c06969c8ac270aab9b860296f17f04302464825d80bcc68052bc87b79572ec0a",
+      "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
+      "busReview": "c32da0065982a73bf89c4ba6f278c7421f5259f47a2cd74d1704908dd08b665f",
+      "cableCopper": "3ace669670dff47f0b3b518f75b59c0a0086d590e6bbd03df012156b0fe4717d",
+      "connectionReview": "b49f485d9d959c14e4db473a10a8ec40fa792672fc65c7c1f43a9f04fc3f3b8c",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "1b3acb59841c552ac9b6f1d290d432feeb7743c6f0c225160c7ddbdfa47e86d3"
+    "geometryScadSha256": "fa154453bc0c0dbe57448018e7e4796647fb53f31017bebb3971373ba08352da"
   },
   "cosimulation": {
     "bus": {
