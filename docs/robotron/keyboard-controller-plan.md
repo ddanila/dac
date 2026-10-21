@@ -38,9 +38,10 @@ reconstruction requirements below remain in scope.
    Functional success and sampled timing screens are not electrical qualification.
 3. **Establish numerical convergence.** The retained capacitor-stamp assessment
    identifies material assembly loss before the rejected voltage excursion,
-   including a bounded saved state. Local capacitor corrections still lack
-   completed refinement. Investigate remaining stamp additions and stored
-   histories; frozen-equation sensitivity does not establish a transient remedy.
+   including a bounded saved state. Bounded accepted-state captures show that
+   local capacitor corrections alone retain large voltage excursions and
+   refinement differences. Investigate remaining stamp additions and stored
+   histories using these captures; extending runtime alone is not a remedy.
    Require an identical disabled control, completed refinement pairs and
    absolute-time voltage convergence without changing circuit physics or budgets.
 4. **Constrain device dynamics.** Qualify oscillator startup, output-driver and

@@ -38,7 +38,7 @@ owns scenario coverage and experiment details.
 | Reference reception uses rising RxC; service comparisons support logical agreement | Service fixtures do not qualify onboard clock/reset or U856 device conditions | [Receive edge][receive-edge], [receiver timing][receiver-timing] |
 | Held-key/repeat/release passes sampled voltage-envelope and timing screens | Matched refinement and device applicability remain open | [Repeat capture][repeat-capture] |
 | Refinement retains absolute-time voltage differences despite serial agreement | Do not align away phase errors or discard transition peaks to claim convergence | [Single press][paired-host], [release/repress][release-pair] |
-| Higher-precision solving and integration have not resolved trajectory failure; the capacitor audit exposes material assembly sensitivity before the rejected excursion | Exact local correction attempts were interrupted without completed refinement; remaining stamps and histories need review | [Capacitor onset][capacitor-onset], [correction experiment][capacitor-correction] |
+| Higher-precision solving and integration have not resolved trajectory failure; the capacitor audit exposes material assembly sensitivity before the rejected excursion | Bounded accepted-state captures show that local corrections alone retain large excursions and refinement differences; remaining stamps and histories need review | [Capacitor onset][capacitor-onset], [accepted-state review][accepted-budget] |
 | Startup-inclusive execution exposes CPU clock-level/timing failures and incomplete reset recovery | Functional firmware output cannot close full-board electrical qualification | [Startup assessment][board-host] |
 | Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
 | Oscillator candidates remain unqualified | Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions | [Device review][device-review], [independent solver][xyce] |
@@ -49,7 +49,7 @@ establish the global board dimensions or the primary R1 hole mapping; the
 reference package includes its electrically unused lead while remaining unplaced.
 
 [repeat-capture]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-repeat-minbreak/assessment.json
-[capacitor-correction]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-capacitor-assembly/assessment.json
+[accepted-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-accepted-budget/assessment.json
 [capacitor-onset]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-capacitor-onset/assessment.json
 [receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
