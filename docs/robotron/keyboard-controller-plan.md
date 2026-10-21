@@ -32,18 +32,16 @@ reconstruction requirements below remain in scope.
    [physical reconstruction sequence](#physical-reconstruction-sequence) below.
    Prioritize independently checked placement and complete visible paths;
    preserve unresolved identities and hidden spans in the CAD evidence.
-2. **Close pending capture reviews.** Review the held-key/repeat/release
-   service capture for host voltage and receiver timing, then obtain a matched
-   timestep-refinement pair. Preserve its source revision and model assumptions
-   when constructing the pair. Analyze the capacitor-stamp audit and
-   retain its assessment and reproducibility evidence before extending that
-   experiment. Functional success and identical diagnostic replay are not
-   electrical qualification.
-3. **Establish numerical convergence.** Locate the onset of trajectory divergence
-   in accepted and rejected state history. Higher-precision integration and linear
-   solving have not resolved it. Investigate accumulated state, nonlinear evaluation
-   and stamping sensitivity while preserving circuit physics and tolerance budgets.
-   Require completed refinement pairs and absolute-time voltage convergence.
+2. **Complete repeat-capture qualification.** The retained held-key/repeat/release
+   voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
+   pair using the verified producer revision and identical model assumptions.
+   Functional success and sampled timing screens are not electrical qualification.
+3. **Establish numerical convergence.** The retained capacitor-stamp assessment
+   identifies material assembly loss in the final frozen system; it does not
+   establish the initiating cause. Locate the first affected accepted/rejected
+   state and preserve small assembly contributions through the high-precision
+   solve. Require an identical diagnostic control, completed refinement pairs and
+   absolute-time voltage convergence without changing circuit physics or budgets.
 4. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
    host-buffer switching/loading against independent device evidence. Admit vendor
    models against the intended device's conditions before board use. Keep primary,
@@ -71,15 +69,17 @@ cannot distinguish the remaining alternatives; it does not block unrelated work.
 ## Physical reconstruction sequence
 
 Work in this order where the steps depend on geometry. Independent trace and
-component research can proceed alongside calibration. The immediate target is a
-qualified SENSE corridor and R1 placement; the serial data/clock path remains the
-board's physical integration milestone.
+component research can proceed alongside calibration. The package-distance review
+and manufacturer CPU pitch correction constrain calibration, but do not qualify
+the global envelope or R1 placement. The immediate target is a qualified SENSE
+corridor and R1 placement; the serial data/clock path remains the board's physical
+integration milestone.
 
 | Step | Work | Acceptance |
 | --- | --- | --- |
 | 1. Diagnose registration disagreement | Compare the enclosing edge fit in `sense-review.json` with board-plane joints and known package pin pitches. Check scale, perspective, handedness and raised-lead bias independently; neither the nominal envelope nor existing placement is assumed correct. | Retain a reproducible comparison with held-out checks, residuals and validity boundaries that distinguishes calibration error from placement error. Do not widen tolerances to obtain a pass. |
 | 2. Reconcile native placement | Correct only placements or registrations supported by step 1. Recheck existing routes and cross-side joins affected by those changes. | Qualified fits cover the intended geometry; independent checks meet the existing budget. Regenerated native connectivity and DRC show no unexplained regressions. |
-| 3. Place R1 and route the SENSE corridor | Resolve primary bank orientation and numbered hole entries, replace the placeholder with the supported physical package, then promote complete A4–R1 paths individually. Use the corrected detour and comparison evidence in `sense-review.json`. | Native pads represent the physical package, including its unused lead; each promoted route has supported endpoints and bounded registration throughout. Common-to-ground and collector branches remain separate acceptance items. |
+| 3. Place R1 and route the SENSE corridor | Resolve primary bank orientation and numbered hole entries, map the reference package to supported primary holes, then promote complete A4–R1 paths individually. Use the corrected detour and comparison evidence in `sense-review.json`. | Native pads represent the physical package, including its unused lead; each promoted route has supported endpoints and bounded registration throughout. Common-to-ground and collector branches remain separate acceptance items. |
 | 4. Complete the row front ends | Trace R1's common connection and sensing-transistor collector branches. Establish transistor terminal orientation from package evidence and visible lead entries. | Every assigned terminal has evidence beyond schematic expectation or proximity. Reference HDL/analog behavior remains consistent with schematic connectivity; simulation does not establish physical joins. |
 | 5. Close the remaining physical paths | Prioritize complete visible connections using `generated/routing-audit.json` and the tracing sources below. Continue through placement and DRC gaps. | Record both endpoints and unresolved spans; count connected pad groups separately from floating copper. Finish the data/clock path through L1 to XT1 for the integration milestone. |
 

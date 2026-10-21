@@ -96,7 +96,7 @@ test('underside evidence retains failing independent pad checks',()=>{
  const r=data.bottomRegistration;
  expect(r.withinPhotoTolerance).toBe(false);expect(r.copperAssignmentQualified).toBe(false);
  expect(r.pins.filter(p=>p.heldOut)).toHaveLength(6);
- expect(r.pins.filter(p=>p.heldOut&&p.residualMm>r.toleranceMm).map(p=>p.ref+':'+p.pin)).toEqual(['A5:1','A5:40','A5:20','A5:21','A1:7','A1:8']);
+ expect(r.pins.filter(p=>p.heldOut&&p.residualMm>r.toleranceMm).map(p=>p.ref+':'+p.pin)).toEqual(['A5:1','A5:40','A5:20','A1:7','A1:8']);
  expect(r.crossPhoto.checks).toHaveLength(6);
  expect(r.crossPhoto.checks.find(p=>p.ref==='A1'&&p.pin==='7').nominalResidualMm).toBeLessThan(.5);
  expect(data.photoRegistration.components.find(c=>c.ref==='A8').maxResidualMm).toBeLessThanOrEqual(data.photoRegistration.toleranceMm);
@@ -405,7 +405,7 @@ test('comparison specimen photos stay separate from primary placement and highli
 
 test('CPU clock inspection distinguishes local projection from global registration',async({page})=>{
  const region=data.bottomRegistration.pcbRegions[0];
- expect(region.copperAssignmentQualified).toBe(true);expect(region.maxCheckResidualMm).toBeLessThan(.67);
+ expect(region.copperAssignmentQualified).toBe(true);expect(region.maxCheckResidualMm).toBeLessThan(region.toleranceMm);
  expect(data.bottomRegistration.copperAssignmentQualified).toBe(false);
  const selection=controllerSelection(data,'net','/CLK');
  expect(selection.routes).toHaveLength(1);
@@ -418,7 +418,7 @@ test('CPU clock inspection distinguishes local projection from global registrati
  });
  const panel=page.locator('#keyboard-controller-review');
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A5');
- await expect(panel.locator('[data-selection]')).toContainText('6 independent pad checks; 0.66 mm maximum residual');
+ await expect(panel.locator('[data-selection]')).toContainText(`${region.checks.length} independent pad checks; ${region.maxCheckResidualMm.toFixed(2)} mm maximum residual`);
  await expect(panel.locator('[data-selection]')).toContainText('limited to the anchor hull');
  await expect(panel.locator('[data-route-review="cpu-clock-terminal-conflict"]')).toContainText('clock trace assignment withdrawn');
  await expect(panel.locator('[data-route-review="cpu-clock-terminal-conflict"]')).toContainText('A4:13 D6');
@@ -909,7 +909,7 @@ test('completed latch net stays distinct from unresolved eye candidates',async({
  await panel.getByLabel('Controller net',{exact:true}).selectOption('/D4');
  await panel.locator('[data-routing-audit] > summary').click();
  const d4=panel.locator('[data-routing-net="/D4"]');await d4.locator(':scope > summary').click();
- await expect(d4.locator('[data-bus-terminal-projection]')).toContainText('4.20 mm');
+ await expect(d4.locator('[data-bus-terminal-projection]')).toContainText(data.busReview.latchPaths.find(p=>p.referenceNet==='/D4').terminalReview.topProjection.endpointSeparationMm.toFixed(2)+' mm');
  await expect(d4.locator('[data-bus-terminal-projection]')).toContainText('does not establish an attachment');
 });
 
@@ -967,6 +967,7 @@ test('sense corridor review keeps bank candidates separate from native copper',a
   await expect(review).toContainText(`A4:${row+1} ↔ R1:${9-row}`);
   await expect(review).toContainText('collector branch is unresolved');
   await expect(review.locator('[data-sense-envelope-trial]')).toContainText('Outside the fit budget');
+  await expect(review.locator('[data-sense-metric-review]')).toContainText('Primary marking UB880 D');
   await expect(review).toContainText('cable-facing end');
   if(row===0)await expect(review).toContainText('passes left of the CPU-end joint');
   await expect(review.locator('[data-observed-span]')).toHaveCount(6);

@@ -235,6 +235,11 @@ export function installKeyboardControllerReview(scene){
       const title=document.createElement('summary');title.textContent='SENSE corridor and resistor-bank mapping';review.append(title);
       for(const text of [sense.scope,sense.orientationFinding,sense.electricalScope,sensePath.reason,`Reference targets: ${sensePath.terminals.join(' ↔ ')}; collector ${sensePath.collectorTarget}; matrix input ${sensePath.matrixInput.ref} (${sensePath.matrixInput.nets.join(' ↔ ')}). Bank observation ${sensePath.bankObservationIndex} is an inferred ${sensePath.bankPinCandidate.terminal} candidate.`]){const p=document.createElement('p');p.textContent=text;review.append(p);}
       if(sensePath.bankFanoutFinding){const p=document.createElement('p');p.textContent=sensePath.bankFanoutFinding;review.append(p);}
+      if(sense.metricReview){
+       const metric=sense.metricReview,detail=document.createElement('details'),summary=document.createElement('summary');detail.dataset.senseMetricReview='';summary.textContent='Package pitch and envelope scale';detail.append(summary);
+       for(const text of [metric.scope,metric.finding,`CPU native pitch ${metric.nativeCpuPitchMm.toFixed(2)} mm; U880 D reference pitch ${metric.cpuReference.longitudinalPitchMm.toFixed(2)} mm. Primary marking ${metric.cpuReference.primaryMarking}; transverse hole spacing remains nominal.`,...metric.variants.map(v=>`${v.id}: conditional envelope ${v.estimatedEnvelopeMm.map(n=>n.toFixed(1)).join(' × ')} mm; maximum distance disagreement on independent packages ${v.independentCheckComponents.join(', ')}: ${v.maxIndependentPackageResidualMm.toFixed(2)} mm.`)]){const p=document.createElement('p');p.textContent=text;detail.append(p);}
+       const link=document.createElement('a');link.href=metric.cpuReference.sourceUrl+'#page=62';link.textContent='Manufacturer U880 D package drawing';link.target='_blank';link.rel='noopener';detail.append(link);review.append(detail);
+      }
       if(sense.envelopeTrial){
        const fit=sense.envelopeTrial,p=document.createElement('p');p.dataset.senseEnvelopeTrial=net.net;
        p.textContent=`Full-board edge fit: ${fit.boundedPaths.includes(sensePath.id)?'encloses this path':'does not enclose this path'}; maximum independent pad disagreement ${fit.maxCheckResidualMm.toFixed(2)} mm against a ${fit.toleranceMm.toFixed(2)} mm limit. ${fit.withinPhotoTolerance?'Within':'Outside'} the fit budget; diagnostic only, no copper assignment.`;review.append(p);
@@ -338,6 +343,7 @@ export function installKeyboardControllerReview(scene){
    }
    if(kind==='component'&&data.componentEvidence?.[value]){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
+    if(evidence.nativePackageScope){const p=document.createElement('p');p.dataset.nativePackageScope=value;p.textContent=evidence.nativePackageScope+(evidence.physicalUnusedPads?.length?` Physical leads with no internal connection: ${evidence.physicalUnusedPads.join(', ')}.`:'');pins.append(p);}
     if(value==='X1'&&data.connectorReview){
      const review=data.connectorReview,detail=document.createElement('p');detail.dataset.connectorReview='';
      detail.textContent=`Visual connector joints follow underside observations; both observed lead rows exit the same housing side. Native reference pads follow the registered underside joints. Projected lead-end separation is ${review.projectedRowSeparationMm.minimum.toFixed(1)}–${review.projectedRowSeparationMm.maximum.toFixed(1)} mm; native pad-row separation is ${review.nativePadRowSeparationMm.maximum.toFixed(1)} mm. These are model-based estimates; raised lead bends do not establish hole centres or terminal order. `;

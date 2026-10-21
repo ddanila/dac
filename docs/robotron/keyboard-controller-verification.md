@@ -36,16 +36,20 @@ owns scenario coverage and experiment details.
 | Finding | Consequence | Evidence |
 | --- | --- | --- |
 | Reference reception uses rising RxC; service comparisons support logical agreement | Service fixtures do not qualify onboard clock/reset or U856 device conditions | [Receive edge][receive-edge], [receiver timing][receiver-timing] |
+| Held-key/repeat/release passes sampled voltage-envelope and timing screens | Matched refinement and device applicability remain open | [Repeat capture][repeat-capture] |
 | Refinement retains absolute-time voltage differences despite serial agreement | Do not align away phase errors or discard transition peaks to claim convergence | [Single press][paired-host], [release/repress][release-pair] |
-| Higher-precision local arithmetic has not resolved trajectory failure | Investigate accumulated state and stamping; a remedy requires completed refinement | [Linear solve][mpfr], [integration][integration] |
+| Higher-precision solving and integration have not resolved trajectory failure; the frozen-system capacitor audit exposes material assembly loss | Locate the first affected state and preserve assembly contributions; a remedy requires completed transient refinement | [Linear solve][mpfr], [integration][integration], [capacitor assembly][capacitor] |
 | Startup-inclusive execution exposes CPU clock-level/timing failures and incomplete reset recovery | Functional firmware output cannot close full-board electrical qualification | [Startup assessment][board-host] |
 | Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
 | Oscillator candidates remain unqualified | Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions | [Device review][device-review], [independent solver][xyce] |
 
-Review and publication of the pending repeat and capacitor captures are tasks in
-the [plan](keyboard-controller-plan.md#next-work-and-acceptance), not accepted
-qualification evidence.
+The package-distance calibration review and manufacturer CPU pitch correction
+are recorded in CAD `sense-review.json` and `component-evidence.json`. They do not
+establish the global board dimensions or the primary R1 hole mapping; the
+reference package includes its electrically unused lead while remaining unplaced.
 
+[repeat-capture]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-repeat-minbreak/assessment.json
+[capacitor]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-capacitor-stamps/assessment.json
 [receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
 [receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
 [paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
