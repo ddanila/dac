@@ -1043,16 +1043,26 @@ test('populated reference assembly loads independently and walkthrough follows c
  await panel.getByLabel('Signal-path walkthrough').selectOption({label:'Sense latch'});
  await expect(panel.locator('[data-reference-stage]')).toContainText('input latch');
  await expect(panel.getByLabel('Reference net',{exact:true})).toHaveValue('/SENSE4');
+ const webgl=await page.evaluate(()=>{const gl=document.createElement('canvas').getContext('webgl2');gl?.getExtension('WEBGL_lose_context')?.loseContext();return !!gl;});
  const assembly=panel.locator('[data-reference-assembly]');await assembly.evaluate(e=>e.open=true);
- await expect(assembly.locator('canvas[data-ready="true"]')).toHaveCount(1);
- await expect(assembly.locator('[data-assembly-status]')).toContainText('0 body-envelope intersections');
+ async function expectAssembly(){
+  if(webgl){
+   await expect(assembly.locator('canvas[data-ready="true"]')).toHaveCount(1);
+   await expect(assembly.locator('[data-assembly-status]')).toContainText('0 body-envelope intersections');
+  }else{
+   await expect(assembly.locator('[data-assembly-status]')).toContainText('Assembly viewer unavailable');
+   await expect(assembly.locator('canvas')).toHaveCount(0);
+   await expect(panel.locator('[data-reference-scad]')).toHaveAttribute('href',/review\.scad/);
+  }
+ }
+ await expectAssembly();
  await panel.getByLabel('Reference component',{exact:true}).selectOption('V4.1');
  await expect(panel.locator('[data-reference-selection]')).toContainText('V4.1:B');
  await panel.getByLabel('Signal-path walkthrough').selectOption({label:'Strobe cable'});
  await expect(panel.getByLabel('Reference net',{exact:true})).toHaveValue('/CABLE_TAKT');
  await assembly.evaluate(e=>e.open=false);
  await expect(assembly.locator('canvas')).toHaveCount(0);
- await assembly.evaluate(e=>e.open=true);await expect(assembly.locator('canvas[data-ready="true"]')).toHaveCount(1);
+ await assembly.evaluate(e=>e.open=true);await expectAssembly();
  await panel.evaluate(e=>e.open=false);await expect(assembly.locator('canvas')).toHaveCount(0);
  expect(errors).toEqual([]);
 });

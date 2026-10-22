@@ -42,13 +42,17 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    [historical reconstruction sequence](#physical-reconstruction-sequence).
    Preserve the [reference acceptance contract](#reference-completion-sequence)
    when changing placements, mappings or routes.
-2. **Close digital timing and reset-edge qualification.** The expanded matrix,
-   overlapping-key and modifier captures agree on logical outputs. A reset near
-   a serial edge still interrupts different bit counts in the two CPU models;
-   post-reset recovery agrees. Qualify address/data/control phases together.
-   The earlier-write parameter candidate aligns edge times but corrupts data,
-   so it must not replace the default. Use the core `digital/reports/completion.json`
-   gates and retained captures; do not align away timing differences.
+2. **Qualify the joint CPU pin boundary before adoption.** The experimental
+   `digital/tv80_io_candidate.v` supplies I/O data before asserting the strobe.
+   Its full matrix/chord/reset sweep agrees functionally and matches serial cycle
+   labels, including the previously failing interrupted transmission. The retained
+   `digital/reports/joint-phase/assessment.json` is candidate evidence; production
+   `digital/reports/completion.json` gates remain open. Close LED edge and raw bus
+   differences, define C half-cycle/read-sampling semantics, and cover block I/O,
+   interrupts and arbitration before replacing the default boundary. The short
+   pin fixture checks Figure-7 control phases, setup/hold, waits and reset; it is
+   not U880 electrical calibration. Keep the rejected `T2Write=1` stale-data case
+   as a negative control. Never align away timing differences.
 3. **Complete repeat-capture qualification.** The retained held-key/repeat/release
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.
