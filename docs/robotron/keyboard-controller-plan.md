@@ -42,19 +42,21 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    [historical reconstruction sequence](#physical-reconstruction-sequence).
    Preserve the [reference acceptance contract](#reference-completion-sequence)
    when changing placements, mappings or routes.
-2. **Close promotion gates for the explicit I/O boundary.** The C/HDL read
-   candidates prepare the address before RD/IORQ, hold reads through waits and
-   sample late input at T3 falling. With transparent matrix reads, CPU reset
-   retaining external LED latches and settled LED observations, the complete
-   matrix/chord/modifier/repeat/release/reset suite agrees on functional outputs,
-   serial cycle labels and known LED-transition cycles. Evidence lives in
-   `digital/reports/c-read/summary.json`; production gates remain separate.
-   Resolve ED/block-input flag disagreements using an independent reference,
-   qualify half-cycle WAIT transitions, and close raw pin/startup, non-I/O,
-   interrupt and arbitration checks before adopting the candidates. Retain
-   unequal initial LED observations and the early-sampling negative controls;
-   never align away timestamps. `digital/io-read-contract.json` defines the
-   declared phases and promotion requirements, not U880 electrical calibration.
+2. **Close promotion gates for the explicit I/O boundary.** The isolated
+   C/HDL candidates agree across the matrix/chord/modifier/repeat/release/reset
+   suite on functional outputs, serial cycle labels and known LED transitions.
+   Independent normal-completion flag vectors identify and correct TV80's
+   ED/block-I/O flag differences. Read WAIT acceptance now follows falling-edge
+   sampling, including transitions between edges and external wait extension.
+   Memory, indexed, stack, HALT and interrupt checks retain each core's baseline
+   behavior; HDL arbitration is exercised, but CHIPS exposes no BUSRQ/BUSACK
+   interface. Evidence lives in `digital/reports/io-boundary/summary.json`;
+   these scoped checks do not establish general CPU conformance or U880 timing.
+   Before adoption, qualify write WAIT transitions and interrupted-repeat flags,
+   settle the raw-pin/startup contract and define arbitration support within the
+   intended integration scope. Retain unequal initial LED observations and
+   rejected candidates; never align away timestamps. Promote only after the
+   remaining gates pass, then rerun the complete suite against production.
 3. **Complete repeat-capture qualification.** The retained held-key/repeat/release
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.

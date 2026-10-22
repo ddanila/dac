@@ -50481,7 +50481,7 @@
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "947ea0fe090598e27c75582897f6c3b196c1bf2b"
+      "revision": "7e2e95aab6f318c038e2e0390b42865b62c65aea"
     },
     "files": {
       "layout": "0206cbbce0cf25b974257a029ef87fd476c24a96e176201a1bca18ca3228ffc0",
