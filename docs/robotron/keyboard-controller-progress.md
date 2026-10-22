@@ -3,7 +3,9 @@
 The [plan](keyboard-controller-plan.md) remains incomplete. Use the
 [requirement audit](keyboard-controller-verification.md) for remaining proof and
 [simulation decision](keyboard-controller-simulation.md) for electrical scope.
-Physical reconstruction and reference simulation can continue from existing
+The next implementation priority is a complete reference circuit and proposed PCB,
+followed by evidence-based historical reconciliation. The planned variant separation
+does not yet describe the current museum assets. Both tracks use existing
 photographs, published device evidence and standard S600 firmware.
 
 ## Authoritative artifacts
@@ -14,7 +16,7 @@ photographs, published device evidence and standard S600 firmware.
 | Which parts and routes are placed? | CAD `generated/layout.json` |
 | What is observed, inferred or unresolved? | CAD `evidence.json`, `component-evidence.json`, `route-evidence.json` |
 | Which X1 geometry and terminal assignments are supported? | CAD `generated/connector-review.json` and `generated/connector-terminals.json` |
-| What is the next physical improvement sequence? | [Plan: physical reconstruction](keyboard-controller-plan.md#physical-reconstruction-sequence) |
+| What is the next implementation sequence? | [Plan: reference completion](keyboard-controller-plan.md#reference-completion-sequence), then [historical reconstruction](keyboard-controller-plan.md#physical-reconstruction-sequence) |
 | What constrains SENSE routing and R1 placement? | CAD `sense-review.json`, generated `bus-review.json` → `senseReview`; DAC “SENSE corridor and resistor-bank mapping” |
 | Which output/connector spans should be reviewed next? | CAD `review/connection-review.html`, generated from `connection-review.json` and canonical evidence |
 | Where does the candidate clock continuation stop? | CAD `clock-continuation.json`, generated host-clock connection review; hidden bank joins and upper-eye/filter attachment remain open. |

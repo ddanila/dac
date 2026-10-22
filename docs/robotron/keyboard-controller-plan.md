@@ -12,9 +12,11 @@ OpenSCAD geometry, and qualify its digital behavior against the emulator using
 Verilog co-simulation. Use this smaller board to establish a repeatable workflow
 before extending it to other Robotron boards.
 
-The result must distinguish verified electrical connectivity, photo-supported
-physical routing, and tested digital behavior. Successful simulation does not
-prove historical copper placement or specimen timing.
+Complete a working reference implementation first, then use its expected
+connections to guide historical reconstruction. Distinguish schematic-defined
+connectivity, proposed implementation geometry, photo-supported routing and tested
+behavior. Successful simulation does not prove a unique circuit, historical copper
+placement or specimen timing.
 
 ## Reference simulation and specimen fidelity
 
@@ -23,15 +25,21 @@ Missing specimen measurements, replacement ROM contents and physical pad mapping
 must not block electrical modeling from the published schematic. Implement the
 analog sections and couple them to the existing HDL as described in the
 [circuit simulation decision and workflow](keyboard-controller-simulation.md).
-Exact specimen agreement remains a separate qualification task; the physical
-reconstruction requirements below remain in scope.
+The existing schematic-derived netlist is the starting authority: missing PCB
+joins generally mean missing copper, not unknown logical nets. Preserve known
+connections. Where the circuit really is ambiguous, record alternatives and select
+an explicit reference assumption using schematic, device and firmware constraints;
+passing firmware tests alone cannot establish the original implementation.
+Exact specimen agreement remains a separate qualification task; historical
+reconstruction stays in scope but does not gate completion of the reference PCB.
 
 ## Next work and acceptance
 
-1. **Resolve geometry, then finish supported physical paths.** Follow the
-   [physical reconstruction sequence](#physical-reconstruction-sequence) below.
-   Prioritize independently checked placement and complete visible paths;
-   preserve unresolved identities and hidden spans in the CAD evidence.
+1. **Complete the reference circuit and proposed PCB.** Follow the
+   [reference completion sequence](#reference-completion-sequence) below. Connect
+   every intended net with explicit reference placements, pad mappings and routes,
+   preserving existing historical evidence. Use the complete model to guide the
+   [historical reconstruction sequence](#physical-reconstruction-sequence).
 2. **Complete repeat-capture qualification.** The retained held-key/repeat/release
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.
@@ -61,21 +69,42 @@ reconstruction requirements below remain in scope.
 
 The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 records the findings behind these tasks and links their evidence. Physical
-reconstruction, device research and numerical diagnosis can proceed independently;
-physical reconstruction is the immediate priority and does not wait for a solver
-remedy. The ordering is not a dependency chain. Detailed measurements, candidate
-inventories and experiment results stay in source reports.
+reconstruction, device research and numerical diagnosis can proceed independently.
+Reference completion is the immediate implementation priority; unresolved historical
+geometry must not hold it up. Routing completion does not resolve numerical or
+device-model failures. Detailed measurements, candidate inventories and experiment
+results stay in source reports.
 An unresolved claim becomes an external dependency only when available evidence
 cannot distinguish the remaining alternatives; it does not block unrelated work.
 
+## Reference completion sequence
+
+Maintain distinct reference and historical KiCad board variants with shared stable
+component and net IDs. Keep the schematic as the connectivity authority; reuse
+supported geometry without overwriting its evidence. Variant identity and provenance
+must survive exports, checks, OpenSCAD generation and museum inspection. This
+separation is planned work, not a claim that a fully routed variant already exists.
+
+| Step | Work | Acceptance |
+| --- | --- | --- |
+| 1. Establish the reference contract | Review the existing netlist against the schematic, device pinouts and firmware interfaces. Separate missing copper from genuine connectivity ambiguity; record chosen assumptions and alternatives in machine-readable evidence. | Every intended pin has a net or an explicit unused classification. Any variant-specific electrical differences are explicit and reviewed; no connection is changed merely to make a test pass. |
+| 2. Complete reference placement and routing | Reuse supported placements and copper. Where evidence is incomplete, choose documented reference footprints, terminal mappings, dimensions and proposed routes. Preserve primary/comparison specimen distinctions. | All intended pad groups are connected, with no unintended shorts; netlist checks pass and DRC findings are resolved or individually justified. Proposed geometry never increases historical-evidence coverage. |
+| 3. Exercise the complete reference circuit | Run the CPU and standard S600 firmware against matrix stimuli; compare bus, latch and serial behavior for ordinary keys, modifiers, repeat, release and reset. Keep analog qualification gates below independent. | Reproducible functional results cover the declared circuit assumptions. Electrical acceptance additionally requires convergence, receiver levels, timing and recovery; routing or serial agreement alone cannot satisfy it. |
+| 4. Export and use the reference as a tracing guide | Generate its OpenSCAD model and museum view. Inspect expected source-to-destination connections against both board photographs, replacing proposed geometry only when evidence supports the replacement. | Reference and historical views are explicitly labelled; proposed routes are visually distinguishable and filterable. Checks and coverage reports are variant-specific. Promotions retain evidence and revalidate affected connectivity and geometry. |
+
+A fully routed reference is a candidate implementation, not a fabrication release.
+Mechanical dimensions, installed package/pad mappings, electrical qualification and
+manufacturing checks remain separate requirements. Do not report zero reference
+unconnected items as zero unresolved historical joins.
+
 ## Physical reconstruction sequence
 
-Work in this order where the steps depend on geometry. Independent trace and
-component research can proceed alongside calibration. The package-distance review
-and manufacturer CPU pitch correction constrain calibration, but do not qualify
-the global envelope or R1 placement. The immediate target is a qualified SENSE
-corridor and R1 placement; the serial data/clock path remains the board's physical
-integration milestone.
+Use the completed reference connections to prioritize tracing from both endpoints.
+The following evidence requirements apply to the historical variant; they do not
+prevent proposed reference placements or routes. Where steps depend on historical
+geometry, follow this order. Package-distance review and the CPU pitch correction
+do not yet qualify the global envelope or R1 placement. SENSE/R1 and the serial
+data/clock path remain historical reconstruction targets.
 
 | Step | Work | Acceptance |
 | --- | --- | --- |
@@ -86,8 +115,9 @@ integration milestone.
 | 5. Close the remaining physical paths | Prioritize complete visible connections using `generated/routing-audit.json` and the tracing sources below. Continue through placement and DRC gaps. | Record both endpoints and unresolved spans; count connected pad groups separately from floating copper. Finish the data/clock path through L1 to XT1 for the integration milestone. |
 
 For every native change, regenerate KiCad checks, OpenSCAD geometry and museum
-inspection together. Keep inferred solder attachments and unmeasured via
-geometry explicit. Photo-only evidence changes must not create native copper.
+inspection together for the affected variant. Keep proposed solder attachments and
+unmeasured via geometry explicit. Photo-only observations must not create assigned
+historical copper; proposed reference copper requires its own provenance.
 
 Use these existing tracing authorities rather than maintaining a second candidate
 inventory in this plan:
@@ -109,7 +139,7 @@ projected point must not become an assigned terminal outside those bounds.
 | Information | Authoritative source | Consumers |
 | --- | --- | --- |
 | Components, numbered pins, electrical nets | KiCad schematic | PCB checks, generated HDL wiring, signal mappings |
-| Outline, holes, footprints, placement and copper | KiCad PCB | OpenSCAD exporter and museum assets |
+| Outline, holes, footprints, placement and copper | Explicitly identified reference or historical KiCad PCB | Variant-specific OpenSCAD and museum assets |
 | Enclosure, brackets, shields and assembly transform | OpenSCAD | Museum assembly |
 | Chip behavior | Independently reviewed Verilog models | Board simulation |
 | Firmware and software behavior | Identified ROM and emulator implementation | Co-simulation |
@@ -119,8 +149,10 @@ Use stable component references, physical pin numbers and named nets throughout.
 The normalized connectivity manifest and HDL interconnect are generated outputs.
 Do not round-trip edits through them or maintain separate hand-written trace
 geometry in OpenSCAD after migration. Evidence-derived visual bodies and raised
-leads must remain separate from native numbered pads; they cannot create holes,
-solder joints or net assignments without supporting evidence.
+leads must remain separate from historical native numbered pads; they cannot create
+historical holes, solder joints or net assignments without supporting evidence.
+Reference assumptions may supply proposed geometry and pad mappings only in the
+reference variant, with explicit provenance and checked device pinouts.
 
 Define board units, origin, axes, top/bottom conventions and assembly transform
 explicitly. Generated assets record source revisions, content hashes and tool
@@ -155,23 +187,27 @@ Exit criterion: electrical-rule checks pass or have justified exceptions; all
 modeled pins are connected or explicitly classified. Agreement between generated
 files is a consistency check, not an independent validation of the transcription.
 
-## 3. Reconstruct the PCB from photographs
+## 3. Complete the reference PCB and reconstruct historical routing
 
-- Register both sides in one coordinate system using holes and component pads.
-- Place the outline, footprints, mounting holes and connectors.
+- Complete reference placement and routing using the reference sequence above.
+- Register both photographed sides using holes and component pads.
+- Reconcile historical outline, footprints, mounting holes and connectors.
 - Trace visible copper and associate routes with schematic nets.
 - Label routes as observed, inferred or unresolved, with source-photo references.
 - Keep body/bridge observations independent of unproven numbered-pad assignments.
 - Check board connectivity, clearances and agreement with the schematic.
 
-Deliverables: editable KiCad board, photo overlays and connectivity report.
-Exit criterion: visible routing is reconciled with the netlist and any remaining
-unrouted or uncertain connections are inventoried. Hidden routes may remain
-unresolved; plausible replacement routing must not be labeled historically exact.
+Deliverables: distinct editable reference and historical KiCad boards, photo
+overlays and variant-specific connectivity reports.
+Reference exit criterion: all intended nets are physically connected and checked.
+Historical exit criterion: visible routing is reconciled with the netlist and
+remaining uncertain connections are inventoried. Hidden routes may remain
+unresolved; proposed replacement routing must not be labelled historically exact.
 
 ## 4. Generate the OpenSCAD controller
 
-- Export outline, holes, pads, vias, copper, component transforms and identifiers.
+- Export outline, holes, pads, vias, copper, component transforms and identifiers,
+  retaining board variant and observed/proposed provenance.
 - Reuse the existing detailed component models, positioned by reference and footprint.
 - Keep controller assembly placement and surrounding mechanics in OpenSCAD.
 - Replace duplicate controller artwork and placement data after generated geometry
@@ -208,7 +244,9 @@ executable nominal model alone cannot complete this phase.
 
 ## 6. Integrate museum inspection and synchronization checks
 
-- Preserve component and net IDs in sidecar metadata for exported meshes.
+- Preserve component/net IDs, board variant and evidence classification in sidecars.
+- Expose distinct historical and proposed reference views; make proposed routes
+  distinguishable and filterable without implying specimen verification.
 - Support selecting a component or net to highlight geometry and its evidence.
 - Connect supported signals to emulator diagnostics; label illustrative animation
   separately from recorded activity.
@@ -220,21 +258,25 @@ Exit criterion: a placement change updates the model through regeneration; a
 connection change updates HDL wiring and triggers the relevant checks. A release
 records compatible CAD, HDL, emulator and museum revisions and validation results.
 
-## Physical integration milestone
+## Integration milestones and completion
 
-This milestone remains open because physical continuations are unresolved.
-Complete the keyboard data/clock output path through all representations:
-XT1 cable terminals, L1 filter windings, schematic nets, visible copper, generated OpenSCAD geometry and
-an HDL/emulator comparison. Include the circuitry and boundary stimuli necessary
-to exercise that path. This remains an acceptance gate even though full-board
-simulation work has already progressed independently.
+**Reference integration:** complete the data/clock path through XT1, L1 and the
+output circuitry in the reference schematic, proposed PCB, generated OpenSCAD,
+museum view and HDL/emulator comparison. Include the boundary stimuli needed to
+exercise it. Historical winding-terminal or copper uncertainty must be recorded,
+but need not prevent an explicit reference implementation. Functional integration
+and full-board electrical qualification have separate acceptance results.
 
-Completion requires all phase exit criteria and this physical milestone. Exact
-specimen fidelity additionally requires identified ROM contents, dimensions and
-measured behavior; reference qualification does not establish those claims.
-Report physical-path completion, full-board electrical qualification and
-fabrication readiness separately. A reconstructed visible path does not establish
-that the remaining PCB is routed, dimensionally verified or ready to manufacture.
+**Historical integration:** reconcile the same path with supported specimen
+placements, terminal identities and copper continuations. This milestone remains
+open; reference routing or successful simulation cannot close it.
+
+Overall completion requires the phase exit criteria and both integration
+milestones. Report reference routing, functional behavior, full-board electrical
+qualification, historical reconstruction and fabrication readiness separately.
+Exact specimen fidelity additionally requires identified ROM contents, dimensions
+and measured behavior. Completing the reference implementation is a deliverable
+in its own right and does not wait for the historical milestone.
 
 ## References
 
