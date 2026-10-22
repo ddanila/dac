@@ -14,6 +14,7 @@ evidence and standard S600 firmware.
 | --- | --- |
 | Which revisions does the museum display? | `public/models/robotron-1715m/source.json` and `keyboard-controller.json` |
 | Which historical parts and routes are placed? | CAD `generated/layout.json` |
+| What packages and clearances does the reference assembly use? | CAD `reference/assembly.json` and `reference/assembly-generated/assembly.json` |
 | What is proposed in the complete reference PCB? | CAD `reference/implementation.json`, `reference/generated/layout.json` and `reference/generated/qualification.json` |
 | What is observed, inferred or unresolved? | CAD `evidence.json`, `component-evidence.json`, `route-evidence.json` |
 | Which X1 geometry and terminal assignments are supported? | CAD `generated/connector-review.json` and `generated/connector-terminals.json` |
@@ -39,8 +40,9 @@ Use museum manifests when reviewing a specific pinned version.
 **Proposed reference PCB** loads a separate pinned layout with component/net
 selection and a proposed-copper filter. **Compare selection with historical
 evidence** opens the corresponding photographs and unresolved joins. Its OpenSCAD
-preview shows electrical
-geometry. The historical view and its unresolved joins remain independent;
+preview and **Populated reference assembly** show the proposed bodies and formed
+leads. The signal-path walkthrough selects netlist-checked stages and connects
+them to historical comparison. The historical view and its unresolved joins remain independent;
 reference DRC success does not qualify package fit, device dynamics or fabrication.
 
 Open **Keyboard controller circuit review** and select a component or net to see

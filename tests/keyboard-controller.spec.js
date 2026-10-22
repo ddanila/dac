@@ -1033,3 +1033,38 @@ test('proposed reference export uses the same pinned electrical contract',()=>{
  expect(reference.qualification.electricallyQualified).toBe(false);
  expect(reference.qualification.fabricationReady).toBe(false);
 });
+
+test('populated reference assembly loads independently and walkthrough follows checked nets',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'Historical scene intentionally unavailable'}));
+ await page.goto('/');const parent=page.locator('#keyboard-controller-review');await parent.evaluate(e=>e.open=true);
+ const panel=parent.locator('[data-reference-board]');await panel.evaluate(e=>e.open=true);
+ await expect(panel.locator('[data-reference-status]')).toContainText('0 unconnected items');
+ await panel.getByLabel('Signal-path walkthrough').selectOption({label:'Sense latch'});
+ await expect(panel.locator('[data-reference-stage]')).toContainText('input latch');
+ await expect(panel.getByLabel('Reference net',{exact:true})).toHaveValue('/SENSE4');
+ const assembly=panel.locator('[data-reference-assembly]');await assembly.evaluate(e=>e.open=true);
+ await expect(assembly.locator('canvas[data-ready="true"]')).toHaveCount(1);
+ await expect(assembly.locator('[data-assembly-status]')).toContainText('0 body-envelope intersections');
+ await panel.getByLabel('Reference component',{exact:true}).selectOption('V4.1');
+ await expect(panel.locator('[data-reference-selection]')).toContainText('V4.1:B');
+ await panel.getByLabel('Signal-path walkthrough').selectOption({label:'Strobe cable'});
+ await expect(panel.getByLabel('Reference net',{exact:true})).toHaveValue('/CABLE_TAKT');
+ await assembly.evaluate(e=>e.open=false);
+ await expect(assembly.locator('canvas')).toHaveCount(0);
+ await assembly.evaluate(e=>e.open=true);await expect(assembly.locator('canvas[data-ready="true"]')).toHaveCount(1);
+ await panel.evaluate(e=>e.open=false);await expect(assembly.locator('canvas')).toHaveCount(0);
+ expect(errors).toEqual([]);
+});
+
+test('assembly population and walkthrough terminals preserve the electrical contract',()=>{
+ const reference=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/keyboard-controller-reference.json',import.meta.url)));
+ const assembly=reference.assembly;
+ expect(new Set(assembly.components.map(c=>c.ref))).toEqual(new Set(Object.keys(data.connectivity.components)));
+ for(const c of assembly.components)for(const lead of c.leads){
+  const pad=reference.layout.components.find(p=>p.ref===c.ref).pads.find(p=>p.pin===lead.pin);
+  expect(lead.points[0].slice(0,2)).toEqual(pad.position);expect(lead.net).toBe(pad.net);
+ }
+ for(const stage of assembly.signalPaths.stages)for(const terminal of stage.terminals){const [ref,pin]=terminal.split(':');expect(data.connectivity.components[ref].pins[pin]).toBe(stage.net);}
+ expect(assembly.review.bodyEnvelopeIntersections).toEqual([]);expect(assembly.review.mechanicallyQualified).toBe(false);
+});

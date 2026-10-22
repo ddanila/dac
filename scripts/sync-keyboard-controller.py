@@ -9,6 +9,7 @@ def revision(repo):
 cadrev=revision(a.cad);emurev=revision(a.emulation);board=a.cad/'models/robotron-1715m/keyboard-controller';core=a.emulation/'verification/robotron-keyboard'
 subprocess.run(['python3',board/'tools/export.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/reference_board.py','--check'],check=True)
+subprocess.run(['python3',board/'tools/reference_assembly.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/connection_review.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/cable_copper.py','--check'],check=True)
 subprocess.run(['python3',core/'generate.py','--check'],check=True)
@@ -39,7 +40,11 @@ target=root/'public/models/robotron-1715m/keyboard-controller.json';target.write
 
 reference=board/'reference'
 variant={key:json.loads((reference/'generated'/name).read_text()) for key,name in [('layout','layout.json'),('qualification','qualification.json'),('routingAudit','routing-audit.json')]}
+variant['assembly']=json.loads((reference/'assembly-generated/assembly.json').read_text())
+# Existing museum package assets must be identical to the CAD assembly inputs.
+for name,expected in variant['assembly']['sources'].items():
+ if name.startswith('../components/') and digest(root/'public/models/robotron-1715m'/name[3:])!=expected:raise SystemExit('Stale museum package: '+name)
 manifest=json.loads((reference/'generated/manifest.json').read_text())
 if manifest['sources']['generated/connectivity.json']!=digest(paths['connectivity']):raise SystemExit('Reference variant uses different connectivity')
-variant['source']={'repository':'https://github.com/ddanila/3d-models','revision':cadrev,'manifestSha256':digest(reference/'generated/manifest.json'),'connectivitySha256':digest(paths['connectivity']),'files':manifest['outputs']}
+variant['source']={'repository':'https://github.com/ddanila/3d-models','revision':cadrev,'manifestSha256':digest(reference/'generated/manifest.json'),'connectivitySha256':digest(paths['connectivity']),'files':manifest['outputs'],'assemblySha256':digest(reference/'assembly-generated/assembly.json')}
 (root/'public/models/robotron-1715m/keyboard-controller-reference.json').write_text(json.dumps(variant,indent=2)+'\n')

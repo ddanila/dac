@@ -2,10 +2,10 @@ const NS='http://www.w3.org/2000/svg';
 
 export function installControllerReference(parent,onCompare){
  const panel=document.createElement('details');panel.dataset.referenceBoard='';
- panel.innerHTML='<summary>Proposed reference PCB</summary><p>A complete electrical routing candidate, separate from the historical reconstruction. Orange copper is proposed; blue copper retains unchanged historical geometry. Package adapters, dimensions and device behavior still need qualification. This is not a fabrication release.</p><p role="status" data-reference-status>Open to load the proposed board.</p><div data-reference-tools hidden><label>Reference component <select aria-label="Reference component" data-ref-component></select></label> <label>Reference net <select aria-label="Reference net" data-ref-net></select></label> <label>Reference side <select aria-label="Reference side" data-ref-side><option value="top">Top</option><option value="bottom">Underside</option></select></label> <label><input type="checkbox" data-ref-proposed checked> Show proposed copper</label><label>Reference drawing zoom <input type="range" aria-label="Reference drawing zoom" data-ref-zoom min="1" max="6" step="0.5" value="1"></label><div data-reference-drawing style="overflow:auto"></div><p data-reference-selection></p><p><button type="button" data-reference-compare disabled>Compare selection with historical evidence</button></p><p><a data-reference-cad target="_blank" rel="noopener">Pinned reference KiCad board</a> · <a data-reference-scad target="_blank" rel="noopener">Reference OpenSCAD preview</a></p></div>';
+ panel.innerHTML='<summary>Proposed reference PCB</summary><p>A complete electrical routing candidate, separate from the historical reconstruction. Orange copper is proposed; blue copper retains unchanged historical geometry. Package adapters, dimensions and device behavior still need qualification. This is not a fabrication release.</p><p role="status" data-reference-status>Open to load the proposed board.</p><div data-reference-tools hidden><label>Reference component <select aria-label="Reference component" data-ref-component></select></label> <label>Reference net <select aria-label="Reference net" data-ref-net></select></label> <label>Reference side <select aria-label="Reference side" data-ref-side><option value="top">Top</option><option value="bottom">Underside</option></select></label> <label><input type="checkbox" data-ref-proposed checked> Show proposed copper</label><label>Reference drawing zoom <input type="range" aria-label="Reference drawing zoom" data-ref-zoom min="1" max="6" step="0.5" value="1"></label><details data-reference-assembly><summary>Populated reference assembly</summary><p>Drag to rotate; scroll to zoom. Package bodies and lead bends belong to the proposed reference. Select a component below to locate it.</p><p data-assembly-status></p><div data-assembly-viewport></div></details><label>Signal-path walkthrough <select aria-label="Signal-path walkthrough" data-ref-walkthrough><option value="">Choose a stage</option></select></label><p data-reference-stage></p><div data-reference-drawing style="overflow:auto"></div><p data-reference-selection></p><p><button type="button" data-reference-compare disabled>Compare selection with historical evidence</button></p><p><a data-reference-cad target="_blank" rel="noopener">Pinned reference KiCad board</a> · <a data-reference-scad target="_blank" rel="noopener">Reference OpenSCAD preview</a></p></div>';
  parent.append(panel);
  const get=s=>panel.querySelector(s);
- let data=null,pending=false;
+ let data=null,pending=false,assemblyView=null,assemblyPending=false;
  function draw(){
   if(!data)return;
   const layout=data.layout,ref=get('[data-ref-component]').value,net=get('[data-ref-net]').value;
@@ -40,6 +40,7 @@ export function installControllerReference(parent,onCompare){
    }
   }
   get('[data-reference-drawing]').replaceChildren(svg);
+  assemblyView?.select(ref);
   get('[data-reference-compare]').disabled=!active;
   get('[data-reference-selection]').textContent=active?`${pins.length} terminals: ${pins.join(', ')}. ${component?component.classification+'. ':''}Reference connectivity; historical joins remain a separate question.`:'Select a component or net to follow its reference connections.';
  }
@@ -52,6 +53,11 @@ export function installControllerReference(parent,onCompare){
    const candidate=await response.json();
    if(candidate.layout?.variant!=='proposed-reference'||candidate.qualification?.variant!=='proposed-reference')throw Error('Unexpected board variant');
    data=candidate;
+   const walkthrough=get('[data-ref-walkthrough]');
+   walkthrough.replaceChildren(new Option('Choose a stage',''));
+   data.assembly.signalPaths.stages.forEach((stage,i)=>walkthrough.add(new Option(stage.title,String(i))));
+   const review=data.assembly.review;
+   get('[data-assembly-status]').textContent=`${review.bodyEnvelopeIntersections.length} body-envelope intersections; ${review.bodyOverhangs.length} body overhangs; ${review.leadBodyEnvelopeIntersections.length} lead/body-envelope intersections. Lead endpoints match pads. Mechanical qualification remains open. ${review.method}`;
    for(const [selector,values]of [['[data-ref-component]',data.layout.components.filter(c=>c.pads.some(p=>p.net)).map(c=>c.ref).sort()],['[data-ref-net]',[...new Set(data.layout.components.flatMap(c=>c.pads.map(p=>p.net)).filter(Boolean))].sort()]]){
     const select=get(selector);select.replaceChildren(new Option('All',''));for(const value of values)select.add(new Option(value.replace(/^\//,''),value));
    }
@@ -70,8 +76,22 @@ export function installControllerReference(parent,onCompare){
   const compared=await onCompare?.({kind:net?'net':'component',value:net||ref,source:data.source});
   if(!compared)get('[data-reference-selection]').textContent='Historical comparison is unavailable or uses a different electrical contract. Reopen the historical review to retry.';
  });
- panel.addEventListener('toggle',()=>{if(panel.open)load();});
- for(const selector of ['[data-ref-component]','[data-ref-net]'])get(selector).addEventListener('change',()=>{get(selector==='[data-ref-net]'?'[data-ref-component]':'[data-ref-net]').value='';draw();});
+ async function showAssembly(){
+  if(!data||assemblyView||assemblyPending||!panel.open||!get('[data-reference-assembly]').open)return;
+  assemblyPending=true;
+  try{const {createReferenceAssembly}=await import('./keyboard-controller-assembly.js');assemblyView=await createReferenceAssembly(get('[data-assembly-viewport]'),data);assemblyView.select(get('[data-ref-component]').value);if(!panel.open||!get('[data-reference-assembly]').open){assemblyView.dispose();assemblyView=null;}}
+  catch(error){get('[data-assembly-status]').textContent=`Assembly viewer unavailable (${error.message}). Close and reopen to retry. OpenSCAD remains available below.`;}
+  finally{assemblyPending=false;}
+ }
+ function hideAssembly(){assemblyView?.dispose();assemblyView=null;}
+ get('[data-reference-assembly]').addEventListener('toggle',()=>{if(get('[data-reference-assembly]').open)showAssembly();else hideAssembly();});
+ panel.addEventListener('toggle',()=>{if(panel.open){load();showAssembly();}else hideAssembly();});
+ get('[data-ref-walkthrough]').addEventListener('change',()=>{
+  const value=get('[data-ref-walkthrough]').value,stage=value===''?null:data?.assembly.signalPaths.stages[Number(value)];
+  get('[data-reference-stage]').textContent=stage?stage.description+' Terminals: '+stage.terminals.join(', ')+'. Use historical comparison below to inspect the evidence.':'';
+  if(stage){get('[data-ref-component]').value='';get('[data-ref-net]').value=stage.net;draw();assemblyView?.select(stage.ref);}
+ });
+ for(const selector of ['[data-ref-component]','[data-ref-net]'])get(selector).addEventListener('change',()=>{get('[data-ref-walkthrough]').value='';get('[data-reference-stage]').textContent='';get(selector==='[data-ref-net]'?'[data-ref-component]':'[data-ref-net]').value='';draw();});
  get('[data-ref-zoom]').addEventListener('input',draw);
  get('[data-ref-side]').addEventListener('change',draw);get('[data-ref-proposed]').addEventListener('change',draw);
 }
