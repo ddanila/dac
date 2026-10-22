@@ -42,17 +42,19 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    [historical reconstruction sequence](#physical-reconstruction-sequence).
    Preserve the [reference acceptance contract](#reference-completion-sequence)
    when changing placements, mappings or routes.
-2. **Qualify the joint CPU pin boundary before adoption.** The experimental
-   `digital/tv80_io_candidate.v` supplies I/O data before asserting the strobe.
-   Its full matrix/chord/reset sweep agrees functionally and matches serial cycle
-   labels, including the previously failing interrupted transmission. The retained
-   `digital/reports/joint-phase/assessment.json` is candidate evidence; production
-   `digital/reports/completion.json` gates remain open. Close LED edge and raw bus
-   differences, define C half-cycle/read-sampling semantics, and cover block I/O,
-   interrupts and arbitration before replacing the default boundary. The short
-   pin fixture checks Figure-7 control phases, setup/hold, waits and reset; it is
-   not U880 electrical calibration. Keep the rejected `T2Write=1` stale-data case
-   as a negative control. Never align away timing differences.
+2. **Close promotion gates for the explicit I/O boundary.** The C/HDL read
+   candidates prepare the address before RD/IORQ, hold reads through waits and
+   sample late input at T3 falling. With transparent matrix reads, CPU reset
+   retaining external LED latches and settled LED observations, the complete
+   matrix/chord/modifier/repeat/release/reset suite agrees on functional outputs,
+   serial cycle labels and known LED-transition cycles. Evidence lives in
+   `digital/reports/c-read/summary.json`; production gates remain separate.
+   Resolve ED/block-input flag disagreements using an independent reference,
+   qualify half-cycle WAIT transitions, and close raw pin/startup, non-I/O,
+   interrupt and arbitration checks before adopting the candidates. Retain
+   unequal initial LED observations and the early-sampling negative controls;
+   never align away timestamps. `digital/io-read-contract.json` defines the
+   declared phases and promotion requirements, not U880 electrical calibration.
 3. **Complete repeat-capture qualification.** The retained held-key/repeat/release
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.
