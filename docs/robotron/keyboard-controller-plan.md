@@ -42,29 +42,39 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    [historical reconstruction sequence](#physical-reconstruction-sequence).
    Preserve the [reference acceptance contract](#reference-completion-sequence)
    when changing placements, mappings or routes.
-2. **Complete repeat-capture qualification.** The retained held-key/repeat/release
+2. **Close digital timing and reset-edge qualification.** The expanded matrix,
+   overlapping-key and modifier captures agree on logical outputs. A reset near
+   a serial edge still interrupts different bit counts in the two CPU models;
+   post-reset recovery agrees. Qualify address/data/control phases together.
+   The earlier-write parameter candidate aligns edge times but corrupts data,
+   so it must not replace the default. Use the core `digital/reports/completion.json`
+   gates and retained captures; do not align away timing differences.
+3. **Complete repeat-capture qualification.** The retained held-key/repeat/release
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.
    Functional success and sampled timing screens are not electrical qualification.
-3. **Establish numerical convergence.** The retained capacitor-stamp assessment
+4. **Establish numerical convergence.** The retained capacitor-stamp assessment
    identifies material assembly loss before the rejected voltage excursion,
    including a bounded saved state. Bounded accepted-state captures show that
    local capacitor corrections alone retain large voltage excursions and
-   refinement differences. Investigate remaining stamp additions and stored
-   histories using these captures; extending runtime alone is not a remedy.
+   refinement differences. Preserving subsequent resistor/switch additions allows
+   the two finer short-window replays to complete, but their absolute-time voltage
+   differences remain material and the coarse replay fails. Qualify remaining
+   stamp arithmetic and nonlinear transitions before extending to full firmware
+   refinement; the short completed pair does not close convergence.
    Require an identical disabled control, completed refinement pairs and
    absolute-time voltage convergence without changing circuit physics or budgets.
-4. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
+5. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
    host-buffer switching/loading against independent device evidence. Admit vendor
    models against the intended device's conditions before board use. Keep primary,
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
-5. **Qualify the coupled reference board.** Resolve the CPU clock high-level and
+6. **Qualify the coupled reference board.** Resolve the CPU clock high-level and
    timing failures exposed by the startup-inclusive capture. Complete host device
    qualification, scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
    timing and supply recovery. Logical agreement and receiver timing screens
    cannot substitute for these electrical gates.
-6. **Identify residual specimen dependencies.** Exhaust photographs, package
+7. **Identify residual specimen dependencies.** Exhaust photographs, package
    drawings and published circuit constraints first. For each remaining ambiguity,
    state the alternatives and the observation that would distinguish them.
    Standard S600 permits reference work without the replacement ROM.

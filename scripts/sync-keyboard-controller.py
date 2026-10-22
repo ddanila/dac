@@ -13,6 +13,7 @@ subprocess.run(['python3',board/'tools/reference_assembly.py','--check'],check=T
 subprocess.run(['python3',board/'tools/connection_review.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/cable_copper.py','--check'],check=True)
 subprocess.run(['python3',core/'generate.py','--check'],check=True)
+subprocess.run(['python3',core/'digital/verify.py'],check=True)
 paths={k:board/'generated'/v for k,v in [('layout','layout.json'),('connectivity','connectivity.json'),('qualification','qualification.json'),('photoRegistration','photo-registration.json'),('bottomRegistration','bottom-registration.json'),('topRegistration','top-registration.json'),('connectorReview','connector-review.json'),('connectorTerminals','connector-terminals.json')]};paths['evidence']=board/'evidence.json';paths['componentEvidence']=board/'component-evidence.json'
 paths['routingAudit']=board/'generated/routing-audit.json'
 paths['busReview']=board/'generated/bus-review.json'
@@ -36,6 +37,11 @@ for bridge in blob['evidence'].get('serviceInterfaces',{}).get('bridges',[]):
    raise SystemExit('Stale bridge evidence endpoint: '+bridge['ref'])
 blob['source']={'cad':{'repository':'https://github.com/ddanila/3d-models','revision':cadrev},'emulation':{'repository':'https://github.com/ddanila/dac-emulation','revision':emurev},'files':{k:digest(v) for k,v in paths.items()},'reportSha256':digest(core/'reports/full-audit.json'),'geometryScadSha256':digest(board/'generated/controller.scad')}
 blob['cosimulation']={k:report[k] for k in ['bus','firmware','service','equivalent']}
+digital_path=core/'digital/reports/completion.json'
+digital=json.loads(digital_path.read_text())
+if digital['romSha256']!=report['firmware']['romSha256']:raise SystemExit('Digital completion uses different firmware')
+blob['digitalQualification']={k:digital[k] for k in ['gates','digitalComplete','electricallyQualified','specimenQualified','observationInterval','boundary']}
+blob['source']['digitalCompletionSha256']=digest(digital_path)
 target=root/'public/models/robotron-1715m/keyboard-controller.json';target.write_text(json.dumps(blob,indent=2)+'\n');print('Pinned keyboard controller:',cadrev,emurev)
 
 reference=board/'reference'

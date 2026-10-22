@@ -1068,3 +1068,19 @@ test('assembly population and walkthrough terminals preserve the electrical cont
  for(const stage of assembly.signalPaths.stages)for(const terminal of stage.terminals){const [ref,pin]=terminal.split(':');expect(data.connectivity.components[ref].pins[pin]).toBe(stage.net);}
  expect(assembly.review.bodyEnvelopeIntersections).toEqual([]);expect(assembly.review.mechanicallyQualified).toBe(false);
 });
+
+test('museum exposes open expanded digital gates separately from the baseline pass',async({page})=>{
+ await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
+  document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
+  const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
+  installKeyboardControllerReview({keyboardControllerSelection(){}});document.querySelector('#keyboard-controller-review').open=true;
+ });
+ const panel=page.locator('#keyboard-controller-review');
+ await expect(panel.locator('[data-digital-qualification]')).toContainText('is incomplete');
+ await expect(panel.locator('[data-digital-qualification]')).toContainText('reset-edge functional agreement; exact cycle timing');
+ await expect(panel.locator('[data-digital-report]')).toHaveAttribute('href',`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/digital/reports/completion.json`);
+ expect(data.digitalQualification.gates.allMatrixPositionsExercised).toBe(true);
+ expect(data.digitalQualification.gates.postResetSerialRecovery).toBe(true);
+ expect(data.digitalQualification.digitalComplete).toBe(false);
+ expect(data.source.digitalCompletionSha256).toMatch(/^[a-f0-9]{64}$/);
+});

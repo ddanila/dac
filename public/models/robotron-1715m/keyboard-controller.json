@@ -50481,7 +50481,7 @@
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "b253c26fd147c1d769caa6a31c80f7c0c3d8326e"
+      "revision": "854ccb58cc931bceef2d6e3e1e69d2e276a5201a"
     },
     "files": {
       "layout": "0206cbbce0cf25b974257a029ef87fd476c24a96e176201a1bca18ca3228ffc0",
@@ -50501,7 +50501,8 @@
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "b1fbde98eaca13234816889584ae73ce364b03cc933e1cc2ef9b3ad9f51b2d48"
+    "geometryScadSha256": "b1fbde98eaca13234816889584ae73ce364b03cc933e1cc2ef9b3ad9f51b2d48",
+    "digitalCompletionSha256": "607d0ae6fdb86334b783e7fe5c8b28b22900bbcaf41cfe90addfd26c39d5f0c9"
   },
   "cosimulation": {
     "bus": {
@@ -50753,5 +50754,22 @@
       "scope": "BR1/BR2 digital isolation, external injection, floating reset, clock pullup and conflicting drivers; analog sources are boundaries."
     },
     "equivalent": true
+  },
+  "digitalQualification": {
+    "gates": {
+      "fullBusAudit": true,
+      "virtualBridgeService": true,
+      "allMatrixPositionsExercised": true,
+      "repeatReleaseBaseline": true,
+      "expandedFunctionalAgreement": false,
+      "rawCycleAgreement": false,
+      "postResetSerialRecovery": true,
+      "resetDuringFrameWitnessed": true
+    },
+    "digitalComplete": false,
+    "electricallyQualified": false,
+    "specimenQualified": false,
+    "observationInterval": "0 <= fixture cycle < declared stop; out-of-window observations are retained separately, with no phase shift or interior-event deletion.",
+    "boundary": "Matching output sequences establish only the declared stimuli and digital boundaries. CPU read and write assertion phases remain independently visible; this comparison cannot choose which CPU is faithful to U880 pin timing."
   }
 }

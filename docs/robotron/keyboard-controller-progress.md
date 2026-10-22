@@ -26,7 +26,7 @@ evidence and standard S600 firmware.
 | Can supply rails identify a filter winding? | CAD `supply-review.json` and `generated/cable-copper.json` → `supplyReview`; DAC “Supply → filter evidence” |
 | Which cable-end joints share recorded underside copper? | CAD `generated/cable-copper.json`, generated from anonymous observations in `cable-copper.json` |
 | What native checks remain? | CAD `generated/qualification.json` |
-| What digital behavior is qualified? | Core `verification/robotron-keyboard/reports/` |
+| What digital behavior is qualified? | Core `verification/robotron-keyboard/reports/` and `digital/reports/completion.json`; raw timing and near-edge reset remain open |
 | What electrical assumptions and failures were retained? | Core `verification/robotron-keyboard/analog/reports/`; individual run reports and traces under `build/keyboard-controller-analog/` |
 
 Inventories and results belong in these artifacts; implementation history belongs

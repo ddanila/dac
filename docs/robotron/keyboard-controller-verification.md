@@ -20,7 +20,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 | Preserve orientation, lead alignment and repeatability | Asymmetric landmark tests, native integration test, mesh receipts and visual baselines | Estimated lead interfaces and actual specimen dimensions; historical solid-clearance scope is CAD `../checks/assembly.json`; reference body and lead/body envelope checks live in `reference/assembly-generated/assembly.json`, with lead-to-lead clearance, bend radii and enclosure fit still open |
 | Generate structural HDL with reviewed chip behavior | Core `generated/controller.v`, chip models and source review | Qualified analog device parameters and unsupported device states |
 | Couple electrical circuits and HDL | Core analog harness, generated decks, interface and load checks | Full-board clock-phase convergence, remaining firmware scenarios, model calibration, supply/brownout behavior and bus timing qualification |
-| Compare transactions and firmware behavior | Core qualification reports, pinned TV80 model and S600 workload | Specimen ROM/timing; exact cycle equivalence remains false |
+| Compare transactions and firmware behavior | Core `digital/reports/completion.json`, full matrix/chord/reset captures, bus/service and repeat baseline | Near-edge reset disagreement and different CPU read/write assertion phases; specimen ROM/timing remain separate |
 | Retain diagnostics and replay | First-difference traces, stimulus, waveform and fault-injection tests | Instrumented specimen comparison |
 | Preserve IDs and expose evidence in the museum | Export sidecars, component/net inspector and browser tests | Visual-only bodies do not establish native pads |
 | Connect runtime diagnostics | Latch samples, labelled display persistence and a pinned recorded bus waveform | Live frame samples are not full waveforms; recorded simulation does not establish specimen behavior |
@@ -38,10 +38,11 @@ owns scenario coverage and experiment details.
 
 | Finding | Consequence | Evidence |
 | --- | --- | --- |
+| Full matrix and overlapping-key output sequences agree; near-edge reset interrupts different bit counts | Preserve raw timing. Earlier TV80 write assertion aligns edges but corrupts data; joint control/data timing needs qualification | [Digital completion][digital-completion] |
 | Reference reception uses rising RxC; service comparisons support logical agreement | Service fixtures do not qualify onboard clock/reset or U856 device conditions | [Receive edge][receive-edge], [receiver timing][receiver-timing] |
 | Held-key/repeat/release passes sampled voltage-envelope and timing screens | Matched refinement and device applicability remain open | [Repeat capture][repeat-capture] |
 | Refinement retains absolute-time voltage differences despite serial agreement | Do not align away phase errors or discard transition peaks to claim convergence | [Single press][paired-host], [release/repress][release-pair] |
-| Higher-precision solving and integration have not resolved trajectory failure; the capacitor audit exposes material assembly sensitivity before the rejected excursion | Bounded accepted-state captures show that local corrections alone retain large excursions and refinement differences; remaining stamps and histories need review | [Capacitor onset][capacitor-onset], [accepted-state review][accepted-budget] |
+| Local capacitor correction alone retains trajectory failure; preserving later resistor/switch additions completes two finer short-window replays | Coarse execution still fails and the completed pair retains material absolute-time voltage differences. Single-rounding history sensitivity is too small to explain the selected frozen excursions; accumulated/nonlinear errors remain open | [Later additions][postcap], [history sensitivity][history-sensitivity], [capacitor onset][capacitor-onset] |
 | Startup-inclusive execution exposes CPU clock-level/timing failures and incomplete reset recovery | Functional firmware output cannot close full-board electrical qualification | [Startup assessment][board-host] |
 | Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
 | Oscillator candidates remain unqualified | Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions | [Device review][device-review], [independent solver][xyce] |
@@ -51,6 +52,9 @@ are recorded in CAD `sense-review.json` and `component-evidence.json`. They do n
 establish the global board dimensions or the primary R1 hole mapping; the
 reference package includes its electrically unused lead while remaining unplaced.
 
+[postcap]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-postcap-additions/assessment.json
+[history-sensitivity]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-history-sensitivity/assessment.json
+[digital-completion]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/completion.json
 [repeat-capture]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-repeat-minbreak/assessment.json
 [accepted-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-accepted-budget/assessment.json
 [capacitor-onset]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-capacitor-onset/assessment.json
