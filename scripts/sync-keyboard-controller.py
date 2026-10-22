@@ -25,7 +25,7 @@ report=json.loads((core/'reports/full-audit.json').read_text())
 if report['connectivitySha256']!=digest(paths['connectivity']):raise SystemExit('Co-simulation report uses different connectivity')
 for name,expected in {**report['sources'],**report['cpuSources']}.items():
  if digest(a.emulation/name)!=expected:raise SystemExit('Stale co-simulation report source: '+name)
-if digest(a.emulation/'machines/robotron1715m/keyboard.c')!=report['productionKeyboardSha256']:raise SystemExit('Stale production keyboard comparison')
+if digest(a.emulation/'machines/robotron1715m/keyboard.c')!=report['productionKeyboardSha256']:raise SystemExit('Stale baseline keyboard comparison')
 if digest(a.emulation/'machines/robotron1715m/keyboard.h')!=report['productionKeyboardHeaderSha256']:raise SystemExit('Stale keyboard layout comparison')
 for name,expected in report['firmware']['cpu']['files'].items():
  if digest(a.emulation/'third_party/cpu/tv80'/name)!=expected:raise SystemExit('Stale TV80 comparison: '+name)
@@ -42,6 +42,13 @@ digital=json.loads(digital_path.read_text())
 if digital['romSha256']!=report['firmware']['romSha256']:raise SystemExit('Digital completion uses different firmware')
 blob['digitalQualification']={k:digital[k] for k in ['gates','digitalComplete','electricallyQualified','specimenQualified','observationInterval','boundary']}
 blob['source']['digitalCompletionSha256']=digest(digital_path)
+subprocess.run(['python3',core/'digital/cpu_bus_evidence.py'],check=True)
+production_path=core/'digital/reports/cpu-bus/summary.json'
+production_firmware=core/'digital/reports/cpu-bus/firmware.json'
+if json.loads(production_firmware.read_text())['romSha256']!=report['firmware']['romSha256']:raise SystemExit('Production acceptance uses different firmware')
+blob['productionDigitalQualification']=json.loads(production_path.read_text())
+blob['source']['productionDigitalSummarySha256']=digest(production_path)
+blob['source']['productionDigitalFirmwareSha256']=digest(production_firmware)
 target=root/'public/models/robotron-1715m/keyboard-controller.json';target.write_text(json.dumps(blob,indent=2)+'\n');print('Pinned keyboard controller:',cadrev,emurev)
 
 reference=board/'reference'

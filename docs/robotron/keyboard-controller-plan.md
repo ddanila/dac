@@ -42,22 +42,15 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    [historical reconstruction sequence](#physical-reconstruction-sequence).
    Preserve the [reference acceptance contract](#reference-completion-sequence)
    when changing placements, mappings or routes.
-2. **Adopt the qualified I/O boundary within an explicit CPU contract.** The
-   isolated C/HDL candidate covers read/write WAIT acceptance, late input,
-   normal and interrupted-repeat flags, and ordinary I/O pins at both clock
-   edges, including reset cancellation. Firmware comparisons cover the full
-   matrix/chord/modifier/repeat/release/reset suite. A6 starts with unknown
-   validity; every initial LED state converges when IORQ first clocks the latch.
-   Preserve that validity distinction instead of treating the C startup default
-   as a physical observation. Evidence and remaining gates live in
-   `digital/reports/io-final/summary.json`.
-   Complete C bus-request support or explicitly constrain the supported external
-   control interface: the schematic connects BUSRQ to X1 A9, and the present C
-   core exposes no BUSRQ/BUSACK pins. Memory, refresh and interrupt-acknowledge
-   pin timing still need a declared acceptance contract; same-core regression
-   does not prove cross-core pin equivalence. Then integrate the candidate into
-   production and rerun its complete acceptance suite. Reference Z80 evidence
-   does not establish U880 specimen timing or full-board electrical accuracy.
+2. **Maintain production digital acceptance.** The keyboard-specific backend
+   implements X1 A9 bus arbitration and edge-timed memory, refresh, interrupt
+   acknowledge and I/O behavior. Retained C/HDL comparisons cover the declared
+   instruction and phase sweeps plus the complete standard-S600 firmware suite.
+   CPU-only reset preserves external contacts and latch validity; startup LED
+   values remain unknown until IORQ clocks A6. Regenerate and replay
+   `digital/reports/cpu-bus/summary.json` when changing this contract.
+   This closes production adoption for that reference digital scope, not exhaustive
+   opcode conformance, U880 specimen timing or full-board electrical accuracy.
 3. **Complete repeat-capture qualification.** The retained held-key/repeat/release
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.

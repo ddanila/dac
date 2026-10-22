@@ -50481,7 +50481,7 @@
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "0662a347c74e48582fc8b8d79ddfdab805607adc"
+      "revision": "9f7aaa620d2853288562a7d994c06b56ce07cc19"
     },
     "files": {
       "layout": "0206cbbce0cf25b974257a029ef87fd476c24a96e176201a1bca18ca3228ffc0",
@@ -50502,7 +50502,9 @@
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
     "geometryScadSha256": "b1fbde98eaca13234816889584ae73ce364b03cc933e1cc2ef9b3ad9f51b2d48",
-    "digitalCompletionSha256": "607d0ae6fdb86334b783e7fe5c8b28b22900bbcaf41cfe90addfd26c39d5f0c9"
+    "digitalCompletionSha256": "607d0ae6fdb86334b783e7fe5c8b28b22900bbcaf41cfe90addfd26c39d5f0c9",
+    "productionDigitalSummarySha256": "73fc7bb3cedc91aadf4872be04d052bc53b521c590e03cfaa226437c6245f921",
+    "productionDigitalFirmwareSha256": "513537baed626829587aa597a1c9c4968b9886e1f66a844d530044797456cd57"
   },
   "cosimulation": {
     "bus": {
@@ -50771,5 +50773,20 @@
     "specimenQualified": false,
     "observationInterval": "0 <= fixture cycle < declared stop; out-of-window observations are retained separately, with no phase shift or interior-event deletion.",
     "boundary": "Matching output sequences establish only the declared stimuli and digital boundaries. CPU read and write assertion phases remain independently visible; this comparison cannot choose which CPU is faithful to U880 pin timing."
+  },
+  "productionDigitalQualification": {
+    "qualified": true,
+    "productionAdopted": true,
+    "gates": {
+      "machineCycleArbitration": true,
+      "memoryRefreshInterruptPins": true,
+      "instructionFlagsWaitResetAndLateInputs": true,
+      "firmwareFunctionalAgreement": true,
+      "serialCycleAgreement": true,
+      "knownLedTransitionAgreement": true,
+      "startupValidityAndCpuOnlyReset": true,
+      "nativeAndBrowserBackendSelected": true
+    },
+    "boundary": "Reference Z80 digital acceptance for the retained instruction, phase-sweep and complete standard-S600 scenarios. Selected addresses, write data and controls agree at identical edge labels; inactive/undriven bus values are not CPU-output comparisons. BUSRQ exposes bus ownership, not driven zeroes. This is not exhaustive Z80 opcode conformance, U880 specimen calibration, analog qualification or historical copper verification."
   }
 }

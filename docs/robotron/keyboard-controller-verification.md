@@ -20,7 +20,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 | Preserve orientation, lead alignment and repeatability | Asymmetric landmark tests, native integration test, mesh receipts and visual baselines | Estimated lead interfaces and actual specimen dimensions; historical solid-clearance scope is CAD `../checks/assembly.json`; reference body and lead/body envelope checks live in `reference/assembly-generated/assembly.json`, with lead-to-lead clearance, bend radii and enclosure fit still open |
 | Generate structural HDL with reviewed chip behavior | Core `generated/controller.v`, chip models and source review | Qualified analog device parameters and unsupported device states |
 | Couple electrical circuits and HDL | Core analog harness, generated decks, interface and load checks | Full-board clock-phase convergence, remaining firmware scenarios, model calibration, supply/brownout behavior and bus timing qualification |
-| Compare transactions and firmware behavior | Core `digital/reports/completion.json`, full matrix/chord/reset captures, bus/service and repeat baseline | Production near-edge reset and phase differences remain open. The [I/O candidate][read-boundary] passes read/write WAIT, interrupted-repeat flags, ordinary I/O pin/reset comparisons and explicit startup validity; other CPU pins, C bus-request support and production adoption remain open |
+| Compare transactions and firmware behavior | [Production digital acceptance][cpu-bus], retained edge comparisons and complete standard-S600 captures | Declared reference digital scope passes; exhaustive opcode conformance, U880 specimen timing and analog qualification remain separate |
 | Retain diagnostics and replay | First-difference traces, stimulus, waveform and fault-injection tests | Instrumented specimen comparison |
 | Preserve IDs and expose evidence in the museum | Export sidecars, component/net inspector and browser tests | Visual-only bodies do not establish native pads |
 | Connect runtime diagnostics | Latch samples, labelled display persistence and a pinned recorded bus waveform | Live frame samples are not full waveforms; recorded simulation does not establish specimen behavior |
@@ -38,7 +38,7 @@ owns scenario coverage and experiment details.
 
 | Finding | Consequence | Evidence |
 | --- | --- | --- |
-| Full matrix and overlapping-key output sequences agree; near-edge reset interrupts different bit counts | Preserve raw timing. Earlier TV80 write assertion aligns edges but corrupts data; joint control/data timing needs qualification | [Digital completion][digital-completion] |
+| Production firmware, serial timing and known LED transitions agree, including near-edge reset | Preserve identical edge labels and startup validity; legacy completion reports describe the superseded backend | [Production digital acceptance][cpu-bus] |
 | Reference reception uses rising RxC; service comparisons support logical agreement | Service fixtures do not qualify onboard clock/reset or U856 device conditions | [Receive edge][receive-edge], [receiver timing][receiver-timing] |
 | Held-key/repeat/release passes sampled voltage-envelope and timing screens | Matched refinement and device applicability remain open | [Repeat capture][repeat-capture] |
 | Refinement retains absolute-time voltage differences despite serial agreement | Do not align away phase errors or discard transition peaks to claim convergence | [Single press][paired-host], [release/repress][release-pair] |
@@ -54,7 +54,6 @@ reference package includes its electrically unused lead while remaining unplaced
 
 [postcap]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-postcap-additions/assessment.json
 [history-sensitivity]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-history-sensitivity/assessment.json
-[digital-completion]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/completion.json
 [repeat-capture]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-repeat-minbreak/assessment.json
 [accepted-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-accepted-budget/assessment.json
 [capacitor-onset]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-capacitor-onset/assessment.json
@@ -113,4 +112,4 @@ visual geometry can remain separate. Regenerate, review both sides, run the
 relevant checks and pin compatible museum assets. Preserve superseded evidence
 and the reason for changing its interpretation.
 
-[read-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/io-final/summary.json
+[cpu-bus]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/cpu-bus/summary.json

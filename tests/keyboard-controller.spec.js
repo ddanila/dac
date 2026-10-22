@@ -1079,16 +1079,20 @@ test('assembly population and walkthrough terminals preserve the electrical cont
  expect(assembly.review.bodyEnvelopeIntersections).toEqual([]);expect(assembly.review.mechanicallyQualified).toBe(false);
 });
 
-test('museum exposes open expanded digital gates separately from the baseline pass',async({page})=>{
+test('museum separates production digital acceptance from legacy and electrical gates',async({page})=>{
  await page.goto('/tests/model-harness.html');await page.evaluate(async()=>{
   document.body.insertAdjacentHTML('beforeend','<div id="evidence-controls"></div>');
   const {installKeyboardControllerReview}=await import('/src/keyboard-controller-review.js');
   installKeyboardControllerReview({keyboardControllerSelection(){}});document.querySelector('#keyboard-controller-review').open=true;
  });
  const panel=page.locator('#keyboard-controller-review');
- await expect(panel.locator('[data-digital-qualification]')).toContainText('is incomplete');
- await expect(panel.locator('[data-digital-qualification]')).toContainText('reset-edge functional agreement; exact cycle timing');
- await expect(panel.locator('[data-digital-report]')).toHaveAttribute('href',`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/digital/reports/completion.json`);
+ await expect(panel.locator('[data-digital-qualification]')).toContainText('Reference digital acceptance passes');
+ await expect(panel.locator('[data-digital-qualification]')).toContainText('Electrical and specimen qualification remain separate');
+ await expect(panel.locator('[data-digital-report]')).toHaveAttribute('href',`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/digital/reports/cpu-bus/summary.json`);
+ expect(data.productionDigitalQualification.qualified).toBe(true);
+ expect(data.productionDigitalQualification.productionAdopted).toBe(true);
+ expect(Object.values(data.productionDigitalQualification.gates).every(Boolean)).toBe(true);
+ expect(data.source.productionDigitalSummarySha256).toMatch(/^[a-f0-9]{64}$/);
  expect(data.digitalQualification.gates.allMatrixPositionsExercised).toBe(true);
  expect(data.digitalQualification.gates.postResetSerialRecovery).toBe(true);
  expect(data.digitalQualification.digitalComplete).toBe(false);

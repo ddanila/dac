@@ -104,7 +104,7 @@ export function installKeyboardControllerReview(scene){
  function live(){
   if(!data)return;
   const states=value=>`Caps ${value&2?'on':'off'}; SI/SO ${value&1?'on':'off'}`;
-  get('[data-live]').textContent=(Number.isInteger(latches)?`Raw C latch sample: ${states(latches)}. `:'Raw latch samples are unavailable in this core. ')+(Number.isInteger(leds)?`Display indicators: ${states(leds)}. `:'')+(Number.isInteger(latches)?'Display indicators use a 2 ms peak hold. ':'This core does not expose separate raw latches. ')+'Frame samples are not full waveforms or specimen measurements.';
+  get('[data-live]').textContent=(Number.isInteger(latches)?`Raw C latch sample: ${states(latches)}. `:'Raw latch values are unknown or unavailable. ')+(Number.isInteger(leds)?`Display indicators: ${states(leds)}. `:'')+'Display indicators use a 2 ms peak hold. '+'Frame samples are not full waveforms or specimen measurements.';
 
  }
  function draw(){
@@ -450,13 +450,13 @@ export function installKeyboardControllerReview(scene){
    }
    for(const group of data.cableCopper?.connectedGroups||[])get('[data-copper]').add(new Option(group.join(' · '),group[0]));
    get('[data-tools]').hidden=false;status.textContent=`${Object.keys(data.connectivity.components).length} reference components. Reconstruction is incomplete.`;
-   const digital=data.digitalQualification;
+   const digital=data.productionDigitalQualification||data.digitalQualification;
    const gateLabels={fullBusAudit:'bus audit',virtualBridgeService:'bridge service',allMatrixPositionsExercised:'matrix coverage',repeatReleaseBaseline:'repeat and release',expandedFunctionalAgreement:'reset-edge functional agreement',rawCycleAgreement:'exact cycle timing',postResetSerialRecovery:'post-reset serial recovery',resetDuringFrameWitnessed:'reset during a frame'};
-   get('[data-digital-qualification]').textContent=digital?`Expanded digital qualification ${digital.digitalComplete?'passes':'is incomplete'}. Open checks: ${Object.entries(digital.gates).filter(([,passed])=>!passed).map(([key])=>gateLabels[key]||key).join('; ')||'none'}. Electrical and specimen qualification remain separate.`:'Expanded digital qualification is unavailable.';
-   get('[data-digital-report]').href=`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/digital/reports/completion.json`;
+   get('[data-digital-qualification]').textContent=digital?`Reference digital acceptance ${(digital.qualified??digital.digitalComplete)?'passes':'is incomplete'}. Open checks: ${Object.entries(digital.gates).filter(([,passed])=>!passed).map(([key])=>gateLabels[key]||key).join('; ')||'none'}. Electrical and specimen qualification remain separate.`:'Expanded digital qualification is unavailable.';
+   get('[data-digital-report]').href=`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/digital/reports/${data.productionDigitalQualification?'cpu-bus/summary.json':'completion.json'}`;
    const q=data.qualification,f=data.cosimulation.firmware;
    const bus=data.cosimulation.bus;
-   get('[data-qualification]').textContent=`PCB: ${q.drc.unconnectedItems} unresolved airwires; ${q.electricalCopperSegments} assigned copper segments. Reference co-simulation: ${bus.vectors.toLocaleString('en-US')} bus transactions, ${bus.mismatches} mismatches; ${f.cBits} C / ${f.hdlBits} HDL serial bits. Bus and LED transition comparisons ${data.cosimulation.equivalent?'pass':'do not pass'}. This is scoped logical agreement; CPU phase offsets and physical copper remain unqualified.`;
+   get('[data-qualification]').textContent=`PCB: ${q.drc.unconnectedItems} unresolved airwires; ${q.electricalCopperSegments} assigned copper segments. Baseline schematic co-simulation: ${bus.vectors.toLocaleString('en-US')} bus transactions, ${bus.mismatches} mismatches; ${f.cBits} C / ${f.hdlBits} HDL serial bits. Bus and LED transition comparisons ${data.cosimulation.equivalent?'pass':'do not pass'}. These baseline captures are separate from production CPU acceptance and physical reconstruction.`;
    const violations=Object.entries(q.drc.violations).map(([type,n])=>`${n} ${type.replaceAll('_',' ')}`).join(', ');
    if(violations)get('[data-qualification]').textContent+=` Remaining DRC findings: ${violations}. Partial routes may end at unresolved continuations.`;
    if(data.cosimulation.service)get('[data-qualification]').textContent+=` Bridge isolation: ${data.cosimulation.service.checks} digital checks; ${data.cosimulation.service.mismatches} mismatches, including external reset/clock injection and conflicting drivers. Analog timing is not simulated.`;
