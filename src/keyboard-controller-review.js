@@ -1,3 +1,4 @@
+import {installControllerReference} from './keyboard-controller-reference.js';
 import {renderFilterRegistration} from './keyboard-controller-filter.js';
 import {copperGroup,renderCopperGraph,renderSupplyReview} from './keyboard-controller-copper.js';
 import {installControllerWaveform} from './keyboard-controller-waveform.js';
@@ -91,6 +92,13 @@ export function installKeyboardControllerReview(scene){
  const panel=document.createElement('details');panel.id='keyboard-controller-review';panel.dataset.robotron='';
  panel.innerHTML='<summary>Keyboard controller circuit review</summary><p>Reference schematic and photo placement reconstruction. Copper continuity is unresolved; highlighted dots identify estimated pad locations.</p><p role="status" data-status>Open to load the controller reconstruction.</p><div data-tools hidden><label>Underside copper group <select aria-label="Controller copper group" data-copper><option value="">Select…</option></select></label><label><input type="checkbox" data-copper-projection> Show approximate copper projection</label> <label>Signal path <select aria-label="Controller signal path" data-path><option value="">Select…</option><option value="host-clock">Clock → filter → cable</option><option value="host-data">Data → filter → cable</option><option value="clock-strobe">A1 strobe → CPU WR/RD review</option><option value="supplies">Supply → filter evidence</option><option value="filter-registration">Filter joint correspondence</option></select></label> <label>Component <select aria-label="Controller component" data-component></select></label> <label>Net <select aria-label="Controller net" data-net></select></label> <label>Board side <select aria-label="Controller board side" data-side><option value="top">Top</option><option value="bottom">Underside</option></select></label><button type="button" data-clear>Clear highlight</button><button type="button" data-view-controller>View controller in model</button><label>Drawing zoom <input type="range" aria-label="Controller drawing zoom" data-zoom min="1" max="6" step="0.5" value="1"></label><div data-drawing style="overflow:auto"></div><p data-selection></p><div data-path-review></div><p data-live>Raw LED samples are unavailable.</p><details><summary>Connected pins and evidence</summary><div data-pins></div></details><p data-qualification></p><a data-cad target="_blank" rel="noopener">Open pinned KiCad sources</a> · <a data-hdl target="_blank" rel="noopener">Open co-simulation report</a></div>';
  document.getElementById('evidence-controls').after(panel);
+ installControllerReference(panel,async({kind,value,source})=>{
+  if(!data)await load();
+  if(!data||source.connectivitySha256!==data.source.files.connectivity)return false;
+  get('[data-net]').value=kind==='net'?value:'';
+  get('[data-component]').value=kind==='component'?value:'';
+  select(kind,value);get('[data-drawing]').scrollIntoView({block:'nearest'});return true;
+ });
  let data=null,pending=false,selection=null,leds=null,latches=null,selectedCopper=null;
  const get=selector=>panel.querySelector(selector),status=get('[data-status]');
  function live(){

@@ -974,3 +974,62 @@ test('sense corridor review keeps bank candidates separate from native copper',a
   expect(data.layout.routes.some(r=>r.net==='/SENSE'+row)).toBe(false);
  }
 });
+
+test('proposed reference board is separate, selectable and explicitly unqualified',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No 3D assets required for reference inspection'}));
+ await page.goto('/');
+ const historical=page.locator('#keyboard-controller-review');await historical.evaluate(e=>e.open=true);
+ const reference=historical.locator('[data-reference-board]');await reference.evaluate(e=>e.open=true);
+ await expect(reference.locator('[data-reference-status]')).toContainText('0 unconnected items; 0 missing pad-group links');
+ await expect(reference.locator('[data-reference-status]')).toContainText('DRC passes');
+ await expect(reference.locator('[data-reference-status]')).toContainText('qualification and historical verification remain open');
+ await reference.getByLabel('Reference net',{exact:true}).selectOption('/TA_DATEN');
+ await expect(reference.locator('[data-reference-selection]')).toContainText('L1.4:1');
+ await expect(reference.locator('[data-reference-selection]')).toContainText('3 terminals');
+ await reference.getByRole('button',{name:'Compare selection with historical evidence'}).click();
+ await expect(historical.locator('[data-selection]')).toContainText('Unplaced components: L1.4.');
+ await reference.getByLabel('Reference drawing zoom',{exact:true}).fill('3');
+ await expect(reference.locator('svg')).toHaveCSS('width',/px$/);
+ expect(await reference.locator('svg').evaluate(e=>e.style.width)).toBe('300%');
+ await reference.getByLabel('Reference side',{exact:true}).selectOption('bottom');
+ await expect(reference.locator('svg')).toHaveAttribute('aria-label','Proposed reference PCB bottom');
+ expect(await reference.locator('[data-reference-route][data-classification="proposed"]').count()).toBeGreaterThan(0);
+ await reference.getByLabel('Show proposed copper',{exact:true}).uncheck();
+ await expect(reference.locator('[data-reference-route][data-classification="proposed"]')).toHaveCount(0);
+ await reference.getByLabel('Reference component',{exact:true}).selectOption('R1');
+ await expect(reference.locator('[data-reference-selection]')).toContainText('R1:10');
+ await expect(reference.locator('[data-reference-selection]')).toContainText('proposed');
+ // Selecting the proposed geometry must not promote or change the historical pads.
+ await historical.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');
+ await expect(historical.locator('[data-selection]')).toContainText('Unplaced components: L1.4.');
+ expect(errors).toEqual([]);
+});
+
+test('proposed reference board retries failed loads and rejects a wrong variant',async({page})=>{
+ await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No 3D assets required for reference inspection'}));
+ let attempt=0;
+ await page.route('**/keyboard-controller-reference.json',route=>++attempt===1?route.fulfill({json:{layout:{variant:'historical'},qualification:{variant:'historical'}}}):route.continue());
+ await page.goto('/');const parent=page.locator('#keyboard-controller-review');await parent.evaluate(e=>e.open=true);
+ const panel=parent.locator('[data-reference-board]');await panel.evaluate(e=>e.open=true);
+ await expect(panel.locator('[data-reference-status]')).toContainText('Unexpected board variant');
+ await panel.evaluate(e=>e.open=false);await panel.evaluate(e=>e.open=true);
+ await expect(panel.locator('[data-reference-status]')).toContainText('0 unconnected items');
+});
+
+
+test('proposed reference export uses the same pinned electrical contract',()=>{
+ const reference=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/keyboard-controller-reference.json',import.meta.url)));
+ expect(reference.source.revision).toBe(data.source.cad.revision);
+ expect(reference.source.connectivitySha256).toBe(data.source.files.connectivity);
+ const placed=new Map(reference.layout.components.map(c=>[c.ref,c]));
+ for(const [ref,c]of Object.entries(data.connectivity.components))for(const [pin,net]of Object.entries(c.pins)){
+  expect(placed.get(ref)?.pads.find(p=>p.pin===pin)?.net,`${ref}:${pin}`).toBe(net);
+ }
+ expect(reference.routingAudit.summary.remainingPadGroupLinks).toBe(0);
+ expect(reference.routingAudit.summary.floatingCopperGroups).toBe(0);
+ expect(reference.qualification.drcPassed).toBe(true);
+ expect(reference.qualification.historicallyVerified).toBe(false);
+ expect(reference.qualification.electricallyQualified).toBe(false);
+ expect(reference.qualification.fabricationReady).toBe(false);
+});

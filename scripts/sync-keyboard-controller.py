@@ -8,6 +8,7 @@ def revision(repo):
  return subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD'],text=True).strip()
 cadrev=revision(a.cad);emurev=revision(a.emulation);board=a.cad/'models/robotron-1715m/keyboard-controller';core=a.emulation/'verification/robotron-keyboard'
 subprocess.run(['python3',board/'tools/export.py','--check'],check=True)
+subprocess.run(['python3',board/'tools/reference_board.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/connection_review.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/cable_copper.py','--check'],check=True)
 subprocess.run(['python3',core/'generate.py','--check'],check=True)
@@ -35,3 +36,10 @@ for bridge in blob['evidence'].get('serviceInterfaces',{}).get('bridges',[]):
 blob['source']={'cad':{'repository':'https://github.com/ddanila/3d-models','revision':cadrev},'emulation':{'repository':'https://github.com/ddanila/dac-emulation','revision':emurev},'files':{k:digest(v) for k,v in paths.items()},'reportSha256':digest(core/'reports/full-audit.json'),'geometryScadSha256':digest(board/'generated/controller.scad')}
 blob['cosimulation']={k:report[k] for k in ['bus','firmware','service','equivalent']}
 target=root/'public/models/robotron-1715m/keyboard-controller.json';target.write_text(json.dumps(blob,indent=2)+'\n');print('Pinned keyboard controller:',cadrev,emurev)
+
+reference=board/'reference'
+variant={key:json.loads((reference/'generated'/name).read_text()) for key,name in [('layout','layout.json'),('qualification','qualification.json'),('routingAudit','routing-audit.json')]}
+manifest=json.loads((reference/'generated/manifest.json').read_text())
+if manifest['sources']['generated/connectivity.json']!=digest(paths['connectivity']):raise SystemExit('Reference variant uses different connectivity')
+variant['source']={'repository':'https://github.com/ddanila/3d-models','revision':cadrev,'manifestSha256':digest(reference/'generated/manifest.json'),'connectivitySha256':digest(paths['connectivity']),'files':manifest['outputs']}
+(root/'public/models/robotron-1715m/keyboard-controller-reference.json').write_text(json.dumps(variant,indent=2)+'\n')

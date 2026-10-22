@@ -3,17 +3,18 @@
 The [plan](keyboard-controller-plan.md) remains incomplete. Use the
 [requirement audit](keyboard-controller-verification.md) for remaining proof and
 [simulation decision](keyboard-controller-simulation.md) for electrical scope.
-The next implementation priority is a complete reference circuit and proposed PCB,
-followed by evidence-based historical reconciliation. The planned variant separation
-does not yet describe the current museum assets. Both tracks use existing
-photographs, published device evidence and standard S600 firmware.
+The proposed reference PCB is fully connected and passes native DRC. Use it to
+guide historical reconciliation while qualifying the reference circuitry and
+package assumptions. Both tracks use existing photographs, published device
+evidence and standard S600 firmware.
 
 ## Authoritative artifacts
 
 | Question | Source |
 | --- | --- |
 | Which revisions does the museum display? | `public/models/robotron-1715m/source.json` and `keyboard-controller.json` |
-| Which parts and routes are placed? | CAD `generated/layout.json` |
+| Which historical parts and routes are placed? | CAD `generated/layout.json` |
+| What is proposed in the complete reference PCB? | CAD `reference/implementation.json`, `reference/generated/layout.json` and `reference/generated/qualification.json` |
 | What is observed, inferred or unresolved? | CAD `evidence.json`, `component-evidence.json`, `route-evidence.json` |
 | Which X1 geometry and terminal assignments are supported? | CAD `generated/connector-review.json` and `generated/connector-terminals.json` |
 | What is the next implementation sequence? | [Plan: reference completion](keyboard-controller-plan.md#reference-completion-sequence), then [historical reconstruction](keyboard-controller-plan.md#physical-reconstruction-sequence) |
@@ -34,6 +35,13 @@ and [co-simulation guide](https://github.com/ddanila/dac-emulation/blob/main/ver
 Use museum manifests when reviewing a specific pinned version.
 
 ## Museum review and synchronization
+
+**Proposed reference PCB** loads a separate pinned layout with component/net
+selection and a proposed-copper filter. **Compare selection with historical
+evidence** opens the corresponding photographs and unresolved joins. Its OpenSCAD
+preview shows electrical
+geometry. The historical view and its unresolved joins remain independent;
+reference DRC success does not qualify package fit, device dynamics or fabrication.
 
 Open **Keyboard controller circuit review** and select a component or net to see
 its geometry and evidence. Cyan artwork has no net assignment. Both board sides

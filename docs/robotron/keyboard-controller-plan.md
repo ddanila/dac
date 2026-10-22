@@ -1,8 +1,9 @@
 # Robotron keyboard controller reconstruction and synchronization plan
 
-Status: incomplete. Digital reference comparisons and synchronized exports are
-implemented; physical reconstruction and full-board electrical qualification
-remain open. These are active desk-work tasks, not established hardware blockers.
+Status: incomplete. The proposed reference PCB is fully connected and passes
+native DRC; separate reference exports and digital comparisons are implemented.
+Historical reconstruction and full-board electrical qualification remain open.
+These are active desk-work tasks, not established hardware blockers.
 The [workflow guide](keyboard-controller-progress.md) points to authoritative
 artifacts; the [requirement audit](keyboard-controller-verification.md) separates
 remaining proof from observations that may eventually need the specimen.
@@ -35,11 +36,12 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
 
 ## Next work and acceptance
 
-1. **Complete the reference circuit and proposed PCB.** Follow the
-   [reference completion sequence](#reference-completion-sequence) below. Connect
-   every intended net with explicit reference placements, pad mappings and routes,
-   preserving existing historical evidence. Use the complete model to guide the
+1. **Use the complete reference PCB to guide reconstruction.** Reference routing
+   and native checks now pass. Review proposed package adapters and mechanical fit,
+   then follow expected net endpoints through the
    [historical reconstruction sequence](#physical-reconstruction-sequence).
+   Preserve the [reference acceptance contract](#reference-completion-sequence)
+   when changing placements, mappings or routes.
 2. **Complete repeat-capture qualification.** The retained held-key/repeat/release
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.
@@ -70,10 +72,10 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
 The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 records the findings behind these tasks and links their evidence. Physical
 reconstruction, device research and numerical diagnosis can proceed independently.
-Reference completion is the immediate implementation priority; unresolved historical
-geometry must not hold it up. Routing completion does not resolve numerical or
-device-model failures. Detailed measurements, candidate inventories and experiment
-results stay in source reports.
+The complete reference layout is now a tracing guide; unresolved historical
+geometry must not hold up reference electrical qualification. Routing completion
+does not resolve numerical or device-model failures. Detailed measurements,
+candidate inventories and experiment results stay in source reports.
 An unresolved claim becomes an external dependency only when available evidence
 cannot distinguish the remaining alternatives; it does not block unrelated work.
 
@@ -82,8 +84,10 @@ cannot distinguish the remaining alternatives; it does not block unrelated work.
 Maintain distinct reference and historical KiCad board variants with shared stable
 component and net IDs. Keep the schematic as the connectivity authority; reuse
 supported geometry without overwriting its evidence. Variant identity and provenance
-must survive exports, checks, OpenSCAD generation and museum inspection. This
-separation is planned work, not a claim that a fully routed variant already exists.
+must survive exports, checks, OpenSCAD generation and museum inspection. The CAD
+`reference/` variant implements this separation and passes routing and DRC checks.
+Its generic discrete/filter adapters and electrical-geometry preview do not yet
+establish a mechanically qualified populated assembly.
 
 | Step | Work | Acceptance |
 | --- | --- | --- |
@@ -260,10 +264,10 @@ records compatible CAD, HDL, emulator and museum revisions and validation result
 
 ## Integration milestones and completion
 
-**Reference integration:** complete the data/clock path through XT1, L1 and the
-output circuitry in the reference schematic, proposed PCB, generated OpenSCAD,
-museum view and HDL/emulator comparison. Include the boundary stimuli needed to
-exercise it. Historical winding-terminal or copper uncertainty must be recorded,
+**Reference integration:** the data/clock path through XT1, L1 and the output
+circuitry is connected in the proposed PCB and exported to OpenSCAD and the museum.
+Its pin-to-net contract matches the schematic used by the HDL/emulator comparisons.
+Include the boundary stimuli needed to exercise it. Historical winding-terminal or copper uncertainty must be recorded,
 but need not prevent an explicit reference implementation. Functional integration
 and full-board electrical qualification have separate acceptance results.
 
