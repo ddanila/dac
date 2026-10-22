@@ -42,21 +42,22 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    [historical reconstruction sequence](#physical-reconstruction-sequence).
    Preserve the [reference acceptance contract](#reference-completion-sequence)
    when changing placements, mappings or routes.
-2. **Close promotion gates for the explicit I/O boundary.** The isolated
-   C/HDL candidates agree across the matrix/chord/modifier/repeat/release/reset
-   suite on functional outputs, serial cycle labels and known LED transitions.
-   Independent normal-completion flag vectors identify and correct TV80's
-   ED/block-I/O flag differences. Read WAIT acceptance now follows falling-edge
-   sampling, including transitions between edges and external wait extension.
-   Memory, indexed, stack, HALT and interrupt checks retain each core's baseline
-   behavior; HDL arbitration is exercised, but CHIPS exposes no BUSRQ/BUSACK
-   interface. Evidence lives in `digital/reports/io-boundary/summary.json`;
-   these scoped checks do not establish general CPU conformance or U880 timing.
-   Before adoption, qualify write WAIT transitions and interrupted-repeat flags,
-   settle the raw-pin/startup contract and define arbitration support within the
-   intended integration scope. Retain unequal initial LED observations and
-   rejected candidates; never align away timestamps. Promote only after the
-   remaining gates pass, then rerun the complete suite against production.
+2. **Adopt the qualified I/O boundary within an explicit CPU contract.** The
+   isolated C/HDL candidate covers read/write WAIT acceptance, late input,
+   normal and interrupted-repeat flags, and ordinary I/O pins at both clock
+   edges, including reset cancellation. Firmware comparisons cover the full
+   matrix/chord/modifier/repeat/release/reset suite. A6 starts with unknown
+   validity; every initial LED state converges when IORQ first clocks the latch.
+   Preserve that validity distinction instead of treating the C startup default
+   as a physical observation. Evidence and remaining gates live in
+   `digital/reports/io-final/summary.json`.
+   Complete C bus-request support or explicitly constrain the supported external
+   control interface: the schematic connects BUSRQ to X1 A9, and the present C
+   core exposes no BUSRQ/BUSACK pins. Memory, refresh and interrupt-acknowledge
+   pin timing still need a declared acceptance contract; same-core regression
+   does not prove cross-core pin equivalence. Then integrate the candidate into
+   production and rerun its complete acceptance suite. Reference Z80 evidence
+   does not establish U880 specimen timing or full-board electrical accuracy.
 3. **Complete repeat-capture qualification.** The retained held-key/repeat/release
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.

@@ -20,7 +20,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 | Preserve orientation, lead alignment and repeatability | Asymmetric landmark tests, native integration test, mesh receipts and visual baselines | Estimated lead interfaces and actual specimen dimensions; historical solid-clearance scope is CAD `../checks/assembly.json`; reference body and lead/body envelope checks live in `reference/assembly-generated/assembly.json`, with lead-to-lead clearance, bend radii and enclosure fit still open |
 | Generate structural HDL with reviewed chip behavior | Core `generated/controller.v`, chip models and source review | Qualified analog device parameters and unsupported device states |
 | Couple electrical circuits and HDL | Core analog harness, generated decks, interface and load checks | Full-board clock-phase convergence, remaining firmware scenarios, model calibration, supply/brownout behavior and bus timing qualification |
-| Compare transactions and firmware behavior | Core `digital/reports/completion.json`, full matrix/chord/reset captures, bus/service and repeat baseline | Production near-edge reset and phase differences remain open. The [I/O candidates][read-boundary] align serial/LED timing and pass normal-completion flags, read-WAIT and scoped non-I/O regression checks; write WAIT, interrupted-repeat flags, startup/raw pins and production adoption remain open |
+| Compare transactions and firmware behavior | Core `digital/reports/completion.json`, full matrix/chord/reset captures, bus/service and repeat baseline | Production near-edge reset and phase differences remain open. The [I/O candidate][read-boundary] passes read/write WAIT, interrupted-repeat flags, ordinary I/O pin/reset comparisons and explicit startup validity; other CPU pins, C bus-request support and production adoption remain open |
 | Retain diagnostics and replay | First-difference traces, stimulus, waveform and fault-injection tests | Instrumented specimen comparison |
 | Preserve IDs and expose evidence in the museum | Export sidecars, component/net inspector and browser tests | Visual-only bodies do not establish native pads |
 | Connect runtime diagnostics | Latch samples, labelled display persistence and a pinned recorded bus waveform | Live frame samples are not full waveforms; recorded simulation does not establish specimen behavior |
@@ -113,4 +113,4 @@ visual geometry can remain separate. Regenerate, review both sides, run the
 relevant checks and pin compatible museum assets. Preserve superseded evidence
 and the reason for changing its interpretation.
 
-[read-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/io-boundary/summary.json
+[read-boundary]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/io-final/summary.json
