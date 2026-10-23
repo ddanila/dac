@@ -55,18 +55,13 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
    pair using the verified producer revision and identical model assumptions.
    Functional success and sampled timing screens are not electrical qualification.
-4. **Establish numerical convergence.** The retained capacitor-stamp assessment
-   identifies material assembly loss before the rejected voltage excursion,
-   including a bounded saved state. Bounded accepted-state captures show that
-   local capacitor corrections alone retain large voltage excursions and
-   refinement differences. Preserving subsequent resistor/switch additions allows
-   the two finer short-window replays to complete, but their absolute-time voltage
-   differences remain material and the coarse replay fails. Exact BJT/diode
-   additions preserve the disabled control but do not resolve these failures.
-   Investigate nonlinear transitions, history and solver behavior before full firmware
-   refinement; the short completed pair does not close convergence.
-   Require an identical disabled control, completed refinement pairs and
-   absolute-time voltage convergence without changing circuit physics or budgets.
+4. **Establish numerical convergence.** Preserve the opt-in high-precision,
+   conservative capacitor-history and passive-addition corrections with their
+   disabled controls. Completed live refinement is stronger evidence than the
+   earlier frozen or short-window replays, which remain diagnostic controls.
+   Require identical circuit/stimulus assumptions, completed refinement levels,
+   preserved firmware reads and absolute-time voltage/current comparisons.
+   Do not align traces, exclude transitions or relax limits to obtain agreement.
 5. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
    host-buffer switching/loading against independent device evidence. Static
    endpoint screens pass sampled published conditions. The experimental 7406
@@ -78,45 +73,25 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
 6. **Qualify the coupled reference board.** Preserve the qualified digital CPU
-   and the tested input-boundary scheduler contract. Resolve the live transition
-   failure remaining after the zero-hysteresis switch correction. The selected
-   collapse is truncation/error-estimation rejection with converged Newton solves
-   and no ADC state change inside the audited window. Accepted-state and frozen
-   matrix captures distinguish initial capacitor rejection from terminal
-   linear-solve error. Exact LTE and constant-capacitor stamp replay do not
-   explain the failure. High-precision linear arithmetic passes the original
-   collapse. The later L1.1 flux-history rejection is traced to lost cancellation
-   in floating-capacitor history-current assembly, with converged Newton solves
-   and a stable switch state. Independent high-precision replay and a native
-   paired-RHS regression establish the conservation defect; an inductor-only
-   correction does not explain the current jump.
-   Exact capacitor assembly plus recovered resistor/switch matrix additions
-   now completes the full live timestep/tolerance refinement pair. Firmware reads
-   and latches agree, but absolute-time waveform differences around ideal switch
-   transitions still prevent a convergence claim. Keep the correction opt-in.
-   The divergence trace follows undefined D0 logic into a DAC plateau at the
-   ideal switch threshold. Do not replace unknowns with a chosen logic state.
-   The opt-in ADC rollback candidate passes analytic ramp and RC controls, and
-   matched three-level live runs complete with preserved firmware reads. RMS
-   disagreement improves, but ideal-switch voltage peaks remain and waveform
-   convergence is not established. Retain the candidate as experimental until
-   that boundary and physical-driver admission pass. Representative
-   traffic is prepared with production-C coverage, including reset during serial
-   activity; live electrical execution remains pending these gates.
-   Preserve disabled controls and physical parameters. Recorded-output
-   replay also changes forcing history and breakpoints; its completion does not
-   identify a bridge defect. The DAC corner-scheduling candidate passes its focused
-   regression but not tight live refinement; keep it diagnostic until matched
-   controls complete.
-   Admit bus drivers across published supply/load conditions; nominal endpoint
-   resistance fixtures fail that envelope. Keep logic thresholds, static operating
-   limits and maximum ratings separate. Neither the isolated charge-storage replay
-   nor maximum-rating compliance waives the failing static input check.
-   Require these prerequisites before resuming service scenarios. Then complete
-   coupled startup, oscillator phase, CPU clock levels/timing, host loading,
-   bus timing and supply recovery. Require longer disabled/enabled controls before
-   using the evaluator cache for qualification. Logical agreement alone cannot
-   substitute for the electrical gates.
+   and input-boundary scheduler contract. The ideal-switch baseline retains
+   transition peaks despite ADC crossing localization; the direct electrical
+   D0/WR path removes its unknown-logic/DAC plateau from the serial driver.
+   Completed direct-driver refinement preserves reference firmware reads and
+   reduces serial-voltage disagreement to millivolt scale. Keep that numerical
+   agreement separate from physical accuracy: the output undershoot persists
+   across refinement. Investigate its recovery mechanism and unsupported device
+   operating regions before admission. Published typical delays alone cannot
+   establish junction capacitance, package loading or recovery behavior.
+   CPU bus/WR drivers remain linear endpoint stress fixtures; their failed
+   supply/load envelope is not waived by switching success or maximum ratings.
+   Keep the ADC and DAC scheduling candidates opt-in with their controls.
+   Representative press/release, modifier and reset-during-transmission stimuli
+   are prepared for the direct-driver circuit with production-C coverage.
+   Execute and refine their electrical runs after convergence and model-admission
+   gates pass. Then complete coupled startup, oscillator phase, CPU clock
+   levels/timing, host loading, bus timing and supply recovery. Longer
+   disabled/enabled controls remain necessary before using the evaluator cache
+   for qualification. Logical agreement alone cannot close these gates.
 7. **Identify residual specimen dependencies.** Exhaust photographs, package
    drawings and published circuit constraints first. For each remaining ambiguity,
    state the alternatives and the observation that would distinguish them.

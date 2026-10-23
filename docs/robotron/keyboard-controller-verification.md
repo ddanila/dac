@@ -54,6 +54,7 @@ owns scenario coverage and experiment details.
 | Evaluator caching accelerates the short startup control without changing its waveform | Opt-in only; longer startup and service equivalence remain unqualified | [Cache benchmark][eval-cache] |
 | Static device endpoint screens pass sampled published conditions | Does not qualify oscillator or switching dynamics | [Endpoint evidence][device-endpoints] |
 | The fitted 7406 storage candidate passes selected DC, temperature and withheld switching checks | Direct electrical D0/WR coupling is available; junction capacitance and board-load applicability remain hypotheses, so calibration does not close device admission | [Candidate][driver-dynamic], [withheld validation][driver-validation] |
+| Direct-driver live refinement preserves reference firmware reads and reduces serial-voltage disagreement to millivolt scale | Output undershoot persists across refinement; validate recovery and loading before representative electrical traffic | [Live refinement][driver-live], [operating region][driver-region] |
 | Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
 | Oscillator candidates remain unqualified | Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions | [Device review][device-review], [independent solver][xyce] |
 
@@ -74,6 +75,8 @@ reference package includes its electrically unused lead while remaining unplaced
 [driver-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-driver-switching/assessment.json
 [driver-dynamic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/7406-dynamic/report.json
 [driver-validation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/7406-dynamic/validation/report.json
+[driver-live]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/7406-dynamic/live/assessment.json
+[driver-region]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/7406-dynamic/operating-region-review.json
 [host-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json
 [device-review]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/diode-role-review/assessment.json
 [xyce]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json
