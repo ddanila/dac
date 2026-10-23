@@ -1,0 +1,31 @@
+{
+  "nativeDrc": {
+    "reportSha256": "e79a6ffb3b9ec296f8bee660aa394d37cba0b3ce71f12c8773b226b07eb0de0d",
+    "passed": true,
+    "boardSha256": "fef8ca684e6343feb2d019940571adb4f4cb85bc54ff027cbfcac1548f1d1889"
+  },
+  "browser": {
+    "reportSha256": "fbc569fa0685aaaeacd584c901597c31122ca11d28132bc95affbbb480288241",
+    "stats": {
+      "startTime": "2026-10-23T18:20:58.393Z",
+      "duration": 19923.975,
+      "expected": 46,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "firmware": {
+    "reportSha256": "19fb806f18dd8bd12db048a99a3bd0af25f79d69d4cc58170cc6153c539516be",
+    "romSha256": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
+    "functionalAgreement": true,
+    "serialCycleAgreement": true,
+    "realLedTransitionAgreement": true
+  },
+  "runtimeKeyboardSources": {
+    "machines/robotron1715m/keyboard_board.c": "6f0f7b4d5b975fbff8f964d2771214b2197081c77944a5e183c4b59518d58179",
+    "machines/robotron1715m/keyboard_board.h": "7a9e22e273dec4bb2f606175968cd17b880b98293b8f8728d09ac4c56803487c",
+    "machines/robotron1715m/keyboard_cpu.c": "faa89b30a3ef19849a62a2e6c4b3a06ad98476608bdce94a5169e536daf47b2f",
+    "machines/robotron1715m/keyboard_cpu.h": "6471af3fb30d135054ce91cf11323e9925cd739bb93b2a47a84b177c4de45d86"
+  }
+}

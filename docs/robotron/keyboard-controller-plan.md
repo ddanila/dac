@@ -2,7 +2,8 @@
 
 Status: incomplete. The proposed reference PCB is fully connected and passes
 native DRC; separate reference exports, digital comparisons and museum
-synchronization are implemented, so a functional reference release is reachable.
+synchronization are covered by the
+[functional reference release](../../public/models/robotron-1715m/keyboard-controller-release.json).
 Electrical qualification of the reference and historical reconstruction remain
 open as separate milestones. These are active desk-work tasks, not established
 hardware blockers, except where the
@@ -100,8 +101,11 @@ with its evidence, and is not a completion criterion.
    so it precedes driver work. Decision informed: whether the digital clock
    boundary used by the emulator and HDL comparisons is electrically supported.
    Keep primary К555ЛА3, comparison D100D and reference DL000 conditions separate.
-   Required tier: bench measurement of a loose equivalent gate if published
-   evidence cannot fix the levels.
+   The [startup/load screen](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-acceptance/assessment.json)
+   rejects the current reference behavioral models: high-level correction alone
+   leaves timing failures. Required tier: bench measurement of a loose intended-family
+   gate around switching and under the reference pullup before admitting a replacement.
+   The isolated screen does not replace the closed-board gate.
 5. **Admit the output-driver and host-buffer models.** Gate: one driver model
    whose junction capacitance, recovery and reverse-operation behavior are fixed by
    evidence independent of the firmware comparison, and whose predicted loaded
@@ -334,9 +338,9 @@ and the museum manifests pin compatible CAD, HDL and emulator revisions. Its
 pin-to-net contract matches the schematic used by the HDL/emulator comparisons,
 with the boundary stimuli needed to exercise it. Historical winding-terminal or
 copper uncertainty must be recorded but does not prevent this release. The
-milestone is closable with current evidence and does not wait for electrical
-qualification or historical reconstruction; record it as a release with its
-validation results.
+[release manifest](../../public/models/robotron-1715m/keyboard-controller-release.json)
+records this completed milestone and its validation evidence. Maintain its
+freshness checks when changing the released inputs.
 
 **Electrically qualified reference:** items 3 to 6 of the next-work list pass
 with their evidence tiers recorded. This milestone remains open; numerical

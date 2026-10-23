@@ -1,6 +1,8 @@
 # Keyboard controller status and workflow
 
-The [plan](keyboard-controller-plan.md) remains incomplete. Use the
+The [functional reference release](../../public/models/robotron-1715m/keyboard-controller-release.json)
+closes the declared digital/CAD/museum integration scope. Electrical qualification
+and historical reconstruction in the [plan](keyboard-controller-plan.md) remain open. Use the
 [requirement audit](keyboard-controller-verification.md) for remaining proof and
 [simulation decision](keyboard-controller-simulation.md) for electrical scope.
 The proposed reference PCB is fully connected and passes native DRC. Use it to
@@ -34,6 +36,17 @@ in git. Local build and review instructions live in the
 [CAD guide](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/README.md)
 and [co-simulation guide](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/README.md).
 Use museum manifests when reviewing a specific pinned version.
+
+## Functional release
+
+The release manifest pins CAD, HDL evidence and browser runtime revisions and
+hashes the reviewed assets. Its validation receipt links retained browser,
+firmware and native DRC results. Check freshness with
+`python3 scripts/keyboard-controller-release.py --check`; use `--help` when
+issuing a new release after synchronization. CI verifies LFS photo identities
+without fetching unused originals. The containing git commit identifies
+the museum release without a self-referential commit hash. Functional release
+does not grant electrical, historical, mechanical or fabrication qualification.
 
 ## Museum review and synchronization
 
