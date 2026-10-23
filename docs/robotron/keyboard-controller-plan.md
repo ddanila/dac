@@ -73,21 +73,21 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    models against the intended device's conditions before board use. Keep primary,
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
-6. **Qualify the coupled reference board.** The qualified digital CPU is integrated
-   into the circuit harness. The input-boundary scheduler patch passes its
-   regression and matched service captures without ordering diagnostics; this is
-   not general HDL rollback support. Resolve the supply-relative bus-voltage
-   failure before extending service scenario acceptance. The isolated read replay
-   reproduces charge above the falling rail across independent solvers; it does
-   not bound coupled-solver uncertainty. Review driver dynamics and the published
-   limit's transient applicability without widening acceptance limits. Tighter
-   coupled captures still abort or time out. The qualified-CPU full-board startup
-   attempt is incomplete. An opt-in evaluator cache preserves short-startup
-   waveforms; require longer disabled/enabled controls before qualification use. Resolve the CPU clock high-level and
-   timing failures exposed by the startup-inclusive capture. Complete host device
-   qualification, scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
-   timing and supply recovery. Logical agreement and receiver timing screens
-   cannot substitute for these electrical gates.
+6. **Qualify the coupled reference board.** Preserve the qualified digital CPU
+   and the tested input-boundary scheduler contract. Resolve the live transition
+   failure remaining after the zero-hysteresis switch correction: recorded-output
+   replay completes the tested later prefix, but does not prove equivalence to the
+   failing live trajectory. Compare state and event histories before extending
+   firmware refinement. The corrected runtime remains diagnostic.
+   Admit bus drivers across published supply/load conditions; nominal endpoint
+   resistance fixtures fail that envelope. Keep logic thresholds, static operating
+   limits and maximum ratings separate. Neither the isolated charge-storage replay
+   nor maximum-rating compliance waives the failing static input check.
+   Require these prerequisites before resuming service scenarios. Then complete
+   coupled startup, oscillator phase, CPU clock levels/timing, host loading,
+   bus timing and supply recovery. Require longer disabled/enabled controls before
+   using the evaluator cache for qualification. Logical agreement alone cannot
+   substitute for the electrical gates.
 7. **Identify residual specimen dependencies.** Exhaust photographs, package
    drawings and published circuit constraints first. For each remaining ambiguity,
    state the alternatives and the observation that would distinguish them.

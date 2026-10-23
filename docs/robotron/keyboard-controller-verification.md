@@ -47,6 +47,8 @@ owns scenario coverage and experiment details.
 | Exact BJT/diode additions do not close numerical convergence | Disabled control is identical; coarse failure and material fine-pair voltage differences remain | [Nonlinear additions][device-additions] |
 | Input-boundary scheduling resolves the reproduced input-driven bridge violation | Matched qualified-CPU captures have no ordering diagnostics, but fail a supply-relative bus-voltage check. Full startup is incomplete; later service scenarios remain gated | [Scheduler regression][input-barrier], [original witness][bridge-time] |
 | The isolated bus excess persists under numerical refinement | Recorded-boundary ngspice, Xyce and independent KCL replay agree; coupled uncertainty and transient device applicability remain open | [Bus-read replay][bus-read] |
+| Nominal-supply linear bus drivers fail the loaded-high guarantee at minimum rated supply | Keep stress fixtures separate from admitted device models; maximum ratings cannot waive static operating checks | [Bus-device admission][bus-device] |
+| Zero-hysteresis correction completes the isolated tight replay and preserves nonzero-hysteresis controls | Live coupled refinement still fails later; the later recorded-output replay does not prove live-trajectory equivalence | [Transition isolation][bus-transition] |
 | Evaluator caching accelerates the short startup control without changing its waveform | Opt-in only; longer startup and service equivalence remain unqualified | [Cache benchmark][eval-cache] |
 | Static device endpoint screens pass sampled published conditions | Does not qualify oscillator or switching dynamics | [Endpoint evidence][device-endpoints] |
 | Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
@@ -127,3 +129,6 @@ and the reason for changing its interpretation.
 
 [bus-read]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-read-replay/assessment.json
 [eval-cache]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache/assessment.json
+
+[bus-device]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-device-admission/assessment.json
+[bus-transition]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-transition/assessment.json
