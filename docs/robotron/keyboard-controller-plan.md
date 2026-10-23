@@ -90,8 +90,13 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    now completes the full live timestep/tolerance refinement pair. Firmware reads
    and latches agree, but absolute-time waveform differences around ideal switch
    transitions still prevent a convergence claim. Keep the correction opt-in.
-   Resolve those differences and general ADC crossing timing before adopting it;
-   analytic fixture-clock crossings alone do not qualify the general boundary.
+   The divergence trace follows undefined D0 logic into a DAC plateau at the
+   ideal switch threshold. Do not replace unknowns with a chosen logic state.
+   An opt-in ADC rollback candidate passes analytic ramp and RC crossing controls;
+   require full three-level live refinement before adopting it. Analytic fixture
+   clock crossings alone do not qualify the general boundary. Representative
+   traffic is prepared with production-C coverage, including reset during serial
+   activity; live electrical execution remains pending these gates.
    Preserve disabled controls and physical parameters. Recorded-output
    replay also changes forcing history and breakpoints; its completion does not
    identify a bridge defect. The DAC corner-scheduling candidate passes its focused
