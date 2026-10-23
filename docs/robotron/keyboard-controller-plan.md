@@ -93,7 +93,13 @@ with its evidence, and is not a completion criterion.
    direct-driver circuit or mark them historical in the audit. Keep the opt-in
    precision, capacitor-history, passive-addition and scheduling corrections with
    their disabled controls. Repeat-capture refinement completes under the same
-   budget.
+   budget. The [expanded observation review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/direct-repeat/assessment.json)
+   separates board voltages from behavioral drive-control voltages. The completed
+   short window supports the board-voltage budget but fails the original strict
+   all-saved/nonincreasing screen. Keep that result explicit. Full-repeat attempts
+   and disabled controls are incomplete or failed. Do not extend this expensive
+   campaign until it addresses a concrete board or receiver decision; private
+   fixture discrepancies without such an effect remain research diagnostics.
 4. **Constrain the oscillator and CPU clock first.** Gate: the startup-inclusive
    closed-board run reaches qualified CPU clock levels and timing with a device
    model admitted against independent evidence for the intended part. Every

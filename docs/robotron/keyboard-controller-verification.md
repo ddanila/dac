@@ -38,6 +38,7 @@ owns scenario coverage and experiment details.
 
 | Finding | Consequence | Evidence |
 | --- | --- | --- |
+| Expanded short-window comparison covers every saved vector; board voltages stay within budget, but a drive-control voltage fails the strict screen | Keep the functional release; full-repeat convergence remains unproven. Bounded DAC-corner controls support a startup correction, not a production-default change | [Direct-repeat review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/direct-repeat/assessment.json) |
 | Production firmware, serial timing and known LED transitions agree, including near-edge reset | Preserve identical edge labels and startup validity; legacy completion reports describe the superseded backend | [Production digital acceptance][cpu-bus] |
 | Reference reception uses rising RxC; service comparisons support logical agreement | Service fixtures do not qualify onboard clock/reset or U856 device conditions | [Receive edge][receive-edge], [receiver timing][receiver-timing] |
 | Held-key/repeat/release passes sampled voltage-envelope and timing screens | Matched refinement and device applicability remain open | [Repeat capture][repeat-capture] |
