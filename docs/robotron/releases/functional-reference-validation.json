@@ -1,14 +1,14 @@
 {
   "nativeDrc": {
-    "reportSha256": "e79a6ffb3b9ec296f8bee660aa394d37cba0b3ce71f12c8773b226b07eb0de0d",
+    "reportSha256": "ae5a1be9451517c930ce957a6a51c79f97a57c13ddb9b6fc758168bfb8433b3f",
     "passed": true,
     "boardSha256": "fef8ca684e6343feb2d019940571adb4f4cb85bc54ff027cbfcac1548f1d1889"
   },
   "browser": {
-    "reportSha256": "fbc569fa0685aaaeacd584c901597c31122ca11d28132bc95affbbb480288241",
+    "reportSha256": "b6d7f8f54ad6e123a617914b4d1604f8c1a433277aba7f8031b6e1dfc2c751b3",
     "stats": {
-      "startTime": "2026-10-23T18:20:58.393Z",
-      "duration": 19923.975,
+      "startTime": "2026-10-23T18:53:37.427Z",
+      "duration": 18071.015,
       "expected": 46,
       "skipped": 0,
       "unexpected": 0,

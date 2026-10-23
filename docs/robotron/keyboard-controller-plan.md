@@ -158,8 +158,10 @@ must survive exports, checks, OpenSCAD generation and museum inspection. The CAD
 `reference/` variant implements this separation and passes routing and DRC checks.
 Its populated OpenSCAD and museum assembly use pad-driven leads, explicit package
 adapters and shared package bodies. Generated body-envelope, overhang and drill
-checks pass; they do not establish mechanically qualified construction. Lead
-clearance, bend radii, enclosure fit and the shared filter core remain open.
+checks pass; they do not establish mechanically qualified construction. Nominal
+lead-to-lead capsule clearance is checked, with intentional bridge contacts
+separated from unintended contacts. Manufacturing allowances, bend
+radii, enclosure fit and the shared filter core remain open.
 Netlist-checked signal walkthroughs link reference selection to historical evidence.
 
 | Step | Work | Acceptance |

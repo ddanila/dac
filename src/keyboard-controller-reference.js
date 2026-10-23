@@ -57,7 +57,9 @@ export function installControllerReference(parent,onCompare){
    walkthrough.replaceChildren(new Option('Choose a stage',''));
    data.assembly.signalPaths.stages.forEach((stage,i)=>walkthrough.add(new Option(stage.title,String(i))));
    const review=data.assembly.review;
-   get('[data-assembly-status]').textContent=`${review.bodyEnvelopeIntersections.length} body-envelope intersections; ${review.bodyOverhangs.length} body overhangs; ${review.leadBodyEnvelopeIntersections.length} lead/body-envelope intersections. Lead endpoints match pads. Mechanical qualification remains open. ${review.method}`;
+   const clearance=review.leadClearance,closest=clearance?.minimumUnintendedClearance;
+   const leadStatus=clearance?` Nominal lead clearance: ${clearance.unintendedContacts.length} unintended contacts.${closest?` Closest pair ${closest.terminals.join(' ↔ ')}: ${closest.surfaceClearanceMm.toFixed(3)} mm.`:''} Manufacturing tolerances remain unqualified.`:'';
+   get('[data-assembly-status]').textContent=`${review.bodyEnvelopeIntersections.length} body-envelope intersections; ${review.bodyOverhangs.length} body overhangs; ${review.leadBodyEnvelopeIntersections.length} lead/body-envelope intersections. Lead endpoints match pads. Mechanical qualification remains open. ${review.method}${leadStatus}`;
    for(const [selector,values]of [['[data-ref-component]',data.layout.components.filter(c=>c.pads.some(p=>p.net)).map(c=>c.ref).sort()],['[data-ref-net]',[...new Set(data.layout.components.flatMap(c=>c.pads.map(p=>p.net)).filter(Boolean))].sort()]]){
     const select=get(selector);select.replaceChildren(new Option('All',''));for(const value of values)select.add(new Option(value.replace(/^\//,''),value));
    }
