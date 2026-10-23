@@ -56200,47 +56200,143 @@
     }
   },
   "enclosure": {
-    "schema": 1,
+    "schema": 2,
     "variant": "proposed-reference",
-    "scope": "Populated reference bodies and leads at the existing keyboard controller transform. Static nominal solids only; excludes PCB copper, connector engagement, cable and shield braid, bend radii and manufacturing tolerances. Zero volume permits touching. Enclosure dimensions and installed seating remain unmeasured.",
+    "scope": "Reference PCB substrate, drilled holes, populated bodies and leads at the existing keyboard controller transform. Static nominal solids only; excludes PCB copper, connector engagement, cable and shield braid, bend radii and manufacturing tolerances. Zero volume permits touching. Enclosure dimensions and installed seating remain unmeasured.",
     "engine": "OpenSCAD version 2026.10.05",
     "intersectionBudgetMm3": 0.001,
     "results": [
       {
         "interface": "shell",
-        "assemblyLiftMm": 0,
+        "subject": "reference_populated_assembly",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
         "intersectionMm3": 0.0,
         "intersects": false
       },
       {
         "interface": "bottom",
-        "assemblyLiftMm": 0,
+        "subject": "reference_populated_assembly",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
         "intersectionMm3": 0.0,
         "intersects": false
       },
       {
         "interface": "supports",
-        "assemblyLiftMm": 0,
+        "subject": "reference_populated_assembly",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
         "intersectionMm3": 0.0,
         "intersects": false
       },
       {
         "interface": "mounts",
-        "assemblyLiftMm": 0,
+        "subject": "reference_populated_assembly",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
         "intersectionMm3": 0.0,
         "intersects": false
       },
       {
         "interface": "matrix-board",
-        "assemblyLiftMm": 0,
+        "subject": "reference_populated_assembly",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "substrate-shell",
+        "subject": "reference_substrate",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "substrate-bottom",
+        "subject": "reference_substrate",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "substrate-supports",
+        "subject": "reference_substrate",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "substrate-mounts",
+        "subject": "reference_substrate",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "substrate-matrix-board",
+        "subject": "reference_substrate",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
         "intersectionMm3": 0.0,
         "intersects": false
       }
     ],
     "positiveControl": {
       "interface": "raised-assembly-control",
-      "assemblyLiftMm": 1,
+      "subject": "reference_populated_assembly",
+      "offsetMm": [
+        0,
+        0,
+        1
+      ],
       "intersectionMm3": 24.378109,
+      "intersects": true
+    },
+    "mountingControl": {
+      "interface": "misaligned-mounting-control",
+      "subject": "reference_substrate",
+      "offsetMm": [
+        0.5,
+        0,
+        0
+      ],
+      "intersectionMm3": 2.155413,
       "intersects": true
     },
     "nominalInterfacesClear": true,
@@ -56260,7 +56356,9 @@
       "keyboard-artwork.scad": "4b185f623c7b71674bfc823a3cb0b8ceb38ed8447e55e286977e01de02c18d6c",
       "keyboard-controller/generated/controller.scad": "b1fbde98eaca13234816889584ae73ce364b03cc933e1cc2ef9b3ad9f51b2d48",
       "keyboard-controller/reference/assembly-generated/assembly.scad": "4d571a7fb633f5e82f9f1d2c8665fe55b9616b9648606b153e54c62be6aa9e0d",
-      "keyboard-controller/tools/reference_enclosure.py": "7333794a15209df39e0c4f3a5b63dccb1a175842614beb5b5a6baacbbfbbc25c",
+      "keyboard-controller/reference/generated/controller.scad": "c80c24dbc7ca2f5d2af42cc593c0e765918c587e6f0bd65c92ba9bcae12ebaca",
+      "keyboard-controller/reference/review.scad": "b3019aab9355118b037c3e64f857fa2e0b262c5c28444e3c10617fcd4f5ebe99",
+      "keyboard-controller/tools/reference_enclosure.py": "d35f6b228b1be5c291ce1dcb58da0637b22a5a49736e56829fa785ab5bd8fa83",
       "keyboard-layout.scad": "bf1700cba2e51c7ea9b400fab2c6dbd7072fd5d97cb15396cd0e17a260ef5fae",
       "keycap/geometry.scad": "e304f9e8e48ee16f4ee67a29906901f6f7cff93694c6ebf70bf6e38a891ad961",
       "model.scad": "a3551efcb66486043b1521b49e42d2c8f7e2a846d8f82edf5838c7a5b30f4f8d",
@@ -56273,8 +56371,8 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "231f29d1133c2ba585d3082b982a27a8f83ab075",
-    "manifestSha256": "7148f448811abc7c0f757517676a1c6f3d219b2afa91f7ec83009e227b5ca5aa",
+    "revision": "3ffe7d620250a81f6c9beedafc364db7e71e2b11",
+    "manifestSha256": "df2b52fdacb5c1db2abb37405583a91fa8631582b398a3ea1244a0f79d3922f9",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
       "reference/generated/controller.scad": "c80c24dbc7ca2f5d2af42cc593c0e765918c587e6f0bd65c92ba9bcae12ebaca",

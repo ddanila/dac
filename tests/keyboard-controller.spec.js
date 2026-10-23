@@ -1083,6 +1083,8 @@ test('assembly population and walkthrough terminals preserve the electrical cont
  expect(assembly.review.leadClearance.noUnintendedContact).toBe(true);
  expect(reference.enclosure.nominalInterfacesClear).toBe(true);
  expect(reference.enclosure.positiveControl.intersects).toBe(true);
+ expect(reference.enclosure.mountingControl.intersects).toBe(true);
+ expect(reference.enclosure.results.find(r=>r.interface==='substrate-mounts').intersects).toBe(false);
  expect(reference.enclosure.mechanicallyQualified).toBe(false);
  expect(assembly.review.leadClearance.minimumUnintendedClearance.surfaceClearanceMm).toBeGreaterThan(0);
  for(const contact of assembly.review.leadClearance.intendedContacts)expect(['same-net','reference-bridge']).toContain(contact.basis);
