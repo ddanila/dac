@@ -92,9 +92,11 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    transitions still prevent a convergence claim. Keep the correction opt-in.
    The divergence trace follows undefined D0 logic into a DAC plateau at the
    ideal switch threshold. Do not replace unknowns with a chosen logic state.
-   An opt-in ADC rollback candidate passes analytic ramp and RC crossing controls;
-   require full three-level live refinement before adopting it. Analytic fixture
-   clock crossings alone do not qualify the general boundary. Representative
+   The opt-in ADC rollback candidate passes analytic ramp and RC controls, and
+   matched three-level live runs complete with preserved firmware reads. RMS
+   disagreement improves, but ideal-switch voltage peaks remain and waveform
+   convergence is not established. Retain the candidate as experimental until
+   that boundary and physical-driver admission pass. Representative
    traffic is prepared with production-C coverage, including reset during serial
    activity; live electrical execution remains pending these gates.
    Preserve disabled controls and physical parameters. Recorded-output
