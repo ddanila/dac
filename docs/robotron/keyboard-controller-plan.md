@@ -1,9 +1,13 @@
 # Robotron keyboard controller reconstruction and synchronization plan
 
 Status: incomplete. The proposed reference PCB is fully connected and passes
-native DRC; separate reference exports and digital comparisons are implemented.
-Historical reconstruction and full-board electrical qualification remain open.
-These are active desk-work tasks, not established hardware blockers.
+native DRC; separate reference exports, digital comparisons and museum
+synchronization are implemented, so a functional reference release is reachable.
+Electrical qualification of the reference and historical reconstruction remain
+open as separate milestones. These are active desk-work tasks, not established
+hardware blockers, except where the
+[evidence tiers](#evidence-tiers-and-measurement-dependencies) declare a bench or
+specimen measurement dependency.
 The [workflow guide](keyboard-controller-progress.md) points to authoritative
 artifacts; the [requirement audit](keyboard-controller-verification.md) separates
 remaining proof from observations that may eventually need the specimen.
@@ -34,7 +38,30 @@ passing firmware tests alone cannot establish the original implementation.
 Exact specimen agreement remains a separate qualification task; historical
 reconstruction stays in scope but does not gate completion of the reference PCB.
 
+### Evidence tiers and measurement dependencies
+
+Electrical claims rest on one of three evidence tiers, recorded explicitly in
+each retained assessment:
+
+| Tier | Source | Can establish |
+| --- | --- | --- |
+| Published | Datasheets, manufacturer drawings, independent solver replays | Sampled endpoint conditions, typical delays, logical behavior |
+| Bench | Measurements of loose equivalent commodity devices (SN7406/К155ЛН5, К555ЛА3, host buffers) driving the modeled loads | Junction capacitance, recovery, reverse operation, oscillator levels and startup |
+| Specimen | Observations of the museum board | Installed part identity, copper, ROM contents, timing |
+
+A claim becomes a bench dependency when candidates that pass every published
+screen still predict materially different waveforms. It does not wait for the
+specimen: the devices are commodity parts and the measurement does not touch the
+board. A claim becomes a specimen dependency only when bench evidence and
+published constraints cannot distinguish the alternatives. Record the tier each
+open gate requires and the measurement that would close it.
+
 ## Next work and acceptance
+
+Each electrical gate below names the decision it informs: a change to the
+emulator, the reference PCB or historical tracing that would follow from a
+different result. A gate that informs none of these is a research note, retained
+with its evidence, and is not a completion criterion.
 
 1. **Use the complete reference PCB to guide reconstruction.** Reference routing
    and native checks now pass. Review proposed package adapters and mechanical fit,
@@ -51,51 +78,54 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    `digital/reports/cpu-bus/summary.json` when changing this contract.
    This closes production adoption for that reference digital scope, not exhaustive
    opcode conformance, U880 specimen timing or full-board electrical accuracy.
-3. **Complete repeat-capture qualification.** The retained held-key/repeat/release
-   voltage and receiver-timing screens pass. Obtain a matched timestep-refinement
-   pair using the verified producer revision and identical model assumptions.
-   Functional success and sampled timing screens are not electrical qualification.
-4. **Establish numerical convergence.** Preserve the opt-in high-precision,
-   conservative capacitor-history and passive-addition corrections with their
-   disabled controls. Completed live refinement is stronger evidence than the
-   earlier frozen or short-window replays, which remain diagnostic controls.
-   Require identical circuit/stimulus assumptions, completed refinement levels,
-   preserved firmware reads and absolute-time voltage/current comparisons.
-   Do not align traces, exclude transitions or relax limits to obtain agreement.
-5. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
-   host-buffer switching/loading against independent device evidence. Static
-   endpoint screens pass sampled published conditions. The experimental 7406
-   storage candidate fits published typical delays and passes selected DC,
-   temperature and withheld switching checks. Its junction capacitances remain
-   hypotheses; fitting typical delays does not identify a unique physical model
-   or validate the board's different loading. Admit vendor
-   models against the intended device's conditions before board use. Keep primary,
-   comparison and reference devices separate; filter hypotheses need independently
-   supported parameters. Do not tune parameters merely to remove a solver failure.
-6. **Qualify the coupled reference board.** Preserve the qualified digital CPU
-   and input-boundary scheduler contract. The ideal-switch baseline retains
-   transition peaks despite ADC crossing localization; the direct electrical
-   D0/WR path removes its unknown-logic/DAC plateau from the serial driver.
-   Completed direct-driver refinement preserves reference firmware reads and
-   reduces serial-voltage disagreement to millivolt scale. Keep that numerical
-   agreement separate from physical accuracy: the output undershoot persists
-   across refinement. Investigate its recovery mechanism and unsupported device
-   operating regions before admission. Published typical delays alone cannot
-   establish junction capacitance, package loading or recovery behavior.
-   CPU bus/WR drivers remain linear endpoint stress fixtures; their failed
-   supply/load envelope is not waived by switching success or maximum ratings.
-   Keep the ADC and DAC scheduling candidates opt-in with their controls.
-   Representative press/release, modifier and reset-during-transmission stimuli
-   are prepared for the direct-driver circuit with production-C coverage.
-   Execute and refine their electrical runs after convergence and model-admission
-   gates pass. Then complete coupled startup, oscillator phase, CPU clock
-   levels/timing, host loading, bus timing and supply recovery. Longer
-   disabled/enabled controls remain necessary before using the evaluator cache
-   for qualification. Logical agreement alone cannot close these gates.
-7. **Identify residual specimen dependencies.** Exhaust photographs, package
-   drawings and published circuit constraints first. For each remaining ambiguity,
-   state the alternatives and the observation that would distinguish them.
-   Standard S600 permits reference work without the replacement ROM.
+3. **Close numerical convergence for the direct-driver circuit.** Gate: two
+   completed refinement levels with identical circuit, stimulus and model
+   assumptions, compared at absolute time over the whole observed window with no
+   alignment, exclusion or relaxed limits. Budget: every observed node voltage
+   differs by at most 10 mV between the two finest completed levels, differences
+   do not grow from the previous pair, firmware reads and serial edges are
+   preserved, and the disabled controls complete without solver failure. The
+   budget is numerical only; it is far below physical uncertainty and never
+   stands in for model admission. Decision informed: whether later electrical
+   results are solver artifacts. Findings from the superseded ideal-switch and
+   host-coupled fixtures do not gate this item; rerun those scenarios on the
+   direct-driver circuit or mark them historical in the audit. Keep the opt-in
+   precision, capacitor-history, passive-addition and scheduling corrections with
+   their disabled controls. Repeat-capture refinement completes under the same
+   budget.
+4. **Constrain the oscillator and CPU clock first.** Gate: the startup-inclusive
+   closed-board run reaches qualified CPU clock levels and timing with a device
+   model admitted against independent evidence for the intended part. Every
+   coupled startup, bus-timing and supply-recovery result depends on this clock,
+   so it precedes driver work. Decision informed: whether the digital clock
+   boundary used by the emulator and HDL comparisons is electrically supported.
+   Keep primary К555ЛА3, comparison D100D and reference DL000 conditions separate.
+   Required tier: bench measurement of a loose equivalent gate if published
+   evidence cannot fix the levels.
+5. **Admit the output-driver and host-buffer models.** Gate: one driver model
+   whose junction capacitance, recovery and reverse-operation behavior are fixed by
+   evidence independent of the firmware comparison, and whose predicted loaded
+   waveform is unique within that evidence. Candidates passing the selected
+   published screens already predict materially different loaded waveforms, so
+   this is a bench dependency now. Decision informed: whether the serial
+   undershoot and recovery could change what the host receiver reads; if the
+   receiver margin is preserved across the admitted candidates, the magnitude is a
+   research note. Admit vendor models against the intended device's conditions;
+   do not tune parameters merely to remove a solver failure. CPU bus and WR
+   drivers remain stress fixtures until admitted the same way.
+6. **Qualify the coupled reference board.** Gate: after items 3 to 5 pass,
+   execute the prepared press/release, modifier and reset-during-transmission
+   traffic on the direct-driver circuit, then coupled startup, host loading, bus
+   timing and supply recovery, each under the convergence budget with preserved
+   firmware reads. Decision informed: electrical support for the digital
+   contract the emulator implements. Keep the ADC and DAC scheduling candidates
+   opt-in; longer disabled/enabled controls precede any use of the evaluator
+   cache. Logical agreement alone cannot close this item.
+7. **Identify residual measurement dependencies.** Exhaust photographs, package
+   drawings and published circuit constraints first. For each remaining
+   ambiguity, state the alternatives, the evidence tier that would distinguish
+   them and the measurement required. Standard S600 permits reference work
+   without the replacement ROM.
 
 The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 records the findings behind these tasks and links their evidence. Physical
@@ -295,23 +325,31 @@ records compatible CAD, HDL, emulator and museum revisions and validation result
 
 ## Integration milestones and completion
 
-**Reference integration:** the data/clock path through XT1, L1 and the output
-circuitry is connected in the proposed PCB and exported to OpenSCAD and the museum.
-Its pin-to-net contract matches the schematic used by the HDL/emulator comparisons.
-Include the boundary stimuli needed to exercise it. Historical winding-terminal or copper uncertainty must be recorded,
-but need not prevent an explicit reference implementation. Functional integration
-and full-board electrical qualification have separate acceptance results.
+**Functional reference release:** reference routing and DRC pass, production
+digital acceptance holds, the data/clock path through XT1, L1 and the output
+circuitry is connected in the proposed PCB and exported to OpenSCAD and the museum,
+and the museum manifests pin compatible CAD, HDL and emulator revisions. Its
+pin-to-net contract matches the schematic used by the HDL/emulator comparisons,
+with the boundary stimuli needed to exercise it. Historical winding-terminal or
+copper uncertainty must be recorded but does not prevent this release. The
+milestone is closable with current evidence and does not wait for electrical
+qualification or historical reconstruction; record it as a release with its
+validation results.
+
+**Electrically qualified reference:** items 3 to 6 of the next-work list pass
+with their evidence tiers recorded. This milestone remains open; numerical
+convergence and functional agreement alone cannot close it.
 
 **Historical integration:** reconcile the same path with supported specimen
 placements, terminal identities and copper continuations. This milestone remains
 open; reference routing or successful simulation cannot close it.
 
-Overall completion requires the phase exit criteria and both integration
-milestones. Report reference routing, functional behavior, full-board electrical
-qualification, historical reconstruction and fabrication readiness separately.
-Exact specimen fidelity additionally requires identified ROM contents, dimensions
-and measured behavior. Completing the reference implementation is a deliverable
-in its own right and does not wait for the historical milestone.
+Overall completion requires the phase exit criteria and all three milestones.
+Report functional reference release, electrical qualification, historical
+reconstruction and fabrication readiness separately. Exact specimen fidelity
+additionally requires identified ROM contents, dimensions and measured behavior.
+The functional reference release is a deliverable in its own right and does not
+wait for the other milestones.
 
 ## References
 
