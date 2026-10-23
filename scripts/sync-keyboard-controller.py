@@ -49,6 +49,7 @@ if json.loads(production_firmware.read_text())['romSha256']!=report['firmware'][
 blob['productionDigitalQualification']=json.loads(production_path.read_text())
 blob['source']['productionDigitalSummarySha256']=digest(production_path)
 blob['source']['productionDigitalFirmwareSha256']=digest(production_firmware)
+subprocess.run(['python3',core/'analog/input_barrier_review.py','--verify','--out',core/'analog/reports/input-barrier'],check=True)
 subprocess.run(['python3',core/'analog/electrical_status.py','--check'],check=True)
 electrical_path=core/'analog/reports/electrical-status.json'
 blob['electricalQualification']=json.loads(electrical_path.read_text())

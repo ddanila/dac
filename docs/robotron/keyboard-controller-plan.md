@@ -74,9 +74,11 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
 6. **Qualify the coupled reference board.** The qualified digital CPU is integrated
-   into the circuit harness. Resolve the retained bridge time-ordering violation
-   before coupled acceptance; the logging-only audit preserves control waveforms.
-   Resolve the CPU clock high-level and
+   into the circuit harness. The input-boundary scheduler patch passes its
+   regression and matched service captures without ordering diagnostics; this is
+   not general HDL rollback support. Resolve the supply-relative bus-voltage
+   failure before extending service scenario acceptance. The qualified-CPU
+   full-board startup attempt is incomplete. Resolve the CPU clock high-level and
    timing failures exposed by the startup-inclusive capture. Complete host device
    qualification, scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
    timing and supply recovery. Logical agreement and receiver timing screens
