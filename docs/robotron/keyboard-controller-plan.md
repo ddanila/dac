@@ -78,14 +78,15 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    failure remaining after the zero-hysteresis switch correction. The selected
    collapse is truncation/error-estimation rejection with converged Newton solves
    and no ADC state change inside the audited window. Accepted-state and frozen
-   matrix captures now distinguish initial capacitor rejection from terminal
-   linear-solve error. Exact LTE replay leaves rejection intact; independent
-   high-precision solves agree. Switching linear arithmetic after the transition
-   passes that collapse but fails later; a short timestep pair completes, while
-   drive timing and tighter-tolerance checks remain unresolved. It stays
-   diagnostic. Investigate
-   state/history formation and the later failure while preserving live feedback;
-   require completed timestep/tolerance refinement before adopting a correction. Recorded-output
+   matrix captures distinguish initial capacitor rejection from terminal
+   linear-solve error. Exact LTE and constant-capacitor stamp replay do not
+   explain the failure. High-precision linear arithmetic passes the original
+   collapse but full runs still fail at the output switch, including Gear.
+   Picosecond observations and analytic fixture-clock crossings reduce the short
+   run timing discrepancy to the guard resolution; general ADC crossing timing
+   remains open. Investigate output-switch transitions and state/history
+   formation, requiring completed timestep/tolerance refinement before adopting
+   a correction. Recorded-output
    replay also changes forcing history and breakpoints; its completion does not
    identify a bridge defect. The DAC corner-scheduling candidate passes its focused
    regression but not tight live refinement; keep it diagnostic until matched
