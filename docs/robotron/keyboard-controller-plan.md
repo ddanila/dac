@@ -77,8 +77,13 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    into the circuit harness. The input-boundary scheduler patch passes its
    regression and matched service captures without ordering diagnostics; this is
    not general HDL rollback support. Resolve the supply-relative bus-voltage
-   failure before extending service scenario acceptance. The qualified-CPU
-   full-board startup attempt is incomplete. Resolve the CPU clock high-level and
+   failure before extending service scenario acceptance. The isolated read replay
+   reproduces charge above the falling rail across independent solvers; it does
+   not bound coupled-solver uncertainty. Review driver dynamics and the published
+   limit's transient applicability without widening acceptance limits. Tighter
+   coupled captures still abort or time out. The qualified-CPU full-board startup
+   attempt is incomplete. An opt-in evaluator cache preserves short-startup
+   waveforms; require longer disabled/enabled controls before qualification use. Resolve the CPU clock high-level and
    timing failures exposed by the startup-inclusive capture. Complete host device
    qualification, scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
    timing and supply recovery. Logical agreement and receiver timing screens
