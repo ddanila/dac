@@ -81,11 +81,14 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    matrix captures distinguish initial capacitor rejection from terminal
    linear-solve error. Exact LTE and constant-capacitor stamp replay do not
    explain the failure. High-precision linear arithmetic passes the original
-   collapse but full runs still fail at the output switch, including Gear.
+   collapse but full runs still fail later, including Gear. The later audit shows
+   converged Newton solves and a stable final switch state; L1.1 flux history,
+   not switch chatter, limits the final timestep. The named trouble element
+   alone does not identify the cause.
    Picosecond observations and analytic fixture-clock crossings reduce the short
    run timing discrepancy to the guard resolution; general ADC crossing timing
-   remains open. Investigate output-switch transitions and state/history
-   formation, requiring completed timestep/tolerance refinement before adopting
+   remains open. Investigate inductor state/history and equation assembly,
+   requiring completed timestep/tolerance refinement before adopting
    a correction. Recorded-output
    replay also changes forcing history and breakpoints; its completion does not
    identify a bridge defect. The DAC corner-scheduling candidate passes its focused
