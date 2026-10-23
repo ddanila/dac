@@ -81,15 +81,18 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    matrix captures distinguish initial capacitor rejection from terminal
    linear-solve error. Exact LTE and constant-capacitor stamp replay do not
    explain the failure. High-precision linear arithmetic passes the original
-   collapse but full runs still fail later, including Gear. The later audit shows
-   converged Newton solves and a stable final switch state; L1.1 flux history,
-   not switch chatter, limits the final timestep. The named trouble element
-   alone does not identify the cause.
-   Picosecond observations and analytic fixture-clock crossings reduce the short
-   run timing discrepancy to the guard resolution; general ADC crossing timing
-   remains open. Investigate inductor state/history and equation assembly,
-   requiring completed timestep/tolerance refinement before adopting
-   a correction. Recorded-output
+   collapse. The later L1.1 flux-history rejection is traced to lost cancellation
+   in floating-capacitor history-current assembly, with converged Newton solves
+   and a stable switch state. Independent high-precision replay and a native
+   paired-RHS regression establish the conservation defect; an inductor-only
+   correction does not explain the current jump.
+   Exact capacitor assembly plus recovered resistor/switch matrix additions
+   now completes the full live timestep/tolerance refinement pair. Firmware reads
+   and latches agree, but absolute-time waveform differences around ideal switch
+   transitions still prevent a convergence claim. Keep the correction opt-in.
+   Resolve those differences and general ADC crossing timing before adopting it;
+   analytic fixture-clock crossings alone do not qualify the general boundary.
+   Preserve disabled controls and physical parameters. Recorded-output
    replay also changes forcing history and breakpoints; its completion does not
    identify a bridge defect. The DAC corner-scheduling candidate passes its focused
    regression but not tight live refinement; keep it diagnostic until matched
