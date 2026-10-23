@@ -107,7 +107,9 @@ with its evidence, and is not a completion criterion.
    evidence independent of the firmware comparison, and whose predicted loaded
    waveform is unique within that evidence. Candidates passing the selected
    published screens already predict materially different loaded waveforms, so
-   this is a bench dependency now. Decision informed: whether the serial
+   this is a bench dependency now. Recovery diagnostics identify reverse output
+   operation and load sensitivity; their current and charge predictions are not
+   bench evidence. Decision informed: whether the serial
    undershoot and recovery could change what the host receiver reads; if the
    receiver margin is preserved across the admitted candidates, the magnitude is a
    research note. Admit vendor models against the intended device's conditions;
