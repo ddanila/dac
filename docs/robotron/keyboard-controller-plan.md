@@ -75,10 +75,14 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    supported parameters. Do not tune parameters merely to remove a solver failure.
 6. **Qualify the coupled reference board.** Preserve the qualified digital CPU
    and the tested input-boundary scheduler contract. Resolve the live transition
-   failure remaining after the zero-hysteresis switch correction: recorded-output
-   replay completes the tested later prefix, but does not prove equivalence to the
-   failing live trajectory. Compare state and event histories before extending
-   firmware refinement. The corrected runtime remains diagnostic.
+   failure remaining after the zero-hysteresis switch correction. The selected
+   collapse is truncation/error-estimation rejection with converged Newton solves
+   and no ADC state change inside the audited window. Investigate capacitor and
+   inductor state/history arithmetic while preserving live feedback. Recorded-output
+   replay also changes forcing history and breakpoints; its completion does not
+   identify a bridge defect. The DAC corner-scheduling candidate passes its focused
+   regression but not tight live refinement; keep it diagnostic until matched
+   controls complete.
    Admit bus drivers across published supply/load conditions; nominal endpoint
    resistance fixtures fail that envelope. Keep logic thresholds, static operating
    limits and maximum ratings separate. Neither the isolated charge-storage replay

@@ -49,6 +49,8 @@ owns scenario coverage and experiment details.
 | The isolated bus excess persists under numerical refinement | Recorded-boundary ngspice, Xyce and independent KCL replay agree; coupled uncertainty and transient device applicability remain open | [Bus-read replay][bus-read] |
 | Nominal-supply linear bus drivers fail the loaded-high guarantee at minimum rated supply | Keep stress fixtures separate from admitted device models; maximum ratings cannot waive static operating checks | [Bus-device admission][bus-device] |
 | Zero-hysteresis correction completes the isolated tight replay and preserves nonzero-hysteresis controls | Live coupled refinement still fails later; the later recorded-output replay does not prove live-trajectory equivalence | [Transition isolation][bus-transition] |
+| The selected live collapse rejects timesteps despite converged Newton solves, with no ADC decision change in the audited window | Investigate error estimation and state history; replay success alone cannot identify a feedback defect | [Live transition audit][live-transition] |
+| A boundary-aligned DAC event can omit the ramp-end breakpoint | Focused regression passes with the opt-in candidate, but tight live controls still fail; candidate remains unadopted | [DAC regression][dac-ramp], [live controls][live-transition] |
 | Evaluator caching accelerates the short startup control without changing its waveform | Opt-in only; longer startup and service equivalence remain unqualified | [Cache benchmark][eval-cache] |
 | Static device endpoint screens pass sampled published conditions | Does not qualify oscillator or switching dynamics | [Endpoint evidence][device-endpoints] |
 | Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
@@ -132,3 +134,6 @@ and the reason for changing its interpretation.
 
 [bus-device]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-device-admission/assessment.json
 [bus-transition]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-transition/assessment.json
+
+[live-transition]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/live-transition/assessment.json
+[dac-ramp]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/test_dac_ramp.py
