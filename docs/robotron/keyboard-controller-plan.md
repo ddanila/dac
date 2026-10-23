@@ -77,8 +77,15 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    and the tested input-boundary scheduler contract. Resolve the live transition
    failure remaining after the zero-hysteresis switch correction. The selected
    collapse is truncation/error-estimation rejection with converged Newton solves
-   and no ADC state change inside the audited window. Investigate capacitor and
-   inductor state/history arithmetic while preserving live feedback. Recorded-output
+   and no ADC state change inside the audited window. Accepted-state and frozen
+   matrix captures now distinguish initial capacitor rejection from terminal
+   linear-solve error. Exact LTE replay leaves rejection intact; independent
+   high-precision solves agree. Switching linear arithmetic after the transition
+   passes that collapse but fails later; a short timestep pair completes, while
+   drive timing and tighter-tolerance checks remain unresolved. It stays
+   diagnostic. Investigate
+   state/history formation and the later failure while preserving live feedback;
+   require completed timestep/tolerance refinement before adopting a correction. Recorded-output
    replay also changes forcing history and breakpoints; its completion does not
    identify a bridge defect. The DAC corner-scheduling candidate passes its focused
    regression but not tight live refinement; keep it diagnostic until matched
