@@ -1051,6 +1051,7 @@ test('populated reference assembly loads independently and walkthrough follows c
    await expect(assembly.locator('[data-assembly-status]')).toContainText('0 body-envelope intersections');
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Nominal lead clearance: 0 unintended contacts');
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Manufacturing tolerances remain unqualified');
+   await expect(assembly.locator('[data-assembly-status]')).toContainText('Nominal enclosure interfaces: clear');
   }else{
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Assembly viewer unavailable');
    await expect(assembly.locator('canvas')).toHaveCount(0);
@@ -1080,6 +1081,9 @@ test('assembly population and walkthrough terminals preserve the electrical cont
  for(const stage of assembly.signalPaths.stages)for(const terminal of stage.terminals){const [ref,pin]=terminal.split(':');expect(data.connectivity.components[ref].pins[pin]).toBe(stage.net);}
  expect(assembly.review.bodyEnvelopeIntersections).toEqual([]);expect(assembly.review.mechanicallyQualified).toBe(false);
  expect(assembly.review.leadClearance.noUnintendedContact).toBe(true);
+ expect(reference.enclosure.nominalInterfacesClear).toBe(true);
+ expect(reference.enclosure.positiveControl.intersects).toBe(true);
+ expect(reference.enclosure.mechanicallyQualified).toBe(false);
  expect(assembly.review.leadClearance.minimumUnintendedClearance.surfaceClearanceMm).toBeGreaterThan(0);
  for(const contact of assembly.review.leadClearance.intendedContacts)expect(['same-net','reference-bridge']).toContain(contact.basis);
 });

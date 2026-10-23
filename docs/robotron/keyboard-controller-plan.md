@@ -160,8 +160,10 @@ Its populated OpenSCAD and museum assembly use pad-driven leads, explicit packag
 adapters and shared package bodies. Generated body-envelope, overhang and drill
 checks pass; they do not establish mechanically qualified construction. Nominal
 lead-to-lead capsule clearance is checked, with intentional bridge contacts
-separated from unintended contacts. Manufacturing allowances, bend
-radii, enclosure fit and the shared filter core remain open.
+separated from unintended contacts. A source-bound solid-intersection check covers
+the populated reference against the modeled case, supports, mounts and matrix
+board. Manufacturing allowances, bend radii, measured enclosure fit and the shared
+filter core remain open.
 Netlist-checked signal walkthroughs link reference selection to historical evidence.
 
 | Step | Work | Acceptance |

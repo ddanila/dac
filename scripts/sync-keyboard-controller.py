@@ -10,6 +10,7 @@ cadrev=revision(a.cad);emurev=revision(a.emulation);board=a.cad/'models/robotron
 subprocess.run(['python3',board/'tools/export.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/reference_board.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/reference_assembly.py','--check'],check=True)
+subprocess.run(['python3',board/'tools/reference_enclosure.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/connection_review.py','--check'],check=True)
 subprocess.run(['python3',board/'tools/cable_copper.py','--check'],check=True)
 subprocess.run(['python3',core/'generate.py','--check'],check=True)
@@ -59,6 +60,7 @@ target=root/'public/models/robotron-1715m/keyboard-controller.json';target.write
 reference=board/'reference'
 variant={key:json.loads((reference/'generated'/name).read_text()) for key,name in [('layout','layout.json'),('qualification','qualification.json'),('routingAudit','routing-audit.json')]}
 variant['assembly']=json.loads((reference/'assembly-generated/assembly.json').read_text())
+variant['enclosure']=json.loads((reference/'enclosure-review.json').read_text())
 # Existing museum package assets must be identical to the CAD assembly inputs.
 for name,expected in variant['assembly']['sources'].items():
  if name.startswith('../components/') and digest(root/'public/models/robotron-1715m'/name[3:])!=expected:raise SystemExit('Stale museum package: '+name)

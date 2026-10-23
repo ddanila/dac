@@ -49299,11 +49299,11 @@
         "ref": "R1",
         "type": "8x910",
         "package": "network",
-        "basis": "R1 catalog B1 envelope; R2 proposed nine-terminal surrogate, specimen tenth lead unresolved.",
+        "basis": "R1 catalog B1 envelope; proposed board-surface seating to clear the modeled matrix board. Installed seating and manufacturing allowance remain unqualified.",
         "position": [
           -82.75,
           -13.5,
-          2.6
+          1.6
         ],
         "rotation": 0,
         "sizeMm": [
@@ -49323,8 +49323,8 @@
             -12.0
           ],
           [
-            2.6,
-            13.6
+            1.6,
+            12.6
           ]
         ],
         "leads": [
@@ -49345,7 +49345,7 @@
               [
                 -94.0,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49367,7 +49367,7 @@
               [
                 -71.5,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49389,7 +49389,7 @@
               [
                 -91.5,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49411,7 +49411,7 @@
               [
                 -89.0,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49433,7 +49433,7 @@
               [
                 -86.5,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49455,7 +49455,7 @@
               [
                 -84.0,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49477,7 +49477,7 @@
               [
                 -81.5,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49499,7 +49499,7 @@
               [
                 -79.0,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49521,7 +49521,7 @@
               [
                 -76.5,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -49543,7 +49543,7 @@
               [
                 -74.0,
                 -13.5,
-                2.6
+                1.6
               ]
             ],
             "diameterMm": 0.3
@@ -56192,16 +56192,88 @@
       "../components/kicad/meshes/DIP-40_W15.24mm-body.stl": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
       "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "reference/assembly.json": "1ee84e2f285f605e5fffafd43ace6f659c5ea430764b3857ca4e94257cbd4b5f",
+      "reference/assembly.json": "c39e2aa1bf0293e6c2dbd61b69d616a17a110d656cbccd9c3d4952ba4e35c519",
       "reference/generated/layout.json": "51217655811477294a8c69ceb442be17ff987562fe98cf1df5b26a303a18d74d",
       "reference/signal-paths.json": "bcc196b9fe151e87a292a0b8572d20b1b763d526907005e595428f03f958392b",
       "tools/lead_clearance.py": "a61e21067ce2e0831f05c289b98abc0d2ce99b833112b7cb77a238e87de81450",
       "tools/reference_assembly.py": "b850fb70ea23a58780bc6b5d70deb05a6ccbb8134ffba159e5e5e39083ea086a"
     }
   },
+  "enclosure": {
+    "schema": 1,
+    "variant": "proposed-reference",
+    "scope": "Populated reference bodies and leads at the existing keyboard controller transform. Static nominal solids only; excludes PCB copper, connector engagement, cable and shield braid, bend radii and manufacturing tolerances. Zero volume permits touching. Enclosure dimensions and installed seating remain unmeasured.",
+    "engine": "OpenSCAD version 2026.10.05",
+    "intersectionBudgetMm3": 0.001,
+    "results": [
+      {
+        "interface": "shell",
+        "assemblyLiftMm": 0,
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "bottom",
+        "assemblyLiftMm": 0,
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "supports",
+        "assemblyLiftMm": 0,
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "mounts",
+        "assemblyLiftMm": 0,
+        "intersectionMm3": 0.0,
+        "intersects": false
+      },
+      {
+        "interface": "matrix-board",
+        "assemblyLiftMm": 0,
+        "intersectionMm3": 0.0,
+        "intersects": false
+      }
+    ],
+    "positiveControl": {
+      "interface": "raised-assembly-control",
+      "assemblyLiftMm": 1,
+      "intersectionMm3": 24.378109,
+      "intersects": true
+    },
+    "nominalInterfacesClear": true,
+    "mechanicallyQualified": false,
+    "sources": {
+      "assembly-details.scad": "e126c4cd8f98c6712142cb7a8001a0f739e1d64de8ed9439c531e39a26c9b755",
+      "components/kicad/meshes/DIP-14_W7.62mm-body.stl": "d8b37907d924f3dee08dca7663807440e9ee90113b52ee9b128ccf9cb242e246",
+      "components/kicad/meshes/DIP-20_W7.62mm-body.stl": "c71eb298a5948d48e8c2cd27929d85714d557be6a1e853f8c1c712a0319d345a",
+      "components/kicad/meshes/DIP-24_W15.24mm-body.stl": "bc9672c67fb650b842d0caf7f115fbc1dd72d0566dff156f336f96a3aa006f2b",
+      "components/kicad/meshes/DIP-40_W15.24mm-body.stl": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
+      "components/pcb-discretes.scad": "e4648293cdea56ce98980c36d66fd754b5e4980bafe654f55e4d3f880ccaa75e",
+      "components/teac-fd55fv.scad": "e62bc7c018f8f59d11f98016a9d7216c50c0c9534f143d818ee2be15e717f3cb",
+      "controller-package-data.scad": "548028d516da02768bd75bdd831c2965af8fba8becdda01d73f3de97c7bd1037",
+      "dimensions.scad": "5e01a4d423d3ecfb5b85f577c36a153d0d3079e724bdb928ef81ac69f553a254",
+      "interior.scad": "107afcf95fe9e446c1cc9047ce3b7c24dad6f4c524977d2954e034b118816b7e",
+      "key-switch/geometry.scad": "3c5548896f0d9ef90e45d89c51d15f91974dc473456da760aeb61104c75fddce",
+      "keyboard-artwork.scad": "4b185f623c7b71674bfc823a3cb0b8ceb38ed8447e55e286977e01de02c18d6c",
+      "keyboard-controller/generated/controller.scad": "b1fbde98eaca13234816889584ae73ce364b03cc933e1cc2ef9b3ad9f51b2d48",
+      "keyboard-controller/reference/assembly-generated/assembly.scad": "4d571a7fb633f5e82f9f1d2c8665fe55b9616b9648606b153e54c62be6aa9e0d",
+      "keyboard-controller/tools/reference_enclosure.py": "7333794a15209df39e0c4f3a5b63dccb1a175842614beb5b5a6baacbbfbbc25c",
+      "keyboard-layout.scad": "bf1700cba2e51c7ea9b400fab2c6dbd7072fd5d97cb15396cd0e17a260ef5fae",
+      "keycap/geometry.scad": "e304f9e8e48ee16f4ee67a29906901f6f7cff93694c6ebf70bf6e38a891ad961",
+      "model.scad": "a3551efcb66486043b1521b49e42d2c8f7e2a846d8f82edf5838c7a5b30f4f8d",
+      "monitor-cables.scad": "03334c5468c3158d78ac72a4747ee305b57ab46906be846b78e2a346cdc5275a",
+      "monitor-interior.scad": "5415fe31a30d7dccf97746096e5629b511b56e4da25fe20197662a51495a2ff2",
+      "monitor-profile.scad": "4af9fd8e61640f9c2551fca49ba2b8ed004d4bc9bc2c2c87e4ffaf14ab5c62cb",
+      "pcb-components.scad": "352486104a830116f799c7c2535bcda6b055596404fb9af8696887ebc69d6125",
+      "specimen-details.scad": "b5a31f014ab6c3f5cb3008e79b92c0323a104cc095607257a9a70698aa6a8749"
+    }
+  },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "8f54c07f79d9981575920d83da6954a00425c0b3",
+    "revision": "231f29d1133c2ba585d3082b982a27a8f83ab075",
     "manifestSha256": "7148f448811abc7c0f757517676a1c6f3d219b2afa91f7ec83009e227b5ca5aa",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
@@ -56210,6 +56282,6 @@
       "reference/generated/qualification.json": "f360f38ef0d218558c574cfa5c1a323054366f1678763a4c01905f4fe3cb6a6c",
       "reference/generated/routing-audit.json": "7fef7889ee082facdd24aa7da0cfc2b5034e2fd389c07aedc3e0a1c9f0ec7c66"
     },
-    "assemblySha256": "beee925ab8f30648fd2fcdd2cbb20dc4cbd4c7a611b2b3ffad433d80b5cc9ac2"
+    "assemblySha256": "47f225d8379a8cdcaace982a0e783ef1fb06d135921035c19ccad559b3413733"
   }
 }
