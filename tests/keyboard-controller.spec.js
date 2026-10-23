@@ -1089,6 +1089,14 @@ test('museum separates production digital acceptance from legacy and electrical 
  await expect(panel.locator('[data-digital-qualification]')).toContainText('Reference digital acceptance passes');
  await expect(panel.locator('[data-digital-qualification]')).toContainText('Electrical and specimen qualification remain separate');
  await expect(panel.locator('[data-digital-report]')).toHaveAttribute('href',`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/digital/reports/cpu-bus/summary.json`);
+ await expect(panel.locator('[data-electrical-qualification]')).toContainText('Reference electrical qualification is incomplete');
+ await expect(panel.locator('[data-electrical-qualification]')).toContainText('simulator time ordering');
+ await expect(panel.locator('[data-electrical-report]')).toHaveAttribute('href',`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/analog/reports/electrical-status.json`);
+ expect(data.electricalQualification.qualified).toBe(false);
+ expect(data.electricalQualification.gates.staticDeviceEndpoints).toBe(true);
+ expect(data.electricalQualification.gates.numericalConvergence).toBe(false);
+ expect(data.electricalQualification.gates.bridgeTimeOrdering).toBe(false);
+ expect(data.source.electricalStatusSha256).toMatch(/^[a-f0-9]{64}$/);
  expect(data.productionDigitalQualification.qualified).toBe(true);
  expect(data.productionDigitalQualification.productionAdopted).toBe(true);
  expect(Object.values(data.productionDigitalQualification.gates).every(Boolean)).toBe(true);

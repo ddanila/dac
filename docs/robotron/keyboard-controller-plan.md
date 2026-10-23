@@ -61,17 +61,22 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    local capacitor corrections alone retain large voltage excursions and
    refinement differences. Preserving subsequent resistor/switch additions allows
    the two finer short-window replays to complete, but their absolute-time voltage
-   differences remain material and the coarse replay fails. Qualify remaining
-   stamp arithmetic and nonlinear transitions before extending to full firmware
+   differences remain material and the coarse replay fails. Exact BJT/diode
+   additions preserve the disabled control but do not resolve these failures.
+   Investigate nonlinear transitions, history and solver behavior before full firmware
    refinement; the short completed pair does not close convergence.
    Require an identical disabled control, completed refinement pairs and
    absolute-time voltage convergence without changing circuit physics or budgets.
 5. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
-   host-buffer switching/loading against independent device evidence. Admit vendor
+   host-buffer switching/loading against independent device evidence. Static
+   endpoint screens pass sampled published conditions; dynamics remain open. Admit vendor
    models against the intended device's conditions before board use. Keep primary,
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
-6. **Qualify the coupled reference board.** Resolve the CPU clock high-level and
+6. **Qualify the coupled reference board.** The qualified digital CPU is integrated
+   into the circuit harness. Resolve the retained bridge time-ordering violation
+   before coupled acceptance; the logging-only audit preserves control waveforms.
+   Resolve the CPU clock high-level and
    timing failures exposed by the startup-inclusive capture. Complete host device
    qualification, scenario/refinement coverage, oscillator phase, receiver levels/loading, bus
    timing and supply recovery. Logical agreement and receiver timing screens

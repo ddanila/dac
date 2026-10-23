@@ -49,6 +49,10 @@ if json.loads(production_firmware.read_text())['romSha256']!=report['firmware'][
 blob['productionDigitalQualification']=json.loads(production_path.read_text())
 blob['source']['productionDigitalSummarySha256']=digest(production_path)
 blob['source']['productionDigitalFirmwareSha256']=digest(production_firmware)
+subprocess.run(['python3',core/'analog/electrical_status.py','--check'],check=True)
+electrical_path=core/'analog/reports/electrical-status.json'
+blob['electricalQualification']=json.loads(electrical_path.read_text())
+blob['source']['electricalStatusSha256']=digest(electrical_path)
 target=root/'public/models/robotron-1715m/keyboard-controller.json';target.write_text(json.dumps(blob,indent=2)+'\n');print('Pinned keyboard controller:',cadrev,emurev)
 
 reference=board/'reference'

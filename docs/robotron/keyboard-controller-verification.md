@@ -44,6 +44,9 @@ owns scenario coverage and experiment details.
 | Refinement retains absolute-time voltage differences despite serial agreement | Do not align away phase errors or discard transition peaks to claim convergence | [Single press][paired-host], [release/repress][release-pair] |
 | Local capacitor correction alone retains trajectory failure; preserving later resistor/switch additions completes two finer short-window replays | Coarse execution still fails and the completed pair retains material absolute-time voltage differences. Single-rounding history sensitivity is too small to explain the selected frozen excursions; accumulated/nonlinear errors remain open | [Later additions][postcap], [history sensitivity][history-sensitivity], [capacitor onset][capacitor-onset] |
 | Startup-inclusive execution exposes CPU clock-level/timing failures and incomplete reset recovery | Functional firmware output cannot close full-board electrical qualification | [Startup assessment][board-host] |
+| Exact BJT/diode additions do not close numerical convergence | Disabled control is identical; coarse failure and material fine-pair voltage differences remain | [Nonlinear additions][device-additions] |
+| Qualified CPU circuit service exposes a bridge ordering violation | Requested time precedes HDL time by more than one tick; logging preserves control waveforms. Resolve before coupled acceptance | [Bridge audit][bridge-time] |
+| Static device endpoint screens pass sampled published conditions | Does not qualify oscillator or switching dynamics | [Endpoint evidence][device-endpoints] |
 | Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
 | Oscillator candidates remain unqualified | Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions | [Device review][device-review], [independent solver][xyce] |
 
@@ -113,3 +116,7 @@ relevant checks and pin compatible museum assets. Preserve superseded evidence
 and the reason for changing its interpretation.
 
 [cpu-bus]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/cpu-bus/summary.json
+
+[device-additions]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-device-additions/assessment.json
+[bridge-time]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/qualified-cpu-bridge-time/assessment.json
+[device-endpoints]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/device-endpoints/assessment.json
