@@ -69,7 +69,11 @@ reconstruction stays in scope but does not gate completion of the reference PCB.
    absolute-time voltage convergence without changing circuit physics or budgets.
 5. **Constrain device dynamics.** Qualify oscillator startup, output-driver and
    host-buffer switching/loading against independent device evidence. Static
-   endpoint screens pass sampled published conditions; dynamics remain open. Admit vendor
+   endpoint screens pass sampled published conditions. The experimental 7406
+   storage candidate fits published typical delays and passes selected DC,
+   temperature and withheld switching checks. Its junction capacitances remain
+   hypotheses; fitting typical delays does not identify a unique physical model
+   or validate the board's different loading. Admit vendor
    models against the intended device's conditions before board use. Keep primary,
    comparison and reference devices separate; filter hypotheses need independently
    supported parameters. Do not tune parameters merely to remove a solver failure.
