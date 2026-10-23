@@ -507,7 +507,9 @@ worker.onmessage = ({ data: d }) => {
     driveWritable=d.driveProtection || (d.drives || [0,0]).map(v=>!!(v&4));
     for(const u of [0,1]){
       const button=$("drive-protect-"+u);button.disabled=replayBusy||!driveProtectSupported||!d.driveAvailable?.[u]||!!((d.drives?.[u]||0)&8);
-      button.textContent=`${driveWritable[u]?"Cover":"Uncover"} disk ${u?"B":"A"} notch`;
+      const label=`${driveWritable[u]?"Cover":"Uncover"} disk ${u?"B":"A"} notch`;
+      // Preserve the click target while frames arrive between pointer down and up.
+      if (button.textContent !== label) button.textContent = label;
       button.setAttribute("aria-pressed",String(!driveWritable[u]));
       $(u?"writable-b":"writable").checked=driveWritable[u];
     }

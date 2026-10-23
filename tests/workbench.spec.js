@@ -94,7 +94,8 @@ test("paste, deterministic browser/native replay and damaged recording rejection
   await expect(page.locator("#drive-media-1")).toBeEnabled();
   await page.locator("#drive-media-1").click({ delay: 150 });
   await expect(page.locator("#drive-media-1")).toHaveText("Insert disk B");
-  await page.locator("#drive-protect-1").click();
+  // Hold through several emulator frames: unchanged labels must preserve the click target.
+  await page.locator("#drive-protect-1").click({ delay: 150 });
   await expect(page.locator("#drive-protect-1")).toHaveText("Uncover disk B notch");
   // Move the blank B disk into empty A and back; replay must preserve it.
   await page.locator("#drive-lever-0").click();
