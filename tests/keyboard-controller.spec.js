@@ -1081,6 +1081,8 @@ test('populated reference assembly loads independently and walkthrough follows c
 test('assembly population and walkthrough terminals preserve the electrical contract',()=>{
  const reference=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/keyboard-controller-reference.json',import.meta.url)));
  const assembly=reference.assembly;
+ expect(assembly.leadForming.radiusMm).toBeGreaterThan(0);
+ expect(assembly.components.some(c=>c.leads.some(l=>l.bends?.length))).toBe(true);
  expect(assembly.sharedBodies).toHaveLength(1);
  expect(assembly.sharedBodies[0].members).toEqual(['L1.1','L1.2','L1.3','L1.4']);
  expect(assembly.review.sharedCoreIntersections).toEqual([]);
