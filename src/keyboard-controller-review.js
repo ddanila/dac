@@ -52,7 +52,7 @@ function componentPhoto(data,ref,candidate,side='top'){
  const source=data.evidence.sources.find(s=>s.id===candidate.photoSource);
  if(!source?.path||!entries?.length)return null;
  const figure=document.createElement('figure');figure.dataset[box?'bodyPhoto':numbered?'placementPhoto':'candidatePhoto']=ref;figure.dataset.photoSide=source.side||side;figure.dataset.photoSpecimen=source.specimenId||'museum-primary';
- const caption=document.createElement('figcaption');caption.textContent=numbered?`${ref}: photo-estimated numbered lead positions. Circles show the recorded pixel uncertainty. Raised leads can obscure hole centres; continuity is not measured.`:`${ref}: photo location candidate. Circles mark observed endpoints, not numbered pins. Terminal order and continuity remain unverified.`;if(side==='bottom')caption.textContent=`${ref}: underside solder-joint observations with reference-derived pin numbers. Circles show the recorded pixel uncertainty. These are original photo coordinates, not projected pads; global underside registration and end-to-end continuity remain unqualified.`;if(box)caption.textContent=`${ref}: ${source.specimenId?'comparison photo — different specimen':'primary specimen photo'}. Rectangle identifies a body or marking region, not numbered pins or hole centres. ${candidate.marking?`Visible marking: ${candidate.marking}${candidate.additionalMarking?`; ${candidate.additionalMarking}`:''}. `:''}${candidate.scope||''}`;figure.append(caption);
+ const caption=document.createElement('figcaption');caption.textContent=numbered?`${ref}: photo-estimated numbered lead positions. Circles show the recorded pixel uncertainty. Raised leads can obscure hole centres; continuity is not measured.`:`${ref}: photo location candidate. Circles mark observed endpoints, not numbered pins. Schematic connectivity is established; assigning the two photographed ends to schematic pins remains unresolved.`;if(side==='bottom')caption.textContent=`${ref}: underside solder-joint observations with reference-derived pin numbers. Circles show the recorded pixel uncertainty. These are original photo coordinates, not projected pads; global underside registration and end-to-end continuity remain unqualified.`;if(box)caption.textContent=`${ref}: ${source.specimenId?'comparison photo — different specimen':'primary specimen photo'}. Rectangle identifies a body or marking region, not numbered pins or hole centres. ${candidate.marking?`Visible marking: ${candidate.marking}${candidate.additionalMarking?`; ${candidate.additionalMarking}`:''}. `:''}${candidate.scope||''}`;figure.append(caption);
  const image=new Image();image.alt=`Original ${source.specimenId?'comparison':'primary'} specimen photo around ${ref}`;
  const url=`${import.meta.env.BASE_URL}models/robotron-1715m/photos/${encodeURIComponent(source.path.split('/').pop())}`;
  const link=document.createElement('a');link.href=url;link.textContent=source.specimenId?'Open original comparison photo':side==='bottom'?'Open original underside photo':'Open original specimen photo';link.target='_blank';link.rel='noopener';figure.append(link);
@@ -121,8 +121,9 @@ export function installKeyboardControllerReview(scene){
   }
   for(const route of data.layout.unresolvedArtwork.filter(r=>r.side===side))add('polyline',{points:route.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#4694a1','stroke-width':route.width});
   for(const bridge of (data.layout.visualBridges||[]).filter(b=>b.side===side)){
-   const line=add('polyline',{'data-visual-bridge':bridge.ref,points:bridge.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:'#4694a1','stroke-width':.5});
-   const title=document.createElementNS(svgNS,'title');title.textContent=`${bridge.ref}: observed wire; terminal identity and continuity unresolved`;line.append(title);
+   const active=selection?.refs.includes(bridge.ref);
+   const line=add('polyline',{'data-visual-bridge':bridge.ref,points:bridge.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:active?'#ffe16a':'#4694a1','stroke-width':.5});
+   const title=document.createElementNS(svgNS,'title');title.textContent=`${bridge.ref}: photographed bridge with schematic connectivity; photographed ends are not individually numbered`;line.append(title);
   }
   for(const route of data.layout.routes.filter(r=>r.side===side)){
    const line=add('polyline',{'data-route-id':route.id,'data-evidence-status':route.evidence.status,points:route.points.map(([x,y])=>`${x},${-y}`).join(' '),fill:'none',stroke:selection?.pins.some(p=>p.net===route.net)?'#ffe16a':'#c29155','stroke-width':route.width,'stroke-dasharray':route.evidence.status==='inferred'?'.5 .3':'none'});
@@ -173,7 +174,7 @@ export function installKeyboardControllerReview(scene){
    const placed=selection.points.length,total=selection.pins.length;
    get('[data-selection]').textContent=`${kind==='path'?'Signal path '+value:kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
    const selectionSummary=get('[data-selection]').textContent;
-   if((data.layout.visualBridges||[]).some(b=>selection.refs.includes(b.ref)))get('[data-selection]').textContent+=' The cyan wire is a photo estimate only; its endpoints do not identify electrical pads.';
+   if((data.layout.visualBridges||[]).some(b=>selection.refs.includes(b.ref)))get('[data-selection]').textContent+=' The bridge location comes from the photo and its electrical connections from the schematic; photographed ends are not individually numbered.';
    if((data.layout.visualConnectors||[]).some(c=>selection.refs.includes(c.ref)))get('[data-selection]').textContent+=' Connector pads use photo-estimated positions and reference-derived numbering; owner-observed isolated contacts carry no signal net.';
    const routes=data.layout.routes.filter(r=>selection.pins.some(p=>p.net===r.net));
    if(routes.length){
@@ -311,7 +312,17 @@ export function installKeyboardControllerReview(scene){
    const bridges=data.evidence.serviceInterfaces?.bridges.filter(b=>selection.refs.includes(b.ref))||[];
    for(const bridge of bridges){
     const physical=bridge.physicalEvidence;
-    get('[data-selection]').textContent+=` ${bridge.ref}: ${bridge.role} Reference state: ${bridge.referenceState}. ${bridge.testUse} `+(physical?.status==='photo-placed-reference-terminal-order'?`Photo-estimated placement: ${physical.location}. Terminal mapping is reference-derived with local photo support; end-to-end continuity remains unmeasured.`:physical?`Photo location candidate: ${physical.location}. Terminal order and continuity remain unverified.`:'Physical location unverified.');
+    get('[data-selection]').textContent+=` ${bridge.ref}: ${bridge.role} Reference state: ${bridge.referenceState}. ${bridge.testUse} `+(physical?.status==='photo-placed-reference-terminal-order'?`Photo-estimated placement: ${physical.location}. Terminal mapping is reference-derived with local photo support; end-to-end continuity remains unmeasured.`:physical?`Photo location candidate: ${physical.location}. Schematic connectivity is established; assigning the two photographed ends to schematic pins remains unresolved.`:'Physical location unverified.');
+    const connections=document.createElement('section');connections.dataset.bridgeConnections=bridge.ref;
+    const heading=document.createElement('h4');heading.textContent=bridge.ref+' schematic connections';connections.append(heading);
+    for(const [side,endpoint]of [['source',bridge.source],['CPU',bridge.cpu]]){
+     const terminals=Object.entries(data.connectivity.components).flatMap(([ref,c])=>Object.entries(c.pins).filter(([,net])=>net===endpoint.net).map(([pin])=>`${ref}:${pin}`));
+     const row=document.createElement('p');row.dataset.bridgeSide=side;
+     row.textContent=`${side==='CPU'?'CPU side':'Source side'} — ${clean(endpoint.net)}: ${terminals.join(', ')}. `;
+     const follow=document.createElement('button');follow.type='button';follow.textContent=`Follow ${bridge.ref} ${side} side`;
+     follow.onclick=()=>{get('[data-net]').value=endpoint.net;select('net',endpoint.net);};row.append(follow);connections.append(row);
+    }
+    const scope=document.createElement('p');scope.textContent='These connections follow the schematic. Highlighting the photographed bridge does not assign a source/CPU direction to its two visible ends.';connections.append(scope);pins.append(connections);
     if(physical){
      const source=data.evidence.sources.find(s=>s.id===physical.source),note=document.createElement('p');note.textContent=physical.observation+' ';pins.append(note);
      if(source){const link=document.createElement('a');link.href=source.url+'#page=10';link.textContent='Factory bridge placement (drawing 8)';link.target='_blank';link.rel='noopener';note.append(link);}

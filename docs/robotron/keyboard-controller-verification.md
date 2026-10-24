@@ -97,7 +97,7 @@ not a second inventory here.
 | Open question | Desk-work route | Residual observation if still ambiguous |
 | --- | --- | --- |
 | BR1 clock link (schematic: A5 pin 6); remaining physical attachments | Follow overlapping photos; independently check pin numbering and cross-side correspondence | Close-ups showing complete joints; distinguishable continuity readings |
-| BR2 reset link (schematic: A5 pin 26); physical end identification | Preserve the exported unassigned wire; constrain terminal correspondence with lead paths and package drawings | Visible joints or observations that distinguish the two ends; a closed bridge alone cannot do so |
+| BR2 reset link (schematic: A5 pin 26); physical end identification | Retain schematic connectivity and the photographed bridge location; constrain only the correspondence between photographed ends and schematic pins | Visible joints or observations that distinguish the two ends; a closed bridge alone cannot do so |
 | Output-clock WR/RD discrepancy | Compare complete trace paths and keep published revisions separate | Distinguishable physical connection to the CPU pins |
 | X1 A8 | Owner inspection establishes a present, soldered contact with no tracks on either side; retained in `connection-review.json` | Classification and isolated native pad/hole representation resolved; dimensions remain estimated |
 | Serial output to XT1 host cable | Follow the R10.1/R10.2 output branches through the L1 windings; use `review/connection-review.html` for annotated stops and reference endpoints | Complete joint/trace observations identifying winding ends and cable contacts |
