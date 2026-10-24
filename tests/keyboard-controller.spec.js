@@ -1038,6 +1038,15 @@ test('proposed reference board is separate, selectable and explicitly unqualifie
  await expect(capacitor.getByRole('link',{name:'Manufacturer package drawing'})).toHaveAttribute('href',/S_Alm_A_cap_catalog_e.pdf#page=35$/);
  await expect(capacitor.getByRole('link',{name:'Reset polarity diagnostic'})).toHaveAttribute('href',/2aed561\/.*proposed-polarity.json$/);
  expect(data.layout.unplaced.some(c=>c.ref==='C4')).toBe(true);
+ await reference.getByLabel('Reference component',{exact:true}).selectOption('C6');
+ const ceramic=reference.locator('[data-capacitor-package="C6"]');
+ await expect(ceramic).toContainText('C315C471J5G5TA, 50 V');
+ await expect(ceramic).toContainText('C0G, nonpolar');
+ await expect(ceramic).toContainText('coating extension');
+ await expect(ceramic).not.toContainText('Proposed polarity:');
+ await expect(ceramic.getByRole('link',{name:'Reset polarity diagnostic'})).toHaveCount(0);
+ await expect(ceramic.getByRole('link',{name:'Manufacturer package drawing'})).toHaveAttribute('href',/KEM_C1049_GOLDMAX_C0G.pdf#page=3$/);
+
 
 
  await expect(reference.locator('[data-reference-selection]')).toContainText('proposed');

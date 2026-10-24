@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Work | Acceptance |
 | --- | --- |
-| Resolve remaining disc-capacitor and connector dimensions | Use identifiable published packages where possible; retain estimates where identity is unknown. Check terminal mappings, body/lead geometry and expanded clearances. Installed orientation, device behavior and specimen fit remain separate. |
+| Resolve remaining connector dimensions | Use an identifiable published package where possible; retain estimates where identity is unknown. Check contact mapping, lead geometry, mating clearance and expanded envelopes. Keep XT1 cable terminations distinct from a physical connector housing; specimen fit remains separate. |
 | Reconcile historical registration and individually visible copper | Follow the physical sequence below. Promote only independently supported endpoints within the existing registration budget; leave hidden joins unresolved. |
 | Investigate published constraints on oscillator, driver and load behavior | Identify which uncertainty changes clock acceptance, receiver decisions or bus timing, and what independent evidence distinguishes it. Do not repeat endpoint fitting as dynamic validation. |
 

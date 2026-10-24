@@ -51850,8 +51850,8 @@
       {
         "ref": "C1",
         "type": "220p",
-        "package": "capacitor",
-        "basis": "Proposed reference adapter; package fit remains unqualified.",
+        "package": "radial-ceramic",
+        "basis": "Proposed KEMET C315 C0G replacement: maximum rectangular body/coating envelope and formed leads. Nonpolar; original disc identity and electrical substitution remain unqualified.",
         "position": [
           111.27000000000001,
           -20.0,
@@ -51859,24 +51859,24 @@
         ],
         "rotation": 0.0,
         "sizeMm": [
-          5.2,
-          1.2,
-          5.2
+          3.81,
+          2.54,
+          4.66
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            108.67,
-            113.87
+            109.365,
+            113.175
           ],
           [
-            -20.6,
-            -19.4
+            -21.27,
+            -18.73
           ],
           [
             2.6,
-            7.800000000000001
+            7.26
           ]
         ],
         "leads": [
@@ -51892,34 +51892,11 @@
               [
                 110.0,
                 -20.0,
-                2.077133623
-              ],
-              [
-                109.996534326,
-                -20.0,
-                2.122602219
-              ],
-              [
-                109.77,
-                -20.0,
-                3.6
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [
-              {
-                "vertexIndex": 1,
-                "radiusMm": 0.3,
-                "centerMm": [
-                  109.7,
-                  -20.0,
-                  2.077133623
-                ],
-                "angleRadians": 0.152148326,
-                "tangentOffsetMm": 0.022866377,
-                "maximumChordErrorMm": 0.000867673
-              }
-            ],
+            "diameterMm": 0.61,
+            "bends": [],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -51934,34 +51911,11 @@
               [
                 112.54,
                 -20.0,
-                2.077133623
-              ],
-              [
-                112.543465674,
-                -20.0,
-                2.122602219
-              ],
-              [
-                112.77,
-                -20.0,
-                3.6
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [
-              {
-                "vertexIndex": 1,
-                "radiusMm": 0.3,
-                "centerMm": [
-                  112.84,
-                  -20.0,
-                  2.077133623
-                ],
-                "angleRadians": 0.152148326,
-                "tangentOffsetMm": 0.022866377,
-                "maximumChordErrorMm": 0.000867673
-              }
-            ],
+            "diameterMm": 0.61,
+            "bends": [],
             "centerlineApproximationMm": 0.010000001
           }
         ],
@@ -51983,6 +51937,25 @@
               "net": "/RESET_OUT"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "C315C221J5G5TA",
+          "ratedVoltageVolts": 50,
+          "source": {
+            "url": "https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf",
+            "sha256": "35ed0e9f92338584d053b1f47c99d728ee5ab10e4b7aaa17ddb6f6e2ffcb0b5c",
+            "pdfPages": [
+              3,
+              6,
+              1,
+              2
+            ],
+            "revision": "2025-08-05"
+          },
+          "bodyBasis": "Conservative rectangular envelope: published maximum length 3.81 mm, thickness 2.54 mm, body height 3.14 mm plus up to 1.52 mm coating extension below the seating plane. Entire extension uses the body width/thickness as a bound; not an exact coating shape.",
+          "polarized": false,
+          "dielectric": "C0G",
+          "polarityScope": "Nonpolar proposed replacement. Original package identity and electrical substitution remain unqualified."
         }
       },
       {
@@ -52155,6 +52128,7 @@
             "revision": "2020-02-28"
           },
           "bodyBasis": "D=6.3 +/-0.5 mm, L=5 +/-1 mm: maximum body envelope; no installed package claim.",
+          "polarized": true,
           "positivePin": "1",
           "negativePin": "2",
           "polarityBasis": "isolated-reset-diagnostic",
@@ -52315,6 +52289,7 @@
             "revision": "2020-02-28"
           },
           "bodyBasis": "D=6.3 +/-0.5 mm, L=5 +/-1 mm: maximum body envelope; no installed package claim.",
+          "polarized": true,
           "positivePin": "1",
           "negativePin": "2",
           "polarityBasis": "reference-5V-supply-and-ground",
@@ -52472,6 +52447,7 @@
             "revision": "2020-02-28"
           },
           "bodyBasis": "D=6.3 +/-0.5 mm, L=5 +/-1 mm: maximum body envelope; no installed package claim.",
+          "polarized": true,
           "positivePin": "1",
           "negativePin": "2",
           "polarityBasis": "reference-5V-supply-and-ground",
@@ -52649,6 +52625,7 @@
             "revision": "2020-02-28"
           },
           "bodyBasis": "D=6.3 +/-0.5 mm, L=5 +/-1 mm: maximum body envelope; no installed package claim.",
+          "polarized": true,
           "positivePin": "1",
           "negativePin": "2",
           "polarityBasis": "isolated-reset-diagnostic",
@@ -52662,8 +52639,8 @@
       {
         "ref": "C5.1",
         "type": "47n",
-        "package": "capacitor",
-        "basis": "Proposed reference adapter; package fit remains unqualified.",
+        "package": "radial-ceramic",
+        "basis": "Proposed KEMET C315 C0G replacement: maximum rectangular body/coating envelope and formed leads. Nonpolar; original disc identity and electrical substitution remain unqualified.",
         "position": [
           -45.028634,
           6.7928435,
@@ -52671,24 +52648,24 @@
         ],
         "rotation": 0.389662961,
         "sizeMm": [
-          5.2,
-          1.2,
-          5.2
+          3.81,
+          2.54,
+          4.66
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            -47.632654,
-            -42.424614
+            -46.942227,
+            -43.115041
           ],
           [
-            6.175175,
-            7.410512
+            5.509917,
+            8.07577
           ],
           [
             2.6,
-            7.800000000000001
+            7.26
           ]
         ],
         "leads": [
@@ -52704,32 +52681,42 @@
               [
                 -47.177066,
                 6.778232,
-                2.037927978
+                1.809267395
               ],
               [
-                -47.152434825,
-                6.778399508,
-                2.156975548
+                -47.146560804,
+                6.778439451,
+                1.981242078
               ],
               [
-                -46.528599,
-                6.782642,
-                3.6
+                -47.05876757,
+                6.779036492,
+                2.13223179
+              ],
+              [
+                -46.924399144,
+                6.779950268,
+                2.243812221
+              ],
+              [
+                -46.298605,
+                6.784206,
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.61,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  -46.877072937,
-                  6.780272149,
-                  2.037927978
+                  -46.677077561,
+                  6.781632186,
+                  1.809267395
                 ],
-                "angleRadians": 0.408055501,
-                "tangentOffsetMm": 0.062072022,
-                "maximumChordErrorMm": 0.006222468
+                "angleRadians": 1.053358963,
+                "tangentOffsetMm": 0.290732605,
+                "maximumChordErrorMm": 0.007685543
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52746,32 +52733,42 @@
               [
                 -42.880202,
                 6.807455,
-                2.037927978
+                1.809267395
               ],
               [
-                -42.904833175,
-                6.807287492,
-                2.156975548
+                -42.910707196,
+                6.807247549,
+                1.981242078
               ],
               [
-                -43.528669,
-                6.803045,
-                3.6
+                -42.99850043,
+                6.806650508,
+                2.13223179
+              ],
+              [
+                -43.132868856,
+                6.805736732,
+                2.243812221
+              ],
+              [
+                -43.758663,
+                6.801481,
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.61,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  -43.180195063,
-                  6.805414851,
-                  2.037927978
+                  -43.380190439,
+                  6.804054814,
+                  1.809267395
                 ],
-                "angleRadians": 0.408055501,
-                "tangentOffsetMm": 0.062072022,
-                "maximumChordErrorMm": 0.006222468
+                "angleRadians": 1.053358963,
+                "tangentOffsetMm": 0.290732605,
+                "maximumChordErrorMm": 0.007685543
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52795,13 +52792,32 @@
               "net": "/GND"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "C315C473J3G5TA",
+          "ratedVoltageVolts": 25,
+          "source": {
+            "url": "https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf",
+            "sha256": "35ed0e9f92338584d053b1f47c99d728ee5ab10e4b7aaa17ddb6f6e2ffcb0b5c",
+            "pdfPages": [
+              3,
+              6,
+              1,
+              2
+            ],
+            "revision": "2025-08-05"
+          },
+          "bodyBasis": "Conservative rectangular envelope: published maximum length 3.81 mm, thickness 2.54 mm, body height 3.14 mm plus up to 1.52 mm coating extension below the seating plane. Entire extension uses the body width/thickness as a bound; not an exact coating shape.",
+          "polarized": false,
+          "dielectric": "C0G",
+          "polarityScope": "Nonpolar proposed replacement. Original package identity and electrical substitution remain unqualified."
         }
       },
       {
         "ref": "C5.2",
         "type": "47n",
-        "package": "capacitor",
-        "basis": "Proposed reference adapter; package fit remains unqualified.",
+        "package": "radial-ceramic",
+        "basis": "Proposed KEMET C315 C0G replacement: maximum rectangular body/coating envelope and formed leads. Nonpolar; original disc identity and electrical substitution remain unqualified.",
         "position": [
           28.3327515,
           6.6729305,
@@ -52809,24 +52825,24 @@
         ],
         "rotation": 4.845659706,
         "sizeMm": [
-          5.2,
-          1.2,
-          5.2
+          3.81,
+          2.54,
+          4.66
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            25.691361,
-            30.974142
+            26.327281,
+            30.338222
           ],
           [
-            5.855448,
-            7.490413
+            5.246551,
+            8.09931
           ],
           [
             2.6,
-            7.800000000000001
+            7.26
           ]
         ],
         "leads": [
@@ -52842,32 +52858,42 @@
               [
                 26.038105,
                 6.478402,
-                2.024762106
+                1.786538454
               ],
               [
-                26.073483201,
-                6.481401201,
-                2.166333464
+                26.07242121,
+                6.481311149,
+                1.96889315
               ],
               [
-                26.838113,
-                6.546223,
-                3.6
+                26.170642535,
+                6.489637838,
+                2.126127173
+              ],
+              [
+                26.319238281,
+                6.502235007,
+                2.236580405
+              ],
+              [
+                27.067291,
+                6.565651,
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.61,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  26.337032746,
-                  6.50374372,
-                  2.024762106
+                  26.536317937,
+                  6.520637884,
+                  1.786538454
                 ],
-                "angleRadians": 0.491449716,
-                "tangentOffsetMm": 0.075237894,
-                "maximumChordErrorMm": 0.009011625
+                "angleRadians": 1.119962035,
+                "tangentOffsetMm": 0.313461546,
+                "maximumChordErrorMm": 0.008685259
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52884,32 +52910,42 @@
               [
                 30.627398,
                 6.867459,
-                2.024762106
+                1.786538454
               ],
               [
-                30.592019799,
-                6.864459799,
-                2.166333464
+                30.59308179,
+                6.864549851,
+                1.96889315
               ],
               [
-                29.82739,
-                6.799638,
-                3.6
+                30.494860465,
+                6.856223162,
+                2.126127173
+              ],
+              [
+                30.346264719,
+                6.843625993,
+                2.236580405
+              ],
+              [
+                29.598212,
+                6.78021,
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.61,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  30.328470254,
-                  6.84211728,
-                  2.024762106
+                  30.129185063,
+                  6.825223116,
+                  1.786538454
                 ],
-                "angleRadians": 0.491449716,
-                "tangentOffsetMm": 0.075237894,
-                "maximumChordErrorMm": 0.009011625
+                "angleRadians": 1.119962035,
+                "tangentOffsetMm": 0.313461546,
+                "maximumChordErrorMm": 0.008685259
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52933,13 +52969,32 @@
               "net": "/GND"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "C315C473J3G5TA",
+          "ratedVoltageVolts": 25,
+          "source": {
+            "url": "https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf",
+            "sha256": "35ed0e9f92338584d053b1f47c99d728ee5ab10e4b7aaa17ddb6f6e2ffcb0b5c",
+            "pdfPages": [
+              3,
+              6,
+              1,
+              2
+            ],
+            "revision": "2025-08-05"
+          },
+          "bodyBasis": "Conservative rectangular envelope: published maximum length 3.81 mm, thickness 2.54 mm, body height 3.14 mm plus up to 1.52 mm coating extension below the seating plane. Entire extension uses the body width/thickness as a bound; not an exact coating shape.",
+          "polarized": false,
+          "dielectric": "C0G",
+          "polarityScope": "Nonpolar proposed replacement. Original package identity and electrical substitution remain unqualified."
         }
       },
       {
         "ref": "C5.3",
         "type": "47n",
-        "package": "capacitor",
-        "basis": "Proposed reference adapter; package fit remains unqualified.",
+        "package": "radial-ceramic",
+        "basis": "Proposed KEMET C315 C0G replacement: maximum rectangular body/coating envelope and formed leads. Nonpolar; original disc identity and electrical substitution remain unqualified.",
         "position": [
           38.7457345,
           -7.4596085,
@@ -52947,24 +53002,24 @@
         ],
         "rotation": -89.494593417,
         "sizeMm": [
-          5.2,
-          1.2,
-          5.2
+          3.81,
+          2.54,
+          4.66
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            38.122824,
-            39.368645
+            37.45898,
+            40.032489
           ],
           [
-            -10.0648,
-            -4.854417
+            -9.375737,
+            -5.54348
           ],
           [
             2.6,
-            7.800000000000001
+            7.26
           ]
         ],
         "leads": [
@@ -52980,32 +53035,42 @@
               [
                 38.725124,
                 -5.123145,
-                2.021999698
+                1.782183029
               ],
               [
-                38.725459116,
-                -5.161135555,
-                2.168122335
+                38.725434501,
+                -5.158344159,
+                1.96646936
               ],
               [
-                38.732503,
-                -5.959667,
-                3.6
+                38.726322286,
+                -5.258985521,
+                2.124807785
+              ],
+              [
+                38.727662352,
+                -5.410898568,
+                2.23490392
+              ],
+              [
+                38.734532,
+                -6.189658,
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.61,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  38.727770211,
-                  -5.423133329,
-                  2.021999698
+                  38.729534464,
+                  -5.623125547,
+                  1.782183029
                 ],
-                "angleRadians": 0.508738003,
-                "tangentOffsetMm": 0.078000302,
-                "maximumChordErrorMm": 0.009653319
+                "angleRadians": 1.132419349,
+                "tangentOffsetMm": 0.317816971,
+                "maximumChordErrorMm": 0.008878968
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -53022,32 +53087,42 @@
               [
                 38.766345,
                 -9.796072,
-                2.021999698
+                1.782183029
               ],
               [
-                38.766009884,
-                -9.758081445,
-                2.168122335
+                38.766034499,
+                -9.760872841,
+                1.96646936
               ],
               [
-                38.758966,
-                -8.95955,
-                3.6
+                38.765146714,
+                -9.660231479,
+                2.124807785
+              ],
+              [
+                38.763806648,
+                -9.508318432,
+                2.23490392
+              ],
+              [
+                38.756937,
+                -8.729559,
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.61,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  38.763698789,
-                  -9.496083671,
-                  2.021999698
+                  38.761934536,
+                  -9.296091453,
+                  1.782183029
                 ],
-                "angleRadians": 0.508738003,
-                "tangentOffsetMm": 0.078000302,
-                "maximumChordErrorMm": 0.009653319
+                "angleRadians": 1.132419349,
+                "tangentOffsetMm": 0.317816971,
+                "maximumChordErrorMm": 0.008878968
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -53071,13 +53146,32 @@
               "net": "/GND"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "C315C473J3G5TA",
+          "ratedVoltageVolts": 25,
+          "source": {
+            "url": "https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf",
+            "sha256": "35ed0e9f92338584d053b1f47c99d728ee5ab10e4b7aaa17ddb6f6e2ffcb0b5c",
+            "pdfPages": [
+              3,
+              6,
+              1,
+              2
+            ],
+            "revision": "2025-08-05"
+          },
+          "bodyBasis": "Conservative rectangular envelope: published maximum length 3.81 mm, thickness 2.54 mm, body height 3.14 mm plus up to 1.52 mm coating extension below the seating plane. Entire extension uses the body width/thickness as a bound; not an exact coating shape.",
+          "polarized": false,
+          "dielectric": "C0G",
+          "polarityScope": "Nonpolar proposed replacement. Original package identity and electrical substitution remain unqualified."
         }
       },
       {
         "ref": "C5.4",
         "type": "47n",
-        "package": "capacitor",
-        "basis": "Proposed reference adapter; package fit remains unqualified.",
+        "package": "radial-ceramic",
+        "basis": "Proposed KEMET C315 C0G replacement: maximum rectangular body/coating envelope and formed leads. Nonpolar; original disc identity and electrical substitution remain unqualified.",
         "position": [
           96.8164045,
           -12.4889165,
@@ -53085,24 +53179,24 @@
         ],
         "rotation": -89.387781286,
         "sizeMm": [
-          5.2,
-          1.2,
-          5.2
+          3.81,
+          2.54,
+          4.66
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            96.188658,
-            97.444151
+            95.526122,
+            98.106687
           ],
           [
-            -15.095179,
-            -9.882654
+            -14.407378,
+            -10.570455
           ],
           [
             5.5,
-            10.7
+            10.16
           ]
         ],
         "leads": [
@@ -53118,32 +53212,32 @@
               [
                 96.790494,
                 -10.06412,
-                2.068808984
+                2.017396132
               ],
               [
-                96.790562561,
-                -10.070536136,
-                2.130523892
+                96.790777896,
+                -10.090686931,
+                2.178214555
               ],
               [
-                96.800377,
-                -10.989002,
-                6.5
+                96.802835,
+                -11.218989,
+                5.5
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.61,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  96.793699523,
-                  -10.364102874,
-                  2.068808984
+                  96.795836725,
+                  -10.564091454,
+                  2.017396132
                 ],
-                "angleRadians": 0.207195667,
-                "tangentOffsetMm": 0.031191016,
-                "maximumChordErrorMm": 0.001608437
+                "angleRadians": 0.327457686,
+                "tangentOffsetMm": 0.082603868,
+                "maximumChordErrorMm": 0.006686826
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -53160,32 +53254,32 @@
               [
                 96.842315,
                 -14.913713,
-                2.068808984
+                2.017396132
               ],
               [
-                96.842246439,
-                -14.907296864,
-                2.130523892
+                96.842031104,
+                -14.887146069,
+                2.178214555
               ],
               [
-                96.832432,
-                -13.988831,
-                6.5
+                96.829974,
+                -13.758844,
+                5.5
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.61,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  96.839109477,
-                  -14.613730126,
-                  2.068808984
+                  96.836972275,
+                  -14.413741546,
+                  2.017396132
                 ],
-                "angleRadians": 0.207195667,
-                "tangentOffsetMm": 0.031191016,
-                "maximumChordErrorMm": 0.001608437
+                "angleRadians": 0.327457686,
+                "tangentOffsetMm": 0.082603868,
+                "maximumChordErrorMm": 0.006686826
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -53209,13 +53303,32 @@
               "net": "/GND"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "C315C473J3G5TA",
+          "ratedVoltageVolts": 25,
+          "source": {
+            "url": "https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf",
+            "sha256": "35ed0e9f92338584d053b1f47c99d728ee5ab10e4b7aaa17ddb6f6e2ffcb0b5c",
+            "pdfPages": [
+              3,
+              6,
+              1,
+              2
+            ],
+            "revision": "2025-08-05"
+          },
+          "bodyBasis": "Conservative rectangular envelope: published maximum length 3.81 mm, thickness 2.54 mm, body height 3.14 mm plus up to 1.52 mm coating extension below the seating plane. Entire extension uses the body width/thickness as a bound; not an exact coating shape.",
+          "polarized": false,
+          "dielectric": "C0G",
+          "polarityScope": "Nonpolar proposed replacement. Original package identity and electrical substitution remain unqualified."
         }
       },
       {
         "ref": "C5.5",
         "type": "47n",
-        "package": "capacitor",
-        "basis": "Proposed reference adapter; package fit remains unqualified.",
+        "package": "radial-ceramic",
+        "basis": "Proposed KEMET C315 C0G replacement: maximum rectangular body/coating envelope and formed leads. Nonpolar; original disc identity and electrical substitution remain unqualified.",
         "position": [
           91.27000000000001,
           20.0,
@@ -53223,24 +53336,24 @@
         ],
         "rotation": 0.0,
         "sizeMm": [
-          5.2,
-          1.2,
-          5.2
+          3.81,
+          2.54,
+          4.66
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            88.67,
-            93.87
+            89.365,
+            93.175
           ],
           [
-            19.4,
-            20.6
+            18.73,
+            21.27
           ],
           [
             2.6,
-            7.800000000000001
+            7.26
           ]
         ],
         "leads": [
@@ -53256,34 +53369,11 @@
               [
                 90.0,
                 20.0,
-                2.077133623
-              ],
-              [
-                89.996534326,
-                20.0,
-                2.122602219
-              ],
-              [
-                89.77,
-                20.0,
-                3.6
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [
-              {
-                "vertexIndex": 1,
-                "radiusMm": 0.3,
-                "centerMm": [
-                  89.7,
-                  20.0,
-                  2.077133623
-                ],
-                "angleRadians": 0.152148326,
-                "tangentOffsetMm": 0.022866377,
-                "maximumChordErrorMm": 0.000867673
-              }
-            ],
+            "diameterMm": 0.61,
+            "bends": [],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -53298,34 +53388,11 @@
               [
                 92.54,
                 20.0,
-                2.077133623
-              ],
-              [
-                92.543465674,
-                20.0,
-                2.122602219
-              ],
-              [
-                92.77,
-                20.0,
-                3.6
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [
-              {
-                "vertexIndex": 1,
-                "radiusMm": 0.3,
-                "centerMm": [
-                  92.84,
-                  20.0,
-                  2.077133623
-                ],
-                "angleRadians": 0.152148326,
-                "tangentOffsetMm": 0.022866377,
-                "maximumChordErrorMm": 0.000867673
-              }
-            ],
+            "diameterMm": 0.61,
+            "bends": [],
             "centerlineApproximationMm": 0.010000001
           }
         ],
@@ -53347,13 +53414,32 @@
               "net": "/GND"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "C315C473J3G5TA",
+          "ratedVoltageVolts": 25,
+          "source": {
+            "url": "https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf",
+            "sha256": "35ed0e9f92338584d053b1f47c99d728ee5ab10e4b7aaa17ddb6f6e2ffcb0b5c",
+            "pdfPages": [
+              3,
+              6,
+              1,
+              2
+            ],
+            "revision": "2025-08-05"
+          },
+          "bodyBasis": "Conservative rectangular envelope: published maximum length 3.81 mm, thickness 2.54 mm, body height 3.14 mm plus up to 1.52 mm coating extension below the seating plane. Entire extension uses the body width/thickness as a bound; not an exact coating shape.",
+          "polarized": false,
+          "dielectric": "C0G",
+          "polarityScope": "Nonpolar proposed replacement. Original package identity and electrical substitution remain unqualified."
         }
       },
       {
         "ref": "C6",
         "type": "470p",
-        "package": "capacitor",
-        "basis": "Proposed reference adapter; package fit remains unqualified.",
+        "package": "radial-ceramic",
+        "basis": "Proposed KEMET C315 C0G replacement: maximum rectangular body/coating envelope and formed leads. Nonpolar; original disc identity and electrical substitution remain unqualified.",
         "position": [
           122.27000000000001,
           20.0,
@@ -53361,24 +53447,24 @@
         ],
         "rotation": 0.0,
         "sizeMm": [
-          5.2,
-          1.2,
-          5.2
+          3.81,
+          2.54,
+          4.66
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            119.67,
-            124.87
+            120.365,
+            124.175
           ],
           [
-            19.4,
-            20.6
+            18.73,
+            21.27
           ],
           [
             2.6,
-            7.800000000000001
+            7.26
           ]
         ],
         "leads": [
@@ -53394,34 +53480,11 @@
               [
                 121.0,
                 20.0,
-                2.077133623
-              ],
-              [
-                120.996534326,
-                20.0,
-                2.122602219
-              ],
-              [
-                120.77,
-                20.0,
-                3.6
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [
-              {
-                "vertexIndex": 1,
-                "radiusMm": 0.3,
-                "centerMm": [
-                  120.7,
-                  20.0,
-                  2.077133623
-                ],
-                "angleRadians": 0.152148326,
-                "tangentOffsetMm": 0.022866377,
-                "maximumChordErrorMm": 0.000867673
-              }
-            ],
+            "diameterMm": 0.61,
+            "bends": [],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -53436,34 +53499,11 @@
               [
                 123.54,
                 20.0,
-                2.077133623
-              ],
-              [
-                123.543465674,
-                20.0,
-                2.122602219
-              ],
-              [
-                123.77,
-                20.0,
-                3.6
+                2.6
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [
-              {
-                "vertexIndex": 1,
-                "radiusMm": 0.3,
-                "centerMm": [
-                  123.84,
-                  20.0,
-                  2.077133623
-                ],
-                "angleRadians": 0.152148326,
-                "tangentOffsetMm": 0.022866377,
-                "maximumChordErrorMm": 0.000867673
-              }
-            ],
+            "diameterMm": 0.61,
+            "bends": [],
             "centerlineApproximationMm": 0.010000001
           }
         ],
@@ -53485,6 +53525,25 @@
               "net": "/OSC2"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "C315C471J5G5TA",
+          "ratedVoltageVolts": 50,
+          "source": {
+            "url": "https://content.kemet.com/datasheets/KEM_C1049_GOLDMAX_C0G.pdf",
+            "sha256": "35ed0e9f92338584d053b1f47c99d728ee5ab10e4b7aaa17ddb6f6e2ffcb0b5c",
+            "pdfPages": [
+              3,
+              6,
+              1,
+              2
+            ],
+            "revision": "2025-08-05"
+          },
+          "bodyBasis": "Conservative rectangular envelope: published maximum length 3.81 mm, thickness 2.54 mm, body height 3.14 mm plus up to 1.52 mm coating extension below the seating plane. Entire extension uses the body width/thickness as a bound; not an exact coating shape.",
+          "polarized": false,
+          "dielectric": "C0G",
+          "polarityScope": "Nonpolar proposed replacement. Original package identity and electrical substitution remain unqualified."
         }
       },
       {
@@ -65818,7 +65877,8 @@
       "../components/kicad/meshes/DIP-40_W15.24mm-body.stl": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
       "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "reference/assembly.json": "b2a07405ea072030dd0714d213ed4a746688afa1344598a903d18dc6f8499363",
+      "reference/assembly.json": "0f180aac23b6bae1cbec0a37d03f97933564a226a9a42372cb62960863b3fb4a",
+      "reference/capacitor-package-ceramic.json": "db1ca3ec57ea0d9f33a837cda4b238642e7c5ae60338d16454877ad08da1af84",
       "reference/capacitor-package-low-profile.json": "1323b2a40db2bc0dd6fb771ae9a7b4b7f08879efa8b8ed1d47b4ae0e5f1719a4",
       "reference/capacitor-polarity.json": "040a882fb3d0005668689f366586a247e04b3d45f4940e9ead52286928d8d218",
       "reference/generated/layout.json": "11cb571bd1ff32af1da4d9d3e1952a4d5ec2c5e62f99067981f52dd47113eaca",
@@ -65826,7 +65886,7 @@
       "tools/assembly_allowances.py": "879c3fe4c25034b72a81c8b4708fb5246f3bd0bbde82c7bf4c4345d89733ac3b",
       "tools/lead_bends.py": "bf8ebb9f2d1450e0911b7cff8f4af0a6c35622d3320d42d439ede3c4ad30b9b1",
       "tools/lead_clearance.py": "bee24ac3694ca5a792ac71b3d5fa0aa782f2a0a50d1c612e8013c9dec5309705",
-      "tools/reference_assembly.py": "b1051bf59b503e5894a7ac25c11460e1fe4b712f29f5ff681e3ee542c57b86a3",
+      "tools/reference_assembly.py": "a183e3f6f64bfc756a52014aabe506e6c1fdc921219a4dcd50e275d2c8b7ac46",
       "tools/shared_filter.py": "4f161698ca237d5e679f8c3790808573c4c90c991f37cf0a87b34d797eb680bf"
     }
   },
@@ -66077,7 +66137,7 @@
       "key-switch/geometry.scad": "3c5548896f0d9ef90e45d89c51d15f91974dc473456da760aeb61104c75fddce",
       "keyboard-artwork.scad": "4b185f623c7b71674bfc823a3cb0b8ceb38ed8447e55e286977e01de02c18d6c",
       "keyboard-controller/generated/controller.scad": "ce0e0628de5dbebc9fa101526676728f1016523efdd84d1a0c8b19cde8675a25",
-      "keyboard-controller/reference/assembly-generated/assembly.scad": "bd89b68e9de43c817c395b9b48faa92cbc383f58307a885c0f8f09368b02b871",
+      "keyboard-controller/reference/assembly-generated/assembly.scad": "b85c76f173d77f287ef5c02402318cf4aad7517a45a0d87de02b62fe4ff68a4b",
       "keyboard-controller/reference/generated/controller.scad": "70868fbfe22c5bb97cab384c4272fede2222396cb70c90b262d259e69bf092c7",
       "keyboard-controller/reference/review.scad": "b3019aab9355118b037c3e64f857fa2e0b262c5c28444e3c10617fcd4f5ebe99",
       "keyboard-controller/tools/reference_enclosure.py": "a9fcc1c67cac4c30ee876ff612e026bc8816e64b1fac0d02f8a10edc51a8412d",
@@ -66093,7 +66153,7 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "dd028da8254588ee4d60fda515d580a444b323e7",
+    "revision": "c04d8e9ad31e33ea1ea8c0f7ef7afe9f47fc5398",
     "manifestSha256": "37092fb9c94ccbff701319098e6e5342f371aaca76136ed520cd736612b6be37",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
@@ -66102,6 +66162,6 @@
       "reference/generated/qualification.json": "f360f38ef0d218558c574cfa5c1a323054366f1678763a4c01905f4fe3cb6a6c",
       "reference/generated/routing-audit.json": "7fef7889ee082facdd24aa7da0cfc2b5034e2fd389c07aedc3e0a1c9f0ec7c66"
     },
-    "assemblySha256": "39aa6f584a58a81d4892cc0f7f9e7c375ecb3cfe76835ec8c9911973a343259e"
+    "assemblySha256": "9fea46efb2f925b055c5f7b4d678878db458eb408f1cd2f561c370357f6d1b57"
   }
 }
