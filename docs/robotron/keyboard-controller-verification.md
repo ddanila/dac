@@ -38,7 +38,7 @@ owns scenario coverage and experiment details.
 
 | Gate | Current evidence | Remaining proof |
 | --- | --- | --- |
-| Numerical convergence | [Common-time captures][common-time] retain trajectory differences. The [tighter-tolerance candidate][startup-passive] completes through reset release. | Matched refinement and complete controls under the [plan's numerical gate](keyboard-controller-plan.md#numerical-convergence); full-repeat coverage remains open. Keep numerical candidates opt-in. |
+| Numerical convergence | [Tight passive refinements][tight-passive] complete through reset release with identical observed bus events, but retain non-monotonic voltage differences at common saved times. | Matched refinement and complete controls under the [plan's numerical gate](keyboard-controller-plan.md#numerical-convergence); full-repeat coverage remains open. Keep numerical candidates opt-in. |
 | HDL/electrical scheduling | The [input-boundary regression][input-barrier] passes its declared ordering scope. | Full coupled acceptance, including the supply-relative bus-voltage check; scoped regression success is not general rollback support. |
 | Onboard clock | [Reference oscillator screens][clock-acceptance] fail U880 level or timing requirements. | Independently constrained intended-family dynamics and startup-inclusive board qualification. Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions. |
 | Reset | [C4 source-alternative studies][reset-alternatives] cover isolated exploratory reset behavior. | Installed component identity and coupled reset/recovery qualification; retain the reference default. |
@@ -105,7 +105,6 @@ and the reason for changing its interpretation.
 [eval-cache]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache-startup-2ms/assessment.json
 [eval-cache-bus-read]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache-bus-read/assessment.json
 [bus-device]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-device-admission/assessment.json
-[common-time]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/fixture-grid-sampling/assessment.json
-[startup-passive]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-passive/assessment.json
 [clock-acceptance]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-acceptance/assessment.json
 [reset-alternatives]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitance/generic/assessment.json
+[tight-passive]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/tight-passive-refinement/assessment.json

@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Work | Next action and acceptance |
 | --- | --- |
-| Resolve live numerical convergence — first priority | Complete two finer timestep levels for the [tighter-tolerance passive-stamping candidate](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-passive/assessment.json). Compare every saved voltage and observed bus event over the complete common-time capture. Preserve failed controls, physical parameters and acceptance limits; require the numerical gate below before extending traffic. |
+| Resolve live numerical convergence — first priority | Investigate the residual non-monotonic voltage differences in the [completed tight passive refinements](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/tight-passive-refinement/assessment.json). Inspect integration/state history at the remaining error peaks and distinguish it from sampled-waveform interpolation. Preserve matched inputs, failed controls and acceptance limits; require the numerical gate below before extending traffic. |
 | Constrain X1 geometry | Distinguish the EFS body-width and exact-form alternatives separately from the conditional scale alternatives in CAD `reference/package-reviews/efs-x1/assessment.json`. Account for photo-picking and calibration uncertainty before changing pads; obtain form-specific lead and mounting geometry. Check lead exits, mating clearance and expanded envelopes. |
 | Narrow electrical model uncertainty | Use published oscillator, driver and load constraints to identify hypotheses that change clock acceptance, receiver decisions or bus timing. Retain competing hypotheses where the evidence cannot distinguish them. |
 
