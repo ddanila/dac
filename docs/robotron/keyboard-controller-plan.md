@@ -4,8 +4,7 @@ This plan contains remaining work only. The [requirement audit](keyboard-control
 records evidence and missing proof; the [workflow guide](keyboard-controller-progress.md)
 locates authoritative artifacts and regeneration commands. Preserve the
 [functional reference release](../../public/models/robotron-1715m/keyboard-controller-release.json)
-while making these changes. Completed capabilities and experiment history belong
-in the linked artifacts and Git history.
+while making these changes.
 
 ## Next work and acceptance
 
@@ -13,14 +12,15 @@ in the linked artifacts and Git history.
 
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
-| 1. Live numerical convergence | Run the full reset-release refinements of the event-anchored DAC with dense startup sampling and tighter relative tolerance; use retained timestep diagnostics to investigate any remaining full-window failures. | Pass the unchanged numerical gate below, then qualify coupled rollback and firmware scenarios before adoption. Short diagnostic prefixes cannot qualify the full window. |
-| 2. Historical registration | Distinguish shared registration or solder-joint picking bias from installed row spacing using independent board-plane hole observations and package pitches. | Held-out checks meet the existing registration budget before native pads or routes move. |
-| 3. X1 package identification | Seek form-specific lead, mounting and mating geometry in existing photos and published drawings. | Distinguish the retained EFS alternatives with calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
+| 1. Live numerical convergence | Complete and compare the full reset-release refinements and disabled control of the event-anchored DAC with dense startup sampling and tighter relative tolerance. Investigate failures found over that full window. | Pass the unchanged numerical gate below, then qualify coupled rollback and firmware scenarios before adoption. Short diagnostic prefixes cannot qualify the full window. |
+| 2. Historical registration | Test independent board-plane hole observations against the retained package-bias and outline-perspective alternatives; establish scale and cross-side correspondence before changing placements. | Held-out checks meet the existing registration budget before native pads or routes move. |
+| 3. X1 package identification | Identify the exact EFS form from lead exits, mounting and mating geometry in existing photos and form-specific drawings. | Distinguish the retained EFS alternatives with calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
 | 4. Electrical-model sensitivity | Bound oscillator, driver and load alternatives with published constraints and test their effects on clock acceptance, receiver decisions and bus timing. | Retain indistinguishable alternatives and identify the missing independent constraint for each consequential ambiguity. |
 
-None of these investigations requires new specimen measurements to start.
-Successful closure is not guaranteed; repeat experiments only for a changed
-hypothesis or new evidence. Results belong in the
+These investigations can proceed without new specimen measurements. Numerical
+convergence is the first priority; the other desk investigations can proceed
+independently. Closure may still need the evidence listed below. Repeat experiments
+only for a changed hypothesis or new evidence. Results belong in the
 [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 and linked machine-readable reports.
 
@@ -40,8 +40,7 @@ and linked machine-readable reports.
 | Admit oscillator, driver, CPU/bus and load models | Independent constraints on relevant dynamics and operating conditions. Published data or equivalent-device bench tests may suffice; endpoint fitting alone cannot close admission. |
 | Verify specimen-specific fit and behavior | Evidence distinguishing installed packages, hidden terminal/trace assignments, dimensions, ROM contents and timing. Exhaust existing photographs and published sources first; request only observations that resolve a remaining ambiguity. |
 
-An unresolved evidence requirement does not block the desk work above. Use
-standard S600 for reference work; keep specimen agreement separate.
+Use standard S600 for reference work; keep specimen agreement separate.
 
 ## Physical reconstruction sequence
 
@@ -54,8 +53,8 @@ After registration passes:
 3. Trace R1 common and sensing-transistor collector branches, resolving terminal
    orientation from package evidence and visible lead entries.
 4. Finish remaining bus, data/strobe, supply and clock spans, including L1–XT1.
-   Resolve WR/RD against specimen evidence. For BR1/BR2, only physical end
-   correspondence and geometry remain.
+   Resolve WR/RD against specimen evidence. Resolve BR1/BR2 physical end
+   correspondence and geometry without reopening their schematic assignments.
 
 ## Electrical qualification gates
 
@@ -70,8 +69,7 @@ firmware reads and serial edges; disabled controls must complete without solver
 failure. Do not align traces, exclude failing spans or relax limits to pass.
 
 Preserve failed controls as evidence; they do not satisfy qualification. Keep
-precision, state-history and scheduling candidates opt-in until their controls pass. See the [electrical evidence audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
-for existing results and their limits.
+precision, state-history and scheduling candidates opt-in until their controls pass.
 
 ### Device and load admission
 
