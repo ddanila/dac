@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Work | Acceptance |
 | --- | --- |
-| Integrate the reviewed can package and finish remaining adapters | Combine the [low-profile candidate](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/capacitor-package-low-profile.json) with the [proposed reset polarity](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitor-polarity/proposed-polarity.json). Preserve reviewed body offsets and lead constraints; check expanded enclosure envelopes and expose package/polarity provenance. Resolve remaining disc-capacitor and connector dimensions where identity is supported. Installed orientation, real capacitor behavior and specimen fit remain separate. |
+| Resolve remaining disc-capacitor and connector dimensions | Use identifiable published packages where possible; retain estimates where identity is unknown. Check terminal mappings, body/lead geometry and expanded clearances. Installed orientation, device behavior and specimen fit remain separate. |
 | Reconcile historical registration and individually visible copper | Follow the physical sequence below. Promote only independently supported endpoints within the existing registration budget; leave hidden joins unresolved. |
 | Investigate published constraints on oscillator, driver and load behavior | Identify which uncertainty changes clock acceptance, receiver decisions or bus timing, and what independent evidence distinguishes it. Do not repeat endpoint fitting as dynamic validation. |
 

@@ -51989,32 +51989,32 @@
         "ref": "C2",
         "type": "10u",
         "package": "radial-capacitor",
-        "basis": "Upright can form supported by primary photographs and factory placement. Diameter, height, lead pitch and stand-off remain proposed visual dimensions; installed type, polarity and mechanical fit are unqualified.",
+        "basis": "Proposed Panasonic KS replacement envelope and formed leads; polarity follows reference supply nets or isolated reset diagnostics. No installed package/orientation or electrical substitution qualification.",
         "position": [
           118.27000000000001,
-          -20.0,
+          -19.4,
           2.6
         ],
         "rotation": 0.0,
         "sizeMm": [
-          5,
-          5,
-          9
+          6.8,
+          6.8,
+          6
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            115.77,
-            120.77
+            114.87,
+            121.67
           ],
           [
-            -22.5,
-            -17.5
+            -22.8,
+            -16.0
           ],
           [
             2.6,
-            11.6
+            8.6
           ]
         ],
         "leads": [
@@ -52030,32 +52030,42 @@
               [
                 117.0,
                 -20.0,
-                2.034308457
+                1.865729281
               ],
               [
-                116.972547136,
-                -20.0,
-                2.15968014
+                117.000705637,
+                -19.978830896,
+                2.009716199
               ],
               [
-                116.77,
-                -20.0,
+                117.002762763,
+                -19.917117103,
+                2.141504049
+              ],
+              [
+                117.005997092,
+                -19.820087227,
+                2.249927311
+              ],
+              [
+                117.02,
+                -19.4,
                 2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.5,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  116.7,
-                  -20.0,
-                  2.034308457
+                  117.016657415,
+                  -19.500277547,
+                  1.865729281
                 ],
-                "angleRadians": 0.431138741,
-                "tangentOffsetMm": 0.065691543,
-                "maximumChordErrorMm": 0.006943571
+                "angleRadians": 0.876331109,
+                "tangentOffsetMm": 0.234270719,
+                "maximumChordErrorMm": 0.005323556
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52072,32 +52082,42 @@
               [
                 119.54,
                 -20.0,
-                2.034308457
+                1.865729281
               ],
               [
-                119.567452864,
-                -20.0,
-                2.15968014
+                119.539294363,
+                -19.978830896,
+                2.009716199
               ],
               [
-                119.77,
-                -20.0,
+                119.537237237,
+                -19.917117103,
+                2.141504049
+              ],
+              [
+                119.534002908,
+                -19.820087227,
+                2.249927311
+              ],
+              [
+                119.52,
+                -19.4,
                 2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.5,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  119.84,
-                  -20.0,
-                  2.034308457
+                  119.523342585,
+                  -19.500277547,
+                  1.865729281
                 ],
-                "angleRadians": 0.431138741,
-                "tangentOffsetMm": 0.065691543,
-                "maximumChordErrorMm": 0.006943571
+                "angleRadians": 0.876331109,
+                "tangentOffsetMm": 0.234270719,
+                "maximumChordErrorMm": 0.005323556
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52109,17 +52129,39 @@
             "1": {
               "offsetMm": [
                 -1.27,
-                0.0
+                -0.6
               ],
               "net": "/RESET_BIAS_LOW"
             },
             "2": {
               "offsetMm": [
                 1.27,
-                0.0
+                -0.6
               ],
               "net": "/RESET_OUT"
             }
+          }
+        },
+        "capacitorPackage": {
+          "partNumber": "ECEA1HKS100",
+          "ratedVoltageVolts": 50,
+          "source": {
+            "url": "https://industrial.panasonic.com/content/data/CP/PDF/S_Alm_A_cap_catalog_e.pdf",
+            "sha256": "2f88995b7ab00304b4c346dd3df2c77dd7756097e20c93ef5bd4a42ff9ae0988",
+            "pdfPages": [
+              35,
+              36
+            ],
+            "revision": "2020-02-28"
+          },
+          "bodyBasis": "D=6.3 +/-0.5 mm, L=5 +/-1 mm: maximum body envelope; no installed package claim.",
+          "positivePin": "1",
+          "negativePin": "2",
+          "polarityBasis": "isolated-reset-diagnostic",
+          "polarityScope": "Proposed reference polarity only; installed orientation and real capacitor behavior remain unqualified.",
+          "polaritySource": {
+            "url": "https://github.com/ddanila/dac-emulation/blob/2aed561/verification/robotron-keyboard/analog/reports/reset-capacitor-polarity/proposed-polarity.json",
+            "sha256": "53b3572f7baecc7f1912b8809340f659d3402c0561bc17eb2d7860a8d1704caf"
           }
         }
       },
@@ -52127,7 +52169,7 @@
         "ref": "C3.1",
         "type": "47u",
         "package": "radial-capacitor",
-        "basis": "Upright can form supported by primary photographs and factory placement. Diameter, height, lead pitch and stand-off remain proposed visual dimensions; installed type, polarity and mechanical fit are unqualified.",
+        "basis": "Proposed Panasonic KS replacement envelope and formed leads; polarity follows reference supply nets or isolated reset diagnostics. No installed package/orientation or electrical substitution qualification.",
         "position": [
           -127.72999999999999,
           5.0,
@@ -52135,24 +52177,24 @@
         ],
         "rotation": 0.0,
         "sizeMm": [
-          5,
-          5,
-          9
+          6.8,
+          6.8,
+          6
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            -130.23,
-            -125.23
+            -131.13,
+            -124.33
           ],
           [
-            2.5,
-            7.5
+            1.6,
+            8.4
           ],
           [
             2.6,
-            11.6
+            8.6
           ]
         ],
         "leads": [
@@ -52168,32 +52210,32 @@
               [
                 -129.0,
                 5.0,
-                2.034308457
+                2.090003997
               ],
               [
-                -129.027452864,
+                -128.999600479,
                 5.0,
-                2.15968014
+                2.109988016
               ],
               [
-                -129.23,
+                -128.98,
                 5.0,
                 2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.5,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  -129.3,
+                  -128.5,
                   5.0,
-                  2.034308457
+                  2.090003997
                 ],
-                "angleRadians": 0.431138741,
-                "tangentOffsetMm": 0.065691543,
-                "maximumChordErrorMm": 0.006943571
+                "angleRadians": 0.039978687,
+                "tangentOffsetMm": 0.009996003,
+                "maximumChordErrorMm": 9.989e-05
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52210,32 +52252,32 @@
               [
                 -126.46,
                 5.0,
-                2.034308457
+                2.090003997
               ],
               [
-                -126.432547136,
+                -126.460399521,
                 5.0,
-                2.15968014
+                2.109988016
               ],
               [
-                -126.23,
+                -126.48,
                 5.0,
                 2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.5,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  -126.16,
+                  -126.96,
                   5.0,
-                  2.034308457
+                  2.090003997
                 ],
-                "angleRadians": 0.431138741,
-                "tangentOffsetMm": 0.065691543,
-                "maximumChordErrorMm": 0.006943571
+                "angleRadians": 0.039978687,
+                "tangentOffsetMm": 0.009996003,
+                "maximumChordErrorMm": 9.989e-05
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52259,13 +52301,32 @@
               "net": "/GND"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "ECEA1AKS470",
+          "ratedVoltageVolts": 10,
+          "source": {
+            "url": "https://industrial.panasonic.com/content/data/CP/PDF/S_Alm_A_cap_catalog_e.pdf",
+            "sha256": "2f88995b7ab00304b4c346dd3df2c77dd7756097e20c93ef5bd4a42ff9ae0988",
+            "pdfPages": [
+              35,
+              36
+            ],
+            "revision": "2020-02-28"
+          },
+          "bodyBasis": "D=6.3 +/-0.5 mm, L=5 +/-1 mm: maximum body envelope; no installed package claim.",
+          "positivePin": "1",
+          "negativePin": "2",
+          "polarityBasis": "reference-5V-supply-and-ground",
+          "polarityScope": "Proposed reference polarity only; installed orientation and real capacitor behavior remain unqualified.",
+          "polaritySource": null
         }
       },
       {
         "ref": "C3.2",
         "type": "47u",
         "package": "radial-capacitor",
-        "basis": "Upright can form supported by primary photographs and factory placement. Diameter, height, lead pitch and stand-off remain proposed visual dimensions; installed type, polarity and mechanical fit are unqualified.",
+        "basis": "Proposed Panasonic KS replacement envelope and formed leads; polarity follows reference supply nets or isolated reset diagnostics. No installed package/orientation or electrical substitution qualification.",
         "position": [
           -120.72999999999999,
           5.0,
@@ -52273,24 +52334,24 @@
         ],
         "rotation": 0.0,
         "sizeMm": [
-          5,
-          5,
-          9
+          6.8,
+          6.8,
+          6
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            -123.23,
-            -118.23
+            -124.13,
+            -117.33
           ],
           [
-            2.5,
-            7.5
+            1.6,
+            8.4
           ],
           [
             2.6,
-            11.6
+            8.6
           ]
         ],
         "leads": [
@@ -52306,32 +52367,32 @@
               [
                 -122.0,
                 5.0,
-                2.034308457
+                2.090003997
               ],
               [
-                -122.027452864,
+                -121.999600479,
                 5.0,
-                2.15968014
+                2.109988016
               ],
               [
-                -122.23,
+                -121.98,
                 5.0,
                 2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.5,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  -122.3,
+                  -121.5,
                   5.0,
-                  2.034308457
+                  2.090003997
                 ],
-                "angleRadians": 0.431138741,
-                "tangentOffsetMm": 0.065691543,
-                "maximumChordErrorMm": 0.006943571
+                "angleRadians": 0.039978687,
+                "tangentOffsetMm": 0.009996003,
+                "maximumChordErrorMm": 9.989e-05
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52348,32 +52409,32 @@
               [
                 -119.46,
                 5.0,
-                2.034308457
+                2.090003997
               ],
               [
-                -119.432547136,
+                -119.460399521,
                 5.0,
-                2.15968014
+                2.109988016
               ],
               [
-                -119.23,
+                -119.48,
                 5.0,
                 2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.5,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  -119.16,
+                  -119.96,
                   5.0,
-                  2.034308457
+                  2.090003997
                 ],
-                "angleRadians": 0.431138741,
-                "tangentOffsetMm": 0.065691543,
-                "maximumChordErrorMm": 0.006943571
+                "angleRadians": 0.039978687,
+                "tangentOffsetMm": 0.009996003,
+                "maximumChordErrorMm": 9.989e-05
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52397,38 +52458,57 @@
               "net": "/GND"
             }
           }
+        },
+        "capacitorPackage": {
+          "partNumber": "ECEA1AKS470",
+          "ratedVoltageVolts": 10,
+          "source": {
+            "url": "https://industrial.panasonic.com/content/data/CP/PDF/S_Alm_A_cap_catalog_e.pdf",
+            "sha256": "2f88995b7ab00304b4c346dd3df2c77dd7756097e20c93ef5bd4a42ff9ae0988",
+            "pdfPages": [
+              35,
+              36
+            ],
+            "revision": "2020-02-28"
+          },
+          "bodyBasis": "D=6.3 +/-0.5 mm, L=5 +/-1 mm: maximum body envelope; no installed package claim.",
+          "positivePin": "1",
+          "negativePin": "2",
+          "polarityBasis": "reference-5V-supply-and-ground",
+          "polarityScope": "Proposed reference polarity only; installed orientation and real capacitor behavior remain unqualified.",
+          "polaritySource": null
         }
       },
       {
         "ref": "C4",
         "type": "10u",
         "package": "radial-capacitor",
-        "basis": "Upright can form supported by primary photographs and factory placement. Diameter, height, lead pitch and stand-off remain proposed visual dimensions; installed type, polarity and mechanical fit are unqualified.",
+        "basis": "Proposed Panasonic KS replacement envelope and formed leads; polarity follows reference supply nets or isolated reset diagnostics. No installed package/orientation or electrical substitution qualification.",
         "position": [
           -115.72999999999999,
-          -20.0,
+          -19.4,
           2.6
         ],
         "rotation": 0.0,
         "sizeMm": [
-          5,
-          5,
-          9
+          6.8,
+          6.8,
+          6
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            -118.23,
-            -113.23
+            -119.13,
+            -112.33
           ],
           [
-            -22.5,
-            -17.5
+            -22.8,
+            -16.0
           ],
           [
             2.6,
-            11.6
+            8.6
           ]
         ],
         "leads": [
@@ -52444,32 +52524,42 @@
               [
                 -117.0,
                 -20.0,
-                2.034308457
+                1.865729281
               ],
               [
-                -117.027452864,
-                -20.0,
-                2.15968014
+                -116.999294363,
+                -19.978830896,
+                2.009716199
               ],
               [
-                -117.23,
-                -20.0,
+                -116.997237237,
+                -19.917117103,
+                2.141504049
+              ],
+              [
+                -116.994002908,
+                -19.820087227,
+                2.249927311
+              ],
+              [
+                -116.98,
+                -19.4,
                 2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.5,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  -117.3,
-                  -20.0,
-                  2.034308457
+                  -116.983342585,
+                  -19.500277547,
+                  1.865729281
                 ],
-                "angleRadians": 0.431138741,
-                "tangentOffsetMm": 0.065691543,
-                "maximumChordErrorMm": 0.006943571
+                "angleRadians": 0.876331109,
+                "tangentOffsetMm": 0.234270719,
+                "maximumChordErrorMm": 0.005323556
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52486,32 +52576,42 @@
               [
                 -114.46,
                 -20.0,
-                2.034308457
+                1.865729281
               ],
               [
-                -114.432547136,
-                -20.0,
-                2.15968014
+                -114.460705637,
+                -19.978830896,
+                2.009716199
               ],
               [
-                -114.23,
-                -20.0,
+                -114.462762763,
+                -19.917117103,
+                2.141504049
+              ],
+              [
+                -114.465997092,
+                -19.820087227,
+                2.249927311
+              ],
+              [
+                -114.48,
+                -19.4,
                 2.6
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.5,
             "bends": [
               {
                 "vertexIndex": 1,
-                "radiusMm": 0.3,
+                "radiusMm": 0.5,
                 "centerMm": [
-                  -114.16,
-                  -20.0,
-                  2.034308457
+                  -114.476657415,
+                  -19.500277547,
+                  1.865729281
                 ],
-                "angleRadians": 0.431138741,
-                "tangentOffsetMm": 0.065691543,
-                "maximumChordErrorMm": 0.006943571
+                "angleRadians": 0.876331109,
+                "tangentOffsetMm": 0.234270719,
+                "maximumChordErrorMm": 0.005323556
               }
             ],
             "centerlineApproximationMm": 0.010000001
@@ -52523,17 +52623,39 @@
             "1": {
               "offsetMm": [
                 -1.27,
-                0.0
+                -0.6
               ],
               "net": "/RESET_RC"
             },
             "2": {
               "offsetMm": [
                 1.27,
-                0.0
+                -0.6
               ],
               "net": "/GND"
             }
+          }
+        },
+        "capacitorPackage": {
+          "partNumber": "ECEA1HKS100",
+          "ratedVoltageVolts": 50,
+          "source": {
+            "url": "https://industrial.panasonic.com/content/data/CP/PDF/S_Alm_A_cap_catalog_e.pdf",
+            "sha256": "2f88995b7ab00304b4c346dd3df2c77dd7756097e20c93ef5bd4a42ff9ae0988",
+            "pdfPages": [
+              35,
+              36
+            ],
+            "revision": "2020-02-28"
+          },
+          "bodyBasis": "D=6.3 +/-0.5 mm, L=5 +/-1 mm: maximum body envelope; no installed package claim.",
+          "positivePin": "1",
+          "negativePin": "2",
+          "polarityBasis": "isolated-reset-diagnostic",
+          "polarityScope": "Proposed reference polarity only; installed orientation and real capacitor behavior remain unqualified.",
+          "polaritySource": {
+            "url": "https://github.com/ddanila/dac-emulation/blob/2aed561/verification/robotron-keyboard/analog/reports/reset-capacitor-polarity/proposed-polarity.json",
+            "sha256": "53b3572f7baecc7f1912b8809340f659d3402c0561bc17eb2d7860a8d1704caf"
           }
         }
       },
@@ -65696,13 +65818,15 @@
       "../components/kicad/meshes/DIP-40_W15.24mm-body.stl": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
       "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "reference/assembly.json": "00ba707e226022b7594afc8b1b7675be41e975576be54d4324464fc1f8ebcd90",
+      "reference/assembly.json": "b2a07405ea072030dd0714d213ed4a746688afa1344598a903d18dc6f8499363",
+      "reference/capacitor-package-low-profile.json": "1323b2a40db2bc0dd6fb771ae9a7b4b7f08879efa8b8ed1d47b4ae0e5f1719a4",
+      "reference/capacitor-polarity.json": "040a882fb3d0005668689f366586a247e04b3d45f4940e9ead52286928d8d218",
       "reference/generated/layout.json": "11cb571bd1ff32af1da4d9d3e1952a4d5ec2c5e62f99067981f52dd47113eaca",
       "reference/signal-paths.json": "bcc196b9fe151e87a292a0b8572d20b1b763d526907005e595428f03f958392b",
       "tools/assembly_allowances.py": "879c3fe4c25034b72a81c8b4708fb5246f3bd0bbde82c7bf4c4345d89733ac3b",
       "tools/lead_bends.py": "bf8ebb9f2d1450e0911b7cff8f4af0a6c35622d3320d42d439ede3c4ad30b9b1",
       "tools/lead_clearance.py": "bee24ac3694ca5a792ac71b3d5fa0aa782f2a0a50d1c612e8013c9dec5309705",
-      "tools/reference_assembly.py": "4e91b9320808753064bf4ac1d9aa8b3d93399cc65ef385c6111ea689fcadb83d",
+      "tools/reference_assembly.py": "b1051bf59b503e5894a7ac25c11460e1fe4b712f29f5ff681e3ee542c57b86a3",
       "tools/shared_filter.py": "4f161698ca237d5e679f8c3790808573c4c90c991f37cf0a87b34d797eb680bf"
     }
   },
@@ -65912,7 +66036,7 @@
         0,
         1
       ],
-      "intersectionMm3": 58.310413,
+      "intersectionMm3": 57.805158,
       "intersects": true
     },
     "mountingControl": {
@@ -65934,7 +66058,7 @@
         0,
         1
       ],
-      "intersectionMm3": 73.776466,
+      "intersectionMm3": 70.42749,
       "intersects": true
     },
     "nominalInterfacesClear": true,
@@ -65953,7 +66077,7 @@
       "key-switch/geometry.scad": "3c5548896f0d9ef90e45d89c51d15f91974dc473456da760aeb61104c75fddce",
       "keyboard-artwork.scad": "4b185f623c7b71674bfc823a3cb0b8ceb38ed8447e55e286977e01de02c18d6c",
       "keyboard-controller/generated/controller.scad": "ce0e0628de5dbebc9fa101526676728f1016523efdd84d1a0c8b19cde8675a25",
-      "keyboard-controller/reference/assembly-generated/assembly.scad": "5813d04a9de14f88b4236c2182610c4d27d1d47bd98228f91b65c968104b6f19",
+      "keyboard-controller/reference/assembly-generated/assembly.scad": "bd89b68e9de43c817c395b9b48faa92cbc383f58307a885c0f8f09368b02b871",
       "keyboard-controller/reference/generated/controller.scad": "70868fbfe22c5bb97cab384c4272fede2222396cb70c90b262d259e69bf092c7",
       "keyboard-controller/reference/review.scad": "b3019aab9355118b037c3e64f857fa2e0b262c5c28444e3c10617fcd4f5ebe99",
       "keyboard-controller/tools/reference_enclosure.py": "a9fcc1c67cac4c30ee876ff612e026bc8816e64b1fac0d02f8a10edc51a8412d",
@@ -65969,7 +66093,7 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "219b705dd2da6b17177da53aabe48d5b08b33ad0",
+    "revision": "dd028da8254588ee4d60fda515d580a444b323e7",
     "manifestSha256": "37092fb9c94ccbff701319098e6e5342f371aaca76136ed520cd736612b6be37",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
@@ -65978,6 +66102,6 @@
       "reference/generated/qualification.json": "f360f38ef0d218558c574cfa5c1a323054366f1678763a4c01905f4fe3cb6a6c",
       "reference/generated/routing-audit.json": "7fef7889ee082facdd24aa7da0cfc2b5034e2fd389c07aedc3e0a1c9f0ec7c66"
     },
-    "assemblySha256": "27e61c9887b49889e7b3a4bdc1af0d68373672089a78a5b165089c6d29516e26"
+    "assemblySha256": "39aa6f584a58a81d4892cc0f7f9e7c375ecb3cfe76835ec8c9911973a343259e"
   }
 }

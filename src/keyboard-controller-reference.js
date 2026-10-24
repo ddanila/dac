@@ -47,6 +47,14 @@ export function installControllerReference(parent,onCompare){
   packageView.replaceChildren();
   if(model){
    const basis=document.createElement('p');basis.textContent=model.basis;packageView.append(basis);
+   if(model.capacitorPackage){
+    const pkg=model.capacitorPackage,detail=document.createElement('section');detail.dataset.capacitorPackage=ref;
+    const text=document.createElement('p');text.textContent=`${pkg.partNumber}, ${pkg.ratedVoltageVolts} V. ${pkg.bodyBasis} Proposed polarity: + ${ref}:${pkg.positivePin}, − ${ref}:${pkg.negativePin}. ${pkg.polarityScope}`;detail.append(text);
+    const source=document.createElement('a');source.href=`${pkg.source.url}#page=${pkg.source.pdfPages[0]}`;source.textContent='Manufacturer package drawing';source.target='_blank';source.rel='noopener';detail.append(source);
+    if(pkg.polaritySource){const link=document.createElement('a');link.href=pkg.polaritySource.url;link.textContent='Reset polarity diagnostic';link.target='_blank';link.rel='noopener';detail.append(document.createTextNode(' · '),link);}
+    else{const p=document.createElement('p');p.textContent='Polarity follows the reference +5 V and ground connections.';detail.append(p);}
+    packageView.append(detail);
+   }
    if(model.externallyOpenPackagePins?.length||model.leads.some(l=>l.packagePin&&l.packagePin!==l.pin)){
     const table=document.createElement('table'),head=table.createTHead().insertRow();
     for(const title of ['Reference terminal','Package pin','Connection']){const th=document.createElement('th');th.textContent=title;head.append(th);}

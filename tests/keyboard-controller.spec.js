@@ -1030,6 +1030,15 @@ test('proposed reference board is separate, selectable and explicitly unqualifie
  await expect(reference.locator('[data-reference-package] tbody tr').filter({hasText:'R2:10'})).toContainText('Externally open resistor branch');
  await expect(reference.locator('[data-reference-package] tbody tr').filter({hasText:'R2:6'}).locator('td').nth(1)).toHaveText('2');
  expect(data.layout.unplaced.find(c=>c.ref==='R2').pads.some(p=>p.pin==='10')).toBe(false);
+ await reference.getByLabel('Reference component',{exact:true}).selectOption('C4');
+ const capacitor=reference.locator('[data-capacitor-package="C4"]');
+ await expect(capacitor).toContainText('ECEA1HKS100, 50 V');
+ await expect(capacitor).toContainText('Proposed polarity: + C4:1, − C4:2');
+ await expect(capacitor).toContainText('installed orientation and real capacitor behavior remain unqualified');
+ await expect(capacitor.getByRole('link',{name:'Manufacturer package drawing'})).toHaveAttribute('href',/S_Alm_A_cap_catalog_e.pdf#page=35$/);
+ await expect(capacitor.getByRole('link',{name:'Reset polarity diagnostic'})).toHaveAttribute('href',/2aed561\/.*proposed-polarity.json$/);
+ expect(data.layout.unplaced.some(c=>c.ref==='C4')).toBe(true);
+
 
  await expect(reference.locator('[data-reference-selection]')).toContainText('proposed');
  // Selecting the proposed geometry must not promote or change the historical pads.
