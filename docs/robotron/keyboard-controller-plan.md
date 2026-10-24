@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
-| 1. Live numerical convergence | Compare matched dense-startup sampling controls to isolate supply/WR sensitivity; use the result to choose the next full-window refinement of the opt-in event-anchored DAC. | Pass the unchanged numerical gate below, then qualify coupled rollback and firmware scenarios before adoption. Short diagnostic prefixes cannot qualify the full window. |
+| 1. Live numerical convergence | Resolve remaining startup clock/data-path nonincrease with matched sampling and tolerance controls; use the result to choose the next full-window refinement of the opt-in event-anchored DAC. | Pass the unchanged numerical gate below, then qualify coupled rollback and firmware scenarios before adoption. Short diagnostic prefixes cannot qualify the full window. |
 | 2. Historical registration | Test the A8 hole-row spacing hypothesis against independent board-plane joints and package pitches, including solder-joint picking and projection uncertainty. | Held-out checks meet the existing registration budget before native pads or routes move. |
 | 3. X1 package identification | Seek form-specific lead, mounting and mating geometry in existing photos and published drawings. | Distinguish the retained EFS alternatives with calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
 | 4. Electrical-model sensitivity | Bound oscillator, driver and load alternatives with published constraints and test their effects on clock acceptance, receiver decisions and bus timing. | Retain indistinguishable alternatives and identify the missing independent constraint for each consequential ambiguity. |
