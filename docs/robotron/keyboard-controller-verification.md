@@ -15,7 +15,7 @@ below are relative to the CAD controller directory unless stated otherwise.
 | Complete reference routing | Reference native pad/net checks, connectivity audit and passing DRC | Routing gate satisfied; package adapters, mechanical fit and electrical qualification remain separate |
 | Register and place the historical board | Native PCB, generated layout and registration reports | Unplaced parts, measured scale and global underside fit |
 | Trace copper with evidence | Native tracks, `route-evidence.json`, unassigned artwork | Complete physical data/clock paths and unresolved attachments |
-| Check connectivity and clearances | Native pad-net checks, ERC/DRC report | Outstanding DRC findings; not fabrication-ready |
+| Check connectivity and clearances | Variant-specific native pad-net checks and ERC/DRC reports | Historical DRC findings; specimen fit and electrical qualification |
 | Generate geometry and reuse component shapes | Historical exporter and proposed `reference/assembly-generated/` with shared DIP bodies, package mappings and formed leads | Remaining package assumptions, installed package orientation and measured mechanical fit |
 | Preserve orientation, lead alignment and repeatability | Asymmetric landmark tests, native integration test, mesh receipts and visual baselines | Estimated lead interfaces and actual specimen dimensions; historical solid-clearance scope is CAD `../checks/assembly.json`; reference body, lead/body envelope and nominal lead-to-lead checks live in `reference/assembly-generated/assembly.json`, nominal and proposed allowance enclosure checks are retained in `reference/enclosure-review.json`; measured forming tolerances and enclosure fit remain open |
 | Generate structural HDL with reviewed chip behavior | Core `generated/controller.v`, chip models and source review | Qualified analog device parameters and unsupported device states |
@@ -36,55 +36,21 @@ below are scoped to the inputs in the linked reports; the core's
 [evidence index](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence)
 owns scenario coverage and experiment details.
 
-| Finding | Consequence | Evidence |
-| Factory and Zander C4 alternatives give similar isolated reset-release timing under both explored transistor profiles | Preserve the reference default; source disagreement remains relevant to installed identity. This does not qualify full-board reset or dynamic device behavior | [C4 source alternatives](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reset-capacitance-sources.json), [generic](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitance/generic/assessment.json), [SC236 DC profile](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitance/sc236-dc/assessment.json) |
-| Matched clock/reset crossing schedules preserve the observed bus edge across three completed short-prefix refinements; saved voltage differences remain non-monotonic | Keep scheduling opt-in. Numerical convergence, full-repeat coverage and physical model admission remain open | [Scheduled reset prefixes](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/fixture-grid-reset/assessment.json) |
-| Production firmware, serial timing and known LED transitions agree, including near-edge reset | Preserve identical edge labels and startup validity; legacy completion reports describe the superseded backend | [Production digital acceptance][cpu-bus] |
-| Reference reception uses rising RxC; service comparisons support logical agreement | Service fixtures do not qualify onboard clock/reset or U856 device conditions | [Receive edge][receive-edge], [receiver timing][receiver-timing] |
-| Held-key/repeat/release passes sampled voltage-envelope and timing screens | Matched refinement and device applicability remain open | [Repeat capture][repeat-capture] |
-| Refinement retains absolute-time voltage differences despite serial agreement | Do not align away phase errors or discard transition peaks to claim convergence | [Single press][paired-host], [release/repress][release-pair] |
-| Local capacitor correction alone retains trajectory failure; preserving later resistor/switch additions completes two finer short-window replays | Coarse execution still fails and the completed pair retains material absolute-time voltage differences. Single-rounding history sensitivity is too small to explain the selected frozen excursions; accumulated/nonlinear errors remain open | [Later additions][postcap], [history sensitivity][history-sensitivity], [capacitor onset][capacitor-onset] |
-| Reference oscillator supply/load screens fail U880 levels or timing | Retain the external digital clock boundary; admit an independently constrained intended-family model before closed-board qualification | [Clock acceptance](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-acceptance/assessment.json) |
-| Startup-inclusive execution exposes CPU clock-level/timing failures and incomplete reset recovery | Functional firmware output cannot close full-board electrical qualification | [Startup assessment][board-host] |
-| Exact BJT/diode additions do not close numerical convergence | Disabled control is identical; coarse failure and material fine-pair voltage differences remain | [Nonlinear additions][device-additions] |
-| Input-boundary scheduling resolves the reproduced input-driven bridge violation | Matched qualified-CPU captures have no ordering diagnostics, but fail a supply-relative bus-voltage check. Full startup is incomplete; later service scenarios remain gated | [Scheduler regression][input-barrier], [original witness][bridge-time] |
-| The isolated bus excess persists under numerical refinement | Recorded-boundary ngspice, Xyce and independent KCL replay agree; coupled uncertainty and transient device applicability remain open | [Bus-read replay][bus-read] |
-| Nominal-supply linear bus drivers fail the loaded-high guarantee at minimum rated supply | Keep stress fixtures separate from admitted device models; maximum ratings cannot waive static operating checks | [Bus-device admission][bus-device] |
-| Zero-hysteresis correction completes the isolated tight replay and preserves nonzero-hysteresis controls | Live coupled refinement still fails later; the later recorded-output replay does not prove live-trajectory equivalence | [Transition isolation][bus-transition] |
-| The selected live collapse rejects timesteps despite converged Newton solves, with no ADC decision change in the audited window | Investigate error estimation and state history; replay success alone cannot identify a feedback defect | [Live transition audit][live-transition] |
-| A boundary-aligned DAC event can omit the ramp-end breakpoint | Focused regression passes with the opt-in candidate, but tight live controls still fail; candidate remains unadopted | [DAC regression][dac-ramp], [live controls][live-transition] |
-| Evaluator caching preserves complete paired 2 ms startup and recorded bus-read waveforms | Opt-in only; later live firmware/service equivalence remains unqualified. Recorded boundary replay is separate from live CPU/HDL behavior | [Startup controls][eval-cache], [bus-read controls][eval-cache-bus-read] |
-| Static device endpoint screens pass sampled published conditions | Does not qualify oscillator or switching dynamics | [Endpoint evidence][device-endpoints] |
-| Fitted 7406 candidates pass selected device screens but predict different loaded waveforms | Independent junction, recovery and load evidence must distinguish the hypotheses; calibration alone cannot close admission | [Candidate][driver-dynamic], [withheld validation][driver-validation], [recovery comparison][driver-recovery] |
-| Direct-driver refinement preserves firmware behavior; recovery diagnostics expose reverse output operation and load sensitivity | Validate the loaded driver and CPU/bus I/V boundaries before representative electrical traffic; passing numerical and endpoint screens is insufficient | [Live refinement][driver-live], [serial-path admission][serial-path] |
-| Host/driver dynamics and filter parameters remain unqualified | Admit models against independent device conditions; photo geometry alone does not identify electrical parameters | [Driver][driver-switching], [host buffer][host-switching], [filter comparison][firmware-filter] |
-| Oscillator candidates remain unqualified | Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions | [Device review][device-review], [independent solver][xyce] |
+| Gate | Current evidence | Remaining proof |
+| --- | --- | --- |
+| Numerical convergence | [Common-time captures][common-time] retain trajectory differences. The [tighter-tolerance candidate][startup-passive] completes through reset release. | Matched refinement and complete controls under the [plan's numerical gate](keyboard-controller-plan.md#numerical-convergence); full-repeat coverage remains open. Keep numerical candidates opt-in. |
+| HDL/electrical scheduling | The [input-boundary regression][input-barrier] passes its declared ordering scope. | Full coupled acceptance, including the supply-relative bus-voltage check; scoped regression success is not general rollback support. |
+| Onboard clock | [Reference oscillator screens][clock-acceptance] fail U880 level or timing requirements. | Independently constrained intended-family dynamics and startup-inclusive board qualification. Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions. |
+| Reset | [C4 source-alternative studies][reset-alternatives] cover isolated exploratory reset behavior. | Installed component identity and coupled reset/recovery qualification; retain the reference default. |
+| Device and load admission | [Static endpoint screens][device-endpoints] pass selected conditions; [driver/recovery evidence][serial-path] retains non-unique dynamics and load sensitivity. [Linear bus drivers][bus-device] fail a minimum-supply guarantee. | Independent driver/CPU I/V, switching and reverse-recovery behavior, plus filter/cable/host impedance. Endpoint fitting and firmware agreement cannot admit these models. |
+| Independent solver agreement | [Recorded-boundary bus replay][bus-read] reproduces the isolated excess across solvers. | Physical applicability and live coupled behavior; replay agreement cannot identify a specimen fault. |
+| Host reception | [Receive-edge][receive-edge] and [service timing][receiver-timing] evidence support the reference's logical reception. | Onboard clock/reset and U856 device conditions remain separate. |
+| Evaluator caching | Complete paired [startup][eval-cache] and [recorded bus-read][eval-cache-bus-read] captures are byte-identical. | Complete uncached live firmware/service controls and paired equivalence. Keep caching opt-in. |
 
 The package-distance calibration review and manufacturer CPU pitch correction
 are recorded in CAD `sense-review.json` and `component-evidence.json`. They do not
-establish the global board dimensions or the primary R1 hole mapping; the
-reference package includes its electrically unused lead while remaining unplaced.
-
-[postcap]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-postcap-additions/assessment.json
-[history-sensitivity]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-history-sensitivity/assessment.json
-[repeat-capture]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-repeat-minbreak/assessment.json
-[accepted-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-accepted-budget/assessment.json
-[capacitor-onset]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-capacitor-onset/assessment.json
-[receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
-[receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
-[paired-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-load-refined/assessment.json
-[board-host]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/board-host-rising-full-startup/assessment.json
-[driver-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-driver-switching/assessment.json
-[driver-dynamic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/7406-dynamic/report.json
-[driver-validation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/7406-dynamic/validation/report.json
-[driver-live]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/7406-dynamic/live/assessment.json
-[driver-recovery]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/serial-path/recovery/assessment.json
-[serial-path]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/serial-path/assessment.json
-[host-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-buffer-switching/assessment.json
-[device-review]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/diode-role-review/assessment.json
-[xyce]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-output/xyce-transfer500/assessment.json
-[release-pair]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-host-rising-release-repress-minbreak-fine/assessment.json
-[firmware-filter]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/firmware-filter-strict/assessment.json
+establish the global board dimensions or the primary R1 hole mapping. Historical
+R1 remains unplaced. The proposed reference package includes its electrically unused lead.
 
 ## Resolve at the desk first
 
@@ -129,20 +95,17 @@ visual geometry can remain separate. Regenerate, review both sides, run the
 relevant checks and pin compatible museum assets. Preserve superseded evidence
 and the reason for changing its interpretation.
 
+[receiver-timing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receiver-timing-review/assessment.json
+[receive-edge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-receive-edge/assessment.json
+[serial-path]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/serial-path/assessment.json
 [cpu-bus]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/cpu-bus/summary.json
-
-[device-additions]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/host-device-additions/assessment.json
-[bridge-time]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/qualified-cpu-bridge-time/assessment.json
 [device-endpoints]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/device-endpoints/assessment.json
-
 [input-barrier]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/input-barrier/assessment.json
-
 [bus-read]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-read-replay/assessment.json
 [eval-cache]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache-startup-2ms/assessment.json
 [eval-cache-bus-read]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache-bus-read/assessment.json
-
 [bus-device]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-device-admission/assessment.json
-[bus-transition]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-transition/assessment.json
-
-[live-transition]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/live-transition/assessment.json
-[dac-ramp]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/test_dac_ramp.py
+[common-time]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/fixture-grid-sampling/assessment.json
+[startup-passive]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-passive/assessment.json
+[clock-acceptance]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-acceptance/assessment.json
+[reset-alternatives]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitance/generic/assessment.json
