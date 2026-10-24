@@ -5,10 +5,10 @@
     "boardSha256": "8716b773a718dbf3cd2326ec2b3cf11f22e73b315f255cde01a340ff2675df55"
   },
   "browser": {
-    "reportSha256": "abf35121c56ab9df30cad64c1174127eab5451fba679b5d25416d96898762b4d",
+    "reportSha256": "f83028e2f783a827abc3a3af9a799c1221068d6fa3c63e3995ca43b7e5b491b7",
     "stats": {
-      "startTime": "2026-10-24T12:19:06.239Z",
-      "duration": 27210.725000000002,
+      "startTime": "2026-10-24T12:31:21.994Z",
+      "duration": 35789.328,
       "expected": 46,
       "skipped": 0,
       "unexpected": 0,
