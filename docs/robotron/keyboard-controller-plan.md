@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Work | Acceptance |
 | --- | --- |
-| Resolve remaining proposed capacitor and connector dimensions | Find a lower-profile capacitor package or mounting arrangement that clears the matrix board; use the [candidate fit review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/frolyt-eks/assessment.json) to avoid repeating rejected geometry. Check terminal polarity/mapping, forming allowances and enclosure fit; retain connector estimates where identity is unknown. Specimen fit remains separate. |
+| Finish capacitor terminal mapping and remaining package adapters | Establish reset-capacitor polarity and operating voltage before integrating the [low-profile can candidate](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/capacitor-package-low-profile.json). Preserve its reviewed body offsets and lead constraints; check expanded enclosure envelopes on adoption. Resolve remaining disc-capacitor and connector dimensions where identity is supported. Specimen fit remains separate. |
 | Reconcile historical registration and individually visible copper | Follow the physical sequence below. Promote only independently supported endpoints within the existing registration budget; leave hidden joins unresolved. |
 | Investigate published constraints on oscillator, driver and load behavior | Identify which uncertainty changes clock acceptance, receiver decisions or bus timing, and what independent evidence distinguishes it. Do not repeat endpoint fitting as dynamic validation. |
 
