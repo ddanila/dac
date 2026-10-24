@@ -39458,6 +39458,29 @@
           270,
           46
         ],
+        "poseAnchors": {
+          "A1": [
+            "A1:1",
+            "A1:7"
+          ],
+          "A2.1": [
+            "A2.1:1",
+            "A2.1:7"
+          ],
+          "A4": [
+            "A4:1",
+            "A4:10"
+          ],
+          "A5": [
+            "A5:1",
+            "A5:20"
+          ],
+          "A8": [
+            "A8:1",
+            "A8:12"
+          ]
+        },
+        "poseScope": "Two same-row anchors fit translation and rotation only. Other observed package joints are held out. The global scale still assumes native cross-row spacing; these diagnostic poses do not authorize moving native pads or copper.",
         "scope": "Intrinsic distance checks distinguish envelope scale from native placement. Translation and rotation cancel in within-package distances. All row-separation assumptions remain native-footprint nominal values; this does not measure the board or establish copper placement.",
         "variants": [
           {
@@ -39474,6 +39497,317 @@
             "maxHeldOutResidualMm": 1.220176621,
             "maxIndependentPackageResidualMm": 1.220176621,
             "maxNominalHeldOutResidualMm": 1.972205911,
+            "packagePoses": [
+              {
+                "anchorSpanMismatchMm": 0.361843906,
+                "anchors": [
+                  "A1:1",
+                  "A1:7"
+                ],
+                "centerShiftMm": [
+                  0.251957783,
+                  -0.52501452
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.180921953,
+                    "heldOut": false,
+                    "originalResidualMm": 0.461134176,
+                    "terminal": "A1:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.047435869,
+                    "heldOut": true,
+                    "originalResidualMm": 0.457182955,
+                    "terminal": "A1:14"
+                  },
+                  {
+                    "fittedResidualMm": 0.158516991,
+                    "heldOut": true,
+                    "originalResidualMm": 0.466186474,
+                    "terminal": "A1:2"
+                  },
+                  {
+                    "fittedResidualMm": 0.149676405,
+                    "heldOut": true,
+                    "originalResidualMm": 0.720412484,
+                    "terminal": "A1:6"
+                  },
+                  {
+                    "fittedResidualMm": 0.180921953,
+                    "heldOut": false,
+                    "originalResidualMm": 0.755544288,
+                    "terminal": "A1:7"
+                  },
+                  {
+                    "fittedResidualMm": 0.157648937,
+                    "heldOut": true,
+                    "originalResidualMm": 0.840356849,
+                    "terminal": "A1:8"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": false,
+                "maxHeldOutResidualMm": 0.158516991,
+                "maxOriginalHeldOutResidualMm": 0.840356849,
+                "ref": "A1",
+                "rotationDegrees": -1.719780244,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              },
+              {
+                "anchorSpanMismatchMm": 0.264006808,
+                "anchors": [
+                  "A2.1:1",
+                  "A2.1:7"
+                ],
+                "centerShiftMm": [
+                  1.357136074,
+                  -1.283582756
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.132003404,
+                    "heldOut": false,
+                    "originalResidualMm": 1.510599569,
+                    "terminal": "A2.1:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.452647805,
+                    "heldOut": true,
+                    "originalResidualMm": 2.137339089,
+                    "terminal": "A2.1:13"
+                  },
+                  {
+                    "fittedResidualMm": 0.344636589,
+                    "heldOut": true,
+                    "originalResidualMm": 1.886466508,
+                    "terminal": "A2.1:14"
+                  },
+                  {
+                    "fittedResidualMm": 0.098566849,
+                    "heldOut": true,
+                    "originalResidualMm": 1.888299088,
+                    "terminal": "A2.1:6"
+                  },
+                  {
+                    "fittedResidualMm": 0.132003404,
+                    "heldOut": false,
+                    "originalResidualMm": 1.932244037,
+                    "terminal": "A2.1:7"
+                  },
+                  {
+                    "fittedResidualMm": 0.537430451,
+                    "heldOut": true,
+                    "originalResidualMm": 2.553366174,
+                    "terminal": "A2.1:8"
+                  },
+                  {
+                    "fittedResidualMm": 0.522456258,
+                    "heldOut": true,
+                    "originalResidualMm": 2.399590949,
+                    "terminal": "A2.1:9"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": true,
+                "maxHeldOutResidualMm": 0.537430451,
+                "maxOriginalHeldOutResidualMm": 2.553366174,
+                "ref": "A2.1",
+                "rotationDegrees": -3.028113788,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              },
+              {
+                "anchorSpanMismatchMm": 0.263388227,
+                "anchors": [
+                  "A4:1",
+                  "A4:10"
+                ],
+                "centerShiftMm": [
+                  2.967667371,
+                  0.565387645
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.131694114,
+                    "heldOut": false,
+                    "originalResidualMm": 3.15474812,
+                    "terminal": "A4:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.131694114,
+                    "heldOut": false,
+                    "originalResidualMm": 2.911604078,
+                    "terminal": "A4:10"
+                  },
+                  {
+                    "fittedResidualMm": 0.340617788,
+                    "heldOut": true,
+                    "originalResidualMm": 2.86318374,
+                    "terminal": "A4:11"
+                  },
+                  {
+                    "fittedResidualMm": 0.602384023,
+                    "heldOut": true,
+                    "originalResidualMm": 3.22931111,
+                    "terminal": "A4:20"
+                  },
+                  {
+                    "fittedResidualMm": 0.079655479,
+                    "heldOut": true,
+                    "originalResidualMm": 3.098620352,
+                    "terminal": "A4:4"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": true,
+                "maxHeldOutResidualMm": 0.602384023,
+                "maxOriginalHeldOutResidualMm": 3.22931111,
+                "ref": "A4",
+                "rotationDegrees": 0.208704218,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              },
+              {
+                "anchorSpanMismatchMm": 0.135263419,
+                "anchors": [
+                  "A5:1",
+                  "A5:20"
+                ],
+                "centerShiftMm": [
+                  3.110225209,
+                  0.123387385
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.067631709,
+                    "heldOut": false,
+                    "originalResidualMm": 3.201478356,
+                    "terminal": "A5:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.503845282,
+                    "heldOut": true,
+                    "originalResidualMm": 3.641842384,
+                    "terminal": "A5:14"
+                  },
+                  {
+                    "fittedResidualMm": 0.067631709,
+                    "heldOut": false,
+                    "originalResidualMm": 3.074167113,
+                    "terminal": "A5:20"
+                  },
+                  {
+                    "fittedResidualMm": 0.727366212,
+                    "heldOut": true,
+                    "originalResidualMm": 3.130982075,
+                    "terminal": "A5:21"
+                  },
+                  {
+                    "fittedResidualMm": 0.821702858,
+                    "heldOut": true,
+                    "originalResidualMm": 3.40586759,
+                    "terminal": "A5:30"
+                  },
+                  {
+                    "fittedResidualMm": 0.735282273,
+                    "heldOut": true,
+                    "originalResidualMm": 3.352114681,
+                    "terminal": "A5:35"
+                  },
+                  {
+                    "fittedResidualMm": 0.641069008,
+                    "heldOut": true,
+                    "originalResidualMm": 3.014675803,
+                    "terminal": "A5:40"
+                  },
+                  {
+                    "fittedResidualMm": 0.444369607,
+                    "heldOut": true,
+                    "originalResidualMm": 3.576111796,
+                    "terminal": "A5:6"
+                  },
+                  {
+                    "fittedResidualMm": 0.223349782,
+                    "heldOut": true,
+                    "originalResidualMm": 3.338621137,
+                    "terminal": "A5:7"
+                  },
+                  {
+                    "fittedResidualMm": 0.213294148,
+                    "heldOut": true,
+                    "originalResidualMm": 3.341070422,
+                    "terminal": "A5:8"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": false,
+                "maxHeldOutResidualMm": 0.821702858,
+                "maxOriginalHeldOutResidualMm": 3.641842384,
+                "ref": "A5",
+                "rotationDegrees": 0.21936278,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              },
+              {
+                "anchorSpanMismatchMm": 0.057540445,
+                "anchors": [
+                  "A8:1",
+                  "A8:12"
+                ],
+                "centerShiftMm": [
+                  2.822036361,
+                  0.46685344
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.028770222,
+                    "heldOut": false,
+                    "originalResidualMm": 2.707326624,
+                    "terminal": "A8:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.028770222,
+                    "heldOut": false,
+                    "originalResidualMm": 2.619820697,
+                    "terminal": "A8:12"
+                  },
+                  {
+                    "fittedResidualMm": 1.345969885,
+                    "heldOut": true,
+                    "originalResidualMm": 2.530753603,
+                    "terminal": "A8:13"
+                  },
+                  {
+                    "fittedResidualMm": 1.224466628,
+                    "heldOut": true,
+                    "originalResidualMm": 3.052196194,
+                    "terminal": "A8:19"
+                  },
+                  {
+                    "fittedResidualMm": 0.807847517,
+                    "heldOut": true,
+                    "originalResidualMm": 3.014686341,
+                    "terminal": "A8:24"
+                  },
+                  {
+                    "fittedResidualMm": 0.133083888,
+                    "heldOut": true,
+                    "originalResidualMm": 2.505243813,
+                    "terminal": "A8:6"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": true,
+                "maxHeldOutResidualMm": 1.345969885,
+                "maxOriginalHeldOutResidualMm": 3.052196194,
+                "ref": "A8",
+                "rotationDegrees": -1.743864881,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": false
+              }
+            ],
             "pairs": [
               {
                 "fittedDistanceMm": 7.66681446,
@@ -40763,6 +41097,317 @@
             "maxHeldOutResidualMm": 1.21730828,
             "maxIndependentPackageResidualMm": 1.21730828,
             "maxNominalHeldOutResidualMm": 2.253733831,
+            "packagePoses": [
+              {
+                "anchorSpanMismatchMm": 0.123794857,
+                "anchors": [
+                  "A1:1",
+                  "A1:7"
+                ],
+                "centerShiftMm": [
+                  -0.536660116,
+                  -0.524932957
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.061897429,
+                    "heldOut": false,
+                    "originalResidualMm": 0.629667404,
+                    "terminal": "A1:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.146751431,
+                    "heldOut": true,
+                    "originalResidualMm": 0.58402969,
+                    "terminal": "A1:14"
+                  },
+                  {
+                    "fittedResidualMm": 0.084714008,
+                    "heldOut": true,
+                    "originalResidualMm": 0.63557943,
+                    "terminal": "A1:2"
+                  },
+                  {
+                    "fittedResidualMm": 0.076646502,
+                    "heldOut": true,
+                    "originalResidualMm": 0.986792982,
+                    "terminal": "A1:6"
+                  },
+                  {
+                    "fittedResidualMm": 0.061897429,
+                    "heldOut": false,
+                    "originalResidualMm": 1.010314417,
+                    "terminal": "A1:7"
+                  },
+                  {
+                    "fittedResidualMm": 0.057490239,
+                    "heldOut": true,
+                    "originalResidualMm": 0.89903959,
+                    "terminal": "A1:8"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": false,
+                "maxHeldOutResidualMm": 0.146751431,
+                "maxOriginalHeldOutResidualMm": 0.986792982,
+                "ref": "A1",
+                "rotationDegrees": -1.722268617,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              },
+              {
+                "anchorSpanMismatchMm": 0.024398716,
+                "anchors": [
+                  "A2.1:1",
+                  "A2.1:7"
+                ],
+                "centerShiftMm": [
+                  0.570385011,
+                  -1.283589056
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.012199358,
+                    "heldOut": false,
+                    "originalResidualMm": 0.91528105,
+                    "terminal": "A2.1:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.446122738,
+                    "heldOut": true,
+                    "originalResidualMm": 1.597458604,
+                    "terminal": "A2.1:13"
+                  },
+                  {
+                    "fittedResidualMm": 0.380672734,
+                    "heldOut": true,
+                    "originalResidualMm": 1.307899781,
+                    "terminal": "A2.1:14"
+                  },
+                  {
+                    "fittedResidualMm": 0.052851129,
+                    "heldOut": true,
+                    "originalResidualMm": 1.607465725,
+                    "terminal": "A2.1:6"
+                  },
+                  {
+                    "fittedResidualMm": 0.012199358,
+                    "heldOut": false,
+                    "originalResidualMm": 1.68569695,
+                    "terminal": "A2.1:7"
+                  },
+                  {
+                    "fittedResidualMm": 0.513551544,
+                    "heldOut": true,
+                    "originalResidualMm": 2.266899119,
+                    "terminal": "A2.1:8"
+                  },
+                  {
+                    "fittedResidualMm": 0.498210375,
+                    "heldOut": true,
+                    "originalResidualMm": 2.090159188,
+                    "terminal": "A2.1:9"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": true,
+                "maxHeldOutResidualMm": 0.513551544,
+                "maxOriginalHeldOutResidualMm": 2.266899119,
+                "ref": "A2.1",
+                "rotationDegrees": -3.022826148,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              },
+              {
+                "anchorSpanMismatchMm": 0.098157019,
+                "anchors": [
+                  "A4:1",
+                  "A4:10"
+                ],
+                "centerShiftMm": [
+                  3.892196514,
+                  0.565488467
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.04907851,
+                    "heldOut": false,
+                    "originalResidualMm": 3.889974426,
+                    "terminal": "A4:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.04907851,
+                    "heldOut": false,
+                    "originalResidualMm": 3.999042041,
+                    "terminal": "A4:10"
+                  },
+                  {
+                    "fittedResidualMm": 0.334134613,
+                    "heldOut": true,
+                    "originalResidualMm": 3.964710205,
+                    "terminal": "A4:11"
+                  },
+                  {
+                    "fittedResidualMm": 0.543776534,
+                    "heldOut": true,
+                    "originalResidualMm": 3.975116732,
+                    "terminal": "A4:20"
+                  },
+                  {
+                    "fittedResidualMm": 0.052465163,
+                    "heldOut": true,
+                    "originalResidualMm": 3.949965585,
+                    "terminal": "A4:4"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": true,
+                "maxHeldOutResidualMm": 0.543776534,
+                "maxOriginalHeldOutResidualMm": 3.975116732,
+                "ref": "A4",
+                "rotationDegrees": 0.207140183,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              },
+              {
+                "anchorSpanMismatchMm": 0.137428867,
+                "anchors": [
+                  "A5:1",
+                  "A5:20"
+                ],
+                "centerShiftMm": [
+                  3.77236494,
+                  0.124035518
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.068714433,
+                    "heldOut": false,
+                    "originalResidualMm": 3.864474986,
+                    "terminal": "A5:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.511893975,
+                    "heldOut": true,
+                    "originalResidualMm": 4.311157656,
+                    "terminal": "A5:14"
+                  },
+                  {
+                    "fittedResidualMm": 0.068714433,
+                    "heldOut": false,
+                    "originalResidualMm": 3.733686254,
+                    "terminal": "A5:20"
+                  },
+                  {
+                    "fittedResidualMm": 0.727448885,
+                    "heldOut": true,
+                    "originalResidualMm": 3.785477729,
+                    "terminal": "A5:21"
+                  },
+                  {
+                    "fittedResidualMm": 0.822934679,
+                    "heldOut": true,
+                    "originalResidualMm": 4.0617653,
+                    "terminal": "A5:30"
+                  },
+                  {
+                    "fittedResidualMm": 0.736175262,
+                    "heldOut": true,
+                    "originalResidualMm": 4.007836057,
+                    "terminal": "A5:35"
+                  },
+                  {
+                    "fittedResidualMm": 0.641680466,
+                    "heldOut": true,
+                    "originalResidualMm": 3.663949004,
+                    "terminal": "A5:40"
+                  },
+                  {
+                    "fittedResidualMm": 0.451412247,
+                    "heldOut": true,
+                    "originalResidualMm": 4.245107404,
+                    "terminal": "A5:6"
+                  },
+                  {
+                    "fittedResidualMm": 0.226365149,
+                    "heldOut": true,
+                    "originalResidualMm": 4.003864747,
+                    "terminal": "A5:7"
+                  },
+                  {
+                    "fittedResidualMm": 0.216509805,
+                    "heldOut": true,
+                    "originalResidualMm": 4.006270257,
+                    "terminal": "A5:8"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": false,
+                "maxHeldOutResidualMm": 0.822934679,
+                "maxOriginalHeldOutResidualMm": 4.311157656,
+                "ref": "A5",
+                "rotationDegrees": 0.217722733,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              },
+              {
+                "anchorSpanMismatchMm": 0.505421531,
+                "anchors": [
+                  "A8:1",
+                  "A8:12"
+                ],
+                "centerShiftMm": [
+                  4.589995874,
+                  0.46677002
+                ],
+                "checks": [
+                  {
+                    "fittedResidualMm": 0.252710766,
+                    "heldOut": false,
+                    "originalResidualMm": 4.199280443,
+                    "terminal": "A8:1"
+                  },
+                  {
+                    "fittedResidualMm": 0.252710766,
+                    "heldOut": false,
+                    "originalResidualMm": 4.613289543,
+                    "terminal": "A8:12"
+                  },
+                  {
+                    "fittedResidualMm": 1.238033522,
+                    "heldOut": true,
+                    "originalResidualMm": 4.407640125,
+                    "terminal": "A8:13"
+                  },
+                  {
+                    "fittedResidualMm": 1.225546467,
+                    "heldOut": true,
+                    "originalResidualMm": 4.771071156,
+                    "terminal": "A8:19"
+                  },
+                  {
+                    "fittedResidualMm": 0.844140311,
+                    "heldOut": true,
+                    "originalResidualMm": 4.563105339,
+                    "terminal": "A8:24"
+                  },
+                  {
+                    "fittedResidualMm": 0.155517148,
+                    "heldOut": true,
+                    "originalResidualMm": 4.232511606,
+                    "terminal": "A8:6"
+                  }
+                ],
+                "copperAssignmentQualified": false,
+                "independentScaleCheck": true,
+                "maxHeldOutResidualMm": 1.238033522,
+                "maxOriginalHeldOutResidualMm": 4.771071156,
+                "ref": "A8",
+                "rotationDegrees": -1.731739952,
+                "toleranceMm": 1.25,
+                "withinPhotoTolerance": true
+              }
+            ],
             "pairs": [
               {
                 "fittedDistanceMm": 7.666865355,
@@ -50601,7 +51246,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "6a3e427b825c7591ae4841445279b0c4e909ddd6"
+      "revision": "c26c6737618b5663e813d6a858eadfacc4e75dce"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -50619,7 +51264,7 @@
       "evidence": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
       "componentEvidence": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
-      "busReview": "c7072aaec7880ea1aae6c53278095ad2f00b284bb77032874c6e2b7e39dd7545",
+      "busReview": "fe78338191763e2d60f50481b61d8ff86f8b1608cfb7a67dd0f2d79debfbcbbc",
       "cableCopper": "2545a3b9f124dc9f24771225f345e891f62bba73724f476b2967917d96e14e70",
       "connectionReview": "07872fc3217d1629264249fd19134ecc8792f016dbf8408c227ea751889f688d",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
