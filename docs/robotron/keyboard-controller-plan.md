@@ -46,7 +46,7 @@ and linked machine-readable reports.
 
 | Work | Prerequisite and acceptance |
 | --- | --- |
-| Live firmware/service evaluator-cache controls | A complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
+| Extend evaluator-cache controls beyond reset release | A complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
 | Physical placements and copper | Accepted registration and individually supported terminal identities; follow the sequence below. |
 | Coupled reference qualification | Numerical convergence, coupled rollback checks and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
 
