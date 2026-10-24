@@ -1,15 +1,11 @@
 # Robotron keyboard controller remaining-work plan
 
-The [functional reference release](../../public/models/robotron-1715m/keyboard-controller-release.json)
-covers the schematic, fully routed reference PCB, declared digital emulator/HDL
-comparisons, generated OpenSCAD model and museum synchronization. Those are
-completed capabilities to preserve, not pending implementation tasks.
-
-This plan covers remaining mechanical refinement, historical reconstruction and
-electrical qualification. The [requirement audit](keyboard-controller-verification.md)
+This plan contains remaining work only. The [requirement audit](keyboard-controller-verification.md)
 records evidence and missing proof; the [workflow guide](keyboard-controller-progress.md)
-locates authoritative artifacts and regeneration commands. Experiment results and
-component inventories belong in those artifacts, not this plan.
+locates authoritative artifacts and regeneration commands. Preserve the
+[functional reference release](../../public/models/robotron-1715m/keyboard-controller-release.json)
+while making these changes. Completed capabilities and experiment history belong
+in the linked artifacts and Git history.
 
 ## Next work and acceptance
 
@@ -22,23 +18,26 @@ component inventories belong in those artifacts, not this plan.
 | 5 | Qualify output/host drivers, CPU/bus drive and filter/cable loading | **Independent device/load evidence needed for admission.** Equally screened driver candidates predict materially different loaded waveforms. | Supported dynamic parameters and load ranges establish receiver margins and CPU/bus timing; fitted endpoint behavior alone is insufficient. |
 | 6 | Qualify the coupled reference circuit | **Depends on numerical and model-admission gates above.** Prepared traffic can be used once prerequisites pass. | Press/release, modifiers, repeat, reset during transmission, startup, host loading, bus timing and supply recovery pass electrical and convergence checks while preserving firmware behavior. |
 
-Next, refine lead bend radii and explicit assembly allowances.
-Historical tracing can proceed independently. Failure to identify one physical
-join does not block the reference model or unrelated reconstruction.
+Start with lead bend radii and explicit assembly allowances. Historical tracing
+can proceed independently; defer only individual joins that the available evidence
+cannot distinguish. Device admission and coupled electrical qualification remain
+deferred pending their stated prerequisites.
 
 ## Mechanical refinement
 
-Refine remaining package adapters and forming geometry as explicitly proposed
-construction. Preserve the shared-core model’s distinction between mechanical
-winding paths and unmeasured winding identity or magnetic parameters. Review package
-adapters, bend radii, lead forming and assembly allowances against published
-package geometry and the modeled enclosure.
+The next implementation pass can proceed without specimen measurements:
 
-Existing nominal body, lead and enclosure checks are regression safeguards.
-Extend them where the new geometry introduces an interface they do not cover.
-Mechanical acceptance of a proposed design and measured fit of the museum board
-are separate claims; rendering success or nominal clearance cannot establish the
-latter. A physically different reference footprint may require rerouting.
+- Replace sharp lead corners with explicit bend radii, preserving terminal mappings
+  and native pad positions. Reject bends that cannot fit the available lead length.
+- Declare proposed assembly allowances and check the resulting lead, body, shared
+  core and enclosure clearances. Keep nominal and allowance-based results distinct.
+- Resolve package-adapter assumptions where published dimensions suffice; retain
+  unsupported dimensions explicitly rather than treating them as measured.
+
+Preserve the distinction between mechanical winding paths and unmeasured winding
+identity or magnetic parameters. Extend existing geometry checks for new interfaces;
+recheck routing and DRC if footprints change. Passing proposed-design checks does
+not establish measured specimen fit or fabrication readiness.
 
 ## Physical reconstruction sequence
 
@@ -129,16 +128,6 @@ all software or CAD work. Passing numerical checks does not admit a device model
   their electrical or behavioral contract changes.
 - Preserve the existing coordinate, handedness, package-alignment and provenance
   checks. A clean reference DRC is neither measured fit nor fabrication approval.
-
-## Completion
-
-The functional reference release is complete and must remain valid.
-Remaining completion requires electrical qualification under the gates above,
-mechanical refinement, and historical reconciliation with supported placements and
-copper continuations. Visible routing must be reconciled with the netlist; hidden
-routes may remain explicitly inventoried rather than claimed historically exact.
-The historical data/clock integration milestone requires supported continuations
-through L1 to XT1. Report exact specimen fidelity and fabrication readiness separately.
 
 ## Source drawings
 
