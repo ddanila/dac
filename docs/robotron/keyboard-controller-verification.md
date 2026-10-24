@@ -53,7 +53,7 @@ owns scenario coverage and experiment details.
 | Zero-hysteresis correction completes the isolated tight replay and preserves nonzero-hysteresis controls | Live coupled refinement still fails later; the later recorded-output replay does not prove live-trajectory equivalence | [Transition isolation][bus-transition] |
 | The selected live collapse rejects timesteps despite converged Newton solves, with no ADC decision change in the audited window | Investigate error estimation and state history; replay success alone cannot identify a feedback defect | [Live transition audit][live-transition] |
 | A boundary-aligned DAC event can omit the ramp-end breakpoint | Focused regression passes with the opt-in candidate, but tight live controls still fail; candidate remains unadopted | [DAC regression][dac-ramp], [live controls][live-transition] |
-| Evaluator caching accelerates the short startup control without changing its waveform | Opt-in only; longer startup and service equivalence remain unqualified | [Cache benchmark][eval-cache] |
+| Evaluator caching preserves complete paired 2 ms startup and recorded bus-read waveforms | Opt-in only; later live firmware/service equivalence remains unqualified. Recorded boundary replay is separate from live CPU/HDL behavior | [Startup controls][eval-cache], [bus-read controls][eval-cache-bus-read] |
 | Static device endpoint screens pass sampled published conditions | Does not qualify oscillator or switching dynamics | [Endpoint evidence][device-endpoints] |
 | Fitted 7406 candidates pass selected device screens but predict different loaded waveforms | Independent junction, recovery and load evidence must distinguish the hypotheses; calibration alone cannot close admission | [Candidate][driver-dynamic], [withheld validation][driver-validation], [recovery comparison][driver-recovery] |
 | Direct-driver refinement preserves firmware behavior; recovery diagnostics expose reverse output operation and load sensitivity | Validate the loaded driver and CPU/bus I/V boundaries before representative electrical traffic; passing numerical and endpoint screens is insufficient | [Live refinement][driver-live], [serial-path admission][serial-path] |
@@ -138,7 +138,8 @@ and the reason for changing its interpretation.
 [input-barrier]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/input-barrier/assessment.json
 
 [bus-read]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-read-replay/assessment.json
-[eval-cache]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache/assessment.json
+[eval-cache]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache-startup-2ms/assessment.json
+[eval-cache-bus-read]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache-bus-read/assessment.json
 
 [bus-device]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-device-admission/assessment.json
 [bus-transition]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-transition/assessment.json
