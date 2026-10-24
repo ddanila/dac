@@ -12,7 +12,7 @@ while making these changes.
 
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
-| 1. Coupled rollback checks | Exercise Newton rejection, then extend coupled retry coverage beyond reset release. | Preserve event ordering, state and firmware behavior against complete controls; a bounded ordering regression or recorded replay cannot establish coupled rollback. |
+| Coupled rollback checks | Extend coupled retry coverage beyond reset release. | Preserve event ordering, state and firmware behavior against complete controls; bounded forced-retry tests or recorded replay cannot establish general coupled rollback. |
 
 This work needs no new specimen evidence. Keep the candidate opt-in until
 its full-window and coupled controls pass.
