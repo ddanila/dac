@@ -2666,7 +2666,7 @@
             "net": "/D5",
             "pin": "15",
             "position": [
-              116.637683,
+              116.637681,
               17.279717
             ],
             "ref": "A8",
@@ -2717,7 +2717,7 @@
             "net": "/GND",
             "pin": "18",
             "position": [
-              109.018785,
+              109.018783,
               17.150187
             ],
             "ref": "A8",
@@ -2853,7 +2853,7 @@
             "net": "/A5",
             "pin": "3",
             "position": [
-              99.119317,
+              99.119319,
               1.739683
             ],
             "ref": "A8",
@@ -2904,7 +2904,7 @@
             "net": "/A2",
             "pin": "6",
             "position": [
-              106.738215,
+              106.738217,
               1.869213
             ],
             "ref": "A8",
@@ -4316,8 +4316,8 @@
         "pads": [
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/+5V",
             "pin": "1",
@@ -4333,8 +4333,25 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
+            ],
+            "net": null,
+            "pin": "10",
+            "position": [
+              -101.5,
+              4.8
+            ],
+            "ref": "R2",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
+            "drill": [
+              1.1,
+              1.1
             ],
             "net": "/BASE6",
             "pin": "2",
@@ -4350,8 +4367,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/BASE0",
             "pin": "3",
@@ -4367,8 +4384,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/BASE1",
             "pin": "4",
@@ -4384,8 +4401,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/BASE4",
             "pin": "5",
@@ -4401,8 +4418,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/BASE7",
             "pin": "6",
@@ -4418,8 +4435,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/BASE5",
             "pin": "7",
@@ -4435,8 +4452,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/BASE2",
             "pin": "8",
@@ -4452,8 +4469,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/BASE3",
             "pin": "9",
@@ -50588,22 +50605,22 @@
             "net": "/D5",
             "points": [
               [
-                116.637683,
+                116.637681,
                 17.279717,
                 -0.5
               ],
               [
-                116.637683,
+                116.637681,
                 17.279717,
                 2.033176169
               ],
               [
-                116.638165121,
+                116.638163121,
                 17.25135882,
                 2.160506244
               ],
               [
-                116.650432,
+                116.65043,
                 16.529826,
                 3.7
               ]
@@ -50614,7 +50631,7 @@
                 "vertexIndex": 1,
                 "radiusMm": 0.3,
                 "centerMm": [
-                  116.642782604,
+                  116.642780604,
                   16.979760346,
                   2.033176169
                 ],
@@ -50714,22 +50731,22 @@
             "net": "/GND",
             "points": [
               [
-                109.018785,
+                109.018783,
                 17.150187,
                 -0.5
               ],
               [
-                109.018785,
+                109.018783,
                 17.150187,
                 2.033176169
               ],
               [
-                109.019267121,
+                109.019265121,
                 17.12182882,
                 2.160506244
               ],
               [
-                109.031534,
+                109.031532,
                 16.400296,
                 3.7
               ]
@@ -50740,7 +50757,7 @@
                 "vertexIndex": 1,
                 "radiusMm": 0.3,
                 "centerMm": [
-                  109.023884604,
+                  109.023882604,
                   16.850230346,
                   2.033176169
                 ],
@@ -51050,22 +51067,22 @@
             "net": "/A5",
             "points": [
               [
-                99.119317,
+                99.119319,
                 1.739683,
                 -0.5
               ],
               [
-                99.119317,
+                99.119319,
                 1.739683,
                 2.033176169
               ],
               [
-                99.118834879,
+                99.118836879,
                 1.76804118,
                 2.160506244
               ],
               [
-                99.106568,
+                99.10657,
                 2.489574,
                 3.7
               ]
@@ -51076,7 +51093,7 @@
                 "vertexIndex": 1,
                 "radiusMm": 0.3,
                 "centerMm": [
-                  99.114217396,
+                  99.114219396,
                   2.039639654,
                   2.033176169
                 ],
@@ -51176,22 +51193,22 @@
             "net": "/A2",
             "points": [
               [
-                106.738215,
+                106.738217,
                 1.869213,
                 -0.5
               ],
               [
-                106.738215,
+                106.738217,
                 1.869213,
                 2.033176169
               ],
               [
-                106.737732879,
+                106.737734879,
                 1.89757118,
                 2.160506244
               ],
               [
-                106.725466,
+                106.725468,
                 2.619104,
                 3.7
               ]
@@ -51202,7 +51219,7 @@
                 "vertexIndex": 1,
                 "radiusMm": 0.3,
                 "centerMm": [
-                  106.733115396,
+                  106.733117396,
                   2.169169654,
                   2.033176169
                 ],
@@ -51387,8 +51404,8 @@
             },
             "15": {
               "offsetMm": [
-                8.889997498,
-                7.619999704
+                8.889995498,
+                7.619999738
               ],
               "net": "/D5"
             },
@@ -51408,8 +51425,8 @@
             },
             "18": {
               "offsetMm": [
-                1.269998498,
-                7.619999691
+                1.269996499,
+                7.619999725
               ],
               "net": "/GND"
             },
@@ -51464,8 +51481,8 @@
             },
             "3": {
               "offsetMm": [
-                -8.889997498,
-                -7.619999704
+                -8.889995498,
+                -7.619999738
               ],
               "net": "/A5"
             },
@@ -51485,8 +51502,8 @@
             },
             "6": {
               "offsetMm": [
-                -1.269998498,
-                -7.619999691
+                -1.269996499,
+                -7.619999725
               ],
               "net": "/A2"
             },
@@ -55894,6 +55911,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "1",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -55951,6 +55969,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "10",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56008,6 +56027,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "2",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56065,6 +56085,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "3",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56122,6 +56143,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "4",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56179,6 +56201,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "5",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56236,6 +56259,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "6",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56293,6 +56317,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "7",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56350,6 +56375,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "8",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56407,6 +56433,7 @@
               ]
             ],
             "diameterMm": 0.820060974,
+            "packagePin": "9",
             "bends": [
               {
                 "vertexIndex": 1,
@@ -56498,7 +56525,9 @@
               "net": "/SENSE0"
             }
           }
-        }
+        },
+        "packageReference": "kwh-3894",
+        "externallyOpenPackagePins": []
       },
       {
         "ref": "R10.1",
@@ -57294,32 +57323,32 @@
         "ref": "R2",
         "type": "8x4k7",
         "package": "network",
-        "basis": "R1 catalog B1 envelope; R2 proposed nine-terminal surrogate, specimen tenth lead unresolved.",
+        "basis": "Proposed KWH 3845 adapter: eight equal 4k7 branches mapped to reference terminals, ninth branch externally open. Catalog maximum B1 envelope and formed leads; no specimen identity or pin-number claim.",
         "position": [
-          -89.84,
+          -90.93,
           2.8,
-          2.6
+          3.4
         ],
         "rotation": 0,
         "sizeMm": [
-          23,
+          27.5,
           3,
-          11
+          9
         ],
         "mesh": null,
         "profile": null,
         "boundsMm": [
           [
-            -101.34,
-            -78.34
+            -104.68,
+            -77.18
           ],
           [
             1.3,
             4.3
           ],
           [
-            2.6,
-            13.6
+            3.4,
+            12.4
           ]
         ],
         "leads": [
@@ -57335,11 +57364,65 @@
               [
                 -79.68,
                 2.8,
-                2.6
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
+            "diameterMm": 0.820060974,
+            "packagePin": "1",
             "bends": [],
+            "centerlineApproximationMm": 0.010000001
+          },
+          {
+            "pin": "10",
+            "net": null,
+            "points": [
+              [
+                -101.5,
+                4.8,
+                -0.5
+              ],
+              [
+                -101.5,
+                4.8,
+                1.820606607
+              ],
+              [
+                -101.509198129,
+                4.772946679,
+                1.987213216
+              ],
+              [
+                -101.535741198,
+                4.69487883,
+                2.134777189
+              ],
+              [
+                -101.576595413,
+                4.574719373,
+                2.246432407
+              ],
+              [
+                -102.18,
+                2.8,
+                3.4
+              ]
+            ],
+            "diameterMm": 0.820060974,
+            "packagePin": "10",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -101.660951367,
+                  4.326613628,
+                  1.820606607
+                ],
+                "angleRadians": 1.019128529,
+                "tangentOffsetMm": 0.279393393,
+                "maximumChordErrorMm": 0.007195335
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -57354,11 +57437,35 @@
               [
                 -84.76,
                 2.8,
-                2.6
+                2.084629922
+              ],
+              [
+                -84.759055935,
+                2.8,
+                2.115341057
+              ],
+              [
+                -84.68,
+                2.8,
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "packagePin": "3",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -84.26,
+                  2.8,
+                  2.084629922
+                ],
+                "angleRadians": 0.061460956,
+                "tangentOffsetMm": 0.015370078,
+                "maximumChordErrorMm": 0.000236072
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -57373,11 +57480,35 @@
               [
                 -100.0,
                 2.8,
-                2.6
+                2.039366504
+              ],
+              [
+                -99.985507439,
+                2.8,
+                2.158876027
+              ],
+              [
+                -99.68,
+                2.8,
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "packagePin": "9",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -99.5,
+                  2.8,
+                  2.039366504
+                ],
+                "angleRadians": 0.241355491,
+                "tangentOffsetMm": 0.060633496,
+                "maximumChordErrorMm": 0.003636363
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -57392,11 +57523,35 @@
               [
                 -97.46,
                 2.8,
-                2.6
+                2.046764256
+              ],
+              [
+                -97.448790891,
+                2.8,
+                2.152042294
+              ],
+              [
+                -97.18,
+                2.8,
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "packagePin": "8",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -96.96,
+                  2.8,
+                  2.046764256
+                ],
+                "angleRadians": 0.212143753,
+                "tangentOffsetMm": 0.053235744,
+                "maximumChordErrorMm": 0.002810174
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -57411,11 +57566,35 @@
               [
                 -89.84,
                 2.8,
-                2.6
+                2.069346417
+              ],
+              [
+                -89.836255505,
+                2.8,
+                2.130424018
+              ],
+              [
+                -89.68,
+                2.8,
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "packagePin": "5",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -89.34,
+                  2.8,
+                  2.069346417
+                ],
+                "angleRadians": 0.122461057,
+                "tangentOffsetMm": 0.030653583,
+                "maximumChordErrorMm": 0.000937002
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -57430,11 +57609,35 @@
               [
                 -82.22,
                 2.8,
-                2.6
+                2.092309512
+              ],
+              [
+                -82.219763482,
+                2.8,
+                2.10768685
+              ],
+              [
+                -82.18,
+                2.8,
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "packagePin": "2",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -81.72,
+                  2.8,
+                  2.092309512
+                ],
+                "angleRadians": 0.030759526,
+                "tangentOffsetMm": 0.007690488,
+                "maximumChordErrorMm": 5.9133e-05
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -57449,11 +57652,35 @@
               [
                 -87.3,
                 2.8,
-                2.6
+                2.076972027
+              ],
+              [
+                -87.29788334,
+                2.8,
+                2.122930489
+              ],
+              [
+                -87.18,
+                2.8,
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "packagePin": "4",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -86.8,
+                  2.8,
+                  2.076972027
+                ],
+                "angleRadians": 0.092046849,
+                "tangentOffsetMm": 0.023027973,
+                "maximumChordErrorMm": 0.000529445
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -57468,11 +57695,35 @@
               [
                 -94.92,
                 2.8,
-                2.6
+                2.054232855
+              ],
+              [
+                -94.91169109,
+                2.8,
+                2.145006595
+              ],
+              [
+                -94.68,
+                2.8,
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "packagePin": "7",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -94.42,
+                  2.8,
+                  2.054232855
+                ],
+                "angleRadians": 0.182559853,
+                "tangentOffsetMm": 0.045767145,
+                "maximumChordErrorMm": 0.00208156
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -57487,11 +57738,35 @@
               [
                 -92.38,
                 2.8,
-                2.6
+                2.061763391
+              ],
+              [
+                -92.374185849,
+                2.8,
+                2.137791983
+              ],
+              [
+                -92.18,
+                2.8,
+                3.4
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "packagePin": "6",
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -91.88,
+                  2.8,
+                  2.061763391
+                ],
+                "angleRadians": 0.152649328,
+                "tangentOffsetMm": 0.038236609,
+                "maximumChordErrorMm": 0.001455657
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           }
         ],
@@ -57500,69 +57775,80 @@
           "terminals": {
             "1": {
               "offsetMm": [
-                10.16,
+                11.25,
                 0.0
               ],
               "net": "/+5V"
             },
+            "10": {
+              "offsetMm": [
+                -10.57,
+                2.0
+              ],
+              "net": null
+            },
             "2": {
               "offsetMm": [
-                5.08,
+                6.17,
                 0.0
               ],
               "net": "/BASE6"
             },
             "3": {
               "offsetMm": [
-                -10.16,
+                -9.07,
                 0.0
               ],
               "net": "/BASE0"
             },
             "4": {
               "offsetMm": [
-                -7.62,
+                -6.53,
                 0.0
               ],
               "net": "/BASE1"
             },
             "5": {
               "offsetMm": [
-                0.0,
+                1.09,
                 0.0
               ],
               "net": "/BASE4"
             },
             "6": {
               "offsetMm": [
-                7.62,
+                8.71,
                 0.0
               ],
               "net": "/BASE7"
             },
             "7": {
               "offsetMm": [
-                2.54,
+                3.63,
                 0.0
               ],
               "net": "/BASE5"
             },
             "8": {
               "offsetMm": [
-                -5.08,
+                -3.99,
                 0.0
               ],
               "net": "/BASE2"
             },
             "9": {
               "offsetMm": [
-                -2.54,
+                -1.45,
                 0.0
               ],
               "net": "/BASE3"
             }
           }
-        }
+        },
+        "packageReference": "kwh-3845-reference",
+        "externallyOpenPackagePins": [
+          "10"
+        ]
       },
       {
         "ref": "R3",
@@ -65408,15 +65694,15 @@
       "../components/kicad/meshes/DIP-20_W7.62mm-body.stl": "c71eb298a5948d48e8c2cd27929d85714d557be6a1e853f8c1c712a0319d345a",
       "../components/kicad/meshes/DIP-24_W15.24mm-body.stl": "bc9672c67fb650b842d0caf7f115fbc1dd72d0566dff156f336f96a3aa006f2b",
       "../components/kicad/meshes/DIP-40_W15.24mm-body.stl": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
-      "evidence.json": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
+      "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "reference/assembly.json": "e2bceec20dbfc189409c0c695f2d896639e47211f395a0266d1915e4d33ca6cc",
-      "reference/generated/layout.json": "7d186c0c2fb685455e8d6c13603cc0a273bb8aab998236f2200b24737fb56d6d",
+      "reference/assembly.json": "0166e4c488f22eb945aeea87820b0148c315b26dfdc6b5a056a4ed40eca3ca39",
+      "reference/generated/layout.json": "11cb571bd1ff32af1da4d9d3e1952a4d5ec2c5e62f99067981f52dd47113eaca",
       "reference/signal-paths.json": "bcc196b9fe151e87a292a0b8572d20b1b763d526907005e595428f03f958392b",
       "tools/assembly_allowances.py": "879c3fe4c25034b72a81c8b4708fb5246f3bd0bbde82c7bf4c4345d89733ac3b",
       "tools/lead_bends.py": "bf8ebb9f2d1450e0911b7cff8f4af0a6c35622d3320d42d439ede3c4ad30b9b1",
       "tools/lead_clearance.py": "bee24ac3694ca5a792ac71b3d5fa0aa782f2a0a50d1c612e8013c9dec5309705",
-      "tools/reference_assembly.py": "decdcdb4a76c19b71916f404c34956a47cf7efbf25de3af9856a7b8dc782acd1",
+      "tools/reference_assembly.py": "88968f68ffc315b5422c6e14dde5ecc18f96388917a59eebe10dad3fb6083f79",
       "tools/shared_filter.py": "4f161698ca237d5e679f8c3790808573c4c90c991f37cf0a87b34d797eb680bf"
     }
   },
@@ -65667,8 +65953,8 @@
       "key-switch/geometry.scad": "3c5548896f0d9ef90e45d89c51d15f91974dc473456da760aeb61104c75fddce",
       "keyboard-artwork.scad": "4b185f623c7b71674bfc823a3cb0b8ceb38ed8447e55e286977e01de02c18d6c",
       "keyboard-controller/generated/controller.scad": "f6e306520f5b08cd630656324c60e4d8be5ce5f7ead8152a4776a9993017fd20",
-      "keyboard-controller/reference/assembly-generated/assembly.scad": "b2ad495561fe116e3bc4cd31135b1e16653093bc4895d8e6b12c136a92bc81c8",
-      "keyboard-controller/reference/generated/controller.scad": "6f2a43e5a6fcc00d1fea560ab51353d187f4984f34d9cc610c0b0f5d511c1809",
+      "keyboard-controller/reference/assembly-generated/assembly.scad": "9afe88b6b28f83c95c4f24dcf22d8516a212ff2e0bf13c745fce1d2558d3383d",
+      "keyboard-controller/reference/generated/controller.scad": "70868fbfe22c5bb97cab384c4272fede2222396cb70c90b262d259e69bf092c7",
       "keyboard-controller/reference/review.scad": "b3019aab9355118b037c3e64f857fa2e0b262c5c28444e3c10617fcd4f5ebe99",
       "keyboard-controller/tools/reference_enclosure.py": "a9fcc1c67cac4c30ee876ff612e026bc8816e64b1fac0d02f8a10edc51a8412d",
       "keyboard-layout.scad": "bf1700cba2e51c7ea9b400fab2c6dbd7072fd5d97cb15396cd0e17a260ef5fae",
@@ -65683,15 +65969,15 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "c26c6737618b5663e813d6a858eadfacc4e75dce",
-    "manifestSha256": "e6b894df908110a2aa3304dd32874bb755542c01921d9705d19d5f3ed2fae5e4",
+    "revision": "5806a6317661a492531d8ef38b5c767348b32b4e",
+    "manifestSha256": "2da456498c2523066138ebaa23f47e6ecb1b8fe3b0f97c5a0957852208159273",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
-      "reference/generated/controller.scad": "6f2a43e5a6fcc00d1fea560ab51353d187f4984f34d9cc610c0b0f5d511c1809",
-      "reference/generated/layout.json": "7d186c0c2fb685455e8d6c13603cc0a273bb8aab998236f2200b24737fb56d6d",
+      "reference/generated/controller.scad": "70868fbfe22c5bb97cab384c4272fede2222396cb70c90b262d259e69bf092c7",
+      "reference/generated/layout.json": "11cb571bd1ff32af1da4d9d3e1952a4d5ec2c5e62f99067981f52dd47113eaca",
       "reference/generated/qualification.json": "f360f38ef0d218558c574cfa5c1a323054366f1678763a4c01905f4fe3cb6a6c",
       "reference/generated/routing-audit.json": "7fef7889ee082facdd24aa7da0cfc2b5034e2fd389c07aedc3e0a1c9f0ec7c66"
     },
-    "assemblySha256": "f524aff462bd8a49410e6e94b51a8ddc685d61cbacb67d759443450be1ca107b"
+    "assemblySha256": "5c9f10ef4db5d77e4987b98125defdd62a73005c44ba7b65e8636c40a913b812"
   }
 }

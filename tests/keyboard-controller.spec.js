@@ -1011,6 +1011,13 @@ test('proposed reference board is separate, selectable and explicitly unqualifie
  await expect(reference.locator('[data-reference-route][data-classification="proposed"]')).toHaveCount(0);
  await reference.getByLabel('Reference component',{exact:true}).selectOption('R1');
  await expect(reference.locator('[data-reference-selection]')).toContainText('R1:10');
+ await reference.getByLabel('Reference component',{exact:true}).selectOption('R2');
+ await expect(reference.locator('[data-reference-selection]')).toContainText('R2:10');
+ await expect(reference.locator('[data-reference-package]')).toContainText('Proposed KWH 3845 adapter');
+ await expect(reference.locator('[data-reference-package] tbody tr').filter({hasText:'R2:10'})).toContainText('Externally open resistor branch');
+ await expect(reference.locator('[data-reference-package] tbody tr').filter({hasText:'R2:6'}).locator('td').nth(1)).toHaveText('2');
+ expect(data.layout.unplaced.find(c=>c.ref==='R2').pads.some(p=>p.pin==='10')).toBe(false);
+
  await expect(reference.locator('[data-reference-selection]')).toContainText('proposed');
  // Selecting the proposed geometry must not promote or change the historical pads.
  await historical.getByLabel('Controller net',{exact:true}).selectOption('/TA_DATEN');

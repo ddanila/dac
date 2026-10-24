@@ -2,7 +2,7 @@ const NS='http://www.w3.org/2000/svg';
 
 export function installControllerReference(parent,onCompare){
  const panel=document.createElement('details');panel.dataset.referenceBoard='';
- panel.innerHTML='<summary>Proposed reference PCB</summary><p>A complete electrical routing candidate, separate from the historical reconstruction. Orange copper is proposed; blue copper retains unchanged historical geometry. Package adapters, dimensions and device behavior still need qualification. This is not a fabrication release.</p><p role="status" data-reference-status>Open to load the proposed board.</p><div data-reference-tools hidden><label>Reference component <select aria-label="Reference component" data-ref-component></select></label> <label>Reference net <select aria-label="Reference net" data-ref-net></select></label> <label>Reference side <select aria-label="Reference side" data-ref-side><option value="top">Top</option><option value="bottom">Underside</option></select></label> <label><input type="checkbox" data-ref-proposed checked> Show proposed copper</label><label>Reference drawing zoom <input type="range" aria-label="Reference drawing zoom" data-ref-zoom min="1" max="6" step="0.5" value="1"></label><details data-reference-assembly><summary>Populated reference assembly</summary><p>Drag to rotate; scroll to zoom. Package bodies and lead bends belong to the proposed reference. Select a component below to locate it.</p><p data-assembly-status></p><div data-assembly-viewport></div></details><label>Signal-path walkthrough <select aria-label="Signal-path walkthrough" data-ref-walkthrough><option value="">Choose a stage</option></select></label><p data-reference-stage></p><div data-reference-drawing style="overflow:auto"></div><p data-reference-selection></p><p><button type="button" data-reference-compare disabled>Compare selection with historical evidence</button></p><p><a data-reference-cad target="_blank" rel="noopener">Pinned reference KiCad board</a> · <a data-reference-scad target="_blank" rel="noopener">Reference OpenSCAD preview</a></p></div>';
+ panel.innerHTML='<summary>Proposed reference PCB</summary><p>A complete electrical routing candidate, separate from the historical reconstruction. Orange copper is proposed; blue copper retains unchanged historical geometry. Package adapters, dimensions and device behavior still need qualification. This is not a fabrication release.</p><p role="status" data-reference-status>Open to load the proposed board.</p><div data-reference-tools hidden><label>Reference component <select aria-label="Reference component" data-ref-component></select></label> <label>Reference net <select aria-label="Reference net" data-ref-net></select></label> <label>Reference side <select aria-label="Reference side" data-ref-side><option value="top">Top</option><option value="bottom">Underside</option></select></label> <label><input type="checkbox" data-ref-proposed checked> Show proposed copper</label><label>Reference drawing zoom <input type="range" aria-label="Reference drawing zoom" data-ref-zoom min="1" max="6" step="0.5" value="1"></label><details data-reference-assembly><summary>Populated reference assembly</summary><p>Drag to rotate; scroll to zoom. Package bodies and lead bends belong to the proposed reference. Select a component below to locate it.</p><p data-assembly-status></p><div data-assembly-viewport></div></details><label>Signal-path walkthrough <select aria-label="Signal-path walkthrough" data-ref-walkthrough><option value="">Choose a stage</option></select></label><p data-reference-stage></p><div data-reference-drawing style="overflow:auto"></div><p data-reference-selection></p><div data-reference-package></div><p><button type="button" data-reference-compare disabled>Compare selection with historical evidence</button></p><p><a data-reference-cad target="_blank" rel="noopener">Pinned reference KiCad board</a> · <a data-reference-scad target="_blank" rel="noopener">Reference OpenSCAD preview</a></p></div>';
  parent.append(panel);
  const get=s=>panel.querySelector(s);
  let data=null,pending=false,assemblyView=null,assemblyPending=false;
@@ -43,6 +43,19 @@ export function installControllerReference(parent,onCompare){
   assemblyView?.select(ref);
   get('[data-reference-compare]').disabled=!active;
   get('[data-reference-selection]').textContent=active?`${pins.length} terminals: ${pins.join(', ')}. ${component?component.classification+'. ':''}Reference connectivity; historical joins remain a separate question.`:'Select a component or net to follow its reference connections.';
+  const packageView=get('[data-reference-package]'),model=data.assembly?.components.find(c=>c.ref===ref);
+  packageView.replaceChildren();
+  if(model){
+   const basis=document.createElement('p');basis.textContent=model.basis;packageView.append(basis);
+   if(model.externallyOpenPackagePins?.length||model.leads.some(l=>l.packagePin&&l.packagePin!==l.pin)){
+    const table=document.createElement('table'),head=table.createTHead().insertRow();
+    for(const title of ['Reference terminal','Package pin','Connection']){const th=document.createElement('th');th.textContent=title;head.append(th);}
+    const body=table.createTBody();
+    for(const lead of model.leads){const row=body.insertRow();for(const value of [`${ref}:${lead.pin}`,lead.packagePin,lead.net||(model.externallyOpenPackagePins?.includes(lead.packagePin)?'Externally open resistor branch':'Unused lead')])row.insertCell().textContent=value;}
+    packageView.append(table);
+   }
+  }
+
  }
  async function load(){
   if(data||pending)return;pending=true;

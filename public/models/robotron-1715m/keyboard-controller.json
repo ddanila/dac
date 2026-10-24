@@ -29375,6 +29375,36 @@
         "bodyHeightMaximumMm": 11,
         "bodyThicknessMaximumMm": 3,
         "scope": "Catalog topology identifies the comparison R1 marked 3894. Nominal package dimensions are not specimen measurements. Primary R1 marking and installed terminal orientation remain unconfirmed; no native pads assigned."
+      },
+      {
+        "id": "kwh-3845-reference",
+        "types": [
+          "3845"
+        ],
+        "source": "kwh-network-catalog",
+        "locator": "PDF page 7 / printed page 18, code 3845",
+        "case": "B1-9/3.0/10",
+        "resistanceOhms": 4700,
+        "resistorCount": 9,
+        "commonTerminal": "1",
+        "resistorTerminals": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "leadCount": 10,
+        "leadPitchMm": 2.5,
+        "packageSource": "kwh-network-technical",
+        "packageLocator": "PDF page 4 / printed page 9, Form B1",
+        "bodyHeightMaximumMm": 9,
+        "bodyThicknessMaximumMm": 3,
+        "scope": "Proposed R2 adapter only: eight equal branches used, physical branch 10 left externally open. This is not an electrically isolated pin. Primary identity, tenth-lead function and physical numbering remain unconfirmed."
       }
     ]
   },
@@ -44877,7 +44907,7 @@
     "inputSha256": {
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
       "component-evidence.json": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
-      "evidence.json": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
+      "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "filter-registration.json": "28791731941aaf96faecd845871a0e151cfde5a56e9ef76212d54c90a4cbbf4a",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
@@ -46394,7 +46424,7 @@
     "scope": "Physical route review, not new connectivity evidence. X1 serves the matrix/LEDs; XT1 is the host cable. Reference endpoints are targets for tracing, not observed attachments.",
     "inputSha256": {
       "connection-review.json": "ad12255aba3ec6204cb2ca7d53ea81c09352000f3f5c2c278ab9234a1b06e0a4",
-      "evidence.json": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
+      "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "component-evidence.json": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
       "route-evidence.json": "30c3b039aaa1cef03832c82d7d63a407e7f23abecea0455484dcf35989ff50ae",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
@@ -51246,11 +51276,11 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "c26c6737618b5663e813d6a858eadfacc4e75dce"
+      "revision": "5806a6317661a492531d8ef38b5c767348b32b4e"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "adc5cb9218185345cd3f45e4f9b656ab6a9d5cea"
+      "revision": "cf9ee5411449fdeee65293b22f2d2923aea240d2"
     },
     "files": {
       "layout": "8ddc39f82b1e45e1f5764f1769047a1c0db844a2293d7ad9a6729036e9becdd2",
@@ -51261,12 +51291,12 @@
       "topRegistration": "51e4d86dfbb73aa372be16e05c1fa6b465342d59291905d9b8fd13ec001154f7",
       "connectorReview": "b85b5c00e6a80970eadfb147653fc38c783eb12015dd98aab72c6e26064ce24f",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
-      "evidence": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
+      "evidence": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "componentEvidence": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
       "busReview": "fe78338191763e2d60f50481b61d8ff86f8b1608cfb7a67dd0f2d79debfbcbbc",
-      "cableCopper": "2545a3b9f124dc9f24771225f345e891f62bba73724f476b2967917d96e14e70",
-      "connectionReview": "07872fc3217d1629264249fd19134ecc8792f016dbf8408c227ea751889f688d",
+      "cableCopper": "6d75f815ae7937cb8235c5075176f1bf43f687c92cc7b7bca66b553ff8a97cd4",
+      "connectionReview": "1d5b257525dc8b07e4074d3461f443fae819812fae861fe3365964b44d7e8db0",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
