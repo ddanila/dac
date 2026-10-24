@@ -8,19 +8,29 @@ while making these changes.
 
 ## Next work and acceptance
 
-### Ready now — desk work
+### Ready now — implementation and qualification
 
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
-| 1. Full-repeat numerical qualification | Extend the passing reset-release candidate to complete standard-S600 repeat traffic with matched timestep refinements and a complete control. | Pass the unchanged numerical gate below while preserving firmware reads and serial behavior over the full-repeat window; qualify coupled rollback before adoption. |
-| 2. Historical registration | Test independent board-plane hole observations against the retained package-bias and outline-perspective alternatives; establish scale and cross-side correspondence before changing placements. | Held-out checks meet the existing registration budget before native pads or routes move. |
-| 3. X1 package identification | Identify the exact EFS form from lead exits, mounting and mating geometry in existing photos and form-specific drawings. | Distinguish the retained EFS alternatives with calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
-| 4. Electrical-model sensitivity | Bound oscillator, driver and load alternatives with published constraints and test their effects on clock acceptance, receiver decisions and bus timing. | Retain indistinguishable alternatives and identify the missing independent constraint for each consequential ambiguity. |
+| 1. Full-repeat capture support | Preflight storage and runtime for the complete prepared S600 scenario; extend capture retention and comparison checks to its declared endpoint. | Preserve all required observations and absolute sample times; reject truncated captures. Verify any lossless storage changes before relying on them. |
+| 2. Full-repeat numerical qualification | Run the reset-release candidate over complete standard-S600 repeat traffic with matched timestep refinements and a complete control. | Pass the unchanged numerical gate below while preserving firmware reads and serial behavior over the full-repeat window. |
+| 3. Coupled rollback checks | Extend scheduling checks to exercise rejected steps and retries across live HDL/electrical boundaries. | Preserve event ordering, state and firmware behavior against complete controls; a bounded ordering regression or recorded replay cannot establish coupled rollback. |
 
-These investigations can proceed without new specimen measurements. Numerical
-convergence is the first priority; the other desk investigations can proceed
-independently. Closure may still need the evidence listed below. Repeat experiments
-only for a changed hypothesis or new evidence. Results belong in the
+These tasks need no new specimen evidence. Capture capacity is an execution
+prerequisite, not a missing circuit observation. Keep the candidate opt-in until
+its full-window and coupled controls pass.
+
+### Investigations — require a new discriminating check
+
+| Work | Next useful evidence and acceptance |
+| --- | --- |
+| Historical registration | Independent board-plane hole observations that distinguish the retained package-bias and outline-perspective alternatives. Establish scale and cross-side correspondence; held-out checks must meet the existing registration budget before native pads or routes move. |
+| X1 package identification | Lead exits, mounting and mating geometry in existing photos or form-specific drawings that distinguish the retained EFS alternatives. Account for calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
+| Electrical-model constraints | Published constraints that distinguish consequential oscillator, driver or load alternatives. Test their effects on clock acceptance, receiver decisions and bus timing; retain alternatives that the evidence cannot distinguish. |
+
+Exhaust existing photographs and published sources first. Repeat an experiment
+only for a changed hypothesis or new evidence; do not rerun completed ambiguity
+studies as progress toward closure. Findings belong in the
 [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 and linked machine-readable reports.
 
@@ -30,7 +40,7 @@ and linked machine-readable reports.
 | --- | --- |
 | Live firmware/service evaluator-cache controls | A complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
 | Physical placements and copper | Accepted registration and individually supported terminal identities; follow the sequence below. |
-| Coupled reference qualification | Numerical convergence and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
+| Coupled reference qualification | Numerical convergence, coupled rollback checks and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
 
 ### Closure requiring independent evidence
 
@@ -53,7 +63,7 @@ After registration passes:
    orientation from package evidence and visible lead entries.
 4. Finish remaining bus, data/strobe, supply and clock spans, including L1–XT1.
    Resolve WR/RD against specimen evidence. Resolve BR1/BR2 physical end
-   correspondence and geometry without reopening their schematic assignments.
+   correspondence and geometry.
 
 ## Electrical qualification gates
 
