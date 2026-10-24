@@ -53,7 +53,9 @@ establish the global board dimensions or the primary R1 hole mapping. Historical
 R1 remains unplaced. The proposed reference package includes its electrically unused lead.
 The [A8 spacing trial](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/a8-row-spacing/assessment.json)
 is conditional on registration; it preserves the original rigid-fit failure and
-does not authorize a footprint change.
+does not authorize a footprint change. A [cross-package bias test](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/shared-row-bias/assessment.json)
+predicts smaller A5/A8 residuals from A2.1/A4 observations, so an A8-specific
+spacing change is not uniquely supported.
 
 ## Resolve at the desk first
 
