@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Work | Next action and acceptance |
 | --- | --- |
-| Resolve live numerical convergence — first priority | Test whether explicit clock/reset threshold scheduling removes bus-edge variation in the [precision-controlled reset prefixes](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-release-audit/assessment.json). Use matched controls and three timestep levels with fixed circuit, precision window and scheduling guard. Require the numerical gate below before extending traffic. |
+| Resolve live numerical convergence — first priority | Locate the intervals and state variables causing non-monotonic voltage differences in the [scheduled reset prefixes](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/fixture-grid-reset/assessment.json). Distinguish interpolation, integration and nonlinear-state effects using matched controls; preserve the fixed clock/reset crossing grid, circuit and acceptance limits. Require the numerical gate below before extending traffic. |
 | Constrain X1 geometry | Resolve the EFS candidate’s exact form and distinguish the conditional scale alternatives in CAD `reference/package-reviews/efs-x1/assessment.json`. Account for photo-picking and calibration uncertainty before changing pads; obtain form-specific lead and mounting geometry. Check lead exits, mating clearance and expanded envelopes. |
 | Narrow electrical model uncertainty | Use published oscillator, driver and load constraints to identify hypotheses that change clock acceptance, receiver decisions or bus timing. Retain competing hypotheses where the evidence cannot distinguish them. |
 

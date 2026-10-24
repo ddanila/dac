@@ -7,17 +7,17 @@
   "scope": "Proposed reference PCB, standard S600 and production digital contract with externally supplied clock/reset at virtual bridges. Historical copper, winding terminals, package fit and analog device dynamics remain separate.",
   "revisions": {
     "cad": "de6fd953f70292c4484b2566224c6bf9cf9a37c6",
-    "hdlAndDigitalEvidence": "2287ce1a98219c772a48750f1d7f4b4d44325a07",
+    "hdlAndDigitalEvidence": "02ebeb2f77d28d2abd66ef1fdb6365aca90767af",
     "browserRuntime": "9f7aaa620d2853288562a7d994c06b56ce07cc19",
-    "museumBase": "1c0a65393a9922804e741b71bd19e6701c5f9319"
+    "museumBase": "b22526f173aa94be0e7f07f5729200dcc3aacc97"
   },
   "museumRevisionConvention": "The git commit containing this manifest identifies the released museum; museumBase is its parent work baseline. Content hashes below bind the reviewed files without a self-referential commit hash.",
   "files": {
     "public/models/robotron-1715m/source.json": "350ab19ced7193bce2d75c15aa19386094cc731adbc12c89e31307b3807387ff",
-    "public/models/robotron-1715m/keyboard-controller.json": "8a632b09694f422c73e32184e657b22c8cd57ecee421a333a0b7f945df74cb96",
+    "public/models/robotron-1715m/keyboard-controller.json": "bcfcf9ec08471e3b7a0ba3f981bca2cdb565d1a9fa42a1a4982386d7bc65401f",
     "public/models/robotron-1715m/keyboard-controller-reference.json": "98e113be7df78f62ac4cfd55097662c6b1a529530b24b5527838a40bcb47704d",
     "public/emulator/manifest.json": "30397d6a502608e3d3a3ba489180a90f6de2b0b8f62ad40708de43bd80bdf05b",
-    "docs/robotron/releases/functional-reference-validation.json": "d8ddc29597d517048278b0b50eb3a09347f1928a7da4041d6a9182bf6c80938a",
+    "docs/robotron/releases/functional-reference-validation.json": "c386d90381125a7602534a9f39db9f3b56e6dc7337f72670d54eaa7f9c30ea47",
     "scripts/keyboard-controller-release.py": "32a98b81d12269896648bc9c0347ef96c392444fa645c13182b8f3c7e7f61ee7",
     "scripts/sync-keyboard-controller.py": "728f6e39946d239425259318371e67d5477f4bd8e01abd7cd2d0ea6f24c3606a",
     "tests/keyboard-controller.spec.js": "cf218f11c16795d50dec70edb39ab500c00a025ed50ecfb6b3066c1f2f6ea631",
@@ -29,7 +29,7 @@
     "src/keyboard-controller-review.js": "b60a929fb58339c6624cb7d2efc2f256640aaf2ecedebb8f105b3804efe95532",
     "src/keyboard-controller-waveform.js": "0bcf7d29b17c37bdee503d0a7ed2c0663d3684daa1e245dce064b866b8209609",
     "src/robotron-keyboard.js": "1c81c7845dd21973468380d438ee993b0bb855c96d6be329820fff82eadc6abc",
-    "docs/robotron/releases/browser.json.gz": "835a04d1ee10a39184dfe4b23e181df9485ac3ec91e4a58eb7960de126102e6f",
+    "docs/robotron/releases/browser.json.gz": "14d22c98f74f12d213779e3c71633b5c7cb2f51de3d9384ba195821fceb30760",
     "docs/robotron/releases/firmware.json.gz": "4ba3744317705b7611adff27afc6c5647d4b4d570c961d214abad01481c70895",
     "docs/robotron/releases/drc.json.gz": "3fe4979f6adafb315d8b5c25dcdb91bcb84e6eb293a8b196ae7153cc9fd1b144"
   }
