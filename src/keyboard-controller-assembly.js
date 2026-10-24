@@ -52,6 +52,10 @@ export async function createReferenceAssembly(host,data){
   const [w,d,h]=c.sizeMm;
   if(c.mesh){tasks.push(geometry(c.mesh).then(g=>{if(disposed){g.dispose();return;}const body=add(g,plastic,group);body.rotation.z=-Math.PI/2;}));}
   else if(c.package==='transistor')add(new THREE.ExtrudeGeometry(new THREE.Shape(c.profile.map(p=>new THREE.Vector2(...p))),{depth:h,bevelEnabled:false}),plastic,group);
+  else if(c.package==='radial-capacitor'){
+   const body=add(new THREE.CylinderGeometry(w/2,w/2,h,32),plastic,group);body.rotation.x=Math.PI/2;body.position.z=h/2;
+   const lid=add(new THREE.CylinderGeometry(w*.45,w*.45,.15,32),metal,group);lid.rotation.x=Math.PI/2;lid.position.z=h-.075;
+  }
   else if(c.package==='axial'||c.package==='capacitor'){
    const axial=c.package==='axial',body=add(new THREE.CylinderGeometry((axial?d:w)/2,(axial?d:w)/2,axial?w:d,24),passive,group);
    body.position.z=h/2;if(axial)body.rotation.z=Math.PI/2;

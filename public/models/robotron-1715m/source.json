@@ -1,11 +1,11 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "5806a6317661a492531d8ef38b5c767348b32b4e",
+  "revision": "ab4ef06c05e008a07787ff72802d2ae03ef30651",
   "dirty": false,
   "files": [
     {
       "file": "model.json",
-      "sha256": "e3d33ddbb6de2cbd8eda7c49f5bd2804f0fdfe314d7e2475132bd1e3563341a0"
+      "sha256": "d195d71a6d0d4b04bb45cd3ba81667174235b0ae39c6f65a2fdde74032c416d6"
     },
     {
       "file": "LICENSE",
@@ -481,11 +481,11 @@
     },
     {
       "file": "meshes/keyboard-controller-caps.stl",
-      "sha256": "9b2a61e3fec087010993f12b5e00bec00d44feb77e2ea62ffbe8dccfc7e09b51"
+      "sha256": "3cffbcdb3fbc04ae13d8daecfb0bf078a482b6f5f193d5f4eea5d2f5a1b646d5"
     },
     {
       "file": "meshes/keyboard-controller-metal.stl",
-      "sha256": "486e45bd3082b3434adb9e5089c13681606d30075d95a6c46fe19fa54990aef7"
+      "sha256": "314c7851119c90819b589557f52aa3ba74e34c6361044bed16e23d85100409f2"
     },
     {
       "file": "meshes/keyboard-controller-ink.stl",
@@ -1597,23 +1597,23 @@
     },
     {
       "file": "downloads.json",
-      "sha256": "2e5c9f00b8cbe0e5d6013b158ab6ab0939eb7aa7acfd685b114eb2bbf8e6b2a0"
+      "sha256": "5ea71e2148c8678f62c149471763b16b80cceb396d47edf9f3749d1f02a95496"
     },
     {
       "file": "downloads/motherboard.zip",
-      "sha256": "b7ce96b14052790892f277ab1883ae180df40efea6dbdc3bbe281432d3d6ff40"
+      "sha256": "5a758e878467ea1c4cf63cb09cce3bc8ffb3849df87d53f80e76037a101f2927"
     },
     {
       "file": "downloads/display-controller.zip",
-      "sha256": "e839a3ee7f8ec44bf6908a8df50789b99c41a43f582ee013b7978028ca5e2a01"
+      "sha256": "68b2ea1416ccbefc0bbf74414377a106ac406ac29a7cabccefe8f180f29067fc"
     },
     {
       "file": "downloads/drive-0.zip",
-      "sha256": "711f1901e528e1b1a025b8f7f5924cdb8baebb374afc7730b9e3fe53ed31350f"
+      "sha256": "4f201a2da4a8705922468359d859c615e1354dfdca0a709222d1933748069569"
     },
     {
       "file": "downloads/drive-1.zip",
-      "sha256": "0c6a7924454f02683bcf0123012b2ea0847592befb1f8c35758ca9d31fa5846b"
+      "sha256": "ba5499b12b936ce9cfb5f69fc4514e76c16c068c088287ea6060e9ed44244039"
     }
   ],
   "inspection": {

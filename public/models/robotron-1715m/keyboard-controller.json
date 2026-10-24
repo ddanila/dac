@@ -19982,6 +19982,88 @@
         "status": "unassigned-wire-photo-estimate"
       }
     ],
+    "visualCapacitors": [
+      {
+        "baseHeight": 1.6,
+        "centre": [
+          -114.695,
+          3.019
+        ],
+        "diameter": 5,
+        "height": 9,
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1390,
+          650,
+          1525,
+          790
+        ],
+        "ref": "C2",
+        "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred.",
+        "status": "body-only"
+      },
+      {
+        "baseHeight": 1.6,
+        "centre": [
+          -106.445,
+          -2.752
+        ],
+        "diameter": 5,
+        "height": 9,
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1315,
+          770,
+          1445,
+          880
+        ],
+        "ref": "C3.1",
+        "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred.",
+        "status": "body-only"
+      },
+      {
+        "baseHeight": 1.6,
+        "centre": [
+          132,
+          -4.5
+        ],
+        "diameter": 5,
+        "height": 9,
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1470,
+          3820,
+          1610,
+          3985
+        ],
+        "ref": "C3.2",
+        "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred.",
+        "status": "body-only"
+      },
+      {
+        "baseHeight": 1.6,
+        "centre": [
+          -101.335,
+          18.111
+        ],
+        "diameter": 5,
+        "height": 9,
+        "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1600,
+          820,
+          1735,
+          965
+        ],
+        "ref": "C4",
+        "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred.",
+        "status": "body-only"
+      }
+    ],
     "visualConnectors": [
       {
         "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
@@ -31254,15 +31336,63 @@
       "referenceType": "10u",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Factory placement and primary photograph identify an upright can body. Installed markings, polarity, hole entries and native placement remain unresolved.",
+      "placementAuthority": "controller.kicad_pcb",
+      "bodyIdentification": {
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1390,
+          650,
+          1525,
+          790
+        ],
+        "identitySource": "robotron-factory-drawings",
+        "identityLocator": "PDF page 10, drawing 63-330-4103-2; can-body location relative to adjacent parts",
+        "scope": "Body identity and can form only; no marked capacitance, voltage, polarity or hole assignment."
+      },
+      "visualCapacitorCandidate": {
+        "status": "body-only",
+        "photoSource": "photo-top",
+        "centreMm": [
+          -114.695,
+          3.019
+        ],
+        "diameterMm": 5,
+        "heightMm": 9,
+        "baseHeightMm": 1.6,
+        "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred."
+      }
     },
     "C4": {
       "referenceType": "10u",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Factory placement and primary photograph identify an upright can body. Installed markings, polarity, hole entries and native placement remain unresolved.",
+      "placementAuthority": "controller.kicad_pcb",
+      "bodyIdentification": {
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1600,
+          820,
+          1735,
+          965
+        ],
+        "identitySource": "robotron-factory-drawings",
+        "identityLocator": "PDF page 10, drawing 63-330-4103-2; can-body location relative to adjacent parts",
+        "scope": "Body identity and can form only; no marked capacitance, voltage, polarity or hole assignment."
+      },
+      "visualCapacitorCandidate": {
+        "status": "body-only",
+        "photoSource": "photo-top",
+        "centreMm": [
+          -101.335,
+          18.111
+        ],
+        "diameterMm": 5,
+        "heightMm": 9,
+        "baseHeightMm": 1.6,
+        "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred."
+      }
     },
     "C6": {
       "referenceType": "470p",
@@ -31395,15 +31525,63 @@
       "referenceType": "47u",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Factory placement and primary photograph identify an upright can body. Installed markings, polarity, hole entries and native placement remain unresolved.",
+      "placementAuthority": "controller.kicad_pcb",
+      "bodyIdentification": {
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1315,
+          770,
+          1445,
+          880
+        ],
+        "identitySource": "robotron-factory-drawings",
+        "identityLocator": "PDF page 10, drawing 63-330-4103-2; can-body location relative to adjacent parts",
+        "scope": "Body identity and can form only; no marked capacitance, voltage, polarity or hole assignment."
+      },
+      "visualCapacitorCandidate": {
+        "status": "body-only",
+        "photoSource": "photo-top",
+        "centreMm": [
+          -106.445,
+          -2.752
+        ],
+        "diameterMm": 5,
+        "heightMm": 9,
+        "baseHeightMm": 1.6,
+        "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred."
+      }
     },
     "C3.2": {
       "referenceType": "47u",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-numbered",
-      "note": "Reference schematic; specimen identity/placement requires review",
-      "placementAuthority": "controller.kicad_pcb"
+      "note": "Factory placement and primary photograph identify an upright can body. Installed markings, polarity, hole entries and native placement remain unresolved.",
+      "placementAuthority": "controller.kicad_pcb",
+      "bodyIdentification": {
+        "photoSource": "photo-top",
+        "pixelBox": [
+          1470,
+          3820,
+          1610,
+          3985
+        ],
+        "identitySource": "robotron-factory-drawings",
+        "identityLocator": "PDF page 10, drawing 63-330-4103-2; can-body location relative to adjacent parts",
+        "scope": "Body identity and can form only; no marked capacitance, voltage, polarity or hole assignment."
+      },
+      "visualCapacitorCandidate": {
+        "status": "body-only",
+        "photoSource": "photo-top",
+        "centreMm": [
+          132,
+          -4.5
+        ],
+        "diameterMm": 5,
+        "heightMm": 9,
+        "baseHeightMm": 1.6,
+        "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred."
+      }
     },
     "BR1": {
       "referenceType": "BRIDGE",
@@ -44906,7 +45084,7 @@
     },
     "inputSha256": {
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
-      "component-evidence.json": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
+      "component-evidence.json": "2aea0d2ec425af9507ae38f544f3c61eb6834efe35fc5cfc45d971b230fb909e",
       "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "filter-registration.json": "28791731941aaf96faecd845871a0e151cfde5a56e9ef76212d54c90a4cbbf4a",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
@@ -46425,10 +46603,10 @@
     "inputSha256": {
       "connection-review.json": "ad12255aba3ec6204cb2ca7d53ea81c09352000f3f5c2c278ab9234a1b06e0a4",
       "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
-      "component-evidence.json": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
+      "component-evidence.json": "2aea0d2ec425af9507ae38f544f3c61eb6834efe35fc5cfc45d971b230fb909e",
       "route-evidence.json": "30c3b039aaa1cef03832c82d7d63a407e7f23abecea0455484dcf35989ff50ae",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "generated/layout.json": "8ddc39f82b1e45e1f5764f1769047a1c0db844a2293d7ad9a6729036e9becdd2",
+      "generated/layout.json": "3a2767183f35d6a4c049f97687d188294b25d942a113725c018023137974d408",
       "generated/connector-terminals.json": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "generated/top-registration.json": "51e4d86dfbb73aa372be16e05c1fa6b465342d59291905d9b8fd13ec001154f7",
       "generated/bottom-registration.json": "57020ef44a830a4e2ada197fdb49f43e68672c2c734dc71ab1ce279841a11725",
@@ -51276,14 +51454,14 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "5806a6317661a492531d8ef38b5c767348b32b4e"
+      "revision": "ab4ef06c05e008a07787ff72802d2ae03ef30651"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "cf9ee5411449fdeee65293b22f2d2923aea240d2"
     },
     "files": {
-      "layout": "8ddc39f82b1e45e1f5764f1769047a1c0db844a2293d7ad9a6729036e9becdd2",
+      "layout": "3a2767183f35d6a4c049f97687d188294b25d942a113725c018023137974d408",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "7ce12a0969866775542c21d00938e8b9a5a8aa2e2bf54617c4afe5f91a14ce03",
       "photoRegistration": "27ab4351432a9beccec11138402c36486358de43814ec6e6159dbc184a579e8b",
@@ -51292,15 +51470,15 @@
       "connectorReview": "b85b5c00e6a80970eadfb147653fc38c783eb12015dd98aab72c6e26064ce24f",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
-      "componentEvidence": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
+      "componentEvidence": "2aea0d2ec425af9507ae38f544f3c61eb6834efe35fc5cfc45d971b230fb909e",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
       "busReview": "fe78338191763e2d60f50481b61d8ff86f8b1608cfb7a67dd0f2d79debfbcbbc",
-      "cableCopper": "6d75f815ae7937cb8235c5075176f1bf43f687c92cc7b7bca66b553ff8a97cd4",
-      "connectionReview": "1d5b257525dc8b07e4074d3461f443fae819812fae861fe3365964b44d7e8db0",
+      "cableCopper": "ede5f4d2a60bfa2b62e6cf624583501d6c0321518eed50f703bf0ca2b4d991ad",
+      "connectionReview": "04e4ebb0329874387aab2a1375a3c8ce7b74f9b05fe1926476ca543b5ac40359",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "f6e306520f5b08cd630656324c60e4d8be5ce5f7ead8152a4776a9993017fd20",
+    "geometryScadSha256": "ce0e0628de5dbebc9fa101526676728f1016523efdd84d1a0c8b19cde8675a25",
     "digitalCompletionSha256": "607d0ae6fdb86334b783e7fe5c8b28b22900bbcaf41cfe90addfd26c39d5f0c9",
     "productionDigitalSummarySha256": "73fc7bb3cedc91aadf4872be04d052bc53b521c590e03cfaa226437c6245f921",
     "productionDigitalFirmwareSha256": "513537baed626829587aa597a1c9c4968b9886e1f66a844d530044797456cd57",

@@ -616,6 +616,10 @@ test('body photo regions expose resistor evidence without placing electrical pin
  await panel.getByLabel('Controller component',{exact:true}).selectOption('R2');
  await expect(panel.locator('[data-body-photo="R1"]')).toHaveCount(0);
  await expect(panel.locator('[data-body-photo="R2"] rect')).toBeVisible();
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('C2');
+ await expect(panel.locator('[data-body-photo="C2"] rect')).toHaveAttribute('x','1390');
+ for(const cell of await panel.locator('[data-connected-pins] tbody tr td:last-child').allTextContents())expect(cell).toBe('Unplaced');
+
  expect(await page.evaluate(()=>window.bodyHighlights)).toEqual([]);
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A1');
  await expect(panel.locator('[data-body-photo]')).toHaveCount(0);
@@ -1094,6 +1098,7 @@ test('populated reference assembly loads independently and walkthrough follows c
 test('assembly population and walkthrough terminals preserve the electrical contract',()=>{
  const reference=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/keyboard-controller-reference.json',import.meta.url)));
  const assembly=reference.assembly;
+ expect(assembly.components.filter(c=>c.package==='radial-capacitor').map(c=>c.ref).sort()).toEqual(['C2','C3.1','C3.2','C4']);
  expect(assembly.leadForming.radiusMm).toBeGreaterThan(0);
  expect(assembly.components.some(c=>c.leads.some(l=>l.bends?.length))).toBe(true);
  expect(assembly.sharedBodies).toHaveLength(1);
