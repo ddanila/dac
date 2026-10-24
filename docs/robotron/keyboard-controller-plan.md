@@ -12,7 +12,7 @@ while making these changes.
 
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
-| 1. Coupled rollback checks | Check actual HDL advancement across client-requested breakpoints and exercise Newton rejection, then extend coupled retry coverage beyond reset release. | Preserve event ordering, state and firmware behavior against complete controls; a bounded ordering regression or recorded replay cannot establish coupled rollback. |
+| 1. Coupled rollback checks | Exercise Newton rejection, then extend coupled retry coverage beyond reset release. | Preserve event ordering, state and firmware behavior against complete controls; a bounded ordering regression or recorded replay cannot establish coupled rollback. |
 | 2. Full-repeat capture support | Extend capture retention and comparison checks to the complete prepared S600 scenario's declared endpoint. | Preserve all required observations and absolute sample times; reject truncated captures. Verify any lossless storage changes before relying on them. |
 
 These tasks need no new specimen evidence. Keep the candidate opt-in until
