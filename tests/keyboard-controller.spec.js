@@ -1058,6 +1058,7 @@ test('populated reference assembly loads independently and walkthrough follows c
    await expect(assembly.locator('[data-assembly-status]')).toContainText('0 body-envelope intersections');
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Nominal lead clearance: 0 unintended contacts');
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Manufacturing tolerances remain unqualified');
+   await expect(assembly.locator('[data-assembly-status]')).toContainText('Proposed assembly allowances: clear; enclosure allowances: clear');
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Nominal enclosure interfaces: clear');
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Shared filter core: 0 modeled intersections');
   }else{
@@ -1096,6 +1097,10 @@ test('assembly population and walkthrough terminals preserve the electrical cont
  expect(assembly.review.bodyEnvelopeIntersections).toEqual([]);expect(assembly.review.mechanicallyQualified).toBe(false);
  expect(assembly.review.leadClearance.noUnintendedContact).toBe(true);
  expect(reference.enclosure.nominalInterfacesClear).toBe(true);
+ expect(reference.enclosure.allowanceInterfacesClear).toBe(true);
+ expect(reference.enclosure.allowanceControl.intersects).toBe(true);
+ expect(assembly.review.assemblyAllowances.envelopesClear).toBe(true);
+ expect(assembly.review.assemblyAllowances.mechanicallyQualified).toBe(false);
  expect(reference.enclosure.positiveControl.intersects).toBe(true);
  expect(reference.enclosure.mountingControl.intersects).toBe(true);
  expect(reference.enclosure.results.find(r=>r.interface==='substrate-mounts').intersects).toBe(false);
