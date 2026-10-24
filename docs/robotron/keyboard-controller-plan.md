@@ -1,381 +1,147 @@
-# Robotron keyboard controller reconstruction and synchronization plan
+# Robotron keyboard controller remaining-work plan
 
-Status: incomplete. The proposed reference PCB is fully connected and passes
-native DRC; separate reference exports, digital comparisons and museum
-synchronization are covered by the
-[functional reference release](../../public/models/robotron-1715m/keyboard-controller-release.json).
-Electrical qualification of the reference and historical reconstruction remain
-open as separate milestones. These are active desk-work tasks, not established
-hardware blockers, except where the
-[evidence tiers](#evidence-tiers-and-measurement-dependencies) declare a bench or
-specimen measurement dependency.
-The [workflow guide](keyboard-controller-progress.md) points to authoritative
-artifacts; the [requirement audit](keyboard-controller-verification.md) separates
-remaining proof from observations that may eventually need the specimen.
+The [functional reference release](../../public/models/robotron-1715m/keyboard-controller-release.json)
+covers the schematic, fully routed reference PCB, declared digital emulator/HDL
+comparisons, generated OpenSCAD model and museum synchronization. Those are
+completed capabilities to preserve, not pending implementation tasks.
 
-Reconstruct the keyboard controller as a KiCad schematic and PCB, generate its
-OpenSCAD geometry, and qualify its digital behavior against the emulator using
-Verilog co-simulation. Use this smaller board to establish a repeatable workflow
-before extending it to other Robotron boards.
-
-Complete a working reference implementation first, then use its expected
-connections to guide historical reconstruction. Distinguish schematic-defined
-connectivity, proposed implementation geometry, photo-supported routing and tested
-behavior. Successful simulation does not prove a unique circuit, historical copper
-placement or specimen timing.
-
-## Reference simulation and specimen fidelity
-
-Use standard S600 firmware to complete the reference-board circuit simulation.
-Missing specimen measurements, replacement ROM contents and physical pad mapping
-must not block electrical modeling from the published schematic. Implement the
-analog sections and couple them to the existing HDL as described in the
-[circuit simulation decision and workflow](keyboard-controller-simulation.md).
-The existing schematic-derived netlist is the starting authority: missing PCB
-joins generally mean missing copper, not unknown logical nets. Preserve known
-connections. Where the circuit really is ambiguous, record alternatives and select
-an explicit reference assumption using schematic, device and firmware constraints;
-passing firmware tests alone cannot establish the original implementation.
-Exact specimen agreement remains a separate qualification task; historical
-reconstruction stays in scope but does not gate completion of the reference PCB.
-
-### Evidence tiers and measurement dependencies
-
-Electrical claims rest on one of three evidence tiers, recorded explicitly in
-each retained assessment:
-
-| Tier | Source | Can establish |
-| --- | --- | --- |
-| Published | Datasheets, manufacturer drawings, independent solver replays | Sampled endpoint conditions, typical delays, logical behavior |
-| Bench | Measurements of loose equivalent commodity devices (SN7406/К155ЛН5, К555ЛА3, host buffers) driving the modeled loads | Junction capacitance, recovery, reverse operation, oscillator levels and startup |
-| Specimen | Observations of the museum board | Installed part identity, copper, ROM contents, timing |
-
-A claim becomes a bench dependency when candidates that pass every published
-screen still predict materially different waveforms. It does not wait for the
-specimen: the devices are commodity parts and the measurement does not touch the
-board. A claim becomes a specimen dependency only when bench evidence and
-published constraints cannot distinguish the alternatives. Record the tier each
-open gate requires and the measurement that would close it.
+This plan covers remaining mechanical refinement, historical reconstruction and
+electrical qualification. The [requirement audit](keyboard-controller-verification.md)
+records evidence and missing proof; the [workflow guide](keyboard-controller-progress.md)
+locates authoritative artifacts and regeneration commands. Experiment results and
+component inventories belong in those artifacts, not this plan.
 
 ## Next work and acceptance
 
-Each electrical gate below names the decision it informs: a change to the
-emulator, the reference PCB or historical tracing that would follow from a
-different result. A gate that informs none of these is a research note, retained
-with its evidence, and is not a completion criterion.
+| Priority | Remaining work | Can proceed now? | Acceptance |
+| --- | --- | --- | --- |
+| 1 | Refine the proposed mechanical assembly: shared filter core, package adapters, lead bends and manufacturing allowances | **Yes, desk work.** Use explicit reference-design assumptions; measured specimen fit is separate. | Consistent terminal mappings, pad-aligned leads, documented dimensional assumptions and passing geometry/clearance checks. Recheck routing and DRC if footprints change. |
+| 2 | Reconcile historical registration, placement and copper using the reference nets as a tracing guide | **Yes, desk work**, for visible features and bounded photo fits. Individual obscured joins may need additional observations. | Supported endpoints and geometry, retained alternatives, and no unexplained native-check regressions. Follow the sequence below. |
+| 3 | Close direct-driver numerical convergence | **Software work, conditional on a useful electrical decision.** Not inherently a bench dependency; avoid repeating costly runs without a hypothesis affecting receiver decisions or board timing. | Meet the convergence gate below across the required traffic and controls. |
+| 4 | Qualify oscillator and CPU clock behavior | **Independent device evidence needed for admission.** Current candidates fail voltage/timing screens. Loose intended-family devices can be measured without the museum board. | An independently supported device model passes startup-inclusive closed-board clock-level and timing checks. |
+| 5 | Qualify output/host drivers, CPU/bus drive and filter/cable loading | **Independent device/load evidence needed for admission.** Equally screened driver candidates predict materially different loaded waveforms. | Supported dynamic parameters and load ranges establish receiver margins and CPU/bus timing; fitted endpoint behavior alone is insufficient. |
+| 6 | Qualify the coupled reference circuit | **Depends on numerical and model-admission gates above.** Prepared traffic can be used once prerequisites pass. | Press/release, modifiers, repeat, reset during transmission, startup, host loading, bus timing and supply recovery pass electrical and convergence checks while preserving firmware behavior. |
 
-1. **Use the complete reference PCB to guide reconstruction.** Reference routing
-   and native checks now pass. Review proposed package adapters and mechanical fit,
-   then follow expected net endpoints through the
-   [historical reconstruction sequence](#physical-reconstruction-sequence).
-   Preserve the [reference acceptance contract](#reference-completion-sequence)
-   when changing placements, mappings or routes.
-2. **Maintain production digital acceptance.** The keyboard-specific backend
-   implements X1 A9 bus arbitration and edge-timed memory, refresh, interrupt
-   acknowledge and I/O behavior. Retained C/HDL comparisons cover the declared
-   instruction and phase sweeps plus the complete standard-S600 firmware suite.
-   CPU-only reset preserves external contacts and latch validity; startup LED
-   values remain unknown until IORQ clocks A6. Regenerate and replay
-   `digital/reports/cpu-bus/summary.json` when changing this contract.
-   This closes production adoption for that reference digital scope, not exhaustive
-   opcode conformance, U880 specimen timing or full-board electrical accuracy.
-3. **Close numerical convergence for the direct-driver circuit.** Gate: two
-   completed refinement levels with identical circuit, stimulus and model
-   assumptions, compared at absolute time over the whole observed window with no
-   alignment, exclusion or relaxed limits. Budget: every observed node voltage
-   differs by at most 10 mV between the two finest completed levels, differences
-   do not grow from the previous pair, firmware reads and serial edges are
-   preserved, and the disabled controls complete without solver failure. The
-   budget is numerical only; it is far below physical uncertainty and never
-   stands in for model admission. Decision informed: whether later electrical
-   results are solver artifacts. Findings from the superseded ideal-switch and
-   host-coupled fixtures do not gate this item; rerun those scenarios on the
-   direct-driver circuit or mark them historical in the audit. Keep the opt-in
-   precision, capacitor-history, passive-addition and scheduling corrections with
-   their disabled controls. Repeat-capture refinement completes under the same
-   budget. The [expanded observation review](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/direct-repeat/assessment.json)
-   separates board voltages from behavioral drive-control voltages. The completed
-   short window supports the board-voltage budget but fails the original strict
-   all-saved/nonincreasing screen. Keep that result explicit. Full-repeat attempts
-   and disabled controls are incomplete or failed. Do not extend this expensive
-   campaign until it addresses a concrete board or receiver decision; private
-   fixture discrepancies without such an effect remain research diagnostics.
-4. **Constrain the oscillator and CPU clock first.** Gate: the startup-inclusive
-   closed-board run reaches qualified CPU clock levels and timing with a device
-   model admitted against independent evidence for the intended part. Every
-   coupled startup, bus-timing and supply-recovery result depends on this clock,
-   so it precedes driver work. Decision informed: whether the digital clock
-   boundary used by the emulator and HDL comparisons is electrically supported.
-   Keep primary К555ЛА3, comparison D100D and reference DL000 conditions separate.
-   The [startup/load screen](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-acceptance/assessment.json)
-   rejects the current reference behavioral models: high-level correction alone
-   leaves timing failures. Required tier: bench measurement of a loose intended-family
-   gate around switching and under the reference pullup before admitting a replacement.
-   The isolated screen does not replace the closed-board gate.
-5. **Admit the output-driver and host-buffer models.** Gate: one driver model
-   whose junction capacitance, recovery and reverse-operation behavior are fixed by
-   evidence independent of the firmware comparison, and whose predicted loaded
-   waveform is unique within that evidence. Candidates passing the selected
-   published screens already predict materially different loaded waveforms, so
-   this is a bench dependency now. Recovery diagnostics identify reverse output
-   operation and load sensitivity; their current and charge predictions are not
-   bench evidence. Decision informed: whether the serial
-   undershoot and recovery could change what the host receiver reads; if the
-   receiver margin is preserved across the admitted candidates, the magnitude is a
-   research note. Admit vendor models against the intended device's conditions;
-   do not tune parameters merely to remove a solver failure. CPU bus and WR
-   drivers remain stress fixtures until admitted the same way.
-6. **Qualify the coupled reference board.** Gate: after items 3 to 5 pass,
-   execute the prepared press/release, modifier and reset-during-transmission
-   traffic on the direct-driver circuit, then coupled startup, host loading, bus
-   timing and supply recovery, each under the convergence budget with preserved
-   firmware reads. Decision informed: electrical support for the digital
-   contract the emulator implements. Keep the ADC and DAC scheduling candidates
-   opt-in; longer disabled/enabled controls precede any use of the evaluator
-   cache. Logical agreement alone cannot close this item.
-7. **Identify residual measurement dependencies.** Exhaust photographs, package
-   drawings and published circuit constraints first. For each remaining
-   ambiguity, state the alternatives, the evidence tier that would distinguish
-   them and the measurement required. Standard S600 permits reference work
-   without the replacement ROM.
+Start with the proposed shared-core filter assembly and its lead/clearance checks.
+Historical tracing can proceed independently. Failure to identify one physical
+join does not block the reference model or unrelated reconstruction.
 
-The [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
-records the findings behind these tasks and links their evidence. Physical
-reconstruction, device research and numerical diagnosis can proceed independently.
-The complete reference layout is now a tracing guide; unresolved historical
-geometry must not hold up reference electrical qualification. Routing completion
-does not resolve numerical or device-model failures. Detailed measurements,
-candidate inventories and experiment results stay in source reports.
-An unresolved claim becomes an external dependency only when available evidence
-cannot distinguish the remaining alternatives; it does not block unrelated work.
+## Mechanical refinement
 
-## Reference completion sequence
+Replace remaining package/filter surrogates with explicitly proposed construction.
+Model the shared core and winding arrangement without presenting guessed winding
+pairings, dimensions or coupling parameters as specimen evidence. Review package
+adapters, bend radii, lead forming and assembly allowances against published
+package geometry and the modeled enclosure.
 
-Maintain distinct reference and historical KiCad board variants with shared stable
-component and net IDs. Keep the schematic as the connectivity authority; reuse
-supported geometry without overwriting its evidence. Variant identity and provenance
-must survive exports, checks, OpenSCAD generation and museum inspection. The CAD
-`reference/` variant implements this separation and passes routing and DRC checks.
-Its populated OpenSCAD and museum assembly use pad-driven leads, explicit package
-adapters and shared package bodies. Generated body-envelope, overhang and drill
-checks pass; they do not establish mechanically qualified construction. Nominal
-lead-to-lead capsule clearance is checked, with intentional bridge contacts
-separated from unintended contacts. A source-bound solid-intersection check covers
-the reference substrate and populated assembly against the modeled case, supports,
-mounts and matrix board. Manufacturing allowances, bend radii, measured enclosure fit and the shared
-filter core remain open.
-Netlist-checked signal walkthroughs link reference selection to historical evidence.
-
-| Step | Work | Acceptance |
-| --- | --- | --- |
-| 1. Establish the reference contract | Review the existing netlist against the schematic, device pinouts and firmware interfaces. Separate missing copper from genuine connectivity ambiguity; record chosen assumptions and alternatives in machine-readable evidence. | Every intended pin has a net or an explicit unused classification. Any variant-specific electrical differences are explicit and reviewed; no connection is changed merely to make a test pass. |
-| 2. Complete reference placement and routing | Reuse supported placements and copper. Where evidence is incomplete, choose documented reference footprints, terminal mappings, dimensions and proposed routes. Preserve primary/comparison specimen distinctions. | All intended pad groups are connected, with no unintended shorts; netlist checks pass and DRC findings are resolved or individually justified. Proposed geometry never increases historical-evidence coverage. |
-| 3. Exercise the complete reference circuit | Run the CPU and standard S600 firmware against matrix stimuli; compare bus, latch and serial behavior for ordinary keys, modifiers, repeat, release and reset. Keep analog qualification gates below independent. | Reproducible functional results cover the declared circuit assumptions. Electrical acceptance additionally requires convergence, receiver levels, timing and recovery; routing or serial agreement alone cannot satisfy it. |
-| 4. Export and use the reference as a tracing guide | Generate its OpenSCAD model and museum view. Inspect expected source-to-destination connections against both board photographs, replacing proposed geometry only when evidence supports the replacement. | Reference and historical views are explicitly labelled; proposed routes are visually distinguishable and filterable. Checks and coverage reports are variant-specific. Promotions retain evidence and revalidate affected connectivity and geometry. |
-
-A fully routed reference is a candidate implementation, not a fabrication release.
-Mechanical dimensions, installed package/pad mappings, electrical qualification and
-manufacturing checks remain separate requirements. Do not report zero reference
-unconnected items as zero unresolved historical joins.
+Existing nominal body, lead and enclosure checks are regression safeguards.
+Extend them where the new geometry introduces an interface they do not cover.
+Mechanical acceptance of a proposed design and measured fit of the museum board
+are separate claims; rendering success or nominal clearance cannot establish the
+latter. A physically different reference footprint may require rerouting.
 
 ## Physical reconstruction sequence
 
-Use the completed reference connections to prioritize tracing from both endpoints.
-The following evidence requirements apply to the historical variant; they do not
-prevent proposed reference placements or routes. Where steps depend on historical
-geometry, follow this order. Package-distance review and the CPU pitch correction
-do not yet qualify the global envelope or R1 placement. SENSE/R1 and the serial
-data/clock path remain historical reconstruction targets.
+Use schematic-defined nets to trace from both ends. Missing historical copper
+usually means an unresolved route, not an unknown electrical connection. BR1/BR2
+functions and nets are established; only correspondence to physical ends and
+complete trace geometry remain questions.
 
 | Step | Work | Acceptance |
 | --- | --- | --- |
-| 1. Diagnose registration disagreement | Compare the enclosing edge fit in `sense-review.json` with board-plane joints and known package pin pitches. Check scale, perspective, handedness and raised-lead bias independently; neither the nominal envelope nor existing placement is assumed correct. | Retain a reproducible comparison with held-out checks, residuals and validity boundaries that distinguishes calibration error from placement error. Do not widen tolerances to obtain a pass. |
-| 2. Reconcile native placement | Correct only placements or registrations supported by step 1. Recheck existing routes and cross-side joins affected by those changes. | Qualified fits cover the intended geometry; independent checks meet the existing budget. Regenerated native connectivity and DRC show no unexplained regressions. |
-| 3. Place R1 and route the SENSE corridor | Resolve primary bank orientation and numbered hole entries, map the reference package to supported primary holes, then promote complete A4–R1 paths individually. Use the corrected detour and comparison evidence in `sense-review.json`. | Native pads represent the physical package, including its unused lead; each promoted route has supported endpoints and bounded registration throughout. Common-to-ground and collector branches remain separate acceptance items. |
-| 4. Complete the row front ends | Trace R1's common connection and sensing-transistor collector branches. Establish transistor terminal orientation from package evidence and visible lead entries. | Every assigned terminal has evidence beyond schematic expectation or proximity. Reference HDL/analog behavior remains consistent with schematic connectivity; simulation does not establish physical joins. |
-| 5. Close the remaining physical paths | Prioritize complete visible connections using `generated/routing-audit.json` and the tracing sources below. Continue through placement and DRC gaps. | Record both endpoints and unresolved spans; count connected pad groups separately from floating copper. Finish the data/clock path through L1 to XT1 for the integration milestone. |
+| 1 | Reconcile board scale, perspective and raised-lead bias using board-plane joints and package pitches | Independent held-out checks meet the existing registration budget; no widened tolerance or extrapolated terminal assignment. |
+| 2 | Correct supported placements and recheck affected routes | Native pad positions have bounded evidence; cross-side joins and native checks remain consistent. |
+| 3 | Resolve primary R1 orientation and numbered hole entries, then trace the A4–R1 SENSE corridor | Native pads represent the physical package, including its unused lead; promote only individually supported paths. |
+| 4 | Trace R1 common and sensing-transistor collector branches; resolve transistor terminal orientation | Terminal identity follows package evidence and visible lead entries, not proximity alone. |
+| 5 | Finish remaining bus, data/strobe, supply and clock paths, including L1–XT1 | Both endpoints and unresolved spans are recorded. Resolve WR/RD against specimen evidence. Keep connected pad groups separate from floating copper. |
 
-For every native change, regenerate KiCad checks, OpenSCAD geometry and museum
-inspection together for the affected variant. Keep proposed solder attachments and
-unmeasured via geometry explicit. Photo-only observations must not create assigned
-historical copper; proposed reference copper requires its own provenance.
+Use the existing CAD tracing authorities rather than duplicating candidates here:
 
-Use these existing tracing authorities rather than maintaining a second candidate
-inventory in this plan:
+- `sense-review.json`: R1, SENSE paths and bank orientation.
+- `bus-review.json`: CPU/ROM/latch buses and covered joins.
+- `path-tracing.json`: data/strobe transitions and WR/RD alternatives.
+- `supply-review.json`, `filter-registration.json`, `clock-continuation.json`
+  and `cable-copper.json`: filter/cable geometry, correspondence and winding ends.
+- `connection-review.json`: bridge and connector observations, including X1.A8.
 
-| Area | CAD evidence and acceptance boundary |
-| --- | --- |
-| SENSE and R1 | `sense-review.json`: comparison orientation supports a hypothesis, not primary marking identity or the hidden common-to-ground join. |
-| CPU/ROM and latch bus | `bus-review.json`: check package numbering and board entries, compare candidate eyes, and trace from both ends. Covered CPU/ROM joins need visible continuation or independent continuity; positional agreement alone is insufficient. |
-| Data and strobe | `path-tracing.json`: resolve the hidden resistor and CPU/latch terminal transitions before selecting attachments or WR/RD. |
-| Supply, filter and clock | `supply-review.json`, `filter-registration.json`, `clock-continuation.json` and the anonymous cable-end graph: extend fits with independent landmarks; cross-side correspondence does not identify winding pairs or bridge occlusions. |
-| Matrix connector | `generated/connector-review.json` and `generated/connector-terminals.json`: preserve row-order evidence and the owner-confirmed isolated A8 pad; refine dimensions only with measured evidence. |
+Keep primary and comparison specimens separate. Retain rejected fits and competing
+connections in machine-readable evidence. Additional observations are required
+only where the available evidence cannot distinguish the alternatives. Exact
+specimen agreement also needs identified ROM contents, dimensions and timing;
+standard S600 remains sufficient for reference work.
 
-Keep rejected fits and conditional net conflicts in machine-readable evidence.
-Composed registrations are valid only inside both source domains; a nearby
-projected point must not become an assigned terminal outside those bounds.
+## Electrical qualification gates
 
-## Ownership and synchronization contract
+### Numerical convergence
 
-| Information | Authoritative source | Consumers |
-| --- | --- | --- |
-| Components, numbered pins, electrical nets | KiCad schematic | PCB checks, generated HDL wiring, signal mappings |
-| Outline, holes, footprints, placement and copper | Explicitly identified reference or historical KiCad PCB | Variant-specific OpenSCAD and museum assets |
-| Enclosure, brackets, shields and assembly transform | OpenSCAD | Museum assembly |
-| Chip behavior | Independently reviewed Verilog models | Board simulation |
-| Firmware and software behavior | Identified ROM and emulator implementation | Co-simulation |
-| Photo registration, anonymous observed geometry and unresolved claims | Evidence manifest | Layout review and museum inspection |
+Complete two refinement levels with identical circuit, stimulus and model
+assumptions, comparing absolute time over the whole required observation window.
+Every observed node voltage must differ by at most 10 mV between the two finest
+completed levels, with differences not growing from the previous pair. Preserve
+firmware reads and serial edges; disabled controls must complete without solver
+failure. Do not align traces, exclude failing spans or relax limits to pass.
 
-Use stable component references, physical pin numbers and named nets throughout.
-The normalized connectivity manifest and HDL interconnect are generated outputs.
-Do not round-trip edits through them or maintain separate hand-written trace
-geometry in OpenSCAD after migration. Evidence-derived visual bodies and raised
-leads must remain separate from historical native numbered pads; they cannot create
-historical holes, solder joints or net assignments without supporting evidence.
-Reference assumptions may supply proposed geometry and pad mappings only in the
-reference variant, with explicit provenance and checked device pinouts.
+Full-repeat convergence and controls remain incomplete. Short-window board-voltage
+agreement does not establish the full gate. Retain opt-in precision, state-history
+and scheduling candidates with their controls; longer equivalence checks precede
+adoption of evaluator caching. Superseded circuit results cannot qualify the
+current direct-driver circuit. See the [electrical evidence audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
+for retained findings.
 
-Define board units, origin, axes, top/bottom conventions and assembly transform
-explicitly. Generated assets record source revisions, content hashes and tool
-versions. Evidence identifiers must survive geometry export in a sidecar manifest.
+### Device and load admission
 
-Repository ownership: keep the KiCad reconstruction, evidence and geometry exporter
-with the canonical board in `3d-models`; keep the board HDL and emulator comparison
-harness in `dac-emulation`; consume pinned model assets and inspection metadata
-in `dac`. Cross-repository consumers use explicit revisions, not moving checkouts.
+Keep primary К555ЛА3, comparison D100D and reference DL000 conditions separate.
+Establish switching-region behavior and pullup loading before admitting an
+oscillator replacement. Validate the CPU clock in the startup-inclusive coupled
+board, not only an isolated oscillator fixture.
 
-## 1. Establish board identity and evidence
+Constrain driver junction capacitance, recovery and reverse operation, CPU/bus
+I/V and transitions, and filter/cable/host impedance independently of firmware
+agreement. Do not tune a clamp, device or load merely to remove a solver failure.
+Assess whether uncertainty changes receiver decisions or bus timing; waveform
+features with no such consequence are research notes rather than extra gates.
 
-- Match specimen markings, packages, connectors and board revision against the
-  published schematic and placement drawing.
-- Inventory existing top and underside photographs, including obscured regions.
-- Record component references, package types, pin numbering and supporting evidence.
-- Track schematic/specimen differences and reference/specimen firmware separately.
+### Evidence tiers and measurement dependencies
 
-Deliverable: component inventory, source manifest and unresolved-evidence ledger.
-Exit criterion: every identified component has a stable reference, and uncertain
-revision or pin assignments are explicitly marked.
+Published data can establish documented limits and sampled device conditions;
+independent solver agreement checks numerical behavior, not physical accuracy.
+Bench measurements of loose equivalent devices and representative loads can
+resolve dynamic-model ambiguity without touching the museum board. Specimen
+observations establish installed identities, copper, ROM contents and actual timing.
 
-## 2. Reconstruct the KiCad schematic
+For each dependency, retain the alternatives, the evidence needed to distinguish
+them and the decision affected. Exhaust relevant published constraints and existing
+photos first. A bench dependency applies to the specific admission claim, not to
+all software or CAD work. Passing numerical checks does not admit a device model.
 
-- Transcribe components, connectors, supply rails and named nets.
-- Independently review the transcription against the source drawing, especially
-  inversions, latch clocks, connector orientation and power pins.
-- Export normalized connectivity and adapt the relevant Juku comparison tools.
-- Classify unused pins and document electrical-rule exceptions individually.
+## Constraints to preserve
 
-Exit criterion: electrical-rule checks pass or have justified exceptions; all
-modeled pins are connected or explicitly classified. Agreement between generated
-files is a consistency check, not an independent validation of the transcription.
+- KiCad schematic owns components, numbered pins and nets; each PCB variant owns
+  its placement and copper. OpenSCAD owns surrounding mechanics. HDL owns chip
+  behavior, and identified firmware/emulator sources own software behavior.
+- Keep the CAD/evidence authority in `3d-models`, simulation in `dac-emulation`,
+  and pinned museum consumers in `dac`. Preserve stable IDs and explicit revisions.
+- Keep historical, inferred and proposed geometry distinguishable. Proposed
+  reference routes cannot increase historical evidence coverage. Photo-only body
+  or wire observations do not establish numbered historical pads.
+- Regenerate affected KiCad checks, geometry and museum exports together. Preserve
+  digital acceptance and source freshness; rerun firmware/HDL comparisons when
+  their electrical or behavioral contract changes.
+- Preserve the existing coordinate, handedness, package-alignment and provenance
+  checks. A clean reference DRC is neither measured fit nor fabrication approval.
 
-## 3. Complete the reference PCB and reconstruct historical routing
+## Completion
 
-- Complete reference placement and routing using the reference sequence above.
-- Register both photographed sides using holes and component pads.
-- Reconcile historical outline, footprints, mounting holes and connectors.
-- Trace visible copper and associate routes with schematic nets.
-- Label routes as observed, inferred or unresolved, with source-photo references.
-- Keep body/bridge observations independent of unproven numbered-pad assignments.
-- Check board connectivity, clearances and agreement with the schematic.
+The functional reference release is complete and must remain valid.
+Remaining completion requires electrical qualification under the gates above,
+mechanical refinement, and historical reconciliation with supported placements and
+copper continuations. Visible routing must be reconciled with the netlist; hidden
+routes may remain explicitly inventoried rather than claimed historically exact.
+The historical data/clock integration milestone requires supported continuations
+through L1 to XT1. Report exact specimen fidelity and fabrication readiness separately.
 
-Deliverables: distinct editable reference and historical KiCad boards, photo
-overlays and variant-specific connectivity reports.
-Reference exit criterion: all intended nets are physically connected and checked.
-Historical exit criterion: visible routing is reconciled with the netlist and
-remaining uncertain connections are inventoried. Hidden routes may remain
-unresolved; proposed replacement routing must not be labelled historically exact.
+## Source drawings
 
-## 4. Generate the OpenSCAD controller
-
-- Export outline, holes, pads, vias, copper, component transforms and identifiers,
-  retaining board variant and observed/proposed provenance.
-- Reuse the existing detailed component models, positioned by reference and footprint.
-- Keep controller assembly placement and surrounding mechanics in OpenSCAD.
-- Replace duplicate controller artwork and placement data after generated geometry
-  passes review. Preserve the accepted keyboard exterior and existing inspection
-  part identities where possible.
-
-Exit criterion: asymmetric landmark checks detect mirrored or rotated exports;
-pads align with component leads; regeneration is deterministic; the controller
-fits its existing assembly and inspection views.
-
-## 5. Build board HDL and co-simulation
-
-- Generate structural Verilog connections from the schematic netlist; maintain
-  chip behavior separately and review it against component documentation.
-- Model open-collector lines and pull-ups explicitly. Document the digital
-  boundaries for oscillator, reset and other analog circuitry.
-- First drive identical CPU bus transactions and matrix inputs into HDL board
-  logic and the C emulator. Compare input data, LED latch outputs and keyboard
-  data/clock edges at defined sampling points.
-- Run firmware-driven cases for ordinary keys, modifiers, repeat, release and reset.
-- Couple schematic-derived analog sections to HDL, qualify device models against
-  published limits, and test timestep convergence, CPU input levels, bus timing
-  and supply recovery independently of firmware output agreement.
-- Qualify the selected independent CPU HDL model for full-board firmware
-  execution. Record which shared components limit comparison independence.
-
-Exit criterion: failures identify the first differing signal and clock and retain
-a reproducible stimulus plus waveform. Logical and clock-relative agreement is
-reported separately from unmeasured oscillator frequency or analog propagation.
-Full-board electrical acceptance also requires passing convergence and receiver/
-timing gates across the declared model assumptions and supported parameter ranges.
-Those ranges must be supported independently of the firmware comparison; an
-executable nominal model alone cannot complete this phase.
-
-## 6. Integrate museum inspection and synchronization checks
-
-- Preserve component/net IDs, board variant and evidence classification in sidecars.
-- Expose distinct historical and proposed reference views; make proposed routes
-  distinguishable and filterable without implying specimen verification.
-- Support selecting a component or net to highlight geometry and its evidence.
-- Connect supported signals to emulator diagnostics; label illustrative animation
-  separately from recorded activity.
-- Check stale exports, missing references, pin-map differences and geometry mappings.
-- Keep fast connectivity and export checks in ordinary CI; place longer firmware
-  and HDL runs in a separate qualification target.
-
-Exit criterion: a placement change updates the model through regeneration; a
-connection change updates HDL wiring and triggers the relevant checks. A release
-records compatible CAD, HDL, emulator and museum revisions and validation results.
-
-## Integration milestones and completion
-
-**Functional reference release:** reference routing and DRC pass, production
-digital acceptance holds, the data/clock path through XT1, L1 and the output
-circuitry is connected in the proposed PCB and exported to OpenSCAD and the museum,
-and the museum manifests pin compatible CAD, HDL and emulator revisions. Its
-pin-to-net contract matches the schematic used by the HDL/emulator comparisons,
-with the boundary stimuli needed to exercise it. Historical winding-terminal or
-copper uncertainty must be recorded but does not prevent this release. The
-[release manifest](../../public/models/robotron-1715m/keyboard-controller-release.json)
-records this completed milestone and its validation evidence. Maintain its
-freshness checks when changing the released inputs.
-
-**Electrically qualified reference:** items 3 to 6 of the next-work list pass
-with their evidence tiers recorded. This milestone remains open; numerical
-convergence and functional agreement alone cannot close it.
-
-**Historical integration:** reconcile the same path with supported specimen
-placements, terminal identities and copper continuations. This milestone remains
-open; reference routing or successful simulation cannot close it.
-
-Overall completion requires the phase exit criteria and all three milestones.
-Report functional reference release, electrical qualification, historical
-reconstruction and fabrication readiness separately. Exact specimen fidelity
-additionally requires identified ROM contents, dimensions and measured behavior.
-The functional reference release is a deliverable in its own right and does not
-wait for the other milestones.
-
-## References
-
-- [Manufacturer service drawings](https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf): PDF page 10 contains populated placement drawing 63-330-4103-2; page 11 contains schematic 56-330-4103-7. Compare revision and designator differences before applying locations.
-
-- [Zander keyboard schematic, drawing 56-330-4103-7](https://www.sax.de/~zander/pc1715/pc_tasts.pdf)
-- [Zander keyboard component placement](https://www.sax.de/~zander/pc1715/pc_tastb.pdf)
-- [Zander hardware index](https://www.sax.de/~zander/pc1715/pc_hw.html), whose separate
-  keyboard copper-layout entry was listed as unavailable when this plan was prepared.
-- [Canonical Robotron CAD](https://github.com/ddanila/3d-models/tree/main/models/robotron-1715m)
-- [Robotron emulator](https://github.com/ddanila/dac-emulation/tree/main/machines/robotron1715m)
-- [Current capabilities and evidence limits](capabilities.md)
-- [Emulation qualification](emulation-qualification.md)
+- [Manufacturer service drawings](https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf): placement on PDF page 10, schematic on page 11. Check revisions before transferring locations.
+- [Zander schematic](https://www.sax.de/~zander/pc1715/pc_tasts.pdf)
+- [Zander component placement](https://www.sax.de/~zander/pc1715/pc_tastb.pdf)

@@ -20,7 +20,7 @@ evidence and standard S600 firmware.
 | What is proposed in the complete reference PCB? | CAD `reference/implementation.json`, `reference/generated/layout.json` and `reference/generated/qualification.json` |
 | What is observed, inferred or unresolved? | CAD `evidence.json`, `component-evidence.json`, `route-evidence.json` |
 | Which X1 geometry and terminal assignments are supported? | CAD `generated/connector-review.json` and `generated/connector-terminals.json` |
-| What is the next implementation sequence? | [Plan: reference completion](keyboard-controller-plan.md#reference-completion-sequence), then [historical reconstruction](keyboard-controller-plan.md#physical-reconstruction-sequence) |
+| What is the next implementation sequence? | [Remaining work and dependencies](keyboard-controller-plan.md#next-work-and-acceptance) |
 | What constrains SENSE routing and R1 placement? | CAD `sense-review.json`, generated `bus-review.json` → `senseReview`; DAC “SENSE corridor and resistor-bank mapping” |
 | Which output/connector spans should be reviewed next? | CAD `review/connection-review.html`, generated from `connection-review.json` and canonical evidence |
 | Where does the candidate clock continuation stop? | CAD `clock-continuation.json`, generated host-clock connection review; hidden bank joins and upper-eye/filter attachment remain open. |
