@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Work | Acceptance |
 | --- | --- |
-| Reconcile the reset-capacitor source disagreement and compare reset timing | Record factory C4 100 µF / 10 V versus Zander 10 µF / 40 V as source variants. Compare startup and recovery with identical device/load assumptions and timestep refinement. Preserve the reference default; neither drawing establishes the installed value. |
+| Expose the reset-capacitor source variants in CAD and museum component evidence | Use the [retained source alternatives](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reset-capacitance-sources.json); preserve the reference default and unknown installed value. The isolated timing comparison is complete; do not repeat it without a changed electrical question. |
 | Resolve remaining proposed capacitor and connector dimensions | Use identifiable published packages where possible; retain explicit estimates otherwise. Check terminal mappings, geometry and clearances. Specimen fit remains separate. |
 | Reconcile historical registration and individually visible copper | Follow the physical sequence below. Promote only independently supported endpoints within the existing registration budget; leave hidden joins unresolved. |
 | Investigate published constraints on oscillator, driver and load behavior | Identify which uncertainty changes clock acceptance, receiver decisions or bus timing, and what independent evidence distinguishes it. Do not repeat endpoint fitting as dynamic validation. |
