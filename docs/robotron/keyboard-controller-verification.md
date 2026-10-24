@@ -38,7 +38,7 @@ owns scenario coverage and experiment details.
 
 | Gate | Current evidence | Remaining proof |
 | --- | --- | --- |
-| Numerical convergence | [Nested local refinements][nested-local] complete through reset release with identical observed bus events. Data/receiver differences decrease; early-startup supply, WR and DAC-high differences remain non-monotonic. Requested common times differ by floating-point rounding in the saved traces, so the native-time comparison remains unqualified. With the opt-in anchored DAC, [dense startup controls][startup-density] and [tighter relative tolerance][startup-tight] reduce diagnostic-prefix errors. The latter resolves clock/data-path nonincrease but leaves supply/WR, D0 and filter residuals; the strict gate remains unmet. [Absolute-voltage-tolerance controls][startup-voltage] leave those residuals nearly unchanged. | Matched refinement and complete controls under the [plan's numerical gate](keyboard-controller-plan.md#numerical-convergence); full-repeat coverage remains open. Keep numerical candidates opt-in. |
+| Numerical convergence | [Dense anchored refinements][dense-anchored] and the disabled control complete the full reset-release window with identical observed bus events. All voltage differences are below 20 µV, but several increase under refinement, so the strict gate fails. The retained peak decomposition separates resampling contributions from clock/filter trajectory differences; it does not waive either. | Diagnose adaptive-step history and qualify any correction under the unchanged [numerical gate](keyboard-controller-plan.md#numerical-convergence). Full-repeat coverage remains open; keep numerical candidates opt-in. |
 | HDL/electrical scheduling | The [input-boundary regression][input-barrier] passes its declared ordering scope. | Full coupled acceptance, including the supply-relative bus-voltage check; scoped regression success is not general rollback support. |
 | Onboard clock | [Reference oscillator screens][clock-acceptance] fail U880 level or timing requirements. | Independently constrained intended-family dynamics and startup-inclusive board qualification. Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions. |
 | Reset | [C4 source-alternative studies][reset-alternatives] cover isolated exploratory reset behavior. | Installed component identity and coupled reset/recovery qualification; retain the reference default. |
@@ -112,10 +112,5 @@ and the reason for changing its interpretation.
 [bus-device]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-device-admission/assessment.json
 [clock-acceptance]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-acceptance/assessment.json
 [reset-alternatives]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitance/generic/assessment.json
-[nested-local]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/nested-local-refinement/assessment.json
 
-[startup-density]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-grid-density/assessment.json
-
-[startup-tight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-tight-tolerance/assessment.json
-
-[startup-voltage]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-voltage-tolerance/assessment.json
+[dense-anchored]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/dense-anchored-refinement/assessment.json
