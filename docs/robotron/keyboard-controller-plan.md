@@ -13,9 +13,8 @@ while making these changes.
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
 | 1. Coupled rollback checks | Exercise Newton rejection, then extend coupled retry coverage beyond reset release. | Preserve event ordering, state and firmware behavior against complete controls; a bounded ordering regression or recorded replay cannot establish coupled rollback. |
-| 2. Full-repeat capture support | Extend capture retention and comparison checks to the complete prepared S600 scenario's declared endpoint. | Preserve all required observations and absolute sample times; reject truncated captures. Verify any lossless storage changes before relying on them. |
 
-These tasks need no new specimen evidence. Keep the candidate opt-in until
+This work needs no new specimen evidence. Keep the candidate opt-in until
 its full-window and coupled controls pass.
 
 ### Deferred — full-repeat execution
@@ -25,7 +24,9 @@ When resuming, preflight capacity and runtime, then run the reset-release candid
 over complete standard-S600 repeat traffic with matched timestep refinements and
 a complete control. Pass the unchanged numerical gate below while preserving
 firmware reads and serial behavior over the full-repeat window. Do not shorten
-the scenario to fit the current machine.
+the scenario to fit the current machine. Validate the integrated raw-capture,
+comparison and retention tooling on these complete captures; implementation tests
+and bounded transport controls do not establish full-repeat acceptance.
 
 ### Investigations — require a new discriminating check
 
