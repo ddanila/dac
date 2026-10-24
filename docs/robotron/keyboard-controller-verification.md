@@ -38,7 +38,7 @@ owns scenario coverage and experiment details.
 
 | Gate | Current evidence | Remaining proof |
 | --- | --- | --- |
-| Numerical convergence | [Dense anchored refinements][dense-anchored] and the disabled control complete the full reset-release window with identical observed bus events. All voltage differences are below 20 µV, but several increase under refinement, so the strict gate fails. The retained peak decomposition separates resampling contributions from clock/filter trajectory differences; it does not waive either. | Diagnose adaptive-step history and qualify any correction under the unchanged [numerical gate](keyboard-controller-plan.md#numerical-convergence). Full-repeat coverage remains open; keep numerical candidates opt-in. |
+| Numerical convergence | [Transient-error refinements][transient-error] pass the unchanged full-window reset-release voltage gate with identical observed bus events. The explicit-default control reproduces all baseline waveforms. This is a bounded comparison with ideal external clock/reset. | Full-repeat numerical coverage and coupled rollback remain open under the unchanged [numerical gate](keyboard-controller-plan.md#numerical-convergence). Keep the candidate opt-in until those controls pass; physical model admission remains separate. |
 | HDL/electrical scheduling | The [input-boundary regression][input-barrier] passes its declared ordering scope. | Full coupled acceptance, including the supply-relative bus-voltage check; scoped regression success is not general rollback support. |
 | Onboard clock | [Reference oscillator screens][clock-acceptance] fail U880 level or timing requirements. | Independently constrained intended-family dynamics and startup-inclusive board qualification. Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions. |
 | Reset | [C4 source-alternative studies][reset-alternatives] cover isolated exploratory reset behavior. | Installed component identity and coupled reset/recovery qualification; retain the reference default. |
@@ -113,4 +113,4 @@ and the reason for changing its interpretation.
 [clock-acceptance]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-acceptance/assessment.json
 [reset-alternatives]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitance/generic/assessment.json
 
-[dense-anchored]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/dense-anchored-refinement/assessment.json
+[transient-error]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/transient-error-refinement/assessment.json

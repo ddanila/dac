@@ -12,7 +12,7 @@ while making these changes.
 
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
-| 1. Live numerical convergence | Investigate driver stored-charge evolution and adaptive error control at the clock/filter peaks; distinguish trajectory differences from resampling effects at bus and supply peaks. Test only evidence-backed corrections with matched controls. | Pass the unchanged numerical gate below, then qualify coupled rollback and firmware scenarios before adoption. Short diagnostic prefixes cannot qualify the full window. |
+| 1. Full-repeat numerical qualification | Extend the passing reset-release candidate to complete standard-S600 repeat traffic with matched timestep refinements and a complete control. | Pass the unchanged numerical gate below while preserving firmware reads and serial behavior over the full-repeat window; qualify coupled rollback before adoption. |
 | 2. Historical registration | Test independent board-plane hole observations against the retained package-bias and outline-perspective alternatives; establish scale and cross-side correspondence before changing placements. | Held-out checks meet the existing registration budget before native pads or routes move. |
 | 3. X1 package identification | Identify the exact EFS form from lead exits, mounting and mating geometry in existing photos and form-specific drawings. | Distinguish the retained EFS alternatives with calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
 | 4. Electrical-model sensitivity | Bound oscillator, driver and load alternatives with published constraints and test their effects on clock acceptance, receiver decisions and bus timing. | Retain indistinguishable alternatives and identify the missing independent constraint for each consequential ambiguity. |
@@ -28,7 +28,6 @@ and linked machine-readable reports.
 
 | Work | Prerequisite and acceptance |
 | --- | --- |
-| Full-repeat convergence | A candidate passing the reset-release numerical gate; extend to full repeat with the same refinement and disabled-control requirements. |
 | Live firmware/service evaluator-cache controls | A complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
 | Physical placements and copper | Accepted registration and individually supported terminal identities; follow the sequence below. |
 | Coupled reference qualification | Numerical convergence and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
