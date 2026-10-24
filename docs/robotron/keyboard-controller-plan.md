@@ -46,7 +46,7 @@ complete trace geometry remain questions.
 | --- | --- | --- |
 | 1 | Reconcile board scale, perspective and raised-lead bias using board-plane joints and package pitches | Independent held-out checks meet the existing registration budget; no widened tolerance or extrapolated terminal assignment. |
 | 2 | Correct supported placements and recheck affected routes | Native pad positions have bounded evidence; cross-side joins and native checks remain consistent. |
-| 3 | Resolve primary R1 orientation and numbered hole entries, then trace the A4–R1 SENSE corridor | Native pads represent the physical package, including its unused lead; promote only individually supported paths. |
+| 3 | Resolve primary R1 orientation and numbered hole entries, then register the observed A4–R1 SENSE paths | Native pads represent the physical package, including its unused lead; promote only individually supported paths. |
 | 4 | Trace R1 common and sensing-transistor collector branches; resolve transistor terminal orientation | Terminal identity follows package evidence and visible lead entries, not proximity alone. |
 | 5 | Finish remaining bus, data/strobe, supply and clock paths, including L1–XT1 | Both endpoints and unresolved spans are recorded. Resolve WR/RD against specimen evidence. Keep connected pad groups separate from floating copper. |
 

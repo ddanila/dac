@@ -244,6 +244,7 @@ export function installKeyboardControllerReview(scene){
       const review=document.createElement('details');review.dataset.senseReview=net.net;
       const title=document.createElement('summary');title.textContent='SENSE corridor and resistor-bank mapping';review.append(title);
       for(const text of [sense.scope,sense.orientationFinding,sense.electricalScope,sensePath.reason,`Reference targets: ${sensePath.terminals.join(' ↔ ')}; collector ${sensePath.collectorTarget}; matrix input ${sensePath.matrixInput.ref} (${sensePath.matrixInput.nets.join(' ↔ ')}). Bank observation ${sensePath.bankObservationIndex} is an inferred ${sensePath.bankPinCandidate.terminal} candidate.`]){const p=document.createElement('p');p.textContent=text;review.append(p);}
+      const attachments=document.createElement('p');attachments.dataset.senseAttachments='';attachments.textContent=`Photo attachments: bank ${sensePath.segments[0].status}; latch ${sensePath.segments.at(-1).status}. Package numbering and measured continuity remain separate.`;review.append(attachments);
       if(sensePath.bankFanoutFinding){const p=document.createElement('p');p.textContent=sensePath.bankFanoutFinding;review.append(p);}
       if(sense.metricReview){
        const metric=sense.metricReview,detail=document.createElement('details'),summary=document.createElement('summary');detail.dataset.senseMetricReview='';summary.textContent='Package pitch and envelope scale';detail.append(summary);
@@ -257,7 +258,7 @@ export function installKeyboardControllerReview(scene){
        const table=document.createElement('table'),head=table.createTHead().insertRow();for(const label of ['Terminal','Disagreement (mm)']){const th=document.createElement('th');th.textContent=label;head.append(th);}
        const body=table.createTBody();for(const c of fit.checks){const row=body.insertRow();row.insertCell().textContent=`${c.ref}:${c.pin}`;row.insertCell().textContent=c.residualMm.toFixed(2);}checks.append(table);review.append(checks);
       }
-      for(const indices of [[0,1],[2],[3],[4,5]])review.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===sense.source),segments:indices.map(i=>sensePath.segments[i]),markers:indices.includes(0)?[{point:sensePath.segments[0].points[0],label:'Bank joint candidate; terminal correspondence inferred.'}]:indices.includes(5)?[{point:sensePath.segments.at(-1).points.at(-1),label:sensePath.latchTerminal+' estimated underside joint.'}]:[]}));
+      for(const indices of [[0,1],[2],[3],[4,5]])review.append(connectionPhoto({source:data.evidence.sources.find(s=>s.id===sense.source),segments:indices.map(i=>sensePath.segments[i]),markers:indices.includes(0)?[{point:sensePath.segments[0].points[0],label:'Photographed bank land; numbered-terminal correspondence inferred.'}]:indices.includes(5)?[{point:sensePath.segments.at(-1).points.at(-1),label:sensePath.latchTerminal+' photographed underside land; native registration separate.'}]:[]}));
       for(const p of sense.photos){const photo=componentPhoto(data,'R1 / sensing transistors',{photoSource:p.source,pixelBox:p.pixelBox,scope:p.observation});if(photo)review.append(photo);}
       section.append(review);
      }

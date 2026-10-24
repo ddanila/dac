@@ -973,6 +973,9 @@ test('sense corridor review keeps bank candidates separate from native copper',a
   const review=panel.locator('[data-sense-review]');await review.locator(':scope > summary').click();
   await expect(review).toContainText(`A4:${row+1} ↔ R1:${9-row}`);
   await expect(review).toContainText('collector branch is unresolved');
+  await expect(review.locator('[data-sense-attachments]')).toContainText('Photo attachments: bank observed; latch observed');
+  expect(data.busReview.senseReview.paths[row].photoPathObserved).toBe(true);
+  expect(data.busReview.senseReview.paths[row].bankPinCandidate.status).toBe('inferred');
   await expect(review.locator('[data-sense-envelope-trial]')).toContainText('Outside the fit budget');
   await expect(review.locator('[data-sense-metric-review]')).toContainText('Primary marking UB880 D');
   await expect(review).toContainText('cable-facing end');
