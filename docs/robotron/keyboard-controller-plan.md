@@ -13,15 +13,13 @@ in the linked artifacts and Git history.
 
 | Work | Next action and acceptance |
 | --- | --- |
+| Resolve live numerical convergence — first priority | Test whether explicit clock/reset threshold scheduling removes bus-edge variation in the [precision-controlled reset prefixes](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-release-audit/assessment.json). Use matched controls and three timestep levels with fixed circuit, precision window and scheduling guard. Require the numerical gate below before extending traffic. |
 | Constrain X1 geometry | Resolve the EFS candidate’s exact form and distinguish the conditional scale alternatives in CAD `reference/package-reviews/efs-x1/assessment.json`. Account for photo-picking and calibration uncertainty before changing pads; obtain form-specific lead and mounting geometry. Check lead exits, mating clearance and expanded envelopes. |
-| Reconcile historical registration and visible copper | Follow the physical sequence below using existing photographs. Promote only independently supported endpoints within the existing registration budget; hidden joins may remain unresolved. |
 | Narrow electrical model uncertainty | Use published oscillator, driver and load constraints to identify hypotheses that change clock acceptance, receiver decisions or bus timing. Retain competing hypotheses where the evidence cannot distinguish them. |
-| Investigate direct-driver numerical failure | Resolve non-monotonic refinement and bus-edge timing in the completed [precision-controlled reset prefixes](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-release-audit/assessment.json) before extending traffic. Preserve the failed ordinary-precision controls and distinguish numerical repair from physical model admission. Any candidate must preserve the circuit contract and pass the numerical gate below. This is software investigation, not blocked on photographs. |
 
-These tasks can proceed now; that does not guarantee that desk evidence will
-resolve every physical identity or admit every device model. Defer individual
-unsupported claims rather than the whole reconstruction. Do not repeat completed
-experiments without new evidence or a changed hypothesis.
+These investigations and the physical sequence below can start with existing
+inputs. Closure may still need new evidence. Defer unsupported claims, not whole
+workstreams; repeat an experiment only for a changed hypothesis or new evidence.
 
 ### Work with prerequisites
 
@@ -33,10 +31,11 @@ experiments without new evidence or a changed hypothesis.
 | Qualify the coupled reference circuit | Numerical convergence and model admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
 | Verify specimen-specific fit and behavior | Evidence distinguishing installed packages, hidden terminal/trace assignments, dimensions, ROM contents and timing. Exhaust existing photographs and published sources first; request only observations that resolve a remaining ambiguity. |
 
-## Physical reconstruction sequence
+## Physical reconstruction with existing photographs
 
-Use schematic-defined nets to trace from both ends. BR1/BR2 work is limited to
-physical end correspondence and remaining trace geometry.
+Start with registration; later promotions depend on its acceptance. Trace
+schematic-defined nets from both ends. For BR1/BR2, resolve only physical end
+correspondence and remaining geometry.
 
 | Step | Work | Acceptance |
 | --- | --- | --- |
@@ -53,15 +52,16 @@ connections. Use standard S600 for reference work; keep specimen agreement separ
 
 ### Numerical convergence
 
-Complete two refinement levels with identical circuit, stimulus and model
-assumptions, comparing absolute time over the whole required observation window.
+Run three timestep levels (two successive refinements) with identical circuit,
+stimulus and model assumptions. Compare absolute time over the whole required
+observation window.
 Every observed node voltage must differ by at most 10 mV between the two finest
 completed levels, with differences not growing from the previous pair. Preserve
 firmware reads and serial edges; disabled controls must complete without solver
 failure. Do not align traces, exclude failing spans or relax limits to pass.
 
-Keep precision, state-history and scheduling candidates opt-in until their
-controls pass. See the [electrical evidence audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
+Preserve failed controls as evidence; they do not satisfy qualification. Keep
+precision, state-history and scheduling candidates opt-in until their controls pass. See the [electrical evidence audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 for existing results and their limits.
 
 ### Device and load admission
