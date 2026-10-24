@@ -28266,6 +28266,27 @@
         "sha256": "07b0c6e0de87cc10aa309f5218355f0ec5f4aeda5c6e972eca075781208ecb81",
         "locator": "PDF page 3 / printed page 8 marking convention; PDF page 4 / printed page 9 package forms",
         "use": "Manufacturer code/date convention and B1 lead pitch/package dimensions. Original PDF linked, not redistributed."
+      },
+      {
+        "id": "photo-20261024-060432008",
+        "path": "../reference/photos/PXL_20261024_060432008.jpg",
+        "sha256": "817f772d0997cd1d0621259b1571b55f9bc3f2754c513605fd19bfc6c16d0618",
+        "use": "Specimen identity unconfirmed; cable end: clearer filter lead entries, cable solder joints and adjacent reset/sense components. Oblique view; no automatic terminal or winding assignment.",
+        "specimenId": "2026-10-24 photo batch; specimen identity unconfirmed"
+      },
+      {
+        "id": "photo-20261024-060441224",
+        "path": "../reference/photos/PXL_20261024_060441224.jpg",
+        "sha256": "45019f4d902d51289a601a5933ba8925a6b687e22dc4dda9e4c96f655a7a5b38",
+        "use": "Specimen identity unconfirmed; cable end from the opposite direction: filter terminal rows, exposed copper and cable/shield terminations. Oblique view; hidden winding pairings remain separate.",
+        "specimenId": "2026-10-24 photo batch; specimen identity unconfirmed"
+      },
+      {
+        "id": "photo-20261024-060453915",
+        "path": "../reference/photos/PXL_20261024_060453915.jpg",
+        "sha256": "d953d5b1d874dc521cfa0daa7f0bb5f66ce604f339b95b49577f449d2e36b8b3",
+        "use": "Specimen identity unconfirmed; CPU/latch close-up: UB880 D, DS8282D and K155TM2 markings, pin exits and adjacent top copper. Supports physical tracing; does not alone resolve the complete WR/RD or bridge paths.",
+        "specimenId": "2026-10-24 photo batch; specimen identity unconfirmed"
       }
     ],
     "specimen": {
@@ -29449,7 +29470,7 @@
       "referenceType": "MATRIX_CONNECTOR",
       "placementEvidence": "photo-placed-reference-terminal-order",
       "pinEvidence": "connector-label-or-semantic-terminal",
-      "note": "Native reference pads follow locally registered underside joints with row numbering constrained by photographed attachments. This is not measured continuity or metrology. The schematic-omitted A8 contact remains unclassified visual geometry; no electrical pad or net is invented for it. Housing dimensions and lead profiles remain estimates. See generated/connector-review.json and generated/connector-terminals.json.",
+      "note": "Native reference pads follow locally registered underside joints with row numbering constrained by photographed attachments. This is not measured continuity or metrology. Owner inspection identifies the schematic-omitted A8 contact as present, soldered and unrouted on both sides; see connection-review.json, x1-a8. It remains outside the native reference netlist. Housing dimensions and lead profiles remain estimates. See generated/connector-review.json and generated/connector-terminals.json.",
       "placementAuthority": "controller.kicad_pcb",
       "physicalReview": {
         "status": "registered-joints-reference-terminal-order",
@@ -29573,7 +29594,7 @@
           "comparison-photo-080415534"
         ],
         "comparisonObservation": "Separate-specimen oblique views corroborate two stacked contact rows and bent tails exiting one housing side. Handwritten A/B and end markings are visible but do not independently establish primary-specimen terminal numbering.",
-        "limits": "Local underside registration constrains solder-joint geometry. Far-row identity follows the R11.1/R11.2 attachments; near-row direction follows the eighth contact to A2.1:6 underside trace. Numbering is conditional on reference component identity and visible attachments, not measured continuity. The schematic-omitted A8 contact remains electrically unclassified; dimensions are not metrology.",
+        "limits": "Local underside registration constrains solder-joint geometry. Far-row identity follows the R11.1/R11.2 attachments; near-row direction follows the eighth contact to A2.1:6 underside trace. Numbering is conditional on reference component identity and visible attachments, not measured continuity. The schematic-omitted A8 contact is owner-confirmed present and unrouted (connection-review.json, x1-a8); dimensions are not metrology.",
         "underside": {
           "photoSource": "photo-bottom",
           "photoSha256": "ac24dce38859468b1c1e8d784aa883e7c0f61f9674a742a117002eb5344dca9b",
@@ -31340,7 +31361,7 @@
       "referenceType": "BRIDGE",
       "placementEvidence": "factory drawing 63-330-4103-2, PDF page 10; photo-top endpoints and local underside joint pattern",
       "pinEvidence": "Left original-top-photo terminal is pin 2, CPU CLK side, from its visible underside connection to R10.3. Right terminal is reference pin 1, OSC_OUT. Continuation to CPU/oscillator and closed-state continuity remain unmeasured.",
-      "note": "Photo-supported reference terminal orientation, not measured continuity or a factory opening procedure. Wire diameter, stand-off, bend shape, pads and holes are estimated; native bridge geometry is a nominal closed link. Global underside registration remains unqualified.",
+      "note": "Schematic role: oscillator output to A5 CLK, pin 6. Photo-supported reference terminal orientation, not measured continuity or a factory opening procedure. Wire diameter, stand-off, bend shape, pads and holes are estimated; native bridge geometry is a nominal closed link. Global underside registration remains unqualified.",
       "placementAuthority": "controller.kicad_pcb",
       "photoSource": "photo-top",
       "photoPins": {
@@ -31376,7 +31397,7 @@
       "referenceType": "BRIDGE",
       "placementEvidence": "unplaced",
       "pinEvidence": "schematic-terminal-order; physical numbering unresolved",
-      "note": "Factory placement and primary-photo endpoints support an unassigned visual wire in generated layout/SCAD. Native footprint stays unplaced until source/CPU terminal order and pad correspondence are resolved; no electrical continuity claim.",
+      "note": "Schematic role: reset circuit output to A5 RESET, pin 26. Factory placement and primary-photo endpoints support an unassigned visual wire in generated layout/SCAD. Native footprint stays unplaced until source/CPU terminal order and pad correspondence are resolved; no electrical continuity claim.",
       "placementAuthority": "controller.kicad_pcb"
     }
   },
@@ -44165,8 +44186,8 @@
     },
     "inputSha256": {
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
-      "component-evidence.json": "29ae3bedb8c6d777bc96daa2aa8328958222c595b5679ea1f566ef037d0dd588",
-      "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
+      "component-evidence.json": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
+      "evidence.json": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
       "filter-registration.json": "28791731941aaf96faecd845871a0e151cfde5a56e9ef76212d54c90a4cbbf4a",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
@@ -45682,9 +45703,9 @@
     "schema": 1,
     "scope": "Physical route review, not new connectivity evidence. X1 serves the matrix/LEDs; XT1 is the host cable. Reference endpoints are targets for tracing, not observed attachments.",
     "inputSha256": {
-      "connection-review.json": "255e7c4f7f793814bfb86194c22708292152a503b4e4b822642ec178f11a201e",
-      "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
-      "component-evidence.json": "29ae3bedb8c6d777bc96daa2aa8328958222c595b5679ea1f566ef037d0dd588",
+      "connection-review.json": "ad12255aba3ec6204cb2ca7d53ea81c09352000f3f5c2c278ab9234a1b06e0a4",
+      "evidence.json": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
+      "component-evidence.json": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
       "route-evidence.json": "30c3b039aaa1cef03832c82d7d63a407e7f23abecea0455484dcf35989ff50ae",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "generated/layout.json": "0206cbbce0cf25b974257a029ef87fd476c24a96e176201a1bca18ca3228ffc0",
@@ -45748,7 +45769,9 @@
           "comparison-photo-080443226.MP",
           "comparison-photo-080347973",
           "comparison-photo-080406304",
-          "comparison-photo-080511382"
+          "comparison-photo-080511382",
+          "photo-20261024-060432008",
+          "photo-20261024-060441224"
         ],
         "finding": "The R10.1 branch reaches a solder eye beneath R9.5. A local resistor-bank fit supports a downstream eye correspondence beside R9.7, and an observed outer underside lane continues from there toward an eye near R4.1. Resistor bodies hide the intervening top spans; the new observations remain electrically unassigned. A1, winding and host-cable attachments are not closed.",
         "alternatives": [
@@ -47236,6 +47259,24 @@
             "use": "Cable wires, mounting bracket and nearby component profiles. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
             "href": "../../reference/photos/PXL_20261017_080511382.jpg",
             "specimen": "comparison-20261017"
+          },
+          {
+            "id": "photo-20261024-060432008",
+            "path": "../reference/photos/PXL_20261024_060432008.jpg",
+            "sha256": "817f772d0997cd1d0621259b1571b55f9bc3f2754c513605fd19bfc6c16d0618",
+            "use": "Specimen identity unconfirmed; cable end: clearer filter lead entries, cable solder joints and adjacent reset/sense components. Oblique view; no automatic terminal or winding assignment.",
+            "specimenId": "2026-10-24 photo batch; specimen identity unconfirmed",
+            "href": "../../reference/photos/PXL_20261024_060432008.jpg",
+            "specimen": "2026-10-24 photo batch; specimen identity unconfirmed"
+          },
+          {
+            "id": "photo-20261024-060441224",
+            "path": "../reference/photos/PXL_20261024_060441224.jpg",
+            "sha256": "45019f4d902d51289a601a5933ba8925a6b687e22dc4dda9e4c96f655a7a5b38",
+            "use": "Specimen identity unconfirmed; cable end from the opposite direction: filter terminal rows, exposed copper and cable/shield terminations. Oblique view; hidden winding pairings remain separate.",
+            "specimenId": "2026-10-24 photo batch; specimen identity unconfirmed",
+            "href": "../../reference/photos/PXL_20261024_060441224.jpg",
+            "specimen": "2026-10-24 photo batch; specimen identity unconfirmed"
           }
         ]
       },
@@ -47275,7 +47316,9 @@
           "comparison-photo-080443226.MP",
           "comparison-photo-080347973",
           "comparison-photo-080406304",
-          "comparison-photo-080511382"
+          "comparison-photo-080511382",
+          "photo-20261024-060432008",
+          "photo-20261024-060441224"
         ],
         "finding": "The R10.2 underside branch stops beneath R7. A local R4.2/R8 fit checked against R7 narrows the search; exposed top spans lie between R7/R4.2 and R4.2/R6.1. Bodies still hide the joins, so the spans remain unassigned.",
         "alternatives": [
@@ -48252,6 +48295,24 @@
             "use": "Cable wires, mounting bracket and nearby component profiles. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
             "href": "../../reference/photos/PXL_20261017_080511382.jpg",
             "specimen": "comparison-20261017"
+          },
+          {
+            "id": "photo-20261024-060432008",
+            "path": "../reference/photos/PXL_20261024_060432008.jpg",
+            "sha256": "817f772d0997cd1d0621259b1571b55f9bc3f2754c513605fd19bfc6c16d0618",
+            "use": "Specimen identity unconfirmed; cable end: clearer filter lead entries, cable solder joints and adjacent reset/sense components. Oblique view; no automatic terminal or winding assignment.",
+            "specimenId": "2026-10-24 photo batch; specimen identity unconfirmed",
+            "href": "../../reference/photos/PXL_20261024_060432008.jpg",
+            "specimen": "2026-10-24 photo batch; specimen identity unconfirmed"
+          },
+          {
+            "id": "photo-20261024-060441224",
+            "path": "../reference/photos/PXL_20261024_060441224.jpg",
+            "sha256": "45019f4d902d51289a601a5933ba8925a6b687e22dc4dda9e4c96f655a7a5b38",
+            "use": "Specimen identity unconfirmed; cable end from the opposite direction: filter terminal rows, exposed copper and cable/shield terminations. Oblique view; hidden winding pairings remain separate.",
+            "specimenId": "2026-10-24 photo batch; specimen identity unconfirmed",
+            "href": "../../reference/photos/PXL_20261024_060441224.jpg",
+            "specimen": "2026-10-24 photo batch; specimen identity unconfirmed"
           }
         ]
       },
@@ -48278,7 +48339,8 @@
         "supportingSources": [
           "photo-bottom",
           "comparison-photo-080401625",
-          "comparison-photo-080429077"
+          "comparison-photo-080429077",
+          "photo-20261024-060453915"
         ],
         "finding": "The reference supports WR, while a published comparison uses RD. An observed underside lane links terminal candidates near A4 and A6; the corresponding top track enters beneath A6. Local A6 registration supports a candidate outside the anchor hull. Neither CPU attachment is established.",
         "alternatives": [
@@ -49203,6 +49265,15 @@
             "use": "CPU marking UB880D and nearby copper terminals. Separate specimen; comparison evidence only, not primary-specimen placement or continuity.",
             "href": "../../reference/photos/PXL_20261017_080429077.jpg",
             "specimen": "comparison-20261017"
+          },
+          {
+            "id": "photo-20261024-060453915",
+            "path": "../reference/photos/PXL_20261024_060453915.jpg",
+            "sha256": "d953d5b1d874dc521cfa0daa7f0bb5f66ce604f339b95b49577f449d2e36b8b3",
+            "use": "Specimen identity unconfirmed; CPU/latch close-up: UB880 D, DS8282D and K155TM2 markings, pin exits and adjacent top copper. Supports physical tracing; does not alone resolve the complete WR/RD or bridge paths.",
+            "specimenId": "2026-10-24 photo batch; specimen identity unconfirmed",
+            "href": "../../reference/photos/PXL_20261024_060453915.jpg",
+            "specimen": "2026-10-24 photo batch; specimen identity unconfirmed"
           }
         ]
       },
@@ -50058,7 +50129,7 @@
       },
       {
         "id": "x1-a8",
-        "title": "X1 A8: classify the schematic-omitted contact",
+        "title": "X1 A8: present, soldered and unrouted",
         "sameNetSets": [],
         "seriesComponents": [],
         "routeGroups": [],
@@ -50069,15 +50140,23 @@
           "comparison-photo-080415534",
           "comparison-photo-080347973"
         ],
-        "finding": "A physical contact position exists in the constrained row order, but no X1:A8 pin occurs in the reference netlist. It remains visual geometry only.",
-        "alternatives": [
-          "Unused contact with no electrical connection.",
-          "Specimen-specific connection omitted from the reference.",
-          "Apparent attachment is opposite-side copper or an obscured neighbouring lead."
-        ],
-        "nextDeskWork": "Inspect the marked far-row eighth lead and underside joint in the primary photos, then compare the mating-face and bent-lead views without equating their coordinates with the primary specimen.",
-        "decisiveObservation": "A visible complete attachment or a recorded contact-to-pad resistance map that distinguishes an unused contact from a connected one. An obscured trace is not evidence of disconnection.",
-        "doNotInfer": "Do not create a numbered native pad or assign a net simply to fill the missing schematic position.",
+        "finding": "Owner inspection of the primary museum board confirms X1:A8 is present and soldered into a PCB hole, with no tracks attached on either side. Classify it as a physically present, unrouted contact. The reference schematic omits it.",
+        "alternatives": [],
+        "nextDeskWork": "Preserve the present-but-unrouted classification when representing the isolated pad and hole; do not invent a signal net.",
+        "decisiveObservation": "Resolved by the owner's direct inspection reported on 2026-10-24. No further photo is required to classify the visible routing.",
+        "doNotInfer": "This is owner-reported visual inspection, not a resistance measurement. Pad dimensions and comparison-specimen wiring are not established by it.",
+        "ownerObservation": {
+          "date": "2026-10-24",
+          "source": "Museum owner, direct inspection reported in conversation",
+          "specimen": "primary museum keyboard controller",
+          "contact": "X1:A8",
+          "present": true,
+          "solderedIntoPcbHole": true,
+          "tracksAttachedTop": false,
+          "tracksAttachedBottom": false,
+          "continuityMeasured": false,
+          "statement": "X1.A8 exists and soldered into the hole in the PCB, but it does not have any routes connected to this point on any side of the board"
+        },
         "referenceNets": [],
         "candidateEndpoints": [],
         "series": {},
@@ -50477,7 +50556,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "3ffe7d620250a81f6c9beedafc364db7e71e2b11"
+      "revision": "8d01cbb6e25b404342e94034d468dcb69b676abb"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -50492,12 +50571,12 @@
       "topRegistration": "51e4d86dfbb73aa372be16e05c1fa6b465342d59291905d9b8fd13ec001154f7",
       "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
-      "evidence": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
-      "componentEvidence": "29ae3bedb8c6d777bc96daa2aa8328958222c595b5679ea1f566ef037d0dd588",
+      "evidence": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
+      "componentEvidence": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
       "busReview": "283c431c4e4340416510887db973ca521c8a83b30119a2b242bdb2d2ef83a4e0",
-      "cableCopper": "23e6d10bb0944721cbde11910abf765142757402e32d72fa9a906e5ebf2ac5fc",
-      "connectionReview": "c2fd4ee31c1daef05d5232b4566370c1439a412604d4650b59f42035f93d3edf",
+      "cableCopper": "2545a3b9f124dc9f24771225f345e891f62bba73724f476b2967917d96e14e70",
+      "connectionReview": "2dcfac0cd04f46e84fb9eb0ebbbe121cf396eaaf24997a672731b8e769d9d3b9",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",

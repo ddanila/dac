@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/ddanila/3d-models",
-  "revision": "3ffe7d620250a81f6c9beedafc364db7e71e2b11",
+  "revision": "8d01cbb6e25b404342e94034d468dcb69b676abb",
   "dirty": false,
   "files": [
     {
@@ -1438,6 +1438,18 @@
     {
       "file": "photos/PXL_20261017_080541857.jpg",
       "sha256": "83089746f85cc44ca278db65cbdafbd66a0534c4a8bfd8286dbec908f0d80a04"
+    },
+    {
+      "file": "photos/PXL_20261024_060432008.jpg",
+      "sha256": "817f772d0997cd1d0621259b1571b55f9bc3f2754c513605fd19bfc6c16d0618"
+    },
+    {
+      "file": "photos/PXL_20261024_060441224.jpg",
+      "sha256": "45019f4d902d51289a601a5933ba8925a6b687e22dc4dda9e4c96f655a7a5b38"
+    },
+    {
+      "file": "photos/PXL_20261024_060453915.jpg",
+      "sha256": "d953d5b1d874dc521cfa0daa7f0bb5f66ce604f339b95b49577f449d2e36b8b3"
     },
     {
       "file": "reference/robotrontechnik/monitor-board.jpeg",

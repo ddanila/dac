@@ -56190,7 +56190,7 @@
       "../components/kicad/meshes/DIP-20_W7.62mm-body.stl": "c71eb298a5948d48e8c2cd27929d85714d557be6a1e853f8c1c712a0319d345a",
       "../components/kicad/meshes/DIP-24_W15.24mm-body.stl": "bc9672c67fb650b842d0caf7f115fbc1dd72d0566dff156f336f96a3aa006f2b",
       "../components/kicad/meshes/DIP-40_W15.24mm-body.stl": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
-      "evidence.json": "261fe27e0acb73f701ebf3e5577b0f390d2001602c86ab7f53c922206e83f888",
+      "evidence.json": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "reference/assembly.json": "c39e2aa1bf0293e6c2dbd61b69d616a17a110d656cbccd9c3d4952ba4e35c519",
       "reference/generated/layout.json": "51217655811477294a8c69ceb442be17ff987562fe98cf1df5b26a303a18d74d",
@@ -56371,8 +56371,8 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "3ffe7d620250a81f6c9beedafc364db7e71e2b11",
-    "manifestSha256": "df2b52fdacb5c1db2abb37405583a91fa8631582b398a3ea1244a0f79d3922f9",
+    "revision": "8d01cbb6e25b404342e94034d468dcb69b676abb",
+    "manifestSha256": "a80d44daa76737bc7157692830d46d34915725ed6c5c57b7bbc51491f5e102a9",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
       "reference/generated/controller.scad": "c80c24dbc7ca2f5d2af42cc593c0e765918c587e6f0bd65c92ba9bcae12ebaca",
@@ -56380,6 +56380,6 @@
       "reference/generated/qualification.json": "f360f38ef0d218558c574cfa5c1a323054366f1678763a4c01905f4fe3cb6a6c",
       "reference/generated/routing-audit.json": "7fef7889ee082facdd24aa7da0cfc2b5034e2fd389c07aedc3e0a1c9f0ec7c66"
     },
-    "assemblySha256": "47f225d8379a8cdcaace982a0e783ef1fb06d135921035c19ccad559b3413733"
+    "assemblySha256": "1ca9ec69f4e71bfd823cd477dfccd74ce5213ea6ec66adf95679cd611f38cfd2"
   }
 }
