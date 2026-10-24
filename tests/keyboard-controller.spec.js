@@ -620,6 +620,15 @@ test('body photo regions expose resistor evidence without placing electrical pin
  await expect(panel.locator('[data-body-photo="C2"] rect')).toHaveAttribute('x','1390');
  for(const cell of await panel.locator('[data-connected-pins] tbody tr td:last-child').allTextContents())expect(cell).toBe('Unplaced');
 
+ await panel.getByLabel('Controller component',{exact:true}).selectOption('C4');
+ const values=panel.locator('[data-value-alternatives="C4"]');
+ await expect(values).toContainText('10 µF / 40 V — reference circuit');
+ await expect(values).toContainText('100 µF / 10 V');
+ await expect(values).toContainText('Installed value unknown');
+ await expect(values.locator('a[href*="pc_tasts.pdf"]')).toHaveAttribute('href',/pc_tasts.pdf#page=1$/);
+ await expect(values.locator('a[href*="PC-1715-Schaltplaene.pdf"]')).toHaveAttribute('href',/PC-1715-Schaltplaene.pdf#page=11$/);
+ for(const cell of await panel.locator('[data-connected-pins] tbody tr td:last-child').allTextContents())expect(cell).toBe('Unplaced');
+
  expect(await page.evaluate(()=>window.bodyHighlights)).toEqual([]);
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A1');
  await expect(panel.locator('[data-body-photo]')).toHaveCount(0);

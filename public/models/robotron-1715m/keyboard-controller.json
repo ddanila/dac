@@ -31392,6 +31392,27 @@
         "heightMm": 9,
         "baseHeightMm": 1.6,
         "scope": "Retained illustrative display placement and dimensions. Raised body/perspective bias remains; no pad centres, holes, terminals, nets or polarity are inferred."
+      },
+      "valueAlternatives": {
+        "installedValueKnown": false,
+        "referenceSource": "schematic",
+        "scope": "Published drawing alternatives; neither identifies the installed capacitor. Reference circuit remains unchanged.",
+        "variants": [
+          {
+            "source": "schematic",
+            "pdfPage": 1,
+            "locator": "C4, reset circuit",
+            "capacitanceMicrofarads": 10,
+            "ratedVoltageVolts": 40
+          },
+          {
+            "source": "robotron-factory-drawings",
+            "pdfPage": 11,
+            "locator": "56-330-4103-7, C4, reset circuit",
+            "capacitanceMicrofarads": 100,
+            "ratedVoltageVolts": 10
+          }
+        ]
       }
     },
     "C6": {
@@ -45084,7 +45105,7 @@
     },
     "inputSha256": {
       "cable-copper.json": "e0adfff02c8749ae4826eea433ee0236235af3898c9093a7ec01f624debd6fe3",
-      "component-evidence.json": "2aea0d2ec425af9507ae38f544f3c61eb6834efe35fc5cfc45d971b230fb909e",
+      "component-evidence.json": "57752b9a8963098b2b357f8b7714108b1b1236b2471cb445f25feb64b15011e0",
       "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "filter-registration.json": "28791731941aaf96faecd845871a0e151cfde5a56e9ef76212d54c90a4cbbf4a",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
@@ -46603,7 +46624,7 @@
     "inputSha256": {
       "connection-review.json": "ad12255aba3ec6204cb2ca7d53ea81c09352000f3f5c2c278ab9234a1b06e0a4",
       "evidence.json": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
-      "component-evidence.json": "2aea0d2ec425af9507ae38f544f3c61eb6834efe35fc5cfc45d971b230fb909e",
+      "component-evidence.json": "57752b9a8963098b2b357f8b7714108b1b1236b2471cb445f25feb64b15011e0",
       "route-evidence.json": "30c3b039aaa1cef03832c82d7d63a407e7f23abecea0455484dcf35989ff50ae",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "generated/layout.json": "3a2767183f35d6a4c049f97687d188294b25d942a113725c018023137974d408",
@@ -51454,11 +51475,11 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "ab4ef06c05e008a07787ff72802d2ae03ef30651"
+      "revision": "219b705dd2da6b17177da53aabe48d5b08b33ad0"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
-      "revision": "cf9ee5411449fdeee65293b22f2d2923aea240d2"
+      "revision": "6d57dd506d808784ec741df9ed1f65bc3f3e110e"
     },
     "files": {
       "layout": "3a2767183f35d6a4c049f97687d188294b25d942a113725c018023137974d408",
@@ -51470,11 +51491,11 @@
       "connectorReview": "b85b5c00e6a80970eadfb147653fc38c783eb12015dd98aab72c6e26064ce24f",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
-      "componentEvidence": "2aea0d2ec425af9507ae38f544f3c61eb6834efe35fc5cfc45d971b230fb909e",
+      "componentEvidence": "57752b9a8963098b2b357f8b7714108b1b1236b2471cb445f25feb64b15011e0",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
       "busReview": "fe78338191763e2d60f50481b61d8ff86f8b1608cfb7a67dd0f2d79debfbcbbc",
-      "cableCopper": "ede5f4d2a60bfa2b62e6cf624583501d6c0321518eed50f703bf0ca2b4d991ad",
-      "connectionReview": "04e4ebb0329874387aab2a1375a3c8ce7b74f9b05fe1926476ca543b5ac40359",
+      "cableCopper": "c9873fab855cc388019146d9199f30f5071f42eb0aa9e0855c8d6d60cbec185b",
+      "connectionReview": "12dd8472d4b56737825c50da78b618d78ac3470c745e5ecef18ffab7d18dfae1",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",

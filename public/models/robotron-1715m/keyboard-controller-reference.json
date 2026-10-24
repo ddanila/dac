@@ -65969,8 +65969,8 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "ab4ef06c05e008a07787ff72802d2ae03ef30651",
-    "manifestSha256": "f7e9a9eaace8e5b0e67d34574cd7504c2e5f29a5665069ef78e68580265d12ef",
+    "revision": "219b705dd2da6b17177da53aabe48d5b08b33ad0",
+    "manifestSha256": "37092fb9c94ccbff701319098e6e5342f371aaca76136ed520cd736612b6be37",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
       "reference/generated/controller.scad": "70868fbfe22c5bb97cab384c4272fede2222396cb70c90b262d259e69bf092c7",

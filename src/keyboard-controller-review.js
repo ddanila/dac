@@ -371,6 +371,18 @@ export function installKeyboardControllerReview(scene){
    }
    if(kind==='component'&&data.componentEvidence?.[value]){
     const evidence=data.componentEvidence[value],note=document.createElement('p');note.textContent=`${evidence.note} Pin evidence: ${evidence.pinEvidence}`;pins.append(note);
+    if(evidence.valueAlternatives){
+     const alternatives=evidence.valueAlternatives,group=document.createElement('section');group.dataset.valueAlternatives=value;
+     const title=document.createElement('strong');title.textContent='Published component values';group.append(title);
+     const list=document.createElement('ul');
+     for(const variant of alternatives.variants){
+      const item=document.createElement('li'),source=data.evidence.sources.find(s=>s.id===variant.source);
+      item.textContent=`${variant.capacitanceMicrofarads} µF / ${variant.ratedVoltageVolts} V${variant.source===alternatives.referenceSource?' — reference circuit':''}. `;
+      if(source?.url){const link=document.createElement('a');link.href=`${source.url}#page=${variant.pdfPage}`;link.textContent=variant.locator;link.target='_blank';link.rel='noopener';item.append(link);}
+      list.append(item);
+     }
+     const scope=document.createElement('p');scope.textContent=alternatives.scope+(alternatives.installedValueKnown?'':' Installed value unknown.');group.append(list,scope);pins.append(group);
+    }
     if(evidence.nativePackageScope){const p=document.createElement('p');p.dataset.nativePackageScope=value;p.textContent=evidence.nativePackageScope+(evidence.physicalUnusedPads?.length?` Physical leads with no internal connection: ${evidence.physicalUnusedPads.join(', ')}.`:'');pins.append(p);}
     if(value==='X1'&&data.connectorReview){
      const review=data.connectorReview,detail=document.createElement('p');detail.dataset.connectorReview='';
