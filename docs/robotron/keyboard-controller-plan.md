@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Work | Next action and acceptance |
 | --- | --- |
-| Constrain X1 geometry | Resolve the EFS candidate’s exact form and the contact-span discrepancy recorded in CAD `reference/package-reviews/efs-x1/assessment.json`. Use independent board-plane evidence before changing pad scale; obtain form-specific lead and mounting geometry. Check lead exits, mating clearance and expanded envelopes. |
+| Constrain X1 geometry | Resolve the EFS candidate’s exact form and distinguish the conditional scale alternatives in CAD `reference/package-reviews/efs-x1/assessment.json`. Account for photo-picking and calibration uncertainty before changing pads; obtain form-specific lead and mounting geometry. Check lead exits, mating clearance and expanded envelopes. |
 | Reconcile historical registration and visible copper | Follow the physical sequence below using existing photographs. Promote only independently supported endpoints within the existing registration budget; hidden joins may remain unresolved. |
 | Narrow electrical model uncertainty | Use published oscillator, driver and load constraints to identify hypotheses that change clock acceptance, receiver decisions or bus timing. Retain competing hypotheses where the evidence cannot distinguish them. |
 | Investigate direct-driver numerical failure | Isolate the existing failure with a concrete electrical or solver hypothesis and a bounded reproducer before another long run. Any candidate must preserve the circuit contract and pass the numerical gate below. This is software investigation, not blocked on photographs. |
