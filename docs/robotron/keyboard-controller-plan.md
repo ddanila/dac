@@ -11,18 +11,18 @@ in the linked artifacts and Git history.
 
 ### Ready now — desk work
 
-| Priority | Work and acceptance |
-| --- | --- |
-| 1. Live numerical convergence | Qualify the opt-in event-anchored DAC candidate over the full window and coupled rollback/firmware scenarios. Separately resolve startup supply/WR sampling sensitivity. Preserve physical inputs and require the numerical gate below before adoption. |
-| 2. Historical registration | Distinguish the A8 hole-row spacing hypothesis from solder-joint picking and projection bias. Reconcile board scale using independent board-plane joints and package pitches; held-out checks must meet the existing registration budget before native pads or routes move. |
-| 3. X1 package identification | Seek form-specific lead, mounting and mating geometry that distinguishes the retained EFS alternatives. Propagate calibration and photo-picking uncertainty; contact-span agreement alone cannot select the body width or authorize pad placement. |
-| 4. Electrical-model sensitivity | Bound oscillator, driver and load hypotheses with published constraints; test which uncertainties change clock acceptance, receiver decisions or bus timing. Retain indistinguishable alternatives and identify the specific missing constraint for each consequential ambiguity. |
+| Priority | Next action | Acceptance |
+| --- | --- | --- |
+| 1. Live numerical convergence | Compare matched dense-startup sampling controls to isolate supply/WR sensitivity; use the result to choose the next full-window refinement of the opt-in event-anchored DAC. | Pass the unchanged numerical gate below, then qualify coupled rollback and firmware scenarios before adoption. Short diagnostic prefixes cannot qualify the full window. |
+| 2. Historical registration | Test the A8 hole-row spacing hypothesis against independent board-plane joints and package pitches, including solder-joint picking and projection uncertainty. | Held-out checks meet the existing registration budget before native pads or routes move. |
+| 3. X1 package identification | Seek form-specific lead, mounting and mating geometry in existing photos and published drawings. | Distinguish the retained EFS alternatives with calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
+| 4. Electrical-model sensitivity | Bound oscillator, driver and load alternatives with published constraints and test their effects on clock acceptance, receiver decisions and bus timing. | Retain indistinguishable alternatives and identify the missing independent constraint for each consequential ambiguity. |
 
-These investigations can start with existing inputs; successful closure is not
-promised. Repeat experiments only for a changed hypothesis or new evidence.
-Current results and package alternatives belong in the
+None of these investigations requires new specimen measurements to start.
+Successful closure is not guaranteed; repeat experiments only for a changed
+hypothesis or new evidence. Results belong in the
 [requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
-and linked machine-readable reports, not this plan.
+and linked machine-readable reports.
 
 ### Follow-on work — internal prerequisites
 
@@ -33,15 +33,15 @@ and linked machine-readable reports, not this plan.
 | Physical placements and copper | Accepted registration and individually supported terminal identities; follow the sequence below. |
 | Coupled reference qualification | Numerical convergence and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
 
-### Evidence-dependent closure
+### Closure requiring independent evidence
 
 | Work | Evidence needed |
 | --- | --- |
 | Admit oscillator, driver, CPU/bus and load models | Independent constraints on relevant dynamics and operating conditions. Published data or equivalent-device bench tests may suffice; endpoint fitting alone cannot close admission. |
 | Verify specimen-specific fit and behavior | Evidence distinguishing installed packages, hidden terminal/trace assignments, dimensions, ROM contents and timing. Exhaust existing photographs and published sources first; request only observations that resolve a remaining ambiguity. |
 
-Do not defer an entire workstream because its final qualification needs evidence.
-Use standard S600 for reference work; keep specimen agreement separate.
+An unresolved evidence requirement does not block the desk work above. Use
+standard S600 for reference work; keep specimen agreement separate.
 
 ## Physical reconstruction sequence
 
@@ -56,10 +56,6 @@ After registration passes:
 4. Finish remaining bus, data/strobe, supply and clock spans, including L1–XT1.
    Resolve WR/RD against specimen evidence. For BR1/BR2, only physical end
    correspondence and geometry remain.
-
-Preserve primary/comparison specimen identity, rejected fits and competing
-connections. Record both endpoints and unresolved spans; keep connected pad
-groups separate from floating copper. Proximity alone cannot establish a terminal.
 
 ## Electrical qualification gates
 
@@ -87,13 +83,12 @@ board, not only an isolated oscillator fixture.
 Constrain driver junction capacitance, recovery and reverse operation, CPU/bus
 I/V and transitions, and filter/cable/host impedance independently of firmware
 agreement. Do not tune a clamp, device or load merely to remove a solver failure.
-Assess whether uncertainty changes receiver decisions or bus timing; waveform
-features with no such consequence are research notes rather than extra gates.
+Waveform features that do not affect receiver decisions or bus timing are
+research notes rather than extra gates.
 
 Independent solver agreement checks numerical behavior, not physical accuracy.
-Bench tests of loose equivalent devices and representative loads can resolve
-model ambiguity without touching the museum board. Exhaust relevant published
-constraints and existing photos before declaring a measurement dependency.
+Use published constraints first; equivalent-device and representative-load bench
+tests are possible fallbacks for consequential ambiguities.
 
 ## Constraints to preserve
 
@@ -102,17 +97,15 @@ constraints and existing photos before declaring a measurement dependency.
   behavior, and identified firmware/emulator sources own software behavior.
 - Keep the CAD/evidence authority in `3d-models`, simulation in `dac-emulation`,
   and pinned museum consumers in `dac`. Preserve stable IDs and explicit revisions.
-- Keep historical, inferred and proposed geometry distinguishable. Proposed
-  reference routes cannot increase historical evidence coverage. Photo-only body
-  or wire observations do not establish numbered historical pads.
+- Keep historical, inferred and proposed geometry and primary/comparison specimens
+  distinguishable. Preserve rejected fits and competing connections. Proposed
+  routes, proximity and photo-only body observations cannot establish historical
+  numbered pads or continuity.
 - Regenerate affected KiCad checks, geometry and museum exports together. Preserve
   digital acceptance and source freshness; rerun firmware/HDL comparisons when
   their electrical or behavioral contract changes.
 - Preserve the existing coordinate, handedness, package-alignment and provenance
   checks. A clean reference DRC is neither measured fit nor fabrication approval.
 
-## Source drawings
-
-- [Manufacturer service drawings](https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf): placement on PDF page 10, schematic on page 11. Check revisions before transferring locations.
-- [Zander schematic](https://www.sax.de/~zander/pc1715/pc_tasts.pdf)
-- [Zander component reference](https://www.sax.de/~zander/pc1715/pc_tastb.pdf)
+Source drawings and photo locators belong in the CAD evidence manifests linked
+from the [workflow guide](keyboard-controller-progress.md#authoritative-artifacts).
