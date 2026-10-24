@@ -9,44 +9,57 @@ in the linked artifacts and Git history.
 
 ## Next work and acceptance
 
-### Ready now — no new specimen evidence required to start
+### Ready now — desk work
 
-| Work | Next action and acceptance |
+| Priority | Work and acceptance |
 | --- | --- |
-| Resolve live numerical convergence — first priority | Investigate the residual non-monotonic voltage differences in the [completed tight passive refinements](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/tight-passive-refinement/assessment.json). Inspect integration/state history at the remaining error peaks and distinguish it from sampled-waveform interpolation. Preserve matched inputs, failed controls and acceptance limits; require the numerical gate below before extending traffic. |
-| Constrain X1 geometry | Distinguish the EFS body-width and exact-form alternatives separately from the conditional scale alternatives in CAD `reference/package-reviews/efs-x1/assessment.json`. Account for photo-picking and calibration uncertainty before changing pads; obtain form-specific lead and mounting geometry. Check lead exits, mating clearance and expanded envelopes. |
-| Narrow electrical model uncertainty | Use published oscillator, driver and load constraints to identify hypotheses that change clock acceptance, receiver decisions or bus timing. Retain competing hypotheses where the evidence cannot distinguish them. |
+| 1. Live numerical convergence | Test whether nested local integration grids around the remaining error peaks reduce adaptive-mesh sensitivity. Keep the circuit and physical stimulus fixed, compare the whole observation window, and retain failed controls. Inspect integration/state history if differences persist. The numerical gate below still applies. |
+| 2. Historical registration | Reconcile board scale, perspective and raised-lead bias using board-plane joints and package pitches. Independent held-out checks must meet the existing registration budget before native pads or routes move. |
+| 3. X1 package identification | Seek form-specific lead, mounting and mating geometry that distinguishes the retained EFS alternatives. Propagate calibration and photo-picking uncertainty; contact-span agreement alone cannot select the body width or authorize pad placement. |
+| 4. Electrical-model sensitivity | Bound oscillator, driver and load hypotheses with published constraints; test which uncertainties change clock acceptance, receiver decisions or bus timing. Retain indistinguishable alternatives and identify the specific missing constraint for each consequential ambiguity. |
 
-These investigations and the physical sequence below can start with existing
-inputs. Closure may still need new evidence. Defer unsupported claims, not whole
-workstreams; repeat an experiment only for a changed hypothesis or new evidence.
+These investigations can start with existing inputs; successful closure is not
+promised. Repeat experiments only for a changed hypothesis or new evidence.
+Current results and package alternatives belong in the
+[requirement audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
+and linked machine-readable reports, not this plan.
 
-### Work with prerequisites
+### Follow-on work — internal prerequisites
 
 | Work | Prerequisite and acceptance |
 | --- | --- |
-| Complete full-repeat convergence | A viable direct-driver candidate; complete refinement and disabled controls under the numerical gate below. |
-| Complete live firmware/service evaluator-cache controls | A complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
-| Admit oscillator, driver, CPU/bus and load models | Independent evidence constraining relevant dynamics and operating conditions. Published data or equivalent-device bench tests may suffice; endpoint fitting alone cannot close admission. |
-| Qualify the coupled reference circuit | Numerical convergence and model admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
+| Full-repeat convergence | A candidate passing the reset-release numerical gate; extend to full repeat with the same refinement and disabled-control requirements. |
+| Live firmware/service evaluator-cache controls | A complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
+| Physical placements and copper | Accepted registration and individually supported terminal identities; follow the sequence below. |
+| Coupled reference qualification | Numerical convergence and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
+
+### Evidence-dependent closure
+
+| Work | Evidence needed |
+| --- | --- |
+| Admit oscillator, driver, CPU/bus and load models | Independent constraints on relevant dynamics and operating conditions. Published data or equivalent-device bench tests may suffice; endpoint fitting alone cannot close admission. |
 | Verify specimen-specific fit and behavior | Evidence distinguishing installed packages, hidden terminal/trace assignments, dimensions, ROM contents and timing. Exhaust existing photographs and published sources first; request only observations that resolve a remaining ambiguity. |
 
-## Physical reconstruction with existing photographs
+Do not defer an entire workstream because its final qualification needs evidence.
+Use standard S600 for reference work; keep specimen agreement separate.
 
-Start with registration; later promotions depend on its acceptance. Trace
-schematic-defined nets from both ends. For BR1/BR2, resolve only physical end
-correspondence and remaining geometry.
+## Physical reconstruction sequence
 
-| Step | Work | Acceptance |
-| --- | --- | --- |
-| 1 | Reconcile board scale, perspective and raised-lead bias using board-plane joints and package pitches | Independent held-out checks meet the existing registration budget; no widened tolerance or extrapolated terminal assignment. |
-| 2 | Correct supported placements and recheck affected routes | Native pad positions have bounded evidence; cross-side joins and native checks remain consistent. |
-| 3 | Resolve primary R1 orientation and numbered hole entries, then register the observed A4–R1 SENSE paths | Native pads represent the physical package, including its unused lead; promote only individually supported paths. |
-| 4 | Trace R1 common and sensing-transistor collector branches; resolve transistor terminal orientation | Terminal identity follows package evidence and visible lead entries, not proximity alone. |
-| 5 | Finish remaining bus, data/strobe, supply and clock paths, including L1–XT1 | Both endpoints and unresolved spans are recorded. Resolve WR/RD against specimen evidence. Keep connected pad groups separate from floating copper. |
+After registration passes:
+
+1. Correct supported placements and recheck routes, cross-side joins, lead exits,
+   mating clearance and body/lead envelopes.
+2. Resolve primary R1 orientation and numbered hole entries, including its unused
+   lead; promote only individually supported A4–R1 SENSE paths.
+3. Trace R1 common and sensing-transistor collector branches, resolving terminal
+   orientation from package evidence and visible lead entries.
+4. Finish remaining bus, data/strobe, supply and clock spans, including L1–XT1.
+   Resolve WR/RD against specimen evidence. For BR1/BR2, only physical end
+   correspondence and geometry remain.
 
 Preserve primary/comparison specimen identity, rejected fits and competing
-connections. Use standard S600 for reference work; keep specimen agreement separate.
+connections. Record both endpoints and unresolved spans; keep connected pad
+groups separate from floating copper. Proximity alone cannot establish a terminal.
 
 ## Electrical qualification gates
 
