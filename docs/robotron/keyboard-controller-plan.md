@@ -12,13 +12,20 @@ while making these changes.
 
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
-| 1. Full-repeat capture support | Preflight storage and runtime for the complete prepared S600 scenario; extend capture retention and comparison checks to its declared endpoint. | Preserve all required observations and absolute sample times; reject truncated captures. Verify any lossless storage changes before relying on them. |
-| 2. Full-repeat numerical qualification | Run the reset-release candidate over complete standard-S600 repeat traffic with matched timestep refinements and a complete control. | Pass the unchanged numerical gate below while preserving firmware reads and serial behavior over the full-repeat window. |
-| 3. Coupled rollback checks | Extend scheduling checks to exercise rejected steps and retries across live HDL/electrical boundaries. | Preserve event ordering, state and firmware behavior against complete controls; a bounded ordering regression or recorded replay cannot establish coupled rollback. |
+| 1. Coupled rollback checks | Extend scheduling checks to exercise rejected steps and retries across live HDL/electrical boundaries. | Preserve event ordering, state and firmware behavior against complete controls; a bounded ordering regression or recorded replay cannot establish coupled rollback. |
+| 2. Full-repeat capture support | Extend capture retention and comparison checks to the complete prepared S600 scenario's declared endpoint. | Preserve all required observations and absolute sample times; reject truncated captures. Verify any lossless storage changes before relying on them. |
 
-These tasks need no new specimen evidence. Capture capacity is an execution
-prerequisite, not a missing circuit observation. Keep the candidate opt-in until
+These tasks need no new specimen evidence. Keep the candidate opt-in until
 its full-window and coupled controls pass.
+
+### Deferred — full-repeat execution
+
+Full-repeat numerical captures are postponed until sufficient storage is available.
+When resuming, preflight capacity and runtime, then run the reset-release candidate
+over complete standard-S600 repeat traffic with matched timestep refinements and
+a complete control. Pass the unchanged numerical gate below while preserving
+firmware reads and serial behavior over the full-repeat window. Do not shorten
+the scenario to fit the current machine.
 
 ### Investigations — require a new discriminating check
 
