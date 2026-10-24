@@ -45737,7 +45737,7 @@
       "supply-review.json": "d5d6739317e7bd1ee1a5812fac81c0d34dccdc5916fe4b6e47ad7e20f922a622",
       "output-assembly.json": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370",
       "path-tracing.json": "be65c270e8f5f21c7abd4a79f1300149b7c13977678823a0f1f8b589becca245",
-      "tools/connection_review.py": "4ad9b30eaf4e4f8b61a4d1c6eba1050b262108b50b2e5b58b429b5e0f60f3551",
+      "tools/connection_review.py": "ad73cf099173b2cf0d469f144e1e34d743627122d0eb3c58d5e37bc426ededa4",
       "tools/photo_registration.py": "a65a64b7263f5665ebb8733859afbb864e173e3a684bff9d420dba01c8141068",
       "tools/bottom_registration.py": "302f3acf3da0fee2d4da8682a3675399d39ff89cd8bcb103e979152baa20efd3",
       "tools/clock_continuation.py": "7dfa75008966aaf544f0000b5ca5c75af2334a79ae5bc1b88211f8c01084880d",
@@ -50195,7 +50195,7 @@
                   1668.5,
                   2110.0
                 ],
-                "label": "X1:A8 \u2014 unclassified; top marker is a lead observation, not a hole centre"
+                "label": "X1:A8 \u2014 owner-observed present, soldered and unrouted; raised lead observation, not a hole centre"
               }
             ]
           },
@@ -50215,7 +50215,7 @@
                   1174.333,
                   1923.333
                 ],
-                "label": "X1:A8 \u2014 unclassified; top marker is a lead observation, not a hole centre"
+                "label": "X1:A8 \u2014 owner-observed present, soldered and unrouted; registered solder-joint observation; dimensions estimated"
               }
             ]
           }
@@ -50574,7 +50574,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "2a174948f39dd575762475a5fee63f920a0a99e9"
+      "revision": "4cae706d5b7f2584419f37114a4ccb2554258075"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -50594,7 +50594,7 @@
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
       "busReview": "283c431c4e4340416510887db973ca521c8a83b30119a2b242bdb2d2ef83a4e0",
       "cableCopper": "2545a3b9f124dc9f24771225f345e891f62bba73724f476b2967917d96e14e70",
-      "connectionReview": "f86d719eaf8af24f313b100cbdcd29eef09d9eec5c047ba8e338c65e123d302c",
+      "connectionReview": "07872fc3217d1629264249fd19134ecc8792f016dbf8408c227ea751889f688d",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
