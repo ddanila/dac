@@ -9,19 +9,28 @@ in the linked artifacts and Git history.
 
 ## Next work and acceptance
 
-| Priority | Remaining work | Can proceed now? | Acceptance |
-| --- | --- | --- | --- |
-| 1 | Resolve remaining proposed package dimensions and adapters | **Yes.** Check published dimensions for capacitors and connectors; retain assumptions where identity is unknown. | Evidence-backed dimensions and terminal mappings; affected geometry, clearance and native checks pass. Specimen fit remains separate. |
-| 2 | Reconcile historical registration, placement and copper | **Yes, for visible features.** Review held-out package-pose discrepancies before applying placement changes; follow the sequence below. | Independently supported endpoints and geometry within the existing registration budget; unresolved alternatives remain explicit. |
-| 3 | Complete live firmware/service evaluator-cache controls | **Depends on a completed uncached control for the same live circuit.** Resolve the direct-driver baseline failure before comparing its full service windows; replayed boundaries cannot replace this coverage. | Complete paired captures with identical inputs and runtime dependencies, and unchanged recorded waveforms. Keep caching opt-in until the live checks pass. |
-| 4 | Close direct-driver numerical convergence | **Software work, conditional on a useful electrical decision.** Select a hypothesis affecting receiver decisions or board timing before costly runs. | Meet the convergence gate below across required traffic and controls. |
-| 5 | Admit oscillator, driver, CPU/bus and load models | **Deferred admission:** independent device/load evidence is missing. Published constraints can still be investigated. | Supported models pass clock, receiver-margin and bus-timing checks; endpoint fitting alone is insufficient. |
-| 6 | Qualify the coupled reference circuit | **Deferred** until numerical convergence and model admission pass. | Prepared traffic passes electrical checks while preserving firmware behavior, including startup, reset, repeat and supply recovery. |
+### Ready now
 
-Start with bounded software checks and published package constraints. Photo work
-can proceed independently; defer individual hidden joins rather than the whole
-reconstruction. Do not repeat existing geometry or tracing work unless new
-evidence or a changed interface warrants it.
+| Work | Acceptance |
+| --- | --- |
+| Reconcile the reset-capacitor source disagreement and compare reset timing | Record factory C4 100 µF / 10 V versus Zander 10 µF / 40 V as source variants. Compare startup and recovery with identical device/load assumptions and timestep refinement. Preserve the reference default; neither drawing establishes the installed value. |
+| Resolve remaining proposed capacitor and connector dimensions | Use identifiable published packages where possible; retain explicit estimates otherwise. Check terminal mappings, geometry and clearances. Specimen fit remains separate. |
+| Reconcile historical registration and individually visible copper | Follow the physical sequence below. Promote only independently supported endpoints within the existing registration budget; leave hidden joins unresolved. |
+| Investigate published constraints on oscillator, driver and load behavior | Identify which uncertainty changes clock acceptance, receiver decisions or bus timing, and what independent evidence distinguishes it. Do not repeat endpoint fitting as dynamic validation. |
+
+### Dependent work
+
+| Work | Dependency and acceptance |
+| --- | --- |
+| Close direct-driver numerical convergence | Select a concrete electrical hypothesis before costly runs; satisfy the numerical gate below across required traffic and disabled controls. This is open software investigation, not a requirement for new board photographs. |
+| Complete live firmware/service evaluator-cache controls | First obtain a complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies. Recorded-boundary replay cannot substitute for live coverage; keep caching opt-in. |
+| Admit oscillator, driver, CPU/bus and load models | Independent evidence must constrain the relevant dynamics and operating conditions. Published data or equivalent-device bench tests may suffice; specimen measurements are required only for specimen-specific claims. |
+| Qualify the coupled reference circuit | Numerical convergence and model admission must pass first. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
+
+Defer individual unsupported claims rather than the whole reconstruction. Do not
+repeat existing geometry, tracing or simulation work without new evidence or a
+changed interface. Detailed candidates and results belong in the authoritative
+artifacts linked by the [workflow guide](keyboard-controller-progress.md).
 
 ## Physical reconstruction sequence
 
@@ -36,9 +45,7 @@ end correspondence and remaining trace geometry; their schematic nets are settle
 | 4 | Trace R1 common and sensing-transistor collector branches; resolve transistor terminal orientation | Terminal identity follows package evidence and visible lead entries, not proximity alone. |
 | 5 | Finish remaining bus, data/strobe, supply and clock paths, including L1–XT1 | Both endpoints and unresolved spans are recorded. Resolve WR/RD against specimen evidence. Keep connected pad groups separate from floating copper. |
 
-Keep detailed candidates in the CAD tracing authorities linked by the
-[workflow guide](keyboard-controller-progress.md), rather than duplicating them
-here. Preserve primary/comparison specimen identity, rejected fits and competing
+Preserve primary/comparison specimen identity, rejected fits and competing
 connections. Standard S600 is sufficient for reference work; exact specimen
 agreement still needs its ROM contents, dimensions and timing.
 
@@ -71,18 +78,10 @@ agreement. Do not tune a clamp, device or load merely to remove a solver failure
 Assess whether uncertainty changes receiver decisions or bus timing; waveform
 features with no such consequence are research notes rather than extra gates.
 
-### Evidence tiers and measurement dependencies
-
-Published data can establish documented limits and sampled device conditions;
-independent solver agreement checks numerical behavior, not physical accuracy.
-Bench measurements of loose equivalent devices and representative loads can
-resolve dynamic-model ambiguity without touching the museum board. Specimen
-observations establish installed identities, copper, ROM contents and actual timing.
-
-For each dependency, retain the alternatives, the evidence needed to distinguish
-them and the decision affected. Exhaust relevant published constraints and existing
-photos first. A bench dependency applies to the specific admission claim, not to
-all software or CAD work. Passing numerical checks does not admit a device model.
+Independent solver agreement checks numerical behavior, not physical accuracy.
+Bench tests of loose equivalent devices and representative loads can resolve
+model ambiguity without touching the museum board. Exhaust relevant published
+constraints and existing photos before declaring a measurement dependency.
 
 ## Constraints to preserve
 
@@ -104,4 +103,4 @@ all software or CAD work. Passing numerical checks does not admit a device model
 
 - [Manufacturer service drawings](https://www.tiffe.de/Robotron/PC1715/PC-1715-Schaltplaene.pdf): placement on PDF page 10, schematic on page 11. Check revisions before transferring locations.
 - [Zander schematic](https://www.sax.de/~zander/pc1715/pc_tasts.pdf)
-- [Zander component placement](https://www.sax.de/~zander/pc1715/pc_tastb.pdf)
+- [Zander component reference](https://www.sax.de/~zander/pc1715/pc_tastb.pdf)
