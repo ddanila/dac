@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Priority | Work and acceptance |
 | --- | --- |
-| 1. Live numerical convergence | Test an opt-in DAC ramp calculation that avoids reconstructed previous-time rounding, including interrupted-ramp and rollback controls. Separately resolve startup supply/WR sampling sensitivity. Preserve physical inputs and require the full-window numerical gate below before adoption. |
+| 1. Live numerical convergence | Qualify the opt-in event-anchored DAC candidate over the full window and coupled rollback/firmware scenarios. Separately resolve startup supply/WR sampling sensitivity. Preserve physical inputs and require the numerical gate below before adoption. |
 | 2. Historical registration | Distinguish the A8 hole-row spacing hypothesis from solder-joint picking and projection bias. Reconcile board scale using independent board-plane joints and package pitches; held-out checks must meet the existing registration budget before native pads or routes move. |
 | 3. X1 package identification | Seek form-specific lead, mounting and mating geometry that distinguishes the retained EFS alternatives. Propagate calibration and photo-picking uncertainty; contact-span agreement alone cannot select the body width or authorize pad placement. |
 | 4. Electrical-model sensitivity | Bound oscillator, driver and load hypotheses with published constraints; test which uncertainties change clock acceptance, receiver decisions or bus timing. Retain indistinguishable alternatives and identify the specific missing constraint for each consequential ambiguity. |
