@@ -39742,36 +39742,48 @@
                     "fittedResidualMm": 0.180921953,
                     "heldOut": false,
                     "originalResidualMm": 0.461134176,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.180921953,
                     "terminal": "A1:1"
                   },
                   {
                     "fittedResidualMm": 0.047435869,
                     "heldOut": true,
                     "originalResidualMm": 0.457182955,
+                    "residualAcrossRowMm": 0.044257766,
+                    "residualAlongRowMm": -0.01707079,
                     "terminal": "A1:14"
                   },
                   {
                     "fittedResidualMm": 0.158516991,
                     "heldOut": true,
                     "originalResidualMm": 0.466186474,
+                    "residualAcrossRowMm": 0.040430619,
+                    "residualAlongRowMm": 0.153274269,
                     "terminal": "A1:2"
                   },
                   {
                     "fittedResidualMm": 0.149676405,
                     "heldOut": true,
                     "originalResidualMm": 0.720412484,
+                    "residualAcrossRowMm": -0.04037299,
+                    "residualAlongRowMm": -0.144128581,
                     "terminal": "A1:6"
                   },
                   {
                     "fittedResidualMm": 0.180921953,
                     "heldOut": false,
                     "originalResidualMm": 0.755544288,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.180921953,
                     "terminal": "A1:7"
                   },
                   {
                     "fittedResidualMm": 0.157648937,
                     "heldOut": true,
                     "originalResidualMm": 0.840356849,
+                    "residualAcrossRowMm": -0.048212395,
+                    "residualAlongRowMm": -0.15009581,
                     "terminal": "A1:8"
                   }
                 ],
@@ -39780,6 +39792,7 @@
                 "maxHeldOutResidualMm": 0.158516991,
                 "maxOriginalHeldOutResidualMm": 0.840356849,
                 "ref": "A1",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": -1.719780244,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -39799,42 +39812,56 @@
                     "fittedResidualMm": 0.132003404,
                     "heldOut": false,
                     "originalResidualMm": 1.510599569,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.132003404,
                     "terminal": "A2.1:1"
                   },
                   {
                     "fittedResidualMm": 0.452647805,
                     "heldOut": true,
                     "originalResidualMm": 2.137339089,
+                    "residualAcrossRowMm": -0.446075786,
+                    "residualAlongRowMm": 0.076853293,
                     "terminal": "A2.1:13"
                   },
                   {
                     "fittedResidualMm": 0.344636589,
                     "heldOut": true,
                     "originalResidualMm": 1.886466508,
+                    "residualAcrossRowMm": -0.341423956,
+                    "residualAlongRowMm": -0.046947424,
                     "terminal": "A2.1:14"
                   },
                   {
                     "fittedResidualMm": 0.098566849,
                     "heldOut": true,
                     "originalResidualMm": 1.888299088,
+                    "residualAcrossRowMm": -0.052746386,
+                    "residualAlongRowMm": -0.083266095,
                     "terminal": "A2.1:6"
                   },
                   {
                     "fittedResidualMm": 0.132003404,
                     "heldOut": false,
                     "originalResidualMm": 1.932244037,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.132003404,
                     "terminal": "A2.1:7"
                   },
                   {
                     "fittedResidualMm": 0.537430451,
                     "heldOut": true,
                     "originalResidualMm": 2.553366174,
+                    "residualAcrossRowMm": -0.511627324,
+                    "residualAlongRowMm": -0.164526506,
                     "terminal": "A2.1:8"
                   },
                   {
                     "fittedResidualMm": 0.522456258,
                     "heldOut": true,
                     "originalResidualMm": 2.399590949,
+                    "residualAcrossRowMm": -0.484423172,
+                    "residualAlongRowMm": -0.1956904,
                     "terminal": "A2.1:9"
                   }
                 ],
@@ -39843,6 +39870,7 @@
                 "maxHeldOutResidualMm": 0.537430451,
                 "maxOriginalHeldOutResidualMm": 2.553366174,
                 "ref": "A2.1",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": -3.028113788,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -39862,30 +39890,40 @@
                     "fittedResidualMm": 0.131694114,
                     "heldOut": false,
                     "originalResidualMm": 3.15474812,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.131694114,
                     "terminal": "A4:1"
                   },
                   {
                     "fittedResidualMm": 0.131694114,
                     "heldOut": false,
                     "originalResidualMm": 2.911604078,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.131694114,
                     "terminal": "A4:10"
                   },
                   {
                     "fittedResidualMm": 0.340617788,
                     "heldOut": true,
                     "originalResidualMm": 2.86318374,
+                    "residualAcrossRowMm": -0.32479837,
+                    "residualAlongRowMm": -0.102598713,
                     "terminal": "A4:11"
                   },
                   {
                     "fittedResidualMm": 0.602384023,
                     "heldOut": true,
                     "originalResidualMm": 3.22931111,
+                    "residualAcrossRowMm": -0.534728694,
+                    "residualAlongRowMm": 0.277365707,
                     "terminal": "A4:20"
                   },
                   {
                     "fittedResidualMm": 0.079655479,
                     "heldOut": true,
                     "originalResidualMm": 3.098620352,
+                    "residualAcrossRowMm": 0.052465461,
+                    "residualAlongRowMm": 0.059936389,
                     "terminal": "A4:4"
                   }
                 ],
@@ -39894,6 +39932,7 @@
                 "maxHeldOutResidualMm": 0.602384023,
                 "maxOriginalHeldOutResidualMm": 3.22931111,
                 "ref": "A4",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": 0.208704218,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -39913,60 +39952,80 @@
                     "fittedResidualMm": 0.067631709,
                     "heldOut": false,
                     "originalResidualMm": 3.201478356,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.067631709,
                     "terminal": "A5:1"
                   },
                   {
                     "fittedResidualMm": 0.503845282,
                     "heldOut": true,
                     "originalResidualMm": 3.641842384,
+                    "residualAcrossRowMm": 0.019092001,
+                    "residualAlongRowMm": 0.50348343,
                     "terminal": "A5:14"
                   },
                   {
                     "fittedResidualMm": 0.067631709,
                     "heldOut": false,
                     "originalResidualMm": 3.074167113,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.067631709,
                     "terminal": "A5:20"
                   },
                   {
                     "fittedResidualMm": 0.727366212,
                     "heldOut": true,
                     "originalResidualMm": 3.130982075,
+                    "residualAcrossRowMm": -0.727233948,
+                    "residualAlongRowMm": 0.013870498,
                     "terminal": "A5:21"
                   },
                   {
                     "fittedResidualMm": 0.821702858,
                     "heldOut": true,
                     "originalResidualMm": 3.40586759,
+                    "residualAcrossRowMm": -0.776388426,
+                    "residualAlongRowMm": 0.269103323,
                     "terminal": "A5:30"
                   },
                   {
                     "fittedResidualMm": 0.735282273,
                     "heldOut": true,
                     "originalResidualMm": 3.352114681,
+                    "residualAcrossRowMm": -0.701733743,
+                    "residualAlongRowMm": 0.219567243,
                     "terminal": "A5:35"
                   },
                   {
                     "fittedResidualMm": 0.641069008,
                     "heldOut": true,
                     "originalResidualMm": 3.014675803,
+                    "residualAcrossRowMm": -0.629852833,
+                    "residualAlongRowMm": -0.119393812,
                     "terminal": "A5:40"
                   },
                   {
                     "fittedResidualMm": 0.444369607,
                     "heldOut": true,
                     "originalResidualMm": 3.576111796,
+                    "residualAcrossRowMm": -0.044286528,
+                    "residualAlongRowMm": 0.44215727,
                     "terminal": "A5:6"
                   },
                   {
                     "fittedResidualMm": 0.223349782,
                     "heldOut": true,
                     "originalResidualMm": 3.338621137,
+                    "residualAcrossRowMm": -0.088941806,
+                    "residualAlongRowMm": 0.204876744,
                     "terminal": "A5:7"
                   },
                   {
                     "fittedResidualMm": 0.213294148,
                     "heldOut": true,
                     "originalResidualMm": 3.341070422,
+                    "residualAcrossRowMm": -0.051830898,
+                    "residualAlongRowMm": 0.206900826,
                     "terminal": "A5:8"
                   }
                 ],
@@ -39975,6 +40034,7 @@
                 "maxHeldOutResidualMm": 0.821702858,
                 "maxOriginalHeldOutResidualMm": 3.641842384,
                 "ref": "A5",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": 0.21936278,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -39994,36 +40054,48 @@
                     "fittedResidualMm": 0.028770222,
                     "heldOut": false,
                     "originalResidualMm": 2.707326624,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.028770222,
                     "terminal": "A8:1"
                   },
                   {
                     "fittedResidualMm": 0.028770222,
                     "heldOut": false,
                     "originalResidualMm": 2.619820697,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.028770222,
                     "terminal": "A8:12"
                   },
                   {
                     "fittedResidualMm": 1.345969885,
                     "heldOut": true,
                     "originalResidualMm": 2.530753603,
+                    "residualAcrossRowMm": -1.117528694,
+                    "residualAlongRowMm": -0.750176346,
                     "terminal": "A8:13"
                   },
                   {
                     "fittedResidualMm": 1.224466628,
                     "heldOut": true,
                     "originalResidualMm": 3.052196194,
+                    "residualAcrossRowMm": -1.222263513,
+                    "residualAlongRowMm": -0.073419536,
                     "terminal": "A8:19"
                   },
                   {
                     "fittedResidualMm": 0.807847517,
                     "heldOut": true,
                     "originalResidualMm": 3.014686341,
+                    "residualAcrossRowMm": -0.807342444,
+                    "residualAlongRowMm": -0.028562031,
                     "terminal": "A8:24"
                   },
                   {
                     "fittedResidualMm": 0.133083888,
                     "heldOut": true,
                     "originalResidualMm": 2.505243813,
+                    "residualAcrossRowMm": -0.00484966,
+                    "residualAlongRowMm": -0.132995496,
                     "terminal": "A8:6"
                   }
                 ],
@@ -40032,6 +40104,7 @@
                 "maxHeldOutResidualMm": 1.345969885,
                 "maxOriginalHeldOutResidualMm": 3.052196194,
                 "ref": "A8",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": -1.743864881,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": false
@@ -41342,36 +41415,48 @@
                     "fittedResidualMm": 0.061897429,
                     "heldOut": false,
                     "originalResidualMm": 0.629667404,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.061897429,
                     "terminal": "A1:1"
                   },
                   {
                     "fittedResidualMm": 0.146751431,
                     "heldOut": true,
                     "originalResidualMm": 0.58402969,
+                    "residualAcrossRowMm": 0.044208545,
+                    "residualAlongRowMm": -0.139934224,
                     "terminal": "A1:14"
                   },
                   {
                     "fittedResidualMm": 0.084714008,
                     "heldOut": true,
                     "originalResidualMm": 0.63557943,
+                    "residualAcrossRowMm": 0.04043036,
+                    "residualAlongRowMm": 0.074443597,
                     "terminal": "A1:2"
                   },
                   {
                     "fittedResidualMm": 0.076646502,
                     "heldOut": true,
                     "originalResidualMm": 0.986792982,
+                    "residualAcrossRowMm": -0.04037273,
+                    "residualAlongRowMm": -0.065151584,
                     "terminal": "A1:6"
                   },
                   {
                     "fittedResidualMm": 0.061897429,
                     "heldOut": false,
                     "originalResidualMm": 1.010314417,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.061897429,
                     "terminal": "A1:7"
                   },
                   {
                     "fittedResidualMm": 0.057490239,
                     "heldOut": true,
                     "originalResidualMm": 0.89903959,
+                    "residualAcrossRowMm": -0.048261022,
+                    "residualAlongRowMm": -0.03124102,
                     "terminal": "A1:8"
                   }
                 ],
@@ -41380,6 +41465,7 @@
                 "maxHeldOutResidualMm": 0.146751431,
                 "maxOriginalHeldOutResidualMm": 0.986792982,
                 "ref": "A1",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": -1.722268617,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -41399,42 +41485,56 @@
                     "fittedResidualMm": 0.012199358,
                     "heldOut": false,
                     "originalResidualMm": 0.91528105,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.012199358,
                     "terminal": "A2.1:1"
                   },
                   {
                     "fittedResidualMm": 0.446122738,
                     "heldOut": true,
                     "originalResidualMm": 1.597458604,
+                    "residualAcrossRowMm": -0.446118862,
+                    "residualAlongRowMm": -0.001859745,
                     "terminal": "A2.1:13"
                   },
                   {
                     "fittedResidualMm": 0.380672734,
                     "heldOut": true,
                     "originalResidualMm": 1.307899781,
+                    "residualAcrossRowMm": -0.341467661,
+                    "residualAlongRowMm": -0.168260415,
                     "terminal": "A2.1:14"
                   },
                   {
                     "fittedResidualMm": 0.052851129,
                     "heldOut": true,
                     "originalResidualMm": 1.607465725,
+                    "residualAcrossRowMm": -0.052746069,
+                    "residualAlongRowMm": -0.003330768,
                     "terminal": "A2.1:6"
                   },
                   {
                     "fittedResidualMm": 0.012199358,
                     "heldOut": false,
                     "originalResidualMm": 1.68569695,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.012199358,
                     "terminal": "A2.1:7"
                   },
                   {
                     "fittedResidualMm": 0.513551544,
                     "heldOut": true,
                     "originalResidualMm": 2.266899119,
+                    "residualAcrossRowMm": -0.511670006,
+                    "residualAlongRowMm": -0.043920304,
                     "terminal": "A2.1:8"
                   },
                   {
                     "fittedResidualMm": 0.498210375,
                     "heldOut": true,
                     "originalResidualMm": 2.090159188,
+                    "residualAcrossRowMm": -0.484466017,
+                    "residualAlongRowMm": -0.11621642,
                     "terminal": "A2.1:9"
                   }
                 ],
@@ -41443,6 +41543,7 @@
                 "maxHeldOutResidualMm": 0.513551544,
                 "maxOriginalHeldOutResidualMm": 2.266899119,
                 "ref": "A2.1",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": -3.022826148,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -41462,30 +41563,40 @@
                     "fittedResidualMm": 0.04907851,
                     "heldOut": false,
                     "originalResidualMm": 3.889974426,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.04907851,
                     "terminal": "A4:1"
                   },
                   {
                     "fittedResidualMm": 0.04907851,
                     "heldOut": false,
                     "originalResidualMm": 3.999042041,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.04907851,
                     "terminal": "A4:10"
                   },
                   {
                     "fittedResidualMm": 0.334134613,
                     "heldOut": true,
                     "originalResidualMm": 3.964710205,
+                    "residualAcrossRowMm": -0.324845745,
+                    "residualAlongRowMm": 0.078237979,
                     "terminal": "A4:11"
                   },
                   {
                     "fittedResidualMm": 0.543776534,
                     "heldOut": true,
                     "originalResidualMm": 3.975116732,
+                    "residualAcrossRowMm": -0.534774705,
+                    "residualAlongRowMm": 0.098533922,
                     "terminal": "A4:20"
                   },
                   {
                     "fittedResidualMm": 0.052465163,
                     "heldOut": true,
                     "originalResidualMm": 3.949965585,
+                    "residualAcrossRowMm": 0.05246512,
+                    "residualAlongRowMm": -6.7426e-05,
                     "terminal": "A4:4"
                   }
                 ],
@@ -41494,6 +41605,7 @@
                 "maxHeldOutResidualMm": 0.543776534,
                 "maxOriginalHeldOutResidualMm": 3.975116732,
                 "ref": "A4",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": 0.207140183,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -41513,60 +41625,80 @@
                     "fittedResidualMm": 0.068714433,
                     "heldOut": false,
                     "originalResidualMm": 3.864474986,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.068714433,
                     "terminal": "A5:1"
                   },
                   {
                     "fittedResidualMm": 0.511893975,
                     "heldOut": true,
                     "originalResidualMm": 4.311157656,
+                    "residualAcrossRowMm": 0.019091877,
+                    "residualAlongRowMm": 0.511537821,
                     "terminal": "A5:14"
                   },
                   {
                     "fittedResidualMm": 0.068714433,
                     "heldOut": false,
                     "originalResidualMm": 3.733686254,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.068714433,
                     "terminal": "A5:20"
                   },
                   {
                     "fittedResidualMm": 0.727448885,
                     "heldOut": true,
                     "originalResidualMm": 3.785477729,
+                    "residualAcrossRowMm": -0.727328126,
+                    "residualAlongRowMm": 0.01325433,
                     "terminal": "A5:21"
                   },
                   {
                     "fittedResidualMm": 0.822934679,
                     "heldOut": true,
                     "originalResidualMm": 4.0617653,
+                    "residualAcrossRowMm": -0.776482285,
+                    "residualAlongRowMm": 0.272574295,
                     "terminal": "A5:30"
                   },
                   {
                     "fittedResidualMm": 0.736175262,
                     "heldOut": true,
                     "originalResidualMm": 4.007836057,
+                    "residualAcrossRowMm": -0.701828086,
+                    "residualAlongRowMm": 0.222241657,
                     "terminal": "A5:35"
                   },
                   {
                     "fittedResidualMm": 0.641680466,
                     "heldOut": true,
                     "originalResidualMm": 3.663949004,
+                    "residualAcrossRowMm": -0.629947642,
+                    "residualAlongRowMm": -0.122146587,
                     "terminal": "A5:40"
                   },
                   {
                     "fittedResidualMm": 0.451412247,
                     "heldOut": true,
                     "originalResidualMm": 4.245107404,
+                    "residualAcrossRowMm": -0.04428624,
+                    "residualAlongRowMm": 0.449234622,
                     "terminal": "A5:6"
                   },
                   {
                     "fittedResidualMm": 0.226365149,
                     "heldOut": true,
                     "originalResidualMm": 4.003864747,
+                    "residualAcrossRowMm": -0.088941229,
+                    "residualAlongRowMm": 0.208160127,
                     "terminal": "A5:7"
                   },
                   {
                     "fittedResidualMm": 0.216509805,
                     "heldOut": true,
                     "originalResidualMm": 4.006270257,
+                    "residualAcrossRowMm": -0.051830562,
+                    "residualAlongRowMm": 0.210214387,
                     "terminal": "A5:8"
                   }
                 ],
@@ -41575,6 +41707,7 @@
                 "maxHeldOutResidualMm": 0.822934679,
                 "maxOriginalHeldOutResidualMm": 4.311157656,
                 "ref": "A5",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": 0.217722733,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -41594,36 +41727,48 @@
                     "fittedResidualMm": 0.252710766,
                     "heldOut": false,
                     "originalResidualMm": 4.199280443,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": -0.252710766,
                     "terminal": "A8:1"
                   },
                   {
                     "fittedResidualMm": 0.252710766,
                     "heldOut": false,
                     "originalResidualMm": 4.613289543,
+                    "residualAcrossRowMm": 0.0,
+                    "residualAlongRowMm": 0.252710766,
                     "terminal": "A8:12"
                   },
                   {
                     "fittedResidualMm": 1.238033522,
                     "heldOut": true,
                     "originalResidualMm": 4.407640125,
+                    "residualAcrossRowMm": -1.117581233,
+                    "residualAlongRowMm": -0.532671746,
                     "terminal": "A8:13"
                   },
                   {
                     "fittedResidualMm": 1.225546467,
                     "heldOut": true,
                     "originalResidualMm": 4.771071156,
+                    "residualAcrossRowMm": -1.222315662,
+                    "residualAlongRowMm": -0.088930117,
                     "terminal": "A8:19"
                   },
                   {
                     "fittedResidualMm": 0.844140311,
                     "heldOut": true,
                     "originalResidualMm": 4.563105339,
+                    "residualAcrossRowMm": -0.807396137,
+                    "residualAlongRowMm": -0.246341922,
                     "terminal": "A8:24"
                   },
                   {
                     "fittedResidualMm": 0.155517148,
                     "heldOut": true,
                     "originalResidualMm": 4.232511606,
+                    "residualAcrossRowMm": -0.004849641,
+                    "residualAlongRowMm": -0.155441514,
                     "terminal": "A8:6"
                   }
                 ],
@@ -41632,6 +41777,7 @@
                 "maxHeldOutResidualMm": 1.238033522,
                 "maxOriginalHeldOutResidualMm": 4.771071156,
                 "ref": "A8",
+                "residualFrame": "Observed minus rigid-fit position; along points from first anchor to second, across is its left normal. Signed components diagnose the mismatch without changing the fit or acceptance budget.",
                 "rotationDegrees": -1.731739952,
                 "toleranceMm": 1.25,
                 "withinPhotoTolerance": true
@@ -51475,7 +51621,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "e35deea6316caee49742b32b5a892f57c130eee1"
+      "revision": "de6fd953f70292c4484b2566224c6bf9cf9a37c6"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
@@ -51493,7 +51639,7 @@
       "evidence": "45ca333c85133b8f6fd2a9be22d33ae018b856f85f10374ef5be1a6e1b1e9072",
       "componentEvidence": "57752b9a8963098b2b357f8b7714108b1b1236b2471cb445f25feb64b15011e0",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
-      "busReview": "fe78338191763e2d60f50481b61d8ff86f8b1608cfb7a67dd0f2d79debfbcbbc",
+      "busReview": "62f9de36cd8b3a7df319b3ba6e1db3ee3048753a0d4854bdf679a22f5d4e45a8",
       "cableCopper": "c9873fab855cc388019146d9199f30f5071f42eb0aa9e0855c8d6d60cbec185b",
       "connectionReview": "12dd8472d4b56737825c50da78b618d78ac3470c745e5ecef18ffab7d18dfae1",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"

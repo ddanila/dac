@@ -992,6 +992,8 @@ test('sense corridor review keeps bank candidates separate from native copper',a
   await expect(review.locator('[data-sense-envelope-trial]')).toContainText('Outside the fit budget');
   await expect(review.locator('[data-sense-metric-review]')).toContainText('Primary marking UB880 D');
   await expect(review.locator('[data-sense-package-poses] tbody tr').filter({hasText:'A8'})).toContainText('Outside; no placement admission');
+  await expect(review.locator('[data-sense-package-poses] tbody tr').filter({hasText:'A8'})).toContainText('A8:13: -0.75 / -1.12');
+  await expect(review.locator('[data-sense-metric-review]')).toContainText('Observed minus rigid-fit position');
   await expect(review.locator('[data-sense-package-poses] tbody tr').filter({hasText:'A4'})).toContainText('Within; diagnostic only');
   await expect(review).toContainText('cable-facing end');
   if(row===0)await expect(review).toContainText('passes left of the CPU-end joint');
