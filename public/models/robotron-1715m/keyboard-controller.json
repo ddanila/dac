@@ -50574,7 +50574,7 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "5aed0b4e8c7f0b08c03e0647d4acbb33331d813e"
+      "revision": "89b02d96c49461c456884a0b92debf1207eb7b98"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",

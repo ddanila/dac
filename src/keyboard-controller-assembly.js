@@ -11,7 +11,7 @@ export async function createReferenceAssembly(host,data){
  const scene=new THREE.Scene();scene.background=new THREE.Color('#15232c');
  const camera=new THREE.PerspectiveCamera(35,1,.1,1200);camera.up.set(0,0,1);camera.position.set(0,-170,190);
  const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,0,4);
- const geometries=new Set(),materials=new Set();let disposed=false,fitted=false;
+ const geometries=new Set(),materials=new Set();let disposed=false,fitted=false,loaded=false,frame=0;
  const material=color=>{const m=new THREE.MeshStandardMaterial({color,roughness:.7});materials.add(m);return m;};
  const plastic=material('#292a30'),metal=material('#b8bdc4'),passive=material('#a98a50'),green=material('#28533a'),copper=material('#e48d46');
  const add=(geometry,mat,target=scene)=>{geometries.add(geometry);const mesh=new THREE.Mesh(geometry,mat);target.add(mesh);return mesh;};
@@ -21,7 +21,10 @@ export async function createReferenceAssembly(host,data){
   const g=new THREE.CylinderGeometry(width/2,width/2,delta.length(),6),q=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());g.applyMatrix4(new THREE.Matrix4().compose(start.add(end).multiplyScalar(.5),q,new THREE.Vector3(1,1,1)));if(!segments.has(mat))segments.set(mat,[]);segments.get(mat).push(g);
  };
  function resize(){if(disposed)return;const width=Math.max(host.clientWidth,240);renderer.setSize(width,300,false);camera.aspect=width/300;if(!fitted){camera.position.set(0,-.67,.74).normalize().multiplyScalar(Math.max(145/camera.aspect,40)/Math.tan(THREE.MathUtils.degToRad(17.5)));controls.update();fitted=true;}camera.updateProjectionMatrix();render();}
- function render(){if(!disposed)renderer.render(scene,camera);}
+ function render(){
+  if(disposed||!loaded||frame)return;
+  frame=requestAnimationFrame(()=>{frame=0;if(disposed)return;renderer.render(scene,camera);renderer.domElement.dataset.ready="true";});
+ }
  const observer=new ResizeObserver(resize);observer.observe(host);controls.addEventListener('change',render);
  scene.add(new THREE.HemisphereLight(0xffffff,0x666666,2));const light=new THREE.DirectionalLight(0xffffff,2);light.position.set(40,-60,180);scene.add(light);
  const shape=new THREE.Shape(data.layout.outlinePolygon.map(p=>new THREE.Vector2(...p)));
@@ -29,7 +32,11 @@ export async function createReferenceAssembly(host,data){
  add(new THREE.ExtrudeGeometry(shape,{depth:1.6,bevelEnabled:false,curveSegments:8}),green);
  for(const r of data.layout.routes)for(let i=1;i<r.points.length;i++)line([...r.points[i-1],r.side==='top'?1.63:-.03],[...r.points[i],r.side==='top'?1.63:-.03],r.width,copper);
  for(const c of data.layout.components)for(const p of c.pads)for(const z of [-.04,1.64]){
-  const pad=add(new THREE.RingGeometry(Math.max(p.drill[0]/2,.05),p.size[0]/2,12),metal);pad.scale.y=p.size[1]/p.size[0];pad.position.set(...p.position,z);if(z<0)pad.rotation.x=Math.PI;
+  const pad=new THREE.RingGeometry(Math.max(p.drill[0]/2,.05),p.size[0]/2,12);
+  pad.scale(1,p.size[1]/p.size[0],1);if(z<0)pad.rotateX(Math.PI);pad.translate(...p.position,z);
+  // Pads share the lead material: batch static geometry to avoid hundreds of
+  // separate draw calls on each open, resize and orbit in software WebGL.
+  if(!segments.has(metal))segments.set(metal,[]);segments.get(metal).push(pad);
  }
  for(const core of data.assembly.sharedBodies||[]){
   const [w,d,h]=core.outerSizeMm,[iw,id]=core.windowSizeMm;
@@ -52,9 +59,9 @@ export async function createReferenceAssembly(host,data){
   for(const lead of c.leads)for(let i=1;i<lead.points.length;i++)line(lead.points[i-1],lead.points[i],lead.diameterMm);
  }
  for(const [mat,parts]of segments){add(mergeGeometries(parts),mat);for(const g of parts)g.dispose();}
- function dispose(){if(disposed)return;disposed=true;observer.disconnect();controls.dispose();for(const g of geometries)g.dispose();for(const m of materials)m.dispose();renderer.dispose();renderer.domElement.remove();}
+ function dispose(){if(disposed)return;disposed=true;cancelAnimationFrame(frame);observer.disconnect();controls.dispose();for(const g of geometries)g.dispose();for(const m of materials)m.dispose();renderer.dispose();renderer.domElement.remove();}
  try{await Promise.all(tasks);}catch(error){dispose();throw error;}
- controls.update();resize();renderer.domElement.dataset.ready="true";
+ loaded=true;controls.update();resize();
  return {dispose,select(ref){
   const old=scene.getObjectByName('selection');if(old){old.removeFromParent();old.geometry.dispose();old.material.dispose();geometries.delete(old.geometry);materials.delete(old.material);}const c=data.assembly.components.find(c=>c.ref===ref);if(c){const b=c.boundsMm,box=new THREE.Box3(new THREE.Vector3(...b.map(v=>v[0])),new THREE.Vector3(...b.map(v=>v[1]))),helper=new THREE.Box3Helper(box,0xffef70);helper.name='selection';geometries.add(helper.geometry);materials.add(helper.material);scene.add(helper);}render();}};
 }

@@ -2666,7 +2666,7 @@
             "net": "/D5",
             "pin": "15",
             "position": [
-              116.637684,
+              116.637683,
               17.279717
             ],
             "ref": "A8",
@@ -2717,7 +2717,7 @@
             "net": "/GND",
             "pin": "18",
             "position": [
-              109.018786,
+              109.018785,
               17.150187
             ],
             "ref": "A8",
@@ -2853,7 +2853,7 @@
             "net": "/A5",
             "pin": "3",
             "position": [
-              99.119316,
+              99.119317,
               1.739683
             ],
             "ref": "A8",
@@ -2904,7 +2904,7 @@
             "net": "/A2",
             "pin": "6",
             "position": [
-              106.738214,
+              106.738215,
               1.869213
             ],
             "ref": "A8",
@@ -3898,8 +3898,8 @@
         "pads": [
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/GND",
             "pin": "1",
@@ -3915,8 +3915,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": null,
             "pin": "10",
@@ -3932,8 +3932,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/SENSE7",
             "pin": "2",
@@ -3949,8 +3949,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/SENSE6",
             "pin": "3",
@@ -3966,8 +3966,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/SENSE5",
             "pin": "4",
@@ -3983,8 +3983,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/SENSE4",
             "pin": "5",
@@ -4000,8 +4000,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/SENSE3",
             "pin": "6",
@@ -4017,8 +4017,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/SENSE2",
             "pin": "7",
@@ -4034,8 +4034,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/SENSE1",
             "pin": "8",
@@ -4051,8 +4051,8 @@
           },
           {
             "drill": [
-              0.85,
-              0.85
+              1.1,
+              1.1
             ],
             "net": "/SENSE0",
             "pin": "9",
@@ -50588,22 +50588,22 @@
             "net": "/D5",
             "points": [
               [
-                116.637684,
+                116.637683,
                 17.279717,
                 -0.5
               ],
               [
-                116.637684,
+                116.637683,
                 17.279717,
                 2.033176169
               ],
               [
-                116.638166121,
+                116.638165121,
                 17.25135882,
                 2.160506244
               ],
               [
-                116.650433,
+                116.650432,
                 16.529826,
                 3.7
               ]
@@ -50614,7 +50614,7 @@
                 "vertexIndex": 1,
                 "radiusMm": 0.3,
                 "centerMm": [
-                  116.642783604,
+                  116.642782604,
                   16.979760346,
                   2.033176169
                 ],
@@ -50714,22 +50714,22 @@
             "net": "/GND",
             "points": [
               [
-                109.018786,
+                109.018785,
                 17.150187,
                 -0.5
               ],
               [
-                109.018786,
+                109.018785,
                 17.150187,
                 2.033176169
               ],
               [
-                109.019268121,
+                109.019267121,
                 17.12182882,
                 2.160506244
               ],
               [
-                109.031535,
+                109.031534,
                 16.400296,
                 3.7
               ]
@@ -50740,7 +50740,7 @@
                 "vertexIndex": 1,
                 "radiusMm": 0.3,
                 "centerMm": [
-                  109.023885604,
+                  109.023884604,
                   16.850230346,
                   2.033176169
                 ],
@@ -51050,22 +51050,22 @@
             "net": "/A5",
             "points": [
               [
-                99.119316,
+                99.119317,
                 1.739683,
                 -0.5
               ],
               [
-                99.119316,
+                99.119317,
                 1.739683,
                 2.033176169
               ],
               [
-                99.118833879,
+                99.118834879,
                 1.76804118,
                 2.160506244
               ],
               [
-                99.106567,
+                99.106568,
                 2.489574,
                 3.7
               ]
@@ -51076,7 +51076,7 @@
                 "vertexIndex": 1,
                 "radiusMm": 0.3,
                 "centerMm": [
-                  99.114216396,
+                  99.114217396,
                   2.039639654,
                   2.033176169
                 ],
@@ -51176,22 +51176,22 @@
             "net": "/A2",
             "points": [
               [
-                106.738214,
+                106.738215,
                 1.869213,
                 -0.5
               ],
               [
-                106.738214,
+                106.738215,
                 1.869213,
                 2.033176169
               ],
               [
-                106.737731879,
+                106.737732879,
                 1.89757118,
                 2.160506244
               ],
               [
-                106.725465,
+                106.725466,
                 2.619104,
                 3.7
               ]
@@ -51202,7 +51202,7 @@
                 "vertexIndex": 1,
                 "radiusMm": 0.3,
                 "centerMm": [
-                  106.733114396,
+                  106.733115396,
                   2.169169654,
                   2.033176169
                 ],
@@ -51387,8 +51387,8 @@
             },
             "15": {
               "offsetMm": [
-                8.889998498,
-                7.619999687
+                8.889997498,
+                7.619999704
               ],
               "net": "/D5"
             },
@@ -51408,8 +51408,8 @@
             },
             "18": {
               "offsetMm": [
-                1.269999498,
-                7.619999674
+                1.269998498,
+                7.619999691
               ],
               "net": "/GND"
             },
@@ -51464,8 +51464,8 @@
             },
             "3": {
               "offsetMm": [
-                -8.889998498,
-                -7.619999687
+                -8.889997498,
+                -7.619999704
               ],
               "net": "/A5"
             },
@@ -51485,8 +51485,8 @@
             },
             "6": {
               "offsetMm": [
-                -1.269999498,
-                -7.619999674
+                -1.269998498,
+                -7.619999691
               ],
               "net": "/A2"
             },
@@ -55824,15 +55824,15 @@
         "ref": "R1",
         "type": "8x910",
         "package": "network",
-        "basis": "R1 catalog B1 envelope; proposed board-surface seating to clear the modeled matrix board. Installed seating and manufacturing allowance remain unqualified.",
+        "basis": "KWH B1 catalog maximum body and lead envelope. Proposed 0.6 mm body stand-off and 2.1 mm body offset toward higher matrix-board clearance, with formed leads to unchanged native pads. Installed dimensions and orientation remain unverified.",
         "position": [
           -82.75,
-          -13.5,
-          1.6
+          -11.4,
+          2.2
         ],
         "rotation": 0,
         "sizeMm": [
-          25,
+          27.5,
           3,
           11
         ],
@@ -55840,16 +55840,16 @@
         "profile": null,
         "boundsMm": [
           [
-            -95.25,
-            -70.25
+            -96.5,
+            -69.0
           ],
           [
-            -15.0,
-            -12.0
+            -12.9,
+            -9.9
           ],
           [
-            1.6,
-            12.6
+            2.2,
+            13.2
           ]
         ],
         "leads": [
@@ -55865,11 +55865,49 @@
               [
                 -94.0,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -94.0,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -94.0,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -94.0,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -94.0,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -94.0,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -94.0,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -55884,11 +55922,49 @@
               [
                 -71.5,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -71.5,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -71.5,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -71.5,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -71.5,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -71.5,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -71.5,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -55903,11 +55979,49 @@
               [
                 -91.5,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -91.5,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -91.5,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -91.5,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -91.5,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -91.5,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -91.5,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -55922,11 +56036,49 @@
               [
                 -89.0,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -89.0,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -89.0,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -89.0,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -89.0,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -89.0,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -89.0,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -55941,11 +56093,49 @@
               [
                 -86.5,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -86.5,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -86.5,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -86.5,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -86.5,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -86.5,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -86.5,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -55960,11 +56150,49 @@
               [
                 -84.0,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -84.0,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -84.0,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -84.0,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -84.0,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -84.0,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -84.0,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -55979,11 +56207,49 @@
               [
                 -81.5,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -81.5,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -81.5,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -81.5,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -81.5,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -81.5,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -81.5,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -55998,11 +56264,49 @@
               [
                 -79.0,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -79.0,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -79.0,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -79.0,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -79.0,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -79.0,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -79.0,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -56017,11 +56321,49 @@
               [
                 -76.5,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -76.5,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -76.5,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -76.5,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -76.5,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -76.5,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -76.5,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           },
           {
@@ -56036,11 +56378,49 @@
               [
                 -74.0,
                 -13.5,
-                1.6
+                1.623242951
+              ],
+              [
+                -74.0,
+                -13.464183187,
+                1.809076127
+              ],
+              [
+                -74.0,
+                -13.361864123,
+                1.968285494
+              ],
+              [
+                -74.0,
+                -13.207701781,
+                2.078061564
+              ],
+              [
+                -74.0,
+                -13.023782575,
+                2.12267702
+              ],
+              [
+                -74.0,
+                -11.4,
+                2.2
               ]
             ],
-            "diameterMm": 0.3,
-            "bends": [],
+            "diameterMm": 0.820060974,
+            "bends": [
+              {
+                "vertexIndex": 1,
+                "radiusMm": 0.5,
+                "centerMm": [
+                  -74.0,
+                  -13.0,
+                  1.623242951
+                ],
+                "angleRadians": 1.523213224,
+                "tangentOffsetMm": 0.476757049,
+                "maximumChordErrorMm": 0.00903585
+              }
+            ],
             "centerlineApproximationMm": 0.010000001
           }
         ],
@@ -56050,70 +56430,70 @@
             "1": {
               "offsetMm": [
                 -11.25,
-                0.0
+                -2.1
               ],
               "net": "/GND"
             },
             "10": {
               "offsetMm": [
                 11.25,
-                0.0
+                -2.1
               ],
               "net": null
             },
             "2": {
               "offsetMm": [
                 -8.75,
-                0.0
+                -2.1
               ],
               "net": "/SENSE7"
             },
             "3": {
               "offsetMm": [
                 -6.25,
-                0.0
+                -2.1
               ],
               "net": "/SENSE6"
             },
             "4": {
               "offsetMm": [
                 -3.75,
-                0.0
+                -2.1
               ],
               "net": "/SENSE5"
             },
             "5": {
               "offsetMm": [
                 -1.25,
-                0.0
+                -2.1
               ],
               "net": "/SENSE4"
             },
             "6": {
               "offsetMm": [
                 1.25,
-                0.0
+                -2.1
               ],
               "net": "/SENSE3"
             },
             "7": {
               "offsetMm": [
                 3.75,
-                0.0
+                -2.1
               ],
               "net": "/SENSE2"
             },
             "8": {
               "offsetMm": [
                 6.25,
-                0.0
+                -2.1
               ],
               "net": "/SENSE1"
             },
             "9": {
               "offsetMm": [
                 8.75,
-                0.0
+                -2.1
               ],
               "net": "/SENSE0"
             }
@@ -65030,20 +65410,20 @@
       "../components/kicad/meshes/DIP-40_W15.24mm-body.stl": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
       "evidence.json": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "reference/assembly.json": "af07d691e427d1f2e1ebd1762dd763f12e03fcd03a47a4a6d766e60125040bd8",
-      "reference/generated/layout.json": "51217655811477294a8c69ceb442be17ff987562fe98cf1df5b26a303a18d74d",
+      "reference/assembly.json": "e2bceec20dbfc189409c0c695f2d896639e47211f395a0266d1915e4d33ca6cc",
+      "reference/generated/layout.json": "7d186c0c2fb685455e8d6c13603cc0a273bb8aab998236f2200b24737fb56d6d",
       "reference/signal-paths.json": "bcc196b9fe151e87a292a0b8572d20b1b763d526907005e595428f03f958392b",
-      "tools/assembly_allowances.py": "b11245dc5faed0759a6a91d5c3823ab0f0429a3f9d204709dcd06254554b1064",
+      "tools/assembly_allowances.py": "879c3fe4c25034b72a81c8b4708fb5246f3bd0bbde82c7bf4c4345d89733ac3b",
       "tools/lead_bends.py": "bf8ebb9f2d1450e0911b7cff8f4af0a6c35622d3320d42d439ede3c4ad30b9b1",
       "tools/lead_clearance.py": "bee24ac3694ca5a792ac71b3d5fa0aa782f2a0a50d1c612e8013c9dec5309705",
-      "tools/reference_assembly.py": "4719c959275e276fc5adc94dab78319d3a295dbab40a19a74b7ebbc6527aaa4e",
+      "tools/reference_assembly.py": "decdcdb4a76c19b71916f404c34956a47cf7efbf25de3af9856a7b8dc782acd1",
       "tools/shared_filter.py": "4f161698ca237d5e679f8c3790808573c4c90c991f37cf0a87b34d797eb680bf"
     }
   },
   "enclosure": {
     "schema": 3,
     "variant": "proposed-reference",
-    "scope": "Reference PCB substrate, drilled holes, populated bodies and leads at the existing keyboard controller transform. Nominal solids and conservative assembly allowance envelopes are reported separately. Allowance envelopes include curve approximation error; substrate mounting remains nominal. Excludes PCB copper, connector engagement, cable and shield braid. Proposed circular lead bends are included. Zero volume permits touching. Enclosure dimensions and installed seating remain unmeasured.",
+    "scope": "Reference PCB substrate, drilled holes, populated bodies and leads at the existing keyboard controller transform. Nominal solids and conservative assembly allowance envelopes are reported separately. Allowance envelopes include curve approximation error; substrate mounting and hole solids remain nominal; analytical hole-loss checks are in the assembly report. Nominal and allowance lead envelopes are also intersected with their own drilled substrate; intentional body seating is excluded from that interface. Excludes PCB copper, connector engagement, cable and shield braid. Proposed circular lead bends are included. Zero volume permits touching. Enclosure dimensions and installed seating remain unmeasured.",
     "engine": "OpenSCAD version 2026.10.05",
     "intersectionBudgetMm3": 0.001,
     "results": [
@@ -65156,6 +65536,17 @@
         ],
         "intersectionMm3": 0.0,
         "intersects": false
+      },
+      {
+        "interface": "own-substrate",
+        "subject": "reference_leads",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
+        "intersectionMm3": 0.0,
+        "intersects": false
       }
     ],
     "allowanceResults": [
@@ -65213,6 +65604,17 @@
         ],
         "intersectionMm3": 0.0,
         "intersects": false
+      },
+      {
+        "interface": "allowance-own-substrate",
+        "subject": "reference_lead_allowance_envelope",
+        "offsetMm": [
+          0,
+          0,
+          0
+        ],
+        "intersectionMm3": 0.0,
+        "intersects": false
       }
     ],
     "allowanceInterfacesClear": true,
@@ -65224,7 +65626,7 @@
         0,
         1
       ],
-      "intersectionMm3": 24.378109,
+      "intersectionMm3": 57.805158,
       "intersects": true
     },
     "mountingControl": {
@@ -65246,7 +65648,7 @@
         0,
         1
       ],
-      "intersectionMm3": 33.892802,
+      "intersectionMm3": 70.42749,
       "intersects": true
     },
     "nominalInterfacesClear": true,
@@ -65265,10 +65667,10 @@
       "key-switch/geometry.scad": "3c5548896f0d9ef90e45d89c51d15f91974dc473456da760aeb61104c75fddce",
       "keyboard-artwork.scad": "4b185f623c7b71674bfc823a3cb0b8ceb38ed8447e55e286977e01de02c18d6c",
       "keyboard-controller/generated/controller.scad": "f6e306520f5b08cd630656324c60e4d8be5ce5f7ead8152a4776a9993017fd20",
-      "keyboard-controller/reference/assembly-generated/assembly.scad": "557fc4ce2b8d72d7d8db83411989c9d11195d8877088e4fc7a75141a3b7cc731",
-      "keyboard-controller/reference/generated/controller.scad": "c80c24dbc7ca2f5d2af42cc593c0e765918c587e6f0bd65c92ba9bcae12ebaca",
+      "keyboard-controller/reference/assembly-generated/assembly.scad": "b2ad495561fe116e3bc4cd31135b1e16653093bc4895d8e6b12c136a92bc81c8",
+      "keyboard-controller/reference/generated/controller.scad": "6f2a43e5a6fcc00d1fea560ab51353d187f4984f34d9cc610c0b0f5d511c1809",
       "keyboard-controller/reference/review.scad": "b3019aab9355118b037c3e64f857fa2e0b262c5c28444e3c10617fcd4f5ebe99",
-      "keyboard-controller/tools/reference_enclosure.py": "655414ec2a20cc5e78869642f59c5a474353455b275884cb3643cc17db4e65f0",
+      "keyboard-controller/tools/reference_enclosure.py": "a9fcc1c67cac4c30ee876ff612e026bc8816e64b1fac0d02f8a10edc51a8412d",
       "keyboard-layout.scad": "bf1700cba2e51c7ea9b400fab2c6dbd7072fd5d97cb15396cd0e17a260ef5fae",
       "keycap/geometry.scad": "e304f9e8e48ee16f4ee67a29906901f6f7cff93694c6ebf70bf6e38a891ad961",
       "model.scad": "a3551efcb66486043b1521b49e42d2c8f7e2a846d8f82edf5838c7a5b30f4f8d",
@@ -65281,15 +65683,15 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "5aed0b4e8c7f0b08c03e0647d4acbb33331d813e",
-    "manifestSha256": "8deab62e496be9c86b5bbc9bebb1455daa092c3ddb5d4d0edeefd1b67980cc3e",
+    "revision": "89b02d96c49461c456884a0b92debf1207eb7b98",
+    "manifestSha256": "e6b894df908110a2aa3304dd32874bb755542c01921d9705d19d5f3ed2fae5e4",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
-      "reference/generated/controller.scad": "c80c24dbc7ca2f5d2af42cc593c0e765918c587e6f0bd65c92ba9bcae12ebaca",
-      "reference/generated/layout.json": "51217655811477294a8c69ceb442be17ff987562fe98cf1df5b26a303a18d74d",
+      "reference/generated/controller.scad": "6f2a43e5a6fcc00d1fea560ab51353d187f4984f34d9cc610c0b0f5d511c1809",
+      "reference/generated/layout.json": "7d186c0c2fb685455e8d6c13603cc0a273bb8aab998236f2200b24737fb56d6d",
       "reference/generated/qualification.json": "f360f38ef0d218558c574cfa5c1a323054366f1678763a4c01905f4fe3cb6a6c",
       "reference/generated/routing-audit.json": "7fef7889ee082facdd24aa7da0cfc2b5034e2fd389c07aedc3e0a1c9f0ec7c66"
     },
-    "assemblySha256": "88430051d46623d3a3879b7c9537072e238ded27beff42521b30d6f6db6353ce"
+    "assemblySha256": "f524aff462bd8a49410e6e94b51a8ddc685d61cbacb67d759443450be1ca107b"
   }
 }
