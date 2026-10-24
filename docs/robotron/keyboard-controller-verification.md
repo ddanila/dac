@@ -39,7 +39,7 @@ owns scenario coverage and experiment details.
 | Gate | Current evidence | Remaining proof |
 | --- | --- | --- |
 | Numerical convergence | [Transient-error refinements][transient-error] pass the unchanged full-window reset-release voltage gate with identical observed bus events. The explicit-default control reproduces all baseline waveforms. This is a bounded comparison with ideal external clock/reset. | Full-repeat numerical coverage and coupled rollback remain open under the unchanged [numerical gate](keyboard-controller-plan.md#numerical-convergence). Keep the candidate opt-in until those controls pass; physical model admission remains separate. |
-| HDL/electrical scheduling | The [input-boundary regression][input-barrier] passes its declared ordering scope. | Full coupled acceptance, including the supply-relative bus-voltage check; scoped regression success is not general rollback support. |
+| HDL/electrical scheduling | The [input-boundary regression][input-barrier] passes its declared ordering scope. [Complete reset-release dispatch controls][rollback-dispatch] preserve all samples and firmware events, with the sole irreversible client last and no callbacks in LTE-rejected trials. | Actual HDL advancement across client-requested breakpoints, Newton-rejection coverage and full coupled acceptance, including the supply-relative bus-voltage check. Callback ordering is not proof of internal rollback. |
 | Onboard clock | [Reference oscillator screens][clock-acceptance] fail U880 level or timing requirements. | Independently constrained intended-family dynamics and startup-inclusive board qualification. Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions. |
 | Reset | [C4 source-alternative studies][reset-alternatives] cover isolated exploratory reset behavior. | Installed component identity and coupled reset/recovery qualification; retain the reference default. |
 | Device and load admission | [Static endpoint screens][device-endpoints] pass selected conditions; [driver/recovery evidence][serial-path] retains non-unique dynamics and load sensitivity. [Linear bus drivers][bus-device] fail a minimum-supply guarantee. | Independent driver/CPU I/V, switching and reverse-recovery behavior, plus filter/cable/host impedance. Endpoint fitting and firmware agreement cannot admit these models. |
@@ -114,3 +114,5 @@ and the reason for changing its interpretation.
 [reset-alternatives]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitance/generic/assessment.json
 
 [transient-error]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/transient-error-refinement/assessment.json
+
+[rollback-dispatch]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/rollback-dispatch/assessment.json
