@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Work | Next action and acceptance |
 | --- | --- |
-| Resolve live numerical convergence — first priority | Investigate the residual trajectory differences in [common-time captures](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/fixture-grid-sampling/assessment.json) using controlled tolerance refinement and state-history diagnostics at the affected bus transitions. Preserve the physical circuit, clock/reset grid and acceptance limits. Require the numerical gate below before extending traffic. |
+| Resolve live numerical convergence — first priority | Qualify startup precision beyond the short [tolerance controls](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/fixture-grid-tolerances/assessment.json), then retry relative-tolerance refinement of the complete common-time capture. Preserve failed controls, physical parameters and acceptance limits; startup success alone cannot establish later trajectory convergence. Require the numerical gate below before extending traffic. |
 | Constrain X1 geometry | Resolve the EFS candidate’s exact form and distinguish the conditional scale alternatives in CAD `reference/package-reviews/efs-x1/assessment.json`. Account for photo-picking and calibration uncertainty before changing pads; obtain form-specific lead and mounting geometry. Check lead exits, mating clearance and expanded envelopes. |
 | Narrow electrical model uncertainty | Use published oscillator, driver and load constraints to identify hypotheses that change clock acceptance, receiver decisions or bus timing. Retain competing hypotheses where the evidence cannot distinguish them. |
 
