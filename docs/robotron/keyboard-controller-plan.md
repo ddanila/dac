@@ -9,32 +9,35 @@ in the linked artifacts and Git history.
 
 ## Next work and acceptance
 
-### Ready now
+### Ready now — no new specimen evidence required to start
 
-| Work | Acceptance |
+| Work | Next action and acceptance |
 | --- | --- |
-| Resolve remaining connector dimensions | Use an identifiable published package where possible; retain estimates where identity is unknown. Check contact mapping, lead geometry, mating clearance and expanded envelopes. Keep XT1 cable terminations distinct from a physical connector housing; specimen fit remains separate. |
-| Reconcile historical registration and individually visible copper | Follow the physical sequence below. Promote only independently supported endpoints within the existing registration budget; leave hidden joins unresolved. |
-| Investigate published constraints on oscillator, driver and load behavior | Identify which uncertainty changes clock acceptance, receiver decisions or bus timing, and what independent evidence distinguishes it. Do not repeat endpoint fitting as dynamic validation. |
+| Correct XT1 representation | Replace the generic connector housing with an explicitly proposed cable-termination representation. Preserve reference pads and nets; check lead geometry and assembly/enclosure clearances. |
+| Constrain X1 geometry | Compare published connector drawings with existing photographs and contact mapping. Adopt dimensions only where identification is supported; otherwise retain explicit estimates. Check lead exits, mating clearance and expanded envelopes. |
+| Reconcile historical registration and visible copper | Follow the physical sequence below using existing photographs. Promote only independently supported endpoints within the existing registration budget; hidden joins may remain unresolved. |
+| Narrow electrical model uncertainty | Use published oscillator, driver and load constraints to identify hypotheses that change clock acceptance, receiver decisions or bus timing. Retain competing hypotheses where the evidence cannot distinguish them. |
+| Investigate direct-driver numerical failure | Isolate the existing failure with a concrete electrical or solver hypothesis and a bounded reproducer before another long run. Any candidate must preserve the circuit contract and pass the numerical gate below. This is software investigation, not blocked on photographs. |
 
-### Dependent work
+These tasks can proceed now; that does not guarantee that desk evidence will
+resolve every physical identity or admit every device model. Defer individual
+unsupported claims rather than the whole reconstruction. Do not repeat completed
+experiments without new evidence or a changed hypothesis.
 
-| Work | Dependency and acceptance |
+### Work with prerequisites
+
+| Work | Prerequisite and acceptance |
 | --- | --- |
-| Close direct-driver numerical convergence | Select a concrete electrical hypothesis before costly runs; satisfy the numerical gate below across required traffic and disabled controls. This is open software investigation, not a requirement for new board photographs. |
-| Complete live firmware/service evaluator-cache controls | First obtain a complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies. Recorded-boundary replay cannot substitute for live coverage; keep caching opt-in. |
-| Admit oscillator, driver, CPU/bus and load models | Independent evidence must constrain the relevant dynamics and operating conditions. Published data or equivalent-device bench tests may suffice; specimen measurements are required only for specimen-specific claims. |
-| Qualify the coupled reference circuit | Numerical convergence and model admission must pass first. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
-
-Defer individual unsupported claims rather than the whole reconstruction. Do not
-repeat existing geometry, tracing or simulation work without new evidence or a
-changed interface. Detailed candidates and results belong in the authoritative
-artifacts linked by the [workflow guide](keyboard-controller-progress.md).
+| Complete full-repeat convergence | A viable direct-driver candidate; complete refinement and disabled controls under the numerical gate below. |
+| Complete live firmware/service evaluator-cache controls | A complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
+| Admit oscillator, driver, CPU/bus and load models | Independent evidence constraining relevant dynamics and operating conditions. Published data or equivalent-device bench tests may suffice; endpoint fitting alone cannot close admission. |
+| Qualify the coupled reference circuit | Numerical convergence and model admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
+| Verify specimen-specific fit and behavior | Evidence distinguishing installed packages, hidden terminal/trace assignments, dimensions, ROM contents and timing. Exhaust existing photographs and published sources first; request only observations that resolve a remaining ambiguity. |
 
 ## Physical reconstruction sequence
 
-Use schematic-defined nets to trace from both ends. For BR1/BR2, resolve physical
-end correspondence and remaining trace geometry; their schematic nets are settled.
+Use schematic-defined nets to trace from both ends. BR1/BR2 work is limited to
+physical end correspondence and remaining trace geometry.
 
 | Step | Work | Acceptance |
 | --- | --- | --- |
@@ -45,8 +48,7 @@ end correspondence and remaining trace geometry; their schematic nets are settle
 | 5 | Finish remaining bus, data/strobe, supply and clock paths, including L1–XT1 | Both endpoints and unresolved spans are recorded. Resolve WR/RD against specimen evidence. Keep connected pad groups separate from floating copper. |
 
 Preserve primary/comparison specimen identity, rejected fits and competing
-connections. Standard S600 is sufficient for reference work; exact specimen
-agreement still needs its ROM contents, dimensions and timing.
+connections. Use standard S600 for reference work; keep specimen agreement separate.
 
 ## Electrical qualification gates
 
@@ -59,9 +61,8 @@ completed levels, with differences not growing from the previous pair. Preserve
 firmware reads and serial edges; disabled controls must complete without solver
 failure. Do not align traces, exclude failing spans or relax limits to pass.
 
-Complete full-repeat convergence and controls on the current direct-driver
-circuit. Keep precision, state-history and scheduling candidates opt-in until
-their controls pass. See the [electrical evidence audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
+Keep precision, state-history and scheduling candidates opt-in until their
+controls pass. See the [electrical evidence audit](keyboard-controller-verification.md#current-findings-and-their-consequences)
 for existing results and their limits.
 
 ### Device and load admission
