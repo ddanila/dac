@@ -38,7 +38,7 @@ owns scenario coverage and experiment details.
 
 | Gate | Current evidence | Remaining proof |
 | --- | --- | --- |
-| Numerical convergence | [Tight passive refinements][tight-passive] complete through reset release with identical observed bus events, but retain non-monotonic voltage differences at common saved times. | Matched refinement and complete controls under the [plan's numerical gate](keyboard-controller-plan.md#numerical-convergence); full-repeat coverage remains open. Keep numerical candidates opt-in. |
+| Numerical convergence | [Nested local refinements][nested-local] complete through reset release with identical observed bus events. Data/receiver differences decrease; early-startup supply, WR and DAC-high differences remain non-monotonic. Requested common times differ by floating-point rounding in the saved traces, so the native-time comparison remains unqualified. | Matched refinement and complete controls under the [plan's numerical gate](keyboard-controller-plan.md#numerical-convergence); full-repeat coverage remains open. Keep numerical candidates opt-in. |
 | HDL/electrical scheduling | The [input-boundary regression][input-barrier] passes its declared ordering scope. | Full coupled acceptance, including the supply-relative bus-voltage check; scoped regression success is not general rollback support. |
 | Onboard clock | [Reference oscillator screens][clock-acceptance] fail U880 level or timing requirements. | Independently constrained intended-family dynamics and startup-inclusive board qualification. Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions. |
 | Reset | [C4 source-alternative studies][reset-alternatives] cover isolated exploratory reset behavior. | Installed component identity and coupled reset/recovery qualification; retain the reference default. |
@@ -110,4 +110,4 @@ and the reason for changing its interpretation.
 [bus-device]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-device-admission/assessment.json
 [clock-acceptance]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/clock-acceptance/assessment.json
 [reset-alternatives]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reset-capacitance/generic/assessment.json
-[tight-passive]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/tight-passive-refinement/assessment.json
+[nested-local]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/nested-local-refinement/assessment.json

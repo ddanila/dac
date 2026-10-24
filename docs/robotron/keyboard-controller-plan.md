@@ -13,7 +13,7 @@ in the linked artifacts and Git history.
 
 | Priority | Work and acceptance |
 | --- | --- |
-| 1. Live numerical convergence | Test whether nested local integration grids around the remaining error peaks reduce adaptive-mesh sensitivity. Keep the circuit and physical stimulus fixed, compare the whole observation window, and retain failed controls. Inspect integration/state history if differences persist. The numerical gate below still applies. |
+| 1. Live numerical convergence | Resolve the remaining early-startup supply, WR and DAC-high non-monotonic differences. Inspect their integration, source constraints and comparison arithmetic before choosing a targeted control. Preserve the physical inputs, full observation window and numerical gate below. |
 | 2. Historical registration | Distinguish the A8 hole-row spacing hypothesis from solder-joint picking and projection bias. Reconcile board scale using independent board-plane joints and package pitches; held-out checks must meet the existing registration budget before native pads or routes move. |
 | 3. X1 package identification | Seek form-specific lead, mounting and mating geometry that distinguishes the retained EFS alternatives. Propagate calibration and photo-picking uncertainty; contact-span agreement alone cannot select the body width or authorize pad placement. |
 | 4. Electrical-model sensitivity | Bound oscillator, driver and load hypotheses with published constraints; test which uncertainties change clock acceptance, receiver decisions or bus timing. Retain indistinguishable alternatives and identify the specific missing constraint for each consequential ambiguity. |
