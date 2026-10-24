@@ -13,7 +13,6 @@ in the linked artifacts and Git history.
 
 | Work | Next action and acceptance |
 | --- | --- |
-| Correct XT1 representation | Replace the generic connector housing with an explicitly proposed cable-termination representation. Preserve reference pads and nets; check lead geometry and assembly/enclosure clearances. |
 | Constrain X1 geometry | Compare published connector drawings with existing photographs and contact mapping. Adopt dimensions only where identification is supported; otherwise retain explicit estimates. Check lead exits, mating clearance and expanded envelopes. |
 | Reconcile historical registration and visible copper | Follow the physical sequence below using existing photographs. Promote only independently supported endpoints within the existing registration budget; hidden joins may remain unresolved. |
 | Narrow electrical model uncertainty | Use published oscillator, driver and load constraints to identify hypotheses that change clock acceptance, receiver decisions or bus timing. Retain competing hypotheses where the evidence cannot distinguish them. |

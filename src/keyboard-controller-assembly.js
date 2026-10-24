@@ -59,7 +59,7 @@ export async function createReferenceAssembly(host,data){
   else if(c.package==='axial'||c.package==='capacitor'){
    const axial=c.package==='axial',body=add(new THREE.CylinderGeometry((axial?d:w)/2,(axial?d:w)/2,axial?w:d,24),passive,group);
    body.position.z=h/2;if(axial)body.rotation.z=Math.PI/2;
-  }else if(c.package!=='bridge'&&!c.sharedBody){const body=add(new THREE.BoxGeometry(w,d,h),passive,group);body.position.z=h/2;}
+  }else if(c.package!=='bridge'&&c.package!=='cable-termination'&&!c.sharedBody){const body=add(new THREE.BoxGeometry(w,d,h),passive,group);body.position.z=h/2;}
   for(const lead of c.leads)for(let i=1;i<lead.points.length;i++)line(lead.points[i-1],lead.points[i],lead.diameterMm);
  }
  for(const [mat,parts]of segments){add(mergeGeometries(parts),mat);for(const g of parts)g.dispose();}
