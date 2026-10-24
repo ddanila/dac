@@ -31,6 +31,12 @@ export async function createReferenceAssembly(host,data){
  for(const c of data.layout.components)for(const p of c.pads)for(const z of [-.04,1.64]){
   const pad=add(new THREE.RingGeometry(Math.max(p.drill[0]/2,.05),p.size[0]/2,12),metal);pad.scale.y=p.size[1]/p.size[0];pad.position.set(...p.position,z);if(z<0)pad.rotation.x=Math.PI;
  }
+ for(const core of data.assembly.sharedBodies||[]){
+  const [w,d,h]=core.outerSizeMm,[iw,id]=core.windowSizeMm;
+  const outline=new THREE.Shape([new THREE.Vector2(-w/2,-d/2),new THREE.Vector2(w/2,-d/2),new THREE.Vector2(w/2,d/2),new THREE.Vector2(-w/2,d/2)]);
+  const hole=new THREE.Path([new THREE.Vector2(-iw/2,-id/2),new THREE.Vector2(-iw/2,id/2),new THREE.Vector2(iw/2,id/2),new THREE.Vector2(iw/2,-id/2)]);outline.holes.push(hole);
+  const body=add(new THREE.ExtrudeGeometry(outline,{depth:h,bevelEnabled:false}),plastic);body.position.set(...core.positionMm);
+ }
  const cache=new Map(),loader=new STLLoader();
  function geometry(path){if(!cache.has(path))cache.set(path,loader.loadAsync(`${import.meta.env.BASE_URL}models/robotron-1715m/${path}`));return cache.get(path);}
  const tasks=[];
@@ -42,7 +48,7 @@ export async function createReferenceAssembly(host,data){
   else if(c.package==='axial'||c.package==='capacitor'){
    const axial=c.package==='axial',body=add(new THREE.CylinderGeometry((axial?d:w)/2,(axial?d:w)/2,axial?w:d,24),passive,group);
    body.position.z=h/2;if(axial)body.rotation.z=Math.PI/2;
-  }else if(c.package!=='bridge'){const body=add(new THREE.BoxGeometry(w,d,h),passive,group);body.position.z=h/2;}
+  }else if(c.package!=='bridge'&&!c.sharedBody){const body=add(new THREE.BoxGeometry(w,d,h),passive,group);body.position.z=h/2;}
   for(const lead of c.leads)for(let i=1;i<lead.points.length;i++)line(lead.points[i-1],lead.points[i],lead.diameterMm);
  }
  for(const [mat,parts]of segments){add(mergeGeometries(parts),mat);for(const g of parts)g.dispose();}

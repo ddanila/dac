@@ -1059,6 +1059,7 @@ test('populated reference assembly loads independently and walkthrough follows c
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Nominal lead clearance: 0 unintended contacts');
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Manufacturing tolerances remain unqualified');
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Nominal enclosure interfaces: clear');
+   await expect(assembly.locator('[data-assembly-status]')).toContainText('Shared filter core: 0 modeled intersections');
   }else{
    await expect(assembly.locator('[data-assembly-status]')).toContainText('Assembly viewer unavailable');
    await expect(assembly.locator('canvas')).toHaveCount(0);
@@ -1080,6 +1081,10 @@ test('populated reference assembly loads independently and walkthrough follows c
 test('assembly population and walkthrough terminals preserve the electrical contract',()=>{
  const reference=JSON.parse(readFileSync(new URL('../public/models/robotron-1715m/keyboard-controller-reference.json',import.meta.url)));
  const assembly=reference.assembly;
+ expect(assembly.sharedBodies).toHaveLength(1);
+ expect(assembly.sharedBodies[0].members).toEqual(['L1.1','L1.2','L1.3','L1.4']);
+ expect(assembly.review.sharedCoreIntersections).toEqual([]);
+ expect(assembly.review.sharedCoreOverhangs).toEqual([]);
  expect(new Set(assembly.components.map(c=>c.ref))).toEqual(new Set(Object.keys(data.connectivity.components)));
  for(const c of assembly.components)for(const lead of c.leads){
   const pad=reference.layout.components.find(p=>p.ref===c.ref).pads.find(p=>p.pin===lead.pin);
@@ -1094,7 +1099,13 @@ test('assembly population and walkthrough terminals preserve the electrical cont
  expect(reference.enclosure.results.find(r=>r.interface==='substrate-mounts').intersects).toBe(false);
  expect(reference.enclosure.mechanicallyQualified).toBe(false);
  expect(assembly.review.leadClearance.minimumUnintendedClearance.surfaceClearanceMm).toBeGreaterThan(0);
- for(const contact of assembly.review.leadClearance.intendedContacts)expect(['same-net','reference-bridge']).toContain(contact.basis);
+ for(const contact of assembly.review.leadClearance.intendedContacts){
+  if(contact.basis==='winding-midpoint'){
+   const refs=contact.terminals.map(t=>t.split(':')[0]);expect(refs[0]).toBe(refs[1]);
+   const winding=assembly.components.find(c=>c.ref===refs[0]);expect(winding.sharedBody).toBe('L1');
+   expect(winding.leads[0].points.at(-1)).toEqual(winding.leads[1].points.at(-1));
+  }else expect(['same-net','reference-bridge']).toContain(contact.basis);
+ }
 });
 
 test('museum separates production digital acceptance from legacy and electrical gates',async({page})=>{

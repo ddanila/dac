@@ -58,9 +58,10 @@ export function installControllerReference(parent,onCompare){
    data.assembly.signalPaths.stages.forEach((stage,i)=>walkthrough.add(new Option(stage.title,String(i))));
    const review=data.assembly.review;
    const clearance=review.leadClearance,closest=clearance?.minimumUnintendedClearance;
+   const coreStatus=data.assembly.sharedBodies?.length?` Shared filter core: ${review.sharedCoreIntersections.length} modeled intersections. Winding geometry is proposed; magnetic parameters remain unqualified.`:'';
    const enclosureStatus=data.enclosure?` Nominal enclosure interfaces: ${data.enclosure.nominalInterfacesClear?'clear':'intersections found'}. Measured fit remains unqualified.`:'';
    const leadStatus=clearance?` Nominal lead clearance: ${clearance.unintendedContacts.length} unintended contacts.${closest?` Closest pair ${closest.terminals.join(' ↔ ')}: ${closest.surfaceClearanceMm.toFixed(3)} mm.`:''} Manufacturing tolerances remain unqualified.`:'';
-   get('[data-assembly-status]').textContent=`${review.bodyEnvelopeIntersections.length} body-envelope intersections; ${review.bodyOverhangs.length} body overhangs; ${review.leadBodyEnvelopeIntersections.length} lead/body-envelope intersections. Lead endpoints match pads. Mechanical qualification remains open. ${review.method}${leadStatus}${enclosureStatus}`;
+   get('[data-assembly-status]').textContent=`${review.bodyEnvelopeIntersections.length} body-envelope intersections; ${review.bodyOverhangs.length} body overhangs; ${review.leadBodyEnvelopeIntersections.length} lead/body-envelope intersections. Lead endpoints match pads. Mechanical qualification remains open. ${review.method}${leadStatus}${coreStatus}${enclosureStatus}`;
    for(const [selector,values]of [['[data-ref-component]',data.layout.components.filter(c=>c.pads.some(p=>p.net)).map(c=>c.ref).sort()],['[data-ref-net]',[...new Set(data.layout.components.flatMap(c=>c.pads.map(p=>p.net)).filter(Boolean))].sort()]]){
     const select=get(selector);select.replaceChildren(new Option('All',''));for(const value of values)select.add(new Option(value.replace(/^\//,''),value));
    }

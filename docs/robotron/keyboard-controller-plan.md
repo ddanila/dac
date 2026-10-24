@@ -15,22 +15,22 @@ component inventories belong in those artifacts, not this plan.
 
 | Priority | Remaining work | Can proceed now? | Acceptance |
 | --- | --- | --- | --- |
-| 1 | Refine the proposed mechanical assembly: shared filter core, package adapters, lead bends and manufacturing allowances | **Yes, desk work.** Use explicit reference-design assumptions; measured specimen fit is separate. | Consistent terminal mappings, pad-aligned leads, documented dimensional assumptions and passing geometry/clearance checks. Recheck routing and DRC if footprints change. |
+| 1 | Refine the proposed mechanical assembly: package adapters, lead bends and manufacturing allowances | **Yes, desk work.** Use explicit reference-design assumptions; measured specimen fit is separate. | Consistent terminal mappings, pad-aligned leads, documented dimensional assumptions and passing geometry/clearance checks. Recheck routing and DRC if footprints change. |
 | 2 | Reconcile historical registration, placement and copper using the reference nets as a tracing guide | **Yes, desk work**, for visible features and bounded photo fits. Individual obscured joins may need additional observations. | Supported endpoints and geometry, retained alternatives, and no unexplained native-check regressions. Follow the sequence below. |
 | 3 | Close direct-driver numerical convergence | **Software work, conditional on a useful electrical decision.** Not inherently a bench dependency; avoid repeating costly runs without a hypothesis affecting receiver decisions or board timing. | Meet the convergence gate below across the required traffic and controls. |
 | 4 | Qualify oscillator and CPU clock behavior | **Independent device evidence needed for admission.** Current candidates fail voltage/timing screens. Loose intended-family devices can be measured without the museum board. | An independently supported device model passes startup-inclusive closed-board clock-level and timing checks. |
 | 5 | Qualify output/host drivers, CPU/bus drive and filter/cable loading | **Independent device/load evidence needed for admission.** Equally screened driver candidates predict materially different loaded waveforms. | Supported dynamic parameters and load ranges establish receiver margins and CPU/bus timing; fitted endpoint behavior alone is insufficient. |
 | 6 | Qualify the coupled reference circuit | **Depends on numerical and model-admission gates above.** Prepared traffic can be used once prerequisites pass. | Press/release, modifiers, repeat, reset during transmission, startup, host loading, bus timing and supply recovery pass electrical and convergence checks while preserving firmware behavior. |
 
-Start with the proposed shared-core filter assembly and its lead/clearance checks.
+Next, refine lead bend radii and explicit assembly allowances.
 Historical tracing can proceed independently. Failure to identify one physical
 join does not block the reference model or unrelated reconstruction.
 
 ## Mechanical refinement
 
-Replace remaining package/filter surrogates with explicitly proposed construction.
-Model the shared core and winding arrangement without presenting guessed winding
-pairings, dimensions or coupling parameters as specimen evidence. Review package
+Refine remaining package adapters and forming geometry as explicitly proposed
+construction. Preserve the shared-core model’s distinction between mechanical
+winding paths and unmeasured winding identity or magnetic parameters. Review package
 adapters, bend radii, lead forming and assembly allowances against published
 package geometry and the modeled enclosure.
 

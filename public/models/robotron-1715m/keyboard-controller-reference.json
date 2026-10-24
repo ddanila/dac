@@ -48907,7 +48907,7 @@
         "ref": "L1.1",
         "type": "CHOKE",
         "package": "filter",
-        "basis": "Separate winding surrogate with explicit terminal mapping. Shared core, coupling and winding geometry unresolved.",
+        "basis": "Proposed winding on shared core; turn count and dimensions are mechanical assumptions, not measured inductance, coupling or specimen routing.",
         "position": [
           -126.72999999999999,
           -8.0,
@@ -48923,16 +48923,16 @@
         "profile": null,
         "boundsMm": [
           [
-            -128.73,
-            -124.73
+            -127.63000000000001,
+            -125.83
           ],
           [
-            -9.5,
-            -6.5
+            -9.6,
+            -6.3999999999999995
           ],
           [
-            3,
-            6
+            3.4,
+            6.6000000000000005
           ]
         ],
         "leads": [
@@ -48951,9 +48951,39 @@
                 2.1
               ],
               [
-                -128.73,
-                -8.0,
-                4.5
+                -127.48,
+                -6.55,
+                3.55
+              ],
+              [
+                -127.355,
+                -9.45,
+                3.55
+              ],
+              [
+                -127.23,
+                -9.45,
+                6.45
+              ],
+              [
+                -127.105,
+                -6.55,
+                6.45
+              ],
+              [
+                -126.98,
+                -6.55,
+                3.55
+              ],
+              [
+                -126.855,
+                -9.45,
+                3.55
+              ],
+              [
+                -126.73,
+                -9.45,
+                6.45
               ]
             ],
             "diameterMm": 0.3
@@ -48973,9 +49003,39 @@
                 2.1
               ],
               [
-                -124.73,
-                -8.0,
-                4.5
+                -125.98,
+                -6.55,
+                3.55
+              ],
+              [
+                -126.105,
+                -6.55,
+                6.45
+              ],
+              [
+                -126.23,
+                -9.45,
+                6.45
+              ],
+              [
+                -126.355,
+                -9.45,
+                3.55
+              ],
+              [
+                -126.48,
+                -6.55,
+                3.55
+              ],
+              [
+                -126.605,
+                -6.55,
+                6.45
+              ],
+              [
+                -126.73,
+                -9.45,
+                6.45
               ]
             ],
             "diameterMm": 0.3
@@ -48999,13 +49059,14 @@
               "net": "/CABLE_TAKT"
             }
           }
-        }
+        },
+        "sharedBody": "L1"
       },
       {
         "ref": "L1.2",
         "type": "CHOKE",
         "package": "filter",
-        "basis": "Separate winding surrogate with explicit terminal mapping. Shared core, coupling and winding geometry unresolved.",
+        "basis": "Proposed winding on shared core; turn count and dimensions are mechanical assumptions, not measured inductance, coupling or specimen routing.",
         "position": [
           -126.72999999999999,
           -14.0,
@@ -49021,16 +49082,16 @@
         "profile": null,
         "boundsMm": [
           [
-            -128.73,
-            -124.73
+            -127.63000000000001,
+            -125.83
           ],
           [
-            -15.5,
-            -12.5
+            -15.6,
+            -12.4
           ],
           [
-            3,
-            6
+            3.4,
+            6.6000000000000005
           ]
         ],
         "leads": [
@@ -49049,9 +49110,39 @@
                 2.1
               ],
               [
-                -128.73,
-                -14.0,
-                4.5
+                -127.48,
+                -15.45,
+                3.55
+              ],
+              [
+                -127.355,
+                -12.55,
+                3.55
+              ],
+              [
+                -127.23,
+                -12.55,
+                6.45
+              ],
+              [
+                -127.105,
+                -15.45,
+                6.45
+              ],
+              [
+                -126.98,
+                -15.45,
+                3.55
+              ],
+              [
+                -126.855,
+                -12.55,
+                3.55
+              ],
+              [
+                -126.73,
+                -12.55,
+                6.45
               ]
             ],
             "diameterMm": 0.3
@@ -49071,9 +49162,39 @@
                 2.1
               ],
               [
-                -124.73,
-                -14.0,
-                4.5
+                -125.98,
+                -15.45,
+                3.55
+              ],
+              [
+                -126.105,
+                -15.45,
+                6.45
+              ],
+              [
+                -126.23,
+                -12.55,
+                6.45
+              ],
+              [
+                -126.355,
+                -12.55,
+                3.55
+              ],
+              [
+                -126.48,
+                -15.45,
+                3.55
+              ],
+              [
+                -126.605,
+                -15.45,
+                6.45
+              ],
+              [
+                -126.73,
+                -12.55,
+                6.45
               ]
             ],
             "diameterMm": 0.3
@@ -49097,13 +49218,14 @@
               "net": "/CABLE_GND"
             }
           }
-        }
+        },
+        "sharedBody": "L1"
       },
       {
         "ref": "L1.3",
         "type": "CHOKE",
         "package": "filter",
-        "basis": "Separate winding surrogate with explicit terminal mapping. Shared core, coupling and winding geometry unresolved.",
+        "basis": "Proposed winding on shared core; turn count and dimensions are mechanical assumptions, not measured inductance, coupling or specimen routing.",
         "position": [
           -117.72999999999999,
           -8.0,
@@ -49119,16 +49241,16 @@
         "profile": null,
         "boundsMm": [
           [
-            -119.73,
-            -115.73
+            -118.63000000000001,
+            -116.83
           ],
           [
-            -9.5,
-            -6.5
+            -9.6,
+            -6.3999999999999995
           ],
           [
-            3,
-            6
+            3.4,
+            6.6000000000000005
           ]
         ],
         "leads": [
@@ -49147,9 +49269,39 @@
                 2.1
               ],
               [
-                -119.73,
-                -8.0,
-                4.5
+                -118.48,
+                -6.55,
+                3.55
+              ],
+              [
+                -118.355,
+                -9.45,
+                3.55
+              ],
+              [
+                -118.23,
+                -9.45,
+                6.45
+              ],
+              [
+                -118.105,
+                -6.55,
+                6.45
+              ],
+              [
+                -117.98,
+                -6.55,
+                3.55
+              ],
+              [
+                -117.855,
+                -9.45,
+                3.55
+              ],
+              [
+                -117.73,
+                -9.45,
+                6.45
               ]
             ],
             "diameterMm": 0.3
@@ -49169,9 +49321,39 @@
                 2.1
               ],
               [
-                -115.73,
-                -8.0,
-                4.5
+                -116.98,
+                -6.55,
+                3.55
+              ],
+              [
+                -117.105,
+                -6.55,
+                6.45
+              ],
+              [
+                -117.23,
+                -9.45,
+                6.45
+              ],
+              [
+                -117.355,
+                -9.45,
+                3.55
+              ],
+              [
+                -117.48,
+                -6.55,
+                3.55
+              ],
+              [
+                -117.605,
+                -6.55,
+                6.45
+              ],
+              [
+                -117.73,
+                -9.45,
+                6.45
               ]
             ],
             "diameterMm": 0.3
@@ -49195,13 +49377,14 @@
               "net": "/CABLE_5V"
             }
           }
-        }
+        },
+        "sharedBody": "L1"
       },
       {
         "ref": "L1.4",
         "type": "CHOKE",
         "package": "filter",
-        "basis": "Separate winding surrogate with explicit terminal mapping. Shared core, coupling and winding geometry unresolved.",
+        "basis": "Proposed winding on shared core; turn count and dimensions are mechanical assumptions, not measured inductance, coupling or specimen routing.",
         "position": [
           -117.72999999999999,
           -14.0,
@@ -49217,16 +49400,16 @@
         "profile": null,
         "boundsMm": [
           [
-            -119.73,
-            -115.73
+            -118.63000000000001,
+            -116.83
           ],
           [
-            -15.5,
-            -12.5
+            -15.6,
+            -12.4
           ],
           [
-            3,
-            6
+            3.4,
+            6.6000000000000005
           ]
         ],
         "leads": [
@@ -49245,9 +49428,39 @@
                 2.1
               ],
               [
-                -119.73,
-                -14.0,
-                4.5
+                -118.48,
+                -15.45,
+                3.55
+              ],
+              [
+                -118.355,
+                -12.55,
+                3.55
+              ],
+              [
+                -118.23,
+                -12.55,
+                6.45
+              ],
+              [
+                -118.105,
+                -15.45,
+                6.45
+              ],
+              [
+                -117.98,
+                -15.45,
+                3.55
+              ],
+              [
+                -117.855,
+                -12.55,
+                3.55
+              ],
+              [
+                -117.73,
+                -12.55,
+                6.45
               ]
             ],
             "diameterMm": 0.3
@@ -49267,9 +49480,39 @@
                 2.1
               ],
               [
-                -115.73,
-                -14.0,
-                4.5
+                -116.98,
+                -15.45,
+                3.55
+              ],
+              [
+                -117.105,
+                -15.45,
+                6.45
+              ],
+              [
+                -117.23,
+                -12.55,
+                6.45
+              ],
+              [
+                -117.355,
+                -12.55,
+                3.55
+              ],
+              [
+                -117.48,
+                -15.45,
+                3.55
+              ],
+              [
+                -117.605,
+                -15.45,
+                6.45
+              ],
+              [
+                -117.73,
+                -12.55,
+                6.45
               ]
             ],
             "diameterMm": 0.3
@@ -49293,7 +49536,8 @@
               "net": "/CABLE_DATEN"
             }
           }
-        }
+        },
+        "sharedBody": "L1"
       },
       {
         "ref": "R1",
@@ -56095,7 +56339,108 @@
         }
       }
     ],
+    "sharedBodies": [
+      {
+        "id": "L1",
+        "members": [
+          "L1.1",
+          "L1.2",
+          "L1.3",
+          "L1.4"
+        ],
+        "shape": "rectangular-ring",
+        "positionMm": [
+          -122.23,
+          -11,
+          4.0
+        ],
+        "outerSizeMm": [
+          13.5,
+          8,
+          2
+        ],
+        "windowSizeMm": [
+          11.5,
+          4
+        ],
+        "boundsMm": [
+          [
+            -128.98000000000002,
+            -115.48
+          ],
+          [
+            -15.0,
+            -7.0
+          ],
+          [
+            4.0,
+            6.0
+          ]
+        ],
+        "solidBoxesMm": [
+          [
+            [
+              -128.98000000000002,
+              -127.98
+            ],
+            [
+              -15.0,
+              -7.0
+            ],
+            [
+              4.0,
+              6.0
+            ]
+          ],
+          [
+            [
+              -116.48,
+              -115.48
+            ],
+            [
+              -15.0,
+              -7.0
+            ],
+            [
+              4.0,
+              6.0
+            ]
+          ],
+          [
+            [
+              -127.98,
+              -116.48
+            ],
+            [
+              -15.0,
+              -13.0
+            ],
+            [
+              4.0,
+              6.0
+            ]
+          ],
+          [
+            [
+              -127.98,
+              -116.48
+            ],
+            [
+              -9.0,
+              -7.0
+            ],
+            [
+              4.0,
+              6.0
+            ]
+          ]
+        ],
+        "scope": "Proposed shared rectangular core and four windings using existing reference pads. Dimensions, turns and forming geometry are design assumptions; no magnetic, insulation-rating or historical qualification."
+      }
+    ],
     "review": {
+      "sharedCoreIntersections": [],
+      "sharedCoreOverhangs": [],
       "leadClearance": {
         "method": "Minimum 3D segment distance minus the two modeled wire radii. Includes bent segments, endpoints and zero-length segments; touching is reported. Same-net contacts and explicit bridge joins remain separate.",
         "unintendedContacts": [],
@@ -56147,28 +56492,56 @@
               ]
             ],
             "basis": "reference-bridge"
+          },
+          {
+            "terminals": [
+              "L1.1:1",
+              "L1.1:2"
+            ],
+            "basis": "winding-midpoint"
+          },
+          {
+            "terminals": [
+              "L1.2:1",
+              "L1.2:2"
+            ],
+            "basis": "winding-midpoint"
+          },
+          {
+            "terminals": [
+              "L1.3:1",
+              "L1.3:2"
+            ],
+            "basis": "winding-midpoint"
+          },
+          {
+            "terminals": [
+              "L1.4:1",
+              "L1.4:2"
+            ],
+            "basis": "winding-midpoint"
           }
         ],
         "minimumUnintendedClearance": {
           "terminals": [
-            "V3.1:E",
-            "V3.1:B"
+            "L1.1:1",
+            "L1.1:2"
           ],
           "nets": [
-            "/RESET_EMITTERS",
-            "/RESET_RC"
+            "/TA_TAKT",
+            "/CABLE_TAKT"
           ],
-          "surfaceClearanceMm": 0.75,
+          "surfaceClearanceMm": 0.199073627,
           "closestCenterlinePointsMm": [
             [
-              -113.71,
-              3.5,
-              4.1
+              -127.104074485,
+              -6.55,
+              6.428528062
             ],
             [
-              -112.46,
-              3.5,
-              4.1
+              -126.605925515,
+              -6.571471938,
+              6.45
             ]
           ]
         },
@@ -56192,11 +56565,12 @@
       "../components/kicad/meshes/DIP-40_W15.24mm-body.stl": "3188564537436169f9303e180ffb01baa899d54c8f743448998bad15db31f7b3",
       "evidence.json": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "reference/assembly.json": "c39e2aa1bf0293e6c2dbd61b69d616a17a110d656cbccd9c3d4952ba4e35c519",
+      "reference/assembly.json": "8d8923faa123733c5a0bf11ec610302ecf97465a54b25518d1495beab97bc073",
       "reference/generated/layout.json": "51217655811477294a8c69ceb442be17ff987562fe98cf1df5b26a303a18d74d",
       "reference/signal-paths.json": "bcc196b9fe151e87a292a0b8572d20b1b763d526907005e595428f03f958392b",
-      "tools/lead_clearance.py": "a61e21067ce2e0831f05c289b98abc0d2ce99b833112b7cb77a238e87de81450",
-      "tools/reference_assembly.py": "b850fb70ea23a58780bc6b5d70deb05a6ccbb8134ffba159e5e5e39083ea086a"
+      "tools/lead_clearance.py": "336c33a45698ed86ba7c5dd944fe88ef11146ff505b593c112c8b31fcf123817",
+      "tools/reference_assembly.py": "9389d5e3f81a99db1ced05eab40c1fcf092d2dad1dc067e6814b313a97ac8328",
+      "tools/shared_filter.py": "4f161698ca237d5e679f8c3790808573c4c90c991f37cf0a87b34d797eb680bf"
     }
   },
   "enclosure": {
@@ -56355,7 +56729,7 @@
       "key-switch/geometry.scad": "3c5548896f0d9ef90e45d89c51d15f91974dc473456da760aeb61104c75fddce",
       "keyboard-artwork.scad": "4b185f623c7b71674bfc823a3cb0b8ceb38ed8447e55e286977e01de02c18d6c",
       "keyboard-controller/generated/controller.scad": "f6e306520f5b08cd630656324c60e4d8be5ce5f7ead8152a4776a9993017fd20",
-      "keyboard-controller/reference/assembly-generated/assembly.scad": "4d571a7fb633f5e82f9f1d2c8665fe55b9616b9648606b153e54c62be6aa9e0d",
+      "keyboard-controller/reference/assembly-generated/assembly.scad": "690cd19ead2ae608da41efd0d0c3a77f1b0a24987b37ef201299585dd197a0cb",
       "keyboard-controller/reference/generated/controller.scad": "c80c24dbc7ca2f5d2af42cc593c0e765918c587e6f0bd65c92ba9bcae12ebaca",
       "keyboard-controller/reference/review.scad": "b3019aab9355118b037c3e64f857fa2e0b262c5c28444e3c10617fcd4f5ebe99",
       "keyboard-controller/tools/reference_enclosure.py": "d35f6b228b1be5c291ce1dcb58da0637b22a5a49736e56829fa785ab5bd8fa83",
@@ -56371,7 +56745,7 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "4cae706d5b7f2584419f37114a4ccb2554258075",
+    "revision": "8a16da06d00b730f57bab739f3cd1333ec32fb5f",
     "manifestSha256": "8deab62e496be9c86b5bbc9bebb1455daa092c3ddb5d4d0edeefd1b67980cc3e",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
@@ -56380,6 +56754,6 @@
       "reference/generated/qualification.json": "f360f38ef0d218558c574cfa5c1a323054366f1678763a4c01905f4fe3cb6a6c",
       "reference/generated/routing-audit.json": "7fef7889ee082facdd24aa7da0cfc2b5034e2fd389c07aedc3e0a1c9f0ec7c66"
     },
-    "assemblySha256": "1ca9ec69f4e71bfd823cd477dfccd74ce5213ea6ec66adf95679cd611f38cfd2"
+    "assemblySha256": "94b26dafe900bf2ece355fa4a20a395fb1e3cb45408c1017f696c1fb2a92e467"
   }
 }
