@@ -12,6 +12,7 @@ export function controllerSelection(data,kind,value){
  const placed=new Map(data.layout.components.map(c=>[c.ref,c]));
  const anonymous=new Set((data.layout.visualConnectors||[]).filter(c=>c.status!=='photo-placed-reference-terminal-order').map(c=>c.ref));
  const pins=refs.flatMap(ref=>Object.entries(components[ref].pins).filter(([pin,net])=>kind==='component'||(kind==='path'?terminals.has(ref+':'+pin):net===value)).map(([pin,net])=>({ref,pin,net,position:anonymous.has(ref)||ref==='XT1'?null:placed.get(ref)?.pads.find(p=>p.pin===pin)?.position||null})));
+ if(kind==='component')for(const ref of refs)for(const pad of placed.get(ref)?.pads||[])if(pad.classification==='owner-observed-unrouted')pins.push({ref,pin:pad.pin,net:null,position:pad.position,classification:pad.classification});
  const nets=new Set(pins.map(p=>p.net).filter(Boolean));
  return {refs,pins,points:pins.filter(p=>p.position).map(p=>p.position),routes:data.layout.routes.filter(r=>nets.has(r.net)),unplaced:refs.filter(ref=>!placed.has(ref))};
 }
@@ -173,7 +174,7 @@ export function installKeyboardControllerReview(scene){
    get('[data-selection]').textContent=`${kind==='path'?'Signal path '+value:kind==='net'?'Net '+clean(value):'Component '+value}: ${total} pins; ${placed} with estimated positions. Unplaced components: ${selection.unplaced.join(', ')||'none'}. Cyan artwork remains unassigned. Both sides use the same top-view coordinate frame.`;
    const selectionSummary=get('[data-selection]').textContent;
    if((data.layout.visualBridges||[]).some(b=>selection.refs.includes(b.ref)))get('[data-selection]').textContent+=' The cyan wire is a photo estimate only; its endpoints do not identify electrical pads.';
-   if((data.layout.visualConnectors||[]).some(c=>selection.refs.includes(c.ref)))get('[data-selection]').textContent+=' Cyan connector joints remain electrically unclassified; highlighted reference pads use photo-estimated positions and reference-derived numbering.';
+   if((data.layout.visualConnectors||[]).some(c=>selection.refs.includes(c.ref)))get('[data-selection]').textContent+=' Connector pads use photo-estimated positions and reference-derived numbering; owner-observed isolated contacts carry no signal net.';
    const routes=data.layout.routes.filter(r=>selection.pins.some(p=>p.net===r.net));
    if(routes.length){
     const counts=Object.entries(routes.reduce((out,r)=>(out[r.evidence.status]=(out[r.evidence.status]||0)+1,out),{})).map(([state,n])=>`${n} ${state}`).join(', ');
@@ -357,8 +358,9 @@ export function installKeyboardControllerReview(scene){
      detail.textContent=`Visual connector joints follow underside observations; both observed lead rows exit the same housing side. Native reference pads follow the registered underside joints. Projected lead-end separation is ${review.projectedRowSeparationMm.minimum.toFixed(1)}–${review.projectedRowSeparationMm.maximum.toFixed(1)} mm; native pad-row separation is ${review.nativePadRowSeparationMm.maximum.toFixed(1)} mm. These are model-based estimates; raised lead bends do not establish hole centres or terminal order. `;
      const far=data.connectorTerminals?.resolvedRows.housingFar,near=data.connectorTerminals?.resolvedRows.housingNear;
      if(far)detail.textContent+=`Visible resistor attachments and the reference schematic support the far row as ${far[0]}–${far.at(-1)}. `;
-     if(near)detail.textContent+=`The underside trace from the eighth near-row joint to A2.1:6 supports the near row as ${near[0]}–${near.at(-1)}, from cable toward ROM. This is reference-derived numbering, not measured continuity. A8 remains electrically unclassified. `;
+     if(near)detail.textContent+=`The underside trace from the eighth near-row joint to A2.1:6 supports the near row as ${near[0]}–${near.at(-1)}, from cable toward ROM. This is reference-derived numbering, not measured continuity. `;
      else detail.textContent+='Near-row numbering remains unresolved. ';
+     for(const pin of review.nativePlacement?.isolatedContacts||[])detail.textContent+=`${pin} is present and soldered, with no tracks on either side according to owner inspection. Its native pad and hole are isolated; dimensions remain estimated. `;
      const link=document.createElement('a');link.href=`${data.source.cad.repository}/blob/${data.source.cad.revision}/models/robotron-1715m/keyboard-controller/generated/connector-review.json`;link.textContent='Connector evidence review';link.target='_blank';link.rel='noopener';detail.append(link);pins.append(detail);
     }
     const pkg=data.evidence.packageReferences?.find(p=>p.id===evidence.packageReference);
@@ -436,7 +438,7 @@ export function installKeyboardControllerReview(scene){
    if(kind==='path')get('[data-selection]').textContent=selectionSummary+' Highlighted copper is partial; dashed sections are inferred.'+(data.connectionReview.cases.find(c=>c.id===value)?.seriesComponents.length?' The filter winding separates the two reference nets.':'')+' Component-level registration details are available through component selection.';
    if(selection.refs.includes('XT1'))get('[data-selection]').textContent+=' XT1 native coordinates are inherited reference placeholders, not registered solder joints; they are excluded from physical highlights.';
    const table=document.createElement('table');table.dataset.connectedPins='';table.innerHTML='<thead><tr><th>Component</th><th>Pin</th><th>Net</th><th>Placement</th></tr></thead>';const body=document.createElement('tbody');
-   for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,clean(p.net)||'Unconnected',p.ref==='XT1'?'Reference placeholder':p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
+   for(const p of selection.pins){const row=document.createElement('tr');for(const text of [p.ref,p.pin,p.classification==='owner-observed-unrouted'?'Owner-observed unrouted':clean(p.net)||'Unconnected',p.ref==='XT1'?'Reference placeholder':p.position?'Photo estimate':'Unplaced']){const cell=document.createElement('td');cell.textContent=text;row.append(cell);}body.append(row);}table.append(body);pins.append(table);
   }else get('[data-selection]').textContent='Select a component or net to inspect its pins.';
   scene?.keyboardControllerSelection(panel.open?(selection?.points||[]):[],panel.open?(selection?.routes||[]):[]);draw();
  }

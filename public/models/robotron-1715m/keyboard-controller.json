@@ -4648,6 +4648,24 @@
             ]
           },
           {
+            "classification": "owner-observed-unrouted",
+            "drill": [
+              0.85,
+              0.85
+            ],
+            "net": null,
+            "pin": "A8",
+            "position": [
+              -9.504023,
+              14.105128
+            ],
+            "ref": "X1",
+            "size": [
+              1.7,
+              1.7
+            ]
+          },
+          {
             "drill": [
               0.85,
               0.85
@@ -20081,9 +20099,7 @@
         },
         "scope": "Observed joint rows are retained independently of native reference pads. Only contacts absent from the reference schematic remain unassigned. Housing dimensions, contact heights, lead section and hole diameters remain illustrative.",
         "status": "photo-placed-reference-terminal-order",
-        "unclassifiedContacts": [
-          "A8"
-        ]
+        "unclassifiedContacts": []
       }
     ],
     "visualNetworks": [
@@ -27047,6 +27063,9 @@
       "minimum": 4.683839704095133
     },
     "nativePlacement": {
+      "isolatedContacts": [
+        "A8"
+      ],
       "padResidualsMm": {
         "A1": 3.826035015744144e-07,
         "A10": 3.5669228406150886e-07,
@@ -27059,6 +27078,7 @@
         "A5": 1.1803304672232033e-08,
         "A6": 4.796027405670787e-07,
         "A7": 1.927622597196305e-07,
+        "A8": 3.72088704439629e-08,
         "A9": 4.640336447463647e-07,
         "B1": 4.903798080906481e-07,
         "B10": 2.8607803290356206e-07,
@@ -27074,11 +27094,9 @@
         "B8": 3.055513896186968e-07,
         "B9": 4.037799138189007e-07
       },
-      "scope": "Native reference pads match locally registered joints. Numbering is reference-derived; dimensions, hole diameters and continuity are not measured. Unclassified contacts remain visual geometry only.",
+      "scope": "Native reference pads match locally registered joints. Numbering is reference-derived; dimensions, hole diameters and continuity are not measured. Owner-observed unrouted contacts have isolated native pads; missing contacts remain visual geometry only.",
       "status": "photo-placed-reference-terminal-order",
-      "unclassifiedContacts": [
-        "A8"
-      ]
+      "unclassifiedContacts": []
     },
     "nextEvidence": "Reconcile native pad geometry against the independent underside observations and terminal constraints. Actual dimensions and continuity remain unmeasured.",
     "photoSha256": "dce38a857c38475372e19cd98aae75f5e7596be67f45e6afc7488f6cf7c99240",
@@ -45708,7 +45726,7 @@
       "component-evidence.json": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
       "route-evidence.json": "30c3b039aaa1cef03832c82d7d63a407e7f23abecea0455484dcf35989ff50ae",
       "generated/connectivity.json": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
-      "generated/layout.json": "0206cbbce0cf25b974257a029ef87fd476c24a96e176201a1bca18ca3228ffc0",
+      "generated/layout.json": "8ddc39f82b1e45e1f5764f1769047a1c0db844a2293d7ad9a6729036e9becdd2",
       "generated/connector-terminals.json": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "generated/top-registration.json": "51e4d86dfbb73aa372be16e05c1fa6b465342d59291905d9b8fd13ec001154f7",
       "generated/bottom-registration.json": "57020ef44a830a4e2ada197fdb49f43e68672c2c734dc71ab1ce279841a11725",
@@ -50556,31 +50574,31 @@
   "source": {
     "cad": {
       "repository": "https://github.com/ddanila/3d-models",
-      "revision": "8d01cbb6e25b404342e94034d468dcb69b676abb"
+      "revision": "2a174948f39dd575762475a5fee63f920a0a99e9"
     },
     "emulation": {
       "repository": "https://github.com/ddanila/dac-emulation",
       "revision": "adc5cb9218185345cd3f45e4f9b656ab6a9d5cea"
     },
     "files": {
-      "layout": "0206cbbce0cf25b974257a029ef87fd476c24a96e176201a1bca18ca3228ffc0",
+      "layout": "8ddc39f82b1e45e1f5764f1769047a1c0db844a2293d7ad9a6729036e9becdd2",
       "connectivity": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
       "qualification": "7ce12a0969866775542c21d00938e8b9a5a8aa2e2bf54617c4afe5f91a14ce03",
       "photoRegistration": "27ab4351432a9beccec11138402c36486358de43814ec6e6159dbc184a579e8b",
       "bottomRegistration": "57020ef44a830a4e2ada197fdb49f43e68672c2c734dc71ab1ce279841a11725",
       "topRegistration": "51e4d86dfbb73aa372be16e05c1fa6b465342d59291905d9b8fd13ec001154f7",
-      "connectorReview": "ff6265ad9cb43304a0f15abcb17ca5f428e5055cb8f9a359d6ea71efa11c392c",
+      "connectorReview": "b85b5c00e6a80970eadfb147653fc38c783eb12015dd98aab72c6e26064ce24f",
       "connectorTerminals": "72906a49da111b6e29996ab83df3600aab5c51f8ce8a0ed744b5566dc551d831",
       "evidence": "2b3576e8f7025e3cd6071b31956a8e44224ae5b7f5a94818e6b50a7fb4d983bf",
       "componentEvidence": "c21f882b2f1cd0952e20e140fb7be4316e8bfe84b9a5f1219e1c2d00bb3f007c",
       "routingAudit": "e41a48ffd82f9676f925ff0ec38e3e53c0c8aa17e7ab28ce2fd61d3714ce01b9",
       "busReview": "283c431c4e4340416510887db973ca521c8a83b30119a2b242bdb2d2ef83a4e0",
       "cableCopper": "2545a3b9f124dc9f24771225f345e891f62bba73724f476b2967917d96e14e70",
-      "connectionReview": "2dcfac0cd04f46e84fb9eb0ebbbe121cf396eaaf24997a672731b8e769d9d3b9",
+      "connectionReview": "f86d719eaf8af24f313b100cbdcd29eef09d9eec5c047ba8e338c65e123d302c",
       "outputAssembly": "b6c36551b5f3db84fb1dd775e2dd704064975ce95d5e0b4a26f9954c2494b370"
     },
     "reportSha256": "bba919d140ed8185b6395f1e885a43bcc238860a299a6cfedde759ec2d955843",
-    "geometryScadSha256": "b1fbde98eaca13234816889584ae73ce364b03cc933e1cc2ef9b3ad9f51b2d48",
+    "geometryScadSha256": "f6e306520f5b08cd630656324c60e4d8be5ce5f7ead8152a4776a9993017fd20",
     "digitalCompletionSha256": "607d0ae6fdb86334b783e7fe5c8b28b22900bbcaf41cfe90addfd26c39d5f0c9",
     "productionDigitalSummarySha256": "73fc7bb3cedc91aadf4872be04d052bc53b521c590e03cfaa226437c6245f921",
     "productionDigitalFirmwareSha256": "513537baed626829587aa597a1c9c4968b9886e1f66a844d530044797456cd57",

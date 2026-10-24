@@ -209,7 +209,7 @@ inventory in this plan:
 | CPU/ROM and latch bus | `bus-review.json`: check package numbering and board entries, compare candidate eyes, and trace from both ends. Covered CPU/ROM joins need visible continuation or independent continuity; positional agreement alone is insufficient. |
 | Data and strobe | `path-tracing.json`: resolve the hidden resistor and CPU/latch terminal transitions before selecting attachments or WR/RD. |
 | Supply, filter and clock | `supply-review.json`, `filter-registration.json`, `clock-continuation.json` and the anonymous cable-end graph: extend fits with independent landmarks; cross-side correspondence does not identify winding pairs or bridge occlusions. |
-| Matrix connector | `generated/connector-review.json` and `generated/connector-terminals.json`: preserve row-order evidence and represent the owner-confirmed isolated A8 pad without assigning a signal net. |
+| Matrix connector | `generated/connector-review.json` and `generated/connector-terminals.json`: preserve row-order evidence and the owner-confirmed isolated A8 pad; refine dimensions only with measured evidence. |
 
 Keep rejected fits and conditional net conflicts in machine-readable evidence.
 Composed registrations are valid only inside both source domains; a nearby

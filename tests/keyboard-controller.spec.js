@@ -511,12 +511,14 @@ test('recorded waveform rejects mismatched connectivity and retries',async({page
  await expect(wave.locator('svg')).toBeVisible();
 });
 
-test('connector review separates mapped reference pads from unclassified contacts',async({page})=>{
+test('connector review includes the isolated owner-observed contact without a signal net',async({page})=>{
  expect(data.connectorReview.qualifiedForPadPlacement).toBe(false);
  const selected=controllerSelection(data,'component','X1');
  expect(selected.points).toHaveLength(selected.pins.length);
- expect(selected.pins.some(p=>p.pin==='A8')).toBe(false);
- expect(data.connectorReview.nativePlacement.unclassifiedContacts).toEqual(['A8']);
+ expect(selected.pins.find(p=>p.pin==='A8')).toMatchObject({net:null,classification:'owner-observed-unrouted'});
+ expect(data.connectivity.components.X1.pins).not.toHaveProperty('A8');
+ expect(data.connectorReview.nativePlacement.unclassifiedContacts).toEqual([]);
+ expect(data.connectorReview.nativePlacement.isolatedContacts).toEqual(['A8']);
  expect(selected.pins.length).toBeGreaterThan(0);
  expect(data.connectorTerminals.completeTerminalOrderResolved).toBe(true);
  expect(data.connectorTerminals.unresolvedRows).toEqual([]);
@@ -532,9 +534,9 @@ test('connector review separates mapped reference pads from unclassified contact
  await expect(detail).toContainText('do not establish hole centres or terminal order');
  await expect(detail).toContainText('near row as B1–B13');
  await expect(detail).toContainText('not measured continuity');
- await expect(detail).toContainText('A8 remains electrically unclassified');
+ await expect(detail).toContainText('A8 is present and soldered, with no tracks on either side');
  await expect(panel.locator('[data-visual-connector="X1"]')).toHaveCount(data.connectorReview.nativePlacement.unclassifiedContacts.length);
- await expect(panel.locator('[data-selection]')).toContainText('highlighted reference pads use photo-estimated positions');
+ await expect(panel.locator('[data-selection]')).toContainText('Connector pads use photo-estimated positions');
  await expect(detail.getByRole('link')).toHaveAttribute('href',new RegExp(data.source.cad.revision));
  await panel.getByLabel('Controller component',{exact:true}).selectOption('A7');
  await expect(detail).toHaveCount(0);

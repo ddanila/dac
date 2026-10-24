@@ -56354,7 +56354,7 @@
       "interior.scad": "107afcf95fe9e446c1cc9047ce3b7c24dad6f4c524977d2954e034b118816b7e",
       "key-switch/geometry.scad": "3c5548896f0d9ef90e45d89c51d15f91974dc473456da760aeb61104c75fddce",
       "keyboard-artwork.scad": "4b185f623c7b71674bfc823a3cb0b8ceb38ed8447e55e286977e01de02c18d6c",
-      "keyboard-controller/generated/controller.scad": "b1fbde98eaca13234816889584ae73ce364b03cc933e1cc2ef9b3ad9f51b2d48",
+      "keyboard-controller/generated/controller.scad": "f6e306520f5b08cd630656324c60e4d8be5ce5f7ead8152a4776a9993017fd20",
       "keyboard-controller/reference/assembly-generated/assembly.scad": "4d571a7fb633f5e82f9f1d2c8665fe55b9616b9648606b153e54c62be6aa9e0d",
       "keyboard-controller/reference/generated/controller.scad": "c80c24dbc7ca2f5d2af42cc593c0e765918c587e6f0bd65c92ba9bcae12ebaca",
       "keyboard-controller/reference/review.scad": "b3019aab9355118b037c3e64f857fa2e0b262c5c28444e3c10617fcd4f5ebe99",
@@ -56371,8 +56371,8 @@
   },
   "source": {
     "repository": "https://github.com/ddanila/3d-models",
-    "revision": "8d01cbb6e25b404342e94034d468dcb69b676abb",
-    "manifestSha256": "a80d44daa76737bc7157692830d46d34915725ed6c5c57b7bbc51491f5e102a9",
+    "revision": "2a174948f39dd575762475a5fee63f920a0a99e9",
+    "manifestSha256": "8deab62e496be9c86b5bbc9bebb1455daa092c3ddb5d4d0edeefd1b67980cc3e",
     "connectivitySha256": "68ce8ebda5a03cb5d5339b78b2e964ed3c2b2fdfee379f77029d9f38e128aa25",
     "files": {
       "reference/generated/controller.scad": "c80c24dbc7ca2f5d2af42cc593c0e765918c587e6f0bd65c92ba9bcae12ebaca",
