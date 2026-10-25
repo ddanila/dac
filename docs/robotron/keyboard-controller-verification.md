@@ -59,8 +59,10 @@ spacing change is not uniquely supported.
 
 The [detailed EFS drawings](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/efs-form-constraints.json)
 provide a shared PCB hole pattern for the retained X1 forms. This removes housing-width
-selection as a prerequisite for a conditional board-plane calibration; independent
-held-out registration checks and installed-form identification remain open.
+selection as a prerequisite for a conditional board-plane calibration. The
+[connector-only fit](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/efs-registration/assessment.json)
+fails independent nominal CPU-span checks and is sensitive to extrapolation. Distributed
+constraints, held-out registration checks and installed-form identification remain open.
 
 ## Resolve at the desk first
 
