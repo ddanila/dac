@@ -13,7 +13,7 @@ while making these changes.
 | Work | Next action and acceptance |
 | --- | --- |
 | Full-window streaming qualification | Measure keyboard-scale runtime, memory and compressed-log storage for the live three-level runner. Establish sufficient retained evidence without full raw replay before treating disk capacity as resolved. Preserve every sample comparison and the unchanged numerical gate. |
-| Conditional X1 board-plane calibration | Test a distributed fit combining the common X1 hole pattern with independent longitudinal package pitches; hold out board-plane landmarks and propagate systematic picking uncertainty. The connector-only endpoint fit is insufficient for global extrapolation. Obtain PCB dimensional tolerances; no pad moves before the existing registration gate passes. |
+| Conditional X1 board-plane calibration | Constrain transverse scale with independently reviewed board-plane row centres and mounting features; the distributed X1/CPU fit supports longitudinal scale but remains sensitive to correlated X1 row picks. Bound picking and PCB manufacturing tolerances, then test held-out placement and cross-side correspondence. No pad moves before the existing registration gate passes. |
 | Coupled internal-state evidence | Extend the controlled scheduler probe into live coupled trials, retaining a matched control, state inventory and continuation checks. Observe bridge/input queues as well as exposed HDL state; do not equate register snapshots with the simulator's complete pending-event state. |
 
 ### Deferred — full-repeat execution
