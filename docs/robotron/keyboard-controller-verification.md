@@ -70,6 +70,12 @@ and cross-side checks, and installed-form identification remain open. The
 narrows the comparison specimen to the narrow EFS forms; the primary view does
 not expose the discriminating chambers.
 
+The [input-barrier source argument](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/barrier-state-source/assessment.json)
+uses the pinned scheduler and pthread ownership to justify non-execution on a
+successful early return. It removes private queue traversal as a prerequisite
+for that branch only; surrounding callbacks, advance/output paths and general
+rollback remain separate.
+
 ## Resolve at the desk first
 
 Physical uncertainty and model qualification are open investigations. Follow the
