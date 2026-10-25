@@ -39,7 +39,7 @@ and linked machine-readable reports.
 | Work | Prerequisite and acceptance |
 | --- | --- |
 | Physical placements and copper | Accepted registration and individually supported terminal identities; follow the sequence below. |
-| Coupled reference qualification | Numerical convergence, coupled rollback checks and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
+| Coupled reference qualification | Numerical convergence, coupled rollback checks (including live internal-state and continuation evidence) and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
 
 ### Closure requiring independent evidence
 
