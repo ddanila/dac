@@ -57,6 +57,11 @@ does not authorize a footprint change. A [cross-package bias test](https://githu
 predicts smaller A5/A8 residuals from A2.1/A4 observations, so an A8-specific
 spacing change is not uniquely supported.
 
+The [detailed EFS drawings](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/efs-form-constraints.json)
+provide a shared PCB hole pattern for the retained X1 forms. This removes housing-width
+selection as a prerequisite for a conditional board-plane calibration; independent
+held-out registration checks and installed-form identification remain open.
+
 ## Resolve at the desk first
 
 Physical uncertainty and model qualification are open investigations. Follow the

@@ -13,6 +13,7 @@ while making these changes.
 | Work | Next action and acceptance |
 | --- | --- |
 | Full-window streaming qualification | Measure keyboard-scale runtime, memory and compressed-log storage for the live three-level runner. Establish sufficient retained evidence without full raw replay before treating disk capacity as resolved. Preserve every sample comparison and the unchanged numerical gate. |
+| Conditional X1 board-plane calibration | Fit the detailed standard’s common hole pattern to primary underside observations; test independent held-out landmarks and propagate picking/extrapolation uncertainty. The retained housing widths share this pattern, so width selection is not a prerequisite. No pad moves before the existing registration gate passes. |
 | Coupled internal-state evidence | Extend the controlled scheduler probe into live coupled trials, retaining a matched control, state inventory and continuation checks. Observe bridge/input queues as well as exposed HDL state; do not equate register snapshots with the simulator's complete pending-event state. |
 
 ### Deferred — full-repeat execution
@@ -35,7 +36,7 @@ forced-retry and opt-in evaluator-cache controls over that window as well.
 | Work | Next useful evidence and acceptance |
 | --- | --- |
 | Historical registration | Independent board-plane hole observations that distinguish the retained package-bias and outline-perspective alternatives. Establish scale and cross-side correspondence; held-out checks must meet the existing registration budget before native pads or routes move. |
-| X1 package identification | Lead exits, mounting and mating geometry in existing photos or form-specific drawings that distinguish the retained EFS alternatives. Account for calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
+| X1 package identification | Compare the retrieved form-specific drawings with mating chambers, lead exits and mounting geometry in existing photos to distinguish the retained EFS alternatives. Account for calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
 | Electrical-model constraints | Published constraints that distinguish consequential oscillator, driver or load alternatives. Test their effects on clock acceptance, receiver decisions and bus timing; retain alternatives that the evidence cannot distinguish. |
 
 Exhaust existing photographs and published sources first. Repeat an experiment
