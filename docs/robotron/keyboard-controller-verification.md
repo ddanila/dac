@@ -82,6 +82,10 @@ points across those callbacks. The [live history control](https://github.com/dda
 observes initialized histories and pending-output publication, detects a deliberate
 input-history mutation, and preserves baseline waveforms and firmware exactly.
 Startup lifecycle, output scheduling flags and complete pending events remain open.
+The [output-history initialization controls](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-history-init/assessment.json)
+expose allocator-state dependence in a partial-output shim and test an opt-in fix.
+The bounded board fixture is unchanged under the tested dirty and initialized
+seeds; this is not evidence of an observed board fault or full startup qualification.
 
 The [bounded keyboard streaming benchmark](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/keyboard-stream-benchmark/assessment.json)
 measures a complete observer fixture without raw spooling. Its sampled memory and
