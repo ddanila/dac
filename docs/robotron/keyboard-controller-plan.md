@@ -8,16 +8,6 @@ while making these changes.
 
 ## Next work and acceptance
 
-### Ready now — implementation and qualification
-
-| Priority | Next action | Acceptance |
-| --- | --- | --- |
-| Coupled rollback checks | Extend coupled retry coverage beyond reset release. | Preserve event ordering, state and firmware behavior against complete controls; bounded forced-retry tests or recorded replay cannot establish general coupled rollback. |
-| Evaluator-cache controls | Extend the live comparison beyond reset release using the complete uncached control. | Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
-
-This work needs no new specimen evidence. Keep the candidate opt-in until
-its full-window and coupled controls pass.
-
 ### Deferred — full-repeat execution
 
 Full-repeat numerical captures are postponed until sufficient storage is available.
@@ -27,7 +17,8 @@ a complete control. Pass the unchanged numerical gate below while preserving
 firmware reads and serial behavior over the full-repeat window. Do not shorten
 the scenario to fit the current machine. Validate the integrated raw-capture,
 comparison and retention tooling on these complete captures; implementation tests
-and bounded transport controls do not establish full-repeat acceptance.
+and bounded transport controls do not establish full-repeat acceptance. Extend
+forced-retry and opt-in evaluator-cache controls over that window as well.
 
 ### Investigations — require a new discriminating check
 
