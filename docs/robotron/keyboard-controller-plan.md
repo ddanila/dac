@@ -14,7 +14,7 @@ while making these changes.
 | --- | --- |
 | Full-window streaming qualification | Measure keyboard-scale runtime, memory and compressed-log storage for the live three-level runner. Establish sufficient retained evidence without full raw replay before treating disk capacity as resolved. Preserve every sample comparison and the unchanged numerical gate. |
 | Conditional X1 board-plane calibration | Constrain transverse scale with independently reviewed board-plane row centres and mounting features; the distributed X1/CPU fit supports longitudinal scale but remains sensitive to correlated X1 row picks. Bound picking and PCB manufacturing tolerances, then test held-out placement and cross-side correspondence. No pad moves before the existing registration gate passes. |
-| Coupled internal-state evidence | Extend the controlled scheduler probe into live coupled trials, retaining a matched control, state inventory and continuation checks. Observe bridge/input queues as well as exposed HDL state; do not equate register snapshots with the simulator's complete pending-event state. |
+| Coupled internal-state evidence | Extend the bounded live observer to remaining scheduler state: XSPICE output/history buffers and pending HDL events. Retain matched controls, delayed-corruption detection and continuation checks across the required scenarios. Bound observation volume before longer captures; exposed-state equality is not complete rollback proof. |
 
 ### Deferred — full-repeat execution
 
