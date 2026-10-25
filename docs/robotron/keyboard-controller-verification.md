@@ -74,7 +74,13 @@ The [input-barrier source argument](https://github.com/ddanila/dac-emulation/blo
 uses the pinned scheduler and pthread ownership to justify non-execution on a
 successful early return. It removes private queue traversal as a prerequisite
 for that branch only; surrounding callbacks, advance/output paths and general
-rollback remain separate.
+rollback remain separate. The same report maps state writes and required observation
+points across those callbacks; current live snapshots do not cover them all.
+
+The [bounded keyboard streaming benchmark](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/keyboard-stream-benchmark/assessment.json)
+measures a complete observer fixture without raw spooling. Its sampled memory and
+compressed-log costs do not establish full-repeat resource bounds. The strict
+non-growing-error gate fails even though voltage differences remain below the limit.
 
 ## Resolve at the desk first
 

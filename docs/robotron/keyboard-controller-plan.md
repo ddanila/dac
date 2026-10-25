@@ -12,9 +12,9 @@ while making these changes.
 
 | Work | Next action and acceptance |
 | --- | --- |
-| Full-window streaming qualification | Measure keyboard-scale runtime, memory and compressed-log storage for the live three-level runner. Establish sufficient retained evidence without full raw replay before treating disk capacity as resolved. Preserve every sample comparison and the unchanged numerical gate. |
+| Full-window streaming qualification | Use the bounded keyboard benchmark to design longer-window runtime, memory and compressed-log limits for the live three-level runner. Establish sufficient retained evidence without full raw replay before treating disk capacity as resolved. Preserve every sample comparison and the unchanged numerical gate. |
 | Conditional X1 board-plane calibration | Constrain transverse scale with independently reviewed board-plane row centres and mounting features; the distributed X1/CPU fit supports longitudinal scale but remains sensitive to correlated X1 row picks. Bound picking and PCB manufacturing tolerances, then test held-out placement and cross-side correspondence. No pad moves before the existing registration gate passes. |
-| Coupled internal-state evidence | Review state ownership on the advance/output and surrounding callback paths; observe XSPICE output/history buffers where they can change. Extend delayed-corruption and continuation controls across the required scenarios. The successful input-barrier branch has a scoped non-execution argument; do not require private queue traversal for that branch alone. Bound observation volume before longer captures. |
+| Coupled internal-state evidence | Implement the reviewed callback observation points, including pending-output publication and the first HDL advance before scheduler entry; observe XSPICE current/previous history and pending-output buffers with lifecycle validity. Extend delayed-corruption and continuation controls across the required scenarios. The successful input-barrier branch has a scoped non-execution argument; do not require private queue traversal for that branch alone. Bound observation volume before longer captures. |
 
 ### Deferred — full-repeat execution
 
