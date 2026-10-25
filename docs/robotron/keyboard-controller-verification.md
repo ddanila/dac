@@ -81,7 +81,13 @@ rollback remain separate. The same report maps state writes and required observa
 points across those callbacks. The [live history control](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/history-state/assessment.json)
 observes initialized histories and pending-output publication, detects a deliberate
 input-history mutation, and preserves baseline waveforms and firmware exactly.
-Startup lifecycle, output scheduling flags and complete pending events remain open.
+The [scheduling control](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/event-state/assessment.json)
+adds direct controller-port flags, delays and pending-event observations. The
+[repeated-output fix](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/staged-output/assessment.json)
+repairs initial LED events lost when a second output update cleared their flags
+within the same callback. Firmware events remain exact; electrical differences
+are retained. The fix remains opt-in pending broader scenarios and convergence.
+Startup lifecycle and event state outside the controller queues remain open.
 The [output-history initialization controls](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-history-init/assessment.json)
 expose allocator-state dependence in a partial-output shim and test an opt-in fix.
 The bounded board fixture is unchanged under the tested dirty and initialized
