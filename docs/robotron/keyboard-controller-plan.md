@@ -8,9 +8,18 @@ while making these changes.
 
 ## Next work and acceptance
 
+### Ready now — removing resource and evidence bottlenecks
+
+| Work | Next action and acceptance |
+| --- | --- |
+| Full-window streaming qualification | Integrate the completion-gated raw-stream comparator with live producers and independently drained logs; coordinate both refinement pairs, firmware/serial checks and failure cleanup. Preserve every sample comparison and the unchanged numerical gate. Establish sufficient retained evidence and measured resource bounds before treating disk capacity as resolved. |
+| Coupled internal-state evidence | Extend the controlled scheduler probe into live coupled trials, retaining a matched control, state inventory and continuation checks. Observe bridge/input queues as well as exposed HDL state; do not equate register snapshots with the simulator's complete pending-event state. |
+
 ### Deferred — full-repeat execution
 
-Full-repeat numerical captures are postponed until sufficient storage is available.
+Full-repeat numerical captures remain postponed as requested. The no-spool route
+above is desk work toward removing their storage prerequisite; complete retained
+waveform replay has passed, but live qualification on this route is not yet established.
 When resuming, preflight capacity and runtime, then run the reset-release candidate
 over complete standard-S600 repeat traffic with matched timestep refinements and
 a complete control. Pass the unchanged numerical gate below while preserving
