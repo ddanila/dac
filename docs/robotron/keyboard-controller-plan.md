@@ -13,6 +13,7 @@ while making these changes.
 | Priority | Next action | Acceptance |
 | --- | --- | --- |
 | Coupled rollback checks | Extend coupled retry coverage beyond reset release. | Preserve event ordering, state and firmware behavior against complete controls; bounded forced-retry tests or recorded replay cannot establish general coupled rollback. |
+| Evaluator-cache controls | Extend the live comparison beyond reset release using the complete uncached control. | Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
 
 This work needs no new specimen evidence. Keep the candidate opt-in until
 its full-window and coupled controls pass.
@@ -46,7 +47,6 @@ and linked machine-readable reports.
 
 | Work | Prerequisite and acceptance |
 | --- | --- |
-| Extend evaluator-cache controls beyond reset release | A complete uncached control for the same live circuit. Paired complete captures must preserve waveforms with identical inputs and runtime dependencies; recorded-boundary replay cannot substitute. Keep caching opt-in. |
 | Physical placements and copper | Accepted registration and individually supported terminal identities; follow the sequence below. |
 | Coupled reference qualification | Numerical convergence, coupled rollback checks and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
 
