@@ -68,7 +68,10 @@ leave transverse scale ambiguous. Independent transverse constraints, held-out p
 and cross-side checks, and installed-form identification remain open. The
 [chamber review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/efs-chambers/assessment.json)
 narrows the comparison specimen to the narrow EFS forms; the primary view does
-not expose the discriminating chambers.
+not expose the discriminating chambers. The [mounting-hole shape review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/mount-hole-registration/assessment.json)
+finds circular-rim witnesses for every retained transverse alternative within the
+primary photo's picking bounds. These rims cannot choose the registration; a
+known transverse board-plane distance or sharper independent evidence is needed.
 
 The [input-barrier source argument](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/barrier-state-source/assessment.json)
 uses the pinned scheduler and pthread ownership to justify non-execution on a
