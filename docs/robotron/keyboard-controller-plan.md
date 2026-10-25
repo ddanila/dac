@@ -36,7 +36,7 @@ forced-retry and opt-in evaluator-cache controls over that window as well.
 | Work | Next useful evidence and acceptance |
 | --- | --- |
 | Historical registration | Independent board-plane hole observations that distinguish the retained package-bias and outline-perspective alternatives. Establish scale and cross-side correspondence; held-out checks must meet the existing registration budget before native pads or routes move. |
-| X1 package identification | Compare the retrieved form-specific drawings with mating chambers, lead exits and mounting geometry in existing photos to distinguish the retained EFS alternatives. Account for calibration and photo-picking uncertainty; contact-span agreement alone cannot select body width or pad placement. |
+| X1 package identification | Find a primary-specimen view exposing mating or termination chambers and compare it with the detailed EFS drawings. The comparison specimen supports the narrow forms, but its dimensions cannot be transferred by appearance alone. Distinguish plug/socket and mounting form; contact-span agreement cannot select them. |
 | Electrical-model constraints | Published constraints that distinguish consequential oscillator, driver or load alternatives. Test their effects on clock acceptance, receiver decisions and bus timing; retain alternatives that the evidence cannot distinguish. |
 
 Exhaust existing photographs and published sources first. Repeat an experiment
