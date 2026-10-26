@@ -95,7 +95,9 @@ seeds; this is not evidence of an observed board fault or full startup qualifica
 
 The [bounded keyboard streaming benchmark](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/keyboard-stream-benchmark/assessment.json)
 measures a complete observer fixture without raw spooling. Its sampled memory and
-compressed-log costs do not establish full-repeat resource bounds. The strict
+compressed-log costs do not establish full-repeat resource bounds. The live runner
+now stops on configured logical-log, compressed-log or individual-line limits;
+a budget failure cannot publish a successful capture. The strict
 non-growing-error gate fails even though voltage differences remain below the limit.
 
 ## Resolve at the desk first
