@@ -92,6 +92,10 @@ The [output-history initialization controls](https://github.com/ddanila/dac-emul
 expose allocator-state dependence in a partial-output shim and test an opt-in fix.
 The bounded board fixture is unchanged under the tested dirty and initialized
 seeds; this is not evidence of an observed board fault or full startup qualification.
+The [combined-fix controls](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-fixes/assessment.json)
+match the individual-fix waveforms and firmware exactly, including dirty allocation
+seeds with both fixes enabled. This closes their bounded interaction check, not
+the remaining scenario and convergence requirements.
 
 The [bounded keyboard streaming benchmark](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/keyboard-stream-benchmark/assessment.json)
 measures a complete observer fixture without raw spooling. Its sampled memory and
