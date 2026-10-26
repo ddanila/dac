@@ -72,6 +72,10 @@ not expose the discriminating chambers. The [mounting-hole shape review](https:/
 finds circular-rim witnesses for every retained transverse alternative within the
 primary photo's picking bounds. These rims cannot choose the registration; a
 known transverse board-plane distance or sharper independent evidence is needed.
+The [measurement targets](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/registration-measurements/assessment.json)
+identify opposing CPU holes and fallback end widths, with photo coordinates and
+predictions for each retained fit. A measured distance constrains a new fit; it
+does not by itself establish absolute placement or cross-side registration.
 
 The [input-barrier source argument](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/barrier-state-source/assessment.json)
 uses the pinned scheduler and pthread ownership to justify non-execution on a

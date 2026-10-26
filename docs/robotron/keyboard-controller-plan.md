@@ -13,7 +13,6 @@ while making these changes.
 | Work | Next action and acceptance |
 | --- | --- |
 | Full-window streaming qualification | Select longer-window runtime and memory budgets using the bounded keyboard benchmark; configure the live runner’s log caps before execution. Establish sufficient retained evidence without full raw replay before treating disk capacity as resolved. Preserve every sample comparison and the unchanged numerical gate. |
-| Conditional X1 board-plane calibration | Find an independent transverse board-plane dimension or sharper hole-centre evidence; the existing mounting-hole rims admit all retained transverse alternatives within their picking bounds. The distributed X1/CPU fit supports longitudinal scale but remains sensitive to correlated X1 row picks. Bound picking and PCB manufacturing tolerances, then test held-out placement and cross-side correspondence. No pad moves before the existing registration gate passes. |
 | Coupled internal-state evidence | Extend the combined opt-in startup-history and repeated-output fixes from the bounded interaction control to the required startup, reset and supply-recovery scenarios; full-repeat remains deferred. Extend startup lifecycle and consequential event coverage beyond the controller-port queues. Extend delayed-corruption and continuation controls across the required scenarios. The successful input-barrier branch has a scoped non-execution argument; do not require private queue traversal for that branch alone. Bound observation volume before longer captures. |
 
 ### Deferred — full-repeat execution
@@ -35,7 +34,7 @@ forced-retry and opt-in evaluator-cache controls over that window as well.
 
 | Work | Next useful evidence and acceptance |
 | --- | --- |
-| Historical registration | Independent board-plane hole observations that distinguish the retained package-bias and outline-perspective alternatives. Establish scale and cross-side correspondence; held-out checks must meet the existing registration budget before native pads or routes move. |
+| Historical registration | Obtain an independent transverse board-plane dimension or sharper hole-centre evidence using the [measurement targets](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/registration-measurements/assessment.json). Bound picking and PCB manufacturing tolerances, refit and test held-out placement and cross-side correspondence. Existing mounting-hole rims cannot select the retained transverse alternatives. No pad moves before the existing registration gate passes. |
 | X1 package identification | Find a primary-specimen view exposing mating or termination chambers and compare it with the detailed EFS drawings. The comparison specimen supports the narrow forms, but its dimensions cannot be transferred by appearance alone. Distinguish plug/socket and mounting form; contact-span agreement cannot select them. |
 | Electrical-model constraints | Published constraints that distinguish consequential oscillator, driver or load alternatives. Test their effects on clock acceptance, receiver decisions and bus timing; retain alternatives that the evidence cannot distinguish. |
 
