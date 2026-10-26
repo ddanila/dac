@@ -39,7 +39,7 @@ owns scenario coverage and experiment details.
 | Gate | Current evidence | Remaining proof |
 | --- | --- | --- |
 | Numerical convergence | [Transient-error refinements][transient-error] pass the unchanged full-window reset-release voltage gate with identical observed bus events. The explicit-default control reproduces all baseline waveforms. This is a bounded comparison with ideal external clock/reset. | A [complete no-spool replay][online-stream] preserves the retained absolute-time comparison; a [live three-level RC control][live-stream] also matches stored-waveform comparisons. Keyboard-scale resource bounds and evidence retention remain open. Full-repeat numerical coverage and coupled rollback remain open under the unchanged [numerical gate](keyboard-controller-plan.md#numerical-convergence). Keep the candidate opt-in until those controls pass; physical model admission remains separate. |
-| HDL/electrical scheduling | [Post-reset dispatch][postreset-dispatch], [bridge timing][postreset-bridge] and [forced Newton retry][postreset-newton-retry] provide complete matched controls. [Live state observation][live-cosim-state] covers exposed state; [output-queue][circuit-output] and [instance-queue][instance-queue] controls cover external scheduling state and detect immediate/delayed faults, with exact positive-control waveform and firmware agreement in a bounded fixture. | Long-window output/instance-state controls and private HDL event coverage, startup/history and full-repeat retries remain open. Ordering and monotonic time do not prove general rollback; the supply-relative bus-voltage failure remains a separate acceptance gate. |
+| HDL/electrical scheduling | [Post-reset combined-fix controls][postreset-startup] include an exact disabled baseline and forced retry with identical firmware records. The fixes change electrical waveforms and need their own three-level convergence. [Live state observation][live-cosim-state] covers exposed state; [output-queue][circuit-output] and [instance-queue][instance-queue] controls cover external scheduling state and detect immediate/delayed faults, with exact positive-control waveform and firmware agreement in a bounded fixture. | Long-window output/instance-state controls and private HDL event coverage, startup/history and full-repeat retries remain open. Ordering and monotonic time do not prove general rollback; the supply-relative bus-voltage failure remains a separate acceptance gate. |
 | Onboard clock | [Reference oscillator screens][clock-acceptance] fail U880 level or timing requirements. | Independently constrained intended-family dynamics and startup-inclusive board qualification. Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions. |
 | Reset | [C4 source-alternative studies][reset-alternatives] cover isolated exploratory reset behavior. | Installed component identity and coupled reset/recovery qualification; retain the reference default. |
 | Device and load admission | [Static endpoint screens][device-endpoints] pass selected conditions; [driver/recovery evidence][serial-path] retains non-unique dynamics and load sensitivity. [Linear bus drivers][bus-device] fail a minimum-supply guarantee. [DC-only alternatives][bus-endpoints] satisfy the tested endpoints; both I8282 candidates fail the independent [loaded switching test][bus-switching]. CPU/ROM alternatives remain unconstrained dynamically; none is admitted. | Independent driver/CPU I/V, switching and reverse-recovery behavior, plus filter/cable/host impedance. Endpoint fitting and firmware agreement cannot admit these models. |
@@ -138,10 +138,7 @@ and the reason for changing its interpretation.
 
 [transient-error]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/transient-error-refinement/assessment.json
 
-[postreset-bridge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-bridge/assessment.json
-[postreset-dispatch]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-dispatch/assessment.json
 
-[postreset-newton-retry]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-newton-retry/assessment.json
 [postreset-cache]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-cache/assessment.json
 
 [online-stream]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/online-stream-replay/assessment.json
@@ -157,3 +154,5 @@ and the reason for changing its interpretation.
 [bus-switching]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-switching-candidates/assessment.json
 
 [instance-queue]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/instance-queue-state/assessment.json
+
+[postreset-startup]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-startup-fixes/assessment.json
