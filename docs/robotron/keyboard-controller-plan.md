@@ -28,7 +28,8 @@ resources before long captures; execution cost is a computational dependency,
 not a need for specimen hardware. Supply recovery needs its own stimulus and
 acceptance checks; service reset injection is not closed-board brownout evidence.
 Establish a reset assertion and release under rated supply and qualified clocks
-before claiming a defined restart after undervoltage. Firmware continuation alone
+with the published RESET setup/hold limits before claiming a defined restart
+after undervoltage. Firmware continuation alone
 cannot substitute for an unmodeled CPU state-retention guarantee.
 
 ### Deferred — full-repeat execution
