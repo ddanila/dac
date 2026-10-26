@@ -70,9 +70,11 @@ remain unresolved. Alternative package and registration fits live in CAD
 The [input-barrier source argument](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/barrier-state-source/assessment.json)
 removes private HDL-queue traversal as a prerequisite for the successful early-return
 branch only. The [combined startup-fix controls](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-fixes/assessment.json)
-cover a bounded fixture; they do not qualify full startup, reset, supply recovery
-or general rollback. The core's analog guide owns observer, fault-control and
-individual-fix evidence and reproduction commands.
+cover a bounded fixture. A [targeted output-recovery control](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-breakpoint-sampled/assessment.json)
+exercises a failed breakpoint after HDL advancement while preserving delayed
+outputs and the sampled waveform. Neither establishes full startup, supply
+recovery, keyboard input perturbations or general rollback. The core's analog
+guide owns fault-control evidence and reproduction commands.
 
 The [streaming benchmark](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/keyboard-stream-benchmark/assessment.json)
 does not establish full-repeat resource bounds and fails the strict non-growing-error
