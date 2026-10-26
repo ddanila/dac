@@ -8,19 +8,32 @@ while making these changes.
 
 ## Next work and acceptance
 
-### Ready now — removing resource and evidence bottlenecks
+### Desk work — no physical device required
 
-| Work | Next action and acceptance |
+Physical registration, installed connector identity and the museum ROM dump are
+not prerequisites for reference emulation. Use standard S600 and explicit model
+assumptions. Advance numerical correctness, model applicability and specimen
+agreement as separate claims; an unresolved specimen claim must not stop the
+other tracks.
+
+| Priority | Work and acceptance |
 | --- | --- |
-| Full-window streaming qualification | Select longer-window runtime and memory budgets using the bounded keyboard benchmark; configure the live runner’s log caps before execution. Establish sufficient retained evidence without full raw replay before treating disk capacity as resolved. Preserve every sample comparison and the unchanged numerical gate. |
-| Coupled internal-state evidence | Extend the combined opt-in startup-history and repeated-output fixes from the bounded interaction control to the required startup, reset and supply-recovery scenarios; full-repeat remains deferred. Extend startup lifecycle and consequential event coverage beyond the controller-port queues. Extend delayed-corruption and continuation controls across the required scenarios. The successful input-barrier branch has a scoped non-execution argument; do not require private queue traversal for that branch alone. Bound observation volume before longer captures. |
+| 1. Combined simulator fixes | Extend the opt-in startup-history and repeated-output fixes to the existing longer post-reset controls, then startup and supply recovery. Check matched disabled controls, forced rejection, immediate/delayed corruption, internal state and firmware continuation. Extend consequential event coverage beyond controller-port queues. Use the scoped input-barrier non-execution argument where applicable; private queue traversal is not required for that branch alone. |
+| 2. Numerical convergence | Localize remaining absolute-time errors by node, interval and scheduling/integration behavior. Correct demonstrated numerical defects and rerun matched refinements under the unchanged gate below. A completed capture or matching serial output alone is insufficient. |
+| 3. CPU/bus and device models | Replace candidates that fail published operating guarantees with explicitly constrained alternatives. Start with the minimum-supply bus-driver failure in the requirement audit. Preserve source test conditions and validate independent conditions where available; static endpoint agreement does not establish dynamics or specimen calibration. |
+| 4. Longer capture qualification | Establish runtime, memory and retained-evidence budgets for longer streaming captures, using explicit log caps. Preserve every sample comparison and enough evidence to review failures. Raw hashes alone do not provide waveform replay. |
+
+Start with the longer post-reset fix controls and numerical diagnosis. Preflight
+resources before long captures; execution cost is a computational dependency,
+not a need for specimen hardware. Supply recovery needs its own stimulus and
+acceptance checks; service reset injection is not closed-board brownout evidence.
 
 ### Deferred — full-repeat execution
 
-Full-repeat numerical captures remain postponed as requested. The no-spool route
-above is desk work toward removing their storage prerequisite; complete retained
-waveform replay and a live RC transport control have passed, but full keyboard
-qualification on this route is not yet established.
+Full-repeat numerical captures remain postponed as requested. Streaming
+preparation may continue, but does not authorize resuming these runs.
+Full keyboard qualification and sufficient retained evidence on this route remain
+open.
 When resuming, preflight capacity and runtime, then run the reset-release candidate
 over complete standard-S600 repeat traffic with matched timestep refinements and
 a complete control. Pass the unchanged numerical gate below while preserving
@@ -30,13 +43,14 @@ comparison and retention tooling on these complete captures; implementation test
 and bounded transport controls do not establish full-repeat acceptance. Extend
 forced-retry and opt-in evaluator-cache controls over that window as well.
 
-### Investigations — require a new discriminating check
+### Independent evidence — separate from desk qualification
 
 | Work | Next useful evidence and acceptance |
 | --- | --- |
 | Historical registration | Obtain an independent transverse board-plane dimension or sharper hole-centre evidence using the [measurement targets](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/registration-measurements/assessment.json). Bound picking and PCB manufacturing tolerances, refit and test held-out placement and cross-side correspondence. Existing mounting-hole rims cannot select the retained transverse alternatives. No pad moves before the existing registration gate passes. |
 | X1 package identification | Find a primary-specimen view exposing mating or termination chambers and compare it with the detailed EFS drawings. The comparison specimen supports the narrow forms, but its dimensions cannot be transferred by appearance alone. Distinguish plug/socket and mounting form; contact-span agreement cannot select them. |
-| Electrical-model constraints | Published constraints that distinguish consequential oscillator, driver or load alternatives. Test their effects on clock acceptance, receiver decisions and bus timing; retain alternatives that the evidence cannot distinguish. |
+| Device/load applicability | Seek published constraints that distinguish consequential oscillator, driver or load alternatives as part of desk work. Bench evidence is a fallback for ambiguities those sources cannot resolve; retain indistinguishable alternatives. |
+| Other specimen-specific claims | Installed packages, hidden terminal/trace assignments, ROM contents and timing require distinguishing evidence. Request only observations that resolve an ambiguity left by existing photographs and published sources. |
 
 Exhaust existing photographs and published sources first. Repeat an experiment
 only for a changed hypothesis or new evidence; do not rerun completed ambiguity
@@ -50,15 +64,6 @@ and linked machine-readable reports.
 | --- | --- |
 | Physical placements and copper | Accepted registration and individually supported terminal identities; follow the sequence below. |
 | Coupled reference qualification | Numerical convergence, coupled rollback checks (including live internal-state and continuation evidence) and device/load admission. Check startup, reset, repeat and supply recovery while preserving firmware behavior. |
-
-### Closure requiring independent evidence
-
-| Work | Evidence needed |
-| --- | --- |
-| Admit oscillator, driver, CPU/bus and load models | Independent constraints on relevant dynamics and operating conditions. Published data or equivalent-device bench tests may suffice; endpoint fitting alone cannot close admission. |
-| Verify specimen-specific fit and behavior | Evidence distinguishing installed packages, hidden terminal/trace assignments, dimensions, ROM contents and timing. Exhaust existing photographs and published sources first; request only observations that resolve a remaining ambiguity. |
-
-Use standard S600 for reference work; keep specimen agreement separate.
 
 ## Physical reconstruction sequence
 

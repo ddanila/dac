@@ -39,7 +39,7 @@ owns scenario coverage and experiment details.
 | Gate | Current evidence | Remaining proof |
 | --- | --- | --- |
 | Numerical convergence | [Transient-error refinements][transient-error] pass the unchanged full-window reset-release voltage gate with identical observed bus events. The explicit-default control reproduces all baseline waveforms. This is a bounded comparison with ideal external clock/reset. | A [complete no-spool replay][online-stream] preserves the retained absolute-time comparison; a [live three-level RC control][live-stream] also matches stored-waveform comparisons. Keyboard-scale resource bounds and evidence retention remain open. Full-repeat numerical coverage and coupled rollback remain open under the unchanged [numerical gate](keyboard-controller-plan.md#numerical-convergence). Keep the candidate opt-in until those controls pass; physical model admission remains separate. |
-| HDL/electrical scheduling | [Reset-release dispatch][rollback-dispatch] and [bridge timing][bridge-rollback] controls preserve waveforms and firmware events: the sole irreversible client runs last, LTE-rejected trials have no callbacks, and breakpoint-rejected trials have no logged HDL advances or outputs. [Post-reset dispatch][postreset-dispatch] and [bridge timing][postreset-bridge] controls also preserve every waveform sample and firmware event, with valid callback ordering, monotonic observed HDL time and no logged HDL advances or outputs in rejected trials. The [reset-release][newton-retry] and [post-reset][postreset-newton-retry] forced Newton-retry controls preserve firmware events and stay within the voltage budget, with no callback before Newton rejection. A [controlled internal-state probe][internal-state] preserves exposed HDL/bridge state and continuation through input-barrier rejections, with immediate and delayed corruption controls. | A [bounded live observer][live-cosim-state] preserves exposed state, bridge/input queues, continuation and exact waveform samples, with a detected register-corruption control. Startup histories, complete pending/scheduled-event coverage, full-repeat retries and full coupled acceptance including the supply-relative bus-voltage check remain open. Bounded forced retries and time observations do not prove general internal rollback or natural device convergence. |
+| HDL/electrical scheduling | [Post-reset dispatch][postreset-dispatch], [bridge timing][postreset-bridge] and [forced Newton retry][postreset-newton-retry] provide complete matched controls. [Live state observation][live-cosim-state] covers exposed state and a detected corruption in a bounded fixture. | Broader startup/history and pending-event coverage, delayed-corruption and continuation controls, and full-repeat retries remain open. Ordering and monotonic time do not prove general rollback; the supply-relative bus-voltage failure remains a separate acceptance gate. |
 | Onboard clock | [Reference oscillator screens][clock-acceptance] fail U880 level or timing requirements. | Independently constrained intended-family dynamics and startup-inclusive board qualification. Preserve separate primary К555ЛА3, comparison D100D and reference DL000 conditions. |
 | Reset | [C4 source-alternative studies][reset-alternatives] cover isolated exploratory reset behavior. | Installed component identity and coupled reset/recovery qualification; retain the reference default. |
 | Device and load admission | [Static endpoint screens][device-endpoints] pass selected conditions; [driver/recovery evidence][serial-path] retains non-unique dynamics and load sensitivity. [Linear bus drivers][bus-device] fail a minimum-supply guarantee. | Independent driver/CPU I/V, switching and reverse-recovery behavior, plus filter/cable/host impedance. Endpoint fitting and firmware agreement cannot admit these models. |
@@ -47,66 +47,39 @@ owns scenario coverage and experiment details.
 | Host reception | [Receive-edge][receive-edge] and [service timing][receiver-timing] evidence support the reference's logical reception. | Onboard clock/reset and U856 device conditions remain separate. |
 | Evaluator caching | Complete paired [startup][eval-cache] and [recorded bus-read][eval-cache-bus-read] captures are byte-identical. The [live post-reset comparison][postreset-cache] preserves every waveform sample, firmware event and solver/HDL timing record. | Full-repeat live firmware/service controls and paired equivalence. Keep caching opt-in. |
 
-The package-distance calibration review and manufacturer CPU pitch correction
-are recorded in CAD `sense-review.json` and `component-evidence.json`. They do not
-establish the global board dimensions or the primary R1 hole mapping. Historical
-R1 remains unplaced. The proposed reference package includes its electrically unused lead.
-The [A8 spacing trial](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/a8-row-spacing/assessment.json)
-is conditional on registration; it preserves the original rigid-fit failure and
-does not authorize a footprint change. A [cross-package bias test](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/shared-row-bias/assessment.json)
-predicts smaller A5/A8 residuals from A2.1/A4 observations, so an A8-specific
-spacing change is not uniquely supported.
+### Physical evidence
 
-The [detailed EFS drawings](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/efs-form-constraints.json)
-provide a shared PCB hole pattern for the retained X1 forms. This removes housing-width
-selection as a prerequisite for a conditional board-plane calibration. The
-[connector-only fit](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/efs-registration/assessment.json)
-fails independent nominal CPU-span checks and is sensitive to extrapolation. The
+Global underside registration remains unqualified. The
 [distributed X1/CPU fit](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/distributed-registration/assessment.json)
-satisfies held-out nominal longitudinal span checks, while correlated row-picking shifts
-leave transverse scale ambiguous. Independent transverse constraints, held-out placement
-and cross-side checks, and installed-form identification remain open. The
+supports longitudinal scale but leaves transverse scale ambiguous; the
+[mounting-hole review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/mount-hole-registration/assessment.json)
+cannot distinguish the retained alternatives. Use the
+[measurement targets](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/registration-measurements/assessment.json)
+for independent constraints, then recheck held-out placement and cross-side correspondence.
+A dimension alone does not establish terminal identities or authorize pad moves.
+
+The [EFS drawings](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/efs-form-constraints.json)
+provide a shared hole pattern without selecting installed housing form. The
 [chamber review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/efs-chambers/assessment.json)
-narrows the comparison specimen to the narrow EFS forms; the primary view does
-not expose the discriminating chambers. The [mounting-hole shape review](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/mount-hole-registration/assessment.json)
-finds circular-rim witnesses for every retained transverse alternative within the
-primary photo's picking bounds. These rims cannot choose the registration; a
-known transverse board-plane distance or sharper independent evidence is needed.
-The [measurement targets](https://github.com/ddanila/3d-models/blob/main/models/robotron-1715m/keyboard-controller/reference/package-reviews/registration-measurements/assessment.json)
-identify opposing CPU holes and fallback end widths, with photo coordinates and
-predictions for each retained fit. A measured distance constrains a new fit; it
-does not by itself establish absolute placement or cross-side registration.
+narrows only the comparison specimen. Historical R1 placement and hole mapping
+remain unresolved. Alternative package and registration fits live in CAD
+`reference/package-reviews/`; preserve them when assessing new evidence.
+
+### Simulator and capture prerequisites
 
 The [input-barrier source argument](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/barrier-state-source/assessment.json)
-uses the pinned scheduler and pthread ownership to justify non-execution on a
-successful early return. It removes private queue traversal as a prerequisite
-for that branch only; surrounding callbacks, advance/output paths and general
-rollback remain separate. The same report maps state writes and required observation
-points across those callbacks. The [live history control](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/history-state/assessment.json)
-observes initialized histories and pending-output publication, detects a deliberate
-input-history mutation, and preserves baseline waveforms and firmware exactly.
-The [scheduling control](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/event-state/assessment.json)
-adds direct controller-port flags, delays and pending-event observations. The
-[repeated-output fix](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/staged-output/assessment.json)
-repairs initial LED events lost when a second output update cleared their flags
-within the same callback. Firmware events remain exact; electrical differences
-are retained. The fix remains opt-in pending broader scenarios and convergence.
-Startup lifecycle and event state outside the controller queues remain open.
-The [output-history initialization controls](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-history-init/assessment.json)
-expose allocator-state dependence in a partial-output shim and test an opt-in fix.
-The bounded board fixture is unchanged under the tested dirty and initialized
-seeds; this is not evidence of an observed board fault or full startup qualification.
-The [combined-fix controls](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-fixes/assessment.json)
-match the individual-fix waveforms and firmware exactly, including dirty allocation
-seeds with both fixes enabled. This closes their bounded interaction check, not
-the remaining scenario and convergence requirements.
+removes private HDL-queue traversal as a prerequisite for the successful early-return
+branch only. The [combined startup-fix controls](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/startup-fixes/assessment.json)
+cover a bounded fixture; they do not qualify full startup, reset, supply recovery
+or general rollback. The core's analog guide owns observer, fault-control and
+individual-fix evidence and reproduction commands.
 
-The [bounded keyboard streaming benchmark](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/keyboard-stream-benchmark/assessment.json)
-measures a complete observer fixture without raw spooling. Its sampled memory and
-compressed-log costs do not establish full-repeat resource bounds. The live runner
-now stops on configured logical-log, compressed-log or individual-line limits;
-a budget failure cannot publish a successful capture. The strict
-non-growing-error gate fails even though voltage differences remain below the limit.
+The [streaming benchmark](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/keyboard-stream-benchmark/assessment.json)
+does not establish full-repeat resource bounds and fails the strict non-growing-error
+gate despite voltage differences below the limit. Log-budget enforcement protects
+captures from unbounded logs; it does not establish numerical acceptance or bound
+total process memory. These software investigations do not depend on resolving
+physical board dimensions or installed connector identity.
 
 ## Resolve at the desk first
 
@@ -156,7 +129,6 @@ and the reason for changing its interpretation.
 [serial-path]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/serial-path/assessment.json
 [cpu-bus]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/digital/reports/cpu-bus/summary.json
 [device-endpoints]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/device-endpoints/assessment.json
-[input-barrier]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/input-barrier/assessment.json
 [bus-read]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bus-read-replay/assessment.json
 [eval-cache]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache-startup-2ms/assessment.json
 [eval-cache-bus-read]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/eval-cache-bus-read/assessment.json
@@ -168,14 +140,9 @@ and the reason for changing its interpretation.
 
 [postreset-bridge]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-bridge/assessment.json
 [postreset-dispatch]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-dispatch/assessment.json
-[rollback-dispatch]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/rollback-dispatch/assessment.json
-[bridge-rollback]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/bridge-rollback/assessment.json
-[newton-retry]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/newton-retry/assessment.json
 
 [postreset-newton-retry]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-newton-retry/assessment.json
 [postreset-cache]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-cache/assessment.json
-
-[internal-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/internal-state/assessment.json
 
 [online-stream]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/online-stream-replay/assessment.json
 
