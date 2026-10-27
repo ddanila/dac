@@ -51,8 +51,12 @@ other tracks.
    AND/OR discontinuity outside board admission until corrected; current cached
    widths must remain equal. Preserve the [native subclass refusals][gate-families]
    when admitting board classes; retain class/graph bindings for
-   stateless BUFZ/BUFT without inventing payload fields. Arithmetic
-   and resolver caches remain open. Cover callback and array-word list contents beyond observed
+   stateless BUFZ/BUFT without inventing payload fields. Implement arithmetic,
+   comparison, reduction and concatenation observers under the
+   [expression ownership contract][expression-contract]. Preserve reduction caches
+   across partial writes, arithmetic Z-filled partial expansion and concat8
+   strengths; qualify native field faults and continuation before board integration.
+   Resolver caches remain open. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -247,3 +251,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [gate-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-delta-families/assessment.json
 
 [gate-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-growth/assessment.json
+
+[expression-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/expression-source-contract/assessment.json
