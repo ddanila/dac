@@ -72,7 +72,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    for time units, source line, function type/width/initial value and foreign
    intern-pointer refusal, including exact field changes, complete restoration
    and the ten prior regressions. Qualify later boundaries and normal transient
-   integration after the pinned campaigns.
+   integration after the pinned campaigns. The prepared
+   `analog/scope_metadata_board_capture.py` and `scope_metadata_board_review.py`
+   are queued after full typed-signal validation; require their complete normal
+   sample/firmware comparisons and all prior-layer reviews before accepting them.
    Qualify operational integration and static ownership lifetime; scope
    deletion/address reuse, internal-object payloads and later function-field
    execution coverage remain open. Audit admitted modules before

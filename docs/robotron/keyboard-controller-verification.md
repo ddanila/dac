@@ -105,7 +105,11 @@ equality checks. The [scope-specific startup controls][scope-metadata-faults]
 subsequently detect time-unit/source-line changes and all three function fields,
 plus invalid intern-pointer refusal. Exact selected-field changes and complete
 restoration pass, as do the ten prior callback/typed-signal regressions on the new
-runtime. Later-boundary and normal transient/firmware qualification remain open.
+runtime. Full capture/review entry points are now prepared and the local queue
+step waits for the typed-signal campaign to pass, with source identities pinned.
+Two prerequisite tests reject incomplete predecessors and startup-only evidence.
+No full scope-metadata assessment has passed yet; later-boundary and normal
+transient/firmware qualification remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
