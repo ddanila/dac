@@ -115,7 +115,15 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [remaining payload source contract][scope-payload-contract]: register exact
    initialized families before dereference, join all scope objects to native
    payloads, capture bounded names/values/metadata, and qualify lazy caches and
-   lifetime changes. Preserve the [complete registered vector-signal controls][scope-signals]:
+   lifetime changes. Preserve the [native bounded memory-name controls][memory-metadata]:
+   independently registered memory handles, concrete array pointers and name
+   allocations join guarded scope-object identities. Two name changes become
+   visible while earlier array payloads remain equal; changed/foreign name
+   pointers and missing/duplicate/foreign intern ownership refuse before output.
+   Restoration and original continuation pass. Bind the three board memories,
+   qualify unsupported families and lifecycle changes, and correct the older
+   array collector's traversal/storage-pointer admission before operational
+   acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
    lazy cache creation and ten zero-output refusals per native round restore
@@ -766,3 +774,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [cached-net-board-full]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/cached-net-board-full/assessment.json
 
 [wire-budget-failure]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-budget-failure/assessment.json
+
+[memory-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-metadata/assessment.json

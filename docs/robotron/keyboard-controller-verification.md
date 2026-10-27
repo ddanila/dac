@@ -181,7 +181,7 @@ projecting to 8.70 GB and 95.8 seconds over 110,312 snapshots. Four tests pass,
 including the earlier gap regression. These are initial-state measurements;
 compiled declaration metadata, unsupported families, lifetime changes, compact
 logging and normal transient qualification remain open. Parameter values and
-memory-name coverage are still unresolved.
+memory-name coverage were unresolved at this stage; subsequent controls follow.
 
 The subsequent [complete signal declaration binding][scope-signal-declarations]
 checks all 651 visible native handles against independent compiled scope paths,
@@ -231,7 +231,7 @@ and original/disabled/enabled HDL continuation pass; three evidence tests pass.
 The previous scope-payload counterexamples still reproduce on the new runtime,
 showing that the new observer adds coverage independently. Remaining pointer and
 family faults, lifetime changes, actual board bindings and operational cost are
-not yet qualified; memory-name coverage is still unresolved.
+not yet qualified at this stage; subsequent parameter and memory controls follow.
 
 The [initialized board parameter binding and budget][parameter-budget] now joins
 all 56 parameter IDs and owning scopes to compiled names, local/signed/sized
@@ -283,6 +283,19 @@ bindings. Four callback controls and 13 port/callback regressions pass on the
 same bridge. The rejection suite also checks unrelated parameter changes and
 raw storage bits outside the declared width. Later-boundary faults, normal
 waveforms and firmware continuation remain unqualified for this layer.
+
+The [native bounded memory-name controls][memory-metadata] independently register
+memory handles, concrete array pointers and name allocations before observation,
+then join them to guarded native scope-object identities. The distinction between
+handle and concrete array pointers is retained for the multiple-inheritance layout.
+Two name-byte changes alter VPI results and the new image while earlier array
+payloads remain identical. Changed/foreign name pointers and missing, duplicate
+or foreign intern membership give ten zero-output refusals across two rounds.
+Every control restores, and original/disabled/enabled HDL continuation agrees.
+The parameter fault regression also passes on the new runtime; three evidence
+and malformed-input tests pass. This does not repair the older array collector's
+traversal or storage-pointer guards, qualify memory lifecycle/subclasses, or
+establish bindings for the three actual board memories.
 
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
@@ -896,3 +909,5 @@ and the reason for changing its interpretation.
 [cached-net-board-full]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/cached-net-board-full/assessment.json
 
 [wire-budget-failure]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-budget-failure/assessment.json
+
+[memory-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-metadata/assessment.json
