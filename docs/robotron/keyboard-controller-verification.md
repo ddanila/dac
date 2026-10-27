@@ -356,6 +356,19 @@ reject. Three tests pass. This integrates the guards at tick zero, without
 claiming later-boundary faults, ordinary memory lifecycle or full transient
 qualification.
 
+The [combined memory snapshot preflight][memory-combined] includes memory names
+and registered handle/concrete-array identities in complete dense snapshots.
+An independent compact stream reconstructs those fields for native scope,
+compiled declaration and full array-payload bindings at every snapshot. Across
+14 parameter/callback and 13 port/callback startup controls, all three memories
+and 23 read ports bind in 64 snapshots and whole-state restoration remains exact.
+The built logger reconstructs six native name-change/restoration images exactly:
+five full images and one reuse use 689 bytes versus 684 dense bytes, so this
+small fixture does not demonstrate storage savings. Eight evidence/rejection
+tests pass. Memory-specific integrated
+faults, later boundaries, full memory lifecycle and transient qualification
+remain open.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -980,3 +993,5 @@ and the reason for changing its interpretation.
 [array-cache-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-cache-lifecycle/assessment.json
 
 [guarded-memory-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/guarded-memory-board/assessment.json
+
+[memory-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-combined-preflight/assessment.json

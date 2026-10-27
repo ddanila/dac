@@ -146,9 +146,15 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    cross-owner refusals. This does not qualify scope-registered memory deletion.
    Preserve the [guarded initialized board regression][guarded-memory-board]:
    all three memory/array bindings and prior initialized controls pass on the
-   exact runtime used by scope/storage/cache guard fixtures. Qualify full memory
-   lifecycle, unsupported families and operational transient integration before
-   acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
+   exact runtime used by scope/storage/cache guard fixtures. Preserve the
+   [combined memory snapshot preflight][memory-combined]: memory names and native
+   identities participate in dense full-state equality and exact compact log
+   reconstruction. All three memories and 23 read ports bind in 64 snapshots
+   across 14 parameter/callback and 13 port/callback controls, with complete
+   restoration. Six changing native memory images reconstruct byte-for-byte;
+   compact framing is 689 bytes versus 684 dense bytes in that small fixture.
+   Qualify integrated memory-specific faults, full memory lifecycle, unsupported
+   families and operational transient integration before acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
    lazy cache creation and ten zero-output refusals per native round restore
@@ -811,3 +817,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [array-cache-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-cache-lifecycle/assessment.json
 
 [guarded-memory-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/guarded-memory-board/assessment.json
+
+[memory-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-combined-preflight/assessment.json
