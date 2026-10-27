@@ -110,7 +110,7 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [native resolver controls][resolver-state]
    under the [resolver ownership contract][resolver-contract]. Preserve the complete
    cache tree, raw pull/cache bytes and allocation bounds independent of faulted
-   port counts/pointers. Preserve [single-input and vector-boundary controls][resolver-widths], including root/leaf pull aliasing and clipped partial writes. Preserve [exact compact width reconstruction][resolver-width-delta] while extending raw-strength inputs and partial-first initialization;
+   port counts/pointers. Preserve [single-input and vector-boundary controls][resolver-widths], including root/leaf pull aliasing and clipped partial writes. Preserve [exact compact width reconstruction][resolver-width-delta] and [native strength/partial-first controls][resolver-strength-inputs]. Extend asymmetric-strength input coverage and carry the new raw-input controls through compact capture;
    preserve the [initial board bindings and full-scan budget][resolver-budget], use [exact resolver differences][resolver-delta] and [post-reference allocation controls][resolver-delta-growth] with the [full-scan compact budget][resolver-delta-budget]. Preserve [early/late unsupported-family refusals through the compact API][resolver-delta-families] and qualify operational bindings before integration. Initial cache widths are not fixed runtime widths; measure changing-state output and combined cost. New allocations require full records on each delta, and changing-state fixtures can exceed dense storage. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
@@ -395,3 +395,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [resolver-widths]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-widths/assessment.json
 
 [resolver-width-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-width-delta/assessment.json
+
+[resolver-strength-inputs]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-strength-inputs/assessment.json
