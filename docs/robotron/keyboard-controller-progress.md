@@ -70,6 +70,11 @@ It runs every original acceptance check with exact-input parser reuse, preserves
 its candidate result, then requires exact equality with the original assessment.
 Four wrapper tests pass; complete wire-review equivalence remains pending.
 
+Native parameter allocation growth is retained in `analog/reports/parameter-growth`:
+two rounds add six objects after the initial inventory, preserving previous rows
+and original HDL continuation. Three tests and the class-refusal regression pass.
+Operational integration, compact growth and destruction/reuse remain open.
+
 Public parameter handle release has retained evidence in
 `analog/reports/parameter-handle-release`: both VPI APIs preserve all four
 parameter kinds, exact inventory and original HDL continuation. Three tests

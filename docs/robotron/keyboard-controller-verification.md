@@ -527,6 +527,16 @@ producer equivalence outside the gate/cap, and bounded receipts. The initial
 mux projections are 1.81 GB dense or 4.56 MB unchanged compact, not a bound on
 operational growth. Mux capture has not started; stages beyond mux remain stopped.
 
+The [native parameter growth controls][parameter-growth] add six exact
+binary/real/string parameters after the first complete inventory, in two rounds.
+Registration and normal scope attachment produce fresh increasing IDs and
+distinct live pointers; every earlier row stays exact. Eighty-bit unknown/value
+storage, real representation and embedded-null string bytes are checked.
+Original/disabled/enabled HDL continuation and the existing subclass-refusal
+regression pass on the new runtime, with three evidence/tamper tests. This
+does not qualify compact growth, late unsupported classes, destruction/reuse
+or operational board admission. The running board campaign uses its prior runtime.
+
 The [public parameter handle-release controls][parameter-handle-release] cover
 `vpi_free_object` and `vpi_release_handle` on four binary/wide/real/string
 parameters, twice. All 16 calls per run preserve handle identity, scope, size
@@ -1196,3 +1206,5 @@ and the reason for changing its interpretation.
 [parameter-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-handle-release/assessment.json
 
 [wire-capture-cost]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-capture-cost/assessment.json
+
+[parameter-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth/assessment.json

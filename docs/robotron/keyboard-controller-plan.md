@@ -226,6 +226,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Diagnostic binary/string/real factory subclasses retain base VPI behavior but
    refuse complete parameter observation before output, twice per family.
    Original/disabled/enabled continuation and the 16-field regression pass.
+   Preserve the [native parameter growth controls][parameter-growth]: after an
+   initial inventory, two rounds add six exact binary/real/string objects through
+   registration and normal scope attachment, growing four parameters to ten.
+   Fresh IDs/pointers, unchanged earlier rows, full payloads and original HDL
+   continuation pass, as does the subclass-refusal regression on that runtime.
+   Three evidence/tamper tests pass. Compact growth, late unsupported classes,
+   destruction/reuse and operational board admission remain separate.
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
    inventory for binary/wide/real/string parameters in two rounds. All 16 calls
@@ -925,3 +932,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-handle-release/assessment.json
 
 [wire-capture-cost]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-capture-cost/assessment.json
+
+[parameter-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth/assessment.json
