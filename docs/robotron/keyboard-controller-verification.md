@@ -73,6 +73,15 @@ reject omitted signal ownership while the other observer images remain unchanged
 with exact restoration and original continuation in two rounds. Four tests cover
 retained replay and mismatched/truncated/aliased bindings. Other internal-object
 payload bindings, lifecycle and operational board integration/cost remain open.
+The [initialized board metadata scan][scope-metadata-budget] binds 32 scopes,
+1,932 registered objects and all 18 admitted bridge signals before coroutine
+execution. The remaining 1,884 identities are 437 nets, 191 registers, 5 integers,
+3 memories, 56 parameters, 317 ports and 875 port bits; identity is not payload
+coverage. Metadata/reference images repeat exactly and total 101,985 bytes.
+Initial-state dense repetition over 110,312 prior snapshot calls projects to
+11,250,169,320 logical bytes and about 102.1 seconds for these scans alone.
+Changing-state cost, other observers and review are excluded; five retained
+evidence tests pass.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -607,3 +616,5 @@ and the reason for changing its interpretation.
 [scope-metadata-records]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-records/assessment.json
 
 [scope-metadata-bindings]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-bindings/assessment.json
+
+[scope-metadata-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-board-budget/assessment.json

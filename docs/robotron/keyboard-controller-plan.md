@@ -55,6 +55,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    identity bindings][scope-metadata-bindings] to scope traversal and admitted
    signal handles, including omitted-ownership rejection and exact restoration;
    extend binding to the remaining internal objects during operational integration.
+   Use the [initialized board metadata inventory and budget][scope-metadata-budget]:
+   32 scopes, 1,932 registered objects and 18 admitted bridge signals bind, but
+   1,884 other object identities still require payload/ownership qualification.
+   Dense metadata/reference repetition projects to 11.25 GB for the earlier
+   boundary count; qualify lossless storage and changing-state cost before integration.
    Qualify operational integration and static ownership lifetime; scope
    deletion/address reuse, internal-object payloads and function-field fault
    controls remain open. Audit admitted modules before
@@ -582,3 +587,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-metadata-records]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-records/assessment.json
 
 [scope-metadata-bindings]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-bindings/assessment.json
+
+[scope-metadata-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-board-budget/assessment.json
