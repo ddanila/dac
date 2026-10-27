@@ -175,11 +175,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    cross-bindings and full-preflight budget][callback-signal-board-budget]. Preserve
    registered owner/filter pointer adjustment, deferred cancellation/deletion and
    zero-output refusal of foreign or mismatched referents and active traversal.
-   Qualify `analog/callback_signal_board_capture.py` and
-   `analog/callback_signal_board_review.py` after reviewed callback-list controls,
-   preserving the [combined typed-signal startup preflight][callback-signal-preflight].
-   Add metadata-specific combined faults; existing callback faults alone do not
-   establish that coverage. Measure changing-state output and combined runtime
+   Qualify `analog/typed_signal_fault_capture.py` and
+   `analog/typed_signal_fault_review.py` after reviewed callback-list controls.
+   Preserve the [combined metadata-fault preflight][typed-signal-fault-preflight]
+   and [native fault-API continuation controls][typed-signal-fault-native], including
+   exact restoration, wrong-target/field refusal and active-traversal refusal.
+   Startup faults alone do not qualify normal transients. Measure changing-state output and combined runtime
    before setting operational limits. Preserve [native family and
    late-admission controls][signal-handle-families], range/index mappings, original
    integer index refusal and fresh IDs for new handles sharing a live node.
@@ -521,3 +522,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-signal-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-signal-board-budget/assessment.json
 
 [callback-signal-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-signal-preflight/assessment.json
+
+[typed-signal-fault-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/typed-signal-fault-preflight/assessment.json
+[typed-signal-fault-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/typed-signal-fault-native/assessment.json
