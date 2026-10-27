@@ -55,8 +55,9 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    and synchronous output callbacks before scratch clearing. Preserve [early/late subclass refusals][island-raw-families]
    without partial inventory or altered native continuation. Preserve [native allocation growth][island-raw-growth]
    through constructor and idle states, plus [live-scratch and targeted-fault controls][island-raw-growth-callbacks]
-   for later allocations. Qualify direct partial/raw-strength inputs and wider vectors;
-   cover partial-first expansion plus later partial merging. Scheduled assignments own
+   for later allocations. Preserve [native partial-input and width controls][island-raw-inputs],
+   including partial-first expansion, later merging and repeated-write suppression.
+   Extend raw-strength input coverage to hidden HiZ encodings and asymmetric strengths. Scheduled assignments own
    separate raw vectors; generic island wrappers require pointer/lifetime bindings.
    Require raw-collision faults, native admission and original continuation controls
    before compact/combined integration; preserve filter and topology checks. Preserve the
@@ -404,3 +405,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [island-raw-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-growth/assessment.json
 
 [island-raw-growth-callbacks]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-growth-callbacks/assessment.json
+
+[island-raw-inputs]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-inputs/assessment.json
