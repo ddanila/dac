@@ -67,8 +67,12 @@ integration/cost remain open. Existing campaigns retain their pinned runtimes.
 The [metadata record controls][scope-metadata-records] now parse all 32 native
 images losslessly and check the specific field mutations and restoration. Five
 tests cover malformed/truncated records, reference/range/count checks, retained
-bytes/order and rejection of unrelated changes. Cross-observer object identity
-binding and operational integration remain open.
+bytes/order and rejection of unrelated changes. The [native identity binding controls][scope-metadata-bindings] now join scope
+metadata to traversal/address identities and two admitted signal handles. They
+reject omitted signal ownership while the other observer images remain unchanged,
+with exact restoration and original continuation in two rounds. Four tests cover
+retained replay and mismatched/truncated/aliased bindings. Other internal-object
+payload bindings, lifecycle and operational board integration/cost remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -601,3 +605,5 @@ and the reason for changing its interpretation.
 [scope-metadata-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata/assessment.json
 
 [scope-metadata-records]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-records/assessment.json
+
+[scope-metadata-bindings]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-bindings/assessment.json
