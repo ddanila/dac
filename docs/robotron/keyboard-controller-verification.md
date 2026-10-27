@@ -169,6 +169,20 @@ census leaves 633 signal handles, 56 parameters and three memories outside the
 bridge-signal and port bindings. Existing array value coverage remains useful;
 these counters do not imply that all their payloads were wholly unobserved.
 
+The [complete registered vector-signal revision][scope-signals] now observes all
+initialized native vector handles independently of bridge admission. Two native
+rounds capture unadmitted signedness/range changes and lazy bit creation; ten
+invalid pointer/union/cache/ownership cases per round refuse with zero output.
+Restoration and original HDL continuation pass. On the initialized board, all
+651 handles join scope object identities and allocated nets; the 18 bridge
+handles form an exact unchanged subset. The additional 633 are now covered at
+this initial boundary. The 78,840-byte image scans in a local mean 0.869 ms,
+projecting to 8.70 GB and 95.8 seconds over 110,312 snapshots. Four tests pass,
+including the earlier gap regression. These are initial-state measurements;
+compiled declaration metadata, unsupported families, lifetime changes, compact
+logging and normal transient qualification remain open. Parameter values and
+memory-name coverage are still unresolved.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -727,3 +741,5 @@ and the reason for changing its interpretation.
 
 [scope-payload-gaps]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/assessment.json
 [scope-payload-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/source-contract.json
+
+[scope-signals]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals/board-budget/assessment.json

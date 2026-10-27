@@ -115,8 +115,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [remaining payload source contract][scope-payload-contract]: register exact
    initialized families before dereference, join all scope objects to native
    payloads, capture bounded names/values/metadata, and qualify lazy caches and
-   lifetime changes. Audit admitted modules before relying on initialization-only
-   invariants. Keep the running campaigns pinned
+   lifetime changes. Preserve the [complete registered vector-signal controls][scope-signals]:
+   all 651 initialized board signals bind to scope objects and allocated nets,
+   including the 633 beyond bridge admission. Unadmitted signedness/range changes,
+   lazy cache creation and ten zero-output refusals per native round restore
+   exactly. The 78,840-byte dense image projects to 8.70 GB; qualify compiled
+   declaration metadata, unsupported families, lifetime behavior and compact
+   logging before operational integration. Audit admitted modules before relying
+   on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
    [strength-encoding loss][strength-encoding]: logical-value/strength triplets
@@ -665,3 +671,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [scope-payload-gaps]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/assessment.json
 [scope-payload-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/source-contract.json
+
+[scope-signals]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals/board-budget/assessment.json
