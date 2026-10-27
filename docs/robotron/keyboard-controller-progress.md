@@ -77,6 +77,10 @@ The unchanged C logger also reconstructs all eight growing images exactly in
 `analog/reports/parameter-growth-log`; three replay/tamper tests pass.
 Operational integration/cost and destruction/reuse remain open.
 
+Late unsupported parameter subclasses have retained zero-output refusal evidence
+in `analog/reports/parameter-late-class`. All three families preserve original
+HDL continuation; supported growth and three evidence tests pass on that runtime.
+
 Public parameter handle release has retained evidence in
 `analog/reports/parameter-handle-release`: both VPI APIs preserve all four
 parameter kinds, exact inventory and original HDL continuation. Three tests

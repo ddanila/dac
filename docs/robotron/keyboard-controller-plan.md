@@ -236,8 +236,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    using seven full frames and one reuse frame. Every full frame exceeds its
    dense image in bytes; the whole stream is 7,669 versus 8,548 bytes because
    of reuse. Three replay/tamper tests pass, including stale reuse hiding a new
-   object. Late unsupported classes, destruction/reuse and operational board
-   admission/cost remain separate.
+   object. Preserve the [late parameter subclass refusals][parameter-late-class]:
+   binary/real/string hidden-state subclasses added after a successful inventory
+   cause immediate and later negative, zero-output refusals. Base VPI values
+   and original HDL continuation remain intact; supported allocation growth
+   regresses successfully on the same runtime. Three evidence tests pass.
+   Destruction/reuse, compact refusal transport and operational board admission/
+   cost remain separate.
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
    inventory for binary/wide/real/string parameters in two rounds. All 16 calls
@@ -941,3 +946,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth/assessment.json
 
 [parameter-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth-log/assessment.json
+
+[parameter-late-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-late-class/assessment.json

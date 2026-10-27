@@ -545,6 +545,15 @@ Three tests pass, including rejection of stale reuse concealing an allocation
 and changed logger/native identities. This closes the retained-fixture logger
 replay case, not operational growth/cost or another HDL execution.
 
+The [late parameter subclass controls][parameter-late-class] allocate native
+binary/real/string hidden-state subclasses after a successful initial inventory.
+Exact class admission rejects registration; normal scope attachment exposes
+the unsupported population, so immediate and later observations refuse with
+negative status and zero output. Base VPI values and original/disabled/enabled
+HDL continuation remain intact. Supported allocation growth passes on the same
+runtime, with three retained-evidence tests. Destruction/reuse, compact refusal
+transport and operational board integration remain open.
+
 The [public parameter handle-release controls][parameter-handle-release] cover
 `vpi_free_object` and `vpi_release_handle` on four binary/wide/real/string
 parameters, twice. All 16 calls per run preserve handle identity, scope, size
@@ -1218,3 +1227,5 @@ and the reason for changing its interpretation.
 [parameter-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth/assessment.json
 
 [parameter-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth-log/assessment.json
+
+[parameter-late-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-late-class/assessment.json
