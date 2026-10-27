@@ -116,7 +116,13 @@ reference images unchanged. Two rounds restore exact state and original HDL
 continuation; an injected foreign bit pointer is restored without dereference.
 The retained source contract also identifies deferred port net-reference
 initialization and unsafe malformed-vector iteration. Port field/ownership
-coverage remains open; two counterexample tests and source-contract replay pass.
+coverage remained open at that revision; two counterexample tests and source-contract
+replay pass. The [guarded port payload revision][port-payload] now captures port
+fields and ordered bits with constructor registration and deferred-resolution
+readiness tracking. Two rounds distinguish order/name mutations, refuse four
+malformed vectors without output, restore exactly and preserve original HDL
+continuation. Two nonnull net bindings and three tests pass. Further field faults,
+early-resolution/subclass/lifecycle cases and actual board coverage remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -663,3 +669,5 @@ and the reason for changing its interpretation.
 [scope-metadata-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-fault-preflight/assessment.json
 
 [port-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-referents/assessment.json
+
+[port-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload/assessment.json

@@ -81,7 +81,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    execution coverage remain open. Close the [native port-bit payload gap][port-referents]:
    VPI bit order changes while scope identity images remain identical. Guard
    port/bit ownership and vector size before dereference, capture their fields,
-   and establish deferred net-reference initialization before reading it. Audit admitted modules before
+   and establish deferred net-reference initialization before reading it. Preserve
+   the [guarded port payload controls][port-payload]: native allocation/readiness
+   tracking, bounded names, ordered bits, nonnull net bindings and zero-output
+   malformed-vector refusals. Qualify remaining field/subclass/lifecycle cases
+   and actual board coverage/cost before integration. Audit admitted modules before
    relying on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -618,3 +622,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-metadata-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-fault-preflight/assessment.json
 
 [port-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-referents/assessment.json
+
+[port-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload/assessment.json
