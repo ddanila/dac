@@ -36,7 +36,7 @@ jobs:
       - name: Check CI scope and shard coverage
         run: npx playwright test tests/ci-shards.spec.js --workers=1
       - name: Check analyzer Python-oracle and production USB handler parity
-        run: npm run test:analyzer && npm run test:analyzer:scale
+        run: npm run test:analyzer && npm run test:analyzer:scale && npm run test:investigation
       - name: Check test imports before installing browsers
         run: npx playwright test --list
       - name: Install browser for PSU references

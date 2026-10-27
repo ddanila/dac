@@ -185,3 +185,7 @@ Open [the analyzer](https://ddanila.github.io/dac/analyzer.html) to inspect comp
 bus captures or raw waveforms, compare controller activity, and download captures
 through the existing Pico1715 USB protocol where Web Serial is available. See the
 [workflow, limits and verification](docs/robotron/analyzer-workbench.md).
+
+The [simulation-to-bench investigation workflow](docs/robotron/investigation-workflow.md)
+connects classic emulator captures, verified boot profiles and shared capture
+assertions to portable CP/M diagnostics and future hardware bring-up.

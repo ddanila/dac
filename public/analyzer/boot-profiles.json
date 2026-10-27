@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "inputs": {
+    "rom_sha256": "639db4e6c4bea3042bfc7ea2ab83ee475e9391766bd5cffc370e0b59affdeac2",
+    "disk_sha256": "a9c195bd985e1d42fa801091289545c851d1439fb7a041932e7a16f9cc72c42e",
+    "system_map_sha256": "9ee55750be8c06bb34ccca709b086aa6dc191a1b4918564cf30f599a1f75715d",
+    "stock_inputs_sha256": "e8c34f7ca1f47dec0c7a99a9f78c92493b527eaef6ba0b4f3a594dc8d75caaa6",
+    "stock_report_sha256": "0cf06a2b8de965ccc020fedf71dd660564130ffa6551b4f0b168ad02ee837a8c"
+  },
+  "profiles": [
+    {
+      "id": "cpm3-public",
+      "revision": 1,
+      "label": "CP/M 3 public fixture (historical bootstrap bypassed)",
+      "rom_sha256": "639db4e6c4bea3042bfc7ea2ab83ee475e9391766bd5cffc370e0b59affdeac2",
+      "disk_sha256": [
+        "a9c195bd985e1d42fa801091289545c851d1439fb7a041932e7a16f9cc72c42e"
+      ],
+      "source": "CP/M tools/build_test_rom.py, source platform jump table, build/system-map.json",
+      "stages": [
+        {
+          "id": "reset",
+          "label": "Emulator reset requested",
+          "observation": "reset-action"
+        },
+        {
+          "id": "loader",
+          "label": "Source-built filesystem loader entry",
+          "event": {
+            "kind": "opcode_fetch",
+            "address": 49203
+          }
+        },
+        {
+          "id": "disk",
+          "label": "Controller data reads",
+          "event": {
+            "kind": "io_read",
+            "address": 2,
+            "addressMask": 255
+          }
+        },
+        {
+          "id": "system",
+          "label": "CP/M BIOS entry",
+          "event": {
+            "kind": "opcode_fetch",
+            "address": 48128
+          }
+        },
+        {
+          "id": "prompt",
+          "label": "Console readiness observed",
+          "observation": "screen",
+          "contains": "A>"
+        }
+      ]
+    },
+    {
+      "id": "cpm3-stock-rom",
+      "revision": 1,
+      "label": "CP/M 3 via reference ROM",
+      "rom_sha256": "51cb80639b5667f2611da71ce7305061566cf3474bda7db6fc82709d08e46d01",
+      "disk_sha256": [
+        "a9c195bd985e1d42fa801091289545c851d1439fb7a041932e7a16f9cc72c42e"
+      ],
+      "source": "CP/M tools/build_image.py bootstrap and generated system map",
+      "stages": [
+        {
+          "id": "reset",
+          "label": "Emulator reset requested",
+          "observation": "reset-action"
+        },
+        {
+          "id": "disk",
+          "label": "Controller data reads",
+          "event": {
+            "kind": "io_read",
+            "address": 2,
+            "addressMask": 255
+          }
+        },
+        {
+          "id": "bootstrap",
+          "label": "4000h bootstrap entry",
+          "event": {
+            "kind": "opcode_fetch",
+            "address": 16384
+          }
+        },
+        {
+          "id": "loader",
+          "label": "Source-built filesystem loader entry",
+          "event": {
+            "kind": "opcode_fetch",
+            "address": 49203
+          }
+        },
+        {
+          "id": "system",
+          "label": "CP/M BIOS entry",
+          "event": {
+            "kind": "opcode_fetch",
+            "address": 48128
+          }
+        },
+        {
+          "id": "prompt",
+          "label": "Console readiness observed",
+          "observation": "screen",
+          "contains": "A>"
+        }
+      ]
+    },
+    {
+      "id": "scp-anasana",
+      "revision": 1,
+      "label": "SCP 0006 · anasana.cpm",
+      "rom_sha256": "51cb80639b5667f2611da71ce7305061566cf3474bda7db6fc82709d08e46d01",
+      "disk_sha256": [
+        "de42d43cc6a61b3cd29d55eefbbc63cdd583c55819b81c78994762cf6d1cbb9c"
+      ],
+      "source": "Pico1715 reports/extended-media.json anasana-boot",
+      "stages": [
+        {
+          "id": "reset",
+          "label": "Emulator reset requested",
+          "observation": "reset-action"
+        },
+        {
+          "id": "disk",
+          "label": "Controller data reads",
+          "event": {
+            "kind": "io_read",
+            "address": 2,
+            "addressMask": 255
+          }
+        },
+        {
+          "id": "handoff",
+          "label": "Observed stock loader handoff",
+          "event": {
+            "kind": "opcode_fetch",
+            "address": 55552
+          }
+        },
+        {
+          "id": "banner",
+          "label": "SCP 0006 console banner observed",
+          "observation": "screen",
+          "contains": "SCP   VERS. 0006"
+        },
+        {
+          "id": "prompt",
+          "label": "Console prompt observed",
+          "observation": "screen",
+          "contains": "A>"
+        }
+      ]
+    },
+    {
+      "id": "scp-r1715",
+      "revision": 1,
+      "label": "SCP 0006 · r1715.cpm",
+      "rom_sha256": "51cb80639b5667f2611da71ce7305061566cf3474bda7db6fc82709d08e46d01",
+      "disk_sha256": [
+        "16c4389cd8d4b7759ece28efdda5b9b1a04536cdeb3f644c583d953d5ecd55c4"
+      ],
+      "source": "Pico1715 reports/extended-media.json r1715-boot",
+      "stages": [
+        {
+          "id": "reset",
+          "label": "Emulator reset requested",
+          "observation": "reset-action"
+        },
+        {
+          "id": "disk",
+          "label": "Controller data reads",
+          "event": {
+            "kind": "io_read",
+            "address": 2,
+            "addressMask": 255
+          }
+        },
+        {
+          "id": "handoff",
+          "label": "Observed stock loader handoff",
+          "event": {
+            "kind": "opcode_fetch",
+            "address": 55552
+          }
+        },
+        {
+          "id": "banner",
+          "label": "SCP 0006 console banner observed",
+          "observation": "screen",
+          "contains": "SCP   VERS. 0006"
+        },
+        {
+          "id": "prompt",
+          "label": "Console prompt observed",
+          "observation": "screen",
+          "contains": "A>"
+        }
+      ]
+    }
+  ]
+}

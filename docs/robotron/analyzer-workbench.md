@@ -101,3 +101,10 @@ additional JavaScript heap; timing and memory measurements depend on the runtime
 
 These results qualify the software workflow. They do not qualify real USB
 throughput, electrical timing, signal integrity, SD durability, or reset hardware.
+
+## Simulation-to-bench workflow
+
+[The investigation workflow](investigation-workflow.md) adds bounded capture from
+both classic simulator backends, exact-identity boot profiles, cursor-range
+comparison, shared browser/CLI assertions and integration with guest diagnostics
+and the guided bring-up evidence runner.

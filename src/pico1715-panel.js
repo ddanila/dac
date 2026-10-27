@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+import {mountCapturePanel} from './pico1715-capture.js';
 import {digest,checkedRecord,saveRecord,stored} from './session-store.js';
 export function createPico1715Panel({screen,scene,debug,onPower}){
  const $=id=>document.getElementById(id),panel=document.createElement('section');panel.id='pico1715-panel';panel.hidden=true;
@@ -44,7 +45,7 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
    $('p1715-media').textContent=label;
   }finally{loading=false;controls();}
  }
- function stopWorker(){generation++;worker?.terminate();worker=undefined;for(const p of requests.values())p.reject(Error('Session closed.'));requests.clear();}
+ function stopWorker(){capture?.closed();generation++;worker?.terminate();worker=undefined;for(const p of requests.values())p.reject(Error('Session closed.'));requests.clear();}
  async function snapshot(off=false){
   if(!worker)return {bytes:disk.slice(0),writes:lastWrites};
   const id=++serial;return new Promise((resolve,reject)=>{requests.set(id,{resolve,reject});send({type:off?'off':'export',id});});
@@ -57,7 +58,9 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
   }catch(e){if(off&&worker)send({type:'resume-after-save-failure'});throw e;}
   finally{saving=false;controls();}
  }
+ const capture=mountCapturePanel(panel,send,()=>!!worker,status);
  function receive(d){
+  capture.receive(d);
   if(d.type==='power'){on=d.on;loading=false;onPower(on);controls();status(on?'Running. Click the screen to type.':'Powered off.');}
   if(d.type==='frame'){
    screen.width=800;screen.height=480;ctx.fillStyle='#101812';ctx.fillRect(0,0,800,480);ctx.font='16px monospace';ctx.fillStyle='#83e7a0';ctx.textBaseline='top';
@@ -86,7 +89,7 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
   worker.onmessage=({data})=>{if(epoch===generation)receive(data);};
   worker.onerror=e=>{e.preventDefault();if(epoch===generation)receive({type:'fatal',message:e.message||'Simulator worker failed.'});};
   debug({type:'configured'});lastWrites=0;lastChange=0;dirty=false;writable=$('p1715-write').checked;
-  send({type:'init',backend:backend(),base:base.href,rom,disk,writable,keyboardMap,platformCode});send({type:'speed',value:Number($('p1715-speed').value)});send({type:'visibility',hidden:document.hidden});
+  send({type:'init',backend:backend(),base:base.href,rom,disk,writable,keyboardMap,platformCode,build:manifest});send({type:'speed',value:Number($('p1715-speed').value)});send({type:'visibility',hidden:document.hidden});
  }
  const action=(id,fn)=>$(id).onclick=()=>Promise.resolve().then(fn).catch(e=>status(e.message));
  action('p1715-demo',demo);action('p1715-export',()=>save(true));

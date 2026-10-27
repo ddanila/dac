@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
 const [source='../Pico1715/build/browser',cpm='../cpm-plus-1715']=process.argv.slice(2),from=resolve(source),repo=resolve(cpm),to=resolve('public/pico1715');
+if(execFileSync('git',['-C',repo,'status','--porcelain'],{encoding:'utf8'}).trim()&&!process.argv.includes('--allow-dirty'))throw Error('Commit CP/M sources before publishing their artifacts.');
 const manifest=JSON.parse(await readFile(from+'/manifest.json','utf8'));
 if(manifest.dirty&&!process.argv.includes('--allow-dirty'))throw Error('Commit Pico1715 before publishing its browser artifacts.');
 const hash=b=>createHash('sha256').update(b).digest('hex');
@@ -18,3 +19,5 @@ for(const [name,path] of Object.entries({'test.rom':'build/test.rom','cpm-plus-1
 manifest.cpm=execFileSync('git',['-C',repo,'rev-parse','HEAD'],{encoding:'utf8'}).trim();
 await writeFile(to+'/manifest.json',JSON.stringify(manifest,null,2)+'\n');
 console.log('Pinned classic workstation assets',manifest.pico,manifest.cpm);
+
+execFileSync(process.execPath,[new URL('./build-boot-profiles.mjs',import.meta.url).pathname,repo,resolve('../Pico1715')],{stdio:'inherit'});

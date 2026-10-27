@@ -80,15 +80,15 @@ export class Capture{
  }
  async measure(a,b,check=()=>{}){let first,last,wait=0n;const start=Math.min(a,b),end=Math.max(a,b)+1;for await(const r of this.events(start,end,check)){first??=r;last=r;wait+=BigInt(r.wait_samples||0);}assert(first&&last,'Empty cursor range');return {from:start,to:end-1,records:end-start,samples:(BigInt(last.elapsed_samples)-BigInt(first.elapsed_samples)).toString(),elapsed_us:last.elapsed_us-first.elapsed_us,wait_samples:wait.toString(),wait_us:Number(wait)*1e6/this.header.clock_hz};}
 }
-export async function compare(left,right,{align='start',tolerance=null,check=()=>{}}={}){
+export async function compare(left,right,{align='start',tolerance=null,ranges=null,check=()=>{}}={}){
  assert(left.header.type==='compact'&&right.header.type==='compact','Comparison requires compact captures');assert(['start','trigger'].includes(align),'Invalid alignment');assert(tolerance===null||(Number.isFinite(tolerance)&&tolerance>=0),'Invalid timing tolerance');
- const from=c=>{if(align==='start')return 0;assert(c.header.trigger_index!==null,'Both captures need a fired trigger');return c.header.trigger_index;};
- async function* selected(c){for await(const r of c.events(from(c),c.header.count,check))if([4,5,6,8,9].includes(r.kind))yield {index:r.index,sequence:r.sequence,key:[r.kind,[4,5].includes(r.kind)?r.address&255:0,r.data,r.flags],time_us:r.elapsed_us,duration_us:r.duration*1e6/c.header.clock_hz,wait_us:r.wait_samples*1e6/c.header.clock_hz};}
+ const from=c=>{if(ranges){const r=c===left?ranges.capture:ranges.reference;assert(r&&Number.isInteger(r.start)&&Number.isInteger(r.end)&&r.start>=0&&r.end>=r.start&&r.end<=c.header.count,'Invalid comparison range');return r.start;}if(align==='start')return 0;assert(c.header.trigger_index!==null,'Both captures need a fired trigger');return c.header.trigger_index;};
+ async function* selected(c){for await(const r of c.events(from(c),ranges?(c===left?ranges.capture.end:ranges.reference.end):c.header.count,check))if([4,5,6,8,9].includes(r.kind))yield {index:r.index,sequence:r.sequence,key:[r.kind,[4,5].includes(r.kind)?r.address&255:0,r.data,r.flags],time_us:r.elapsed_us,duration_us:r.duration*1e6/c.header.clock_hz,wait_us:r.wait_samples*1e6/c.header.clock_hz};}
  const a=selected(left),b=selected(right);let count=0,mismatch=null,origins;
  for(;;){const [x,y]=await Promise.all([a.next(),b.next()]);if(x.done&&y.done)break;const l=x.value,r=y.value;if(l&&r&&!origins)origins=[l.time_us,r.time_us];let reason;
   if(!l||!r)reason='different number of selected events';else if(JSON.stringify(l.key)!==JSON.stringify(r.key))reason='different bus transaction';else if(tolerance!==null&&[Math.abs(l.time_us-origins[0]-r.time_us+origins[1]),Math.abs(l.duration_us-r.duration_us),Math.abs(l.wait_us-r.wait_us)].some(n=>n>tolerance))reason='timing tolerance exceeded';
   if(reason&&!mismatch)mismatch={event:count,reason,capture:l||null,reference:r||null};count++;
- }return {match:!mismatch&&count>0,compared_events:count,first_divergence:mismatch,alignment:align,tolerance_us:tolerance};
+ }return {match:!mismatch&&count>0,compared_events:count,first_divergence:mismatch,alignment:align,tolerance_us:tolerance,...(ranges?{ranges}:{})};
 }
 export const json=value=>JSON.stringify(value,(_,v)=>typeof v==='bigint'?v.toString():v);
 export async function exportCapture(c,format,{start=0,end=c.header.count,check=()=>{}}={}){
