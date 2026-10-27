@@ -31,6 +31,13 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 ## Current findings and their consequences
 
+The [later Intel handbook review][intel-1986-enable] adds a separately inspected
+1986 source. Its enable waveform still lacks a distinct measurement threshold;
+commercial/EXPRESS and plastic-package conditions cannot resolve the industrial
+I8282 convention by substitution. The existing electrical contracts remain
+unchanged. Further source work must supply a distinguishing convention or qualify
+an explicitly different reference family.
+
 The [U880 output screen][u880-output] rejects both endpoint-only CPU resistance
 hypotheses against an independent loaded data-valid condition: even the favorable
 0.8-to-2-V portion takes about 340 ns with 100 pF at 4.75 V, beyond the 260-ns
@@ -481,3 +488,5 @@ and the reason for changing its interpretation.
 [u880-output]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/u880-output-candidates/assessment.json
 
 [u880-slew]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/u880-slew-candidates/assessment.json
+
+[intel-1986-enable]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/intel-1986-enable-review/assessment.json
