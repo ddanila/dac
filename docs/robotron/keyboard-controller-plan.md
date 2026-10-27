@@ -50,10 +50,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    initial-state output estimates do not bound changing-state storage. Preserve
    [raw filter admission refusals][wire-raw-families] for both initial and later
    allocations; base-class cache coverage does not admit subclasses.
-   Qualify compact raw-island admission, board bindings and full-scan budgets using
+   Qualify raw-island board bindings and full-scan budgets using
    [exact dense/difference reconstruction][island-raw-delta]. Preserve native growth,
    live scratch, raw strength, partial-input, switch and feedback continuation controls;
-   retain [early/late subclass refusals][island-raw-families] through the compact API.
+   retain [compact early/late subclass refusals][island-raw-delta-families], including
+   reference-initialization guards and original continuation.
    New allocations need full rows. Changed-state fixture differences exceed dense
    images, so measure operational cost before setting capture limits. Preserve
    legacy topology/filter checks and queued/executing wrapper lifetime bindings.
@@ -410,3 +411,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 
 [island-raw-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-delta/assessment.json
+
+[island-raw-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-delta-families/assessment.json
