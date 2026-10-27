@@ -133,8 +133,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    signedness/range changes and node/name/cache/scope refusals target a registered
    signal outside bridge admission, leave admitted payloads unchanged, and
    restore complete state. Native paired toggles also preserve original HDL
-   continuation. Measure full transient cost and qualify execution before
-   extending operational acceptance. Audit admitted modules before relying
+   continuation. The prepared `analog/scope_signals_board_capture.py` and
+   `scope_signals_board_review.py` are queued after the full port-payload stage.
+   Require the predecessor's exact normal comparisons, complete port fault suite
+   and per-boundary compact reconstruction. Measure the all-signal campaign's
+   own full transient cost and require its complete waveform/firmware comparisons
+   and semantic review before extending operational acceptance. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the

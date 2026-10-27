@@ -214,7 +214,11 @@ before termination. All 651 signal declarations and ownership/net bindings are
 checked in every reconstructed snapshot. A separate native fixture exercises all
 six exported toggles twice, verifies 12 exact restorations, and preserves
 original/disabled/enabled HDL continuation. Four evidence/rejection tests pass.
-Full transient and lifecycle qualification remain open.
+The full all-signal capture/reviewer is prepared and queued after port-payload
+validation, with two gate tests rejecting startup-only or incomplete predecessors.
+The queue retains the reviewed port artifacts with exact file identities before
+capture; no redundant semantic replay is implied. Full transient and lifecycle
+qualification remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
