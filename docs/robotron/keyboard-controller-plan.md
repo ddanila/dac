@@ -180,7 +180,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Preserve the [combined metadata-fault preflight][typed-signal-fault-preflight]
    and [native fault-API continuation controls][typed-signal-fault-native], including
    exact restoration, wrong-target/field refusal and active-traversal refusal.
-   Startup faults alone do not qualify normal transients. Measure changing-state output and combined runtime
+   Startup faults alone do not qualify normal transients. Use the [single-scan
+   scope validation][signal-scope-scan] and [same-board budget][signal-scope-budget],
+   preserving exact reference equivalence, empty admission and automatic-scope
+   refusal. Measure changing-state output and combined runtime
    before setting operational limits. Preserve [native family and
    late-admission controls][signal-handle-families], range/index mappings, original
    integer index refusal and fresh IDs for new handles sharing a live node.
@@ -525,3 +528,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [typed-signal-fault-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/typed-signal-fault-preflight/assessment.json
 [typed-signal-fault-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/typed-signal-fault-native/assessment.json
+
+[signal-scope-scan]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-scope-scan/assessment.json
+[signal-scope-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-scope-budget/assessment.json
