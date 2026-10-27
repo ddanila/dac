@@ -111,7 +111,7 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    under the [resolver ownership contract][resolver-contract]. Preserve the complete
    cache tree, raw pull/cache bytes and allocation bounds independent of faulted
    port counts/pointers. Extend single-input, width and raw-strength input coverage;
-   bind board objects and measure compact/combined cost before integration. Cover callback and array-word list contents beyond observed
+   preserve the [initial board bindings and full-scan budget][resolver-budget], then qualify compact reconstruction and operational bindings before integration. Initial cache widths are not fixed runtime widths; measure changing-state output and combined cost. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -381,3 +381,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [resolver-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-families/assessment.json
 
 [resolver-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-growth/assessment.json
+
+[resolver-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-board-budget/assessment.json
