@@ -31,9 +31,9 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
 
 ### Combined simulator acceptance
 
-1. **Finish combined board validation.** Review typed code operands, compact arrays, allocated net/fanout state and
-   lossless wire payloads together. Preserve the [passing scope membership
-   controls][scope-board] alongside PC-binding, wait-event, thread/scheduler,
+1. **Finish combined board validation.** Review compact arrays, allocated net/fanout state and lossless wire payloads
+   together, preserving the [passing combined code-operand controls][code-operand-board]
+   and [scope membership controls][scope-board] alongside PC-binding, wait-event, thread/scheduler,
    island/filter/queue, primitive/assignment, callback, port and wrapper/stop/display
    controls. Validate complete scope hierarchy, empty scopes and actual membership;
    live-thread identity alone does not establish membership.
@@ -97,7 +97,8 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Initial empty caches may acquire widths after input arrives; preserve
    empty/full/partial operand history without freezing initial vector sizes. Implement concatenation
    observers under the [expression ownership contract][expression-contract],
-   preserving concat8 strengths, with native faults and continuation controls.
+   preserving exact concat8 bytes, port widths, assembled caches and queued/executing
+   output-node bindings, with native faults and continuation controls.
    Resolver caches remain open. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
@@ -344,3 +345,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [wire-raw-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-growth/assessment.json
 
 [output-drain-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-drain-board/assessment.json
+
+[code-operand-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/code-operand-board/assessment.json
