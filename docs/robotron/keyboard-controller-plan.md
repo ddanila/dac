@@ -275,7 +275,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    The mux retry preserves its 3,180-second timeout and 256-MiB compressed cap;
    its logical cap is 20 GiB. Initial mux output projections (1.81 GB dense,
    4.56 MB unchanged compact) do not bound changing-state cost. Four mux recovery/
-   budget tests pass; its capture has not started. Stages beyond mux remain
+   budget tests pass; its capture has not started. Preserve existing initialized
+   `*-board-budget` reports: fully reviewed campaigns use separate
+   `wire-board-reviewed` and `signal-board-reviewed` destinations. The tested
+   `analog/reviewed_campaign_retention.py` requires complete passing review flags,
+   matching capture receipts/source identities and an exact file copy; it refuses
+   existing destinations. Three retention tests pass. The replacement signal/mux
+   waiters use these destinations while keeping their exact predecessor gates.
+   Stages beyond mux remain
    stopped pending their reviewed predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.

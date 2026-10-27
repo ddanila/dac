@@ -526,6 +526,18 @@ remain unchanged. Four tests check the gate, rejection of insufficient evidence,
 producer equivalence outside the gate/cap, and bounded receipts. The initial
 mux projections are 1.81 GB dense or 4.56 MB unchanged compact, not a bound on
 operational growth. Mux capture has not started; stages beyond mux remain stopped.
+
+The waiting recovery jobs were replaced before capture to avoid a retention-path
+collision: existing `wire-board-budget`, `signal-board-budget` and
+`mux-board-budget` directories contain initialized-state evidence. Full reviewed
+campaigns now use separate `*-board-reviewed` destinations. The common retainer
+requires passing full-review flags, unchanged capture receipts and source pins,
+and exact source/copied file hashes; existing destinations are rejected without
+overwrite. Three tests preserve prior budget reports, reject incomplete evidence
+before copying, and prevent a changed copy from receiving a manifest. The active
+wire and post-reset captures were not restarted; replacement signal and mux
+waiters retain their predecessor gates. Retention still proves identity rather
+than a second semantic replay.
 These measured costs do not bound additional payload integration. Wire/functor
 state, general rollback and startup/supply-recovery qualification remain open.
 
