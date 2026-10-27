@@ -630,6 +630,14 @@ a 36-GiB logical cap. Four tests pass; native build outputs match receipts.
 The 159-MB initialized output estimate is not a growth bound. Full raw-byte
 capture/review and operational closure of strength-encoding loss remain pending.
 
+Concatenation recovery waits behind the exact raw-wire process identity. Its
+predecessor gate requires complete comparisons, firmware equality, every raw-wire
+boundary observation, both faults and bounded receipts. Reviewed raw-wire evidence
+uses `raw-wire-board-reviewed`. Concatenation preserves all three faults, its
+3,300-second timeout and 256-MiB compressed cap, with a 40-GiB logical cap. Four
+tests pass, and build files match receipts. The 529-MB initialized output
+estimate is not a growth bound; full capture/review remains pending.
+
 The waiting recovery jobs were replaced before capture to avoid a retention-path
 collision: existing `wire-board-budget`, `signal-board-budget` and
 `mux-board-budget` directories contain initialized-state evidence. Full reviewed

@@ -356,7 +356,14 @@ and retry effects, or establish full-repeat/supply/rollback qualification.
    both corruption controls, the 3,300-second timeout and 256-MiB compressed cap,
    with a 36-GiB logical cap. Its 159-MB initialized output estimate is not a
    growth bound. Four tests pass; full raw-byte capture/review remains pending.
-   Stages beyond raw wire remain stopped pending reviewed predecessors. Audit admitted modules before relying
+   Concatenation recovery is queued behind the exact raw-wire process identity.
+   `raw_wire_recovery_gate.py` requires full comparisons, firmware equality,
+   all raw-wire boundary observations, both faults and bounded receipts before
+   retaining `raw-wire-board-reviewed`. Concatenation preserves all three faults,
+   the 3,300-second timeout and 256-MiB compressed cap, with a 40-GiB logical cap.
+   Its 529-MB initialized output estimate is not a growth bound. Four tests pass;
+   capture and full review remain pending. Stages beyond concatenation remain
+   stopped pending reviewed predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
