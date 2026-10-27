@@ -100,7 +100,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [port-specific board startup controls][port-payload-fault-board]: all nine
    native fields, four callback controls and ten scope/callback regressions pass,
    with complete-state restoration and all 317 ports/875 bits bound in every
-   snapshot. Qualify normal transient execution before extending the queue. Audit admitted modules before
+   snapshot. The prepared `analog/port_payload_board_capture.py` and
+   `port_payload_board_review.py` are queued after complete scope-metadata
+   validation; the predecessor must include both normal comparisons, all faults
+   and complete compact reconstruction at every boundary. Require the port
+   campaign's own full waveform/firmware comparisons and semantic replay before
+   accepting operational qualification. Audit admitted modules before
    relying on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the

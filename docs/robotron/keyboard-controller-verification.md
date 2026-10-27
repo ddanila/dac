@@ -149,8 +149,12 @@ restores before controlled termination. The reviewer binds all 317 ports and
 875 bits in every decoded snapshot, allowing only the selected diagnostic change.
 Ten earlier scope/callback controls also pass on this runtime and bridge. Five
 evidence/rejection tests pass, including unrelated changed-stage payload faults.
-Normal transient execution, later-boundary faults and lifecycle coverage remain
-unqualified.
+The full port capture/reviewer is prepared and queued after the scope-metadata
+campaign. Its gate rejects startup-only predecessors and incomplete metadata
+reconstruction; two gate tests pass. The queue retains the already reviewed
+scope artifacts with exact file identities before capture. This is not a second
+semantic replay. Normal transient port execution, later-boundary faults and
+lifecycle coverage remain unqualified until the corresponding evidence passes.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
