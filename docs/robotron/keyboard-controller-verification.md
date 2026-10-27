@@ -244,6 +244,16 @@ seconds over 110,312 snapshots, excluding growth, other observers and review.
 Four tests pass. Compact logging, changed-state cost, pointer/lifecycle controls
 and normal transient integration remain unqualified.
 
+The [native parameter field/pointer faults][parameter-faults] subsequently cover
+16 diagnostic fields twice. Binary raw words, signed/sized/local flags, file/line,
+name bytes, real bytes and string bytes produce exact isolated changes. Binary
+width, scope/name pointers, wide A/B storage pointers and string pointer/length
+faults refuse with negative status and zero bytes. All 32 mutations restore
+exactly before original/disabled/enabled HDL continuation. Earlier parameter
+payload controls pass on the new runtime, and three evidence/rejection tests
+pass. Unsupported subclasses, lifetime changes and operational board faults
+remain unqualified.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -814,3 +824,5 @@ and the reason for changing its interpretation.
 [parameter-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-payload/assessment.json
 
 [parameter-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-budget/assessment.json
+
+[parameter-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-faults/assessment.json
