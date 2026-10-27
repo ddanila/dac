@@ -36,8 +36,8 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
  async function demo(){
   loading=true;controls();try{
    base=new URL(import.meta.env.BASE_URL+'pico1715/',location.origin);
-   const r=await fetch(new URL('manifest.json',base));if(!r.ok)throw Error('Pico1715 artifacts unavailable.');manifest=await r.json();
-   async function asset(name){const r=await fetch(new URL(name,base));if(!r.ok)throw Error('Missing '+name);const b=await r.arrayBuffer();if(await digest(b)!==manifest.sha256[name])throw Error('Artifact checksum mismatch: '+name);return b;}
+   const r=await fetch(new URL('manifest.json',base),{cache:'no-cache'});if(!r.ok)throw Error('Pico1715 artifacts unavailable.');manifest=await r.json();
+   async function asset(name){const url=new URL(name,base);url.searchParams.set('sha256',manifest.sha256[name]);const r=await fetch(url);if(!r.ok)throw Error('Missing '+name);const b=await r.arrayBuffer();if(await digest(b)!==manifest.sha256[name])throw Error('Artifact checksum mismatch: '+name);return b;}
    const nextRom=await asset('test.rom'),nextDisk=await asset('cpm-plus-1715.img');
    keyboardMap=JSON.parse(new TextDecoder().decode(await asset('keyboard-map.json')));platformCode=new Uint8Array(await asset('platform.bin')).slice(0,512);
    rom=nextRom;original=nextDisk;disk=nextDisk.slice(0);label='Source-built CP/M 3 · public fixture ROM (historical bootstrap bypassed)';

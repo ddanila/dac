@@ -65,8 +65,9 @@ async function exportDisk(){
 async function handle(d){
  if(d.type==='init'){
   backend=d.backend;keyboardMap=d.keyboardMap;platformCode=d.platformCode;
-  const factory=(await import(/* @vite-ignore */ new URL(`pico1715-${backend}.mjs`,d.base).href)).default;
-  core=await factory({printErr:()=>{}});
+  const asset=name=>{const hash=d.build?.sha256?.[name];if(!/^[0-9a-f]{64}$/.test(hash||''))throw Error('Missing pinned module identity: '+name);const url=new URL(name,d.base);url.searchParams.set('sha256',hash);return url.href;};
+  const factory=(await import(/* @vite-ignore */ asset(`pico1715-${backend}.mjs`))).default;
+  core=await factory({printErr:()=>{},locateFile:name=>asset(name)});
   if(core._p1715_version()!==2)throw Error('Unsupported Pico1715 browser ABI.');
   const rom=new Uint8Array(d.rom),disk=new Uint8Array(d.disk),p=core._malloc(rom.length),q=core._malloc(disk.length);
   try{core.HEAPU8.set(rom,p);core.HEAPU8.set(disk,q);core._p1715_init(p,rom.length,q,disk.length,+d.writable);if(core._p1715_result()<0)throw Error('ROM or disk rejected.');}finally{core._free(p);core._free(q);}

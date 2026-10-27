@@ -62,7 +62,7 @@ jobs:
       fail-fast: true
       matrix: ${{ fromJSON(needs.build.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
-    timeout-minutes: ${{ matrix.browser != 'chromium' && 10 || needs.build.outputs.scope == 'full' && 25 || 15 }}
+    timeout-minutes: ${{ matrix.browser != 'chromium' && 15 || needs.build.outputs.scope == 'full' && 25 || 15 }}
     steps:
       - uses: actions/checkout@v7
         with:
