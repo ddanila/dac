@@ -31,8 +31,9 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
 
 ### Combined simulator acceptance
 
-1. **Finish combined board validation.** Review compact arrays, allocated net/fanout state and lossless wire payloads
-   together, preserving the [passing combined code-operand controls][code-operand-board]
+1. **Finish combined board validation.** Qualify allocated net/fanout state and lossless wire payloads
+   together, preserving the [passing compact-array board controls][array-board]
+   and [combined code-operand controls][code-operand-board]
    and [scope membership controls][scope-board] alongside PC-binding, wait-event, thread/scheduler,
    island/filter/queue, primitive/assignment, callback, port and wrapper/stop/display
    controls. Validate complete scope hierarchy, empty scopes and actual membership;
@@ -142,8 +143,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    before and after registration, through cancellation and native deletion;
    unknown owners must refuse even with empty lists. Preserve [native array-word bindings][callback-words]
    and restored index/pointer/link controls, including the concrete array pointer
-   adjustment from VPI handles. Qualify multiple associations sharing one owner,
-   association lifecycle, admitted registration growth and actual board cost before integration. Bind bridge-handle referents after port initialization; stateful
+   adjustment from VPI handles. Preserve [shared-owner native lists][callback-word-shared]
+   with an explicitly recorded test adapter; those controls do not establish
+   compiler-generated aliasing on this board. Qualify association lifecycle,
+   admitted registration growth and actual board cost before integration. Bind bridge-handle referents after port initialization; stateful
    part-select/array callbacks and suspended traversal remain separate. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -447,3 +450,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-list-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-list-families/assessment.json
 
 [callback-words]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-words/assessment.json
+
+[array-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-board/assessment.json
+
+[callback-word-shared]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-word-shared/assessment.json
