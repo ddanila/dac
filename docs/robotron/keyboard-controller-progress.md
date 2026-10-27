@@ -73,7 +73,9 @@ Four wrapper tests pass; complete wire-review equivalence remains pending.
 Native parameter allocation growth is retained in `analog/reports/parameter-growth`:
 two rounds add six objects after the initial inventory, preserving previous rows
 and original HDL continuation. Three tests and the class-refusal regression pass.
-Operational integration, compact growth and destruction/reuse remain open.
+The unchanged C logger also reconstructs all eight growing images exactly in
+`analog/reports/parameter-growth-log`; three replay/tamper tests pass.
+Operational integration/cost and destruction/reuse remain open.
 
 Public parameter handle release has retained evidence in
 `analog/reports/parameter-handle-release`: both VPI APIs preserve all four

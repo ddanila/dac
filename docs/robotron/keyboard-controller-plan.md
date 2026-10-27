@@ -231,8 +231,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    registration and normal scope attachment, growing four parameters to ten.
    Fresh IDs/pointers, unchanged earlier rows, full payloads and original HDL
    continuation pass, as does the subclass-refusal regression on that runtime.
-   Three evidence/tamper tests pass. Compact growth, late unsupported classes,
-   destruction/reuse and operational board admission remain separate.
+   Three evidence/tamper tests pass. Preserve the [compact growth logger replay][parameter-growth-log]:
+   the unchanged built C logger reconstructs all eight native images exactly,
+   using seven full frames and one reuse frame. Every full frame exceeds its
+   dense image in bytes; the whole stream is 7,669 versus 8,548 bytes because
+   of reuse. Three replay/tamper tests pass, including stale reuse hiding a new
+   object. Late unsupported classes, destruction/reuse and operational board
+   admission/cost remain separate.
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
    inventory for binary/wide/real/string parameters in two rounds. All 16 calls
@@ -934,3 +939,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [wire-capture-cost]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-capture-cost/assessment.json
 
 [parameter-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth/assessment.json
+
+[parameter-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth-log/assessment.json

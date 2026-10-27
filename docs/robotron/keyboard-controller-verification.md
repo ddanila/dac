@@ -537,6 +537,14 @@ regression pass on the new runtime, with three evidence/tamper tests. This
 does not qualify compact growth, late unsupported classes, destruction/reuse
 or operational board admission. The running board campaign uses its prior runtime.
 
+The [compact parameter growth replay][parameter-growth-log] runs the unchanged
+built C logger on all eight retained native growing inventories. Seven full
+frames and one reuse frame reconstruct every byte. Each full frame is larger
+than its dense image; reuse reduces total output to 7,669 bytes from 8,548.
+Three tests pass, including rejection of stale reuse concealing an allocation
+and changed logger/native identities. This closes the retained-fixture logger
+replay case, not operational growth/cost or another HDL execution.
+
 The [public parameter handle-release controls][parameter-handle-release] cover
 `vpi_free_object` and `vpi_release_handle` on four binary/wide/real/string
 parameters, twice. All 16 calls per run preserve handle identity, scope, size
@@ -1208,3 +1216,5 @@ and the reason for changing its interpretation.
 [wire-capture-cost]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-capture-cost/assessment.json
 
 [parameter-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth/assessment.json
+
+[parameter-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth-log/assessment.json
