@@ -33,6 +33,18 @@ requires the same clean source revisions and records both identities. See
 
 ## Capture and analyze
 
+**Trace to source** loads the bundled CP/M platform/diagnostic profiles or a local
+hash-bound ZMAC source map with its matching binary. Select a fetch or find a
+symbol's first observed fetch. The result separates observed bytes/disassembly
+from image bytes and source lines. Missing operands, uncertain intervals and an
+unknown low-memory ROM overlay cannot establish a verified instruction. A matching
+source candidate is not proof of image residency or instruction completion.
+Loaded source material accompanies explicit investigation-bundle export.
+
+The initial source generator supports the platform and diagnostic ZMAC listings;
+relocatable RMAC BIOS source mapping remains a follow-up. Source scanning is
+bounded to two million preceding records and can be cancelled.
+
 The classic workstation's **Bus capture → analyzer** controls use the same passive
 cycle encoder RTL as the native capture oracle. Both controller-model and shared
 firmware/RTL backends support manual capture, capture-from-reset, stop, release,

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 import {defaultSuite,BUILTIN_SUITES} from './assertions.js';
-export function mountInvestigation({task,current,select,status,download,load,comparison,captures,clear}){
+export function mountInvestigation({task,current,select,status,download,load,comparison,captures,clear,extraFiles=()=>[],restoreFiles=async()=>{}}){
  const el=document.createElement('section');el.id='investigation';el.innerHTML=`<h2>Boot investigation and assertions</h2><div class="toolbar"><label>Session metadata<input id="investigation-metadata" type="file"></label><label>Boot profile<select id="boot-profile"><option value="auto">Exact identity / generic events</option></select></label><button id="investigate">Investigate boot</button></div><p id="investigation-identity"></p><div id="boot-stages"></div><div class="toolbar"><label>Built-in suite<select id="assertion-preset"></select></label><label>Assertion suite JSON<input id="assertion-file" type="file"></label><label>Range<select id="assertion-range"><option value="full">Full capture</option><option value="cursors">Between cursors</option></select></label><button id="run-assertions">Run assertions</button><button id="investigation-export">Download investigation report</button></div><div id="assertion-results"></div>`;
  document.getElementById('panes').before(el);const $=id=>el.querySelector('#'+id);let generation=0,profiles,metadata=new Map(),reports=new Map(),results=new Map(),suite=defaultSuite;
  for(const s of BUILTIN_SUITES)$('assertion-preset').add(new Option(s.id,s.id));
@@ -13,7 +13,7 @@ export function mountInvestigation({task,current,select,status,download,load,com
  $('bundle-export').onclick=safe(async()=>{
   const tools=await bundleTools(),files=[],encode=value=>new TextEncoder().encode(JSON.stringify(value));
   for(const p of captures()){files.push({name:p.slot+'.p1715',bytes:new Uint8Array(await p.file.arrayBuffer())});const m=metadata.get(p.info.summary.sha256);if(m)files.push({name:p.slot+'.metadata.json',bytes:encode(m)});}
-  files.push({name:'report.json',bytes:encode(report())});if(originalReport)files.push({name:'original-report.json',bytes:encode(originalReport)});
+  files.push({name:'report.json',bytes:encode(report())},...extraFiles());if(originalReport)files.push({name:'original-report.json',bytes:encode(originalReport)});
   download(new Blob([JSON.stringify(await tools.makeBundle(importedExperiment,files))]),'investigation.p1715investigation');
  });
  $('bundle-file').onchange=safe(async()=>{
@@ -30,6 +30,7 @@ export function mountInvestigation({task,current,select,status,download,load,com
    if(range&&Array.isArray(range.cursors)&&range.cursors.length<=2&&range.cursors.every(n=>Number.isInteger(n)&&n>=0&&n<p.info.header.count))p.cursors=range.cursors;
   }
   if(imported?.suite)suite=imported.suite;
+  await restoreFiles(bundle.files);
   importedExperiment=bundle.experiment;originalReport=imported;
   $('investigation-identity').textContent='Imported portable investigation. Re-run analysis to produce fresh results; original reports are retained.';
  });

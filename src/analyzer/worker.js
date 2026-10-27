@@ -2,13 +2,16 @@
 import {Capture,compare,exportCapture,json} from './capture.js';
 import {evaluate} from './assertions.js';
 import {investigate} from './investigation.js';
+import {validateSource,sourceContext} from './source.js';
 const captures=new Map(),jobs=new Map(),versions=new Map();
+let source;
 self.onmessage=async({data:d})=>{
  if(d.op==='cancel'){jobs.get(d.target)?.abort();return;}
  const controller=new AbortController();jobs.set(d.id,controller);const check=()=>{if(controller.signal.aborted)throw Error('Cancelled');};
  try{
   let result;const progress=value=>postMessage({id:d.id,progress:value});
-  if(d.op==='close'){versions.set(d.slot,d.id);captures.delete(d.slot);result=true;}
+  if(d.op==='source-load'){source=validateSource(d.map,new Uint8Array(d.binary),d.text);result={locations:source.map.entries.length,symbols:source.map.symbols};}
+  else if(d.op==='close'){versions.set(d.slot,d.id);captures.delete(d.slot);result=true;}
   else if(d.op==='open'){versions.set(d.slot,d.id);const c=await Capture.open(d.file,{check,progress});check();if(d.expectedRecords!==undefined&&c.header.count!==d.expectedRecords)throw Error('Capture record count differs from device status');if(versions.get(d.slot)!==d.id)throw Error('Superseded capture');captures.set(d.slot,c);result={header:c.header,summary:c.summary,name:d.file.name||'USB capture'};}
   else{const c=captures.get(d.slot||'primary');if(!c)throw Error('Open a capture first');
    if(d.op==='page')result=await c.page(d.start,d.count,check);
@@ -21,6 +24,7 @@ self.onmessage=async({data:d})=>{
    else if(d.op==='original')result=c.file;
    else if(d.op==='assert')result=await evaluate(c,d.suite,{start:d.start??0,end:d.end??c.header.count,check});
    else if(d.op==='investigate')result=await investigate(c,d.metadata,d.profiles,d.profile,check);
+   else if(d.op==='source'){if(!source)throw Error('Load a source map and binary first');result=await sourceContext(c,d.index,source,{check});}
    else if(d.op==='report')result=new Blob([json({schema:1,applicationRevision:import.meta.env.VITE_APP_REVISION,scope:'full validated captures; selection is presentation only',captures:[...captures].map(([slot,c])=>({slot,header:c.header,...c.summary})),settings:d.settings})+'\n'],{type:'application/json'});
    else throw Error('Unknown operation');
   }check();postMessage({id:d.id,result});

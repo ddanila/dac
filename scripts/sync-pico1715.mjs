@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-import {readFile,writeFile,copyFile,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,copyFile,mkdir,mkdtemp} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
@@ -16,6 +16,18 @@ for(const [name,sha] of Object.entries(manifest.sha256)){
 for(const [name,path] of Object.entries({'test.rom':'build/test.rom','cpm-plus-1715.img':'out/cpm-plus-1715.img','keyboard-map.json':'build/keyboard-map.json','platform.bin':'build/platform.cim','CPM-NOTICE.md':'NOTICE.md','CPM-LICENSE.md':'third_party/cpm3/LICENSE.md','JUKU-LICENSE':'third_party/JUKU-LICENSE'})){
  const bytes=await readFile(repo+'/'+path);manifest.sha256[name]=hash(bytes);await writeFile(to+'/'+name,bytes);
 }
+const mapTemp=await mkdtemp('/tmp/pico1715-source-maps-');
+manifest.source_profiles=[];
+for(const profile of [
+ {id:'platform',label:'CP/M platform services',source:'platform.asm',binary:'platform.cim',base:'0xc000',asset:'platform.bin'},
+ {id:'diagnostics',label:'P1715TST portable diagnostics',source:'p1715test.asm',binary:'p1715test.cim',base:'0x100',asset:'diagnostics.bin'},
+]){
+ const mapName=profile.id+'.source.json';
+ execFileSync('python3',[resolve('../Pico1715/tools/source_map.py'),'--source',repo+'/src/'+profile.source,'--listing',repo+'/build/'+profile.binary.replace('.cim','.lst'),'--binary',repo+'/build/'+profile.binary,'--base',profile.base,'--space','ram','--include-source','--out',mapTemp+'/'+mapName],{stdio:'inherit'});
+ for(const [name,path] of [[mapName,mapTemp+'/'+mapName],[profile.asset,repo+'/build/'+profile.binary]]){const bytes=await readFile(path);manifest.sha256[name]=hash(bytes);await writeFile(to+'/'+name,bytes);}
+ manifest.source_profiles.push({id:profile.id,label:profile.label,map:mapName,binary:profile.asset});
+}
+manifest.source_map_generator_sha256=hash(await readFile(resolve('../Pico1715/tools/source_map.py')));
 manifest.cpm=execFileSync('git',['-C',repo,'rev-parse','HEAD'],{encoding:'utf8'}).trim();
 await writeFile(to+'/manifest.json',JSON.stringify(manifest,null,2)+'\n');
 console.log('Pinned classic workstation assets',manifest.pico,manifest.cpm);

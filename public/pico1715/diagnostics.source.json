@@ -1,0 +1,1354 @@
+{
+  "schema": 1,
+  "kind": "pico1715-source-map",
+  "base": 256,
+  "space": "ram",
+  "binary_sha256": "258890fbb8612d894e8e92b69bb914244fd5cc5ea7a637be99e24772fc9273be",
+  "binary_size": 1029,
+  "source": {
+    "name": "p1715test.asm",
+    "sha256": "76c8c003a4ab0ad99f61c775589bc6c5a827494a47d1cb2b2292b9848794b8e9",
+    "text": "; SPDX-License-Identifier: MIT\n; Portable CP/M 2+ diagnostic. All disk access uses BDOS, never direct ports.\n        org 100h\n        ld (oldsp),sp\n        ld sp,stacktop\n        ld de,banner\n        call print\n        ld a,(80h)\n        or a\n        jp z,info\n        ld hl,81h\nskip:   ld a,(hl)\n        cp ' '\n        jr nz,command\n        inc hl\n        jr skip\ncommand:\n        and 0dfh\n        cp 'W'\n        jp z,write_test\n        cp 'R'\n        jp z,read_test\n        cp 'C'\n        jp z,cleanup\n        cp 'K'\n        jp z,keyboard\n        cp 'I'\n        jp z,info\n        ld de,usage\n        jp finish\ninfo:   ld c,12\n        call 5\n        ld a,h\n        call hexbyte\n        ld a,l\n        call hexbyte\n        ld de,info_ok\n        jp finish\nwrite_test:\n        call reset_fcb\n        ld c,15\n        ld de,fcb\n        call bdos\n        cp 0ffh\n        jp nz,collision\n        call reset_fcb\n        ld c,22\n        ld de,fcb\n        call bdos\n        cp 0ffh\n        jp z,iofail\n        xor a\n        ld (record),a\nwrite_loop:\n        call pattern\n        call dma\n        ld c,21\n        ld de,fcb\n        call bdos\n        or a\n        jp nz,writefail\n        ld a,(record)\n        inc a\n        ld (record),a\n        jr nz,write_loop\n        call close\n        jp nz,iofail\n        ld de,write_ok\n        jp finish\nread_test:\n        call verify\n        jp nz,verifyfail\n        ld de,read_ok\n        jp finish\ncleanup:\n        call verify\n        jp nz,verifyfail\n        call reset_fcb\n        ld c,19\n        ld de,fcb\n        call bdos\n        cp 0ffh\n        jp z,iofail\n        ld de,clean_ok\n        jp finish\nkeyboard:\n        ld de,key_prompt\n        call print\n        ld c,1\n        call bdos\n        ld de,key_ok\n        jp finish\n; Verify exact 256-record length, then random reads in reverse order.\nverify:\n        call reset_fcb\n        ld c,15\n        ld de,fcb\n        call bdos\n        cp 0ffh\n        jr z,bad\n        ld c,35\n        ld de,fcb\n        call bdos\n        ld a,(fcb+33)\n        or a\n        jr nz,verify_bad\n        ld a,(fcb+34)\n        cp 1\n        jr nz,verify_bad\n        ld a,(fcb+35)\n        or a\n        jr nz,verify_bad\n        ld a,255\n        ld (record),a\nverify_loop:\n        call pattern\n        ld a,(record)\n        ld (fcb+33),a\n        xor a\n        ld (fcb+34),a\n        ld (fcb+35),a\n        ld de,readbuf\n        ld c,26\n        call bdos\n        ld de,fcb\n        ld c,33\n        call bdos\n        or a\n        jr nz,verify_bad\n        ld hl,buffer\n        ld de,readbuf\n        ld b,128\ncompare:\n        ld a,(de)\n        cp (hl)\n        jr nz,verify_bad\n        inc hl\n        inc de\n        djnz compare\n        ld a,(record)\n        sub 1\n        ld (record),a\n        jr nc,verify_loop\n        call close\n        ret\nverify_bad:\n        call close\nbad:    ld a,1\n        or a\n        ret\npattern:\n        ld hl,buffer\n        ld b,128\n        ld c,0\npattern_loop:\n        ld a,(record)\n        xor c\n        ld (hl),a\n        inc hl\n        inc c\n        djnz pattern_loop\n        ld a,(record)\n        or a\n        ret nz\n        ld hl,signature\n        ld de,buffer\n        ld bc,16\n        ldir\n        ret\ndma:    ld c,26\n        ld de,buffer\n        jp bdos\nclose:  ld c,16\n        ld de,fcb\n        call bdos\n        cp 0ffh\n        jr z,bad\n        xor a\n        ret\nreset_fcb:\n        ld hl,fcb\n        ld de,fcb+1\n        ld bc,35\n        ld (hl),0\n        ldir\n        ld hl,filename\n        ld de,fcb+1\n        ld bc,11\n        ldir\n        ret\nbdos:   push bc\n        push de\n        push hl\n        call 5\n        pop hl\n        pop de\n        pop bc\n        ret\nprint:  ld c,9\n        jp bdos\nhexbyte:\n        push af\n        rrca\n        rrca\n        rrca\n        rrca\n        call nibble\n        pop af\nnibble: and 15\n        add a,'0'\n        cp '9'+1\n        jr c,hexout\n        add a,7\nhexout: ld e,a\n        ld c,2\n        jp bdos\nwritefail:\n        call close\niofail: ld de,io_error\n        jp finish\nverifyfail:\n        ld de,verify_error\n        jp finish\ncollision:\n        call close\n        ld de,exists_error\nfinish: call print\n        ld sp,(oldsp)\n        ret\nbanner: db 'P1715TEST v1 CP/M BDOS=', '$'\ninfo_ok: db 13,10,'P1715TEST INFO PASS',13,10,'W=create 32KiB scratch; R=verify after cold boot; C=verify+delete; K=keyboard',13,10,'$'\nusage: db 13,10,'Usage: P1715TST [I|W|R|C|K]',13,10,'$'\nwrite_ok: db 13,10,'P1715TEST WRITE PASS records=256; cold boot then R',13,10,'$'\nread_ok: db 13,10,'P1715TEST VERIFY PASS records=256',13,10,'$'\nclean_ok: db 13,10,'P1715TEST CLEAN PASS',13,10,'$'\nkey_prompt: db 13,10,'Press one key; visually check the echo: $'\nkey_ok: db 13,10,'P1715TEST KEYBOARD OBSERVED (operator must assess echo)',13,10,'$'\nio_error: db 13,10,'P1715TEST IO FAIL (partial scratch may remain)',13,10,'$'\nverify_error: db 13,10,'P1715TEST VERIFY FAIL; file retained',13,10,'$'\nexists_error: db 13,10,'P1715TEST COLLISION FAIL; file retained',13,10,'$'\nfilename: db 'P1715TSTDAT'\n        ; CP/M filename must occupy exactly 11 bytes: 8 name + 3 extension.\nsignature: db 'P1715TEST-v1',0,1,2,3\noldsp:  dw 0\nrecord: db 0\nfcb:    ds 36\nbuffer: ds 128\nreadbuf: ds 128\n        ds 128\nstacktop:\n"
+  },
+  "entries": [
+    {
+      "address": 256,
+      "length": 4,
+      "line": 4,
+      "code": true
+    },
+    {
+      "address": 260,
+      "length": 3,
+      "line": 5,
+      "code": true
+    },
+    {
+      "address": 263,
+      "length": 3,
+      "line": 6,
+      "code": true
+    },
+    {
+      "address": 266,
+      "length": 3,
+      "line": 7,
+      "code": true
+    },
+    {
+      "address": 269,
+      "length": 3,
+      "line": 8,
+      "code": true
+    },
+    {
+      "address": 272,
+      "length": 1,
+      "line": 9,
+      "code": true
+    },
+    {
+      "address": 273,
+      "length": 3,
+      "line": 10,
+      "code": true
+    },
+    {
+      "address": 276,
+      "length": 3,
+      "line": 11,
+      "code": true
+    },
+    {
+      "address": 279,
+      "length": 1,
+      "line": 12,
+      "code": true
+    },
+    {
+      "address": 280,
+      "length": 2,
+      "line": 13,
+      "code": true
+    },
+    {
+      "address": 282,
+      "length": 2,
+      "line": 14,
+      "code": true
+    },
+    {
+      "address": 284,
+      "length": 1,
+      "line": 15,
+      "code": true
+    },
+    {
+      "address": 285,
+      "length": 2,
+      "line": 16,
+      "code": true
+    },
+    {
+      "address": 287,
+      "length": 2,
+      "line": 18,
+      "code": true
+    },
+    {
+      "address": 289,
+      "length": 2,
+      "line": 19,
+      "code": true
+    },
+    {
+      "address": 291,
+      "length": 3,
+      "line": 20,
+      "code": true
+    },
+    {
+      "address": 294,
+      "length": 2,
+      "line": 21,
+      "code": true
+    },
+    {
+      "address": 296,
+      "length": 3,
+      "line": 22,
+      "code": true
+    },
+    {
+      "address": 299,
+      "length": 2,
+      "line": 23,
+      "code": true
+    },
+    {
+      "address": 301,
+      "length": 3,
+      "line": 24,
+      "code": true
+    },
+    {
+      "address": 304,
+      "length": 2,
+      "line": 25,
+      "code": true
+    },
+    {
+      "address": 306,
+      "length": 3,
+      "line": 26,
+      "code": true
+    },
+    {
+      "address": 309,
+      "length": 2,
+      "line": 27,
+      "code": true
+    },
+    {
+      "address": 311,
+      "length": 3,
+      "line": 28,
+      "code": true
+    },
+    {
+      "address": 314,
+      "length": 3,
+      "line": 29,
+      "code": true
+    },
+    {
+      "address": 317,
+      "length": 3,
+      "line": 30,
+      "code": true
+    },
+    {
+      "address": 320,
+      "length": 2,
+      "line": 31,
+      "code": true
+    },
+    {
+      "address": 322,
+      "length": 3,
+      "line": 32,
+      "code": true
+    },
+    {
+      "address": 325,
+      "length": 1,
+      "line": 33,
+      "code": true
+    },
+    {
+      "address": 326,
+      "length": 3,
+      "line": 34,
+      "code": true
+    },
+    {
+      "address": 329,
+      "length": 1,
+      "line": 35,
+      "code": true
+    },
+    {
+      "address": 330,
+      "length": 3,
+      "line": 36,
+      "code": true
+    },
+    {
+      "address": 333,
+      "length": 3,
+      "line": 37,
+      "code": true
+    },
+    {
+      "address": 336,
+      "length": 3,
+      "line": 38,
+      "code": true
+    },
+    {
+      "address": 339,
+      "length": 3,
+      "line": 40,
+      "code": true
+    },
+    {
+      "address": 342,
+      "length": 2,
+      "line": 41,
+      "code": true
+    },
+    {
+      "address": 344,
+      "length": 3,
+      "line": 42,
+      "code": true
+    },
+    {
+      "address": 347,
+      "length": 3,
+      "line": 43,
+      "code": true
+    },
+    {
+      "address": 350,
+      "length": 2,
+      "line": 44,
+      "code": true
+    },
+    {
+      "address": 352,
+      "length": 3,
+      "line": 45,
+      "code": true
+    },
+    {
+      "address": 355,
+      "length": 3,
+      "line": 46,
+      "code": true
+    },
+    {
+      "address": 358,
+      "length": 2,
+      "line": 47,
+      "code": true
+    },
+    {
+      "address": 360,
+      "length": 3,
+      "line": 48,
+      "code": true
+    },
+    {
+      "address": 363,
+      "length": 3,
+      "line": 49,
+      "code": true
+    },
+    {
+      "address": 366,
+      "length": 2,
+      "line": 50,
+      "code": true
+    },
+    {
+      "address": 368,
+      "length": 3,
+      "line": 51,
+      "code": true
+    },
+    {
+      "address": 371,
+      "length": 1,
+      "line": 52,
+      "code": true
+    },
+    {
+      "address": 372,
+      "length": 3,
+      "line": 53,
+      "code": true
+    },
+    {
+      "address": 375,
+      "length": 3,
+      "line": 55,
+      "code": true
+    },
+    {
+      "address": 378,
+      "length": 3,
+      "line": 56,
+      "code": true
+    },
+    {
+      "address": 381,
+      "length": 2,
+      "line": 57,
+      "code": true
+    },
+    {
+      "address": 383,
+      "length": 3,
+      "line": 58,
+      "code": true
+    },
+    {
+      "address": 386,
+      "length": 3,
+      "line": 59,
+      "code": true
+    },
+    {
+      "address": 389,
+      "length": 1,
+      "line": 60,
+      "code": true
+    },
+    {
+      "address": 390,
+      "length": 3,
+      "line": 61,
+      "code": true
+    },
+    {
+      "address": 393,
+      "length": 3,
+      "line": 62,
+      "code": true
+    },
+    {
+      "address": 396,
+      "length": 1,
+      "line": 63,
+      "code": true
+    },
+    {
+      "address": 397,
+      "length": 3,
+      "line": 64,
+      "code": true
+    },
+    {
+      "address": 400,
+      "length": 2,
+      "line": 65,
+      "code": true
+    },
+    {
+      "address": 402,
+      "length": 3,
+      "line": 66,
+      "code": true
+    },
+    {
+      "address": 405,
+      "length": 3,
+      "line": 67,
+      "code": true
+    },
+    {
+      "address": 408,
+      "length": 3,
+      "line": 68,
+      "code": true
+    },
+    {
+      "address": 411,
+      "length": 3,
+      "line": 69,
+      "code": true
+    },
+    {
+      "address": 414,
+      "length": 3,
+      "line": 71,
+      "code": true
+    },
+    {
+      "address": 417,
+      "length": 3,
+      "line": 72,
+      "code": true
+    },
+    {
+      "address": 420,
+      "length": 3,
+      "line": 73,
+      "code": true
+    },
+    {
+      "address": 423,
+      "length": 3,
+      "line": 74,
+      "code": true
+    },
+    {
+      "address": 426,
+      "length": 3,
+      "line": 76,
+      "code": true
+    },
+    {
+      "address": 429,
+      "length": 3,
+      "line": 77,
+      "code": true
+    },
+    {
+      "address": 432,
+      "length": 3,
+      "line": 78,
+      "code": true
+    },
+    {
+      "address": 435,
+      "length": 2,
+      "line": 79,
+      "code": true
+    },
+    {
+      "address": 437,
+      "length": 3,
+      "line": 80,
+      "code": true
+    },
+    {
+      "address": 440,
+      "length": 3,
+      "line": 81,
+      "code": true
+    },
+    {
+      "address": 443,
+      "length": 2,
+      "line": 82,
+      "code": true
+    },
+    {
+      "address": 445,
+      "length": 3,
+      "line": 83,
+      "code": true
+    },
+    {
+      "address": 448,
+      "length": 3,
+      "line": 84,
+      "code": true
+    },
+    {
+      "address": 451,
+      "length": 3,
+      "line": 85,
+      "code": true
+    },
+    {
+      "address": 454,
+      "length": 3,
+      "line": 87,
+      "code": true
+    },
+    {
+      "address": 457,
+      "length": 3,
+      "line": 88,
+      "code": true
+    },
+    {
+      "address": 460,
+      "length": 2,
+      "line": 89,
+      "code": true
+    },
+    {
+      "address": 462,
+      "length": 3,
+      "line": 90,
+      "code": true
+    },
+    {
+      "address": 465,
+      "length": 3,
+      "line": 91,
+      "code": true
+    },
+    {
+      "address": 468,
+      "length": 3,
+      "line": 92,
+      "code": true
+    },
+    {
+      "address": 471,
+      "length": 3,
+      "line": 95,
+      "code": true
+    },
+    {
+      "address": 474,
+      "length": 2,
+      "line": 96,
+      "code": true
+    },
+    {
+      "address": 476,
+      "length": 3,
+      "line": 97,
+      "code": true
+    },
+    {
+      "address": 479,
+      "length": 3,
+      "line": 98,
+      "code": true
+    },
+    {
+      "address": 482,
+      "length": 2,
+      "line": 99,
+      "code": true
+    },
+    {
+      "address": 484,
+      "length": 2,
+      "line": 100,
+      "code": true
+    },
+    {
+      "address": 486,
+      "length": 2,
+      "line": 101,
+      "code": true
+    },
+    {
+      "address": 488,
+      "length": 3,
+      "line": 102,
+      "code": true
+    },
+    {
+      "address": 491,
+      "length": 3,
+      "line": 103,
+      "code": true
+    },
+    {
+      "address": 494,
+      "length": 3,
+      "line": 104,
+      "code": true
+    },
+    {
+      "address": 497,
+      "length": 1,
+      "line": 105,
+      "code": true
+    },
+    {
+      "address": 498,
+      "length": 2,
+      "line": 106,
+      "code": true
+    },
+    {
+      "address": 500,
+      "length": 3,
+      "line": 107,
+      "code": true
+    },
+    {
+      "address": 503,
+      "length": 2,
+      "line": 108,
+      "code": true
+    },
+    {
+      "address": 505,
+      "length": 2,
+      "line": 109,
+      "code": true
+    },
+    {
+      "address": 507,
+      "length": 3,
+      "line": 110,
+      "code": true
+    },
+    {
+      "address": 510,
+      "length": 1,
+      "line": 111,
+      "code": true
+    },
+    {
+      "address": 511,
+      "length": 2,
+      "line": 112,
+      "code": true
+    },
+    {
+      "address": 513,
+      "length": 2,
+      "line": 113,
+      "code": true
+    },
+    {
+      "address": 515,
+      "length": 3,
+      "line": 114,
+      "code": true
+    },
+    {
+      "address": 518,
+      "length": 3,
+      "line": 116,
+      "code": true
+    },
+    {
+      "address": 521,
+      "length": 3,
+      "line": 117,
+      "code": true
+    },
+    {
+      "address": 524,
+      "length": 3,
+      "line": 118,
+      "code": true
+    },
+    {
+      "address": 527,
+      "length": 1,
+      "line": 119,
+      "code": true
+    },
+    {
+      "address": 528,
+      "length": 3,
+      "line": 120,
+      "code": true
+    },
+    {
+      "address": 531,
+      "length": 3,
+      "line": 121,
+      "code": true
+    },
+    {
+      "address": 534,
+      "length": 3,
+      "line": 122,
+      "code": true
+    },
+    {
+      "address": 537,
+      "length": 2,
+      "line": 123,
+      "code": true
+    },
+    {
+      "address": 539,
+      "length": 3,
+      "line": 124,
+      "code": true
+    },
+    {
+      "address": 542,
+      "length": 3,
+      "line": 125,
+      "code": true
+    },
+    {
+      "address": 545,
+      "length": 2,
+      "line": 126,
+      "code": true
+    },
+    {
+      "address": 547,
+      "length": 3,
+      "line": 127,
+      "code": true
+    },
+    {
+      "address": 550,
+      "length": 1,
+      "line": 128,
+      "code": true
+    },
+    {
+      "address": 551,
+      "length": 2,
+      "line": 129,
+      "code": true
+    },
+    {
+      "address": 553,
+      "length": 3,
+      "line": 130,
+      "code": true
+    },
+    {
+      "address": 556,
+      "length": 3,
+      "line": 131,
+      "code": true
+    },
+    {
+      "address": 559,
+      "length": 2,
+      "line": 132,
+      "code": true
+    },
+    {
+      "address": 561,
+      "length": 1,
+      "line": 134,
+      "code": true
+    },
+    {
+      "address": 562,
+      "length": 1,
+      "line": 135,
+      "code": true
+    },
+    {
+      "address": 563,
+      "length": 2,
+      "line": 136,
+      "code": true
+    },
+    {
+      "address": 565,
+      "length": 1,
+      "line": 137,
+      "code": true
+    },
+    {
+      "address": 566,
+      "length": 1,
+      "line": 138,
+      "code": true
+    },
+    {
+      "address": 567,
+      "length": 2,
+      "line": 139,
+      "code": true
+    },
+    {
+      "address": 569,
+      "length": 3,
+      "line": 140,
+      "code": true
+    },
+    {
+      "address": 572,
+      "length": 2,
+      "line": 141,
+      "code": true
+    },
+    {
+      "address": 574,
+      "length": 3,
+      "line": 142,
+      "code": true
+    },
+    {
+      "address": 577,
+      "length": 2,
+      "line": 143,
+      "code": true
+    },
+    {
+      "address": 579,
+      "length": 3,
+      "line": 144,
+      "code": true
+    },
+    {
+      "address": 582,
+      "length": 1,
+      "line": 145,
+      "code": true
+    },
+    {
+      "address": 583,
+      "length": 3,
+      "line": 147,
+      "code": true
+    },
+    {
+      "address": 586,
+      "length": 2,
+      "line": 148,
+      "code": true
+    },
+    {
+      "address": 588,
+      "length": 1,
+      "line": 149,
+      "code": true
+    },
+    {
+      "address": 589,
+      "length": 1,
+      "line": 150,
+      "code": true
+    },
+    {
+      "address": 590,
+      "length": 3,
+      "line": 152,
+      "code": true
+    },
+    {
+      "address": 593,
+      "length": 2,
+      "line": 153,
+      "code": true
+    },
+    {
+      "address": 595,
+      "length": 2,
+      "line": 154,
+      "code": true
+    },
+    {
+      "address": 597,
+      "length": 3,
+      "line": 156,
+      "code": true
+    },
+    {
+      "address": 600,
+      "length": 1,
+      "line": 157,
+      "code": true
+    },
+    {
+      "address": 601,
+      "length": 1,
+      "line": 158,
+      "code": true
+    },
+    {
+      "address": 602,
+      "length": 1,
+      "line": 159,
+      "code": true
+    },
+    {
+      "address": 603,
+      "length": 1,
+      "line": 160,
+      "code": true
+    },
+    {
+      "address": 604,
+      "length": 2,
+      "line": 161,
+      "code": true
+    },
+    {
+      "address": 606,
+      "length": 3,
+      "line": 162,
+      "code": true
+    },
+    {
+      "address": 609,
+      "length": 1,
+      "line": 163,
+      "code": true
+    },
+    {
+      "address": 610,
+      "length": 1,
+      "line": 164,
+      "code": true
+    },
+    {
+      "address": 611,
+      "length": 3,
+      "line": 165,
+      "code": true
+    },
+    {
+      "address": 614,
+      "length": 3,
+      "line": 166,
+      "code": true
+    },
+    {
+      "address": 617,
+      "length": 3,
+      "line": 167,
+      "code": true
+    },
+    {
+      "address": 620,
+      "length": 2,
+      "line": 168,
+      "code": true
+    },
+    {
+      "address": 622,
+      "length": 1,
+      "line": 169,
+      "code": true
+    },
+    {
+      "address": 623,
+      "length": 2,
+      "line": 170,
+      "code": true
+    },
+    {
+      "address": 625,
+      "length": 3,
+      "line": 171,
+      "code": true
+    },
+    {
+      "address": 628,
+      "length": 3,
+      "line": 172,
+      "code": true
+    },
+    {
+      "address": 631,
+      "length": 2,
+      "line": 173,
+      "code": true
+    },
+    {
+      "address": 633,
+      "length": 3,
+      "line": 174,
+      "code": true
+    },
+    {
+      "address": 636,
+      "length": 3,
+      "line": 175,
+      "code": true
+    },
+    {
+      "address": 639,
+      "length": 2,
+      "line": 176,
+      "code": true
+    },
+    {
+      "address": 641,
+      "length": 2,
+      "line": 177,
+      "code": true
+    },
+    {
+      "address": 643,
+      "length": 1,
+      "line": 178,
+      "code": true
+    },
+    {
+      "address": 644,
+      "length": 1,
+      "line": 179,
+      "code": true
+    },
+    {
+      "address": 645,
+      "length": 3,
+      "line": 181,
+      "code": true
+    },
+    {
+      "address": 648,
+      "length": 3,
+      "line": 182,
+      "code": true
+    },
+    {
+      "address": 651,
+      "length": 3,
+      "line": 183,
+      "code": true
+    },
+    {
+      "address": 654,
+      "length": 2,
+      "line": 184,
+      "code": true
+    },
+    {
+      "address": 656,
+      "length": 2,
+      "line": 185,
+      "code": true
+    },
+    {
+      "address": 658,
+      "length": 3,
+      "line": 186,
+      "code": true
+    },
+    {
+      "address": 661,
+      "length": 3,
+      "line": 187,
+      "code": true
+    },
+    {
+      "address": 664,
+      "length": 3,
+      "line": 188,
+      "code": true
+    },
+    {
+      "address": 667,
+      "length": 2,
+      "line": 189,
+      "code": true
+    },
+    {
+      "address": 669,
+      "length": 1,
+      "line": 190,
+      "code": true
+    },
+    {
+      "address": 670,
+      "length": 1,
+      "line": 191,
+      "code": true
+    },
+    {
+      "address": 671,
+      "length": 1,
+      "line": 192,
+      "code": true
+    },
+    {
+      "address": 672,
+      "length": 1,
+      "line": 193,
+      "code": true
+    },
+    {
+      "address": 673,
+      "length": 3,
+      "line": 194,
+      "code": true
+    },
+    {
+      "address": 676,
+      "length": 1,
+      "line": 195,
+      "code": true
+    },
+    {
+      "address": 677,
+      "length": 1,
+      "line": 196,
+      "code": true
+    },
+    {
+      "address": 678,
+      "length": 1,
+      "line": 197,
+      "code": true
+    },
+    {
+      "address": 679,
+      "length": 1,
+      "line": 198,
+      "code": true
+    },
+    {
+      "address": 680,
+      "length": 2,
+      "line": 199,
+      "code": true
+    },
+    {
+      "address": 682,
+      "length": 3,
+      "line": 200,
+      "code": true
+    },
+    {
+      "address": 685,
+      "length": 1,
+      "line": 202,
+      "code": true
+    },
+    {
+      "address": 686,
+      "length": 1,
+      "line": 203,
+      "code": true
+    },
+    {
+      "address": 687,
+      "length": 1,
+      "line": 204,
+      "code": true
+    },
+    {
+      "address": 688,
+      "length": 1,
+      "line": 205,
+      "code": true
+    },
+    {
+      "address": 689,
+      "length": 1,
+      "line": 206,
+      "code": true
+    },
+    {
+      "address": 690,
+      "length": 3,
+      "line": 207,
+      "code": true
+    },
+    {
+      "address": 693,
+      "length": 1,
+      "line": 208,
+      "code": true
+    },
+    {
+      "address": 694,
+      "length": 2,
+      "line": 209,
+      "code": true
+    },
+    {
+      "address": 696,
+      "length": 2,
+      "line": 210,
+      "code": true
+    },
+    {
+      "address": 698,
+      "length": 2,
+      "line": 211,
+      "code": true
+    },
+    {
+      "address": 700,
+      "length": 2,
+      "line": 212,
+      "code": true
+    },
+    {
+      "address": 702,
+      "length": 2,
+      "line": 213,
+      "code": true
+    },
+    {
+      "address": 704,
+      "length": 1,
+      "line": 214,
+      "code": true
+    },
+    {
+      "address": 705,
+      "length": 2,
+      "line": 215,
+      "code": true
+    },
+    {
+      "address": 707,
+      "length": 3,
+      "line": 216,
+      "code": true
+    },
+    {
+      "address": 710,
+      "length": 3,
+      "line": 218,
+      "code": true
+    },
+    {
+      "address": 713,
+      "length": 3,
+      "line": 219,
+      "code": true
+    },
+    {
+      "address": 716,
+      "length": 3,
+      "line": 220,
+      "code": true
+    },
+    {
+      "address": 719,
+      "length": 3,
+      "line": 222,
+      "code": true
+    },
+    {
+      "address": 722,
+      "length": 3,
+      "line": 223,
+      "code": true
+    },
+    {
+      "address": 725,
+      "length": 3,
+      "line": 225,
+      "code": true
+    },
+    {
+      "address": 728,
+      "length": 3,
+      "line": 226,
+      "code": true
+    },
+    {
+      "address": 731,
+      "length": 3,
+      "line": 227,
+      "code": true
+    },
+    {
+      "address": 734,
+      "length": 4,
+      "line": 228,
+      "code": true
+    },
+    {
+      "address": 738,
+      "length": 1,
+      "line": 229,
+      "code": true
+    },
+    {
+      "address": 739,
+      "length": 4,
+      "line": 230,
+      "code": false
+    },
+    {
+      "address": 763,
+      "length": 4,
+      "line": 231,
+      "code": false
+    },
+    {
+      "address": 866,
+      "length": 4,
+      "line": 232,
+      "code": false
+    },
+    {
+      "address": 898,
+      "length": 4,
+      "line": 233,
+      "code": false
+    },
+    {
+      "address": 953,
+      "length": 4,
+      "line": 234,
+      "code": false
+    },
+    {
+      "address": 991,
+      "length": 4,
+      "line": 235,
+      "code": false
+    },
+    {
+      "address": 1016,
+      "length": 4,
+      "line": 236,
+      "code": false
+    },
+    {
+      "address": 1059,
+      "length": 4,
+      "line": 237,
+      "code": false
+    },
+    {
+      "address": 1119,
+      "length": 4,
+      "line": 238,
+      "code": false
+    },
+    {
+      "address": 1170,
+      "length": 4,
+      "line": 239,
+      "code": false
+    },
+    {
+      "address": 1211,
+      "length": 4,
+      "line": 240,
+      "code": false
+    },
+    {
+      "address": 1255,
+      "length": 4,
+      "line": 241,
+      "code": false
+    },
+    {
+      "address": 1266,
+      "length": 4,
+      "line": 243,
+      "code": false
+    },
+    {
+      "address": 1282,
+      "length": 2,
+      "line": 244,
+      "code": false
+    },
+    {
+      "address": 1284,
+      "length": 1,
+      "line": 245,
+      "code": false
+    }
+  ],
+  "symbols": []
+}

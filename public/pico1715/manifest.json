@@ -21,7 +21,25 @@
     "platform.bin": "b42f77854d910e106a4927f992e725df7fbb2077a90d8e7b3315798a095ed645",
     "CPM-NOTICE.md": "63af88431bcb417952dc604af3e3c980250568507003f6c48a5f5705aec0eb46",
     "CPM-LICENSE.md": "4db276dbc6ee71ff1c9e4826ea52c1ac4f6eac6f64a11e517a660fe0ca14d1a3",
-    "JUKU-LICENSE": "dc74ca17f83a020b3fec5b966e1f26188f1f16b800be6b093fc676bc43e0947c"
+    "JUKU-LICENSE": "dc74ca17f83a020b3fec5b966e1f26188f1f16b800be6b093fc676bc43e0947c",
+    "platform.source.json": "2c7a366a0ebb26e41d38bef30749f0b6446c6171960ba14b0c58577eb04494f6",
+    "diagnostics.source.json": "65afe08e3e254801401aa63e952398610b2d7f1451d235d09c9fc30d7299b108",
+    "diagnostics.bin": "258890fbb8612d894e8e92b69bb914244fd5cc5ea7a637be99e24772fc9273be"
   },
+  "source_profiles": [
+    {
+      "id": "platform",
+      "label": "CP/M platform services",
+      "map": "platform.source.json",
+      "binary": "platform.bin"
+    },
+    {
+      "id": "diagnostics",
+      "label": "P1715TST portable diagnostics",
+      "map": "diagnostics.source.json",
+      "binary": "diagnostics.bin"
+    }
+  ],
+  "source_map_generator_sha256": "5b96777533ad14777c5a249acea3913568b8ff10972893e7119f601b10371a15",
   "cpm": "12df4d059fb83c4d55426aef6cf7746301e06511"
 }
