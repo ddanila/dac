@@ -569,6 +569,15 @@ that only the predecessor gate and logical limit change in capture. The native
 gate build outputs match their receipts. Capture and complete review remain
 pending; the 665-MB initialized output estimate is not a growth bound.
 
+Arithmetic recovery is queued behind the exact gate process identity. Its
+predecessor check requires complete comparisons, firmware equality, every gate
+observation, all five gate faults and bounded receipts. Reviewed gate evidence
+uses the separate `gate-board-reviewed` destination. Arithmetic preserves the
+3,300-second timeout and 256-MiB compressed cap with a 28-GiB logical cap. Four
+recovery/budget tests pass; native bridge/runtime outputs match build receipts.
+The 1.31-GB initial-state estimate is not a growth bound, and complete arithmetic
+capture/review remains pending.
+
 The waiting recovery jobs were replaced before capture to avoid a retention-path
 collision: existing `wire-board-budget`, `signal-board-budget` and
 `mux-board-budget` directories contain initialized-state evidence. Full reviewed

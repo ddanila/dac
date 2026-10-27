@@ -310,8 +310,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    `mux-board-reviewed` before gate capture. Gate limits are 24 GiB logical,
    256 MiB compressed and the unchanged 3,300-second per-run timeout; the
    665-MB initialized gate-output projection is not a growth bound. Four
-   recovery/budget tests pass. Gate capture remains pending; stages beyond gate
-   remain stopped pending their reviewed predecessors. Audit admitted modules before relying
+   recovery/budget tests pass. Gate capture remains pending. Arithmetic recovery
+   is now queued behind the exact gate process identity: `gate_recovery_gate.py`
+   requires complete comparisons, firmware equality, every gate observation,
+   all five gate faults and bounded receipts before retaining `gate-board-reviewed`.
+   Arithmetic uses a 28-GiB logical cap with unchanged 256-MiB compressed cap and
+   3,300-second timeout. Its 1.31-GB initial-state output estimate is not a growth
+   bound. Four recovery/budget tests pass; capture and review remain pending.
+   Stages beyond arithmetic remain stopped pending reviewed predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
