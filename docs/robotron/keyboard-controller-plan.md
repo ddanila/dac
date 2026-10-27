@@ -60,10 +60,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    New allocations need full rows. Changed-state fixture differences exceed dense
    images, so measure operational cost before setting capture limits. Preserve
    legacy topology/filter checks and queued/executing wrapper lifetime bindings.
-   Implement scheduled vector-8 payload coverage under the
-   [source ownership contract][island-raw-contract]; assignments own separate raw
-   vectors. Require raw-collision faults, native admission and original continuation
-   controls before combined integration. Preserve the
+   Integrate scheduled vector-8 payloads under the
+   [source ownership contract][island-raw-contract], preserving the
+   [native raw-assignment controls][assignment-raw] for pending and executing
+   ownership, raw-collision faults, destination ports and original continuation.
+   Add native subclass-refusal and nested-execution controls before combined
+   integration; measure operational storage and runtime costs. Preserve the
    [source-extracted switch-helper controls][strength-switch] while qualifying
    actual island dispatch and other producers; helper closure alone does not
    establish complete state coverage. Keep running
@@ -417,3 +419,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [island-raw-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-delta-families/assessment.json
 
 [island-raw-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-board-budget/assessment.json
+
+[assignment-raw]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/assignment-raw/assessment.json
