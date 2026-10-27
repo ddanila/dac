@@ -31,8 +31,8 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
 
 ### Combined simulator acceptance
 
-1. **Finish combined board validation.** Qualify allocated net/fanout state and lossless wire payloads
-   together, preserving the [passing compact-array board controls][array-board]
+1. **Finish combined board validation.** Integrate lossless wire payloads with the [passing combined net/fanout controls][net-board],
+   preserving the [passing compact-array board controls][array-board]
    and [combined code-operand controls][code-operand-board]
    and [scope membership controls][scope-board] alongside PC-binding, wait-event, thread/scheduler,
    island/filter/queue, primitive/assignment, callback, port and wrapper/stop/display
@@ -546,3 +546,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [postreset-retention]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-retained-stream/review.json
 
 [i8282-slew]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/i8282-slew-candidates/assessment.json
+
+[net-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/net-board/assessment.json
