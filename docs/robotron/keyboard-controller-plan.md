@@ -31,9 +31,11 @@ other tracks.
    island/filter/queue, primitive/assignment, callback, port and wrapper/stop/display
    controls. Validate complete scope hierarchy, empty scopes and actual membership;
    live-thread identity alone does not establish membership.
-2. **Close reachable payload gaps.** Qualify unsupported-family refusal, board
-   bindings and capture budgets for the [native signal controls][signal-state],
-   then integrate them under the [signal ownership contract][signal-contract].
+2. **Close reachable payload gaps.** Integrate the [native signal controls][signal-state]
+   under the [signal ownership contract][signal-contract], preserving the tested
+   [unsupported-family refusals][signal-families]. Use the [board signal budget][signal-budget]
+   to budget or losslessly reduce output before combined capture; validate operational
+   bindings, state growth and actual capture/review cost.
    Cover mux/gate/arithmetic and resolver caches. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
@@ -191,3 +193,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-board/assessment.json
 
 [signal-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-state/assessment.json
+
+[signal-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-families/assessment.json
+[signal-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-board-budget/assessment.json
