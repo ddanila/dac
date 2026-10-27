@@ -36,8 +36,8 @@ other tracks.
    [unsupported-family refusals][signal-families]. Use the [validated signal deltas][signal-delta]
    and [measured delta budget][signal-delta-budget], then validate operational bindings,
    state growth and actual combined capture/review cost.
-   Qualify direct partial-vector mux dispatch, measure board costs and integrate
-   the [native mux controls][mux-state]. Cover remaining gate caches and scheduler
+   Measure board costs and integrate the [native mux controls][mux-state]
+   and [direct partial-vector controls][mux-partial]. Cover remaining gate caches and scheduler
    bindings under the [logic ownership contract][logic-contract]; retain class/graph
    bindings for stateless BUFZ/BUFT without inventing payload fields. Arithmetic
    and resolver caches remain open. Cover callback and array-word list contents beyond observed
@@ -206,3 +206,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [logic-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/logic-source-contract/assessment.json
 
 [mux-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-state/assessment.json
+
+[mux-partial]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-partial/assessment.json
