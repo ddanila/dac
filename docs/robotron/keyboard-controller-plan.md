@@ -52,9 +52,11 @@ other tracks.
    widths must remain equal. Preserve the [native subclass refusals][gate-families]
    when admitting board classes; retain class/graph bindings for
    stateless BUFZ/BUFT without inventing payload fields. Bind the
-   [native arithmetic/comparison controls][arithmetic-state] to the board profile,
-   preserve [unsupported-family refusals][arithmetic-families], and measure full-scan
-   output/runtime before integration. Extend width and allocation-path qualification.
+   [native arithmetic/comparison controls][arithmetic-state] at operational board boundaries,
+   preserving the [initial class/width bindings][arithmetic-budget] and
+   [unsupported-family refusals][arithmetic-families]. Implement lossless differences
+   with full native scans and dense-image reconstruction before integration; the
+   dense initial-state projection is not an operational storage bound. Extend width and allocation-path qualification.
    Implement reduction and concatenation observers under the
    [expression ownership contract][expression-contract], preserving reduction
    partial-write history and concat8 strengths. Qualify native field faults and
@@ -259,3 +261,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [arithmetic-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-state/assessment.json
 [arithmetic-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-families/assessment.json
+
+[arithmetic-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-board-budget/assessment.json
