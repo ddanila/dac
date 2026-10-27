@@ -51,11 +51,14 @@ other tracks.
    AND/OR discontinuity outside board admission until corrected; current cached
    widths must remain equal. Preserve the [native subclass refusals][gate-families]
    when admitting board classes; retain class/graph bindings for
-   stateless BUFZ/BUFT without inventing payload fields. Implement arithmetic,
-   comparison, reduction and concatenation observers under the
-   [expression ownership contract][expression-contract]. Preserve reduction caches
-   across partial writes, arithmetic Z-filled partial expansion and concat8
-   strengths; qualify native field faults and continuation before board integration.
+   stateless BUFZ/BUFT without inventing payload fields. Bind the
+   [native arithmetic/comparison controls][arithmetic-state] to the board profile,
+   preserve [unsupported-family refusals][arithmetic-families], and measure full-scan
+   output/runtime before integration. Extend width and allocation-path qualification.
+   Implement reduction and concatenation observers under the
+   [expression ownership contract][expression-contract], preserving reduction
+   partial-write history and concat8 strengths. Qualify native field faults and
+   continuation before board integration.
    Resolver caches remain open. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
@@ -253,3 +256,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [gate-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-growth/assessment.json
 
 [expression-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/expression-source-contract/assessment.json
+
+[arithmetic-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-state/assessment.json
+[arithmetic-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-families/assessment.json
