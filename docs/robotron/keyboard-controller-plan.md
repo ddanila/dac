@@ -23,6 +23,12 @@ other tracks.
 | 3. CPU/bus and device models | Replace candidates that fail published operating guarantees with explicitly constrained alternatives. Resolve the Intel I8282 enable-measurement convention and constrain internal switching/disconnect delays against the existing loaded propagation, release and capacitance budgets. Do not transfer the NEC comparison thresholds to Intel. Distinguish CPU/ROM alternatives using independent I/V and switching constraints before integration. Preserve source test conditions and validate independent conditions where available; static endpoint agreement does not establish dynamics or specimen calibration. |
 | 4. Longer capture qualification | Establish runtime, memory and retained-evidence budgets for longer streaming captures, using explicit log caps. Preserve every sample comparison and enough evidence to review failures. Raw hashes alone do not provide waveform replay. |
 
+Use the core's `analog/postreset_drain_capture.py` and
+`analog/postreset_drain_review.py` for full post-reset drain qualification.
+Keep the exact-tick-only control separate from the drain-enabled refinements;
+the producer requires the retained bounded drain assessment and preserves the
+complete ADC-enabled window. A completed capture is not a passing convergence gate.
+
 ### Combined simulator acceptance
 
 1. **Finish combined board validation.** Review typed code operands, compact arrays, allocated net/fanout state and
