@@ -122,7 +122,14 @@ fields and ordered bits with constructor registration and deferred-resolution
 readiness tracking. Two rounds distinguish order/name mutations, refuse four
 malformed vectors without output, restore exactly and preserve original HDL
 continuation. Two nonnull net bindings and three tests pass. Further field faults,
-early-resolution/subclass/lifecycle cases and actual board coverage remain open.
+early-resolution/subclass/lifecycle cases and operational board coverage remain
+open. The [initialized board port budget][port-payload-budget] binds all 317 ports
+and 875 bits to compiled names/directions/widths/indices/order and independent
+scope ownership. Complete images remain unchanged. All board port net references
+are null, leaving nonnull coverage to the native fixture. The 43,756-byte image
+and 0.6085-ms local mean scan project to 4.83 GB and 67.1 seconds over the earlier
+snapshot count, excluding changing state and other observers. Three tests pass;
+compact storage and operational integration remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -671,3 +678,5 @@ and the reason for changing its interpretation.
 [port-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-referents/assessment.json
 
 [port-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload/assessment.json
+
+[port-payload-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-board-budget/assessment.json

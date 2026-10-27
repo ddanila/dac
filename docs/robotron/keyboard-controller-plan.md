@@ -85,7 +85,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    the [guarded port payload controls][port-payload]: native allocation/readiness
    tracking, bounded names, ordered bits, nonnull net bindings and zero-output
    malformed-vector refusals. Qualify remaining field/subclass/lifecycle cases
-   and actual board coverage/cost before integration. Audit admitted modules before
+   and actual board coverage/cost before integration. Preserve the
+   [initialized board port bindings and budget][port-payload-budget]: all 317
+   ports and 875 bits match compiled declarations and independent scope owners.
+   Dense repetition projects to 4.83 GB; qualify compact storage and changing
+   state before adding this layer to the operational campaign. Audit admitted modules before
    relying on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -624,3 +628,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [port-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-referents/assessment.json
 
 [port-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload/assessment.json
+
+[port-payload-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-board-budget/assessment.json
