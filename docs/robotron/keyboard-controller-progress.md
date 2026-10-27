@@ -106,10 +106,13 @@ Private state between and after the selected snapshots, ordinary deletion/reuse
 and general rollback remain unqualified.
 
 The full post-reset finest capture has completed; the original drain driver is
-capturing its forced-retry control. An independent three-level refinement
-diagnostic is running, tracked by
-`build/keyboard-controller-analog/postreset-drain-diagnostic-job.json`. Both
-the numerical diagnostic and original full-campaign acceptance remain pending.
+capturing its forced-retry control. The independent three-level diagnostic
+completed and failed the unchanged non-growth gate on five signals despite
+matching firmware and sub-10-mV errors. Evidence metadata is retained in
+`analog/reports/postreset-drain-refinements`; waveform/log archives remain local.
+The original full campaign review remains pending. Retained neighboring samples
+exactly reproduce all ten reported maxima; five metadata/witness/tamper tests
+pass. The discrepancy cause remains unresolved.
 
 ## Functional release
 

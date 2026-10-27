@@ -574,11 +574,17 @@ unobserved lifetimes, ordinary deletion/reuse and general rollback remain open.
 
 The 12.5-ns and 6.25-ns drain captures completed in 8,291 and 8,504 seconds,
 respectively; the original driver is capturing the 25-ns forced-retry control.
-An independent `analog/postreset_drain_refinement_diagnostic.py` now reviews all
-three completed levels over the full 1.16-ms window with the unchanged 10-mV/
-non-growth gate and firmware comparisons. Its result is pending. This diagnostic
-does not replace the original full review of disabled, exact-tick, output-drain
-and retry effects, or establish full-repeat/supply/rollback qualification.
+The [complete drain refinement diagnostic][drain-refinement-diagnostic] fails the
+unchanged non-growth gate over the full 1.16-ms window. Firmware records match
+and every voltage error remains below 10 mV, but errors grow on D1, D2, D3, D5
+and WR. D3 grows from 0.548 to 0.621 mV; the WR maximum is about 28 nV. Do not
+waive the non-growth requirement. Metadata, receipts and local archive identities
+are retained; full waveform/log archives remain local and hashes do not replace
+replay. Five metadata/witness/tamper tests pass. Retained neighboring samples
+exactly reproduce all ten maxima; brackets span 0.46–11.47 ps, with the data-line
+witnesses on falling edges. These witnesses do not establish a cause or justify
+waiving the gate. The original full disabled/timing/retry review remains
+pending; full-repeat, supply recovery and rollback qualification remain open.
 
 All eight bounded wire captures completed. The [receipt-backed cost report][wire-capture-cost]
 records 9,799,026,287 logical bytes and 5,891,260 compressed bytes for enabled
@@ -1275,3 +1281,5 @@ and the reason for changing its interpretation.
 [parameter-late-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-late-class/assessment.json
 
 [parameter-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-continue-controls/assessment.json
+
+[drain-refinement-diagnostic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-refinements/assessment.json
