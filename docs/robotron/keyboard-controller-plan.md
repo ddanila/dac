@@ -40,8 +40,9 @@ other tracks.
    [direct partial-vector controls][mux-partial-delta], using the
    [full-scan budget][mux-delta-budget]. Measure actual changed-state output and
    combined cost: changed fixture images can exceed dense encoding. Preserve
-   full native scans and queued/executing wrapper identities; qualify newly
-   allocated muxes natively as well as in decoder controls. Cover remaining gate caches and scheduler
+   full native scans, queued/executing wrapper identities and the
+   [native post-reference allocation controls][mux-growth]. Validate operational
+   class/allocation changes against the admitted board profile. Cover remaining gate caches and scheduler
    bindings under the [logic ownership contract][logic-contract]; retain class/graph
    bindings for stateless BUFZ/BUFT without inventing payload fields. Arithmetic
    and resolver caches remain open. Cover callback and array-word list contents beyond observed
@@ -219,3 +220,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [mux-partial-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-partial-delta/assessment.json
 
 [mux-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-delta-budget/assessment.json
+
+[mux-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-growth/assessment.json
