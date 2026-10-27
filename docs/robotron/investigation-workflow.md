@@ -1,5 +1,38 @@
 # Simulation-to-bench investigations
 
+## Record and replay an experiment
+
+Enable **Record next session from power-on** before starting the classic machine.
+The worker records input, reset, capture and disk-export operations at their applied
+CPU clocks. **Record checkpoint** hashes registers, RAM, text memory, the disk
+image and diagnostics without flushing pending writes. Recording is bounded to
+120 simulated seconds and 10,000 actions; exceeding either invalidates export.
+
+**Export investigation** downloads a `.p1715investigation` JSON archive. Initial
+ROM/disk bytes are omitted unless **Include initial ROM and disk** is selected.
+Completed capture bytes and their metadata are included when available. The file
+can therefore contain observed ROM bytes even when the full initial ROM is omitted.
+Review the input-inclusion choice before sharing private media.
+
+Open the bundle, power off, then choose **Replay from boot**. Referenced inputs
+must match their hashes or be explicitly included in the bundle. Replay verifies
+the JavaScript and WASM engine identities, finishes paused and stops at the first
+checkpoint mismatch. **Replay until** can select an earlier checkpoint; this
+reruns from boot rather than restoring an incomplete machine snapshot. Cancel
+leaves the partially replayed machine paused. Editing is disabled during replay.
+
+The analyzer also imports and exports these bundles, including both captures,
+metadata, assertion rules, cursor ranges and reports. Analyzer-only bundles are
+view-only. Original reports survive export separately; run assertions again for
+fresh results. Inputs are not executed merely by importing an archive. Both file
+names and contents are validated, with a 128 MiB decoded archive limit.
+
+Native replay uses Pico1715's `tools/browser/replay.mjs`. Explicit engine rebinding
+requires the same clean source revisions and records both identities. See
+[experiment format and CLI](https://github.com/ddanila/Pico1715/blob/main/docs/experiments.md).
+
+## Capture and analyze
+
 The classic workstation's **Bus capture → analyzer** controls use the same passive
 cycle encoder RTL as the native capture oracle. Both controller-model and shared
 firmware/RTL backends support manual capture, capture-from-reset, stop, release,

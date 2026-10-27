@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 import {mountCapturePanel} from './pico1715-capture.js';
+import {mountExperimentPanel} from './pico1715-experiment-panel.js';
 import {digest,checkedRecord,saveRecord,stored} from './session-store.js';
 export function createPico1715Panel({screen,scene,debug,onPower}){
  const $=id=>document.getElementById(id),panel=document.createElement('section');panel.id='pico1715-panel';panel.hidden=true;
@@ -45,7 +46,7 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
    $('p1715-media').textContent=label;
   }finally{loading=false;controls();}
  }
- function stopWorker(){capture?.closed();generation++;worker?.terminate();worker=undefined;for(const p of requests.values())p.reject(Error('Session closed.'));requests.clear();}
+ function stopWorker(){capture?.closed();experiments?.closed();generation++;worker?.terminate();worker=undefined;for(const p of requests.values())p.reject(Error('Session closed.'));requests.clear();}
  async function snapshot(off=false){
   if(!worker)return {bytes:disk.slice(0),writes:lastWrites};
   const id=++serial;return new Promise((resolve,reject)=>{requests.set(id,{resolve,reject});send({type:off?'off':'export',id});});
@@ -59,8 +60,18 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
   finally{saving=false;controls();}
  }
  const capture=mountCapturePanel(panel,send,()=>!!worker,status);
+ const experiments=mountExperimentPanel(panel,{send,status,available:()=>!!worker,inputs:()=>({rom:rom.slice(0),disk:disk.slice(0)}),tools:async()=>{
+  if(!manifest)throw Error('Wait for demo assets.');const url=new URL('experiment.mjs',base);url.searchParams.set('sha256',manifest.sha256['experiment.mjs']);return import(/* @vite-ignore */url.href);
+ },startReplay:async loaded=>{
+  if(on||loading||saving)throw Error('Power off before replay.');if(!loaded)throw Error('Open an investigation first.');
+  const e=loaded.experiment,r=loaded.files.find(f=>f.name==='initial.rom')?.bytes,d=loaded.files.find(f=>f.name==='initial.img')?.bytes;
+  const nextRom=r?r.slice().buffer:rom,nextDisk=d?d.slice().buffer:disk;
+  if(await digest(nextRom)!==e.rom_sha256||await digest(nextDisk)!==e.disk_sha256)throw Error('Missing matching initial inputs; load the ROM and disk identified by this investigation.');
+  rom=nextRom;disk=nextDisk;original=nextDisk.slice(0);$('p1715-backend').value=e.backend;$('p1715-write').checked=e.writable;await identity();await power(e);
+ }});
  function receive(d){
   capture.receive(d);
+  experiments.receive(d);
   if(d.type==='power'){on=d.on;loading=false;onPower(on);controls();status(on?'Running. Click the screen to type.':'Powered off.');}
   if(d.type==='frame'){
    screen.width=800;screen.height=480;ctx.fillStyle='#101812';ctx.fillRect(0,0,800,480);ctx.font='16px monospace';ctx.fillStyle='#83e7a0';ctx.textBaseline='top';
@@ -80,7 +91,7 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
    if(d.type==='fatal'||d.stopped||loading){loading=false;on=false;onPower(false);stopWorker();controls();}
   }
  }
- async function power(){
+ async function power(experiment){
   if(loading||saving)return;
   if(on){await save(false,true);stopWorker();on=false;onPower(false);controls();status('Powered off; accepted writes saved.');return;}
   if(!rom)return;
@@ -89,7 +100,8 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
   worker.onmessage=({data})=>{if(epoch===generation)receive(data);};
   worker.onerror=e=>{e.preventDefault();if(epoch===generation)receive({type:'fatal',message:e.message||'Simulator worker failed.'});};
   debug({type:'configured'});lastWrites=0;lastChange=0;dirty=false;writable=$('p1715-write').checked;
-  send({type:'init',backend:backend(),base:base.href,rom,disk,writable,keyboardMap,platformCode,build:manifest});send({type:'speed',value:Number($('p1715-speed').value)});send({type:'visibility',hidden:document.hidden});
+  experiments.started();send({type:'init',backend:backend(),base:base.href,rom,disk,writable,keyboardMap,platformCode,build:manifest,record:!experiment&&experiments.recording(),experiment});
+  if(!experiment){send({type:'speed',value:Number($('p1715-speed').value)});send({type:'visibility',hidden:document.hidden});}
  }
  const action=(id,fn)=>$(id).onclick=()=>Promise.resolve().then(fn).catch(e=>status(e.message));
  action('p1715-demo',demo);action('p1715-export',()=>save(true));

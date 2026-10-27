@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "abi": 2,
-  "pico": "dcfd610aa97edf097c2d8b33b4c7c0da11ea0c03",
+  "pico": "cfb295a86d993d35279cecc20a713bb6b8caf448",
   "dac": "98f8f808c08ce21f6b98a00b95185f1e2226e70d",
   "dirty": false,
   "compiler": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 4.0.23 (7a5d93b50f6a3a35e85a0d2fc9e667b8498e6aed)",
@@ -9,6 +9,7 @@
   "sha256": {
     "pico1715-firmware.wasm": "bab33a723e74315691f187f5ec6ba08eb0b05b1610465f9f1c85709132236634",
     "pico1715-firmware.mjs": "68a0ba8e901f533f857acb6922a7ae8af330ed2fec7ef494d786a1499cea7c81",
+    "experiment.mjs": "14b8a9528d524ead500eb8750e4ba541a9532c74fdd55ba57dfc2bf946928279",
     "chips-LICENSE": "0c692ece632a8ec6d2a566c9234fdabda655644e6abc70027da9ff7c35e48634",
     "pico1715-model.wasm": "62ced111f2488c877a5820717dd8488646361d3d2ba98f5255272c75ca30c43f",
     "verilator-LICENSE": "c99001e5f7806a40b17a3f555ab464e4739527e43fef9745a455b83132aab97f",
