@@ -31,9 +31,10 @@ other tracks.
    island/filter/queue, primitive/assignment, callback, port and wrapper/stop/display
    controls. Validate complete scope hierarchy, empty scopes and actual membership;
    live-thread identity alone does not establish membership.
-2. **Close reachable payload gaps.** Observe initialized signal storage under the
-   [signal ownership contract][signal-contract], then mux/gate/arithmetic and
-   resolver caches. Cover callback and array-word list contents beyond observed
+2. **Close reachable payload gaps.** Qualify unsupported-family refusal, board
+   bindings and capture budgets for the [native signal controls][signal-state],
+   then integrate them under the [signal ownership contract][signal-contract].
+   Cover mux/gate/arithmetic and resolver caches. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -188,3 +189,5 @@ Source drawings and photo locators belong in the CAD evidence manifests linked
 from the [workflow guide](keyboard-controller-progress.md#authoritative-artifacts).
 
 [scope-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-board/assessment.json
+
+[signal-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-state/assessment.json
