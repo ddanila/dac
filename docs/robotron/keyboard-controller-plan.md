@@ -278,7 +278,15 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    and original HDL continuation remain intact; supported allocation growth
    regresses successfully on the same runtime. Three evidence tests pass.
    Destruction/reuse, compact refusal transport and operational board admission/
-   cost remain separate.
+   cost remain separate. A new `build_parameter_late_refusal_bridge.py` candidate
+   exercises unsupported binary/real/string allocation after 5 us through the
+   complete snapshot path. Direct and combined inventories must refuse both
+   immediately and after 6 us, without changing compact-cache pointer identities
+   or sequence counters; ordinary execution continues to 20 us. The three
+   `parameter_late_refusal_capture.py` controls are running on the retained
+   late-class runtime. Two source/build checks pass. Complete six-stream,
+   native-binding, waveform and firmware review remains outstanding; these
+   captures do not yet qualify compact refusal transport or post-refusal state.
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
    inventory for binary/wide/real/string parameters in two rounds. All 16 calls
