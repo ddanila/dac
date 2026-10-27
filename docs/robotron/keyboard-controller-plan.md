@@ -61,7 +61,8 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    preserve [competing-driver and resistive-dispatch controls][island-raw-competing].
    Preserve [conditional-switch controls][island-raw-conditional] for imported enables;
    preserve [part-select routing controls][island-raw-partselect] for unequal widths and
-   offsets across storage boundaries. Extend native dispatch coverage to feedback-driven enables. Scheduled assignments own
+   offsets across storage boundaries. Preserve [feedback-enable controls][island-raw-feedback],
+   including intermediate outputs and history-dependent branch reevaluation, during compact integration. Scheduled assignments own
    separate raw vectors; generic island wrappers require pointer/lifetime bindings.
    Require raw-collision faults, native admission and original continuation controls
    before compact/combined integration; preserve filter and topology checks. Preserve the
@@ -419,3 +420,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [island-raw-conditional]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-conditional/assessment.json
 
 [island-raw-partselect]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-partselect/assessment.json
+
+[island-raw-feedback]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-feedback/assessment.json
