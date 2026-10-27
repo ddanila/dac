@@ -226,7 +226,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Diagnostic binary/string/real factory subclasses retain base VPI behavior but
    refuse complete parameter observation before output, twice per family.
    Original/disabled/enabled continuation and the 16-field regression pass.
-   Qualify lifecycle changes and operational board integration of this guard. Preserve the
+   Preserve the [initialized parameter-class board regression][parameter-class-board]:
+   all 56 parameters and their compiled values/owners match on the exact runtime
+   used by class and field-fault fixtures; memory and preceding initial bindings
+   remain intact. Three evidence/rejection tests pass. Qualify lifecycle changes
+   and full transient integration of this guard. Preserve the
    [initialized board parameter fault controls][parameter-board-faults]: seven
    isolated changes reject compiled bindings and three invalid fields refuse
    before output, twice, with 20 exact restorations across all 56 parameters.
@@ -874,3 +878,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-continue-controls/assessment.json
 
 [parameter-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class/assessment.json
+
+[parameter-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class-board/assessment.json

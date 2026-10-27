@@ -465,6 +465,16 @@ That 16-field suite passes with 32 exact restorations on the new runtime. Three
 retained-evidence/rejection tests pass. Ordinary parameter lifetime changes and
 operational board integration of this registration guard remain open.
 
+The [initialized parameter-class board regression][parameter-class-board] binds
+all 56 actual board parameters, 1,386 logical bits and 56 raw word pairs on the
+new registration-guard runtime. Native scope owners and independent compiled
+names, flags, source metadata and values agree. The three memory/array bindings,
+23 read ports and preceding initial signal/port checks also pass. Every runtime
+output matches the retained parameter class and 16-field fault fixtures; the
+memory handle-layout witness uses the same runtime. Three tests verify retained
+semantic replay and reject mismatched native source or missing subclass refusal
+evidence. This is tick-zero integration, not full transient qualification.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -1117,3 +1127,5 @@ and the reason for changing its interpretation.
 [memory-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-continue-controls/assessment.json
 
 [parameter-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class/assessment.json
+
+[parameter-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class-board/assessment.json
