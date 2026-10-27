@@ -156,6 +156,19 @@ scope artifacts with exact file identities before capture. This is not a second
 semantic replay. Normal transient port execution, later-boundary faults and
 lifecycle coverage remain unqualified until the corresponding evidence passes.
 
+The [remaining scope payload counterexamples][scope-payload-gaps] demonstrate
+three additional omissions: signedness on an unadmitted signal, binary parameter
+bits and memory names. Each changes native VPI results while complete scope,
+scope-reference, admitted-signal, port and array images stay byte-identical.
+Two rounds restore all mutations and preserve original/disabled/enabled HDL
+continuation; four tests pass. This compares five observer families, not the
+entire combined state, and does not establish ordinary board mutation. The
+[source contract][scope-payload-contract] identifies allocation, union-arm,
+bounded-name, parameter-value and memory-binding requirements. The earlier board
+census leaves 633 signal handles, 56 parameters and three memories outside the
+bridge-signal and port bindings. Existing array value coverage remains useful;
+these counters do not imply that all their payloads were wholly unobserved.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -711,3 +724,6 @@ and the reason for changing its interpretation.
 [port-payload-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-faults/assessment.json
 
 [port-payload-fault-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-fault-preflight/assessment.json
+
+[scope-payload-gaps]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/assessment.json
+[scope-payload-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/source-contract.json

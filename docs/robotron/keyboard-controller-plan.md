@@ -105,8 +105,18 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    validation; the predecessor must include both normal comparisons, all faults
    and complete compact reconstruction at every boundary. Require the port
    campaign's own full waveform/firmware comparisons and semantic replay before
-   accepting operational qualification. Audit admitted modules before
-   relying on initialization-only invariants. Keep the running campaigns pinned
+   accepting operational qualification. Close the remaining
+   [scope-owned payload gaps][scope-payload-gaps]: unadmitted signal signedness,
+   binary parameter bits and memory names change VPI results while the five
+   tested scope/reference/signal/port/array images remain identical. The earlier
+   initialized board census leaves 633 signal handles, 56 parameters and three
+   memories outside the bridge-signal and port bindings; existing array contents
+   coverage does not cover every memory field. Follow the
+   [remaining payload source contract][scope-payload-contract]: register exact
+   initialized families before dereference, join all scope objects to native
+   payloads, capture bounded names/values/metadata, and qualify lazy caches and
+   lifetime changes. Audit admitted modules before relying on initialization-only
+   invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
    [strength-encoding loss][strength-encoding]: logical-value/strength triplets
@@ -652,3 +662,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [port-payload-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-faults/assessment.json
 
 [port-payload-fault-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-fault-preflight/assessment.json
+
+[scope-payload-gaps]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/assessment.json
+[scope-payload-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/source-contract.json
