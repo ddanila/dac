@@ -435,7 +435,16 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    to 52 GiB; all fault modes, the 3,300-second timeout, 256-MiB compressed cap and
    full original reviewer remain unchanged. Four tests and all candidate output
    hashes pass. This ceiling is not a measured growth bound; assignment capture
-   and complete review are pending. Later stages remain stopped pending predecessors.
+   and complete review are pending. Callback-list recovery is queued behind the
+   exact raw-assignment process identity. Its gate requires complete predecessor
+   comparisons, pending/raw-assignment lifetimes and payload observations, all
+   three startup fault boundaries, and bounded receipts before retaining
+   `raw-assignment-board-reviewed`. The six callback controls retain all four
+   original faults and the unchanged complete reviewer; startup-only preflight
+   receipts cannot pass. Only the prerequisite and logical-log ceiling change
+   (56 GiB); the 3,300-second timeout and 256-MiB compressed cap remain. Four tests
+   and candidate hashes pass. Capture, full review and actual cost measurement
+   remain pending; later stages remain stopped pending predecessors.
    Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
