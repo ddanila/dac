@@ -105,8 +105,9 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    output-node bindings. Use the [full-scan compact budget][concat-delta-budget] to preflight capture
    limits, then measure combined changing-state cost. New allocations require full
    records and can exceed dense storage.
-   Preserve the [early/late resolver-family refusals][resolver-families] and qualify
-   allocation growth for the [native resolver controls][resolver-state]
+   Preserve the [early/late resolver-family refusals][resolver-families] and
+   [native resolver allocation growth][resolver-growth] while extending the
+   [native resolver controls][resolver-state]
    under the [resolver ownership contract][resolver-contract]. Preserve the complete
    cache tree, raw pull/cache bytes and allocation bounds independent of faulted
    port counts/pointers. Extend single-input, width and raw-strength input coverage;
@@ -378,3 +379,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [resolver-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-state/assessment.json
 
 [resolver-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-families/assessment.json
+
+[resolver-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-growth/assessment.json
