@@ -138,9 +138,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Integrate [complete admitted callback lists][callback-lists] under the
    [ownership contract][callback-ownership]. Preserve explicit caller handoff,
    ordered membership, cancelled nodes until native deletion and refusal during
-   active value traversal. Qualify nonempty array-word associations, registration
-   growth, native subclass/unknown-owner refusals and actual board cost before
-   integration. Bind bridge-handle referents after port initialization; stateful
+   active value traversal. Preserve [native callback-family refusals][callback-list-families]
+   before and after registration, through cancellation and native deletion;
+   unknown owners must refuse even with empty lists. Qualify nonempty array-word
+   associations, admitted registration growth and actual board cost before integration. Bind bridge-handle referents after port initialization; stateful
    part-select/array callbacks and suspended traversal remain separate. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -440,3 +441,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-ownership]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-ownership/assessment.json
 
 [callback-lists]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-lists/assessment.json
+
+[callback-list-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-list-families/assessment.json
