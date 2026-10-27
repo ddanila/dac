@@ -154,7 +154,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    value/metadata changes and seven zero-output width/scope/name/wide-storage/
    string-bound refusals per round, with 32 exact restorations and original HDL
    continuation. Unsupported subclasses, lifecycle changes and operational board
-   fault controls remain open. Audit admitted modules before relying
+   fault controls remain open. Preserve the
+   [initialized board parameter fault controls][parameter-board-faults]: seven
+   isolated changes reject compiled bindings and three invalid fields refuse
+   before output, twice, with 20 exact restorations across all 56 parameters.
+   Six absent-family toggles leave the image unchanged in both rounds. These
+   controls stop before HDL advance; qualify integrated transient faults and
+   continuation separately. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -718,3 +724,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-budget/assessment.json
 
 [parameter-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-faults/assessment.json
+
+[parameter-board-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-faults/assessment.json

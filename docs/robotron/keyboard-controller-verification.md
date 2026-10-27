@@ -254,6 +254,15 @@ payload controls pass on the new runtime, and three evidence/rejection tests
 pass. Unsupported subclasses, lifetime changes and operational board faults
 remain unqualified.
 
+The [initialized board parameter fault controls][parameter-board-faults] apply
+seven isolated binary value/flag/source/name changes to the actual 56-parameter
+population. Every changed image rejects independent compiled bindings. Width,
+scope-pointer and name-pointer faults refuse with zero output. Two rounds give
+20 exact restorations of the complete parameter image; six absent-family
+controls per round return unavailable and leave it unchanged. Three retained
+evidence/rejection tests pass. These controls stop at tick zero before HDL
+advance, so operational transient faults and continuation remain unqualified.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -262,7 +271,8 @@ termination: head/foreign-target faults at startup and link/tag/functor/filter
 faults at 5 us. Normal controls preserve every waveform sample and firmware
 record exactly. The observed capture took 1,272.63 seconds, with 3.832 GB of
 logical logs compressed to 4.663 MB under explicit caps. Full evidence is retained
-and its manifest verifies; a second review of the retained copy is running.
+and its manifest verifies; a second semantic review of the retained copy now
+reproduces the assessment exactly. The queued wire-board capture has started.
 These measured costs do not bound additional payload integration. Wire/functor
 state, general rollback and startup/supply-recovery qualification remain open.
 
@@ -826,3 +836,5 @@ and the reason for changing its interpretation.
 [parameter-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-budget/assessment.json
 
 [parameter-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-faults/assessment.json
+
+[parameter-board-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-faults/assessment.json
