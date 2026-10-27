@@ -124,7 +124,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [complete signal declaration binding][scope-signal-declarations]: all 651
    visible native names/classes/signedness/ranges match the compiled scope paths;
    1,192 compiler-local declarations have no VPI handles under the pinned native
-   creation rules. This initial binding does not establish later immutability. Audit admitted modules before relying
+   creation rules. This initial binding does not establish later immutability. Preserve
+   the [combined compact all-signal startup controls][scope-signals-combined]:
+   dense native comparisons and independent compact decoding retain full
+   declaration/owner/net checks for all 651 signals across port and scope fault
+   suites. The exact built C logger reconstructs changing native images byte for
+   byte. Add all-signal board faults and measure full transient cost before
+   extending operational acceptance. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -678,3 +684,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-signals]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals/board-budget/assessment.json
 
 [scope-signal-declarations]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-declarations/assessment.json
+
+[scope-signals-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals-combined-preflight/assessment.json

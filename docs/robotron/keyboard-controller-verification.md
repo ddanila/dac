@@ -193,6 +193,18 @@ scope recall and signed bounds. Existing ownership/net/population checks remain
 in force. This closes the initial declaration check; unsupported families,
 lifecycle changes, compact logging and normal transient qualification remain open.
 
+The [combined compact all-signal startup controls][scope-signals-combined] now
+preserve dense native comparisons while encoding complete signal log bodies
+with independent sequence and exact reuse. All 13 port/callback and ten
+scope/callback startup controls pass; all 651 signals bind to independent
+compiled metadata, native owners and nets at every snapshot. The exact C logger
+extracted from the built bridge also reconstructs retained changing native
+signal images byte for byte, including range/signedness changes, restoration
+and lazy cache creation: eight full and four reused records reconstruct all 12
+images exactly. Six tests pass. This logger replay is not another HDL execution.
+All-signal board faults, operational changed-state cost, full transient execution
+and lifecycle qualification remain open.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -755,3 +767,5 @@ and the reason for changing its interpretation.
 [scope-signals]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals/board-budget/assessment.json
 
 [scope-signal-declarations]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-declarations/assessment.json
+
+[scope-signals-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals-combined-preflight/assessment.json
