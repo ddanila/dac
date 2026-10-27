@@ -65,8 +65,10 @@ other tracks.
    re-audit width admission when the compiled profile changes.
    Integrate the [native reduction controls][reduction-state] using the
    [initial class bindings and full-scan budget][reduction-budget], preserving
-   [native subclass refusals][reduction-families]. Qualify allocation changes and
-   exact compact evidence; measure changing-state output and combined cost.
+   [native subclass refusals][reduction-families]. Use the [lossless differences][reduction-delta]
+   and [full-scan budget][reduction-delta-budget], preserving
+   [late unsupported-allocation refusals][reduction-delta-families]. Qualify admitted
+   allocation changes; measure changing-state output and combined cost.
    Initial empty caches may acquire widths after input arrives; preserve
    empty/full/partial operand history without freezing initial vector sizes. Implement concatenation
    observers under the [expression ownership contract][expression-contract],
@@ -288,3 +290,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [reduction-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-families/assessment.json
 
 [reduction-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-board-budget/assessment.json
+
+[reduction-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-delta/assessment.json
+[reduction-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-delta-budget/assessment.json
+[reduction-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-delta-families/assessment.json
