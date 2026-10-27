@@ -154,9 +154,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    The dense initial-state projection exceeds the current capture log cap. Use
    [lossless compact lists][callback-delta] with full-scan preflight, preserving
    [compact early/late family refusals][callback-delta-families] and
-   [real-bridge compact budgets][callback-delta-board-budget]. Qualify admitted
-   owner allocation/removal and measure changing-state combined cost before
-   operational integration. Preserve exact reconstruction through callback
+   [real-bridge compact budgets][callback-delta-board-budget]. Preserve
+   [native owner lifecycle controls][callback-owner-lifecycle], including
+   pre/post-reference allocation, destruction and fresh IDs at reused addresses.
+   Measure changing-state combined cost before operational integration. Preserve exact reconstruction through callback
    growth, cancellation and faults. Registration
    from an empty reference can exceed dense encoding; initial measurements do not
    bound changing-state output. Bind deep VPI signal
@@ -480,3 +481,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-delta-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-delta-board-budget/assessment.json
 
 [callback-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-delta-families/assessment.json
+
+[callback-owner-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-owner-lifecycle/assessment.json
