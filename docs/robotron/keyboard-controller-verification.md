@@ -295,7 +295,21 @@ Every control restores, and original/disabled/enabled HDL continuation agrees.
 The parameter fault regression also passes on the new runtime; three evidence
 and malformed-input tests pass. This does not repair the older array collector's
 traversal or storage-pointer guards, qualify memory lifecycle/subclasses, or
-establish bindings for the three actual board memories.
+establish board-memory bindings; those are checked separately below.
+
+The [initialized board memory binding and budget][memory-board-budget] joins
+all three scope-owned memories to complete array payload identities and compiled
+hierarchical names, address/word ranges, widths and read-port counts. The ROM
+has 2,048 eight-bit words and one read port; RegsH and RegsL each have eight
+eight-bit words and eleven read ports: 16,512 bits and 23 ports in total.
+A retained native fixture using the same runtime and header independently checks
+the handle-to-concrete-array offset, rejecting cross-linked register-bank pointers.
+Complete names and array value/cache images remain unchanged through 64 scans
+before HDL advance. The 283-byte metadata image scans in a local mean 0.159 ms,
+projecting to 31.2 MB and 17.6 seconds for 110,312 snapshots, excluding growth,
+other observers and review. Four tests pass. Older array traversal/storage-pointer
+safety, unsupported families, lifetime changes and operational integration remain
+unqualified.
 
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
@@ -911,3 +925,5 @@ and the reason for changing its interpretation.
 [wire-budget-failure]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-budget-failure/assessment.json
 
 [memory-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-metadata/assessment.json
+
+[memory-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-board-budget/assessment.json

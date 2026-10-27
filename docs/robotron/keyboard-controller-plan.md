@@ -120,8 +120,15 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    allocations join guarded scope-object identities. Two name changes become
    visible while earlier array payloads remain equal; changed/foreign name
    pointers and missing/duplicate/foreign intern ownership refuse before output.
-   Restoration and original continuation pass. Bind the three board memories,
-   qualify unsupported families and lifecycle changes, and correct the older
+   Restoration and original continuation pass. Preserve the
+   [initialized board memory binding and budget][memory-board-budget]: all three
+   memories join native scope object handles, concrete array pointers and compiled
+   names/ranges/widths/read-port counts, covering 16,512 bits and 23 read ports.
+   A same-runtime native layout witness prevents cross-linking the identically
+   shaped register banks. Names and complete array images remain unchanged.
+   The 283-byte metadata image projects to 31.2 MB and 17.6 seconds over the
+   earlier snapshot count; this excludes growth, other observers and review.
+   Qualify unsupported families and lifecycle changes, and correct the older
    array collector's traversal/storage-pointer admission before operational
    acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
@@ -776,3 +783,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [wire-budget-failure]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-budget-failure/assessment.json
 
 [memory-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-metadata/assessment.json
+
+[memory-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-board-budget/assessment.json
