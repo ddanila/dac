@@ -95,13 +95,16 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [native allocation-growth controls][reduction-growth]. Validate operational
    class/allocation changes and measure changing-state output and combined cost.
    Initial empty caches may acquire widths after input arrives; preserve
-   empty/full/partial operand history without freezing initial vector sizes. Preserve [native concatenation allocation growth][concat-growth] and the
-   [early/late subclass refusals][concat-families] through compact encoding,
+   empty/full/partial operand history without freezing initial vector sizes. Qualify the [early/late concat subclass refusals][concat-families] through
+   the compact API. Integrate [exact concat differences][concat-delta], preserving
+   [compact native allocation growth][concat-delta-growth] and complete event rows,
    then validate the [native concatenation controls][concat-state] at operational
    boundaries using the [initial board bindings and scan budget][concat-budget]
    under the [expression ownership contract][expression-contract].
    Preserve exact concat8 bytes, port widths, assembled caches and queued/executing
-   output-node bindings. Establish compact encoding and combined cost before integration.
+   output-node bindings. Use the [full-scan compact budget][concat-delta-budget] to preflight capture
+   limits, then measure combined changing-state cost. New allocations require full
+   records and can exceed dense storage.
    Resolver caches remain open. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
@@ -358,3 +361,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [concat-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-board-budget/assessment.json
 
 [concat-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-growth/assessment.json
+
+[concat-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-delta/assessment.json
+[concat-delta-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-delta-growth/assessment.json
+[concat-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-delta-budget/assessment.json
