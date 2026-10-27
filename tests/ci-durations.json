@@ -1,5 +1,5 @@
 {
-  "source": "Successful workflow 38916266552: Chromium single-worker start-to-next-start elapsed times including fixture overhead. Unknown files retain conservative estimates. Coverage unchanged.",
+  "source": "Successful workflow 38916266552: Chromium single-worker start-to-next-start elapsed times including fixture overhead. Unknown files retain conservative estimates. Coverage unchanged. Pico1715 estimate: 223 seconds, rounded up from its completed five-test window (17:11:43.469\u201317:15:26.009 UTC) in run 40546040752. That workflow timed out later in workbench.spec.js; this is a targeted scheduling estimate, not a successful full-run timing refresh.",
   "seconds": {
     "tests/assembly.spec.js": 56.8,
     "tests/crt.spec.js": 6,
@@ -38,6 +38,7 @@
     "tests/keyboard-gestures.spec.js": 146,
     "tests/keyboard-keycaps.spec.js": 70.2,
     "tests/inspection-workspaces.spec.js": 29.1,
-    "tests/robotron-refinements.spec.js": 46.5
+    "tests/robotron-refinements.spec.js": 46.5,
+    "tests/pico1715.spec.js": 223
   }
 }
