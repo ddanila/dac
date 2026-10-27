@@ -313,6 +313,16 @@ Three tests verify the isolated capture-limit change and rejection of changed,
 exceeded or incomplete budget receipts. Circuit, observers, simulation window,
 fault cases and full semantic acceptance checks remain unchanged. The downstream
 jobs stopped on their failed predecessor; their campaigns await reviewed recovery.
+The signal recovery job now waits for the exact wire process identity and a full
+passing assessment. Its gate checks both 31-signal sample comparisons, firmware,
+wire-family/population observations, all six startup/later faults and bounded
+receipts; actual failed wire evidence and net-only evidence are rejected. After
+success it copies and hashes the reviewed artifacts exactly, without claiming a
+second semantic replay. The signal capture raises only the logical cap to 16 GiB
+and adds the predecessor gate; its original 256-MiB compressed cap, 3,060-second
+timeout and full semantic reviewer remain. The initial dense signal projection
+adds 1.27 GB to wire output but does not bound changing-state cost. Four tests
+pass. Signal capture has not started; later stages remain stopped.
 These measured costs do not bound additional payload integration. Wire/functor
 state, general rollback and startup/supply-recovery qualification remain open.
 

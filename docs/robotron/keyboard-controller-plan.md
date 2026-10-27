@@ -184,7 +184,15 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    circuit/window/faults and complete acceptance checks. Its three budget tests
    pass; capture and full review remain pending. Re-establish reviewed predecessor
    gates before restarting the downstream campaigns, which stopped after failure.
-   Audit admitted modules before relying
+   The prepared `analog/wire_recovery_gate.py` requires both complete normal
+   comparisons, firmware equality, wire observations and all six startup/later
+   faults plus bounded receipts. The signal recovery job is queued behind the
+   exact live wire process identity. Only a full passing result permits exact
+   retained-file copying and the signal capture/review. Its 16-GiB logical limit,
+   unchanged 256-MiB compressed cap and 3,060-second timeout remain explicit;
+   the additional initial dense signal projection is 1.27 GB, not a growth bound.
+   Four recovery/budget tests pass. Later stages remain stopped pending their
+   reviewed predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
