@@ -64,8 +64,9 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [source ownership contract][island-raw-contract], preserving the
    [native raw-assignment controls][assignment-raw] for pending and executing
    ownership, raw-collision faults, destination ports and original continuation.
-   Add native subclass-refusal and nested-execution controls before combined
-   integration; measure operational storage and runtime costs. Preserve the
+   Preserve [native subclass-refusal and nested-execution controls][assignment-raw-native]
+   through combined integration. Use scheduler-entry tracking: a virtual override
+   can bypass the base assignment method. Measure operational storage and runtime costs. Preserve the
    [source-extracted switch-helper controls][strength-switch] while qualifying
    actual island dispatch and other producers; helper closure alone does not
    establish complete state coverage. Keep running
@@ -421,3 +422,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [island-raw-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-board-budget/assessment.json
 
 [assignment-raw]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/assignment-raw/assessment.json
+
+[assignment-raw-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/assignment-raw-native/assessment.json
