@@ -334,7 +334,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Arithmetic uses a 28-GiB logical cap with unchanged 256-MiB compressed cap and
    3,300-second timeout. Its 1.31-GB initial-state output estimate is not a growth
    bound. Four recovery/budget tests pass; capture and review remain pending.
-   Stages beyond arithmetic remain stopped pending reviewed predecessors. Audit admitted modules before relying
+   Reduction recovery is queued behind the exact arithmetic process identity.
+   `arithmetic_recovery_gate.py` requires full comparisons and firmware equality,
+   arithmetic observations at every boundary, all four arithmetic faults and
+   bounded receipts. Reviewed arithmetic evidence uses `arithmetic-board-reviewed`.
+   Reduction preserves the 3,300-second timeout and 256-MiB compressed cap, with
+   a 32-GiB logical cap. Its 186-MB initialized output estimate is not a growth
+   bound. Four recovery/budget tests pass; capture and complete review are pending.
+   Stages beyond reduction remain stopped pending reviewed predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the

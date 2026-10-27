@@ -605,6 +605,14 @@ recovery/budget tests pass; native bridge/runtime outputs match build receipts.
 The 1.31-GB initial-state estimate is not a growth bound, and complete arithmetic
 capture/review remains pending.
 
+Reduction recovery is queued behind the exact arithmetic process identity.
+Its predecessor gate requires full comparisons, firmware equality, every
+arithmetic boundary observation, all four faults and bounded receipts. Reviewed
+arithmetic evidence uses `arithmetic-board-reviewed`. Reduction keeps its
+3,300-second timeout and 256-MiB compressed cap with a 32-GiB logical cap. Four
+recovery/budget tests pass, and build outputs match their receipts. The 186-MB
+initialized output estimate is not a growth bound; capture/review remain pending.
+
 The waiting recovery jobs were replaced before capture to avoid a retention-path
 collision: existing `wire-board-budget`, `signal-board-budget` and
 `mux-board-budget` directories contain initialized-state evidence. Full reviewed
