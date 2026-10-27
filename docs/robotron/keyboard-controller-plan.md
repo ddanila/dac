@@ -284,22 +284,19 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    cause immediate and later negative, zero-output refusals. Base VPI values
    and original HDL continuation remain intact; supported allocation growth
    regresses successfully on the same runtime. Three evidence tests pass.
-   Destruction/reuse, compact refusal transport and operational board admission/
-   cost remain separate. A new `build_parameter_late_refusal_bridge.py` candidate
-   exercises unsupported binary/real/string allocation after 5 us through the
-   complete snapshot path. Direct and combined inventories must refuse both
-   immediately and after 6 us, without changing compact-cache pointer identities
-   or sequence counters; ordinary execution continues to 20 us. The three
-   `parameter_late_refusal_capture.py` controls are running on the retained
-   late-class runtime. Two source/build checks pass. The binary control now
-   passes the complete six-stream/native-binding review: three snapshots,
-   refusals at 5 and 6 us, and exact equality of all 27,578 samples across 31
-   signals through 20 us plus complete firmware records. The same-runtime native
-   memory-layout control passes. Three rejection tests cover a missing later
-   refusal, failed refusal/cache identity flags, and serialized state after refusal.
-   The new `parameter_late_refusal_review.py` campaign review waits for the
-   real/string captures; full campaign acceptance and post-refusal private state
-   remain unqualified.
+   Preserve the [combined late parameter refusal controls][parameter-late-refusal]:
+   all three native unsupported subclasses allocated at 5 us cause direct and
+   complete snapshot refusal immediately and again at 6 us. No post-refusal
+   snapshot is serialized, and compact-cache pointer identities and sequence
+   counters remain unchanged. All six streams decode three supported snapshots
+   per family with complete native bindings. All 27,578 samples across 31 signals
+   through 20 us and full firmware records match the original run. Four bus edges
+   after the second refusal match the reference, from 7.50128 to 19.50128 us.
+   The same-runtime memory-layout control and seven source/replay/rejection tests
+   pass; complete captures and reviewer sources are retained. JSON replay tests
+   compare serialized dictionary keys. Unsupported objects remain allocated:
+   post-refusal private state, destruction/address reuse, full observer admission
+   and operational cost remain unqualified.
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
    inventory for binary/wide/real/string parameters in two rounds. All 16 calls
@@ -1045,3 +1042,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [drain-clamp]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-clamp/README.md
 
 [delivery-audit-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/delivery-audit-board/assessment.json
+
+[parameter-late-refusal]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-late-refusal-controls/README.md
