@@ -40,7 +40,14 @@ are retained; full waveform/log archives remain local and hashes do not replace
 replay. Five metadata/witness/tamper tests pass. Retained neighboring samples
 exactly reproduce all ten maxima; brackets span 0.46–11.47 ps, with the data-line
 witnesses on falling edges. These witnesses do not establish a cause or justify
-waiving the gate. The original full disabled/timing/retry review remains
+waiving the gate. The [retained event and peak localization][drain-localization]
+replays both excerpt assessments. All three logs have the same 633-port sequence,
+but 326 coarse/fine and 316 fine/finest event timing records differ. At the eight
+data-line peaks, bus-low base-time offsets closely match the approximately
+0.88–0.99-ps threshold-crossing offsets. This supports investigating bridge
+delivery timing without proving causality; logged output values and input-threshold
+history are absent. The WR peak windows contain no threshold crossings.
+The original full disabled/timing/retry review remains
 pending; full-repeat, supply recovery and rollback qualification remain open.
 
 ### Combined simulator acceptance
@@ -996,3 +1003,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-continue-controls/assessment.json
 
 [drain-refinement-diagnostic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-refinements/assessment.json
+
+[drain-localization]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-localization/README.md
