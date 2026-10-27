@@ -274,6 +274,25 @@ all bytes exactly, using 22,102 versus 29,328 dense bytes. This replay does not
 measure operational memory or transient cost. Integrated parameter-specific
 faults, later boundaries and lifecycle coverage remain unqualified.
 
+The [integrated parameter startup faults][parameter-fault-preflight] detect
+seven isolated raw-word, flag, source and name changes in both direct parameter
+and complete native snapshots. Width, scope-pointer and name-pointer faults
+refuse before output. Complete snapshots restore exactly before controlled
+termination, preserving all prior state layers and 56 compiled parameter
+bindings. Four callback controls and 13 port/callback regressions pass on the
+same bridge. The rejection suite also checks unrelated parameter changes and
+raw storage bits outside the declared width. Later-boundary faults, normal
+waveforms and firmware continuation remain unqualified for this layer.
+
+The [complete cached net-board review][cached-net-board-full] now reproduces
+the original full assessment exactly, including normal waveform/firmware
+comparisons, all faults and state-lifetime checks. It caches only exactly
+identical parser inputs and module identities, returning isolated result copies.
+The completed review took 3,869 seconds with 310,107 hits and 103,567 misses.
+Four cache-behavior tests and one retained receipt/reference test pass; the latter
+verifies evidence identity and does not rerun the complete review. This is an
+observed review cost, not a general runtime bound or broader rollback acceptance.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -283,7 +302,8 @@ faults at 5 us. Normal controls preserve every waveform sample and firmware
 record exactly. The observed capture took 1,272.63 seconds, with 3.832 GB of
 logical logs compressed to 4.663 MB under explicit caps. Full evidence is retained
 and its manifest verifies; a second semantic review of the retained copy now
-reproduces the assessment exactly. The queued wire-board capture has started.
+reproduces the assessment exactly. The subsequent wire-board capture stopped at its logical log budget; its
+incomplete run does not qualify the added wire layer or downstream campaigns.
 These measured costs do not bound additional payload integration. Wire/functor
 state, general rollback and startup/supply-recovery qualification remain open.
 
@@ -851,3 +871,7 @@ and the reason for changing its interpretation.
 [parameter-board-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-faults/assessment.json
 
 [parameter-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-combined-preflight/assessment.json
+
+[parameter-fault-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-fault-preflight/assessment.json
+
+[cached-net-board-full]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/cached-net-board-full/assessment.json

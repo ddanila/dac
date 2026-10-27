@@ -167,7 +167,19 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    comparisons include parameter payloads; compact reuse is log-only. The built
    logger reconstructs 52 retained changing binary/real/string images byte-for-byte.
    Qualify integrated parameter-specific faults, later boundaries, lifecycle and
-   full transient cost before acceptance. Audit admitted modules before relying
+   full transient cost before acceptance. Preserve the
+   [integrated parameter startup faults][parameter-fault-preflight]: seven exact
+   isolated raw-value/flag/source/name mutations and three direct/full snapshot
+   refusals, each restoring complete state before termination. Four callback
+   controls and 13 port/callback regressions pass on that bridge. Qualify later
+   boundaries, normal transient comparison and firmware continuation separately.
+   Preserve the [complete cached net-board review][cached-net-board-full], which
+   reproduces the original complete assessment with exact-input parsing reuse
+   and isolated result copies. Its 3,869-second duration is an observed cost, not
+   a general runtime bound. The subsequent wire-board capture exceeded its
+   logical log budget. Resolve that measured capture-size failure and re-establish
+   reviewed predecessor gates before advancing the downstream queued campaigns.
+   Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -735,3 +747,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-board-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-faults/assessment.json
 
 [parameter-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-combined-preflight/assessment.json
+
+[parameter-fault-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-fault-preflight/assessment.json
+
+[cached-net-board-full]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/cached-net-board-full/assessment.json
