@@ -40,6 +40,11 @@ establish nonlinear I/V, temperature behavior, supply dependence, release timing
 or operational admission. The added-capacitance experiment is explicitly a
 sensitivity case because the source's capacitance and delay temperatures differ.
 ROM alternatives remain open.
+The [finite-slew extension][u880-slew] checks both output polarities and retains
+joint internal-delay intervals for explicit drive-ramp assumptions. The
+4-kohm/10-pF combination is rejected with a 60-ns ramp despite passing the
+instantaneous-drive screen. Its 32 SPICE cases agree with the analytic ramp
+solution; actual internal slew and release behavior remain unqualified.
 
 The [joint I8282 constraints][i8282-joint] now combine the retained DC, edge,
 capacitance, propagation and release checks, with source-evidence replay and
@@ -474,3 +479,5 @@ and the reason for changing its interpretation.
 [i8282-joint]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/i8282-joint-constraints/assessment.json
 
 [u880-output]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/u880-output-candidates/assessment.json
+
+[u880-slew]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/u880-slew-candidates/assessment.json
