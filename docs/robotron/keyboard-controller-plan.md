@@ -95,8 +95,8 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [native allocation-growth controls][reduction-growth]. Validate operational
    class/allocation changes and measure changing-state output and combined cost.
    Initial empty caches may acquire widths after input arrives; preserve
-   empty/full/partial operand history without freezing initial vector sizes. Qualify the [early/late concat subclass refusals][concat-families] through
-   the compact API. Integrate [exact concat differences][concat-delta], preserving
+   empty/full/partial operand history without freezing initial vector sizes. Preserve the [compact early/late concat subclass refusals][concat-delta-families].
+   Integrate [exact concat differences][concat-delta], preserving
    [compact native allocation growth][concat-delta-growth] and complete event rows,
    then validate the [native concatenation controls][concat-state] at operational
    boundaries using the [initial board bindings and scan budget][concat-budget]
@@ -365,3 +365,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [concat-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-delta/assessment.json
 [concat-delta-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-delta-growth/assessment.json
 [concat-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-delta-budget/assessment.json
+
+[concat-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-delta-families/assessment.json
