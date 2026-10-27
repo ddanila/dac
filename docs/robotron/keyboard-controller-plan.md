@@ -37,7 +37,9 @@ other tracks.
    Integrate the [native raw wire-cache controls][wire-raw-state], qualifying
    operational class/allocation admission, compact reconstruction and combined cost.
    Preserve the [raw board bindings and initial scan budget][wire-raw-budget];
-   initial-state output estimates do not bound changing-state storage.
+   initial-state output estimates do not bound changing-state storage. Preserve
+   [raw filter admission refusals][wire-raw-families] for both initial and later
+   allocations; base-class cache coverage does not admit subclasses.
    Extend raw scalar coverage to other strength-aware filter/island/queue and
    concatenation payloads, with native faults and continuation controls. Preserve the
    [source-extracted switch-helper controls][strength-switch] while qualifying
@@ -317,3 +319,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [strength-switch]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/strength-switch/assessment.json
 
 [wire-raw-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-board-budget/assessment.json
+
+[wire-raw-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-families/assessment.json
