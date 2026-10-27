@@ -160,7 +160,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    before output, twice, with 20 exact restorations across all 56 parameters.
    Six absent-family toggles leave the image unchanged in both rounds. These
    controls stop before HDL advance; qualify integrated transient faults and
-   continuation separately. Audit admitted modules before relying
+   continuation separately. Preserve the
+   [combined compact parameter preflight][parameter-combined]: all 56 parameters
+   bind to native scope owners and compiled declarations in 51 complete snapshots
+   across 13 port/callback and ten signal/callback startup controls. Exact native
+   comparisons include parameter payloads; compact reuse is log-only. The built
+   logger reconstructs 52 retained changing binary/real/string images byte-for-byte.
+   Qualify integrated parameter-specific faults, later boundaries, lifecycle and
+   full transient cost before acceptance. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -726,3 +733,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-faults/assessment.json
 
 [parameter-board-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-faults/assessment.json
+
+[parameter-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-combined-preflight/assessment.json

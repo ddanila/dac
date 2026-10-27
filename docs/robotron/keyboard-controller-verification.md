@@ -263,6 +263,17 @@ controls per round return unavailable and leave it unchanged. Three retained
 evidence/rejection tests pass. These controls stop at tick zero before HDL
 advance, so operational transient faults and continuation remain unqualified.
 
+The [combined compact parameter preflight][parameter-combined] adds parameter
+payloads to complete dense native snapshots and independent compact log records.
+All 56 parameters bind to native owners and compiled metadata/values in 51
+snapshots across 13 port/callback and ten signal/callback startup controls.
+Every preceding state layer and exact restoration remains checked. The built
+C logger also replays 52 retained native binary/real/string images through
+value, flag, source and name changes: 37 full records and 15 reuses reconstruct
+all bytes exactly, using 22,102 versus 29,328 dense bytes. This replay does not
+measure operational memory or transient cost. Integrated parameter-specific
+faults, later boundaries and lifecycle coverage remain unqualified.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -838,3 +849,5 @@ and the reason for changing its interpretation.
 [parameter-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-faults/assessment.json
 
 [parameter-board-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-faults/assessment.json
+
+[parameter-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-combined-preflight/assessment.json
