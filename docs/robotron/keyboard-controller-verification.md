@@ -418,6 +418,25 @@ runtime. Three tests cover retained semantic replay, mismatched runtime sources
 and missing subclass refusal evidence. These scans stop at tick zero and do
 not establish operational fault coverage or full transient cost.
 
+The [selected later memory fault controls][memory-late] extend all five memory
+faults to actual execution at 5 us. The bridge observes paused startup and the
+first before-step hook at or after that threshold; it increments the native hook
+serial while omitting intermediate observations. All five runs reach hook
+37,918. Name bytes change only the selected memory field; name/cache/storage
+pointers and the read-port head refuse the affected direct inventory and the
+complete snapshot. Every fault restores the complete dense state before
+controlled termination. The 21 logged snapshots reconstruct exactly and retain
+all three memories, 23 read ports and preceding metadata/payload bindings.
+Each run retains 18,959 samples through 4.995344691183904 us; every byte of
+all 31 signals matches the reviewed normal reference prefix. The sample count
+matches half the fault hook serial. The startup callback has finished at the
+fault boundary. Four retained-evidence
+and rejection tests cover full replay, early/wrong-phase/startup-index faults,
+missing refusal/restoration evidence, and truncated/altered waveform prefixes.
+These are selected-boundary controls,
+not complete trajectory or ordinary post-fault firmware continuation evidence;
+unobserved intermediate lifetimes and full transient cost remain open.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -1052,3 +1071,5 @@ and the reason for changing its interpretation.
 [array-port-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-port-class/assessment.json
 
 [port-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-class-board/assessment.json
+
+[memory-late]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-late-controls/assessment.json
