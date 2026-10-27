@@ -392,6 +392,21 @@ payload and cache transitions, and isolated name changes. Three evidence and
 tamper-rejection tests pass. This covers the static native fixture; registered
 memory deletion/reuse and later complete board boundaries remain unqualified.
 
+The [exact read-port class controls][array-port-class] close an admission gap:
+the prior dynamic cast accepted subclasses with uncaptured state. The new
+runtime requires the exact supported static read-port class before either
+array inventory writes its header. Paused diagnostic replacements preserve
+the owner, destination net, address, next link and registered ID. Two exact
+base-class replacements pass with only the allocation address changed; two
+subclass replacements produce four zero-output dense/compact refusals. All
+four replacements restore exactly before execution. The rounds span HDL writes,
+read-address changes and lazy cache creation, and original/disabled/enabled
+continuation agrees. Temporary diagnostic objects are destroyed and unregistered;
+the native functor arena retains their allocations. Three evidence/rejection
+tests, the ten-fault memory continuation regression, and existing alias/net/real/
+string family refusals pass on this runtime.
+Ordinary port allocation/deletion and operational board integration remain open.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -1022,3 +1037,5 @@ and the reason for changing its interpretation.
 [memory-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-preflight/assessment.json
 
 [memory-fault-continue]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-continue/assessment.json
+
+[array-port-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-port-class/assessment.json

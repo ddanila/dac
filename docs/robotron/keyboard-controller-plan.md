@@ -161,6 +161,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    ten paired faults restore across HDL writes, read-port address changes and lazy
    cache allocation; subsequent writes and output match original and disabled
    runtimes. These native rounds do not qualify later board boundaries.
+   Preserve the [exact read-port class controls][array-port-class]: base-class
+   replacements preserve all visible fields except allocation address; subclasses
+   carrying additional state refuse dense and compact observation before output.
+   Both restore before continuation across writes and lazy cache allocation.
    Qualify later-boundary faults, full memory lifecycle, unsupported
    families and operational transient integration before acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
@@ -831,3 +835,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-preflight/assessment.json
 
 [memory-fault-continue]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-continue/assessment.json
+
+[array-port-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-port-class/assessment.json
