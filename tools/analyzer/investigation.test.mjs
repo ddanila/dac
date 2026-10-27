@@ -37,3 +37,8 @@ test('strict range comparison retains unequal tails and validates bounds',async(
 test('responses are paired one-to-one, so one acknowledgement cannot satisfy two requests',async()=>{
  const c=await capture([{address:3},{address:3},{kind:6},{address:4,tick:50}]);assert.equal((await evaluate(c,suite([response]))).results[0].outcome,'fail');
 });
+test('first violation identifies the exceeding event, not earlier matching evidence',async()=>{
+ const c=await capture([{address:3},{address:3},{address:3},{address:4,tick:60}]);
+ const r=await evaluate(c,suite([{id:'count',type:'count',event:{kind:'io_write',address:3},max:2},response]));
+ assert.deepEqual(r.results[0].first_violation,{record:2,observed_at:2});assert.deepEqual(r.results[1].first_violation,{record:0,observed_at:3});
+});

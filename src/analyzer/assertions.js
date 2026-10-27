@@ -42,15 +42,15 @@ export async function evaluate(c,suite,{start=0,end=c.header.count,check=()=>{}}
    if(q.type==='response'){
     const remaining=[];
     for(const p of s.pending){
-     if(r.elapsed_us>p.time+q.within_us){s.failure=true;if(s.evidence.length<32)s.evidence.push(p.index);}
+     if(r.elapsed_us>p.time+q.within_us){s.failure=true;s.first_violation??={record:p.index,observed_at:r.index};if(s.evidence.length<32)s.evidence.push(p.index);}
      else remaining.push(p);
      work++;
     }s.pending=remaining;
     if(s.pending.length&&matches(r,q.response)){s.pending.shift();evidence(s,r);}
     if(matches(r,q.event)){s.count++;if(s.pending.length>=4096)s.resource=true;else s.pending.push({time:r.elapsed_us,index:r.index});}
    }else if(matches(r,q.event)){
-    s.count++;if(q.type==='count'){if(s.count>(q.max??Number.MAX_SAFE_INTEGER))s.failure=true;evidence(s,r);}
-    else{const v=(q.field==='wait_us'?r.wait_samples:r.duration)*1e6/c.header.clock_hz;if(v>q.max){s.failure=true;evidence(s,r);}}
+    s.count++;if(q.type==='count'){if(s.count>(q.max??Number.MAX_SAFE_INTEGER)){s.failure=true;s.first_violation??={record:r.index,observed_at:r.index};}evidence(s,r);}
+    else{const v=(q.field==='wait_us'?r.wait_samples:r.duration)*1e6/c.header.clock_hz;if(v>q.max){s.failure=true;s.first_violation??={record:r.index,observed_at:r.index};evidence(s,r);}}
    }
   }
   if(exhausted)break;
@@ -60,7 +60,7 @@ export async function evaluate(c,suite,{start=0,end=c.header.count,check=()=>{}}
   if(s.missing){outcome='inconclusive';reason='Required event class excluded by capture filter';}
   else if(s.resource){outcome='inconclusive';reason='Pending-response resource limit exceeded';}
   else if(q.type==='response'){
-   for(const p of s.pending)if(lastTime!==null&&lastTime>=p.time+q.within_us)s.failure=true;else s.incomplete=true;
+   for(const p of s.pending)if(lastTime!==null&&lastTime>=p.time+q.within_us){s.failure=true;s.first_violation??={record:p.index,observed_at:end-1};}else s.incomplete=true;
    if(!s.count||s.incomplete){outcome='inconclusive';reason=!s.count?'No trigger event observed':'Recording ends before response deadline';}
   }else if(q.type==='sequence'&&s.position<q.events.length){outcome='fail';reason='Required sequence not observed in selected window';}
   else if(q.type==='count'&&s.count<(q.min??0)){outcome='fail';reason='Required event count not reached';}
@@ -69,7 +69,7 @@ export async function evaluate(c,suite,{start=0,end=c.header.count,check=()=>{}}
   if(uncertain&&!s.missing&&!s.resource){outcome='inconclusive';reason='Loss, partial/unstable/saturated cycle or invalid bus observation limits inference';}
   if(exhausted){outcome='inconclusive';reason='Analysis work limit exceeded; select a smaller range or suite';}
   if(start===end){outcome='inconclusive';reason='Empty recording window';}
-  return {id:q.id,outcome,reason,count:s.count,matched_sequence:s.position,evidence:s.evidence};
+  return {id:q.id,outcome,reason,count:s.count,matched_sequence:s.position,evidence:s.evidence,...(s.first_violation?{first_violation:s.first_violation}:{})};
  })};
 }
 export const defaultSuite={schema:1,id:'classic-controller-integrity',revision:1,rules:[
