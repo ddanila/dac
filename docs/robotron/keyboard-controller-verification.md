@@ -60,6 +60,16 @@ remain local at explicitly recorded paths. This establishes measured replay
 cost for this window; simulator runtime, full-repeat capacity and an exact
 memory bound remain unqualified.
 
+The [finite-drive-ramp I8282 controls][i8282-slew] add 144 analytic/SPICE
+comparisons under the industrial switching load. Zero-ramp controls reproduce
+the earlier edge and propagation results. The 250-ohm/0-pF alternative fails
+an edge limit with a 10-ns drive ramp; 125-ohm alternatives fail at 30 ns even
+with positive propagation headroom. At 125 ohms, 12 pF and a 10-ns ramp, joint
+data/strobe pure-delay maxima fall to 22.2592/42.2592 ns. Resistance switches
+instantaneously before the assumed source ramp; this is a conditional driver
+model, not measured internal behavior. Actual drive shape, finite disconnect,
+Intel enable interpretation and complete device admission remain open.
+
 The [later Intel handbook review][intel-1986-enable] adds a separately inspected
 1986 source. Its enable waveform still lacks a distinct measurement threshold;
 commercial/EXPRESS and plastic-package conditions cannot resolve the industrial
@@ -526,3 +536,5 @@ and the reason for changing its interpretation.
 [drain-coarse]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-coarse-effect/assessment.json
 
 [postreset-retention]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-retained-stream/review.json
+
+[i8282-slew]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/i8282-slew-candidates/assessment.json
