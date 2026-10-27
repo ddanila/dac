@@ -183,6 +183,16 @@ compiled declaration metadata, unsupported families, lifetime changes, compact
 logging and normal transient qualification remain open. Parameter values and
 memory-name coverage are still unresolved.
 
+The subsequent [complete signal declaration binding][scope-signal-declarations]
+checks all 651 visible native handles against independent compiled scope paths,
+names, classes, signedness and declared ranges. All match. The pinned compiler
+grammar and creation routines explain the 1,192 local `*` declarations: they
+create no VPI handles and are excluded from this handle inventory. Five tests
+pass, including altered metadata/declarations, omitted signals, duplicate names,
+scope recall and signed bounds. Existing ownership/net/population checks remain
+in force. This closes the initial declaration check; unsupported families,
+lifecycle changes, compact logging and normal transient qualification remain open.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -743,3 +753,5 @@ and the reason for changing its interpretation.
 [scope-payload-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-payload-gaps/source-contract.json
 
 [scope-signals]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals/board-budget/assessment.json
+
+[scope-signal-declarations]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-declarations/assessment.json
