@@ -284,9 +284,15 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    immediately and after 6 us, without changing compact-cache pointer identities
    or sequence counters; ordinary execution continues to 20 us. The three
    `parameter_late_refusal_capture.py` controls are running on the retained
-   late-class runtime. Two source/build checks pass. Complete six-stream,
-   native-binding, waveform and firmware review remains outstanding; these
-   captures do not yet qualify compact refusal transport or post-refusal state.
+   late-class runtime. Two source/build checks pass. The binary control now
+   passes the complete six-stream/native-binding review: three snapshots,
+   refusals at 5 and 6 us, and exact equality of all 27,578 samples across 31
+   signals through 20 us plus complete firmware records. The same-runtime native
+   memory-layout control passes. Three rejection tests cover a missing later
+   refusal, failed refusal/cache identity flags, and serialized state after refusal.
+   The new `parameter_late_refusal_review.py` campaign review waits for the
+   real/string captures; full campaign acceptance and post-refusal private state
+   remain unqualified.
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
    inventory for binary/wide/real/string parameters in two rounds. All 16 calls
