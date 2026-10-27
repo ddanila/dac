@@ -31,6 +31,17 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 ## Current findings and their consequences
 
+The [joint I8282 constraints][i8282-joint] now combine the retained DC, edge,
+capacitance, propagation and release checks, with source-evidence replay and
+limiting-case indices. For the 125-ohm/12-pF hypothesis, constant internal data,
+strobe and disconnect delays must not exceed approximately 26.909, 46.909 and
+21.718 ns respectively (use the exact report values for checks). The
+250-ohm/12-pF and 250-ohm/30-pF combinations remain rejected regardless of delay.
+These intervals assume instantaneous drive switching after a pure transport
+delay and cover the retained supply/polarity/leakage cases. They do not resolve
+Intel enable thresholds, finite internal slew, untested capacitances, temperature
+behavior or device admission.
+
 The requirement table owns physical and integration gaps. Electrical conclusions
 below are scoped to the inputs in the linked reports; the core's
 [evidence index](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/README.md#qualification-and-retained-evidence)
@@ -449,3 +460,5 @@ and the reason for changing its interpretation.
 [callback-owner-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-owner-lifecycle/assessment.json
 
 [callback-list-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-list-preflight/assessment.json
+
+[i8282-joint]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/i8282-joint-constraints/assessment.json
