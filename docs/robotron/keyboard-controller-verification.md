@@ -82,6 +82,14 @@ Initial-state dense repetition over 110,312 prior snapshot calls projects to
 11,250,169,320 logical bytes and about 102.1 seconds for these scans alone.
 Changing-state cost, other observers and review are excluded; five retained
 evidence tests pass.
+The [compact metadata native controls][scope-metadata-compact] reconstruct all
+74 dense image pairs exactly through field mutations, restoration and tick changes.
+Every compact call performs a complete scan; only exact previous-body equality
+permits reuse. Sequence and byte-count checks reject lost or malformed records.
+Sixteen invalid-state calls plus the automatic-scope control refuse before output.
+The fixture emits 38,585 compact versus 64,944 dense bytes; five tests pass.
+Board savings, buffering overhead, scan cost and operational integration remain
+unqualified.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -618,3 +626,5 @@ and the reason for changing its interpretation.
 [scope-metadata-bindings]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-bindings/assessment.json
 
 [scope-metadata-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-board-budget/assessment.json
+
+[scope-metadata-compact]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact/assessment.json

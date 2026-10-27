@@ -59,7 +59,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    32 scopes, 1,932 registered objects and 18 admitted bridge signals bind, but
    1,884 other object identities still require payload/ownership qualification.
    Dense metadata/reference repetition projects to 11.25 GB for the earlier
-   boundary count; qualify lossless storage and changing-state cost before integration.
+   boundary count. Preserve the [native compact metadata controls][scope-metadata-compact]:
+   complete scans, exact byte comparison, explicit sequence/time records and
+   exact dense reconstruction through faults and restoration. Measure board
+   savings, native buffering overhead and changing-state cost before integration.
    Qualify operational integration and static ownership lifetime; scope
    deletion/address reuse, internal-object payloads and function-field fault
    controls remain open. Audit admitted modules before
@@ -589,3 +592,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-metadata-bindings]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-bindings/assessment.json
 
 [scope-metadata-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-board-budget/assessment.json
+
+[scope-metadata-compact]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact/assessment.json
