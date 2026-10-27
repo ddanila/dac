@@ -110,6 +110,13 @@ step waits for the typed-signal campaign to pass, with source identities pinned.
 Two prerequisite tests reject incomplete predecessors and startup-only evidence.
 No full scope-metadata assessment has passed yet; later-boundary and normal
 transient/firmware qualification remain open.
+The [native port-bit counterexamples][port-referents] demonstrate another payload
+gap: ordered bit-vector changes alter VPI iteration but leave full scope metadata/
+reference images unchanged. Two rounds restore exact state and original HDL
+continuation; an injected foreign bit pointer is restored without dereference.
+The retained source contract also identifies deferred port net-reference
+initialization and unsafe malformed-vector iteration. Port field/ownership
+coverage remains open; two counterexample tests and source-contract replay pass.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -654,3 +661,5 @@ and the reason for changing its interpretation.
 [scope-metadata-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-combined-preflight/assessment.json
 
 [scope-metadata-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-fault-preflight/assessment.json
+
+[port-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-referents/assessment.json
