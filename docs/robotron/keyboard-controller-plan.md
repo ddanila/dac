@@ -50,22 +50,17 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    initial-state output estimates do not bound changing-state storage. Preserve
    [raw filter admission refusals][wire-raw-families] for both initial and later
    allocations; base-class cache coverage does not admit subclasses.
-   Implement exact raw island and scheduled vector-8 payload coverage under the
-   [source ownership contract][island-raw-contract]. Preserve [native raw input/output/scratch controls][island-raw-state] at idle
-   and synchronous output callbacks before scratch clearing. Preserve [early/late subclass refusals][island-raw-families]
-   without partial inventory or altered native continuation. Preserve [native allocation growth][island-raw-growth]
-   through constructor and idle states, plus [live-scratch and targeted-fault controls][island-raw-growth-callbacks]
-   for later allocations. Preserve [native partial-input and width controls][island-raw-inputs],
-   including partial-first expansion, later merging and repeated-write suppression.
-   Preserve [native asymmetric-strength and hidden-HiZ controls][island-raw-strengths];
-   preserve [competing-driver and resistive-dispatch controls][island-raw-competing].
-   Preserve [conditional-switch controls][island-raw-conditional] for imported enables;
-   preserve [part-select routing controls][island-raw-partselect] for unequal widths and
-   offsets across storage boundaries. Preserve [feedback-enable controls][island-raw-feedback],
-   including intermediate outputs and history-dependent branch reevaluation, during compact integration. Scheduled assignments own
-   separate raw vectors; generic island wrappers require pointer/lifetime bindings.
-   Require raw-collision faults, native admission and original continuation controls
-   before compact/combined integration; preserve filter and topology checks. Preserve the
+   Qualify compact raw-island admission, board bindings and full-scan budgets using
+   [exact dense/difference reconstruction][island-raw-delta]. Preserve native growth,
+   live scratch, raw strength, partial-input, switch and feedback continuation controls;
+   retain [early/late subclass refusals][island-raw-families] through the compact API.
+   New allocations need full rows. Changed-state fixture differences exceed dense
+   images, so measure operational cost before setting capture limits. Preserve
+   legacy topology/filter checks and queued/executing wrapper lifetime bindings.
+   Implement scheduled vector-8 payload coverage under the
+   [source ownership contract][island-raw-contract]; assignments own separate raw
+   vectors. Require raw-collision faults, native admission and original continuation
+   controls before combined integration. Preserve the
    [source-extracted switch-helper controls][strength-switch] while qualifying
    actual island dispatch and other producers; helper closure alone does not
    establish complete state coverage. Keep running
@@ -403,22 +398,15 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [island-raw-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-contract/assessment.json
 
-[island-raw-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-state/assessment.json
 
 [island-raw-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-families/assessment.json
 
-[island-raw-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-growth/assessment.json
 
-[island-raw-growth-callbacks]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-growth-callbacks/assessment.json
 
-[island-raw-inputs]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-inputs/assessment.json
 
-[island-raw-strengths]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-strengths/assessment.json
 
-[island-raw-competing]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-competing/assessment.json
 
-[island-raw-conditional]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-conditional/assessment.json
 
-[island-raw-partselect]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-partselect/assessment.json
 
-[island-raw-feedback]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-feedback/assessment.json
+
+[island-raw-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-delta/assessment.json
