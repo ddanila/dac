@@ -325,6 +325,18 @@ array and memory-name regressions pass on the new runtime; three evidence and
 rejection tests pass. Lazy word-cache pointers, read-port heads, broader lifecycle
 and operational board integration remain unqualified.
 
+The [lazy array-cache admission controls][array-cache-admission] record each
+word-cache allocation pointer and length, then validate both before reading the
+cache's parent and word links. Read-port head validation now precedes dense and
+compact output headers. Foreign, shifted and missing cache bases and foreign
+heads give 16 zero-output refusals and eight exact restorations across two
+rounds. Explicit VPI indexing creates the cache once, while observer scans leave
+its allocation unchanged. Complete reconstruction, original HDL continuation,
+existing compact-array controls and storage-admission regressions pass; three
+evidence/rejection tests pass. Raw cache-parent and word-link mutations remain
+observable through the earlier controls. Cache-owner deletion/address reuse,
+alias/subclass coverage and operational integration remain unqualified.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -943,3 +955,5 @@ and the reason for changing its interpretation.
 [memory-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-board-budget/assessment.json
 
 [array-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-admission/assessment.json
+
+[array-cache-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-cache-admission/assessment.json
