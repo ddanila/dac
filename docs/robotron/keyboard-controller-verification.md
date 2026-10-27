@@ -46,6 +46,15 @@ validate those identities before dereferencing corrupted pointers in a later
 observer revision; textual call-site inspection is not a whole-program proof
 that fields remain unchanged.
 
+The [native scope admission revision][scope-admission] now registers completed
+scope declarations and native internal-object handoffs before traversal. Eight
+native checks reject foreign roots, intern entries and parents, plus omitted
+registered children, with negative status and zero output. Restoration preserves
+the scope image and original-runtime continuation. Existing scope membership,
+lifecycle, automatic-refusal and signal-scope comparisons also pass on the new
+runtime. The running campaigns remain pinned. Operational integration, metadata
+payload coverage and deletion/address-reuse admission remain open.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -571,3 +580,5 @@ and the reason for changing its interpretation.
 [scope-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-referents/assessment.json
 
 [scope-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-contract/assessment.json
+
+[scope-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-admission/assessment.json
