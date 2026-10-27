@@ -341,7 +341,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Reduction preserves the 3,300-second timeout and 256-MiB compressed cap, with
    a 32-GiB logical cap. Its 186-MB initialized output estimate is not a growth
    bound. Four recovery/budget tests pass; capture and complete review are pending.
-   Stages beyond reduction remain stopped pending reviewed predecessors. Audit admitted modules before relying
+   Raw-wire recovery is queued behind the exact reduction process identity.
+   `reduction_recovery_gate.py` requires complete comparisons, firmware equality,
+   all reduction boundary observations, both reduction faults and bounded
+   receipts before retaining `reduction-board-reviewed`. Raw-wire capture keeps
+   both corruption controls, the 3,300-second timeout and 256-MiB compressed cap,
+   with a 36-GiB logical cap. Its 159-MB initialized output estimate is not a
+   growth bound. Four tests pass; full raw-byte capture/review remains pending.
+   Stages beyond raw wire remain stopped pending reviewed predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the

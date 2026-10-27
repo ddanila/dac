@@ -54,14 +54,15 @@ and firmware comparisons, and post-fault activity. It does not establish private
 state coverage at unobserved boundaries. Use each assessment's scope and the
 [requirement audit](keyboard-controller-verification.md) before extending a claim.
 
-Full wire/signal/mux/gate/arithmetic recovery campaigns are retained in `wire-board-reviewed`,
+Full wire/signal/mux/gate/arithmetic/reduction recovery campaigns are retained in `wire-board-reviewed`,
 `signal-board-reviewed`, `mux-board-reviewed`, `gate-board-reviewed` and
-`arithmetic-board-reviewed` only after passing their complete reviews. Existing
+`arithmetic-board-reviewed` and `reduction-board-reviewed` only after passing their complete reviews. Existing
 `*-board-budget` directories hold initialized-state evidence and are preserved.
 The live recovery status files are `build/keyboard-controller-analog/` followed by
 `wire-board-budget-job.json`, `signal-board-recovery-job.json` and
 `mux-board-recovery-job.json`, `gate-board-recovery-job.json` and
-`arithmetic-board-recovery-job.json` and `reduction-board-recovery-job.json`; inspect their process identities as well as status.
+`arithmetic-board-recovery-job.json`, `reduction-board-recovery-job.json` and
+`raw-wire-board-recovery-job.json`; inspect their process identities as well as status.
 
 All eight wire captures have completed within their caps. Receipt-backed costs
 are retained in `analog/reports/wire-capture-cost`; full semantic acceptance is

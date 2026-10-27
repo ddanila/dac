@@ -613,6 +613,15 @@ arithmetic evidence uses `arithmetic-board-reviewed`. Reduction keeps its
 recovery/budget tests pass, and build outputs match their receipts. The 186-MB
 initialized output estimate is not a growth bound; capture/review remain pending.
 
+Raw-wire recovery now waits behind the exact reduction process identity. Its
+predecessor gate requires complete comparisons, firmware equality, all reduction
+boundary observations, both faults and bounded receipts. Reviewed reduction
+evidence uses `reduction-board-reviewed`. Raw-wire capture preserves both
+corruption controls, the 3,300-second timeout and 256-MiB compressed cap with
+a 36-GiB logical cap. Four tests pass; native build outputs match receipts.
+The 159-MB initialized output estimate is not a growth bound. Full raw-byte
+capture/review and operational closure of strength-encoding loss remain pending.
+
 The waiting recovery jobs were replaced before capture to avoid a retention-path
 collision: existing `wire-board-budget`, `signal-board-budget` and
 `mux-board-budget` directories contain initialized-state evidence. Full reviewed
