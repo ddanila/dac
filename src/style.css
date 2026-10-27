@@ -776,3 +776,22 @@ output[for^="crt-"] { font-variant-numeric:tabular-nums; margin:0 .5rem; }
 .control-group[hidden] {display:none;}
 
 .debug-changed { background: #71551c; color: #fff1a5; border-bottom: 2px solid #ffd45c; }
+
+/* The classic profile exposes only its actual capabilities. */
+body.classic-1715 #controls-use,
+body.classic-1715 #controls-inspect,
+body.classic-1715 .control-navigation,
+body.classic-1715 #controls-diagnose > :not(#controls-diagnose-title):not(#debug-controls),
+body.classic-1715 aside > [data-robotron],
+body.classic-1715 .secondary-controls > label { display: none !important; }
+body.classic-1715 #debug-controls { display: block; }
+#pico1715-panel label { display: block; margin: .6rem 0; }
+body.classic-1715 select { color-scheme: dark; }
+#pico1715-panel select { font-size: 16px; letter-spacing: normal; }
+#pico1715-panel textarea { width: 100%; min-height: 5rem; }
+#p1715-text { white-space: pre; overflow: auto; font-size: 12px; }
+#p1715-stats { white-space: pre-wrap; font-size: 12px; }
+#p1715-media { overflow-wrap: anywhere; }
+body.classic-1715 [data-view]:not([data-view="overview"]):not([data-view="typing"]),
+body.classic-1715 #key-list-toggle,
+body.classic-1715 #key-list { display: none !important; }

@@ -184,6 +184,7 @@ export function createScene(
   const presentation = createCrtPresentation(screen);
   presentation.tick(performance.now());
   const texture = new THREE.CanvasTexture(presentation.canvas);
+  let textureWidth=presentation.canvas.width,textureHeight=presentation.canvas.height;
   texture.minFilter = THREE.LinearMipmapLinearFilter;
   texture.anisotropy = 4;
   texture.magFilter = THREE.NearestFilter;
@@ -572,7 +573,11 @@ export function createScene(
   }
   const drawFrame = () => {
     controls.update();
-    if(presentation.tick(performance.now())){texture.needsUpdate=true;renderRequested ||= kind !== 2 || !robotron || inCameraView(robotron.objects.get("crt-glass"), camera);}
+    if(presentation.tick(performance.now())){
+      if(textureWidth!==presentation.canvas.width||textureHeight!==presentation.canvas.height){
+        texture.dispose();textureWidth=presentation.canvas.width;textureHeight=presentation.canvas.height;
+      }
+      texture.needsUpdate=true;renderRequested ||= kind !== 2 || !robotron || inCameraView(robotron.objects.get("crt-glass"), camera);}
     robotron?.detailDistance(camera.position.distanceTo(controls.target));
     const changed = robotron?.tick();
     if (changed?.shadows) renderer.shadowMap.needsUpdate = true;

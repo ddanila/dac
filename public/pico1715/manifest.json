@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "abi": 1,
+  "pico": "ed8b6736fc102fe87112741b344852b80d5d426b",
+  "dac": "98f8f808c08ce21f6b98a00b95185f1e2226e70d",
+  "dirty": false,
+  "compiler": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 4.0.23 (7a5d93b50f6a3a35e85a0d2fc9e667b8498e6aed)",
+  "verilator": "Verilator 5.032 2025-01-01 rev (Debian 5.032-1)",
+  "sha256": {
+    "pico1715-firmware.wasm": "548eab1753eb6def78ceba91e8ad6f3b2342599ec0d519bdf170d947cab2bf97",
+    "pico1715-firmware.mjs": "ff476c7a0735c6315737f183662ab7bbafbb6dafb2600ffbecffba9bcccad919",
+    "chips-LICENSE": "0c692ece632a8ec6d2a566c9234fdabda655644e6abc70027da9ff7c35e48634",
+    "pico1715-model.wasm": "2054ba378be4b62d26155d2dd1e9a413ff4dc020c94aa7c950e3df2ee8f46eea",
+    "verilator-LICENSE": "c99001e5f7806a40b17a3f555ab464e4739527e43fef9745a455b83132aab97f",
+    "LICENSE": "5f37b6aa73439398b45f8b972c02bfbd07418c4e00d374adb68695a6edb38e5f",
+    "pico1715-model.mjs": "8c36214187f04b744d48ce4d2de4b85393d5c41153d181b683308379e4526349",
+    "test.rom": "639db4e6c4bea3042bfc7ea2ab83ee475e9391766bd5cffc370e0b59affdeac2",
+    "cpm-plus-1715.img": "f1def6d636e6fe506d2b30ab62d7028c1d8b491ddfa15d245b155a46b8c51bbd",
+    "keyboard-map.json": "bde15f8f9a8c05bf9fe36b1661080cd0141e0cd48eaac28678600af2f2712fd3",
+    "platform.bin": "b42f77854d910e106a4927f992e725df7fbb2077a90d8e7b3315798a095ed645",
+    "CPM-NOTICE.md": "63af88431bcb417952dc604af3e3c980250568507003f6c48a5f5705aec0eb46",
+    "CPM-LICENSE.md": "4db276dbc6ee71ff1c9e4826ea52c1ac4f6eac6f64a11e517a660fe0ca14d1a3",
+    "JUKU-LICENSE": "dc74ca17f83a020b3fec5b966e1f26188f1f16b800be6b093fc676bc43e0947c"
+  },
+  "cpm": "0ce6499bf496e18c4479f3d5e9ef7f149b38e795"
+}

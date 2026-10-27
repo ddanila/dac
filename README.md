@@ -172,3 +172,9 @@ writable, run `DACRX NAME.EXT`, then send a file. Follow the
 with DACTX and for transfer limits. Receiver/transmitter source is MIT; stock-media
 notices still apply. See the [capability matrix](docs/robotron/capabilities.md) for
 qualification evidence and remaining serial limitations.
+
+## Classic 1715 workstation
+
+Select **Robotron 1715 + Pico1715** for the source-built CP/M 3 workstation,
+with browser controller-model and firmware/FPGA backends, local disk copies
+and a debugger. See the [classic workstation guide](docs/robotron/classic-workstation.md).

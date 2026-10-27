@@ -1,3 +1,4 @@
+import {createPico1715Panel} from './pico1715-panel.js';
 import {installPracticeGuide} from './practice-guide.js';
 import {installSoundMixer} from './sound-controls.js';
 import {installDiagnosticReport} from './diagnostic-report.js';
@@ -27,7 +28,7 @@ import { createScene } from "./scene.js";
 import { createRobotronKeyboard } from "./robotron-keyboard.js";
 import { showInspection, showSpecimenDetail } from "./inspection.js";
 const $ = (id) => document.getElementById(id),
-  send = (d) => worker.postMessage(d);
+  send = (d) => Number($("machine").value)===3 && classic.active ? classic.send(d) : worker.postMessage(d);
 const worker = new Worker(new URL("./emulator.worker.js", import.meta.url), {
   type: "module",
 });
@@ -73,6 +74,9 @@ let on = false,
   previousPixels,
   firmwareKeyboard = false,
   hasState = false;
+const classic=createPico1715Panel({screen,scene:()=>scene,debug:d=>debugPanel.message(d),onPower:value=>{
+  scene?.power(value);$("power-label").textContent=value?'Power off':'Power on';$("status").textContent=value?'Running':'Powered off';
+}});
 const held = new Map(),
   base = new URL(import.meta.env.BASE_URL + "emulator/", location.origin);
 function fail(message) {
@@ -103,6 +107,7 @@ function release() {
   if (on) send({ type: "key", key: 0, down: false });
 }
 function power() {
+  if(Number($("machine").value)===3){classic.power().catch(e=>fail(e.message));return;}
   if (replayBusy || !ready || $("power").disabled) return;
   robotronSound.unlock().catch(e => fail(e.message));
   release();
@@ -282,6 +287,17 @@ const descriptions = {
 };
 async function configure(demo, historical = false) {
   if (!ready || replayBusy) return;
+  if(Number($("machine").value)===3){
+    worker.postMessage({type:'power',on:false});on=false;configuration++;
+    scene?.setMachine(3);scene?.power(false);
+    $("cpu").textContent='U880 / Z80 · 2.458 MHz';$("profile").textContent='Classic 1715 + Pico1715';
+    $("description").textContent='Source-built CP/M 3 with selectable controller or firmware/FPGA simulation.';
+    $("media-label").textContent='CP/M 3 · one A: disk';$("number").textContent='004';
+    $("fidelity").textContent='Simulation only. The public fixture bypasses the original ROM bootstrap. Physical timing is unqualified.';
+    $("power-label").textContent='Power on';$("status").textContent='Powered off';
+    await classic.activate();classicInspection();return;
+  }
+  if(classic.active)classic.deactivate();
   const ticket = ++configuration;
   practiceGuide?.configure(null);
   $("power").disabled = true;
@@ -398,6 +414,7 @@ function requestPrinterPreview(force=false){
 $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPreview();};
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
 worker.onmessage = ({ data: d }) => {
+  if(Number($("machine").value)===3 && d.type!=="ready")return;
   diagnosticPanel.message(d);
   keyboardControllerReview.message(d);
   debugPanel.message(d);
@@ -435,6 +452,7 @@ worker.onmessage = ({ data: d }) => {
   }
   if (d.type === "disk-inspection") diskExplorer.receive(d);
   if (d.type === "ready") {
+    if(new URLSearchParams(location.search).get("machine")==="1715")$("machine").value="3";
     ready = true;
     lastPreviewSize=-1;
     configure(true, true).catch((e) => fail(e.message));
@@ -917,13 +935,17 @@ function updateCase() {
   scene?.separate($("separate-parts").checked);
   $("viewport").dataset.interior = String(open);
 }
+function classicInspection(){
+  $('inspection-title').textContent='Classic 1715 + Pico1715';
+  $('inspection-text').textContent='Interactive software workstation in a provisional enclosure. This view does not represent the 1715M motherboard or certify a physical Pico1715 board.';
+}
 function selectView(name) {
   document
     .querySelector(".stage")
     .classList.toggle("typing", name === "typing");
   $("screen-panel").hidden = name !== "typing";
   scene?.view(name === "typing" ? "keyboard" : name);
-  showInspection(name);
+  if(Number($("machine").value)===3)classicInspection();else showInspection(name);
   for (const button of document.querySelectorAll("[data-view]"))
     button.setAttribute("aria-pressed", String(button.dataset.view === name));
   // Media controls can leave the exhibit above the viewport. A selected camera

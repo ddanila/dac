@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "capacity": 128,
+  "counter_bits": 16,
+  "symbols": {
+    "keyservice": 49337,
+    "keyhold": 50831,
+    "keyhead": 50832,
+    "keytail": 50833,
+    "keycount": 50834,
+    "keydrops": 50835,
+    "keydecoded": 50837,
+    "keycalls": 50839,
+    "prefix": 50841,
+    "keyqueue": 53082,
+    "platform_end": 53210
+  }
+}
