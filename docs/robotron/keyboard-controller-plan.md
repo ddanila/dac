@@ -43,8 +43,9 @@ other tracks.
    full native scans, queued/executing wrapper identities and the
    [native post-reference allocation controls][mux-growth]. Validate operational
    class/allocation changes against the admitted board profile. Qualify the remaining dispatch paths of the [native gate controls][gate-state],
-   then measure and integrate their caches and scheduler bindings under the
-   [logic ownership contract][logic-contract]. Keep real conversion, unequal-width
+   then use the [measured gate budget][gate-budget] to compact and integrate
+   their caches and scheduler bindings under the [logic ownership contract][logic-contract].
+   Measure actual combined output and runtime before changing capture limits. Keep real conversion, unequal-width
    inputs and allocation lifecycle explicit. Preserve the [native subclass refusals][gate-families]
    when admitting board classes; retain class/graph bindings for
    stateless BUFZ/BUFT without inventing payload fields. Arithmetic
@@ -229,3 +230,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [gate-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-state/assessment.json
 
 [gate-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-families/assessment.json
+
+[gate-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-board-budget/assessment.json
