@@ -165,7 +165,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    reconstruction through callback growth, cancellation and faults. Registration
    from an empty reference can exceed dense encoding; initial measurements do not
    bound changing-state output. Bind deep VPI signal
-   metadata and native graph owners; stateful
+   metadata and native graph owners, preserving the [native referent counterexamples][callback-referents]:
+   node binding, signedness, range constants and lazy bit-handle caches are not
+   covered by callback-list identity. Observe existing caches without allocating
+   handles, and restore metadata faults before continuation. Stateful
    part-select/array callbacks and suspended traversal remain separate. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -489,3 +492,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-owner-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-owner-lifecycle/assessment.json
 
 [callback-list-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-list-preflight/assessment.json
+
+[callback-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-referents/assessment.json
