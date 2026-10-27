@@ -527,6 +527,14 @@ producer equivalence outside the gate/cap, and bounded receipts. The initial
 mux projections are 1.81 GB dense or 4.56 MB unchanged compact, not a bound on
 operational growth. Mux capture has not started; stages beyond mux remain stopped.
 
+The [public parameter handle-release controls][parameter-handle-release] cover
+`vpi_free_object` and `vpi_release_handle` on four binary/wide/real/string
+parameters, twice. All 16 calls per run preserve handle identity, scope, size
+and VPI value; enabled observation also preserves the entire native parameter
+inventory. Original, disabled and enabled HDL continuation matches, and three
+retained-evidence/tamper tests pass. Public release suppresses deletion for these
+classes. This does not qualify native destruction, teardown or address reuse.
+
 A separate parameter continuation campaign now targets all ten native parameter
 faults at 5 µs, restores exact state and resumes normal execution to 20 µs.
 The prepared reviewer includes all six compact streams, full waveform and firmware
@@ -1167,3 +1175,5 @@ and the reason for changing its interpretation.
 [parameter-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class/assessment.json
 
 [parameter-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class-board/assessment.json
+
+[parameter-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-handle-release/assessment.json

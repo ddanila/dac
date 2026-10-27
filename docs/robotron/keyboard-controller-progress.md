@@ -66,6 +66,11 @@ It runs every original acceptance check with exact-input parser reuse, preserves
 its candidate result, then requires exact equality with the original assessment.
 Four wrapper tests pass; complete wire-review equivalence remains pending.
 
+Public parameter handle release has retained evidence in
+`analog/reports/parameter-handle-release`: both VPI APIs preserve all four
+parameter kinds, exact inventory and original HDL continuation. Three tests
+pass. Native deletion and address reuse remain open.
+
 The ten-fault parameter continuation campaign is tracked by
 `build/keyboard-controller-analog/parameter-continue-job.json`. It restores faults
 at 5 µs and resumes to 20 µs. Capture and full review are pending. Run its tests

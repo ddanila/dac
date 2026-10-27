@@ -226,6 +226,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Diagnostic binary/string/real factory subclasses retain base VPI behavior but
    refuse complete parameter observation before output, twice per family.
    Original/disabled/enabled continuation and the 16-field regression pass.
+   Preserve the [public parameter handle-release controls][parameter-handle-release]:
+   both VPI release APIs retain handle identity, scope, size, value and exact
+   inventory for binary/wide/real/string parameters in two rounds. All 16 calls
+   per run preserve original/disabled/enabled HDL continuation. Three retained
+   evidence/tamper tests pass. These APIs suppress deletion for these classes;
+   native destruction, teardown and address reuse remain unqualified.
    Preserve the [initialized parameter-class board regression][parameter-class-board]:
    all 56 parameters and their compiled values/owners match on the exact runtime
    used by class and field-fault fixtures; memory and preceding initial bindings
@@ -903,3 +909,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class/assessment.json
 
 [parameter-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class-board/assessment.json
+
+[parameter-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-handle-release/assessment.json
