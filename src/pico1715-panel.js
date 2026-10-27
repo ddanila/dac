@@ -54,7 +54,8 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
   try{const {bytes,writes}=await snapshot(off);if($('p1715-remember').checked)await saveRecord(key,bytes);disk=bytes;dirty=lastWrites>writes;lastWrites=Math.max(lastWrites,writes);
    status($('p1715-remember').checked?'Disk saved locally.':'Disk copied; local persistence disabled.');
    if(download){const url=URL.createObjectURL(new Blob([bytes]));const a=document.createElement('a');a.href=url;a.download='pico1715-working.img';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-  }finally{saving=false;controls();}
+  }catch(e){if(off&&worker)send({type:'resume-after-save-failure'});throw e;}
+  finally{saving=false;controls();}
  }
  function receive(d){
   if(d.type==='power'){on=d.on;loading=false;onPower(on);controls();status(on?'Running. Click the screen to type.':'Powered off.');}

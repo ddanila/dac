@@ -75,6 +75,7 @@ async function handle(d){
   for(const c of text)core._p1715_key(c.charCodeAt(0));
  }else if(d.type==='cancel-paste')core._p1715_cancel();
  else if(d.type==='reset'){stop();core._p1715_reset();paused=false;debug('CPU reset; pending input cancelled.');lastFrame=performance.now();tick();}
+ else if(d.type==='resume-after-save-failure'){running=true;stop();tick();}
  else if(d.type==='speed'){speed=[0,1,4].includes(d.value)?d.value:1;stop();tick();}
  else if(d.type==='visibility'){hidden=!!d.hidden;stop();tick();}
  else if(d.type==='export'||d.type==='off'){

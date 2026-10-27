@@ -64,6 +64,10 @@ test('saved copy survives reload and failed persistence leaves the session usabl
  await page.evaluate(()=>{window.originalTransaction=IDBDatabase.prototype.transaction;IDBDatabase.prototype.transaction=function(stores,mode,...args){if(mode==='readwrite')throw Error('Simulated quota failure');return window.originalTransaction.call(this,stores,mode,...args);};});
  await page.click('#p1715-export');await expect(page.locator('#p1715-status')).toContainText('Simulated quota failure');
  await expect(page.locator('#power')).toBeEnabled();await expect(page.locator('#power-label')).toHaveText('Power off');
+ await page.click('#power');await expect(page.locator('#p1715-status')).toContainText('Simulated quota failure');
+ await expect(page.locator('#power-label')).toHaveText('Power off');
+ await page.fill('#p1715-paste','DIR\n');await page.click('#p1715-type');
+ await expect(page.locator('#p1715-text')).toContainText('HELLO',{timeout:30000});
  await page.evaluate(()=>{IDBDatabase.prototype.transaction=window.originalTransaction;});
  await page.click('#p1715-export');await expect(page.locator('#p1715-status')).toHaveText('Disk saved locally.');
  const worker=page.workers().find(w=>w.url().includes('pico1715.worker'));
