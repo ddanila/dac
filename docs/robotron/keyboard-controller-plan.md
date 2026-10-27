@@ -426,8 +426,17 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    raising only the logical-log cap to 48 GiB; the 256-MiB compressed cap and
    3,300-second timeout remain unchanged. All bridge/runtime output hashes verify,
    and four gate/budget tests pass. This resource ceiling is not a measured growth
-   bound. Raw-island capture and unchanged full review remain pending; stages
-   beyond raw-island remain stopped pending predecessors. Audit admitted modules before relying
+   bound. Raw-island capture and unchanged full review remain pending.
+   Scheduled raw-assignment recovery is queued behind the exact raw-island process
+   identity. `raw_island_recovery_gate.py` requires all prior-layer observations,
+   positive raw-island/cache populations, complete exact normal/firmware controls,
+   all three faults and bounded receipts before retaining `raw-island-board-reviewed`.
+   Assignment capture changes only this prerequisite and the logical-log ceiling
+   to 52 GiB; all fault modes, the 3,300-second timeout, 256-MiB compressed cap and
+   full original reviewer remain unchanged. Four tests and all candidate output
+   hashes pass. This ceiling is not a measured growth bound; assignment capture
+   and complete review are pending. Later stages remain stopped pending predecessors.
+   Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
