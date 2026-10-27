@@ -37,8 +37,10 @@ other tracks.
    Integrate the [native raw wire-cache controls][wire-raw-state], qualifying
    class/allocation admission, compact reconstruction and operational cost.
    Extend raw scalar coverage to other strength-aware filter/island/queue and
-   concatenation payloads, with native faults and continuation controls. Re-audit
-   other strength producers before claiming complete state coverage. Keep running
+   concatenation payloads, with native faults and continuation controls. Preserve the
+   [source-extracted switch-helper controls][strength-switch] while qualifying
+   actual island dispatch and other producers; helper closure alone does not
+   establish complete state coverage. Keep running
    campaigns pinned; add a subsequent runtime/reviewer revision. Integrate the [native signal controls][signal-state]
    under the [signal ownership contract][signal-contract], preserving the tested
    [unsupported-family refusals][signal-families]. Use the [validated signal deltas][signal-delta]
@@ -309,3 +311,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [strength-encoding]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/strength-encoding/assessment.json
 
 [wire-raw-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-state/assessment.json
+
+[strength-switch]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/strength-switch/assessment.json
