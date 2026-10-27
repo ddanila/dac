@@ -311,6 +311,20 @@ other observers and review. Four tests pass. Older array traversal/storage-point
 safety, unsupported families, lifetime changes and operational integration remain
 unqualified.
 
+The [array traversal/storage admission controls][array-admission] subsequently
+check guarded scope membership before the older array collector performs casts.
+An independent registry admits exact static four-state storage allocations and
+checks width, word count, cell-buffer identity and wide A/B pointers before
+observer reads. Native constructors, destructors and valid writes maintain it.
+Nine faults in each of two rounds produce 36 zero-output refusals across dense
+and compact images; all 18 mutations restore exactly. Unallocated wide words
+can receive valid HDL writes, and dense/compact reconstruction and original
+continuation remain exact. Storage destruction and same-address reconstruction
+update admission, while subclasses and foreign storage refuse. Existing compact
+array and memory-name regressions pass on the new runtime; three evidence and
+rejection tests pass. Lazy word-cache pointers, read-port heads, broader lifecycle
+and operational board integration remain unqualified.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -927,3 +941,5 @@ and the reason for changing its interpretation.
 [memory-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-metadata/assessment.json
 
 [memory-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-board-budget/assessment.json
+
+[array-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-admission/assessment.json

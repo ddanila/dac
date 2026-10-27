@@ -128,9 +128,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    shaped register banks. Names and complete array images remain unchanged.
    The 283-byte metadata image projects to 31.2 MB and 17.6 seconds over the
    earlier snapshot count; this excludes growth, other observers and review.
-   Qualify unsupported families and lifecycle changes, and correct the older
-   array collector's traversal/storage-pointer admission before operational
-   acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
+   Preserve the [array traversal/storage admission controls][array-admission]:
+   guarded scope membership precedes traversal casts, and registered exact static
+   four-state storage validates dimensions, cell buffers and wide-word pointers
+   before observation. Two rounds give 36 zero-output dense/compact refusals and
+   18 exact restorations, preserving valid wide writes and original continuation.
+   Destruction/address reuse and subclass refusal are exercised for storage.
+   Qualify lazy word-cache pointers, read-port heads, unsupported families,
+   broader lifetime changes and operational integration before acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
    lazy cache creation and ten zero-output refusals per native round restore
@@ -785,3 +790,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-metadata/assessment.json
 
 [memory-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-board-budget/assessment.json
+
+[array-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-admission/assessment.json
