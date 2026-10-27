@@ -143,8 +143,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    string and real families, bounded names/string bytes, exact binary storage
    words and real representation bytes. Two rounds capture value/flag changes,
    refuse width and missing/duplicate ownership, restore exactly and preserve
-   original HDL continuation. Qualify remaining pointer/family/lifetime faults,
-   bind the board's 56 parameters and measure integration cost before acceptance. Audit admitted modules before relying
+   original HDL continuation. Qualify remaining pointer/family/lifetime faults and integrated operational
+   cost before acceptance.
+   Preserve the [initialized board parameter binding and budget][parameter-budget]:
+   all 56 scope-owned binary parameters match compiled names, flags, source
+   metadata and 1,386 logical value bits. The unchanged 8,851-byte image projects
+   to 976 MB and 24.0 seconds for the earlier snapshot count; compact/changed-state
+   cost and full transient integration remain open. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -704,3 +709,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-signal-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-fault-preflight/assessment.json
 
 [parameter-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-payload/assessment.json
+
+[parameter-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-budget/assessment.json

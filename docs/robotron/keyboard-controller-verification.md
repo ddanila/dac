@@ -233,6 +233,17 @@ showing that the new observer adds coverage independently. Remaining pointer and
 family faults, lifetime changes, actual board bindings and operational cost are
 not yet qualified; memory-name coverage is still unresolved.
 
+The [initialized board parameter binding and budget][parameter-budget] now joins
+all 56 parameter IDs and owning scopes to compiled names, local/signed/sized
+flags, source-file/line metadata and 1,386 logical binary bits. All match.
+Retained raw word pairs include unused high bits, whose values are not specified
+by the compiled declarations. All board parameters are binary; string/real
+coverage remains in the native fixture. Repeated full images stay unchanged.
+The 8,851-byte image and local 0.218-ms mean scan project to 976 MB and 24.0
+seconds over 110,312 snapshots, excluding growth, other observers and review.
+Four tests pass. Compact logging, changed-state cost, pointer/lifecycle controls
+and normal transient integration remain unqualified.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -801,3 +812,5 @@ and the reason for changing its interpretation.
 [scope-signal-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-fault-preflight/assessment.json
 
 [parameter-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-payload/assessment.json
+
+[parameter-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-board-budget/assessment.json
