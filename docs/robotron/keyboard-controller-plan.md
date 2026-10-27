@@ -36,7 +36,9 @@ other tracks.
    [unsupported-family refusals][signal-families]. Use the [validated signal deltas][signal-delta]
    and [measured delta budget][signal-delta-budget], then validate operational bindings,
    state growth and actual combined capture/review cost.
-   Cover mux/gate/arithmetic and resolver caches. Cover callback and array-word list contents beyond observed
+   Cover mux/gate caches and scheduler bindings under the [logic ownership contract][logic-contract];
+   retain class/graph bindings for stateless BUFZ/BUFT without inventing payload
+   fields. Arithmetic and resolver caches remain open. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -198,3 +200,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [signal-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-delta/assessment.json
 [signal-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-delta-budget/assessment.json
+
+[logic-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/logic-source-contract/assessment.json
