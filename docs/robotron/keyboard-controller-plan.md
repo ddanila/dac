@@ -31,7 +31,13 @@ other tracks.
    island/filter/queue, primitive/assignment, callback, port and wrapper/stop/display
    controls. Validate complete scope hierarchy, empty scopes and actual membership;
    live-thread identity alone does not establish membership.
-2. **Close reachable payload gaps.** Integrate the [native signal controls][signal-state]
+2. **Close reachable payload gaps.** Correct the
+   [strength-encoding loss][strength-encoding]: logical-value/strength triplets
+   merge reachable raw bytes that native scalar/vector equality distinguishes.
+   Preserve raw scalar bytes in strength-aware wire/filter and concatenation
+   observations, with dense/compact fault and continuation controls. Re-audit
+   other strength producers before claiming complete state coverage. Keep running
+   campaigns pinned; add a subsequent runtime/reviewer revision. Integrate the [native signal controls][signal-state]
    under the [signal ownership contract][signal-contract], preserving the tested
    [unsupported-family refusals][signal-families]. Use the [validated signal deltas][signal-delta]
    and [measured delta budget][signal-delta-budget], then validate operational bindings,
@@ -297,3 +303,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [reduction-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-delta-families/assessment.json
 
 [reduction-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-growth/assessment.json
+
+[strength-encoding]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/strength-encoding/assessment.json
