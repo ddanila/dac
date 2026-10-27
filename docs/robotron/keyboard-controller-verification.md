@@ -31,6 +31,13 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 ## Current findings and their consequences
 
+The [complete coarse drain comparison][drain-coarse] now binds matched 25-ns
+exact-tick-only and drain-enabled captures and verifies all 1,427,676 electrical
+samples across the full 1.16-ms window as exactly equal. Draining leaves this
+coarse trajectory unchanged. This finding does not establish internal scheduler
+identity, finer-level convergence or full campaign acceptance; finer captures
+and the complete campaign reviewer remain necessary.
+
 The [retained streaming revision][retained-stream] now archives complete raw
 waveforms under aggregate logical/compressed byte caps while preserving online
 sample comparisons. The [keyboard retention control][keyboard-retention] replays
@@ -503,3 +510,5 @@ and the reason for changing its interpretation.
 
 [retained-stream]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/retained-stream-control/assessment.json
 [keyboard-retention]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/keyboard-retained-stream/review.json
+
+[drain-coarse]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-coarse-effect/assessment.json
