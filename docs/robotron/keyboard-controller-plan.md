@@ -177,8 +177,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    reproduces the original complete assessment with exact-input parsing reuse
    and isolated result copies. Its 3,869-second duration is an observed cost, not
    a general runtime bound. The subsequent wire-board capture exceeded its
-   logical log budget. Resolve that measured capture-size failure and re-establish
-   reviewed predecessor gates before advancing the downstream queued campaigns.
+   logical log budget. Preserve the [measured wire capture failure][wire-budget-failure]:
+   4 GiB at 24,226 complete boundaries, compressed to 2.66 MB. The boundary-count
+   projection is 9.78 GB, not a growth bound. The bounded retry uses a 12-GiB
+   logical cap with unchanged 256-MiB compressed cap, 3,000-second per-run timeout,
+   circuit/window/faults and complete acceptance checks. Its three budget tests
+   pass; capture and full review remain pending. Re-establish reviewed predecessor
+   gates before restarting the downstream campaigns, which stopped after failure.
    Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
@@ -751,3 +756,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-fault-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-fault-preflight/assessment.json
 
 [cached-net-board-full]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/cached-net-board-full/assessment.json
+
+[wire-budget-failure]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-budget-failure/assessment.json

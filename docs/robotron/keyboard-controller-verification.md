@@ -304,6 +304,15 @@ logical logs compressed to 4.663 MB under explicit caps. Full evidence is retain
 and its manifest verifies; a second semantic review of the retained copy now
 reproduces the assessment exactly. The subsequent wire-board capture stopped at its logical log budget; its
 incomplete run does not qualify the added wire layer or downstream campaigns.
+The [retained failure measurement][wire-budget-failure] records exactly 4 GiB
+of logical output after 24,226 complete boundaries, versus 2,659,976 compressed
+bytes. Extrapolation to the earlier 55,156 boundaries gives 9.78 GB and can fail
+if state growth changes output size. A bounded retry is running with a 12-GiB
+logical limit, unchanged 256-MiB compressed limit and 3,000-second per-run timeout.
+Three tests verify the isolated capture-limit change and rejection of changed,
+exceeded or incomplete budget receipts. Circuit, observers, simulation window,
+fault cases and full semantic acceptance checks remain unchanged. The downstream
+jobs stopped on their failed predecessor; their campaigns await reviewed recovery.
 These measured costs do not bound additional payload integration. Wire/functor
 state, general rollback and startup/supply-recovery qualification remain open.
 
@@ -875,3 +884,5 @@ and the reason for changing its interpretation.
 [parameter-fault-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-fault-preflight/assessment.json
 
 [cached-net-board-full]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/cached-net-board-full/assessment.json
+
+[wire-budget-failure]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-budget-failure/assessment.json
