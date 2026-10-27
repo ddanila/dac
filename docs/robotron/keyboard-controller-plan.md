@@ -47,6 +47,12 @@ data-line peaks, bus-low base-time offsets closely match the approximately
 0.88–0.99-ps threshold-crossing offsets. This supports investigating bridge
 delivery timing without proving causality; logged output values and input-threshold
 history are absent. The WR peak windows contain no threshold crossings.
+A [source-bound clamp review][drain-clamp] confirms that subsequent callback
+targets equal `max(HDL time, analog entry time)` in all eight selected data-line
+bus groups. Delivery offsets match crossing offsets within 2.346 fs; three
+source/replay/tamper tests pass. The next diagnostic must expose input delivery,
+output values and callback-handle state before changing the entry-time clamp.
+This correlation does not establish a safe correction or numerical convergence.
 The original full disabled/timing/retry review remains
 pending; full-repeat, supply recovery and rollback qualification remain open.
 
@@ -1005,3 +1011,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [drain-refinement-diagnostic]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-refinements/assessment.json
 
 [drain-localization]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-localization/README.md
+
+[drain-clamp]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-clamp/README.md
