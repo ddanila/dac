@@ -151,9 +151,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    through complete unwinding and native shared-result overwriting. Suspended
    traversal and shared VPI result storage are not captured. Qualify association
    lifecycle and actual board cost before integration. Preserve [initialized bridge bindings and scan budgets][callback-board-budget].
-   The dense initial-state projection exceeds the current capture log cap; add
-   lossless compact lists with full-scan preflight before operational integration.
-   Initial measurements do not bound changing-state output. Bind deep VPI signal
+   The dense initial-state projection exceeds the current capture log cap. Use
+   [lossless compact lists][callback-delta] with full-scan preflight; qualify native
+   owner lifecycle and unsupported-family refusals through the compact API, then
+   measure the actual board cost before operational integration. Preserve exact
+   reconstruction through callback growth, cancellation and faults. Registration
+   from an empty reference can exceed dense encoding; initial measurements do not
+   bound changing-state output. Bind deep VPI signal
    metadata and native graph owners; stateful
    part-select/array callbacks and suspended traversal remain separate. Use the
    [native class inventory][native-classes] to admit families explicitly; names
@@ -468,3 +472,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-nested]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-nested/assessment.json
 
 [callback-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-board-budget/assessment.json
+
+[callback-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-delta/assessment.json
