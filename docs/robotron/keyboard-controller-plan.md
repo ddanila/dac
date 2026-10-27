@@ -35,7 +35,9 @@ other tracks.
    [strength-encoding loss][strength-encoding]: logical-value/strength triplets
    merge reachable raw bytes that native scalar/vector equality distinguishes.
    Integrate the [native raw wire-cache controls][wire-raw-state], qualifying
-   class/allocation admission, compact reconstruction and operational cost.
+   operational class/allocation admission, compact reconstruction and combined cost.
+   Preserve the [raw board bindings and initial scan budget][wire-raw-budget];
+   initial-state output estimates do not bound changing-state storage.
    Extend raw scalar coverage to other strength-aware filter/island/queue and
    concatenation payloads, with native faults and continuation controls. Preserve the
    [source-extracted switch-helper controls][strength-switch] while qualifying
@@ -313,3 +315,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [wire-raw-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-state/assessment.json
 
 [strength-switch]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/strength-switch/assessment.json
+
+[wire-raw-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-board-budget/assessment.json
