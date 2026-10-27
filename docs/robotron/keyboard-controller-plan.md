@@ -50,7 +50,8 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    initial-state output estimates do not bound changing-state storage. Preserve
    [raw filter admission refusals][wire-raw-families] for both initial and later
    allocations; base-class cache coverage does not admit subclasses.
-   Integrate raw-island snapshots at operational board boundaries using
+   Qualify the combined raw-island capture/reviewer (`analog/raw_island_board_capture.py`
+   and `analog/raw_island_board_review.py`) after reviewed resolver controls, using
    [initial graph/class bindings and full-scan budgets][island-raw-board-budget]
    and [exact dense/difference reconstruction][island-raw-delta]. Preserve native growth,
    live scratch, raw strength, partial-input, switch and feedback continuation controls;
