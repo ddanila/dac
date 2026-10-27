@@ -66,6 +66,12 @@ It runs every original acceptance check with exact-input parser reuse, preserves
 its candidate result, then requires exact equality with the original assessment.
 Four wrapper tests pass; complete wire-review equivalence remains pending.
 
+The ten-fault parameter continuation campaign is tracked by
+`build/keyboard-controller-analog/parameter-continue-job.json`. It restores faults
+at 5 µs and resumes to 20 µs. Capture and full review are pending. Run its tests
+with `ROBOTRON_PARAMETER_CONTINUE_REPORT` pointing to the completed campaign;
+the five campaign-dependent tests explicitly skip until an assessment exists.
+
 ## Functional release
 
 The release manifest pins CAD, HDL evidence and browser runtime revisions and

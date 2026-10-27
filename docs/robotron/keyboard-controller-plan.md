@@ -249,6 +249,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    refusals, each restoring complete state before termination. Four callback
    controls and 13 port/callback regressions pass on that bridge. Qualify later
    boundaries, normal transient comparison and firmware continuation separately.
+   The separate parameter continuation campaign is now running all ten faults
+   at a selected 5-us boundary on the exact-class runtime. Its prepared reviewer
+   checks six compact state streams, exact restoration, complete 20-us waveform
+   and firmware equality, and nonempty post-fault bus activity. The bridge builds;
+   full capture, semantic review and tamper tests remain pending.
    Independently qualify the prepared `analog/cached_wire_board_review.py`
    against the unchanged original bounded wire assessment. Four wrapper tests
    pass; the queued full review still must establish exact complete assessment

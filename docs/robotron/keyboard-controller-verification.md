@@ -527,6 +527,13 @@ producer equivalence outside the gate/cap, and bounded receipts. The initial
 mux projections are 1.81 GB dense or 4.56 MB unchanged compact, not a bound on
 operational growth. Mux capture has not started; stages beyond mux remain stopped.
 
+A separate parameter continuation campaign now targets all ten native parameter
+faults at 5 µs, restores exact state and resumes normal execution to 20 µs.
+The prepared reviewer includes all six compact streams, full waveform and firmware
+comparisons, and nonempty post-fault activity. Its bridge compiled; capture and
+semantic acceptance remain pending. This adds no continuous private-state or
+ordinary lifetime claim.
+
 The independent `cached_wire_board_review.py` candidate reuses parsing only for
 identical record sequences and identities, returning isolated copies. It calls
 the unchanged complete bounded wire reviewer and checks source, producer and
