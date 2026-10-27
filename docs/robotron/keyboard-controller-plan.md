@@ -97,8 +97,9 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Initial empty caches may acquire widths after input arrives; preserve
    empty/full/partial operand history without freezing initial vector sizes. Qualify concatenation
    allocation growth, preserving the [early/late subclass refusals][concat-families],
-   then bind the [native concatenation controls][concat-state]
-   to board allocations under the [expression ownership contract][expression-contract].
+   then validate the [native concatenation controls][concat-state] at operational
+   boundaries using the [initial board bindings and scan budget][concat-budget]
+   under the [expression ownership contract][expression-contract].
    Preserve exact concat8 bytes, port widths, assembled caches and queued/executing
    output-node bindings. Establish compact encoding and combined cost before integration.
    Resolver caches remain open. Cover callback and array-word list contents beyond observed
@@ -353,3 +354,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [concat-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-state/assessment.json
 
 [concat-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-families/assessment.json
+
+[concat-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-board-budget/assessment.json
