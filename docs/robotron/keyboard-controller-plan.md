@@ -37,8 +37,9 @@ other tracks.
    Integrate the [native raw wire-cache controls][wire-raw-state], qualifying
    operational class/allocation admission and combined cost. Use the
    [raw-byte differences][wire-raw-delta] and [full-scan preflight][wire-raw-delta-budget],
-   preserving exact reconstruction of collision faults. Qualify admitted growth
-   through the compact API, preserving [late unsupported-filter refusals][wire-raw-delta-families].
+   preserving exact reconstruction of collision faults. Preserve [native post-reference growth][wire-raw-growth]
+   and [late unsupported-filter refusals][wire-raw-delta-families] through the
+   compact API. New allocations require full rows and can exceed dense storage.
    Preserve the [raw board bindings and initial scan budget][wire-raw-budget];
    initial-state output estimates do not bound changing-state storage. Preserve
    [raw filter admission refusals][wire-raw-families] for both initial and later
@@ -333,3 +334,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [output-drain]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-drain/assessment.json
 
 [wire-raw-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-delta-families/assessment.json
+
+[wire-raw-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-growth/assessment.json
