@@ -291,8 +291,15 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    matching capture receipts/source identities and an exact file copy; it refuses
    existing destinations. Three retention tests pass. The replacement signal/mux
    waiters use these destinations while keeping their exact predecessor gates.
-   Stages beyond mux remain
-   stopped pending their reviewed predecessors. Audit admitted modules before relying
+   The gate recovery job now waits behind the exact mux process identity.
+   `analog/mux_recovery_gate.py` requires full normal/firmware comparisons,
+   wire/signal/mux observations at every sample boundary, all four mux faults
+   and bounded receipts. A passing mux campaign is retained separately in
+   `mux-board-reviewed` before gate capture. Gate limits are 24 GiB logical,
+   256 MiB compressed and the unchanged 3,300-second per-run timeout; the
+   665-MB initialized gate-output projection is not a growth bound. Four
+   recovery/budget tests pass. Gate capture remains pending; stages beyond gate
+   remain stopped pending their reviewed predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the

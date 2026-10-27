@@ -542,6 +542,17 @@ original review. Four wrapper tests cover isolation, exception restoration,
 scalar-type mismatch and evidence tampering. The queued full comparison remains
 pending; these tests establish no full wire equivalence or timing bound.
 
+The gate recovery job is queued behind the exact mux process identity. Its
+predecessor gate requires complete normal comparisons, firmware equality,
+wire/signal/mux observations at every sample boundary, all four mux faults and
+bounded receipts. After passing, mux evidence is copied exactly to
+`mux-board-reviewed`. Gate capture preserves the 3,300-second timeout and
+256-MiB compressed cap, with a 24-GiB logical cap. Four recovery/budget tests
+pass, including rejection of incomplete evidence and an AST comparison showing
+that only the predecessor gate and logical limit change in capture. The native
+gate build outputs match their receipts. Capture and complete review remain
+pending; the 665-MB initialized output estimate is not a growth bound.
+
 The waiting recovery jobs were replaced before capture to avoid a retention-path
 collision: existing `wire-board-budget`, `signal-board-budget` and
 `mux-board-budget` directories contain initialized-state evidence. Full reviewed

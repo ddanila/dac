@@ -54,12 +54,12 @@ and firmware comparisons, and post-fault activity. It does not establish private
 state coverage at unobserved boundaries. Use each assessment's scope and the
 [requirement audit](keyboard-controller-verification.md) before extending a claim.
 
-Full wire/signal recovery campaigns are retained in `wire-board-reviewed` and
-`signal-board-reviewed` only after passing their complete reviews. Existing
+Full wire/signal/mux recovery campaigns are retained in `wire-board-reviewed`,
+`signal-board-reviewed` and `mux-board-reviewed` only after passing their complete reviews. Existing
 `*-board-budget` directories hold initialized-state evidence and are preserved.
 The live recovery status files are `build/keyboard-controller-analog/` followed by
 `wire-board-budget-job.json`, `signal-board-recovery-job.json` and
-`mux-board-recovery-job.json`; inspect their process identities as well as status.
+`mux-board-recovery-job.json` and `gate-board-recovery-job.json`; inspect their process identities as well as status.
 
 An independent cached wire review is queued in `cached-wire-board-job.json`.
 It runs every original acceptance check with exact-input parser reuse, preserves
