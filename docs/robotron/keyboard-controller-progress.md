@@ -61,7 +61,10 @@ The live recovery status files are `build/keyboard-controller-analog/` followed 
 `wire-board-budget-job.json`, `signal-board-recovery-job.json` and
 `mux-board-recovery-job.json` and `gate-board-recovery-job.json`; inspect their process identities as well as status.
 
-An independent cached wire review is queued in `cached-wire-board-job.json`.
+All eight wire captures have completed within their caps. Receipt-backed costs
+are retained in `analog/reports/wire-capture-cost`; full semantic acceptance is
+pending. Both original and cached reviewers are running. The cached status is
+`cached-wire-board-job.json`.
 It runs every original acceptance check with exact-input parser reuse, preserves
 its candidate result, then requires exact equality with the original assessment.
 Four wrapper tests pass; complete wire-review equivalence remains pending.

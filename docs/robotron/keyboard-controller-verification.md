@@ -542,6 +542,14 @@ comparisons, and nonempty post-fault activity. Its bridge compiled; capture and
 semantic acceptance remain pending. This adds no continuous private-state or
 ordinary lifetime claim.
 
+All eight bounded wire captures completed. The [receipt-backed cost report][wire-capture-cost]
+records 9,799,026,287 logical bytes and 5,891,260 compressed bytes for enabled
+observation, with 1,430 seconds of producer time and 1,887 seconds including
+capture/checks. It retains receipts and compressed-log identities, not log
+contents or semantic acceptance. Three tests reject incomplete/over-budget
+receipts, invalid durations and size mismatches. Original and cached complete
+semantic reviews remain in progress; memory peaks and broader bounds stay open.
+
 The independent `cached_wire_board_review.py` candidate reuses parsing only for
 identical record sequences and identities, returning isolated copies. It calls
 the unchanged complete bounded wire reviewer and checks source, producer and
@@ -1177,3 +1185,5 @@ and the reason for changing its interpretation.
 [parameter-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class-board/assessment.json
 
 [parameter-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-handle-release/assessment.json
+
+[wire-capture-cost]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-capture-cost/assessment.json

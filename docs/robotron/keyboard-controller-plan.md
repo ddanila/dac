@@ -273,7 +273,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    projection is 9.78 GB, not a growth bound. The bounded retry uses a 12-GiB
    logical cap with unchanged 256-MiB compressed cap, 3,000-second per-run timeout,
    circuit/window/faults and complete acceptance checks. Its three budget tests
-   pass; capture and full review remain pending. Re-establish reviewed predecessor
+   pass. All eight wire captures have now completed within their caps. Preserve
+   the [receipt-backed capture costs][wire-capture-cost]: enabled observation
+   produced 9,799,026,287 logical bytes and 5,891,260 compressed bytes, taking
+   1,430 seconds in the producer and 1,887 seconds including capture/checks.
+   Three cost-evidence tests pass. Original and cached full semantic reviews
+   remain running; measured costs do not establish acceptance or growth bounds.
+   Re-establish reviewed predecessor
    gates before restarting the downstream campaigns, which stopped after failure.
    The prepared `analog/wire_recovery_gate.py` requires both complete normal
    comparisons, firmware equality, wire observations and all six startup/later
@@ -911,3 +917,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class-board/assessment.json
 
 [parameter-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-handle-release/assessment.json
+
+[wire-capture-cost]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-capture-cost/assessment.json
