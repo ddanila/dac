@@ -381,6 +381,17 @@ memory bindings. Six retained-evidence and tamper-rejection tests pass. These
 are startup controls; later-boundary faults and normal firmware continuation
 with this complete observer remain unqualified.
 
+The [native memory fault continuation][memory-fault-continue] exercises all five
+paired toggles in two rounds, before and after HDL writes, read-port address
+changes and explicit lazy word-cache allocation. Ten faults restore both direct
+inventories exactly; eight invalid-pointer observations refuse with zero output.
+Wrong-field and unknown-field calls also refuse. Subsequent HDL writes and
+read-port output match the original and candidate-disabled runtimes. The
+reviewer checks stable memory/array identities across rounds, the expected
+payload and cache transitions, and isolated name changes. Three evidence and
+tamper-rejection tests pass. This covers the static native fixture; registered
+memory deletion/reuse and later complete board boundaries remain unqualified.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -1009,3 +1020,5 @@ and the reason for changing its interpretation.
 [memory-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-combined-preflight/assessment.json
 
 [memory-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-preflight/assessment.json
+
+[memory-fault-continue]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-continue/assessment.json
