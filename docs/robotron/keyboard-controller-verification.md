@@ -569,6 +569,14 @@ comparisons, and nonempty post-fault activity. Its bridge compiled; capture and
 semantic acceptance remain pending. This adds no continuous private-state or
 ordinary lifetime claim.
 
+The 12.5-ns and 6.25-ns drain captures completed in 8,291 and 8,504 seconds,
+respectively; the original driver is capturing the 25-ns forced-retry control.
+An independent `analog/postreset_drain_refinement_diagnostic.py` now reviews all
+three completed levels over the full 1.16-ms window with the unchanged 10-mV/
+non-growth gate and firmware comparisons. Its result is pending. This diagnostic
+does not replace the original full review of disabled, exact-tick, output-drain
+and retry effects, or establish full-repeat/supply/rollback qualification.
+
 All eight bounded wire captures completed. The [receipt-backed cost report][wire-capture-cost]
 records 9,799,026,287 logical bytes and 5,891,260 compressed bytes for enabled
 observation, with 1,430 seconds of producer time and 1,887 seconds including

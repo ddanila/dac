@@ -94,6 +94,12 @@ at 5 µs and resumes to 20 µs. Capture and full review are pending. Run its tes
 with `ROBOTRON_PARAMETER_CONTINUE_REPORT` pointing to the completed campaign;
 the five campaign-dependent tests explicitly skip until an assessment exists.
 
+The full post-reset finest capture has completed; the original drain driver is
+capturing its forced-retry control. An independent three-level refinement
+diagnostic is running, tracked by
+`build/keyboard-controller-analog/postreset-drain-diagnostic-job.json`. Both
+the numerical diagnostic and original full-campaign acceptance remain pending.
+
 ## Functional release
 
 The release manifest pins CAD, HDL evidence and browser runtime revisions and

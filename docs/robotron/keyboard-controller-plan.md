@@ -29,6 +29,14 @@ Keep the exact-tick-only control separate from the drain-enabled refinements;
 the producer requires the retained bounded drain assessment and preserves the
 complete ADC-enabled window. A completed capture is not a passing convergence gate.
 
+The 12.5-ns and 6.25-ns drain captures completed in 8,291 and 8,504 seconds,
+respectively; the original driver is capturing the 25-ns forced-retry control.
+An independent `analog/postreset_drain_refinement_diagnostic.py` now reviews all
+three completed levels over the full 1.16-ms window with the unchanged 10-mV/
+non-growth gate and firmware comparisons. Its result is pending. This diagnostic
+does not replace the original full review of disabled, exact-tick, output-drain
+and retry effects, or establish full-repeat/supply/rollback qualification.
+
 ### Combined simulator acceptance
 
 1. **Finish combined board validation.** Integrate lossless wire payloads with the [passing combined net/fanout controls][net-board],
