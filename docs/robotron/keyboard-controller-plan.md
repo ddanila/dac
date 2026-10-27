@@ -64,9 +64,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [source ownership contract][island-raw-contract], preserving the
    [native raw-assignment controls][assignment-raw] for pending and executing
    ownership, raw-collision faults, destination ports and original continuation.
-   Preserve [native subclass-refusal and nested-execution controls][assignment-raw-native]
-   through combined integration. Use scheduler-entry tracking: a virtual override
-   can bypass the base assignment method. Measure operational storage and runtime costs. Preserve the
+   Qualify `analog/raw_assignment_board_capture.py` and
+   `analog/raw_assignment_board_review.py` after reviewed raw-island controls,
+   preserving [native subclass-refusal and nested-execution controls][assignment-raw-native].
+   Use scheduler-entry tracking: a virtual override can bypass the base method.
+   Preserve the [initial queue/graph bindings and scan budget][assignment-raw-board-budget];
+   measure operational populations and combined cost. Startup byte/width/port
+   faults must restore before termination. Native raw-collision controls remain
+   separate unless operational captures demonstrate a collision-eligible payload. Preserve the
    [source-extracted switch-helper controls][strength-switch] while qualifying
    actual island dispatch and other producers; helper closure alone does not
    establish complete state coverage. Keep running
@@ -424,3 +429,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [assignment-raw]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/assignment-raw/assessment.json
 
 [assignment-raw-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/assignment-raw-native/assessment.json
+
+[assignment-raw-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/assignment-raw-board-budget/assessment.json
