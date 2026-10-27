@@ -57,8 +57,10 @@ other tracks.
    [unsupported-family refusals][arithmetic-families]. Integrate the
    [lossless arithmetic differences][arithmetic-delta] under the
    [measured full-scan budget][arithmetic-delta-budget], preserving
-   [late unsupported-family refusals][arithmetic-delta-families]. Qualify admitted
-   post-reference allocations and measure changing-state output; the
+   [late unsupported-family refusals][arithmetic-delta-families] and
+   [native allocation-growth controls][arithmetic-growth]. Measure operational
+   class/allocation changes and changing-state output; new objects can make
+   fixed-reference differences larger than dense images, and the
    unchanged-board projection is not an operational storage bound. Extend width and allocation-path qualification.
    Implement reduction and concatenation observers under the
    [expression ownership contract][expression-contract], preserving reduction
@@ -271,3 +273,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [arithmetic-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-delta-budget/assessment.json
 
 [arithmetic-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-delta-families/assessment.json
+
+[arithmetic-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-growth/assessment.json
