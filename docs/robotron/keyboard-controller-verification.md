@@ -101,8 +101,11 @@ metadata to native equality/restoration checks and compacts only serialized log
 output. All ten existing callback/typed-signal faults pass complete prior-layer
 review plus reconstructed metadata ownership joins: 22 snapshots bind 32 scopes
 and 18 signals. Native sequence-dependent compact output is kept outside dense
-equality checks. Scope-specific board faults and normal transient/firmware
-qualification remain open.
+equality checks. The [scope-specific startup controls][scope-metadata-faults]
+subsequently detect time-unit/source-line changes and all three function fields,
+plus invalid intern-pointer refusal. Exact selected-field changes and complete
+restoration pass, as do the ten prior callback/typed-signal regressions on the new
+runtime. Later-boundary and normal transient/firmware qualification remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -645,3 +648,5 @@ and the reason for changing its interpretation.
 [scope-compact-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact-board-budget/assessment.json
 
 [scope-metadata-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-combined-preflight/assessment.json
+
+[scope-metadata-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-fault-preflight/assessment.json

@@ -68,11 +68,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    native peak memory and changing-state cost. Preserve the [combined metadata
    startup preflight][scope-metadata-combined]: dense native comparisons, compact
    logging and reconstructed scope/signal ownership across the ten preceding
-   startup faults. Add scope-specific board faults and qualify normal transient
+   startup faults. Preserve the [scope-specific startup faults][scope-metadata-faults]
+   for time units, source line, function type/width/initial value and foreign
+   intern-pointer refusal, including exact field changes, complete restoration
+   and the ten prior regressions. Qualify later boundaries and normal transient
    integration after the pinned campaigns.
    Qualify operational integration and static ownership lifetime; scope
-   deletion/address reuse, internal-object payloads and function-field fault
-   controls remain open. Audit admitted modules before
+   deletion/address reuse, internal-object payloads and later function-field
+   execution coverage remain open. Audit admitted modules before
    relying on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -605,3 +608,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-compact-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact-board-budget/assessment.json
 
 [scope-metadata-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-combined-preflight/assessment.json
+
+[scope-metadata-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-fault-preflight/assessment.json
