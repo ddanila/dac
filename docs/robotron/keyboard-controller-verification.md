@@ -638,6 +638,14 @@ uses `raw-wire-board-reviewed`. Concatenation preserves all three faults, its
 tests pass, and build files match receipts. The 529-MB initialized output
 estimate is not a growth bound; full capture/review remains pending.
 
+Resolver recovery waits behind the exact concatenation process identity. Its
+predecessor gate requires full comparisons, firmware equality, all concatenation
+boundary observations, all three faults and bounded receipts. Reviewed evidence
+uses `concat-board-reviewed`. Resolver capture preserves all three faults, its
+3,300-second timeout and 256-MiB compressed cap, with a 44-GiB logical cap. Four
+tests pass; build files match receipts. The 261-MB initialized output estimate
+is not a growth bound, and complete capture/review remains pending.
+
 The waiting recovery jobs were replaced before capture to avoid a retention-path
 collision: existing `wire-board-budget`, `signal-board-budget` and
 `mux-board-budget` directories contain initialized-state evidence. Full reviewed

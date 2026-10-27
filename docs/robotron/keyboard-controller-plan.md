@@ -362,8 +362,14 @@ and retry effects, or establish full-repeat/supply/rollback qualification.
    retaining `raw-wire-board-reviewed`. Concatenation preserves all three faults,
    the 3,300-second timeout and 256-MiB compressed cap, with a 40-GiB logical cap.
    Its 529-MB initialized output estimate is not a growth bound. Four tests pass;
-   capture and full review remain pending. Stages beyond concatenation remain
-   stopped pending reviewed predecessors. Audit admitted modules before relying
+   capture and full review remain pending. Resolver recovery is queued behind
+   the exact concatenation process identity. `concat_recovery_gate.py` requires
+   full comparisons, firmware equality, all concatenation boundary observations,
+   all three faults and bounded receipts before retaining `concat-board-reviewed`.
+   Resolver capture preserves all three faults, the 3,300-second timeout and
+   256-MiB compressed cap, with a 44-GiB logical cap. Its 261-MB initialized
+   output estimate is not a growth bound. Four tests pass; capture/full review
+   remain pending. Stages beyond resolver remain stopped pending predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
