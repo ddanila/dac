@@ -337,6 +337,25 @@ evidence/rejection tests pass. Raw cache-parent and word-link mutations remain
 observable through the earlier controls. Cache-owner deletion/address reuse,
 alias/subclass coverage and operational integration remain unqualified.
 
+The [base cache-owner lifecycle controls][array-cache-lifecycle] exercise the
+native base constructor, lazy allocator and destructor through test-owned concrete
+adapters. Four constructions include two same-address reconstructions with fresh
+unallocated state. Retained old caches refuse twice; wrong lengths, foreign
+buffers and cross-owner cache aliases refuse twelve times. Native parent/word
+links initialize correctly, and original HDL continuation agrees. Three tests
+pass. This isolates base-class bookkeeping; deletion or reuse of scope-registered
+memory objects and operational allocation behavior remain unqualified.
+
+The [guarded initialized board regression][guarded-memory-board] repeats the
+complete three-memory binding and unchanged-array checks on the exact library,
+header and array sources used by the scope/storage/cache guard fixtures. The
+56 parameters and preceding initialized signal/port/scope bindings also pass.
+The same-runtime native memory layout witness and retained guard controls are
+checked independently; mismatched runtime sources and missing fault evidence
+reject. Three tests pass. This integrates the guards at tick zero, without
+claiming later-boundary faults, ordinary memory lifecycle or full transient
+qualification.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -957,3 +976,7 @@ and the reason for changing its interpretation.
 [array-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-admission/assessment.json
 
 [array-cache-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-cache-admission/assessment.json
+
+[array-cache-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-cache-lifecycle/assessment.json
+
+[guarded-memory-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/guarded-memory-board/assessment.json
