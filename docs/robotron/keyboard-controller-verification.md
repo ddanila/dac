@@ -129,7 +129,11 @@ scope ownership. Complete images remain unchanged. All board port net references
 are null, leaving nonnull coverage to the native fixture. The 43,756-byte image
 and 0.6085-ms local mean scan project to 4.83 GB and 67.1 seconds over the earlier
 snapshot count, excluding changing state and other observers. Three tests pass;
-compact storage and operational integration remain open.
+the [combined compact port startup controls][port-payload-combined] subsequently
+reconstruct port log bodies while preserving dense native comparisons. All ten
+scope/callback and ten typed-signal/callback controls pass with 317 ports and
+875 bits bound in every snapshot. Port-specific board faults, changing-state cost
+and normal transient qualification remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -680,3 +684,5 @@ and the reason for changing its interpretation.
 [port-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload/assessment.json
 
 [port-payload-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-board-budget/assessment.json
+
+[port-payload-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-combined-preflight/assessment.json
