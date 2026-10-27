@@ -562,12 +562,15 @@ inventory. Original, disabled and enabled HDL continuation matches, and three
 retained-evidence/tamper tests pass. Public release suppresses deletion for these
 classes. This does not qualify native destruction, teardown or address reuse.
 
-A separate parameter continuation campaign now targets all ten native parameter
-faults at 5 µs, restores exact state and resumes normal execution to 20 µs.
-The prepared reviewer includes all six compact streams, full waveform and firmware
-comparisons, and nonempty post-fault activity. Its bridge compiled; capture and
-semantic acceptance remain pending. This adds no continuous private-state or
-ordinary lifetime claim.
+The [complete parameter continuation controls][parameter-continuation] pass all
+10 faults at the selected 5-us boundary. Forty-seven snapshots cover all six
+compact streams, with complete state restoration and compiled ownership bindings.
+Normal execution then resumes through 20 us: all 27,578 samples across 31 signals,
+all firmware records and four post-fault bus edges match the original reference.
+The last observed bus edge is at 19.50128 us. All six campaign/tamper tests pass;
+exact retention and file/source identity checks also pass. These controls observe
+private state at startup and the fault boundary only. Continuous private state,
+unobserved lifetimes, ordinary deletion/reuse and general rollback remain open.
 
 The 12.5-ns and 6.25-ns drain captures completed in 8,291 and 8,504 seconds,
 respectively; the original driver is capturing the 25-ns forced-retry control.
@@ -1270,3 +1273,5 @@ and the reason for changing its interpretation.
 [parameter-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth-log/assessment.json
 
 [parameter-late-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-late-class/assessment.json
+
+[parameter-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-continue-controls/assessment.json

@@ -280,11 +280,14 @@ and retry effects, or establish full-repeat/supply/rollback qualification.
    refusals, each restoring complete state before termination. Four callback
    controls and 13 port/callback regressions pass on that bridge. Qualify later
    boundaries, normal transient comparison and firmware continuation separately.
-   The separate parameter continuation campaign is now running all ten faults
-   at a selected 5-us boundary on the exact-class runtime. Its prepared reviewer
-   checks six compact state streams, exact restoration, complete 20-us waveform
-   and firmware equality, and nonempty post-fault bus activity. The bridge builds;
-   full capture, semantic review and tamper tests remain pending.
+   Preserve the [complete parameter continuation controls][parameter-continuation]:
+   all ten faults at 5 us restore complete state and resume to 20 us on the
+   exact-class runtime. Forty-seven snapshots retain all six compact streams
+   and their compiled ownership bindings. Every run exactly matches all 27,578
+   samples across 31 signals and all firmware records, including four post-fault
+   bus edges through 19.50128 us. Six campaign/tamper tests pass, followed by
+   exact retention and file/source identity checks. Continuous private state,
+   unobserved lifetimes, ordinary deletion/reuse and general rollback remain open.
    Independently qualify the prepared `analog/cached_wire_board_review.py`
    against the unchanged original bounded wire assessment. Four wrapper tests
    pass; the queued full review still must establish exact complete assessment
@@ -983,3 +986,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-growth-log/assessment.json
 
 [parameter-late-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-late-class/assessment.json
+
+[parameter-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-continue-controls/assessment.json

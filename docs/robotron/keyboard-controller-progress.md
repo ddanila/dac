@@ -90,11 +90,20 @@ Public parameter handle release has retained evidence in
 parameter kinds, exact inventory and original HDL continuation. Three tests
 pass. Native deletion and address reuse remain open.
 
-The ten-fault parameter continuation campaign is tracked by
-`build/keyboard-controller-analog/parameter-continue-job.json`. It restores faults
-at 5 µs and resumes to 20 µs. Capture and full review are pending. Run its tests
-with `ROBOTRON_PARAMETER_CONTINUE_REPORT` pointing to the completed campaign;
-the five campaign-dependent tests explicitly skip until an assessment exists.
+The ten-fault parameter continuation campaign passed and is retained in
+`analog/reports/parameter-continue-controls`. All faults restore at 5 µs;
+47 snapshots cover six compact streams, and every run matches all 27,578 samples
+and firmware records through 20 µs, with four post-fault bus edges. Six tests
+and exact retention checks pass. From the core repository, replay with:
+
+```sh
+python3 verification/robotron-keyboard/analog/retained_evidence.py verification/robotron-keyboard/analog/reports/parameter-continue-controls
+python3 verification/robotron-keyboard/analog/parameter_continue_activity.py --root verification/robotron-keyboard/analog/reports/parameter-continue-controls --out /tmp/parameter-continue-replayed.json
+python3 -m unittest discover -s verification/robotron-keyboard/analog -p test_parameter_continue.py
+```
+
+Private state between and after the selected snapshots, ordinary deletion/reuse
+and general rollback remain unqualified.
 
 The full post-reset finest capture has completed; the original drain driver is
 capturing its forced-retry control. An independent three-level refinement
