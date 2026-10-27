@@ -418,7 +418,16 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    Resolver capture preserves all three faults, the 3,300-second timeout and
    256-MiB compressed cap, with a 44-GiB logical cap. Its 261-MB initialized
    output estimate is not a growth bound. Four tests pass; capture/full review
-   remain pending. Stages beyond resolver remain stopped pending predecessors. Audit admitted modules before relying
+   remain pending. Raw-island recovery is now queued behind the exact resolver
+   process identity. `resolver_recovery_gate.py` requires complete normal and
+   firmware comparisons, all prior-layer/resolver observations, all three faults
+   and bounded receipts before retaining `resolver-board-reviewed`. The new
+   raw-island producer preserves the original capture logic and all fault modes,
+   raising only the logical-log cap to 48 GiB; the 256-MiB compressed cap and
+   3,300-second timeout remain unchanged. All bridge/runtime output hashes verify,
+   and four gate/budget tests pass. This resource ceiling is not a measured growth
+   bound. Raw-island capture and unchanged full review remain pending; stages
+   beyond raw-island remain stopped pending predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
