@@ -249,6 +249,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    refusals, each restoring complete state before termination. Four callback
    controls and 13 port/callback regressions pass on that bridge. Qualify later
    boundaries, normal transient comparison and firmware continuation separately.
+   Independently qualify the prepared `analog/cached_wire_board_review.py`
+   against the unchanged original bounded wire assessment. Four wrapper tests
+   pass; the queued full review still must establish exact complete assessment
+   equality with unchanged captured files, producer and reviewer sources.
    Preserve the [complete cached net-board review][cached-net-board-full], which
    reproduces the original complete assessment with exact-input parsing reuse
    and isolated result copies. Its 3,869-second duration is an observed cost, not

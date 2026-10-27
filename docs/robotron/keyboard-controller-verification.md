@@ -527,6 +527,14 @@ producer equivalence outside the gate/cap, and bounded receipts. The initial
 mux projections are 1.81 GB dense or 4.56 MB unchanged compact, not a bound on
 operational growth. Mux capture has not started; stages beyond mux remain stopped.
 
+The independent `cached_wire_board_review.py` candidate reuses parsing only for
+identical record sequences and identities, returning isolated copies. It calls
+the unchanged complete bounded wire reviewer and checks source, producer and
+capture-file hashes before accepting exact JSON assessment equality with the
+original review. Four wrapper tests cover isolation, exception restoration,
+scalar-type mismatch and evidence tampering. The queued full comparison remains
+pending; these tests establish no full wire equivalence or timing bound.
+
 The waiting recovery jobs were replaced before capture to avoid a retention-path
 collision: existing `wire-board-budget`, `signal-board-budget` and
 `mux-board-budget` directories contain initialized-state evidence. Full reviewed
