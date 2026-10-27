@@ -168,7 +168,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    metadata and native graph owners, preserving the [native referent counterexamples][callback-referents]:
    node binding, signedness, range constants and lazy bit-handle caches are not
    covered by callback-list identity. Observe existing caches without allocating
-   handles, and restore metadata faults before continuation. Stateful
+   handles, and restore metadata faults before continuation. Integrate the
+   [native signal-handle observer][signal-handles] after qualifying net/integer
+   families, lifetime changes, compiled-board bindings and scan/output budgets.
+   Preserve its zero-output foreign-pointer and union-arm refusals. Stateful
    part-select/array callbacks and suspended traversal remain separate. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -494,3 +497,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-list-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-list-preflight/assessment.json
 
 [callback-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-referents/assessment.json
+
+[signal-handles]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-handles/assessment.json
