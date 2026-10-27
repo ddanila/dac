@@ -25,9 +25,9 @@ other tracks.
 
 ### Combined simulator acceptance
 
-1. **Finish combined board validation.** Review scope membership, typed code
-   operands, compact arrays, allocated net/fanout state and lossless wire payloads
-   together. Preserve the passing PC-binding, wait-event, thread/scheduler,
+1. **Finish combined board validation.** Review typed code operands, compact arrays, allocated net/fanout state and
+   lossless wire payloads together. Preserve the [passing scope membership
+   controls][scope-board] alongside PC-binding, wait-event, thread/scheduler,
    island/filter/queue, primitive/assignment, callback, port and wrapper/stop/display
    controls. Validate complete scope hierarchy, empty scopes and actual membership;
    live-thread identity alone does not establish membership.
@@ -186,3 +186,5 @@ tests are possible fallbacks for consequential ambiguities.
 
 Source drawings and photo locators belong in the CAD evidence manifests linked
 from the [workflow guide](keyboard-controller-progress.md#authoritative-artifacts).
+
+[scope-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-board/assessment.json
