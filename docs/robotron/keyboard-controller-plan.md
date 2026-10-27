@@ -42,10 +42,11 @@ other tracks.
    combined cost: changed fixture images can exceed dense encoding. Preserve
    full native scans, queued/executing wrapper identities and the
    [native post-reference allocation controls][mux-growth]. Validate operational
-   class/allocation changes against the admitted board profile. Qualify the remaining dispatch/admission paths of the [native gate controls][gate-state],
+   class/allocation changes against the admitted board profile. Qualify the remaining dispatch paths of the [native gate controls][gate-state],
    then measure and integrate their caches and scheduler bindings under the
    [logic ownership contract][logic-contract]. Keep real conversion, unequal-width
-   inputs and allocation lifecycle explicit; retain class/graph bindings for
+   inputs and allocation lifecycle explicit. Preserve the [native subclass refusals][gate-families]
+   when admitting board classes; retain class/graph bindings for
    stateless BUFZ/BUFT without inventing payload fields. Arithmetic
    and resolver caches remain open. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
@@ -226,3 +227,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [mux-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-growth/assessment.json
 
 [gate-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-state/assessment.json
+
+[gate-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-families/assessment.json
