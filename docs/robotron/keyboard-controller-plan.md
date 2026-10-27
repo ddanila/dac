@@ -53,6 +53,15 @@ bus groups. Delivery offsets match crossing offsets within 2.346 fs; three
 source/replay/tamper tests pass. The next diagnostic must expose input delivery,
 output values and callback-handle state before changing the entry-time clamp.
 This correlation does not establish a safe correction or numerical convergence.
+The separate `build_delivery_audit_vpi.py` candidate now logs input application,
+output values and callback-handle presence before/after the unchanged clamp.
+Its source and headers are bound to the retained drain build. Two instrumentation
+and transition-parser tests pass. Four bounded controls are running through the
+unchanged capture producer; `delivery_audit_review.py` will require exact
+same-mode waveform samples and firmware against the retained drain controls,
+plus complete before/after callback transitions. That review is pending, so the
+new instrumentation is not yet qualified even for the bounded fixture. Input
+threshold detection remains upstream and unobserved.
 The original full disabled/timing/retry review remains
 pending; full-repeat, supply recovery and rollback qualification remain open.
 
