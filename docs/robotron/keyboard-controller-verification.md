@@ -220,6 +220,19 @@ The queue retains the reviewed port artifacts with exact file identities before
 capture; no redundant semantic replay is implied. Full transient and lifecycle
 qualification remain open.
 
+The [native parameter payload observer][parameter-payload] adds constructor-time
+registration for binary, string and real parameters, exact scope ownership,
+bounded names/string storage and binary width/storage-pointer checks before
+reading. It records raw binary words and signed/sized flags, embedded-null string
+bytes including the terminator, real representation bytes and local/source
+metadata. Two rounds capture five isolated value/flag mutations and refuse width
+and missing/duplicate ownership with negative status and zero output. Restoration
+and original/disabled/enabled HDL continuation pass; three evidence tests pass.
+The previous scope-payload counterexamples still reproduce on the new runtime,
+showing that the new observer adds coverage independently. Remaining pointer and
+family faults, lifetime changes, actual board bindings and operational cost are
+not yet qualified; memory-name coverage is still unresolved.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -786,3 +799,5 @@ and the reason for changing its interpretation.
 [scope-signals-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals-combined-preflight/assessment.json
 
 [scope-signal-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-fault-preflight/assessment.json
+
+[parameter-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-payload/assessment.json

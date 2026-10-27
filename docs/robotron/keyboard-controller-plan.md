@@ -138,7 +138,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Require the predecessor's exact normal comparisons, complete port fault suite
    and per-boundary compact reconstruction. Measure the all-signal campaign's
    own full transient cost and require its complete waveform/firmware comparisons
-   and semantic review before extending operational acceptance. Audit admitted modules before relying
+   and semantic review before extending operational acceptance. Preserve the
+   [native parameter payload controls][parameter-payload]: initialized binary,
+   string and real families, bounded names/string bytes, exact binary storage
+   words and real representation bytes. Two rounds capture value/flag changes,
+   refuse width and missing/duplicate ownership, restore exactly and preserve
+   original HDL continuation. Qualify remaining pointer/family/lifetime faults,
+   bind the board's 56 parameters and measure integration cost before acceptance. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -696,3 +702,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-signals-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals-combined-preflight/assessment.json
 
 [scope-signal-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-fault-preflight/assessment.json
+
+[parameter-payload]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-payload/assessment.json
