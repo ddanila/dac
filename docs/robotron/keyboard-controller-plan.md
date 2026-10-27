@@ -54,9 +54,11 @@ other tracks.
    stateless BUFZ/BUFT without inventing payload fields. Bind the
    [native arithmetic/comparison controls][arithmetic-state] at operational board boundaries,
    preserving the [initial class/width bindings][arithmetic-budget] and
-   [unsupported-family refusals][arithmetic-families]. Implement lossless differences
-   with full native scans and dense-image reconstruction before integration; the
-   dense initial-state projection is not an operational storage bound. Extend width and allocation-path qualification.
+   [unsupported-family refusals][arithmetic-families]. Integrate the
+   [lossless arithmetic differences][arithmetic-delta] under the
+   [measured full-scan budget][arithmetic-delta-budget]. Qualify post-reference
+   allocations and late-family refusals, and measure changing-state output; the
+   unchanged-board projection is not an operational storage bound. Extend width and allocation-path qualification.
    Implement reduction and concatenation observers under the
    [expression ownership contract][expression-contract], preserving reduction
    partial-write history and concat8 strengths. Qualify native field faults and
@@ -263,3 +265,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [arithmetic-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-families/assessment.json
 
 [arithmetic-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-board-budget/assessment.json
+
+[arithmetic-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-delta/assessment.json
+[arithmetic-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-delta-budget/assessment.json
