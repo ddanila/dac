@@ -43,8 +43,8 @@ other tracks.
    full native scans, queued/executing wrapper identities and the
    [native post-reference allocation controls][mux-growth]. Validate operational
    class/allocation changes against the admitted board profile. Use the [native gate controls][gate-state] and [input-path controls][gate-inputs],
-   qualify admitted allocation lifecycle, then integrate the [lossless gate differences][gate-delta]
-   and [input-path differences][gate-input-delta] under the
+   preserve [native post-reference allocation controls][gate-growth], and integrate
+   the [lossless gate differences][gate-delta] and [input-path differences][gate-input-delta] under the
    [logic ownership contract][logic-contract], using the [full-scan budget][gate-delta-budget].
    Preserve [late unsupported-allocation refusals][gate-delta-families]. Measure actual combined output
    and runtime before changing capture limits. Keep the demonstrated unequal-width
@@ -245,3 +245,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [gate-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-delta-budget/assessment.json
 
 [gate-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-delta-families/assessment.json
+
+[gate-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-growth/assessment.json
