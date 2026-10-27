@@ -205,6 +205,17 @@ images exactly. Six tests pass. This logger replay is not another HDL execution.
 All-signal board faults, operational changed-state cost, full transient execution
 and lifecycle qualification remain open.
 
+The subsequent [non-bridge signal fault controls][scope-signal-faults] pass six
+signal and four callback startup controls. Native selection chooses the first
+registered signal outside bridge admission. Signedness/range faults change only
+that payload; node/name/cache/scope faults return negative status and zero bytes.
+Bridge-admitted payloads remain unchanged, and complete native state restores
+before termination. All 651 signal declarations and ownership/net bindings are
+checked in every reconstructed snapshot. A separate native fixture exercises all
+six exported toggles twice, verifies 12 exact restorations, and preserves
+original/disabled/enabled HDL continuation. Four evidence/rejection tests pass.
+Full transient and lifecycle qualification remain open.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -769,3 +780,5 @@ and the reason for changing its interpretation.
 [scope-signal-declarations]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-declarations/assessment.json
 
 [scope-signals-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals-combined-preflight/assessment.json
+
+[scope-signal-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-fault-preflight/assessment.json

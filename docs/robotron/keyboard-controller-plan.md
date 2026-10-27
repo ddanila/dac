@@ -129,7 +129,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    dense native comparisons and independent compact decoding retain full
    declaration/owner/net checks for all 651 signals across port and scope fault
    suites. The exact built C logger reconstructs changing native images byte for
-   byte. Add all-signal board faults and measure full transient cost before
+   byte. Preserve the [non-bridge signal board faults][scope-signal-faults]:
+   signedness/range changes and node/name/cache/scope refusals target a registered
+   signal outside bridge admission, leave admitted payloads unchanged, and
+   restore complete state. Native paired toggles also preserve original HDL
+   continuation. Measure full transient cost and qualify execution before
    extending operational acceptance. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
@@ -686,3 +690,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-signal-declarations]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-declarations/assessment.json
 
 [scope-signals-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signals-combined-preflight/assessment.json
+
+[scope-signal-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-signal-fault-preflight/assessment.json
