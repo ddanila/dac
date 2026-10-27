@@ -254,8 +254,16 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    retained-file copying and the signal capture/review. Its 16-GiB logical limit,
    unchanged 256-MiB compressed cap and 3,060-second timeout remain explicit;
    the additional initial dense signal projection is 1.27 GB, not a growth bound.
-   Four recovery/budget tests pass. Later stages remain stopped pending their
-   reviewed predecessors. Audit admitted modules before relying
+   Four recovery/budget tests pass. The mux recovery job now waits behind the
+   exact signal process identity. `analog/signal_recovery_gate.py` requires both
+   full normal comparisons, firmware equality, wire and signal observations at
+   every sample boundary, all three signal faults and bounded receipts. Only a
+   passing result permits exact retained-file copying and mux capture/review.
+   The mux retry preserves its 3,180-second timeout and 256-MiB compressed cap;
+   its logical cap is 20 GiB. Initial mux output projections (1.81 GB dense,
+   4.56 MB unchanged compact) do not bound changing-state cost. Four mux recovery/
+   budget tests pass; its capture has not started. Stages beyond mux remain
+   stopped pending their reviewed predecessors. Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the

@@ -475,7 +475,19 @@ second semantic replay. The signal capture raises only the logical cap to 16 GiB
 and adds the predecessor gate; its original 256-MiB compressed cap, 3,060-second
 timeout and full semantic reviewer remain. The initial dense signal projection
 adds 1.27 GB to wire output but does not bound changing-state cost. Four tests
-pass. Signal capture has not started; later stages remain stopped.
+pass. Signal capture has not started.
+
+The mux recovery job is queued behind the exact live signal process identity.
+Its predecessor gate requires full normal sample/firmware comparisons, complete
+wire and signal observations, all three startup/later signal faults and bounded
+receipts. Failed and partial evidence cannot start the capture. Retention uses
+exact file hashes of the fully reviewed signal result, without claiming a second
+semantic replay. The mux producer adds only this gate and a 20-GiB logical cap;
+its 256-MiB compressed cap, 3,180-second timeout, modes and full semantic reviewer
+remain unchanged. Four tests check the gate, rejection of insufficient evidence,
+producer equivalence outside the gate/cap, and bounded receipts. The initial
+mux projections are 1.81 GB dense or 4.56 MB unchanged compact, not a bound on
+operational growth. Mux capture has not started; stages beyond mux remain stopped.
 These measured costs do not bound additional payload integration. Wire/functor
 state, general rollback and startup/supply-recovery qualification remain open.
 
