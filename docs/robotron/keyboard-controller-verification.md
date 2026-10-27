@@ -437,6 +437,19 @@ These are selected-boundary controls,
 not complete trajectory or ordinary post-fault firmware continuation evidence;
 unobserved intermediate lifetimes and full transient cost remain open.
 
+The [restored memory fault continuation][memory-continuation] resumes execution
+after each selected 5-us memory fault restores the exact complete snapshot.
+Further private-state observation is disabled after restoration. All five runs
+finish normally at 20 us: all 27,578 samples across 31 signals match the reviewed
+reference exactly, as do initialized-model diagnostics and complete firmware
+records. Four firmware bus edges occur after each fault, from 7.50128 through
+19.50128 us, matching the reference and proving post-fault activity. Five tests
+cover retained semantic replay, invalid selected boundaries, missing refusal/
+restoration evidence, incomplete termination or summary counts, and absent or
+non-monotonic post-fault bus activity. These results qualify the observed
+restored-fault outcomes; intermediate and post-fault private-state lifetimes,
+continuous full-observer integration and broader rollback acceptance remain open.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -1085,3 +1098,5 @@ and the reason for changing its interpretation.
 [port-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-class-board/assessment.json
 
 [memory-late]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-late-controls/assessment.json
+
+[memory-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-continue-controls/assessment.json

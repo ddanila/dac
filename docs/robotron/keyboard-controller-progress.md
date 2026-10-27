@@ -38,6 +38,22 @@ in git. Local build and review instructions live in the
 and [co-simulation guide](https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/README.md).
 Use museum manifests when reviewing a specific pinned version.
 
+## Analog evidence replay
+
+Run retained-evidence checks from the core checkout. For restored memory faults:
+
+```sh
+python3 verification/robotron-keyboard/analog/retained_evidence.py verification/robotron-keyboard/analog/reports/memory-continue-controls
+python3 verification/robotron-keyboard/analog/memory_continue_activity.py --root verification/robotron-keyboard/analog/reports/memory-continue-controls --out /tmp/memory-continue-replayed.json
+python3 -m unittest discover -s verification/robotron-keyboard/analog -p test_memory_continue.py
+```
+
+The manifest check proves retained file/source identity. The reviewer checks the
+selected startup/later state snapshots, fault restoration, complete 20-us waveform
+and firmware comparisons, and post-fault activity. It does not establish private
+state coverage at unobserved boundaries. Use each assessment's scope and the
+[requirement audit](keyboard-controller-verification.md) before extending a claim.
+
 ## Functional release
 
 The release manifest pins CAD, HDL evidence and browser runtime revisions and

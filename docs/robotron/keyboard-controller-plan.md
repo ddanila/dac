@@ -176,8 +176,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    pre-fault sample (18,959 per run, 31 signals) matches the normal reference
    prefix byte-for-byte and its count agrees with the hook serial. Intermediate
    boundaries are omitted, so full transient and lifetime qualification remain
-   required.
-   Qualify later-boundary faults, full memory lifecycle, unsupported
+   required. Preserve the [restored memory fault continuation][memory-continuation]:
+   all five selected faults resume after exact restoration and complete the
+   20-us window. All 27,578 samples across 31 signals and all firmware records
+   match the reviewed reference; four bus edges after each fault prove continued
+   firmware activity. Five evidence/rejection tests pass. This qualifies these
+   restored-fault outcomes, not continuous private-state observation.
+   Qualify continuous operational observation, full memory lifecycle, unsupported
    families and operational transient integration before acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
@@ -861,3 +866,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [port-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-class-board/assessment.json
 
 [memory-late]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-late-controls/assessment.json
+
+[memory-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-continue-controls/assessment.json
