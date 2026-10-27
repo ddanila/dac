@@ -450,6 +450,21 @@ non-monotonic post-fault bus activity. These results qualify the observed
 restored-fault outcomes; intermediate and post-fault private-state lifetimes,
 continuous full-observer integration and broader rollback acceptance remain open.
 
+The [parameter class admission controls][parameter-class] check exact native
+classes before registration reads concrete parameter fields. The observer already
+rejected unknown classes during inventory; this guard moves admission ahead of
+the registration-time metadata reads as well. Opt-in native factory subclasses
+carry extra state while retaining binary/string/real VPI behavior. They remain
+in scope ownership but are excluded from the admitted payload registry, so the
+complete inventory refuses before its header. Two rounds per unsupported family
+produce six zero-output refusals; exact supported classes retain all four fixture
+parameters. VPI values and HDL continuation agree with original and candidate-
+disabled controls. The string API's embedded-NUL-to-space conversion is preserved;
+the existing raw payload fault suite separately covers the underlying bytes.
+That 16-field suite passes with 32 exact restorations on the new runtime. Three
+retained-evidence/rejection tests pass. Ordinary parameter lifetime changes and
+operational board integration of this registration guard remain open.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -1100,3 +1115,5 @@ and the reason for changing its interpretation.
 [memory-late]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-late-controls/assessment.json
 
 [memory-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-continue-controls/assessment.json
+
+[parameter-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class/assessment.json

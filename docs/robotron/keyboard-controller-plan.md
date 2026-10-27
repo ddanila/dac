@@ -221,8 +221,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [native parameter field/pointer faults][parameter-faults]: nine isolated
    value/metadata changes and seven zero-output width/scope/name/wide-storage/
    string-bound refusals per round, with 32 exact restorations and original HDL
-   continuation. Unsupported subclasses, lifecycle changes and operational board
-   fault controls remain open. Preserve the
+   continuation. Preserve the [parameter class admission controls][parameter-class]:
+   exact native classes are checked before registration reads concrete fields.
+   Diagnostic binary/string/real factory subclasses retain base VPI behavior but
+   refuse complete parameter observation before output, twice per family.
+   Original/disabled/enabled continuation and the 16-field regression pass.
+   Qualify lifecycle changes and operational board integration of this guard. Preserve the
    [initialized board parameter fault controls][parameter-board-faults]: seven
    isolated changes reject compiled bindings and three invalid fields refuse
    before output, twice, with 20 exact restorations across all 56 parameters.
@@ -868,3 +872,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-late]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-late-controls/assessment.json
 
 [memory-continuation]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-continue-controls/assessment.json
+
+[parameter-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-class/assessment.json
