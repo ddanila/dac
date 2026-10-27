@@ -88,8 +88,14 @@ Every compact call performs a complete scan; only exact previous-body equality
 permits reuse. Sequence and byte-count checks reject lost or malformed records.
 Sixteen invalid-state calls plus the automatic-scope control refuse before output.
 The fixture emits 38,585 compact versus 64,944 dense bytes; five tests pass.
-Board savings, buffering overhead, scan cost and operational integration remain
-unqualified.
+The [initialized compact board budget][scope-compact-budget] subsequently
+reconstructs all 128 board images exactly: 106,546 compact versus 6,527,040
+dense bytes. Local repeated scans average about 0.428/0.507 ms for metadata/
+references, including serialization and flush. With unchanged bodies and maximum
+future timestamp width, 110,312 calls project to 12,896,524 bytes; changed bodies
+still emit in full. Cached content is 101,956 bytes, excluding allocator capacity,
+transient buffers and peak RSS. Five tests pass. Changing-state cost, peak memory
+and operational integration remain unqualified.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -628,3 +634,5 @@ and the reason for changing its interpretation.
 [scope-metadata-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-board-budget/assessment.json
 
 [scope-metadata-compact]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact/assessment.json
+
+[scope-compact-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact-board-budget/assessment.json

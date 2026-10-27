@@ -61,8 +61,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    Dense metadata/reference repetition projects to 11.25 GB for the earlier
    boundary count. Preserve the [native compact metadata controls][scope-metadata-compact]:
    complete scans, exact byte comparison, explicit sequence/time records and
-   exact dense reconstruction through faults and restoration. Measure board
-   savings, native buffering overhead and changing-state cost before integration.
+   exact dense reconstruction through faults and restoration. Preserve the
+   [initialized compact board budget][scope-compact-budget]: all 128 images
+   reconstruct exactly, with 106,546 compact versus 6,527,040 dense bytes.
+   The 12.90-MB longer-window projection assumes unchanged bodies; qualify
+   native peak memory and changing-state cost before integration.
    Qualify operational integration and static ownership lifetime; scope
    deletion/address reuse, internal-object payloads and function-field fault
    controls remain open. Audit admitted modules before
@@ -594,3 +597,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-metadata-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-board-budget/assessment.json
 
 [scope-metadata-compact]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact/assessment.json
+
+[scope-compact-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact-board-budget/assessment.json
