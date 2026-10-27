@@ -31,6 +31,15 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 ## Current findings and their consequences
 
+The [native scope referent controls][scope-referents] show that the existing
+hierarchy/thread-membership image misses changes to scope time units, source-line
+metadata and internal object membership. Injected mutations change scaled VPI
+time, line queries and named signal lookup without changing that image. All
+fields restore before HDL continuation; baseline, disabled and observed runs
+agree. This demonstrates an observation gap, not ordinary runtime writes in the
+compiled board. Applicability, initialization-only invariants and any reachable
+mutations still need explicit coverage; complete scope state is not qualified.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -552,3 +561,5 @@ and the reason for changing its interpretation.
 [i8282-slew]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/i8282-slew-candidates/assessment.json
 
 [net-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/net-board/assessment.json
+
+[scope-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-referents/assessment.json

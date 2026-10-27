@@ -37,7 +37,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    and [scope membership controls][scope-board] alongside PC-binding, wait-event, thread/scheduler,
    island/filter/queue, primitive/assignment, callback, port and wrapper/stop/display
    controls. Validate complete scope hierarchy, empty scopes and actual membership;
-   live-thread identity alone does not establish membership.
+   live-thread identity alone does not establish membership. Preserve the [native
+   scope metadata/referent counterexamples][scope-referents]: membership images
+   miss time units, source-line metadata and internal object membership even when
+   those fields affect VPI results. Establish their applicability and coverage
+   under the admitted profile; distinguish injected corruption from ordinary
+   runtime writes. Keep the running campaigns pinned while adding later controls.
 2. **Close reachable payload gaps.** Correct the
    [strength-encoding loss][strength-encoding]: logical-value/strength triplets
    merge reachable raw bytes that native scalar/vector equality distinguishes.
@@ -548,3 +553,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [i8282-slew]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/i8282-slew-candidates/assessment.json
 
 [net-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/net-board/assessment.json
+
+[scope-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-referents/assessment.json
