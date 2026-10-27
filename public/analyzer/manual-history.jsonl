@@ -1,0 +1,3 @@
+{"index": 0, "sequence": 3, "tick": 300, "elapsed_us": 0.0, "kind": "io_write", "address": "0006", "data": "04", "flags": 0, "wait_samples": 0, "duration": 4, "gap_before": 3, "trigger": false, "annotations": ["format=04; MFM250=1"]}
+{"index": 1, "sequence": 4, "tick": 400, "elapsed_us": 2.0, "kind": "io_write", "address": "0007", "data": "cf", "flags": 0, "wait_samples": 0, "duration": 4, "gap_before": 0, "trigger": false, "annotations": ["mark PIO bit-control mode; direction word follows"]}
+{"index": 2, "sequence": 5, "tick": 500, "elapsed_us": 4.0, "kind": "io_write", "address": "0007", "data": "12", "flags": 0, "wait_samples": 0, "duration": 4, "gap_before": 0, "trigger": false, "annotations": ["mark PIO direction=12"]}

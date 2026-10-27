@@ -11,7 +11,9 @@
     "test": "playwright test",
     "test:cross": "playwright test -c playwright.cross.config.js",
     "review:robotron": "node scripts/review-robotron.mjs",
-    "test:historical": "DAC_HISTORICAL_QUALIFICATION=1 playwright test tests/historical-media.spec.js tests/historical-workflow.spec.js tests/drive-regression.spec.js --workers=1"
+    "test:historical": "DAC_HISTORICAL_QUALIFICATION=1 playwright test tests/historical-media.spec.js tests/historical-workflow.spec.js tests/drive-regression.spec.js --workers=1",
+    "test:analyzer": "node tools/analyzer/core.test.mjs",
+    "test:analyzer:scale": "node tools/analyzer/scale.mjs"
   },
   "dependencies": {
     "three": "0.186.1"

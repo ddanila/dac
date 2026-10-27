@@ -1,0 +1,26 @@
+{
+  "dac_commit": "98f8f808c08ce21f6b98a00b95185f1e2226e70d",
+  "source_sha256": {
+    "hardware/rtl/analyzer_record_fifo.v": "44b40f20986f425e853731f9c1dad326d7c0f3fe4058aa23cb7021cc7b9a8457",
+    "hardware/rtl/cycle_encoder.v": "9290c8a57d748259003c4df228c04e09ba121db96835a03a1ee4509a31e54d59",
+    "hardware/rtl/cycle_capture_top.v": "7f1070cc3af6f6d5bbf40490c156721b9a6f5cfd2d657cd4cd87620d78866df8",
+    "tests/cycle_analyzer_tb.v": "0ce9e299231f26c40cdd7e8bb7ec2ee3bfcd57074a392019eeb626fc7a31a8c3",
+    "tests/test_cycle_trace.py": "6874b71e6ce57ea39bc703db119f17c6da196c111b944cc1c17424a1abe2656c",
+    "tools/cycle_trace.py": "13bbb5217d48469aae981b32732eccdcadf71ab135ff2cae70088f72b6647d9c",
+    "tools/analyzer/bridge.cpp": "3c39040a987e3f8e6f10572611e5b2580abc30ecea44f537e8aaaad08ad68c89",
+    "tools/analyzer/bridge.h": "db3b77bf7ec8be5dc41f185972351f966e0e08eacbf741aaba4c6282d136b902",
+    "tools/classic_probe.c": "d1e42a6753e1caf6dc964ef645ad5569ac10fe72968054a17bf31cb96c1ec6bd",
+    "model/controller.c": "49c9dc22c5a8bdbdc6b3c16dc1fef076bc601f522a8bfbce48616f02cb7ead13",
+    "model/controller.h": "31f7ef9fa0a13a69fec9a945b26fde05ec05fce944b96f9d059266a9ca2ac66d",
+    "tools/build_analyzer_cosim.py": "52386280ef35fa55ca7cce74449b5172988eb79b2e74cd022fed155541774ea8",
+    "tools/check_cycle_analyzer.py": "341ba682d0daff5f10967823d67ea2abba9b9b9b92c525f5aa4e4c15f31d4430",
+    "Makefile": "a3e3f0ec2e0d88770d3754e24d186f8579fe4f62deb56b9b2844ec39c8e55828"
+  },
+  "tools": {
+    "iverilog": "Icarus Verilog version 12.0 (stable) ()",
+    "verilator": "Verilator 5.032 2025-01-01 rev (Debian 5.032-1)",
+    "yosys": "Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)"
+  },
+  "samples_per_cpu_tick": 4,
+  "sample_hz": 9832000
+}

@@ -1,0 +1,1 @@
+{"index": 0, "sequence": 9, "tick": 900, "elapsed_us": 0.0, "kind": "interrupt_ack", "address": "0000", "data": "12", "flags": 0, "wait_samples": 0, "duration": 4, "gap_before": 9, "trigger": true, "annotations": ["interrupt acknowledge vector=12"]}

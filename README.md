@@ -178,3 +178,10 @@ qualification evidence and remaining serial limitations.
 Select **Robotron 1715 + Pico1715** for the source-built CP/M 3 workstation,
 with browser controller-model and firmware/FPGA backends, local disk copies
 and a debugger. See the [classic workstation guide](docs/robotron/classic-workstation.md).
+
+## Analyzer workbench
+
+Open [the analyzer](https://ddanila.github.io/dac/analyzer.html) to inspect compact
+bus captures or raw waveforms, compare controller activity, and download captures
+through the existing Pico1715 USB protocol where Web Serial is available. See the
+[workflow, limits and verification](docs/robotron/analyzer-workbench.md).

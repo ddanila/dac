@@ -1,0 +1,1 @@
+{"index": 0, "sequence": 0, "tick": 0, "elapsed_us": 0.0, "kind": "io_read", "address": "0006", "data": "00", "flags": 4, "wait_samples": 65535, "duration": 65535, "gap_before": 0, "trigger": false, "annotations": ["uncertain cycle; inference state cleared"]}

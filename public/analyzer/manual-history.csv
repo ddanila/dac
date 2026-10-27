@@ -1,0 +1,4 @@
+sequence,tick32,kind,address_hex,data_hex,duration_samples,wait_low_samples,partial_start,truncated_end,counter_saturated,address_changed,gap_before,trigger
+3,300,io_write,0006,04,4,0,0,0,0,0,3,0
+4,400,io_write,0007,cf,4,0,0,0,0,0,0,0
+5,500,io_write,0007,12,4,0,0,0,0,0,0,0

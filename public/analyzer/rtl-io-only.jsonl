@@ -1,0 +1,2 @@
+{"index": 0, "sequence": 16, "tick": 156, "elapsed_us": 0.0, "kind": "io_write", "address": "5a04", "data": "5a", "flags": 0, "wait_samples": 0, "duration": 4, "gap_before": 16, "trigger": false, "annotations": ["control=5a; head=1 /WE=0"]}
+{"index": 1, "sequence": 20, "tick": 204, "elapsed_us": 4.882017900732302, "kind": "io_read", "address": "5a04", "data": "5a", "flags": 0, "wait_samples": 0, "duration": 4, "gap_before": 3, "trigger": false, "annotations": ["control readback=5a"]}

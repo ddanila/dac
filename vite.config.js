@@ -29,6 +29,7 @@ export default defineConfig({
   },
   build: {
     rolldownOptions: {
+      input: {museum: "index.html", analyzer: "analyzer.html"},
       output: {
         codeSplitting: {
           groups: [{ name: "three", test: /node_modules\/three/ }],

@@ -1,0 +1,2 @@
+sequence,tick32,kind,address_hex,data_hex,duration_samples,wait_low_samples,partial_start,truncated_end,counter_saturated,address_changed,gap_before
+0,0,io_read,0006,00,65535,65535,0,0,1,0,0
