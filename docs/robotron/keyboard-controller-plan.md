@@ -50,8 +50,13 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    initial-state output estimates do not bound changing-state storage. Preserve
    [raw filter admission refusals][wire-raw-families] for both initial and later
    allocations; base-class cache coverage does not admit subclasses.
-   Extend raw scalar coverage to other strength-aware filter/island/queue and
-   concatenation payloads, with native faults and continuation controls. Preserve the
+   Implement exact raw island and scheduled vector-8 payload coverage under the
+   [source ownership contract][island-raw-contract]. Observe input/output/scratch
+   vectors during synchronous output dispatch before scratch clearing, and cover
+   partial-first expansion plus later partial merging. Scheduled assignments own
+   separate raw vectors; generic island wrappers require pointer/lifetime bindings.
+   Require raw-collision faults, native admission and original continuation controls
+   before compact/combined integration; preserve filter and topology checks. Preserve the
    [source-extracted switch-helper controls][strength-switch] while qualifying
    actual island dispatch and other producers; helper closure alone does not
    establish complete state coverage. Keep running
@@ -105,13 +110,17 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    output-node bindings. Use the [full-scan compact budget][concat-delta-budget] to preflight capture
    limits, then measure combined changing-state cost. New allocations require full
    records and can exceed dense storage.
-   Preserve the [early/late resolver-family refusals][resolver-families] and
-   [native resolver allocation growth][resolver-growth] while extending the
-   [native resolver controls][resolver-state]
-   under the [resolver ownership contract][resolver-contract]. Preserve the complete
-   cache tree, raw pull/cache bytes and allocation bounds independent of faulted
-   port counts/pointers. Preserve [single-input and vector-boundary controls][resolver-widths], including root/leaf pull aliasing and clipped partial writes. Preserve [exact compact width reconstruction][resolver-width-delta] and [native strength/partial-first controls][resolver-strength-inputs]. Preserve [compact strength/partial-first reconstruction][resolver-strength-delta] alongside the [asymmetric-strength oracle and native inputs][resolver-asymmetric-inputs] and [exact compact asymmetric reconstruction][resolver-asymmetric-delta];
-   preserve the [initial board bindings and full-scan budget][resolver-budget], use [exact resolver differences][resolver-delta] and [post-reference allocation controls][resolver-delta-growth] with the [full-scan compact budget][resolver-delta-budget]. Preserve [early/late unsupported-family refusals through the compact API][resolver-delta-families] and qualify operational bindings with the core’s `analog/resolver_board_capture.py` and `analog/resolver_board_review.py` after reviewed concat controls. Preserve earlier layers and restore cache, allocation-pointer and raw-byte faults before termination. Measure the complete changing-state capture/review cost. Initial cache widths are not fixed runtime widths; measure changing-state output and combined cost. New allocations require full records on each delta, and changing-state fixtures can exceed dense storage. Cover callback and array-word list contents beyond observed
+   Qualify resolver state at operational boundaries using the core's
+   `analog/resolver_board_capture.py` and `analog/resolver_board_review.py`
+   after reviewed concat controls. Preserve [exact compact reconstruction][resolver-delta],
+   [allocation growth][resolver-delta-growth], [family refusal][resolver-delta-families],
+   and [asymmetric input/continuation controls][resolver-asymmetric-delta]. Bind
+   cache allocations, pulls, output/extension links and native classes to the graph;
+   permit cache widths to change. Restore cache, allocation-pointer and raw-byte
+   faults before termination. Measure changing-state output and combined cost:
+   [initial-state budgets][resolver-delta-budget] are not operational bounds.
+   New allocations need full records and compact output can exceed dense storage.
+   Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -280,7 +289,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [mux-partial]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-partial/assessment.json
 
-
 [mux-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-delta/assessment.json
 
 [mux-partial-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-partial-delta/assessment.json
@@ -374,16 +382,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [concat-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-delta-families/assessment.json
 
-[resolver-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-source-contract/assessment.json
-
-[resolver-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-state/assessment.json
-
-[resolver-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-families/assessment.json
-
-[resolver-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-growth/assessment.json
-
-[resolver-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-board-budget/assessment.json
-
 [resolver-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-delta/assessment.json
 
 [resolver-delta-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-delta-growth/assessment.json
@@ -392,14 +390,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [resolver-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-delta-families/assessment.json
 
-[resolver-widths]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-widths/assessment.json
-
-[resolver-width-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-width-delta/assessment.json
-
-[resolver-strength-inputs]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-strength-inputs/assessment.json
-
-[resolver-strength-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-strength-delta/assessment.json
-
-[resolver-asymmetric-inputs]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-asymmetric-inputs/assessment.json
-
 [resolver-asymmetric-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/resolver-asymmetric-delta/assessment.json
+
+[island-raw-contract]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/island-raw-contract/assessment.json
