@@ -56,12 +56,19 @@ This correlation does not establish a safe correction or numerical convergence.
 The separate `build_delivery_audit_vpi.py` candidate now logs input application,
 output values and callback-handle presence before/after the unchanged clamp.
 Its source and headers are bound to the retained drain build. Two instrumentation
-and transition-parser tests pass. Four bounded controls are running through the
-unchanged capture producer; `delivery_audit_review.py` will require exact
-same-mode waveform samples and firmware against the retained drain controls,
-plus complete before/after callback transitions. That review is pending, so the
-new instrumentation is not yet qualified even for the bounded fixture. Input
-threshold detection remains upstream and unobserved.
+and transition-parser tests pass. The [four bounded delivery controls][delivery-audit-board]
+now pass complete review: all 27,578 samples per normal control and 27,583 retry
+samples across 31 signals match the corresponding retained controls exactly,
+as do firmware records. Each run has 46 input applications, 82 before/after
+output pairs and 23 clamped output groups. The full callback transitions obey
+the pinned source rule. Input threshold detection remains upstream and unobserved.
+The complete bounded evidence is retained with file/source identities verified.
+`postreset_delivery_capture.py` adds a fresh complete replay of those controls
+as its qualification gate; its remaining capture logic is AST-equivalent to
+the original drain producer. The full 1.16-ms, 25-ns ADC-enabled diagnostic has
+entered capture, with exact same-mode waveform/firmware comparison planned
+against the retained drain capture. It changes logging only and does not waive
+the failed convergence gate or restart full-repeat captures.
 The original full disabled/timing/retry review remains
 pending; full-repeat, supply recovery and rollback qualification remain open.
 
@@ -1036,3 +1043,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [drain-localization]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-localization/README.md
 
 [drain-clamp]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-clamp/README.md
+
+[delivery-audit-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/delivery-audit-board/assessment.json
