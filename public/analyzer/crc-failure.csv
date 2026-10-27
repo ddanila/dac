@@ -19,7 +19,7 @@ sequence,tick32,kind,address_hex,data_hex,duration_samples,wait_low_samples,part
 17,1700,io_read,0002,00,4,0,0,0,0,0,0
 18,1800,io_read,0002,ea,4,0,0,0,0,0,0
 19,1900,io_read,0002,2d,4,0,0,0,0,0,0
-20,2000,io_read,0002,a0,4,0,0,0,0,0,0
+20,2000,io_read,0002,a1,4,0,0,0,0,0,0
 21,2100,io_read,0002,a1,4,0,0,0,0,0,0
 22,2200,io_read,0002,a1,4,0,0,0,0,0,0
 23,2300,io_read,0002,fb,4,0,0,0,0,0,0
@@ -29,7 +29,7 @@ sequence,tick32,kind,address_hex,data_hex,duration_samples,wait_low_samples,part
 27,2700,io_read,0002,03,4,0,0,0,0,0,0
 28,2800,io_read,0002,04,4,0,0,0,0,0,0
 29,2900,io_read,0002,05,4,0,0,0,0,0,0
-30,3000,io_read,0002,06,4,0,0,0,0,0,0
+30,3000,io_read,0002,07,4,0,0,0,0,0,0
 31,3100,io_read,0002,07,4,0,0,0,0,0,0
 32,3200,io_read,0002,08,4,0,0,0,0,0,0
 33,3300,io_read,0002,09,4,0,0,0,0,0,0

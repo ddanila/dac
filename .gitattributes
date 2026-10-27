@@ -2,3 +2,6 @@ public/models/robotron-1715m/photos/** filter=lfs diff=lfs merge=lfs -text
 public/models/robotron-1715m/reference/**/*.jpg filter=lfs diff=lfs merge=lfs -text
 public/models/robotron-1715m/reference/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
 public/docs/robotron-psu/photos/** filter=lfs diff=lfs merge=lfs -text
+
+# Python csv.writer fixtures preserve CRLF for byte-exact parity and hashes.
+public/analyzer/*.csv -text whitespace=cr-at-eol

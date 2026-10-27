@@ -5,9 +5,10 @@ test('analyzer compares captures, follows divergence, measures and exports evide
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/analyzer.html');
  await page.click('#load-example');await expect(page.locator('#status')).toContainText('Validated');await expect(page.locator('tbody tr')).toHaveCount(100);
  await page.selectOption('#example','crc-failure');await page.click('#example-reference');await expect(page.locator('.pane')).toHaveCount(2);
- await page.click('#compare');await expect(page.locator('#comparison')).toContainText('different bus transaction');await page.click('#divergence');await expect(page.locator('#selection')).toContainText('"index": 20');
- await page.click('#cursor-a');await page.locator('.pane').last().locator('.table-wrap').focus();await page.keyboard.press('ArrowDown');await expect(page.locator('#selection')).toContainText('"index": 21');await page.click('#cursor-b');await expect(page.locator('#measurement')).toContainText('"records":2');
+ await page.click('#compare');await expect(page.locator('#comparison')).toContainText('different bus transaction');await page.click('#divergence');await expect(page.locator('#selection')).toContainText('"index": 30');
+ await page.click('#cursor-a');await page.locator('.pane').last().locator('.table-wrap').focus();await page.keyboard.press('ArrowDown');await expect(page.locator('#selection')).toContainText('"index": 31');await page.click('#cursor-b');await expect(page.locator('#measurement')).toContainText('"records":2');
  await page.selectOption('#export-format','report');const dl=page.waitForEvent('download');await page.click('#export');expect((await dl).suggestedFilename()).toContain('.json');
+ await page.fill('#note','CRC BAD');await page.click('#next-match');await expect(page.locator('#selection')).toContainText('CRC BAD');
  await page.screenshot({path:test.info().outputPath('analyzer-compare.png'),fullPage:true});expect(errors).toEqual([]);
 });
 test('raw waveforms preserve edges, support keyboard navigation and VCD export',async({page})=>{

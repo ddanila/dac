@@ -2902,7 +2902,7 @@
     ]
   },
   "crc-failure": {
-    "sha256": "995893bd6f772a3d5a503b19179badd5fe895ed59eeeedbfdaf5d41f12d2b0cb",
+    "sha256": "d2c76786d7982985ebb55a6db018f213c74a8fa9ea946c94ec709fd3971505c4",
     "clock_hz": 50000000,
     "records": 169,
     "dropped": 0,
@@ -2916,9 +2916,12 @@
       "opcode_fetch": 2
     },
     "fields": {
-      "ID ok": 2
+      "ID ok": 2,
+      "data BAD": 1
     },
-    "diagnostics": {},
+    "diagnostics": {
+      "read data field 128 bytes; CRC BAD": 1
+    },
     "timeline": [
       {
         "index": 0,
@@ -3268,7 +3271,7 @@
         "elapsed_us": 40.0,
         "kind": "io_read",
         "address": "0002",
-        "data": "a0",
+        "data": "a1",
         "flags": 0,
         "wait_samples": 0,
         "duration": 4,
@@ -3438,7 +3441,7 @@
         "elapsed_us": 60.0,
         "kind": "io_read",
         "address": "0002",
-        "data": "06",
+        "data": "07",
         "flags": 0,
         "wait_samples": 0,
         "duration": 4,
@@ -5536,7 +5539,8 @@
         "gap_before": 0,
         "trigger": false,
         "annotations": [
-          "RX byte"
+          "RX byte",
+          "read data field 128 bytes; CRC BAD"
         ]
       },
       {
@@ -64559,31 +64563,31 @@
     "match": false,
     "compared_events": 167,
     "first_divergence": {
-      "event": 20,
+      "event": 30,
       "reason": "different bus transaction",
       "capture": {
-        "index": 20,
-        "sequence": 20,
+        "index": 30,
+        "sequence": 30,
         "key": [
           4,
           2,
-          161,
+          6,
           0
         ],
-        "time_us": 40.0,
+        "time_us": 60.0,
         "duration_us": 0.08,
         "wait_us": 0.0
       },
       "reference": {
-        "index": 20,
-        "sequence": 20,
+        "index": 30,
+        "sequence": 30,
         "key": [
           4,
           2,
-          160,
+          7,
           0
         ],
-        "time_us": 40.0,
+        "time_us": 60.0,
         "duration_us": 0.08,
         "wait_us": 0.0
       }
