@@ -38,7 +38,7 @@ other tracks.
    operational class/allocation admission and combined cost. Use the
    [raw-byte differences][wire-raw-delta] and [full-scan preflight][wire-raw-delta-budget],
    preserving exact reconstruction of collision faults. Qualify admitted growth
-   and unsupported later allocations through the compact API.
+   through the compact API, preserving [late unsupported-filter refusals][wire-raw-delta-families].
    Preserve the [raw board bindings and initial scan budget][wire-raw-budget];
    initial-state output estimates do not bound changing-state storage. Preserve
    [raw filter admission refusals][wire-raw-families] for both initial and later
@@ -331,3 +331,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [postreset-tick]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-tick/assessment.json
 
 [output-drain]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-drain/assessment.json
+
+[wire-raw-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-delta-families/assessment.json
