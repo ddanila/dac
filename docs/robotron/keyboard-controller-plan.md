@@ -145,8 +145,10 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    and restored index/pointer/link controls, including the concrete array pointer
    adjustment from VPI handles. Preserve [shared-owner native lists][callback-word-shared]
    with an explicitly recorded test adapter; those controls do not establish
-   compiler-generated aliasing on this board. Qualify association lifecycle,
-   admitted registration growth and actual board cost before integration. Bind bridge-handle referents after port initialization; stateful
+   compiler-generated aliasing on this board. Preserve [native registration growth][callback-registration],
+   including callback-created registration, deferred handoff, native callback order
+   and fresh lifetime IDs after deletion. Qualify association lifecycle, nested
+   value dispatch and actual board cost before integration. Bind bridge-handle referents after port initialization; stateful
    part-select/array callbacks and suspended traversal remain separate. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
@@ -454,3 +456,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [array-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-board/assessment.json
 
 [callback-word-shared]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-word-shared/assessment.json
+
+[callback-registration]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-registration/assessment.json
