@@ -175,7 +175,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    cross-bindings and full-preflight budget][callback-signal-board-budget]. Preserve
    registered owner/filter pointer adjustment, deferred cancellation/deletion and
    zero-output refusal of foreign or mismatched referents and active traversal.
-   Measure changing-state output and combined runtime before setting operational limits. Preserve [native family and
+   Qualify `analog/callback_signal_board_capture.py` and
+   `analog/callback_signal_board_review.py` after reviewed callback-list controls,
+   preserving the [combined typed-signal startup preflight][callback-signal-preflight].
+   Add metadata-specific combined faults; existing callback faults alone do not
+   establish that coverage. Measure changing-state output and combined runtime
+   before setting operational limits. Preserve [native family and
    late-admission controls][signal-handle-families], range/index mappings, original
    integer index refusal and fresh IDs for new handles sharing a live node.
    Handle deletion and automatic scopes remain unqualified. Preserve zero-output
@@ -514,3 +519,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [callback-signal-links]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-signal-links/assessment.json
 [callback-signal-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-signal-board-budget/assessment.json
+
+[callback-signal-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-signal-preflight/assessment.json
