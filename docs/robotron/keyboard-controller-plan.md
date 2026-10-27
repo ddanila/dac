@@ -64,8 +64,8 @@ other tracks.
    unchanged-board projection is not an operational storage bound. Preserve the [board-width and storage-boundary controls][arithmetic-widths];
    re-audit width admission when the compiled profile changes.
    Bind the [native reduction controls][reduction-state] to the board profile;
-   qualify subclass refusals, allocation changes and full-scan budgets before
-   integration. Preserve empty/full/partial operand history. Implement concatenation
+   preserve [native subclass refusals][reduction-families] and qualify allocation
+   changes and full-scan budgets before integration. Preserve empty/full/partial operand history. Implement concatenation
    observers under the [expression ownership contract][expression-contract],
    preserving concat8 strengths, with native faults and continuation controls.
    Resolver caches remain open. Cover callback and array-word list contents beyond observed
@@ -281,3 +281,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [arithmetic-widths]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/arithmetic-widths/assessment.json
 
 [reduction-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-state/assessment.json
+
+[reduction-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/reduction-families/assessment.json
