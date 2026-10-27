@@ -31,6 +31,16 @@ below are relative to the CAD controller directory unless stated otherwise.
 
 ## Current findings and their consequences
 
+The [U880 output screen][u880-output] rejects both endpoint-only CPU resistance
+hypotheses against an independent loaded data-valid condition: even the favorable
+0.8-to-2-V portion takes about 340 ns with 100 pF at 4.75 V, beyond the 260-ns
+budget before internal delay. Explicit 3-kohm and 4-kohm alternatives pass the
+retained RC/DC screens, with bounded remaining internal delay. They do not yet
+establish nonlinear I/V, temperature behavior, supply dependence, release timing
+or operational admission. The added-capacitance experiment is explicitly a
+sensitivity case because the source's capacitance and delay temperatures differ.
+ROM alternatives remain open.
+
 The [joint I8282 constraints][i8282-joint] now combine the retained DC, edge,
 capacitance, propagation and release checks, with source-evidence replay and
 limiting-case indices. For the 125-ohm/12-pF hypothesis, constant internal data,
@@ -462,3 +472,5 @@ and the reason for changing its interpretation.
 [callback-list-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-list-preflight/assessment.json
 
 [i8282-joint]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/i8282-joint-constraints/assessment.json
+
+[u880-output]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/u880-output-candidates/assessment.json
