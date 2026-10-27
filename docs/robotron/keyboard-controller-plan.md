@@ -95,10 +95,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [native allocation-growth controls][reduction-growth]. Validate operational
    class/allocation changes and measure changing-state output and combined cost.
    Initial empty caches may acquire widths after input arrives; preserve
-   empty/full/partial operand history without freezing initial vector sizes. Implement concatenation
-   observers under the [expression ownership contract][expression-contract],
-   preserving exact concat8 bytes, port widths, assembled caches and queued/executing
-   output-node bindings, with native faults and continuation controls.
+   empty/full/partial operand history without freezing initial vector sizes. Qualify concatenation
+   subclass refusal and allocation growth, then bind the [native concatenation controls][concat-state]
+   to board allocations under the [expression ownership contract][expression-contract].
+   Preserve exact concat8 bytes, port widths, assembled caches and queued/executing
+   output-node bindings. Establish compact encoding and combined cost before integration.
    Resolver caches remain open. Cover callback and array-word list contents beyond observed
    heads, bridge-handle referents and other reachable pointed-to objects. Use the
    [native class inventory][native-classes] to admit families explicitly; names
@@ -347,3 +348,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [output-drain-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-drain-board/assessment.json
 
 [code-operand-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/code-operand-board/assessment.json
+
+[concat-state]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/concat-state/assessment.json
