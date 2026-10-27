@@ -96,7 +96,7 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    class/allocation changes and measure changing-state output and combined cost.
    Initial empty caches may acquire widths after input arrives; preserve
    empty/full/partial operand history without freezing initial vector sizes. Preserve the [compact early/late concat subclass refusals][concat-delta-families].
-   Integrate [exact concat differences][concat-delta], preserving
+   Qualify the combined concat capture/reviewer with [exact concat differences][concat-delta], preserving
    [compact native allocation growth][concat-delta-growth] and complete event rows,
    then validate the [native concatenation controls][concat-state] at operational
    boundaries using the [initial board bindings and scan budget][concat-budget]
