@@ -157,8 +157,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [real-bridge compact budgets][callback-delta-board-budget]. Preserve
    [native owner lifecycle controls][callback-owner-lifecycle], including
    pre/post-reference allocation, destruction and fresh IDs at reused addresses.
-   Measure changing-state combined cost before operational integration. Preserve exact reconstruction through callback
-   growth, cancellation and faults. Registration
+   Qualify `analog/callback_list_board_capture.py` and
+   `analog/callback_list_board_review.py` after reviewed raw-assignment controls,
+   preserving the [real-board startup fault preflight][callback-list-preflight].
+   Measure changing-state combined cost and normal waveform/firmware agreement;
+   startup-only controls do not qualify a transient campaign. Preserve exact
+   reconstruction through callback growth, cancellation and faults. Registration
    from an empty reference can exceed dense encoding; initial measurements do not
    bound changing-state output. Bind deep VPI signal
    metadata and native graph owners; stateful
@@ -483,3 +487,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-delta-families/assessment.json
 
 [callback-owner-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-owner-lifecycle/assessment.json
+
+[callback-list-preflight]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-list-preflight/assessment.json
