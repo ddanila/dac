@@ -36,10 +36,12 @@ other tracks.
    [unsupported-family refusals][signal-families]. Use the [validated signal deltas][signal-delta]
    and [measured delta budget][signal-delta-budget], then validate operational bindings,
    state growth and actual combined capture/review cost.
-   Use the [measured mux budget][mux-budget] to add lossless cache/wrapper differences,
-   then integrate the [native mux controls][mux-state] and
-   [direct partial-vector controls][mux-partial]. Preserve full native scans,
-   newly allocated muxes and queued/executing wrapper identities in reconstruction. Cover remaining gate caches and scheduler
+   Integrate the [lossless mux differences][mux-delta] and
+   [direct partial-vector controls][mux-partial-delta], using the
+   [full-scan budget][mux-delta-budget]. Measure actual changed-state output and
+   combined cost: changed fixture images can exceed dense encoding. Preserve
+   full native scans and queued/executing wrapper identities; qualify newly
+   allocated muxes natively as well as in decoder controls. Cover remaining gate caches and scheduler
    bindings under the [logic ownership contract][logic-contract]; retain class/graph
    bindings for stateless BUFZ/BUFT without inventing payload fields. Arithmetic
    and resolver caches remain open. Cover callback and array-word list contents beyond observed
@@ -211,4 +213,9 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [mux-partial]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-partial/assessment.json
 
-[mux-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-board-budget/assessment.json
+
+[mux-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-delta/assessment.json
+
+[mux-partial-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-partial-delta/assessment.json
+
+[mux-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/mux-delta-budget/assessment.json
