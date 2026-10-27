@@ -169,8 +169,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    node binding, signedness, range constants and lazy bit-handle caches are not
    covered by callback-list identity. Observe existing caches without allocating
    handles, and restore metadata faults before continuation. Integrate the
-   [native signal-handle observer][signal-handles] after qualifying
-   compiled-board bindings and scan/output budgets. Preserve [native family and
+   [native signal-handle observer][signal-handles] using the
+   [initialized board bindings and scan budget][signal-handle-board-budget]. Bind
+   adjusted callback-owner pointers to the same registered node/filter lifetimes;
+   signal-handle and graph identities alone do not prove that link. Measure
+   changing-state output and combined runtime before setting operational limits. Preserve [native family and
    late-admission controls][signal-handle-families], range/index mappings, original
    integer index refusal and fresh IDs for new handles sharing a live node.
    Handle deletion and automatic scopes remain unqualified. Preserve zero-output
@@ -504,3 +507,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [signal-handles]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-handles/assessment.json
 
 [signal-handle-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-handle-families/assessment.json
+
+[signal-handle-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/signal-handle-board-budget/assessment.json
