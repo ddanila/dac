@@ -39,6 +39,12 @@ fields restore before HDL continuation; baseline, disabled and observed runs
 agree. This demonstrates an observation gap, not ordinary runtime writes in the
 compiled board. Applicability, initialization-only invariants and any reachable
 mutations still need explicit coverage; complete scope state is not qualified.
+The [source ownership audit][scope-metadata] retains initialization and consumer
+paths and identifies an additional admission requirement: the current walker
+casts intern entries without an independent allocation registry. Register and
+validate those identities before dereferencing corrupted pointers in a later
+observer revision; textual call-site inspection is not a whole-program proof
+that fields remain unchanged.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -563,3 +569,5 @@ and the reason for changing its interpretation.
 [net-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/net-board/assessment.json
 
 [scope-referents]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-referents/assessment.json
+
+[scope-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-contract/assessment.json
