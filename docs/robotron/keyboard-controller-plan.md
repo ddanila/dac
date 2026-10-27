@@ -152,10 +152,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    traversal and shared VPI result storage are not captured. Qualify association
    lifecycle and actual board cost before integration. Preserve [initialized bridge bindings and scan budgets][callback-board-budget].
    The dense initial-state projection exceeds the current capture log cap. Use
-   [lossless compact lists][callback-delta] with full-scan preflight; qualify native
-   owner lifecycle and unsupported-family refusals through the compact API, then
-   measure the actual board cost before operational integration. Preserve exact
-   reconstruction through callback growth, cancellation and faults. Registration
+   [lossless compact lists][callback-delta] with full-scan preflight, preserving
+   [compact early/late family refusals][callback-delta-families] and
+   [real-bridge compact budgets][callback-delta-board-budget]. Qualify admitted
+   owner allocation/removal and measure changing-state combined cost before
+   operational integration. Preserve exact reconstruction through callback
+   growth, cancellation and faults. Registration
    from an empty reference can exceed dense encoding; initial measurements do not
    bound changing-state output. Bind deep VPI signal
    metadata and native graph owners; stateful
@@ -474,3 +476,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [callback-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-board-budget/assessment.json
 
 [callback-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-delta/assessment.json
+
+[callback-delta-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-delta-board-budget/assessment.json
+
+[callback-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-delta-families/assessment.json
