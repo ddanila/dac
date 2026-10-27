@@ -135,8 +135,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    faults before termination. Measure changing-state output and combined cost:
    [initial-state budgets][resolver-delta-budget] are not operational bounds.
    New allocations need full records and compact output can exceed dense storage.
-   Cover callback and array-word list contents beyond observed
-   heads, bridge-handle referents and other reachable pointed-to objects. Use the
+   Cover callback and array-word lists under the [ownership contract and native
+   cancellation counterexample][callback-ownership]. Preserve order, cancelled
+   nodes until native deletion, array/word identities and initialized callback
+   fields. Refuse stateful part-select/array subclasses until their histories are
+   covered. Bind bridge-handle referents after port initialization; account for
+   executing list cursors or enforce the admitted non-yielding callback boundary. Use the
    [native class inventory][native-classes] to admit families explicitly; names
    alone do not prove field coverage. Preserve class/allocation bindings and
    validate operational class changes.
@@ -431,3 +435,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [assignment-raw-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/assignment-raw-native/assessment.json
 
 [assignment-raw-board-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/assignment-raw-board-budget/assessment.json
+
+[callback-ownership]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/callback-ownership/assessment.json
