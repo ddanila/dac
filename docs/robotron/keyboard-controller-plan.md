@@ -50,6 +50,9 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    signal controls. Preserve the [native scope metadata controls][scope-metadata-native]:
    fourteen field/ordering mutations and eight zero-output refusals per round,
    exact restoration, automatic-scope refusal and original HDL continuation.
+   Preserve the [lossless metadata record controls][scope-metadata-records] and
+   their strict malformed-image/semantic checks; bind object identities to the
+   other observers during operational integration.
    Qualify operational integration and static ownership lifetime; scope
    deletion/address reuse, internal-object payloads and function-field fault
    controls remain open. Audit admitted modules before
@@ -573,3 +576,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-admission/assessment.json
 
 [scope-metadata-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata/assessment.json
+
+[scope-metadata-records]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-records/assessment.json

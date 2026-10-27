@@ -64,6 +64,11 @@ Automatic scopes also refuse without output. Existing admission, membership and
 signal controls pass. Function fields are observed but not mutated; internal
 payloads, deletion/address reuse, exhaustive initialization-only proof and board
 integration/cost remain open. Existing campaigns retain their pinned runtimes.
+The [metadata record controls][scope-metadata-records] now parse all 32 native
+images losslessly and check the specific field mutations and restoration. Five
+tests cover malformed/truncated records, reference/range/count checks, retained
+bytes/order and rejection of unrelated changes. Cross-observer object identity
+binding and operational integration remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -594,3 +599,5 @@ and the reason for changing its interpretation.
 [scope-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-admission/assessment.json
 
 [scope-metadata-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata/assessment.json
+
+[scope-metadata-records]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-records/assessment.json
