@@ -153,7 +153,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    across 14 parameter/callback and 13 port/callback controls, with complete
    restoration. Six changing native memory images reconstruct byte-for-byte;
    compact framing is 689 bytes versus 684 dense bytes in that small fixture.
-   Qualify integrated memory-specific faults, full memory lifecycle, unsupported
+   Preserve the [integrated memory fault preflight][memory-faults]: five native
+   memory faults check direct inventories and complete startup snapshots. Name
+   bytes change the snapshot; name/cache/storage pointers and the read-port head
+   refuse observation. All restore exactly, and 14 parameter/callback regression
+   controls pass on the same runtime. Qualify later-boundary faults, full memory lifecycle, unsupported
    families and operational transient integration before acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
@@ -819,3 +823,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [guarded-memory-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/guarded-memory-board/assessment.json
 
 [memory-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-combined-preflight/assessment.json
+
+[memory-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-preflight/assessment.json

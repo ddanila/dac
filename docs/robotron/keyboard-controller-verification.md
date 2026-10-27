@@ -365,9 +365,21 @@ and 23 read ports bind in 64 snapshots and whole-state restoration remains exact
 The built logger reconstructs six native name-change/restoration images exactly:
 five full images and one reuse use 689 bytes versus 684 dense bytes, so this
 small fixture does not demonstrate storage savings. Eight evidence/rejection
-tests pass. Memory-specific integrated
-faults, later boundaries, full memory lifecycle and transient qualification
+tests pass. Later boundaries, full memory lifecycle and transient qualification
 remain open.
+
+The [integrated memory fault preflight][memory-faults] adds five native faults
+to complete startup snapshots. A name-byte change affects the memory inventory
+and full state while leaving the direct array inventory unchanged. A changed
+name pointer refuses memory observation; changed cache/storage pointers and
+read-port heads refuse array observation. Each refusal emits zero direct
+inventory bytes and rejects the complete snapshot. All five faults restore
+the exact complete dense state before controlled termination. Nine memory/
+callback controls and 14 parameter/callback regression controls pass on the
+same runtime, with independent native-layout evidence and all three compiled
+memory bindings. Six retained-evidence and tamper-rejection tests pass. These
+are startup controls; later-boundary faults and normal firmware continuation
+with this complete observer remain unqualified.
 
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
@@ -995,3 +1007,5 @@ and the reason for changing its interpretation.
 [guarded-memory-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/guarded-memory-board/assessment.json
 
 [memory-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-combined-preflight/assessment.json
+
+[memory-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-preflight/assessment.json
