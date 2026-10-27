@@ -55,6 +55,16 @@ lifecycle, automatic-refusal and signal-scope comparisons also pass on the new
 runtime. The running campaigns remain pinned. Operational integration, metadata
 payload coverage and deletion/address-reuse admission remain open.
 
+The [native scope metadata revision][scope-metadata-native] captures source/cell/
+timescale fields, bounded name bytes, function subtype/width/initial value,
+lazy time backreferences and ordered internal-object identities/types. Two rounds
+distinguish fourteen metadata changes and refuse eight invalid states without
+output; every mutation restores exactly before original-runtime HDL continuation.
+Automatic scopes also refuse without output. Existing admission, membership and
+signal controls pass. Function fields are observed but not mutated; internal
+payloads, deletion/address reuse, exhaustive initialization-only proof and board
+integration/cost remain open. Existing campaigns retain their pinned runtimes.
+
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
 Code operands, array ports and queued assignment/primitive destinations bind
@@ -582,3 +592,5 @@ and the reason for changing its interpretation.
 [scope-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-contract/assessment.json
 
 [scope-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-admission/assessment.json
+
+[scope-metadata-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata/assessment.json

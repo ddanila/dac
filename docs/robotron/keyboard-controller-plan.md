@@ -47,8 +47,12 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    foreign pointers before casts or dereferences. Preserve the [native scope
    admission controls][scope-admission] and their zero-output root/intern/parent
    and missing-child refusals, restored continuation and existing membership/
-   signal controls. Qualify operational integration and static ownership lifetime;
-   scope deletion/address reuse and metadata payloads remain open. Audit admitted modules before
+   signal controls. Preserve the [native scope metadata controls][scope-metadata-native]:
+   fourteen field/ordering mutations and eight zero-output refusals per round,
+   exact restoration, automatic-scope refusal and original HDL continuation.
+   Qualify operational integration and static ownership lifetime; scope
+   deletion/address reuse, internal-object payloads and function-field fault
+   controls remain open. Audit admitted modules before
    relying on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -567,3 +571,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [scope-metadata]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-contract/assessment.json
 
 [scope-admission]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-admission/assessment.json
+
+[scope-metadata-native]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata/assessment.json
