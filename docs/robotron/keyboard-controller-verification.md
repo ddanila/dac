@@ -407,6 +407,17 @@ tests, the ten-fault memory continuation regression, and existing alias/net/real
 string family refusals pass on this runtime.
 Ordinary port allocation/deletion and operational board integration remain open.
 
+The [exact-class initialized board regression][port-class-board] checks the
+new read-port guard against all three real board memories, 16,512 logical bits
+and 23 read ports. Memory names, native handles, concrete arrays, scope owners,
+ranges and per-memory port counts retain their independent compiled bindings.
+All preceding initialized parameter/signal/port checks pass. Every runtime
+output identity must match the retained exact-class, memory-continuation and
+unsupported-family controls; the independent layout witness uses the same
+runtime. Three tests cover retained semantic replay, mismatched runtime sources
+and missing subclass refusal evidence. These scans stop at tick zero and do
+not establish operational fault coverage or full transient cost.
+
 The [complete cached net-board review][cached-net-board-full] now reproduces
 the original full assessment exactly, including normal waveform/firmware
 comparisons, all faults and state-lifetime checks. It caches only exactly
@@ -1039,3 +1050,5 @@ and the reason for changing its interpretation.
 [memory-fault-continue]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-fault-continue/assessment.json
 
 [array-port-class]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/array-port-class/assessment.json
+
+[port-class-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-class-board/assessment.json
