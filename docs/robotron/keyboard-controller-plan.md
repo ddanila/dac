@@ -96,8 +96,11 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
    [native port field faults][port-payload-faults]: index/direction/bit-index
    changes and zero-output width/parent/name/net/readiness refusals, with 18
    exact restorations and original continuation. The injected readiness guard
-   does not cover actual early-resolution execution. Add port-specific board faults
-   and qualify normal transient execution before extending the queue. Audit admitted modules before
+   does not cover actual early-resolution execution. Preserve the
+   [port-specific board startup controls][port-payload-fault-board]: all nine
+   native fields, four callback controls and ten scope/callback regressions pass,
+   with complete-state restoration and all 317 ports/875 bits bound in every
+   snapshot. Qualify normal transient execution before extending the queue. Audit admitted modules before
    relying on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
 2. **Close reachable payload gaps.** Correct the
@@ -642,3 +645,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [port-payload-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-combined-preflight/assessment.json
 
 [port-payload-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-faults/assessment.json
+
+[port-payload-fault-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-fault-preflight/assessment.json

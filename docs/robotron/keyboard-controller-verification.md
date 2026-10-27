@@ -141,7 +141,16 @@ restore all 18 mutations exactly before original/disabled/enabled HDL
 continuation; both nonnull fixture bindings remain covered. Earlier vector/name
 controls pass on the new runtime, and three evidence/rejection tests pass.
 Readiness is an injected false guard, not actual early-resolution execution;
-board field faults, subclass and lifecycle qualification remain open.
+subclass and lifecycle qualification remain open. The subsequent
+[port-specific board startup controls][port-payload-fault-board] pass all nine
+fields and four callback faults. Three fields produce exact isolated payload
+changes; six return negative status and zero bytes. Complete dense native state
+restores before controlled termination. The reviewer binds all 317 ports and
+875 bits in every decoded snapshot, allowing only the selected diagnostic change.
+Ten earlier scope/callback controls also pass on this runtime and bridge. Five
+evidence/rejection tests pass, including unrelated changed-stage payload faults.
+Normal transient execution, later-boundary faults and lifecycle coverage remain
+unqualified.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -696,3 +705,5 @@ and the reason for changing its interpretation.
 [port-payload-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-combined-preflight/assessment.json
 
 [port-payload-faults]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-faults/assessment.json
+
+[port-payload-fault-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/port-payload-fault-preflight/assessment.json
