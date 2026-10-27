@@ -43,9 +43,10 @@ other tracks.
    full native scans, queued/executing wrapper identities and the
    [native post-reference allocation controls][mux-growth]. Validate operational
    class/allocation changes against the admitted board profile. Use the [native gate controls][gate-state] and [input-path controls][gate-inputs],
-   qualify allocation lifecycle, then use the [measured gate budget][gate-budget]
-   to compact and integrate caches and scheduler bindings under the
-   [logic ownership contract][logic-contract]. Measure actual combined output
+   qualify admitted allocation lifecycle, then integrate the [lossless gate differences][gate-delta]
+   and [input-path differences][gate-input-delta] under the
+   [logic ownership contract][logic-contract], using the [full-scan budget][gate-delta-budget].
+   Preserve [late unsupported-allocation refusals][gate-delta-families]. Measure actual combined output
    and runtime before changing capture limits. Keep the demonstrated unequal-width
    AND/OR discontinuity outside board admission until corrected; current cached
    widths must remain equal. Preserve the [native subclass refusals][gate-families]
@@ -236,3 +237,11 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [gate-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-board-budget/assessment.json
 
 [gate-inputs]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-inputs/assessment.json
+
+[gate-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-delta/assessment.json
+
+[gate-input-delta]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-input-delta/assessment.json
+
+[gate-delta-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-delta-budget/assessment.json
+
+[gate-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/gate-delta-families/assessment.json
