@@ -96,6 +96,13 @@ future timestamp width, 110,312 calls project to 12,896,524 bytes; changed bodie
 still emit in full. Cached content is 101,956 bytes, excluding allocator capacity,
 transient buffers and peak RSS. Five tests pass. Changing-state cost, peak memory
 and operational integration remain unqualified.
+The [combined metadata startup preflight][scope-metadata-combined] adds dense
+metadata to native equality/restoration checks and compacts only serialized log
+output. All ten existing callback/typed-signal faults pass complete prior-layer
+review plus reconstructed metadata ownership joins: 22 snapshots bind 32 scopes
+and 18 signals. Native sequence-dependent compact output is kept outside dense
+equality checks. Scope-specific board faults and normal transient/firmware
+qualification remain open.
 
 The [combined net/fanout controls][net-board] pass the complete 20-us service
 fixture, checking 55,156 normal boundaries and up to 1,820 allocated nodes.
@@ -636,3 +643,5 @@ and the reason for changing its interpretation.
 [scope-metadata-compact]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact/assessment.json
 
 [scope-compact-budget]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-compact-board-budget/assessment.json
+
+[scope-metadata-combined]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/scope-metadata-combined-preflight/assessment.json
