@@ -19,7 +19,7 @@ other tracks.
 | Priority | Work and acceptance |
 | --- | --- |
 | 1. Combined simulator fixes | Complete private-HDL state coverage and validate the integrated fixes under the acceptance checks below. Native fixtures and pre-execution budgets do not qualify operational board boundaries. |
-| 2. Numerical convergence | Resolve the remaining growth in the [full exact-tick refinements][postreset-tick]. Qualify the [same-tick drain candidate][output-drain] with bounded board, ADC and full post-reset controls. Native tests reproduce autonomous HDL events left pending by timed stops; deferring the return to read/write synchronization preserves their native times while retaining input-causality clamping. Preserve no-time-reversal and input/output ordering; native cases do not establish full scheduler quiescence or board convergence. Separate trajectory shifts from interpolation effects, review changed baseline bus-edge timing explicitly, then rerun matched full post-reset refinements under the unchanged gate below. Matching serial output alone is insufficient. |
+| 2. Numerical convergence | Resolve the remaining growth in the [full exact-tick refinements][postreset-tick]. Qualify the [same-tick drain candidate][output-drain] with ADC and full post-reset controls, preserving the [bounded board/retry controls][output-drain-board]. Native tests reproduce autonomous HDL events left pending by timed stops; deferring the return to read/write synchronization preserves their native times while retaining input-causality clamping. Preserve no-time-reversal and input/output ordering; native cases do not establish full scheduler quiescence or board convergence. Separate trajectory shifts from interpolation effects, review changed baseline bus-edge timing explicitly, then rerun matched full post-reset refinements under the unchanged gate below. Matching serial output alone is insufficient. |
 | 3. CPU/bus and device models | Replace candidates that fail published operating guarantees with explicitly constrained alternatives. Resolve the Intel I8282 enable-measurement convention and constrain internal switching/disconnect delays against the existing loaded propagation, release and capacitance budgets. Do not transfer the NEC comparison thresholds to Intel. Distinguish CPU/ROM alternatives using independent I/V and switching constraints before integration. Preserve source test conditions and validate independent conditions where available; static endpoint agreement does not establish dynamics or specimen calibration. |
 | 4. Longer capture qualification | Establish runtime, memory and retained-evidence budgets for longer streaming captures, using explicit log caps. Preserve every sample comparison and enough evidence to review failures. Raw hashes alone do not provide waveform replay. |
 
@@ -34,7 +34,7 @@ other tracks.
 2. **Close reachable payload gaps.** Correct the
    [strength-encoding loss][strength-encoding]: logical-value/strength triplets
    merge reachable raw bytes that native scalar/vector equality distinguishes.
-   Integrate the [native raw wire-cache controls][wire-raw-state], qualifying
+   Qualify the combined raw-wire capture/reviewer with the [native raw wire-cache controls][wire-raw-state], checking
    operational class/allocation admission and combined cost. Use the
    [raw-byte differences][wire-raw-delta] and [full-scan preflight][wire-raw-delta-budget],
    preserving exact reconstruction of collision faults. Preserve [native post-reference growth][wire-raw-growth]
@@ -336,3 +336,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [wire-raw-delta-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-delta-families/assessment.json
 
 [wire-raw-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/wire-raw-growth/assessment.json
+
+[output-drain-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/output-drain-board/assessment.json
