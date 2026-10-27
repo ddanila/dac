@@ -9,7 +9,8 @@ permissions:
   actions: read
 concurrency:
   group: museum-${{ github.ref }}
-  cancel-in-progress: true
+  # Let main verification/deployment finish even while documentation pushes continue.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   build:
     outputs:
