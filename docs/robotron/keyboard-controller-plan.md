@@ -400,6 +400,14 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    libraries yield identical output and clean exits. Valgrind annotations and leak
    detection are disabled; lazy observer population, destructor-by-destructor proof,
    board teardown and custom-pool safety remain unqualified.
+   The [populated-observer teardown controls][native-teardown-observers] now execute
+   seven inventories at start and end of simulation, validating 14 images and
+   scope/parameter/memory ownership before clean native shutdown. Original,
+   disabled and enabled HDL outputs match; five replay/rejection tests pass.
+   The fixture's fixed VPI loader table alone is excluded from ASAN global
+   instrumentation to accommodate its required duplicate export. Prior ODR and
+   loader failures are retained as rejected attempts. Destructor tracing, empty
+   registries after cleanup and full board teardown remain open.
    The [integrated parameter lifecycle controls][parameter-lifecycle-board] now
    pass complete review for binary, real and string families over the full 20-us
    control window. Each family has two allocation/destruction/restoration cycles
@@ -1274,3 +1282,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-recovery-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-recovery-board/assessment.json
 
 [native-teardown-asan]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-asan/README.md
+
+[native-teardown-observers]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-observers/README.md
