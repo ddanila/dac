@@ -444,7 +444,17 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    receipts cannot pass. Only the prerequisite and logical-log ceiling change
    (56 GiB); the 3,300-second timeout and 256-MiB compressed cap remain. Four tests
    and candidate hashes pass. Capture, full review and actual cost measurement
-   remain pending; later stages remain stopped pending predecessors.
+   remain pending. Combined typed-signal recovery is queued behind the exact
+   callback-list process identity, using the previously selected single-scan
+   scope runtime. `callback_list_recovery_gate.py` requires complete callback
+   observations/bindings and all four startup faults plus full comparisons and
+   bounded receipts before retaining `callback-list-board-reviewed`. The twelve
+   typed-signal controls preserve the four callback and six metadata faults,
+   normal runs and unchanged full reviewer. Only the prerequisite and logical-log
+   ceiling change (60 GiB); startup-only evidence is rejected, and the compressed
+   cap remains 256 MiB with a 3,300-second timeout. Four tests and candidate hashes
+   pass. Capture/review and measured operational costs remain pending; later
+   stages remain stopped pending predecessors.
    Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
