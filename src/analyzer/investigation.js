@@ -12,7 +12,7 @@ export function validateMetadata(c,m){
 export async function investigate(c,metadata,profiles,selection='auto',check=()=>{}){
  if(metadata)validateMetadata(c,metadata);
  if(!profiles||profiles.schema!==1||!Array.isArray(profiles.profiles))throw Error('Invalid boot profile catalog');
- const exact=p=>metadata&&metadata.rom_sha256===p.rom_sha256&&p.disk_sha256.includes(metadata.disk_sha256)&&!metadata.writes_at_start;
+ const exact=p=>metadata&&metadata.rom_sha256===p.rom_sha256&&p.disk_sha256.includes(metadata.disk_sha256)&&metadata.writes_at_start===0;
  const profile=selection==='auto'?profiles.profiles.find(exact):profiles.profiles.find(p=>p.id===selection);
  if(selection!=='auto'&&!profile)throw Error('Unknown selected boot profile');
  const qualified=!!profile&&!!exact(profile);

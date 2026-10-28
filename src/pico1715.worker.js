@@ -2,7 +2,7 @@
 // Dedicated classic-machine worker. No museum snapshots or W/M peripherals.
 let core, running=false, paused=false, hidden=false, busy=false, speed=1, timer;
 let keyboardMap,platformCode,identity,captureMeta;
-let experimentTools,experiment,experimentInvalid,replayAbort,replaying=false;
+let experimentTools,experiment,experimentInvalid,replayAbort,replaying=false,lastReplay;
 function record(action){
  if(!experiment||experimentInvalid)return;
  if(experiment.actions.length>=10000||stat(0)>experimentTools.LIMIT_CLOCKS){experimentInvalid='Recording limit exceeded; start a new experiment.';return;}
@@ -80,6 +80,7 @@ async function handle(d){
   core=await factory({printErr:()=>{},locateFile:name=>asset(name)});
   if(core._p1715_version()!==2)throw Error('Unsupported Pico1715 browser ABI.');
   const rom=new Uint8Array(d.rom),disk=new Uint8Array(d.disk),p=core._malloc(rom.length),q=core._malloc(disk.length);
+  if(d.experiment?.absent&&(!core._p1715_sim_config||core._p1715_sim_config(1)!==0))throw Error('Absent-media capability unavailable.');
   try{core.HEAPU8.set(rom,p);core.HEAPU8.set(disk,q);core._p1715_init(p,rom.length,q,disk.length,+d.writable);if(core._p1715_result()<0)throw Error('ROM or disk rejected.');}finally{core._free(p);core._free(q);}
   identity={schema:1,backend,build:d.build,rom_sha256:await digest(rom),disk_sha256:await digest(disk),clock_hz:hz};
   const engine=await experimentTools.engineIdentity(d.build.sha256[`pico1715-${backend}.mjs`],d.build.sha256[`pico1715-${backend}.wasm`]);
@@ -88,13 +89,23 @@ async function handle(d){
    const e=experimentTools.validateExperiment(d.experiment);
    if(e.backend!==backend||e.writable!==!!d.writable||e.rom_sha256!==identity.rom_sha256||e.disk_sha256!==identity.disk_sha256||e.engine_sha256!==engine)throw Error('Replay inputs, backend or engine identity do not match.');
    replayAbort=new AbortController();replaying=true;busy=true;paused=true;running=true;postMessage({type:'power',on:true});
-   try{const result=await experimentTools.replay(experimentTools.wasmAdapter(core),e,{signal:replayAbort.signal,yieldControl:()=>new Promise(r=>setTimeout(r,0))});postMessage({type:'experiment-replayed',result});}
+   try{
+    const result=await experimentTools.replay(experimentTools.wasmAdapter(core),e,{signal:replayAbort.signal,yieldControl:()=>new Promise(r=>setTimeout(r,0))});
+    const attachments=[];
+    if(capState()===2){const ptr=core._p1715_capture_data(),bytes=core.HEAPU8.slice(ptr,ptr+core._p1715_capture_status(2));attachments.push({name:'capture.p1715',bytes});
+     const actions=e.actions.slice(0,result.first_divergence===undefined?undefined:result.first_divergence+1),start=actions.filter(a=>a.type==='capture-start').at(-1);
+     if(start){const end=start.clock+core._p1715_capture_status(4),metadata={...identity,start_clock:start.clock,end_clock:end,capture_sha256:await digest(bytes),writes_at_start:start.clock===0?0:null,observations:[],complete:true};if(end===stat(0))metadata.observations.push({kind:'screen',clock:end,detail:new TextDecoder().decode(core.HEAPU8.slice(core._p1715_screen(),core._p1715_screen()+1920))});attachments.push({name:'capture.metadata.json',bytes:new TextEncoder().encode(JSON.stringify(metadata))});captureMeta=metadata;}
+     if(e.scenario){const {Capture}=await import('./analyzer/capture.js'),{evaluate,defaultSuite}=await import('./analyzer/assertions.js');const check=()=>{if(replayAbort.signal.aborted)throw Error('Investigation cancelled');};const capture=await Capture.open(new Blob([bytes]),{check});result.assertions=await evaluate(capture,defaultSuite,{check});result.suite=defaultSuite;result.first_observed_violation=result.assertions.results.filter(r=>r.first_violation).sort((a,b)=>a.first_violation.record-b.first_violation.record)[0]||null;}
+    }
+    attachments.push({name:'report.json',bytes:new TextEncoder().encode(JSON.stringify(result))});lastReplay={experiment:e,attachments};postMessage({type:'experiment-replayed',result});
+   }
    finally{replaying=false;busy=false;paused=true;frame();}
    return;
   }
   running=true;last=performance.now();postMessage({type:'power',on:true});frame();tick();return;
  }
  if(!core)throw Error('Power on first.');
+ if(d.type==='experiment-get'&&lastReplay){postMessage({type:'experiment-data',id:d.id,...lastReplay});return;}
  if(d.type==='experiment-checkpoint'||d.type==='experiment-get'){
   if(!experiment||experimentInvalid)throw Error(experimentInvalid||'Enable recording before powering on.');
   stop();busy=true;

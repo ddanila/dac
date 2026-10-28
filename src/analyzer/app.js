@@ -27,7 +27,7 @@ async function loadSourceFiles(mapFile,binaryFile,textFile){
  const map=JSON.parse(await mapFile.text()),binary=await binaryFile.arrayBuffer(),text=textFile?await textFile.text():undefined;
  const r=await task('source-load',{map,binary,text});sourceLoaded=true;sourceTicket++;$('source-symbol').replaceChildren(...r.symbols.slice(0,4096).map(s=>new Option(s.name+' · '+s.address.toString(16).padStart(4,'0'),String(s.address))));
  sourceFiles=[{name:'source-map.json',bytes:new TextEncoder().encode(JSON.stringify(map))},{name:'source-binary.bin',bytes:new Uint8Array(binary)}];if(text!==undefined)sourceFiles.push({name:'source-text.txt',bytes:new TextEncoder().encode(text)});
- $('source-status').textContent=`Verified binary/source identities; ${r.locations} source locations. Select an opcode fetch. Source attribution remains an interpretation of the observed bytes.`;
+ $('source-status').textContent=`Verified binary/source identities (${map.source.name}); ${r.locations} source locations. Select an opcode fetch. Source attribution remains an interpretation of the observed bytes.`;
  if(panes.get(active))await showSource(current(),current().selected);
 }
 $('source-preset').onclick=async()=>{try{

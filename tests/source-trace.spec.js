@@ -11,5 +11,5 @@ test('trace source interpretation checks identities, mapping and observed operan
 });
 test('built-in platform and diagnostic source maps match published binaries',async({page})=>{
  await page.goto('/analyzer.html');await page.click('#load-example');await expect(page.locator('#status')).toContainText('Validated');
- for(const profile of ['platform','diagnostics']){await page.selectOption('#source-profile',profile);await page.click('#source-preset');await expect(page.locator('#source-status')).toContainText('Verified binary/source identities');await expect(page.locator('#source-symbol option').first()).toBeAttached();}
+ for(const profile of ['platform','diagnostics']){await page.selectOption('#source-profile',profile);await page.click('#source-preset');await expect(page.locator('#source-status')).toContainText(profile==='platform'?'platform.asm':'p1715test.asm');await expect(page.locator('#source-symbol option').first()).toBeAttached();}
 });

@@ -62,6 +62,14 @@ export function createPico1715Panel({screen,scene,debug,onPower}){
  const capture=mountCapturePanel(panel,send,()=>!!worker,status);
  const experiments=mountExperimentPanel(panel,{send,status,available:()=>!!worker,inputs:()=>({rom:rom.slice(0),disk:disk.slice(0)}),tools:async()=>{
   if(!manifest)throw Error('Wait for demo assets.');const url=new URL('experiment.mjs',base);url.searchParams.set('sha256',manifest.sha256['experiment.mjs']);return import(/* @vite-ignore */url.href);
+ },startScenario:async(scenario,seconds,faultSeconds)=>{
+  if(on||loading||saving)throw Error('Power off before starting a fault experiment.');
+  if(!Number.isFinite(seconds)||seconds<1||seconds>120||!Number.isFinite(faultSeconds)||faultSeconds<0||faultSeconds>=seconds)throw Error('Invalid fault experiment times.');
+  const url=new URL('experiment.mjs',base);url.searchParams.set('sha256',manifest.sha256['experiment.mjs']);const tools=await import(/* @vite-ignore */url.href);
+  const e={schema:1,kind:'pico1715-experiment',scenario,backend:backend(),build:manifest,writable:scenario==='readonly'?false:$('p1715-write').checked,absent:scenario==='absent',rom_sha256:await digest(rom),disk_sha256:await digest(disk),engine_sha256:await tools.engineIdentity(manifest.sha256['pico1715-'+backend()+'.mjs'],manifest.sha256['pico1715-'+backend()+'.wasm']),end_clock:Math.floor(seconds*2458000),actions:[{clock:0,type:'capture-start',bytes:16*1048576,mask:0x170,clocks:0}]};
+  if(!['readonly','absent'].includes(scenario))e.actions.push({clock:Math.floor(faultSeconds*2458000),type:'fault',fault:scenario,value:{crc:1,'drop-byte':100,'read-delay':500,'write-delay':500,'sd-delay':10000,'sd-write-failure':1,'power-fail':1}[scenario]});
+  const text=$('p1715-paste').value.replace(/\r\n?|\n/g,'\r');if(text){if(e.end_clock<=30000000||text.length>4096||[...text].some(c=>c.charCodeAt(0)<1||c.charCodeAt(0)>127))throw Error('ASCII command workloads require more than 30M clocks.');for(const c of text)e.actions.push({clock:30000000,type:'key',value:c.charCodeAt(0)});}
+  e.actions.push({clock:e.end_clock,type:'capture-stop'});e.actions.sort((a,b)=>a.clock-b.clock);tools.validateExperiment(e);$('p1715-write').checked=e.writable;await power(e);
  },startReplay:async loaded=>{
   if(on||loading||saving)throw Error('Power off before replay.');if(!loaded)throw Error('Open an investigation first.');
   const e=loaded.experiment,r=loaded.files.find(f=>f.name==='initial.rom')?.bytes,d=loaded.files.find(f=>f.name==='initial.img')?.bytes;

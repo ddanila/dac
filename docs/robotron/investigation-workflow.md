@@ -153,3 +153,25 @@ There is no separate Python assertion interpreter.
 No simulation or completed software report qualifies actual USB throughput,
 connector mechanics, bus levels, SD durability or reserve power. The bring-up
 runner preserves those physical stages as pending until operator evidence exists.
+
+## Scheduled fault experiments
+
+The workbench's **Reproducible investigation** panel can start a bounded fault
+experiment from boot. Select CRC corruption, a dropped byte, controller delay,
+absent media or read-only mounting; the firmware backend additionally supports
+SD delay, next-write failure and a queued power-fail shutdown request. The paste
+box supplies an optional command at 30M clocks. A configured write fault needs an
+actual write workload before its effects can be assessed.
+
+Runs finish paused, display the shared assertion results, and export the original
+schedule, capture, metadata and report as an investigation bundle. Initial ROM
+and disk inclusion remains explicit. Export after replay retains that completed
+run's evidence, rather than subsequent interactive changes. Replay without
+recorded checkpoint expectations is labelled accordingly.
+
+The Pico1715 paired CLI runner preserves a fault-free control and optional bounded
+command-reduction attempts. Browser fault runs currently contain one scenario;
+paired browser control execution remains a follow-up. Reports separate a first
+observed violation from a conclusive failure: downstream decoding uncertainty
+must not turn a bad CRC observation into a claimed root cause. Neither the output
+image nor simulation shutdown establishes physical SD durability.

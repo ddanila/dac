@@ -1350,5 +1350,178 @@
       "code": false
     }
   ],
-  "symbols": []
+  "symbols": [
+    {
+      "name": "bad",
+      "address": 586
+    },
+    {
+      "name": "banner",
+      "address": 739
+    },
+    {
+      "name": "bdos",
+      "address": 670
+    },
+    {
+      "name": "clean_ok",
+      "address": 991
+    },
+    {
+      "name": "cleanup",
+      "address": 426
+    },
+    {
+      "name": "close",
+      "address": 631
+    },
+    {
+      "name": "collision",
+      "address": 725
+    },
+    {
+      "name": "command",
+      "address": 287
+    },
+    {
+      "name": "compare",
+      "address": 561
+    },
+    {
+      "name": "dma",
+      "address": 623
+    },
+    {
+      "name": "exists_error",
+      "address": 1211
+    },
+    {
+      "name": "filename",
+      "address": 1255
+    },
+    {
+      "name": "finish",
+      "address": 731
+    },
+    {
+      "name": "hexbyte",
+      "address": 685
+    },
+    {
+      "name": "hexout",
+      "address": 704
+    },
+    {
+      "name": "info",
+      "address": 320
+    },
+    {
+      "name": "info_ok",
+      "address": 763
+    },
+    {
+      "name": "io_error",
+      "address": 1119
+    },
+    {
+      "name": "iofail",
+      "address": 713
+    },
+    {
+      "name": "key_ok",
+      "address": 1059
+    },
+    {
+      "name": "key_prompt",
+      "address": 1016
+    },
+    {
+      "name": "keyboard",
+      "address": 454
+    },
+    {
+      "name": "nibble",
+      "address": 694
+    },
+    {
+      "name": "oldsp",
+      "address": 1282
+    },
+    {
+      "name": "pattern",
+      "address": 590
+    },
+    {
+      "name": "pattern_loop",
+      "address": 597
+    },
+    {
+      "name": "print",
+      "address": 680
+    },
+    {
+      "name": "read_ok",
+      "address": 953
+    },
+    {
+      "name": "read_test",
+      "address": 414
+    },
+    {
+      "name": "record",
+      "address": 1284
+    },
+    {
+      "name": "reset_fcb",
+      "address": 645
+    },
+    {
+      "name": "signature",
+      "address": 1266
+    },
+    {
+      "name": "skip",
+      "address": 279
+    },
+    {
+      "name": "usage",
+      "address": 866
+    },
+    {
+      "name": "verify",
+      "address": 471
+    },
+    {
+      "name": "verify_bad",
+      "address": 583
+    },
+    {
+      "name": "verify_error",
+      "address": 1170
+    },
+    {
+      "name": "verify_loop",
+      "address": 518
+    },
+    {
+      "name": "verifyfail",
+      "address": 719
+    },
+    {
+      "name": "write_loop",
+      "address": 375
+    },
+    {
+      "name": "write_ok",
+      "address": 898
+    },
+    {
+      "name": "write_test",
+      "address": 339
+    },
+    {
+      "name": "writefail",
+      "address": 710
+    }
+  ]
 }

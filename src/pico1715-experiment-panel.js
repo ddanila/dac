@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-export function mountExperimentPanel(parent,{send,status,tools,inputs,startReplay,available}){
+export function mountExperimentPanel(parent,{send,status,tools,inputs,startReplay,available,startScenario}){
  const box=document.createElement('fieldset');box.innerHTML=`<legend>Reproducible investigation</legend>
  <label><input id="experiment-record" type="checkbox"> Record next session from power-on (120 simulated seconds maximum)</label>
  <button id="experiment-checkpoint">Record checkpoint</button>
@@ -8,6 +8,8 @@ export function mountExperimentPanel(parent,{send,status,tools,inputs,startRepla
  <label>Open investigation <input id="experiment-file" type="file" accept=".p1715investigation,.json"></label>
  <label>Replay until <select id="experiment-target"><option value="end">End of recording</option></select></label>
  <button id="experiment-replay" disabled>Replay from boot</button><button id="experiment-cancel">Cancel replay</button>
+ <label>Simulation fault<select id="experiment-scenario"><option value="crc">Corrupt field CRC</option><option value="drop-byte">Drop a field byte</option><option value="read-delay">Delay controller reads</option><option value="write-delay">Delay controller writes</option><option value="sd-delay">Delay SD writes (firmware)</option><option value="sd-write-failure">Fail next SD write (firmware)</option><option value="power-fail">Request power-fail shutdown (firmware)</option><option value="absent">Boot without media</option><option value="readonly">Boot write-protected</option></select></label>
+ <label>Run seconds<input id="experiment-seconds" type="number" min="1" max="120" value="16"></label><label>Inject at second<input id="experiment-fault-time" type="number" min="0" max="119" value="0"></label><button id="experiment-scenario-run">Run fault experiment from boot</button>
  <p id="experiment-info" role="status">Inputs are referenced by hash unless explicitly included. Replays finish paused.</p>`;
  parent.append(box);const $=id=>box.querySelector('#'+id);let sequence=0,loaded,lastInputs,pending=new Map();
  function request(type){return new Promise((resolve,reject)=>{if(!available())return reject(Error('Power on with recording enabled first.'));const id='experiment-'+ ++sequence;pending.set(id,{resolve,reject});send({type,id});});}
@@ -24,8 +26,9 @@ export function mountExperimentPanel(parent,{send,status,tools,inputs,startRepla
  $('experiment-file').addEventListener('change',()=>{$('experiment-target').replaceChildren(new Option('End of recording','end'));});
  $('experiment-target').onfocus=()=>{if(!loaded?.experiment||$('experiment-target').options.length>1)return;loaded.experiment.actions.forEach((a,i)=>{if(a.type==='checkpoint')$('experiment-target').add(new Option(`${a.name} · clock ${a.clock}`,String(i)));});};
  action('experiment-replay',()=>{if(!loaded)return startReplay(loaded);const copy={...loaded,experiment:structuredClone(loaded.experiment)},target=$('experiment-target').value;if(target!=='end'){const i=Number(target),a=copy.experiment.actions[i];if(a?.type!=='checkpoint')throw Error('Checkpoint unavailable');copy.experiment.actions=copy.experiment.actions.slice(0,i+1);copy.experiment.end_clock=a.clock;}return startReplay(copy);});action('experiment-cancel',()=>send({type:'experiment-cancel'}));
+ action('experiment-scenario-run',()=>startScenario($('experiment-scenario').value,Number($('experiment-seconds').value),Number($('experiment-fault-time').value)));
  return {recording:()=>$('experiment-record').checked,started(){lastInputs=inputs();},receive(d){
-  if(d.type==='experiment-replayed')$('experiment-info').textContent=d.result.status==='complete'?'Replay complete: all recorded checkpoints match.':`Replay diverged at action ${d.result.first_divergence}.`;
+  if(d.type==='experiment-replayed'){$('experiment-info').textContent=d.result.status==='complete'?(d.result.checkpoints.some(c=>c.verified)?'Replay complete: all recorded checkpoints match.':'Replay complete; no recorded checkpoint expectations.'):`Replay diverged at action ${d.result.first_divergence}.`;if(d.result.assertions)$('experiment-info').textContent+=' Assertions: '+d.result.assertions.results.map(r=>r.id+' '+r.outcome).join('; ')+(d.result.first_observed_violation?' · first observed violation at record '+d.result.first_observed_violation.first_violation.record:'');}
   if(d.type==='experiment-data'||d.type==='error'){const p=pending.get(d.id);if(p){pending.delete(d.id);d.type==='error'?p.reject(Error(d.message)):p.resolve(d);}}
  },closed(){for(const p of pending.values())p.reject(Error('Session closed'));pending.clear();}};
 }

@@ -21,10 +21,11 @@ test('validation and cancellation fail closed',async()=>{
  await assert.rejects(evaluate(c,suite([response]),{start:-1}),/range/);
 });
 test('boot profiles require exact hashes, screen evidence and included fetches',async()=>{
- const c=await capture([{kind:1,address:0xc033},{kind:4}]),m={schema:1,capture_sha256:c.summary.sha256,start_clock:0,end_clock:30,clock_hz:1000000,rom_sha256:'rom',disk_sha256:'disk',observations:[{kind:'screen',clock:25,detail:'A>'}]};
+ const c=await capture([{kind:1,address:0xc033},{kind:4}]),m={schema:1,capture_sha256:c.summary.sha256,start_clock:0,end_clock:30,writes_at_start:0,clock_hz:1000000,rom_sha256:'rom',disk_sha256:'disk',observations:[{kind:'screen',clock:25,detail:'A>'}]};
  const profiles={schema:1,profiles:[{id:'p',revision:1,rom_sha256:'rom',disk_sha256:['disk'],stages:[{id:'entry',event:{kind:'opcode_fetch',address:0xc033}},{id:'ready',observation:'screen',contains:'A>'}]}]};
  let r=await investigate(c,m,profiles);assert.equal(r.qualified_profile,true);assert.deepEqual(r.stages.map(s=>s.outcome),['observed','observed']);
  r=await investigate(c,{...m,rom_sha256:'unknown'},profiles,'p');assert.equal(r.qualified_profile,false);assert.ok(r.stages.every(s=>s.outcome==='unavailable from this capture'));
+ assert.equal((await investigate(c,{...m,writes_at_start:undefined},profiles,'p')).qualified_profile,false);
  r=await investigate(c,{...m,observations:[]},profiles);assert.equal(r.stages[1].outcome,'unavailable from this capture');
  await assert.rejects(investigate(c,{...m,capture_sha256:'wrong'},profiles),/identify/);
  const io=await capture([{kind:4}],{mask:0x170});r=await investigate(io,{...m,capture_sha256:io.summary.sha256},profiles);assert.equal(r.stages[0].outcome,'unavailable from this capture');

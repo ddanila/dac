@@ -1,20 +1,20 @@
 {
   "schema": 1,
   "abi": 2,
-  "pico": "cfb295a86d993d35279cecc20a713bb6b8caf448",
+  "pico": "a623776baef5ff2846756c63b53019176a4deeac",
   "dac": "98f8f808c08ce21f6b98a00b95185f1e2226e70d",
   "dirty": false,
   "compiler": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 4.0.23 (7a5d93b50f6a3a35e85a0d2fc9e667b8498e6aed)",
   "verilator": "Verilator 5.032 2025-01-01 rev (Debian 5.032-1)",
   "sha256": {
-    "pico1715-firmware.wasm": "bab33a723e74315691f187f5ec6ba08eb0b05b1610465f9f1c85709132236634",
-    "pico1715-firmware.mjs": "68a0ba8e901f533f857acb6922a7ae8af330ed2fec7ef494d786a1499cea7c81",
-    "experiment.mjs": "14b8a9528d524ead500eb8750e4ba541a9532c74fdd55ba57dfc2bf946928279",
+    "pico1715-firmware.wasm": "e6e09b066f1ffe37f0cde21caa9dd11214befc54e64ced67c810cf5f8609256f",
+    "pico1715-firmware.mjs": "dfbe2d7ef2ceffddbf0170fd3501e71825c532a48c45351a4ba3728bf964b50f",
+    "experiment.mjs": "b91cf94c5eebf7e7a063466daa8275bc755edf8ef6a76ff815cf1e977f7b599a",
     "chips-LICENSE": "0c692ece632a8ec6d2a566c9234fdabda655644e6abc70027da9ff7c35e48634",
-    "pico1715-model.wasm": "62ced111f2488c877a5820717dd8488646361d3d2ba98f5255272c75ca30c43f",
+    "pico1715-model.wasm": "0930f92d128825983038a7a3200c125e13adca15a35a0ea60a806b2c21952ced",
     "verilator-LICENSE": "c99001e5f7806a40b17a3f555ab464e4739527e43fef9745a455b83132aab97f",
     "LICENSE": "5f37b6aa73439398b45f8b972c02bfbd07418c4e00d374adb68695a6edb38e5f",
-    "pico1715-model.mjs": "9b96907b72242da45773b8d84eb94d733c141f5b73ceeccf1d2c44a6f928fe97",
+    "pico1715-model.mjs": "36e73003753deca1dd4edf623ca3e15a3ec2016d3b59318ed746cdbdba30768f",
     "test.rom": "639db4e6c4bea3042bfc7ea2ab83ee475e9391766bd5cffc370e0b59affdeac2",
     "cpm-plus-1715.img": "a9c195bd985e1d42fa801091289545c851d1439fb7a041932e7a16f9cc72c42e",
     "keyboard-map.json": "bde15f8f9a8c05bf9fe36b1661080cd0141e0cd48eaac28678600af2f2712fd3",
@@ -23,7 +23,7 @@
     "CPM-LICENSE.md": "4db276dbc6ee71ff1c9e4826ea52c1ac4f6eac6f64a11e517a660fe0ca14d1a3",
     "JUKU-LICENSE": "dc74ca17f83a020b3fec5b966e1f26188f1f16b800be6b093fc676bc43e0947c",
     "platform.source.json": "2c7a366a0ebb26e41d38bef30749f0b6446c6171960ba14b0c58577eb04494f6",
-    "diagnostics.source.json": "65afe08e3e254801401aa63e952398610b2d7f1451d235d09c9fc30d7299b108",
+    "diagnostics.source.json": "4d57daa0e850daad30212a3c8dfc1da8f41849e5b538b05ad5fe367fef71ac26",
     "diagnostics.bin": "258890fbb8612d894e8e92b69bb914244fd5cc5ea7a637be99e24772fc9273be"
   },
   "source_profiles": [
@@ -40,6 +40,6 @@
       "binary": "diagnostics.bin"
     }
   ],
-  "source_map_generator_sha256": "5b96777533ad14777c5a249acea3913568b8ff10972893e7119f601b10371a15",
+  "source_map_generator_sha256": "4160e14cfea3307af1d98430b4ee12ad0a7928761669fa6d7576ee8ea5d4544c",
   "cpm": "12df4d059fb83c4d55426aef6cf7746301e06511"
 }
