@@ -30,7 +30,8 @@ the producer requires the retained bounded drain assessment and preserves the
 complete ADC-enabled window. A completed capture is not a passing convergence gate.
 
 The 12.5-ns and 6.25-ns drain captures completed in 8,291 and 8,504 seconds,
-respectively; the original driver is capturing the 25-ns forced-retry control.
+respectively; the 25-ns forced-retry control has also completed in 8,169 seconds.
+The original driver is now reviewing all six full captures.
 The [complete drain refinement diagnostic][drain-refinement-diagnostic] fails the
 unchanged non-growth gate over the full 1.16-ms window. Firmware records match
 and every voltage error remains below 10 mV, but errors grow on D1, D2, D3, D5
@@ -71,6 +72,19 @@ against the retained drain capture. It changes logging only and does not waive
 the failed convergence gate or restart full-repeat captures.
 The original full disabled/timing/retry review remains
 pending; full-repeat, supply recovery and rollback qualification remain open.
+The [selected ADC source binding][adc-decision-source] now reproduces the existing
+trace implementation's generated C and compiled object byte-for-byte. Its
+`ROBOTRON_ADC_TRACE` flag guards only an EVENT-branch diagnostic, so no new model
+build is needed to observe sampled threshold decisions. These are not exact
+analog crossings or a complete rejected-step history. Four fresh bounded
+controls enable this flag alongside delivery logging, with full waveform,
+firmware and original drain/retry review queued. In the completed disabled
+control, all 45 scalar input applications match ADC decision time plus declared
+delay exactly at the recorded bridge event-base time; values match as well.
+Analog entry targets can be later. Timestamp binding handles the differently
+buffered output streams, and four focused rejection/buffering tests pass.
+Full four-control acceptance remains pending; no clamp or convergence gate changes.
+
 
 ### Combined simulator acceptance
 
@@ -444,10 +458,14 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    continuation match. Exact source reconstruction and five replay/rejection
    tests pass. This does not claim every registry is empty or arbitrary getters,
    mutators, dangling handles, runtime reuse or concurrent observation are safe.
-   A separate three-family board campaign for this broader guard is now running,
-   with a 55-API unload probe and full review/rejection tests queued behind its
-   exact process. That revision's integrated acceptance remains pending. Existing
-   continuous campaigns retain pinned runtimes; full-repeat capture stays deferred.
+   The [broader guard's integrated board controls][native-observer-shutdown-board]
+   now pass all three families: complete 27,578-sample/31-signal comparisons,
+   firmware, initialized models, six selected snapshots and post-restoration
+   activity match. Each mode destroys 56 parameters and three memories, clears
+   the measured scope registries, then all 55 inventory APIs refuse with zero
+   output during VPI unload. Five full replay/rejection tests pass. Complete
+   captures and same-build native regressions are retained. Existing continuous
+   campaigns retain pinned runtimes; full-repeat capture stays deferred.
    The [integrated parameter lifecycle controls][parameter-lifecycle-board] now
    pass complete review for binary, real and string families over the full 20-us
    control window. Each family has two allocation/destruction/restoration cycles
@@ -1338,3 +1356,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [native-teardown-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-board/README.md
 
 [native-observer-shutdown]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-observer-shutdown/README.md
+
+[native-observer-shutdown-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-observer-shutdown-board/README.md
+
+[adc-decision-source]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/adc-decision-source/README.md
