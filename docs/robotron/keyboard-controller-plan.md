@@ -250,6 +250,15 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    build, along with four replay/rejection tests. This does not qualify destruction,
    address reuse, compact growth, natural dynamic-array allocation or continuous
    board operation; the queued board runtime remains separately bound.
+   The [native compact-growth controls][memory-growth-compact] now execute ten
+   paired dense/compact array observations covering those allocations and caches;
+   all bytes reconstruct exactly (8,619 dense versus 5,788 compact bytes).
+   The [existing metadata logger replay][memory-growth-log] independently retains
+   all ten metadata images using five full and five reuse frames (3,648 dense
+   versus 1,975 compact bytes). Six replay/rejection tests pass, including missing
+   cache ownership, changed packed values and stale reuse after allocation.
+   These fixture costs do not establish operational growth bounds, and logger
+   replay is separate from the new native compact-array execution.
    Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
@@ -1161,3 +1170,6 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-handle-release/assessment.json
 
 [memory-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-growth/assessment.json
+
+[memory-growth-compact]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-growth-compact/assessment.json
+[memory-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-growth-log/assessment.json
