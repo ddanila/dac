@@ -233,7 +233,13 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    validation. Sixteen native runs cover baseline/disabled continuation and both
    observers; the build identity matches the retained native memory-layout witness.
    Three replay/runtime-binding/partial-output tests pass. This does not establish
-   dynamic/class/object-array support or complete memory destruction/reuse.
+   dynamic/class/object-array support or complete memory destruction/reuse. The
+   [public memory-handle release controls][memory-handle-release] now compare
+   original, disabled and enabled execution on that runtime. Twelve release calls
+   per run preserve the static memory and two word-handle identities, values,
+   owners and exact native inventories across writes; three replay/rejection tests
+   pass. Public release does not destroy these handles, so native destruction,
+   teardown and address reuse remain separate qualification work.
    Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
@@ -1141,3 +1147,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-late-refusal]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-late-refusal-controls/README.md
 
 [memory-runtime-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-runtime-array-families/assessment.json
+
+[memory-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-handle-release/assessment.json
