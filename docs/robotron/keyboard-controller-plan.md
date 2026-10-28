@@ -453,8 +453,17 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    normal runs and unchanged full reviewer. Only the prerequisite and logical-log
    ceiling change (60 GiB); startup-only evidence is rejected, and the compressed
    cap remains 256 MiB with a 3,300-second timeout. Four tests and candidate hashes
-   pass. Capture/review and measured operational costs remain pending; later
-   stages remain stopped pending predecessors.
+   pass. Capture/review and measured operational costs remain pending.
+   Scope-metadata recovery is queued behind the exact typed-signal process
+   identity. `typed_signal_recovery_gate.py` preserves the original scope
+   prerequisite and requires complete typed-signal observations, positive handle
+   bindings, callback-link counts for every bound output at every boundary, all
+   ten faults and bounded receipts before retaining `signal-scope-board-reviewed`.
+   The twelve scope controls retain normal runs, all callback/scope faults and
+   the original complete reviewer. Only the prerequisite and logical-log ceiling
+   change (64 GiB); timeout and compressed cap remain 3,300 seconds and 256 MiB.
+   Four tests and candidate hashes pass. Scope capture/review and measured cost
+   remain pending; later stages remain stopped pending predecessors.
    Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
