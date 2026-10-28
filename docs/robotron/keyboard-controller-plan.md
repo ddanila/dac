@@ -31,7 +31,14 @@ complete ADC-enabled window. A completed capture is not a passing convergence ga
 
 The 12.5-ns and 6.25-ns drain captures completed in 8,291 and 8,504 seconds,
 respectively; the 25-ns forced-retry control has also completed in 8,169 seconds.
-The original driver is now reviewing all six full captures.
+The [original complete review][drain-complete] now covers all six full captures
+and their baseline through 1.16 ms. Its disabled control exactly matches
+1,428,052 samples across 31 signals; output draining leaves the exact-tick
+trajectory unchanged. All 165 firmware records per run are retained. Exact-tick
+mode moves seven logged baseline bus edges by +1 ps, with every payload unchanged;
+drain, refinement and retry firmware records match exactly. Five metadata replay
+and rejection tests pass. Full waveform/log archives remain local, and metadata
+replay does not substitute for a full waveform replay.
 The [complete drain refinement diagnostic][drain-refinement-diagnostic] fails the
 unchanged non-growth gate over the full 1.16-ms window. Firmware records match
 and every voltage error remains below 10 mV, but errors grow on D1, D2, D3, D5
@@ -70,20 +77,22 @@ the original drain producer. The full 1.16-ms, 25-ns ADC-enabled diagnostic has
 entered capture, with exact same-mode waveform/firmware comparison planned
 against the retained drain capture. It changes logging only and does not waive
 the failed convergence gate or restart full-repeat captures.
-The original full disabled/timing/retry review remains
-pending; full-repeat, supply recovery and rollback qualification remain open.
+Full-repeat, supply recovery and rollback qualification remain open.
 The [selected ADC source binding][adc-decision-source] now reproduces the existing
 trace implementation's generated C and compiled object byte-for-byte. Its
 `ROBOTRON_ADC_TRACE` flag guards only an EVENT-branch diagnostic, so no new model
 build is needed to observe sampled threshold decisions. These are not exact
-analog crossings or a complete rejected-step history. Four fresh bounded
-controls enable this flag alongside delivery logging, with full waveform,
-firmware and original drain/retry review queued. In the completed disabled
-control, all 45 scalar input applications match ADC decision time plus declared
-delay exactly at the recorded bridge event-base time; values match as well.
-Analog entry targets can be later. Timestamp binding handles the differently
-buffered output streams, and four focused rejection/buffering tests pass.
-Full four-control acceptance remains pending; no clamp or convergence gate changes.
+analog crossings or a complete rejected-step history. The [four complete bounded controls][adc-decision-board]
+enable this flag alongside delivery logging. Every sample across 31 signals
+through 20 us and every firmware record matches its corresponding retained
+control exactly, including forced retry. All 45 scalar input applications per
+mode match ADC decision time plus declared delay exactly at the recorded bridge
+event-base time; values match as well. Analog entry targets can be later.
+Timestamp binding handles the differently buffered output streams. Five complete
+replay/rejection/buffering tests pass; the full bounded evidence is retained.
+The vector logic_control input is outside the scalar binding. Full post-reset
+ADC decision tracing, causal correction and convergence remain unqualified;
+no clamp or convergence gate changes were made.
 
 
 ### Combined simulator acceptance
@@ -1360,3 +1369,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [native-observer-shutdown-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-observer-shutdown-board/README.md
 
 [adc-decision-source]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/adc-decision-source/README.md
+
+[drain-complete]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-complete/README.md
+
+[adc-decision-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/adc-decision-board/README.md
