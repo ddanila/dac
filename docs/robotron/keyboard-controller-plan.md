@@ -428,13 +428,26 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    callback and runtime allocation checks. Its [same-build native regressions][native-teardown-board-runtime]
    pass teardown, parameter recovery, memory lifecycle and native-layout review;
    cleanup source hashes remain identical to the preceding accepted candidate.
-   A separate three-family full 20-us board campaign is now capturing with the
-   sanitizer runtime explicitly pinned and loaded into the host. A VPI unload
-   probe checks all seven post-cleanup refusals. Full waveform/firmware comparison,
-   destruction of 56 compiled parameters and three memories, empty tracked scope
-   registries and five full replay/rejection tests are queued behind the exact
-   capture process. Integrated acceptance remains pending. Existing continuous
-   campaigns retain their pinned runtimes; full-repeat capture remains deferred.
+   The [three-family integrated board teardown controls][native-teardown-board]
+   now pass full waveform/firmware and initialized-model comparisons: 27,578
+   samples across 31 signals per mode through 20 us, six complete selected
+   snapshots, and four matching post-restoration bus edges. Each mode destroys
+   all 56 compiled parameters and three memories, clears both roots and eight
+   measured observer registries, and then safely refuses all seven scope-dependent
+   inventories during VPI unload. Five full replay/rejection tests pass; complete
+   captures and same-build native regressions are retained.
+   A broader [native inventory shutdown sweep][native-observer-shutdown] finds
+   15 ASAN post-cleanup failures outside those seven APIs, plus 13 post-cleanup
+   acceptances. The new isolated candidate closes observation at the first step
+   of final_cleanup and guards all 55 exported native inventory definitions.
+   All 55 now refuse with -1 and zero output; pre-cleanup admission and fixture
+   continuation match. Exact source reconstruction and five replay/rejection
+   tests pass. This does not claim every registry is empty or arbitrary getters,
+   mutators, dangling handles, runtime reuse or concurrent observation are safe.
+   A separate three-family board campaign for this broader guard is now running,
+   with a 55-API unload probe and full review/rejection tests queued behind its
+   exact process. That revision's integrated acceptance remains pending. Existing
+   continuous campaigns retain pinned runtimes; full-repeat capture stays deferred.
    The [integrated parameter lifecycle controls][parameter-lifecycle-board] now
    pass complete review for binary, real and string families over the full 20-us
    control window. Each family has two allocation/destruction/restoration cycles
@@ -1321,3 +1334,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [native-teardown-board-loader-failure]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-board-loader-failure/README.md
 
 [native-teardown-board-runtime]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-board-runtime/README.md
+
+[native-teardown-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-board/README.md
+
+[native-observer-shutdown]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-observer-shutdown/README.md
