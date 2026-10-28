@@ -69,14 +69,21 @@ now pass complete review: all 27,578 samples per normal control and 27,583 retry
 samples across 31 signals match the corresponding retained controls exactly,
 as do firmware records. Each run has 46 input applications, 82 before/after
 output pairs and 23 clamped output groups. The full callback transitions obey
-the pinned source rule. Input threshold detection remains upstream and unobserved.
+the pinned source rule. This delivery-only trace leaves upstream threshold
+detection unobserved.
 The complete bounded evidence is retained with file/source identities verified.
 `postreset_delivery_capture.py` adds a fresh complete replay of those controls
 as its qualification gate; its remaining capture logic is AST-equivalent to
-the original drain producer. The full 1.16-ms, 25-ns ADC-enabled diagnostic has
-entered capture, with exact same-mode waveform/firmware comparison planned
-against the retained drain capture. It changes logging only and does not waive
-the failed convergence gate or restart full-repeat captures.
+the original drain producer. The [full 1.16-ms, 25-ns delivery diagnostic][delivery-complete]
+now passes exact same-mode comparison against the retained drain capture:
+1,427,676 samples across 31 signals and all firmware records match. Its 2,708
+input applications and 649 output pairs include 221 clamped groups; every
+transition satisfies the source rule. Maximum input target minus HDL actual
+time is about 2.001 ns. Every delivery/firmware record is retained after complete
+log hash verification; five record replay/rejection tests pass. Full archives
+remain local, and record replay does not replace waveform replay. This changes
+logging only and does not waive the failed convergence gate or restart full-repeat
+captures.
 Full-repeat, supply recovery and rollback qualification remain open.
 The [selected ADC source binding][adc-decision-source] now reproduces the existing
 trace implementation's generated C and compiled object byte-for-byte. Its
@@ -90,9 +97,15 @@ mode match ADC decision time plus declared delay exactly at the recorded bridge
 event-base time; values match as well. Analog entry targets can be later.
 Timestamp binding handles the differently buffered output streams. Five complete
 replay/rejection/buffering tests pass; the full bounded evidence is retained.
-The vector logic_control input is outside the scalar binding. Full post-reset
-ADC decision tracing, causal correction and convergence remain unqualified;
-no clamp or convergence gate changes were made.
+The vector logic_control input is outside the scalar binding. A new full
+1.16-ms ADC decision trace is now capturing after the full delivery predecessor
+passed. Its producer preserves the existing capture AST except for the trace
+flag, bounded qualification and provenance; five experiment/source checks pass.
+The gated reviewer requires every waveform sample, firmware record and delivery
+record to match the full predecessor exactly before binding scalar inputs to
+sampled ADC decisions. It retains the 4-GiB logical/512-MiB compressed log caps
+and 28,800-second timeout. Full post-reset ADC decision acceptance, causal
+correction and convergence remain unqualified; no clamp or gate changes were made.
 
 
 ### Combined simulator acceptance
@@ -1373,3 +1386,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [drain-complete]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-drain-complete/README.md
 
 [adc-decision-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/adc-decision-board/README.md
+
+[delivery-complete]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/postreset-delivery-complete/README.md
