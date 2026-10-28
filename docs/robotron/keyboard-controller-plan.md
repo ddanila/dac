@@ -259,6 +259,18 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    cache ownership, changed packed values and stale reuse after allocation.
    These fixture costs do not establish operational growth bounds, and logger
    replay is separate from the new native compact-array execution.
+   The [registered-memory lifecycle candidate][memory-lifecycle] now invalidates
+   observer ownership in the native array destructor and assigns monotonic
+   scope-object IDs. Four test-owned memory destruction/reconstruction cycles
+   reuse one reserved object address with fresh IDs. Five inventories refuse each
+   stale scope entry before output (20 refusals); detaching it restores all five
+   baseline inventories exactly. Dense/compact values, cache ownership and original
+   HDL continuation agree. Same-runtime memory/parameter growth, unsupported-array
+   and metadata regressions pass, along with five replay/rejection tests.
+   The object buffer remains reserved for placement reconstruction; allocator reuse
+   after freeing that buffer, dangling external VPI handles, memories with compiled
+   HDL references/read ports/callbacks and full scope teardown remain unqualified.
+   This separate candidate has not replaced the queued board runtime.
    Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
@@ -1173,3 +1185,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 
 [memory-growth-compact]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-growth-compact/assessment.json
 [memory-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-growth-log/assessment.json
+
+[memory-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-lifecycle/assessment.json
