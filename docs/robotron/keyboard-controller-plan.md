@@ -362,6 +362,17 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    compare serialized dictionary keys. Unsupported objects remain allocated:
    post-refusal private state, destruction/address reuse, full observer admission
    and operational cost remain unqualified.
+   The [native parameter lifecycle candidate][parameter-lifecycle] now removes
+   observer/scope registrations in the exact binary, real and string destructors.
+   Six native destruction/reconstruction cycles use one reserved buffer with fresh
+   monotonic IDs. Parameter, scope metadata and object-reference inventories refuse
+   every stale scope entry before output (18 refusals), then restore exactly after
+   detachment. Wide X bits, real storage, embedded-null strings and original HDL
+   continuation remain intact. Same-runtime parameter class/growth, memory lifecycle
+   and array-family regressions pass, along with four replay/rejection tests.
+   Allocator-dependent reuse after freeing the object buffer, unsupported subclass
+   destruction, compiled references, dangling external handles and full graph
+   teardown remain unqualified; the queued board runtimes are unchanged.
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
    inventory for binary/wide/real/string parameters in two rounds. All 16 calls
@@ -1211,3 +1222,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-lifecycle-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-lifecycle-log/assessment.json
 
 [memory-lifecycle-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-lifecycle-board/assessment.json
+
+[parameter-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-lifecycle/assessment.json
