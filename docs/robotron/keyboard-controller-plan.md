@@ -240,6 +240,16 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    owners and exact native inventories across writes; three replay/rejection tests
    pass. Public release does not destroy these handles, so native destruction,
    teardown and address reuse remain separate qualification work.
+   The [native late memory-allocation controls][memory-growth] use a separate
+   candidate to grow complete metadata and dense array inventories from one to
+   five static memories in two rounds. Fresh scope-object identities, 8/80-bit
+   payloads including high X bits, ascending/descending declared ranges and four
+   lazy word caches preserve earlier state exactly. Original, disabled and enabled
+   HDL continuation agrees; invalid allocation kinds refuse. Sixteen unsupported
+   array-family runs and native memory metadata controls pass on the same new
+   build, along with four replay/rejection tests. This does not qualify destruction,
+   address reuse, compact growth, natural dynamic-array allocation or continuous
+   board operation; the queued board runtime remains separately bound.
    Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
@@ -1149,3 +1159,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-runtime-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-runtime-array-families/assessment.json
 
 [memory-handle-release]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-handle-release/assessment.json
+
+[memory-growth]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-growth/assessment.json
