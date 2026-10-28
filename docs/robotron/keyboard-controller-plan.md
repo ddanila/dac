@@ -383,6 +383,17 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    Four replay/rejection tests pass. Allocator address reuse, dangling external
    handles, compiled-reference deletion, full teardown and integrated board
    recovery after unsupported-class refusal remain unqualified.
+   The [guarded native recovery API][parameter-refusal-api] now restricts deletion
+   to its own newly created unsupported object, validates its exact diagnostic
+   subclass and separates destruction from stale-entry detachment. Nine native
+   controls and same-runtime lifecycle/class/layout regressions pass; three
+   replay/rejection tests pass. A separate `parameter_recovery_capture.py` campaign
+   is capturing full 20-us controls for all three families, with live-object and
+   post-destruction refusal at 5 and 6 us followed by exact complete restoration.
+   Two bridge/producer checks and two reviewer source checks pass. Full review is
+   queued behind the exact capture process, with matching native API evidence,
+   complete waveform/firmware comparison and post-restoration activity required.
+   Integrated acceptance remains pending.
    The [integrated parameter lifecycle controls][parameter-lifecycle-board] now
    pass complete review for binary, real and string families over the full 20-us
    control window. Each family has two allocation/destruction/restoration cycles
@@ -1251,3 +1262,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-refusal-recovery]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-refusal-recovery/assessment.json
 
 [parameter-lifecycle-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-lifecycle-board/assessment.json
+
+[parameter-refusal-api]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-refusal-api/assessment.json
