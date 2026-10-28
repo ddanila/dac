@@ -493,7 +493,18 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    Six tests pass, including preservation of complete sample/firmware checks and
    rejection of startup-only evidence. Candidate hashes verify. Continuous
    capture/review and actual cost remain pending; selected-fault continuation
-   does not substitute for this campaign. Memory integration remains separate.
+   does not substitute for this campaign. A continuous memory campaign is queued
+   behind the exact parameter process identity. Its gate requires complete
+   five-stream parameter reconstruction and every prior normal/fault control
+   before retaining `parameter-operational-board-reviewed`. The eleven memory
+   controls preserve four callback and five memory faults plus both normal runs.
+   The full reviewer retains all prior checks and uses the existing six-stream
+   memory inventory, including a layout witness bound to the exact candidate
+   runtime. The selected runtime preserves parameter and array-port class guards;
+   its unsupported-allocation diagnostic API is not invoked by these captures.
+   The resource ceilings are 80 GiB logical, 256 MiB compressed and 3,300 seconds.
+   Six tests and candidate hashes pass. Continuous memory capture/review, actual
+   operational costs and post-refusal/lifetime qualification remain open.
    Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
