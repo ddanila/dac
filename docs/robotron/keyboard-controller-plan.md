@@ -278,6 +278,15 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    including stale reuse in each stream, an omitted stream and changed logger
    source. This replays retained native evidence through the unchanged built C
    logger; combined board execution and full teardown remain separate.
+   A separate `memory_lifecycle_capture.py` campaign has now entered the full
+   20-us control window. Its bridge selects 5-us and 6-us boundaries for native
+   allocation, complete created-state snapshots, destruction refusal with unchanged
+   logger cache identities/sequences, and exact complete-state restoration after
+   detaching the stale scope entry. Two source checks pass; capture logic preserves
+   the existing baseline, resource caps and receipts. Capture completion, created
+   memory cross-reference review and exact waveform/firmware continuation remain
+   pending. This selected-boundary diagnostic does not replace the queued
+   continuous operational campaign or qualify deletion of compiled board memories.
    Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
