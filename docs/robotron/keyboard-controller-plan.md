@@ -422,6 +422,19 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    change, including no ID reset. Fifteen new replay/rejection tests pass (twenty
    including populated-observer checks). General registry coverage, board teardown,
    runtime reuse, arbitrary dangling handles and leaks remain unqualified.
+   The first integrated ASAN board attempt exposed [VPI loader-table interposition][native-teardown-board-loader-failure]
+   at startup; it is retained as rejected evidence. A new candidate excludes only
+   the system VPI fixed startup table from global instrumentation, preserving all
+   callback and runtime allocation checks. Its [same-build native regressions][native-teardown-board-runtime]
+   pass teardown, parameter recovery, memory lifecycle and native-layout review;
+   cleanup source hashes remain identical to the preceding accepted candidate.
+   A separate three-family full 20-us board campaign is now capturing with the
+   sanitizer runtime explicitly pinned and loaded into the host. A VPI unload
+   probe checks all seven post-cleanup refusals. Full waveform/firmware comparison,
+   destruction of 56 compiled parameters and three memories, empty tracked scope
+   registries and five full replay/rejection tests are queued behind the exact
+   capture process. Integrated acceptance remains pending. Existing continuous
+   campaigns retain their pinned runtimes; full-repeat capture remains deferred.
    The [integrated parameter lifecycle controls][parameter-lifecycle-board] now
    pass complete review for binary, real and string families over the full 20-us
    control window. Each family has two allocation/destruction/restoration cycles
@@ -1304,3 +1317,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [native-teardown-trace]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-trace/README.md
 
 [native-teardown-clear]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-clear/README.md
+
+[native-teardown-board-loader-failure]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-board-loader-failure/README.md
+
+[native-teardown-board-runtime]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-board-runtime/README.md
