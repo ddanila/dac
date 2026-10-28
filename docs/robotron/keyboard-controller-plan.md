@@ -472,7 +472,17 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    original reviewer. Only the prerequisite and logical-log ceiling change
    (68 GiB); the 3,300-second timeout and 256-MiB compressed cap remain unchanged.
    Four tests and candidate hashes pass. Port capture/review and measured cost
-   remain pending; later stages remain stopped pending predecessors.
+   remain pending. Complete scope-signal recovery is queued behind the exact
+   port-payload process identity. `port_payload_recovery_gate.py` preserves the
+   original prerequisite and checks positive port/bit populations plus complete
+   reconstruction of metadata, reference and port streams, all prior state/fault
+   coverage and bounded receipts before retaining `port-payload-board-reviewed`.
+   The twelve signal controls preserve normal runs, six scope-signal faults,
+   four callback faults and the full original reviewer. Only the prerequisite
+   and logical-log ceiling change (72 GiB); timeout/compressed cap remain
+   3,300 seconds/256 MiB. Four tests and candidate hashes pass. Signal capture,
+   full review and measured cost remain pending; later stages remain stopped
+   pending predecessors.
    Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
