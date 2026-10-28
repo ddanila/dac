@@ -481,8 +481,19 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    four callback faults and the full original reviewer. Only the prerequisite
    and logical-log ceiling change (72 GiB); timeout/compressed cap remain
    3,300 seconds/256 MiB. Four tests and candidate hashes pass. Signal capture,
-   full review and measured cost remain pending; later stages remain stopped
-   pending predecessors.
+   full review and measured cost remain pending. A new continuous parameter
+   campaign is queued behind the exact scope-signal process identity, using the
+   class-guarded parameter runtime. Its gate requires every registered-signal
+   stream and all preceding full controls before retaining
+   `scope-signals-board-reviewed`. `parameter_operational_capture.py` preserves
+   all fourteen callback/parameter faults and both normal runs, with a 76-GiB
+   logical ceiling, 256-MiB compressed cap and 3,300-second timeout. The new full
+   reviewer preserves the preceding campaign checks while using the existing
+   five-stream parameter/native-binding inventory at every normal boundary.
+   Six tests pass, including preservation of complete sample/firmware checks and
+   rejection of startup-only evidence. Candidate hashes verify. Continuous
+   capture/review and actual cost remain pending; selected-fault continuation
+   does not substitute for this campaign. Memory integration remains separate.
    Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
    while adding later controls.
