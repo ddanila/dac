@@ -271,6 +271,13 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    after freeing that buffer, dangling external VPI handles, memories with compiled
    HDL references/read ports/callbacks and full scope teardown remain unqualified.
    This separate candidate has not replaced the queued board runtime.
+   The [three-stream lifecycle logger replay][memory-lifecycle-log] now preserves
+   memory removal and fresh identities through all four same-address cycles.
+   All 30 scope-metadata, object-reference and memory-metadata frames reconstruct
+   exactly; each stream uses nine full frames and one reuse frame. Four tests pass,
+   including stale reuse in each stream, an omitted stream and changed logger
+   source. This replays retained native evidence through the unchanged built C
+   logger; combined board execution and full teardown remain separate.
    Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
@@ -1187,3 +1194,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-growth-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-growth-log/assessment.json
 
 [memory-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-lifecycle/assessment.json
+
+[memory-lifecycle-log]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-lifecycle-log/assessment.json
