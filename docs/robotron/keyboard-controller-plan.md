@@ -373,6 +373,16 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    Allocator-dependent reuse after freeing the object buffer, unsupported subclass
    destruction, compiled references, dangling external handles and full graph
    teardown remain unqualified; the queued board runtimes are unchanged.
+   The [native refusal-recovery controls][parameter-refusal-recovery] additionally
+   delete unsupported binary/real/string subclasses through native virtual
+   destructors and free their allocations. Stale scope entries refuse before output;
+   detachment restores all original inventories. Subsequent exact-class allocation
+   succeeds with complete payloads and fresh IDs, then destruction/restoration
+   repeats. Nine baseline/disabled/enabled runs cover six unsupported and six
+   supported destructions, 36 stale-entry refusals and 12 exact restorations.
+   Four replay/rejection tests pass. Allocator address reuse, dangling external
+   handles, compiled-reference deletion, full teardown and integrated board
+   recovery after unsupported-class refusal remain unqualified.
    The separate `parameter_lifecycle_capture.py` campaign is capturing full 20-us
    binary, real and string controls sequentially. Each selects 5-us and 6-us
    allocation/destruction/restoration boundaries through complete snapshots.
@@ -1233,3 +1243,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [memory-lifecycle-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-lifecycle-board/assessment.json
 
 [parameter-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-lifecycle/assessment.json
+
+[parameter-refusal-recovery]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-refusal-recovery/assessment.json
