@@ -226,7 +226,15 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    firmware activity. Five evidence/rejection tests pass. This qualifies these
    restored-fault outcomes, not continuous private-state observation.
    Qualify continuous operational observation, full memory lifecycle, unsupported
-   families and operational transient integration before acceptance. Preserve the [complete registered vector-signal controls][scope-signals]:
+   families and operational transient integration before acceptance. Preserve the
+   [selected memory-runtime array-family regression][memory-runtime-families]:
+   alias, net, real and string storage all refuse dense and compact observation
+   before partial output on the exact runtime selected for continuous memory
+   validation. Sixteen native runs cover baseline/disabled continuation and both
+   observers; the build identity matches the retained native memory-layout witness.
+   Three replay/runtime-binding/partial-output tests pass. This does not establish
+   dynamic/class/object-array support or complete memory destruction/reuse.
+   Preserve the [complete registered vector-signal controls][scope-signals]:
    all 651 initialized board signals bind to scope objects and allocated nets,
    including the 633 beyond bridge admission. Unadmitted signedness/range changes,
    lazy cache creation and ten zero-output refusals per native round restore
@@ -1131,3 +1139,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [delivery-audit-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/delivery-audit-board/assessment.json
 
 [parameter-late-refusal]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-late-refusal-controls/README.md
+
+[memory-runtime-families]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/memory-runtime-array-families/assessment.json
