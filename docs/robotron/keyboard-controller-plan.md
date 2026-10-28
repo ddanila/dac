@@ -370,8 +370,8 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    detachment. Wide X bits, real storage, embedded-null strings and original HDL
    continuation remain intact. Same-runtime parameter class/growth, memory lifecycle
    and array-family regressions pass, along with four replay/rejection tests.
-   Allocator-dependent reuse after freeing the object buffer, unsupported subclass
-   destruction, compiled references, dangling external handles and full graph
+   Allocator-dependent reuse after freeing the object buffer, deletion with compiled
+   references, dangling external handles and full graph
    teardown remain unqualified; the queued board runtimes are unchanged.
    The [native refusal-recovery controls][parameter-refusal-recovery] additionally
    delete unsupported binary/real/string subclasses through native virtual
@@ -383,14 +383,18 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    Four replay/rejection tests pass. Allocator address reuse, dangling external
    handles, compiled-reference deletion, full teardown and integrated board
    recovery after unsupported-class refusal remain unqualified.
-   The separate `parameter_lifecycle_capture.py` campaign is capturing full 20-us
-   binary, real and string controls sequentially. Each selects 5-us and 6-us
-   allocation/destruction/restoration boundaries through complete snapshots.
-   Two bridge/producer checks and seven focused state/source-preservation tests
-   pass; the same-runtime native memory-layout witness is complete. The full
-   reviewer is queued behind the exact live capture process, with pinned sources,
-   complete waveform/firmware comparison, post-restoration bus activity and four
-   replay/rejection tests required. Full capture/review acceptance remains pending.
+   The [integrated parameter lifecycle controls][parameter-lifecycle-board] now
+   pass complete review for binary, real and string families over the full 20-us
+   control window. Each family has two allocation/destruction/restoration cycles
+   at 5 and 6 us, eight complete snapshots and fresh IDs 1933/1934 at one reserved
+   native address. Direct and complete snapshots refuse stale ownership without
+   logger cache changes; detachment restores complete state exactly. Each mode's
+   27,578 samples across 31 signals and all firmware records equal the baseline.
+   Four matching bus edges follow each second restoration. Seven focused state
+   tests, two bridge/producer checks and four full replay/rejection tests pass;
+   complete captures, test output and source identities are retained. Continuous
+   observation, full teardown, deletion of compiled references and integrated
+   recovery after unsupported-class refusal remain separate qualification work.
 
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
@@ -1245,3 +1249,5 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-lifecycle]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-lifecycle/assessment.json
 
 [parameter-refusal-recovery]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-refusal-recovery/assessment.json
+
+[parameter-lifecycle-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-lifecycle-board/assessment.json
