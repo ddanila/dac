@@ -407,7 +407,21 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    The fixture's fixed VPI loader table alone is excluded from ASAN global
    instrumentation to accommodate its required duplicate export. Prior ODR and
    loader failures are retained as rejected attempts. Destructor tracing, empty
-   registries after cleanup and full board teardown remain open.
+   registries after cleanup and full board teardown were left open by that control.
+   The [post-cleanup refusal control][native-teardown-postcleanup] now proves all
+   seven inventories return -1 with zero output during VPI unload after native
+   cleanup. The [destructor trace][native-teardown-trace] proves six parameter and
+   two memory destructor entries and registry drainage, but exposes stale scope,
+   object and port registrations after native root deletion. A separate
+   [scope cleanup candidate][native-teardown-clear] terminates scope observation
+   before cleanup and clears eight non-owning registries after native traversal.
+   Both native roots and all eight measured containers end empty; all seven
+   post-cleanup APIs still refuse with zero output. Original/disabled/enabled
+   continuation matches, and same-build parameter recovery and memory lifecycle
+   regressions pass. Exact source comparison permits only the intended cleanup
+   change, including no ID reset. Fifteen new replay/rejection tests pass (twenty
+   including populated-observer checks). General registry coverage, board teardown,
+   runtime reuse, arbitrary dangling handles and leaks remain unqualified.
    The [integrated parameter lifecycle controls][parameter-lifecycle-board] now
    pass complete review for binary, real and string families over the full 20-us
    control window. Each family has two allocation/destruction/restoration cycles
@@ -1284,3 +1298,9 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [native-teardown-asan]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-asan/README.md
 
 [native-teardown-observers]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-observers/README.md
+
+[native-teardown-postcleanup]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-postcleanup/README.md
+
+[native-teardown-trace]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-trace/README.md
+
+[native-teardown-clear]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-clear/README.md
