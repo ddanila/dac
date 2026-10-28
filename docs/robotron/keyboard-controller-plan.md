@@ -387,13 +387,19 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    to its own newly created unsupported object, validates its exact diagnostic
    subclass and separates destruction from stale-entry detachment. Nine native
    controls and same-runtime lifecycle/class/layout regressions pass; three
-   replay/rejection tests pass. A separate `parameter_recovery_capture.py` campaign
-   is capturing full 20-us controls for all three families, with live-object and
-   post-destruction refusal at 5 and 6 us followed by exact complete restoration.
-   Two bridge/producer checks and two reviewer source checks pass. Full review is
-   queued behind the exact capture process, with matching native API evidence,
-   complete waveform/firmware comparison and post-restoration activity required.
-   Integrated acceptance remains pending.
+   replay/rejection tests pass. The [integrated unsupported recovery controls][parameter-recovery-board]
+   now pass all three families through 20 us. Live unsupported objects and stale
+   entries after native deletion refuse at 5 and 6 us without logger cache changes;
+   detachment restores the complete state exactly. All six snapshots per mode pass
+   normal compiled bindings without diagnostic-object removal. All 27,578 samples
+   across 31 signals and firmware records match; four bus edges follow restoration.
+   Two bridge checks, two source checks and four full replay/rejection tests pass.
+   The [native teardown smoke control][native-teardown-asan] also passes a small
+   hierarchical memory/parameter/read-port/monitor fixture with actual native final
+   cleanup enabled and AddressSanitizer instrumentation. Original and candidate
+   libraries yield identical output and clean exits. Valgrind annotations and leak
+   detection are disabled; lazy observer population, destructor-by-destructor proof,
+   board teardown and custom-pool safety remain unqualified.
    The [integrated parameter lifecycle controls][parameter-lifecycle-board] now
    pass complete review for binary, real and string families over the full 20-us
    control window. Each family has two allocation/destruction/restoration cycles
@@ -404,8 +410,8 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    Four matching bus edges follow each second restoration. Seven focused state
    tests, two bridge/producer checks and four full replay/rejection tests pass;
    complete captures, test output and source identities are retained. Continuous
-   observation, full teardown, deletion of compiled references and integrated
-   recovery after unsupported-class refusal remain separate qualification work.
+   observation, full teardown and deletion of compiled references remain separate
+   qualification work; unsupported-class board recovery is retained above.
 
    Preserve the [public parameter handle-release controls][parameter-handle-release]:
    both VPI release APIs retain handle identity, scope, size, value and exact
@@ -1264,3 +1270,7 @@ from the [workflow guide](keyboard-controller-progress.md#authoritative-artifact
 [parameter-lifecycle-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-lifecycle-board/assessment.json
 
 [parameter-refusal-api]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-refusal-api/assessment.json
+
+[parameter-recovery-board]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/parameter-recovery-board/assessment.json
+
+[native-teardown-asan]: https://github.com/ddanila/dac-emulation/blob/main/verification/robotron-keyboard/analog/reports/native-teardown-asan/README.md
