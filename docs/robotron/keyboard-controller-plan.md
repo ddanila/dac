@@ -463,6 +463,15 @@ pending; full-repeat, supply recovery and rollback qualification remain open.
    the original complete reviewer. Only the prerequisite and logical-log ceiling
    change (64 GiB); timeout and compressed cap remain 3,300 seconds and 256 MiB.
    Four tests and candidate hashes pass. Scope capture/review and measured cost
+   remain pending. Port-payload recovery is queued behind the exact scope-metadata
+   process identity. Its gate preserves the original scope prerequisite, requires
+   two complete metadata snapshots per normal boundary and exact compact
+   full/reuse accounting, plus all prior observations, faults and bounded receipts,
+   before retaining `scope-metadata-board-reviewed`. The fifteen port controls
+   preserve normal runs, all nine port faults, four callback faults and the full
+   original reviewer. Only the prerequisite and logical-log ceiling change
+   (68 GiB); the 3,300-second timeout and 256-MiB compressed cap remain unchanged.
+   Four tests and candidate hashes pass. Port capture/review and measured cost
    remain pending; later stages remain stopped pending predecessors.
    Audit admitted modules before relying
    on initialization-only invariants. Keep the running campaigns pinned
