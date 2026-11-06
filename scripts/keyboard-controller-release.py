@@ -97,6 +97,7 @@ def update_runtime(a):
         'scope':'Runtime/UI observation refresh; pinned CAD, DRC and electrical evidence unchanged.'}
     names=set(previous['files'])|{str(p.relative_to(ROOT)) for p in (ROOT/'src').glob('*keyboard*') if p.is_file()}
     names.update(str(p.relative_to(ROOT)) for p in (ROOT/'src').glob('journey*') if p.is_file())
+    names.update(str(p.relative_to(ROOT)) for p in (ROOT/'src').glob('learning*') if p.is_file())
     names.update(['tests/keyboard-dive.spec.js','docs/robotron/keyboard-dive-in.md',
              'tests/journeys.spec.js','docs/robotron/journeys.md',
                   'src/emulator.worker.js','src/main.js','src/style.css','src/inspection.js','src/control-groups.js'])

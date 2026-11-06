@@ -1,0 +1,3 @@
+import {handleJourney} from './journey-worker.js';
+let module,queue=Promise.resolve();
+self.onmessage=({data:d})=>{queue=queue.then(async()=>{if(!module){const base=new URL(import.meta.env.BASE_URL,self.location.origin),{default:create}=await import(/* @vite-ignore */ new URL('emulator/dac.js?v='+import.meta.env.VITE_EMULATOR_REVISION,base).href);module=await create({locateFile:n=>new URL('emulator/'+n+'?v='+import.meta.env.VITE_EMULATOR_REVISION,base).href});}await handleJourney({type:'journey-guide',journey:'faults',scenario:d.scenario,requestId:d.requestId,repairTrial:d.trial},{module,build:import.meta.env.VITE_EMULATOR_REVISION});}).catch(e=>postMessage({type:'journey-error',requestId:d.requestId,message:e.message}));};

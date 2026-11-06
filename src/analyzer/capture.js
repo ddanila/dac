@@ -80,15 +80,16 @@ export class Capture{
  }
  async measure(a,b,check=()=>{}){let first,last,wait=0n;const start=Math.min(a,b),end=Math.max(a,b)+1;for await(const r of this.events(start,end,check)){first??=r;last=r;wait+=BigInt(r.wait_samples||0);}assert(first&&last,'Empty cursor range');return {from:start,to:end-1,records:end-start,samples:(BigInt(last.elapsed_samples)-BigInt(first.elapsed_samples)).toString(),elapsed_us:last.elapsed_us-first.elapsed_us,wait_samples:wait.toString(),wait_us:Number(wait)*1e6/this.header.clock_hz};}
 }
-export async function compare(left,right,{align='start',tolerance=null,ranges=null,check=()=>{}}={}){
- assert(left.header.type==='compact'&&right.header.type==='compact','Comparison requires compact captures');assert(['start','trigger'].includes(align),'Invalid alignment');assert(tolerance===null||(Number.isFinite(tolerance)&&tolerance>=0),'Invalid timing tolerance');
+export async function compare(left,right,{align='start',tolerance=null,ranges=null,reportOrigins=false,check=()=>{}}={}){
+ assert(['compact','journey'].includes(left.header.type)&&['compact','journey'].includes(right.header.type),'Comparison requires compact captures');assert(['start','trigger'].includes(align),'Invalid alignment');assert(tolerance===null||(Number.isFinite(tolerance)&&tolerance>=0),'Invalid timing tolerance');
+ if(left.header.type==='journey'&&right.header.type==='journey')assert(JSON.stringify(left.summary.identity.firmware)===JSON.stringify(right.summary.identity.firmware),'Journey firmware identities differ');
  const from=c=>{if(ranges){const r=c===left?ranges.capture:ranges.reference;assert(r&&Number.isInteger(r.start)&&Number.isInteger(r.end)&&r.start>=0&&r.end>=r.start&&r.end<=c.header.count,'Invalid comparison range');return r.start;}if(align==='start')return 0;assert(c.header.trigger_index!==null,'Both captures need a fired trigger');return c.header.trigger_index;};
- async function* selected(c){for await(const r of c.events(from(c),ranges?(c===left?ranges.capture.end:ranges.reference.end):c.header.count,check))if([4,5,6,8,9].includes(r.kind))yield {index:r.index,sequence:r.sequence,key:[r.kind,[4,5].includes(r.kind)?r.address&255:0,r.data,r.flags],time_us:r.elapsed_us,duration_us:r.duration*1e6/c.header.clock_hz,wait_us:r.wait_samples*1e6/c.header.clock_hz};}
+ async function* selected(c){for await(const r of c.events(from(c),ranges?(c===left?ranges.capture.end:ranges.reference.end):c.header.count,check))if([4,5,6,8,9].includes(r.kind))yield {index:r.index,sequence:r.sequence,key:[r.kind,[4,5].includes(r.kind)?r.address&255:0,r.data,r.flags],time_us:r.elapsed_us,duration_us:r.duration===null?null:r.duration*1e6/c.header.clock_hz,wait_us:r.wait_samples===null?null:r.wait_samples*1e6/c.header.clock_hz};}
  const a=selected(left),b=selected(right);let count=0,mismatch=null,origins;
  for(;;){const [x,y]=await Promise.all([a.next(),b.next()]);if(x.done&&y.done)break;const l=x.value,r=y.value;if(l&&r&&!origins)origins=[l.time_us,r.time_us];let reason;
-  if(!l||!r)reason='different number of selected events';else if(JSON.stringify(l.key)!==JSON.stringify(r.key))reason='different bus transaction';else if(tolerance!==null&&[Math.abs(l.time_us-origins[0]-r.time_us+origins[1]),Math.abs(l.duration_us-r.duration_us),Math.abs(l.wait_us-r.wait_us)].some(n=>n>tolerance))reason='timing tolerance exceeded';
+  if(!l||!r)reason='different number of selected events';else if(JSON.stringify(l.key.slice(0,3))!==JSON.stringify(r.key.slice(0,3))||(l.key[3]!==null&&r.key[3]!==null&&l.key[3]!==r.key[3]))reason='different bus transaction';else if(tolerance!==null&&[Math.abs(l.time_us-origins[0]-r.time_us+origins[1]),l.duration_us===null||r.duration_us===null?0:Math.abs(l.duration_us-r.duration_us),l.wait_us===null||r.wait_us===null?0:Math.abs(l.wait_us-r.wait_us)].some(n=>n>tolerance))reason='timing tolerance exceeded';
   if(reason&&!mismatch)mismatch={event:count,reason,capture:l||null,reference:r||null};count++;
- }return {match:!mismatch&&count>0,compared_events:count,first_divergence:mismatch,alignment:align,tolerance_us:tolerance,...(ranges?{ranges}:{})};
+ }return {match:!mismatch&&count>0,compared_events:count,first_divergence:mismatch,alignment:align,tolerance_us:tolerance,...(reportOrigins?{origin_offset_us:origins?origins[0]-origins[1]:null,unknownTiming:left.header.type==='journey'||right.header.type==='journey'}:{}),...(ranges?{ranges}:{})};
 }
 export const json=value=>JSON.stringify(value,(_,v)=>typeof v==='bigint'?v.toString():v);
 export async function exportCapture(c,format,{start=0,end=c.header.count,check=()=>{}}={}){
@@ -100,6 +101,6 @@ export async function exportCapture(c,format,{start=0,end=c.header.count,check=(
   if(format==='jsonl'){const e=h.type==='raw'?r:{index:r.index,sequence:r.sequence,tick:r.tick,elapsed_us:r.elapsed_us,kind:KINDS[r.kind],address:hex(r.address,4),data:hex(r.data),flags:r.flags,wait_samples:r.wait_samples,duration:r.duration,gap_before:r.gap_before,trigger:r.trigger,annotations:r.annotations};push(json(e)+'\n');}
   else if(format==='vcd'){push(`#${BigInt(r.index)*1000000000000n/BigInt(h.clock_hz)}\n`);SIGNALS.forEach(([n,,w],i)=>push(`b${r.fields[n].toString(2).padStart(w,'0')} s${i}\n`));push(`${+r.trigger}t\n`);}
   else if(h.type==='raw')push([r.index,r.tick,(BigInt(r.index)*1000000000n/BigInt(h.clock_hz)).toString(),+r.trigger,r.raw_kind,...SIGNALS.map(([n])=>r.fields[n])].join(',')+'\r\n');
-  else push([r.sequence,r.tick,KINDS[r.kind],hex(r.address,4),hex(r.data),r.duration,r.wait_samples,...[1,2,4,8].map(n=>+!!(r.flags&n)),r.gap_before,...(h.version===2?[+r.trigger]:[])].join(',')+'\r\n');
+  else push([r.sequence,r.tick,KINDS[r.kind],hex(r.address,4),hex(r.data),r.duration,r.wait_samples,...[1,2,4,8].map(n=>r.flags===null?'':+!!(r.flags&n)),r.gap_before,...(h.version===2?[+r.trigger]:[])].join(',')+'\r\n');
  }parts.push(text);return new Blob(parts,{type:'text/plain'});
 }

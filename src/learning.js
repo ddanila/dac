@@ -1,0 +1,46 @@
+import {explanationPaths} from './learning-explanations.js';
+import {workdaySteps,sampleLetter,levels} from './learning-model.js';
+import {printerPages} from './robotron-activities.js';
+import './learning.css';
+const download=(bytes,name)=>{const url=URL.createObjectURL(new Blob([bytes])),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+export function createLearning(){
+ const entry=document.createElement('button');entry.id='learning-open';entry.textContent='Learn and explore';document.getElementById('journey-open').after(entry);
+ const dialog=document.createElement('dialog');dialog.className='learning';dialog.setAttribute('aria-labelledby','learning-title');
+ dialog.innerHTML=`<div class="learning-heading"><div><small>ROBOTRON · LEARN BY DOING</small><h2 id="learning-title">Learn and explore</h2></div><button data-learn-close>Close ×</button></div>
+ <label>Explanation depth <select data-learn-level>${Object.keys(levels).map(x=>`<option>${x}</option>`).join('')}</select></label><p data-learn-depth></p>
+ <nav data-learn-cards aria-label="Learning activities"><button data-learn-workday>A day at the workstation</button></nav>
+ <button data-learn-choose hidden>Choose another activity</button><p data-learn-status role="status">Use original software in a private practice machine. Your museum session stays unchanged.</p>
+ <section data-learn-work hidden><div class="learning-toolbar"><button data-learn-start>Start new practice</button><button data-learn-load>Restore saved practice</button><button data-learn-save>Save practice locally</button><button data-learn-pause>Pause</button><button data-learn-resume>Resume</button><button data-learn-check>Check progress</button><button data-learn-cancel>Cancel operation</button></div>
+ <ol data-learn-steps></ol><h3 data-learn-title></h3><p data-learn-instruction></p><details><summary>Hint</summary><p data-learn-hint></p></details>
+ <div class="learning-toolbar"><button data-learn-demo>Demonstrate this step</button><button data-learn-adopt hidden>Adopt demonstration</button><button data-learn-return hidden>Return to my work</button><button data-learn-retry>Retry this step from its checkpoint</button><button data-learn-inside>Look inside · reference example</button></div>
+ <canvas data-learn-screen width="640" height="288" tabindex="0" aria-label="Practice screen. Use the input box below to type."></canvas><details><summary>Screen text</summary><pre data-learn-text></pre></details>
+ <label>Type into the practice computer <textarea data-learn-input rows="3" maxlength="2048" placeholder="WS LETTER.TXT"></textarea></label><div class="learning-toolbar"><button data-learn-send>Send text</button><button data-learn-enter>Enter</button><button data-learn-sample>Type sample letter</button><button data-learn-savekey>Ctrl+K, D · save document</button><button data-learn-escape>Escape</button><button data-learn-backspace>Backspace</button></div>
+ <details><summary>Paper preview · generic printer receiver</summary><pre data-learn-paper></pre></details><p data-learn-evidence></p>
+ <div class="learning-toolbar"><label>Export <select data-learn-export-kind><option value="document">Letter</option><option value="diskA">Disk A</option><option value="diskB">Disk B</option><option value="printer">Printer bytes</option><option value="state">Portable checkpoint</option></select></label><button data-learn-export>Download</button></div></section>`;
+ document.body.append(dialog);const q=n=>dialog.querySelector(`[data-learn-${n}]`);let requestId=0;
+ let worker,session=0,current=0,frame,busy=false;
+ function status(s){q('status').textContent=s;}
+ function level(){q('depth').textContent=levels[q('level').value];if(frame)render(frame);try{localStorage.setItem('dac-learning-level',q('level').value);}catch{status('Preferences could not be saved; this session still works.');}}
+ try{const v=localStorage.getItem('dac-learning-level');if(v in levels)q('level').value=v;}catch{}
+ q('level').onchange=level;level();try{const p=JSON.parse(localStorage.getItem('dac-learning-progress'));if(p?.version===1&&Array.isArray(p.completed))status(`Previously completed ${p.completed.filter(id=>workdaySteps.some(s=>s.id===id)).length}/6 steps. Start new practice or restore a saved practice.`);}catch{}
+ const send=(type,extra={})=>{if(!worker){status('Start or restore a private practice first.');return;}busy=true;status('Working…');worker.postMessage({type:'learning-'+type,session,requestId:++requestId,...extra});};
+ function start(){worker?.terminate();worker=new Worker(new URL('./learning-worker.js',import.meta.url),{type:'module'});session++;current=0;worker.onmessage=({data:d})=>{if(d.session!==session||d.requestId&&d.requestId!==requestId)return;if(d.type==='learning-download')download(d.bytes,d.name);else if(d.type==='learning-frame'){busy=false;frame=d;render(d);}else{status(d.message);if(d.type==='learning-error')busy=false;}};worker.onerror=e=>{busy=false;status(e.message);};send('start');}
+ function render(d){current=d.step;q('title').textContent=workdaySteps[current].title;q('instruction').textContent=workdaySteps[current].instruction;q('hint').textContent=workdaySteps[current].hint;q('text').textContent=d.screen;q('paper').textContent=printerPages(d.printer).join('\n\n── Page ──\n\n');q('steps').replaceChildren(...workdaySteps.map((s,i)=>{const li=document.createElement('li');li.textContent=`${d.completed.includes(s.id)?'✓ ':i===current?'→ ':''}${s.title}`;if(i===current)li.setAttribute('aria-current','step');return li;}));const cv=q('screen');cv.width=d.width;cv.height=d.height;cv.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(d.pixels),d.width,d.height),0,0);q('adopt').hidden=q('return').hidden=!d.branch;q('evidence').textContent=q('level').value==='Visitor'?'Your letter and both disks belong to this practice session.':`Observed: disk A letter ${d.sourceLength} bytes; disk B letter ${d.destinationLength} bytes; printer ${d.printer.length} bytes; machine clock ${d.cycles}. Progress is checked from execution and bytes, not button presses.`;status(d.message||`${d.branch?'Demonstration branch':d.paused?'Practice paused':'Practice running · paced execution'} · ${d.completed.length}/6 steps verified`);try{localStorage.setItem('dac-learning-progress',JSON.stringify({version:1,completed:d.completed}));}catch{status('Progress storage unavailable; the running practice is preserved.');}}
+ function showPanel(panel){q('cards').hidden=true;q('choose').hidden=false;for(const s of dialog.querySelectorAll(':scope > section'))s.hidden=s!==panel;}
+ function open(){if(!dialog.open)dialog.showModal();}
+ q('choose').onclick=()=>{q('cards').hidden=false;q('choose').hidden=true;};
+ entry.onclick=open;q('close').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{if(worker)send('pause');});
+ q('workday').onclick=()=>{showPanel(q('work'));if(!worker)start();};q('start').onclick=start;
+ q('load').onclick=()=>{if(!worker)start();send('load');};
+ for(const action of ['pause','resume','save','demo','adopt','return','retry'])q(action).onclick=()=>{if(busy&&!['pause','resume'].includes(action)){status('Wait for the current operation, or cancel it.');return;}send(action);};
+ q('check').onclick=()=>send('observe');q('cancel').onclick=()=>{session++;worker?.terminate();worker=null;busy=false;status('Operation cancelled and private worker released. Start again or restore saved practice.');};
+ q('send').onclick=()=>{if(!busy)send('input',{text:q('input').value.replace(/\r\n?|\n/g,'\r')});};
+ for(const [name,text]of [['enter','\r'],['sample',sampleLetter],['savekey','\x0bD'],['escape','\x1b'],['backspace','\x08']])q(name).onclick=()=>{if(!busy)send('input',{text});};
+ q('input').onkeydown=e=>{if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();q('send').click();}};
+ q('export').onclick=()=>send('export',{what:q('export-kind').value});
+ q('inside').onclick=()=>{dialog.close();document.dispatchEvent(new CustomEvent('learning-journey',{detail:workdaySteps[current]}));};
+ window.addEventListener('dac-configured',()=>{if(location.hash==='#learn')open();},{once:true});
+ const why=document.createElement('button'),physical=document.createElement('button'),compare=document.createElement('a');why.textContent='Why did this happen?';physical.textContent='Find it inside the machine';compare.textContent='Simulation-to-hardware comparisons';compare.href=import.meta.env.BASE_URL+'analyzer.html#comparison';q('cards').append(why,physical,compare);
+ const paths=document.createElement('section');paths.hidden=true;paths.innerHTML='<h3>Follow the evidence</h3><p>Run a reference example, then follow its captured events. Explanation depth, physical parts, code, and signals share the journey cursor. These examples are separate from your practice session.</p>';for(const [path,p]of Object.entries(explanationPaths)){const b=document.createElement('button');b.textContent=p.title;b.onclick=()=>{dialog.close();document.dispatchEvent(new CustomEvent('learning-journey',{detail:{...p,path}}));};paths.append(b);}dialog.append(paths);why.onclick=physical.onclick=()=>{showPanel(paths);};
+ return {dialog,q,open,status,showPanel};
+}

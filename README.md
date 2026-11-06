@@ -195,3 +195,11 @@ connects classic emulator captures, verified boot profiles and shared capture
 assertions to portable CP/M diagnostics and future hardware bring-up.
 
 The **Journey workbench** adds boot, disk operations, character-to-pixel, interrupt and isolated fault journeys. All panels share a captured event; long histories expand only after deterministic replay verification. See the [journey guide](docs/robotron/journeys.md) for scenarios, original diagnostics and model limits.
+
+## Learn and explore
+
+Open **Learn and explore** (`#learn`) for a hands-on WordStar workday, five coached
+repair cases, curated causal explanations, component mapping, and the analyzer's
+simulation-to-hardware comparison desk. Practice and repair runs use private
+machines. See the [learning guide](docs/robotron/learning.md) for controls,
+verification, saved work, and evidence limits.

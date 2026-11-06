@@ -1,3 +1,6 @@
+import {installRepairBench} from './learning-repairs.js';
+import {physicalParts} from './learning-physical.js';
+import {createLearning} from './learning.js';
 import {createJourneyWorkbench} from './journey-workbench.js';
 import {createKeyboardDive} from './keyboard-dive.js';
 import {createPico1715Panel} from './pico1715-panel.js';
@@ -47,7 +50,16 @@ const circuitPanel=createCircuitPanel((c,related)=>{
 const debugPanel=createDebugPanel(send);
 const keyboardDive=createKeyboardDive(send);
 const journeyWorkbench=createJourneyWorkbench(send,keyboardDive);
+const learning=createLearning();
+installRepairBench(learning,journeyWorkbench);
 document.addEventListener("journey-physical",e=>{scene?.markTrack(e.detail);$("open-case").checked=true;$("isolate-assembly").value="drives";updateCase();selectView("drive-top");});
+document.addEventListener('learning-physical',e=>{const {part,open}=e.detail,p=physicalParts[part];if(!p)return;if(!/^A\d+$/.test(part))scene?.focusCircuit(null);
+ if(/^A\d+$/.test(part)){scene?.focusCircuit(part);$('open-case').checked=true;$('isolate-assembly').value='motherboard';updateCase();selectView('motherboard');}
+ else if(part==='keyboard'){$('open-keyboard').checked=true;updateCase();selectView('keyboard-inside');}
+ else if(part==='drives'){$('open-case').checked=true;$('isolate-assembly').value='drives';updateCase();selectView('drive-top');}
+ else{$('open-case').checked=true;$('isolate-assembly').value=part==='display'?'display-controller':'motherboard';updateCase();selectView(part==='display'?'display-controller':'motherboard');}
+ if(open)showSpecimenDetail(part==='keyboard'?'component-keyboard':part==='display'?'display-controller':part==='drives'?'component-drives':{title:p.title,text:p.detail,reference:p.source,sheet:p.sheet,evidence:'Reference model relationship; specimen correspondence remains provisional',photo:'20261014_072654600'});
+});
 document.addEventListener("keyboard-dive-physical",()=>{ $("open-keyboard").checked=true;updateCase();selectView("keyboard-inside"); });
 const diskExplorer=createDiskExplorer((unit,request,original)=>send({type:"inspect-disk",unit,request,original}),target=>{
   scene?.markTrack(target);

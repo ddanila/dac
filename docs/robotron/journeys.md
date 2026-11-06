@@ -53,3 +53,8 @@ Video scanlines come from the functional display decoder. Eight dots are derived
 `DAC-journeys-1` JSON records use 96 unsigned 32-bit words per event. The export includes firmware/disk hashes, core revision, source labels, disassembly, endpoint text, summary and paired baseline when present. Imports validate schema, record bounds, event kinds and monotonic clocks. They are read-only and do not execute imported programs or replay claims. Untrusted annotation text is displayed as text, never HTML.
 
 The legacy keyboard ABI and export format remain unchanged. Native regression tests check byte-for-byte state neutrality, deterministic repeated traces, isolated faults, trigger stops and bounds. A native/WASM parity fixture compares every word. Browser tests exercise all scenarios, checked disk outcomes, replay, import, mobile layout and the keyboard link. Existing museum tests cover integration and archived state compatibility.
+
+The disk journey also offers **Read a file and print it**. Historical PIP reads
+`AUTOEXC.SUB` and sends it to the generic receiver; the endpoint printer bytes
+must match the original file up to CP/M EOF. A printer-data-write stage selects
+a real SIO port write. These observations do not reconstruct serial edge shapes.

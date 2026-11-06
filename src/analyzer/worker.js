@@ -1,3 +1,4 @@
+import {JourneyCapture} from './journey-capture.js';
 // SPDX-License-Identifier: MIT
 import {Capture,compare,exportCapture,json} from './capture.js';
 import {evaluate} from './assertions.js';
@@ -12,14 +13,14 @@ self.onmessage=async({data:d})=>{
   let result;const progress=value=>postMessage({id:d.id,progress:value});
   if(d.op==='source-load'){source=validateSource(d.map,new Uint8Array(d.binary),d.text);result={locations:source.map.entries.length,symbols:source.map.symbols};}
   else if(d.op==='close'){versions.set(d.slot,d.id);captures.delete(d.slot);result=true;}
-  else if(d.op==='open'){versions.set(d.slot,d.id);const c=await Capture.open(d.file,{check,progress});check();if(d.expectedRecords!==undefined&&c.header.count!==d.expectedRecords)throw Error('Capture record count differs from device status');if(versions.get(d.slot)!==d.id)throw Error('Superseded capture');captures.set(d.slot,c);result={header:c.header,summary:c.summary,name:d.file.name||'USB capture'};}
+  else if(d.op==='open'){versions.set(d.slot,d.id);const magic=new TextDecoder().decode(await d.file.slice(0,64).arrayBuffer()).trimStart();const c=await (magic.startsWith('{')?JourneyCapture:Capture).open(d.file,{check,progress});check();if(d.expectedRecords!==undefined&&c.header.count!==d.expectedRecords)throw Error('Capture record count differs from device status');if(versions.get(d.slot)!==d.id)throw Error('Superseded capture');captures.set(d.slot,c);result={header:c.header,summary:c.summary,name:d.file.name||'USB capture'};}
   else{const c=captures.get(d.slot||'primary');if(!c)throw Error('Open a capture first');
    if(d.op==='page')result=await c.page(d.start,d.count,check);
    else if(d.op==='waveform')result=await c.waveform(d.start,d.count,d.bins,check);
    else if(d.op==='search')result=await c.search(d.start,d.filter,d.direction,check);
    else if(d.op==='edge')result=await c.edge(d.start,d.signal,d.direction,check);
    else if(d.op==='measure')result=await c.measure(d.a,d.b,check);
-   else if(d.op==='compare'){const ref=captures.get('reference');if(!ref)throw Error('Open a reference first');result=await compare(c,ref,{...d.settings,check});}
+   else if(d.op==='compare'){const ref=captures.get('reference');if(!ref)throw Error('Open a reference first');if((c.header.type==='journey')!==(ref.header.type==='journey')&&d.settings?.profile!=='robotron-1715m')throw Error('Use the comparison desk to confirm matching Robotron 1715M profiles');result=await compare(c,ref,{...d.settings,check});}
    else if(d.op==='export')result=await exportCapture(c,d.format,{start:d.start??0,end:d.end??c.header.count,check});
    else if(d.op==='original')result=c.file;
    else if(d.op==='assert')result=await evaluate(c,d.suite,{start:d.start??0,end:d.end??c.header.count,check});

@@ -3,3 +3,5 @@
 .journey-workbench header{height:auto;min-height:0;margin:0;padding:0 0 12px;border:0;font:inherit}.journey-workbench header>div{min-width:0}.journey-workbench header>button{flex-shrink:0}.journey-workbench header p{margin:0}
 
 .journey-wave-scroll{overflow-x:auto;max-width:100%}.journey-wave-scroll canvas{min-width:800px}
+
+.journey-workbench[data-explanation-depth="Visitor"] [data-learning-detail],.journey-workbench[data-explanation-depth="Learner"] [data-learning-detail="engineering"]{display:none}.learning-path{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0}
