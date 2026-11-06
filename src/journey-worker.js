@@ -1,0 +1,102 @@
+import {loadHistoricalRobotron} from './historical-media.js';
+import keyMap from './s600-paste.json';
+import {interruptProgram,videoProgram,verifierProgram,resetDirectoryProgram,installFile} from './journey-programs.js';
+import {inspectDisk,fileBytes} from './disk-map.js';
+import {WORDS,HZ,clock,row,firstDifference,journeys} from './journey-model.js';
+let epoch=0,owned=[],active=null,reference=null,referenceTimer,latestRequest=0;
+const pause=()=>new Promise(r=>setTimeout(r,0));
+const hash=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),x=>x.toString(16).padStart(2,'0')).join('');
+function bytes(m,b,fn){const p=m._malloc(b.byteLength);try{m.HEAPU8.set(new Uint8Array(b),p);return fn(p,b.byteLength);}finally{m._free(p);}}
+function now(m,h){return m._dac_debug_reg(h,17)+m._dac_debug_reg(h,18)*4294967296;}
+function save(m,h){const n=m._dac_state_size(h),p=m._malloc(n);try{if(!n||m._dac_state_save(h,p,n))throw Error('Checkpoint failed');return m.HEAPU8.slice(p,p+n);}finally{m._free(p);}}
+function restore(m,h,b){if(bytes(m,b,(p,n)=>m._dac_state_load(h,p,n)))throw Error('Checkpoint identity or contents rejected');}
+function screen(m,h){const p=m._dac_video(h),width=m._dac_width(h),height=m._dac_height(h);return {width,height,pixels:m.HEAPU8.slice(p,p+width*height*4),cells:Array.from({length:1920},(_,i)=>m._dac_dive_screen(h,i))};}
+const textScreen=(m,h)=>Array.from({length:24},(_,y)=>String.fromCharCode(...Array.from({length:80},(_,x)=>m._dac_dive_screen(h,y*80+x)&127)).replace(/[^\x20-\x7e]/g,' ').trimEnd()).join('\n').trimEnd();
+const prompt=(m,h)=>/(?:^|\n)A>$/.test(textScreen(m,h));
+function disk(m,h,u=0){const n=m._dac_disk_size_unit(h,u),p=m._dac_disk_data_unit(h,u);return m.HEAPU8.slice(p,p+n);}
+function destroy(){clearTimeout(referenceTimer);for(const [m,h]of owned)m._dac_destroy(h);owned=[];active=reference=null;}
+function create(m,config){const h=m._dac_create(2);owned.push([m,h]);for(const [slot,b]of config.firmware)if(bytes(m,b,(p,n)=>m._dac_load(h,slot,p,n)))throw Error('Journey firmware rejected');for(let u=0;u<config.disks.length;u++)if(config.disks[u]?.length&&bytes(m,config.disks[u],(p,n)=>m._dac_mount_unit(h,u,p,n,!!config.writable[u])))throw Error('Journey disk rejected');if(m._dac_power(h,1))throw Error('Journey power-on failed');return h;}
+function disassembly(m,h,words){const result={};for(let i=0;i<words.length;i+=WORDS)for(const [pi,bi]of [[6,48],[7,49]]){const key=words[i+pi]+':'+words[i+bi];if(result[key])continue;m._dac_dive_instruction(h,words[i+pi],words[i+bi]);const p=m._dac_debug_text(h);let end=p;while(end<p+128&&m.HEAPU8[end])end++;result[key]=new TextDecoder().decode(m.HEAPU8.subarray(p,end));}return result;}
+function collect(m,h,identity,extra={}){m._dac_journey_stop(h);const n=m._dac_journey_count(h),p=m._dac_journey_data(h,0),words=new Uint32Array(m.HEAPU8.slice(p,p+n*WORDS*4).buffer);return {words,status:m._dac_journey_status(h),identity,instructions:disassembly(m,h,words),display:screen(m,h),screenText:textScreen(m,h),...extra};}
+function post(result,id,type='journey-result'){const transfer=[result.words.buffer,result.display.pixels.buffer];if(result.baseline){transfer.push(result.baseline.words.buffer,result.baseline.display.pixels.buffer);}postMessage({type,requestId:id,...result},transfer);}
+function progress(id,message){postMessage({type:'journey-progress',requestId:id,message});}
+async function run(m,h,ticks,token,record){const end=now(m,h)+ticks;while(now(m,h)<end){if(token!==epoch)throw Error('Journey cancelled');m._dac_run(h,Math.min(100000,end-now(m,h)));if(record&&!record.actions.some(a=>a.type==='fault')&&now(m,h)>=record.nextCheckpoint){record.checkpoints.push({clock:now(m,h),state:save(m,h)});if(record.checkpoints.length>24)record.checkpoints.splice(1,1);record.nextCheckpoint=now(m,h)+10000000;}if(Math.floor(now(m,h)/100000)%5===0)await pause();}}
+async function waitPrompt(m,h,token,id,limit=160000000,record){for(let t=0;t<limit;t+=500000){await run(m,h,500000,token,record);if(prompt(m,h))return true;if(t%10000000===0)progress(id,`Executing real firmware… ${(now(m,h)/HZ).toFixed(1)} simulated seconds`);}return false;}
+function action(m,h,a){if(a.type==='tap'){if(m._dac_tap(h,a.key,a.modifiers))throw Error('Key rejected');}else if(a.type==='contact')m._dac_matrix(h,a.key,a.down);else if(a.type==='fault'){if(m._dac_journey_fault(h,a.kind,a.address,a.value))throw Error('Fault parameters rejected');}else throw Error('Unsupported replay action');}
+function recordAction(m,h,r,a){a={clock:now(m,h),...a};action(m,h,a);r.actions.push(a);}
+async function type(m,h,r,text,token){for(const ch of text){const pair=keyMap[ch.charCodeAt(0)];if(!pair)throw Error('Unmapped reference key: '+ch);recordAction(m,h,r,{type:'tap',key:pair[0],modifiers:pair[1]});await run(m,h,600000,token,r);}}
+async function historicalConfig(write=false,diagnostics=false){const media=await loadHistoricalRobotron(new URL(import.meta.env.BASE_URL,self.location.origin));const data=new Uint8Array(media.disk).slice(),config={firmware:media.firmware.map(([s,b])=>[s,new Uint8Array(b)]),disks:[data],writable:[write],description:'Historical S550 / CAS287 / S600 / TOS/M 1.0',symbols:{}};
+ if(diagnostics){const map=inspectDisk(data),pip=map.files.find(f=>f.key==='0:PIP.COM');if(!pip)throw Error('Reference PIP.COM absent');const source=fileBytes(map,pip),sum=source.reduce((a,v)=>(a+v)&65535,0),pr=verifierProgram(sum);installFile(data,'DIVECHK.COM',pr.bytes);installFile(data,'RESETDIR.COM',resetDirectoryProgram);config.description+=' + original DAC verifier and disk-reset utility on a private disk';config.verifierSymbols=pr.labels;config.sourceFile=source;}
+ return config;
+}
+function diagnosticConfig(kind,scenario){const pr=kind==='interrupt'?interruptProgram(scenario):videoProgram(scenario);return {firmware:[[0,pr.bytes],[1,new Uint8Array(256).fill(15)],...(pr.glyphs?[[2,pr.glyphs]]:[])],disks:[],writable:[],description:pr.description,symbols:pr.labels};}
+async function identity(config,ctx,journey,scenario,h){return {journey,scenario,description:config.description,clockHz:HZ,core:ctx.build,source:'reference',firmware:await Promise.all(config.firmware.map(async([slot,b])=>({slot,sha256:await hash(b)}))),diskSha256:config.disks[0]?.length?await hash(config.disks[0]):null,symbols:config.symbols,verifierSymbols:config.verifierSymbols,originClock:now(ctx.module,h),overview:'Overview retains first page visits, controller transitions, sampled transfer boundaries and aggregated status polls. Expand a verified interval for every instruction and bus access.'};}
+function recording(m,h,config,identity){return {m,h,config,identity,actions:[],checkpoints:[{clock:now(m,h),state:save(m,h)}],nextCheckpoint:now(m,h)+10000000};}
+async function finish(r,extra={}){r.endClock=now(r.m,r.h);r.endHash=await hash(save(r.m,r.h));reference=r;active={m:r.m,h:r.h,identity:r.identity,source:'reference'};return collect(r.m,r.h,r.identity,{canExpand:true,endHash:r.endHash,actions:r.actions,...extra});}
+function transfers(words){let reads=0,writes=0,commands=0;for(let i=0;i<words.length;i+=WORDS){if(words[i+2]===15&&[0x1d,0x41].includes(words[i+3]&255))commands++;if(words[i+54]===1){if(words[i+2]===12)reads++;if(words[i+2]===13)writes++;}}return {sampledDmaReads:reads,sampledDmaWrites:writes,commandBytes:commands};}
+async function prepareGuide(d,ctx,token){const m=ctx.module,j=d.journey,scenario=d.scenario;let config,h,r,id;
+ if(j==='interrupt'&&scenario!=='historical'||j==='video'&&scenario!=='historical'){
+  config=diagnosticConfig(j,scenario);h=create(m,config);id=await identity(config,ctx,j,scenario,h);r=recording(m,h,config,id);m._dac_journey_select(h,d.cell||0);m._dac_journey_capture(h,j==='interrupt'?3:6);await run(m,h,j==='interrupt'?100000:160000,token,r);return finish(r,{summary:{text:config.description}});
+ }
+ config=await historicalConfig(j==='disk'&&scenario==='write',j==='disk');h=create(m,config);
+ if(j!=='boot'||scenario==='warm'){progress(d.requestId,'Booting the isolated historical reference…');if(!await waitPrompt(m,h,token,d.requestId))throw Error('Reference did not reach the final A> prompt');await run(m,h,400000,token);}
+ if(j==='disk'&&scenario==='dir'){const setup={actions:[],checkpoints:[],nextCheckpoint:Infinity};await type(m,h,setup,'RESETDIR\r',token);if(!await waitPrompt(m,h,token,d.requestId,80000000))throw Error('Disk-reset utility did not return');}
+ if(j==='boot'&&scenario==='warm')m._dac_reset(h);
+ id=await identity(config,ctx,j,scenario,h);r=recording(m,h,config,id);const before=screen(m,h);m._dac_journey_select(h,d.cell??322);m._dac_journey_capture(h,j==='video'?4:0);
+ if(j==='boot'){
+  if(scenario==='missing')recordAction(m,h,r,{type:'fault',kind:4,address:0,value:0});
+  const ready=await waitPrompt(m,h,token,d.requestId,scenario==='missing'?12000000:160000000,scenario==='missing'?undefined:r);
+  return finish(r,{before,summary:{text:ready?'Final interactive A> prompt observed.':'No prompt within the recorded window; inspect the actual boot retry path.',ready}});
+ }
+ if(j==='interrupt'){await run(m,h,4000000,token,r);return finish(r,{before,summary:{text:'Historical software activity. Missing interrupt stages mean no matching event was observed; polling is not relabelled as an interrupt.'}});}
+ if(j==='video'){await type(m,h,r,'a',token);await run(m,h,400000,token,r);return finish(r,{before,summary:{text:'Historical S600 a-key input followed into real video-memory writes and sampled glyph scanlines.'}});}
+ let firstReadCount=0;
+ if(scenario==='cached'){await type(m,h,r,'DIR\r',token);await waitPrompt(m,h,token,d.requestId,40000000,r);firstReadCount=m._dac_disk_activity(h);r.actions.push({clock:now(m,h),type:'marker',label:'Second DIR begins'});}
+ await type(m,h,r,scenario==='write'?'PIP DIVE.COM=PIP.COM\r':'DIR\r',token);const ready=await waitPrompt(m,h,token,d.requestId,80000000,r);
+ let summary={text:ready?'Command returned to the prompt.':'Command did not return within the recorded window.',ready};
+ if(scenario==='write'&&ready){await type(m,h,r,'DIVECHK DIVE.COM\r',token);await waitPrompt(m,h,token,d.requestId,80000000,r);const map=inspectDisk(disk(m,h)),file=map.files.find(f=>f.key==='0:DIVE.COM'),copied=file?fileBytes(map,file):new Uint8Array();summary={...summary,verified:!!file&&await hash(copied)===await hash(config.sourceFile)&&textScreen(m,h).includes('READBACK OK'),sourceHash:await hash(config.sourceFile),destinationHash:await hash(copied),text:'The original DAC verifier read the copy through BDOS. A separate host byte comparison checks the source and destination; both results are reported.'};}
+ if(scenario==='cached')summary={...summary,secondDiskOperations:m._dac_disk_activity(h)-firstReadCount,text:'Repeated DIR comparison. The actual operation count determines whether this run hit a buffer; a repeat is not assumed to avoid disk reads.'};
+ const out=await finish(r,{before,summary,disk:disk(m,h)});out.summary={...summary,...transfers(out.words)};return out;
+}
+async function replayTo(r,h,target,token,from){let i=r.actions.findIndex(a=>a.clock>=from);if(i<0)i=r.actions.length;while(now(r.m,h)<target){while(i<r.actions.length&&r.actions[i].clock===now(r.m,h)){if(r.actions[i].type!=='marker')action(r.m,h,r.actions[i]);i++;}const next=i<r.actions.length?r.actions[i].clock:target;await run(r.m,h,Math.min(target-now(r.m,h),Math.max(0,next-now(r.m,h))),token);if(next<now(r.m,h))throw Error('Replay actions are out of order');}return i;}
+async function expand(d,token){const r=reference;if(!r||!Number.isSafeInteger(d.clock))throw Error('Replay inputs unavailable; imported/live captures only show retained events');const start=Math.max(r.checkpoints[0].clock,d.clock-20000),end=Math.min(r.endClock,start+40000),cp=r.checkpoints.filter(c=>c.clock<=start).at(-1);if(!cp)throw Error('Checkpoint unavailable');progress(d.requestId,'Verifying deterministic replay against the recorded endpoint…');
+ let h=create(r.m,r.config);restore(r.m,h,cp.state);await replayTo(r,h,r.endClock,token,cp.clock);if(await hash(save(r.m,h))!==r.endHash)throw Error('Replay diverged: detailed history was not substituted');
+ r.m._dac_destroy(h);owned=owned.filter(([,handle])=>handle!==h);h=create(r.m,r.config);restore(r.m,h,cp.state);await replayTo(r,h,start,token,cp.clock);r.m._dac_journey_select(h,d.cell??322);r.m._dac_journey_capture(h,7);await replayTo(r,h,end,token,start);const out=collect(r.m,h,{...r.identity,detail:true,detailStart:start,detailEnd:end},{canExpand:false,verifiedReplay:true,summary:{text:'Instruction and bus detail regenerated from a checkpoint. Full replay matched the recorded endpoint state hash.'}});r.m._dac_destroy(h);owned=owned.filter(([,handle])=>handle!==h);return out;
+}
+function liveConfig(m,h){return {firmware:[[0,Uint8Array.from({length:2048},(_,i)=>m._dac_journey_peek(h,2,i))],[1,Uint8Array.from({length:256},(_,i)=>m._dac_journey_peek(h,7,i))],...(m._dac_dive_capabilities(h)?[[3,Uint8Array.from({length:2048},(_,i)=>m._dac_keyboard_byte(h,i))]]:[])],disks:[disk(m,h,0),disk(m,h,1)],writable:[!!(m._dac_drive_status_unit(h,0)&4),!!(m._dac_drive_status_unit(h,1)&4)],description:'Isolated clone of the live machine; outcome depends on its software state.',symbols:{}};}
+async function faults(d,ctx,token){const m=ctx.module,scenario=d.scenario;const keyboard=['stuck','strobe','rom'].includes(scenario),diag=scenario==='irq'?'interrupt':scenario==='glyph'?'video':null;let config,initial;
+ if(d.fromLive){if(!m._dac_journey_capabilities(ctx.handle)||!m._dac_state_size(ctx.handle))throw Error('Power on a Robotron before cloning it');const paused=ctx.paused;ctx.pause();try{config=liveConfig(m,ctx.handle);initial=save(m,ctx.handle);}finally{if(!paused)ctx.resume();}}
+ else config=diag?diagnosticConfig(diag,diag==='interrupt'?'single':'attributes'):await historicalConfig(scenario==='readonly',scenario==='readonly');
+ const a=create(m,config);if(initial)restore(m,a,initial);else if(keyboard||scenario==='readonly'){if(!await waitPrompt(m,a,token,d.requestId))throw Error('Fault reference boot failed');await run(m,a,400000,token);}
+ const state=save(m,a),b=create(m,config);restore(m,b,state);const ident=await identity(config,ctx,'faults',scenario,a),baselineRec=recording(m,a,config,ident),faultRec=recording(m,b,config,{...ident,branch:'fault'});
+ const cell=d.cell??0;for(const h of [a,b]){m._dac_journey_select(h,cell);m._dac_journey_capture(h,diag==='video'?4:diag==='interrupt'?3:0);}
+ const value=Math.max(1,Math.min(39936000,Number(d.value)|| (scenario==='strobe'?5:scenario==='irq'?80000:1))),target=Number.isInteger(d.target)?d.target:scenario==='crc'?0x010000:scenario==='glyph'?0x261:0;
+ const fault={stuck:[1,61,1],strobe:[2,0,Math.min(value,100000)],rom:[3,0x1c4,1],missing:[4,0,0],crc:[5,target,1],readonly:[8,0,1],irq:[6,0,value],glyph:[7,target,1<<Math.min(7,value-1)]}[scenario];if(!fault)throw Error('Unknown fault');
+ const delay=Math.max(0,Math.min(4000000,Number(d.delay)||0));await run(m,a,delay,token);await run(m,b,delay,token);recordAction(m,b,faultRec,{type:'fault',kind:fault[0],address:fault[1],value:fault[2]});
+ if(keyboard){for(const [h,r]of [[a,baselineRec],[b,faultRec]]){if(scenario!=='stuck'||h===a)recordAction(m,h,r,{type:'contact',key:61,down:true});await run(m,h,400000,token);if(scenario!=='stuck'||h===a)recordAction(m,h,r,{type:'contact',key:61,down:false});await run(m,h,400000,token);}}
+ else if(scenario==='readonly'){await type(m,a,baselineRec,'PIP DIVE.COM=PIP.COM\r',token);await type(m,b,faultRec,'PIP DIVE.COM=PIP.COM\r',token);await run(m,a,8000000,token);await run(m,b,8000000,token);}
+ else{const duration=diag==='interrupt'?100000:diag==='video'?160000:16000000;await run(m,a,duration,token);await run(m,b,duration,token);}
+ const baseline=collect(m,a,ident),out=await finish(faultRec,{summary:{text:'Branches share one checkpoint and clock origin. The explicit intervention is excluded from the first-effect comparison; unequal timing and tails remain visible.'}});out.baseline=baseline;out.difference=firstDifference(baseline.words,out.words);out.fault={kind:scenario,target:fault[1],value:fault[2],clock:faultRec.actions.find(x=>x.type==='fault').clock};out.identity.fault={kind:scenario,parameters:fault,activationClock:faultRec.actions.find(x=>x.type==='fault').clock};return out;
+}
+export async function handleJourney(d,ctx){
+ if(d.requestId&&d.requestId<latestRequest)return;if(d.requestId)latestRequest=d.requestId;
+ if(d.type==='journey-close'){epoch++;clearTimeout(referenceTimer);if(active?.source==='live')active.m._dac_journey_stop(active.h);ctx.disarm?.();destroy();return;}
+ if(d.type==='journey-triggered'&&!active)return;
+ if(!ctx.module?._dac_journey_capabilities)throw Error('This preserved core has no journey observations. Guided journeys use the current core.');
+ if(d.type==='journey-guide'){
+  if(!journeys[d.journey]||!journeys[d.journey].scenarios.some(([v])=>v===d.scenario))throw Error('Unknown journey scenario');
+  const token=++epoch;destroy();try{const result=d.journey==='faults'?await faults(d,ctx,token):await prepareGuide(d,ctx,token);if(token===epoch)post(result,d.requestId);}catch(e){if(token===epoch)throw e;}return;
+ }
+ if(d.type==='journey-expand'){const token=epoch;const result=await expand(d,token);if(token===epoch)post(result,d.requestId);return;}
+ if(d.type==='journey-live'){epoch++;destroy();if(!ctx.module._dac_state_size(ctx.handle)||!ctx.module._dac_journey_capabilities(ctx.handle))throw Error('Power on a Robotron before live inspection');const cfg=liveConfig(ctx.module,ctx.handle);active={m:ctx.module,h:ctx.handle,source:'live',identity:{...await identity(cfg,ctx,d.journey||'boot','live',ctx.handle),source:'live'}};}
+ if(!active)throw Error('Choose a guided journey or inspect the live machine');const {m,h}=active;
+ if(d.type==='journey-pause'){clearTimeout(referenceTimer);if(active.source==='live')ctx.pause();}
+ if(d.type==='journey-resume'){if(active.source==='live')ctx.resume();else{clearTimeout(referenceTimer);const token=epoch;const pump=()=>{if(token!==epoch)return;m._dac_debug_run(h,80000);if(m._dac_debug_hit(h)){post(collect(m,h,active.identity),d.requestId);return;}referenceTimer=setTimeout(pump,20);};pump();}}
+ if(d.type==='journey-capture'){m._dac_journey_select(h,d.cell??322);if(m._dac_journey_capture(h,d.detail?7:0))throw Error('Capture rejected');}
+ if(d.type==='journey-arm'){if(m._dac_journey_arm(h,d.kind,d.address,d.detail?7:[2,3,4,5,8,11].includes(d.kind)?1:d.kind===22?4:0,1))throw Error('Invalid trigger');if(active.source==='live')ctx.arm();}
+ if(d.type==='journey-reset'){clearTimeout(referenceTimer);if(active.source==='live')ctx.pause();m._dac_reset(h);m._dac_journey_capture(h,d.detail?7:0);}
+ if(d.type==='journey-step'){clearTimeout(referenceTimer);if(active.source==='live')ctx.pause();d.cpu==='keyboard'?m._dac_keyboard_step(h):m._dac_debug_step(h);ctx.frame?.();}
+ if(d.type==='journey-run-to'){if(!Number.isInteger(d.address)||d.address<0||d.address>65535)throw Error('Use a 16-bit address');clearTimeout(referenceTimer);if(active.source==='live')ctx.pause();let n=0;while(n<4000000){const step=d.cpu==='keyboard'?m._dac_keyboard_step(h):m._dac_debug_step(h);if(!step)break;n+=step;const pc=d.cpu==='keyboard'?m._dac_keyboard_reg(h,22):m._dac_debug_reg(h,22);if(pc===d.address)break;}progress(d.requestId,`Run-to ended after ${n} machine clocks; inspect the actual PC.`);ctx.frame?.();}
+ if(['journey-read','journey-triggered','journey-step','journey-run-to'].includes(d.type)){post(collect(m,h,active.identity,{canExpand:false,summary:{text:'Live observation. Unrecorded intervals cannot be expanded.'}}),d.requestId);return;}
+ postMessage({type:'journey-status',requestId:d.requestId,message:`${active.source==='live'?'Live machine':'Reference session'} · ${m._dac_journey_count(h)} retained events.`,registers:Array.from({length:17},(_,i)=>m._dac_debug_reg(h,i))});
+}

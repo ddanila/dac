@@ -63,6 +63,7 @@ def update_runtime(a):
     mutable={'public/emulator/manifest.json','docs/robotron/releases/functional-reference-validation.json',
              'scripts/keyboard-controller-release.py','tests/keyboard-release.spec.js',
              'tests/keyboard-dive.spec.js','docs/robotron/keyboard-dive-in.md',
+             'tests/journeys.spec.js','docs/robotron/journeys.md',
              'docs/robotron/releases/browser.json.gz','docs/robotron/releases/firmware.json.gz'}
     for path,digest in previous['files'].items():
         if path not in mutable and not path.startswith('src/') and sha(ROOT/path)!=digest:
@@ -95,7 +96,9 @@ def update_runtime(a):
     record['runtimeUpdate']={'previousRuntime':previous['revisions']['browserRuntime'],
         'scope':'Runtime/UI observation refresh; pinned CAD, DRC and electrical evidence unchanged.'}
     names=set(previous['files'])|{str(p.relative_to(ROOT)) for p in (ROOT/'src').glob('*keyboard*') if p.is_file()}
+    names.update(str(p.relative_to(ROOT)) for p in (ROOT/'src').glob('journey*') if p.is_file())
     names.update(['tests/keyboard-dive.spec.js','docs/robotron/keyboard-dive-in.md',
+             'tests/journeys.spec.js','docs/robotron/journeys.md',
                   'src/emulator.worker.js','src/main.js','src/style.css','src/inspection.js','src/control-groups.js'])
     record['files']={name:sha(ROOT/name) for name in sorted(names)}
     check(record);TARGET.write_text(json.dumps(record,indent=2)+'\n');print(TARGET)

@@ -1,3 +1,4 @@
+import {createJourneyWorkbench} from './journey-workbench.js';
 import {createKeyboardDive} from './keyboard-dive.js';
 import {createPico1715Panel} from './pico1715-panel.js';
 import {installPracticeGuide} from './practice-guide.js';
@@ -45,6 +46,8 @@ const circuitPanel=createCircuitPanel((c,related)=>{
 },send,row=>{scene?.markTrack({unit:row.unit,c:row.cylinder,h:row.head});$('open-case').checked=true;$('isolate-assembly').value='drives';updateCase();selectView('drive-top');});
 const debugPanel=createDebugPanel(send);
 const keyboardDive=createKeyboardDive(send);
+const journeyWorkbench=createJourneyWorkbench(send,keyboardDive);
+document.addEventListener("journey-physical",e=>{scene?.markTrack(e.detail);$("open-case").checked=true;$("isolate-assembly").value="drives";updateCase();selectView("drive-top");});
 document.addEventListener("keyboard-dive-physical",()=>{ $("open-keyboard").checked=true;updateCase();selectView("keyboard-inside"); });
 const diskExplorer=createDiskExplorer((unit,request,original)=>send({type:"inspect-disk",unit,request,original}),target=>{
   scene?.markTrack(target);
@@ -422,6 +425,7 @@ worker.onmessage = ({ data: d }) => {
   keyboardControllerReview.message(d);
   debugPanel.message(d);
   keyboardDive.message(d);
+  journeyWorkbench.message(d);
   if(d.type==="debug-state"&&on)$("status").textContent=d.paused?"Paused · powered on":"Running";
   checkpointPanel.message(d);
   practiceGuide?.message(d);

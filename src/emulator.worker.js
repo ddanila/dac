@@ -1,3 +1,5 @@
+let journeyDebugArmed=false;
+import {handleJourney} from './journey-worker.js';
 import {handleKeyboardDive} from './keyboard-dive-worker.js';
 import {encodeDiagnostic,diagnosticBytes} from './diagnostic-report.js';
 let debugPaused=false,debugArmed=false,debugMemoryAddress,diveDebugArmed=false;
@@ -407,7 +409,7 @@ function tick() {
       }
       const budget = Math.min(paste ? 10000 : 100000, Math.ceil(owed));
       const used = debugArmed?module._dac_debug_run(handle,budget):module._dac_run(handle, budget);
-      if(debugArmed&&module._dac_debug_hit(handle)){const reason=module._dac_debug_hit(handle);debugPaused=true;debugArmed=false;module._dac_debug_break(handle,0);module._dac_timeline_stop(handle);owed=0;debugState(reason===2?"Paused at the target instruction fetch boundary.":"Paused after the clock containing the matching bus event.");if(reason===3)handleKeyboardDive({type:"dive-refresh"},{module,handle,build,paused:true}).catch(e=>postMessage({type:"dive-error",message:e.message}));frame();}
+      if(debugArmed&&module._dac_debug_hit(handle)){const reason=module._dac_debug_hit(handle);debugPaused=true;debugArmed=false;module._dac_debug_break(handle,0);module._dac_timeline_stop(handle);owed=0;debugState(reason===2?"Paused at the target instruction fetch boundary.":"Paused after the clock containing the matching bus event.");if(reason===3&&journeyDebugArmed){journeyDebugArmed=false;handleJourney({type:"journey-triggered"},{module,handle,build,paused:true}).catch(e=>postMessage({type:"journey-error",message:e.message}));}else if(reason===3)handleKeyboardDive({type:"dive-refresh"},{module,handle,build,paused:true}).catch(e=>postMessage({type:"dive-error",message:e.message}));frame();}
       recordEvent([0, budget]);
       if (!used) break;
       owed -= used;
@@ -566,6 +568,16 @@ async function receive(d) {
       return;
     }
     if (!module) throw Error("Emulator is not ready");
+    if(d.type?.startsWith('journey-')) {
+      if(recording||replaying)throw Error('Stop recording or replay before opening journey inspection.');
+      const guided=d.type==='journey-guide'&&!d.fromLive;
+      await handleJourney(d,{module:guided?currentModule:module,handle,build:guided?currentBuild:build,frame,get paused(){return debugPaused;},
+        pause(){debugPaused=true;clearTimeout(timer);stopPaste();debugState();},
+        arm(){debugArmed=true;journeyDebugArmed=true;},
+        disarm(){if(journeyDebugArmed){debugArmed=journeyDebugArmed=false;module._dac_debug_break?.(handle,0);}},
+        resume(){debugPaused=false;owed=0;last=performance.now();clearTimeout(timer);timer=setTimeout(tick,0);debugState();}});
+      return;
+    }
     if(d.type?.startsWith('dive-')) {
       if(recording||replaying)throw Error('Stop recording or replay before opening keyboard inspection.');
       await handleKeyboardDive(d,{module:d.type==='dive-guide'?currentModule:module,handle,build:d.type==='dive-guide'?currentBuild:build,frame,get paused(){return debugPaused;},
@@ -576,6 +588,7 @@ async function receive(d) {
       return;
     }
     if (d.type === "configure") {
+      await handleJourney({type:"journey-close"},{module,handle});
       await handleKeyboardDive({type:"dive-close"},{module,handle});
       debugPaused=debugArmed=false;
       stopPaste();
@@ -1161,6 +1174,7 @@ async function receive(d) {
       );
     }
   } catch (e) {
+    if(d.type?.startsWith("journey-")){postMessage({type:"journey-error",requestId:d.requestId,message:e.message});return;}
     if(d.type?.startsWith("dive-")){postMessage({type:"dive-error",requestId:d.requestId,message:e.message});return;}
     if(d.type?.startsWith("debug-")){postMessage({type:"debug-error",message:e.message});return;}
     if(d.type==='diagnostic-report'){postMessage({type:"diagnostic-report-error",message:e.message});return;}

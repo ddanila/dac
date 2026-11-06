@@ -193,3 +193,5 @@ through the existing Pico1715 USB protocol where Web Serial is available. See th
 The [simulation-to-bench investigation workflow](docs/robotron/investigation-workflow.md)
 connects classic emulator captures, verified boot profiles and shared capture
 assertions to portable CP/M diagnostics and future hardware bring-up.
+
+The **Journey workbench** adds boot, disk operations, character-to-pixel, interrupt and isolated fault journeys. All panels share a captured event; long histories expand only after deterministic replay verification. See the [journey guide](docs/robotron/journeys.md) for scenarios, original diagnostics and model limits.
