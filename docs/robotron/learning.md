@@ -12,7 +12,10 @@ Demonstrate the boot. Enter commands in the input box; Send text transmits the
 characters, Enter sends a carriage return. Newlines in a paste become Enter.
 Input operates the real S600 matrix through emulated key taps. The machine
 continues running after input. Pause stops practice; closing the learning window
-pauses it without discarding it. Cancel releases the worker and unsaved practice.
+pauses it without discarding it. Cancel stops the current operation, discards only
+an unfinished demonstration branch, and preserves the original practice.
+**End practice · discard unsaved work** explicitly releases the private worker;
+saved checkpoints remain available.
 
 Write a short plain-ASCII letter in `WS LETTER.TXT`. The onscreen Ctrl+K,D button
 sends WordStar's save command. Reopen the document, exit WordStar, copy with

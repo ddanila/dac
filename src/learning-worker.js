@@ -4,7 +4,7 @@ import {inspectDisk,fileBytes} from './disk-map.js';
 import {digest,sessionIdentity,stored} from './session-store.js';
 import {saveCheckpoint,loadCheckpoint,encodeCheckpoint} from './checkpoints.js';
 import {workdaySteps,sampleLetter,workdayEvidence} from './learning-model.js';
-let requestId=0,pulse=0;
+let requestId=0,pulse=0,cancellation=0,activeEpoch=0;
 let m,config,build,session=0,h=0,branch=0,checkpoints=[],completed=[],timer,paused=true,queue=Promise.resolve(),step=0;
 const base=new URL(import.meta.env.BASE_URL,self.location.origin);
 const emit=(type,data={})=>postMessage({type,session,requestId,...data});
@@ -22,7 +22,7 @@ function snapshot(n=h,message=''){
  const p=m._dac_video(n),width=m._dac_width(n),height=m._dac_height(n),pixels=m.HEAPU8.slice(p,p+width*height*4);
  emit('learning-frame',{width,height,pixels,screen:text(n),step,completed,branch:n!==h,paused,message,printer:printer(n),sourceLength:file(0,n).length,destinationLength:file(1,n).length,cycles:m._dac_debug_reg(n,17)+m._dac_debug_reg(n,18)*4294967296});
 }
-async function run(n,ticks,token=session){for(let t=0;t<ticks;t+=100000){if(token!==session)throw Error('Activity cancelled');m._dac_run(n,Math.min(100000,ticks-t));if(t%1000000===0)await new Promise(r=>setTimeout(r,0));}}
+async function run(n,ticks,token=activeEpoch){for(let t=0;t<ticks;t+=100000){if(token!==cancellation)throw Error('Activity cancelled');m._dac_run(n,Math.min(100000,ticks-t));if(t%1000000===0)await new Promise(r=>setTimeout(r,0));}}
 async function type(n,s){if(s.length>2048)throw Error('Send at most 2048 characters');const pairs=[...s].map(ch=>{const c=ch.charCodeAt(0);return keyMap[c]||(c>0&&c<27&&keyMap[c+96]?[keyMap[c+96][0],2]:c>=27&&c<=31&&keyMap[c+64]?[keyMap[c+64][0],keyMap[c+64][1]|2]:null);});if(pairs.some(p=>!p))throw Error('This keyboard input is not mapped. Use plain ASCII text.');for(const p of pairs){if(m._dac_tap(n,p[0],p[1]))throw Error('Key rejected');await run(n,600000);}}
 async function until(n,predicate,max=160000000){for(let t=0;t<max;t+=1000000){await run(n,1000000);if(predicate()){await run(n,1000000);return true;}if(t%10000000===0)emit('learning-status',{message:'Executing the original firmware and software…'});}snapshot(n,'The expected screen was not reached. Inspect the current demonstration or return to your work.');throw Error('The expected screen was not reached; your original practice is preserved.');}
 function stop(){pulse++;paused=true;clearTimeout(timer);}
@@ -38,7 +38,7 @@ async function demo(){stop();if(branch)m._dac_destroy(branch);branch=create();re
 }
 async function record(){const bytes=state().buffer,disks=[0,1].map(u=>({bytes:disk(u).buffer,writable:true,label:'Practice disk '+(u?'B':'A')})),firmwareIdentity=await sessionIdentity(2,config.firmware,null);for(const d of disks)d.sha256=await digest(d.bytes);return {name:'Workstation practice',date:Date.now(),kind:2,build,firmwareIdentity,stateKey:`state:${build}:${firmwareIdentity}`,bytes,sha256:await digest(bytes),disks};}
 async function handle(d){
- requestId=d.requestId||0;
+ requestId=d.requestId||0;activeEpoch=cancellation;
  if(d.type==='learning-start'){
  stop();if(h)m._dac_destroy(h);if(branch)m._dac_destroy(branch);h=branch=0;session=d.session;completed=[];step=0;checkpoints=[];
  if(!m){const {default:createModule}=await import(/* @vite-ignore */ new URL('emulator/dac.js?v='+import.meta.env.VITE_EMULATOR_REVISION,base).href);m=await createModule({locateFile:n=>new URL('emulator/'+n+'?v='+import.meta.env.VITE_EMULATOR_REVISION,base).href});build=import.meta.env.VITE_EMULATOR_REVISION;}
@@ -58,4 +58,4 @@ async function handle(d){
  if(d.type==='learning-load'){const progress=await stored('learning-workday-1');if(!progress)throw Error('No saved practice');if(!Number.isInteger(progress.step)||progress.step<0||progress.step>5||!Array.isArray(progress.completed)||progress.completed.some(v=>!workdaySteps.some(s=>s.id===v)))throw Error('Saved progress is damaged. Your current practice is preserved; the named checkpoint can still be exported.');const r=await loadCheckpoint(progress.key);if(r.build!==build||r.firmwareIdentity!==await sessionIdentity(2,config.firmware,null))throw Error('Saved practice uses different firmware or runtime. Export it from Named checkpoints.');const next=create();try{restore(next,new Uint8Array(r.bytes));}catch(e){m._dac_destroy(next);throw e;}m._dac_destroy(h);if(branch)m._dac_destroy(branch);branch=0;h=next;step=Math.max(0,Math.min(5,progress.step));completed=progress.completed.filter(v=>workdaySteps.some(s=>s.id===v));checkpoints[step]=state();snapshot(h,'Saved practice restored.');}
  if(d.type==='learning-export'){const bytes=d.what==='state'?new Uint8Array(await encodeCheckpoint(await record())):d.what==='document'?file(0):d.what==='printer'?printer():disk(d.what==='diskB'?1:0);emit('learning-download',{bytes,name:({state:'practice.daccheckpoint',document:'LETTER.TXT',printer:'letter.prn',diskA:'practice-a.img',diskB:'practice-b.img'})[d.what]});snapshot();}
 }
-self.onmessage=({data:d})=>{if(d.type==='learning-cancel'){stop();session++;emit('learning-status',{message:'Cancelled. Close and reopen to start again.'});return;}if(d.type!=='learning-start'&&d.session===session)stop();queue=queue.then(()=>handle(d)).catch(e=>emit('learning-error',{message:e.message}));};
+self.onmessage=({data:d})=>{if(d.type==='learning-cancel'&&d.session===session){stop();cancellation++;queue=queue.catch(()=>{}).then(()=>{requestId=d.requestId;activeEpoch=cancellation;if(branch)m._dac_destroy(branch);branch=0;if(h)snapshot(h,'Operation cancelled. Your current practice is preserved.');});return;}if(d.type!=='learning-start'&&d.session===session)stop();queue=queue.then(()=>handle(d)).catch(e=>emit('learning-error',{message:e.message}));};

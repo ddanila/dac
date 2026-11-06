@@ -10,7 +10,7 @@ export function createLearning(){
  <label>Explanation depth <select data-learn-level>${Object.keys(levels).map(x=>`<option>${x}</option>`).join('')}</select></label><p data-learn-depth></p>
  <nav data-learn-cards aria-label="Learning activities"><button data-learn-workday>A day at the workstation</button></nav>
  <button data-learn-choose hidden>Choose another activity</button><p data-learn-status role="status">Use original software in a private practice machine. Your museum session stays unchanged.</p>
- <section data-learn-work hidden><div class="learning-toolbar"><button data-learn-start>Start new practice</button><button data-learn-load>Restore saved practice</button><button data-learn-save>Save practice locally</button><button data-learn-pause>Pause</button><button data-learn-resume>Resume</button><button data-learn-check>Check progress</button><button data-learn-cancel>Cancel operation</button></div>
+ <section data-learn-work hidden><div class="learning-toolbar"><button data-learn-start>Start new practice</button><button data-learn-load>Restore saved practice</button><button data-learn-save>Save practice locally</button><button data-learn-pause>Pause</button><button data-learn-resume>Resume</button><button data-learn-check>Check progress</button><button data-learn-cancel>Cancel operation</button><button data-learn-end>End practice · discard unsaved work</button></div>
  <ol data-learn-steps></ol><h3 data-learn-title></h3><p data-learn-instruction></p><details><summary>Hint</summary><p data-learn-hint></p></details>
  <div class="learning-toolbar"><button data-learn-demo>Demonstrate this step</button><button data-learn-adopt hidden>Adopt demonstration</button><button data-learn-return hidden>Return to my work</button><button data-learn-retry>Retry this step from its checkpoint</button><button data-learn-inside>Look inside · reference example</button></div>
  <canvas data-learn-screen width="640" height="288" tabindex="0" aria-label="Practice screen. Use the input box below to type."></canvas><details><summary>Screen text</summary><pre data-learn-text></pre></details>
@@ -33,7 +33,7 @@ export function createLearning(){
  q('workday').onclick=()=>{showPanel(q('work'));if(!worker)start();};q('start').onclick=start;
  q('load').onclick=()=>{if(!worker)start();send('load');};
  for(const action of ['pause','resume','save','demo','adopt','return','retry'])q(action).onclick=()=>{if(busy&&!['pause','resume'].includes(action)){status('Wait for the current operation, or cancel it.');return;}send(action);};
- q('check').onclick=()=>send('observe');q('cancel').onclick=()=>{session++;worker?.terminate();worker=null;busy=false;status('Operation cancelled and private worker released. Start again or restore saved practice.');};
+ q('check').onclick=()=>send('observe');q('cancel').onclick=()=>send('cancel');q('end').onclick=()=>{session++;worker?.terminate();worker=null;busy=false;frame=null;status('Practice ended and private worker released. Saved checkpoints are unchanged.');};
  q('send').onclick=()=>{if(!busy)send('input',{text:q('input').value.replace(/\r\n?|\n/g,'\r')});};
  for(const [name,text]of [['enter','\r'],['sample',sampleLetter],['savekey','\x0bD'],['escape','\x1b'],['backspace','\x08']])q(name).onclick=()=>{if(!busy)send('input',{text});};
  q('input').onkeydown=e=>{if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();q('send').click();}};
