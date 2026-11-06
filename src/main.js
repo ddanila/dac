@@ -1,3 +1,4 @@
+import {createKeyboardDive} from './keyboard-dive.js';
 import {createPico1715Panel} from './pico1715-panel.js';
 import {installPracticeGuide} from './practice-guide.js';
 import {installSoundMixer} from './sound-controls.js';
@@ -43,6 +44,8 @@ const circuitPanel=createCircuitPanel((c,related)=>{
   showSpecimenDetail({title:`${c.ref} · ${c.name}`,text:`${c.role} ${c.signal} Drawing: 1715W/teil_b/Stromlaufplan ${c.sheet}.jpg in the linked archive.`,evidence:"W/M schematic relationship; specimen mapping provisional",photo:"20261014_072654600",reference:"https://xepb.org/robotron/docs/1715w.zip",sheet:`Stromlaufplan ${c.sheet}.jpg`});
 },send,row=>{scene?.markTrack({unit:row.unit,c:row.cylinder,h:row.head});$('open-case').checked=true;$('isolate-assembly').value='drives';updateCase();selectView('drive-top');});
 const debugPanel=createDebugPanel(send);
+const keyboardDive=createKeyboardDive(send);
+document.addEventListener("keyboard-dive-physical",()=>{ $("open-keyboard").checked=true;updateCase();selectView("keyboard-inside"); });
 const diskExplorer=createDiskExplorer((unit,request,original)=>send({type:"inspect-disk",unit,request,original}),target=>{
   scene?.markTrack(target);
   if(target){
@@ -418,6 +421,7 @@ worker.onmessage = ({ data: d }) => {
   diagnosticPanel.message(d);
   keyboardControllerReview.message(d);
   debugPanel.message(d);
+  keyboardDive.message(d);
   if(d.type==="debug-state"&&on)$("status").textContent=d.paused?"Paused · powered on":"Running";
   checkpointPanel.message(d);
   practiceGuide?.message(d);

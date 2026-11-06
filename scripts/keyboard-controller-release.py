@@ -55,9 +55,55 @@ def check(record):
     if record['electricallyQualified'] or record['historicallyVerified'] or record['fabricationReady']:
         raise ValueError('Functional release must not grant other qualifications')
 
+def update_runtime(a):
+    if not a.browser_report or not a.firmware_report:
+        raise ValueError('Runtime update requires fresh browser and production firmware reports')
+    previous=read(TARGET)
+    # A runtime refresh cannot silently republish changed CAD/electrical inputs.
+    mutable={'public/emulator/manifest.json','docs/robotron/releases/functional-reference-validation.json',
+             'scripts/keyboard-controller-release.py','tests/keyboard-release.spec.js',
+             'tests/keyboard-dive.spec.js','docs/robotron/keyboard-dive-in.md',
+             'docs/robotron/releases/browser.json.gz','docs/robotron/releases/firmware.json.gz'}
+    for path,digest in previous['files'].items():
+        if path not in mutable and not path.startswith('src/') and sha(ROOT/path)!=digest:
+            raise ValueError('Runtime update changed a preserved release input: '+path)
+    if git(a.emulation,'status','--porcelain').strip():
+        raise ValueError('Commit emulator source changes before refreshing runtime evidence')
+    runtime=read(ROOT/'public/emulator/manifest.json')
+    if runtime['commit']!=git(a.emulation,'rev-parse','HEAD').decode().strip():
+        raise ValueError('Pinned runtime does not match the reviewed emulator checkout')
+    browser=read(a.browser_report);stats=browser['stats'];firmware=read(a.firmware_report)
+    if browser.get('errors') or any(stats[k] for k in ('unexpected','flaky','skipped')) or not stats['expected']:
+        raise ValueError('Browser review did not pass completely')
+    if not all(firmware.get(k) is True for k in ['productionBackendTested','functionalAgreement','serialCycleAgreement','realLedTransitionAgreement']):
+        raise ValueError('Production firmware comparison failed')
+    for path,digest in firmware['sources'].items():
+        if sha(a.emulation/path)!=digest:raise ValueError('Stale firmware source: '+path)
+    records=ROOT/'docs/robotron/releases'
+    validation=read(records/'functional-reference-validation.json')
+    validation['browser']={'reportSha256':sha(a.browser_report),'stats':stats}
+    validation['firmware']={'reportSha256':sha(a.firmware_report),'romSha256':firmware['romSha256'],
+                           'functionalAgreement':True,'serialCycleAgreement':True,'realLedTransitionAgreement':True}
+    validation['runtimeKeyboardSources']={str(p.relative_to(a.emulation)):sha(p) for p in
+        [a.emulation/'machines/robotron1715m'/name for name in ['keyboard_board.c','keyboard_board.h','keyboard_cpu.c','keyboard_cpu.h']]}
+    for label,path in [('browser',a.browser_report),('firmware',a.firmware_report)]:
+        (records/(label+'.json.gz')).write_bytes(gzip.compress(path.read_bytes(),mtime=0))
+    (records/'functional-reference-validation.json').write_text(json.dumps(validation,indent=2)+'\n')
+    record={**previous,'revisions':{**previous['revisions'],'browserRuntime':runtime['commit'],
+                                  'firmwareComparison':runtime['commit'],
+                                  'museumBase':git(ROOT,'rev-parse','HEAD').decode().strip()}}
+    record['runtimeUpdate']={'previousRuntime':previous['revisions']['browserRuntime'],
+        'scope':'Runtime/UI observation refresh; pinned CAD, DRC and electrical evidence unchanged.'}
+    names=set(previous['files'])|{str(p.relative_to(ROOT)) for p in (ROOT/'src').glob('*keyboard*') if p.is_file()}
+    names.update(['tests/keyboard-dive.spec.js','docs/robotron/keyboard-dive-in.md',
+                  'src/emulator.worker.js','src/main.js','src/style.css','src/inspection.js','src/control-groups.js'])
+    record['files']={name:sha(ROOT/name) for name in sorted(names)}
+    check(record);TARGET.write_text(json.dumps(record,indent=2)+'\n');print(TARGET)
+
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--check',action='store_true')
+    ap.add_argument('--runtime-update',action='store_true',help='Refresh browser/runtime evidence without changing pinned CAD or electrical evidence')
     ap.add_argument('--cad',type=Path,default=ROOT.parent/'3d-models')
     ap.add_argument('--emulation',type=Path,default=ROOT.parent/'dac-emulation')
     ap.add_argument('--browser-report',type=Path)
@@ -66,6 +112,8 @@ def main():
     a=ap.parse_args()
     if a.check:
         check(read(TARGET));print('Functional reference release inputs verified');return
+    if a.runtime_update:
+        update_runtime(a);return
     if not a.browser_report or not a.firmware_report or not a.drc_report:
         ap.error('Creation requires fresh browser, native DRC and production firmware reports')
     base=ROOT/'public/models/robotron-1715m';board=read(base/'keyboard-controller.json')

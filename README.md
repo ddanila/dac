@@ -179,6 +179,10 @@ Select **Robotron 1715 + Pico1715** for the source-built CP/M 3 workstation,
 with browser controller-model and firmware/FPGA backends, local disk copies
 and a debugger. See the [classic workstation guide](docs/robotron/classic-workstation.md).
 
+## Keyboard dive-in
+
+Choose **Keyboard dive-in · key to screen** to follow an isolated reference keypress through the switch matrix, S600 ROM, both Z80s, data/strobe wires, SIO reception and the displayed character. A shared history cursor links registers, annotated code and waveforms. Live capture, stepping, triggers and portable traces are also available. See the [inspection guide](docs/robotron/keyboard-dive-in.md).
+
 ## Analyzer workbench
 
 Open [the analyzer](https://ddanila.github.io/dac/analyzer.html) to inspect compact

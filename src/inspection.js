@@ -205,6 +205,12 @@ export function showSpecimenDetail(name = currentInspection) {
   const circuit = entry?.component?.board === "motherboard" && circuits.find(c=>c.ref===entry.component.ref);
   if(circuit) entry={...entry,sheet:`Stromlaufplan ${circuit.sheet}.jpg`,text:`${entry.text} ${circuit.signal} Drawing: 1715W/teil_b/Stromlaufplan ${circuit.sheet}.jpg in the linked archive.`};
   if (!entry) return;
+  document.getElementById('detail-keyboard-dive')?.remove();
+  if(name==='component-keyboard'||/keyboard/i.test(entry.title||'')){
+    const dive=document.createElement('button');dive.id='detail-keyboard-dive';dive.textContent='Follow a keypress: ROM, registers and signals';
+    dive.onclick=()=>{document.getElementById('specimen-detail').close();document.dispatchEvent(new CustomEvent('keyboard-dive-open'));};
+    document.getElementById('detail-description').after(dive);
+  }
   const generation=++detailGeneration;
   disketteViewer?.dispose(); disketteViewer=undefined;
   chipViewer?.dispose();chipViewer=undefined;document.getElementById("component-comparison")?.remove();

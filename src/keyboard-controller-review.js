@@ -100,7 +100,9 @@ export function installKeyboardControllerReview(scene){
   get('[data-component]').value=kind==='component'?value:'';
   select(kind,value);get('[data-drawing]').scrollIntoView({block:'nearest'});return true;
  });
- let data=null,pending=false,selection=null,leds=null,latches=null,selectedCopper=null;
+ let data=null,pending=false,selection=null,leds=null,latches=null,selectedCopper=null,diveSelection=null;
+ const diveButton=document.createElement('button');diveButton.textContent='Follow a keypress through this controller';diveButton.onclick=()=>document.dispatchEvent(new CustomEvent('keyboard-dive-open'));panel.querySelector('summary').after(diveButton);
+ document.addEventListener('keyboard-dive-physical',async event=>{diveSelection=event.detail||{kind:'component',value:'A5'};panel.open=true;if(!data)await load();if(data&&diveSelection){const {kind='component',value='A5'}=diveSelection;get(`[data-${kind}]`).value=value;select(kind,value);diveSelection=null;}});
  const get=selector=>panel.querySelector(selector),status=get('[data-status]');
  function live(){
   if(!data)return;
@@ -502,6 +504,7 @@ export function installKeyboardControllerReview(scene){
    get('[data-hdl]').href=`${data.source.emulation.repository}/blob/${data.source.emulation.revision}/verification/robotron-keyboard/reports/full-audit.json`;
    installControllerWaveform(get('[data-tools]'),data.source.files.connectivity,net=>{get('[data-net]').value=net;get('[data-component]').value='';select('net',net);});
    live();select('component','A1');get('[data-component]').value='A1';
+   if(diveSelection){const {kind='component',value='A5'}=diveSelection;get(`[data-${kind}]`).value=value;select(kind,value);diveSelection=null;}
   }catch(error){data=null;get('[data-tools]').hidden=true;status.textContent=`Controller review could not load: ${error.message}. Close and reopen to retry.`;}finally{pending=false;}
  }
  panel.addEventListener('toggle',()=>{if(panel.open){if(data)scene?.keyboardControllerSelection(selection?.points||[],selection?.routes||[]);else load();}else scene?.keyboardControllerSelection([]);});

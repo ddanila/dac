@@ -108,5 +108,9 @@
     "version": "0.16.0",
     "javascript": "bd7565d06a450b18e78b4f6f999760be899910d7606ee81b92ced0e337531699",
     "commit": "5350310fa3a999070ab6e9f97d544d7c21240055"
+  },
+  "f45caf4d681559abac2c84437b891f73bc1623adf5ab2761630aacea22b94baf": {
+    "version": "0.18.0",
+    "javascript": "cb766c014070aa652e195b8cbd42e1ef3bd9eaf5539ddc2a47f36b1335f0c1c8"
   }
 }
