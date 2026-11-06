@@ -27,7 +27,6 @@ export function createKeyboardDive(send){
  function reset(){words=new Uint32Array(0);selected=loaded=count=0;instructions={};previousRegisters=[];browse=null;imported=false;q('[data-dive-guide]').disabled=true;}
  function open(){if(!dialog.open)dialog.showModal();request('dive-open');}
  entry.onclick=open;document.addEventListener('keyboard-dive-open',open);
- const launch=document.createElement('button');launch.textContent='Inside a keypress';launch.dataset.robotron='';launch.onclick=open;document.querySelector('[data-view="keyboard"]')?.after(launch);
  window.addEventListener('dac-configured',()=>{if(location.hash==='#keyboard-dive')open();},{once:true});
  q('[data-dive-close]').onclick=()=>dialog.close();dialog.addEventListener('close',()=>request('dive-close'));
  q('[data-dive-guide]').onclick=()=>{reset();q('[data-dive-status]').textContent='Preparing the isolated reference journey…';request('dive-guide',{scenario:q('[data-dive-scenario]').value});};
