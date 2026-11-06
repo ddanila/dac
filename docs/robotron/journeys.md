@@ -40,11 +40,11 @@ Activation delay is expressed in 3.9936 MHz machine clocks. Parameters are scena
 
 **Clone live machine** pauses the museum long enough to take a checkpoint and resumes it if it was running. Both experiments then run separately. Ordinary live capture and stepping, in contrast, explicitly control the live museum machine. Experiment overlays are owned by the private session and discarded when it closes. They are not a new general-purpose persistent fault snapshot format.
 
-The first-difference comparison excludes the explicit intervention marker and compares retained timing and effects. It reports an observed difference, not a proof of the earliest physical divergence. Changed software timing can align different events at the same list position; both indices remain available.
+The first-difference comparison excludes the explicit intervention marker and compares retained timing and effects. **Inspect baseline timeline** opens the baseline at its corresponding event, with its own code, registers, waveform and pixels. **Return to intervention** restores the paired fault event. Baseline inspection is read-only. It reports an observed difference, not a proof of the earliest physical divergence. Changed software timing can align different events at the same list position; both indices remain available.
 
 ## Signals and physical limits
 
-The workbench displays modelled DRQ, DMA RDY, DMA bus ownership, eligible interrupt request and terminal count. Values are recorded at event boundaries. Step-shaped lines connect observations; an overview is not a logic-analyser recording of every edge. The original keyboard journey remains the detailed data/strobe and receiver-bit view.
+The workbench displays modelled DRQ, DMA RDY, DMA bus ownership, eligible interrupt request and terminal count. Firmware-keyboard captures also show `TA_DATEN` (inverted D0) and `TA_TAKT` (the write strobe after its board inverter). The waveform scrolls horizontally on narrow screens to preserve readable labels. Values are recorded at event boundaries. Step-shaped lines connect observations; an overview is not a logic-analyser recording of every edge. The original keyboard journey remains the detailed data/strobe and receiver-bit view.
 
 Video scanlines come from the functional display decoder. Eight dots are derived from the sampled emitted byte after attributes, cursor and blanking. No new CRT analogue, beam-persistence, cable-filter or floppy-flux model is implied. Drive phase and STEP/INDEX activity come from the existing deterministic mechanics model. Schematic/specimen evidence remains separate from simulated timing.
 
