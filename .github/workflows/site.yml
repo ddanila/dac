@@ -62,8 +62,9 @@ jobs:
       fail-fast: true
       matrix: ${{ fromJSON(needs.build.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
-    # Full coverage includes the historical journey runs in every browser.
-    timeout-minutes: ${{ needs.build.outputs.scope == 'full' && 25 || 15 }}
+    # Full coverage includes historical journeys and private learning sessions.
+    # Run 42303782571 reached test 139/149 without failures at the old 25m limit.
+    timeout-minutes: ${{ needs.build.outputs.scope == 'full' && 35 || 15 }}
     steps:
       - uses: actions/checkout@v7
         with:
