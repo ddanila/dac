@@ -590,7 +590,7 @@ async function receive(d) {
     if (d.type === "configure") {
       await handleJourney({type:"journey-close"},{module,handle});
       await handleKeyboardDive({type:"dive-close"},{module,handle});
-      debugPaused=debugArmed=false;
+      debugPaused=debugArmed=diveDebugArmed=journeyDebugArmed=false;
       stopPaste();
       running = false;
       clearTimeout(timer);
@@ -729,7 +729,7 @@ async function receive(d) {
       if (r < 0)
         throw Error("Boot ROM and, for Robotron, CAS PROM are required");
       recordEvent([d.on ? 6 : 5]);
-      debugPaused=debugArmed=false;module._dac_debug_break?.(handle,0);
+      debugPaused=debugArmed=diveDebugArmed=journeyDebugArmed=false;module._dac_debug_break?.(handle,0);
       running = d.on;
       clearTimeout(timer);
       owed = 0;
@@ -741,7 +741,7 @@ async function receive(d) {
       stopPaste();
       if (module._dac_reset(handle) < 0) throw Error("Reset failed");
       recordEvent([4]);
-      debugPaused=debugArmed=false;module._dac_debug_break?.(handle,0);clearTimeout(timer);
+      debugPaused=debugArmed=diveDebugArmed=journeyDebugArmed=false;module._dac_debug_break?.(handle,0);clearTimeout(timer);
       if(running)timer=setTimeout(tick,0);
       postMessage({type:"debug-state",paused:false,message:"Machine reset."});
       owed = 0;
