@@ -1,0 +1,60 @@
+import {test,expect} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+const baseline=new URL('../public/monitor/baseline.mcrt',import.meta.url);
+
+test('monitor replay has synchronized controls, evidence and electrical probes',async({page})=>{
+  await page.goto('/monitor.html');
+  await expect(page.locator('#status')).toContainText('electrical samples');
+  await expect(page.locator('.evidence')).toContainText('not a faithful K7222');
+  await page.locator('#timeline').fill('0.012');
+  await expect(page.locator('#time')).toHaveText('12.000 ms');
+  const lit=await page.locator('#phosphor').evaluate(c=>c.getContext('2d').getImageData(0,0,c.width,c.height).data.some((v,i)=>i%4===1&&v>20));
+  expect(lit).toBe(true);
+  await page.locator('#line').click();
+  await expect(page.locator('#time')).toHaveText('12.063 ms');
+  await page.locator('#probe').selectOption('2');
+  await expect(page.locator('#probe-value')).toContainText('V');
+  await page.locator('#play').click();
+  await expect(page.locator('#play')).toHaveText('Pause');
+  await page.locator('#play').click();
+  await expect(page.locator('#play')).toHaveText('Play');
+});
+
+test('local import, comparison and corrupted replay preserve a valid view',async({page})=>{
+  await page.goto('/monitor.html');
+  await expect(page.locator('#status')).toContainText('electrical samples');
+  await page.locator('#compare-replay').setInputFiles(new URL('../public/monitor/vertical-collapse.mcrt',import.meta.url).pathname);
+  await expect(page.locator('#comparison')).toBeVisible();
+  await expect(page.locator('#compare-note')).toContainText('Vertical drive removed');
+  await page.locator('#clear-compare').click();
+  await expect(page.locator('#comparison')).toBeHidden();
+  const corrupt=Buffer.from(readFileSync(baseline));corrupt[corrupt.length-1]^=1;
+  await page.locator('#open-replay').setInputFiles({name:'bad.mcrt',mimeType:'application/octet-stream',buffer:corrupt});
+  await expect(page.locator('#status')).toContainText('checksum failed');
+  await expect(page.locator('#play')).toBeEnabled();
+  await page.locator('#open-replay').setInputFiles(baseline.pathname);
+  await expect(page.locator('#status')).toContainText('electrical samples');
+});
+
+test('bounds, version and time validation reject malformed recordings',async({page})=>{
+  await page.goto('/monitor.html');
+  const errors=await page.evaluate(async()=>{
+    const {readReplay}=await import('/src/monitor-replay.js');
+    const original=new Uint8Array(await (await fetch('/monitor/baseline.mcrt')).arrayBuffer());
+    const size=new DataView(original.buffer).getUint32(8,true),meta=JSON.parse(new TextDecoder().decode(original.slice(12,12+size)));
+    const mutate=async(change)=>{
+      const clone=structuredClone(meta);change(clone);
+      const json=new TextEncoder().encode(JSON.stringify(clone)),bytes=new Uint8Array(12+json.length+original.length-12-size);
+      bytes.set(original.slice(0,8));new DataView(bytes.buffer).setUint32(8,json.length,true);bytes.set(json,12);bytes.set(original.slice(12+size),12+json.length);
+      try{await readReplay(bytes.buffer);return 'accepted';}catch(e){return e.message;}
+    };
+    return [await mutate(m=>m.version=9),await mutate(m=>m.chunks[1].offset=0),await mutate(m=>m.duration=-1),await mutate(m=>m.chunks[0].width=1000000)];
+  });
+  expect(errors).toEqual(['Unsupported replay version.','Truncated or overlapping replay chunk.','Invalid replay identity or duration.','Invalid phosphor frame.']);
+});
+
+test('monitor lab loads on a narrow viewport without horizontal overflow',async({page})=>{
+  await page.setViewportSize({width:390,height:844});await page.goto('/monitor.html');
+  await expect(page.locator('#status')).toContainText('electrical samples');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});

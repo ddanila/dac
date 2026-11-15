@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#15201d"><title>Monitor lab · DAC</title></head>
+<body>
+<header><a href="./">← The museum</a><span>DAC / MONITOR LAB</span><a href="https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-monitor">Local circuit tools ↗</a></header>
+<main>
+  <section class="intro"><p class="eyebrow">FROM CIRCUIT TO LIGHT</p><h1>Inside the scan.</h1><p>Follow the voltage, the deflection current and the beam. These recordings come from local electrical simulations; every view shares the same clock.</p></section>
+  <aside class="evidence"><strong>Experimental circuit · historical reconstruction pending</strong><p>The included circuit is a driven flyback test fixture, not a faithful K7222 or a simulation of Danila’s monitor. Earlier K7222.11/.21 parts lists have been located; the historical circuit, winding properties and tube calibration still need reconstruction and verification.</p></aside>
+  <section class="loaders" aria-label="Choose recordings">
+    <label>Experiment<select id="experiment"><option value="baseline">Driven flyback baseline</option><option value="vertical-collapse">Vertical drive removed</option><option value="focus">Focus divider changed</option></select></label>
+    <label class="file">Open local replay<input id="open-replay" type="file" accept=".mcrt"></label>
+    <label class="file">Compare local replay<input id="compare-replay" type="file" accept=".mcrt"></label>
+    <button id="clear-compare" hidden>Clear comparison</button>
+  </section>
+  <p id="status" role="status">Loading recording…</p>
+  <section class="transport" aria-label="Playback">
+    <button id="play" disabled>Play</button><button id="line" disabled>+ one line</button><button id="frame" disabled>+ one frame</button>
+    <label>Speed<select id="speed"><option value="0.0001">0.0001×</option><option value="0.001" selected>0.001×</option><option value="0.01">0.01×</option><option value="1">1×</option></select></label>
+    <output id="time">0.000 ms</output><input id="timeline" aria-label="Simulation time" type="range" min="0" max="1" step="0.000001" value="0" disabled>
+  </section>
+  <section class="visuals">
+    <article><div class="caption"><h2 id="recording-name">Phosphor screen</h2><span>Energy deposited by the beam</span></div><canvas id="phosphor" width="640" height="448" aria-label="Simulated phosphor screen"></canvas><p id="compare-note"></p><canvas id="comparison" width="640" height="448" aria-label="Comparison phosphor screen" hidden></canvas></article>
+    <article><div class="caption"><h2>Electron optics</h2><span>Side projection · educational overlay</span></div><canvas id="cutaway" width="640" height="448" aria-label="CRT beam cutaway"></canvas><p>The line makes the modeled beam path visible. Its endpoint and current come from the selected simulation sample; this is not light visible inside a real tube.</p></article>
+  </section>
+  <section class="traces"><div class="caption"><h2>Electrical probes</h2><label>Probe<select id="probe"><option value="1">Collector voltage · V</option><option value="2">Anode voltage · V</option><option value="3">Focus voltage · V</option><option value="4">Horizontal yoke · A</option><option value="5">Vertical yoke · A</option><option value="6">Cathode voltage · V</option><option value="7">Beam current · A</option></select></label><label>Time window<select id="window"><option value="0">Whole recording</option><option value=".001">1 ms</option><option value=".000125">Two lines · 125 µs</option></select></label><output id="probe-value"></output></div><canvas id="waveform" width="1200" height="240" aria-label="Electrical waveform"></canvas><p>Green: selected recording. Amber: comparison, on the same time and value axes. Line/frame steps use this fixture’s 62.5 µs / 19 ms drive periods.</p></section>
+  <section class="details"><article><h2>Model and evidence</h2><ul id="limitations"></ul><details><summary>Recording provenance</summary><pre id="provenance"></pre></details></article><article><h2>Editable circuit</h2><p>Edit component values and wiring in KiCad, run the local tools, then open the resulting <code>.mcrt</code> file here. Imports stay in your browser.</p><details><summary>Components and nets</summary><div class="table-scroll"><table><thead><tr><th>Component</th><th>Nets</th><th>Value / model</th></tr></thead><tbody id="components"></tbody></table></div></details></article></section>
+</main><script type="module" src="/src/monitor-lab.js"></script>
+</body></html>

@@ -1,0 +1,57 @@
+{
+  "qualification": "experimental-fixture",
+  "recordings": [
+    {
+      "file": "baseline.mcrt",
+      "name": "Driven flyback baseline",
+      "bytes": 2666649,
+      "sha256": "945ea2db0f661c301b7dcbc6cea3759beb1e63209a273f67df01b8f6f0265871",
+      "inputs": {
+        "schematic": "d27bfd97659df08987058b85fdba748d27bc11f32ec8be8553e022c953a4f808",
+        "models": "d71529843bf6691e83fd164120afcc070801e29a881093286209957ac933af58",
+        "optics": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
+        "packager": "351c5db22eec76d9d171068d5d451732077bb38d5e5801c35aaea51933bb2e1f",
+        "sources": "4602f84b7feb61d52362621ab0729ba04af6b59b7ed1f0ca40661ff791ffe21d",
+        "deck": "57e0977a37f2971cf71f2a16c09ea3504be77db2f6a756867fa15ee60df20b43"
+      },
+      "changes": {},
+      "duration": 0.01999999999999935
+    },
+    {
+      "file": "vertical-collapse.mcrt",
+      "name": "Vertical drive removed",
+      "bytes": 2666600,
+      "sha256": "a2bbb4e246267f1fbe5ad06f2a3a3248b5a528e887f8f27baeb261156a6684aa",
+      "inputs": {
+        "schematic": "d27bfd97659df08987058b85fdba748d27bc11f32ec8be8553e022c953a4f808",
+        "models": "d71529843bf6691e83fd164120afcc070801e29a881093286209957ac933af58",
+        "optics": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
+        "packager": "351c5db22eec76d9d171068d5d451732077bb38d5e5801c35aaea51933bb2e1f",
+        "sources": "4602f84b7feb61d52362621ab0729ba04af6b59b7ed1f0ca40661ff791ffe21d",
+        "deck": "3eacf4b9b55a2f0b73a194afe08b68367aaa8745a850c18d99575873ef64d1b8"
+      },
+      "changes": {
+        "V3": "0"
+      },
+      "duration": 0.01999999999999935
+    },
+    {
+      "file": "focus.mcrt",
+      "name": "Focus divider changed",
+      "bytes": 2666659,
+      "sha256": "2de436f3ef299ca6055dcc37d5091786d3d3e19899757641ffb65bf2a7b2dd37",
+      "inputs": {
+        "schematic": "d27bfd97659df08987058b85fdba748d27bc11f32ec8be8553e022c953a4f808",
+        "models": "d71529843bf6691e83fd164120afcc070801e29a881093286209957ac933af58",
+        "optics": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
+        "packager": "351c5db22eec76d9d171068d5d451732077bb38d5e5801c35aaea51933bb2e1f",
+        "sources": "4602f84b7feb61d52362621ab0729ba04af6b59b7ed1f0ca40661ff791ffe21d",
+        "deck": "c65765252d50d2198d6bc11e64c535c35700dcf416443a5a144800be57ce6ab8"
+      },
+      "changes": {
+        "R10": "40meg"
+      },
+      "duration": 0.01999999999999935
+    }
+  ]
+}

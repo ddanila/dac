@@ -2,6 +2,11 @@
 
 Current behavior and evidence: [Robotron capability matrix](docs/robotron/capabilities.md).
 
+[Monitor circuit lab](monitor.html): replay local KiCad/ngspice experiments with
+electrical probes and CRT beam/phosphor views. The initial recordings are
+experimental fixtures, not a completed K7222 reconstruction; see the
+[monitor lab guide](docs/robotron/monitor-lab.md).
+
 [PSU documentation in German, English and Russian](https://ddanila.github.io/dac/docs/robotron-psu/)
 links the original service manual, circuit and board layouts, with source-checked
 museum commentary and explicitly unqualified transistor replacement candidates.
