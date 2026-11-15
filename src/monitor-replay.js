@@ -32,6 +32,8 @@ export async function readReplay(buffer) {
     } else {
       assert(Array.isArray(chunk.fields) && chunk.fields.length>=2 && chunk.fields.length<=128 && chunk.fields[0].name==='time' && chunk.fields[0].unit==='s' && chunk.fields.every(f=>typeof f.name==='string' && /^[a-zA-Z_][a-zA-Z_0-9]{0,63}$/.test(f.name) && typeof f.unit==='string' && f.unit.length<20) && new Set(chunk.fields.map(f=>f.name)).size===chunk.fields.length, 'Unsupported trace fields.');
       const stride=chunk.fields.length;
+      const identities=chunk.fields.filter(f=>f.id!==undefined);
+      assert(identities.every(f=>typeof f.id==='string' && f.id.length>0 && f.id.length<=200) && new Set(identities.map(f=>f.id)).size===identities.length,'Invalid probe identities.');
       assert(chunk.kind === 'trace' && !trace && Number.isInteger(chunk.rows) && chunk.rows >= 2 && chunk.rows <= 250001 && chunk.bytes === chunk.rows*stride*8, 'Invalid electrical trace.');
       assert(meta.version===2 || (stride===fields.length && chunk.fields.every((f,i)=>f.name===fields[i])), 'Unsupported trace fields.');
       const values = new Float64Array(chunk.rows*stride), raw = new DataView(data.buffer,data.byteOffset,data.byteLength);
@@ -63,4 +65,18 @@ export function frameAt(replay,time) {
   let lo=0,hi=replay.frames.length-1;
   while(lo<hi){const mid=Math.ceil((lo+hi)/2);if(replay.frames[mid].time<=time)lo=mid;else hi=mid-1;}
   return replay.frames[lo];
+}
+
+export function matchingProbe(primary, other, field) {
+  const probe=primary.trace.fields[field];
+  if(primary===other)return field;
+  // Legacy fixture fields belong only to the v1 fixture contract. V2 stage
+  // labels such as "collector" must never alias a different circuit's node.
+  if(primary.meta.version===1 || other.meta.version===1){
+    if(primary.meta.version!==other.meta.version)return -1;
+    return other.trace.fields.findIndex(f=>f.name===probe.name && f.unit===probe.unit);
+  }
+  if(primary.meta.model_id!==other.meta.model_id)return -1;
+  return other.trace.fields.findIndex(f=>f.unit===probe.unit && (probe.id && f.id
+    ? probe.id===f.id : probe.source_id && probe.source_id===f.source_id && probe.name===f.name));
 }

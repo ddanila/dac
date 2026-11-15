@@ -53,6 +53,12 @@ investigation leads, not proof that either implementation matches hardware.
 
 ## Current museum tools and evidence
 
+- **Monitor fault atlas:** a development neck-board bench with source-addressed
+  single faults, joint parameter exploration, numerical acceptance checks and
+  explicit ambiguous/unsupported cases. The [atlas guide](monitor-lab.md#fault-atlas)
+  records its limits. Full power/horizontal/flyback circuitry and real-monitor
+  validation are still absent; this is not a qualified diagnostic instrument.
+
 - **Transfers:** DACRX and DACTX provide both directions through guest SIO
   software. Follow the [guest instructions](../../public/examples/robotron-v24/README.txt);
   [qualification](transfer-qualification.json) owns tested scenarios.

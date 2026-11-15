@@ -1,0 +1,4070 @@
+{
+  "atlas": "K7222.11/.21 fault atlas \u2014 development bench",
+  "revision": "k7222-11",
+  "hardware_validation": "none",
+  "limitations": [
+    "Only the 012-6891 neck board is connected; horizontal, vertical and power stages remain unimplemented.",
+    "External ideal bench supplies exercise a stage, not the complete monitor.",
+    "Device and C2 bounds are engineering assumptions, not measured confidence intervals.",
+    "No electron emission, heater dynamics or spark-gap discharge is included in this electrical stage.",
+    "External supply impedance and constant tube load are assumptions; no complete power/horizontal model.",
+    "Fault predictions have not been validated against a real monitor.",
+    "Feature windows describe settled levels. Transition-only faults may be indistinguishable in these features.",
+    "Intervals summarize sampled assumptions, not guaranteed bounds or diagnostic probabilities.",
+    "Held-out parameter cases use the same model; they are not hardware validation.",
+    "No screen symptom, automatic diagnosis or live measurement instructions are inferred."
+  ],
+  "scenario": {
+    "format": "dac-monitor-scenario-v1",
+    "id": "nominal",
+    "model_id": "k7222-11-neck-diagnostic",
+    "name": "Nominal neck bench",
+    "parameters": {},
+    "start": 0,
+    "stop": 0.0004,
+    "step": 1e-07,
+    "feature_windows": [
+      {
+        "id": "dark",
+        "start": 2.5e-05,
+        "stop": 7.5e-05
+      },
+      {
+        "id": "bright",
+        "start": 0.000125,
+        "stop": 0.000175
+      },
+      {
+        "id": "normal-dark",
+        "start": 0.000225,
+        "stop": 0.000275
+      },
+      {
+        "id": "normal-bright",
+        "start": 0.000325,
+        "stop": 0.000375
+      }
+    ],
+    "conditions": "External neck connector supplies; periodic VIDEO/INTENS test pattern; constant tube-current load; no historical converter or synchronization stage."
+  },
+  "case": {
+    "definition": {
+      "id": "video-gain",
+      "target": "012-6891:V1",
+      "operation": "gain_scale",
+      "name": "Video transistor gain at 10%",
+      "stage": "Neck/video",
+      "symptoms": [
+        "cathode-level-change"
+      ],
+      "expected_screen_symptom": null,
+      "factor": 0.1
+    },
+    "hardware_validation": "none",
+    "status": "accepted-simulation",
+    "validation": {
+      "definition": {
+        "id": "video-gain",
+        "target": "012-6891:V1",
+        "operation": "gain_scale",
+        "name": "Video transistor gain at 10%",
+        "stage": "Neck/video",
+        "symptoms": [
+          "cathode-level-change"
+        ],
+        "expected_screen_symptom": null,
+        "factor": 0.1
+      },
+      "status": "accepted-simulation",
+      "failures": [],
+      "numerical_checks": [
+        {
+          "check": "time-step",
+          "passed": true,
+          "relative_tolerance": 0.01,
+          "numerical_floors": {
+            "V": 0.001,
+            "A": 1e-07
+          },
+          "failures": []
+        }
+      ],
+      "completed_samples": 25,
+      "required_samples": 25,
+      "source_hashes": {
+        "atlas.py": "043d1619f7580adcc273f359d04f73c4dc80d40425a9af2d6a0fee8fb666e6eb",
+        "atlas_features.py": "2bb805c3da84bd05d51507bf29f3d8ff47b241833c6d8afcdf835a9e613a4633",
+        "reference.py": "4824bf98bfe327996a2ac24a2a718c9036cf76770645a60a277c30f91882e776",
+        "faults.py": "448f88df95ceebf7f10f734eb437b688eac49757a1bd7bfe26eb3377402ab864",
+        "catalogue.json": "72dd2ff4e316abcb342443aef55be8a910cb20624a94a96ea9439bd305e0d6ac",
+        "scenarios.json": "8768d8a3c2fb818476c129ee325a08eb572c17dc8a5d7289b153ebf397acfee2"
+      }
+    },
+    "features": {
+      "k7222-11:012-6891:V1:V|bright|maximum": {
+        "minimum": 0.78013859500431,
+        "maximum": 24.65717023495573,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:V1:V|bright|mean": {
+        "minimum": 0.7800747698904991,
+        "maximum": 24.654816082479712,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:V1:V|bright|minimum": {
+        "minimum": 0.7800293741484131,
+        "maximum": 24.65317669702149,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:V1:V|bright|ripple": {
+        "minimum": 1.8818445408519402e-05,
+        "maximum": 0.013414115728287435,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:V1:V|bright|rms": {
+        "minimum": 0.7800747705166396,
+        "maximum": 24.654816108909117,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:V1:V|dark|maximum": {
+        "minimum": 32.74581431351969,
+        "maximum": 35.70186196937121,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:V1:V|dark|mean": {
+        "minimum": 32.74581431349397,
+        "maximum": 35.70186196933748,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:V1:V|dark|minimum": {
+        "minimum": 32.74581431345413,
+        "maximum": 35.70186196930867,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:V1:V|dark|ripple": {
+        "minimum": 6.129141638666624e-11,
+        "maximum": 8.846967602949007e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:V1:V|dark|rms": {
+        "minimum": 32.74581431349397,
+        "maximum": 35.70186196933748,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|maximum": {
+        "minimum": 0.8030573289227386,
+        "maximum": 24.65657310703334,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|mean": {
+        "minimum": 0.8029601398457648,
+        "maximum": 24.654453229162762,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|minimum": {
+        "minimum": 0.8028910597166703,
+        "maximum": 24.65297698419799,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|ripple": {
+        "minimum": 2.2188917787158147e-05,
+        "maximum": 0.020090055071209312,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|rms": {
+        "minimum": 0.8029601412552737,
+        "maximum": 24.654453250594045,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|maximum": {
+        "minimum": 32.74588095724773,
+        "maximum": 35.70422792191846,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|mean": {
+        "minimum": 32.74581745313274,
+        "maximum": 35.70112749066311,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|minimum": {
+        "minimum": 32.74581136003358,
+        "maximum": 35.70036426955306,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|ripple": {
+        "minimum": 6.959721415000786e-05,
+        "maximum": 0.03996049024181758,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|rms": {
+        "minimum": 32.745817453135004,
+        "maximum": 35.701127501030015,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|maximum": {
+        "minimum": 4.999999999994579,
+        "maximum": 5.000000000005421,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|mean": {
+        "minimum": 4.999999999994579,
+        "maximum": 5.000000000005421,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|minimum": {
+        "minimum": 4.999999999994579,
+        "maximum": 5.000000000005421,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|ripple": {
+        "minimum": 0.0,
+        "maximum": 1.0842882147699129e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|rms": {
+        "minimum": 4.999999999994579,
+        "maximum": 5.000000000005421,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|maximum": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|mean": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|minimum": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|ripple": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|rms": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|maximum": {
+        "minimum": 5.000000000016263,
+        "maximum": 5.000000000016263,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|mean": {
+        "minimum": 5.0,
+        "maximum": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|minimum": {
+        "minimum": 4.999999999994579,
+        "maximum": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|ripple": {
+        "minimum": 2.1684876116978558e-11,
+        "maximum": 2.1684876116978558e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|rms": {
+        "minimum": 5.0,
+        "maximum": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|maximum": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|mean": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|minimum": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|ripple": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|rms": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|maximum": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|mean": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|minimum": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|ripple": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|rms": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|maximum": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|mean": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|minimum": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|ripple": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|rms": {
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|maximum": {
+        "minimum": 5.000000000016263,
+        "maximum": 5.000000000016263,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|mean": {
+        "minimum": 5.0,
+        "maximum": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|minimum": {
+        "minimum": 4.999999999994579,
+        "maximum": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|ripple": {
+        "minimum": 2.1684876116978558e-11,
+        "maximum": 2.1684876116978558e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|rms": {
+        "minimum": 5.0,
+        "maximum": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|maximum": {
+        "minimum": 5.000000000016263,
+        "maximum": 5.000000000016263,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|mean": {
+        "minimum": 4.999999999997918,
+        "maximum": 5.000000000002103,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|minimum": {
+        "minimum": 4.999999999994579,
+        "maximum": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|ripple": {
+        "minimum": 2.1684876116978558e-11,
+        "maximum": 2.1684876116978558e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|rms": {
+        "minimum": 4.999999999997918,
+        "maximum": 5.000000000002103,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|maximum": {
+        "minimum": 39.02918947518556,
+        "maximum": 42.94312383285026,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|mean": {
+        "minimum": 39.029182082636105,
+        "maximum": 42.9421534639896,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|minimum": {
+        "minimum": 39.0291087149921,
+        "maximum": 42.93756850025299,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|ripple": {
+        "minimum": 8.076019346248131e-05,
+        "maximum": 0.05181200668422292,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|rms": {
+        "minimum": 39.029182082638584,
+        "maximum": 42.94215348332658,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|maximum": {
+        "minimum": 39.03677940253247,
+        "maximum": 42.96317702871991,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|mean": {
+        "minimum": 39.03677940248969,
+        "maximum": 42.96317702868648,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|minimum": {
+        "minimum": 39.03677940246265,
+        "maximum": 42.96317702866229,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|ripple": {
+        "minimum": 4.3357317736081313e-11,
+        "maximum": 8.279954499812447e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|rms": {
+        "minimum": 39.03677940248969,
+        "maximum": 42.96317702868649,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|maximum": {
+        "minimum": 39.02918945236608,
+        "maximum": 42.94312819923708,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|mean": {
+        "minimum": 39.02918205263217,
+        "maximum": 42.94215901058431,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|minimum": {
+        "minimum": 39.0291085147942,
+        "maximum": 42.937579441988696,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|ripple": {
+        "minimum": 8.0937571880213e-05,
+        "maximum": 0.047236116059195865,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|rms": {
+        "minimum": 39.02918205263467,
+        "maximum": 42.942159029882895,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|maximum": {
+        "minimum": 39.0368551789599,
+        "maximum": 42.96789884663064,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|mean": {
+        "minimum": 39.03678102400452,
+        "maximum": 42.96327683027344,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|minimum": {
+        "minimum": 39.03677357561617,
+        "maximum": 42.96229860651568,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|ripple": {
+        "minimum": 8.160334373030764e-05,
+        "maximum": 0.047771173861427485,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|rms": {
+        "minimum": 39.03678102400706,
+        "maximum": 42.96327684999067,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|maximum": {
+        "minimum": 0.3774607913205951,
+        "maximum": 24.26461390606483,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|mean": {
+        "minimum": 0.37740283050952983,
+        "maximum": 24.262267318812036,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|minimum": {
+        "minimum": 0.3773616062138256,
+        "maximum": 24.26063320141413,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|ripple": {
+        "minimum": 1.784348021127702e-05,
+        "maximum": 0.013290976335039062,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|rms": {
+        "minimum": 0.377402831576823,
+        "maximum": 24.262267345496728,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|maximum": {
+        "minimum": 31.90131805105946,
+        "maximum": 35.32905487089792,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|mean": {
+        "minimum": 31.901318051038174,
+        "maximum": 35.32905487086131,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|minimum": {
+        "minimum": 31.90131805101609,
+        "maximum": 35.32905487083513,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|ripple": {
+        "minimum": 4.3364423163438914e-11,
+        "maximum": 8.44124770082999e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|rms": {
+        "minimum": 31.901318051038174,
+        "maximum": 35.32905487086131,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|maximum": {
+        "minimum": 4.308653750200463,
+        "maximum": 24.2640186968305,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|mean": {
+        "minimum": 4.308549822962494,
+        "maximum": 24.261905631603053,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|minimum": {
+        "minimum": 4.308470316524333,
+        "maximum": 24.26043413044789,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|ripple": {
+        "minimum": 1.7139210140015848e-07,
+        "maximum": 0.010596371237305391,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|rms": {
+        "minimum": 4.308549823284386,
+        "maximum": 24.261905653241353,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|maximum": {
+        "minimum": 31.90138462558445,
+        "maximum": 35.33142813902071,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|mean": {
+        "minimum": 31.901321189283834,
+        "maximum": 35.32832231617991,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|minimum": {
+        "minimum": 31.90131510344578,
+        "maximum": 35.32755837787622,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|ripple": {
+        "minimum": 6.952213866995294e-05,
+        "maximum": 0.03992251831122218,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|rms": {
+        "minimum": 31.901321189286158,
+        "maximum": 35.328322326701304,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|maximum": {
+        "minimum": -24.99999999995121,
+        "maximum": -24.99999999995121,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|mean": {
+        "minimum": -25.000000000005464,
+        "maximum": -24.99999999999653,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|minimum": {
+        "minimum": -25.00000000003795,
+        "maximum": -25.00000000003795,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|ripple": {
+        "minimum": 8.673950446791423e-11,
+        "maximum": 8.673950446791423e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|rms": {
+        "minimum": 24.999999999996533,
+        "maximum": 25.000000000005468,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|maximum": {
+        "minimum": -24.99999999999458,
+        "maximum": -24.99999999997764,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|mean": {
+        "minimum": -25.000000000000146,
+        "maximum": -24.999999999998497,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|minimum": {
+        "minimum": -25.00000000002101,
+        "maximum": -25.00000000001626,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|ripple": {
+        "minimum": 2.1682211581719457e-11,
+        "maximum": 3.8621550402240246e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|rms": {
+        "minimum": 24.999999999998497,
+        "maximum": 25.000000000000146,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|maximum": {
+        "minimum": -24.99999999986447,
+        "maximum": -24.99999999986447,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|mean": {
+        "minimum": -25.000000000001172,
+        "maximum": -24.999999999994408,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|minimum": {
+        "minimum": -25.00000000003795,
+        "maximum": -25.00000000003795,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|ripple": {
+        "minimum": 1.7347900893582846e-10,
+        "maximum": 1.7347900893582846e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|rms": {
+        "minimum": 24.999999999994408,
+        "maximum": 25.000000000001172,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|maximum": {
+        "minimum": -24.99999999995121,
+        "maximum": -24.99999999995121,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|mean": {
+        "minimum": -25.00000000000022,
+        "maximum": -24.999999999995882,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|minimum": {
+        "minimum": -25.00000000003795,
+        "maximum": -25.00000000003795,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|ripple": {
+        "minimum": 8.673950446791423e-11,
+        "maximum": 8.673950446791423e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|rms": {
+        "minimum": 24.99999999999588,
+        "maximum": 25.000000000000217,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|maximum": {
+        "minimum": 350.0000000005313,
+        "maximum": 350.0000000005313,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|mean": {
+        "minimum": 349.9999999999873,
+        "maximum": 350.0000000000095,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|minimum": {
+        "minimum": 349.9999999998374,
+        "maximum": 349.9999999998374,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|ripple": {
+        "minimum": 6.938876140338834e-10,
+        "maximum": 6.938876140338834e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|rms": {
+        "minimum": 349.9999999999873,
+        "maximum": 350.0000000000095,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|maximum": {
+        "minimum": 350.0000000002941,
+        "maximum": 350.0000000002941,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|mean": {
+        "minimum": 350.00000000000216,
+        "maximum": 350.0000000000032,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|minimum": {
+        "minimum": 349.9999999998374,
+        "maximum": 349.9999999998374,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|ripple": {
+        "minimum": 4.566800271277316e-10,
+        "maximum": 4.566800271277316e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|rms": {
+        "minimum": 350.00000000000216,
+        "maximum": 350.00000000000324,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|maximum": {
+        "minimum": 350.000000001919,
+        "maximum": 350.000000001919,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|mean": {
+        "minimum": 349.9999999999678,
+        "maximum": 350.00000000001086,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|minimum": {
+        "minimum": 349.9999999991435,
+        "maximum": 349.9999999991435,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|ripple": {
+        "minimum": 2.775493612716673e-09,
+        "maximum": 2.775493612716673e-09,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|rms": {
+        "minimum": 349.9999999999678,
+        "maximum": 350.00000000001086,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|maximum": {
+        "minimum": 350.0000000005313,
+        "maximum": 350.0000000005313,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|mean": {
+        "minimum": 349.9999999999887,
+        "maximum": 350.00000000000534,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|minimum": {
+        "minimum": 349.9999999991435,
+        "maximum": 349.9999999991435,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|ripple": {
+        "minimum": 1.3878320714866277e-09,
+        "maximum": 1.3878320714866277e-09,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|rms": {
+        "minimum": 349.99999999998863,
+        "maximum": 350.00000000000534,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|maximum": {
+        "minimum": 175.0000000002656,
+        "maximum": 175.0000000002656,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|mean": {
+        "minimum": 174.99999999999366,
+        "maximum": 175.00000000000614,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|minimum": {
+        "minimum": 174.9999999999187,
+        "maximum": 174.9999999999187,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|ripple": {
+        "minimum": 3.468869635980809e-10,
+        "maximum": 3.468869635980809e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|rms": {
+        "minimum": 174.99999999999363,
+        "maximum": 175.0000000000061,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|maximum": {
+        "minimum": 175.0000000001471,
+        "maximum": 175.0000000001471,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|mean": {
+        "minimum": 175.0000000000011,
+        "maximum": 175.00000000000162,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|minimum": {
+        "minimum": 174.9999999999187,
+        "maximum": 174.9999999999187,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|ripple": {
+        "minimum": 2.283968569827266e-10,
+        "maximum": 2.283968569827266e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|rms": {
+        "minimum": 175.0000000000011,
+        "maximum": 175.00000000000162,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|maximum": {
+        "minimum": 175.0000000009595,
+        "maximum": 175.0000000009595,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|mean": {
+        "minimum": 174.99999999999497,
+        "maximum": 175.00000000000816,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|minimum": {
+        "minimum": 174.9999999995717,
+        "maximum": 174.9999999995717,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|ripple": {
+        "minimum": 1.3877752280677669e-09,
+        "maximum": 1.3877752280677669e-09,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|rms": {
+        "minimum": 174.999999999995,
+        "maximum": 175.00000000000816,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|maximum": {
+        "minimum": 175.0000000002656,
+        "maximum": 175.0000000002656,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|mean": {
+        "minimum": 174.99999999999775,
+        "maximum": 175.000000000004,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|minimum": {
+        "minimum": 174.9999999995717,
+        "maximum": 174.9999999995717,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|ripple": {
+        "minimum": 6.938876140338834e-10,
+        "maximum": 6.938876140338834e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|rms": {
+        "minimum": 174.99999999999775,
+        "maximum": 175.000000000004,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:bench:Vrail:A|bright|maximum": {
+        "minimum": -0.103992435622936,
+        "maximum": -0.03355799063997018,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:bench:Vrail:A|bright|mean": {
+        "minimum": -0.10789339796712993,
+        "maximum": -0.03644727026617408,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:bench:Vrail:A|bright|minimum": {
+        "minimum": -0.1133331270544295,
+        "maximum": -0.03845921238665552,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:bench:Vrail:A|bright|ripple": {
+        "minimum": 0.00043312849608789783,
+        "maximum": 0.03202116344502831,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:bench:Vrail:A|bright|rms": {
+        "minimum": 0.03647418791722587,
+        "maximum": 0.10795012533466501,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:bench:Vrail:A|dark|maximum": {
+        "minimum": -0.01826656366318823,
+        "maximum": -0.01601716073765533,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:bench:Vrail:A|dark|mean": {
+        "minimum": -0.018266563663203814,
+        "maximum": -0.01601716073766818,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:bench:Vrail:A|dark|minimum": {
+        "minimum": -0.01826656366321821,
+        "maximum": -0.01601716073768683,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:bench:Vrail:A|dark|ripple": {
+        "minimum": 2.1180973641676815e-14,
+        "maximum": 6.247086181687678e-14,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:bench:Vrail:A|dark|rms": {
+        "minimum": 0.016017160737668183,
+        "maximum": 0.018266563663203814,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|maximum": {
+        "minimum": -0.1039682278417126,
+        "maximum": -0.03429082444168419,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|mean": {
+        "minimum": -0.10786269541583629,
+        "maximum": -0.036892587902654754,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|minimum": {
+        "minimum": -0.1132904189255283,
+        "maximum": -0.038704314001035474,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|ripple": {
+        "minimum": 0.0004313969272840834,
+        "maximum": 0.029192189961296952,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|rms": {
+        "minimum": 0.03691415297145947,
+        "maximum": 0.10791921506565459,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|maximum": {
+        "minimum": -0.029602817088655437,
+        "maximum": -0.009190024838079501,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|mean": {
+        "minimum": -0.04133780352808542,
+        "maximum": -0.014615267722241726,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|minimum": {
+        "minimum": -0.05912459492411949,
+        "maximum": -0.01619689413818417,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|ripple": {
+        "minimum": 0.00043144867203886994,
+        "maximum": 0.029521777835464055,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|rms": {
+        "minimum": 0.015028004955661084,
+        "maximum": 0.04218511256370707,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "rms"
+      }
+    },
+    "nominal_features": {
+      "k7222-11:012-6891:X1:9:V|dark|mean": {
+        "value": 40.99146421442045,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|rms": {
+        "value": 40.99146421442045,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|minimum": {
+        "value": 40.99146421439018,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|maximum": {
+        "value": 40.99146421446132,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:9:V|dark|ripple": {
+        "value": 7.113953870430123e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|mean": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|rms": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|minimum": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|maximum": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:5:V|dark|ripple": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|mean": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|rms": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|minimum": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|maximum": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:7:V|dark|ripple": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:V1:V|dark|mean": {
+        "value": 34.333551855189484,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:V1:V|dark|rms": {
+        "value": 34.333551855189484,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:V1:V|dark|minimum": {
+        "value": 34.33355185515184,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:V1:V|dark|maximum": {
+        "value": 34.33355185522477,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:V1:V|dark|ripple": {
+        "value": 7.293010639841668e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|mean": {
+        "value": 33.67819049894851,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|rms": {
+        "value": 33.67819049894852,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|minimum": {
+        "value": 33.67819049890777,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|maximum": {
+        "value": 33.67819049898986,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:2:V|dark|ripple": {
+        "value": 8.209610768972198e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|mean": {
+        "value": -25.00000000000008,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|rms": {
+        "value": 25.000000000000078,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|minimum": {
+        "value": -25.00000000002101,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|maximum": {
+        "value": -24.99999999999458,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:5:V|dark|ripple": {
+        "value": 2.6432189770275727e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|mean": {
+        "value": 350.0000000000032,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|rms": {
+        "value": 350.00000000000324,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|minimum": {
+        "value": 349.9999999998374,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|maximum": {
+        "value": 350.0000000002941,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:6:V|dark|ripple": {
+        "value": 4.566800271277316e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|mean": {
+        "value": 175.00000000000162,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|rms": {
+        "value": 175.00000000000162,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|minimum": {
+        "value": 174.9999999999187,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|maximum": {
+        "value": 175.0000000001471,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:7:V|dark|ripple": {
+        "value": 2.283968569827266e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:bench:Vrail:A|dark|mean": {
+        "value": -0.017071571158453456,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "mean"
+      },
+      "k7222-11:bench:Vrail:A|dark|rms": {
+        "value": 0.017071571158453456,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "rms"
+      },
+      "k7222-11:bench:Vrail:A|dark|minimum": {
+        "value": -0.0170715711584709,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:bench:Vrail:A|dark|maximum": {
+        "value": -0.01707157115844012,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:bench:Vrail:A|dark|ripple": {
+        "value": 3.0780933357732465e-14,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|mean": {
+        "value": 40.96474707807719,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|rms": {
+        "value": 40.964747087389654,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|minimum": {
+        "value": 40.96384951765923,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|maximum": {
+        "value": 40.96709121246515,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:9:V|bright|ripple": {
+        "value": 0.0032416948059221795,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|mean": {
+        "value": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|rms": {
+        "value": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|minimum": {
+        "value": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|maximum": {
+        "value": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:5:V|bright|ripple": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|mean": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|rms": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|minimum": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|maximum": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:7:V|bright|ripple": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:V1:V|bright|mean": {
+        "value": 12.644307877466286,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:V1:V|bright|rms": {
+        "value": 12.644307889908035,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:V1:V|bright|minimum": {
+        "value": 12.64373149001035,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:V1:V|bright|maximum": {
+        "value": 12.6458132130441,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:V1:V|bright|ripple": {
+        "value": 0.0020817230337506487,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|mean": {
+        "value": 12.039936521803476,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|rms": {
+        "value": 12.03993653478517,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|minimum": {
+        "value": 12.03936200323704,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|maximum": {
+        "value": 12.04143697672073,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:2:V|bright|ripple": {
+        "value": 0.0020749734836904565,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|mean": {
+        "value": -25.000000000000433,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|rms": {
+        "value": 25.000000000000433,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|minimum": {
+        "value": -25.00000000003795,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|maximum": {
+        "value": -24.99999999995121,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:5:V|bright|ripple": {
+        "value": 8.673950446791423e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|mean": {
+        "value": 350.00000000000256,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|rms": {
+        "value": 350.00000000000256,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|minimum": {
+        "value": 349.9999999998374,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|maximum": {
+        "value": 350.0000000005313,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:6:V|bright|ripple": {
+        "value": 6.938876140338834e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|mean": {
+        "value": 175.00000000000128,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|rms": {
+        "value": 175.00000000000128,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|minimum": {
+        "value": 174.9999999999187,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|maximum": {
+        "value": 175.0000000002656,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:7:V|bright|ripple": {
+        "value": 3.468869635980809e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:bench:Vrail:A|bright|mean": {
+        "value": -0.07021016037733471,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "mean"
+      },
+      "k7222-11:bench:Vrail:A|bright|rms": {
+        "value": 0.0702384075281576,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "rms"
+      },
+      "k7222-11:bench:Vrail:A|bright|minimum": {
+        "value": -0.07225687501116014,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:bench:Vrail:A|bright|maximum": {
+        "value": -0.06486481067163875,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:bench:Vrail:A|bright|ripple": {
+        "value": 0.007392064339521387,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|mean": {
+        "value": 40.99040844909187,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|rms": {
+        "value": 40.99040845841237,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|minimum": {
+        "value": 40.98806268718766,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|maximum": {
+        "value": 40.99130673953967,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-dark|ripple": {
+        "value": 0.003244052352009419,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|mean": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|rms": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|minimum": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|maximum": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-dark|ripple": {
+        "value": 0.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|mean": {
+        "value": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|rms": {
+        "value": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|minimum": {
+        "value": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|maximum": {
+        "value": 5.000000000016263,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-dark|ripple": {
+        "value": 2.1684876116978558e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|mean": {
+        "value": 34.332670543655254,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|rms": {
+        "value": 34.332670551416186,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|minimum": {
+        "value": 34.33071151912563,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|maximum": {
+        "value": 34.33342068788898,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:V1:V|normal-dark|ripple": {
+        "value": 0.0027091687633529205,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|mean": {
+        "value": 33.67731022360343,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|rms": {
+        "value": 33.6773102314968,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|minimum": {
+        "value": 33.67535350280971,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|maximum": {
+        "value": 33.67805948584041,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-dark|ripple": {
+        "value": 0.0027059830306939148,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|mean": {
+        "value": -25.000000000000046,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|rms": {
+        "value": 25.000000000000043,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|minimum": {
+        "value": -25.00000000003795,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|maximum": {
+        "value": -24.99999999995121,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-dark|ripple": {
+        "value": 8.673950446791423e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|mean": {
+        "value": 349.9999999999984,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|rms": {
+        "value": 349.99999999999835,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|minimum": {
+        "value": 349.9999999991435,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|maximum": {
+        "value": 350.0000000005313,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-dark|ripple": {
+        "value": 1.3878320714866277e-09,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|mean": {
+        "value": 174.99999999999915,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|rms": {
+        "value": 174.99999999999915,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|minimum": {
+        "value": 174.9999999995717,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|maximum": {
+        "value": 175.0000000002656,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-dark|ripple": {
+        "value": 6.938876140338834e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|mean": {
+        "value": -0.019478994486928684,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "mean"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|rms": {
+        "value": 0.019580711152859306,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "rms"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|minimum": {
+        "value": -0.024827949928231653,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "minimum"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|maximum": {
+        "value": -0.01743065580503249,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "maximum"
+      },
+      "k7222-11:bench:Vrail:A|normal-dark|ripple": {
+        "value": 0.007397294123199165,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-dark",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|mean": {
+        "value": 40.96474491988356,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|rms": {
+        "value": 40.96474492915795,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|minimum": {
+        "value": 40.96384919584263,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|maximum": {
+        "value": 40.96708425813484,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:9:V|normal-bright|ripple": {
+        "value": 0.003235062292212376,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:9:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|mean": {
+        "value": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|rms": {
+        "value": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|minimum": {
+        "value": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|maximum": {
+        "value": 5.000000000016263,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:5:V|normal-bright|ripple": {
+        "value": 2.1684876116978558e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:5:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|mean": {
+        "value": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|rms": {
+        "value": 5.0,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|minimum": {
+        "value": 4.999999999994579,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|maximum": {
+        "value": 5.000000000016263,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X1:7:V|normal-bright|ripple": {
+        "value": 2.1684876116978558e-11,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X1:7:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|mean": {
+        "value": 12.644306495129653,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|rms": {
+        "value": 12.644306507520628,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|minimum": {
+        "value": 12.64373128490831,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|maximum": {
+        "value": 12.645808756009712,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:V1:V|normal-bright|ripple": {
+        "value": 0.0020774711014031055,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:V1:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|mean": {
+        "value": 12.039935144054962,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|rms": {
+        "value": 12.039935156983685,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|minimum": {
+        "value": 12.03936179881361,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|maximum": {
+        "value": 12.041432534435891,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:2:V|normal-bright|ripple": {
+        "value": 0.0020707356222811057,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:2:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|mean": {
+        "value": -24.999999999999957,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|rms": {
+        "value": 24.999999999999957,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|minimum": {
+        "value": -25.00000000003795,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|maximum": {
+        "value": -24.99999999986447,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:5:V|normal-bright|ripple": {
+        "value": 1.7347900893582846e-10,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:5:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|mean": {
+        "value": 349.99999999999557,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|rms": {
+        "value": 349.99999999999557,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|minimum": {
+        "value": 349.9999999991435,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|maximum": {
+        "value": 350.000000001919,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:6:V|normal-bright|ripple": {
+        "value": 2.775493612716673e-09,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:6:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|mean": {
+        "value": 174.99999999999775,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|rms": {
+        "value": 174.99999999999775,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|minimum": {
+        "value": 174.9999999995717,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|maximum": {
+        "value": 175.0000000009595,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:012-6891:X2:7:V|normal-bright|ripple": {
+        "value": 1.3877752280677669e-09,
+        "unit": "V",
+        "probe_id": "k7222-11:012-6891:X2:7:V",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|mean": {
+        "value": -0.07021508172746631,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "mean"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|rms": {
+        "value": 0.07024321146272508,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "rms"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|minimum": {
+        "value": -0.07225760883429425,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "minimum"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|maximum": {
+        "value": -0.06488066848089531,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "maximum"
+      },
+      "k7222-11:bench:Vrail:A|normal-bright|ripple": {
+        "value": 0.007376940353398934,
+        "unit": "A",
+        "probe_id": "k7222-11:bench:Vrail:A",
+        "window": "normal-bright",
+        "statistic": "ripple"
+      }
+    },
+    "replay": "video-gain.mcrt",
+    "conditions": {
+      "format": "dac-monitor-scenario-v1",
+      "id": "nominal",
+      "model_id": "k7222-11-neck-diagnostic",
+      "name": "Nominal neck bench",
+      "parameters": {},
+      "start": 0,
+      "stop": 0.0004,
+      "step": 1e-07,
+      "feature_windows": [
+        {
+          "id": "dark",
+          "start": 2.5e-05,
+          "stop": 7.5e-05
+        },
+        {
+          "id": "bright",
+          "start": 0.000125,
+          "stop": 0.000175
+        },
+        {
+          "id": "normal-dark",
+          "start": 0.000225,
+          "stop": 0.000275
+        },
+        {
+          "id": "normal-bright",
+          "start": 0.000325,
+          "stop": 0.000375
+        }
+      ],
+      "conditions": "External neck connector supplies; periodic VIDEO/INTENS test pattern; constant tube-current load; no historical converter or synchronization stage."
+    },
+    "coverage": {
+      "inventoried": 260,
+      "boards": {
+        "012-6921": 113,
+        "012-6931": 128,
+        "012-6891": 19
+      },
+      "connected": 19,
+      "missing": [
+        "012-6921:A1",
+        "012-6921:C1",
+        "012-6921:C10",
+        "012-6921:C11",
+        "012-6921:C12",
+        "012-6921:C13",
+        "012-6921:C14",
+        "012-6921:C15",
+        "012-6921:C16",
+        "012-6921:C17",
+        "012-6921:C18",
+        "012-6921:C19:1",
+        "012-6921:C19:2",
+        "012-6921:C20",
+        "012-6921:C21",
+        "012-6921:C22",
+        "012-6921:C23",
+        "012-6921:C24",
+        "012-6921:C25",
+        "012-6921:C26",
+        "012-6921:C27",
+        "012-6921:C2:1",
+        "012-6921:C2:2",
+        "012-6921:C3",
+        "012-6921:C30",
+        "012-6921:C31",
+        "012-6921:C32",
+        "012-6921:C33",
+        "012-6921:C34",
+        "012-6921:C4",
+        "012-6921:C5",
+        "012-6921:C6",
+        "012-6921:C7",
+        "012-6921:C8",
+        "012-6921:C9",
+        "012-6921:L1",
+        "012-6921:L3",
+        "012-6921:L4:1",
+        "012-6921:L4:2",
+        "012-6921:L4:3",
+        "012-6921:R1",
+        "012-6921:R10",
+        "012-6921:R11:1",
+        "012-6921:R11:2",
+        "012-6921:R12",
+        "012-6921:R13",
+        "012-6921:R14",
+        "012-6921:R15",
+        "012-6921:R16",
+        "012-6921:R17",
+        "012-6921:R18",
+        "012-6921:R19",
+        "012-6921:R2",
+        "012-6921:R20",
+        "012-6921:R21",
+        "012-6921:R22",
+        "012-6921:R23",
+        "012-6921:R24",
+        "012-6921:R25",
+        "012-6921:R26",
+        "012-6921:R27",
+        "012-6921:R28",
+        "012-6921:R29",
+        "012-6921:R3",
+        "012-6921:R30",
+        "012-6921:R31",
+        "012-6921:R32",
+        "012-6921:R33",
+        "012-6921:R34",
+        "012-6921:R35",
+        "012-6921:R36",
+        "012-6921:R37",
+        "012-6921:R38",
+        "012-6921:R39",
+        "012-6921:R4",
+        "012-6921:R40",
+        "012-6921:R41",
+        "012-6921:R42",
+        "012-6921:R5",
+        "012-6921:R6",
+        "012-6921:R7",
+        "012-6921:R8:1",
+        "012-6921:R8:2",
+        "012-6921:R8:3",
+        "012-6921:R9:1",
+        "012-6921:R9:2",
+        "012-6921:R9:3",
+        "012-6921:T1",
+        "012-6921:T2",
+        "012-6921:T3",
+        "012-6921:V1",
+        "012-6921:V10",
+        "012-6921:V11",
+        "012-6921:V12",
+        "012-6921:V13",
+        "012-6921:V14",
+        "012-6921:V15",
+        "012-6921:V16",
+        "012-6921:V17",
+        "012-6921:V18",
+        "012-6921:V19",
+        "012-6921:V2",
+        "012-6921:V20",
+        "012-6921:V21",
+        "012-6921:V3",
+        "012-6921:V4",
+        "012-6921:V5",
+        "012-6921:V6",
+        "012-6921:V7:1",
+        "012-6921:V7:2",
+        "012-6921:V7:3",
+        "012-6921:V8",
+        "012-6921:V9",
+        "012-6931:A1",
+        "012-6931:A2",
+        "012-6931:A3",
+        "012-6931:C1",
+        "012-6931:C10",
+        "012-6931:C11",
+        "012-6931:C12",
+        "012-6931:C13",
+        "012-6931:C14",
+        "012-6931:C15",
+        "012-6931:C16",
+        "012-6931:C17",
+        "012-6931:C18",
+        "012-6931:C19",
+        "012-6931:C2",
+        "012-6931:C20",
+        "012-6931:C21",
+        "012-6931:C22",
+        "012-6931:C23",
+        "012-6931:C24",
+        "012-6931:C25",
+        "012-6931:C26",
+        "012-6931:C27",
+        "012-6931:C28",
+        "012-6931:C3",
+        "012-6931:C4",
+        "012-6931:C5",
+        "012-6931:C6",
+        "012-6931:C7",
+        "012-6931:C8",
+        "012-6931:C9",
+        "012-6931:F1",
+        "012-6931:L1",
+        "012-6931:L2",
+        "012-6931:L3",
+        "012-6931:L4",
+        "012-6931:L5",
+        "012-6931:L6",
+        "012-6931:R1",
+        "012-6931:R10",
+        "012-6931:R11",
+        "012-6931:R12",
+        "012-6931:R13",
+        "012-6931:R14",
+        "012-6931:R15",
+        "012-6931:R16",
+        "012-6931:R17",
+        "012-6931:R18",
+        "012-6931:R19",
+        "012-6931:R2",
+        "012-6931:R20",
+        "012-6931:R21",
+        "012-6931:R22",
+        "012-6931:R23",
+        "012-6931:R24",
+        "012-6931:R25",
+        "012-6931:R26",
+        "012-6931:R27",
+        "012-6931:R28",
+        "012-6931:R29",
+        "012-6931:R3",
+        "012-6931:R30",
+        "012-6931:R31",
+        "012-6931:R32",
+        "012-6931:R33",
+        "012-6931:R34",
+        "012-6931:R35",
+        "012-6931:R36",
+        "012-6931:R37",
+        "012-6931:R38",
+        "012-6931:R39",
+        "012-6931:R4",
+        "012-6931:R40",
+        "012-6931:R41",
+        "012-6931:R42",
+        "012-6931:R43",
+        "012-6931:R44",
+        "012-6931:R45",
+        "012-6931:R46",
+        "012-6931:R47",
+        "012-6931:R48",
+        "012-6931:R49",
+        "012-6931:R5",
+        "012-6931:R50",
+        "012-6931:R51",
+        "012-6931:R52",
+        "012-6931:R53",
+        "012-6931:R54",
+        "012-6931:R55",
+        "012-6931:R56",
+        "012-6931:R57",
+        "012-6931:R58",
+        "012-6931:R59",
+        "012-6931:R6",
+        "012-6931:R60",
+        "012-6931:R61",
+        "012-6931:R7",
+        "012-6931:R8",
+        "012-6931:R9",
+        "012-6931:T1",
+        "012-6931:V1",
+        "012-6931:V10",
+        "012-6931:V11",
+        "012-6931:V12",
+        "012-6931:V13",
+        "012-6931:V14",
+        "012-6931:V15",
+        "012-6931:V16",
+        "012-6931:V17",
+        "012-6931:V18",
+        "012-6931:V19",
+        "012-6931:V2",
+        "012-6931:V20",
+        "012-6931:V21",
+        "012-6931:V22",
+        "012-6931:V23",
+        "012-6931:V24",
+        "012-6931:V25",
+        "012-6931:V26",
+        "012-6931:V27",
+        "012-6931:V28",
+        "012-6931:V3",
+        "012-6931:V4",
+        "012-6931:V5",
+        "012-6931:V6",
+        "012-6931:V7",
+        "012-6931:V8",
+        "012-6931:V9"
+      ],
+      "unresolved": [
+        "012-6921:A1",
+        "012-6921:L4:1",
+        "012-6921:L4:2",
+        "012-6921:L4:3",
+        "012-6921:T1",
+        "012-6921:T2",
+        "012-6921:L1",
+        "012-6921:L3",
+        "012-6921:V1",
+        "012-6921:V5",
+        "012-6921:V6",
+        "012-6921:V19",
+        "012-6921:V20",
+        "012-6921:V10",
+        "012-6921:V12",
+        "012-6921:V13",
+        "012-6921:V2",
+        "012-6921:V3",
+        "012-6921:V7:1",
+        "012-6921:V7:2",
+        "012-6921:V7:3",
+        "012-6921:V8",
+        "012-6921:V9",
+        "012-6921:V11",
+        "012-6921:V14",
+        "012-6921:V15",
+        "012-6921:V17",
+        "012-6921:V16",
+        "012-6921:V4",
+        "012-6921:V18",
+        "012-6921:V21",
+        "012-6921:T3",
+        "012-6921:R41",
+        "012-6931:C6",
+        "012-6931:A1",
+        "012-6931:A2",
+        "012-6931:A3",
+        "012-6931:L1",
+        "012-6931:L2",
+        "012-6931:L3",
+        "012-6931:T1",
+        "012-6931:V1",
+        "012-6931:V6",
+        "012-6931:V12",
+        "012-6931:V14",
+        "012-6931:V16",
+        "012-6931:V17",
+        "012-6931:V19",
+        "012-6931:V20",
+        "012-6931:V21",
+        "012-6931:V22",
+        "012-6931:V23",
+        "012-6931:V24",
+        "012-6931:V25",
+        "012-6931:V3",
+        "012-6931:V15",
+        "012-6931:V2",
+        "012-6931:V5",
+        "012-6931:V11",
+        "012-6931:V13",
+        "012-6931:V26",
+        "012-6931:V4",
+        "012-6931:V10",
+        "012-6931:V18",
+        "012-6931:V7",
+        "012-6931:V8",
+        "012-6931:V9",
+        "012-6931:V27",
+        "012-6931:V28",
+        "012-6891:C2",
+        "012-6891:V1",
+        "012-6891:V2:1",
+        "012-6891:V2:2",
+        "012-6891:V2:3",
+        "012-6891:V2:4",
+        "012-6891:V2:5",
+        "012-6891:V2:6"
+      ],
+      "full_monitor_qualified": false,
+      "remaining_gates": [
+        "complete assembly connectivity",
+        "all device and magnetic models",
+        "free-running oscillation and sync lock",
+        "loaded supplies and thermal lifecycle",
+        "electron optics convergence",
+        "service observations and held-out scenarios"
+      ]
+    },
+    "model_hashes": {
+      "schematic": "2c0daaa5226c9f450a963e5ee8ddb6533dc4b242373a97187f72db8912b6b5b7",
+      "models": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
+      "bench": "106c7ce995443a0269f53d629863ce688ef3bffc7b493b854ba9db47fdc21a6e",
+      "inventory": "7dcc786b4da0939e1abd42956719d400a68f9025e13d184f59e29336cae48cf8",
+      "profile": "1922dda77dfa1246063ad6b05078e8a895f2ee803b50f6c3b36f9d331eb70e57",
+      "runner": "4824bf98bfe327996a2ac24a2a718c9036cf76770645a60a277c30f91882e776",
+      "lab": "351c5db22eec76d9d171068d5d451732077bb38d5e5801c35aaea51933bb2e1f",
+      "optics": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
+      "sources": "bc53d06ee96409228cacfeca19125a4f24b3bc9ca10228f7fd880995cd18ab61",
+      "faults": "448f88df95ceebf7f10f734eb437b688eac49757a1bd7bfe26eb3377402ab864",
+      "scenario": "d8efc6e3509c03cf056491bd55a1b68e7c5fac4df0c14fa9bbc916a951364a5c",
+      "fault": "e89ad348f767e8f732d22d5dc2c7c5d02f8553e72bfb28dc28169c41ce9b8300",
+      "component_factors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "deck": "f9943ea152eb94f4dae3ab03de79f226fcab2331e2d043d4fa41a7a2e25810d0"
+    },
+    "similar_faults": [
+      "nominal",
+      "bypass-loss",
+      "bypass-esr",
+      "speedup-loss",
+      "speedup-esr"
+    ],
+    "distinguishing_observations": [
+      {
+        "other": "pullup-drift",
+        "features": [
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|maximum",
+            "gap": 0.004443492891076928,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|mean",
+            "gap": 0.004380660707787309,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|minimum",
+            "gap": 0.004335992719927018,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|rms",
+            "gap": 0.004380661333771019,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|maximum",
+            "gap": 1.8729045211863387,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|mean",
+            "gap": 1.8729045211847293,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|minimum",
+            "gap": 1.872904521164152,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|rms",
+            "gap": 1.8729045211847257,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-bright|maximum",
+            "gap": 0.021295380840654077,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-bright|mean",
+            "gap": 0.021198991405436463,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-bright|minimum",
+            "gap": 0.021130497362281564,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-bright|rms",
+            "gap": 0.02119899281484461,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|maximum",
+            "gap": 1.876491724793489,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|mean",
+            "gap": 1.8792093119110724,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|minimum",
+            "gap": 1.8831699791125693,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|rms",
+            "gap": 1.879209251598791,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|maximum",
+            "gap": 1.7107282439964173,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|mean",
+            "gap": 1.7107282440159537,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|minimum",
+            "gap": 1.7107282440357992,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|rms",
+            "gap": 1.7107282440159466,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|maximum",
+            "gap": 1.7204957124027587,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|mean",
+            "gap": 1.729905039030978,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|minimum",
+            "gap": 1.7536138953469518,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|rms",
+            "gap": 1.7299038620661378,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|maximum",
+            "gap": 0.00037844446888733035,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|mean",
+            "gap": 0.0003784444688860779,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|minimum",
+            "gap": 0.00037844446889765196,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|rms",
+            "gap": 0.00037844446888608135,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          }
+        ]
+      },
+      {
+        "other": "bypass-leak",
+        "features": [
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|maximum",
+            "gap": 0.3518232469403274,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|mean",
+            "gap": 0.3554521734272009,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|minimum",
+            "gap": 0.3561007940820962,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|rms",
+            "gap": 0.3554120105075822,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|maximum",
+            "gap": 0.38741803021973353,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|mean",
+            "gap": 0.38741803021998844,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|minimum",
+            "gap": 0.3874180302200424,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|rms",
+            "gap": 0.38741803021998844,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|maximum",
+            "gap": 0.35764892821228234,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|mean",
+            "gap": 0.3597668050210675,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|minimum",
+            "gap": 0.35920040881481574,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|rms",
+            "gap": 0.3597207492702694,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|maximum",
+            "gap": 0.37551954536702326,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|mean",
+            "gap": 0.36426358717636553,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|minimum",
+            "gap": 0.34674974644259005,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|rms",
+            "gap": 0.36341634801180567,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          }
+        ]
+      },
+      {
+        "other": "video-base-open",
+        "features": [
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|maximum",
+            "gap": 8.088643356206845,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|mean",
+            "gap": 8.090997508499562,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|minimum",
+            "gap": 8.092636893292248,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|rms",
+            "gap": 8.090997482070158,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-bright|maximum",
+            "gap": 8.089240485178834,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-bright|mean",
+            "gap": 8.09136036278258,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-bright|minimum",
+            "gap": 8.092836607155625,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-bright|rms",
+            "gap": 8.091360341351297,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|bright|maximum",
+            "gap": 7.636703424115339,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|bright|mean",
+            "gap": 7.639050011174376,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|bright|minimum",
+            "gap": 7.6406841279387905,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|bright|rms",
+            "gap": 7.639049984489688,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-bright|maximum",
+            "gap": 7.63729863439988,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-bright|mean",
+            "gap": 7.639411699372573,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-bright|minimum",
+            "gap": 7.640883199906501,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-bright|rms",
+            "gap": 7.639411677734277,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|maximum",
+            "gap": 0.015291461477228405,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|mean",
+            "gap": 0.01818072687511803,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|minimum",
+            "gap": 0.02019265911297176,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|ripple",
+            "gap": 0.00043300001201345903,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|rms",
+            "gap": 0.01820764452616852,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|maximum",
+            "gap": 0.016024295755791607,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|mean",
+            "gap": 0.01862604480177856,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|minimum",
+            "gap": 0.020437760887923474,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|ripple",
+            "gap": 0.00043126753172663054,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|rms",
+            "gap": 0.018647609870581942,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|ripple",
+            "gap": 0.0004314373027661002,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          }
+        ]
+      },
+      {
+        "other": "intensity-open",
+        "features": [
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-bright|maximum",
+            "gap": 3.7079966370696877,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-bright|mean",
+            "gap": 3.707916541961966,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-bright|minimum",
+            "gap": 3.707853626112033,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-bright|rms",
+            "gap": 3.7079165421727094,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          }
+        ]
+      },
+      {
+        "other": "intensity-short",
+        "features": [
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|maximum",
+            "gap": 0.024297681706173302,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|mean",
+            "gap": 0.02423411114853613,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|minimum",
+            "gap": 0.024188890478926695,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|bright|rms",
+            "gap": 0.024234111774666722,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|maximum",
+            "gap": 30.69916292329268,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|mean",
+            "gap": 30.699162923269302,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|minimum",
+            "gap": 30.699162923231217,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|rms",
+            "gap": 30.699162923269302,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|maximum",
+            "gap": 25.81706115610605,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|mean",
+            "gap": 25.817021466544794,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|minimum",
+            "gap": 25.81706387316737,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|rms",
+            "gap": 25.8170214665179,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|bright|maximum",
+            "gap": 0.3585185200403573,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|bright|mean",
+            "gap": 0.3584605592293647,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|bright|minimum",
+            "gap": 0.3584193349337617,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|bright|rms",
+            "gap": 0.35846056029665785,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|maximum",
+            "gap": 31.882382607768214,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|mean",
+            "gap": 31.88238260774695,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|minimum",
+            "gap": 31.88238260772488,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|rms",
+            "gap": 31.88238260774695,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|maximum",
+            "gap": 26.882464319022525,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|mean",
+            "gap": 26.8824008827858,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|minimum",
+            "gap": 26.882394797055426,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|rms",
+            "gap": 26.882400882788122,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|maximum",
+            "gap": 0.0772151068445685,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|mean",
+            "gap": 0.07721510684459071,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|minimum",
+            "gap": 0.07721510684464322,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|rms",
+            "gap": 0.07721510684459071,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|maximum",
+            "gap": 0.055398876974170785,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|mean",
+            "gap": 0.04374774304955089,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|minimum",
+            "gap": 0.026007765039371356,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|rms",
+            "gap": 0.04290044388558282,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          }
+        ]
+      },
+      {
+        "other": "clamp-short",
+        "features": [
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|maximum",
+            "gap": 30.94180717465901,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|mean",
+            "gap": 30.94180717463598,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|minimum",
+            "gap": 30.94180717459855,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|dark|rms",
+            "gap": 30.94180717463598,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|maximum",
+            "gap": 30.940888800453944,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|mean",
+            "gap": 30.94082530379994,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|minimum",
+            "gap": 30.940819214370656,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:V1:V|normal-dark|rms",
+            "gap": 30.940825303802207,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:V1:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|maximum",
+            "gap": 30.96028371273549,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|mean",
+            "gap": 30.960283712715427,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|minimum",
+            "gap": 30.96028371269464,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|dark|rms",
+            "gap": 30.960283712715427,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|maximum",
+            "gap": 27.24734660034556,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|mean",
+            "gap": 27.24728316406092,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|minimum",
+            "gap": 27.24727707824175,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:012-6891:X2:2:V|normal-dark|rms",
+            "gap": 27.247283164063244,
+            "unit": "V",
+            "probe_id": "k7222-11:012-6891:X2:2:V"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|bright|ripple",
+            "gap": 0.00041650943285104214,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|maximum",
+            "gap": 0.07648776392087518,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|mean",
+            "gap": 0.07648776392089061,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|minimum",
+            "gap": 0.07648776392095039,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|rms",
+            "gap": 0.07648776392089063,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-bright|ripple",
+            "gap": 0.00041510097034019866,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|maximum",
+            "gap": 0.06514326128858956,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|mean",
+            "gap": 0.05340931343800107,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|minimum",
+            "gap": 0.03562336342716871,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|ripple",
+            "gap": 0.00042511774560581583,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|normal-dark|rms",
+            "gap": 0.0525620044039234,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          }
+        ]
+      },
+      {
+        "other": "tail-drift",
+        "features": [
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|maximum",
+            "gap": 0.004802386061200101,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|mean",
+            "gap": 0.004802386061207531,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|minimum",
+            "gap": 0.004802386061218031,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          },
+          {
+            "feature": "k7222-11:bench:Vrail:A|dark|rms",
+            "gap": 0.004802386061207533,
+            "unit": "A",
+            "probe_id": "k7222-11:bench:Vrail:A"
+          }
+        ]
+      }
+    ]
+  }
+}

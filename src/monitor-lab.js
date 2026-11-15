@@ -1,5 +1,5 @@
 import './monitor-lab.css';
-import {MAX_BYTES,readReplay,sampleAt,frameAt} from './monitor-replay.js';
+import {MAX_BYTES,readReplay,sampleAt,frameAt,matchingProbe} from './monitor-replay.js';
 
 const $=id=>document.getElementById(id);
 let replay=null, comparison=null, time=0, playing=false, last=0, loadGeneration=0, compareGeneration=0;
@@ -36,8 +36,7 @@ function cutaway(row){
 function waveform(field){
   const canvas=$('waveform'),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
   ctx.clearRect(0,0,w,h);let low=Infinity,high=-Infinity;
-  const probe=replay.trace.fields[field];
-  const records=[replay,comparison].filter(Boolean).map(r=>({r,index:r.trace.fields.findIndex(f=>f.name===probe.name && f.unit===probe.unit)})).filter(item=>item.index>0);
+  const records=[replay,comparison].filter(Boolean).map(r=>({r,index:matchingProbe(replay,r,field)})).filter(item=>item.index>0);
   for(const {r,index} of records)for(let i=index;i<r.trace.values.length;i+=r.trace.stride){low=Math.min(low,r.trace.values[i]);high=Math.max(high,r.trace.values[i]);}
   if(high-low<1e-12){low-=1;high+=1;}
   const first=Math.min(...records.map(({r})=>r.start)),last=Math.max(...records.map(({r})=>r.end)),total=last-first;
@@ -81,7 +80,7 @@ function install(recording){
   $('recording-name').textContent=recording.meta.name;
   $('line').disabled=$('frame').disabled=recording.meta.version!==1;
   $('limitations').replaceChildren(...recording.meta.limitations.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
-  $('provenance').textContent=JSON.stringify({source:recording.meta.source,qualification:recording.meta.qualification,hashes:recording.meta.hashes,input:recording.meta.input,changes:recording.meta.changes,solver:recording.meta.solver,energy:recording.meta.energy,coverage:recording.meta.coverage,uncertainty:recording.meta.uncertainty,parameters:recording.meta.parameters,source_pages:recording.meta.source_pages},null,2);
+  $('provenance').textContent=JSON.stringify({source:recording.meta.source,qualification:recording.meta.qualification,hashes:recording.meta.hashes,input:recording.meta.input,changes:recording.meta.changes,solver:recording.meta.solver,energy:recording.meta.energy,coverage:recording.meta.coverage,uncertainty:recording.meta.uncertainty,parameters:recording.meta.parameters,source_pages:recording.meta.source_pages,fault:recording.meta.fault,scenario:recording.meta.scenario,component_factors:recording.meta.component_factors},null,2);
   $('components').replaceChildren(...recording.meta.components.map(c=>{const tr=document.createElement('tr');for(const text of [c.source_id||c.reference,c.nodes.join(' → '),c.value]){const td=document.createElement('td');td.textContent=text;tr.append(td);}return tr;}));
   status(`${recording.trace.rows.toLocaleString()} electrical samples · ${(recording.meta.duration*1000).toFixed(2)} ms recorded · ${recording.meta.qualification}`);render();
 }

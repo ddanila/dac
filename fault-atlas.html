@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#15201d"><title>Monitor fault atlas · DAC</title></head>
+<body>
+<header><a href="./monitor.html">← Monitor lab</a><span>DAC / FAULT ATLAS</span><a href="https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-monitor">Circuit sources ↗</a></header>
+<main>
+  <section class="intro"><p class="eyebrow">K7222.11 / .21 · DEVELOPMENT BENCH</p><h1>When a part changes.</h1><p>Explore how individual faults affect the modeled neck circuit. Compare electrical recordings, inspect the assumptions, and see which faults remain indistinguishable.</p></section>
+  <aside class="evidence"><strong>Simulation evidence · no hardware validation</strong><p id="scope">Loading model coverage…</p><p>These are bench predictions. The complete power, horizontal-drive and flyback circuit is still required before this atlas can support whole-monitor diagnosis.</p></aside>
+  <p id="status" role="status">Loading atlas…</p>
+  <section class="loaders" aria-label="Filter faults">
+    <label>Stage<select id="stage"><option value="">All stages</option></select></label>
+    <label>Mechanism<select id="mechanism"><option value="">All mechanisms</option></select></label>
+    <label>Electrical symptom<select id="symptom"><option value="">All symptoms</option></select></label>
+    <label>Validation<select id="validation"><option value="">All states</option></select></label>
+  </section>
+  <div class="atlas-layout">
+    <nav id="cases" aria-label="Fault cases"></nav>
+    <article id="case-detail" aria-live="polite"><h2 id="case-title">Choose a case</h2><p id="case-state"></p><p id="case-conditions"></p><p id="case-reason"></p>
+      <button id="report" disabled>Download case report</button>
+      <details id="rejected-checks" hidden><summary>Why this prediction was withheld</summary><pre id="rejection-detail"></pre></details>
+      <section id="prediction" hidden>
+        <div class="loaders"><label>Probe<select id="atlas-probe"></select></label><button id="plot-download">Download waveform SVG</button></div>
+        <p id="probe-evidence"></p><a id="probe-source" target="_blank" rel="noopener" hidden>Original schematic · page 16 ↗</a>
+        <div class="plot-scroll" tabindex="0" aria-label="Waveform; scroll horizontally on narrow screens"><svg id="plot" viewBox="0 0 900 300" role="img" aria-label="Nominal and fault electrical waveforms"></svg></div>
+        <p>Green: nominal model. Amber: selected case. Both use the same axes and nominal parameter values. Shaded windows are used for the feature comparison below.</p>
+        <h2>Sampled uncertainty</h2><p>Ranges summarize joint parameter samples, not guaranteed bounds or diagnostic probabilities. These settled windows do not qualify switching transients.</p>
+        <label>Feature<select id="statistic"><option value="mean">Mean</option><option value="rms">RMS</option><option value="minimum">Minimum</option><option value="maximum">Maximum</option><option value="ripple">Peak-to-peak</option></select></label>
+        <div class="table-scroll"><table><thead><tr><th>Window</th><th>Nominal range</th><th>Fault range</th></tr></thead><tbody id="ranges"></tbody></table></div>
+        <h2>Overlapping signatures</h2><p id="ambiguity"></p><div id="similar"></div>
+        <details><summary>Independent parameter checks</summary><p id="held-out"></p><pre id="numerical"></pre></details>
+      </section>
+      <details><summary>Source components and connectivity</summary><p>Click a net to highlight its connected parts. This is exported circuit connectivity, not a physical board layout. Terminal order follows SPICE; transistor terminals are collector, base, emitter.</p><div id="net-filter"></div><div class="table-scroll"><table><thead><tr><th>Source ID</th><th>Terminals / nets</th><th>Value / model</th></tr></thead><tbody id="atlas-components"></tbody></table></div><p id="component-note"></p></details>
+    </article>
+  </div>
+  <details><summary>Coverage, assumptions and reproducibility</summary><ul id="limitations"></ul><pre id="provenance"></pre></details>
+</main><script type="module" src="/src/fault-atlas.js"></script>
+</body></html>

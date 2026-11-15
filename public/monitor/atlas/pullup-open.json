@@ -1,0 +1,151 @@
+{
+  "atlas": "K7222.11/.21 fault atlas \u2014 development bench",
+  "revision": "k7222-11",
+  "hardware_validation": "none",
+  "limitations": [
+    "Only the 012-6891 neck board is connected; horizontal, vertical and power stages remain unimplemented.",
+    "External ideal bench supplies exercise a stage, not the complete monitor.",
+    "Device and C2 bounds are engineering assumptions, not measured confidence intervals.",
+    "No electron emission, heater dynamics or spark-gap discharge is included in this electrical stage.",
+    "External supply impedance and constant tube load are assumptions; no complete power/horizontal model.",
+    "Fault predictions have not been validated against a real monitor.",
+    "Feature windows describe settled levels. Transition-only faults may be indistinguishable in these features.",
+    "Intervals summarize sampled assumptions, not guaranteed bounds or diagnostic probabilities.",
+    "Held-out parameter cases use the same model; they are not hardware validation.",
+    "No screen symptom, automatic diagnosis or live measurement instructions are inferred."
+  ],
+  "scenario": {
+    "format": "dac-monitor-scenario-v1",
+    "id": "nominal",
+    "model_id": "k7222-11-neck-diagnostic",
+    "name": "Nominal neck bench",
+    "parameters": {},
+    "start": 0,
+    "stop": 0.0004,
+    "step": 1e-07,
+    "feature_windows": [
+      {
+        "id": "dark",
+        "start": 2.5e-05,
+        "stop": 7.5e-05
+      },
+      {
+        "id": "bright",
+        "start": 0.000125,
+        "stop": 0.000175
+      },
+      {
+        "id": "normal-dark",
+        "start": 0.000225,
+        "stop": 0.000275
+      },
+      {
+        "id": "normal-bright",
+        "start": 0.000325,
+        "stop": 0.000375
+      }
+    ],
+    "conditions": "External neck connector supplies; periodic VIDEO/INTENS test pattern; constant tube-current load; no historical converter or synchronization stage."
+  },
+  "case": {
+    "definition": {
+      "id": "pullup-open",
+      "target": "012-6891:R7",
+      "operation": "open",
+      "name": "Video pull-up open",
+      "stage": "Neck/video",
+      "symptoms": [
+        "cathode-level-change"
+      ],
+      "expected_screen_symptom": null,
+      "terminal": 1
+    },
+    "hardware_validation": "none",
+    "status": "indeterminate",
+    "validation": {
+      "definition": {
+        "id": "pullup-open",
+        "target": "012-6891:R7",
+        "operation": "open",
+        "name": "Video pull-up open",
+        "stage": "Neck/video",
+        "symptoms": [
+          "cathode-level-change"
+        ],
+        "expected_screen_symptom": null,
+        "terminal": 1
+      },
+      "status": "indeterminate",
+      "failures": [],
+      "numerical_checks": [
+        {
+          "check": "time-step",
+          "passed": true,
+          "relative_tolerance": 0.01,
+          "numerical_floors": {
+            "V": 0.001,
+            "A": 1e-07
+          },
+          "failures": []
+        },
+        {
+          "check": "regularization-0.1",
+          "passed": false,
+          "relative_tolerance": 0.01,
+          "numerical_floors": {
+            "V": 0.001,
+            "A": 1e-07
+          },
+          "failures": [
+            {
+              "feature": "k7222-11:012-6891:V1:V|dark|mean",
+              "relative_change": 0.13191321695891595,
+              "absolute_change": 0.006616455585617062
+            },
+            {
+              "feature": "k7222-11:012-6891:V1:V|dark|rms",
+              "relative_change": 0.13191321695891595,
+              "absolute_change": 0.006616455585617062
+            },
+            {
+              "feature": "k7222-11:012-6891:V1:V|dark|minimum",
+              "relative_change": 0.13191321695905467,
+              "absolute_change": 0.006616455585619109
+            },
+            {
+              "feature": "k7222-11:012-6891:V1:V|dark|maximum",
+              "relative_change": 0.13191321695898917,
+              "absolute_change": 0.006616455585626242
+            },
+            {
+              "feature": "k7222-11:012-6891:V1:V|normal-dark|ripple",
+              "relative_change": 0.08095172060099136,
+              "absolute_change": 0.001521061804983237
+            }
+          ]
+        },
+        {
+          "check": "regularization-10.0",
+          "passed": true,
+          "relative_tolerance": 0.01,
+          "numerical_floors": {
+            "V": 0.001,
+            "A": 1e-07
+          },
+          "failures": []
+        }
+      ],
+      "completed_samples": 25,
+      "required_samples": 25,
+      "source_hashes": {
+        "atlas.py": "043d1619f7580adcc273f359d04f73c4dc80d40425a9af2d6a0fee8fb666e6eb",
+        "atlas_features.py": "2bb805c3da84bd05d51507bf29f3d8ff47b241833c6d8afcdf835a9e613a4633",
+        "reference.py": "4824bf98bfe327996a2ac24a2a718c9036cf76770645a60a277c30f91882e776",
+        "faults.py": "448f88df95ceebf7f10f734eb437b688eac49757a1bd7bfe26eb3377402ab864",
+        "catalogue.json": "72dd2ff4e316abcb342443aef55be8a910cb20624a94a96ea9439bd305e0d6ac",
+        "scenarios.json": "8768d8a3c2fb818476c129ee325a08eb572c17dc8a5d7289b153ebf397acfee2"
+      }
+    },
+    "reason": "Numerical refinement failed; predictions withheld."
+  }
+}

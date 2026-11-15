@@ -44,11 +44,48 @@ and AE9VT 6802.01 yoke, without identifying the museum specimen.
 
 Version 2 recordings support named probes, source designators, parameter ranges
 and absolute-time recording windows. Electrical-only stages show no phosphor or
-beam image. Comparisons match field name and unit; fixture recordings in version
+beam image. Comparisons match model/source identity and unit; fixture recordings in version
 1 remain supported. The native field-trajectory prototype is tested separately
 and is not yet connected to museum playback. Full SP2/SP3 circuitry, shared-core
 magnetics, thermal lifecycle, connector timing verification and historical
 qualification remain unfinished.
+
+## Fault atlas
+
+The [fault atlas](../../fault-atlas.html) is a development view of the bounded
+012-6891 neck bench. It filters cases by stage, mechanism, electrical symptom
+and numerical status. Accepted cases show nominal/fault waveforms, sampled
+feature ranges, overlapping signatures and independent held-out parameter checks.
+Source designators, probe reference points and clickable net connectivity retain
+the link to the original circuit. The connectivity table is not a PCB layout.
+Simulation-only current is explicitly separated from source probe locations;
+physical access and instrument capability have not been qualified.
+
+The native generator injects one fault at a time without editing the source sheet.
+It explores healthy parameter combinations separately, and requires complete
+ensembles, timestep refinement and open/short regularization checks before
+publishing predictions. Failed, indeterminate and unsupported cases remain visible
+without waveforms. The browser verifies package checksums, bounds file sizes,
+never executes imported code, and exports JSON case reports or waveform SVGs.
+Checksums detect corruption, not authenticity. `public/monitor/atlas/manifest.json`
+records all distributed files; each case retains model hashes and conditions.
+
+**No hardware validation.** Interval overlap is not a diagnostic probability,
+and held-out combinations of the same model are not real-monitor validation.
+The current windows describe settled levels rather than switching transients.
+The external neck supply has finite assumed impedance but does not replace the
+missing converter. Full power/horizontal/flyback coverage remains the unmet first
+release gate; the package explicitly records this. No guided diagnostic ranking,
+screen-symptom prediction or live probing procedure is supplied.
+
+The retained development package was generated with native commit `126bcf0b`
+using `atlas.py --members 16 --held-out 8` and seed `722211`. It contains 12
+accepted fault predictions plus the nominal model, two numerically indeterminate
+faults, and five unsupported faults. Each accepted case completed 25 parameter
+runs (nominal, 16 training, 8 held-out) plus refinement checks. The two withheld
+cases are the pull-up open and transistor collector-emitter short. Full native
+artifacts are retained locally under `build/monitor/atlas-release-preview` in
+the emulation checkout; the museum distributes only the verified public package.
 
 ## Validation
 
