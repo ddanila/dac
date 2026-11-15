@@ -58,3 +58,41 @@ test('monitor lab loads on a narrow viewport without horizontal overflow',async(
   await expect(page.locator('#status')).toContainText('electrical samples');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
+
+test('named stage probes retain absolute time and do not invent optical data',async({page})=>{
+  await page.goto('/monitor.html');
+  await page.locator('#experiment').selectOption('neck-bench');
+  await expect(page.locator('#status')).toContainText('bounded-stage');
+  await expect(page.locator('#time')).toHaveText('0.100 ms');
+  await expect(page.locator('#visuals')).toBeHidden();
+  await expect(page.locator('#line')).toBeDisabled();
+  await expect(page.locator('#frame')).toBeDisabled();
+  await page.locator('#probe').selectOption({label:'cathode · V'});
+  await page.locator('#timeline').fill('0.00035');
+  await expect(page.locator('#probe-value')).toContainText('4.3928 V');
+  await expect(page.locator('#components')).toContainText('012-6891:V2:4');
+  await expect(page.locator('#provenance')).toContainText('assumed-bound');
+  await page.locator('#compare-replay').setInputFiles(baseline.pathname);
+  await expect(page.locator('#compare-note')).toContainText('Driven flyback');
+  await page.locator('#experiment').selectOption('baseline');
+  await expect(page.locator('#status')).toContainText('experimental-fixture');
+  await expect(page.locator('#line')).toBeEnabled();
+  await expect(page.locator('#time')).toHaveText('0.000 ms');
+});
+
+test('v2 rejects duplicate probes, invalid windows and inconsistent framing',async({page})=>{
+  await page.goto('/monitor.html');
+  const errors=await page.evaluate(async()=>{
+    const {readReplay}=await import('/src/monitor-replay.js');
+    const original=new Uint8Array(await (await fetch('/monitor/neck-bench.mcrt')).arrayBuffer());
+    const size=new DataView(original.buffer).getUint32(8,true),meta=JSON.parse(new TextDecoder().decode(original.slice(12,12+size)));
+    const mutate=async(change)=>{
+      const clone=structuredClone(meta);change(clone);
+      const json=new TextEncoder().encode(JSON.stringify(clone)),bytes=new Uint8Array(12+json.length+original.length-12-size);
+      bytes.set(original.slice(0,8));new DataView(bytes.buffer).setUint32(8,json.length,true);bytes.set(json,12);bytes.set(original.slice(12+size),12+json.length);
+      try{await readReplay(bytes.buffer);return 'accepted';}catch(e){return e.message;}
+    };
+    return [await mutate(m=>m.start_time=-1),await mutate(m=>m.end_time=20),await mutate(m=>m.chunks[0].fields[2].name=m.chunks[0].fields[1].name),await mutate(m=>m.version=1)];
+  });
+  expect(errors).toEqual(['Invalid recording window.','Invalid recording window.','Unsupported trace fields.','Unsupported replay version.']);
+});

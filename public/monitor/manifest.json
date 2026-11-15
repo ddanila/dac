@@ -1,5 +1,5 @@
 {
-  "qualification": "experimental-fixture",
+  "qualification": "experimental recordings; see each recording",
   "recordings": [
     {
       "file": "baseline.mcrt",
@@ -15,7 +15,8 @@
         "deck": "57e0977a37f2971cf71f2a16c09ea3504be77db2f6a756867fa15ee60df20b43"
       },
       "changes": {},
-      "duration": 0.01999999999999935
+      "duration": 0.01999999999999935,
+      "qualification": "experimental-fixture"
     },
     {
       "file": "vertical-collapse.mcrt",
@@ -33,7 +34,8 @@
       "changes": {
         "V3": "0"
       },
-      "duration": 0.01999999999999935
+      "duration": 0.01999999999999935,
+      "qualification": "experimental-fixture"
     },
     {
       "file": "focus.mcrt",
@@ -51,7 +53,30 @@
       "changes": {
         "R10": "40meg"
       },
-      "duration": 0.01999999999999935
+      "duration": 0.01999999999999935,
+      "qualification": "experimental-fixture"
+    },
+    {
+      "file": "neck-bench.mcrt",
+      "name": "K7222.11/.21 neck-board bench",
+      "bytes": 204669,
+      "sha256": "bfd8890ca3603502fd95000ef03e23c375a70af3a1f7871d7bd5f9a1c64b5b12",
+      "inputs": {
+        "schematic": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
+        "models": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
+        "bench": "c4077950400cd77a7259e8181eb8c50fef058006f12d0332dc8a8aa83f92bec6",
+        "inventory": "7dcc786b4da0939e1abd42956719d400a68f9025e13d184f59e29336cae48cf8",
+        "profile": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
+        "runner": "e4e03dc03b923cc0317c3774140ea804533f3a7bc60aeb7f90f44896c6e5b7dc",
+        "lab": "351c5db22eec76d9d171068d5d451732077bb38d5e5801c35aaea51933bb2e1f",
+        "optics": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
+        "sources": "bc53d06ee96409228cacfeca19125a4f24b3bc9ca10228f7fd880995cd18ab61",
+        "deck": "adb4b94b8f4c467a15b866b479aee16e1217637f72a557bb47ca71bc09b5b279"
+      },
+      "qualification": "bounded-stage",
+      "duration": 0.0003000000000000073,
+      "start_time": 0.0001,
+      "end_time": 0.0004000000000000073
     }
   ]
 }

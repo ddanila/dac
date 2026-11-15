@@ -6,7 +6,7 @@ phosphor playback, a beam side projection, electrical probes, circuit inventory,
 provenance and a comparison recording on the same simulation-time axis.
 
 **The historical monitor simulation is not complete.** Included recordings use
-an explicitly experimental driven flyback circuit. They do not emulate the full
+an explicitly experimental driven flyback circuit and a bounded neck-board bench. They do not emulate the full
 K7222 or identify the circuitry in Danila's monitor. Normal museum display still
 uses the existing emulator framebuffer and curved glass.
 
@@ -35,6 +35,20 @@ The first recordings exercise the infrastructure: baseline, removed vertical
 drive and changed focus divider. Their screen differences arise from their
 electrical results and optical parameters. None establishes historical raster
 geometry, real warm-up time, sync-lock behavior or flyback-transformer accuracy.
+
+The added K7222.11/.21 neck-board recording follows the original 012-6891
+six-diode/video/intensity circuit. Generic device parameters have explicit
+exploratory bounds; external bench supplies and a constant test load stand in
+for the missing boards and tube. The reference drawing identifies a B31G22 tube
+and AE9VT 6802.01 yoke, without identifying the museum specimen.
+
+Version 2 recordings support named probes, source designators, parameter ranges
+and absolute-time recording windows. Electrical-only stages show no phosphor or
+beam image. Comparisons match field name and unit; fixture recordings in version
+1 remain supported. The native field-trajectory prototype is tested separately
+and is not yet connected to museum playback. Full SP2/SP3 circuitry, shared-core
+magnetics, thermal lifecycle, connector timing verification and historical
+qualification remain unfinished.
 
 ## Validation
 

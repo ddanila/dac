@@ -8,9 +8,10 @@ const scratchContext=scratch.getContext('2d');
 const image=scratchContext.createImageData(160,112);
 function status(message,error=false){$('status').textContent=message;$('status').classList.toggle('error',error);}
 function stop(){playing=false;$('play').textContent='Play';}
-function setTime(value){time=Math.max(0,Math.min(replay?.meta.duration||0,value));$('timeline').value=time;render();}
+function setTime(value){time=Math.max(replay?.start||0,Math.min(replay?.end||0,value));$('timeline').value=time;render();}
 function phosphor(canvas,recording){
   const frame=frameAt(recording,time),ctx=canvas.getContext('2d');
+  if(!frame){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#a9b8a5';ctx.font='18px system-ui';ctx.fillText('Electrical stage recording · no phosphor simulation',25,canvas.height/2);return;}
   for(let i=0;i<frame.data.length;i++){
     const v=frame.data[i],j=i*4;image.data[j]=v*.52;image.data[j+1]=v;image.data[j+2]=v*.63;image.data[j+3]=255;
   }
@@ -35,22 +36,23 @@ function cutaway(row){
 function waveform(field){
   const canvas=$('waveform'),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
   ctx.clearRect(0,0,w,h);let low=Infinity,high=-Infinity;
-  const records=[replay,comparison].filter(Boolean);
-  for(const r of records)for(let i=field;i<r.trace.values.length;i+=12){low=Math.min(low,r.trace.values[i]);high=Math.max(high,r.trace.values[i]);}
+  const probe=replay.trace.fields[field];
+  const records=[replay,comparison].filter(Boolean).map(r=>({r,index:r.trace.fields.findIndex(f=>f.name===probe.name && f.unit===probe.unit)})).filter(item=>item.index>0);
+  for(const {r,index} of records)for(let i=index;i<r.trace.values.length;i+=r.trace.stride){low=Math.min(low,r.trace.values[i]);high=Math.max(high,r.trace.values[i]);}
   if(high-low<1e-12){low-=1;high+=1;}
-  const total=Math.max(...records.map(r=>r.meta.duration));
-  const duration=Math.min(total,Number($('window').value)||total),start=Math.max(0,Math.min(total-duration,time-duration/2));
+  const first=Math.min(...records.map(({r})=>r.start)),last=Math.max(...records.map(({r})=>r.end)),total=last-first;
+  const duration=Math.min(total,Number($('window').value)||total),start=Math.max(first,Math.min(last-duration,time-duration/2));
   const x=t=>45+(t-start)/duration*(w-60),y=v=>h-30-(v-low)/(high-low)*(h-60);
   ctx.strokeStyle='#263d30';ctx.lineWidth=1;
   for(let i=0;i<5;i++){const yy=30+i*(h-60)/4;ctx.beginPath();ctx.moveTo(45,yy);ctx.lineTo(w-15,yy);ctx.stroke();}
   // Min/max buckets retain narrow flyback peaks at overview resolution.
-  records.forEach((r,index)=>{
-    const values=r.trace.values;ctx.strokeStyle=index?'#dbb16c':'#addc94';ctx.lineWidth=1;ctx.beginPath();
-    let cursor=0;while(cursor<r.trace.rows && values[cursor*12]<start)cursor++;
+  records.forEach(({r,index:column},index)=>{
+    const {values,stride}=r.trace;ctx.strokeStyle=index?'#dbb16c':'#addc94';ctx.lineWidth=1;ctx.beginPath();
+    let cursor=0;while(cursor<r.trace.rows && values[cursor*stride]<start)cursor++;
     for(let px=0;px<w-60;px++){
       let minimum=Infinity,maximum=-Infinity;
-      while(cursor<r.trace.rows && values[cursor*12]<=start+duration*(px+1)/(w-60)){
-        const v=values[cursor*12+field];minimum=Math.min(minimum,v);maximum=Math.max(maximum,v);cursor++;
+      while(cursor<r.trace.rows && values[cursor*stride]<=start+duration*(px+1)/(w-60)){
+        const v=values[cursor*stride+column];minimum=Math.min(minimum,v);maximum=Math.max(maximum,v);cursor++;
       }
       if(minimum!==Infinity){ctx.moveTo(px+45,y(minimum));ctx.lineTo(px+45,y(maximum)+.5);}
     }ctx.stroke();
@@ -61,20 +63,27 @@ function waveform(field){
 }
 function render(){
   if(!replay)return;
+  $('visuals').hidden=!replay.frames.length && !comparison?.frames.length;
+  $('optics-panel').hidden=replay.meta.version!==1;
+  $('phosphor').hidden=!replay.frames.length;
   $('time').textContent=`${(time*1000).toFixed(3)} ms`;
   const row=sampleAt(replay,time),field=Number($('probe').value);
   $('probe-value').textContent=`${row[field].toPrecision(5)} ${replay.trace.fields[field].unit}`;
-  phosphor($('phosphor'),replay);cutaway(row);waveform(field);
-  if(comparison){phosphor($('comparison'),comparison);$('compare-note').textContent=`Comparison: ${comparison.meta.name}${time>comparison.meta.duration?' · recording ended':''}`;}
+  phosphor($('phosphor'),replay);
+  if(replay.meta.version===1)cutaway(row);else{const ctx=$('cutaway').getContext('2d');ctx.clearRect(0,0,640,448);ctx.fillStyle='#a9b8a5';ctx.font='18px system-ui';ctx.fillText('This stage does not calculate an electron trajectory.',25,224);}
+  waveform(field);
+  if(comparison){phosphor($('comparison'),comparison);$('compare-note').textContent=`Comparison: ${comparison.meta.name}${time>comparison.end?' · recording ended':time<comparison.start?' · recording has not started':''}`;}
 }
 function install(recording){
-  replay=recording;stop();time=0;$('timeline').max=recording.meta.duration;$('timeline').value=0;
+  replay=recording;stop();time=recording.start;$('timeline').min=recording.start;$('timeline').max=recording.end;$('timeline').value=time;
+  $('probe').replaceChildren(...recording.trace.fields.flatMap((f,i)=>i && (recording.meta.version===2 || i<=7)?[new Option(`${f.name} · ${f.unit}`,String(i))]:[]));
   for(const id of ['timeline','play','line','frame'])$(id).disabled=false;
   $('recording-name').textContent=recording.meta.name;
+  $('line').disabled=$('frame').disabled=recording.meta.version!==1;
   $('limitations').replaceChildren(...recording.meta.limitations.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
-  $('provenance').textContent=JSON.stringify({source:recording.meta.source,qualification:recording.meta.qualification,hashes:recording.meta.hashes,input:recording.meta.input,changes:recording.meta.changes,solver:recording.meta.solver,energy:recording.meta.energy},null,2);
-  $('components').replaceChildren(...recording.meta.components.map(c=>{const tr=document.createElement('tr');for(const text of [c.reference,c.nodes.join(' → '),c.value]){const td=document.createElement('td');td.textContent=text;tr.append(td);}return tr;}));
-  status(`${recording.trace.rows.toLocaleString()} electrical samples · ${(recording.meta.duration*1000).toFixed(2)} ms simulated · experimental fixture`);render();
+  $('provenance').textContent=JSON.stringify({source:recording.meta.source,qualification:recording.meta.qualification,hashes:recording.meta.hashes,input:recording.meta.input,changes:recording.meta.changes,solver:recording.meta.solver,energy:recording.meta.energy,coverage:recording.meta.coverage,uncertainty:recording.meta.uncertainty,parameters:recording.meta.parameters,source_pages:recording.meta.source_pages},null,2);
+  $('components').replaceChildren(...recording.meta.components.map(c=>{const tr=document.createElement('tr');for(const text of [c.source_id||c.reference,c.nodes.join(' → '),c.value]){const td=document.createElement('td');td.textContent=text;tr.append(td);}return tr;}));
+  status(`${recording.trace.rows.toLocaleString()} electrical samples · ${(recording.meta.duration*1000).toFixed(2)} ms recorded · ${recording.meta.qualification}`);render();
 }
 async function selectExample(){
   const generation=++loadGeneration;stop();status('Loading and checking recording…');
@@ -103,12 +112,12 @@ $('experiment').addEventListener('change',selectExample);
 $('open-replay').addEventListener('change',e=>importFile(e.target,false));
 $('compare-replay').addEventListener('change',e=>importFile(e.target,true));
 $('clear-compare').addEventListener('click',()=>{compareGeneration++;comparison=null;$('comparison').hidden=true;$('clear-compare').hidden=true;$('compare-note').textContent='';render();});
-$('play').addEventListener('click',()=>{if(time>=replay.meta.duration)setTime(0);playing=!playing;last=0;$('play').textContent=playing?'Pause':'Play';});
+$('play').addEventListener('click',()=>{if(time>=replay.end)setTime(replay.start);playing=!playing;last=0;$('play').textContent=playing?'Pause':'Play';});
 $('timeline').addEventListener('input',()=>{stop();setTime(Number($('timeline').value));});
 $('line').addEventListener('click',()=>{stop();setTime(time+62.5e-6);});
 $('frame').addEventListener('click',()=>{stop();setTime(time+.019);});
 $('probe').addEventListener('change',render);
 $('window').addEventListener('change',render);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
-function tick(now){if(playing && replay){if(last)setTime(time+(now-last)/1000*Number($('speed').value));last=now;if(time>=replay.meta.duration)stop();}requestAnimationFrame(tick);}
+function tick(now){if(playing && replay){if(last)setTime(time+(now-last)/1000*Number($('speed').value));last=now;if(time>=replay.end)stop();}requestAnimationFrame(tick);}
 requestAnimationFrame(tick);selectExample();
