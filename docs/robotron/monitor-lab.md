@@ -160,3 +160,16 @@ The transformer candidate tool lists 16 relative-polarity alternatives for an
 explicitly hypothetical tap graph. They have not been evaluated in an assembled
 monitor. Neither candidate enumeration nor optical continuation establishes a
 flyback-versus-capacitor diagnosis or a verified 300-second warm-up simulation.
+
+Native firmware capture now defaults to 100 ms, and `frames.py` selects complete
+fields from BSYN while retaining the original events and pre-roll. The new
+`full_path.py` command archives this selection and the circuit audit, but currently
+stops with a blocked preflight report: it does not yet solve or render a complete
+monitor. Assembly completeness, numerical acceptance and specimen validation are
+reported separately. No additional recording is added to the museum menu.
+
+The connected vertical bench now includes the A2 integrator and V13 reset path,
+with a provisional LM723-family model. It generates a ramp from the oscillator
+pulses. C15 remains an explicitly unresolved capacitance, explored over an assumed
+range; the converter, vertical power output and yoke are still absent from this
+bench. A ramp waveform is not yet an emulated raster or a fault diagnosis.
