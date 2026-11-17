@@ -33,10 +33,15 @@ function cutaway(row){
   ctx.fillStyle='#a9b8a5';ctx.font='12px system-ui';ctx.fillText(`Landing: ${(row[8]*1000).toFixed(1)}, ${(row[9]*1000).toFixed(1)} mm`,30,390);
   if(!row[11])ctx.fillText('No in-range landing in this optical model',30,420);
 }
+const signalFields={video:['computer_video','monitor_video','receiver_video'],bsyn:['computer_bsyn','monitor_bsyn','receiver_sync'],intens:['computer_intens','monitor_intens','receiver_intens']};
+function pathFields(){return signalFields[$('signal-group').value]?.map(name=>replay.trace.fields.findIndex(f=>f.name===name&&f.unit==='V')).filter(i=>i>0)||[];}
 function waveform(field){
   const canvas=$('waveform'),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
   ctx.clearRect(0,0,w,h);let low=Infinity,high=-Infinity;
-  const records=[replay,comparison].filter(Boolean).map(r=>({r,index:matchingProbe(replay,r,field)})).filter(item=>item.index>0);
+  const selected=pathFields(),columns=selected.length?selected:[field];
+  const records=[replay,comparison].filter(Boolean).flatMap((r,record)=>columns.map((column,position)=>({r,index:matchingProbe(replay,r,column),record,position}))).filter(item=>item.index>0);
+  $('signal-legend').hidden=!selected.length;
+  $('signal-legend').textContent=selected.length?'Green: computer connector · Blue: monitor connector · Purple: receiver output. Dashed traces: comparison. Each connector voltage uses its own return reference.':'';
   for(const {r,index} of records)for(let i=index;i<r.trace.values.length;i+=r.trace.stride){low=Math.min(low,r.trace.values[i]);high=Math.max(high,r.trace.values[i]);}
   if(high-low<1e-12){low-=1;high+=1;}
   const first=Math.min(...records.map(({r})=>r.start)),last=Math.max(...records.map(({r})=>r.end)),total=last-first;
@@ -45,8 +50,8 @@ function waveform(field){
   ctx.strokeStyle='#263d30';ctx.lineWidth=1;
   for(let i=0;i<5;i++){const yy=30+i*(h-60)/4;ctx.beginPath();ctx.moveTo(45,yy);ctx.lineTo(w-15,yy);ctx.stroke();}
   // Min/max buckets retain narrow flyback peaks at overview resolution.
-  records.forEach(({r,index:column},index)=>{
-    const {values,stride}=r.trace;ctx.strokeStyle=index?'#dbb16c':'#addc94';ctx.lineWidth=1;ctx.beginPath();
+  records.forEach(({r,index:column,record,position})=>{
+    const {values,stride}=r.trace;ctx.strokeStyle=selected.length?['#addc94','#78c9e8','#d09de5'][position]:(record?'#dbb16c':'#addc94');ctx.setLineDash(record&&selected.length?[4,3]:[]);ctx.lineWidth=1;ctx.beginPath();
     let cursor=0;while(cursor<r.trace.rows && values[cursor*stride]<start)cursor++;
     for(let px=0;px<w-60;px++){
       let minimum=Infinity,maximum=-Infinity;
@@ -56,7 +61,7 @@ function waveform(field){
       if(minimum!==Infinity){ctx.moveTo(px+45,y(minimum));ctx.lineTo(px+45,y(maximum)+.5);}
     }ctx.stroke();
   });
-  ctx.strokeStyle='#f2e4bd';ctx.beginPath();ctx.moveTo(x(time),15);ctx.lineTo(x(time),h-15);ctx.stroke();
+  ctx.setLineDash([]);ctx.strokeStyle='#f2e4bd';ctx.beginPath();ctx.moveTo(x(time),15);ctx.lineTo(x(time),h-15);ctx.stroke();
   ctx.fillStyle='#c4d3bb';ctx.font='12px system-ui';ctx.fillText(high.toPrecision(4),4,18);ctx.fillText(low.toPrecision(4),4,h-8);
   ctx.fillText(`${(start*1000).toFixed(3)} ms`,70,h-8);ctx.fillText(`${((start+duration)*1000).toFixed(3)} ms`,w-100,h-8);
 }
@@ -67,20 +72,28 @@ function render(){
   $('phosphor').hidden=!replay.frames.length;
   $('time').textContent=`${(time*1000).toFixed(3)} ms`;
   const row=sampleAt(replay,time),field=Number($('probe').value);
-  $('probe-value').textContent=`${row[field].toPrecision(5)} ${replay.trace.fields[field].unit}`;
+  const selected=pathFields();
+  $('probe-value').textContent=(selected.length?selected:[field]).map(i=>`${replay.trace.fields[i].name}: ${row[i].toPrecision(5)} ${replay.trace.fields[i].unit}`).join(' · ');
+  const probes=Array.isArray(replay.meta.probes)?replay.meta.probes:[];
+  $('probe-evidence').textContent=(selected.length?selected:[field]).map(i=>{
+    const p=probes.find(p=>p&&p.name===replay.trace.fields[i].name);
+    return p&&typeof p.source_id==='string'?`${p.name}: ${p.source_id} · reference: ${typeof p.reference_point==='string'?p.reference_point:'not recorded'}`:'';
+  }).filter(Boolean).join(' | ');
   phosphor($('phosphor'),replay);
   if(replay.meta.version===1)cutaway(row);else{const ctx=$('cutaway').getContext('2d');ctx.clearRect(0,0,640,448);ctx.fillStyle='#a9b8a5';ctx.font='18px system-ui';ctx.fillText('This stage does not calculate an electron trajectory.',25,224);}
   waveform(field);
   if(comparison){phosphor($('comparison'),comparison);$('compare-note').textContent=`Comparison: ${comparison.meta.name}${time>comparison.end?' · recording ended':time<comparison.start?' · recording has not started':''}`;}
 }
 function install(recording){
-  replay=recording;stop();time=recording.start;$('timeline').min=recording.start;$('timeline').max=recording.end;$('timeline').value=time;
+  replay=recording;stop();time=recording.start;
+  const hasPath=recording.meta.model_id==='1715w-k7222-input'&&Object.values(signalFields).flat().every(name=>recording.trace.fields.some(f=>f.name===name&&f.unit==='V'));
+  $('signal-group-label').hidden=!hasPath;$('signal-group').value='';$('timeline').min=recording.start;$('timeline').max=recording.end;$('timeline').value=time;
   $('probe').replaceChildren(...recording.trace.fields.flatMap((f,i)=>i && (recording.meta.version===2 || i<=7)?[new Option(`${f.name} · ${f.unit}`,String(i))]:[]));
   for(const id of ['timeline','play','line','frame'])$(id).disabled=false;
   $('recording-name').textContent=recording.meta.name;
   $('line').disabled=$('frame').disabled=recording.meta.version!==1;
   $('limitations').replaceChildren(...recording.meta.limitations.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
-  $('provenance').textContent=JSON.stringify({source:recording.meta.source,qualification:recording.meta.qualification,hashes:recording.meta.hashes,input:recording.meta.input,changes:recording.meta.changes,solver:recording.meta.solver,energy:recording.meta.energy,coverage:recording.meta.coverage,uncertainty:recording.meta.uncertainty,parameters:recording.meta.parameters,source_pages:recording.meta.source_pages,fault:recording.meta.fault,scenario:recording.meta.scenario,component_factors:recording.meta.component_factors},null,2);
+  $('provenance').textContent=JSON.stringify({source:recording.meta.source,qualification:recording.meta.qualification,hashes:recording.meta.hashes,input:recording.meta.input,changes:recording.meta.changes,solver:recording.meta.solver,energy:recording.meta.energy,coverage:recording.meta.coverage,uncertainty:recording.meta.uncertainty,parameters:recording.meta.parameters,source_pages:recording.meta.source_pages,fault:recording.meta.fault,scenario:recording.meta.scenario,component_factors:recording.meta.component_factors,signal_case:recording.meta.signal_case,signal_metrics:recording.meta.signal_metrics,numerical_validation:recording.meta.numerical_validation},null,2);
   $('components').replaceChildren(...recording.meta.components.map(c=>{const tr=document.createElement('tr');for(const text of [c.source_id||c.reference,c.nodes.join(' → '),c.value]){const td=document.createElement('td');td.textContent=text;tr.append(td);}return tr;}));
   status(`${recording.trace.rows.toLocaleString()} electrical samples · ${(recording.meta.duration*1000).toFixed(2)} ms recorded · ${recording.meta.qualification}`);render();
 }
@@ -115,7 +128,8 @@ $('play').addEventListener('click',()=>{if(time>=replay.end)setTime(replay.start
 $('timeline').addEventListener('input',()=>{stop();setTime(Number($('timeline').value));});
 $('line').addEventListener('click',()=>{stop();setTime(time+62.5e-6);});
 $('frame').addEventListener('click',()=>{stop();setTime(time+.019);});
-$('probe').addEventListener('change',render);
+$('probe').addEventListener('change',()=>{$('signal-group').value='';render();});
+$('signal-group').addEventListener('change',render);
 $('window').addEventListener('change',render);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
 function tick(now){if(playing && replay){if(last)setTime(time+(now-last)/1000*Number($('speed').value));last=now;if(time>=replay.end)stop();}requestAnimationFrame(tick);}

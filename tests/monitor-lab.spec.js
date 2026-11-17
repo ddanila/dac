@@ -96,3 +96,32 @@ test('v2 rejects duplicate probes, invalid windows and inconsistent framing',asy
   });
   expect(errors).toEqual(['Invalid recording window.','Invalid recording window.','Unsupported trace fields.','Unsupported replay version.']);
 });
+
+test('signal path overlays connector and receiver voltages with source references',async({page})=>{
+  await page.goto('/monitor.html');
+  await page.locator('#experiment').selectOption('video-path');
+  await expect(page.locator('#status')).toContainText('bounded-stage');
+  await expect(page.locator('#visuals')).toBeHidden();
+  await expect(page.locator('#signal-group-label')).toBeVisible();
+  await page.locator('#signal-group').selectOption('video');
+  await expect(page.locator('#signal-legend')).toContainText('computer connector');
+  await expect(page.locator('#probe-evidence')).toContainText('1715w:X1:A5');
+  await expect(page.locator('#probe-evidence')).toContainText('012-6921:X9:1');
+  await expect(page.locator('#probe-evidence')).toContainText('012-6921:A1:11');
+  await expect(page.locator('#probe-value')).toContainText('computer_video:');
+  await expect(page.locator('#probe-value')).toContainText('receiver_video:');
+  await page.locator('#signal-group').selectOption('bsyn');
+  await expect(page.locator('#probe-evidence')).toContainText('1715w:X1:A3');
+  await expect(page.locator('#limitations')).toContainText('No sync-lock');
+  await page.locator('#window').selectOption('.00001');
+  await page.locator('#compare-replay').setInputFiles(new URL('../public/monitor/video-path.mcrt',import.meta.url).pathname);
+  await expect(page.locator('#status')).toContainText('Comparison loaded');
+  await expect(page.locator('#signal-legend')).toContainText('Dashed traces');
+  await page.locator('#probe').selectOption({label:'cathode · V'});
+  await expect(page.locator('#signal-group')).toHaveValue('');
+  await expect(page.locator('#signal-legend')).toBeHidden();
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.locator('#experiment').selectOption('baseline');
+  await expect(page.locator('#signal-group-label')).toBeHidden();
+});

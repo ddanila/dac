@@ -6,7 +6,7 @@ phosphor playback, a beam side projection, electrical probes, circuit inventory,
 provenance and a comparison recording on the same simulation-time axis.
 
 **The historical monitor simulation is not complete.** Included recordings use
-an explicitly experimental driven flyback circuit and a bounded neck-board bench. They do not emulate the full
+an explicitly experimental driven flyback circuit and bounded neck-board and computer-to-monitor signal benches. They do not emulate the full
 K7222 or identify the circuitry in Danila's monitor. Normal museum display still
 uses the existing emulator framebuffer and curved glass.
 
@@ -47,7 +47,7 @@ and absolute-time recording windows. Electrical-only stages show no phosphor or
 beam image. Comparisons match model/source identity and unit; fixture recordings in version
 1 remain supported. The native field-trajectory prototype is tested separately
 and is not yet connected to museum playback. Full SP2/SP3 circuitry, shared-core
-magnetics, thermal lifecycle, connector timing verification and historical
+magnetics, thermal lifecycle, physical connector calibration and historical
 qualification remain unfinished.
 
 ## Fault atlas
@@ -96,3 +96,26 @@ tests cover playback/probes, local import and comparison, corrupt/malformed
 recordings and narrow layouts. Retained replay metadata identifies generating
 code and circuit hashes. Check the core guide for the remaining qualification
 gates before expanding fidelity claims.
+
+## Computer-to-monitor waveform bench
+
+Select **Robotron video signal path** to inspect a synthetic highlight stimulus
+through the 1715W output gates, cable and K7222.11 receiver. Choose VIDEO, BSYN
+or INTENS under Signal path to overlay computer connector, monitor connector
+and receiver output; source references identify the nodes and their returns.
+Single probes include the sync filter and neck cathode. Local comparisons use
+the same time and voltage axes. This electrical bench has no screen animation.
+
+The bundled 60 µs recording passed timestep and cable-section refinement.
+[Verification results](../../monitor/video-path-verification.json) record
+all ten cases: nine accepted characterizations; stuck-intensity is withheld
+because its pulse-width change exceeded 1%. These are numerical checks, not
+physical fault validation. Generic semiconductors, cable values and omitted
+oscillator loads remain bounded assumptions. External supplies do not model
+flyback or warm-up behavior. This bench cannot diagnose the pale expanding image.
+
+Regenerate through the native `robotron-signal-pattern`, `verify_signal_path.py`
+and `export_signal_path.py` workflow. The export binds acceptance to archived
+input/deck hashes and preserves the original trace samples. The bundled artifact
+retains the exact simulation input snapshot hashes, including the source index
+as it existed when the run started.
