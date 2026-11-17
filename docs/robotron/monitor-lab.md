@@ -135,7 +135,9 @@ and an energy-accounted phosphor surface. It also exports PNG and linear optical
 power arrays. Its tube fields, phosphor efficiency and decay remain assumptions.
 Every v3 recording is labeled `experimental-optical-bench`, never a qualified
 complete-monitor simulation. Absolute timestamps do not demonstrate warm-up;
-each backend run starts with an empty phosphor surface.
+a backend run starts with an empty phosphor surface unless an explicit optical
+checkpoint is supplied. Optical checkpoints preserve phosphor excitation and
+electrons still in flight, but do not restore electrical or thermal solver state.
 
 The full power/deflection circuits, coupled CRT loading and continuous warm-up
 are still incomplete. There is no newly qualified museum screenshot from the
@@ -147,3 +149,14 @@ The signal-path recording was regenerated after correcting sync-filter V6:
 the original operating manual places its anode at V5 base and cathode toward
 R28. It supersedes the earlier reversed-diode recording; the complete ten-case
 numerical verification was repeated after the correction.
+
+
+The native stage profiles also include the connected sync filter/V5/V11 oscillator
+and the seven-component 5 V regulator. Tests check field lock, loss/reacquisition,
+load response and timestep refinement. These remain separate stage benches;
+there is no new complete-monitor recording in the menu.
+
+The transformer candidate tool lists 16 relative-polarity alternatives for an
+explicitly hypothetical tap graph. They have not been evaluated in an assembled
+monitor. Neither candidate enumeration nor optical continuation establishes a
+flyback-versus-capacitor diagnosis or a verified 300-second warm-up simulation.
