@@ -178,10 +178,30 @@ model; output-device identity and winding parameters remain uncertain. The
 height/centering controls and timestep convergence are tested, but ideal supply
 rails remain. This is not yet an emulated raster or a fault diagnosis.
 
-The source audit now covers 130 of 260 entries across seven separate sheets.
+The source audit now covers 171 of 260 entries across nine separate sheets.
 The converter review also corrects the 5 V regulator output capacitor to C5,
 1000 µF; the earlier C8/47 µF assignment and recordings are superseded. The
 manufacturer manual assigns C8 to converter soft-start. Full converter and
 horizontal/flyback assembly, loaded tube rails, settled-state iteration and
 firmware-frame rendering remain unfinished; no new full-monitor image or menu
 recording is published.
+
+
+The new input/converter bench adds F1/L3/C11, the controller, V10/V22, T1,
+feedback/soft-start and the three output rectifier/filter paths. T1's numerical
+values and relative winding signs remain hypotheses with explicit parameter
+bounds, archived alongside the generated model. A shared-flux magnetic backend
+is checked for load reflection, polarity, shorted turns, saturation, power balance
+and numerical refinement. These checks do not identify the historical transformer.
+
+Converter acceptance currently covers early startup, not settled regulation or
+horizontal synchronization. Long switching runs remain a numerical/performance
+gate. Failed and timed-out runs publish no replay; the full-path renderer still
+stops at preflight. The first full-path image requires thermal-equilibrium
+initialization and continuous electrical settling/replay; persisted warm-up
+checkpoints are deferred. No new diagnostic conclusion or full-monitor PNG is
+published by this change.
+
+Converter implementation: native commit `e7ad347f`. Verification passed all 72
+monitor tests and nine browser monitor-lab tests. These include early startup,
+not a successful long converter-startup or full-path rendering run.
