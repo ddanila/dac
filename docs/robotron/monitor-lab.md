@@ -171,5 +171,17 @@ reported separately. No additional recording is added to the museum menu.
 The connected vertical bench now includes the A2 integrator and V13 reset path,
 with a provisional LM723-family model. It generates a ramp from the oscillator
 pulses. C15 remains an explicitly unresolved capacitance, explored over an assumed
-range; the converter, vertical power output and yoke are still absent from this
-bench. A ramp waveform is not yet an emulated raster or a fault diagnosis.
+range. The newer `k7222-11-vertical-output` profile adds A3, compensation,
+complementary power output and current feedback into an assumed R/L yoke,
+replacing the dummy ramp load. A3 uses an uncalibrated LM709 transistor-family
+model; output-device identity and winding parameters remain uncertain. The
+height/centering controls and timestep convergence are tested, but ideal supply
+rails remain. This is not yet an emulated raster or a fault diagnosis.
+
+The source audit now covers 130 of 260 entries across seven separate sheets.
+The converter review also corrects the 5 V regulator output capacitor to C5,
+1000 µF; the earlier C8/47 µF assignment and recordings are superseded. The
+manufacturer manual assigns C8 to converter soft-start. Full converter and
+horizontal/flyback assembly, loaded tube rails, settled-state iteration and
+firmware-frame rendering remain unfinished; no new full-monitor image or menu
+recording is published.
