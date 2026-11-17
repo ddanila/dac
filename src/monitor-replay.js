@@ -15,7 +15,12 @@ export async function readReplay(buffer) {
   assert(typeof meta.name === 'string' && meta.name.length <= 300 && finite(meta.duration, 1e-9, meta.version===2?120:1), 'Invalid replay identity or duration.');
   const start=meta.version===1?0:meta.start_time,end=meta.version===1?meta.duration:meta.end_time;
   assert(finite(start,0,meta.version===3?3600:120) && finite(end,start+1e-9,meta.version===3?3600:120) && Math.abs(end-start-meta.duration)<1e-8,'Invalid recording window.');
-  assert(meta.qualification === (meta.version===1?'experimental-fixture':meta.version===2?'bounded-stage':'experimental-optical-bench'), 'Unsupported qualification profile.');
+  const fullPath=meta.version===3 && meta.qualification==='experimental-full-path';
+  assert(fullPath || meta.qualification === (meta.version===1?'experimental-fixture':meta.version===2?'bounded-stage':'experimental-optical-bench'), 'Unsupported qualification profile.');
+  if(fullPath){
+    assert(['assembly_complete','numerical_acceptance','thermal_equilibrium','electrical_stability','optical_stability'].every(k=>meta[k]===true) && meta.specimen_validated===false && meta.initialization==='thermal-equilibrium' && meta.field_count===16,'Incomplete experimental full-path acceptance.');
+    assert(typeof meta.transformer_candidate==='string' && meta.transformer_candidate.length>0 && meta.transformer_candidate.length<=200 && typeof meta.hashes?.capture==='string' && /^[a-f0-9]{64}$/.test(meta.hashes.capture),'Missing full-path provenance.');
+  }
   if(meta.version===3){
     assert(meta.full_monitor_qualified===false,'Unsupported full-monitor qualification.');
     const display=meta.display;
@@ -56,7 +61,12 @@ export async function readReplay(buffer) {
   assert(base+offset === bytes.length && trace && (meta.version===2 || frames.length), 'Incomplete replay.');
   if(frames.length){
     assert(Math.abs(frames.at(-1).time-end)<1e-8, 'Incomplete replay.');
-    assert(Math.abs(frames[0].time-start)<1e-12, 'Phosphor frames must start at the recording window.');
+    if(fullPath){
+      assert(frames.length===16,'Expected sixteen sustained phosphor fields.');
+      const period=meta.duration/16;
+      assert(frames.every((frame,i)=>Math.abs(frame.time-(start+(i+1)*period))<Math.max(1e-12,period*.01)),'Unstable sustained field timing.');
+    }
+    else assert(Math.abs(frames[0].time-start)<1e-12, 'Phosphor frames must start at the recording window.');
   }
   return {meta, frames, trace, start, end};
 }

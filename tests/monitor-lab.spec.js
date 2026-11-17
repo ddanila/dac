@@ -162,3 +162,39 @@ test('v3 rejects invalid frames, ray data, qualification and exposure comparison
   expect(result.errors).toEqual(['Unsupported full-monitor qualification.','Invalid phosphor frame.','Invalid recorded ray.','Invalid recorded ray.','Invalid display calibration.','Invalid phosphor frame.']);
   expect(result.matches).toBe(false);
 });
+
+test('experimental full-path replay requires all gates and sixteen fields',async({page})=>{
+  await page.goto('/monitor.html');
+  const bytes=Array.from(readFileSync(new URL('./fixtures/monitor/optical-backend-v3.mcrt',import.meta.url)));
+  const result=await page.evaluate(async bytes=>{
+    const {readReplay}=await import('/src/monitor-replay.js');
+    const raw=new Uint8Array(bytes),size=new DataView(raw.buffer).getUint32(8,true);
+    const meta=JSON.parse(new TextDecoder().decode(raw.subarray(12,12+size))),payload=raw.subarray(12+size);
+    const image=meta.chunks.find(c=>c.kind==='frame'),trace=meta.chunks.find(c=>c.kind==='trace');
+    const imageBytes=payload.slice(image.offset,image.offset+image.bytes),traceBytes=payload.slice(trace.offset,trace.offset+trace.bytes);
+    Object.assign(meta,{qualification:'experimental-full-path',assembly_complete:true,numerical_acceptance:true,
+      thermal_equilibrium:true,electrical_stability:true,optical_stability:true,specimen_validated:false,
+      initialization:'thermal-equilibrium',field_count:16,transformer_candidate:'contract-test-only',hashes:{capture:'a'.repeat(64)}});
+    meta.chunks=Array.from({length:16},(_,i)=>({...image,offset:i*image.bytes,time:meta.start_time+(i+1)*meta.duration/16}));
+    meta.chunks.push({...trace,offset:16*image.bytes});
+    function encode(m){
+      const h=new TextEncoder().encode(JSON.stringify(m));
+      const out=new Uint8Array(12+h.length+16*image.bytes+trace.bytes);
+      out.set(raw.subarray(0,8));new DataView(out.buffer).setUint32(8,h.length,true);out.set(h,12);
+      for(let i=0;i<16;i++)out.set(imageBytes,12+h.length+i*image.bytes);
+      out.set(traceBytes,12+h.length+16*image.bytes);return out.buffer;
+    }
+    const good=await readReplay(encode(meta)),errors=[];
+    for(const key of ['assembly_complete','numerical_acceptance','thermal_equilibrium','electrical_stability','optical_stability']){
+      const bad=structuredClone(meta);bad[key]=false;
+      try{await readReplay(encode(bad));errors.push('accepted');}catch(e){errors.push(e.message);}
+    }
+    const bad=structuredClone(meta);delete bad.hashes.capture;
+    try{await readReplay(encode(bad));errors.push('accepted');}catch(e){errors.push(e.message);}
+    const shifted=structuredClone(meta);shifted.chunks[3].time+=meta.duration/160;
+    try{await readReplay(encode(shifted));errors.push('accepted');}catch(e){errors.push(e.message);}
+    return {count:good.frames.length,qualified:good.meta.full_monitor_qualified,errors};
+  },bytes);
+  expect(result.count).toBe(16);expect(result.qualified).toBe(false);
+  expect(result.errors).toEqual([...Array(5).fill('Incomplete experimental full-path acceptance.'),'Missing full-path provenance.','Unstable sustained field timing.']);
+});

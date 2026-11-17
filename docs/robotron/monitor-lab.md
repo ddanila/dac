@@ -205,3 +205,24 @@ published by this change.
 Converter implementation: native commit `e7ad347f`. Verification passed all 72
 monitor tests and nine browser monitor-lab tests. These include early startup,
 not a successful long converter-startup or full-path rendering run.
+
+## Sustained warmed-up recording support
+
+The native tools now provide a 16-field source-selection preset, thermal
+equilibrium helpers, bounded streaming optical export and an optional compiled
+trajectory backend. One second of original firmware video contains the required
+unchanged 16-field interval after ten pre-roll fields. These tools do not yet
+produce a connected full-monitor recording: converter switching performance and
+the horizontal/T3/electrode assembly remain blockers. No new full-monitor PNG or
+museum default recording is published.
+
+The reader reserves `experimental-full-path` for v3 imports explicitly carrying
+`assembly_complete`, `numerical_acceptance`, `thermal_equilibrium`,
+`electrical_stability` and `optical_stability` as true, thermal-equilibrium
+initialization, sixteen frames, an explicit transformer candidate and a capture
+SHA-256. `specimen_validated` and `full_monitor_qualified` must remain false.
+These are recording assertions, not independent verification by the browser.
+Older v1/v2 and v3 optical-bench imports retain their existing contracts.
+
+See the [native sustained-rendering documentation](https://github.com/ddanila/dac-emulation/tree/main/verification/robotron-monitor#sustained-warmed-up-rendering-infrastructure)
+for capture, streamed export, numerical tests and the converter profiling results.
