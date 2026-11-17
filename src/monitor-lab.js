@@ -1,17 +1,19 @@
 import './monitor-lab.css';
-import {MAX_BYTES,readReplay,sampleAt,frameAt,matchingProbe} from './monitor-replay.js';
+import {MAX_BYTES,readReplay,sampleAt,frameAt,matchingProbe,matchingDisplay} from './monitor-replay.js';
 
 const $=id=>document.getElementById(id);
 let replay=null, comparison=null, time=0, playing=false, last=0, loadGeneration=0, compareGeneration=0;
 const scratch=document.createElement('canvas');scratch.width=160;scratch.height=112;
 const scratchContext=scratch.getContext('2d');
-const image=scratchContext.createImageData(160,112);
+let image=scratchContext.createImageData(160,112);
 function status(message,error=false){$('status').textContent=message;$('status').classList.toggle('error',error);}
 function stop(){playing=false;$('play').textContent='Play';}
 function setTime(value){time=Math.max(replay?.start||0,Math.min(replay?.end||0,value));$('timeline').value=time;render();}
 function phosphor(canvas,recording){
   const frame=frameAt(recording,time),ctx=canvas.getContext('2d');
   if(!frame){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#a9b8a5';ctx.font='18px system-ui';ctx.fillText('Electrical stage recording · no phosphor simulation',25,canvas.height/2);return;}
+  if(scratch.width!==frame.width || scratch.height!==frame.height){scratch.width=frame.width;scratch.height=frame.height;image=scratchContext.createImageData(frame.width,frame.height);}
+  if(recording.meta.version===3){canvas.width=frame.width;canvas.height=frame.height;}else{canvas.width=640;canvas.height=448;}
   for(let i=0;i<frame.data.length;i++){
     const v=frame.data[i],j=i*4;image.data[j]=v*.52;image.data[j+1]=v;image.data[j+2]=v*.63;image.data[j+3]=255;
   }
@@ -32,6 +34,17 @@ function cutaway(row){
   }
   ctx.fillStyle='#a9b8a5';ctx.font='12px system-ui';ctx.fillText(`Landing: ${(row[8]*1000).toFixed(1)}, ${(row[9]*1000).toFixed(1)} mm`,30,390);
   if(!row[11])ctx.fillText('No in-range landing in this optical model',30,420);
+}
+function recordedRay(){
+  const ctx=$('cutaway').getContext('2d'),w=640,h=448;ctx.clearRect(0,0,w,h);
+  const rays=replay.meta.rays,ray=rays.findLast(r=>r.time<=time);
+  ctx.fillStyle='#a9b8a5';ctx.font='14px system-ui';
+  ctx.fillText('Recorded trajectory · horizontal projection',20,28);
+  if(!ray || !ray.points.length){ctx.fillText('No recorded ray at this time',20,65);return;}
+  const extent=Math.max(.01,...ray.points.map(p=>p[0])),half=replay.meta.display.screen_width_m/2;
+  ctx.strokeStyle=ray.landed?'#b9ed8d':'#dbb16c';ctx.lineWidth=2;ctx.beginPath();
+  ray.points.forEach(([z,x],i)=>{const px=30+z/extent*(w-60),py=h/2-x/half*(h/2-65);if(i)ctx.lineTo(px,py);else ctx.moveTo(px,py);});ctx.stroke();
+  ctx.fillText(`${ray.reason} · sampled at ${ray.time.toFixed(9)} s`,20,h-20);
 }
 const signalFields={video:['computer_video','monitor_video','receiver_video'],bsyn:['computer_bsyn','monitor_bsyn','receiver_sync'],intens:['computer_intens','monitor_intens','receiver_intens']};
 function pathFields(){return signalFields[$('signal-group').value]?.map(name=>replay.trace.fields.findIndex(f=>f.name===name&&f.unit==='V')).filter(i=>i>0)||[];}
@@ -68,7 +81,7 @@ function waveform(field){
 function render(){
   if(!replay)return;
   $('visuals').hidden=!replay.frames.length && !comparison?.frames.length;
-  $('optics-panel').hidden=replay.meta.version!==1;
+  $('optics-panel').hidden=replay.meta.version===2;
   $('phosphor').hidden=!replay.frames.length;
   $('time').textContent=`${(time*1000).toFixed(3)} ms`;
   const row=sampleAt(replay,time),field=Number($('probe').value);
@@ -80,20 +93,21 @@ function render(){
     return p&&typeof p.source_id==='string'?`${p.name}: ${p.source_id} · reference: ${typeof p.reference_point==='string'?p.reference_point:'not recorded'}`:'';
   }).filter(Boolean).join(' | ');
   phosphor($('phosphor'),replay);
-  if(replay.meta.version===1)cutaway(row);else{const ctx=$('cutaway').getContext('2d');ctx.clearRect(0,0,640,448);ctx.fillStyle='#a9b8a5';ctx.font='18px system-ui';ctx.fillText('This stage does not calculate an electron trajectory.',25,224);}
+  if(replay.meta.version===1)cutaway(row);else if(replay.meta.version===3)recordedRay();else{const ctx=$('cutaway').getContext('2d');ctx.clearRect(0,0,640,448);ctx.fillStyle='#a9b8a5';ctx.font='18px system-ui';ctx.fillText('This stage does not calculate an electron trajectory.',25,224);}
   waveform(field);
   if(comparison){phosphor($('comparison'),comparison);$('compare-note').textContent=`Comparison: ${comparison.meta.name}${time>comparison.end?' · recording ended':time<comparison.start?' · recording has not started':''}`;}
 }
 function install(recording){
   replay=recording;stop();time=recording.start;
+  if(comparison && !matchingDisplay(replay,comparison)){comparison=null;$('comparison').hidden=true;$('clear-compare').hidden=true;$('compare-note').textContent='';}
   const hasPath=recording.meta.model_id==='1715w-k7222-input'&&Object.values(signalFields).flat().every(name=>recording.trace.fields.some(f=>f.name===name&&f.unit==='V'));
   $('signal-group-label').hidden=!hasPath;$('signal-group').value='';$('timeline').min=recording.start;$('timeline').max=recording.end;$('timeline').value=time;
-  $('probe').replaceChildren(...recording.trace.fields.flatMap((f,i)=>i && (recording.meta.version===2 || i<=7)?[new Option(`${f.name} · ${f.unit}`,String(i))]:[]));
+  $('probe').replaceChildren(...recording.trace.fields.flatMap((f,i)=>i && (recording.meta.version!==1 || i<=7)?[new Option(`${f.name} · ${f.unit}`,String(i))]:[]));
   for(const id of ['timeline','play','line','frame'])$(id).disabled=false;
   $('recording-name').textContent=recording.meta.name;
   $('line').disabled=$('frame').disabled=recording.meta.version!==1;
   $('limitations').replaceChildren(...recording.meta.limitations.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
-  $('provenance').textContent=JSON.stringify({source:recording.meta.source,qualification:recording.meta.qualification,hashes:recording.meta.hashes,input:recording.meta.input,changes:recording.meta.changes,solver:recording.meta.solver,energy:recording.meta.energy,coverage:recording.meta.coverage,uncertainty:recording.meta.uncertainty,parameters:recording.meta.parameters,source_pages:recording.meta.source_pages,fault:recording.meta.fault,scenario:recording.meta.scenario,component_factors:recording.meta.component_factors,signal_case:recording.meta.signal_case,signal_metrics:recording.meta.signal_metrics,numerical_validation:recording.meta.numerical_validation},null,2);
+  $('provenance').textContent=JSON.stringify({source:recording.meta.source,qualification:recording.meta.qualification,hashes:recording.meta.hashes,input:recording.meta.input,changes:recording.meta.changes,solver:recording.meta.solver,energy:recording.meta.energy,coverage:recording.meta.coverage,uncertainty:recording.meta.uncertainty,parameters:recording.meta.parameters,source_pages:recording.meta.source_pages,fault:recording.meta.fault,scenario:recording.meta.scenario,component_factors:recording.meta.component_factors,signal_case:recording.meta.signal_case,signal_metrics:recording.meta.signal_metrics,numerical_validation:recording.meta.numerical_validation,render:recording.meta.render,display:recording.meta.display,full_monitor_qualified:recording.meta.full_monitor_qualified},null,2);
   $('components').replaceChildren(...recording.meta.components.map(c=>{const tr=document.createElement('tr');for(const text of [c.source_id||c.reference,c.nodes.join(' → '),c.value]){const td=document.createElement('td');td.textContent=text;tr.append(td);}return tr;}));
   status(`${recording.trace.rows.toLocaleString()} electrical samples · ${(recording.meta.duration*1000).toFixed(2)} ms recorded · ${recording.meta.qualification}`);render();
 }
@@ -115,7 +129,7 @@ async function importFile(input,isComparison){
     if(file.size>MAX_BYTES)throw Error('Replay exceeds the 64 MiB limit.');
     const recording=await readReplay(await file.arrayBuffer());
     if(generation!==(isComparison?compareGeneration:loadGeneration))return;
-    if(isComparison){comparison=recording;$('comparison').hidden=false;$('clear-compare').hidden=false;status('Comparison loaded. Both recordings use their original simulation times.');render();}
+    if(isComparison){if(replay && !matchingDisplay(replay,recording))throw Error('Comparison requires matching exposure, screen geometry and rendering parameters.');comparison=recording;$('comparison').hidden=false;$('clear-compare').hidden=false;status('Comparison loaded. Both recordings use their original simulation times.');render();}
     else install(recording);
   }catch(error){if(generation===(isComparison?compareGeneration:loadGeneration))status(error.message,true);}
   input.value='';

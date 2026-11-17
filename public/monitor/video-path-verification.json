@@ -24,20 +24,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
-        "lab.py": "6e44beff7ed479525555134890fd138a958a7dad00d3238f4dbbd120135561d5",
+        "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "9e1c866b76bb997c5d43d3a67290be0351302fa814e22ce108c843bccce27846"
+        "deck": "2fd9df17acbf1c7262a6e62c3cb21c58859956d4a3a1f94d9f41fd8ab92d60fc"
       }
     },
     "weak-video": {
@@ -62,20 +62,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "f7bc55abfb76504aa853d31afd2bd79088ad1cf20f84e05d5d87ab05db2b117e"
+        "deck": "309ae1007333734310852517e006d6b484689291e4663411e8eb103efcaa662c"
       }
     },
     "slow-video": {
@@ -100,20 +100,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "2fd23d9770c889c2fb48fcb65762f3061a3f82226de37932c82c670b9ecc37db"
+        "deck": "09204f8efd142a011b7902196e3674e6f5d525a5af20974139b3abc3c2bfc226"
       }
     },
     "cable-loading": {
@@ -138,20 +138,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "3492b652582cf47e71ac4a26de236b240f41f2159444acd374bfd7741848a690"
+        "deck": "884bdfd265dacf4249076c1c12e7f7208bf57c64785b950a059b15425e0870c8"
       }
     },
     "return-resistance": {
@@ -176,20 +176,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "cea7b11f552eec600793348444cce918a5266fa5be69bbc4ae138aa258e8c4e6"
+        "deck": "9f77c3af99a2488eba13b8daf5ca65778f0d7da089cac598d99ca3105e7185ef"
       }
     },
     "missing-sync": {
@@ -214,20 +214,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "12ae80bd91df4e1b5c0f39e583d81768453985ddc2107f6f2dca68754f70f301"
+        "deck": "839b1a8c0880fec560d929ae89d985a399376f7182b371c84c9eb7ae581553db"
       }
     },
     "distorted-sync": {
@@ -252,20 +252,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "f53b0262983ed06c6aa1ce1318ed34c648f5aa028e265090e148c5c174d7630e"
+        "deck": "0d725fd1640d9f0683bda1b3368f99d1c1b0267d66bc0dc50bef842b26d4a830"
       }
     },
     "stuck-intensity": {
@@ -276,9 +276,9 @@
           [
             "receiver_intens",
             "high_width_s",
-            1.3624235198797887e-08,
-            1.3449533088516377e-08,
-            1.3449533088516378e-10
+            1.362423519846585e-08,
+            1.3449533087825198e-08,
+            1.34495330878252e-10
           ]
         ],
         "relative_tolerance": 0.01,
@@ -298,20 +298,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "382ce815ae037fb14de1667e5bc04b8fcf4b0489b6d94e659acefad711c65bed"
+        "deck": "33061c6e73a144c165501bfb9e0fe91d1b2ec337b532893fe629e806ee93f25c"
       }
     },
     "receiver-video-leakage": {
@@ -336,20 +336,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "5a4928e61737fb1b6ccf0c43e29359b5dad491ab3a0ae824044a8e81d56ed5ad"
+        "deck": "1c856a5e938ce55d14bc361e9725e014738e87e129b498648569f7b5c2e19649"
       }
     },
     "receiver-sync-bias": {
@@ -374,20 +374,20 @@
         "circuits/1715w-output.kicad_sch": "1a8602511addb6cc64e30fbf7f6e53c60283a628ebcaf02d2ce961c6de721575",
         "circuits/k7222-11-input.kicad_sch": "adebba548931e8bd116f97fd0e22105215c6787414dbf2afbbad3c000d7fe7d4",
         "circuits/k7222-11-neck.kicad_sch": "868603eff85e4b2216ed22df9569420ff2cd6a3883ebf570a22ea0e99f283072",
-        "circuits/k7222-11-sync-filter.kicad_sch": "d1f8da1955631be842b7dd86b8e05af0f449ebc4fb33f4cc8286695ae69337bf",
+        "circuits/k7222-11-sync-filter.kicad_sch": "2fb89389fb0e854133c1587d48a2df0cf75680895af1c70f95b83dc80e9af63f",
         "circuits/signal-path-models.cir": "64794063b73f0692d76dca6698588fad9a5ab1cf0241bf03ff86503a49a2c6df",
         "circuits/k7222-11-neck-models.cir": "4169f23c43b01fdfedb41b0b97c7099fcd9f770244dea456b2c8a0cb31ff7357",
         "reference/k7222-11/inventory.json": "7b68ee7026a653e6a7f7a76951449514d975a411f9d9862e00280413304e602a",
         "profiles/k7222-11-neck.json": "5b407860c02328cb44e0cb386521496adeab4f1f1bba96e533102077e828e831",
         "reference/1715w/output.json": "5a59017720904ed1064fcdb6c6c4443c2150eee5d3d33c2237c5dd5ea560dc5c",
-        "sources.json": "b21f85dc34ac9b037bcd5ef6ae570244820b9d37d1f7b9216e1e200e5611b825",
+        "sources.json": "eabd9b19f57767e1221a537341dfad64a103dc65e69dc60406984b442ed9a010",
         "signal_path.py": "0548f25c442f29c81454da15445bf7c326da378462e5852c860462823aedec9a",
         "lab.py": "e9c99a60df4acb01e6e4dcb5539fd10eb8c89906521937b6801fe8637d59b50c",
         "reference.py": "32015fcf9520c5c0b6d11ab94cc9d549ad2dba1ef177bbaf5f431078113ec067",
         "faults.py": "02b80944715c00aeee30416956aad5fee4b37e84ae49c75e55812c1859225c34",
         "optics.py": "afb3e7d70a50a907bb243e8c67097ddd04013c47dd3510f9ed24aaca08bd6580",
         "input.json": "746189f3e092e1eaa0b56507bd5548f7a12d7801dd0adc2df2bc546ee37af3e9",
-        "deck": "fb3332220db53381c32b84c5a42942770ecbdfcd7c218d3e4f690e36744186ec"
+        "deck": "7b9a0982a0cd258fdb596a23b8fef4e347e99a868a71eb52b2aeb700aaef5460"
       }
     }
   },

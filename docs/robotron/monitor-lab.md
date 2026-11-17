@@ -119,3 +119,31 @@ and `export_signal_path.py` workflow. The export binds acceptance to archived
 input/deck hashes and preserves the original trace samples. The bundled artifact
 retains the exact simulation input snapshot hashes, including the source index
 as it existed when the run started.
+
+
+## Electrical-trace optical backend
+
+Local version 3 recordings can now display variable-resolution phosphor frames
+and recorded electron trajectories, with named electrical probes and absolute
+simulation times. Images retain fixed exposure; comparisons require matching
+exposure, screen geometry and rendering settings. The browser replays the
+recorded result rather than recomputing a raster or phosphor decay.
+
+The native `beam_render.py` backend takes electrode potentials, yoke currents
+and gun-entry beam current through trajectory integration, flight-time handling
+and an energy-accounted phosphor surface. It also exports PNG and linear optical
+power arrays. Its tube fields, phosphor efficiency and decay remain assumptions.
+Every v3 recording is labeled `experimental-optical-bench`, never a qualified
+complete-monitor simulation. Absolute timestamps do not demonstrate warm-up;
+each backend run starts with an empty phosphor surface.
+
+The full power/deflection circuits, coupled CRT loading and continuous warm-up
+are still incomplete. There is no newly qualified museum screenshot from the
+complete CRT path. The synthetic v3 fixture is only in `tests/fixtures/monitor`,
+not the default recording menu. Native `full_path_audit.py` records the outstanding
+circuit and evidence gates instead of promoting backend tests to full accuracy.
+
+The signal-path recording was regenerated after correcting sync-filter V6:
+the original operating manual places its anode at V5 base and cathode toward
+R28. It supersedes the earlier reversed-diode recording; the complete ten-case
+numerical verification was repeated after the correction.

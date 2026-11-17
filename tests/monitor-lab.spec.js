@@ -125,3 +125,40 @@ test('signal path overlays connector and receiver voltages with source reference
   await page.locator('#experiment').selectOption('baseline');
   await expect(page.locator('#signal-group-label')).toBeHidden();
 });
+
+test('v3 optical backend uses recorded images, rays, absolute time and fixed exposure',async({page})=>{
+  await page.goto('/monitor.html');
+  const path=new URL('./fixtures/monitor/optical-backend-v3.mcrt',import.meta.url).pathname;
+  await page.locator('#open-replay').setInputFiles(path);
+  await expect(page.locator('#status')).toContainText('experimental-optical-bench');
+  await expect(page.locator('#optics-panel')).toBeVisible();
+  await expect(page.locator('#time')).toHaveText('300000.000 ms');
+  await page.locator('#timeline').fill('300.000002');
+  expect(await page.locator('#phosphor').evaluate(c=>[c.width,c.height])).toEqual([64,48]);
+  expect(await page.locator('#phosphor').evaluate(c=>c.getContext('2d').getImageData(0,0,c.width,c.height).data.some((v,i)=>i%4===1&&v>0))).toBe(true);
+  await page.locator('#compare-replay').setInputFiles(path);
+  await expect(page.locator('#status')).toContainText('Comparison loaded');
+  await expect(page.locator('#limitations')).toContainText('No full-monitor warm-up');
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+
+test('v3 rejects invalid frames, ray data, qualification and exposure comparisons',async({page})=>{
+  await page.goto('/monitor.html');
+  const bytes=Array.from(readFileSync(new URL('./fixtures/monitor/optical-backend-v3.mcrt',import.meta.url)));
+  const result=await page.evaluate(async bytes=>{
+    const {readReplay,matchingDisplay}=await import('/src/monitor-replay.js');
+    const raw=new Uint8Array(bytes),size=new DataView(raw.buffer).getUint32(8,true),original=JSON.parse(new TextDecoder().decode(raw.subarray(12,12+size))),payload=raw.subarray(12+size);
+    function encode(meta){const h=new TextEncoder().encode(JSON.stringify(meta)),out=new Uint8Array(12+h.length+payload.length);out.set(raw.subarray(0,8));new DataView(out.buffer).setUint32(8,h.length,true);out.set(h,12);out.set(payload,12+h.length);return out.buffer;}
+    async function bad(change){const m=structuredClone(original);change(m);try{await readReplay(encode(m));return 'accepted';}catch(e){return e.message;}}
+    const errors=await Promise.all([
+      bad(m=>m.full_monitor_qualified=true),bad(m=>m.chunks[0].width=4096),
+      bad(m=>m.rays[0].points=[[0,0,'bad']]),bad(m=>m.rays[0].time=299),
+      bad(m=>m.display.exposure_m2_per_w=0),bad(m=>m.chunks[1].width=32),
+    ]);
+    const a=await readReplay(encode(original)),changed=structuredClone(original);changed.display.exposure_m2_per_w*=2;
+    const b=await readReplay(encode(changed));return {errors,matches:matchingDisplay(a,b)};
+  },bytes);
+  expect(result.errors).toEqual(['Unsupported full-monitor qualification.','Invalid phosphor frame.','Invalid recorded ray.','Invalid recorded ray.','Invalid display calibration.','Invalid phosphor frame.']);
+  expect(result.matches).toBe(false);
+});
