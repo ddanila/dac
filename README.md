@@ -1,5 +1,9 @@
 # DAC — Danila’s Archive of Computing
 
+[MON004 schematics and service documents](https://ddanila.github.io/dac/docs/mon004/)
+collects the located K7222 drawings, board parts lists and manuals, with explicit
+revision limits for the owner-identified K7222.25.
+
 Current behavior and evidence: [Robotron capability matrix](docs/robotron/capabilities.md).
 
 [Monitor circuit lab](monitor.html): replay local KiCad/ngspice experiments with

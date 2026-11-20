@@ -1,0 +1,87 @@
+{
+  "checked": "2026-11-20",
+  "specimen": "MON004 \u2014 owner-identified K7222.25; serial 025048; installed board revisions unverified",
+  "sources": [
+    {
+      "file": "older.pdf",
+      "url": "https://www.tiffe.de/Robotron/Monitore/Monitore_2/K7222.11_.21_sch.pdf",
+      "sha256": "3c435063815af483a0fa98823a8a95a4178359e64f759344ee03cc0300e292dd",
+      "bytes": 769720,
+      "scope": "19-page scanned service schematic set with later handwritten annotations. PDF 3-4: SP2 schematic; 6-8: 012-6921 parts list 1.12.516921.8/01; 9-10: SP3 schematic; 12-15: 012-6931 parts list 1.12.516931.4/01; 16-17: 012-6891 neck schematic/BOM; 18: wiring. Different .11/.21 boards, not interchangeable with .13/.23."
+    },
+    {
+      "file": "schematics.pdf",
+      "url": "https://raw.githubusercontent.com/RetroNora/Robotron_PC1715/main/k7222-monitor-schematics.pdf",
+      "sha256": "f38588f91244783ea8c717dd4349f8049274a1e82e64a7941f334ba8ca0f662c",
+      "bytes": 5633857,
+      "scope": "Pages 1-7: K7222.13 connectivity/layout. Pages 8-9: distinct MON 3. Page 10: block diagram. Main SP2/SP3 component values absent."
+    },
+    {
+      "file": "redrawn.pdf",
+      "url": "https://www.sax.de/~zander/zubehoer/k7222/k7222_s.pdf",
+      "sha256": "57a681b7f4eca6ce6e4da7ad9a30bc1ddea306270b0f82dc2a406df1a548f629",
+      "bytes": 33967,
+      "scope": "Incomplete redraw; neck board has values, main horizontal stage absent."
+    },
+    {
+      "file": "k7222-horizontal-annotated.jpg",
+      "url": "https://www.robotrontechnik.de/ablage/forum/K7222_HK.jpg",
+      "sha256": "982c5d4fc5e97fc44c66edcfafab29f9e0266f02447d1a04b1b92dc8eef0d10a",
+      "bytes": 186144,
+      "scope": "Annotated K7222 horizontal-stage schematic posted by Ruediger, 2011-03-07, thread 6955. External X1/X2 connections corroborate older.pdf page 4; colored overlays are commentary and obscure winding detail. Not an original winding specification or proof of relative polarity."
+    },
+    {
+      "file": "older-operation.pdf",
+      "url": "https://www.tiffe.de/Robotron/Monitore/Monitore_2/Monitor_K7222_11_21_Betriebsdokumentation.pdf",
+      "sha256": "7506b2fcf81bcc31ba3f6d27832b5295324bdd6cd91c459f3e7adb3701a67f21",
+      "bytes": 1146242,
+      "scope": "37-page K7222.11/21 operating/service manual. Functional circuit explanations and waveform drawings; PDF 20-21 waveform figures, 29-32 adjustment procedures. Image-only scan; inspect renders, not empty extracted text."
+    },
+    {
+      "file": "description.pdf",
+      "url": "https://www.sax.de/~zander/zubehoer/k7222/k7222_61.pdf",
+      "sha256": "887787a48f36e84ce92edbd39acf2469e6a64f755e22d12d80f687f376f492a6",
+      "bytes": 150975,
+      "scope": "K7222.13/23, 08/84, 1.11.041120.2/61. Functional description, not full parts list."
+    },
+    {
+      "file": "service.pdf",
+      "url": "https://www.tiffe.de/Robotron/Monitore/Monitore_2/Monitor_K_7222.13_und_23_Betriebsvorschrift_mit_Einstellungen.pdf",
+      "sha256": "843dd668437727bdc5bcc04dce84344951ee128d6f9bd5f99ef2c5202573e005",
+      "bytes": 1028255,
+      "scope": "Service settings and assembly replacements; no complete electrical BOM."
+    },
+    {
+      "file": "uha78.pdf",
+      "url": "https://www.sax.de/~zander/zubehoer/k7222/uha78rep.pdf",
+      "sha256": "19655bfdcb2132cf6348629919ed1bb86c212921fd0273d4664625b47092754a",
+      "bytes": 2340150,
+      "scope": "Daniel Auerbach, version 2.7, 2015-04-25. Firsthand replacement winding repair for K7222.25; 26 layers of 68 turns, 0.10 mm wire, about 440 ohms measured on that replacement. NOT original transformer winding specifications; not applied to fixture."
+    },
+    {
+      "file": "bom-excerpt.jpg",
+      "url": "https://www.robotrontechnik.de/bilder/Upload_Forum/25/4_eeb.jpg",
+      "sha256": "5521edf6815b04c008ec9f8a048a6979f55c08841e4e512d74cd7c99eebc9a5e",
+      "bytes": 43167,
+      "scope": "2026 forum-posted K7222 semiconductor BOM excerpt only, revision not established. Lead to fuller documentation, not a source of values for the .11 circuit."
+    },
+    {
+      "file": "pc1715-service-original.pdf",
+      "url": "https://www.tiffe.de/Robotron/PC1715/PC-1715-Servicemanual.pdf",
+      "sha256": "e810e4722d889a7e357e192486da3a8004b1fd08aca1c0dcef4f3bbc5b66021d",
+      "bytes": 15312406
+    },
+    {
+      "file": "pc1715-service-transcription.pdf",
+      "url": "https://www.sax.de/~zander/pc1715/doku/pc_serv.pdf",
+      "sha256": "8320672db3115e5ceaece9194eff4430b1e8fb57239890b5229c8761f1a63206",
+      "bytes": 434153
+    },
+    {
+      "file": "k7222-operation-transcription.pdf",
+      "url": "https://www.sax.de/~zander/zubehoer/k7222/k7222_53.pdf",
+      "sha256": "f79a5ac3bf6ef5f5da29658c7b046aa81597255ee57ca3ca8a715a6ef489f333",
+      "bytes": 551589
+    }
+  ]
+}
