@@ -78,7 +78,7 @@ missing converter. Full power/horizontal/flyback coverage remains the unmet firs
 release gate; the package explicitly records this. No guided diagnostic ranking,
 screen-symptom prediction or live probing procedure is supplied.
 
-The retained development package was generated with native commit `126bcf0b`
+The retained development package was generated with native commit `bd34b323`
 using `atlas.py --members 16 --held-out 8` and seed `722211`. It contains 12
 accepted fault predictions plus the nominal model, two numerically indeterminate
 faults, and five unsupported faults. Each accepted case completed 25 parameter
@@ -202,7 +202,7 @@ initialization and continuous electrical settling/replay; persisted warm-up
 checkpoints are deferred. No new diagnostic conclusion or full-monitor PNG is
 published by this change.
 
-Converter implementation: native commit `e7ad347f`. Verification passed all 72
+Converter implementation: native commit `15d47993`. Verification passed all 72
 monitor tests and nine browser monitor-lab tests. These include early startup,
 not a successful long converter-startup or full-path rendering run.
 

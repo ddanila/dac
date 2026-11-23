@@ -7,10 +7,10 @@
   "scope": "Proposed reference PCB, standard S600 and production digital contract with externally supplied clock/reset at virtual bridges. Historical copper, winding terminals, package fit and analog device dynamics remain separate.",
   "revisions": {
     "cad": "de6fd953f70292c4484b2566224c6bf9cf9a37c6",
-    "hdlAndDigitalEvidence": "02ebeb2f77d28d2abd66ef1fdb6365aca90767af",
-    "browserRuntime": "6d7d7d67a758b7ba635802edb3a74216f3272f90",
+    "hdlAndDigitalEvidence": "2a1c43e4f3289c05de6519bb5d8ebfa4baedd6fc",
+    "browserRuntime": "210cadd85cba6f17b6022bbad28042a79e4c4ca0",
     "museumBase": "429a820ca2bd03663832cb323f41b54a79ae9857",
-    "firmwareComparison": "6d7d7d67a758b7ba635802edb3a74216f3272f90"
+    "firmwareComparison": "210cadd85cba6f17b6022bbad28042a79e4c4ca0"
   },
   "museumRevisionConvention": "The git commit containing this manifest identifies the released museum; museumBase is its parent work baseline. Content hashes below bind the reviewed files without a self-referential commit hash.",
   "files": {
@@ -60,7 +60,7 @@
     "tests/keyboard-release.spec.js": "4a775e398b64ebef51eab9ab7f8e6ce0b39bba0c731a7ea885d648feae98b8c5"
   },
   "runtimeUpdate": {
-    "previousRuntime": "6d7d7d67a758b7ba635802edb3a74216f3272f90",
+    "previousRuntime": "210cadd85cba6f17b6022bbad28042a79e4c4ca0",
     "scope": "Runtime/UI observation refresh; pinned CAD, DRC and electrical evidence unchanged."
   }
 }

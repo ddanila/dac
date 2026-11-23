@@ -1,5 +1,5 @@
 {
-  "dac_commit": "98f8f808c08ce21f6b98a00b95185f1e2226e70d",
+  "dac_commit": "8d55c784085a8804c7d22f84117096f180b4a6c0",
   "source_sha256": {
     "hardware/rtl/analyzer_record_fifo.v": "44b40f20986f425e853731f9c1dad326d7c0f3fe4058aa23cb7021cc7b9a8457",
     "hardware/rtl/cycle_encoder.v": "9290c8a57d748259003c4df228c04e09ba121db96835a03a1ee4509a31e54d59",

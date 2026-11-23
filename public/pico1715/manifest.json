@@ -2,7 +2,7 @@
   "schema": 1,
   "abi": 2,
   "pico": "a623776baef5ff2846756c63b53019176a4deeac",
-  "dac": "98f8f808c08ce21f6b98a00b95185f1e2226e70d",
+  "dac": "8d55c784085a8804c7d22f84117096f180b4a6c0",
   "dirty": false,
   "compiler": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 4.0.23 (7a5d93b50f6a3a35e85a0d2fc9e667b8498e6aed)",
   "verilator": "Verilator 5.032 2025-01-01 rev (Debian 5.032-1)",
