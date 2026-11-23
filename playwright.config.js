@@ -28,8 +28,9 @@ export default defineConfig({
   maxFailures: process.env.CI ? 1 : undefined,
   timeout: 60000,
   expect: { timeout: process.env.CI ? 10000 : 5000 },
-  // CI uses software WebGL; avoid competing renderers on the same CPU.
-  workers: process.env.CI ? 1 : undefined,
+  // CI uses software WebGL; the full run keeps one renderer per CPU-bound job,
+  // the push smoke tries two (DAC_CI_WORKERS).
+  workers: process.env.CI ? Number(process.env.DAC_CI_WORKERS || 1) : undefined,
   use: { reducedMotion: "reduce", baseURL: `http://127.0.0.1:${port}`, headless: true },
   webServer: {
     command: `npm run dev -- --port ${port}`,

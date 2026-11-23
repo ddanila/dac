@@ -68,6 +68,20 @@ test('scoped plans retain all selected tests and all applicable browser checks',
  expect(planFor(['README.md'],files).matrix.include).toEqual([]);
 });
 
+test('push smoke runs one Chromium job and keeps changed slow tests', async () => {
+ const {planFor,nightlyOnlyFiles} = await import('../scripts/ci-scope.mjs');
+ const files = readdirSync(new URL('./',import.meta.url),{recursive:true}).filter(f=>f.endsWith('.spec.js')).map(f=>'tests/'+f);
+ for (const name of nightlyOnlyFiles) expect(files,name).toContain('tests/'+name);
+ const smoke = planFor(['src/main.js'],files,false,undefined,true);
+ expect(smoke.scope).toBe('smoke');
+ expect(smoke.matrix.include.map(m=>m.label)).toEqual(['chromium-smoke']);
+ expect(smoke.test_files.some(f=>nightlyOnlyFiles.includes(f.slice(6)))).toBe(false);
+ expect(smoke.test_files.length).toBe(files.length-nightlyOnlyFiles.length);
+ expect(planFor(['tests/pico1715.spec.js'],files,false,undefined,true).test_files).toEqual(['tests/pico1715.spec.js']);
+ expect(planFor(['README.md'],files,false,undefined,true).scope).toBe('docs');
+ expect(planFor(['src/main.js'],files,true).matrix.include).toHaveLength(4);
+});
+
 test('PSU image changes retain reference checks without narrowing unrelated assets', async () => {
  const {planFor,scopeFor} = await import('../scripts/ci-scope.mjs');
  const files = ['tests/psu-docs.spec.js','tests/museum.spec.js'];

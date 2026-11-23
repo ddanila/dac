@@ -5,8 +5,8 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export function refreshDurations(previous, reports, run) {
-  if (run.conclusion !== 'success' || run.event !== 'push' || run.head_branch !== 'main' ||
-      run.path !== '.github/workflows/site.yml') throw Error('Require a successful main push of the museum workflow');
+  if (run.conclusion !== 'success' || !['push', 'schedule', 'workflow_dispatch'].includes(run.event) || run.head_branch !== 'main' ||
+      run.path !== '.github/workflows/site.yml') throw Error('Require a successful main run of the museum workflow');
   if (reports.length !== 2 || new Set(reports.map(r => r.shard)).size !== 2) throw Error('Require both Chromium shards');
   const seconds = {}, seen = new Set();
   const selected = [...reports[0].selected].sort();

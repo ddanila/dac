@@ -3,6 +3,10 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Push and PR runs a Chromium smoke; nightly and manual runs cover every
+  # test in every browser.
+  schedule:
+    - cron: '23 2 * * *'
   workflow_dispatch:
 permissions:
   contents: read
@@ -56,6 +60,7 @@ jobs:
     if: needs.build.outputs.scope != 'docs' && needs.build.outputs.scope != 'reference'
     env:
       DAC_CI_SHARD: ${{ matrix.shard }}
+      DAC_CI_WORKERS: ${{ needs.build.outputs.scope == 'smoke' && 2 || 1 }}
       DAC_CI_TEST_FILES: ${{ needs.build.outputs.test_files }}
     strategy:
       # All browsers share one fail-fast group: a failure cancels sibling jobs.

@@ -12,6 +12,16 @@ export const crossBrowserFiles = [
   'assembly.spec.js', 'robotron-review-tools.spec.js',
   'robotron-activities.spec.js', 'keyboard-controller.spec.js', 'keyboard-dive.spec.js', 'journeys.spec.js', 'learning.spec.js', 'learning-investigations.spec.js',
 ];
+// Push and PR runs skip these slow files unless the change touches them; the
+// nightly and manual runs cover everything in every browser.
+export const nightlyOnlyFiles = [
+  'journeys.spec.js', 'pico1715.spec.js', 'learning-investigations.spec.js', 'workbench.spec.js',
+  'drive-levers.spec.js', 'inspection.spec.js', 'keyboard-gestures.spec.js', 'inspection-tools.spec.js',
+  'museum.spec.js', 'exhibit-improvements.spec.js', 'learning.spec.js', 'pcb-components.spec.js',
+  'keyboard-dive.spec.js', 'historical-media.spec.js', 'keyboard-keycaps.spec.js', 'interior.spec.js',
+  'assembly.spec.js', 'robotron-refinements.spec.js', 'learning-isolation.spec.js', 'sessions.spec.js',
+  'drive-regression.spec.js',
+];
 const prose = file => ['README.md', 'MODEL-HISTORY.md'].includes(file) || /^docs\/.+\.md$/.test(file);
 const reference = file => /^public\/docs\/robotron-psu\/(?:[^/]+\.(html|css|json|svg)|photos\/[^/]+\.(webp|png|jpe?g))$/.test(file);
 const durations = JSON.parse(readFileSync(new URL('../tests/ci-durations.json', import.meta.url))).seconds;
@@ -31,15 +41,21 @@ export function scopeFor(files) {
   return visual ? 'visual' : 'full';
 }
 
-export function planFor(files, allTests, forceFull = false, seconds = durations) {
+export function planFor(files, allTests, forceFull = false, seconds = durations, smoke = false) {
   let scope = forceFull ? 'full' : scopeFor(files);
   // Deleted/renamed tests must not produce an empty, apparently successful run.
   if (scope === 'tests' && files.some(f => f.endsWith('.spec.js') && !allTests.includes(f))) scope = 'full';
-  const selected = allTests.filter(file => scope === 'full' ||
+  let selected = allTests.filter(file => scope === 'full' ||
     (scope === 'tests' && files.includes(file)) ||
     (scope === 'reference' && file === 'tests/psu-docs.spec.js') ||
     (scope === 'visual' && (visualTestPattern.test(file.slice(6)) || file === 'tests/psu-docs.spec.js')));
   if (scope !== 'docs' && !selected.length) throw Error('CI plan selected no tests');
+  if (smoke && ['full', 'visual', 'tests'].includes(scope)) {
+    selected = selected.filter(file => !nightlyOnlyFiles.includes(file.slice(6)) || files.includes(file));
+    if (!selected.length) throw Error('CI smoke plan selected no tests');
+    return {scope: 'smoke', test_files: selected, matrix: {include: [{label: 'chromium-smoke', browser: 'chromium',
+      os: 'ubuntu-latest', shard: '', native: selected.some(file => nativeTests.has(file))}]}};
+  }
   const cross = selected.filter(file => crossBrowserFiles.includes(file.slice(6)));
   const matrix = [];
   if (selected.length && scope !== 'reference') {
@@ -72,7 +88,9 @@ if (process.env.GITHUB_OUTPUT && process.argv[1] && resolve(process.argv[1]) ===
   }
   const allTests = readdirSync(new URL('../tests/', import.meta.url), {recursive: true})
     .filter(f => f.endsWith('.spec.js')).map(f => 'tests/' + f).sort();
-  const plan = planFor(files, allTests, forceFull);
+  // Pushes and PRs get the Chromium smoke; nightly and manual runs get everything.
+  const smoke = ['push', 'pull_request'].includes(process.env.GITHUB_EVENT_NAME);
+  const plan = planFor(files, allTests, forceFull, durations, smoke);
   for (const [key, value] of Object.entries(plan)) {
     appendFileSync(process.env.GITHUB_OUTPUT, `${key}=${typeof value === 'string' ? value : JSON.stringify(value)}\n`);
   }
