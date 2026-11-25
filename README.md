@@ -215,3 +215,18 @@ repair cases, curated causal explanations, component mapping, and the analyzer's
 simulation-to-hardware comparison desk. Practice and repair runs use private
 machines. See the [learning guide](docs/robotron/learning.md) for controls,
 verification, saved work, and evidence limits.
+
+### Juku machine profiles
+
+With power off, choose a Juku hardware profile in the media controls before loading
+its firmware and disk. The selector describes the controller, keyboard, firmware
+association and qualification level. Selection is explicit; loading a ROM does
+not change hardware automatically. Checkpoints and recordings preserve the
+profile, and incompatible state restores are rejected. Older recordings without
+profile metadata retain the original mainboard/Juku configuration.
+
+Juku accepts raw `.juk` and supported `.imd` images. IMD exports preserve sector
+IDs, density, deleted marks and recorded errors in an uncompressed private copy.
+See the [core profile contract](https://github.com/ddanila/dac-emulation/blob/main/verification/juku-profiles/README.md)
+for supported geometry, hardware evidence and qualification limits. The AT-card
+profile remains experimental; the preserved #0043 ROM fails its checksum.

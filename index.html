@@ -600,6 +600,10 @@
               needs a 2 KB boot ROM and 256-byte CAS PROM; character data is
               optional. Juku and VJUGA use 16 KB ROMs.
             </p>
+            <label id="juku-profile-label" hidden>Juku hardware profile
+              <select id="juku-profile"><option value="mainboard-juku">Mainboard FD1793 / Juku</option></select>
+              <span id="juku-profile-status" role="status"></span>
+            </label>
             <label
               >Boot ROM<input type="file" id="rom" accept=".bin,.rom" /></label
             ><label id="prom-label"
@@ -618,7 +622,7 @@
               >Disk image<input
                 type="file"
                 id="disk"
-                accept=".img,.cpm,.raw,.dsk" /></label
+                accept=".img,.cpm,.raw,.dsk,.juk,.imd" /></label
             ><label class="check"
               ><input type="checkbox" id="writable" /> Allow writes to a session
               copy</label

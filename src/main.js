@@ -1,3 +1,4 @@
+import {profileQualification} from './juku-profiles.js';
 import {installRepairBench} from './learning-repairs.js';
 import {physicalParts} from './learning-physical.js';
 import {createLearning} from './learning.js';
@@ -359,6 +360,9 @@ async function configure(demo, historical = false) {
   $("profile").textContent = d[1];
   $("description").textContent = d[2];
   $("number").textContent = kind === 2 ? "001" : kind === 0 ? "002" : "003";
+  $("juku-profile-label").hidden=kind!==0;
+  $("juku-profile").disabled=false;
+  $("juku-profile-status").textContent=profileQualification($("juku-profile").value);
   $("prom-label").hidden = $("glyph-label").hidden = kind !== 2;
   $("disk-label").hidden = kind === 1;
   let firmware = [],
@@ -415,6 +419,7 @@ async function configure(demo, historical = false) {
   send({
     type: "configure",
     kind,
+    jukuProfile:$("juku-profile").value,
     firmware,
     disk: image,
     diskB: undefined,
@@ -471,7 +476,11 @@ worker.onmessage = ({ data: d }) => {
     }
   }
   if (d.type === "disk-inspection") diskExplorer.receive(d);
+  if(d.type==='juku-profile'){
+    hasState=d.hasState;$("juku-profile-status").textContent=profileQualification(d.profile);
+  }
   if (d.type === "ready") {
+    if(d.jukuProfiles)$("juku-profile").replaceChildren(...d.jukuProfiles.map(p=>new Option(p.name+' — '+p.firmware,p.id)));
     if(new URLSearchParams(location.search).get("machine")==="1715")$("machine").value="3";
     ready = true;
     lastPreviewSize=-1;
@@ -509,6 +518,7 @@ worker.onmessage = ({ data: d }) => {
   }
   if (d.type === "power") {
     on = d.on;
+    $("juku-profile").disabled=on;
     powerPending = false;
     $("power").disabled = false;
     if (on) $("media-controls").open = false;
@@ -1262,3 +1272,7 @@ const keyboardControllerReview=installKeyboardControllerReview(scene);
 const diagnosticPanel=installDiagnosticReport(send,()=>({identity:scene?.modelIdentity(),layout:exhibitLayout.capture(),measurement:exhibitLayout.measurement(),part:scene?.selectedPart()}));
 installSoundMixer(robotronSound,driveSound);
 installControlGroups();
+
+$("juku-profile").onchange=()=>{
+  if(!on && ready)send({type:'juku-profile',profile:$("juku-profile").value});
+};

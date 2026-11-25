@@ -1,3 +1,4 @@
+import {validJukuProfile,defaultJukuProfile} from './juku-profiles.js';
 import { digest } from "./session-store.js";
 export const RECORD_LIMIT = 100000;
 export function base64(bytes) {
@@ -10,7 +11,7 @@ export function base64(bytes) {
 export function unbase64(text) {
   if (
     typeof text !== "string" ||
-    text.length > 2400000 ||
+    text.length > 2800000 ||
     !/^[A-Za-z0-9+/]*={0,2}$/.test(text)
   )
     throw Error("Invalid recording media.");
@@ -20,7 +21,7 @@ export async function encodeRecording(record) {
   const payload = JSON.stringify(record);
   return new TextEncoder().encode(
     JSON.stringify({
-      format: record.result.length===5 ? "DAC-recording-2" : "DAC-recording-1",
+      format: record.kind===0 && record.jukuProfile && record.jukuProfile!==defaultJukuProfile ? "DAC-recording-3" : record.result.length===5 ? "DAC-recording-2" : "DAC-recording-1",
       sha256: await digest(new TextEncoder().encode(payload)),
       payload,
     }),
@@ -31,13 +32,14 @@ export async function decodeRecording(bytes) {
     throw Error("Recording exceeds 16 MB.");
   const file = JSON.parse(new TextDecoder().decode(bytes));
   if (
-    !["DAC-recording-1","DAC-recording-2"].includes(file.format) ||
+    !["DAC-recording-1","DAC-recording-2","DAC-recording-3"].includes(file.format) ||
     typeof file.payload !== "string" ||
     (await digest(new TextEncoder().encode(file.payload))) !== file.sha256
   )
     throw Error("Recording failed its integrity check.");
   const r = JSON.parse(file.payload);
   if (
+    !validJukuProfile(r.jukuProfile) ||
     ![0, 1, 2].includes(r.kind) ||
     typeof r.build !== "string" ||
     !Array.isArray(r.firmware) ||
@@ -91,17 +93,17 @@ export async function decodeRecording(bytes) {
     )
       continue;
     if ([9,10,11,12].includes(op) && e.length === 3 && a >= 0 && a < 2 && b >= 0 && b < 2) continue;
-    if(file.format==="DAC-recording-2" && [13,14,16].includes(op) && e.length===2 && a>=0 && a<=(op===13?255:op===14?7:3))continue;
-    if(file.format==="DAC-recording-2" && op===17 && e.length===3 && a>=0 && a<=115200 && b>=0 && b<=0x73f && (!a || (a>=50 && (b&15)>=5 && (b&15)<=8 && ((b>>4)&3)<=2 && ((b>>8)&7)>=2 && ((b>>8)&7)<=4 && !(b&~0x73f))))continue;
-    if(file.format==="DAC-recording-2" && op===19 && e.length===2 && a>=0 && a<=3)continue;
-    if(file.format==="DAC-recording-2" && op===18 && e.length===1)continue;
-    if(file.format==="DAC-recording-2" && op===15 && e.length===1)continue;
+    if(file.format!=="DAC-recording-1" && [13,14,16].includes(op) && e.length===2 && a>=0 && a<=(op===13?255:op===14?7:3))continue;
+    if(file.format!=="DAC-recording-1" && op===17 && e.length===3 && a>=0 && a<=115200 && b>=0 && b<=0x73f && (!a || (a>=50 && (b&15)>=5 && (b&15)<=8 && ((b>>4)&3)<=2 && ((b>>8)&7)>=2 && ((b>>8)&7)<=4 && !(b&~0x73f))))continue;
+    if(file.format!=="DAC-recording-1" && op===19 && e.length===2 && a>=0 && a<=3)continue;
+    if(file.format!=="DAC-recording-1" && op===18 && e.length===1)continue;
+    if(file.format!=="DAC-recording-1" && op===15 && e.length===1)continue;
     if ([4, 5, 6, 8].includes(op) && e.length === 1) continue;
     throw Error("Unsupported recording event.");
   }
   if (
     !Array.isArray(r.result) ||
-    r.result.length !== (file.format==="DAC-recording-2"?5:4) ||
+    (file.format==="DAC-recording-3" ? ![4,5].includes(r.result.length) : r.result.length !== (file.format==="DAC-recording-2"?5:4)) ||
     !r.result.every((x) => typeof x === "string" && /^[a-f0-9]{64}$/.test(x))
   )
     throw Error("Invalid recording result.");

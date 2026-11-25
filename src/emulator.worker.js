@@ -1,3 +1,5 @@
+import {jukuProfiles,applyJukuProfile,defaultJukuProfile} from './juku-profiles.js';
+let jukuProfile=defaultJukuProfile;
 let journeyDebugArmed=false;
 import {handleJourney} from './journey-worker.js';
 import {handleKeyboardDive} from './keyboard-dive-worker.js';
@@ -77,6 +79,7 @@ async function replayRecording(bytes) {
   clearTimeout(timer);
   stopPaste();
   try {
+    applyJukuProfile(module,next,record.kind,record.jukuProfile);
     for (const [slot, data] of record.firmware)
       copy(unbase64(data), (p, n) => module._dac_load(next, slot, p, n));
     for (let u = 0; u < 2; u++)
@@ -262,7 +265,7 @@ function refreshStateKey() {
     Number(writableUnits[0]) +
     (identities[1]
       ? ":B:" + identities[1] + ":" + Number(writableUnits[1])
-      : "");
+      : "") + (kind===0 && jukuProfile!==defaultJukuProfile ? ":profile:"+jukuProfile : "");
 }
 function snapshotBytes() {
   const n = module._dac_state_size(handle);
@@ -314,6 +317,7 @@ function copy(bytes, fn) {
 }
 function diskExtension(bytes) {
   const tag = new TextDecoder().decode(new Uint8Array(bytes).subarray(0, 8));
+  if(tag.startsWith('IMD '))return '.imd';
   return tag === "EXTENDED" || tag.startsWith("MV - CPC") ? ".dsk" : ".img";
 }
 function frame() {
@@ -457,12 +461,13 @@ async function postCheckpoints(){const generation=++checkpointListGeneration,sen
 async function restoreCheckpoint(key){
  if(recording||replaying)throw Error('Stop recording or replay before restoring a checkpoint.');
  const r=await loadCheckpoint(key);
- if(r.kind!==kind||r.firmwareIdentity!==await sessionIdentity(kind,firmware,null))throw Error('Load the checkpoint machine and matching firmware first.');
+ if((r.kind===0 && (r.jukuProfile??defaultJukuProfile)!==jukuProfile)||r.kind!==kind||r.firmwareIdentity!==await sessionIdentity(kind,firmware,null))throw Error('Load the checkpoint machine, matching profile and firmware first.');
  const core=r.build===build?module:r.build===currentBuild?currentModule:await archivedCore(r.build,coreBase),next=core._dac_create(kind);
  if(!next)throw Error('Cannot create checkpoint machine.');
  function load(bytes,fn){const p=core._malloc(bytes.byteLength);if(!p)throw Error('Not enough memory.');try{core.HEAPU8.set(new Uint8Array(bytes),p);if(fn(p,bytes.byteLength)<0)throw Error('Checkpoint state or disk rejected; current machine preserved.');}finally{core._free(p);}}
  let nextIdentities, nextMounts;
  try{
+  applyJukuProfile(core,next,kind,r.jukuProfile);
   for(const [slot,data] of firmware)load(data,(p,n)=>core._dac_load(next,slot,p,n));
   for(let u=0;u<2;u++)if(r.disks[u].bytes.byteLength)load(r.disks[u].bytes,(p,n)=>core._dac_mount_unit(next,u,p,n,Number(r.disks[u].writable)));
   load(r.bytes,(p,n)=>core._dac_state_load(next,p,n));
@@ -502,6 +507,7 @@ async function importState(file) {
       }
     }
     try {
+      applyJukuProfile(older,next,kind,jukuProfile);
       for (const [slot, data] of firmware)
         load(data, (p, n) => older._dac_load(next, slot, p, n));
       for (let u = 0; u < 2; u++)
@@ -564,7 +570,7 @@ async function receive(d) {
       currentModule = module;
       currentBuild = d.build;
       coreBase = d.base;
-      postMessage({ type: "ready" });
+      postMessage({ type: "ready", jukuProfiles:jukuProfiles(module) });
       return;
     }
     if (!module) throw Error("Emulator is not ready");
@@ -587,7 +593,21 @@ async function receive(d) {
         resume(){debugPaused=false;owed=0;last=performance.now();clearTimeout(timer);timer=setTimeout(tick,0);debugState();}});
       return;
     }
+    if (d.type === "juku-profile") {
+      if(recording || replaying)throw Error('Stop recording before changing profiles.');
+      applyJukuProfile(module,handle,kind,d.profile);
+      jukuProfile=d.profile;refreshStateKey();
+      postMessage({type:'juku-profile',profile:jukuProfile,hasState:!!(await compatibleStateKey())});return;
+    }
     if (d.type === "configure") {
+      // Validate in isolation before replacing a visitor's running session.
+      const probe=currentModule._dac_create(d.kind);
+      if(!probe)throw Error('Cannot create machine');
+      try {
+        applyJukuProfile(currentModule,probe,d.kind,d.jukuProfile);
+        for(const [slot,bytes] of d.firmware){const p=currentModule._malloc(bytes.byteLength);if(!p)throw Error("Not enough memory.");try{currentModule.HEAPU8.set(new Uint8Array(bytes),p);if(currentModule._dac_load(probe,slot,p,bytes.byteLength)<0)throw Error('Firmware rejected');}finally{currentModule._free(p);}}
+        for(const [unit,bytes,writable] of [[0,d.disk,d.writable],[1,d.diskB,d.writableB]])if(bytes){const p=currentModule._malloc(bytes.byteLength);if(!p)throw Error("Not enough memory.");try{currentModule.HEAPU8.set(new Uint8Array(bytes),p);if(currentModule._dac_mount_unit(probe,unit,p,bytes.byteLength,+!!writable)<0)throw Error('Disk format or geometry unsupported');}finally{currentModule._free(p);}}
+      } finally {currentModule._dac_destroy(probe);}
       await handleJourney({type:"journey-close"},{module,handle});
       await handleKeyboardDive({type:"dive-close"},{module,handle});
       debugPaused=debugArmed=diveDebugArmed=journeyDebugArmed=false;
@@ -600,6 +620,7 @@ async function receive(d) {
       build = d.build;
       firmware = d.firmware;
       kind = d.kind;
+      jukuProfile=d.jukuProfile??defaultJukuProfile;
       identity = await sessionIdentity(d.kind, d.firmware, d.disk);
       keyboardFirmware = firmware.some(([slot]) => slot === 3);
       const keyboard = firmware.find(([slot]) => slot === 3);
@@ -653,7 +674,7 @@ async function receive(d) {
         if (remember && image) {
           const saved = await checkedRecord(diskKey(0));
           if (saved) {
-            if (saved.bytes.byteLength !== image.byteLength)
+            if (kind!==0 && saved.bytes.byteLength !== image.byteLength)
               throw Error("Saved disk size differs");
             image = saved.bytes;
             resumedDisk = true;
@@ -689,6 +710,7 @@ async function receive(d) {
       kind = d.kind;
       handle = module._dac_create(kind);
       if (!handle) throw Error("Cannot create machine");
+      applyJukuProfile(module,handle,kind,jukuProfile);
       for (const [slot, bytes] of d.firmware)
         copy(bytes, (p, n) => module._dac_load(handle, slot, p, n));
       if (image)
@@ -756,6 +778,7 @@ async function receive(d) {
       if(debugPaused||debugArmed)throw Error("Resume and clear debugger breakpoints before recording.");
       stopPaste();
       recording = {
+        jukuProfile,
         kind,
         build,
         firmware: firmware.map(([slot, bytes]) => [slot, base64(bytes)]),
@@ -851,20 +874,20 @@ async function receive(d) {
       const timeline=Array.from(new Uint32Array(module.HEAPU8.slice(p,p+n*52).buffer));
       const disks=[0,1].map(u=>({bytes:diskBytes(u),writable:!!writableUnits[u],label:diskLabels[u]||`Disk ${u+1}`}));
       const snapshot=d.checkpoint?snapshotBytes():null,roms=firmware.map(([slot,bytes])=>[slot,bytes.slice(0)]);
-      const captured={kind,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),running,debugPaused,speed,
+      const captured={kind,jukuProfile,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),running,debugPaused,speed,
         cables:module._dac_cable_status?.(handle),keyboardLeds:module._dac_keyboard_leds?.(handle),keyboardLatches:module._dac_keyboard_latches_known?.(handle) === 0 ? null : (module._dac_keyboard_latches?.(handle) ?? null),printerState:module._dac_printer_status?.(handle),serialStatus:module._dac_serial_status?.(handle),serialPeerBaud:module._dac_serial_peer_baud?.(handle),serialPeerFormat:module._dac_serial_peer_format?.(handle),drives:[0,1].map(u=>module._dac_drive_status_unit(handle,u))};
       for(const disk of disks)disk.sha256=await digest(disk.bytes);
       const firmwareIdentity=await sessionIdentity(captured.kind,roms,null);
       const report={date:new Date().toISOString(),appRevision:d.appRevision,coreSha256:captured.build,model:d.inspection?.identity,inspection:d.inspection,hardware:captured,firmwareIdentity,
         timeline:{format:'13 little-endian uint32 words per event; existing capture only',count:n,words:timeline},disks:disks.map(v=>({label:v.label,size:v.bytes.byteLength,sha256:v.sha256,writable:v.writable,...(d.disks?diagnosticBytes(v.bytes):{})}))};
-      if(snapshot){const checkpoint={name:'Diagnostic checkpoint',date:Date.now(),bytes:snapshot,sha256:await digest(snapshot),disks,kind:captured.kind,build:captured.build,stateKey:captured.stateKey,firmwareIdentity};report.checkpoint=JSON.parse(new TextDecoder().decode(await encodeCheckpoint(checkpoint)));}
+      if(snapshot){const checkpoint={jukuProfile,name:'Diagnostic checkpoint',date:Date.now(),bytes:snapshot,sha256:await digest(snapshot),disks,kind:captured.kind,build:captured.build,stateKey:captured.stateKey,firmwareIdentity};report.checkpoint=JSON.parse(new TextDecoder().decode(await encodeCheckpoint(checkpoint)));}
       const bytes=await encodeDiagnostic(report);postMessage({type:'diagnostic-report-result',bytes},[bytes]);
     } else if(d.type==='checkpoint-list'){
       await postCheckpoints();
     } else if(d.type==='checkpoint-save'){
       // Capture synchronously before checksum/storage awaits; state and disks share one boundary.
       const bytes=snapshotBytes(),disks=[0,1].map(u=>({bytes:diskBytes(u),writable:!!writableUnits[u],label:diskLabels[u]||`Disk ${u+1}`}));
-      const record={name:d.name,bytes,disks,kind,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),firmwareIdentity:await sessionIdentity(kind,firmware,null)};
+      const record={jukuProfile,name:d.name,bytes,disks,kind,build,stateKey:stateKey.replace(/:library:[a-f0-9-]{36}/g,""),firmwareIdentity:await sessionIdentity(kind,firmware,null)};
       for(const disk of disks)disk.sha256=await digest(disk.bytes);
       const key=await saveCheckpoint(record);if(Number.isInteger(d.practice))postMessage({type:'practice-checkpoint',practice:d.practice,key});await postCheckpoints();postMessage({type:'checkpoint-status',message:'Checkpoint saved with both disks.'});
     } else if(d.type==='checkpoint-restore'){

@@ -1,3 +1,4 @@
+import {validJukuProfile} from './juku-profiles.js';
 import {base64} from './recording.js';
 import {stored,checkpointMetadata,digest} from './session-store.js';
 export {checkpointMetadata};
@@ -7,7 +8,7 @@ export async function checkpoints(onEntry=()=>{},current=()=>true){
  await Promise.all([0,1].map(async()=>{while(current()&&cursor<entries.length){const i=cursor++,key=entries[i].key;let r;try{r=await stored(key);await validateCheckpoint(r);entries[i]={key,name:r.name,date:r.date,kind:r.kind,build:r.build};}catch(e){entries[i]={...entries[i],checking:false,invalid:e.message};}onEntry(entries.slice());}}));return entries;
 }
 export async function validateCheckpoint(r){
- if(!r||!Number.isFinite(r.date)||typeof r.name!=='string'||!r.name.trim()||r.name.length>80||![0,1,2].includes(r.kind)||!/^state:[a-f0-9]{64}:/.test(r.stateKey)||!/^[a-f0-9]{64}$/.test(r.build)||r.stateKey.split(':')[1]!==r.build||typeof r.firmwareIdentity!=='string'||r.firmwareIdentity.length>4096||r.stateKey.length>4096||!Array.isArray(r.disks)||r.disks.length!==2)throw Error('Invalid checkpoint metadata.');
+ if(!r||!validJukuProfile(r.jukuProfile)||!Number.isFinite(r.date)||typeof r.name!=='string'||!r.name.trim()||r.name.length>80||![0,1,2].includes(r.kind)||!/^state:[a-f0-9]{64}:/.test(r.stateKey)||!/^[a-f0-9]{64}$/.test(r.build)||r.stateKey.split(':')[1]!==r.build||typeof r.firmwareIdentity!=='string'||r.firmwareIdentity.length>4096||r.stateKey.length>4096||!Array.isArray(r.disks)||r.disks.length!==2)throw Error('Invalid checkpoint metadata.');
  if(!(r.bytes instanceof ArrayBuffer)||r.bytes.byteLength>4*1024*1024||await digest(r.bytes)!==r.sha256)throw Error('Checkpoint state checksum failed.');
  for(const disk of r.disks)if(!(disk.bytes instanceof ArrayBuffer)||disk.bytes.byteLength>2*1024*1024||await digest(disk.bytes)!==disk.sha256||typeof disk.writable!=='boolean'||typeof disk.label!=='string'||disk.label.length>200)throw Error('Checkpoint disk checksum or metadata failed.');
 }

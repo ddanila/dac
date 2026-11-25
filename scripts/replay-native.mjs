@@ -13,7 +13,8 @@ const input = await readFile(file);
 const record = await decodeRecording(
   input.buffer.slice(input.byteOffset, input.byteOffset + input.length),
 );
-const chunks = [Buffer.from(record.result.length===5?"DACR2":"DACR1")];
+const profiled=record.kind===0 && record.jukuProfile && record.jukuProfile!=='mainboard-juku';
+const chunks = [Buffer.from(profiled?'DACR3':record.result.length===5?"DACR2":"DACR1")];
 const number = (n) => {
   const b = Buffer.alloc(4);
   b.writeUInt32LE(n);
@@ -25,6 +26,7 @@ const bytes = (data) => {
   chunks.push(b);
 };
 number(record.kind);
+if(profiled){const id=Buffer.from(record.jukuProfile);number(id.length);chunks.push(id);number(record.result.length);}
 number(record.firmware.length);
 for (const [slot, data] of record.firmware) {
   number(slot);
