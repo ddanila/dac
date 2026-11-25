@@ -1,4 +1,5 @@
 import {profileQualification} from './juku-profiles.js';
+import {jukuCharacter} from './input-sequence.js';
 import {installRepairBench} from './learning-repairs.js';
 import {physicalParts} from './learning-physical.js';
 import {createLearning} from './learning.js';
@@ -1042,6 +1043,10 @@ $("key-list-toggle").onclick = () => {
     : "Hide keyboard buttons";
 };
 function keyCode(e) {
+  if (Number($("machine").value) === 0 && !e.ctrlKey && !e.metaKey) {
+    const code = jukuCharacter(e.key);
+    if (code !== undefined && code >= 128) return code;
+  }
   if (Number($("machine").value) === 2) {
     if (e.key === "Delete") return 0x7f;
     if (e.key === "Insert") return 0x82;

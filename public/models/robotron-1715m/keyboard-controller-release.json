@@ -8,19 +8,19 @@
   "revisions": {
     "cad": "de6fd953f70292c4484b2566224c6bf9cf9a37c6",
     "hdlAndDigitalEvidence": "2a1c43e4f3289c05de6519bb5d8ebfa4baedd6fc",
-    "browserRuntime": "42270454a923be9ca3280c50ef3af4e12e8de90c",
-    "museumBase": "3132c20fc66035f4a2c3c136ce16cba40185d7c2",
-    "firmwareComparison": "42270454a923be9ca3280c50ef3af4e12e8de90c"
+    "browserRuntime": "4bae9947e93c7733d7107556e8bd7b9f58c2080c",
+    "museumBase": "f994e78793984d5433e42bc883049054751b492b",
+    "firmwareComparison": "4bae9947e93c7733d7107556e8bd7b9f58c2080c"
   },
   "museumRevisionConvention": "The git commit containing this manifest identifies the released museum; museumBase is its parent work baseline. Content hashes below bind the reviewed files without a self-referential commit hash.",
   "files": {
     "docs/robotron/journeys.md": "3d59b2a4ad4c09459573db3cef2774f7e8c412125b8a8c7dd9efba178a109e59",
     "docs/robotron/keyboard-dive-in.md": "03e3cbc8cd97facd677b3ffd3a0d4c7d7c4ba2a017d5d11bdad3284662e84a3c",
-    "docs/robotron/releases/browser.json.gz": "d7e248a53f9e1195899c2359fd65e87fb299ffaae62c7cd9ab4780e35fc3cdd0",
+    "docs/robotron/releases/browser.json.gz": "8af209b6b11bee4462a83ce6d05046d7b2ffa5a27cf63cac0861c657fcd32bdf",
     "docs/robotron/releases/drc.json.gz": "3fe4979f6adafb315d8b5c25dcdb91bcb84e6eb293a8b196ae7153cc9fd1b144",
-    "docs/robotron/releases/firmware.json.gz": "16efcde95691d6a8ffe0f44cb6c9597ab8ec939228b20f3959116e24eee12cdd",
-    "docs/robotron/releases/functional-reference-validation.json": "0f993b6604770b0cf349b9f29e42bec9b5ba719946d4f08df1c38d599a132637",
-    "public/emulator/manifest.json": "bbb1b6340cf99f53cd20ee7cca5200e4175f6f5416efd575dc963bd6700eb0a9",
+    "docs/robotron/releases/firmware.json.gz": "a0272ff82a237d599ff976556669f6d9aa529dd762164e44233796d2a9e1837b",
+    "docs/robotron/releases/functional-reference-validation.json": "7c8ac8bc646239a713489fb8a1c381bf22fa6a114db07b6675862edb6973ba29",
+    "public/emulator/manifest.json": "8271fc37c3f7e7102873082b57583f05efcda955cfa82b81c521072afec14960",
     "public/models/robotron-1715m/keyboard-controller-reference.json": "0cad0941af07fdc6e542d17b8eb66fa2822ad8ffc5b4fb3a2ecdb34394f95117",
     "public/models/robotron-1715m/keyboard-controller.json": "f4704cacaa45ba04503f5e67c23e0abe7ed2fe2343aad081413a2f0068dbbe54",
     "public/models/robotron-1715m/source.json": "350ab19ced7193bce2d75c15aa19386094cc731adbc12c89e31307b3807387ff",
@@ -51,7 +51,7 @@
     "src/learning-worker.js": "e3badbfbc2008383c96493b21c4a0077bd57ae70869d57a3fb5dff1fb6f0b384",
     "src/learning.css": "a4352d57bb742e6d9e37e6d4af9288db4d3ada3b2d0668d16415f98bc271d12e",
     "src/learning.js": "2ad9cf33fb9cdc3d263edab74fb0a001a78608f426b2d1034b76b09f383eb3d5",
-    "src/main.js": "08024147872e08ebef918c4769305cdeb2c11eb03d364a9f17b7b9b18eee343a",
+    "src/main.js": "9f8b3285b06495aceab9ad89babe3fee0c50bb44ca2f93802f9b4df98341f789",
     "src/robotron-keyboard.js": "1c81c7845dd21973468380d438ee993b0bb855c96d6be329820fff82eadc6abc",
     "src/style.css": "cd893296a34117d6f96986d599b36011debb0ba2c41db1b342360fc7f53fa437",
     "tests/journeys.spec.js": "5ee493f58801458c4b45735f565383f49cc977570caccc187ca1993171e6da1d",
@@ -60,7 +60,7 @@
     "tests/keyboard-release.spec.js": "4a775e398b64ebef51eab9ab7f8e6ce0b39bba0c731a7ea885d648feae98b8c5"
   },
   "runtimeUpdate": {
-    "previousRuntime": "210cadd85cba6f17b6022bbad28042a79e4c4ca0",
+    "previousRuntime": "42270454a923be9ca3280c50ef3af4e12e8de90c",
     "scope": "Runtime/UI observation refresh; pinned CAD, DRC and electrical evidence unchanged."
   }
 }

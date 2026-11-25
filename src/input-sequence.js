@@ -1,6 +1,13 @@
+// Host identities, not guest character bytes: the Juku ROM decodes the keys.
+export function jukuCharacter(text) {
+  const c = String(text).normalize("NFC");
+  if (c.length === 1 && (c.charCodeAt(0) < 128 || "äõöüÄÕÖÜ".includes(c)))
+    return c.charCodeAt(0);
+}
+
 // Use emulated clocks, not wall time: slow/background tabs never dump a backlog.
 export function pasteText(text, kind, firmware, map, caps = false) {
-  text = String(text).replace(/\r\n?|\n/g, "\r");
+  text = String(text).normalize("NFC").replace(/\r\n?|\n/g, "\r");
   if (!text.length || text.length > 4096)
     throw Error("Paste 1–4096 characters.");
   if (kind === 1) throw Error("VJUGA does not have a keyboard model yet.");
@@ -18,9 +25,11 @@ export function pasteText(text, kind, firmware, map, caps = false) {
         modifiers: entry[1] ^ (caps && /[a-z]/i.test(c) ? 1 : 0),
       };
     }
+    if (kind === 0 && code >= 128 && jukuCharacter(c) !== undefined)
+      return { type: "key", key: code, down: true };
     if (code !== 13 && (code < 32 || code > 126))
       throw Error(
-        `Cannot paste ${JSON.stringify(c)}; use printable ASCII and newlines.`,
+        `Cannot paste ${JSON.stringify(c)}; use printable ASCII${kind === 0 ? ", Estonian letters" : ""} and newlines.`,
       );
     return { type: "key", key: code, down: true };
   });

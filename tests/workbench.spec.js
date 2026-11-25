@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { readFile, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
-import { InputSequence, pasteText, clockDebt } from "../src/input-sequence.js";
+import { InputSequence, pasteText, clockDebt, jukuCharacter } from "../src/input-sequence.js";
 async function ready(page) {
   // These tests cover core input, persistence and sidebar controls. The dedicated
   // museum/keyboard/drive tests exercise the full CAD scene. Keep repeated core
@@ -29,6 +29,44 @@ test("clock debt is bounded and paste preserves releases and rejects unsupported
     [13, true],
     [13, false],
   ]);
+});
+test("Estonian paste normalizes combining marks and remains Juku-specific", () => {
+  const text = "äõöüÄÕÖÜ";
+  expect(pasteText(text.normalize("NFD"), 0, false, {}).map(e => e.key))
+    .toEqual([...text].map(c => c.charCodeAt(0)));
+  expect(jukuCharacter("a\u0308")).toBe(0xe4);
+  expect(jukuCharacter("é")).toBeUndefined();
+  expect(() => pasteText(text, 2, false, {})).toThrow();
+});
+test("Juku host typing and paste record Estonian keys and replay", async ({ page }) => {
+  await ready(page);
+  await page.locator("#machine").selectOption("0");
+  await expect(page.locator("#power")).toBeEnabled();
+  await open(page, "#media-controls");
+  await page.locator("#demo").click();
+  await expect(page.locator("#power")).toBeEnabled();
+  await page.locator("#power").click();
+  await open(page, "#record-controls");
+  await page.locator("#record-start").click();
+  await expect(page.locator("#record-status")).toContainText("Recording from restart");
+  const text = "äõöüÄÕÖÜ";
+  for (const key of text) {
+    const event = { key, code: "Quote", shiftKey: key === key.toUpperCase() };
+    await page.locator("#screen").dispatchEvent("keydown", event);
+    await page.locator("#screen").dispatchEvent("keyup", event);
+  }
+  await open(page, "#paste-controls");
+  await page.locator("#paste-text").fill(text.normalize("NFD"));
+  await page.locator("#paste-send").click();
+  await expect(page.locator("#paste-status")).toHaveText("Typing complete.");
+  const download = page.waitForEvent("download");
+  await page.locator("#record-stop").click();
+  const bytes = await readFile(await (await download).path());
+  const recording = JSON.parse(JSON.parse(bytes).payload);
+  const keys = recording.events.filter(e => e[0] === 1 && e[2] === 1).map(e => e[1]);
+  expect(keys).toEqual([...text + text].map(c => c.charCodeAt(0)));
+  await page.locator("#record-file").setInputFiles({name:"estonian.dacrecord", mimeType:"application/json", buffer:bytes});
+  await expect(page.locator("#record-status")).toContainText("Replay verified", {timeout:30000});
 });
 test("drive B reload, named independent copies and reset", async ({ page }) => {
   await ready(page);
