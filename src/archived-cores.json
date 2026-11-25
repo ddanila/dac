@@ -122,5 +122,10 @@
     "version": "0.20.0",
     "javascript": "31806f3a54bd6c3d0fa1d82711a88e53bb4b9d1084bfe2213eaa300bd032777a",
     "commit": "210cadd85cba6f17b6022bbad28042a79e4c4ca0"
+  },
+  "92168c03051086973f21f4b9b9c6ccc747fda89736bd7db9daf431352102c062": {
+    "version": "0.21.0",
+    "javascript": "a035ece0e81709c718f46e42b420b91e5154b8747fd70c181f8286870bf3ecd9",
+    "commit": "e57a7e0fcc107052740f68c292fcf5e9438952c7"
   }
 }

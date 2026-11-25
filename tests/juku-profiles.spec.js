@@ -50,5 +50,5 @@ test('nondefault profile recording replays in browser and native core',async({pa
  const bytes=await readFile(await (await download).path());expect(JSON.parse(bytes).format).toBe('DAC-recording-3');
  await page.locator('#record-file').setInputFiles({name:'profile.dacrecord',mimeType:'application/json',buffer:bytes});
  await expect(page.locator('#record-status')).toContainText('Replay verified');
- if(process.env.DAC_NATIVE_REPLAY){const path=test.info().outputPath('profile.dacrecord');await writeFile(path,bytes);expect(execFileSync('node',['scripts/replay-native.mjs',path],{encoding:'utf8'})).toContain('PASS native replay');}
+ if(process.env.DAC_NATIVE_REPLAY){const path=test.info().outputPath('profile.dacrecord');await writeFile(path,bytes);expect(execFileSync('node',['scripts/replay-native.mjs',path,process.env.DAC_NATIVE_REPLAY==='1'?'../dac-emulation/build/dac-replay':process.env.DAC_NATIVE_REPLAY],{encoding:'utf8'})).toContain('PASS native replay');}
 });

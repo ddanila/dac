@@ -20,7 +20,7 @@ export function applyJukuProfile(core,handle,kind,id=defaultJukuProfile) {
 }
 export function validJukuProfile(id) {return id===undefined || (typeof id==='string' && /^[a-z][a-z0-9-]{0,63}$/.test(id));}
 export function profileQualification(id) {
-  if(id==='card-at')return 'Experimental adapter mapping. The preserved #0043 ROM fails its checksum test; historical boot is unverified.';
+  if(id==='card-at')return 'Checksum-corrected #0043: EKDOS boot and file I/O verified. Original ROM fails its checksum; adapter wiring is inferred from firmware.';
   if(id==='single-density')return 'Generated FM diagnostics; no historical FD1792 ROM/disk pairing verified.';
   if(id==='early-juku')return 'Generated bootstrap verified; a compatible historical operating-system disk is still needed.';
   if(id==='card-juku')return 'Historical EKDOS file I/O verified; card wiring is inferred from firmware.';

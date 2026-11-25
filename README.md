@@ -229,4 +229,6 @@ Juku accepts raw `.juk` and supported `.imd` images. IMD exports preserve sector
 IDs, density, deleted marks and recorded errors in an uncompressed private copy.
 See the [core profile contract](https://github.com/ddanila/dac-emulation/blob/main/verification/juku-profiles/README.md)
 for supported geometry, hardware evidence and qualification limits. The AT-card
-profile remains experimental; the preserved #0043 ROM fails its checksum.
+profile passes EKDOS boot and file I/O with an explicitly checksum-corrected
+#0043 ROM; the original dump fails startup. The emulator does not repair ROMs
+automatically, and the adapter wiring remains inferred from firmware.
