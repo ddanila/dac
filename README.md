@@ -91,9 +91,17 @@ The museum commits a small versioned WASM distribution in `public/emulator/` rat
 
 ```sh
 node scripts/sync-emulator.mjs ../dac-emulation/dist
+# Refresh the functional keyboard release with fresh browser/firmware reports:
+python3 scripts/keyboard-controller-release.py --runtime-update \
+  --browser-report /path/to/passing-playwright.json \
+  --firmware-report /path/to/production-firmware/assessment.json
 npm test
 npm run build
 ```
+
+The [runtime release procedure](docs/robotron/keyboard-dive-in.md#implementation-and-verification)
+keeps the functional keyboard release bound to the shipped emulator while
+preserving its separate CAD and electrical evidence.
 
 Original content is [MIT](LICENSE). Imported code retains the notices in
 `public/emulator`; model licences are described in the
