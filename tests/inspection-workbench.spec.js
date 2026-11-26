@@ -17,7 +17,7 @@ test('control groups filter secondary tools while keeping power available',async
 
 test('real worker pauses, steps, reads mapped memory and stops on a bus event',async({page})=>{
 
- await page.goto('/?activity=printer');await expect(page.locator('#power')).toBeEnabled();await page.locator('#power').click();
+ await runtimeReady(page, '/?activity=printer');await page.locator('#power').click();
  const panel=page.locator('#debug-controls');await panel.evaluate(e=>e.open=true);await panel.locator('[data-pause]').click();await expect(panel.locator('[data-status]')).toContainText('paused');
  await panel.locator('[data-refresh]').click();await expect(panel.locator('[data-registers]')).toContainText('PC:');const before=await panel.locator('[data-registers]').textContent();
  await panel.locator('[data-memory]').click();await expect(panel.locator('[data-bytes]')).toContainText('read space');expect(await panel.locator('[data-registers]').textContent()).toBe(before);
