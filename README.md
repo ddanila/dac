@@ -64,6 +64,8 @@ Disk writes are off by default and affect only a session copy. Reset and power
 cycling preserve it; without **Keep this session**, switching media/machines or
 closing the tab discards it. **Export session disk** downloads a portable backup.
 
+Snapshots, checkpoints and recording replay require the current emulator build. Older checkpoints remain listable and exportable, including in collection backups; they are not automatically migrated or deleted. Disk images can be loaded independently.
+
 ## What is qualified
 
 The [capability matrix](docs/robotron/capabilities.md) owns Robotron behavior and
@@ -166,7 +168,7 @@ files listed in `nightlyOnlyFiles` unless a change touches them; the nightly and
 manual runs cover every test in every browser. Deployment requires the build and
 selected checks to pass.
 Keep test inventories and duration estimates in their source files. Refresh timings
-from a successful nightly or manual full run with
+from a successful push smoke or nightly/manual full run with
 `node scripts/refresh-ci-durations.mjs RUN_ID` (requires authenticated `gh`).
 Review the resulting JSON diff before committing; this changes placement, not coverage.
 

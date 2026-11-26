@@ -8,7 +8,7 @@ import { assignFiles, nativeTests, visualTestPattern } from './ci-shards.mjs';
 export const crossBrowserFiles = [
   'monitor-lab.spec.js',
   'analyzer.spec.js', 'investigation.spec.js', 'experiments.spec.js', 'source-trace.spec.js', 'fault-experiments.spec.js',
-  'pico1715.spec.js', 'portable-sessions.spec.js', 'checkpoints.spec.js', 'workbench.spec.js',
+  'runtime-builds.spec.js', 'pico1715.spec.js', 'portable-sessions.spec.js', 'checkpoints.spec.js', 'workbench.spec.js',
   'assembly.spec.js', 'robotron-review-tools.spec.js',
   'robotron-activities.spec.js', 'keyboard-controller.spec.js', 'keyboard-dive.spec.js', 'journeys.spec.js', 'learning.spec.js', 'learning-investigations.spec.js',
 ];

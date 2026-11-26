@@ -84,7 +84,7 @@ export async function handleJourney(d,ctx){
  if(d.type==='journey-close'){epoch++;clearTimeout(referenceTimer);if(active?.source==='live')active.m._dac_journey_stop(active.h);ctx.disarm?.();destroy();return;}
  if(d.type==='journey-triggered'&&!active)return;
  if(d.cell!==undefined&&(!Number.isInteger(d.cell)||d.cell<0||d.cell>=1920))throw Error('Use a cell between 0 and 1919');
- if(!ctx.module?._dac_journey_capabilities)throw Error('This preserved core has no journey observations. Guided journeys use the current core.');
+ if(!ctx.module?._dac_journey_capabilities)throw Error('This core has no journey observations.');
  if(d.type==='journey-guide'){
   if(!journeys[d.journey]||!journeys[d.journey].scenarios.some(([v])=>v===d.scenario))throw Error('Unknown journey scenario');
   const token=++epoch;if(active?.source==='live')active.m._dac_journey_stop(active.h);ctx.disarm?.();destroy();try{const result=d.journey==='faults'?await faults(d,ctx,token):await prepareGuide(d,ctx,token);if(token===epoch)post(result,d.requestId);}catch(e){if(token===epoch)throw e;}return;

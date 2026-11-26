@@ -22,8 +22,8 @@ model, textures, recordings, bundled media and emulator are included.
 Run python3 serve.py --verify to verify every packaged file without serving.
 Keep this ZIP and your separately exported disks/portable sessions together.
 Browser storage is temporary. Use Export disk / Export portable session before
-moving computers. Imported sessions select their archived matching core where
-available. This archive cannot contain private sessions from your browser.
+moving computers. States and recording replay require this packaged emulator build.
+Older checkpoints remain exportable; disk images can be loaded independently. This archive cannot contain private sessions from your browser.
 
 Original code is MIT; historical firmware/media and imported geometry retain
 separate notices under site/media, site/emulator and site/models. Packaging does

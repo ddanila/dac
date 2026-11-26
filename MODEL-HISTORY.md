@@ -8,11 +8,10 @@ This path remains available for existing links.
 
 ## Runtime preservation and replay
 
-Before replacing a core, preserve its JS/WASM and notices under
-`public/emulator/archive/<wasm-sha>/`, add the pinned JS hash to
-`src/archived-cores.json`, and run the preserved-state test. Restoration uses a
-compatible archived runtime; it does not convert an old internal state layout.
-The active runtime and archived catalog are authoritative, not a version list here.
+The deployed build is the only supported runtime. Snapshots, checkpoints and
+recordings require its exact build identity; incompatible data is rejected before
+execution. Older checkpoints remain available for export and collection backups.
+Disk images are independent of the runtime build. Do not add archived runtimes.
 
 Build the native replay runner with
 `make -C ../dac-emulation build/dac-replay`, then run:

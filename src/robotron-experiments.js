@@ -22,7 +22,7 @@ export function createElectricalPanel(send) {
   const shown=pending??mask;
   if(shown && pending===null){enable.checked=true;panel.open=true;}
   keyboard.checked=!(shown&1);monitor.checked=!(shown&2);controls();
-  status.textContent=!supported?'This preserved core does not support electrical experiments.':mask?`Experiment active: ${[mask&1?'keyboard disconnected':'',mask&2?'monitor video disconnected':''].filter(Boolean).join('; ')}.`:'Connections intact.';
+  status.textContent=!supported?'This core does not support electrical experiments.':mask?`Experiment active: ${[mask&1?'keyboard disconnected':'',mask&2?'monitor video disconnected':''].filter(Boolean).join('; ')}.`:'Connections intact.';
   document.getElementById('viewport').dataset.electrical=String(mask);
  }};
 }

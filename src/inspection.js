@@ -63,7 +63,7 @@ export const inspections = {
   },
   drives: {
     title: "Two independently usable drives",
-    text: "The two mechanisms now follow Danila’s own photos, including their different sensor-board shapes, clamp bridges, head carriages and rear plates. Choose Drive labels to inspect the manufacturer markings. Each drive has independent media and write protection. Lamps, spindle rotation and head travel follow emulator activity; head travel uses the nominal 96-tpi TEAC specification. Current emulation supplies spindle phase, startup/coast speed and fractional head position. READY, head loading and settling use a documented reference profile; exact specimen dynamics remain unmeasured. Older preserved cores retain their earlier behavior.",
+    text: "The two mechanisms now follow Danila’s own photos, including their different sensor-board shapes, clamp bridges, head carriages and rear plates. Choose Drive labels to inspect the manufacturer markings. Each drive has independent media and write protection. Lamps, spindle rotation and head travel follow emulator activity; head travel uses the nominal 96-tpi TEAC specification. Current emulation supplies spindle phase, startup/coast speed and fractional head position. READY, head loading and settling use a documented reference profile; exact specimen dynamics remain unmeasured.",
     photo: "20250212_094033966",
   },
   "drive-labels": {

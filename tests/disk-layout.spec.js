@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { runtimeReady } from "./runtime-fixture.js";
 import { readFile } from "node:fs/promises";
 function disk() {
   const b = Buffer.alloc(256 + 160 * 5376);
@@ -25,9 +26,7 @@ function disk() {
 test("DSK drive B survives snapshot restoration and exports its original layout", async ({
   page,
 }) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
-  await expect(page.locator("#power")).toBeEnabled();
+  await runtimeReady(page);
   await page.locator("#media-controls").evaluate((e) => (e.open = true));
   await page.locator("#demo").click();
   await expect(page.locator("#media-label")).toHaveText("DAC diagnostic ROM");

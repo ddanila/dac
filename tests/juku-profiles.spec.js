@@ -31,7 +31,7 @@ test('IMD import exports an independent normalized image and preserves recorded 
  expect(file.suggestedFilename()).toMatch(/\.imd$/);const stream=await file.createReadStream();const chunks=[];for await(const chunk of stream)chunks.push(chunk);const bytes=Buffer.concat(chunks);
  expect(bytes.subarray(0,4).toString()).toBe('IMD ');expect(bytes.length).toBe(271);expect(bytes[13]).toBe(1);expect(bytes[142]).toBe(7);expect(bytes[270]).toBe(165);
 });
-test('archived cores reject nondefault profiles and recording metadata round-trips',async({page})=>{
+test('cores without profile support reject nondefault profiles and recording metadata round-trips',async({page})=>{
  await page.goto('/tests/model-harness.html');const result=await page.evaluate(async()=>{
   const {applyJukuProfile}=await import('/src/juku-profiles.js');let rejection;
   applyJukuProfile({},1,0);try{applyJukuProfile({},1,0,'early-juss');}catch(e){rejection=e.message;}

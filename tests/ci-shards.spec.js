@@ -156,6 +156,9 @@ test('timing refresh accepts complete successful evidence and preserves skipped 
    expect(()=>refreshDurations(previous,bad,run)).toThrow();
  }
  expect(()=>refreshDurations(previous,[reports[0]],run)).toThrow();
+ const smoke = {...reports[0], scope:'smoke', workers:2, shard:'', tests:reports.flatMap(r=>r.tests)};
+ expect(refreshDurations({seconds:{...previous.seconds,'tests/nightly.spec.js':42}},[smoke],run).seconds).toEqual({[selected[0]]:4.6,[selected[1]]:17,'tests/nightly.spec.js':42});
+ for(const patch of [{workers:1},{shard:'1'},{tests:reports[0].tests},{status:'failed'}])expect(()=>refreshDurations(previous,[{...smoke,...patch}],run)).toThrow();
 });
 
 test('runtime photo selection keeps full names and inspection IDs without fetching unused originals', async () => {

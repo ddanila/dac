@@ -1,3 +1,4 @@
+import {runtimeReady} from './runtime-fixture.js';
 import {test,expect} from '@playwright/test';
 import * as T from 'three';
 import {sectionCap} from '../src/section-caps.js';
@@ -11,11 +12,11 @@ test('measurements use model scale and follow the selected object transform',asy
  await page.goto('/tests/model-harness.html');const result=await page.evaluate(async()=>{const T=await import('/tests/browser-three.js'),{createMeasurement}=await import('/src/model-measurement.js');let value;const scene=new T.Scene(),m=new T.Mesh(new T.BoxGeometry(100,100,100));m.name='sample';m.scale.setScalar(.0025);scene.add(m);m.updateMatrixWorld();const measure=createMeasurement(scene,v=>value=v);measure.set(true);measure.pick({object:m,point:new T.Vector3()});measure.pick({object:m,point:new T.Vector3(.125,0,0)});const first=value.millimetres;m.position.y=1;measure.update();return {first,after:value.millimetres,classification:value.classification};});expect(result).toEqual({first:50,after:50,classification:'Model-derived estimate'});
 });
 test('control groups filter secondary tools while keeping power available',async({page})=>{
- await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No CAD needed'}));await page.goto('/');await expect(page.locator('#power')).toBeEnabled();await page.locator('[data-control-group=diagnose]').click();await expect(page.locator('#controls-diagnose')).toBeVisible();await expect(page.locator('#controls-use')).toBeHidden();await expect(page.locator('#power')).toBeVisible();await page.locator('[data-control-group=inspect]').click();await expect(page.locator('#measurement-panel')).toBeVisible();await page.locator('[data-control-group=all]').click();await expect(page.locator('#controls-use')).toBeVisible();
+ await runtimeReady(page);await page.locator('[data-control-group=diagnose]').click();await expect(page.locator('#controls-diagnose')).toBeVisible();await expect(page.locator('#controls-use')).toBeHidden();await expect(page.locator('#power')).toBeVisible();await page.locator('[data-control-group=inspect]').click();await expect(page.locator('#measurement-panel')).toBeVisible();await page.locator('[data-control-group=all]').click();await expect(page.locator('#controls-use')).toBeVisible();
 });
 
 test('real worker pauses, steps, reads mapped memory and stops on a bus event',async({page})=>{
- await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No CAD needed'}));
+
  await page.goto('/?activity=printer');await expect(page.locator('#power')).toBeEnabled();await page.locator('#power').click();
  const panel=page.locator('#debug-controls');await panel.evaluate(e=>e.open=true);await panel.locator('[data-pause]').click();await expect(panel.locator('[data-status]')).toContainText('paused');
  await panel.locator('[data-refresh]').click();await expect(panel.locator('[data-registers]')).toContainText('PC:');const before=await panel.locator('[data-registers]').textContent();
@@ -32,8 +33,8 @@ test('measurement export restores exact points and assembled distance ignores se
 });
 
 test('execution target, flags and changed registers work with a custom loop ROM',async({page})=>{
- await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No CAD needed'}));
- await page.goto('/');await expect(page.locator('#power')).toBeEnabled();await page.locator('#media-controls').evaluate(e=>e.open=true);
+
+ await runtimeReady(page);await page.locator('#media-controls').evaluate(e=>e.open=true);
  const rom=Buffer.alloc(2048);rom.set([0x04,0xc3,0,0]);
  await page.locator('#rom').setInputFiles({name:'loop.bin',mimeType:'application/octet-stream',buffer:rom});await page.locator('#prom').setInputFiles('public/media/robotron/cas.bin');await page.locator('#load').click();await page.locator('#power').click();
  const panel=page.locator('#debug-controls');await panel.evaluate(e=>e.open=true);await panel.locator('[data-pause]').click();await expect(page.locator('#status')).toContainText('Paused');

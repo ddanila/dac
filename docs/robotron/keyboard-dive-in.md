@@ -95,7 +95,7 @@ identified rather than given an invented disassembly.
 The emulator owns observation hooks and the native/WASM API; the museum owns the
 worker protocol, capture presentation and hash-bound semantic annotations. Host
 observers, capture buffers and callbacks are excluded from machine save states.
-Older preserved cores remain loadable and report inspection as unavailable.
+Only the current emulator build is supported for state restoration and replay.
 
 `make test-keyboard-dive` in dac-emulation checks state neutrality, ordering,
 ROM mirrors, stepping, restore, bounded buffers and trigger stops.

@@ -1,7 +1,6 @@
 import {audioStateChanged,audioStatus} from './audio-state.js';
 // Geometry is in millimetres. Track pitch uses the TEAC reference; motor/track
-// state comes from the controller. New cores supply authoritative rotational phase.
-// Archived cores retain the old illustrative animation. Reduced motion freezes rotors.
+// state and rotational phase come from the controller. Reduced motion freezes rotors.
 export function createDriveMotion(objects, descriptions = []) {
   const drives = descriptions.map((d) => {
     const spindle = objects.get(d.spindle),

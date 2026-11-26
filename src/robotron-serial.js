@@ -72,7 +72,7 @@ export function createSerialPanel(send){
    for(const [name,bit] of [['cts',1],['dcd',2],['rts',4]])$('serial-'+name).checked=!!((requestedSignals??data.serialStatus)&bit);
    $('serial-apply').disabled=$('serial-cancel').disabled=!data.serialPeerSupported||busy;
    if(transferring)$('serial-apply').disabled=$('serial-clear').disabled=true;
-   $('serial-status').textContent=supported?`${data.serialStatus>>>8} bytes queued · ${data.serialSize} received${data.serialOverflow?' · capture full':''} · RX errors: ${['parity','overrun','framing'].filter((_,i)=>data.serialErrors&(16<<i)).join(', ')||'none'} · peer ${data.serialPeerBaud||'adaptive'} · decoded ${data.serialDecodedSize||0} bytes${data.serialDecodedErrors?' (peer errors '+data.serialDecodedErrors.toString(16)+')':''}`:'This preserved core has no V.24 terminal support.';
+   $('serial-status').textContent=supported?`${data.serialStatus>>>8} bytes queued · ${data.serialSize} received${data.serialOverflow?' · capture full':''} · RX errors: ${['parity','overrun','framing'].filter((_,i)=>data.serialErrors&(16<<i)).join(', ')||'none'} · peer ${data.serialPeerBaud||'adaptive'} · decoded ${data.serialDecodedSize||0} bytes${data.serialDecodedErrors?' (peer errors '+data.serialDecodedErrors.toString(16)+')':''}`:'This core has no V.24 terminal support.';
    if(lastSize!==data.serialSize)preview();
   },
   message(data){if(data.type==='capture-reset' || data.type==='configured'){transfer?.cancel('Machine or capture reset; transfer cancelled.');lastFrameTime=null;lastSize=-1;pending=false;}if(data.type==='replay'){pending=false;busy=data.active;}if(data.type==='serial-error'){pending=false;fail(data.message);return;}if(data.type!=='serial-preview')return;pending=false;lastSize=data.bytes.byteLength;

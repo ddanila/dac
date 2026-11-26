@@ -266,7 +266,7 @@ try {
       if(from!==to && !driveDoors[from]) return "Open the source drive lever before moving this disk";
       if(!driveDoors[to]) return `Open drive ${to ? "B" : "A"} lever`;
       if(drivePresent[to]) return `Drive ${to ? "B" : "A"} is occupied`;
-      if(from!==to && !driveTransferSupported) return "This preserved emulator cannot move disks between drives";
+      if(from!==to && !driveTransferSupported) return "This emulator cannot move disks between drives";
       return "";
     },
     onInsertDisk: (from,to=from) => {
@@ -504,7 +504,6 @@ worker.onmessage = async ({ data: d }) => {
     configure(true, true).catch((e) => fail(e.message));
   }
   if (d.type === "configured") {
-    $("runtime-status").textContent = "";
     disk = d.disk;
     updateDriveB(d.diskB);
     firmwareKeyboard = !!d.firmwareKeyboard;
@@ -699,10 +698,6 @@ worker.onmessage = async ({ data: d }) => {
       $("restore-state").disabled = !hasState;
     }
   }
-  if (d.type === "runtime")
-    $("runtime-status").textContent = d.preserved
-      ? "Running the preserved emulator version for this snapshot. Reload media to return to the current version."
-      : "";
   if (d.type === "record-status") $("record-status").textContent = d.message;
   if (d.type === "mounted-a") {
     disk = true;

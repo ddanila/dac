@@ -10,6 +10,7 @@ export default class TimingReporter {
   onEnd(result) {
     const tests = this.suite.allTests().map(test => ({
       file: relative(process.cwd(), test.location.file).replaceAll('\\', '/'),
+      title: test.titlePath().join(" › "),
       outcome: test.outcome(),
       milliseconds: test.results.reduce((sum, attempt) => sum + attempt.duration, 0),
     }));

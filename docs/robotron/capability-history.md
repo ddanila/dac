@@ -21,7 +21,7 @@ python3 scripts/package-preservation.py /path/to/dac-preservation.zip
 ```
 
 The archive includes a localhost server, file hashes, built assets, media notices
-and available archived cores. Optional third-party comparison photos are not
+and the current emulator build. Optional third-party comparison photos are not
 mirrored. Browser-local sessions must be exported separately.
 
 See [model maintenance](../../MODEL-HISTORY.md) for runtime preservation and native

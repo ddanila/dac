@@ -1,3 +1,4 @@
+import {runtimeReady} from './runtime-fixture.js';
 import {test,expect} from '@playwright/test';
 test('named checkpoints validate nested disks and survive collection backup',async({page})=>{
  await page.goto('/tests/model-harness.html');
@@ -15,8 +16,8 @@ test('named checkpoints validate nested disks and survive collection backup',asy
  expect(result.names).toEqual(['Before format']);expect(result.state).toEqual([1,2,3]);expect(result.error).toContain('disk checksum');
 });
 test('restore running checkpoint preserves its display and rejects a corrupted disk atomically',async({page})=>{
- await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No CAD needed'}));
- await page.goto('/');await expect(page.locator('#power')).toBeEnabled();
+
+ await runtimeReady(page);
  await page.locator('#media-controls').evaluate(e=>e.open=true);await page.locator('#demo').click();
  await page.locator('#power').click();await page.locator('#screen-view').click();await page.locator('#screen').focus();await page.keyboard.type('CHECKPOINT');await page.waitForTimeout(200);
  const raster=await page.locator('#screen').evaluate(e=>e.toDataURL());
@@ -27,9 +28,9 @@ test('restore running checkpoint preserves its display and rejects a corrupted d
  await page.locator('#checkpoint-restore').click();await expect(page.locator('#checkpoint-status')).toContainText('checksum');expect(await page.locator('#screen').evaluate(e=>e.toDataURL())).toBe(raster);
 });
 test('checkpoint restores both mounted disks and their protection after drive B replacement',async({page})=>{
- await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No CAD needed'}));
+
  await page.addInitScript(()=>{const Base=Worker;window.Worker=class extends Base{constructor(...args){super(...args);window.coreWorker=this;}};});
- await page.goto('/');await expect(page.locator('#power')).toBeEnabled();
+ await runtimeReady(page);
  await page.locator('#drive-b-controls').evaluate(e=>e.open=true);await page.locator('#blank-b').click();await expect(page.locator('#disk-b-status')).toContainText('inserted');
  await page.locator('#power').click();await page.locator('#checkpoint-controls').evaluate(e=>e.open=true);await page.locator('#checkpoint-name').fill('Two disks');await page.locator('#checkpoint-save').click();await expect(page.locator('#checkpoint-status')).toContainText('saved with both disks');
  await page.locator('#power').click();await page.locator('#drive-b-controls').evaluate(e=>e.open=true);await page.locator('#eject-b').click();await expect(page.locator('#export-b')).toBeDisabled();
@@ -42,7 +43,7 @@ test('individual checkpoint export, rename and damaged-entry isolation',async({p
 });
 
 test('custom-ROM checkpoint previews mismatch and restores after matching firmware is supplied',async({page})=>{
- await page.route('**/models/robotron-1715m/model.json?*',r=>r.fulfill({status:503,body:'No CAD needed'}));await page.goto('/');await expect(page.locator('#power')).toBeEnabled();await page.locator('#media-controls').evaluate(e=>e.open=true);
+await runtimeReady(page);await page.locator('#media-controls').evaluate(e=>e.open=true);
  const rom=Buffer.alloc(2048);rom.set([0xc3,0,0]);const load=async bytes=>{await page.locator('#media-controls').evaluate(e=>e.open=true);await page.locator('#rom').setInputFiles({name:'custom.bin',mimeType:'application/octet-stream',buffer:bytes});await page.locator('#prom').setInputFiles('public/media/robotron/cas.bin');await page.locator('#load').click();};
  await load(rom);await page.locator('#power').click();await page.locator('#checkpoint-controls').evaluate(e=>e.open=true);await page.locator('#checkpoint-name').fill('Custom');await page.locator('#checkpoint-save').click();await expect(page.locator('#checkpoint-status')).toContainText('saved with both disks');await page.locator('#checkpoint-preview').click();await expect(page.locator('#checkpoint-compatibility')).toContainText('Firmware matches');
  await page.locator('#power').click();const other=Buffer.from(rom);other[100]=1;await load(other);await page.locator('#checkpoint-preview').click();await expect(page.locator('#checkpoint-compatibility')).toContainText('Supply matching ROM');await page.locator('#checkpoint-restore').click();await expect(page.locator('#checkpoint-status')).toContainText('firmware');

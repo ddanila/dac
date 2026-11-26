@@ -7,8 +7,10 @@ import {encodeDiagnostic,diagnosticBytes} from './diagnostic-report.js';
 let debugPaused=false,debugArmed=false,debugMemoryAddress,diveDebugArmed=false;
 import {checkpointMetadata,checkpoints,saveCheckpoint,loadCheckpoint,renameCheckpoint,deleteCheckpoint,exportCheckpoint,importCheckpoint,encodeCheckpoint} from './checkpoints.js';
 import {exportCollection,importCollection} from './collection-backup.js';
-import { archivedCore, hasArchivedCore } from "./archived-core.js";
-let currentModule, currentBuild, coreBase;
+let currentModule, currentBuild;
+function requireCurrentBuild(candidate) {
+  if (candidate !== currentBuild) throw Error("Unsupported emulator build. Only the current build can restore states or replay recordings; saved data remains available for export.");
+}
 import {
   RECORD_LIMIT,
   base64,
@@ -70,6 +72,7 @@ async function finishRecording() {
 }
 async function replayRecording(bytes) {
   const record = await decodeRecording(bytes);
+  requireCurrentBuild(record.build);
   const next = module._dac_create(record.kind);
   if (!next) throw Error("Cannot create replay machine.");
   replaying = true;
@@ -312,8 +315,8 @@ function snapshotBytes() {
   }
 }
 function restore(bytes) {
-  debugPaused=debugArmed=false;module._dac_debug_break?.(handle,0);
   copy(bytes, (p, n) => module._dac_state_load(handle, p, n));
+  debugPaused=debugArmed=false;module._dac_debug_break?.(handle,0);
   postMessage({type:"capture-reset"});
   if(paste)postMessage({type:"paste-status",message:"Typing cancelled by state restore."});
   paste=null;clearKeyboardTransport();
@@ -481,22 +484,16 @@ function awaitLimit() {
   });
 }
 async function compatibleStateKey() {
-  if (await stored(stateKey)) return stateKey;
-  return (await storedKeys()).find(
-    (key) =>
-      typeof key === "string" &&
-      key.startsWith("state:") &&
-      key.slice(71) === stateKey.slice(71) &&
-      hasArchivedCore(key.split(":")[1]),
-  );
+  return await stored(stateKey) ? stateKey : undefined;
 }
 let checkpointListGeneration=0,checkpointValidation=Promise.resolve();
-async function postCheckpoints(){const generation=++checkpointListGeneration,send=entries=>{if(generation===checkpointListGeneration)postMessage({type:'checkpoints',entries});};send(await checkpointMetadata());checkpointValidation=checkpointValidation.catch(()=>{}).then(()=>generation===checkpointListGeneration?checkpoints(send,()=>generation===checkpointListGeneration):undefined);await checkpointValidation;}
+async function postCheckpoints(){const generation=++checkpointListGeneration,send=entries=>{if(generation===checkpointListGeneration)postMessage({type:'checkpoints',entries:entries.map(r=>({...r,unsupported:r.build!==currentBuild}))});};send(await checkpointMetadata());checkpointValidation=checkpointValidation.catch(()=>{}).then(()=>generation===checkpointListGeneration?checkpoints(send,()=>generation===checkpointListGeneration):undefined);await checkpointValidation;}
 async function restoreCheckpoint(key){
  if(recording||replaying)throw Error('Stop recording or replay before restoring a checkpoint.');
  const r=await loadCheckpoint(key);
+ requireCurrentBuild(r.build);
  if((r.kind===0 && (r.jukuProfile??defaultJukuProfile)!==jukuProfile)||r.kind!==kind||r.firmwareIdentity!==await sessionIdentity(kind,firmware,null))throw Error('Load the checkpoint machine, matching profile and firmware first.');
- const core=r.build===build?module:r.build===currentBuild?currentModule:await archivedCore(r.build,coreBase),next=core._dac_create(kind);
+ const core=module,next=core._dac_create(kind);
  if(!next)throw Error('Cannot create checkpoint machine.');
  function load(bytes,fn){const p=core._malloc(bytes.byteLength);if(!p)throw Error('Not enough memory.');try{core.HEAPU8.set(new Uint8Array(bytes),p);if(fn(p,bytes.byteLength)<0)throw Error('Checkpoint state or disk rejected; current machine preserved.');}finally{core._free(p);}}
  let nextIdentities, nextMounts;
@@ -515,58 +512,16 @@ async function restoreCheckpoint(key){
  storageStatus('Checkpoint restored to private disk copies.',{hasState:false});
  postMessage({type:'capture-reset'});postMessage({type:'checkpoint-restored'});
  postMessage({type:'media-moved',present:r.disks.map(d=>!!d.bytes.byteLength),writable:writableUnits});
- postMessage({type:'runtime',preserved:module!==currentModule});postMessage({type:'power',on:true});frame();if(!hidden)tick();
+ postMessage({type:'power',on:true});frame();if(!hidden)tick();
 }
 async function importState(file) {
   const { header } = snapshotHeader(file);
   const version = header.key.split(":")[1];
-  const expected = stateKey.replace(
-    /^state:[a-f0-9]{64}:/,
-    "state:" + version + ":",
-  );
-  const bytes = await decodeSnapshot(file, expected);
-  if (version !== build) {
-    const older = await archivedCore(version, coreBase);
-    const next = older._dac_create(kind);
-    if (!next) throw Error("Cannot create preserved machine.");
-    function load(data, fn) {
-      const p = older._malloc(data.byteLength);
-      if (!p) throw Error("Not enough memory for preserved state.");
-      try {
-        older.HEAPU8.set(new Uint8Array(data), p);
-        if (fn(p, data.byteLength) < 0)
-          throw Error("Preserved state or media rejected.");
-      } finally {
-        older._free(p);
-      }
-    }
-    try {
-      applyJukuProfile(older,next,kind,jukuProfile);
-      for (const [slot, data] of firmware)
-        load(data, (p, n) => older._dac_load(next, slot, p, n));
-      for (let u = 0; u < 2; u++)
-        if (module._dac_disk_size_unit(handle, u))
-          load(diskBytes(u), (p, n) =>
-            older._dac_mount_unit(next, u, p, n, Number(writableUnits[u])),
-          );
-      load(bytes, (p, n) => older._dac_state_load(next, p, n));
-    } catch (e) {
-      older._dac_destroy(next);
-      throw e;
-    }
-    clearTimeout(timer);
-    stopPaste();
-    module._dac_destroy(handle);
-    module = older;
-    clearKeyboardTransport();
-    handle = next;
-    build = version;
-    stateKey = expected;
-  }
+  requireCurrentBuild(version);
+  const bytes = await decodeSnapshot(file, stateKey);
   restore(bytes);
   await persistDisk(true);
   storageStatus("Imported machine state restored.");
-  postMessage({ type: "runtime", preserved: module !== currentModule });
 }
 async function receive(d) {
   try {
@@ -604,7 +559,6 @@ async function receive(d) {
       });
       currentModule = module;
       currentBuild = d.build;
-      coreBase = d.base;
       postMessage({ type: "ready", jukuProfiles:jukuProfiles(module) });
       return;
     }
@@ -944,11 +898,11 @@ async function receive(d) {
     } else if(d.type==='checkpoint-import'){
       await importCheckpoint(d.bytes);await postCheckpoints();postMessage({type:'checkpoint-status',message:'Checkpoint imported as a new entry. Check compatibility before restoring.'});
     } else if(d.type==='checkpoint-preview'){
-      const r=await loadCheckpoint(d.key),machine=r.kind===kind,firmwareMatch=machine&&r.firmwareIdentity===await sessionIdentity(kind,firmware||[],null),core=r.build===build||r.build===currentBuild||hasArchivedCore(r.build);
-      postMessage({type:'checkpoint-preview',message:`${machine?'Machine matches':'Choose '+['Juku','VJUGA','Robotron'][r.kind]}. ${firmwareMatch?'Firmware matches':'Supply matching ROM files in Media controls'}. ${core?'Matching core available':'Core unavailable'}. Required firmware identity: ${r.firmwareIdentity}. Disk copies: ${r.disks.map(d=>d.label+' ('+d.bytes.byteLength+' bytes)').join(', ')}.`});
+      const r=await loadCheckpoint(d.key),machine=r.kind===kind,firmwareMatch=machine&&r.firmwareIdentity===await sessionIdentity(kind,firmware||[],null),core=r.build===currentBuild;
+      postMessage({type:'checkpoint-preview',message:`${machine?'Machine matches':'Choose '+['Juku','VJUGA','Robotron'][r.kind]}. ${firmwareMatch?'Firmware matches':'Supply matching ROM files in Media controls'}. ${core?'Matching core available':'Unsupported emulator build; export remains available'}. Required firmware identity: ${r.firmwareIdentity}. Disk copies: ${r.disks.map(d=>d.label+' ('+d.bytes.byteLength+' bytes)').join(', ')}.`});
     } else if(d.type === "timeline-capture"){
       if(d.stopOnTrigger&&(recording||replaying))throw Error('Stop recording or replay before setting a breakpoint.');
-      if(d.trigger){if(!module._dac_timeline_arm)throw Error('Triggered capture is unavailable in this preserved core.');const t=d.trigger;if(module._dac_timeline_arm(handle,t.mode,t.address,t.pre,t.filter,t.master)<0)throw Error('Invalid capture settings.');debugArmed=!!d.stopOnTrigger;if(debugArmed&&(!module._dac_debug_break||module._dac_debug_break(handle,1)<0))throw Error('Breakpoint unavailable. Power on the current Robotron core.');if(!debugArmed)module._dac_debug_break?.(handle,0);}
+      if(d.trigger){if(!module._dac_timeline_arm)throw Error('Triggered capture is unavailable in this core.');const t=d.trigger;if(module._dac_timeline_arm(handle,t.mode,t.address,t.pre,t.filter,t.master)<0)throw Error('Invalid capture settings.');debugArmed=!!d.stopOnTrigger;if(debugArmed&&(!module._dac_debug_break||module._dac_debug_break(handle,1)<0))throw Error('Breakpoint unavailable. Power on the current Robotron core.');if(!debugArmed)module._dac_debug_break?.(handle,0);}
       else {debugArmed=false;module._dac_debug_break?.(handle,0);if(d.stop)module._dac_timeline_stop?.(handle);else module._dac_timeline_capture?.(handle,d.enabled?1:0);}
     } else if(d.type === "timeline-preview"){
       const count=module._dac_timeline_count?.(handle)||0,p=module._dac_timeline_data?.(handle)||0;
@@ -1180,10 +1134,10 @@ async function receive(d) {
       if(!module._dac_serial_peer || module._dac_serial_peer(handle,d.baud,d.format)<0)throw Error("Incoming peer settings rejected.");
       recordEvent([17,d.baud,d.format]);frame();
     } else if(d.type==="serial-cancel"){
-      if(!module._dac_serial_cancel)throw Error("Preserved core cannot cancel queued input.");
+      if(!module._dac_serial_cancel)throw Error("This core cannot cancel queued input.");
       module._dac_serial_cancel(handle);recordEvent([18]);frame();
     } else if(d.type==="serial-send"){
-      if(!module._dac_serial_send)throw Error("Preserved core has no V.24 support.");
+      if(!module._dac_serial_send)throw Error("This core has no V.24 support.");
       const bytes=new Uint8Array(d.bytes);
       if(bytes.length>65536-(module._dac_serial_status(handle)>>>8))throw Error("V.24 input queue is full; wait for the guest to receive it.");
       if(recording && recording.events.length+bytes.length>RECORD_LIMIT)throw Error("Export the recording before sending this many serial bytes.");
@@ -1199,7 +1153,7 @@ async function receive(d) {
     } else if(d.type==="serial-clear"){
       module._dac_serial_clear?.(handle);recordEvent([15]);frame();
     } else if(d.type==="serial-preview" || d.type==="serial-export"){
-      if(!module._dac_serial_data)throw Error("Preserved core has no V.24 support.");
+      if(!module._dac_serial_data)throw Error("This core has no V.24 support.");
       const p=module._dac_serial_data(handle),n=module._dac_serial_size(handle),bytes=module.HEAPU8.slice(p,p+n).buffer;
       postMessage({type:d.type==="serial-preview"?"serial-preview":"download",name:"dac-v24.bin",bytes},[bytes]);
     } else if(d.type==="printer-state") {

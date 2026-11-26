@@ -36,7 +36,7 @@ export async function handleKeyboardDive(d,ctx){
  const current=()=>!d.requestId||d.requestId===latestRequest;
  const m=source==='reference'&&isolated&&!['dive-guide','dive-live'].includes(d.type)?owner:ctx.module;
  if(d.type==='dive-close'){generation++;clearTimeout(referenceTimer);referenceRunning=false;releaseContacts();ctx.disarm?.();if(isolated){owner._dac_destroy(isolated);isolated=0;}if(ctx.module._dac_dive_capabilities?.(ctx.handle))ctx.module._dac_dive_capture(ctx.handle,0);source='live';captureIdentity=null;cachedROM=null;stream=null;return;}
- if(!m._dac_dive_capabilities)throw Error('This preserved emulator has no keyboard inspection. Select the current emulator.');
+ if(!m._dac_dive_capabilities)throw Error('Keyboard inspection is unavailable.');
  if(d.type==='dive-guide'){
   const token=++generation;clearTimeout(referenceTimer);referenceRunning=false;releaseContacts();ctx.disarm?.();source='reference';instructionCache=new Set();
   if(isolated){owner._dac_destroy(isolated);isolated=0;}
