@@ -20,7 +20,7 @@ test("3D keyboard enters DIR in historical TOS/M and exports an unchanged read-o
   page,
 }) => {
   // Full CAD rendering plus stock-OS boot and four 3D key gestures on software WebGL.
-  // Bound the raster workload; keep all geometry, gestures and assertions.
+  // Render CAD for the gestures; use the visible 2D screen while the OS runs.
   test.setTimeout(process.env.CI ? 90000 : 60000);
   await page.setViewportSize({ width: 960, height: 720 });
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -29,9 +29,19 @@ test("3D keyboard enters DIR in historical TOS/M and exports an unchanged read-o
   await expect(page.locator("#media-label")).toHaveText("S550 · TOS/M 1.0");
   await page.locator("#turbo").check();
   await page.locator("#power").click();
-  await page.locator("#screen-view").click();
+  const observeScreen = async () => {
+    await page.locator('[data-view="typing"]').click();
+    // Type view places CAD below the screen. Scroll it out of view so the
+    // real visibility observer pauses software WebGL during boot/disk I/O.
+    await page.locator('#screen-panel').evaluate(e => e.scrollIntoView({block:'end'}));
+    await expect(page.locator('#viewport')).toHaveAttribute('data-rendering', 'paused');
+  };
+  await observeScreen();
   await expectHistoricalPrompt(page);
   await page.locator('[data-view="keyboard"]').click();
+  await page.locator('#viewport').scrollIntoViewIfNeeded();
+  await expect(page.locator('#viewport')).toHaveAttribute('data-rendering', 'active');
+  await expect(page.locator('#viewport')).toHaveAttribute('data-model', 'robotron-photo');
   const model = await (
     await page.request.get("/models/robotron-1715m/model.json")
   ).json();
@@ -41,6 +51,7 @@ test("3D keyboard enters DIR in historical TOS/M and exports an unchanged read-o
     await page.mouse.click(point.x, point.y);
     await expect(page.locator("#key-feedback")).toHaveText(`Sent ${key.label}`);
   }
+  await observeScreen();
   await expect.poll(() => historicalScreen(page), { timeout: 15000 }).toMatch(/PIP\s+COM/);
   await expectHistoricalPrompt(page, 15000);
   await page.locator("#power").click();
