@@ -1,0 +1,75 @@
+import {test,expect} from '@playwright/test';
+import {readFile,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {JukuHostKeyboard,jukuLayout,setJukuKeyboardDefinitions} from '../src/juku-keyboard.js';
+import {InputSequence} from '../src/input-sequence.js';
+import {encodeRecording,decodeRecording} from '../src/recording.js';
+setJukuKeyboardDefinitions(JSON.parse(await readFile(new URL('../public/emulator/juku-keyboards.json',import.meta.url))));
+test('physical ownership survives overlapping host modifiers and mode changes',()=>{
+ const events=[],h=new JukuHostKeyboard(e=>events.push(e));h.configure('mainboard-juss','physical');events.length=0;
+ const down=code=>h.down({code,key:code,repeat:false});
+ down('ShiftLeft');down('ShiftRight');down('KeyA');h.up('ShiftLeft');
+ expect(events).toEqual([{type:'keyboard-contact',key:128,down:true},{type:'keyboard-contact',key:11,down:true}]);
+ h.up('KeyA');h.up('ShiftRight');expect(events.at(-1)).toEqual({type:'keyboard-contact',key:128,down:false});
+ down('KeyA');h.configure('card-at','physical');expect(events.at(-1).type).toBe('keyboard-release');expect(h.held.size).toBe(0);
+ expect(jukuLayout('card-at').keys.find(k=>k.codes.includes('ArrowLeft')).id).toBe(331);
+ h.configure('card-at','text');events.length=0;
+ h.down({code:'KeyO',key:'õ',repeat:false});h.up('KeyO');
+ expect(events.map(e=>e.key)).toEqual([245,245]);
+ h.down({code:'CapsLock',key:'CapsLock',repeat:false});h.up('CapsLock');
+ expect(events.at(-1)).toEqual({type:'keyboard-contact',key:58,down:false});
+ h.down({code:'ScrollLock',key:'ScrollLock',repeat:false});h.release();
+ expect(events.at(-2)).toEqual({type:'keyboard-contact',key:70,down:true});
+ expect(h.held.size).toBe(0);
+});
+test('paced input retries backpressure without losing press or release',()=>{
+ const s=new InputSequence([{type:'key',key:97,down:true}],2000000);const sent=[];
+ s.advance(200000,()=>false);expect(s.index).toBe(0);
+ s.advance(1,e=>sent.push(e));expect(s.index).toBe(1);
+ s.advance(200000,()=>false);expect(s.release).not.toBeNull();
+ s.advance(1,e=>sent.push(e));expect(sent.map(e=>e.down)).toEqual([true,false]);
+});
+for(const profile of ['mainboard-juku','mainboard-juss','card-at'])test(`physical ${profile} input and text paste survive browser/native replay`,async({page})=>{
+ await page.route('**/models/robotron-1715m/model.json?*',route=>route.fulfill({status:503,body:'Input fixture omits CAD'}));
+ await page.goto('/');await expect(page.locator('#power')).toBeEnabled();
+ await page.locator('#machine').selectOption('0');await expect(page.locator('#power')).toBeEnabled();
+ await page.locator('#media-controls').evaluate(e=>e.open=true);
+ await page.locator('#juku-profile').selectOption(profile);await expect(page.locator('#power')).toBeEnabled();
+ await page.locator('#media-controls').evaluate(e=>e.open=true);await page.locator('#demo').click();await expect(page.locator('#power')).toBeEnabled();
+ await page.locator('#power').click();await expect(page.locator('#status')).toHaveText('Running');
+ await page.locator('#juku-keyboard-controls').evaluate(e=>e.open=true);
+ await page.locator('#juku-keyboard-mode').selectOption('physical');
+ await page.locator('#record-controls').evaluate(e=>e.open=true);await page.locator('#record-start').click();await expect(page.locator('#record-status')).toContainText('Recording from restart');
+ for(const [type,key,code] of [['keydown','Shift','ShiftLeft'],['keydown','a','KeyA'],['keydown','b','KeyB'],['keyup','A','KeyA'],['keyup','Shift','ShiftLeft'],['keyup','b','KeyB']])await page.locator('#screen').dispatchEvent(type,{key,code});
+ await page.locator('#juku-keyboard-mode').selectOption('text');
+ await page.locator('#paste-controls').evaluate(e=>e.open=true);await page.locator('#paste-text').fill('äõöü!?');
+ await page.locator('#screen').dispatchEvent('keydown',{key:'c',code:'KeyC'});
+ await page.locator('#paste-send').evaluate(e=>e.click());
+ await expect(page.locator('#paste-status')).toContainText('Release held keys');
+ await page.locator('#screen').dispatchEvent('keyup',{key:'C',code:'KeyC'});
+ await expect(page.locator('#paste-status')).toHaveText('Typing complete.');
+ const shift=page.locator(`#juku-keyboard-panel [data-contact="${profile==='card-at'?42:128}"]`);
+ await shift.click();await expect(shift).toHaveAttribute('aria-pressed','true');
+ await page.locator(`#juku-keyboard-panel [data-contact="${profile==='card-at'?30:profile==='mainboard-juss'?11:45}"]`).click();
+ await shift.click();await expect(shift).toHaveAttribute('aria-pressed','false');
+ await page.locator('#screen').dispatchEvent('keydown',{key:'x',code:'KeyX'});
+ await page.evaluate(()=>window.dispatchEvent(new Event('blur')));
+ const download=page.waitForEvent('download');await page.locator('#record-stop').click();const bytes=await readFile(await (await download).path());
+ const envelope=JSON.parse(bytes),r=JSON.parse(envelope.payload);expect(envelope.format).toBe('DAC-recording-4');expect(r.events.some(e=>e[0]===20)).toBe(true);expect(r.events.some(e=>e[0]===21)).toBe(true);
+ await page.locator('#record-file').setInputFiles({name:'keys.dacrecord',mimeType:'application/json',buffer:bytes});await expect(page.locator('#record-status')).toContainText('Replay verified',{timeout:30000});
+ const path=test.info().outputPath('keys.dacrecord');await writeFile(path,bytes);
+ if(process.env.DAC_NATIVE_REPLAY)expect(execFileSync('node',['scripts/replay-native.mjs',path,process.env.DAC_NATIVE_REPLAY==='1'?'../dac-emulation/build/dac-replay':process.env.DAC_NATIVE_REPLAY],{encoding:'utf8'})).toContain('PASS native replay');
+ expect(await page.locator('#error').textContent()).toBe('');
+ if(profile==='card-at') {
+   await page.locator('#paste-text').fill('[');await page.locator('#paste-send').click();
+   await expect(page.locator('#paste-status')).toContainText('Cannot paste');
+   await page.locator('#screen').dispatchEvent('keydown',{key:'[',code:'BracketLeft'});
+   await expect(page.locator('#error')).toContainText('unavailable');
+   await expect(page.locator('#status')).toHaveText('Running');
+   await page.locator('#screen').dispatchEvent('keyup',{key:'[',code:'BracketLeft'});
+   await page.locator('#paste-text').fill('a');await page.locator('#paste-send').click();
+   await expect(page.locator('#paste-status')).toHaveText('Typing complete.');
+ }
+
+ const broken={...r,events:[[20,513,1]]};await expect(decodeRecording(await encodeRecording(broken))).rejects.toThrow('Unsupported recording event');
+});

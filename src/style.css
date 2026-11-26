@@ -805,3 +805,7 @@ body.classic-1715 #key-list { display: none !important; }
 @media(max-width:650px){.keyboard-dive{padding:12px;width:100vw;height:100dvh;max-height:100dvh;border-radius:0}.dive-layout{grid-template-columns:1fr}.dive-journey{grid-template-columns:repeat(2,1fr)}.dive-card{padding:12px}.dive-events{grid-template-columns:1fr}.dive-header h2{font-size:26px}.dive-toolbar>label{flex-wrap:wrap}.dive-card-heading{flex-wrap:wrap}.dive-cursors{gap:5px}}
 .keyboard-dive .dive-header{width:auto;max-width:none;padding:0;margin:0;border:0}.keyboard-dive .dive-header>div{min-width:0}.keyboard-dive .dive-header>button{flex-shrink:0}.keyboard-dive .dive-toolbar label{font-size:12px}.keyboard-dive [data-dive-effect]{color:#b7decb}.keyboard-dive [data-dive-trigger-pre]{width:60px}
 .dive-cell-detail{display:flex;align-items:center;gap:15px;margin:12px 0}.dive-cell-detail canvas{width:40px;height:80px;flex-shrink:0;image-rendering:pixelated;border:1px solid #456554;background:#071511}.dive-cell-detail p{margin:0;font-size:12px}
+
+.juku-keyboard-panel { display:flex; flex-wrap:wrap; gap:4px; margin-block:10px; }
+.juku-keyboard-panel button { min-width:38px; }
+.juku-keyboard-panel button[aria-pressed="true"] { outline:2px solid currentColor; }

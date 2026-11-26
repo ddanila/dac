@@ -21,7 +21,7 @@ export async function encodeRecording(record) {
   const payload = JSON.stringify(record);
   return new TextEncoder().encode(
     JSON.stringify({
-      format: record.kind===0 && record.jukuProfile && record.jukuProfile!==defaultJukuProfile ? "DAC-recording-3" : record.result.length===5 ? "DAC-recording-2" : "DAC-recording-1",
+      format: record.events.some(e=>e[0]===20||e[0]===21)?"DAC-recording-4":record.kind===0 && record.jukuProfile && record.jukuProfile!==defaultJukuProfile ? "DAC-recording-3" : record.result.length===5 ? "DAC-recording-2" : "DAC-recording-1",
       sha256: await digest(new TextEncoder().encode(payload)),
       payload,
     }),
@@ -32,7 +32,7 @@ export async function decodeRecording(bytes) {
     throw Error("Recording exceeds 16 MB.");
   const file = JSON.parse(new TextDecoder().decode(bytes));
   if (
-    !["DAC-recording-1","DAC-recording-2","DAC-recording-3"].includes(file.format) ||
+    !["DAC-recording-1","DAC-recording-2","DAC-recording-3","DAC-recording-4"].includes(file.format) ||
     typeof file.payload !== "string" ||
     (await digest(new TextEncoder().encode(file.payload))) !== file.sha256
   )
@@ -73,6 +73,10 @@ export async function decodeRecording(bytes) {
     if (!Array.isArray(e) || !e.every(Number.isInteger))
       throw Error("Invalid recording event.");
     const [op, a, b] = e;
+    if(file.format==='DAC-recording-4' && r.kind===0) {
+      if(op===20 && e.length===3 && a>=0 && a<=512 && b>=0 && b<=1)continue;
+      if(op===21 && e.length===1)continue;
+    }
     if (op === 0 && e.length === 2 && a > 0 && a <= 100000) continue;
     if (
       [1, 2, 3].includes(op) &&
@@ -103,7 +107,7 @@ export async function decodeRecording(bytes) {
   }
   if (
     !Array.isArray(r.result) ||
-    (file.format==="DAC-recording-3" ? ![4,5].includes(r.result.length) : r.result.length !== (file.format==="DAC-recording-2"?5:4)) ||
+    (["DAC-recording-3","DAC-recording-4"].includes(file.format) ? ![4,5].includes(r.result.length) : r.result.length !== (file.format==="DAC-recording-2"?5:4)) ||
     !r.result.every((x) => typeof x === "string" && /^[a-f0-9]{64}$/.test(x))
   )
     throw Error("Invalid recording result.");
@@ -140,6 +144,7 @@ export function playEvent(module, handle, e, media = []) {
     if (!action || action(handle, a, b) < 0) throw Error("Recorded drive lever rejected.");
     return;
   }
+  if(op===20||op===21){const action=op===20?module._dac_keyboard_contact:module._dac_keyboard_release_all;if(!action||action(handle,a,b)<0)throw Error('Physical keyboard event rejected.');return;}
   if(op===19){if(!module._dac_printer_state||module._dac_printer_state(handle,a)<0)throw Error("Printer readiness event rejected.");return;}
   if(op===17){if(!module._dac_serial_peer || module._dac_serial_peer(handle,a,b)<0)throw Error("Incoming peer event rejected.");return;}
   if(op===18){if(!module._dac_serial_cancel)throw Error("Core cannot cancel serial input.");module._dac_serial_cancel(handle);return;}

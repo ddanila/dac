@@ -1,21 +1,22 @@
 {
-  "version": "0.21.2",
+  "version": "0.22.0",
   "repository": "https://github.com/ddanila/dac-emulation",
-  "commit": "4bae9947e93c7733d7107556e8bd7b9f58c2080c",
+  "commit": "e21de201dd9fadba50262ebe2cab8b395aeb40d3",
   "abi": 1,
   "emscripten": "6.0.12",
   "sha256": {
     "LICENSE": "5f37b6aa73439398b45f8b972c02bfbd07418c4e00d374adb68695a6edb38e5f",
     "NOTICE": "d33adf03f2c2f213012b58b21ec39cbdea3ee05647368d00425b53d526fd75c3",
     "chips-LICENSE": "0c692ece632a8ec6d2a566c9234fdabda655644e6abc70027da9ff7c35e48634",
-    "dac.js": "a035ece0e81709c718f46e42b420b91e5154b8747fd70c181f8286870bf3ecd9",
-    "dac.wasm": "04a8684a43a3b847f209667e5223c84d8454b8bee4d6ea107d8e3baca26a651b",
+    "dac.js": "4b8f06be5453f56a0680e68021cd6a2229b3838015eece90ca17719e56e02331",
+    "dac.wasm": "e4e7970ed4d86f50cfe9facc8dd8b76544286220e63e529db18ef0acad826358",
     "demo/cas.bin": "605d3ca65a8561d008d6e45cf0b66cbbc1cd19c9587cb3a5e0409012687cf2ea",
     "demo/glyphs.bin": "0dbe552cbdb211727f0b91b655f8b3571f9a06f224bd6c2d837b0b6a4b567da0",
     "demo/juku.bin": "27300d144b008bf350d1475f0e9546b8244986b7710a48dfc9dad3431d6fc484",
     "demo/robotron.bin": "000a3c32a5a90ddcc3e6f891498fc37a08012de00ac8706bce57f256880aca5c",
     "demo/vjuga.bin": "54a89a9bd6a47bd44994e5c4abd4c34490ad2b64ca0c4ad01102cbf0c9ea7b0e",
     "i8080-LICENSE": "c924d3588bdec43adb9be0732e37d393f1c054cdebea3e0496c7d237e307680a",
+    "juku-keyboards.json": "38a031445f18bca9181b991ed57713f8bed1a3ade78f73660eb64d31da4a4b04",
     "robotron-reference-LICENSE": "7a198aa8879f6c87b7c018f36ffdf428ec30cacd0f81dc001131920aa59a532c",
     "demo/manifest.json": "caa277fe9648b670e8b43dd2a7b3f039c0ae595fb79eac4cc176b32132aebce6"
   }

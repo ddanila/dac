@@ -47,7 +47,7 @@ test('nondefault profile recording replays in browser and native core',async({pa
  await page.locator('#record-start').click();await expect(page.locator('#record-status')).toContainText('Recording from restart');
  await page.locator('#reset').click();
  const download=page.waitForEvent('download');await page.locator('#record-stop').click();
- const bytes=await readFile(await (await download).path());expect(JSON.parse(bytes).format).toBe('DAC-recording-3');
+ const bytes=await readFile(await (await download).path());expect(JSON.parse(JSON.parse(bytes).payload).jukuProfile).toBe('early-juss');
  await page.locator('#record-file').setInputFiles({name:'profile.dacrecord',mimeType:'application/json',buffer:bytes});
  await expect(page.locator('#record-status')).toContainText('Replay verified');
  if(process.env.DAC_NATIVE_REPLAY){const path=test.info().outputPath('profile.dacrecord');await writeFile(path,bytes);expect(execFileSync('node',['scripts/replay-native.mjs',path,process.env.DAC_NATIVE_REPLAY==='1'?'../dac-emulation/build/dac-replay':process.env.DAC_NATIVE_REPLAY],{encoding:'utf8'})).toContain('PASS native replay');}

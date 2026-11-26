@@ -1,3 +1,4 @@
+import {JukuHostKeyboard,renderJukuKeyboard,setJukuKeyboardDefinitions} from './juku-keyboard.js';
 import {profileQualification} from './juku-profiles.js';
 import {jukuCharacter} from './input-sequence.js';
 import {installRepairBench} from './learning-repairs.js';
@@ -116,7 +117,16 @@ if (practice) {
 }
 const heldModelKeys = new Map();
 let managedHostCaps = false;
+const jukuHost=new JukuHostKeyboard(d=>{if(on&&Number($("machine").value)===0)send(d);});
+function jukuPanel() {
+  $("juku-keyboard-controls").hidden=Number($("machine").value)!==0;
+  jukuHost.configure($("juku-profile").value,$("juku-keyboard-mode").value);
+  renderJukuKeyboard($("juku-keyboard-panel"),jukuHost,()=>on&&!powerPending&&!replayBusy);
+}
+$("juku-keyboard-mode").onchange=()=>{release();jukuPanel();};
 function release() {
+  jukuHost.release();
+  $("juku-keyboard-panel").querySelectorAll('[aria-pressed]').forEach(b=>b.setAttribute('aria-pressed','false'));
   if (on) send({ type: "cancel-paste" });
   held.clear();
   heldModelKeys.clear();
@@ -362,6 +372,7 @@ async function configure(demo, historical = false) {
   $("description").textContent = d[2];
   $("number").textContent = kind === 2 ? "001" : kind === 0 ? "002" : "003";
   $("juku-profile-label").hidden=kind!==0;
+  jukuPanel();
   $("juku-profile").disabled=false;
   $("juku-profile-status").textContent=profileQualification($("juku-profile").value);
   $("prom-label").hidden = $("glyph-label").hidden = kind !== 2;
@@ -437,7 +448,7 @@ function requestPrinterPreview(force=false){
 }
 $("printer-panel").ontoggle=()=>{if($("printer-panel").open)requestPrinterPreview();};
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestPrinterPreview();});
-worker.onmessage = ({ data: d }) => {
+worker.onmessage = async ({ data: d }) => {
   if(Number($("machine").value)===3 && d.type!=="ready")return;
   diagnosticPanel.message(d);
   keyboardControllerReview.message(d);
@@ -481,6 +492,11 @@ worker.onmessage = ({ data: d }) => {
     hasState=d.hasState;$("juku-profile-status").textContent=profileQualification(d.profile);
   }
   if (d.type === "ready") {
+    try {
+      const response=await fetch(new URL('juku-keyboards.json',base),{cache:'no-cache'});
+      if(!response.ok)throw Error('Keyboard definitions unavailable.');
+      setJukuKeyboardDefinitions(await response.json());
+    } catch(error) {fail(error.message);return;}
     if(d.jukuProfiles)$("juku-profile").replaceChildren(...d.jukuProfiles.map(p=>new Option(p.name+' — '+p.firmware,p.id)));
     if(new URLSearchParams(location.search).get("machine")==="1715")$("machine").value="3";
     ready = true;
@@ -693,6 +709,7 @@ worker.onmessage = ({ data: d }) => {
     scene?.media([disk, diskB]);
     $("export").disabled = false;
   }
+  if (d.type === "keyboard-error") fail(d.message);
   if (d.type === "paste-status") $("paste-status").textContent = d.message;
   if (d.type === "library") {
     const selected = $("library-disks").value;
@@ -1077,6 +1094,10 @@ function keyDown(e) {
     e.preventDefault();
     return;
   }
+  if(Number($("machine").value)===0 && on && !powerPending) {
+    if(jukuHost.down(e))e.preventDefault();
+    return;
+  }
   if (
     firmwareKeyboard &&
     Number($("machine").value) === 2 &&
@@ -1180,6 +1201,7 @@ function keyDown(e) {
   send({ type: "key", key, down: true });
 }
 function keyUp(e) {
+  if(Number($("machine").value)===0 && jukuHost.up(e.code)){e.preventDefault();return;}
   const id = heldModelKeys.get(e.code);
   if (id) {
     e.preventDefault();
@@ -1214,7 +1236,7 @@ send({
 });
 
 $("paste-send").onclick = () => {
-  release();
+  if(Number($("machine").value)!==0)release();
   $("paste-status").textContent = "Starting typing…";
   send({ type: "paste", text: $("paste-text").value });
 };
@@ -1279,5 +1301,6 @@ installSoundMixer(robotronSound,driveSound);
 installControlGroups();
 
 $("juku-profile").onchange=()=>{
+  release();jukuPanel();
   if(!on && ready)send({type:'juku-profile',profile:$("juku-profile").value});
 };

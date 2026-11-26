@@ -71,7 +71,7 @@ remaining limits; the [qualification guide](docs/robotron/emulation-qualificatio
 links reproducible checks and source-bound results. Reference-emulator agreement
 does not establish specimen timing, wiring or firmware identity.
 
-Juku accepts one key contact at a time; VJUGA has a bounded boot profile. See
+Juku offers text-aware input by default and a physical keyboard mode for Juku, JUSS and AT profiles. Its keyboard panel exposes modifiers, language and function keys; overlapping contacts and ROM-controlled lock state are preserved. AT repeat uses emulated time. Paste waits for held keys and rejects characters absent from the selected layout. VJUGA has a bounded boot profile. See
 [core validation](https://github.com/ddanila/dac-emulation/blob/main/docs/z80-browser-validation.md)
 for native/WASM comparisons. Browser checks cover Chromium, Firefox and Playwright
 WebKit, not every retail Safari version.

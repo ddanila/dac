@@ -148,26 +148,56 @@ async function publishLibrary() {
 async function saveMounts() {
   if (remember) await stored(mountKey, mounts);
 }
+const pendingInputs=[];
+const manualHeld=new Set();
+function clearKeyboardTransport() {pendingInputs.length=0;manualHeld.clear();}
 function stopPaste(message = "Typing cancelled.") {
   if (!paste) return;
-  paste = null;
-  applyInput({ type: "key", key: 0, down: false });
+  const release=paste.release;paste=null;
+  if(release)pendingInputs.push(release);
+  drainInput();
   postMessage({ type: "paste-status", message });
 }
 function applyInput(d) {
-  const result =
-    d.type === "tap"
-      ? module._dac_tap(handle, d.key, d.modifiers || 0)
-      : d.type === "matrix"
-        ? module._dac_matrix(handle, d.key, Number(d.down))
-        : module._dac_key(handle, d.key, Number(d.down));
-  if (result < 0) throw Error("Keyboard input unavailable or queue full.");
-  recordEvent([
-    d.type === "tap" ? 3 : d.type === "matrix" ? 2 : 1,
-    d.key,
-    d.type === "tap" ? d.modifiers || 0 : Number(d.down),
+  const result = d.type==='keyboard-release'
+    ? (module._dac_keyboard_release_all?.(handle) ?? module._dac_key(handle,0,0))
+    : d.type==='keyboard-contact'
+      ? (module._dac_keyboard_contact?.(handle,d.key,Number(d.down)) ?? -1)
+      : d.type === "tap" ? module._dac_tap(handle, d.key, d.modifiers || 0)
+      : d.type === "matrix" ? module._dac_matrix(handle, d.key, Number(d.down))
+      : module._dac_key(handle, d.key, Number(d.down));
+  if(result===-4096)return false;
+  if (result < 0) throw Error("This key is unavailable on the selected keyboard.");
+  recordEvent(d.type==='keyboard-release' ? (module._dac_keyboard_release_all?[21]:[1,0,0]) : [
+    d.type==='keyboard-contact'?20:d.type === "tap" ? 3 : d.type === "matrix" ? 2 : 1,
+    d.key, d.type === "tap" ? d.modifiers || 0 : Number(d.down),
   ]);
+  return true;
 }
+function drainInput() {
+  while(pendingInputs.length) {
+    try {if(!applyInput(pendingInputs[0]))break;}
+    catch(error) {pendingInputs.shift();throw error;}
+    pendingInputs.shift();
+  }
+}
+function queueInput(d) {
+  if(d.type==='keyboard-release')clearKeyboardTransport();
+  if(pendingInputs.length>=1024)throw Error('Keyboard input queue is full; release keys and resume the machine.');
+  if(kind===0 && d.type==='key' && d.key && module._dac_keyboard_text_contact?.(handle,d.key,0)<0) {
+    if(!d.down)return;
+    throw Error('This character is unavailable on the selected keyboard.');
+  }
+  if(d.type==='key' || d.type==='keyboard-contact') {
+    const id=d.type+':'+d.key;
+    if(d.down)manualHeld.add(id);else manualHeld.delete(id);
+    if(d.type==='key'&&!d.key&&!d.down)for(const id of manualHeld)if(id.startsWith('key:'))manualHeld.delete(id);
+  }
+  pendingInputs.push(d);
+  try {drainInput();}
+  catch(error) {manualHeld.delete(d.type+":"+d.key);throw error;}
+}
+
 import {
   sessionIdentity,
   stored,
@@ -268,6 +298,7 @@ function refreshStateKey() {
       : "") + (kind===0 && jukuProfile!==defaultJukuProfile ? ":profile:"+jukuProfile : "");
 }
 function snapshotBytes() {
+  if(kind===0 && pendingInputs.length)throw Error("Resume the machine to finish queued keyboard input before saving.");
   const n = module._dac_state_size(handle);
   if (!n) throw Error("Power on before saving a state.");
   const p = module._malloc(n);
@@ -284,7 +315,8 @@ function restore(bytes) {
   debugPaused=debugArmed=false;module._dac_debug_break?.(handle,0);
   copy(bytes, (p, n) => module._dac_state_load(handle, p, n));
   postMessage({type:"capture-reset"});
-  stopPaste();
+  if(paste)postMessage({type:"paste-status",message:"Typing cancelled by state restore."});
+  paste=null;clearKeyboardTransport();
   running = true;
   clearTimeout(timer);
   owed = 0;
@@ -411,17 +443,19 @@ function tick() {
         awaitLimit();
         break;
       }
+      drainInput();
       const budget = Math.min(paste ? 10000 : 100000, Math.ceil(owed));
       const used = debugArmed?module._dac_debug_run(handle,budget):module._dac_run(handle, budget);
       if(debugArmed&&module._dac_debug_hit(handle)){const reason=module._dac_debug_hit(handle);debugPaused=true;debugArmed=false;module._dac_debug_break(handle,0);module._dac_timeline_stop(handle);owed=0;debugState(reason===2?"Paused at the target instruction fetch boundary.":"Paused after the clock containing the matching bus event.");if(reason===3&&journeyDebugArmed){journeyDebugArmed=false;handleJourney({type:"journey-triggered"},{module,handle,build,paused:true}).catch(e=>postMessage({type:"journey-error",message:e.message}));}else if(reason===3)handleKeyboardDive({type:"dive-refresh"},{module,handle,build,paused:true}).catch(e=>postMessage({type:"dive-error",message:e.message}));frame();}
       recordEvent([0, budget]);
       if (!used) break;
       owed -= used;
+      drainInput();
       if (paste) {
-        paste.advance(used, applyInput);
+        if(!manualHeld.size && !pendingInputs.length)paste.advance(used, applyInput);
         postMessage({
           type: "paste-status",
-          message: paste.done
+          message: manualHeld.size ? "Release held keys to start typing." : paste.done
             ? "Typing complete."
             : `Typing ${paste.index}/${paste.events.length}`,
         });
@@ -524,6 +558,7 @@ async function importState(file) {
     stopPaste();
     module._dac_destroy(handle);
     module = older;
+    clearKeyboardTransport();
     handle = next;
     build = version;
     stateKey = expected;
@@ -708,6 +743,7 @@ async function receive(d) {
       }
 
       kind = d.kind;
+      clearKeyboardTransport();
       handle = module._dac_create(kind);
       if (!handle) throw Error("Cannot create machine");
       applyJukuProfile(module,handle,kind,jukuProfile);
@@ -747,6 +783,7 @@ async function receive(d) {
         clearTimeout(timer);
         await persistDisk(true);
       }
+      clearKeyboardTransport();
       const r = module._dac_power(handle, Number(d.on));
       if (r < 0)
         throw Error("Boot ROM and, for Robotron, CAS PROM are required");
@@ -761,6 +798,7 @@ async function receive(d) {
       if (running) tick();
     } else if (d.type === "reset") {
       stopPaste();
+      clearKeyboardTransport();
       if (module._dac_reset(handle) < 0) throw Error("Reset failed");
       recordEvent([4]);
       debugPaused=debugArmed=diveDebugArmed=journeyDebugArmed=false;module._dac_debug_break?.(handle,0);clearTimeout(timer);
@@ -769,9 +807,9 @@ async function receive(d) {
       owed = 0;
       last = performance.now();
       frame();
-    } else if (["key", "matrix", "tap"].includes(d.type)) {
-      if (paste) stopPaste();
-      if (running && kind !== 1) applyInput(d);
+    } else if (["key", "matrix", "tap","keyboard-contact","keyboard-release"].includes(d.type)) {
+      if(paste && (d.down || d.type==='tap' || d.type==='keyboard-release'))stopPaste();
+      if(running && kind!==1)queueInput(d);
     } else if (d.type === "record-start") {
       if (recording) throw Error("A recording is already active.");
       if (!running) throw Error("Power on before recording.");
@@ -789,6 +827,7 @@ async function receive(d) {
         media: [],
         events: [],
       };
+      clearKeyboardTransport();
       if (module._dac_reset(handle) < 0) {
         recording = null;
         throw Error("Recording reset failed.");
@@ -825,11 +864,15 @@ async function receive(d) {
         keyMap,
         !!(module._dac_keyboard_leds(handle) & 2),
       );
+      if(kind===0 && module._dac_keyboard_text_contact)for(const event of events)
+        if(module._dac_keyboard_text_contact(handle,event.key,0)<0)
+          throw Error(`Cannot paste ${JSON.stringify(String.fromCharCode(event.key))} on this keyboard.`);
       stopPaste();
       paste = new InputSequence(events, kind === 0 ? 2000000 : 3993600);
     } else if (d.type === "cancel-paste") stopPaste();
     else if (d.type === "visibility") {
       hidden = !!d.hidden;
+      if(hidden && running && kind===0)queueInput({type:"keyboard-release"});
       clearTimeout(timer);
       owed = 0;
       last = performance.now();
@@ -1197,6 +1240,7 @@ async function receive(d) {
       );
     }
   } catch (e) {
+    if(kind===0 && ["key","keyboard-contact","keyboard-release"].includes(d.type)){postMessage({type:"keyboard-error",message:e.message});return;}
     if(d.type?.startsWith("journey-")){postMessage({type:"journey-error",requestId:d.requestId,message:e.message});return;}
     if(d.type?.startsWith("dive-")){postMessage({type:"dive-error",requestId:d.requestId,message:e.message});return;}
     if(d.type?.startsWith("debug-")){postMessage({type:"debug-error",message:e.message});return;}

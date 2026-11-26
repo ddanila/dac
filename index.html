@@ -358,6 +358,7 @@
               Show keyboard buttons
             </button>
             <div id="key-list" hidden></div>
+
             <p id="key-feedback" aria-live="polite"></p>
             <p id="hover-key" aria-hidden="true"></p>
           </div>
@@ -426,6 +427,12 @@
           </details>
           <p id="drive-state" data-robotron aria-live="off"></p>
           <p id="keyboard-mode" data-robotron></p>
+            <details id="juku-keyboard-controls" hidden>
+              <summary>Juku keyboard</summary>
+              <label>Host input <select id="juku-keyboard-mode"><option value="text">Text-aware typing</option><option value="physical">Physical layout</option></select></label>
+              <p>Physical layout follows key positions. Caps and LAT/RUS are controlled by the guest ROM. Click Shift or Ctrl below to hold it; click again to release. Escape leaves the screen; use Esc below to send it.</p>
+              <div id="juku-keyboard-panel" class="juku-keyboard-panel"></div>
+            </details>
           <details id="paste-controls">
             <summary>Paste through the keyboard</summary>
             <p>

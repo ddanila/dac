@@ -46,14 +46,15 @@ export class InputSequence {
     this.remaining -= ticks;
     if (this.remaining > 0) return;
     if (this.release) {
-      send(this.release);
+      if(send(this.release)===false)return;
       this.release = null;
       this.remaining = Math.ceil(this.hz * 0.08);
       return;
     }
     if (this.index === this.events.length) return;
-    const event = this.events[this.index++];
-    send(event);
+    const event = this.events[this.index];
+    if(send(event)===false)return;
+    this.index++;
     this.remaining = Math.ceil(this.hz * (event.type === "tap" ? 0.14 : 0.08));
     if (event.type === "key") this.release = { ...event, down: false };
   }
