@@ -504,6 +504,7 @@ worker.onmessage = async ({ data: d }) => {
     configure(true, true).catch((e) => fail(e.message));
   }
   if (d.type === "configured") {
+    $("disk-save-status").textContent = "";
     disk = d.disk;
     updateDriveB(d.diskB);
     firmwareKeyboard = !!d.firmwareKeyboard;
@@ -691,6 +692,7 @@ worker.onmessage = async ({ data: d }) => {
       active ? "Disk transfer" : "No disk activity",
     );
   }
+  if (d.type === "disk-storage") $("disk-save-status").textContent = d.message;
   if (d.type === "storage") {
     $("storage-status").textContent = d.message;
     if (d.hasState !== undefined) {

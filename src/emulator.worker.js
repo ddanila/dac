@@ -273,15 +273,15 @@ function persistDisk(force = false) {
         await saveRecord(key, bytes);
         if (library) await updateLibraryDisk(library, bytes);
       }
-      storageStatus("Disk saved in this browser.");
+      postMessage({type:"disk-storage", message:"Disk saved in this browser."});
     })
     .catch((e) => {
       persistenceFailed = true;
-      storageStatus(
+      postMessage({type:"disk-storage", message:
         "Could not save locally: " +
           e.message +
-          ". Export the disks to keep changes.",
-      );
+          ". Export the disks to keep changes."
+      });
     });
   return saving;
 }

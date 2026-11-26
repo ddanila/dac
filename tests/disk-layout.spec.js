@@ -48,6 +48,12 @@ test("DSK drive B survives snapshot restoration and exports its original layout"
   await expect(page.locator("#storage-status")).toContainText(
     "Machine state saved",
   );
+  // Power-off flushes disk persistence after the explicit state save. Its
+  // completion must not erase the state confirmation (a CI-observed race).
+  await page.locator("#power").click();
+  await expect(page.locator("#status")).toHaveText("Powered off");
+  await expect(page.locator("#disk-save-status")).toContainText("Disk saved");
+  await expect(page.locator("#storage-status")).toContainText("Machine state saved");
   await page.locator("#restore-state").click();
   await expect(page.locator("#storage-status")).toContainText(
     "Saved machine state restored",
