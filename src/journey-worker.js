@@ -75,9 +75,18 @@ async function faults(d,ctx,token){const m=ctx.module,scenario=d.scenario,repair
  const fault={stuck:[1,61,1],strobe:[2,0,Math.min(value,100000)],rom:[3,0x1c4,1],missing:[4,0,0],crc:[5,target,1],readonly:[8,0,1],irq:[6,0,value],glyph:[7,target,1<<Math.min(7,value-1)]}[scenario];if(!fault)throw Error('Unknown fault');
  const delay=Math.max(0,Math.min(4000000,Number(d.delay)||0));await run(m,a,delay,token);await run(m,b,delay,token);if(!repaired)recordAction(m,b,faultRec,{type:'fault',kind:fault[0],address:fault[1],value:fault[2]});
  if(keyboard){for(const [h,r]of [[a,baselineRec],[b,faultRec]]){if(scenario!=='stuck'||h===a||repaired)recordAction(m,h,r,{type:'contact',key:61,down:true});await run(m,h,400000,token);if(scenario!=='stuck'||h===a||repaired)recordAction(m,h,r,{type:'contact',key:61,down:false});await run(m,h,400000,token);}}
- else if(scenario==='readonly'){await type(m,a,baselineRec,'PIP DIVE.COM=PIP.COM\r',token);await type(m,b,faultRec,'PIP DIVE.COM=PIP.COM\r',token);await run(m,a,d.repairTrial?40000000:8000000,token);await run(m,b,d.repairTrial?40000000:8000000,token);}
+ else if(scenario==='readonly'){
+  await type(m,a,baselineRec,'PIP DIVE.COM=PIP.COM\r',token);await type(m,b,faultRec,'PIP DIVE.COM=PIP.COM\r',token);
+  // Loading PIP and completing its seeks can exceed a fixed observation delay.
+  // Advance both branches equally until the commands finish. A protected
+  // destination may remain at the BDOS error prompt until the bounded limit.
+  for(let ticks=0;ticks<80000000;ticks+=500000){
+   await run(m,a,500000,token);await run(m,b,500000,token);
+   if(prompt(m,a)&&prompt(m,b))break;
+  }
+ }
  else{const duration=diag==='interrupt'?100000:diag==='video'?160000:d.repairTrial&&scenario==='missing'?160000000:16000000;await run(m,a,duration,token);await run(m,b,duration,token);}
- const baseline=collect(m,a,ident),out=await finish(faultRec,{summary:{text:'Branches share one checkpoint and clock origin. The explicit intervention is excluded from the first-effect comparison; unequal timing and tails remain visible.'}});out.baseline=baseline;out.difference=firstDifference(baseline.words,out.words);out.checkpointHash=await hash(state);const activation=faultRec.actions.find(x=>x.type==='fault')?.clock;out.fault={kind:scenario,target:fault[1],value:fault[2],clock:activation};out.identity.fault={kind:scenario,parameters:fault,activationClock:activation};if(d.repairTrial){let outcome=true;if(scenario==='missing')outcome=prompt(m,b);if(scenario==='readonly'){const map=inspectDisk(disk(m,b)),f=map.files.find(f=>f.key==='0:DIVE.COM');outcome=!!f&&await hash(fileBytes(map,f))===await hash(config.sourceFile);}out.repair={action:d.repairTrial,passed:repaired&&!out.difference&&outcome,outcome};}return out;
+ const baseline=collect(m,a,ident),out=await finish(faultRec,{summary:{text:'Branches share one checkpoint and clock origin. The explicit intervention is excluded from the first-effect comparison; unequal timing and tails remain visible.'}});out.baseline=baseline;out.difference=firstDifference(baseline.words,out.words);out.checkpointHash=await hash(state);const activation=faultRec.actions.find(x=>x.type==='fault')?.clock;out.fault={kind:scenario,target:fault[1],value:fault[2],clock:activation};out.identity.fault={kind:scenario,parameters:fault,activationClock:activation};if(d.repairTrial){let outcome=true;if(scenario==='missing')outcome=prompt(m,b);if(scenario==='readonly'){const map=inspectDisk(disk(m,b)),f=map.files.find(f=>f.key==='0:DIVE.COM');outcome=prompt(m,b)&&!!f&&await hash(fileBytes(map,f))===await hash(config.sourceFile);}out.repair={action:d.repairTrial,passed:repaired&&!out.difference&&outcome,outcome};}return out;
 }
 export async function handleJourney(d,ctx){
  if(d.requestId&&d.requestId<latestRequest)return;if(d.requestId)latestRequest=d.requestId;

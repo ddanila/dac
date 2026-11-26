@@ -27,13 +27,25 @@ async function type(n,s){if(s.length>2048)throw Error('Send at most 2048 charact
 async function until(n,predicate,max=160000000){for(let t=0;t<max;t+=1000000){await run(n,1000000);if(predicate()){await run(n,1000000);return true;}if(t%10000000===0)emit('learning-status',{message:'Executing the original firmware and software…'});}snapshot(n,'The expected screen was not reached. Inspect the current demonstration or return to your work.');throw Error('The expected screen was not reached; your original practice is preserved.');}
 function stop(){pulse++;paused=true;clearTimeout(timer);}
 function pump(token=pulse){if(paused||!h||token!==pulse)return;queue=queue.then(async()=>{await run(h,400000);snapshot();}).catch(e=>{stop();emit('learning-error',{message:e.message});}).finally(()=>{if(!paused&&token===pulse)timer=setTimeout(()=>pump(token),100);});}
+// Disk steps allow up to 20 simulated seconds, stopping at the observed outcome.
 async function demo(){stop();if(branch)m._dac_destroy(branch);branch=create();restore(branch,checkpoints[step]||state());const n=branch;
  if(step===0)await until(n,()=>/(?:^|\n)A>$/.test(text(n)));
  if(step===1){await type(n,'WS LETTER.TXT\r');await until(n,()=>/^\s*A:LETTER\.TXT\s+PAGE\s+\d+\s+LINE/.test(text(n).split('\n')[0]));await type(n,sampleLetter);}
- if(step===2){await type(n,'\x0bD');await until(n,()=>check(n)[2],30000000);}
- if(step===3){await type(n,'D');await until(n,()=>text(n).includes('NAME OF FILE TO EDIT?'),30000000);await type(n,'LETTER.TXT\r');await until(n,()=>check(n)[3],30000000);}
- if(step===4){await type(n,'\x0bD');await until(n,()=>text(n).includes('S  RUN SPELLSTAR'),30000000);await type(n,'X');await until(n,()=>/(?:^|\n)A>$/.test(text(n)),30000000);await type(n,'PIP B:LETTER.TXT=A:LETTER.TXT\r');await until(n,()=>check(n)[4],80000000);}
- if(step===5){await type(n,'PIP LST:=LETTER.TXT\r');await until(n,()=>check(n)[5],80000000);await until(n,()=>/(?:^|\n)A>$/.test(text(n)),30000000);}
+ if(step===2){await type(n,'\x0bD');await until(n,()=>check(n)[2],80000000);}
+ if(step===3){
+  const question='NAME OF FILE TO EDIT?';
+  await type(n,'D');await until(n,()=>text(n).includes(question),80000000);
+  // WordStar can discard input while redrawing its filename prompt. Observe
+  // each echoed character before continuing; never retry a missing character.
+  let entered='';
+  for(const ch of 'LETTER.TXT'){
+   await type(n,ch);entered+=ch;
+   await until(n,()=>text(n).split('\n').some(line=>line.includes(question)&&line.slice(line.indexOf(question)+question.length).trim()===entered),8000000);
+  }
+  await type(n,'\r');await until(n,()=>check(n)[3],80000000);
+ }
+ if(step===4){await type(n,'\x0bD');await until(n,()=>text(n).includes('S  RUN SPELLSTAR'),80000000);await type(n,'X');await until(n,()=>/(?:^|\n)A>$/.test(text(n)),80000000);await type(n,'PIP B:LETTER.TXT=A:LETTER.TXT\r');await until(n,()=>check(n)[4],80000000);}
+ if(step===5){await type(n,'PIP LST:=LETTER.TXT\r');await until(n,()=>check(n)[5],80000000);await until(n,()=>/(?:^|\n)A>$/.test(text(n)),80000000);}
  snapshot(n,'Demonstration branch. Your work is preserved. Adopt this result or return to your work.');
 }
 async function record(){const bytes=state().buffer,disks=[0,1].map(u=>({bytes:disk(u).buffer,writable:true,label:'Practice disk '+(u?'B':'A')})),firmwareIdentity=await sessionIdentity(2,config.firmware,null);for(const d of disks)d.sha256=await digest(d.bytes);return {name:'Workstation practice',date:Date.now(),kind:2,build,firmwareIdentity,stateKey:`state:${build}:${firmwareIdentity}`,bytes,sha256:await digest(bytes),disks};}
