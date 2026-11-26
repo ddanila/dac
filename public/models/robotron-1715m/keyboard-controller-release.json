@@ -8,19 +8,19 @@
   "revisions": {
     "cad": "de6fd953f70292c4484b2566224c6bf9cf9a37c6",
     "hdlAndDigitalEvidence": "2a1c43e4f3289c05de6519bb5d8ebfa4baedd6fc",
-    "browserRuntime": "e21de201dd9fadba50262ebe2cab8b395aeb40d3",
-    "museumBase": "8627bed35be9461d1e6dffac22033171d63aae0f",
-    "firmwareComparison": "e21de201dd9fadba50262ebe2cab8b395aeb40d3"
+    "browserRuntime": "2e57421095e18337e5b65bf2505d8f0f012766dd",
+    "museumBase": "e23c15f3e6e7fac54dcd407e9a7c0e8cacda0b7a",
+    "firmwareComparison": "2e57421095e18337e5b65bf2505d8f0f012766dd"
   },
   "museumRevisionConvention": "The git commit containing this manifest identifies the released museum; museumBase is its parent work baseline. Content hashes below bind the reviewed files without a self-referential commit hash.",
   "files": {
-    "docs/robotron/journeys.md": "3d59b2a4ad4c09459573db3cef2774f7e8c412125b8a8c7dd9efba178a109e59",
+    "docs/robotron/journeys.md": "5a0dcc2b2744d0e4d65a2a6a42e14650dad567868e752b8364d9c496be16f0ff",
     "docs/robotron/keyboard-dive-in.md": "a701eff7b62762730ebd25989537e667387a7100f3dd1e178426f5e0e9bd9b0d",
-    "docs/robotron/releases/browser.json.gz": "3b4a2fec009b3107232bb7ac92052241e4fd8d4f405fe404735da834136d0500",
+    "docs/robotron/releases/browser.json.gz": "4d6d028fe17b3008e03a71dfd7d4b57999869ac0bd9b38537345e67df56c64fa",
     "docs/robotron/releases/drc.json.gz": "3fe4979f6adafb315d8b5c25dcdb91bcb84e6eb293a8b196ae7153cc9fd1b144",
-    "docs/robotron/releases/firmware.json.gz": "4aa3b9057e9f8f9e033f74f9a7854a611a6cee45f6cc6c59aef8968f672e69b5",
-    "docs/robotron/releases/functional-reference-validation.json": "4253f7665d2b31db577753c48064255a529e28c9513884a3d5646d12ac9e363a",
-    "public/emulator/manifest.json": "923d30558b61cc794fd9e0d8c65962785ff8162f7380742b214603f5eb73e59b",
+    "docs/robotron/releases/firmware.json.gz": "1606a7ccd886a36ce0c28b7cbde1034848eaaac240b7fe5af020f11cd312c71d",
+    "docs/robotron/releases/functional-reference-validation.json": "013f96d133fb08e3b0f5777ce14d57bb4f77c1a19a4f164057437aa8de008e6d",
+    "public/emulator/manifest.json": "42436b6680eb7916ed30f0a49609e5e87cbea50c3a5a48e39418f75740e83309",
     "public/models/robotron-1715m/keyboard-controller-reference.json": "0cad0941af07fdc6e542d17b8eb66fa2822ad8ffc5b4fb3a2ecdb34394f95117",
     "public/models/robotron-1715m/keyboard-controller.json": "f4704cacaa45ba04503f5e67c23e0abe7ed2fe2343aad081413a2f0068dbbe54",
     "public/models/robotron-1715m/source.json": "350ab19ced7193bce2d75c15aa19386094cc731adbc12c89e31307b3807387ff",

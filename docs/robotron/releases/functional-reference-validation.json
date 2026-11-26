@@ -5,18 +5,18 @@
     "boardSha256": "8716b773a718dbf3cd2326ec2b3cf11f22e73b315f255cde01a340ff2675df55"
   },
   "browser": {
-    "reportSha256": "addf6c30966b9bf2461a61e6ca179e301daac3d6632f7ed38d6d60af4ad3db4e",
+    "reportSha256": "93ee560ca01167e441174e18d1ca0bf8f4ba9a78589290faab41f851c80d5363",
     "stats": {
-      "startTime": "2026-11-26T11:51:34.964Z",
-      "duration": 77126.674,
-      "expected": 93,
+      "startTime": "2026-11-26T14:38:06.166Z",
+      "duration": 89863.967,
+      "expected": 74,
       "skipped": 0,
       "unexpected": 0,
       "flaky": 0
     }
   },
   "firmware": {
-    "reportSha256": "6458e042295f6fe6de9b0127548852e20a1daf278d5ebe35219d0f7879f31830",
+    "reportSha256": "516204600da3c349f2c9c175999b477dcec3c5a48e033dfd8a188c5bc2297109",
     "romSha256": "4b54891c02a8ec279e2b8aec03489a961fc8647e08ad2036dcf82d0634bf7273",
     "functionalAgreement": true,
     "serialCycleAgreement": true,

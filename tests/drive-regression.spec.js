@@ -73,7 +73,14 @@ test(`TOS/M ${firmwareKeyboard ? 'S600' : 'adapter'} write resumes from a mid-tr
     if (firmwareKeyboard) await bytes("s600.bin", (p, n) => w._dac_load(s, 3, p, n));
     await bytes("tosm10.img", (p, n) => w._dac_mount(s, p, n, 1));
     expect(w._dac_power(s, 1)).toBe(0);
-    run(100000000);
+    const screen = () => Array.from({ length: 24 }, (_, y) =>
+      String.fromCharCode(...Array.from({ length: 80 }, (_, x) =>
+        w._dac_dive_screen(s, y * 80 + x) & 127)).replace(/[^\x20-\x7e]/g, ' ').trimEnd()
+    ).join('\n').trimEnd();
+    // AUTOEXC.SUB still runs after the OS banner; input then interrupts startup.
+    for (let clocks = 0; clocks < 200000000 && !/(?:^|\n)A>$/.test(screen()); clocks += 500000)
+      run(500000);
+    expect(screen(), 'TOS/M must finish startup before receiving a command').toMatch(/(?:^|\n)A>$/);
     const initial = disk();
     const input = code => firmwareKeyboard
       ? w._dac_tap(s, ...keyMap[code]) : w._dac_key(s, code, 1);
@@ -83,7 +90,8 @@ test(`TOS/M ${firmwareKeyboard ? 'S600' : 'adapter'} write resumes from a mid-tr
     }
     expect(input(13)).toBe(0);
     let found = false;
-    for (let clocks = 0; clocks < 20000000; clocks += 64) {
+    // Allow the OS to load PIP and seek; stop as soon as a write is in flight.
+    for (let clocks = 0; clocks < 80000000; clocks += 64) {
       w._dac_run(s, 64);
       if (
         (w._dac_drive_detail_unit(s, 0) & 6) === 6 &&
@@ -95,7 +103,7 @@ test(`TOS/M ${firmwareKeyboard ? 'S600' : 'adapter'} write resumes from a mid-tr
     }
     expect(
       found,
-      "real OS must issue a write with bytes already transferred",
+      `real OS must issue a write with bytes already transferred; screen:\n${screen()}`,
     ).toBe(true);
     const n = w._dac_state_size(s);
     snapshot = w._malloc(n);

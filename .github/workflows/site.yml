@@ -59,12 +59,13 @@ jobs:
     needs: build
     if: needs.build.outputs.scope != 'docs' && needs.build.outputs.scope != 'reference'
     env:
+      DAC_CI_SCOPE: ${{ needs.build.outputs.scope }}
       DAC_CI_SHARD: ${{ matrix.shard }}
       DAC_CI_WORKERS: ${{ needs.build.outputs.scope == 'smoke' && 2 || 1 }}
       DAC_CI_TEST_FILES: ${{ needs.build.outputs.test_files }}
     strategy:
-      # All browsers share one fail-fast group: a failure cancels sibling jobs.
-      fail-fast: true
+      # Full nightly/manual runs must expose failures in every browser.
+      fail-fast: ${{ needs.build.outputs.scope != 'full' }}
       matrix: ${{ fromJSON(needs.build.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
     # Full coverage includes historical journeys and private learning sessions.
@@ -101,7 +102,6 @@ jobs:
         if: matrix.browser == 'chromium'
         run: npm test -- --reporter=line,./scripts/ci-timing-reporter.mjs
         env:
-          DAC_CI_SCOPE: ${{ needs.build.outputs.scope }}
           DAC_NATIVE_REPLAY: ${{ matrix.native && 'emulation-reference/build/dac-replay' || '' }}
       - uses: actions/upload-artifact@v7
         if: always() && matrix.browser == 'chromium'
